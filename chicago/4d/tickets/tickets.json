@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 12:03 PM",
+  "generated_ct": "Sep 6, 2026, 12:16 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15324,6 +15324,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 181
+    },
+    {
+      "id": "T-0900",
+      "title": "Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 182
+    },
+    {
+      "id": "T-0901",
+      "title": "A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 183
     }
   ]
 }

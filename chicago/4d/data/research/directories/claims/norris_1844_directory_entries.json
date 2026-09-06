@@ -10,11 +10,12 @@
   "committed": true,
   "how": "The word coordinates of archive.org's OCR (generaldirectory19norr_djvu.xml) give each line its left edge; a line set in more than 45/400 inch from the page's own margin is a turned line and is committed with two leading spaces. Nothing else about the text is touched."
  },
- "reading_note": "transcription_mediated throughout: this is archive.org's OCR of the printed page, machine-read and not checked against the image by eye. The damage is left in every quote on purpose — 'Win.' for 'Wm.', 'ISickalls' for 'Nickalls' — because a tidied quote cannot be found again. The repair, where one is safe, is in normalized.",
+ "reading_note": "transcription_mediated throughout: this is archive.org's OCR of the printed page, machine-read and not checked against the image by eye. The damage is left in every quote on purpose — 'Win.' for 'Wm.', 'ISickalls' for 'Nickalls' — because a tidied quote cannot be found again. The repair, where one is safe, is in normalized. A forename the scanner garbled beyond a compositor's alphabet is repaired against Kim Torp's independent transcription of the same directory, and the repaired entry carries normalized.given_repair with both readings and the citation (T-0695); where that second hand cannot read the token either, the damage stands.",
  "counts": {
   "claims": 2073,
   "person": 2008,
-  "business": 65
+  "business": 65,
+  "given_repairs": 11
  },
  "claims": [
   {
@@ -2565,12 +2566,24 @@
    "reading": "transcription_mediated",
    "quote": ".Barry, Edward\", laborer, house near North Branch Bridge",
    "normalized": {
-    "printed_name": "Barry, Edward\"",
+    "printed_name": "Barry, Edward",
     "surname": "Barry",
-    "given": "Edward\"",
+    "given": "Edward",
     "firm": false,
     "occupation": "laborer",
     "address": "house near North Branch Bridge",
+    "given_repair": {
+     "as_read": "Edward\"",
+     "reading": "Edward",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 109,
+      "reads": "Barry, Edward, laborer, house near North Branch Bridge"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": ".Barry, Edward\", laborer, house near North Branch Bridge",
     "section": "directory"
    },
@@ -2585,7 +2598,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Barry, Edward\""
+    "Barry, Edward"
    ],
    "town_finding": false,
    "notes": null
@@ -7339,12 +7352,24 @@
    "reading": "transcription_mediated",
    "quote": "Burch, G/H. of Newberry & B. res City Hotel",
    "normalized": {
-    "printed_name": "Burch, G/H",
+    "printed_name": "Burch, G.H",
     "surname": "Burch",
-    "given": "G/H",
+    "given": "G.H",
     "firm": false,
     "occupation": "of Newberry &",
     "address": "B. res City Hotel",
+    "given_repair": {
+     "as_read": "G/H",
+     "reading": "G.H",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 268,
+      "reads": "Burch, G.H. of Newberry & B, res City Hotel"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Burch, G/H. of Newberry & B. res City Hotel",
     "section": "directory"
    },
@@ -7359,7 +7384,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Burch, G/H"
+    "Burch, G.H"
    ],
    "town_finding": false,
    "notes": null
@@ -20235,12 +20260,24 @@
    "reading": "transcription_mediated",
    "quote": "Frost, Ge>~. h Michigan avenue",
    "normalized": {
-    "printed_name": "Frost, Ge>~",
+    "printed_name": "Frost, Geo",
     "surname": "Frost",
-    "given": "Ge>~",
+    "given": "Geo",
     "firm": false,
     "occupation": null,
     "address": "h Michigan avenue",
+    "given_repair": {
+     "as_read": "Ge>~",
+     "reading": "Geo",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 691,
+      "reads": "Frost, Geo., h Michigan ave"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Frost, Ge>~. h Michigan avenue",
     "section": "directory"
    },
@@ -20255,7 +20292,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Frost, Ge>~"
+    "Frost, Geo"
    ],
    "town_finding": false,
    "notes": null
@@ -24048,12 +24085,24 @@
    "reading": "transcription_mediated",
    "quote": "Hale, J>ctij. F. botanic physician, 185 Lake st. res Wells st",
    "normalized": {
-    "printed_name": "Hale, J>ctij. F",
+    "printed_name": "Hale, Benj. F",
     "surname": "Hale",
-    "given": "J>ctij. F",
+    "given": "Benj. F",
     "firm": false,
     "occupation": "botanic physician, 185 Lake st",
     "address": "res Wells st",
+    "given_repair": {
+     "as_read": "J>ctij. F",
+     "reading": "Benj. F",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 817,
+      "reads": "Hale, Benj. F., botanic physician, 185 Lake st res Wells st"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Hale, J>ctij. F. botanic physician, 185 Lake st. res Wells st",
     "section": "directory"
    },
@@ -24068,7 +24117,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hale, J>ctij. F"
+    "Hale, Benj. F"
    ],
    "town_finding": false,
    "notes": null
@@ -30527,12 +30576,24 @@
    "reading": "transcription_mediated",
    "quote": "Kane, Patrick\", drayman, house Kinzie st. b Clark and Lasalle sts",
    "normalized": {
-    "printed_name": "Kane, Patrick\"",
+    "printed_name": "Kane, Patrick",
     "surname": "Kane",
-    "given": "Patrick\"",
+    "given": "Patrick",
     "firm": false,
     "occupation": "drayman",
     "address": "house Kinzie st. b Clark and Lasalle sts",
+    "given_repair": {
+     "as_read": "Patrick\"",
+     "reading": "Patrick",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 1032,
+      "reads": "Kane, Patrick, drayman, house Kinzie st b Clark & Lasalle sts"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Kane, Patrick\", drayman, house Kinzie st. b Clark and Lasalle sts",
     "section": "directory"
    },
@@ -30547,7 +30608,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Kane, Patrick\""
+    "Kane, Patrick"
    ],
    "town_finding": false,
    "notes": null
@@ -33565,12 +33626,24 @@
    "reading": "transcription_mediated",
    "quote": "Leach, Patrick^ laborer, N. Water st. b Dearborn and Wolcott sts",
    "normalized": {
-    "printed_name": "Leach, Patrick^",
+    "printed_name": "Leach, Patrick",
     "surname": "Leach",
-    "given": "Patrick^",
+    "given": "Patrick",
     "firm": false,
     "occupation": "laborer, N. Water st",
     "address": "b Dearborn and Wolcott sts",
+    "given_repair": {
+     "as_read": "Patrick^",
+     "reading": "Patrick",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 1132,
+      "reads": "Leach, Patrick, laborer, N. Water st. b Dearborn & Wolcott sts"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Leach, Patrick^ laborer, N. Water st. b Dearborn and Wolcott sts",
     "section": "directory"
    },
@@ -33585,7 +33658,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Leach, Patrick^"
+    "Leach, Patrick"
    ],
    "town_finding": false,
    "notes": null
@@ -34185,12 +34258,24 @@
    "reading": "transcription_mediated",
    "quote": "Lill, V/m. of L. & Diversy, brewers, n Sand <fc Chicago Avenue",
    "normalized": {
-    "printed_name": "Lill, V/m",
+    "printed_name": "Lill, Wm",
     "surname": "Lill",
-    "given": "V/m",
+    "given": "Wm",
     "firm": false,
     "occupation": "of L. & Diversy, brewers, n Sand <fc Chicago Avenue",
     "address": null,
+    "given_repair": {
+     "as_read": "V/m",
+     "reading": "Wm",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 1153,
+      "reads": "Lill, Wm. of L. & Diversy, brewers, n Sand & Chicago Ave."
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Lill, V/m. of L. & Diversy, brewers, n Sand <fc Chicago Avenue",
     "section": "directory"
    },
@@ -34205,7 +34290,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lill, V/m"
+    "Lill, Wm"
    ],
    "town_finding": false,
    "notes": null
@@ -43640,12 +43725,24 @@
    "reading": "transcription_mediated",
    "quote": "Peck, A/.el, builder, h Clinton, b Washington and Madison sts",
    "normalized": {
-    "printed_name": "Peck, A/.el",
+    "printed_name": "Peck, Azel",
     "surname": "Peck",
-    "given": "A/.el",
+    "given": "Azel",
     "firm": false,
     "occupation": "builder",
     "address": "h Clinton, b Washington and Madison sts",
+    "given_repair": {
+     "as_read": "A/.el",
+     "reading": "Azel",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844dir2.txt",
+      "line": 289,
+      "reads": "Peck, Azel, builder, h Clinton b Washington & Madison sts"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Peck, A/.el, builder, h Clinton, b Washington and Madison sts",
     "section": "directory"
    },
@@ -43660,7 +43757,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Peck, A/.el"
+    "Peck, Azel"
    ],
    "town_finding": false,
    "notes": null
@@ -44136,12 +44233,24 @@
    "reading": "transcription_mediated",
    "quote": "Perrior, William\", jailor, res Jail Buildings",
    "normalized": {
-    "printed_name": "Perrior, William\"",
+    "printed_name": "Perrior, William",
     "surname": "Perrior",
-    "given": "William\"",
+    "given": "William",
     "firm": false,
     "occupation": "jailor",
     "address": "res Jail Buildings",
+    "given_repair": {
+     "as_read": "William\"",
+     "reading": "William",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844dir2.txt",
+      "line": 305,
+      "reads": "Perrior, William, jailor, res Jail buildings"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Perrior, William\", jailor, res Jail Buildings",
     "section": "directory"
    },
@@ -44156,7 +44265,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Perrior, William\""
+    "Perrior, William"
    ],
    "town_finding": false,
    "notes": null
@@ -58117,12 +58226,24 @@
    "reading": "transcription_mediated",
    "quote": "Wesencraft, C!;as. carpenter and wagon maker, c Clin and Monroe",
    "normalized": {
-    "printed_name": "Wesencraft, C!;as",
+    "printed_name": "Wesencraft, Chas",
     "surname": "Wesencraft",
-    "given": "C!;as",
+    "given": "Chas",
     "firm": false,
     "occupation": "carpenter and wagon maker, c Clin and Monroe",
     "address": null,
+    "given_repair": {
+     "as_read": "C!;as",
+     "reading": "Chas",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844dir2.txt",
+      "line": 764,
+      "reads": "Wesencraft, Chas., carpenter and wagon maker, c Clin and Monroe"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Wesencraft, C!;as. carpenter and wagon maker, c Clin and Monroe",
     "section": "directory"
    },
@@ -58137,7 +58258,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wesencraft, C!;as"
+    "Wesencraft, Chas"
    ],
    "town_finding": false,
    "notes": null
@@ -59667,12 +59788,24 @@
    "reading": "transcription_mediated",
    "quote": "Wood, Alonzt> C. mason builder, house Cass sf. b Indiana and Ohio",
    "normalized": {
-    "printed_name": "Wood, Alonzt> C",
+    "printed_name": "Wood, Alonzo C",
     "surname": "Wood",
-    "given": "Alonzt> C",
+    "given": "Alonzo C",
     "firm": false,
     "occupation": "mason builder",
     "address": "house Cass sf. b Indiana and Ohio",
+    "given_repair": {
+     "as_read": "Alonzt> C",
+     "reading": "Alonzo C",
+     "why": "The printed forename as the scanner set it carries characters no compositor did; the quote keeps them and the reading does not.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844dir2.txt",
+      "line": 815,
+      "reads": "Wood, Alonzo C., mason builder, house Cass st., b Indiana and Ohio"
+     },
+     "ticket": "T-0695"
+    },
     "as_printed": "Wood, Alonzt> C. mason builder, house Cass sf. b Indiana and Ohio",
     "section": "directory"
    },
@@ -59687,7 +59820,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wood, Alonzt> C"
+    "Wood, Alonzo C"
    ],
    "town_finding": false,
    "notes": null

@@ -14,10 +14,10 @@
   "matched_one_1844_entry": 97,
   "matched_more_than_one_ambiguous": 23,
   "one_1844_entry_contested_by_two_residents": 16,
-  "surname_present_initial_absent_refused": 335,
-  "initial_agreed_forenames_disagreed_refused": 50,
-  "of_those_a_garbled_printed_forename": 2,
-  "residents_left_with_no_1844_entry_by_that_refusal": 26,
+  "surname_present_initial_absent_refused": 336,
+  "initial_agreed_forenames_disagreed_refused": 49,
+  "of_those_a_garbled_printed_forename": 0,
+  "residents_left_with_no_1844_entry_by_that_refusal": 25,
   "ties_narrowed_by_a_trade": 4,
   "of_those_contested": 0,
   "of_those_ambiguous": 4,
@@ -6018,6 +6018,13 @@
    "rule": "The surname 'Woods' is in Norris 1844 and no entry under it carries the initial 'J' of 'John H. Woods'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "John Hale",
+   "person_id": "hale_john",
+   "surname_in_1844": "Hale",
+   "candidates": 1,
+   "rule": "The surname 'Hale' is in Norris 1844 and no entry under it carries the initial 'J' of 'John Hale'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "John Knight",
    "person_id": "knight_john",
    "surname_in_1844": "Knight",
@@ -6982,9 +6989,9 @@
     "occupation_1844": "carpenter and wagon maker, c Clin and Monroe",
     "address_1844": null,
     "forename_1835": "Charlotte",
-    "forename_printed": "C!;as",
-    "garbled_reading": true,
-    "rule": "Both readings print a full forename and the two disagree: 'Charlotte' against 'C!;as'. An initial standing against a full name is a match; two full names that differ are not. The printed forename is garbled, so this is a transcription defect rather than two people (T-0695)."
+    "forename_printed": "Chas",
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'Charlotte' against 'Chas'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {
@@ -7321,22 +7328,6 @@
     "forename_printed": "James",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'John' against 'James'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "John Hale",
-   "person_id": "hale_john",
-   "grade_1835": "attested",
-   "entry_1844": {
-    "claim": "n1844_e0776",
-    "as_printed": "Hale, J>ctij. F. botanic physician, 185 Lake st. res Wells st",
-    "printed_page": 38,
-    "occupation_1844": "botanic physician, 185 Lake st",
-    "address_1844": "res Wells st",
-    "forename_1835": "John",
-    "forename_printed": "J>ctij",
-    "garbled_reading": true,
-    "rule": "Both readings print a full forename and the two disagree: 'John' against 'J>ctij'. An initial standing against a full name is a match; two full names that differ are not. The printed forename is garbled, so this is a transcription defect rather than two people (T-0695)."
    }
   },
   {
