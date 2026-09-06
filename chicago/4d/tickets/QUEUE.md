@@ -170,7 +170,6 @@ T-0385 — The New York Clothing Store stands three doors north of the Tremont H
 
 # --- THE REPAIRS THE SEEDING READS — identity, anchors, placements. They add no buildings; the
 # --- buildings above cannot be placed CORRECTLY without them.
-T-0406 — 'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
@@ -203,7 +202,6 @@ T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through H
 # --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is what
 # --- T-0451 left open: the committed market line is fitted to N Wacker Drive and stands 9.1 m off
 # --- the plat's own module, so the suspect is the parent line rather than the North Division.
-T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
@@ -258,7 +256,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- to both, which is why T-0809 outranks the remaining laps.
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
-T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
@@ -344,3 +341,4 @@ T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'J
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0861 — Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground
+
