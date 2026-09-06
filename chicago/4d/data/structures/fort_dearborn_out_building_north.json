@@ -1,0 +1,105 @@
+{
+  "id": "fort_dearborn_out_building_north",
+  "name": "Fort Dearborn — the north out building",
+  "aka": [
+    "the fort out buildings"
+  ],
+  "archetype": "outbuilding",
+  "phases": [
+    {
+      "id": "out_building_1830",
+      "documented_range": {
+        "from": "1830-02-24",
+        "to": "1836-12-29",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "THE RANGE HAS ONE WITNESS. Only the plan names Out Buildings here; Hubbard walks this ground on the same two pages he gives the barn, the well and the wash-houses, and does not mention them. IT OPENS 24 FEBRUARY 1830, the date on the Harrison plan, because that is the earliest date any source this project holds fixes to this building. IT CLOSES 29 DECEMBER 1836, the evacuation, and that is a floor rather than a demolition: nothing attests when the fort's outer buildings came down. WHAT CARRIES THE SCENE DATE OF 1 JULY 1835 is the middle of that range and not either end of it — the post was garrisoned continuously from June 1832 to 29 December 1836, so a service building the garrison's own engineer drew in 1830 is standing five years later unless something says it stopped, and nothing does. That is an argument, not an assumption, and it is the argument every Fort Dearborn record here rests on."
+      },
+      "position": {
+        "utm_e": 448254.15,
+        "utm_n": 4637459.29,
+        "rotation_deg": 138.0,
+        "symbolic_location": "South-east of Fort Dearborn on the fort's outer ground, on the east line of the outer enclosure between the gate and the U.S. Factor's House, and the northern of the pair the plate letters Out Buildings.",
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "ONE WITNESS, AND THE RECORD SAYS SO EVERYWHERE. The plan letters 'Out Buildings' against two drawn blocks south-east of the stockade and that is the entire evidence for these buildings' existence, their position and their size.\n\nTHE LABEL IS PLURAL AND THE PLATE DRAWS TWO. 'Out Buildings' is lettered once, and beneath the lettering the sheet sets two solid blocks that touch at a corner, one either side of the outer enclosure's east fence: this one and its neighbour. They are carried as TWO RECORDS because the plate's own label is plural and because the two blocks are separately drawn, with clear paper between their long edges; what the plate cannot settle is whether a draughtsman meant two buildings or one building with a lean-to, and the committed footprints stand 1.7 m apart rather than touching so that neither reading is forced. T-0881 opened on the belief that the plural label was drawn ONCE. It is not, and this record is where that correction is written down.\n\nREAD OFF THE 1830 HARRISON PLAN, BY THE SAME RULE AS THE FOURTEEN RECORDS ALREADY TAKEN FROM IT. Internet Archive leaf n242 of historyofchicago01andr (Andreas vol. 1, p. 113), rotated 90 degrees anticlockwise so the sheet's own true-north arrow stands vertical, is 2715 x 2003 px. On that image the stockade's ink runs from x 1356 to x 1535 and from y 553 to y 730, so the enclosure's centre is pixel (1445, 644); the committed palisade record hangs that centre on local E +1152, N +221, which is UTM 448224.70 E, 4637616.80 N. Pixels convert at 1.10 ft/px (0.33528 m/px), the scale docs/RESEARCH/fort_dearborn.md section 3 derives from the commandant's quarters. THE TRANSFORM IS THE ONE T-0883 COMMITTED AND IT IS RE-PROVED HERE RATHER THAN ASSUMED: reading the three records that pass already carries — fort_dearborn_big_barn, fort_dearborn_wash_house, fort_dearborn_shop — back through it from their committed UTM, their rotations and their footprints returns pixel (1114.0, 898.5), (1673.0, 813.0) and (1626.5, 934.8), which are the pixels those records state they were read from. The garrison garden check stands unchanged: its committed centre lands at pixel (1209, 1008) under this transform and the drawn diamond's centre measures (1207, 1002), seven pixels or 2.3 m. WHAT THE TRANSFORM CANNOT DO is beat its own inputs. The enclosure measures 180 px across at this scale, which is 60 m against the committed palisade's 53 m — a 13 % spread, inside the +/-20 % the scale carries, and the reason is visible on the plate: 180 px is the OUTER edge of an engraved line four to six pixels thick. So carry +/-20 % on this offset from the fort centre and +/-20 m on the fort itself, exactly as every plate-derived record here does.\n\nTHE PIXEL. The drawn block is a solid tilted square, 121 px of ink, whose extent runs from x 1525 to x 1538 and from y 1112 to y 1126, centre (1531.5, 1119.0) — 86.5 px east and 475.0 px south of the fort centre, which is 29.0 m east and 159.3 m south of it. Its principal axes measure 12.3 x 9.5 px across the outer edge of the ink, and the longer of the two lies at bearing 47.5 degrees.\n\nWHICH SIDE OF THE FENCE. The outer enclosure's east line runs through this pair, and it is drawn on the plate from pixel (1504, 1106) to (1534, 1146) — a bearing of about 143 degrees. The north block's centre stands 6 px east of that line and the south block's centre 8 px west of it, so as drawn ONE OF THE PAIR IS OUTSIDE THE FENCE AND ONE IS INSIDE. Six and eight pixels are two metres and three, which is well inside the ink and well inside the +/-20 % this plate carries, so the difference is recorded and not relied on: what the sheet supports is that the pair stands ON the enclosure's east line, north of the U.S. Factor's House and south of the well.",
+        "derivation": {
+          "method": "not_derivable",
+          "reason": "The two machine-checkable methods this project holds are a platted corner and a traced waterline, and this is neither: it is a pixel offset on a re-engraved plate, hung on a fort centre that is itself an inference. The whole rule is written out in position.note and is reproducible by hand from the numbers there — the leaf, the pixel, the scale and the anchor — so declaring a derivation method that could not recompute it would be worse than declaring none. Every record taken off this plate says the same thing."
+        }
+      },
+      "footprint": {
+        "polygon": [
+          [
+            0,
+            0
+          ],
+          [
+            3.0,
+            0
+          ],
+          [
+            3.0,
+            2.0
+          ],
+          [
+            0,
+            2.0
+          ]
+        ],
+        "confidence": "inferred",
+        "sources": [
+          "harrison_1830_river_mouth"
+        ],
+        "note": "NO SOURCE GIVES THIS BUILDING A DIMENSION. 3.0 x 2.0 m is about 10 x 6.5 ft: the drawn block measures 12.3 x 9.5 px across the outer edge of the ink, and 3.5 px are taken off each dimension for the spread of a solid engraved block — the same correction, and the same figure, that the shop record's four corners imply for its own 9.7 x 7.4 m. Read it at +/-20 %, so somewhere between 8 x 5 and 12 x 8 ft. THIS IS A SMALL SHED and the honest reading of a small square of ink; the archetype's family runs from a 1.25 m privy up, so nothing is being stretched to fit. The long axis runs at bearing 47.5 degrees as drawn."
+      },
+      "form": {
+        "construction": {
+          "value": "plank",
+          "confidence": "reconstructed",
+          "note": "Nothing states it. PLANK RATHER THAN THE LOG EVERY OTHER BUILDING ON THIS POST CARRIES, and the archetype is what says so: a notched log pen's corner notches protrude a quarter of a metre past every corner, and on a wall of two metres the notches from the two ends would meet near the middle of it. A shed this small was boarded. Invented, and the reasoning is the archetype's own refusal rather than a source."
+        },
+        "roof_type": {
+          "value": "shed",
+          "confidence": "reconstructed",
+          "note": "Not attested. Shed is the archetype's own default at this depth and the commoner roof on a building of ten feet by six; a gable on it would be the larger claim. Invented."
+        },
+        "wall_height_m": {
+          "value": 2.2,
+          "confidence": "reconstructed",
+          "note": "No height attested. Just over seven feet to the eave, the archetype's size-aware default for a footprint this small. Invented."
+        },
+        "door": {
+          "value": "man",
+          "confidence": "reconstructed",
+          "note": "Not attested. A shed of ten feet by six takes a man and no cart. Invented."
+        },
+        "door_side": {
+          "value": "front",
+          "confidence": "reconstructed",
+          "note": "The wall facing back toward the fort's own ground, south-east. Invented."
+        },
+        "paint": {
+          "value": "unpainted",
+          "confidence": "reconstructed",
+          "note": "Not stated. The archetype's default and the treatment of every working building here. Invented."
+        }
+      },
+      "change_note": "One phase, and one witness. There is no history here to divide."
+    }
+  ],
+  "function": {
+    "value": "outbuilding",
+    "confidence": "attested",
+    "sources": [
+      "harrison_1830_river_mouth"
+    ],
+    "note": "THE WORDS ON THE PLATE ARE 'Out Buildings' AND NOTHING ELSE IS CLAIMED. An out building on a post of this date is a store, a privy, a hen house, a smoke house or a wood shed, and the plate names none of them; writing any one of those onto this record would be inventing a use for a building it can barely size. What the record holds is an out building on the fort's outer ground."
+  },
+  "research_note": "Placed under T-0881, the second of three slices of T-0758. It is the smaller and weaker-attested of the pair the plate letters Out Buildings: one witness, no dimension, no use, and a footprint at the edge of what a re-engraved block can be read to. It is carried at inferred for POSITION, because the same transform and the same checks that placed the barn, the wash house and the shop place it, and at reconstructed for every element of its fabric. WHAT WOULD IMPROVE IT: a post return, a quartermaster's account, or the return of the 1830 original — what is readable here is Andreas's 1884 re-engraving, which is why nothing on this record is graded documented.",
+  "review_required": false
+}

@@ -261,6 +261,24 @@
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_officers_quarters"
     },
+    "fort_dearborn_out_building_north__out_building_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 39792,
+      "inputs_sha256": "080e93e2e63f61eb82c35e30c9163a843b5c674757430b3c86a530dba6bb9c59",
+      "kind": "generated",
+      "phase_id": "out_building_1830",
+      "structure_id": "fort_dearborn_out_building_north"
+    },
+    "fort_dearborn_out_building_south__out_building_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 64828,
+      "inputs_sha256": "6f1df4892e2f20bb1c1b62f42e80477bbfd152b36a4925a7688943cb548a528d",
+      "kind": "generated",
+      "phase_id": "out_building_1830",
+      "structure_id": "fort_dearborn_out_building_south"
+    },
     "fort_dearborn_palisade__picket_1816.glb": {
       "archetype": "palisade",
       "baked_ao": false,

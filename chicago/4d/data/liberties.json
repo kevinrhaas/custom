@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 226,
+  "count": 228,
   "liberties": [
     {
       "id": "L1",
@@ -14128,6 +14128,154 @@
         {
           "label": "Recorded",
           "text": "2026-09-06 (T-0883)."
+        }
+      ]
+    },
+    {
+      "id": "L227",
+      "title": "The plural on the plate is drawn twice, and everything above their footprints is invented",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_out_building_north",
+        "fort_dearborn_out_building_south"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_north",
+          "phase": "out_building_1830",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_north",
+          "phase": "out_building_1830",
+          "aspect": "form.door"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_north",
+          "phase": "out_building_1830",
+          "aspect": "form.door_side"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_north",
+          "phase": "out_building_1830",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_north",
+          "phase": "out_building_1830",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_north",
+          "phase": "out_building_1830",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.construction"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.door"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.door_side"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_out_building_south",
+          "phase": "out_building_1830",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-09-06",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`fort_dearborn_out_building_north` and `fort_dearborn_out_building_south` stand south-east of Fort Dearborn's pickets, on the east line of the fort's outer enclosure between the gate and the U.S. Factor's House. **Where they stand and how big they are is read off a plan. What they are made of, how high they are, what shape their roofs are and where their doors are is invented**, and every one of those attributes is graded `reconstructed` on both records, so a visitor turning the reconstructed tier off sees their fabric go with it."
+        },
+        {
+          "label": "Why",
+          "text": "the Harrison plan of 1830 letters *Out Buildings* once and draws two solid blocks under the lettering, and that is the whole of the evidence. It is a plan, so it says nothing about elevation; and unlike the barn and the wash house these two have no second witness at all — Gurdon Hubbard walks this ground on the two pages that give him the barn, the well and the wash-houses, and does not mention them. So there are two more buildings whose position this project can defend to a few metres and whose walls it cannot defend at all. `RECONSTRUCTED IS A TIER, NOT A FAILURE` (AGENTS.md) is the ruling that says build them and grade them down, and it is the same ruling **L226** applied to the shop five weeks after the plate was first read. **What was invented, item by item.** The north shed: `plank` construction, a shed roof, a 2.2 m eave, a man door, which wall it is in, and no paint. The south shed: `log` construction, a gable at 34 degrees, a 2.6 m eave, a man door, its side, and no paint. Every figure is the `outbuilding` archetype's own size-aware default or the 34 degrees every other Fort Dearborn record here carries; none of them is a reading. **The north shed's `plank` is the one item with a reason behind it, and the reason is not a source**: the archetype refuses `log` on a wall of two metres, because its corner notches protrude 0.24 m past every corner and the two ends' notches would meet near the middle of that wall. A generator's refusal is an argument from building practice, and it is recorded here as one rather than dressed up as evidence."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor walking south-east out of the fort meets two small sheds, one about ten feet by six and one about twenty-one by seventeen, standing 1.7 m apart on ground that was empty. The confidence view tells them the difference between the two claims being made — the footprint chips read `inferred`, everything above them reads `reconstructed`."
+        },
+        {
+          "label": "What is NOT claimed",
+          "text": "what either building was FOR. An out building on a post of this date is a store, a privy, a hen house, a smoke house or a wood shed; the plate names none of them and neither record picks one. Nor is it claimed that there were exactly two. The label is plural and the plate draws two, so two are built; a third that the engraver left out would not surprise anyone, and the pair is a floor rather than a census. Nor is it claimed which side of the fence each stood on: the enclosure's east line runs between them as drawn, two metres east of one centre and three metres west of the other, and two and three metres are inside the ink. Related: **L226** (the wash house's and the shop's fabric, the same ruling) · **L225** (the barn's cupola) · **L228** (the fort's well, read off the same plate and not built) · **T-0881** (this) · **T-0758** (the parent: six things the plan names and nothing drew)."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_out_building_north.out_building_1830.form.construction`, `fort_dearborn_out_building_north.out_building_1830.form.roof_type`, `fort_dearborn_out_building_north.out_building_1830.form.wall_height_m`, `fort_dearborn_out_building_north.out_building_1830.form.door`, `fort_dearborn_out_building_north.out_building_1830.form.door_side`, `fort_dearborn_out_building_north.out_building_1830.form.paint`, `fort_dearborn_out_building_south.out_building_1830.form.construction`, `fort_dearborn_out_building_south.out_building_1830.form.roof_type`, `fort_dearborn_out_building_south.out_building_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_south.out_building_1830.form.wall_height_m`, `fort_dearborn_out_building_south.out_building_1830.form.door`, `fort_dearborn_out_building_south.out_building_1830.form.door_side`, `fort_dearborn_out_building_south.out_building_1830.form.paint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-06 (T-0881)."
+        }
+      ]
+    },
+    {
+      "id": "L228",
+      "title": "The fort's well is read to within two metres and is not drawn, because this project can build a shed and cannot build a well",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-06",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "the Well the Harrison plan letters on Fort Dearborn's outer ground is **placed on the record and not in the model**. Its position is derived here, by the transform every other record off that plate uses, and committed in `docs/RESEARCH/fort_dearborn.md` § 7 — **local E +1152.50, N +139.53, which is UTM 448225.20 E, 4637535.33 N**, 81.5 m south and 0.5 m east of the fort's centre. **No `data/structures/` record is written for it and no geometry is baked.**"
+        },
+        {
+          "label": "Why",
+          "text": "every archetype this project owns builds a walled, roofed building, and a well is neither. `outbuilding` puts a roof and four walls on whatever it is given; `data/enclosures/` draws fences — post-and-rail, pickets, boards — from a perimeter, and a well curb is not a fence. So the choice was between drawing a well as something it was not and saying, in writing and with the coordinate, that it is not drawn. T-0592 refused a well class to the TOWN on the argument that there is no density to deal from and that the town's documented answer to water was a cart; that argument does not reach this well, which rests on a plan and a memoir, and this entry is not that refusal. It is the narrower one: **the evidence is good and the tooling is missing.** **What the evidence is, and it is the best of the six things T-0758 opened on after the barn.** The plate draws a small open ring — 14.5 px across, a map symbol and not a size — and letters *Well* beside it. Gurdon Hubbard, from memory of the late 1820s, says the well *\"was in the outer inclosure and near the south gate\"* (`hubbard_autobiography_1911`, leaf 75, printed p. 37). Both of his clauses are satisfied by the plate independently of him: the ring stands inside the outer enclosure, and it stands **50.3 m due north of the knot the same sheet letters *Gate***, which is itself 131.8 m south of the fort's centre — so the well sits on the walk from the fort to that gate, four-fifths of the way along it. Nothing was moved to make that come out; the gate pixel (1447.5, 1037) and the well pixel (1446.5, 887) were measured after the well's coordinate was already derived."
+        },
+        {
+          "label": "Consequence",
+          "text": "the fort's outer ground gains two sheds this pass and does not gain the one thing on it that a garrison used every day. A visitor sees no well. What exists instead is a coordinate anyone can build on the moment there is something to build it with."
+        },
+        {
+          "label": "What is NOT claimed",
+          "text": "the well's form, depth, curb, cover, sweep or windlass — the plate draws a symbol, Hubbard gives a position, and neither describes the thing. Nor is the 14.5 px ring claimed as a diameter: at this scale that would be 4.9 m of well head, which is a draughtsman's convention and not a measurement. Related: **L227** (the two out buildings, read off the same plate in the same pass) · **L216** (T-0592's refusal of a well class to the town, which this entry does not extend) · **T-0881** (this) · **T-0758** (the parent) · **T-0885** (the class this refusal asks for)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-06 (T-0881)."
         }
       ]
     },
