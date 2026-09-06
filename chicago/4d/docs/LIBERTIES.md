@@ -5344,7 +5344,7 @@ documented. The Evidence panel's `reconstructed` grade and the note on every val
 **How to resolve:** any survivor's account, bill of lading, mill advertisement or measured
 photograph stating a board width for a named building replaces that building's dealt value one
 for one; a document on the town's lumber stock would replace the whole set's bounds.
-**Covers:** `bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`.
+**Covers:** `bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `lasalle_lake_house.documented_1834.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`.
 **Recorded:** 2026-08-20.
 
 ### L152 — The Green Tree's fabric from the plates: bays, end stacks, and the rear ell
@@ -10680,3 +10680,45 @@ Related: **L218** (the business half, and the clause that refused this one) · *
 (a street name constrains a face) · **L2** (nothing is drawn) · tickets **T-0669** (this),
 **T-0633**, **T-0632**.
 **Recorded:** 2026-09-04 (T-0669).
+
+### L224 — A house the paper measured, on a corner the paper did not
+**Decision:** `lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat*
+offered for sale on the corner of LaSalle and Lake — stands on the **north-east** quarter of
+that crossing, on the Lake Street frontage of `blk_south_water_lasalle` lot 1, with one
+storey, a hall-and-parlour plan, three bays, one chimney, a 40-degree gable, a 2.75 m eave
+and no paint. Every one of those is invented. **Its footprint is not**, and that is the
+whole point of the record: 9.144 × 4.8768 m is 30 × 16 ft exactly, printed, and it is graded
+`attested` while everything around it is graded down.
+**Why:** L36's *How to resolve* has been asking for this for a month — "the route left is a
+to-let or an insurance notice in an issue still unread" giving a dimension for a building on
+these blocks. This is that notice, and it is for a house rather than a store, so it does not
+resolve L36; it stands beside it as the first Chicago dwelling in this dataset whose plan
+came off a page instead of out of an archetype. **The corner is the price.** The notice names
+the crossing and no side, exactly as Andreas names Lake and LaSalle and no side for
+`old_bank_building`, so the quarter is a one-in-four choice and the four candidates are about
+40 m apart — twice the georeference's own error. The quarter was chosen on **ground**: three
+of the four corner lots already carry committed roofs (`old_bank_building` and
+`recon_1835_south_d4_009` south-east, `inf_teamster_dwelling_south` and two anonymous roofs
+south-west, `recon_1835_blk_south_water_wells_d3_04` north-west) and the north-east is the
+one free lot the 665-roof programme records for its block, so building there displaces
+nothing. That is a production reason and it buys no confidence.
+**Consequence:** a visitor stands at a crossing where the building on one corner is the right
+size and on the wrong corner, and the confidence view says so — the footprint chip reads
+attested, the position chip reads reconstructed, and the two disagreeing on one building is
+the honest picture. **The orientation is the second invention and it is separately stated:**
+which of 16 and 30 feet runs along Lake is not printed, and `form.gable_orientation` carries
+the reading (30 ft of front on Lake, single-pile 16 ft depth, eaves-front as the 1835 form)
+as a `record_only` value rather than as a silence in the polygon.
+**What is NOT claimed:** no occupant, no owner and no household. P. Pruyne signs the notice as
+its **vendor**, and T-0412's rule is that a vendor's for-sale notice places the seller
+nowhere; he is not carried into this building in any field, and the house stands empty rather
+than be dealt a family.
+**How to resolve:** any printing naming the side of either street settles the position outright
+and the move costs nothing. The 1834-35 town lot records for blocks 16 and 17 of the Original
+Town, or a deed following the June 1834 sale, would settle the corner and give the house an
+occupant at the same time.
+Related: **L36** (the invented business street, whose resolution clause asked for exactly this
+notice) · **L26** (the archetype's chimney) · **L148** (the clapboard stock) · tickets
+**T-0783** (this), **T-0412** (the vendor rule that took the house off P. Pruyne & Co.).
+**Covers:** `lasalle_lake_house.occupants`, `lasalle_lake_house.documented_1834.position`, `lasalle_lake_house.documented_1834.form.stories`, `lasalle_lake_house.documented_1834.form.wall_height_m`, `lasalle_lake_house.documented_1834.form.roof_pitch_deg`, `lasalle_lake_house.documented_1834.form.plan`, `lasalle_lake_house.documented_1834.form.bays`, `lasalle_lake_house.documented_1834.form.chimneys`, `lasalle_lake_house.documented_1834.form.paint`.
+**Recorded:** 2026-09-06 (T-0783).

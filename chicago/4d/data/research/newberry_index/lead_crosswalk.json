@@ -44,16 +44,16 @@
   }
  ],
  "counts": {
-  "leads_ruled": 977,
+  "leads_ruled": 978,
   "cards_ruled": 1384,
   "by_outcome": {
-   "refused": 720,
+   "refused": 721,
    "candidate": 257
   },
   "by_class": {
    "ocr_variant_only": 338,
    "testable_in_a_held_work": 257,
-   "locality_absent": 287,
+   "locality_absent": 288,
    "surname_only_chicago": 95
   },
   "matched": 0,
@@ -21484,6 +21484,38 @@
    "person_ids": [
     "lake_lewis"
    ],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_lake_structures",
+   "surname_key": "lake",
+   "spellings_as_printed": [
+    "Lake"
+   ],
+   "layer": "structures",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against The house at the corner of LaSalle and Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v02_1713",
+    "nbi_v02_1714",
+    "nbi_v02_1715",
+    "nbi_v02_1716",
+    "nbi_v02_1717",
+    "nbi_v02_1718"
+   ],
+   "candidates": [
+    {
+     "id": "lasalle_lake_house",
+     "name": "The house at the corner of LaSalle and Lake",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
    "works_cited": [
     "county_histories_kett_and_co"
    ],
@@ -72907,15 +72939,17 @@
   {
    "record_id": "nbi_v02_1713",
    "a": "Lake | t Boone Co,, III. (KoH 4 Co., Pub.) 1877, 356. — Top.f i",
-   "b": "Lewis Lake",
+   "b": "Lewis Lake; The house at the corner of LaSalle and Lake",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | t Boone Co,, III. (KoH 4 Co., Pub.) 1877, 356. — Top.f i' against Lewis Lake.",
+   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | t Boone Co,, III. (KoH 4 Co., Pub.) 1877, 356. — Top.f i' against Lewis Lake; The house at the corner of LaSalle and Lake.",
    "layers": [
-    "residents"
+    "residents",
+    "structures"
    ],
    "leads": [
-    "lead_v02_lake_residents"
+    "lead_v02_lake_residents",
+    "lead_v02_lake_structures"
    ],
    "person_ids": [
     "lake_lewis"
@@ -72940,15 +72974,17 @@
   {
    "record_id": "nbi_v02_1714",
    "a": "Lake | J. DeWItt Co,, III, (Brink, W. R, 6 Pc, Pub.) IOB2i Lake family.",
-   "b": "Lewis Lake",
+   "b": "Lewis Lake; The house at the corner of LaSalle and Lake",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | J. DeWItt Co,, III, (Brink, W. R, 6 Pc, Pub.) IOB2i Lake family.' against Lewis Lake.",
+   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | J. DeWItt Co,, III, (Brink, W. R, 6 Pc, Pub.) IOB2i Lake family.' against Lewis Lake; The house at the corner of LaSalle and Lake.",
    "layers": [
-    "residents"
+    "residents",
+    "structures"
    ],
    "leads": [
-    "lead_v02_lake_residents"
+    "lead_v02_lake_residents",
+    "lead_v02_lake_structures"
    ],
    "person_ids": [
     "lake_lewis"
@@ -72973,15 +73009,17 @@
   {
    "record_id": "nbi_v02_1715",
    "a": "Lake | Fulton Co, III. (Chapman, C, C, 4 Co.) 1879, dxfke f a m i l y .",
-   "b": "Lewis Lake",
+   "b": "Lewis Lake; The house at the corner of LaSalle and Lake",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | Fulton Co, III. (Chapman, C, C, 4 Co.) 1879, dxfke f a m i l y .' against Lewis Lake.",
+   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | Fulton Co, III. (Chapman, C, C, 4 Co.) 1879, dxfke f a m i l y .' against Lewis Lake; The house at the corner of LaSalle and Lake.",
    "layers": [
-    "residents"
+    "residents",
+    "structures"
    ],
    "leads": [
-    "lead_v02_lake_residents"
+    "lead_v02_lake_residents",
+    "lead_v02_lake_structures"
    ],
    "person_ids": [
     "lake_lewis"
@@ -73006,15 +73044,17 @@
   {
    "record_id": "nbi_v02_1716",
    "a": "Lake | r-Hookford and Winnebago Co.,111. , . . '",
-   "b": "Lewis Lake",
+   "b": "Lewis Lake; The house at the corner of LaSalle and Lake",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Lake | r-Hookford and Winnebago Co.,111. , . . '\" against Lewis Lake.",
+   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Lake | r-Hookford and Winnebago Co.,111. , . . '\" against Lewis Lake; The house at the corner of LaSalle and Lake.",
    "layers": [
-    "residents"
+    "residents",
+    "structures"
    ],
    "leads": [
-    "lead_v02_lake_residents"
+    "lead_v02_lake_residents",
+    "lead_v02_lake_structures"
    ],
    "person_ids": [
     "lake_lewis"
@@ -73039,15 +73079,17 @@
   {
    "record_id": "nbi_v02_1717",
    "a": "Lake | Sangamon Co., Ill, (Power, J, CJ 1876, Lake faally.",
-   "b": "Lewis Lake",
+   "b": "Lewis Lake; The house at the corner of LaSalle and Lake",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | Sangamon Co., Ill, (Power, J, CJ 1876, Lake faally.' against Lewis Lake.",
+   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | Sangamon Co., Ill, (Power, J, CJ 1876, Lake faally.' against Lewis Lake; The house at the corner of LaSalle and Lake.",
    "layers": [
-    "residents"
+    "residents",
+    "structures"
    ],
    "leads": [
-    "lead_v02_lake_residents"
+    "lead_v02_lake_residents",
+    "lead_v02_lake_structures"
    ],
    "person_ids": [
     "lake_lewis"
@@ -73072,15 +73114,17 @@
   {
    "record_id": "nbi_v02_1718",
    "a": "Lake | «95.9, i ll. fwhaataau«.i F 842.62",
-   "b": "Lewis Lake",
+   "b": "Lewis Lake; The house at the corner of LaSalle and Lake",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | «95.9, i ll. fwhaataau«.i F 842.62' against Lewis Lake.",
+   "rule": "Refused. All 6 card(s) heading 'Lake' name Illinois and neither Chicago nor Cook County, so the lead against Lewis Lake stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Lake | «95.9, i ll. fwhaataau«.i F 842.62' against Lewis Lake; The house at the corner of LaSalle and Lake.",
    "layers": [
-    "residents"
+    "residents",
+    "structures"
    ],
    "leads": [
-    "lead_v02_lake_residents"
+    "lead_v02_lake_residents",
+    "lead_v02_lake_structures"
    ],
    "person_ids": [
     "lake_lewis"

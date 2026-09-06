@@ -9701,7 +9701,7 @@
     {
       "structure_id": "blk_south_water_lasalle_lot1",
       "wall": "blk_south_water_lasalle south face, lot 1",
-      "why": "no committed building stands on this platted lot — an unimproved lot is open prairie and takes no street fence."
+      "why": "lasalle_lake_house stands 1.50 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_south_water_lasalle_lot2",

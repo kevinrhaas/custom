@@ -3672,6 +3672,12 @@
       "asset": "gltf/lake_house_construction__shell_1835.glb"
     },
     {
+      "id": "lasalle_lake_house",
+      "name": "The house at the corner of LaSalle and Lake",
+      "sidecar": "sidecars/1835/lasalle_lake_house.json",
+      "asset": "gltf/lasalle_lake_house__documented_1834.glb"
+    },
+    {
       "id": "lasalle_slough_crossing",
       "name": "The La Salle Slough Crossing, South Water Street",
       "sidecar": "sidecars/1835/lasalle_slough_crossing.json",

@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 223,
+  "count": 224,
   "liberties": [
     {
       "id": "L1",
@@ -9894,6 +9894,7 @@
         "h_jones_store",
         "harmon_loomis_store",
         "jh_kinzie_forwarding_store",
+        "lasalle_lake_house",
         "old_bank_building",
         "peck_store",
         "pruyne_kimball_drugstore",
@@ -9987,6 +9988,12 @@
         },
         {
           "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.siding_exposure_m"
+        },
+        {
+          "domain": "structure",
           "structure": "old_bank_building",
           "phase": null,
           "aspect": "form.siding_exposure_m"
@@ -10073,7 +10080,7 @@
         },
         {
           "label": "Covers",
-          "text": "`bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`."
+          "text": "`bates_auction_room.form.siding_exposure_m`, `carpenter_south_water_store.form.siding_exposure_m`, `chicago_american_office.form.siding_exposure_m`, `chicago_democrat_office.form.siding_exposure_m`, `dole_warehouse_south.form.siding_exposure_m`, `exchange_coffee_house.form.siding_exposure_m`, `first_presbyterian_church.form.siding_exposure_m`, `frederick_thomas_shop.form.siding_exposure_m`, `goss_cobb_saddlery.form.siding_exposure_m`, `green_tree_tavern.form.siding_exposure_m`, `h_jones_store.form.siding_exposure_m`, `harmon_loomis_store.form.siding_exposure_m`, `jh_kinzie_forwarding_store.form.siding_exposure_m`, `old_bank_building.form.siding_exposure_m`, `peck_store.form.siding_exposure_m`, `pruyne_kimball_drugstore.form.siding_exposure_m`, `sauganash_hotel.form.siding_exposure_m`, `st_marys_church.form.siding_exposure_m`, `steamboat_hotel.form.siding_exposure_m`, `temple_building.form.siding_exposure_m`, `thomas_church_store.form.siding_exposure_m`, `tremont_house_1.form.siding_exposure_m`, `lasalle_lake_house.documented_1834.form.siding_exposure_m`, `watkins_school_house.form.siding_exposure_m`, `western_hotel.form.siding_exposure_m`."
         },
         {
           "label": "Recorded",
@@ -13853,6 +13860,106 @@
         {
           "label": "Recorded",
           "text": "2026-09-04 (T-0669)."
+        }
+      ]
+    },
+    {
+      "id": "L224",
+      "title": "A house the paper measured, on a corner the paper did not",
+      "section": "per_subject",
+      "subjects": [
+        "inf_teamster_dwelling_south",
+        "lasalle_lake_house",
+        "old_bank_building",
+        "recon_1835_blk_south_water_wells_d3_04",
+        "recon_1835_south_d4_009"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": null,
+          "aspect": "occupants"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.bays"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.paint"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.plan"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.stories"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "form.wall_height_m"
+        },
+        {
+          "domain": "structure",
+          "structure": "lasalle_lake_house",
+          "phase": "documented_1834",
+          "aspect": "position"
+        }
+      ],
+      "recorded": "2026-09-06",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat* offered for sale on the corner of LaSalle and Lake — stands on the **north-east** quarter of that crossing, on the Lake Street frontage of `blk_south_water_lasalle` lot 1, with one storey, a hall-and-parlour plan, three bays, one chimney, a 40-degree gable, a 2.75 m eave and no paint. Every one of those is invented. **Its footprint is not**, and that is the whole point of the record: 9.144 × 4.8768 m is 30 × 16 ft exactly, printed, and it is graded `attested` while everything around it is graded down."
+        },
+        {
+          "label": "Why",
+          "text": "L36's *How to resolve* has been asking for this for a month — \"the route left is a to-let or an insurance notice in an issue still unread\" giving a dimension for a building on these blocks. This is that notice, and it is for a house rather than a store, so it does not resolve L36; it stands beside it as the first Chicago dwelling in this dataset whose plan came off a page instead of out of an archetype. **The corner is the price.** The notice names the crossing and no side, exactly as Andreas names Lake and LaSalle and no side for `old_bank_building`, so the quarter is a one-in-four choice and the four candidates are about 40 m apart — twice the georeference's own error. The quarter was chosen on **ground**: three of the four corner lots already carry committed roofs (`old_bank_building` and `recon_1835_south_d4_009` south-east, `inf_teamster_dwelling_south` and two anonymous roofs south-west, `recon_1835_blk_south_water_wells_d3_04` north-west) and the north-east is the one free lot the 665-roof programme records for its block, so building there displaces nothing. That is a production reason and it buys no confidence."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor stands at a crossing where the building on one corner is the right size and on the wrong corner, and the confidence view says so — the footprint chip reads attested, the position chip reads reconstructed, and the two disagreeing on one building is the honest picture. **The orientation is the second invention and it is separately stated:** which of 16 and 30 feet runs along Lake is not printed, and `form.gable_orientation` carries the reading (30 ft of front on Lake, single-pile 16 ft depth, eaves-front as the 1835 form) as a `record_only` value rather than as a silence in the polygon."
+        },
+        {
+          "label": "What is NOT claimed",
+          "text": "no occupant, no owner and no household. P. Pruyne signs the notice as its **vendor**, and T-0412's rule is that a vendor's for-sale notice places the seller nowhere; he is not carried into this building in any field, and the house stands empty rather than be dealt a family."
+        },
+        {
+          "label": "How to resolve",
+          "text": "any printing naming the side of either street settles the position outright and the move costs nothing. The 1834-35 town lot records for blocks 16 and 17 of the Original Town, or a deed following the June 1834 sale, would settle the corner and give the house an occupant at the same time. Related: **L36** (the invented business street, whose resolution clause asked for exactly this notice) · **L26** (the archetype's chimney) · **L148** (the clapboard stock) · tickets **T-0783** (this), **T-0412** (the vendor rule that took the house off P. Pruyne & Co.)."
+        },
+        {
+          "label": "Covers",
+          "text": "`lasalle_lake_house.occupants`, `lasalle_lake_house.documented_1834.position`, `lasalle_lake_house.documented_1834.form.stories`, `lasalle_lake_house.documented_1834.form.wall_height_m`, `lasalle_lake_house.documented_1834.form.roof_pitch_deg`, `lasalle_lake_house.documented_1834.form.plan`, `lasalle_lake_house.documented_1834.form.bays`, `lasalle_lake_house.documented_1834.form.chimneys`, `lasalle_lake_house.documented_1834.form.paint`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-06 (T-0783)."
         }
       ]
     },
