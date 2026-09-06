@@ -13,6 +13,8 @@ import argparse
 import json
 from pathlib import Path
 
+import resident_cohort_freeze as freeze
+
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
 OUT = ROOT / "data" / "research" / "residents" / "pilot_75_cohort.json"
@@ -162,20 +164,15 @@ def derive() -> dict:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--gate", action="store_true")
-    args = parser.parse_args()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gate", action="store_true")
+    args = ap.parse_args()
     doc = derive()
-    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        if not OUT.exists() or OUT.read_text() != rendered:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pilot: 75 people, committed manifest current")
-        return 0
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(rendered)
-    print("resident research pilot: wrote 75 people (5 established, 20 richer unplaced, 50 letter-list)")
-    return 0
+        return freeze.gate(OUT, doc, "resident research pilot")
+    return freeze.write(OUT, doc, "resident research pilot: wrote 75 people (5 established, 20 richer unplaced, 50 letter-list)")
 
 
 if __name__ == "__main__":

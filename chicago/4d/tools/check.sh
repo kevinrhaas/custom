@@ -1331,6 +1331,18 @@ step "no research domain reads further ahead of the town than its baseline" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_research_spend.py --self-test
 
+# T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
+# RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
+# of the tree at the moment the cohort was fixed. The reservation is re-derived and must
+# match. The snapshot is not: research landing on a member is what the cohort is FOR, and
+# gating it made a finished pass fail its own build (dev went red on 2026-09-05 that way).
+# The other half of the same contract is on the write path — `freeze.write()` carries the
+# committed snapshot forward, so regenerating a manifest can no longer overwrite the freeze
+# with today's tree, which is how "this person came in at `inferred` on one source" was
+# being lost silently, without a diff anybody read.
+step "the cohort freeze's own assertions still fire when broken" \
+  python3 tools/resident_cohort_freeze.py --self-test
+
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.
