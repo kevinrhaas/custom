@@ -1458,20 +1458,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          1090.5,
-          144.3
+          1127.1,
+          174.8
         ],
         [
-          1102.69,
-          144.3
+          1139.29,
+          174.8
         ],
         [
-          1102.69,
-          150.4
+          1139.29,
+          180.9
         ],
         [
-          1090.5,
-          150.4
+          1127.1,
+          180.9
         ]
       ],
       "items": [
@@ -1479,8 +1479,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            1091.31,
-            150.95
+            1127.91,
+            181.45
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1495,8 +1495,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            1091.93,
-            150.95
+            1128.53,
+            181.45
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1511,8 +1511,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            1092.55,
-            150.95
+            1129.15,
+            181.45
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1527,8 +1527,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            1093.17,
-            150.95
+            1129.77,
+            181.45
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1543,8 +1543,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            1094.46,
-            150.95
+            1131.06,
+            181.45
           ],
           "bearing_deg": 0.0,
           "mark": {
@@ -1560,8 +1560,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            1094.46,
-            150.95
+            1131.06,
+            181.45
           ],
           "bearing_deg": 0.0,
           "mark": {
