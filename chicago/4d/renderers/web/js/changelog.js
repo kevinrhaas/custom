@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 631, title: 'The Steamboat Hotel had wandered off its own street', kind: 'fix', ts: '2026-09-06T09:14:02.386Z', date: 'Sep 6, 2026, 4:14 AM CT',
+    items: [
+      'Two sources say the same six words about John Davis\u2019s house: it was \u201Con North Water Street, near Kinzie\u201D. The building in this town has been standing 38 metres north of North Water Street, on the far side of Kinzie Street, fronting onto nothing at all.',
+      'The cause was one number written down in August. Whoever placed the hotel read Kinzie Street off the 1834 survey sheet by eye and put its line 23 metres north of where this town\u2019s own record of Kinzie runs. The house was then set carefully against that misread line \u2014 the right reasoning, applied to the wrong street.',
+      'The town\u2019s record wins, and it is not a close call. Kinzie Street is drawn on the 1830 plat, its western end is pinned to surveyed ground control at Canal Street, its eastern end is traced from the modern street, and a separate piece of work derived where North Water Street ends \u2014 by crossing the riverbank against that same Kinzie line \u2014 and landed within 10 centimetres of it. The lone figure with nothing behind it was the eyeballed one.',
+      'So the house has been moved onto the street it is named for: north side of North Water Street, its front wall on the platted frontage, facing south-east across the roadway to the river. It sits 65 metres back from where the two streets converge, because the ground nearer the point is occupied by the Council House \u2014 a building whose own position is a guess inside a 215-metre stretch, so if it is ever pinned down properly the hotel has first claim on the ground it leaves. Converging streets are forgiving: 65 metres along North Water still leaves the hotel 30 metres from Kinzie.',
+      'You can see the difference without being told. The sign rule had been refusing this house a post board out front, because no street came within its reach of the wall a board would stand against \u2014 a true statement about a building in the wrong place. John Davis\u2019s board is on its post now.',
+      'How far along the street the hotel stands is still only good to about 80 metres, and which side of the road it stood on is still a coin flip; the sources say \u201Cnear Kinzie\u201D and nothing finer. What is no longer a guess is the distance from the kerb.',
+    ] },
   { v: 630, title: 'The hatter who was never in Chicago', kind: 'fix', ts: '2026-09-06T08:42:35.752Z', date: 'Sep 6, 2026, 3:42 AM CT',
     items: [
       'Nothing you can see in the town changed today. This is about a shop that was never built, and the reason it could have been.',
