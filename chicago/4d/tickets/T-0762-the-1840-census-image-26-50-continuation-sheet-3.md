@@ -1,7 +1,7 @@
 ---
 id: T-0762
 title: The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0528
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 5:22:11 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34063360894
 ---
 
 The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line.
