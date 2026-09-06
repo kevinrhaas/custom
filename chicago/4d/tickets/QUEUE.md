@@ -78,8 +78,6 @@ T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- so a lot-and-block address can finally land on ground. T-0773 is the later-printing rule the
 # --- ask names directly; T-0771 and T-0696 are the readers that spend it.
 T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
-T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
-T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
 T-0798 — Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale
 
 # --- CONSOLIDATION — second pass, same rule.
@@ -365,3 +363,7 @@ T-0873 — publish.sh minifies the four resident cards the synthesizer writes pr
 T-0877 — The School Section's twelve north-south lines are read and not committed: Des Plaines, Jefferson, Clinton, Canal, Market, Wells and Clark run south of Madison and five more tiers carry no name
 T-0878 — Wright's 1834 registration is three per cent long in y: the School Section's mile measures 1658.65 m north-south and 1603.04 m east-west on the same fit
 T-0879 — publish.sh minifies four mirrored resident cards that the synthesis-drift ratchet then fails: any run that publishes must hand-revert them
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
