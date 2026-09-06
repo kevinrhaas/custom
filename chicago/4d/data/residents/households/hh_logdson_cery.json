@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "logdson_cery",
+   "relation": "wife",
+   "household": "hh_simmons_henry_fitz",
+   "value": "simmons_henry_fitz",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "MARRIED AT CHICAGO ON 21 MAY 1834, the second of the two weddings of that day. The groom is entered 'Henry Simmons' and the bride 'Cery Logdson', both spellings as the register prints them; the cards carry the same spellings, because a name is read and not corrected."
+  }
+ ],
  "persons": [
   {
    "id": "logdson_cery",

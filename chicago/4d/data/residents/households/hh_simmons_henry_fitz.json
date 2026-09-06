@@ -48,6 +48,19 @@
   ],
   "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
  },
+ "kin": [
+  {
+   "person": "simmons_henry_fitz",
+   "relation": "husband",
+   "household": "hh_logdson_cery",
+   "value": "logdson_cery",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "MARRIED AT CHICAGO ON 21 MAY 1834, the second of the two weddings of that day. The groom is entered 'Henry Simmons' and the bride 'Cery Logdson', both spellings as the register prints them; the cards carry the same spellings, because a name is read and not corrected."
+  }
+ ],
  "persons": [
   {
    "id": "simmons_henry_fitz",

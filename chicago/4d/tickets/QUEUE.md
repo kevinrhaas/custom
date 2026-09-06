@@ -341,3 +341,5 @@ T-0846 — The four other spend passes can write the same paragraph onto a card 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie
+T-0852 — Andreas makes John Miller the brother of 'Samuel, the landlord' and the town holds a Samuel Miller card nobody has ruled identical to him
+T-0853 — 'Julia K. Clark, half-brother of A. Clybourne, then living with him' — a garbled forename, a person written into a household that does not hold one, and two Archibald Clybourn(e) cards

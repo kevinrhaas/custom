@@ -55,6 +55,30 @@
   ],
   "note": "Documented trading in November 1833; nothing follows the firm to 1835. Their father left for Texas in 1834 and they did not."
  },
+ "kin": [
+  {
+   "person": "harmon_charles_l",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE SENTENCE THAT MADE THE HOUSEHOLD, FINALLY WRITTEN AS A LINK. hh_harmon_brothers exists BECAUSE this quotation resolves the initials of the newspaper masthead 'C. & I. Harmon' into the doctor's two eldest sons — the record says so in its first sentence — and the doctor's own record says the firm 'is a separate household here'. The one thing neither of them could be asked was which household the other was."
+  },
+  {
+   "person": "harmon_isaac_d",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "The second name in the same printed list of children. This card is already the one that refuses to be Isaac Harmon the town clerk, on the strength of an 1832 militia agreement signed by both names two lines apart; the paternity is what the refusal has always rested on and it is now written where a query can reach it."
+  }
+ ],
  "persons": [
   {
    "id": "harmon_charles_l",

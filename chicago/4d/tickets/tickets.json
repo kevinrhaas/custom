@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 7:28 PM",
+  "generated_ct": "Sep 5, 2026, 8:32 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12486,7 +12486,7 @@
     {
       "id": "T-0734",
       "title": "14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12496,11 +12496,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 7:53:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34002273100",
       "queue_rank": 7
     },
     {
@@ -14422,6 +14422,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 176
+    },
+    {
+      "id": "T-0852",
+      "title": "Andreas makes John Miller the brother of 'Samuel, the landlord' and the town holds a Samuel Miller card nobody has ruled identical to him",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 178
+    },
+    {
+      "id": "T-0853",
+      "title": "'Julia K. Clark, half-brother of A. Clybourne, then living with him' — a garbled forename, a person written into a household that does not hold one, and two Archibald Clybourn(e) cards",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 179
     }
   ]
 }

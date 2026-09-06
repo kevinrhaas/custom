@@ -465,6 +465,22 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
         was = (old.get("note") or "")
         if was.startswith(person["note"]) and len(was) > len(person["note"]):
             person["note"] = person["note"] + was[len(person["note"]):]
+    # `kin` IS CARRIED INTO ITS SLOT, NOT ONTO THE END (T-0734). Every other key
+    # carried above is another pass's own block and the end of the record is as
+    # good a place for it as any. `kin` is not that: it is a first-class key of
+    # the household schema, and the dataset has carried it immediately before
+    # `persons` since T-0597 wrote the first pair onto the two Kinzie records. Two
+    # tools that disagree about where a key goes take it in turns to call each
+    # other's output drift, which is a gate run to diagnose and has nothing to do
+    # with the finding either of them wrote.
+    if "kin" in doc:
+        rebuilt = {}
+        for key, value in doc.items():
+            if key == "persons":
+                rebuilt["kin"] = doc["kin"]
+            if key != "kin":
+                rebuilt[key] = value
+        doc = rebuilt
     return doc
 
 

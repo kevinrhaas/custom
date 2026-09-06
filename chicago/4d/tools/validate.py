@@ -4533,20 +4533,41 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
 #     other is half a fact: the household you read second still says the two
 #     men were unrelated, which is the defect T-0597 was opened about.
 #
-# Asymmetric relations (father/son, uncle/nephew) are deliberately NOT declared.
-# They need an inverse that depends on the other person, and declaring the term
-# without the inverse would let a one-way claim through. Add the pair together
-# or not at all.
+# WHICH WAY A ROW READS, stated here because the asymmetric terms below make it
+# load-bearing and until T-0734 it was only implicit: `person` IS THE `relation`
+# OF `value`. That is the sentence renderers/web/js/residents.js has always
+# printed to the reader — "james kinzie is the half brother of kinzie john h" —
+# and it is the sentence the note on that row opens with, so the reading is the
+# shipped one and not a new convention.
+#
+# Asymmetric relations WERE deliberately not declared, on the grounds that they
+# need an inverse depending on the other person. T-0734 declares them, because
+# that objection is answered by the same device the sibling terms already use: an
+# inverse is a SET, not a term. A son's mirror may say father or mother — which
+# of the two depends on the other person's sex, and BOTH are legal, so the check
+# stays exact without having to know it. What it still refuses is the flattening
+# it was built to refuse: a `son` whose mirror says `brother`, or a `wife` whose
+# mirror says anything but `husband`. Degrees no wider than that are declared —
+# uncle/nephew and cousin still are not, because this dataset has no source that
+# states one.
 RESIDENT_KIN_KEYS = ("person", "relation", "household", "value", "confidence")
 
 # relation -> the relations its mirror row may carry. Sibling terms differ by the
 # SEX of the person named, not by the degree of the tie, so each degree accepts
-# both of its own terms and neither of the other's.
+# both of its own terms and neither of the other's. Parent and child terms differ
+# the same way and for the same reason, which is why each accepts both terms of
+# the generation it points at; a spouse term has exactly one legal mirror.
 RESIDENT_KIN_INVERSES = {
     "brother": ("brother", "sister"),
     "sister": ("brother", "sister"),
     "half_brother": ("half_brother", "half_sister"),
     "half_sister": ("half_brother", "half_sister"),
+    "husband": ("wife",),
+    "wife": ("husband",),
+    "father": ("son", "daughter"),
+    "mother": ("son", "daughter"),
+    "son": ("father", "mother"),
+    "daughter": ("father", "mother"),
 }
 RESIDENT_KIN_RELATIONS = tuple(sorted(RESIDENT_KIN_INVERSES))
 

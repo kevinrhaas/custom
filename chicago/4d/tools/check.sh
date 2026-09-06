@@ -167,6 +167,15 @@ step "platted block parcels match their recipe and the committed lots" \
 step "the residents manifest re-derives from the household cards" \
   python3 tools/rebuild_resident_index.py --check
 
+# The kinship the sources already state (T-0734). Two things go wrong with a pass
+# that writes family ties and neither is caught by the schema: a tie can land on
+# one record and not the other, which leaves the record you read second still
+# saying the two were unrelated; and a ruling can say a tie LANDED while no record
+# carries it, which is the same half-fact one level up. So the worklist is
+# re-derived from the committed cards and held against what is actually written.
+step "the stated kinship worklist re-derives, and every tie it landed is on both records" \
+  python3 tools/harvest_stated_kinship.py --check
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also

@@ -57,6 +57,30 @@
   ],
   "note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE HEAD IS DOCUMENTED TO HAVE LEFT. Andreas: 'In 1834, Dr. Harmon migrated to Texas, and until the time of his death - January 3, 1869 - divided his sojourns between that State and Chicago.' A man who divides his sojourns between Texas and Chicago is in one of them on 1 July 1835 and the source does not say which. Recorded as uncertain, and it must not be silently resolved to 'present' because his sons were here."
  },
+ "kin": [
+  {
+   "person": "harmon_elijah_d",
+   "relation": "father",
+   "household": "hh_harmon_brothers",
+   "value": "harmon_charles_l",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE SENTENCE THAT MADE THE HOUSEHOLD, FINALLY WRITTEN AS A LINK. hh_harmon_brothers exists BECAUSE this quotation resolves the initials of the newspaper masthead 'C. & I. Harmon' into the doctor's two eldest sons — the record says so in its first sentence — and the doctor's own record says the firm 'is a separate household here'. The one thing neither of them could be asked was which household the other was."
+  },
+  {
+   "person": "harmon_elijah_d",
+   "relation": "father",
+   "household": "hh_harmon_brothers",
+   "value": "harmon_isaac_d",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "The second name in the same printed list of children. This card is already the one that refuses to be Isaac Harmon the town clerk, on the strength of an 1832 militia agreement signed by both names two lines apart; the paternity is what the refusal has always rested on and it is now written where a query can reach it."
+  }
+ ],
  "persons": [
   {
    "id": "harmon_elijah_d",

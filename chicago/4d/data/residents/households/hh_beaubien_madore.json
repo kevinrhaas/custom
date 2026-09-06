@@ -51,6 +51,19 @@
   ],
   "note": "A trustee in 1833 and continuous in the record; no absence is stated for 1835."
  },
+ "kin": [
+  {
+   "person": "beaubien_madore",
+   "relation": "son",
+   "household": "hh_beaubien_jean_baptiste",
+   "value": "beaubien_jean_baptiste",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "BOTH RECORDS ALREADY SAY IT AND NEITHER COULD BE QUERIED FOR IT. The son's card states the parentage outright and the father's card states the far end of the same fact — 'two sons are named in Andreas and one of them, Madore, has his own household here'. Inferred rather than documented because Andreas is a compilation of 1884 about a birth of the century's first years, which is a good source for the fact and still a recollection."
+  }
+ ],
  "persons": [
   {
    "id": "beaubien_madore",

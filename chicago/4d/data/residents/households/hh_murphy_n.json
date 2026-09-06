@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "murphy_n",
+   "relation": "husband",
+   "household": "hh_frauner_m",
+   "value": "frauner_m",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "MARRIED AT CHICAGO IN 1834, IN THE PARISH'S OWN REGISTER. St Cyr's register carries this couple as the groom and bride of one entry, and both cards were minted FROM that entry under rule G2c — so the tie has no identity gap in it at all: the two people are the two people the entry names. The bride is entered as 'Mrs. M. Frauner', which the register's own hand makes a woman marrying again and this project does not read further than that."
+  }
+ ],
  "persons": [
   {
    "id": "murphy_n",

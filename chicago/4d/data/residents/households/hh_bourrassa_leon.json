@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "bourrassa_leon",
+   "relation": "father",
+   "household": "hh_baptist_john",
+   "value": "baptist_john",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "THE REGISTER NAMES THE FATHER IN THE ENTRY THAT BURIES THE SON. St Cyr's death record of 2 July 1835 reads 'John Baptist, son of Leon Bourrassa', and the father is carried on his own card from the same entry, at locator `parent`. The tie is therefore not a match made between two records but one record read twice. THE DEATH IS THE DAY AFTER THE SCENE DATE and the parentage is not: on 1 July 1835 the son was alive and was his father's son, which is all this row says."
+  }
+ ],
  "persons": [
   {
    "id": "bourrassa_leon",

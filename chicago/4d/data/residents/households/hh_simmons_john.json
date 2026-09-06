@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "simmons_john",
+   "relation": "husband",
+   "household": "hh_durbin_mary",
+   "value": "durbin_mary",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "MARRIED AT CHICAGO ON 20 MAY 1834, in the entry both cards were minted from. The parish register is the contemporary record of the act itself, which is the best evidence of a marriage this project holds for anybody; the reading is mediated by the Illinois Catholic Historical Review's printing of the register and the grade says documented because what is claimed is what the entry states."
+  }
+ ],
  "persons": [
   {
    "id": "simmons_john",

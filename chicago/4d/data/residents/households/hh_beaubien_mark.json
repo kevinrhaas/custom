@@ -48,6 +48,19 @@
   ],
   "note": "He is a continuous presence in the Chicago record from the 1820s to the 1850s and no absence is recorded around 1835; the inference is that he was here, not that a source says so."
  },
+ "kin": [
+  {
+   "person": "beaubien_mark",
+   "relation": "brother",
+   "household": "hh_beaubien_jean_baptiste",
+   "value": "beaubien_jean_baptiste",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE TIE THE WHOLE TOWN KNOWS AND THE DATASET DID NOT. Mark Beaubien's own record reaches for Andreas's life of Jean Baptiste to date the family's move, and calls him 'his brother' while doing it. Twelve Beaubien cards stand in this dataset and a shared surname is the thing that makes them mergeable; two men recorded as brothers are two men, explicitly. Inferred, on the same reading of Andreas as the parentage above."
+  }
+ ],
  "persons": [
   {
    "id": "beaubien_mark",

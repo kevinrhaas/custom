@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "simmons_marion",
+   "relation": "wife",
+   "household": "hh_vincent_john",
+   "value": "vincent_john",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "MARRIED AT CHICAGO ON 21 MAY 1834, one of two weddings the register records that day. Both cards are the entry's own groom and bride. Note that the bride's surname is Simmons and the groom's is Vincent, and that a second Simmons marries in the next entry — the dataset's Simmonses are kept apart by their entries, not by their surname."
+  }
+ ],
  "persons": [
   {
    "id": "simmons_marion",
