@@ -1,4 +1,4 @@
-# Where the Eliza Chappel shore drawing came from: the external search (T-0663)
+# Where the Eliza Chappel shore drawing came from: the external search (T-0663, T-0716)
 
 > **WHAT THIS FILE IS FOR.** T-0649 spent the sheet's internal evidence and closed the
 > geometric route: the drawing is composed rather than constructed, so no drawn position
@@ -9,16 +9,24 @@
 > that the next run does not spend its budget re-asking the questions already answered
 > below. A route that failed is written down as plainly as a route that worked.
 
-**Run 2026-09-04.** The original was **not located**. That is the second branch of
-T-0663's own acceptance, and this file is what that branch requires. Four candidate
-publications are **eliminated**, one named candidate is **live and untested**, and six
-research routes are **blocked from the runner** rather than exhausted — the difference
+**Run 2026-09-04 (T-0663).** The original was **not located**. Four candidate publications
+were **eliminated**, one named candidate was left **live and untested**, and six research
+routes were recorded as **blocked from the runner** rather than exhausted — the difference
 matters and is stated per route.
 
-`data/sources/eliza_chappel_school_shore_view.json` is unchanged in substance:
-`verified` stays **false**, `rights_status` stays **check_required**, `tier` stays 5, and
-nothing in the town moves on this image. What changed is that four wrong answers are now
-closed and one right-shaped question is now written down.
+**Run 2026-09-06 (T-0716).** The live candidate is now **eliminated too, on the picture**.
+William Mark Young's *Chicago's First School House* was obtained — twice, two impressions
+of one plate — by going round the wall that stopped T-0663, and it is a two-storey
+clapboard schoolhouse in a street with an ox team, inscribed in the artist's own hand
+*"erected 1844, called 'The Rumsey School'."* It fails every one of the four picture tests
+T-0716 set. **The sheet has no live candidate left**, and the route that got the picture is
+written down in § 3 so it can be reused.
+
+`data/sources/eliza_chappel_school_shore_view.json` is unchanged in substance across both
+runs: `verified` stays **false**, `rights_status` stays **check_required**, `tier` stays 5,
+and nothing in the town moves on this image. What changed is that five wrong answers are
+now closed instead of four, and that the sharpened rights worry T-0663 raised — a possible
+live copyright on a ca. 1925 commercial print — died with the candidate that raised it.
 
 ## 1. What is being looked for
 
@@ -52,58 +60,124 @@ The first two are the ones that mattered. Andreas is where a Chicago 1833 retros
 engraving is *assumed* to come from, and the memoir is the one book in the world written
 about this woman by her own daughter. Both are now closed.
 
-## 3. LIVE — one named candidate, and it is untested
+## 3. ELIMINATED — the one named candidate, tested on the picture (T-0716, 2026-09-06)
 
-**William Mark Young, *Chicago's First School House*, ca. 1925.**
+**William Mark Young, *Chicago's First School House*, ca. 1925. IT IS NOT THIS SHEET.**
 
-Young (18 March 1881, Alton, Illinois — 1 January 1946, Wilmette, Illinois) was a painter,
-muralist and commercial artist who trained at the Washington University School of Fine
-Arts and worked in St Louis, Chicago and Cleveland; he painted fifteen murals for the Ohio
-exhibit at the 1933 Century of Progress. Prints titled ***Chicago's First School House***
-are offered on the secondary market as etchings by "Wm Mark Young", dated ca. 1925 and
-described as made **for Koopman, Robinson & Neumer** — a Chicago illustration-and-lettering
-studio whose name also appears on Chicago advertising matchbooks of the period. Companion
-titles in the same hand and vein: *First Draw Bridge Over Chicago River*, *La Salle Street
-1889*, *Chicago Gateway*.
+T-0663 left this candidate alive on two secondary-market listing titles and could not
+reach the pictures behind them. This run reached them, compared the four things T-0716
+named, and the plate loses on all four. It also carries its own caption, which says in the
+artist's hand what it is — and what it is happens to be the very thing T-0716 wrote down
+in advance as the trap this test had to avoid.
 
-**Why it fits.** A commissioned series of historic-Chicago subjects, one hand, one
-mid-1920s campaign, reproduced as halftones for a commercial client, is precisely the kind
-of object a **composed-rather-than-constructed** retrospective sheet is: the artist is
-arranging a story, not reconstructing a viewpoint, which is exactly what T-0649 measured
-this drawing to be.
+### How the blocked route was got round, so the next run can use it
 
-**Why it is not yet the answer, and this is the part that must not be softened.** *Nobody
-on this run has seen Young's picture.* The candidate rests on two secondary-market listing
-titles. It is not established that Young's schoolhouse plate shows a lighthouse, a shore,
-or canoes; a "first school house" print could as easily be the 1844 Rumsey school on
-Madison and Dearborn, which is the other thing that phrase is used for. **Nothing in the
-project may cite Young until the picture is compared.** If it does prove to be the source,
-two consequences follow at once: `describes_date` can never be earlier than a 1920s
-artist's own reading of 1833, and `rights_status` becomes a live question rather than a
-formality, because a ca. 1925 commercial print is not argued out of copyright on age the
-way the Braunhold and Trowbridge plates are.
+eBay item pages still 403 (§ 4). **PicClick mirrors eBay listings and its SEARCH page does
+not 403** — `https://picclick.com/?q=<terms>` returns, per result, the eBay item id and
+eBay's own image id. The full-resolution file then comes straight from eBay's image CDN at
+`https://i.ebayimg.com/images/g/<image-id>/s-l1600.jpg`, **which is not blocked either**.
+PicClick's own item pages 403 exactly like eBay's; only the search page and the CDN are
+needed. Two impressions of the plate came back that way:
 
-## 4. BLOCKED, not exhausted — the routes this runner cannot reach
+| eBay item | image id | what came back |
+|---|---|---|
+| `155150616147` — one of the three listings T-0663 could not open | `XMsAAOSwWqNbGveg` | 1599 px, the whole sheet with its margins and its inscription legible at 3x |
+| `188120973637` — not previously known to this file | `e5AAAOSwrthkcOmT` | 721 x 1024, a second impression of the same plate, same inscription |
 
-Recorded so the next run does not spend its budget rediscovering the same walls.
+Neither file is deposited in this project. A ca. 1925 commercial print is not something to
+copy in while trying to settle a rights question; the identifiers above are recorded so the
+comparison can be repeated by anyone who wants to check it.
+
+### The inscription, which is what actually settles it
+
+Along the bottom margin of the plate, in the artist's hand, read at threefold enlargement
+and identical on both impressions:
+
+- left — `Co. Koopman-Robinson-Neumer.`
+- centre — `Chicago's first school house, erected 1844, called "The Rumsey School"` /
+  `Located on the southeast corner of Madison and Dearborn streets.`
+- right — `Wm Mark Young`
+
+**Erected 1844. The Rumsey School. Madison and Dearborn.** That is the other building the
+phrase "Chicago's first school house" is used for, and the plate walks straight into it.
+Young's subject is not Chappell's school of 1833 by title, by date or by place, and the
+print says so itself without being asked.
+
+### The four-point comparison the ticket demanded
+
+The test was required to be a picture and not a title. Picture to picture:
+
+| what T-0716 said to compare | the deposited sheet | Young's plate | agrees |
+|---|---|---|---|
+| the log building at the right | ONE-STOREY LOG: gable roof, saddle-notched corners, a door and two windows on the near face | TWO-STOREY CLAPBOARD frame with a lower wing behind it, six windows on the near face, a stoop and steps to a boardwalk | **no** |
+| the woman in the doorway | a woman in a white apron standing IN the doorway | nobody in the doorway; the schoolmistress stands out in the street at the right in 1840s crinoline with four girls about her | **no** |
+| the conical light on a low point at the left | a white tapered tower with railed gallery and domed lantern, on a low point across water | no water, no shore and no tower of any kind — the left of the plate is an ox team drawing a covered wagon along a street | **no** |
+| the three canoes | one afloat with paddlers, two drawn up on the bank | none, and nothing afloat anywhere on the plate | **no** |
+
+Four against four, and none of the disagreements is the sort a different state or a
+cropped reproduction could produce. There is no water in Young's plate to crop a canoe out
+of.
+
+### Medium and format disagree too
+
+Young's plate is **portrait**, about four to three tall, and it is an **etching**: every
+tone in it is built from hatched line and every figure carries the wiry outline of the
+needle. The deposited sheet is **landscape**, 640 x 368 as deposited, and it is a
+continuous-tone drawing — soft pencil or wash — reproduced as a halftone. T-0649 read a
+hand that composes rather than constructs, and that is still true of the sheet; it is not
+this hand.
+
+### What this closes, and what it does not
+
+It closes **the named candidate**, which is what T-0716 asked for, and it closes it on the
+picture rather than on the title. It does not close **William Mark Young the man**: the
+1925 campaign for Koopman, Robinson & Neumer ran to other Chicago retrospectives —
+*Chicago's First Stage Depot*, *La Salle Street 1889*, *Chicago Gateway*, a Chicago River
+view — and none of those has been looked at. That is a far weaker lead than the one just
+killed, resting on nothing but "the same artist drew old Chicago," and the hand argument
+above tells against the whole series rather than the one plate. It is written down as a
+lead, not pursued.
+
+**Nothing in the source card moves except the closing of the candidate.** `verified` stays
+false, `tier` stays 5, `rights_status` stays `check_required`. But the SHARPENED rights
+worry T-0663 raised — that the sheet might prove to be a ca. 1925 commercial print with
+live copyright, so that age could never be argued for it — goes with the candidate. The
+sheet is again an unattributed drawing of unknown date and unknown hand, which is where it
+stood before Young was ever named.
+
+## 4. The walls: which are still standing, and which one came down
+
+Recorded so the next run does not spend its budget rediscovering the same walls — and, now,
+so it does not re-fight a wall that has already been walked around.
 
 | Route | What happened |
 |---|---|
-| eBay item pages (`175745610373`, `155150616147`, `155150616225`) | **403** to `WebFetch`, to `curl` with a desktop browser user-agent, and through the `r.jina.ai` reader. The listing image is where the comparison in §3 would be made. |
-| WorthPoint (`worthopedia` search) | **403**. |
-| HathiTrust full-text search (`babel.hathitrust.org/cgi/ls`) | **403**, Cloudflare interstitial. This is the single most valuable blocked route: a phrase search over every digitised Chicago history would settle §3 in one query. |
-| Google Books API (`www.googleapis.com/books/v1/volumes`) | **429**, daily quota exhausted for the shared runner IP before this run began. |
+| eBay item pages (`175745610373`, `155150616147`, `155150616225`) | **403**, still, to `curl` under a desktop user-agent (re-tested 2026-09-06 on `.com` and `.ca` alike). **But the pictures were obtained anyway** — see § 3: the PicClick search page yields eBay's image id and `i.ebayimg.com` serves the full-resolution file unblocked. THIS ROUTE IS EFFECTIVELY OPEN and it is the one that settled § 3. |
+| PicClick item pages (`picclick.com/<slug>-<item>.html`) | **403**, like eBay's. Only `picclick.com/?q=` is needed and only that is reachable. |
+| WorthPoint (`worthopedia`) | **403**, re-tested 2026-09-06. |
+| HathiTrust full-text search (`babel.hathitrust.org/cgi/ls`) | **403**, Cloudflare interstitial. Still the most valuable blocked route: a phrase search over every digitised Chicago history would be the cheapest way to place an unattributed retrospective. |
+| Google Books API (`www.googleapis.com/books/v1/volumes`) | **429**, daily quota exhausted for the shared runner IP. |
 | `loc.gov` search with `fo=json` | Did not return JSON. |
 | DuckDuckGo HTML endpoint | Returned a page with no result links. |
+| Explore Chicago Collections (`explore.chicagocollections.org/results/?q=`) | **403**, tested 2026-09-06. This is the aggregator across CHM, the Newberry, CPL and the university collections, so it is the single best of the § 6 catalogue routes and it is shut to this runner. |
+| Chicago History Museum images (`images.chicagohistory.org`) | **403**, tested 2026-09-06. |
+| `geographicus.com` artist page for Young | **403**, tested 2026-09-06. |
 
-One route was reachable and answered in the negative: the Art Institute of Chicago's
-public API (`api.artic.edu/api/v1/artworks/search?q=William Mark Young`) holds **no work by
-Young** — the query returns Rothko and Tobey on the name tokens alone.
+Three routes were reachable and answered in the negative, which is worth as much as a wall:
+
+- The Art Institute of Chicago's public API (`api.artic.edu/api/v1/artworks/search?q=William
+  Mark Young`) holds **no work by Young** — the query returns Rothko and Tobey on the name
+  tokens alone. (T-0663.)
+- The Smithsonian Open Access API (`api.si.edu/openaccess/api/v1.0/search?q="William Mark
+  Young"`) returns **`rowCount: 0`**, a clean nothing rather than a block. (T-0716.)
+- `chipublib.org` site search for *William Mark Young* returns its own pages and no
+  catalogue record. That is the public website, not the special-collections catalogue, so
+  it does not close CPL — it closes the front door only. (T-0716.)
 
 ## 5. Terms searched
 
-Web search, all of them: *Eliza Chappell first school Chicago 1833 drawing log schoolhouse
-illustration lighthouse* · *"Eliza Chappell Porter" memoir 1892 Mary H. Porter
+**T-0663.** Web search, all of them: *Eliza Chappell first school Chicago 1833 drawing log
+schoolhouse illustration lighthouse* · *"Eliza Chappell Porter" memoir 1892 Mary H. Porter
 illustrations plate "first school" archive.org* · *"Miss Chappell's school" OR "Chappell
 school" Chicago 1833 drawing log schoolhouse lake shore canoes lighthouse illustration
 Chicago History Museum* · *"first school" Chicago 1833 illustration pencil drawing children
@@ -120,23 +194,41 @@ creator:(Kirkland)`; the four OCR fetches named in §2; the Art Institute query 
 Google Books phrase searches for *"first school house in Chicago"*, *"Chicago's first
 school house"* and *"Miss Chappell's school"* (all 429).
 
+**T-0716.** Web search: *"William Mark Young" Chicago artist 1881 1946 "First School House"
+etching Koopman Robinson Neumer* · *"Koopman, Robinson & Neumer" Chicago prints historic
+Chicago series*. PicClick search: *Chicago's First School House Mark Young* (2 results, both
+the plate), *"William Mark Young" etching* (the series survey quoted in §3), *Chicago's
+First Stage Depot William Mark Young* (the listing exists; PicClick served no image id for
+it, so that companion plate is still unseen). Direct API and catalogue queries: the
+Smithsonian, Explore Chicago Collections, `images.chicagohistory.org` and `chipublib.org`
+queries listed in §4.
+
 ## 6. What the next run should do, in this order
 
-1. **See Young's picture.** Any machine that can reach eBay or WorthPoint settles §3 in
-   one look. Compare four things: the log building at the right, the woman in the doorway,
-   the conical light on a point at the left, the three canoes.
-2. **Ask the catalogues under the names, not the subject** — *Young, William Mark* and
-   *Koopman, Robinson & Neumer* — at the Chicago History Museum, the Newberry, and the
-   Chicago Public Library's special collections. A commissioned commercial series is
-   catalogued under its commissioner as often as under its artist.
-3. **Ask the depositor where the scan came from.** The file arrived from the repository
-   owner with a social-media filename. One sentence from whoever posted it would settle in
-   a day what a catalogue sweep may not settle at all — and it is the cheapest question on
-   this list, which is why it is written down rather than assumed.
+1. ~~**See Young's picture.**~~ **DONE — T-0716, 2026-09-06, and it is not the sheet.** The
+   plate is the Rumsey School of 1844 at Madison and Dearborn, by its own inscription, and
+   it fails all four of the picture tests. § 3 is the record. **The one named candidate is
+   gone and the sheet now has no live candidate at all.**
+2. **Ask the depositor where the scan came from.** Promoted to first, because it was always
+   the cheapest question on the list and it is now the only one with a plausible answer
+   behind it. The file arrived from the repository owner with a social-media filename; one
+   sentence from whoever posted it would settle in a day what a catalogue sweep may not
+   settle at all.
+3. **Ask the catalogues under the names, not the subject** — at the **Newberry** and the
+   **Chicago Public Library's special collections**, which are the two of the four that
+   have not actually been asked. The Art Institute and the Smithsonian are now both clean
+   negatives (§ 4), and Explore Chicago Collections and the Chicago History Museum 403 this
+   runner, so those two need a machine that is not this one.
 4. Run the HathiTrust phrase search from anywhere it is not blocked.
+5. Only if 2–4 all fail: the **rest of Young's 1925 campaign** — *Chicago's First Stage
+   Depot*, *La Salle Street 1889*, *Chicago Gateway*, the Chicago River view — reachable by
+   the § 3 method. This is listed last on purpose. It rests on nothing but the same artist
+   having drawn old Chicago, and § 3's medium argument (etched line, portrait) tells
+   against the whole campaign and not just the one plate.
 
 Until one of those returns, the sheet stays where T-0649 left it: **tier 5, unverified,
-rights unresolved, spent on nothing.**
+rights unresolved, spent on nothing** — with one thing changed, which is that the reason to
+worry about a live 1920s copyright on it died with the candidate.
 
-**Links:** T-0663 · T-0649 · `chappel_shore_lighthouse.md` ·
+**Links:** T-0716 · T-0663 · T-0649 · `chappel_shore_lighthouse.md` ·
 `data/sources/eliza_chappel_school_shore_view.json` · `docs/LIBERTIES.md`.
