@@ -54,6 +54,7 @@
    "name": "John Bates Jr.",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "auctioneer",

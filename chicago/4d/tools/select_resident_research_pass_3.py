@@ -6,6 +6,8 @@ import json
 
 from select_resident_research_pass_2 import ROOT, RESIDENTS, PILOT, load_people, member
 
+import resident_cohort_freeze as freeze
+
 OUT = ROOT / "data/research/residents/pass_03_75_cohort.json"
 PASS2 = RESIDENTS.parent / "research" / "residents" / "pass_02_75_cohort.json"
 
@@ -79,13 +81,16 @@ def derive() -> dict:
             "people": people}
 
 def main() -> int:
-    ap = argparse.ArgumentParser(); ap.add_argument("--gate", action="store_true"); args = ap.parse_args()
-    rendered = json.dumps(derive(), indent=2, ensure_ascii=False) + "\n"
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gate", action="store_true")
+    args = ap.parse_args()
+    doc = derive()
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        if not OUT.exists() or OUT.read_text() != rendered: raise SystemExit(f"{OUT.relative_to(ROOT)} is stale")
-        print("resident research pass three: 75 people, committed manifest current"); return 0
-    OUT.write_text(rendered)
-    print("resident research pass three: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
-    return 0
+        return freeze.gate(OUT, doc, "resident research pass three")
+    return freeze.write(OUT, doc, "resident research pass three: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
 
-if __name__ == "__main__": raise SystemExit(main())
+
+if __name__ == "__main__":
+    raise SystemExit(main())

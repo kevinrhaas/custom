@@ -1,0 +1,1173 @@
+{
+ "schema": "town-card-candidates/1",
+ "_doc": "T-0839. Every cluster of town cards that a surname-plus-compatible-forename test joins, with the evidence each pair is weighed on and the written ruling that covers it. DERIVED — regenerate with tools/consolidate_town_cards.py --apply; the rulings themselves are hand-authored in data/residents/card_merge_rulings.json. A cluster that survives here is one whose cards were ruled DISTINCT or UNDECIDED: the merges are gone from this list because their cards are gone from the town.",
+ "generated_by": "tools/consolidate_town_cards.py --apply",
+ "ticket": "T-0839",
+ "counts": {
+  "town_people": 1362,
+  "open_clusters": 18,
+  "cards_in_open_clusters": 40,
+  "rulings": {
+   "distinct": 8,
+   "merge": 24,
+   "undecided_owner": 6,
+   "undecided_rule": 8
+  },
+  "landed_merges": 24,
+  "cards_folded": 42
+ },
+ "landed": [
+  {
+   "cluster": "adams",
+   "survivor": "adams_william_h",
+   "survivor_household": "hh_adams_william_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "adams_william"
+   ],
+   "rule": "C3"
+  },
+  {
+   "cluster": "allen",
+   "survivor": "allen_lieut_james",
+   "survivor_household": "hh_allen_lieut_james",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "allen_james",
+    "allen_lieut",
+    "allen_lieut_j"
+   ],
+   "rule": "C0"
+  },
+  {
+   "cluster": "bates-harriet",
+   "survivor": "bates_harriet_ellen",
+   "survivor_household": "hh_bates_harriet_ellen",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "bates_harriet_e"
+   ],
+   "rule": "C1"
+  },
+  {
+   "cluster": "beaubien",
+   "survivor": "beaubien_jean_baptiste",
+   "survivor_household": "hh_beaubien_jean_baptiste",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "beaubien_j_b",
+    "beaubien_john_b"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "brown-william-h",
+   "survivor": "brown_william_h",
+   "survivor_household": "hh_brown_william_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "brown_w_h"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "cobb",
+   "survivor": "cobb_silas_b",
+   "survivor_household": "hh_goss_cobb",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "cobb_s_b"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "dole",
+   "survivor": "dole_george_w",
+   "survivor_household": "hh_dole_george_w",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "dole_g_w"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "fullerton",
+   "survivor": "fullerton_alexander",
+   "survivor_household": "hh_fullerton_alexander",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "fullerton_a_n",
+    "fullerton_alex_n",
+    "fullerton_alexander_m"
+   ],
+   "rule": "C0"
+  },
+  {
+   "cluster": "haddock",
+   "survivor": "haddock_edward",
+   "survivor_household": "hh_haddock_edward",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "haddock_e",
+    "haddock_e_w",
+    "haddock_edward_e"
+   ],
+   "rule": "C0"
+  },
+  {
+   "cluster": "hamilton",
+   "survivor": "hamilton_richard_j",
+   "survivor_household": "hh_hamilton_richard_j",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hamilton_r_j"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "harmon-isaac",
+   "survivor": "harmon_isaac_d",
+   "survivor_household": "hh_harmon_brothers",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "harmon_isaac"
+   ],
+   "rule": "C3"
+  },
+  {
+   "cluster": "hogan",
+   "survivor": "hogan_john_s_c",
+   "survivor_household": "hh_hogan_john_s_c",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hogan_j_s_c"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "hubbard",
+   "survivor": "hubbard_gurdon",
+   "survivor_household": "hh_hubbard_gurdon",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hubbard_g_s",
+    "hubbard_g_t",
+    "hubbard_gordon_s",
+    "hubbard_gurdon_s"
+   ],
+   "rule": "C0"
+  },
+  {
+   "cluster": "hubbard",
+   "survivor": "hubbard_henry_g",
+   "survivor_household": "hh_hubbard_henry_g",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hubbard_g"
+   ],
+   "rule": "C5"
+  },
+  {
+   "cluster": "kimberly",
+   "survivor": "kimberly_edmund_s",
+   "survivor_household": "hh_pruyne_kimberly",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kimberly_e_s",
+    "kimberly_ed_s",
+    "kimberly_edmund_l"
+   ],
+   "rule": "C0"
+  },
+  {
+   "cluster": "kinzie-john",
+   "survivor": "kinzie_john_h",
+   "survivor_household": "hh_kinzie_john_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kinzie_j_h"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "kinzie-robert",
+   "survivor": "kinzie_robert_a",
+   "survivor_household": "hh_kinzie_robert_a",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kinzie_r_a"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "owen",
+   "survivor": "owen_thomas_jv",
+   "survivor_household": "hh_owen_thomas_jv",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "owen_t_j_v",
+    "owen_th_j_v",
+    "owen_thomas_j_v",
+    "owen_thomas"
+   ],
+   "rule": "C0"
+  },
+  {
+   "cluster": "peck",
+   "survivor": "peck_philip",
+   "survivor_household": "hh_peck_philip",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "peck_p_f",
+    "peck_p_f_w"
+   ],
+   "rule": "C4"
+  },
+  {
+   "cluster": "snow",
+   "survivor": "snow_george_w",
+   "survivor_household": "hh_snow_george_w",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "snow_g_w"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "sproat",
+   "survivor": "sproat_grenville",
+   "survivor_household": "hh_sproat_grenville",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "sproat_g_n",
+    "sproat_g_t"
+   ],
+   "rule": "C4"
+  },
+  {
+   "cluster": "taylor-anson",
+   "survivor": "taylor_anson_h",
+   "survivor_household": "hh_taylor_anson",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "taylor_anson_n",
+    "taylor_anson_w"
+   ],
+   "rule": "C4"
+  },
+  {
+   "cluster": "taylor-edmund",
+   "survivor": "taylor_edmund_d",
+   "survivor_household": "hh_taylor_edmund_d",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "taylor_e_d"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "temple",
+   "survivor": "temple_john_t",
+   "survivor_household": "hh_temple_john_t",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "temple_j_t"
+   ],
+   "rule": "C2"
+  }
+ ],
+ "clusters": [
+  {
+   "surname": "brown",
+   "cards": [
+    {
+     "person": "brown_mrs_rufus",
+     "household": "hh_brown_rufus",
+     "name": "Mrs Rufus Brown",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "ruling": "deferred",
+     "ruled_in": "brown-rufus"
+    },
+    {
+     "person": "brown_rufus",
+     "household": "hh_brown_rufus",
+     "name": "Rufus Brown",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "ruling": "deferred",
+     "ruled_in": "brown-rufus"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "brown_mrs_rufus",
+     "b": "brown_rufus",
+     "for": [
+      "share 1 source(s): andreas_1884_v1",
+      "the same forename, 'rufus'",
+      "the same trade, boarding_house_keeper",
+      "brown_mrs_rufus is an anchor — the town documents this person",
+      "brown_rufus is an anchor — the town documents this person"
+     ],
+     "against": [
+      "both stand on one household record, hh_brown_rufus — the sources name them together, not twice"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "clark",
+   "cards": [
+    {
+     "person": "clark_john_a",
+     "household": "hh_clark_john_a",
+     "name": "John A Clark",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "clark-john"
+    },
+    {
+     "person": "clark_john_k",
+     "household": "hh_clark_john_k",
+     "name": "John K Clark",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "clark-john"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "clark_john_a",
+     "b": "clark_john_k",
+     "for": [
+      "the same forename, 'john'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'a' against 'k'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "cook",
+   "cards": [
+    {
+     "person": "cook_j_b",
+     "household": "hh_cook_j_b",
+     "name": "J. B. Cook",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "cook"
+    },
+    {
+     "person": "cook_john",
+     "household": "hh_cook_john",
+     "name": "John Cook",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "cook"
+    },
+    {
+     "person": "cook_josiah_p",
+     "household": "hh_cook_josiah_p",
+     "name": "Josiah P Cook",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "cook"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "cook_j_b",
+     "b": "cook_john",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'j' and 'john'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    },
+    {
+     "a": "cook_j_b",
+     "b": "cook_josiah_p",
+     "for": [
+      "an initial against its forename, 'j' and 'josiah'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'b' against 'p'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    },
+    {
+     "a": "cook_john",
+     "b": "cook_josiah_p",
+     "for": [
+      "share 3 source(s): chicago_voter_lists_1833_1835_irad, fergus_chicago_directory_1843, norris_directory_1844"
+     ],
+     "against": [
+      "two full forenames that are different words: 'john' and 'josiah'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "handy",
+   "cards": [
+    {
+     "person": "handy_henry_s",
+     "household": "hh_handy_henry_s",
+     "name": "Henry S Handy",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "handy"
+    },
+    {
+     "person": "handy_major",
+     "household": "hh_handy_major",
+     "name": "Major Handy",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "handy"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "handy_henry_s",
+     "b": "handy_major",
+     "for": [
+      "one card prints a title and no forename at all",
+      "handy_major is an anchor — the town documents this person"
+     ],
+     "against": []
+    }
+   ]
+  },
+  {
+   "surname": "hogan",
+   "cards": [
+    {
+     "person": "hogan_john",
+     "household": "hh_hogan_john",
+     "name": "John Hogan",
+     "anchor": false,
+     "sources": [
+      "st_cyr_register_ichr_v4"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "hogan"
+    },
+    {
+     "person": "hogan_john_s_c",
+     "household": "hh_hogan_john_s_c",
+     "name": "John S. C. Hogan",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_american_1835",
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "merge",
+     "ruled_in": "hogan"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "hogan_john",
+     "b": "hogan_john_s_c",
+     "for": [
+      "the same forename, 'john'",
+      "hogan_john_s_c is an anchor — the town documents this person"
+     ],
+     "against": []
+    }
+   ]
+  },
+  {
+   "surname": "hunt",
+   "cards": [
+    {
+     "person": "hunt_c_s",
+     "household": "hh_hunt_c_s",
+     "name": "C S Hunt",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "hunt-c"
+    },
+    {
+     "person": "hunt_charles_cotesworth_pinckney",
+     "household": "hh_hunt_charles_cotesworth_pinckney",
+     "name": "Charles Cotesworth Pinckney Hunt",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "hunt-c"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "hunt_c_s",
+     "b": "hunt_charles_cotesworth_pinckney",
+     "for": [
+      "an initial against its forename, 'c' and 'charles'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "kennicott",
+   "cards": [
+    {
+     "person": "kennicott_w_l",
+     "household": "hh_kennicott_w_l",
+     "name": "W L Kennicott",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "kennicott"
+    },
+    {
+     "person": "kennicott_william_h",
+     "household": "hh_kennicott_william_h",
+     "name": "William H Kennicott",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "norris_directory_1844"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "kennicott"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "kennicott_w_l",
+     "b": "kennicott_william_h",
+     "for": [
+      "an initial against its forename, 'w' and 'william'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'l' against 'h'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "kinzie",
+   "cards": [
+    {
+     "person": "kinzie_john_h",
+     "household": "hh_kinzie_john_h",
+     "name": "John Harris Kinzie",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_american_1835",
+      "chicago_antiquities_american_fur_co",
+      "chicago_voter_lists_1833_1835_irad",
+      "kinzie_waubun_1856"
+     ],
+     "ruling": "merge",
+     "ruled_in": "kinzie-john"
+    },
+    {
+     "person": "kinzie_john_s",
+     "household": "hh_kinzie_john_s",
+     "name": "John S Kinzie",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "kinzie-john"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "kinzie_john_h",
+     "b": "kinzie_john_s",
+     "for": [
+      "the same forename, 'john'",
+      "kinzie_john_h is an anchor — the town documents this person"
+     ],
+     "against": []
+    }
+   ]
+  },
+  {
+   "surname": "norton",
+   "cards": [
+    {
+     "person": "norton_n_r",
+     "household": "hh_norton_n_r",
+     "name": "N. R. Norton",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "deferred",
+     "ruled_in": "norton"
+    },
+    {
+     "person": "norton_nelson_r",
+     "household": "hh_norton_nelson_r",
+     "name": "Nelson R. Norton",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "ruling": "deferred",
+     "ruled_in": "norton"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "norton_n_r",
+     "b": "norton_nelson_r",
+     "for": [
+      "an initial against its forename, 'n' and 'nelson'",
+      "norton_nelson_r is an anchor — the town documents this person"
+     ],
+     "against": []
+    }
+   ]
+  },
+  {
+   "surname": "saunders",
+   "cards": [
+    {
+     "person": "saunders_william_s",
+     "household": "hh_saunders_william_s",
+     "name": "William S. Saunders",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "saunders"
+    },
+    {
+     "person": "saunders_william_w",
+     "household": "hh_saunders_william_w",
+     "name": "William W Saunders",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "saunders"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "saunders_william_s",
+     "b": "saunders_william_w",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "the same forename, 'william'"
+     ],
+     "against": [
+      "the middle initial contradicts: 's' against 'w'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "smith",
+   "cards": [
+    {
+     "person": "smith_e_kirby",
+     "household": "hh_smith_e_kirby",
+     "name": "E Kirby Smith",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "smith-e-kirby"
+    },
+    {
+     "person": "smith_elded",
+     "household": "hh_smith_elded",
+     "name": "Elded Smith",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "smith-e-kirby"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "smith_e_kirby",
+     "b": "smith_elded",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'e' and 'elded'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "smith",
+   "cards": [
+    {
+     "person": "smith_l_w",
+     "household": "hh_smith_l_w",
+     "name": "L W Smith",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "smith-lawrence"
+    },
+    {
+     "person": "smith_lawrence",
+     "household": "hh_smith_lawrence",
+     "name": "Lawrence Smith",
+     "anchor": false,
+     "sources": [
+      "st_cyr_register_ichr_v4"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "smith-lawrence"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "smith_l_w",
+     "b": "smith_lawrence",
+     "for": [
+      "an initial against its forename, 'l' and 'lawrence'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "smith",
+   "cards": [
+    {
+     "person": "smith_william",
+     "household": "hh_smith_william",
+     "name": "William Smith",
+     "anchor": false,
+     "sources": [
+      "blackhawk_war_chicago_enrollments_isa",
+      "census_1840_chicago_familysearch_images",
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "smith-william"
+    },
+    {
+     "person": "smith_william_v",
+     "household": "hh_smith_william_v",
+     "name": "William V Smith",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "smith-william"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "smith_william",
+     "b": "smith_william_v",
+     "for": [
+      "share 1 source(s): chicago_voter_lists_1833_1835_irad",
+      "the same forename, 'william'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "taylor",
+   "cards": [
+    {
+     "person": "taylor_william",
+     "household": "hh_taylor_william",
+     "name": "William Taylor",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "taylor-william"
+    },
+    {
+     "person": "taylor_william_h",
+     "household": "hh_taylor_william_h",
+     "name": "William H Taylor",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "taylor-william"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "taylor_william",
+     "b": "taylor_william_h",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "the same forename, 'william'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "temple",
+   "cards": [
+    {
+     "person": "temple_john_t",
+     "household": "hh_temple_john_t",
+     "name": "Dr John Taylor Temple",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "baptisthistoryhomepage",
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "merge",
+     "ruled_in": "temple"
+    },
+    {
+     "person": "temple_mrs_john_t",
+     "household": "hh_temple_john_t",
+     "name": "Mrs Temple",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "temple"
+    },
+    {
+     "person": "temple_peter",
+     "household": "hh_temple_john_t",
+     "name": "Dr Peter Temple",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "temple"
+    },
+    {
+     "person": "temple_t",
+     "household": "hh_temple_t",
+     "name": "T Temple",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "temple"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "temple_john_t",
+     "b": "temple_mrs_john_t",
+     "for": [
+      "share 1 source(s): andreas_1884_v1",
+      "one card prints a title and no forename at all",
+      "temple_john_t is an anchor — the town documents this person",
+      "temple_mrs_john_t is an anchor — the town documents this person"
+     ],
+     "against": [
+      "both stand on one household record, hh_temple_john_t — the sources name them together, not twice"
+     ]
+    },
+    {
+     "a": "temple_john_t",
+     "b": "temple_peter",
+     "for": [
+      "share 2 source(s): andreas_1884_v1, chicago_democrat_1833_1835",
+      "temple_john_t is an anchor — the town documents this person",
+      "temple_peter is an anchor — the town documents this person"
+     ],
+     "against": [
+      "two full forenames that are different words: 'john' and 'peter'",
+      "two trades that disagree: physician and dentist",
+      "both stand on one household record, hh_temple_john_t — the sources name them together, not twice"
+     ]
+    },
+    {
+     "a": "temple_john_t",
+     "b": "temple_t",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'john' and 't'",
+      "temple_john_t is an anchor — the town documents this person"
+     ],
+     "against": []
+    },
+    {
+     "a": "temple_mrs_john_t",
+     "b": "temple_peter",
+     "for": [
+      "share 1 source(s): andreas_1884_v1",
+      "one card prints a title and no forename at all",
+      "temple_mrs_john_t is an anchor — the town documents this person",
+      "temple_peter is an anchor — the town documents this person"
+     ],
+     "against": [
+      "both stand on one household record, hh_temple_john_t — the sources name them together, not twice"
+     ]
+    },
+    {
+     "a": "temple_mrs_john_t",
+     "b": "temple_t",
+     "for": [
+      "one card prints a title and no forename at all",
+      "temple_mrs_john_t is an anchor — the town documents this person"
+     ],
+     "against": []
+    },
+    {
+     "a": "temple_peter",
+     "b": "temple_t",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'peter' and 't'",
+      "temple_peter is an anchor — the town documents this person"
+     ],
+     "against": []
+    }
+   ]
+  },
+  {
+   "surname": "thompson",
+   "cards": [
+    {
+     "person": "thompson_john",
+     "household": "hh_thompson_john",
+     "name": "John Thompson",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "thompson"
+    },
+    {
+     "person": "thompson_lieut_j_l",
+     "household": "hh_thompson_lieut_j_l",
+     "name": "Lieut J L Thompson",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1843"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "thompson"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "thompson_john",
+     "b": "thompson_lieut_j_l",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'john' and 'j'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "walker",
+   "cards": [
+    {
+     "person": "walker_george_e",
+     "household": "hh_walker_george_e",
+     "name": "George E. Walker",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "walker-george"
+    },
+    {
+     "person": "walker_george_h",
+     "household": "hh_walker_george_h",
+     "name": "George H Walker",
+     "anchor": false,
+     "sources": [
+      "blackhawk_war_chicago_enrollments_isa",
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "walker-george"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "walker_george_e",
+     "b": "walker_george_h",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "the same forename, 'george'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'e' against 'h'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "wright",
+   "cards": [
+    {
+     "person": "wright_j",
+     "household": "hh_wright_j",
+     "name": "J Wright",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "wright"
+    },
+    {
+     "person": "wright_john",
+     "household": "hh_wright_john",
+     "name": "John Wright",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "wright"
+    },
+    {
+     "person": "wright_john_s",
+     "household": "hh_wright_john",
+     "name": "John S. Wright",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "wright"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "wright_j",
+     "b": "wright_john",
+     "for": [
+      "an initial against its forename, 'j' and 'john'",
+      "wright_john is an anchor — the town documents this person"
+     ],
+     "against": []
+    },
+    {
+     "a": "wright_j",
+     "b": "wright_john_s",
+     "for": [
+      "an initial against its forename, 'j' and 'john'",
+      "wright_john_s is an anchor — the town documents this person"
+     ],
+     "against": []
+    },
+    {
+     "a": "wright_john",
+     "b": "wright_john_s",
+     "for": [
+      "share 1 source(s): andreas_1884_v1",
+      "the same forename, 'john'",
+      "wright_john is an anchor — the town documents this person",
+      "wright_john_s is an anchor — the town documents this person"
+     ],
+     "against": [
+      "two trades that disagree: merchant and clerk",
+      "both stand on one household record, hh_wright_john — the sources name them together, not twice"
+     ]
+    }
+   ]
+  }
+ ]
+}

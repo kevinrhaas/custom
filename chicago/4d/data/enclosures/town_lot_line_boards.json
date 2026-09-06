@@ -913,7 +913,9 @@
         {
           "lot": "blk_south_water_clark_lot2",
           "structures": [
-            "pruyne_kimball_drugstore"
+            "pruyne_kimball_drugstore",
+            "recon_1835_blk_south_water_clark_a3_07",
+            "recon_1835_blk_south_water_clark_c2_06"
           ],
           "households": [
             {
@@ -942,7 +944,9 @@
         {
           "lot": "blk_south_water_clark_lot2",
           "structures": [
-            "pruyne_kimball_drugstore"
+            "pruyne_kimball_drugstore",
+            "recon_1835_blk_south_water_clark_a3_07",
+            "recon_1835_blk_south_water_clark_c2_06"
           ],
           "households": [
             {
@@ -953,7 +957,7 @@
           ]
         }
       ],
-      "note": "THE REAR LOT LINE of blk_south_water_clark_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds pruyne_kimball_drugstore — and the yard behind those buildings is 12.19 m deep by 24.64 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_south_water_clark_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds pruyne_kimball_drugstore, recon_1835_blk_south_water_clark_a3_07, recon_1835_blk_south_water_clark_c2_06 — and the yard behind those buildings is 12.19 m deep by 24.64 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_south_water_clark_lot2_blk_south_water_clark_lot4",
@@ -971,7 +975,9 @@
         {
           "lot": "blk_south_water_clark_lot2",
           "structures": [
-            "pruyne_kimball_drugstore"
+            "pruyne_kimball_drugstore",
+            "recon_1835_blk_south_water_clark_a3_07",
+            "recon_1835_blk_south_water_clark_c2_06"
           ],
           "households": [
             {

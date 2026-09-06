@@ -48,6 +48,7 @@
    "name": "J. W. Reed",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "occupation": {
     "value": "joiner",
     "confidence": "attested",

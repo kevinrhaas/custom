@@ -54,6 +54,7 @@
    "name": "John Watkins",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "schoolteacher",
@@ -83,5 +84,34 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE SCHOOLMASTER, AND THE PARCEL'S BEST WITNESS TO WHO ACTUALLY LIVED HERE. His own account of his first class - twelve children, four of them white - is the single most concrete statement about the composition of the settlement's population that this project has found, and it belongs to 1832 rather than to 1835. THREE BUILDINGS IN THIS DATASET ARE ATTACHED TO HIM and only one is linked: north_side_school_1833, where he was teaching in the scene year; watkins_school_house on Michigan Street, where he taught at some point and whose own record calls itself 'the thinnest record in this parcel'; and Jesse Walker's double log house on the West Side, which is probably this dataset's walker_meeting_house and is not linked because that record cannot even settle which bank it stood on."
+ "research_note": "THE SCHOOLMASTER, AND THE PARCEL'S BEST WITNESS TO WHO ACTUALLY LIVED HERE. His own account of his first class - twelve children, four of them white - is the single most concrete statement about the composition of the settlement's population that this project has found, and it belongs to 1832 rather than to 1835. THREE BUILDINGS IN THIS DATASET ARE ATTACHED TO HIM and only one is linked: north_side_school_1833, where he was teaching in the scene year; watkins_school_house on Michigan Street, where he taught at some point and whose own record calls itself 'the thinnest record in this parcel'; and Jesse Walker's double log house on the West Side, which is probably this dataset's walker_meeting_house and is not linked because that record cannot even settle which bank it stood on.",
+ "old_settler_deaths": {
+  "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
+  "note": "LATER EVIDENCE OF A DEATH, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. Fergus's 1843 directory (1896) prints an obituary list of old settlers, and one of its entries meets somebody of this name. THE HEADER OF THE LIST IS QUOTED ABOVE, and it is the limit the whole reading turns on. It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload. Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. A death notice printed in 1896 says a person of this name died on a day; under the ratified ladder (T-0513) that is later evidence about a DEATH, and it is never an 1835 residence. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
+  "sources": [
+   "fergus_1843_old_settler_death_notices"
+  ],
+  "people": [
+   {
+    "person_id": "watkins_john",
+    "matched_as": "John Watkins",
+    "matched_by": "Surname 'Watkins' folds to the same string as the entry's, and the given name of both begins J.",
+    "matched_on_initial_only": false,
+    "resident_given_is_initial_only": false,
+    "entry_given_as_read": "John",
+    "entry_given_is_initial_only": false,
+    "the_agreement": "a surname and a forename spelled out on both sides",
+    "record_id": "fdn0710",
+    "trade_or_office": null,
+    "manner_of_death": "died",
+    "place_of_death": "Joliet, Will Co.. Ill.",
+    "death_date": "1887-03-01",
+    "age_as_printed": "aged 85",
+    "birth_year_earliest": 1801,
+    "birth_year_latest": 1802,
+    "birth_year_arithmetic": "The page prints the death as 'March 1, 1887' and the age as 'aged 85'. An age of 85 completed years means at least 85 and less than 86, so the birth falls between 1801-03-02 and 1802-03-01: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth.",
+    "as_read": "Watkins, John, died, Joliet, Will Co.. Ill., March 1, 1887, aged 85."
+   }
+  ]
+ }
 }

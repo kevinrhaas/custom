@@ -1,7 +1,7 @@
 ---
 id: T-0822
 title: The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 918
+claimed_by: run 9/5/2026, 3:18:11 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T20:49:11.090Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33989566882
 ---
 
 The synthesis programme demotes seventeen letter-list people the ladder graded attested, so

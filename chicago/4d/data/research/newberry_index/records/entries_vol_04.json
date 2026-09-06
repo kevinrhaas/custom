@@ -6,6 +6,8 @@
   "volume": 4,
   "counts": {
     "cards": 413,
+    "records": 413,
+    "slivers": 0,
     "by_locality": {
       "chicago": 120,
       "cook_county": 87,

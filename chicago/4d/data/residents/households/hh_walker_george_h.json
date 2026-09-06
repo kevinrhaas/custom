@@ -87,6 +87,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "walker-george",
+     "weighed_against": [
+      "walker_george_e"
+     ],
+     "referred_to": "owner",
+     "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker.",
+     "against_merge": "The middle initials E and H disagree and neither card documents the man — one is letter-list only, the other a Black Hawk enrollment with a press mention. No anchor, so C4 does not fire. His call."
+    }
    ]
   }
  ],

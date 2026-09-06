@@ -5,7 +5,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pass_4.py",
   "population_frame": {
-    "eligible_real_named_people": 1404,
+    "eligible_real_named_people": 1362,
     "previously_reviewed": 225,
     "sample_size": 75,
     "cumulative_reviewed": 300,

@@ -57,6 +57,7 @@
    "name": "Richard Jones Hamilton",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "county_clerk",
@@ -68,7 +69,10 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_voter_lists_1833_1835_irad"
+    "census_1840_chicago_familysearch_images",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "norris_directory_1844"
    ],
    "note": "ONE OF THE SIX MEN ANDREAS COUNTS AS CHICAGO'S LAWYERS AT THE END OF 1833, and one of the twelve who voted for incorporation on 5 August 1833. Andreas, scan p. 281: 'It comprised six lawyers - Russel E. Heacock, who had come in 1827; Richard J. Hamilton, 1831; and Giles Spring, John Dean Caton, Edward W. Casey and Alexander N. Fullerton, who had put out their signs in 1833.' He administered the oath of office to the first board of trustees as a notary public and acted as its clerk pro tem, and he ran the auction of the school section in October 1833 with John Bates as auctioneer. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 3 times: Poll list of the first election of the Board of Trustees of the Town of Chicago, 10 August 1833 — “Hamilton, R. J.” (poll_1833_013, line 34); Tax list of the Town of Chicago, 1833 — “Hamilton, Richard J.” (tax_1833_042, line 94); Election returns — poll list of 1834, filed 11 August 1834 — “Hamilton, Richard J.” (poll_1834_049, line 218). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Hamilton' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json).",
    "resident_research": {
@@ -86,9 +90,69 @@
       "regraded_on": "2026-09-04",
       "rule": "G2b",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, census_1840_chicago_familysearch_images, chicago_democrat_1833_1835. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
+   },
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "R. J. Hamilton",
+     "locator": "chicago_democrat_1834_01_28#c004",
+     "record_id": "person_r_j_hamilton",
+     "describes_date": "1834-01-28",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Hon. R. J. Hamilton",
+     "locator": "chicago_democrat_1834_02_04#c005",
+     "record_id": "person_hon_r_j_hamilton",
+     "describes_date": "1834-02-04",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Col. R. J. Hamilton",
+     "locator": "chicago_democrat_1834_11_26#c005",
+     "record_id": "person_col_r_j_hamilton",
+     "describes_date": "1834-11-26",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "book_evidence": [
+    {
+     "list": "directory_1844",
+     "as_read": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
+     "locator": "H. & Chamberlaine, h Mich b Cass <fe Hush",
+     "record_id": "n1844_e0782",
+     "describes_date": "1844",
+     "source": "norris_directory_1844",
+     "rule": "G1b"
+    }
+   ],
+   "census_evidence": [
+    {
+     "list": "census_1840",
+     "as_read": "R. J. Hamilton",
+     "locator": "216:12",
+     "record_id": "33S7-9YYJ-DD:12",
+     "describes_date": "1840",
+     "source": "census_1840_chicago_familysearch_images",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C2",
+    "cluster": "hamilton",
+    "cards": [
+     "hamilton_r_j"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   }
  ],

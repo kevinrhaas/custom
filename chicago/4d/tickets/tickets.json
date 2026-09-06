@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 3:11 PM",
+  "generated_ct": "Sep 5, 2026, 11:47 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 174
+      "queue_rank": 150
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 173
+      "queue_rank": 149
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 172
+      "queue_rank": 148
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 171
+      "queue_rank": 147
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 170
+      "queue_rank": 146
     },
     {
       "id": "T-0137",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 52
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 155
+      "queue_rank": 131
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 156
+      "queue_rank": 132
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 109
+      "queue_rank": 92
     },
     {
       "id": "T-0220",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 168
+      "queue_rank": 144
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 148
+      "queue_rank": 129
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 145
+      "queue_rank": 126
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 146
+      "queue_rank": 127
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 141
+      "queue_rank": 122
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 63
+      "queue_rank": 48
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 142
+      "queue_rank": 123
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 167
+      "queue_rank": 143
     },
     {
       "id": "T-0240",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 53
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 54
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 175
+      "queue_rank": 151
     },
     {
       "id": "T-0256",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 113
+      "queue_rank": 96
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 119
+      "queue_rank": 102
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 157
+      "queue_rank": 133
     },
     {
       "id": "T-0272",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 115
+      "queue_rank": 98
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 116
+      "queue_rank": 99
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 117
+      "queue_rank": 100
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 64
+      "queue_rank": 49
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "queue_rank": 50
     },
     {
       "id": "T-0289",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 147
+      "queue_rank": 128
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 118
+      "queue_rank": 101
     },
     {
       "id": "T-0304",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 90
+      "queue_rank": 74
     },
     {
       "id": "T-0321",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 114
+      "queue_rank": 97
     },
     {
       "id": "T-0333",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 111
+      "queue_rank": 94
     },
     {
       "id": "T-0335",
@@ -5973,7 +5973,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 51
     },
     {
       "id": "T-0365",
@@ -6081,7 +6081,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 169
+      "queue_rank": 145
     },
     {
       "id": "T-0372",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 158
+      "queue_rank": 134
     },
     {
       "id": "T-0378",
@@ -6333,7 +6333,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 74
+      "queue_rank": 58
     },
     {
       "id": "T-0386",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 159
+      "queue_rank": 135
     },
     {
       "id": "T-0389",
@@ -6423,7 +6423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 77
+      "queue_rank": 61
     },
     {
       "id": "T-0392",
@@ -6459,7 +6459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 84
+      "queue_rank": 68
     },
     {
       "id": "T-0396",
@@ -6477,7 +6477,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 60
     },
     {
       "id": "T-0397",
@@ -6513,7 +6513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 83
+      "queue_rank": 67
     },
     {
       "id": "T-0399",
@@ -6603,7 +6603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 59
     },
     {
       "id": "T-0404",
@@ -6621,7 +6621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 85
+      "queue_rank": 69
     },
     {
       "id": "T-0405",
@@ -6639,7 +6639,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 86
+      "queue_rank": 70
     },
     {
       "id": "T-0406",
@@ -6677,7 +6677,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 78
+      "queue_rank": 62
     },
     {
       "id": "T-0408",
@@ -6695,7 +6695,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 79
+      "queue_rank": 63
     },
     {
       "id": "T-0409",
@@ -6731,7 +6731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 80
+      "queue_rank": 64
     },
     {
       "id": "T-0411",
@@ -6749,7 +6749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 81
+      "queue_rank": 65
     },
     {
       "id": "T-0412",
@@ -6787,7 +6787,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 82
+      "queue_rank": 66
     },
     {
       "id": "T-0414",
@@ -6901,7 +6901,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 106
+      "queue_rank": 89
     },
     {
       "id": "T-0420",
@@ -6937,7 +6937,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 107
+      "queue_rank": 90
     },
     {
       "id": "T-0422",
@@ -6955,7 +6955,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 108
+      "queue_rank": 91
     },
     {
       "id": "T-0423",
@@ -6993,7 +6993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 88
+      "queue_rank": 72
     },
     {
       "id": "T-0425",
@@ -7011,7 +7011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 87
+      "queue_rank": 71
     },
     {
       "id": "T-0426",
@@ -7067,7 +7067,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 89
+      "queue_rank": 73
     },
     {
       "id": "T-0429",
@@ -7110,7 +7110,7 @@
     {
       "id": "T-0431",
       "title": "Open blk_south_water_clark: 4 roofs of headroom on two free lots",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -7118,12 +7118,14 @@
       "legacy_id": null,
       "parent": "T-0420",
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "916",
+      "claimed_by": "run 9/5/2026, 2:27:53 PM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 72
+      "closed_at": "2026-09-05T20:33:26.622Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33987077283",
+      "queue_rank": null
     },
     {
       "id": "T-0432",
@@ -7141,7 +7143,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 73
+      "queue_rank": 57
     },
     {
       "id": "T-0433",
@@ -7159,7 +7161,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 176
+      "queue_rank": 152
     },
     {
       "id": "T-0435",
@@ -7177,7 +7179,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 110
+      "queue_rank": 93
     },
     {
       "id": "T-0436",
@@ -7195,7 +7197,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 112
+      "queue_rank": 95
     },
     {
       "id": "T-0437",
@@ -7213,7 +7215,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 143
+      "queue_rank": 124
     },
     {
       "id": "T-0438",
@@ -7231,7 +7233,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 178
+      "queue_rank": 154
     },
     {
       "id": "T-0439",
@@ -7249,7 +7251,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 179
+      "queue_rank": 155
     },
     {
       "id": "T-0440",
@@ -7385,7 +7387,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737",
-      "queue_rank": 101
+      "queue_rank": 84
     },
     {
       "id": "T-0448",
@@ -7421,7 +7423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 180
+      "queue_rank": 156
     },
     {
       "id": "T-0450",
@@ -7626,7 +7628,7 @@
       "claimed_by": null,
       "blocked_on": "T-0219",
       "needs_bake": true,
-      "queue_rank": 120
+      "queue_rank": 103
     },
     {
       "id": "T-0465",
@@ -7643,7 +7645,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": true,
-      "queue_rank": 121
+      "queue_rank": 104
     },
     {
       "id": "T-0466",
@@ -7660,7 +7662,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 122
+      "queue_rank": 105
     },
     {
       "id": "T-0467",
@@ -7677,7 +7679,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 123
+      "queue_rank": 106
     },
     {
       "id": "T-0468",
@@ -7694,7 +7696,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 124
+      "queue_rank": 107
     },
     {
       "id": "T-0469",
@@ -7711,7 +7713,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 125
+      "queue_rank": 108
     },
     {
       "id": "T-0470",
@@ -7728,7 +7730,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": false,
-      "queue_rank": 126
+      "queue_rank": 109
     },
     {
       "id": "T-0471",
@@ -7745,7 +7747,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 127
+      "queue_rank": 110
     },
     {
       "id": "T-0472",
@@ -7762,7 +7764,7 @@
       "claimed_by": null,
       "blocked_on": "T-0470",
       "needs_bake": false,
-      "queue_rank": 128
+      "queue_rank": 111
     },
     {
       "id": "T-0473",
@@ -7779,7 +7781,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 129
+      "queue_rank": 112
     },
     {
       "id": "T-0474",
@@ -7796,7 +7798,7 @@
       "claimed_by": null,
       "blocked_on": "T-0473",
       "needs_bake": true,
-      "queue_rank": 130
+      "queue_rank": 113
     },
     {
       "id": "T-0475",
@@ -7813,7 +7815,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 131
+      "queue_rank": 114
     },
     {
       "id": "T-0476",
@@ -7830,7 +7832,7 @@
       "claimed_by": null,
       "blocked_on": "T-0475",
       "needs_bake": true,
-      "queue_rank": 132
+      "queue_rank": 115
     },
     {
       "id": "T-0477",
@@ -7847,7 +7849,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 133
+      "queue_rank": 116
     },
     {
       "id": "T-0478",
@@ -8196,7 +8198,7 @@
     {
       "id": "T-0497",
       "title": "Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -8204,12 +8206,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-02",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "856",
+      "claimed_by": "run 9/5/2026, 1:39:37 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 45
+      "closed_at": "2026-09-05T07:14:33.733Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33950206105",
+      "queue_rank": null
     },
     {
       "id": "T-0498",
@@ -8647,7 +8651,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 181
+      "queue_rank": 157
     },
     {
       "id": "T-0521",
@@ -8685,7 +8689,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 160
+      "queue_rank": 136
     },
     {
       "id": "T-0523",
@@ -8963,7 +8967,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 182
+      "queue_rank": 158
     },
     {
       "id": "T-0538",
@@ -9362,7 +9366,7 @@
     {
       "id": "T-0559",
       "title": "The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "steward",
       "seen": false,
@@ -9370,12 +9374,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-03",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "850",
+      "claimed_by": "run 9/4/2026, 11:58:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 44
+      "closed_at": "2026-09-05T19:51:52.842Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33945838683",
+      "queue_rank": null
     },
     {
       "id": "T-0562",
@@ -9741,7 +9747,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 43
+      "queue_rank": 29
     },
     {
       "id": "T-0582",
@@ -10297,7 +10303,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 161
+      "queue_rank": 137
     },
     {
       "id": "T-0613",
@@ -11157,7 +11163,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 177
+      "queue_rank": 153
     },
     {
       "id": "T-0663",
@@ -11357,7 +11363,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 70
+      "queue_rank": 55
     },
     {
       "id": "T-0673",
@@ -11377,7 +11383,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 71
+      "queue_rank": 56
     },
     {
       "id": "T-0674",
@@ -11397,7 +11403,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 144
+      "queue_rank": 125
     },
     {
       "id": "T-0675",
@@ -11442,7 +11448,7 @@
     {
       "id": "T-0677",
       "title": "Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11450,19 +11456,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "935",
+      "claimed_by": "run 9/5/2026, 6:12:07 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 8
+      "closed_at": "2026-09-05T23:36:07.540Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33997872177",
+      "queue_rank": null
     },
     {
       "id": "T-0678",
       "title": "The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11470,14 +11476,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "941",
+      "claimed_by": "run 9/5/2026, 6:49:36 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 10
+      "closed_at": "2026-09-06T00:36:03.123Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33999561507",
+      "queue_rank": null
     },
     {
       "id": "T-0679",
@@ -11502,7 +11508,7 @@
     {
       "id": "T-0681",
       "title": "T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11510,14 +11516,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "938",
+      "claimed_by": "run 9/5/2026, 6:08:55 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 9
+      "closed_at": "2026-09-05T23:58:30.855Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33997685934",
+      "queue_rank": null
     },
     {
       "id": "T-0683",
@@ -11537,7 +11543,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 162
+      "queue_rank": 138
     },
     {
       "id": "T-0684",
@@ -11637,7 +11643,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 163
+      "queue_rank": 139
     },
     {
       "id": "T-0689",
@@ -11657,7 +11663,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 102
+      "queue_rank": 85
     },
     {
       "id": "T-0690",
@@ -11677,7 +11683,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 183
+      "queue_rank": 159
     },
     {
       "id": "T-0691",
@@ -11697,7 +11703,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 15
+      "queue_rank": 4
     },
     {
       "id": "T-0692",
@@ -11757,7 +11763,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 25
+      "queue_rank": 11
     },
     {
       "id": "T-0695",
@@ -11777,7 +11783,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 37
+      "queue_rank": 23
     },
     {
       "id": "T-0696",
@@ -11797,7 +11803,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 22
+      "queue_rank": 8
     },
     {
       "id": "T-0697",
@@ -11817,7 +11823,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 36
+      "queue_rank": 22
     },
     {
       "id": "T-0698",
@@ -11837,7 +11843,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 34
+      "queue_rank": 20
     },
     {
       "id": "T-0699",
@@ -11877,7 +11883,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 11
+      "queue_rank": 3
     },
     {
       "id": "T-0701",
@@ -12157,12 +12163,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 35
+      "queue_rank": 21
     },
     {
       "id": "T-0715",
       "title": "data/residents/index.json rows go stale for any household no minting pass owns, and only validate.py notices",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -12170,14 +12176,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "924",
+      "claimed_by": "run 9/5/2026, 3:57:33 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 1
+      "closed_at": "2026-09-05T21:34:15.585Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33991495750",
+      "queue_rank": null
     },
     {
       "id": "T-0716",
@@ -12197,7 +12203,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 42
+      "queue_rank": 28
     },
     {
       "id": "T-0717",
@@ -12217,7 +12223,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 30
+      "queue_rank": 16
     },
     {
       "id": "T-0718",
@@ -12237,12 +12243,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 31
+      "queue_rank": 17
     },
     {
       "id": "T-0720",
       "title": "864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12250,19 +12256,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "927",
+      "claimed_by": "run 9/5/2026, 4:50:43 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 6
+      "closed_at": "2026-09-05T22:27:14.551Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33994095741",
+      "queue_rank": null
     },
     {
       "id": "T-0721",
       "title": "Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12270,19 +12276,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "921",
+      "claimed_by": "run 9/5/2026, 4:22:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 3
+      "closed_at": "2026-09-06T04:13:28.732Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33990347792",
+      "queue_rank": null
     },
     {
       "id": "T-0722",
       "title": "The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green",
-      "state": "claimed",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12290,14 +12296,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-05",
+      "pr": "836",
       "claimed_by": "run 9/4/2026, 10:30:40 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T20:03:55.015Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33941748580",
-      "queue_rank": 149
+      "queue_rank": null
     },
     {
       "id": "T-0723",
@@ -12317,7 +12323,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 4
+      "queue_rank": 1
     },
     {
       "id": "T-0724",
@@ -12337,12 +12343,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 5
+      "queue_rank": 2
     },
     {
       "id": "T-0725",
       "title": "The published tree is 900 bytes under the 32 MB ceiling on dev, so the next PR that adds anything at all fails the gate",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12350,14 +12356,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Superseded, and the fault is measured gone. All five of T-0722, T-0725, T-0731, T-0774 and T-0803 reported the SAME thing within one day — the published tree sitting a few hundred bytes under SITE_BUDGET_MB on dev at 06a0a9ec/1e9108aa, so the next PR to publish anything failed the gate. T-0722 fixed it in PR #836 by publishing changelog.js once instead of twice. Measured on this tree: 30.412 MB of 32, 1.588 MB of headroom, and ZERO pairs of published files over 64 KB with identical bytes — the condition #836's new validate.py rule now gates, so it cannot return the way it arrived. Withdrawn on the owner's instruction of 2026-09-05, 'do it if those tickets are useless now', after checking each one's own claim rather than the band's summary of them.  CORRECTION, same day: this reason first cited \"30.412 MB of 32, 1.588 MB of headroom\". The 32 came from tools/site_budget.py, which still hardcoded it while tools/validate.py — the gate that actually refuses a merge — had been raised to 36 by T-0593 (#823). The true figures are 30.5 MB of 36 and 5.5 MB of headroom, so the withdrawal stands and stands wider than stated. site_budget.py now reads SITE_BUDGET_MB out of the gate rather than restating it.",
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T20:03:55.145Z",
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": null
     },
     {
       "id": "T-0727",
@@ -12377,7 +12383,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 138
+      "queue_rank": 121
     },
     {
       "id": "T-0728",
@@ -12397,7 +12403,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 58
+      "queue_rank": 43
     },
     {
       "id": "T-0729",
@@ -12417,12 +12423,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 59
+      "queue_rank": 44
     },
     {
       "id": "T-0731",
       "title": "The published site is 845 bytes under its 32 MB budget on dev, so the next changelog entry fails the gate",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12430,19 +12436,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Superseded, and the fault is measured gone. All five of T-0722, T-0725, T-0731, T-0774 and T-0803 reported the SAME thing within one day — the published tree sitting a few hundred bytes under SITE_BUDGET_MB on dev at 06a0a9ec/1e9108aa, so the next PR to publish anything failed the gate. T-0722 fixed it in PR #836 by publishing changelog.js once instead of twice. Measured on this tree: 30.412 MB of 32, 1.588 MB of headroom, and ZERO pairs of published files over 64 KB with identical bytes — the condition #836's new validate.py rule now gates, so it cannot return the way it arrived. Withdrawn on the owner's instruction of 2026-09-05, 'do it if those tickets are useless now', after checking each one's own claim rather than the band's summary of them.  CORRECTION, same day: this reason first cited \"30.412 MB of 32, 1.588 MB of headroom\". The 32 came from tools/site_budget.py, which still hardcoded it while tools/validate.py — the gate that actually refuses a merge — had been raised to 36 by T-0593 (#823). The true figures are 30.5 MB of 36 and 5.5 MB of headroom, so the withdrawal stands and stands wider than stated. site_budget.py now reads SITE_BUDGET_MB out of the gate rather than restating it.",
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T20:03:55.280Z",
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": null
     },
     {
       "id": "T-0732",
       "title": "James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12450,19 +12456,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "950",
+      "claimed_by": "run 9/5/2026, 8:35:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 14
+      "closed_at": "2026-09-06T02:22:29.046Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34004139758",
+      "queue_rank": null
     },
     {
       "id": "T-0733",
       "title": "103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12470,19 +12476,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "930",
+      "claimed_by": "run 9/5/2026, 5:35:01 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 7
+      "closed_at": "2026-09-05T22:54:32.517Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33996203401",
+      "queue_rank": null
     },
     {
       "id": "T-0734",
       "title": "14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12490,14 +12496,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "949",
+      "claimed_by": "run 9/5/2026, 8:17:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 13
+      "closed_at": "2026-09-06T02:17:28.097Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34003339603",
+      "queue_rank": null
     },
     {
       "id": "T-0735",
@@ -12537,7 +12543,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 48
+      "queue_rank": 32
     },
     {
       "id": "T-0739",
@@ -12637,7 +12643,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 51
+      "queue_rank": 35
     },
     {
       "id": "T-0744",
@@ -12657,7 +12663,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 52
+      "queue_rank": 36
     },
     {
       "id": "T-0745",
@@ -12697,7 +12703,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 49
+      "queue_rank": 33
     },
     {
       "id": "T-0747",
@@ -12737,12 +12743,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 53
+      "queue_rank": 37
     },
     {
       "id": "T-0753",
       "title": "Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12750,14 +12756,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "943",
+      "claimed_by": "run 9/5/2026, 7:36:29 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 12
+      "closed_at": "2026-09-06T00:59:47.906Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34001601114",
+      "queue_rank": null
     },
     {
       "id": "T-0754",
@@ -12777,7 +12783,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 54
+      "queue_rank": 38
     },
     {
       "id": "T-0755",
@@ -12797,7 +12803,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 55
+      "queue_rank": 39
     },
     {
       "id": "T-0756",
@@ -12837,7 +12843,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 17
+      "queue_rank": 5
     },
     {
       "id": "T-0758",
@@ -12857,7 +12863,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 28
+      "queue_rank": 14
     },
     {
       "id": "T-0759",
@@ -12877,7 +12883,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 29
+      "queue_rank": 15
     },
     {
       "id": "T-0761",
@@ -12897,7 +12903,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 56
+      "queue_rank": 40
     },
     {
       "id": "T-0762",
@@ -12917,7 +12923,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 50
+      "queue_rank": 34
     },
     {
       "id": "T-0763",
@@ -12937,12 +12943,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 61
+      "queue_rank": 46
     },
     {
       "id": "T-0764",
       "title": "A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12950,14 +12956,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "952",
+      "claimed_by": "run 9/5/2026, 9:21:37 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 18
+      "closed_at": "2026-09-06T02:35:51.572Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34006144198",
+      "queue_rank": null
     },
     {
       "id": "T-0765",
@@ -12977,7 +12983,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 38
+      "queue_rank": 24
     },
     {
       "id": "T-0766",
@@ -12997,7 +13003,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 39
+      "queue_rank": 25
     },
     {
       "id": "T-0767",
@@ -13037,7 +13043,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 103
+      "queue_rank": 86
     },
     {
       "id": "T-0769",
@@ -13057,7 +13063,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 40
+      "queue_rank": 26
     },
     {
       "id": "T-0770",
@@ -13077,7 +13083,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 104
+      "queue_rank": 87
     },
     {
       "id": "T-0771",
@@ -13097,7 +13103,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 21
+      "queue_rank": 7
     },
     {
       "id": "T-0772",
@@ -13117,12 +13123,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 32
+      "queue_rank": 18
     },
     {
       "id": "T-0773",
       "title": "Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13130,19 +13136,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "959",
+      "claimed_by": "run 9/5/2026, 10:42:07 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 20
+      "closed_at": "2026-09-06T04:32:21.566Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34009497541",
+      "queue_rank": null
     },
     {
       "id": "T-0774",
       "title": "The publish budget has 944 bytes left, and 2.8 MB of it is changelog.js kept twice",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13150,14 +13156,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Superseded, and the fault is measured gone. All five of T-0722, T-0725, T-0731, T-0774 and T-0803 reported the SAME thing within one day — the published tree sitting a few hundred bytes under SITE_BUDGET_MB on dev at 06a0a9ec/1e9108aa, so the next PR to publish anything failed the gate. T-0722 fixed it in PR #836 by publishing changelog.js once instead of twice. Measured on this tree: 30.412 MB of 32, 1.588 MB of headroom, and ZERO pairs of published files over 64 KB with identical bytes — the condition #836's new validate.py rule now gates, so it cannot return the way it arrived. Withdrawn on the owner's instruction of 2026-09-05, 'do it if those tickets are useless now', after checking each one's own claim rather than the band's summary of them.  CORRECTION, same day: this reason first cited \"30.412 MB of 32, 1.588 MB of headroom\". The 32 came from tools/site_budget.py, which still hardcoded it while tools/validate.py — the gate that actually refuses a merge — had been raised to 36 by T-0593 (#823). The true figures are 30.5 MB of 36 and 5.5 MB of headroom, so the withdrawal stands and stands wider than stated. site_budget.py now reads SITE_BUDGET_MB out of the gate rather than restating it.",
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T20:03:55.415Z",
       "claimed_run": null,
-      "queue_rank": 152
+      "queue_rank": null
     },
     {
       "id": "T-0775",
@@ -13197,7 +13203,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 164
+      "queue_rank": 140
     },
     {
       "id": "T-0777",
@@ -13217,7 +13223,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 165
+      "queue_rank": 141
     },
     {
       "id": "T-0778",
@@ -13237,7 +13243,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 46
+      "queue_rank": 30
     },
     {
       "id": "T-0779",
@@ -13257,7 +13263,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 47
+      "queue_rank": 31
     },
     {
       "id": "T-0780",
@@ -13297,7 +13303,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 60
+      "queue_rank": 45
     },
     {
       "id": "T-0782",
@@ -13337,7 +13343,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 23
+      "queue_rank": 9
     },
     {
       "id": "T-0784",
@@ -13382,7 +13388,7 @@
     {
       "id": "T-0787",
       "title": "The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13390,14 +13396,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "956",
+      "claimed_by": "run 9/5/2026, 9:44:39 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 91
+      "closed_at": "2026-09-06T03:42:13.250Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34006978138",
+      "queue_rank": null
     },
     {
       "id": "T-0788",
@@ -13417,7 +13423,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 19
+      "queue_rank": 6
     },
     {
       "id": "T-0789",
@@ -13437,7 +13443,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 92
+      "queue_rank": 75
     },
     {
       "id": "T-0790",
@@ -13457,7 +13463,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 93
+      "queue_rank": 76
     },
     {
       "id": "T-0791",
@@ -13497,7 +13503,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 94
+      "queue_rank": 77
     },
     {
       "id": "T-0793",
@@ -13537,7 +13543,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 95
+      "queue_rank": 78
     },
     {
       "id": "T-0795",
@@ -13557,7 +13563,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 96
+      "queue_rank": 79
     },
     {
       "id": "T-0796",
@@ -13577,7 +13583,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 97
+      "queue_rank": 80
     },
     {
       "id": "T-0797",
@@ -13597,7 +13603,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 26
+      "queue_rank": 12
     },
     {
       "id": "T-0798",
@@ -13617,7 +13623,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 27
+      "queue_rank": 13
     },
     {
       "id": "T-0799",
@@ -13637,7 +13643,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 98
+      "queue_rank": 81
     },
     {
       "id": "T-0800",
@@ -13657,7 +13663,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 99
+      "queue_rank": 82
     },
     {
       "id": "T-0801",
@@ -13677,7 +13683,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 100
+      "queue_rank": 83
     },
     {
       "id": "T-0802",
@@ -13697,12 +13703,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": 42
     },
     {
       "id": "T-0803",
       "title": "The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again",
-      "state": "open",
+      "state": "withdrawn",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13710,14 +13716,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "Superseded, and the fault is measured gone. All five of T-0722, T-0725, T-0731, T-0774 and T-0803 reported the SAME thing within one day — the published tree sitting a few hundred bytes under SITE_BUDGET_MB on dev at 06a0a9ec/1e9108aa, so the next PR to publish anything failed the gate. T-0722 fixed it in PR #836 by publishing changelog.js once instead of twice. Measured on this tree: 30.412 MB of 32, 1.588 MB of headroom, and ZERO pairs of published files over 64 KB with identical bytes — the condition #836's new validate.py rule now gates, so it cannot return the way it arrived. Withdrawn on the owner's instruction of 2026-09-05, 'do it if those tickets are useless now', after checking each one's own claim rather than the band's summary of them.  CORRECTION, same day: this reason first cited \"30.412 MB of 32, 1.588 MB of headroom\". The 32 came from tools/site_budget.py, which still hardcoded it while tools/validate.py — the gate that actually refuses a merge — had been raised to 36 by T-0593 (#823). The true figures are 30.5 MB of 36 and 5.5 MB of headroom, so the withdrawal stands and stands wider than stated. site_budget.py now reads SITE_BUDGET_MB out of the gate rather than restating it.",
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T20:03:55.552Z",
       "claimed_run": null,
-      "queue_rank": 153
+      "queue_rank": null
     },
     {
       "id": "T-0804",
@@ -13737,7 +13743,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 154
+      "queue_rank": 130
     },
     {
       "id": "T-0805",
@@ -13777,7 +13783,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 135
+      "queue_rank": 118
     },
     {
       "id": "T-0807",
@@ -13797,7 +13803,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 136
+      "queue_rank": 119
     },
     {
       "id": "T-0808",
@@ -13817,7 +13823,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 137
+      "queue_rank": 120
     },
     {
       "id": "T-0809",
@@ -13837,7 +13843,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 134
+      "queue_rank": 117
     },
     {
       "id": "T-0810",
@@ -13857,7 +13863,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 41
+      "queue_rank": 27
     },
     {
       "id": "T-0811",
@@ -13897,7 +13903,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 24
+      "queue_rank": 10
     },
     {
       "id": "T-0813",
@@ -13962,7 +13968,7 @@
     {
       "id": "T-0816",
       "title": "Two independent readings of cohort 14 disagree on 46 of its 76 people: T-0509 landed one and the other is on a dead branch",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13970,19 +13976,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "946",
+      "claimed_by": "run 9/5/2026, 8:30:56 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 16
+      "closed_at": "2026-09-06T01:56:44.564Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34003861327",
+      "queue_rank": null
     },
     {
       "id": "T-0817",
       "title": "QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13990,14 +13996,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "913",
+      "claimed_by": "run 9/5/2026, 2:51:42 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T19:59:51.886Z",
       "claimed_run": null,
-      "queue_rank": 140
+      "queue_rank": null
     },
     {
       "id": "T-0818",
@@ -14037,7 +14043,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 57
+      "queue_rank": 41
     },
     {
       "id": "T-0820",
@@ -14062,7 +14068,7 @@
     {
       "id": "T-0822",
       "title": "The synthesis programme demotes seventeen letter-list people the ladder graded attested, so running its own tool reverts T-0515 and T-0699",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -14070,14 +14076,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "918",
+      "claimed_by": "run 9/5/2026, 3:18:11 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 2
+      "closed_at": "2026-09-05T20:49:11.090Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989566882",
+      "queue_rank": null
     },
     {
       "id": "T-0823",
@@ -14137,7 +14143,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 62
+      "queue_rank": 47
     },
     {
       "id": "T-0827",
@@ -14157,7 +14163,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 105
+      "queue_rank": 88
     },
     {
       "id": "T-0828",
@@ -14177,7 +14183,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 33
+      "queue_rank": 19
     },
     {
       "id": "T-0829",
@@ -14197,7 +14203,27 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 166
+      "queue_rank": 142
+    },
+    {
+      "id": "T-0830",
+      "title": "The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 161
     },
     {
       "id": "T-0831",
@@ -14257,7 +14283,267 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 184
+      "queue_rank": 160
+    },
+    {
+      "id": "T-0834",
+      "title": "The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 162
+    },
+    {
+      "id": "T-0835",
+      "title": "The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 163
+    },
+    {
+      "id": "T-0836",
+      "title": "The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 164
+    },
+    {
+      "id": "T-0839",
+      "title": "One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "929",
+      "claimed_by": "run 9/5/2026, 4:38:26 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T22:51:50.286Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33993456420",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0844",
+      "title": "Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 166
+    },
+    {
+      "id": "T-0845",
+      "title": "T-0733 ruled 68 of the 96 people the ledgers record a conflict against: the audit reads only the newest override, so 28 conflicts an earlier pass wrote are unruled and invisible",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "937",
+      "claimed_by": "run 9/5/2026, 6:23:25 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T00:28:34.200Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33996384592",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0846",
+      "title": "The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 165
+    },
+    {
+      "id": "T-0848",
+      "title": "Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 168
+    },
+    {
+      "id": "T-0849",
+      "title": "Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 167
+    },
+    {
+      "id": "T-0852",
+      "title": "tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 169
+    },
+    {
+      "id": "T-0854",
+      "title": "The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 170
+    },
+    {
+      "id": "T-0855",
+      "title": "A card whose only evidence reads Hubbard, [Henry] G. was folded onto Gurdon Saltonstall Hubbard: one man's record is on the wrong person",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "958",
+      "claimed_by": "run 9/5/2026, 10:58:09 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T04:12:10.045Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0859",
+      "title": "J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 171
     }
   ]
 }

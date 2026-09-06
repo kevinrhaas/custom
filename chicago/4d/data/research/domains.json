@@ -103,6 +103,13 @@
       "path": "data/research/land_sales/"
     },
     {
+      "id": "old_settlers",
+      "title": "The Calumet Club's old settlers",
+      "holds": "records",
+      "what": "The rolls of the Calumet Club's receptions to the old settlers of Chicago (1879-1882) and the obituary list printed in Fergus's 1843 directory. Every one of them is LATER EVIDENCE about a person, and the obituary list's own header admits it also names citizens who arrived after 1843 — so a name here is never an 1835 residence.",
+      "path": "data/research/old_settlers/"
+    },
+    {
       "id": "newberry_index",
       "title": "The Newberry genealogical index",
       "holds": "records",

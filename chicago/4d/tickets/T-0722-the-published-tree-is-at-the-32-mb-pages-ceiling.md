@@ -1,7 +1,7 @@
 ---
 id: T-0722
 title: The published tree is at the 32 MB Pages ceiling on dev alone, so any PR that adds a byte cannot go green
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 836
 claimed_by: run 9/4/2026, 10:30:40 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T20:03:55.015Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941748580
 ---
 

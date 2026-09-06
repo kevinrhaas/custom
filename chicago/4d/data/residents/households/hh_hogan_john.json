@@ -73,6 +73,19 @@
      "source": "st_cyr_register_ichr_v4",
      "rule": "G2c"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D2",
+     "cluster": "hogan",
+     "weighed_against": [
+      "hogan_john_s_c"
+     ],
+     "for_merge": "Surname and forename agree exactly, which is why the candidate test raises it.",
+     "against_merge": "hh_hogan_john was minted from st_cyr_death_03_1, where John Hogan is the DECEDENT, and the register dates that death to October 1834. John S. C. Hogan is documented in the town as postmaster and keeping his store on the scene date of 1 July 1835 and is named on the 1833-1835 voter rolls. A man cannot be buried in 1834 and vote in 1835: these are two men, and the ruling is written onto both cards so no later pass folds the postmaster onto his own namesake's burial."
+    }
    ]
   }
  ],

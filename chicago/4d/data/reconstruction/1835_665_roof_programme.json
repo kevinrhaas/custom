@@ -41,13 +41,12 @@
    "moved": [
     {
      "district": "south",
-     "blocks": 3,
+     "blocks": 2,
      "trade_roofs": 4,
-     "blocks_redealt": 3,
+     "blocks_redealt": 0,
      "quota": {
-      "blk_south_water_clark": 1,
       "blk_south_water_dearborn": 0,
-      "blk_south_water_market": 3
+      "blk_south_water_market": 4
      }
     }
    ],
@@ -67,20 +66,20 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 372,
+  "structure_records": 374,
   "physical_roofs": {
-   "min": 359,
-   "max": 360,
+   "min": 361,
+   "max": 362,
    "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
   },
   "by_source": {
-   "generated": 249,
+   "generated": 251,
    "inferred_household_programme": 7,
    "pre_existing": 72,
    "retired_household_roofs": 31
   },
   "by_district": {
-   "south": 216,
+   "south": 218,
    "west": 48,
    "north": 85,
    "fort": 10
@@ -88,23 +87,23 @@
   "by_group": {
    "ordinary_dwellings": 169,
    "larger_boarding_houses": 12,
-   "stores_mixed_use": 38,
+   "stores_mixed_use": 39,
    "inns_taverns": 10,
    "workshops": 29,
    "warehouses_freight": 12,
    "institutional_public": 10,
    "fort_principal": 10,
    "barns_stables": 33,
-   "small_outbuildings": 36
+   "small_outbuildings": 37
   },
   "by_family": {
    "A1": 21,
    "A2": 12,
-   "A3": 21,
+   "A3": 22,
    "A4": 11,
    "A5": 4,
    "C1": 20,
-   "C2": 6,
+   "C2": 7,
    "C3": 11,
    "C4": 1,
    "D1": 37,
@@ -153,10 +152,10 @@
   ]
  },
  "remaining": {
-  "roofs": 303,
+  "roofs": 301,
   "of_target": 662,
   "by_district": {
-   "south": 149,
+   "south": 147,
    "west": 87,
    "north": 67,
    "fort": 0
@@ -166,8 +165,8 @@
     "barns_stables": 17,
     "larger_boarding_houses": 21,
     "ordinary_dwellings": 69,
-    "small_outbuildings": 24,
-    "stores_mixed_use": 11,
+    "small_outbuildings": 23,
+    "stores_mixed_use": 10,
     "warehouses_freight": 6,
     "workshops": 1
    },
@@ -190,11 +189,11 @@
   "by_family": {
    "A1": 21,
    "A2": 18,
-   "A3": 19,
+   "A3": 18,
    "A4": 17,
    "A5": 10,
    "C1": 0,
-   "C2": 6,
+   "C2": 5,
    "C3": 6,
    "C4": 4,
    "D1": 15,
@@ -238,10 +237,10 @@
     "D5": 14,
     "D6": 7,
     "D7": 6,
-    "A3": 10,
+    "A3": 9,
     "A4": 9,
     "A5": 5,
-    "C2": 4,
+    "C2": 3,
     "C3": 4,
     "C4": 3,
     "F2": 3,
@@ -262,9 +261,9 @@
     "D5": 11,
     "D6": 6,
     "D7": 5,
-    "A3": 5,
+    "A3": 4,
     "A4": 4,
-    "A5": 2,
+    "A5": 3,
     "C2": 1,
     "C3": 1,
     "C4": 1,
@@ -284,9 +283,9 @@
     "D5": 9,
     "D6": 4,
     "D7": 4,
-    "A3": 5,
+    "A3": 4,
     "A4": 4,
-    "A5": 2
+    "A5": 3
    },
    "fort": {}
   },
@@ -313,9 +312,9 @@
   }
  },
  "coverage": {
-  "schedulable_on_committed_ground": 8,
-  "gated_on_coverage": 295,
-  "statement": "8 of the 303 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 295 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
+  "schedulable_on_committed_ground": 4,
+  "gated_on_coverage": 297,
+  "statement": "4 of the 301 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 297 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 662-roof programme is coverage, not recipes.",
   "platted_lots": 144,
   "blocks_named": 21,
   "southern_ground": {
@@ -411,23 +410,16 @@
    },
    "lots": 8,
    "capacity_roofs": 31,
-   "standing_roofs": 10,
-   "free_lots": 2,
-   "principal_room": 3,
-   "ancillary_room": 1,
-   "headroom": 4,
-   "state": "open",
-   "roofs": 4,
-   "families": {
-    "A3": 1,
-    "C2": 1,
-    "D3": 1,
-    "D4": 1
-   },
-   "principal": 3,
-   "ancillary": 1,
-   "frontage_weight": 0.6066,
-   "trade_roofs": 1
+   "standing_roofs": 12,
+   "free_lots": 1,
+   "principal_room": 0,
+   "ancillary_room": 0,
+   "headroom": 0,
+   "state": "at_capacity",
+   "roofs": 0,
+   "families": {},
+   "principal": 0,
+   "ancillary": 0
   },
   {
    "id": "blk_south_water_dearborn",
@@ -450,8 +442,8 @@
    "roofs": 4,
    "families": {
     "A1": 1,
-    "D1": 1,
-    "D2": 1,
+    "D3": 1,
+    "D4": 1,
     "D5": 1
    },
    "principal": 3,
@@ -817,27 +809,28 @@
    "families": {
     "A1": 1,
     "A2": 1,
-    "A3": 1,
-    "A4": 2,
+    "A3": 2,
+    "A4": 1,
     "A5": 1,
+    "C2": 1,
     "C3": 1,
     "C4": 1,
-    "D1": 1,
-    "D2": 1,
-    "D3": 3,
-    "D4": 3,
+    "D1": 2,
+    "D2": 2,
+    "D3": 2,
+    "D4": 2,
     "D5": 2,
     "D6": 2,
     "D7": 1,
     "F2": 1,
-    "H1": 2,
+    "H1": 1,
     "H2": 2,
     "H3": 1
    },
    "principal": 21,
    "ancillary": 6,
    "frontage_weight": 0.6826,
-   "trade_roofs": 3
+   "trade_roofs": 4
   },
   {
    "id": "blk_south_water_clinton",
@@ -897,37 +890,37 @@
    "id": "south_plat_beyond_committed_control",
    "kind": "district_balance",
    "district": "south",
-   "capacity_roofs": 114,
+   "capacity_roofs": 116,
    "standing_roofs": 0,
-   "headroom": 114,
+   "headroom": 116,
    "state": "gated",
    "waiting_on": "TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled heightfield ends at local N -400.0 m, which falls inside Washington Street's own platted corridor — 0.33 ha of that street's south half lies off the field. South of the corridor the field holds 0.0819 ha of land above the water surface and 0.0000 ha of it is in the South Division: the rest is the West Division bank, across the South Branch. Madison Street, the plat's south boundary, is 125.2 m further south again, so the plat's last tier — 6 blocks and 48 lots between Market and State, 6.28 ha — is not modelled ground at all. Every north-south column of the south plat has its committed centreline cut at the field's own south edge, so carrying street control further south would emit blocks whose every placement tools/generate_block_infill.py refuses for standing outside the modelled terrain. Ground east of State is not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
-   "roofs": 114,
+   "roofs": 116,
    "families": {
     "A1": 7,
     "A2": 7,
-    "A3": 8,
-    "A4": 7,
+    "A3": 7,
+    "A4": 8,
     "A5": 4,
-    "C2": 3,
+    "C2": 2,
     "C3": 3,
     "C4": 2,
     "D1": 5,
     "D2": 5,
-    "D3": 10,
-    "D4": 10,
+    "D3": 11,
+    "D4": 11,
     "D5": 11,
     "D6": 5,
     "D7": 5,
     "F2": 2,
     "F3": 2,
     "F4": 1,
-    "H1": 5,
+    "H1": 6,
     "H2": 6,
     "H3": 5,
     "W2": 1
    },
-   "principal": 81,
+   "principal": 83,
    "ancillary": 33
   },
   {
@@ -943,9 +936,9 @@
    "families": {
     "A1": 3,
     "A2": 4,
-    "A3": 3,
+    "A3": 2,
     "A4": 2,
-    "A5": 1,
+    "A5": 2,
     "C2": 1,
     "C3": 1,
     "C4": 1,
@@ -978,9 +971,9 @@
    "families": {
     "A1": 5,
     "A2": 5,
-    "A3": 5,
+    "A3": 4,
     "A4": 4,
-    "A5": 2,
+    "A5": 3,
     "D1": 4,
     "D2": 4,
     "D3": 8,

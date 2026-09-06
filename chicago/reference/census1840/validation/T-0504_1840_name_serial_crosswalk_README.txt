@@ -55,11 +55,11 @@ COUNTS as of this build
   pages held                         46
   pages carrying committed cells     21
   lines read on those pages          636
-    unique                           254
+    unique                           246
     ambiguous                        271
-    none                             111
-  serials attached                   254
-  contested and withdrawn            1
+    none                             119
+  serials attached                   246
+  contested and withdrawn            2
 
   printed  image           cols   lines  uniq   ambig  none
       221  33S7-9YYJ-2T   24/26   31    11     18     2
@@ -68,7 +68,7 @@ COUNTS as of this build
       234  33S7-9YYJ-99F  25/26   31    15     16     0
       225  33S7-9YYJ-9HY  26/26   31    11     12     8
       219  33S7-9YYJ-9K3  26/26   31    12     15     4
-      229  33S7-9YYJ-9M5  24/26   30    15     14     1
+      229  33S7-9YYJ-9M5  24/26   30     9     14     7
   unknown  33S7-9YYJ-9MX  24/26   31    10     21     0
       210  33S7-9YYJ-9RG  24/26   30    16     13     1
       215  33S7-9YYJ-9WF  25/26   31     2     15    14
@@ -99,10 +99,10 @@ overwritten by this one.
   PR #670 - the 210 rows recovered from the lost v4 workbook
     lines this pass has cells for   154 of 210
     agree                           15
-    DISAGREE                        30
-    this pass does not resolve      109
-  The 30 disagreements are NOT scattered. They fall into runs at a constant offset (page
-  229: 7 at -3, 6 at -2, 1 at +28, 1 at -1; page 231: 7 at +14, 5 at -17, 2 at -16, 1 at
+    DISAGREE                        23
+    this pass does not resolve      116
+  The 23 disagreements are NOT scattered. They fall into runs at a constant offset (page
+  229: 4 at -3, 2 at -2, 1 at +28, 1 at -1; page 231: 7 at +14, 5 at -17, 2 at -16, 1 at
   +11). #670's own `serial_confidence` column says how those serials were
   attached - "continuation totals + page block" - which is an argument from POSITION, and a
   run at a constant offset is what that produces when a block is started a row or two from

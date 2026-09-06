@@ -1,7 +1,7 @@
 ---
 id: T-0431
 title: Open blk_south_water_clark: 4 roofs of headroom on two free lots
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0420
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 916
+claimed_by: run 9/5/2026, 2:27:53 PM CT
 blocked_on: null
 needs_bake: true
+closed_at: 2026-09-05T20:33:26.622Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33987077283
 ---
 
 Open `blk_south_water_clark` — 4 roof(s) of headroom, 2 free lot(s) — under the anonymous-block
@@ -41,8 +43,9 @@ changed should trust the tool and correct this table):
 | standing roofs | 10 |
 | free lots | 2 |
 | headroom | **4** — 3 principal, 1 ancillary |
-| families dealt | A4, C4, H1, H2 — one roof each |
-| frontage weight | 0.6023 |
+| families dealt | A3, C2, D3, D4 — one roof each (**corrected 2026-09-05**: the table
+  above was written on 2026-08-30 and the schedule has re-dealt since; trust the tool) |
+| frontage weight | 0.6066 (**corrected 2026-09-05**, was 0.6023) |
 | trade roofs in the deal (T-0213) | 1 |
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)

@@ -737,7 +737,15 @@ def _person_ids(row) -> list:
 
 
 def declared_anchors():
-    """(domain, record_id) -> {person_id, declared_in, rule} for every LANDED match."""
+    """(domain, record_id) -> {person_id, declared_in, rule} for every LANDED match.
+
+    THE DOMAIN IS THE DIRECTORY, UNLESS THE ROW SAYS OTHERWISE (T-0839). A crosswalk
+    lives under the domain it reads — data/research/directories/... adjudicates the
+    directories — and that is where the key comes from. One adjudication is not about a
+    domain at all: the town-card merge names a person who was split across SEVERAL
+    domains at once, and its rows carry a `domains` list saying which. A row that names
+    its own domains is anchored in each of them; every other row is unchanged.
+    """
     anchors = {}
     for path in sorted(RESEARCH.rglob("*crosswalk*.json")):
         doc = load(path)
@@ -760,12 +768,14 @@ def declared_anchors():
                 people = _person_ids(row)
                 if len(people) != 1:
                     continue
+                stated = [d for d in (row.get("domains") or []) if isinstance(d, str)]
                 for record_id in _record_ids(row):
-                    anchors[(domain, record_id)] = {
-                        "person_id": people[0],
-                        "declared_in": f"{where}#{key}",
-                        "rule": "D1",
-                    }
+                    for one in (stated or [domain]):
+                        anchors[(one, record_id)] = {
+                            "person_id": people[0],
+                            "declared_in": f"{where}#{key}",
+                            "rule": "D1",
+                        }
     return anchors
 
 
@@ -1208,6 +1218,10 @@ COVERAGE_STATES = {
     "proposed_not_written": "The ladder HAS ruled this person — the rung is in "
                             "grading_proposal.json — and no pass has written it onto the "
                             "card. A spend, not a reading.",
+    "ruled_but_disputed": "The ladder ruled this person and its rung DISAGREES with the "
+                          "grade or the subtype the card carries, so the row is on the "
+                          "owner's conflict list rather than written onto the card. "
+                          "Nothing is graded down to close a coverage gap (T-0720).",
     "absorbed_by_another_card": "The person's row stands on an identity the ladder ruled, "
                                 "but that identity names a DIFFERENT town card as its "
                                 "canonical person, so the rung was never offered to this "
@@ -1226,12 +1240,20 @@ def ladder_coverage(master, proposal):
             by_town_id[person_id] = row["id"]
             canonical_of[person_id] = row.get("canonical_person_id")
     ruling = {entry["identity"]: entry for entry in proposal["proposals"]}
+    # T-0720. A row the proposal itself lists as a change to a committed person is a
+    # DISAGREEMENT between the ladder and the card, not an unspent rung: the spend pass
+    # may not write it and no pass may apply it without the owner. Held apart here so
+    # that `proposed_not_written` means what it says — a rung nobody has spent — and
+    # goes to nought when the spend has run.
+    disputed = {change["person_id"]
+                for change in proposal.get("changes_to_existing_people", [])}
     refused = {}
     for refusal in master["refusals"]:
         if refusal.get("domain") == "residents":
             refused.setdefault(refusal["record_id"], refusal)
 
     records, states, by_proposed_rule, refusal_rules = [], Counter(), Counter(), Counter()
+    by_disputed_rule = Counter()
     total = 0
     for path in sorted(RESIDENTS.rglob("*.json")):
         doc = load(path)
@@ -1257,13 +1279,20 @@ def ladder_coverage(master, proposal):
                 "identity": identity_id,
             }
             if entry and canonical_of.get(person_id) == person_id:
-                row["state"] = "proposed_not_written"
                 row["proposed_rule"] = entry["rule"]
                 row["proposed_grade"] = entry["grade"]
-                row["why"] = (f"the ladder ruled this person {entry['rule']} in "
-                              "grading_proposal.json; no pass has written that rung "
-                              "onto the card")
-                by_proposed_rule[entry["rule"]] += 1
+                if person_id in disputed:
+                    row["state"] = "ruled_but_disputed"
+                    row["why"] = (f"the ladder's {entry['rule']} disagrees with the grade "
+                                  "this card carries; the row is on the owner's conflict "
+                                  "list in ladder_spend.json and the card is left alone")
+                    by_disputed_rule[entry["rule"]] += 1
+                else:
+                    row["state"] = "proposed_not_written"
+                    row["why"] = (f"the ladder ruled this person {entry['rule']} in "
+                                  "grading_proposal.json; no pass has written that rung "
+                                  "onto the card")
+                    by_proposed_rule[entry["rule"]] += 1
             elif entry:
                 row["state"] = "absorbed_by_another_card"
                 row["proposed_rule"] = entry["rule"]
@@ -1301,10 +1330,12 @@ def ladder_coverage(master, proposal):
             "carry_a_rule": states.get("rule_on_the_card", 0),
             "carry_no_rule": len(records),
             "proposed_not_written_by_rule": dict(sorted(by_proposed_rule.items())),
+            "ruled_but_disputed_by_rule": dict(sorted(by_disputed_rule.items())),
             "refused_by_rule": dict(sorted(refusal_rules.items())),
             "the_ladder_has_never_looked": (states.get("absorbed_by_another_card", 0)
                                             + states.get("refused_no_identity", 0)
                                             + states.get("unclassified", 0)),
+            "on_the_owners_conflict_list": states.get("ruled_but_disputed", 0),
         },
         "person_records": records,
     }
@@ -1787,10 +1818,18 @@ def cmd_coverage(ladder):
     for rule, n in counts["proposed_not_written_by_rule"].items():
         print(f"    {rule:<6} {GRADE_RULES[rule][0] or 'no proposal':<18} {n:>6}   "
               f"{GRADE_RULES[rule][1][:58]}")
+    if not counts["proposed_not_written_by_rule"]:
+        print("    none — tools/spend_ladder_rungs.py has spent them (T-0720)")
+    print("\n  RULED, AND THE RUNG DISAGREES WITH THE CARD — the owner's conflict list, "
+          f"{counts.get('on_the_owners_conflict_list', 0)} people")
+    for rule, n in counts.get("ruled_but_disputed_by_rule", {}).items():
+        print(f"    {rule:<6} {GRADE_RULES[rule][0] or 'no proposal':<18} {n:>6}   "
+              f"{GRADE_RULES[rule][1][:58]}")
     print("\n  THE LADDER HAS NEVER LOOKED — "
           f"{counts['the_ladder_has_never_looked']} people, each with its reason")
     for row in ladder["person_records"]:
-        if row["state"] in ("proposed_not_written", "rule_on_the_card"):
+        if row["state"] in ("proposed_not_written", "rule_on_the_card",
+                            "ruled_but_disputed"):
             continue
         tag = row.get("refusal_rule") or row["state"]
         print(f"    {row['person_id']:<28} {str(row['name'])[:34]:<36} "

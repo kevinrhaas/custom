@@ -52,6 +52,7 @@
    "name": "Stephen M. Salisbury",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "justice_of_the_peace",
     "confidence": "attested",
