@@ -46,7 +46,11 @@
 # --- G1 — THE CARD MUST BE ABLE TO HOLD IT. Small repairs the spend below writes THROUGH: a card
 # --- that drifts silently, or one identity split across two cards, makes every figure under it
 # --- unarguable. Nothing here reads a source.
-T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
+
+
+
+
+T-0837 — Spend the standing synthesis write: read the promotions it proposes and land them deliberately
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
@@ -339,9 +343,9 @@ T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'J
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0861 — Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground
 
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
+
+T-0861 — Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
+
