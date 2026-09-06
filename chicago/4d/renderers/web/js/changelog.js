@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 652, title: 'The zero volume four had not earned', kind: 'fix', ts: '2026-09-06T21:47:41.251Z', date: 'Sep 6, 2026, 4:47 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the card file this project reads for the townspeople\u2019s names, and a count of nought that had never actually been taken.',
+      'The Newberry Library\u2019s genealogical index is four volumes of photostatted cards, and every page is read in four overlapping strips \u2014 each strip carries the leftmost 27 points of the one beside it. A card sitting on that seam gets read twice: once whole, and once as a stub. The stub is caught by matching it against the whole card letter for letter, which works because both readings come out of one machine reading one piece of ink, mistakes and all.',
+      'Volume four is not read that way. Its deposited text was so poor that it was read again from photographs of the pages instead, and its two readings of a seam are two separate passes over two separate pictures \u2014 close, never identical. The letter-for-letter test can only ever return nought there, and it had been returning nought since the day the volume was re-read. Nobody had asked whether that nought meant anything.',
+      'It does, and the volume is clean. Asked a second way \u2014 how far the two readings agree letter by letter \u2014 the eight stubs the other three volumes carry all score a perfect 1.000, the nearest thing that is not a stub scores 0.921 (two families that happen to cite the same county history), and all twenty-one of volume four\u2019s seam pairs score 0.216 or less. There is nothing there to find.',
+      'Every volume now states what its scan found, and the check rebuilds those figures from the committed text each time it runs. A reading that carries no scan at all now fails the check, which is what would have caught this one.',
+    ] },
   { v: 651, title: 'The last name on the shore drawing is a schoolhouse of 1844', kind: 'change', ts: '2026-09-06T21:30:28.718Z', date: 'Sep 6, 2026, 4:30 PM CT',
     items: [
       'A drawing of the Chicago shore was deposited here a few days ago \u2014 a log schoolhouse with a woman in its doorway, children streaming along the bank, three canoes, and a small white lighthouse on a point beyond. It came with a social-media filename and nothing else: no artist, no date, no book, no repository. Nothing in the town has been allowed to rest on it since.',
