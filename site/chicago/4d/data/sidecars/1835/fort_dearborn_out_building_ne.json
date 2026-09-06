@@ -1,0 +1,150 @@
+{
+  "id": "fort_dearborn_out_building_ne",
+  "phase": "out_building_1830",
+  "name": "Fort Dearborn — the north-east out building",
+  "aka": [
+    "the fort out buildings"
+  ],
+  "archetype": "outbuilding",
+  "asset": "gltf/fort_dearborn_out_building_ne__out_building_1830.glb",
+  "scene": "1835",
+  "target_date": "1835-07-01",
+  "documented_range": {
+    "from": "1830-02-24",
+    "to": "1836-12-29",
+    "confidence": "inferred",
+    "sources": [
+      "harrison_1830_river_mouth"
+    ],
+    "note": "ONE WITNESS, AND IT IS A LABEL RATHER THAN A DESCRIPTION. Only the Harrison plan puts anything here; Hubbard walks this ground on leaves 75-76 and names the barn, the wash-houses, the well, the Factor House, the road and Mrs Jouett's grave without ever naming an out building. IT OPENS 24 FEBRUARY 1830, the date on the plan, because that is the earliest date any source this project holds fixes to it. IT CLOSES 29 DECEMBER 1836, the evacuation, and that is a floor rather than a demolition: nothing attests when the fort's outer buildings came down. WHAT CARRIES THE SCENE DATE OF 1 JULY 1835 is the middle of that range and not either end of it — the post was garrisoned continuously from June 1832 to 29 December 1836, so a service building the garrison's own engineer drew in 1830 is standing five years later unless something says it stopped, and nothing does. That is an argument, not an assumption, and it is the argument every Fort Dearborn record here rests on."
+  },
+  "change_note": "One phase, and one witness. There is no history here to divide.",
+  "placement": {
+    "local_e": 1180.65,
+    "local_n": 59.76,
+    "rotation_deg": 315.0,
+    "position_confidence": "inferred",
+    "position_sources": [
+      "harrison_1830_river_mouth"
+    ],
+    "position_note": "THE PIXEL, AND THE PLURAL HAS TWO REFERENTS. The plate letters 'Out Buildings' once and draws TWO solid blocks under the label, on the outer ground where the enclosure fence turns down toward the water. THIS IS THE SMALLER AND THE NORTH-EASTERN OF THE PAIR, and it is the smallest building this project has taken off this plate. Its ink, thresholded and eroded, gives a minimum-area rectangle of 11.8 x 8.9 px centred on pixel (1531.5, 1119.0) with its long axis at bearing 45.0 degrees — 86.5 px east and 475.0 px south of the fort centre, which is 29.0 m east and 159.3 m south of it. Its larger neighbour lies 6.8 m south-west.\n\nREAD OFF THE 1830 HARRISON PLAN, BY THE SAME RULE AND THE SAME CHECKS AS THE ELEVEN RECORDS ALREADY TAKEN FROM IT AND THE THREE T-0883 PLACED BESIDE IT. Internet Archive leaf n242 of historyofchicago01andr (Andreas vol. 1, p. 113), rotated 90 degrees anticlockwise so the sheet's own true-north arrow stands vertical, is 2715 x 2003 px. On that image the stockade's ink runs from x 1356 to x 1535 and from y 553 to y 730, so the enclosure's centre is pixel (1445, 644); the committed palisade record hangs that centre on local E +1152, N +221, which is UTM 448224.70 E, 4637616.80 N. Pixels convert at 1.10 ft/px (0.33528 m/px), the scale docs/RESEARCH/fort_dearborn.md section 3 derives from the commandant's quarters. THE MEASUREMENT IS CHECKED AGAINST A COMMITTED RECORD BEFORE IT IS USED HERE. The blocks on this plate are solid ink, so they are measured by minimum-area rectangle over the eroded ink mask rather than by reading four corners off the screen; run against the Shop, which T-0883 read by hand, that method returns centre pixel (1625.4, 941.2) against the hand-read (1626.5, 934.8) and UTM 448285.18 E, 4637517.14 N against the record's derived 448285.55, 4637519.30. Six and a half pixels, 2.2 m, on a record measured a different way by a different run. Its long axis comes back at bearing 32.5 degrees against the 40 that record carries, which is the width of the disagreement two honest readings of a woodcut block can have and is why nothing here is graded above inferred.\n\nWHAT THE TRANSFORM CANNOT DO is beat its own inputs. The enclosure measures 180 px across at this scale, which is 60 m against the committed palisade's 53 m — a 13 % spread, inside the +/-20 % the scale carries, and the reason is visible on the plate: 180 px is the OUTER edge of an engraved line four to six pixels thick. So carry +/-20 % on this offset from the fort centre and +/-20 m on the fort itself, exactly as every plate-derived record here does.",
+    "symbolic_location": "South of Fort Dearborn on the fort's outer ground, 6.8 m north-east of its larger neighbour and on the same fence line. The smaller of the two blocks the plan labels Out Buildings.",
+    "uncertainty_m": 20,
+    "placement_provisional": false,
+    "vertical_anchor": "terrain",
+    "walk_surface_m": null
+  },
+  "footprint": {
+    "polygon": [
+      [
+        0,
+        0
+      ],
+      [
+        3.3,
+        0
+      ],
+      [
+        3.3,
+        2.3
+      ],
+      [
+        0,
+        2.3
+      ]
+    ],
+    "confidence": "inferred",
+    "sources": [
+      "harrison_1830_river_mouth"
+    ],
+    "note": "NO SOURCE GIVES THIS BUILDING A DIMENSION, and it is small enough that the plate's own line weight is a large fraction of it — which is stated here rather than smoothed over. The drawn block measures 11.8 x 8.9 px to the OUTER edge of its ink; 3.3 x 2.3 m is that extent stepped in one pixel on each side, at the derived 1.10 ft/px. About 11 x 8 ft, at +/-20 % — the size of a privy, a smokehouse or a corn crib, and the plate does not say which. The long axis runs at bearing 45 degrees."
+  },
+  "attributes": {
+    "construction": {
+      "value": "log",
+      "confidence": "reconstructed",
+      "note": "Nothing states it. Log by the convention every other building on this post follows. Invented."
+    },
+    "roof_type": {
+      "value": "shed",
+      "confidence": "reconstructed",
+      "note": "Not attested. Shed is the outbuilding archetype's own default at this depth, and the reason it is the default is the reason it is right here: a single slope is the cheapest roof there is and it sheds over a short run. Invented."
+    },
+    "roof_pitch_deg": {
+      "value": 18.0,
+      "confidence": "reconstructed",
+      "note": "No pitch is attested for any building at this fort. 18 degrees is the archetype's shed default and about the shallowest a riven shake roof sheds at. The 34 degrees the fort's larger records carry is a GABLE figure and is not carried over onto a shed. Invented."
+    },
+    "wall_height_m": {
+      "value": 2.22,
+      "confidence": "reconstructed",
+      "note": "No height attested. 2.22 m is the outbuilding archetype's own size-aware default for a 3.3 x 2.3 m footprint — headroom sets the wall of a small service building, not span — and the record carries the number rather than leaving the generator to supply it silently. Invented."
+    },
+    "door": {
+      "value": "man",
+      "confidence": "reconstructed",
+      "note": "Not attested, and the smaller opening is the smaller claim: the plate gives a plural noun and no use, so a wagon door would be inventing what went in and out. Invented."
+    },
+    "door_side": {
+      "value": "front",
+      "confidence": "reconstructed",
+      "note": "The wall facing back toward the fort enclosure, north-west. Invented."
+    },
+    "paint": {
+      "value": "unpainted",
+      "confidence": "reconstructed",
+      "note": "Not stated. The archetype's default and the treatment of every working building here. Invented."
+    },
+    "function": {
+      "value": "service outbuilding",
+      "confidence": "attested",
+      "sources": [
+        "harrison_1830_river_mouth"
+      ],
+      "note": "THE WORDS ON THE PLATE ARE 'Out Buildings' AND NOTHING ELSE IS CLAIMED. That phrase is the period's own catch-all for the service structures of a household or a post — a privy, a smokehouse, a corn crib, a hen house, a wood store — and its whole content is that these are NOT the barn, the wash house, the shop or the well, all four of which this same plate names separately. So no use is written onto this record. A post return, a quartermaster's account or a repair estimate would settle it; the plate cannot."
+    },
+    "land_owner": {
+      "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+      "confidence": "inferred",
+      "sources": [
+        "isa_public_domain_land_tract_sales"
+      ],
+      "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS 77 m: this footprint stands that far inside the tract's nearest boundary, which is more than twice the working horizontal uncertainty of anything traced off the 1834 sheets (about 20 m), so the assignment survives the error the construction carries. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares."
+    }
+  },
+  "residents": [],
+  "citations": [
+    {
+      "source_id": "harrison_1830_river_mouth",
+      "citation": "Harrison, F., Jr., Ass't U.S. Civil Engineer. \"Map of the Mouth of Chicago River, drawn for the Purpose of showing the proposed Harbor Improvements. With additions and changes suggested by the Memory of Early Settlers. The original received and approved by William Howard, U.S. Civil Engineer, February 24, 1830.\" Reproduced in Andreas, A. T., History of Chicago, vol. 1 (Chicago, 1884), p. 113.",
+      "url": "https://archive.org/details/historyofchicago01andr/page/n242/mode/1up",
+      "archived_url": "",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "the fort's plan arrangement: a quadrangular picket enclosure, corner works, four ranges, two gates",
+        "which building stood on which side of the parade",
+        "the relative proportions of the enclosure and the buildings in it",
+        "the fort's rotation relative to true north",
+        "the named ground around the fort: garrison garden, cultivated field, barn, wash house, well, shop, cemetery, ferry"
+      ],
+      "what_it_does_not_supply": [
+        "any dimension in feet - there is no scale bar",
+        "elevations, heights, roof forms or materials",
+        "the state of the fort in 1835 - it is five years earlier",
+        "a separation between the 1830 survey and the settler-memory additions the plate admits to"
+      ]
+    },
+    {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
+    }
+  ],
+  "research_note": "Placed under T-0887, the second and smaller of the two blocks the Harrison plan draws under its one plural label. It is the weakest-attested record this project has taken off this plate — a block eleven pixels long, an unnamed member of a plural, and no second witness — and it is placed rather than omitted because the alternative is a model that draws one of two things a plan draws and says nothing about the other. Its grade says exactly that: position inferred on the plate alone, every element of fabric reconstructed.",
+  "research_doc": "",
+  "review_required": false
+}

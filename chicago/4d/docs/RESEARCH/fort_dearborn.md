@@ -265,13 +265,29 @@ carries the `geometry:` declaration and a liberty:
   `data/flora/` has no cultivated zone and no garden species.
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
 - **The drill ground south of the pickets** (Kinzie). No extent given.
-- **Named ground on the 1830 plan and not modelled**: the Well, the Out Buildings, the
-  U.S. Factor's House, the Cultivated Field, the Fort Cemetery, the Ferry. Each is a
-  candidate for a later slice and each would be almost entirely invention today — the plan
-  gives a symbol and a label and no form. The **Fort Cemetery** in particular is left alone
-  deliberately. The **Well** and the **Out Buildings** are T-0881's; the **Fort Cemetery**
-  is T-0882's.
-- **Three of that list are now built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
+- **Named ground on the 1830 plan and not modelled**: the Well, the U.S. Factor's House,
+  the Cultivated Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice
+  and each would be almost entirely invention today — the plan gives a symbol and a label
+  and no form. The **Fort Cemetery** in particular is left alone deliberately, and is
+  T-0882's. The **Well** is **T-0888's**, and it is not waiting on evidence: `wells.md` § 2
+  already grades it position `inferred` on two witnesses and this project's read of the
+  plate already has its pixel (the ring's ink runs x 1440-1453, y 880-894, centre
+  **(1446.5, 887.0)** — 0.50 m east and 81.5 m south of the fort centre, UTM 448225.20 E,
+  4637535.32 N). What it waits on is a CLASS: `generators/archetypes/` holds nine and every
+  one of them is a building, a wall or a crib.
+- **The Out Buildings are now built, and there are two of them** — 2026-09-06, T-0887:
+  `fort_dearborn_out_building_sw` and `fort_dearborn_out_building_ne`. The plate letters the
+  phrase once and draws **two** filled blocks under it, 6.8 m apart and of clearly different
+  size (6.4 x 4.7 m and 3.3 x 2.3 m), on the outer ground where the enclosure fence turns
+  down toward the water. T-0881 had recorded the label as one the plate "draws once"; at
+  leaf resolution it draws twice, which is why the plural was there. Position comes off the
+  same transform as the three below, measured this time by minimum-area rectangle over the
+  eroded ink rather than by reading corners — a method checked by running it against the
+  committed Shop, where it returns a centre 6.5 px (2.2 m) from that record's hand-read one.
+  Everything above the ground on both buildings is invented and graded `reconstructed`, at
+  **L227**; the phrase names a category by exclusion and no use is written onto either
+  record.
+- **Three more of that list were built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
   `fort_dearborn_wash_house` and `fort_dearborn_shop`. Their positions are pixels on the
   plate turned to ground by one rule, stated in full on each record's `position.note` and
   checked against the committed garrison garden — predicted centre within seven pixels

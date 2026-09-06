@@ -10287,9 +10287,9 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Recorded:** 2026-09-04.
 
 ### L219 — Sixty-six roofs are told who entered their ground by a survey grid nobody traced
-**Scope:** `structures.land_owner[constructed_section_grid]` — 66 structures
+**Scope:** `structures.land_owner[constructed_section_grid]` — 68 structures
 **Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
-traced, and 66 structures carry a `land_owner` block that rests on them. The construction is
+traced, and 68 structures carry a `land_owner` block that rests on them. The construction is
 one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
 Madison, whose own note has said since the datum work that it is the *PLSS section corner:
 sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
@@ -10314,13 +10314,17 @@ and deliberately NOT put on the ground** for being outside them. Inside them eac
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
 tract line than that drops to `reconstructed`, and the metres are printed on the row. **51 of
-the 66 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+the 68 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
 there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Three of
 the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0883, and they
 are at the bottom tier for the ordinary geometric reason rather than for an invention behind
 them: the wash house stands 12.9 m from a tract line and the shop 39.1 m, both inside the 40 m
-the middle tier asks for, on the same reservation ring the homestead beside them sits on. Only
+the middle tier asks for, on the same reservation ring the homestead beside them sits on. The two blocks the same plan letters Out Buildings joined the scope on the
+same day (T-0887) and did NOT join the bottom tier: they stand 81.9 m and 76.7 m from the
+nearest tract line, twice what the middle tier asks for, so they carry `inferred` like the
+barn. That is the count moving from 66 to 68 with the bottom tier standing still, which is
+what the scope is for. Only
 15 documented buildings carry the middle tier, the newest of them the garrison's barn at
 47.4 m. Two tracts are not grid squares at all
 and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
@@ -10787,6 +10791,50 @@ a carpenter and it would cost nothing to write one in; neither is written, becau
 says *Shop*. Nor is the wash house claimed to be the only one — Hubbard says wash-houses,
 plural, and one is drawn, and the record carries the disagreement rather than resolving it.
 Related: **L225** (the barn's cupola) · **T-0883** (this) · **T-0758** (the parent) ·
-**T-0881** (the well and the Out Buildings, still unplaced).
+**T-0887** (the Out Buildings, placed 2026-09-06 at **L227**) · **T-0888** (the well, still unplaced).
 **Covers:** `fort_dearborn_big_barn.barn_1830.form.loft`, `fort_dearborn_shop.shop_1830.form.construction`, `fort_dearborn_shop.shop_1830.form.roof_type`, `fort_dearborn_shop.shop_1830.form.roof_pitch_deg`, `fort_dearborn_shop.shop_1830.form.wall_height_m`, `fort_dearborn_shop.shop_1830.form.door`, `fort_dearborn_shop.shop_1830.form.door_side`, `fort_dearborn_shop.shop_1830.form.paint`, `fort_dearborn_wash_house.wash_house_1830.form.roof_type`, `fort_dearborn_wash_house.wash_house_1830.form.roof_pitch_deg`, `fort_dearborn_wash_house.wash_house_1830.form.wall_height_m`, `fort_dearborn_wash_house.wash_house_1830.form.door`, `fort_dearborn_wash_house.wash_house_1830.form.door_side`, `fort_dearborn_wash_house.wash_house_1830.ground_contact`.
 **Recorded:** 2026-09-06 (T-0883).
+
+### L227 — A plural noun, two blocks of solid ink, and everything above the ground invented
+**Decision:** `fort_dearborn_out_building_sw` and `fort_dearborn_out_building_ne` stand south of
+Fort Dearborn on the fort's outer ground, where the enclosure fence turns down toward the water.
+**Where they stand and how big they are is read off a plan; everything else about them is
+invented** — construction, roof type, roof pitch, eave height, door, which wall the door is in,
+and the absence of paint, all seven graded `reconstructed` on both records, on both buildings.
+A visitor turning the reconstructed tier off is left with two footprints and nothing standing.
+**Why:** the Harrison plan of 1830 letters *Out Buildings* once and draws two filled blocks
+under the label. That is the entire evidence. It is less than the shop had — the shop at least
+has a noun that names a use — and this is a phrase that names a CATEGORY by exclusion: an out
+building is whatever service structure is not the barn, the wash house, the shop or the well,
+all four of which this same plate names separately. Hubbard walks this ground on leaves 75-76
+and does not mention them. So there are two buildings whose position this project can defend to
+a few metres and about whose fabric it has nothing whatever, and the alternative was a model
+that draws four of the things a plan draws and stays silent about the other two.
+`RECONSTRUCTED IS A TIER, NOT A FAILURE` (AGENTS.md) is the ruling that says build them and
+grade them down, and it is doing more work here than it did at **L226**.
+**What was invented, item by item, and it is the same list twice.** `log` construction, by the
+convention every other building on this post follows. A `shed` roof at 18 degrees — the
+`outbuilding` archetype's own size-aware default at these depths, and NOT the 34 degrees the
+fort's larger records carry, because 34 is a gable figure and neither of these is a gable. An
+eave at 2.696 m on the larger and 2.22 m on the smaller, both the archetype's size-aware
+default written onto the record rather than left for the generator to supply silently. A man
+door, which is the smaller of the two claims a door can make, in the wall facing back toward
+the enclosure. No paint. Not one of those is a reading.
+**What the plate DOES say, and it is why this entry exists at all rather than a refusal.** It
+draws two blocks, 6.8 m apart, of clearly different size — 6.4 x 4.7 m and 3.3 x 2.3 m — with
+their long axes about square to the fence they sit on. A pair of unequal service buildings on
+the fence line is a specific arrangement, and it is what is built. T-0881 recorded the label as
+one the plate "draws once"; at leaf resolution it draws twice, and the plural is answered.
+**Consequence:** the smaller of the two is the smallest building in this model taken off this
+plate — eleven pixels of ink — and the honest reading of its size carries about a metre of
+error on a 3.3 m side. Its record says so. Neither building is claimed to be the only pair, and
+neither is given a use.
+**What is NOT claimed:** any use at all. A privy, a smokehouse, a corn crib, a hen house and a
+wood store are all what the period meant by the phrase, and no record here picks one. A post
+return, a quartermaster's account or a repair estimate would settle it; the plate cannot.
+Related: **L226** (the wash house and the shop, same plate, same run of work) · **L225** (the
+barn's cupola) · **T-0887** (this) · **T-0881** (the split parent) · **T-0888** (the well,
+which needs a class this project does not have) · **T-0758** (the grandparent: six things the
+plan names and nothing drew).
+**Covers:** `fort_dearborn_out_building_sw.out_building_1830.form.construction`, `fort_dearborn_out_building_sw.out_building_1830.form.roof_type`, `fort_dearborn_out_building_sw.out_building_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_sw.out_building_1830.form.wall_height_m`, `fort_dearborn_out_building_sw.out_building_1830.form.door`, `fort_dearborn_out_building_sw.out_building_1830.form.door_side`, `fort_dearborn_out_building_sw.out_building_1830.form.paint`, `fort_dearborn_out_building_ne.out_building_1830.form.construction`, `fort_dearborn_out_building_ne.out_building_1830.form.roof_type`, `fort_dearborn_out_building_ne.out_building_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_ne.out_building_1830.form.wall_height_m`, `fort_dearborn_out_building_ne.out_building_1830.form.door`, `fort_dearborn_out_building_ne.out_building_1830.form.door_side`, `fort_dearborn_out_building_ne.out_building_1830.form.paint`.
+**Recorded:** 2026-09-06 (T-0887).

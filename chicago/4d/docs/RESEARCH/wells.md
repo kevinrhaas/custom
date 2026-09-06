@@ -127,12 +127,20 @@ not Chicago and it is not evidence of anything in Chicago.
    finding, and no longer for *"the town has no well"*, which was a description of the model.
    `data/research/newspapers/lot_addresses.json` and the record the address seats both say so
    now, and both point here.
-4. **The fort's well is a different question and is not settled by this refusal.** It is one
-   of six things the Harrison plan names on the fort's ground that this model has never drawn
+4. **The fort's well is a different question and is not settled by this refusal.** It was one
+   of six things the Harrison plan names on the fort's ground that this model had never drawn
    — *Well, Wash house, Big Barn with Cupola, Shop, Out Buildings, Fort Cemetery* — while
    eleven records inside the pickets and the garrison garden outside them come off that very
-   sheet. The omission is the outer enclosure's, not the well's, and it is filed as its own
-   ticket.
+   sheet. The omission is the outer enclosure's, not the well's, and it was filed as its own
+   ticket. **Four of the six now stand**: the barn, the wash house and the shop (T-0883,
+   2026-09-06) and the two blocks the plate draws under *Out Buildings* (T-0887, the same day).
+   **THE WELL IS NOW T-0888, AND IT IS NOT WAITING ON EVIDENCE.** Its pixel has been measured
+   off the same leaf — the ring's ink runs x 1440-1453, y 880-894, centre (1446.5, 887.0),
+   which is 0.50 m east and 81.5 m south of the committed fort centre, UTM 448225.20 E,
+   4637535.32 N — and the ring is about 4.9 m across, which is a map symbol's size and not a
+   well's. What it waits on is a CLASS: `generators/archetypes/` holds nine and every one of
+   them is a building, a wall or a crib. That is the whole of what stands between this reading
+   and a well on the ground, and the ticket says so.
 5. **The water carts are the visible thing this reading found, and they are not taken here.**
    A cart, a hogshead, a barrel at a door and a watering place at the foot of Randolph Street
    are a documented piece of this town that the model does not have. They rest on one

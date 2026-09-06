@@ -4,69 +4,370 @@
   "target_date": "1835-07-01",
   "source_id": "owner_chicago_1835_reconstruction_spec_2026",
   "confidence": "moderate aggregate; interpretive per anonymous instance",
-  "roof_total_note": "662 \u2192 665 ON 2026-09-06 (ticket T-0883), AND IT IS AN ADDITION RATHER THAN A RE-TYPING. The 1830 Harrison plan letters six things on Fort Dearborn's ground that nothing here had drawn; three of them are buildings and now stand \u2014 the Big Barn with Cupola, the Wash house and the Shop. THE FORT ROW COULD NOT PAY FOR THEM AND SHOULD NOT HAVE BEEN ASKED TO: its own character line read 'ten principal roofs in the custom Fort Dearborn compound', ten stand, and all ten are inside the pickets. These three are on the reservation OUTSIDE them, which the authored row never counted \u2014 so the estimate was three short there, and taking the slots from another division would have paid for three documented buildings out of three invented ones, which is backwards. The fort district goes 10 \u2192 13; workshops, barns_stables and small_outbuildings each gain one in the fort column and one on their row total; W4 6 \u2192 7, A2 30 \u2192 31, A5 14 \u2192 15; ancillary 154 \u2192 156 and principal_functional 508 \u2192 509. NO OTHER CELL MOVES, no division remainder changes, and nothing new is scheduled to be invented \u2014 the target rises by exactly what already stands. 665 is inside the defensible range of 565 to 765 and is the same figure the spec carried before T-0032, by coincidence and not by reversal: T-0032's three phantom civic roofs stay off. 665 → 662 ON 2026-08-27 (ticket T-0032, owner ruling of 2026-08-17: 'close it at 665 or 662 — either is close'). The authored spec put six roofs in family I3, civic and public-service. The town's civic roofs on 1835-07-01 are THREE — the log jail, the council house and the lighthouse, all committed named records — and the other three slots counted nothing: the court-house is fall 1835, the engine house was contracted on 30 December 1835, the custom house is 1846, the market house 1837, the town hall was never built, and the United States Land Office was a room in somebody's building on Lake Street. The enumeration is docs/RESEARCH/civic_public_buildings_1835.md and tools/measure_institutional_claims.py re-settles every line of it against this dataset on every run of the gate. The three come OFF the total rather than being re-typed into ordinary families, because re-typing would invent three buildings on the strength of an arithmetic artifact; 662 is inside this file's own defensible_range. The institutional_public row moved with it, from south 10 / west 1 / north 1 to the census of named institutional records — south 5 / west 1 / north 3 — which is what carries the south district target from 370 to 365 and the north from 150 to 152. Every other row is exactly as authored.",
+  "roof_total_note": "665 → 667 ON 2026-09-06 (ticket T-0887), BY THE SAME ADDITION RULE T-0883 SET TWO ENTRIES BELOW AND FOR THE SAME REASON. The plate's plural label 'Out Buildings' has two referents: it draws two filled blocks, 6.4 x 4.7 m and 3.3 x 2.3 m, on the reservation ground outside the pickets. The fort row still cannot pay for them — its authored sentence counted ten principal roofs inside the stockade and it counts them still — so the fort district goes 13 → 15, small_outbuildings gains two in the fort column and two on its row total (1 → 3, 83 → 85), A5 goes 15 → 17, and ancillary 156 → 158. NO OTHER CELL MOVES, no division remainder changes, and nothing new is scheduled to be invented — the target rises by exactly what already stands. 667 is inside the defensible range of 565 to 765. 662 → 665 ON 2026-09-06 (ticket T-0883), AND IT IS AN ADDITION RATHER THAN A RE-TYPING. The 1830 Harrison plan letters six things on Fort Dearborn's ground that nothing here had drawn; three of them are buildings and now stand — the Big Barn with Cupola, the Wash house and the Shop. THE FORT ROW COULD NOT PAY FOR THEM AND SHOULD NOT HAVE BEEN ASKED TO: its own character line read 'ten principal roofs in the custom Fort Dearborn compound', ten stand, and all ten are inside the pickets. These three are on the reservation OUTSIDE them, which the authored row never counted — so the estimate was three short there, and taking the slots from another division would have paid for three documented buildings out of three invented ones, which is backwards. The fort district goes 10 → 13; workshops, barns_stables and small_outbuildings each gain one in the fort column and one on their row total; W4 6 → 7, A2 30 → 31, A5 14 → 15; ancillary 154 → 156 and principal_functional 508 → 509. NO OTHER CELL MOVES, no division remainder changes, and nothing new is scheduled to be invented — the target rises by exactly what already stands. 665 is inside the defensible range of 565 to 765 and is the same figure the spec carried before T-0032, by coincidence and not by reversal: T-0032's three phantom civic roofs stay off. 665 → 662 ON 2026-08-27 (ticket T-0032, owner ruling of 2026-08-17: 'close it at 665 or 662 — either is close'). The authored spec put six roofs in family I3, civic and public-service. The town's civic roofs on 1835-07-01 are THREE — the log jail, the council house and the lighthouse, all committed named records — and the other three slots counted nothing: the court-house is fall 1835, the engine house was contracted on 30 December 1835, the custom house is 1846, the market house 1837, the town hall was never built, and the United States Land Office was a room in somebody's building on Lake Street. The enumeration is docs/RESEARCH/civic_public_buildings_1835.md and tools/measure_institutional_claims.py re-settles every line of it against this dataset on every run of the gate. The three come OFF the total rather than being re-typed into ordinary families, because re-typing would invent three buildings on the strength of an arithmetic artifact; 662 is inside this file's own defensible_range. The institutional_public row moved with it, from south 10 / west 1 / north 1 to the census of named institutional records — south 5 / west 1 / north 3 — which is what carries the south district target from 370 to 365 and the north from 150 to 152. Every other row is exactly as authored.",
   "targets": {
-    "roof_total": 665,
-    "defensible_range": [565, 765],
+    "roof_total": 667,
+    "defensible_range": [
+      565,
+      765
+    ],
     "principal_functional": 509,
-    "ancillary": 156,
-    "population_working_range": [3200, 3265],
+    "ancillary": 158,
+    "population_working_range": [
+      3200,
+      3265
+    ],
     "ordinary_max_stories": 2,
     "minimum_visible_combinations": 250
   },
   "districts": {
-    "south": {"target": 365, "character": "Commercial core along South Water and Lake, then mixed blocks with density falling rapidly southward."},
-    "west": {"target": 135, "character": "Older irregular fabric at Wolf Point approaches: cabins, taverns, yards, work and river storage."},
-    "north": {"target": 152, "character": "Scattered development around Kinzie properties and crossings, with substantial open ground."},
-    "fort": {"target": 13, "character": "Ten principal roofs in the custom Fort Dearborn compound, and three service buildings on the reservation ground OUTSIDE the pickets \u2014 the barn, the wash house and the shop the 1830 Harrison plan letters there. Stockade and props are outside this roof count."}
+    "south": {
+      "target": 365,
+      "character": "Commercial core along South Water and Lake, then mixed blocks with density falling rapidly southward."
+    },
+    "west": {
+      "target": 135,
+      "character": "Older irregular fabric at Wolf Point approaches: cabins, taverns, yards, work and river storage."
+    },
+    "north": {
+      "target": 152,
+      "character": "Scattered development around Kinzie properties and crossings, with substantial open ground."
+    },
+    "fort": {
+      "target": 15,
+      "character": "Ten principal roofs in the custom Fort Dearborn compound, and five service buildings on the reservation ground OUTSIDE the pickets — the barn, the wash house, the shop and the two blocks the 1830 Harrison plan letters Out Buildings. Stockade and props are outside this roof count."
+    }
   },
-  "district_group_matrix_note": "warehouses_freight north 1 \u2192 7 and south 17 \u2192 11 ON 2026-08-29 (ticket T-0283, found and measured by T-0211's tools/measure_group_district_rows.py), with ordinary_dwellings south 170 \u2192 176 and north 90 \u2192 84 moving the other way. FOUR cells move and nothing else does: both row totals stand, all four district targets stand, family_targets is untouched and roof_total is untouched. The fault was a SPLIT fault, not a total fault. Twenty freight roofs town-wide is contradicted by nothing \u2014 twelve stand \u2014 but the split gave the North Division ONE and SEVEN stand there, six of them documented pre-existing records: Kinzie & Hunter's warehouse (kinzie_hunter_warehouse), the four north-bank sheds at the Dearborn reach (north_bank_shed_dearborn_e1, e2, e3, w) and the north-side brickyard (brickyard_north_side). The seventh, recon_1835_north_f1_022, is a generated F1 roof dealt by a parcel that ran before anything measured this. The row was authored without the north bank's river-freight fabric in view. The six come from the SOUTH's freight cell, and from no other, because it is the only cell that can pay without moving a group total or a division target: seventeen were authored there, five stand, so twelve of its slots are unbuilt and unnamed, and an authored slot yields to a documented record \u2014 the principle T-0032 established when it held the institutional row to the named census. The compensating ordinary_dwellings swap keeps each division's own column at its target, so this is a re-typing of roofs already inside the 662 and not a change to the programme's size. What it costs, stated: the South is scheduled six fewer warehouses (freight remainder 12 \u2192 6) and six more ordinary dwellings (72 \u2192 78), and its business-front re-deal moves 7 trade roofs where it moved 9; the North's remainder does not move at all, but it stops being scheduled seven houses short for a reason nothing stated \u2014 reconcile_665.py's clamp shed 7 slots from north ordinary_dwellings before this and sheds 1 after. That last one is the L93 institutional liberty and is out of scope here; it moves when the liberty is retired. Nothing that stands moves and no mesh changes.",
+  "district_group_matrix_note": "warehouses_freight north 1 → 7 and south 17 → 11 ON 2026-08-29 (ticket T-0283, found and measured by T-0211's tools/measure_group_district_rows.py), with ordinary_dwellings south 170 → 176 and north 90 → 84 moving the other way. FOUR cells move and nothing else does: both row totals stand, all four district targets stand, family_targets is untouched and roof_total is untouched. The fault was a SPLIT fault, not a total fault. Twenty freight roofs town-wide is contradicted by nothing — twelve stand — but the split gave the North Division ONE and SEVEN stand there, six of them documented pre-existing records: Kinzie & Hunter's warehouse (kinzie_hunter_warehouse), the four north-bank sheds at the Dearborn reach (north_bank_shed_dearborn_e1, e2, e3, w) and the north-side brickyard (brickyard_north_side). The seventh, recon_1835_north_f1_022, is a generated F1 roof dealt by a parcel that ran before anything measured this. The row was authored without the north bank's river-freight fabric in view. The six come from the SOUTH's freight cell, and from no other, because it is the only cell that can pay without moving a group total or a division target: seventeen were authored there, five stand, so twelve of its slots are unbuilt and unnamed, and an authored slot yields to a documented record — the principle T-0032 established when it held the institutional row to the named census. The compensating ordinary_dwellings swap keeps each division's own column at its target, so this is a re-typing of roofs already inside the 662 and not a change to the programme's size. What it costs, stated: the South is scheduled six fewer warehouses (freight remainder 12 → 6) and six more ordinary dwellings (72 → 78), and its business-front re-deal moves 7 trade roofs where it moved 9; the North's remainder does not move at all, but it stops being scheduled seven houses short for a reason nothing stated — reconcile_665.py's clamp shed 7 slots from north ordinary_dwellings before this and sheds 1 after. That last one is the L93 institutional liberty and is out of scope here; it moves when the liberty is retired. Nothing that stands moves and no mesh changes.",
   "district_group_matrix": {
-    "ordinary_dwellings": {"south": 176, "west": 75, "north": 84, "fort": 0, "total": 335},
-    "larger_boarding_houses": {"south": 28, "west": 6, "north": 8, "fort": 0, "total": 42},
-    "stores_mixed_use": {"south": 42, "west": 6, "north": 4, "fort": 0, "total": 52},
-    "inns_taverns": {"south": 5, "west": 3, "north": 2, "fort": 0, "total": 10},
-    "workshops": {"south": 15, "west": 8, "north": 7, "fort": 1, "total": 31},
-    "warehouses_freight": {"south": 11, "west": 2, "north": 7, "fort": 0, "total": 20},
-    "institutional_public": {"south": 5, "west": 1, "north": 3, "fort": 0, "total": 9},
-    "fort_principal": {"south": 0, "west": 0, "north": 0, "fort": 10, "total": 10},
-    "barns_stables": {"south": 35, "west": 20, "north": 17, "fort": 1, "total": 73},
-    "small_outbuildings": {"south": 48, "west": 14, "north": 20, "fort": 1, "total": 83}
+    "ordinary_dwellings": {
+      "south": 176,
+      "west": 75,
+      "north": 84,
+      "fort": 0,
+      "total": 335
+    },
+    "larger_boarding_houses": {
+      "south": 28,
+      "west": 6,
+      "north": 8,
+      "fort": 0,
+      "total": 42
+    },
+    "stores_mixed_use": {
+      "south": 42,
+      "west": 6,
+      "north": 4,
+      "fort": 0,
+      "total": 52
+    },
+    "inns_taverns": {
+      "south": 5,
+      "west": 3,
+      "north": 2,
+      "fort": 0,
+      "total": 10
+    },
+    "workshops": {
+      "south": 15,
+      "west": 8,
+      "north": 7,
+      "fort": 1,
+      "total": 31
+    },
+    "warehouses_freight": {
+      "south": 11,
+      "west": 2,
+      "north": 7,
+      "fort": 0,
+      "total": 20
+    },
+    "institutional_public": {
+      "south": 5,
+      "west": 1,
+      "north": 3,
+      "fort": 0,
+      "total": 9
+    },
+    "fort_principal": {
+      "south": 0,
+      "west": 0,
+      "north": 0,
+      "fort": 10,
+      "total": 10
+    },
+    "barns_stables": {
+      "south": 35,
+      "west": 20,
+      "north": 17,
+      "fort": 1,
+      "total": 73
+    },
+    "small_outbuildings": {
+      "south": 48,
+      "west": 14,
+      "north": 20,
+      "fort": 3,
+      "total": 85
+    }
   },
   "family_targets": {
-    "D1": 52, "D2": 38, "D3": 65, "D4": 75, "D5": 58, "D6": 29, "D7": 18,
-    "H1": 18, "H2": 14, "H3": 10,
-    "C1": 18, "C2": 12, "C3": 17, "C4": 5,
-    "T1": 6, "T2": 3, "T3": 1,
-    "W1": 6, "W2": 8, "W3": 6, "W4": 7, "W5": 4,
-    "F1": 8, "F2": 7, "F3": 3, "F4": 2,
-    "I1": 4, "I2": 2, "I3": 3, "M1": 10,
-    "A1": 42, "A2": 31, "A3": 40, "A4": 28, "A5": 15
+    "D1": 52,
+    "D2": 38,
+    "D3": 65,
+    "D4": 75,
+    "D5": 58,
+    "D6": 29,
+    "D7": 18,
+    "H1": 18,
+    "H2": 14,
+    "H3": 10,
+    "C1": 18,
+    "C2": 12,
+    "C3": 17,
+    "C4": 5,
+    "T1": 6,
+    "T2": 3,
+    "T3": 1,
+    "W1": 6,
+    "W2": 8,
+    "W3": 6,
+    "W4": 7,
+    "W5": 4,
+    "F1": 8,
+    "F2": 7,
+    "F3": 3,
+    "F4": 2,
+    "I1": 4,
+    "I2": 2,
+    "I3": 3,
+    "M1": 10,
+    "A1": 42,
+    "A2": 31,
+    "A3": 40,
+    "A4": 28,
+    "A5": 17
   },
   "family_bands_ft": {
-    "D1": [16, 20, 20, 26], "D2": [12, 16, 18, 24], "D3": [16, 20, 18, 24], "D4": [18, 24, 22, 30], "D5": [18, 28, 24, 34], "D6": [20, 26, 24, 34], "D7": [20, 26, 24, 34],
-    "C1": [14, 20, 20, 30], "C2": [18, 30, 22, 40], "C3": [18, 36, 22, 50],
-    "W1": [16, 22, 24, 34], "W2": [16, 24, 24, 36], "W3": [18, 26, 26, 40], "W4": [14, 20, 20, 30],
-    "F1": [18, 32, 28, 50], "F2": [20, 40, 26, 60],
-    "A1": [12, 18, 20, 32], "A2": [18, 26, 28, 44], "A3": [4, 5, 6, 8], "A4": [6, 8, 12, 18], "A5": [6, 8, 12, 16]
+    "D1": [
+      16,
+      20,
+      20,
+      26
+    ],
+    "D2": [
+      12,
+      16,
+      18,
+      24
+    ],
+    "D3": [
+      16,
+      20,
+      18,
+      24
+    ],
+    "D4": [
+      18,
+      24,
+      22,
+      30
+    ],
+    "D5": [
+      18,
+      28,
+      24,
+      34
+    ],
+    "D6": [
+      20,
+      26,
+      24,
+      34
+    ],
+    "D7": [
+      20,
+      26,
+      24,
+      34
+    ],
+    "C1": [
+      14,
+      20,
+      20,
+      30
+    ],
+    "C2": [
+      18,
+      30,
+      22,
+      40
+    ],
+    "C3": [
+      18,
+      36,
+      22,
+      50
+    ],
+    "W1": [
+      16,
+      22,
+      24,
+      34
+    ],
+    "W2": [
+      16,
+      24,
+      24,
+      36
+    ],
+    "W3": [
+      18,
+      26,
+      26,
+      40
+    ],
+    "W4": [
+      14,
+      20,
+      20,
+      30
+    ],
+    "F1": [
+      18,
+      32,
+      28,
+      50
+    ],
+    "F2": [
+      20,
+      40,
+      26,
+      60
+    ],
+    "A1": [
+      12,
+      18,
+      20,
+      32
+    ],
+    "A2": [
+      18,
+      26,
+      28,
+      44
+    ],
+    "A3": [
+      4,
+      5,
+      6,
+      8
+    ],
+    "A4": [
+      6,
+      8,
+      12,
+      18
+    ],
+    "A5": [
+      6,
+      8,
+      12,
+      16
+    ]
   },
   "density_zones": {
-    "A": {"developed_share": "about 10%", "side_gap_ft": [3, 20], "description": "river commercial core"},
-    "B": {"developed_share": "about 20%", "side_gap_ft": [10, 35], "description": "mixed town blocks with rear outbuildings"},
-    "C": {"developed_share": "about 25%", "side_gap_ft": [20, 80], "description": "loose residential fringe"},
-    "D": {"developed_share": "45% or more", "description": "sparse or open plat; few or no roofs"}
+    "A": {
+      "developed_share": "about 10%",
+      "side_gap_ft": [
+        3,
+        20
+      ],
+      "description": "river commercial core"
+    },
+    "B": {
+      "developed_share": "about 20%",
+      "side_gap_ft": [
+        10,
+        35
+      ],
+      "description": "mixed town blocks with rear outbuildings"
+    },
+    "C": {
+      "developed_share": "about 25%",
+      "side_gap_ft": [
+        20,
+        80
+      ],
+      "description": "loose residential fringe"
+    },
+    "D": {
+      "developed_share": "45% or more",
+      "description": "sparse or open plat; few or no roofs"
+    }
   },
   "protected_existing_policy": "Every existing record is retained. Named or better-documented geometry may replace an anonymous inferred roof only by an explicit later substitution, never by addition to the roof total.",
   "reconciliation_note": "Existing structure records include bridges, stockade segments, yards and multi-roof compounds; record count is not roof count. A physical-roof reconciliation precedes the final full-instance release.",
   "reconciled_by": "tools/reconcile_665.py — the standing count, the remainder and the block schedule derived from this target are in data/reconstruction/1835_665_roof_programme.json. Every count in THIS file is the authored target and does not move as the town is built — it moves only when evidence retires a slot, which has happened once (roof_total_note), or when evidence RE-TYPES one, which has happened once (district_group_matrix_note: four cells of the matrix, no row total and no division target among them).",
   "programme_phases": [
-    {"id": "phase1_south_mixed_blocks", "district": "south", "status": "implemented_first_parcel", "roofs": 48, "principal_functional": 40, "ancillary": 8},
-    {"id": "phase2_existing_roof_reconciliation", "status": "complete", "roofs": 66, "records_reconciled": 76, "purpose": "Map every committed structure record to zero, one, or several physical roofs without deleting evidence."},
-    {"id": "phase2_south_core_and_mixed_recipe", "district": "south", "status": "reviewed_recipe_not_rendered", "roofs": 84, "principal_functional": 66, "ancillary": 18, "purpose": "A collision-checked South Division core and mixed-use recipe held behind existing-roof reconciliation and family-cap adoption gates."},
-    {"id": "phase2_west_wolf_point_approaches", "district": "west", "status": "partially_instantiated", "roofs": 55, "roofs_instantiated": 20, "principal_functional": 44, "ancillary": 11, "extension_gated_roofs": 35, "purpose": "A tapered West Division recipe; its outer roofs wait for unified terrain, hydrology, collision, flora and map coverage to local E -700 m."},
-    {"id": "phase2_north_division_initial", "district": "north", "status": "implemented_review_massings", "roofs": 60, "principal_functional": 45, "ancillary": 15, "purpose": "A terrain-, water-, collision- and relief-checked initial North Division parcel; the North Division's remaining roofs — 69 after reconciliation, not the 90 this recipe was written against — wait for unified terrain, hydrology, collision, flora, streets and map coverage to local N +760 m."},
-    {"id": "phase3_west_and_north_extent", "status": "planned", "purpose": "Verify settlement/terrain extents before expanding west and north; do not confuse the enlarged plat with occupied footprint."},
-    {"id": "phase4_remaining_district_parcels", "status": "planned", "purpose": "Populate to the reconciled district targets while preserving at least 45% sparse/open land."},
-    {"id": "phase5_archetype_and_site_detail", "status": "planned", "purpose": "Replace temporary massing with 35 family implementations, variants, foundations, yards and props."}
+    {
+      "id": "phase1_south_mixed_blocks",
+      "district": "south",
+      "status": "implemented_first_parcel",
+      "roofs": 48,
+      "principal_functional": 40,
+      "ancillary": 8
+    },
+    {
+      "id": "phase2_existing_roof_reconciliation",
+      "status": "complete",
+      "roofs": 66,
+      "records_reconciled": 76,
+      "purpose": "Map every committed structure record to zero, one, or several physical roofs without deleting evidence."
+    },
+    {
+      "id": "phase2_south_core_and_mixed_recipe",
+      "district": "south",
+      "status": "reviewed_recipe_not_rendered",
+      "roofs": 84,
+      "principal_functional": 66,
+      "ancillary": 18,
+      "purpose": "A collision-checked South Division core and mixed-use recipe held behind existing-roof reconciliation and family-cap adoption gates."
+    },
+    {
+      "id": "phase2_west_wolf_point_approaches",
+      "district": "west",
+      "status": "partially_instantiated",
+      "roofs": 55,
+      "roofs_instantiated": 20,
+      "principal_functional": 44,
+      "ancillary": 11,
+      "extension_gated_roofs": 35,
+      "purpose": "A tapered West Division recipe; its outer roofs wait for unified terrain, hydrology, collision, flora and map coverage to local E -700 m."
+    },
+    {
+      "id": "phase2_north_division_initial",
+      "district": "north",
+      "status": "implemented_review_massings",
+      "roofs": 60,
+      "principal_functional": 45,
+      "ancillary": 15,
+      "purpose": "A terrain-, water-, collision- and relief-checked initial North Division parcel; the North Division's remaining roofs — 69 after reconciliation, not the 90 this recipe was written against — wait for unified terrain, hydrology, collision, flora, streets and map coverage to local N +760 m."
+    },
+    {
+      "id": "phase3_west_and_north_extent",
+      "status": "planned",
+      "purpose": "Verify settlement/terrain extents before expanding west and north; do not confuse the enlarged plat with occupied footprint."
+    },
+    {
+      "id": "phase4_remaining_district_parcels",
+      "status": "planned",
+      "purpose": "Populate to the reconciled district targets while preserving at least 45% sparse/open land."
+    },
+    {
+      "id": "phase5_archetype_and_site_detail",
+      "status": "planned",
+      "purpose": "Replace temporary massing with 35 family implementations, variants, foundations, yards and props."
+    }
   ]
 }

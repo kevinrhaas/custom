@@ -126,13 +126,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # three more meshes a change to the shared generator modules or to build.py would re-stale; the
 # terrain and pier_crib reaches stay at 2 each.
 #
+# 378 -> 380 and 376 -> 378 on 2026-09-06 (T-0887): the two blocks the same plan letters
+# `Out Buildings` — one plural label with two referents, which is what the plate draws at leaf
+# resolution. Two more `outbuilding` records on the same reasoning as the three above; the
+# terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 378,
+    "assets": 380,
     "restales": {
-        "generators/common/*.py": 378,
+        "generators/common/*.py": 380,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 376,
+        "generators/build.py": 378,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
