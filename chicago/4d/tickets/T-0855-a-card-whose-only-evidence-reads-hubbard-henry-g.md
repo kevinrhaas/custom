@@ -1,7 +1,7 @@
 ---
 id: T-0855
 title: A card whose only evidence reads Hubbard, [Henry] G. was folded onto Gurdon Saltonstall Hubbard: one man's record is on the wrong person
-state: claimed
+state: done
 epic: TOWN
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 958
 claimed_by: run 9/5/2026, 10:58:09 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T04:12:10.045Z
 claimed_run: null
 ---
 
