@@ -192,7 +192,7 @@
    "person_id": "bailey_bennet",
    "name": "Bennet Bailey",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Bailey' folds to the same string as the 1837 entry's, and the given name of both begins B."
    ],

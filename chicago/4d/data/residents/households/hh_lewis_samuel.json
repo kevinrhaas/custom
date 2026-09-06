@@ -75,8 +75,7 @@
     "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity.",
     "summary": "Samuel Lewis is held as a candidate and not asserted: 6 Newberry genealogical-index card(s) stand under this surname on an exact-surname rule with nothing to separate the bearers; the census 1840 chicago familysearch images, chicago tribune 1882 04 25 old settler deaths agreement is a surname-only refusal; the papers carry the name 1834-07-02 to 1835-08-05, 1835-08-12 as schoolteacher.",
     "source_ids": [
-     "chicago_democrat_1833_1835",
-     "newberry_genealogical_index"
+     "chicago_democrat_1833_1835"
     ]
    }
   }

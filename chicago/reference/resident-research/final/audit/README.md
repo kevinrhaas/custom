@@ -37,10 +37,10 @@ Each line is *how many of the 1363 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 439 | 32.2% |
+| `corroborated_across_categories` | 427 | 31.3% |
 | `two_or_more_sources_one_category` | 19 | 1.4% |
-| `one_source` | 350 | 25.7% |
-| `the_letter_lists_alone` | 552 | 40.5% |
+| `one_source` | 352 | 25.8% |
+| `the_letter_lists_alone` | 562 | 41.2% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -55,7 +55,7 @@ record agree; two newspaper notices of the same name are
 | civic | 281 |
 | census | 31 |
 | church | 46 |
-| book | 204 |
+| book | 193 |
 | directory | 233 |
 | secondary | 80 |
 
@@ -149,7 +149,6 @@ secondary). A source id no rule reaches stops the build.
 | `michigan_hh_comstock_history` | secondary | website |
 | `migenweb_clark_albee_grand_haven` | secondary | website |
 | `mower_history_alanson_vaughan` | book | book |
-| `newberry_genealogical_index` | book | book |
 | `nps_bailly_homestead` | secondary | website |
 | `nwchicago_elijah_wentworth` | secondary | website |
 | `ohio_firelands_rouse_bly` | secondary | website |
@@ -323,8 +322,8 @@ defect in this export.
 | no census linkage | 1332 | no 1840 census row is bridged to this person |
 | no address | 1287 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1267 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 902 | one source id on the card and no second category to check it against |
-| rests on the letter lists alone | 552 | known only from the post office's uncalled-for lists |
+| rests on one source | 914 | one source id on the card and no second category to check it against |
+| rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | no research row | 521 | no cohort ticket has reviewed this person; the programme reached 842 of 1363 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |

@@ -52,7 +52,6 @@
    "name": "Elijah Wentworth sen.",
    "relationship": "head",
    "grade": "attested",
-   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-07-02"
@@ -81,7 +80,15 @@
      "kinzie_waubun_1856",
      "nwchicago_elijah_wentworth"
     ],
-    "summary": "Carried forward from pass 2. Local history and Wau-Bun identify Elijah Wentworth Sr. as the Wolf Point tavern keeper who later kept at Sand Ridge; the 'sen.' of the transcription, the occupation and the chronology resolve him against his son. What is NOT established is presence in the platted town on the scene date — Sand Ridge is not Wolf Point."
+    "summary": "Carried forward from pass 2. Local history and Wau-Bun identify Elijah Wentworth Sr. as the Wolf Point tavern keeper who later kept at Sand Ridge; the 'sen.' of the transcription, the occupation and the chronology resolve him against his son. What is NOT established is presence in the platted town on the scene date — Sand Ridge is not Wolf Point.",
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 2 thing(s) the consolidation did not read — kinzie_waubun_1856, nwchicago_elijah_wentworth. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
    }
   }
  ],

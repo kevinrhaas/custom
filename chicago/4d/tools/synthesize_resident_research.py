@@ -295,6 +295,9 @@ def research_rows():
                     out[pid] = item
         except Exception:
             continue
+    for item in out.values():
+        if item.get("sources"):
+            item["sources"] = [s for s in item["sources"] if s not in FINDING_AIDS]
     return out
 
 
@@ -308,6 +311,19 @@ def research_block(item):
         if item.get(src): block[dst] = item[src]
     if item.get("candidates"): block["candidates"] = item["candidates"]
     return block
+
+
+# T-0837.  A FINDING AID IS NOT A SOURCE FOR A PERSON, and this writer was carrying one
+# onto cards.  `read_newberry_index.py` states the rule and gates it: the Newberry
+# genealogical index is a 1960 finding aid, "the whole failure mode of an index is that a
+# surname in it looks like evidence", and its id may not appear anywhere under
+# data/residents.  The research CSVs legitimately record it — a reader consulted it, and
+# saying so is how the next reader knows the shelf was looked at — but `research_block`
+# copies a row's `source_ids` onto the card verbatim, so thirteen cards in the standing
+# spend cited it and the Newberry gate would have gone red the moment they landed.  The
+# id is dropped where the rows are READ, so neither the card's citation list nor a
+# promotion's `sources` can carry it.
+FINDING_AIDS = {"newberry_genealogical_index"}
 
 
 def independent(item):

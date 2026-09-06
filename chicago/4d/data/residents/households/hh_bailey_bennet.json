@@ -52,7 +52,6 @@
    "name": "Bennet Bailey",
    "relationship": "head",
    "grade": "attested",
-   "ladder_rule": "G2e",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -121,7 +120,15 @@
     ],
     "regraded_on": "2026-09-04",
     "rule": "G2e",
-    "summary": "Fergus 1839 prints 'Bailey, Bennett, carpenter and builder' and the 1837 election return 'Bennett Bailey' — an uncommon forename spelt out twice, four and two years after the scene. Pass 3 saw only the 1843 Mechanics' Institute directorship and called it a candidate over a nine-year gap; the 1837 return closes most of that gap and the trade is a further discriminator. Carried as 1837 and 1839 evidence; the 1835 grade does not move."
+    "summary": "Fergus 1839 prints 'Bailey, Bennett, carpenter and builder' and the 1837 election return 'Bennett Bailey' — an uncommon forename spelt out twice, four and two years after the scene. Pass 3 saw only the 1843 Mechanics' Institute directorship and called it a candidate over a nine-year gap; the 1837 return closes most of that gap and the trade is a further discriminator. Carried as 1837 and 1839 evidence; the 1835 grade does not move.",
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2e",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 4 thing(s) the consolidation did not read — calumet_club_early_chicago_1879, chicago_tribune_1882_04_25_old_settler_deaths, fergus_chicago_directory_1839, norris_chicago_directory_1843. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
    }
   }
  ],

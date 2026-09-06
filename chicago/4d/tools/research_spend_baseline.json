@@ -11,7 +11,7 @@
   "directories": 7229,
   "newberry_index": 4914,
   "land_sales": 442,
-  "old_settlers": 437
+  "old_settlers": 438
  },
  "witness": {
   "civic": {
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 657
+   "spent": 656
   }
  },
  "raised": [
@@ -328,6 +328,14 @@
    "to": 7229,
    "date": "2026-09-06",
    "why": "T-0724, re-applied after merging dev. The ruling this retires is the same one the ticket retired the first time: the 1843 and 1844 crosswalks each held a refusal reading 'the surname Horn is in Fergus 1843 and no entry under it carries the initial C of Cornelius C Van Horn', which existed only because the splitter truncated Van Horn to Horn. With the compound surname read whole there is no Van Horn in either directory to refuse. dev's own ceiling moved to 7228 under T-0839 while this branch was in flight, so the +1 is applied once more on top of it. Read count unmoved; no name went unread."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 437,
+   "to": 438,
+   "date": "2026-09-06",
+   "why": "T-0837 landed the standing synthesis spend, which put the forename 'James' onto J. A. Marshall's card from the research row that read it. That is the discriminator rule OS2 lacked, so os1879r092 and os1882g074 stop standing as probable-not-merged and MERGE under OS2A — two more old-settler names now written onto a card (107 to 109). Collapsing those two rows onto one anchored identity costs this ratchet one deduplicated ruling, so unspent reads 438 where it read 437. The domain adjudicated more, not less."
   }
  ],
  "lowered": [
