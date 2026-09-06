@@ -15,7 +15,7 @@ a new residence and a small trading post.
 > **Corrected 2026-09-06 (T-0718), and read § 6 before using the sentence above.** The **1817**
 > in it belongs to a *different building* — the Dean house at the lake shore — and Andreas dates
 > the factory building's arrival to **1822**. The record's `documented_range` carries the same
-> correction; the bound itself was not moved on that ticket, and § 6 says why.
+> correction; the bound itself was not moved on that ticket, and § 6 says why. The repair is **T-0893**.
 
 A second source gives the same building a **different origin** — the United States Factory House,
 bought from the government by the Fur Company in 1822 — and that reading, its conflict with
@@ -211,19 +211,19 @@ second building, at the corner § 2 now places this record on.
    `documented_range.from`. Nothing was moved on T-0718: changing the bound renames the phase and
    with it the committed GLB, two manifests, the 1835 sidecar and a `docs/LIBERTIES.md` coverage
    line. The bound stands as a **floor** — the modelled building is older than 1817 on either
-   reading — and the correction is carried by its own ticket.
+   reading — and the correction is carried by **T-0893**.
 
 **What still blocks the identity is a position, not a date.** Andreas p. 191 and Hurlbut's Hubbard
 both put the factory building **just south of the fort**; this record stands **north** of it, on the
 corner two passages agree the homestead occupied. That contradiction is the whole of what is left of
-the question, and it is filed as its own ticket rather than resolved by preferring whichever source
+the question, and it is filed as **T-0894** rather than resolved by preferring whichever source
 agrees with the position already committed.
 
 **Nothing was resized or regraded on this evidence.** `bk_hub_063`'s **two storeys** against this
 record's inferred one is now *more* relevant than it was, and `form.stories` is still **1** — see the
 value's own note. Doubling the massing of the oldest building in the dataset on a 1911 recollection
 of 1818, about a building whose sources site it somewhere this record is not, is the move § 6 forbids.
-If the identity ticket settles toward the Factor House, the value moves to 2 and the building rebakes.
+If **T-0894** settles toward the Factor House, the value moves to 2 and the building rebakes.
 
 ## 7. Open threads
 
@@ -239,6 +239,7 @@ If the identity ticket settles toward the Factor House, the value moves to 2 and
   6–10 into a distance north of the corner and tighten § 2 from a floor to a position.
 - **Any plan or description of the John-Dean house**, the 1815 lakeshore building of five rooms at
   the foot of Randolph Street — a documented Chicago building this project does not model at all.
+  Filed as **T-0895**.
 - The 1835 pre-emption papers themselves, which may describe improvements.
 
 ## The parcel's shared inventions

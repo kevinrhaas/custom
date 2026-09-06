@@ -2,6 +2,140 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "9-12",
+      "parts": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 115,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the facade tones reach the render — winding the tone off changed 376 structure(s) (want >=300) and moved the worst cell by 2, mean 0.01 (need worst>=3, mean>=0.03)",
+        "mobile 390x780: the shadow reach reaches the render — winding ±120 m back to ±60 m moved the worst cell by 1, mean 0.00 (need worst>=4)"
+      ],
+      "wallSeconds": 534,
+      "takenAt": "2026-09-06T15:43:42.456Z",
+      "ref": "steward/t-0718-beaubien-house",
+      "commit": "79abc686beef",
+      "devCommit": "056fe71a2b74",
+      "treeHash": "sha256:129d8015be5aec4d",
+      "treeDirty": false,
+      "changelogHash": "sha256:e18acc235cb277b6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_m912.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 491,
+      "takenAt": "2026-09-06T15:43:42.359Z",
+      "ref": "steward/t-0718-beaubien-house",
+      "commit": "79abc686beef",
+      "devCommit": "056fe71a2b74",
+      "treeHash": "sha256:129d8015be5aec4d",
+      "treeDirty": false,
+      "changelogHash": "sha256:e18acc235cb277b6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_d1112.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 155,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 368,
+      "takenAt": "2026-09-06T15:43:42.265Z",
+      "ref": "steward/t-0718-beaubien-house",
+      "commit": "79abc686beef",
+      "devCommit": "056fe71a2b74",
+      "treeHash": "sha256:129d8015be5aec4d",
+      "treeDirty": false,
+      "changelogHash": "sha256:e18acc235cb277b6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 288,
+      "takenAt": "2026-09-06T15:43:42.167Z",
+      "ref": "steward/t-0718-beaubien-house",
+      "commit": "79abc686beef",
+      "devCommit": "056fe71a2b74",
+      "treeHash": "sha256:129d8015be5aec4d",
+      "treeDirty": false,
+      "changelogHash": "sha256:e18acc235cb277b6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          3.9,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "1",
       "parts": [
@@ -1242,137 +1376,6 @@
         ]
       },
       "source": "/tmp/wr/s2_d.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 138,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 215,
-      "takenAt": "2026-09-06T03:41:28.491Z",
-      "ref": "steward/t-0787-wright-nara-register",
-      "commit": "ee09bed28479",
-      "devCommit": "96cdc4d177af",
-      "treeHash": "sha256:13c299ad4c13102f",
-      "treeDirty": false,
-      "changelogHash": "sha256:d01d5346bb8601ed",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4,
-          3.3
-        ]
-      },
-      "source": "/tmp/wr/s2_m.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 198,
-      "takenAt": "2026-09-06T02:35:17.167Z",
-      "ref": "steward/t-0764-cohort-freeze-once",
-      "commit": "91c022e2c907",
-      "devCommit": "d566dc290f27",
-      "treeHash": "sha256:5998f1e2fe87cd2f",
-      "treeDirty": false,
-      "changelogHash": "sha256:27a9035c8006af2f",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          3,
-          1.5
-        ]
-      },
-      "source": "/tmp/smoke-desktop-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 105,
-      "takenAt": "2026-09-06T02:35:17.084Z",
-      "ref": "steward/t-0764-cohort-freeze-once",
-      "commit": "91c022e2c907",
-      "devCommit": "d566dc290f27",
-      "treeHash": "sha256:5998f1e2fe87cd2f",
-      "treeDirty": false,
-      "changelogHash": "sha256:27a9035c8006af2f",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.4,
-          3,
-          1.5
-        ]
-      },
-      "source": "/tmp/smoke-mobile-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "9-12",
-      "parts": [
-        9,
-        10,
-        11,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 115,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: the facade tones reach the render — winding the tone off changed 370 structure(s) (want >=300) and moved the worst cell by 2, mean 0.01 (need worst>=3, mean>=0.03)",
-        "mobile 390x780: the shadow reach reaches the render — winding ±120 m back to ±60 m moved the worst cell by 2, mean 0.00 (need worst>=4)"
-      ],
-      "wallSeconds": 392,
-      "takenAt": "2026-09-06T00:44:54.892Z",
-      "ref": "steward/t-0678-old-settlers-spend",
-      "commit": "2b0339bc76cd",
-      "devCommit": "d17d9cb9e9ec",
-      "treeHash": "sha256:1b4268b824d99296",
-      "treeDirty": true,
-      "changelogHash": "sha256:7daf4bfac3e4e930",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.5,
-          1.1,
-          2
-        ]
-      },
-      "source": "/tmp/smoke_m912.log"
     },
     {
       "viewport": "mobile",
