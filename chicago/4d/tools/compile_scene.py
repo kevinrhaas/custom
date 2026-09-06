@@ -1233,8 +1233,15 @@ def compile_streets(scene_id: str, target_date: str,
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} needs two or more finite [e,n] points")
         corridor = raw.get("corridor_width_m", default_corridor)
         track = raw.get("track_width_m")
+        # A PLATTED LINE WITH NO TRACK IN IT IS LEGAL, AND ONLY THAT WAY (T-0797). The
+        # School Section's twelve tiers are ruled on Wright's 1834 sheet and never opened:
+        # there is a corridor and there is nothing worn down the middle of it. `track == 0`
+        # says so, and it is admitted only for a street that also declares `traffic: none`,
+        # so a real street cannot lose its track to a typo and pass. Every other street
+        # still has to put its track strictly inside its corridor.
+        unopened = track == 0 and raw.get("traffic") == "none"
         if not isinstance(corridor, (int, float)) or not isinstance(track, (int, float)) \
-                or not 0 < track < corridor:
+                or not (0 < track < corridor or (unopened and track < corridor)):
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
         drawn = raw.get("drawn_track_local_enu_m")
         if drawn is not None:

@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RESERVED_PATH = DATA / "reconstruction" / "1835_reserved_ground.json"
 LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
+SCHOOL_SECTION_PATH = DATA / "reconstruction" / "1835_school_section_blocks.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from plat_occupancy import footprints  # noqa: E402
@@ -53,10 +54,34 @@ def inside(point, polygon) -> bool:
     return hit
 
 
+def blocks_that_exist() -> dict[str, dict]:
+    """Every block any module in this project emits, by id.
+
+    There are two grids now. The Original Town's comes from the Thompson module and has
+    been here since T-A16; the School Section's arrived with T-0797, off Wright's own
+    sheet and with its own block dimensions. A reservation may name a block in either,
+    and the gate below fails a reservation naming a block in NEITHER — which is the
+    check that matters, because a reserved id nothing emits is a rule with no ground
+    under it. Both are keyed the same way: an id and a boundary in local ENU metres.
+    """
+    grid = {b["id"]: b for b in load(LOTS_PATH)["blocks"]}
+    if SCHOOL_SECTION_PATH.exists():
+        for block in load(SCHOOL_SECTION_PATH)["blocks"]:
+            grid[block["id"]] = {
+                "id": block["id"],
+                "boundary_local_enu_m": block["block_local_enu_m"],
+                # The section was sold in lots and this project has not traced that
+                # subdivision, so the module emits no `lots` here and the gate's
+                # "still subdivides it" clause has nothing to catch. T-0798 is the
+                # ticket that would change that, and it must not change it silently.
+            }
+    return grid
+
+
 def measure() -> tuple[list[dict], list[str]]:
     """(rows, problems). One row per structure touching reserved ground."""
     reserved = {b["block_id"]: b for b in load(RESERVED_PATH)["blocks"]}
-    grid = {b["id"]: b for b in load(LOTS_PATH)["blocks"]}
+    grid = blocks_that_exist()
     datum = load(DATA / "datum.json")
     placed = footprints(datum)
 

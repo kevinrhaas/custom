@@ -265,6 +265,21 @@ step "the School Section's block numerals re-derive from the reading and the sch
 step "…and its own assertions still fire when broken" \
   python3 tools/read_school_section_numerals.py --self-test
 
+# And the ground those numerals stand on. The module is the second block module this
+# project holds and the first read whole off a survey sheet: the School Section's own
+# 318 by 368 ft block, measured on Wright's ruled lines rather than borrowed from
+# Thompson. `--check` joins the two readings and refuses to build over any disagreement
+# between them — the shape of the grid, the cells the South Branch takes, or which cells
+# the sheet letters Reserved (T-0876).
+step "the School Section's 142 block polygons re-derive, and its two readings agree" \
+  python3 tools/read_school_section_grid.py --check
+
+# And the arithmetic itself, on cases whose answer is known without the sheet: the corner
+# solver lands on both lines it was given, insetting a 100 m square by 25 m leaves
+# 2,500 m2, and the registration still carries G1 to within its own RMS of its control.
+step "…and the module's geometry holds on cases whose answer is known independently" \
+  python3 tools/read_school_section_grid.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is

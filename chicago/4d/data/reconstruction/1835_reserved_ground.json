@@ -1,45 +1,151 @@
 {
-  "$schema_note": "AUTHORED, and deliberately small. One entry per platted block this project holds evidence was NOT private building ground in 1835. Read by tools/generate_plat_lots.py, which emits a reserved block WITHOUT lots; by tools/reconcile_665.py, which deals it no roofs; by tools/generate_block_infill.py, which refuses a recipe that names one; and by tools/measure_reserved_ground.py, which is the command that prints what stands on it. Nothing here authors geometry — the block's boundary is derived from the street lines like every other block's, and only its SUBDIVISION is refused.",
-  "id": "reserved_ground_1835",
-  "target_date": "1835-07-01",
-  "why_this_file_exists": "The plat module subdivides every block it can build into four lots per face, because that is what the Thompson module says a block is. It has no way to ask whether a particular block was ever offered as lots, and the 665-roof programme reads its output as the ground available to the town. So a block the town held in common was being dealt anonymous private dwellings on the same footing as a block of lots for sale. Found by ROADMAP T-A16, which claimed the public square as an ordinary block parcel and could not build it.",
-  "grades": "Each entry's `confidence` grades THE RESERVATION, not the block. `attested` would need a source stating in terms that the ground was reserved and not sold; this project holds none, and says so rather than promoting the reading that makes the gate look better.",
-  "blocks": [
-    {
-      "block_id": "blk_randolph_lasalle",
-      "name": "The Public Square",
-      "aka": ["the court-house square", "the square"],
-      "bounded_by": {
-        "north": "randolph",
-        "south": "washington",
-        "west": "lasalle",
-        "east": "clark"
-      },
-      "reserved_for": "public",
-      "confidence": "inferred",
-      "sources": ["andreas_1884_v1", "chicagology_prefire273"],
-      "note": "THE RESERVATION IS INFERRED AND THE BLOCK'S IDENTITY IS NOT. Andreas names this block 'the square' and 'the court-house square' and puts three of the county's own buildings on it — the estray pen, Chicago's first public building, on its south-west corner in March 1833; the log jail on its north-west corner in the fall of 1833; and the first Cook County court-house in 1835 (docs/research/04-structures-south.md section 7, and the three committed structure records that cite it). This project's own ground control labels its corners in the same words: data/traces/gcp/wright_1834_gcps.json marks LaSalle and Randolph 'NW corner of the Public Square block' and Clark and Washington 'SE corner of the Public Square block'. What is INFERRED is the consequence — that its ground was not private building ground and no anonymous dwelling may be scheduled onto it. No source this project holds says in terms that the block was reserved from sale, so the grade is the middle tier and the reasoning is this: a block carrying the county's pound, jail and court-house is ground the county is using, the same dossier's own reading of the rest of it is 'open, unimproved, fenced or unfenced prairie block', and the one further description reached of it in the period is water — 'Our public Square was then a pond, where the Indians had trapped the muskrat, and where the first settlers hunted ducks' (chicagology_prefire273, and docs/research/08-fauna.md line 44). Three readings of the same block, from three directions, and not one of them is a house. THE POND IS DOCUMENTED AND NOT MODELLED, AND SINCE T-0027 THE SQUARE NO LONGER RENDERS AS ORDINARY PRAIRIE. The terrain still carries no standing water here — tools/measure_public_square.py samples this block at 0.5 m and finds 0 of 43,885 samples at or below the water surface, with the whole block's relief inside the spec's own micro-relief noise, so there is no basin to hold any — and that zero is now an absolute assertion rather than a default. What changed is the sward: docs/research/02-flora.md heads its ZONE 3 'SLOUGH & SEDGE MEADOW (Public Square -> Tremont House site -> river at State St)', naming this block, and z03's elevation-band extent could never reach a block the terrain draws at the plain's +2.9 ft. The zone now covers the platted block by polygon, so the square is planted as the flora dossier names it and reads as the seasonally ponded ground the sources describe, with no water drawn on it. docs/LIBERTIES.md L188.",
-      "what_may_stand_here": {
-        "rule": "A structure record may stand on reserved ground when its own committed evidence puts it there. Everything else is refused — in particular, no roof of the 665-roof programme's anonymous infill.",
-        "permitted": [
-          {
-            "structure_id": "estray_pen",
-            "why": "Andreas puts the estray pen on the south-west corner of this square; the record's position note carries the quotation."
-          },
-          {
-            "structure_id": "log_jail",
-            "why": "Andreas puts the log jail on the north-west corner of the court-house square in the fall of 1833."
-          },
-          {
-            "structure_id": "cook_county_courthouse_1835",
-            "why": "Placed on this block as a reasoned invention within a documented block, with its own citation trail argued in the record. The corner is invented; the block is not."
-          }
-        ]
-      },
-      "refused": {
-        "anonymous_infill": "Every family the 665-roof programme could deal here. The four roofs this block held at the moment of its reservation — A1, D3, D4, D5 — return to the south district's balance and wait on coverage with the rest.",
-        "lots": "The block is emitted with no lots at all. Its eight conjectural lot lines were the plat module's default subdivision and this project has never read a lot line on this block off any sheet; drawing them asserted that the square was offered in lots, which is the claim being withdrawn."
-      }
-    }
-  ]
+ "$schema_note": "AUTHORED, and deliberately small. One entry per platted block this project holds evidence was NOT private building ground in 1835. Read by tools/generate_plat_lots.py, which emits a reserved block WITHOUT lots; by tools/reconcile_665.py, which deals it no roofs; by tools/generate_block_infill.py, which refuses a recipe that names one; and by tools/measure_reserved_ground.py, which is the command that prints what stands on it. Nothing here authors geometry — the block's boundary is derived from the street lines like every other block's, and only its SUBDIVISION is refused.",
+ "id": "reserved_ground_1835",
+ "target_date": "1835-07-01",
+ "why_this_file_exists": "The plat module subdivides every block it can build into four lots per face, because that is what the Thompson module says a block is. It has no way to ask whether a particular block was ever offered as lots, and the 665-roof programme reads its output as the ground available to the town. So a block the town held in common was being dealt anonymous private dwellings on the same footing as a block of lots for sale. Found by ROADMAP T-A16, which claimed the public square as an ordinary block parcel and could not build it.",
+ "grades": "Each entry's `confidence` grades THE RESERVATION, not the block. `attested` would need a source stating in terms that the ground was reserved and not sold; this project holds none, and says so rather than promoting the reading that makes the gate look better. SINCE T-0876 THE FILE CARRIES BOTH GRADES. The four School Section entries below ARE `attested`: Wright's 1834 sheet writes the word `Reserved` inside each of them, which is a source stating the reservation in terms, and the October 1833 sale corroborates it by never selling a lot in any of the four. The Public Square stays `inferred`, on exactly the evidence it always had. The distinction is the point of grading at all.",
+ "blocks": [
+  {
+   "block_id": "blk_randolph_lasalle",
+   "name": "The Public Square",
+   "aka": [
+    "the court-house square",
+    "the square"
+   ],
+   "bounded_by": {
+    "north": "randolph",
+    "south": "washington",
+    "west": "lasalle",
+    "east": "clark"
+   },
+   "reserved_for": "public",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1",
+    "chicagology_prefire273"
+   ],
+   "note": "THE RESERVATION IS INFERRED AND THE BLOCK'S IDENTITY IS NOT. Andreas names this block 'the square' and 'the court-house square' and puts three of the county's own buildings on it — the estray pen, Chicago's first public building, on its south-west corner in March 1833; the log jail on its north-west corner in the fall of 1833; and the first Cook County court-house in 1835 (docs/research/04-structures-south.md section 7, and the three committed structure records that cite it). This project's own ground control labels its corners in the same words: data/traces/gcp/wright_1834_gcps.json marks LaSalle and Randolph 'NW corner of the Public Square block' and Clark and Washington 'SE corner of the Public Square block'. What is INFERRED is the consequence — that its ground was not private building ground and no anonymous dwelling may be scheduled onto it. No source this project holds says in terms that the block was reserved from sale, so the grade is the middle tier and the reasoning is this: a block carrying the county's pound, jail and court-house is ground the county is using, the same dossier's own reading of the rest of it is 'open, unimproved, fenced or unfenced prairie block', and the one further description reached of it in the period is water — 'Our public Square was then a pond, where the Indians had trapped the muskrat, and where the first settlers hunted ducks' (chicagology_prefire273, and docs/research/08-fauna.md line 44). Three readings of the same block, from three directions, and not one of them is a house. THE POND IS DOCUMENTED AND NOT MODELLED, AND SINCE T-0027 THE SQUARE NO LONGER RENDERS AS ORDINARY PRAIRIE. The terrain still carries no standing water here — tools/measure_public_square.py samples this block at 0.5 m and finds 0 of 43,885 samples at or below the water surface, with the whole block's relief inside the spec's own micro-relief noise, so there is no basin to hold any — and that zero is now an absolute assertion rather than a default. What changed is the sward: docs/research/02-flora.md heads its ZONE 3 'SLOUGH & SEDGE MEADOW (Public Square -> Tremont House site -> river at State St)', naming this block, and z03's elevation-band extent could never reach a block the terrain draws at the plain's +2.9 ft. The zone now covers the platted block by polygon, so the square is planted as the flora dossier names it and reads as the seasonally ponded ground the sources describe, with no water drawn on it. docs/LIBERTIES.md L188.",
+   "what_may_stand_here": {
+    "rule": "A structure record may stand on reserved ground when its own committed evidence puts it there. Everything else is refused — in particular, no roof of the 665-roof programme's anonymous infill.",
+    "permitted": [
+     {
+      "structure_id": "estray_pen",
+      "why": "Andreas puts the estray pen on the south-west corner of this square; the record's position note carries the quotation."
+     },
+     {
+      "structure_id": "log_jail",
+      "why": "Andreas puts the log jail on the north-west corner of the court-house square in the fall of 1833."
+     },
+     {
+      "structure_id": "cook_county_courthouse_1835",
+      "why": "Placed on this block as a reasoned invention within a documented block, with its own citation trail argued in the record. The corner is invented; the block is not."
+     }
+    ]
+   },
+   "refused": {
+    "anonymous_infill": "Every family the 665-roof programme could deal here. The four roofs this block held at the moment of its reservation — A1, D3, D4, D5 — return to the south district's balance and wait on coverage with the rest.",
+    "lots": "The block is emitted with no lots at all. Its eight conjectural lot lines were the plat module's default subdivision and this project has never read a lot line on this block off any sheet; drawing them asserted that the square was offered in lots, which is the claim being withdrawn."
+   }
+  },
+  {
+   "block_id": "ss_blk_001",
+   "name": "School Section block 1",
+   "aka": [
+    "section 16 block 1"
+   ],
+   "tract": "school_section_1833",
+   "bounded_by": {
+    "north": "Madison Street",
+    "south": "Monroe Street",
+    "west": null,
+    "east": null
+   },
+   "reserved_for": "unstated",
+   "confidence": "attested",
+   "sources": [
+    "wright_1834_nara_hup",
+    "isa_public_domain_land_tract_sales"
+   ],
+   "note": "School Section block 1, the north-west corner of the School Section, at Madison Street and the section’s west line. WRIGHT LETTERS THE WORD, AND THE SALE AGREES WITH HIM. `Reserved` is written inside this block on the 1834 manuscript survey (read on the crops named in data/traces/school_section_module_1834.json), so unlike the Public Square above it this reservation rests on a source that states it IN TERMS rather than on an inference from what stood there. It is corroborated independently: the October 1833 school-section auction, 336 rows read into data/research/land_sales/, sells lots in 136 of the section's 142 blocks and never once in this one (tools/read_school_section_grid.py --sale-test). Two witnesses, one of them the market. WHAT IS NOT ATTESTED IS WHAT IT WAS RESERVED FOR: the sheet gives the word and no purpose, and `reserved_for` is 'unstated' rather than a guess. Nor does anything here say the reservation still stood in 1835 — the sheet is 1834 and the sale is 1833; what the pair of them establish is that this ground was not offered as lots, which is exactly what this file exists to stop the plat module asserting.",
+   "what_may_stand_here": {
+    "permitted": [],
+    "why_empty": "Nothing this project has placed stands within a mile of it. The section was sold and not built, and no committed footprint lies south of Madison."
+   }
+  },
+  {
+   "block_id": "ss_blk_087",
+   "name": "School Section block 87",
+   "aka": [
+    "section 16 block 87"
+   ],
+   "tract": "school_section_1833",
+   "bounded_by": {
+    "north": null,
+    "south": null,
+    "west": null,
+    "east": "Wells Street"
+   },
+   "reserved_for": "unstated",
+   "confidence": "attested",
+   "sources": [
+    "wright_1834_nara_hup",
+    "isa_public_domain_land_tract_sales"
+   ],
+   "note": "School Section block 87, on the east bank of the South Branch, the southern of the lettered pair. WRIGHT LETTERS THE WORD, AND THE SALE AGREES WITH HIM. `Reserved` is written inside this block on the 1834 manuscript survey (read on the crops named in data/traces/school_section_module_1834.json), so unlike the Public Square above it this reservation rests on a source that states it IN TERMS rather than on an inference from what stood there. It is corroborated independently: the October 1833 school-section auction, 336 rows read into data/research/land_sales/, sells lots in 136 of the section's 142 blocks and never once in this one (tools/read_school_section_grid.py --sale-test). Two witnesses, one of them the market. WHAT IS NOT ATTESTED IS WHAT IT WAS RESERVED FOR: the sheet gives the word and no purpose, and `reserved_for` is 'unstated' rather than a guess. Nor does anything here say the reservation still stood in 1835 — the sheet is 1834 and the sale is 1833; what the pair of them establish is that this ground was not offered as lots, which is exactly what this file exists to stop the plat module asserting.",
+   "what_may_stand_here": {
+    "permitted": [],
+    "why_empty": "Nothing this project has placed stands within a mile of it. The section was sold and not built, and no committed footprint lies south of Madison."
+   }
+  },
+  {
+   "block_id": "ss_blk_088",
+   "name": "School Section block 88",
+   "aka": [
+    "section 16 block 88"
+   ],
+   "tract": "school_section_1833",
+   "bounded_by": {
+    "north": null,
+    "south": null,
+    "west": null,
+    "east": "Wells Street"
+   },
+   "reserved_for": "unstated",
+   "confidence": "attested",
+   "sources": [
+    "wright_1834_nara_hup",
+    "isa_public_domain_land_tract_sales"
+   ],
+   "note": "School Section block 88, on the east bank of the South Branch, the northern of the lettered pair. WRIGHT LETTERS THE WORD, AND THE SALE AGREES WITH HIM. `Reserved` is written inside this block on the 1834 manuscript survey (read on the crops named in data/traces/school_section_module_1834.json), so unlike the Public Square above it this reservation rests on a source that states it IN TERMS rather than on an inference from what stood there. It is corroborated independently: the October 1833 school-section auction, 336 rows read into data/research/land_sales/, sells lots in 136 of the section's 142 blocks and never once in this one (tools/read_school_section_grid.py --sale-test). Two witnesses, one of them the market. WHAT IS NOT ATTESTED IS WHAT IT WAS RESERVED FOR: the sheet gives the word and no purpose, and `reserved_for` is 'unstated' rather than a guess. Nor does anything here say the reservation still stood in 1835 — the sheet is 1834 and the sale is 1833; what the pair of them establish is that this ground was not offered as lots, which is exactly what this file exists to stop the plat module asserting.",
+   "what_may_stand_here": {
+    "permitted": [],
+    "why_empty": "Nothing this project has placed stands within a mile of it. The section was sold and not built, and no committed footprint lies south of Madison."
+   }
+  },
+  {
+   "block_id": "ss_blk_142",
+   "name": "School Section block 142",
+   "aka": [
+    "section 16 block 142"
+   ],
+   "tract": "school_section_1833",
+   "bounded_by": {
+    "north": "Madison Street",
+    "south": "Monroe Street",
+    "west": null,
+    "east": "State Street"
+   },
+   "reserved_for": "unstated",
+   "confidence": "attested",
+   "sources": [
+    "wright_1834_nara_hup",
+    "isa_public_domain_land_tract_sales"
+   ],
+   "note": "School Section block 142, the north-east corner of the School Section, at Madison and State. WRIGHT LETTERS THE WORD, AND THE SALE AGREES WITH HIM. `Reserved` is written inside this block on the 1834 manuscript survey (read on the crops named in data/traces/school_section_module_1834.json), so unlike the Public Square above it this reservation rests on a source that states it IN TERMS rather than on an inference from what stood there. It is corroborated independently: the October 1833 school-section auction, 336 rows read into data/research/land_sales/, sells lots in 136 of the section's 142 blocks and never once in this one (tools/read_school_section_grid.py --sale-test). Two witnesses, one of them the market. WHAT IS NOT ATTESTED IS WHAT IT WAS RESERVED FOR: the sheet gives the word and no purpose, and `reserved_for` is 'unstated' rather than a guess. Nor does anything here say the reservation still stood in 1835 — the sheet is 1834 and the sale is 1833; what the pair of them establish is that this ground was not offered as lots, which is exactly what this file exists to stop the plat module asserting. THE CORNER BLOCK IS 142, NOT 119. T-0791 read the north-east Reserved block as block 119. On the crop `necorner` the two are separated by a ruled line — 119 is the block west of the corner — and the sale settles it from the other side: nine lots were sold in block 119 in October 1833 and not one in 142.",
+   "what_may_stand_here": {
+    "permitted": [],
+    "why_empty": "Nothing this project has placed stands within a mile of it. The section was sold and not built, and no committed footprint lies south of Madison."
+   }
+  }
+ ]
 }

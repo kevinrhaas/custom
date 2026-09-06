@@ -1,0 +1,346 @@
+{
+ "$schema_note": "AUTHORED, and it is a reading of GROUND rather than of figures. It carries the ruled lines of the School Section’s grid as Wright drew them, in the registered scan’s own pixels, together with the street each line is lettered as, the width the sheet draws a street at, and the block module those two give. THE NUMBERING IS NOT HERE: data/traces/school_section_block_numbering.json (T-0875) owns which figure stands in which cell, and says in terms that its own local-metre grid is for CROPS ONLY. This is the other half — the ground the figures are spent onto. tools/read_school_section_grid.py joins the two and derives the polygons; nothing downstream may hand-author a block boundary.",
+ "id": "school_section_module_1834",
+ "ticket": "T-0876",
+ "tract": "school_section_1833",
+ "tract_note": "Section 16, T39N R14E, third principal meridian — the mile square the state sold in October 1833 to fund the schools. The sheet colours it and letters it \"School Section, 1833\".",
+ "source_id": "wright_1834_nara_hup",
+ "raster": {
+  "working_copy": "chicago/pre_fire_v1/maps/images/1834-wright-map.jpg",
+  "width": 5050,
+  "height": 6628,
+  "sha256": "dbb92c0188881d9b6cdf84801b9185a5715496a328125bde895a04058b173266",
+  "registration": "data/traces/gcp/wright_1834_nara_hup_gcps.json"
+ },
+ "grades": "Every line here is `documented` as a LINE — it was picked off ink on the sheet, and `ink` beside it is how strong that ink is. Nothing here grades a POSITION: the corners this file derives carry the registration’s own 16.2 m RMS, which is why the blocks it feeds are emitted `inferred`. The street NAMES are documented for the eight the sheet letters and null for the six it does not; a name is never supplied from what a street later became.",
+ "method": {
+  "lines": "Each ruled line was picked from an ink profile of the registered scan. Ink is a pixel darker than the local 81x81 background by 14/255, which finds a pen line under the tract wash without finding the wash. The profile is taken along the GRID’S own axes and not the raster’s: the grid leans in the scan, and summing straight down a column smears a line over 36 px and loses it. The lean was fitted by sweeping the shear that maximises the profile’s energy, and it comes out the same on both axes — 0.016, a rotation of 0.9166 degrees — which is what one number measured twice should look like. Each pick is the centre of mass of its peak above three-quarters of the peak’s height. The three weak north-south picks, indices 7, 8 and 9, are weak because the South Branch interrupts those lines, not because the pick is doubtful — they are the columns T-0875 finds the river takes.",
+  "names": "Read off the sheet’s own lettering on the crops below: Des Plaines, Jefferson, Clinton and Canal written down the streets between the west columns, Market, Wells and Clark down the east ones, and Madison, Monroe, Adams and Jackson written along the four northern tiers. South of Jackson the sheet letters nothing at all, and those six lines carry a null name rather than a guess.",
+  "independent_check": "Two, and they are independent of each other. (1) T-0875 read the 142 numerals off the same sheet without this lattice and found the same 13 columns by 12 tiers and the same 14 cells the South Branch takes; tools/read_school_section_grid.py --check refuses to build if the two readings disagree about the shape of the grid. (2) The October 1833 sale: 336 rows of data/research/land_sales/ name a lot and block in section 16 and cover 136 of the 142 numbers, and the six they never touch are 1, 41, 87, 88, 126 and 142 — every block the sheet letters Reserved and no other. --sale-test runs it."
+ },
+ "tilt": {
+  "tangent": 0.016,
+  "degrees": 0.9166,
+  "north_south_reference_y": 4255.0,
+  "east_west_reference_x": 1180.0,
+  "how_to_use": "A north-south line k runs x(y) = pixel_x - 0.016*(y - 4255). An east-west line j runs y(x) = pixel_y + 0.016*(x - 1180). A block corner is where the two meet."
+ },
+ "lines": {
+  "north_south": [
+   {
+    "index": 1,
+    "pixel_x": 654.7,
+    "ink": 0.835,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "the section’s west line"
+   },
+   {
+    "index": 2,
+    "pixel_x": 833.0,
+    "ink": 0.896,
+    "name": null,
+    "name_on_sheet": false,
+    "note": null
+   },
+   {
+    "index": 3,
+    "pixel_x": 1018.3,
+    "ink": 0.525,
+    "name": "Des Plaines Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 4,
+    "pixel_x": 1189.7,
+    "ink": 0.486,
+    "name": "Jefferson Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 5,
+    "pixel_x": 1363.1,
+    "ink": 0.494,
+    "name": "Clinton Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 6,
+    "pixel_x": 1535.6,
+    "ink": 0.5,
+    "name": "Canal Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 7,
+    "pixel_x": 1701.5,
+    "ink": 0.3,
+    "name": null,
+    "name_on_sheet": false,
+    "note": null
+   },
+   {
+    "index": 8,
+    "pixel_x": 1859.5,
+    "ink": 0.311,
+    "name": "Market Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 9,
+    "pixel_x": 2042.0,
+    "ink": 0.318,
+    "name": null,
+    "name_on_sheet": false,
+    "note": null
+   },
+   {
+    "index": 10,
+    "pixel_x": 2229.0,
+    "ink": 0.407,
+    "name": "Wells Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 11,
+    "pixel_x": 2406.5,
+    "ink": 0.599,
+    "name": null,
+    "name_on_sheet": false,
+    "note": null
+   },
+   {
+    "index": 12,
+    "pixel_x": 2584.1,
+    "ink": 0.66,
+    "name": "Clark Street",
+    "name_on_sheet": true,
+    "note": null
+   },
+   {
+    "index": 13,
+    "pixel_x": 2750.5,
+    "ink": 0.81,
+    "name": null,
+    "name_on_sheet": false,
+    "note": null
+   },
+   {
+    "index": 14,
+    "pixel_x": 2930.0,
+    "ink": 0.997,
+    "name": "State Street",
+    "name_on_sheet": true,
+    "note": "the section’s east line, and the Original Town’s State Street carried south"
+   }
+  ],
+  "east_west": [
+   {
+    "index": 1,
+    "pixel_y": 3219.5,
+    "ink": 0.799,
+    "name": "Madison Street",
+    "name_on_sheet": true,
+    "note": "the section’s north line"
+   },
+   {
+    "index": 2,
+    "pixel_y": 3398.4,
+    "ink": 0.738,
+    "name": "Monroe Street",
+    "name_on_sheet": true,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 3,
+    "pixel_y": 3585.0,
+    "ink": 0.728,
+    "name": "Adams Street",
+    "name_on_sheet": true,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 4,
+    "pixel_y": 3793.5,
+    "ink": 0.836,
+    "name": "Jackson Street",
+    "name_on_sheet": true,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 5,
+    "pixel_y": 3996.5,
+    "ink": 0.856,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 6,
+    "pixel_y": 4183.0,
+    "ink": 0.82,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 7,
+    "pixel_y": 4366.0,
+    "ink": 0.89,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 8,
+    "pixel_y": 4539.5,
+    "ink": 0.752,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 9,
+    "pixel_y": 4718.2,
+    "ink": 0.936,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 10,
+    "pixel_y": 4898.5,
+    "ink": 0.954,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 11,
+    "pixel_y": 5070.0,
+    "ink": 0.935,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 12,
+    "pixel_y": 5260.5,
+    "ink": 0.921,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "south of Jackson the sheet rules the tier lines and letters none of them"
+   },
+   {
+    "index": 13,
+    "pixel_y": 5446.9,
+    "ink": 0.978,
+    "name": null,
+    "name_on_sheet": false,
+    "note": "the section’s south line, 12th Street"
+   }
+  ]
+ },
+ "street_corridor": {
+  "platted_width_m": 24.384,
+  "confidence": "inferred",
+  "measured": "Where the sheet draws a street as a PAIR of lines rather than one, the pair was measured on the crops below: Des Plaines 30 px (68.8 ft), Jefferson 35 px (80.0 ft), Clinton 35 px (80.0 ft), Canal 40 px (91.4 ft), Monroe 33 px (79.6 ft), Adams 33 px (79.6 ft), Jackson 30 px (72.0 ft). The mean is 80 ft, which is also the town’s own platted module — so the figure carried here is MEASURED on this sheet and agrees with Thompson rather than being borrowed from him.",
+  "no_alleys": "The Original Town’s blocks are drawn with a mid-block alley and the School Section’s are not: no line runs inside any of the 142 cells except the lot lines of the blocks near Madison and the river. The absence is recorded because it is a statement about the ground, not a gap in the reading."
+ },
+ "module": {
+  "centre_pitch_m": [
+   121.2,
+   136.6
+  ],
+  "block_m": [
+   96.8,
+   112.2
+  ],
+  "note": "MEASURED OFF THIS SHEET, AND IT IS NOT THOMPSON’S. Mean north-south line pitch 173.5 px, mean east-west pitch 185.6 px; at the registered scale that is 121.2 m by 136.6 m from centre to centre, so a block inside its 80 ft corridors is about 96.8 m by 112.2 m — 318 ft by 368 ft. The Original Town’s block is 320 ft by 380 ft WITH an alley through it. The ticket asked for the section’s own module in terms, and this is why: borrowing Thompson’s would have put every one of 142 blocks a few metres from where Wright drew it, all the way across a mile."
+ },
+ "crops": {
+  "westedge": {
+   "box": [
+    590,
+    3970,
+    1600,
+    4240
+   ],
+   "scale": "8/5",
+   "what": "tier 5, columns 1-5 — where the drawn street PAIRS are widest and the corridor was measured"
+  },
+  "necorner": {
+   "box": [
+    2540,
+    3170,
+    3010,
+    3440
+   ],
+   "scale": "2/1",
+   "what": "the north-east corner at Madison and State — where the corner block and block 119 are separated by a ruled line"
+  },
+  "tier03w": {
+   "box": [
+    600,
+    3570,
+    1820,
+    3832
+   ],
+   "scale": "1/1",
+   "what": "tier 3, west half — where the sheet letters Des Plaines, Jefferson, Clinton, Canal, Adams and Jackson"
+  },
+  "tier01e": {
+   "box": [
+    1760,
+    3186,
+    3010,
+    3433
+   ],
+   "scale": "1/1",
+   "what": "tier 1, east half — where the sheet letters Market, Wells and Clark"
+  },
+  "overview": {
+   "box": [
+    450,
+    3100,
+    3050,
+    5500
+   ],
+   "scale": "1/3",
+   "what": "the whole section, for the count of columns and tiers"
+  },
+  "riverzone_m": {
+   "box": [
+    1620,
+    4150,
+    2400,
+    4780
+   ],
+   "scale": "1/1",
+   "what": "tiers 6-8 either side of the South Branch — where the word Reserved is written across blocks 87 and 88 BESIDE their numerals"
+  }
+ },
+ "reserved": {
+  "blocks": [
+   1,
+   87,
+   88,
+   142
+  ],
+  "where": {
+   "1": "the north-west corner of the section, at Madison Street and the section’s west line",
+   "87": "the east bank of the South Branch, the southern of the lettered pair",
+   "88": "the east bank of the South Branch, the northern of the lettered pair",
+   "142": "the north-east corner of the section, at Madison and State"
+  },
+  "note": "FOUR CELLS, THREE PLACES, and this is the reading that says so. T-0875 records what FIGURE stands in each cell and therefore has 1 and 142 as `Reserved` — the sheet writes the word where the numeral would go. It does not have 87 and 88, because in those two the sheet writes BOTH: the numeral and the word beside it, across the pair, on the crop `riverzone_m`. So the reservation is read here rather than inferred from the absence of a numeral, and tools/read_school_section_grid.py --check holds the two files to each other: every cell T-0875 finds lettered Reserved must be in this list.",
+  "correction": "T-0791 read the north-east Reserved block as block 119. It is not. On the crop `necorner` the two are separated by a ruled line — 119 is the block west of the corner — and the sale settles it from the other side: nine lots were sold in block 119 at the October 1833 auction and not one in 142.",
+  "graded_where": "data/reconstruction/1835_reserved_ground.json"
+ }
+}

@@ -570,7 +570,17 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     # re-anchored 90 fields of the register onto the wrong side of the water.
     for s in sorted(load_json(streets_file).get("streets", []),
                     key=lambda r: min(p[1] for p in r["path_local_enu_m"])):
-        town["streets"].setdefault(street_key(s["name_1835"]), s["id"])
+        # A STREET WITH NO NAME IS REACHABLE BY ID AND BY NOTHING ELSE (T-0797). Eight of
+        # the School Section's tiers are ruled on Wright's sheet and lettered nothing, so
+        # their `name_1835` is null — and `street_key(None)` is the empty string, which is
+        # also what an advertisement with no street at all reduces to. Indexed under that
+        # key, one unnamed tier would answer for every business the paper places nowhere:
+        # measured here, 62 of them moved from `unplaceable` to a tier south of Jackson
+        # that no newspaper could have meant. A line the sheet does not name cannot be the
+        # line a printed page names.
+        key = street_key(s["name_1835"])
+        if key:
+            town["streets"].setdefault(key, s["id"])
         town["streets"][s["id"]] = s["id"]
         # The committed centreline, kept so `streets_cross` can ask the plat whether a
         # named corner exists rather than assume it (T-0771).
