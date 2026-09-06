@@ -347,3 +347,4 @@ T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'J
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
 T-0861 — Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground
+T-0869 — Clark, Filer & Co. advertise a warehouse five doors east of a corner the plat does not have: is the Democrat's 'Randolph st.' a mis-set cross street, or a firm naming a corner it did not stand on?
