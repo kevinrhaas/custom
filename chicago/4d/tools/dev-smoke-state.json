@@ -2173,6 +2173,76 @@
         ]
       },
       "source": "/tmp/s2_d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "2,7",
+      "parts": [
+        2,
+        7
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 97,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the town's wagons vary in type and in the way they stand — 23 farm_box, 18 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees",
+        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+      ],
+      "wallSeconds": 259,
+      "takenAt": "2026-09-06T05:31:47.135Z",
+      "ref": "HEAD",
+      "commit": "27a51942142e",
+      "devCommit": "96bf61810089",
+      "treeHash": "sha256:ebeb62cb3d5b86f2",
+      "treeDirty": false,
+      "changelogHash": "sha256:33bc44b80a2acf43",
+      "host": {
+        "kind": "local",
+        "cpus": 4,
+        "memGB": 15.7,
+        "loadavg": [
+          4,
+          4.1,
+          2.5
+        ]
+      },
+      "source": "/tmp/claude-0/-home-user-custom/8fc810b0-230d-5829-b745-429fab6ebbac/scratchpad/dev-mobile-2-7.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2,7",
+      "parts": [
+        2,
+        7
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 97,
+      "failed": 2,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 23 farm_box, 18 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees",
+        "desktop 1280x800: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+      ],
+      "wallSeconds": 384,
+      "takenAt": "2026-09-06T05:31:47.006Z",
+      "ref": "HEAD",
+      "commit": "27a51942142e",
+      "devCommit": "96bf61810089",
+      "treeHash": "sha256:ebeb62cb3d5b86f2",
+      "treeDirty": false,
+      "changelogHash": "sha256:33bc44b80a2acf43",
+      "host": {
+        "kind": "local",
+        "cpus": 4,
+        "memGB": 15.7,
+        "loadavg": [
+          4,
+          4.1,
+          2.5
+        ]
+      },
+      "source": "/tmp/claude-0/-home-user-custom/8fc810b0-230d-5829-b745-429fab6ebbac/scratchpad/dev-desktop-2-7.log"
     }
   ]
 }
