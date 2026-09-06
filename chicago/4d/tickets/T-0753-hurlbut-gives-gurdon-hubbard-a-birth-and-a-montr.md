@@ -1,7 +1,7 @@
 ---
 id: T-0753
 title: Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 944
 claimed_by: run 9/5/2026, 7:34:33 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T01:23:41.684Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34001420394
 ---
 
