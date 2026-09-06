@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The priest the town could not read the name of', kind: 'fix', ts: '',
+  { v: 621, title: 'The priest the town could not read the name of', kind: 'fix', ts: '2026-09-06T05:21:36.123Z', date: 'Sep 6, 2026, 12:21 AM CT',
     items: [
       'Nothing you can see in the town changed today. This is about a way of reading names that had been quietly losing people, and the man it lost first.',
       'To put anyone on this project\u2019s ladder of how well evidenced they are, it has first to split a printed name into a surname and forenames \u2014 and it did that by taking the last word as the surname. That works for John Smith. It does not work for the parish priest, John Mary Irenaeus St Cyr, who came out as a man called Cyr with five forenames, one of them the word St. Five was more than the reader would accept, so it refused him outright. His own baptism, marriage and burial register is one of the better sources here; thirty-five townspeople are graded on it. The one person it could not reach was the man who wrote it.',

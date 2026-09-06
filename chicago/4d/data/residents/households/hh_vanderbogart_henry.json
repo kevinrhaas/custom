@@ -96,6 +96,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G2e"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "U1",
+     "cluster": "vanderbogart",
+     "weighed_against": [
+      "vanderbogart_h"
+     ],
+     "referred_to": "owner",
+     "for_merge": "",
+     "against_merge": ""
+    }
    ]
   }
  ],
