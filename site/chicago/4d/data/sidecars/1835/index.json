@@ -4836,6 +4836,12 @@
       "asset": "gltf/fort_dearborn_barracks__log_1816.glb"
     },
     {
+      "id": "fort_dearborn_big_barn",
+      "name": "Fort Dearborn — the Big Barn with Cupola",
+      "sidecar": "sidecars/1835/fort_dearborn_big_barn.json",
+      "asset": "gltf/fort_dearborn_big_barn__barn_1830.glb"
+    },
+    {
       "id": "fort_dearborn_blockhouse",
       "name": "Fort Dearborn — block-house",
       "sidecar": "sidecars/1835/fort_dearborn_blockhouse.json",
@@ -4896,6 +4902,12 @@
       "asset": "gltf/fort_dearborn_root_house__cellar_1816.glb"
     },
     {
+      "id": "fort_dearborn_shop",
+      "name": "Fort Dearborn — the shop",
+      "sidecar": "sidecars/1835/fort_dearborn_shop.json",
+      "asset": "gltf/fort_dearborn_shop__shop_1830.glb"
+    },
+    {
       "id": "fort_dearborn_store_house",
       "name": "Fort Dearborn — store house",
       "sidecar": "sidecars/1835/fort_dearborn_store_house.json",
@@ -4906,6 +4918,12 @@
       "name": "Fort Dearborn — sutler's store",
       "sidecar": "sidecars/1835/fort_dearborn_sutlers_store.json",
       "asset": "gltf/fort_dearborn_sutlers_store__log_1816.glb"
+    },
+    {
+      "id": "fort_dearborn_wash_house",
+      "name": "Fort Dearborn — the wash house",
+      "sidecar": "sidecars/1835/fort_dearborn_wash_house.json",
+      "asset": "gltf/fort_dearborn_wash_house__wash_house_1830.glb"
     },
     {
       "id": "frederick_thomas_shop",

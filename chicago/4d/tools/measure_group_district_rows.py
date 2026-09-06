@@ -263,7 +263,7 @@ def self_test() -> int:
     moved["district_group_matrix"]["barns_stables"]["north"] = 18
     case("a row whose divisions no longer sum to its own total is caught",
          addable_findings(moved),
-         "the barns_stables row's four divisions sum to 73 and the row's own total is 72")
+         "the barns_stables row's four divisions sum to 74 and the row's own total is 73")
 
     column = copy(inventory)
     column["district_group_matrix"]["barns_stables"]["north"] = 18
