@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A brotherhood that was nearly deleted for being made up', kind: 'fix', ts: '',
+  { v: 627, title: 'A brotherhood that was nearly deleted for being made up', kind: 'fix', ts: '2026-09-06T06:44:29.989Z', date: 'Sep 6, 2026, 1:44 AM CT',
     items: [
       'Augustine Taylor built St Mary\u2019s church in 1833. Anson Taylor hauled the timber for it. The town\u2019s record of Augustine has said in passing for months that the two were brothers \u2014 and a piece of work now closed had concluded that nobody ever said so, and moved to strike the sentence out as a family invented from a shared surname.',
       'It was very nearly right to be suspicious. Five Taylor households stand in this parcel, and a shared surname is exactly the kind of thing this project refuses to build a family on. But somebody had said so: the Chicago History Museum\u2019s own account of the church separates the builder from \u2018brother Anson who hauled lumber\u2019, and that reading has been sitting in this project\u2019s research files, cited and verified, the whole time.',
