@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 1:25 AM",
+  "generated_ct": "Sep 6, 2026, 1:26 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14704,6 +14704,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 171
+    },
+    {
+      "id": "T-0866",
+      "title": "The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 173
     },
     {
       "id": "T-0869",
