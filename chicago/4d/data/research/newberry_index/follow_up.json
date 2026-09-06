@@ -501,8 +501,8 @@
       "reachable": "not yet located — search the Internet Archive and HathiTrust"
     }
   ],
-  "cards": 6720,
-  "cards_matching_no_known_work": 3652,
+  "cards": 6688,
+  "cards_matching_no_known_work": 3620,
   "chicago_or_cook_cards_matching_no_known_work": 363,
   "note": "A card whose citation matches no pattern in WORKS is counted here and kept in the records; it is the queue of works nobody has named yet. Most of them are Illinois COUNTY histories — Chapman, LeBaron, Brink, Baldwin, Murray Williamson, Power — which are Illinois and are not Chicago, and which is why the ranking is on the Chicago and Cook County cards."
 }
