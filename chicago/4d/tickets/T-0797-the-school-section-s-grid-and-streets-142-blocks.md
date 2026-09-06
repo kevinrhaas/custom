@@ -1,7 +1,7 @@
 ---
 id: T-0797
 title: The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale
-state: done
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -10,12 +10,12 @@ legacy_id: null
 parent: T-0791
 opened: 2026-09-05
 closed: 2026-09-06
-pr: 977
-claimed_by: run 9/6/2026, 4:04:51 AM CT
+pr: null
+claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-06T10:22:16.437Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34023431093
+closed_at: 2026-09-06T09:42:03.228Z
+claimed_run: null
 ---
 
 Piece 1 of 2 of **T-0791** — read that ticket for the sheet, the owner's words and the finding; this

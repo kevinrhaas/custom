@@ -250,6 +250,21 @@ step "the platted block and lot grid re-derives from the module" \
 step "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# T-0875. The School Section's 142 block numerals, read off the 600-dpi NA sheet.
+# It sits beside the Thompson grid because it is the same question answered the
+# other way round: there, two legible numerals could not say how a run passes from
+# one tier to the next and the numbering is refused past one tier; here the whole
+# grid is legible and the boustrophedon is observed, not argued. The trace is
+# GENERATED from the reading table and the committed registration, so `--check` is
+# what keeps a hand-edited numeral out — and the assertion that earns its keep is
+# the one that re-derives 120 of the 142 from the scheme alone, written
+# independently of the table it checks.
+step "the School Section's block numerals re-derive from the reading and the scheme" \
+  python3 tools/read_school_section_numerals.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_school_section_numerals.py --self-test
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is
