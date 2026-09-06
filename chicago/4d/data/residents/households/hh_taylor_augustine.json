@@ -89,6 +89,19 @@
  "touches_removal": false,
  "review_required": false,
  "research_note": "A CARPENTER IN THE YEAR THE TOWN NEEDED CARPENTERS MOST, and one of two Taylor brothers in this parcel - Anson H. Taylor hauled the lumber for the same church with his own team and has his own household. THE OCCUPATION FIELD UNDERSTATES HIM: Andreas calls him a builder and an architect and this project's vocabulary records the trade he worked in. A dedicated 'builder' value exists in the vocabulary and is used for men described only that way; carpenter is chosen here because it is what he was.",
+ "kin": [
+  {
+   "person": "taylor_augustine",
+   "relation": "brother",
+   "household": "hh_taylor_anson",
+   "value": "taylor_anson_h",
+   "confidence": "inferred",
+   "sources": [
+    "encyclopedia_chicago_church_architecture"
+   ],
+   "note": "AUGUSTINE DEODAT TAYLOR AND ANSON H. TAYLOR ARE BROTHERS. The Chicago History Museum's encyclopedia entry on church architecture distinguishes the builder of St Mary's from 'brother Anson who hauled lumber', and this parcel already carried that sentence in prose without ever writing it as a link. Graded inferred: the corpus holds this project's summary of the encyclopedia rather than a quoted page. Five Taylor households stand here; the source names Anson, so the tie reaches one. Ruled under T-0865; the sentence was rescued from a proposal to delete it as unsourced (PR #948)."
+  }
+ ],
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [
