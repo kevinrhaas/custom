@@ -78,7 +78,10 @@ pipeline and is not part of any of the above.
 at that household's edge. A family tie between two households had nowhere to go
 but a free-text note, which is to say nowhere a query can reach it — and the
 households this dataset most needs to keep apart are exactly the ones a shared
-surname makes mergeable. Six households here are Kinzies.
+surname makes mergeable. Four household cards here are Kinzies — six until
+T-0839 folded two duplicate initials cards on 2026-09-05, and T-0732 ruled on
+what the family's remaining prose claims are worth
+(`data/research/residents/kinzie_kinship_ruling.json`).
 
 `kin` is an optional household-level list. Each row is an ordinary graded claim
 block — `value` names the **other person**, so `walk_attested()` checks its
