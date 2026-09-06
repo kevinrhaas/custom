@@ -10792,7 +10792,64 @@ Related: **L225** (the barn's cupola) · **T-0883** (this) · **T-0758** (the pa
 **Covers:** `fort_dearborn_big_barn.barn_1830.form.loft`, `fort_dearborn_shop.shop_1830.form.construction`, `fort_dearborn_shop.shop_1830.form.roof_type`, `fort_dearborn_shop.shop_1830.form.roof_pitch_deg`, `fort_dearborn_shop.shop_1830.form.wall_height_m`, `fort_dearborn_shop.shop_1830.form.door`, `fort_dearborn_shop.shop_1830.form.door_side`, `fort_dearborn_shop.shop_1830.form.paint`, `fort_dearborn_wash_house.wash_house_1830.form.roof_type`, `fort_dearborn_wash_house.wash_house_1830.form.roof_pitch_deg`, `fort_dearborn_wash_house.wash_house_1830.form.wall_height_m`, `fort_dearborn_wash_house.wash_house_1830.form.door`, `fort_dearborn_wash_house.wash_house_1830.form.door_side`, `fort_dearborn_wash_house.wash_house_1830.ground_contact`.
 **Recorded:** 2026-09-06 (T-0883).
 
-### L227 — A plural label, two drawn blocks, and everything above the ground invented
+### L227 — One water cart, at the one point in the sentence that carries a location
+**Decision:** `data/yard/town_water_cart.json` stands **one** two-wheeled cart with a
+hogshead mounted at local east 1220.0, north -262.4 — the foot of Randolph Street — facing
+the water on Randolph's own bearing, unhitched, unmanned and unmarked. That a cart stood
+there on 1835-07-01, whose it was, and what the cart and the cask looked like are all
+invented. **What is not invented is that the trade existed and where it went to the water:**
+Andreas's Water Works section (`town_findings_andreas_v1#c013`) describes the vehicle —
+*"two wheeled vehicles, upon which hogsheads were mounted"* — and names the place, *"having
+driven into the lake, generally at the foot of Randolph Street"*, and brackets the era at
+both ends off the same page, the town's one public well of 10 November 1834 (`#c012`) and
+the Chicago Hydraulic Company, not chartered until 18 January 1836 (`#c014`). July 1835 sits
+inside it.
+**Why:** `docs/RESEARCH/wells.md` closed the well question by finding that this town's
+documented answer to water was not a well but a cart, and left the cart undrawn as its own
+demonstration. The position is **derived, not chosen**: the committed `randolph` centreline,
+extended on its own bearing, crosses the committed heightfield's z = 0 waterline at east
+1224.1 and the traced 1834 shoreline at east 1223.0 — two independently committed surfaces
+agreeing to 1.1 m — and the cart stands 4.1 m back from that line so its shaft tips lie on
+the wet sand. The bank falls about 1 in 7.3 over the 19 m above the waterline, which is a
+slope a cart can be driven down; that is a check on the reading, not an argument for it.
+**Consequence:** the town gains the object its own water supply ran on, at the one point in
+the whole sentence that carries a location, and gains nothing else. **The count is the
+liberty.** The source is plural about the men — *"the watermen"*, *"private enterprise"*,
+*"according to competition"* — so more than one cart worked this town and how many is
+unknown. One is drawn because the PLACE is drawn once; it is not a statement that the trade
+had one cart, and the record says so in `rule.count`.
+**What is NOT claimed, and this is most of the entry:** no second cart · no cart or barrel on
+any street of the town, because *"their journeys around town"* names no street, no route and
+no hour · **no barrel at any customer's door**, though the sentence attests the fixture
+plainly, because it identifies not one door and there is no aggregate to deal from — no
+ordinance requires a water barrel, no assessment lists one, and five to ten cents the barrel
+says the customers were some households and not all of them, so a barrel dealt to every door
+would misdescribe a paid trade as a public utility · no waterman, no team, no pail and no
+leathern hose (**L1**) · and no worn cart track, because a track is terrain and the committed
+heightfield is derived and gated, and cutting ruts into it to illustrate a sentence would put
+an invention inside a surface whose whole value is that it is not invented.
+**And the model contradicts the source about the water itself, which is recorded here rather
+than resolved:** Andreas says *the lake*, and on this project's committed 1834 surfaces the
+water at the foot of Randolph is not the lake — land runs to east 1224, water from there to
+about 1305, the **sand bar** stands dry at about +1.23 m from 1320 to 1470, and the open lake
+begins only beyond east 1478, 254 m further out. So the cart stands at the old southward
+channel behind the bar: the river-fed water the same sentence has the settlers turning away
+from. Three readings are open — that *"the lake"* is loose for the water at the end of
+Randolph, that the old channel was closed or fordable by July 1835 (Wright draws it
+narrowing and nothing in this repository dates it), or that the carts crossed the bar and the
+street name marks where they left the town. The record picks none.
+**How to resolve:** a dated account of the old southward channel's state in 1835 settles the
+water. A city or county record of licensed watermen, or a newspaper advertisement for one,
+would give the trade a count, a name and possibly a stand — and would turn the cart from
+`reconstructed` into something argued.
+Related: **L146** (the boats: the same grade for the same shape of claim, an attested class
+with unknowable individuals) · **L162** (the town's sixty-eight unhitched vehicles, whose
+cart this one reuses) · **L131** (the yard layer's barrels and the no-mark rule) · **L1** (no
+figure and no animal is drawn) · tickets **T-0759** (this), **T-0592** (the reading that
+found the trade and left it undrawn).
+**Recorded:** 2026-09-06 (T-0759).
+
+### L228 — A plural label, two drawn blocks, and everything above the ground invented
 **Decision:** `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b` stand about
 160 m south of Fort Dearborn's pickets, where the 1830 Harrison plan letters **Out Buildings**
 against a pair of solid blocks. **Where they stand, how big they are and how they are turned is
@@ -10832,7 +10889,7 @@ claimed which of the pair stood inside the outer fence and which outside: the dr
 to three pixels wide, which is a metre on the ground at this scale, and both blocks touch it.
 Nor is the pair claimed to be all of them — the label is plural over two, and a third that the
 engraver did not draw would not be visible to this reading.
-Related: **L226** (the wash house and the shop) · **L225** (the barn's cupola) · **T-0881**
+Related: **L227** (the water cart, which took this number first) · **L226** (the wash house and the shop) · **L225** (the barn's cupola) · **T-0881**
 (this) · **T-0758** (the parent) · **T-0592** (the well class this project refused the town).
 **Covers:** `fort_dearborn_out_building_a.out_building_a_1830.form.construction`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_type`, `fort_dearborn_out_building_a.out_building_a_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_a.out_building_a_1830.form.wall_height_m`, `fort_dearborn_out_building_a.out_building_a_1830.form.door`, `fort_dearborn_out_building_a.out_building_a_1830.form.door_side`, `fort_dearborn_out_building_a.out_building_a_1830.form.paint`, `fort_dearborn_out_building_b.out_building_b_1830.form.construction`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_type`, `fort_dearborn_out_building_b.out_building_b_1830.form.roof_pitch_deg`, `fort_dearborn_out_building_b.out_building_b_1830.form.wall_height_m`, `fort_dearborn_out_building_b.out_building_b_1830.form.door`, `fort_dearborn_out_building_b.out_building_b_1830.form.door_side`, `fort_dearborn_out_building_b.out_building_b_1830.form.paint`.
 **Recorded:** 2026-09-06 (T-0881).
