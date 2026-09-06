@@ -35,11 +35,11 @@
       "block_not_on_the_sheet": 0,
       "description_not_read": 3
     },
-    "structures_placed": 375,
-    "structures_reached": 63,
+    "structures_placed": 378,
+    "structures_reached": 66,
     "structures_reached_by_grade": {
-      "inferred": 14,
-      "reconstructed": 49
+      "inferred": 15,
+      "reconstructed": 51
     },
     "structures_unreached_by_section": {
       "09": 310,
@@ -1779,6 +1779,10 @@
           "margin_m": 58.4
         },
         {
+          "id": "fort_dearborn_big_barn",
+          "margin_m": 47.4
+        },
+        {
           "id": "fort_dearborn_blockhouse",
           "margin_m": 56.8
         },
@@ -1819,12 +1823,20 @@
           "margin_m": 19.5
         },
         {
+          "id": "fort_dearborn_shop",
+          "margin_m": 39.1
+        },
+        {
           "id": "fort_dearborn_store_house",
           "margin_m": 62.1
         },
         {
           "id": "fort_dearborn_sutlers_store",
           "margin_m": 24.2
+        },
+        {
+          "id": "fort_dearborn_wash_house",
+          "margin_m": 12.9
         },
         {
           "id": "jb_beaubien_homestead",
