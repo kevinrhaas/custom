@@ -1908,6 +1908,200 @@
         ]
       },
       "source": "/tmp/d10b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 198,
+      "takenAt": "2026-09-06T02:35:17.167Z",
+      "ref": "steward/t-0764-cohort-freeze-once",
+      "commit": "91c022e2c907",
+      "devCommit": "d566dc290f27",
+      "treeHash": "sha256:5998f1e2fe87cd2f",
+      "treeDirty": false,
+      "changelogHash": "sha256:27a9035c8006af2f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3,
+          1.5
+        ]
+      },
+      "source": "/tmp/smoke-desktop-12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 105,
+      "takenAt": "2026-09-06T02:35:17.084Z",
+      "ref": "steward/t-0764-cohort-freeze-once",
+      "commit": "91c022e2c907",
+      "devCommit": "d566dc290f27",
+      "treeHash": "sha256:5998f1e2fe87cd2f",
+      "treeDirty": false,
+      "changelogHash": "sha256:27a9035c8006af2f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3,
+          1.5
+        ]
+      },
+      "source": "/tmp/smoke-mobile-12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 388,
+      "takenAt": "2026-09-05T20:24:46.752Z",
+      "ref": "steward/t-0497-dalton-index",
+      "commit": "230c9028193e",
+      "devCommit": "9dcc8d09dccb",
+      "treeHash": "sha256:a863afa47f50f747",
+      "treeDirty": false,
+      "changelogHash": "sha256:68db6cecfa6557cc",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.5,
+          4.1
+        ]
+      },
+      "source": "/tmp/sm_f2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 239,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 361,
+      "takenAt": "2026-09-05T20:24:46.653Z",
+      "ref": "steward/t-0497-dalton-index",
+      "commit": "230c9028193e",
+      "devCommit": "9dcc8d09dccb",
+      "treeHash": "sha256:a863afa47f50f747",
+      "treeDirty": false,
+      "changelogHash": "sha256:68db6cecfa6557cc",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.5,
+          4.1
+        ]
+      },
+      "source": "/tmp/sm_f1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-4",
+      "parts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 248,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: the town's wagons vary in type and in the way they stand — 23 farm_box, 18 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 406,
+      "takenAt": "2026-09-05T20:23:22.891Z",
+      "ref": "steward/t-0431-south-water-clark",
+      "commit": "eb2f899a6752",
+      "devCommit": "9dcc8d09dccb",
+      "treeHash": "sha256:01dfc1907fb5ce8c",
+      "treeDirty": false,
+      "changelogHash": "sha256:97caa36658331dbb",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.1,
+          3.1,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke_m14.txt"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 330,
+      "takenAt": "2026-09-05T20:01:21.553Z",
+      "ref": "steward/t-0497-dalton-index",
+      "commit": "79382dca4128",
+      "devCommit": "8d07ef6ebad4",
+      "treeHash": "sha256:2461318ceb5ece71",
+      "treeDirty": false,
+      "changelogHash": "sha256:ad03e4aec0062279",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          4.2,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke_d5.log"
     }
   ]
 }

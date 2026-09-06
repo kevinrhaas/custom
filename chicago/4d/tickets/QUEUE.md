@@ -65,7 +65,6 @@ T-0700 — The nine ring purchasers that meet a person the town already holds ar
 # --- declared inverses. T-0734 is the measurement that ruling exists to spend: 14 of 1,404 people
 # --- carry a stated relationship to anybody, and the sources already print many more.
 T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
-T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
 
 # --- G4 — BUSINESS, OCCUPATION, AND WHERE THEY STOOD. The owner: "locations matter so capture
 # --- those too ... there are business references that have addresses later and while we don't have
@@ -346,3 +345,4 @@ T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
 T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
+
