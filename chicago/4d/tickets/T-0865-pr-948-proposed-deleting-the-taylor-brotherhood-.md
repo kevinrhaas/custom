@@ -1,5 +1,5 @@
 ---
-id: T-0861
+id: T-0865
 title: PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead
 state: done
 epic: TOWN

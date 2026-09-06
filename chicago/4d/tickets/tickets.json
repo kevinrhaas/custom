@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 12:58 AM",
+  "generated_ct": "Sep 6, 2026, 1:08 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14608,7 +14608,7 @@
     {
       "id": "T-0859",
       "title": "J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -14616,14 +14616,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "960",
+      "claimed_by": "run 9/5/2026, 11:51:14 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 170
+      "closed_at": "2026-09-06T05:16:04.635Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34009841423",
+      "queue_rank": null
     },
     {
       "id": "T-0860",
@@ -14647,23 +14647,23 @@
     },
     {
       "id": "T-0861",
-      "title": "PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead",
-      "state": "done",
-      "epic": "TOWN",
-      "requested_by": "steward",
+      "title": "Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
       "seen": false,
-      "effort": "S",
+      "effort": "M",
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": "2026-09-06",
-      "pr": "965",
-      "claimed_by": "run 9/5/2026, 11:55:23 PM CT",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": "2026-09-06T05:03:38.002Z",
+      "closed_at": null,
       "claimed_run": null,
-      "queue_rank": null
+      "queue_rank": 171
     },
     {
       "id": "T-0862",
@@ -14683,7 +14683,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 171
+      "queue_rank": 170
     },
     {
       "id": "T-0863",
@@ -14722,6 +14722,26 @@
       "blocked_on": "Duplicate of T-0841, filed first by PR #931 (T-0724), which is where the finding originated",
       "needs_bake": false,
       "closed_at": "2026-09-06T05:04:41.394Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0865",
+      "title": "PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-06",
+      "pr": "965",
+      "claimed_by": "run 9/5/2026, 11:55:23 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T05:03:38.002Z",
       "claimed_run": null,
       "queue_rank": null
     }
