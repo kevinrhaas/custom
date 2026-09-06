@@ -10,7 +10,7 @@
   "books": 176,
   "directories": 7229,
   "newberry_index": 4914,
-  "land_sales": 442,
+  "land_sales": 456,
   "old_settlers": 438
  },
  "witness": {
@@ -44,7 +44,7 @@
   },
   "land_sales": {
    "read": 953,
-   "spent": 511
+   "spent": 497
   },
   "old_settlers": {
    "read": 1094,
@@ -336,6 +336,14 @@
    "to": 438,
    "date": "2026-09-06",
    "why": "T-0837 spent the standing synthesis write, and the old-settlers roll re-derived against the moved residents layer: one name that had matched a card no longer does. No new page was read — 1,094 read is unchanged — so this is the town moving under a reading, not a reading running ahead of the town. Ruling on the 438 is T-0700's kind of work and not this ticket's."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 442,
+   "to": 456,
+   "date": "2026-09-06",
+   "why": "T-0697. The reading did not move: all 953 records still carry a ruling, before and after (verified by diffing the record_ids of matches+refusals across the change — 953 covered on both sides). What moved is how the instrument ANCHORS a ruling. ANCHOR_KEYS ranks household_id above record_ids, so a matched purchaser dedups onto ONE household and a refused one dedups onto each of the records behind it. This ticket moved 100 purchaser spellings from refusal to match — the crosswalk stopped refusing on a count of namesakes and started putting the reading to every person of the surname — and their record anchors collapsed into 100 household anchors. The domain is spent MORE (34 cards to 124, the write hop reads 139 of 139 reaching a card) and measures 14 less. The ceiling is raised by exactly that artifact."
   }
  ],
  "lowered": [
