@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 5:31 AM",
+  "generated_ct": "Sep 6, 2026, 5:47 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13608,7 +13608,7 @@
     {
       "id": "T-0798",
       "title": "Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13618,11 +13618,11 @@
       "opened": "2026-09-05",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/6/2026, 5:47:10 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34028090901",
       "queue_rank": 6
     },
     {
