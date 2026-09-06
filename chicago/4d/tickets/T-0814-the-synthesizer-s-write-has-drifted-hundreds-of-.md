@@ -1,7 +1,7 @@
 ---
 id: T-0814
 title: The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-05
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 3:21:30 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T20:24:23.177Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649
 ---
 
 The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card.
