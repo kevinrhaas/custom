@@ -270,6 +270,28 @@
       "reasoning": "T-0883. One gable roof on the fort's shop, placed off the 1830 Harrison plan and corroborated by nothing — it is the one of the three that has a single witness. W4 (small artisan shop) IS CHOSEN BECAUSE IT NAMES NO TRADE, which is the record's own position: the plate says 'Shop' and this project does not know whether it was the smith's or the carpenter's. W3's band would fit 32 x 24 ft exactly and W4's 14-20 by 20-30 ft does not, and the trade-neutral family is taken anyway, because a family label here is a roof-counting convenience and a trade would be a claim. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand — this building is the eleventh, twelfth or thirteenth. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these three are service buildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
     },
     {
+      "structure_id": "fort_dearborn_out_building_a",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "A5",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "low",
+      "reasoning": "T-0881. One gable roof on the larger of the two blocks the 1830 Harrison plan letters `Out Buildings` \u2014 plural, and drawn twice, which is the correction this ticket made to its own premise. A5 (small utility) IS CHOSEN BECAUSE IT NAMES NO USE, which is the record's own position: `Out buildings` says what a building is not, and a post's out buildings are privies, wood sheds, stores and pens. 24 x 19 ft sits just above A5's 6-8 by 12-16 ft band; the family is taken anyway, because a family label here is a roof-counting convenience and a use would be a claim. Confidence is low and not moderate: one witness, pre-1835 by five years, and no second source mentions these buildings at all. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand \u2014 this building is one more above them, exactly as the three service buildings T-0883 added are. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these are outbuildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
+      "structure_id": "fort_dearborn_out_building_b",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "A5",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "low",
+      "reasoning": "T-0881. One shed roof on the smaller of that pair, 7.0 m north-east of it \u2014 about 13 x 10 ft, which is inside A5's own band and is the only one of the five fort outbuildings this crosswalk holds whose footprint the family actually fits. Same single witness, same refusal to name a use. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand \u2014 this building is one more above them, exactly as the three service buildings T-0883 added are. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these are outbuildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
       "structure_id": "fort_dearborn_artillery_house",
       "district": "fort",
       "roof_count": 1,
