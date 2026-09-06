@@ -8,7 +8,7 @@
   "census_1840": 284,
   "church": 488,
   "books": 176,
-  "directories": 7228,
+  "directories": 7229,
   "newberry_index": 4914,
   "land_sales": 442,
   "old_settlers": 437
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8257,
-   "spent": 1029
+   "spent": 1028
   },
   "newberry_index": {
    "read": 7005,
@@ -320,6 +320,14 @@
    "to": 0,
    "date": "2026-09-06",
    "why": "T-0678: both crosswalks state their source at the top of the file, so no ruling here reaches a person without saying what it rests on. Zero, and held there."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7228,
+   "to": 7229,
+   "date": "2026-09-06",
+   "why": "T-0724, re-applied after merging dev. The ruling this retires is the same one the ticket retired the first time: the 1843 and 1844 crosswalks each held a refusal reading 'the surname Horn is in Fergus 1843 and no entry under it carries the initial C of Cornelius C Van Horn', which existed only because the splitter truncated Van Horn to Horn. With the compound surname read whole there is no Van Horn in either directory to refuse. dev's own ceiling moved to 7228 under T-0839 while this branch was in flight, so the +1 is applied once more on top of it. Read count unmoved; no name went unread."
   }
  ],
  "lowered": [
