@@ -111,6 +111,9 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from identity_master_guard import (  # noqa: E402  (T-0843)
+    IdentityGuard, blind_person_ids, refusal as guard_refusal,
+)
 
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
@@ -518,13 +521,19 @@ def letter_list_pool(register: dict, own_pass: frozenset[str] = frozenset()) -> 
 
 
 def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
-                   in_town: set[str]):
-    """The eight refusals, in order, over an already-ranked list of candidates.
+                   in_town: set[str], guard=None, blind=frozenset()):
+    """The nine refusals, in order, over an already-ranked list of candidates.
 
     Held apart from `mint` because --scale-report prices a DIFFERENT cohort out of
     the same pool, and the price is only worth anything if it is paid through these
     exact rules rather than a second implementation of them that could drift.
     Refusal 8 depends on the order it is handed, so ranking is the caller's job.
+
+    `guard` is T-0843's ninth refusal — the identity master, consulted for the
+    surnames the proxy in `known` is entitled not to see. It is a PARAMETER and not a
+    module-level load because the caller owns the precedence: `blind` has to be the
+    same households `known` skipped, and only the caller knows which cohort it is
+    pricing. A caller that hands none gets the eight rules it always had.
     """
     taken: set[str] = set()
     accepted, refusals = [], []
@@ -552,6 +561,8 @@ def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
                       + "; ".join(outside) + ")")
         elif fam in known:
             reason = f"the town already names a {fam.title()}"
+        elif guard is not None and (hit := guard.holder(name, blind_to=blind)) is not None:
+            reason = guard_refusal(hit)
         elif fam in taken:
             reason = "surname already minted"
         if reason:
@@ -602,12 +613,20 @@ def mint(docs: dict, index: dict):
     register = load(REGISTER)
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_family_names(docs, index)
+    # T-0843. The surname test above skips this pass's own households — refusal 7's
+    # precedence rule — which is exactly where a duplicate it minted last run would
+    # hide. The identity master resolves on surname AND forename signature, so it
+    # sees the collision the proxy cannot; it is consulted blind to the same
+    # households, so this pass stays re-derivable against its own output.
+    guard = IdentityGuard.load()
+    blind = blind_person_ids(
+        docs, lambda path, doc: minted_by(path, doc, "letter_list", PREFIX))
     in_town = in_town_places()
     own_pass = frozenset(doc["head"] for doc in docs.values()
                          if doc.get("source_pass") == "letter_list")
 
     return apply_refusals(rank(letter_list_pool(register, own_pass), gazetteer),
-                          gazetteer, known, in_town)
+                          gazetteer, known, in_town, guard=guard, blind=blind)
 
 
 # ---------------------------------------------------------------------------

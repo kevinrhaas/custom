@@ -2164,6 +2164,21 @@ step "…and its own assertions still fire when broken" \
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
 
+# T-0843, the OTHER half of T-0839. `consolidate_town_cards.py --check` above gates that
+# every duplicate cluster the town already holds carries a written ruling; that is ruling
+# coverage, and it says nothing about the next duplicate. Three of the four minting passes
+# test "does the town already carry this person?" by SURNAME, and that proxy is partial by
+# design — each skips the households minted by itself and by the passes below it, so a card
+# one of those wrote is invisible to it. `identity_master_guard.py` is the precise
+# instrument for that blind spot: it hands a candidate name to the master's own `cluster()`,
+# inside its own surname bucket, with every identity of that surname standing as an anchor
+# whether it holds a card or not, and refuses only where the master itself merges. Gated
+# because the whole value of it is that it is the master's answer and not a hand copy — a
+# first draft written out by hand reported 19 committed cards as duplicates where the master
+# reports 2, because a copy of M2 cannot see the rivals that HOLD a merge apart.
+step "the mints' consultation of the identity master is the master's own rules" \
+  python3 tools/identity_master_guard.py --self-test
+
 # T-0512, the second half of the owner's publish ask. The final audit is the one file that
 # says, for every person in the town, what they rest on — which ticket reviewed them, which
 # source ids stand behind them by category, and what is still open. It is DERIVED from the
