@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The last name on the shore drawing is a schoolhouse of 1844', kind: 'change', ts: '',
+  { v: 651, title: 'The last name on the shore drawing is a schoolhouse of 1844', kind: 'change', ts: '2026-09-06T21:30:28.718Z', date: 'Sep 6, 2026, 4:30 PM CT',
     items: [
       'A drawing of the Chicago shore was deposited here a few days ago \u2014 a log schoolhouse with a woman in its doorway, children streaming along the bank, three canoes, and a small white lighthouse on a point beyond. It came with a social-media filename and nothing else: no artist, no date, no book, no repository. Nothing in the town has been allowed to rest on it since.',
       'The four books a reader would assume it came from were closed a day or two ago by reading their lists of illustrations rather than their text. That left exactly one lead, and it was a name: a Chicago artist who issued a print called Chicago\u2019s First School House around 1925 for a local studio. It was written down as untested on purpose, because the lead rested on two auction titles and nobody had seen the picture \u2014 and the phrase first school house is also used for a completely different building. The rule set at the time was that the artist may not be cited anywhere in this project until the two pictures are put side by side.',
