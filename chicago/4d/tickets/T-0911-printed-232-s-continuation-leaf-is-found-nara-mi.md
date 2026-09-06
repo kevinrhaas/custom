@@ -1,7 +1,7 @@
 ---
 id: T-0911
 title: Printed 232's continuation leaf is found: NARA microfilm M704 roll 57 leaf n167, landed as a source and paired to the page on both of T-0642's keys
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0736
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1007
 claimed_by: run 9/6/2026, 5:18:09 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T22:50:48.035Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34061858818
 ---
 

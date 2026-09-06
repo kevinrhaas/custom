@@ -93,7 +93,6 @@ T-0810 — The OCR re-read of Newberry volume 4 has never been checked for colum
 T-0716 — Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
-T-0911 — Printed 232's continuation leaf is found: NARA microfilm M704 roll 57 leaf n167, landed as a source and paired to the page on both of T-0642's keys
 T-0912 — Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
