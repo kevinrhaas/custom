@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 2:49 AM",
+  "generated_ct": "Sep 6, 2026, 3:08 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14884,6 +14884,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 174
+    },
+    {
+      "id": "T-0874",
+      "title": "The placement derivation module cannot express a frontage on a street that is not axis-aligned, so the north bank's houses all read not_derivable",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
     }
   ]
 }

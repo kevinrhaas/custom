@@ -2907,26 +2907,26 @@
       "trade_confidence": "attested",
       "why_goods": "a public house takes its provisions in by the barrel and puts the empties back out",
       "confidence": "reconstructed",
-      "facade_bearing_deg": 180.0,
+      "facade_bearing_deg": 131.4,
       "frontage_m": 15.0,
       "usable_frontage_m": 14.0,
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          968.0,
-          291.0
+          948.2,
+          246.77
         ],
         [
-          953.0,
-          291.0
+          938.28,
+          235.52
         ],
         [
-          953.0,
-          283.0
+          944.28,
+          230.23
         ],
         [
-          968.0,
-          283.0
+          954.2,
+          241.48
         ]
       ],
       "items": [
@@ -2934,10 +2934,10 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            967.19,
-            282.45
+            954.08,
+            240.51
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "CIDER"
@@ -2950,10 +2950,10 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            966.57,
-            282.45
+            953.67,
+            240.04
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "VINEGAR"
@@ -2966,10 +2966,10 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            965.95,
-            282.45
+            953.26,
+            239.58
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "STEAMBOAT HOTEL"
@@ -2982,10 +2982,10 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            965.33,
-            282.45
+            952.85,
+            239.11
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "PORK"
@@ -2998,10 +2998,10 @@
           "kind": "barrel",
           "pose": "laid",
           "at_local_enu_m": [
-            964.36,
-            282.45
+            952.21,
+            238.39
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "SALT"
@@ -3014,10 +3014,10 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            963.03,
-            282.45
+            951.33,
+            237.39
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "STEAMBOAT HOTEL",
@@ -3031,10 +3031,10 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            963.03,
-            282.45
+            951.33,
+            237.39
           ],
-          "bearing_deg": 180.0,
+          "bearing_deg": 131.4,
           "mark": {
             "lines": [
               "TEA"

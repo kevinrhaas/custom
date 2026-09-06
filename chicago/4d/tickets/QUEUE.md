@@ -360,3 +360,4 @@ T-0871 — The residents-manifest rebuild has no self-test and silently accepts 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0868 — Norris 1844 normalizes 'Jones, B. & Co. dry goods and groceries' as a person, not a firm, so the firm filter never sees it
+T-0874 — The placement derivation module cannot express a frontage on a street that is not axis-aligned, so the north bank's houses all read not_derivable
