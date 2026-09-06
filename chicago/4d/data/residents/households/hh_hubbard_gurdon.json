@@ -18,9 +18,13 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "Montreal, where his parents then lived; born at Windsor, Vermont",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_antiquities_american_fur_co",
+   "calumet_club_early_chicago_1879"
+  ],
+  "note": "THE OTHER HALF OF THE ARRIVAL THIS RECORD ALREADY CARRIES. Hurlbut's chapter gives the departure with its date - \"Mr. Hubbard left Montreal, were his parents then lived, May 13, 1818\" - and the sentence before it gives the birth - \"He was born in Windsor, Vt., in 1802\" (bk_afc_004; data/research/books/text/hurlbut_chicago_antiquities_28_36.txt lines 32-33). The birthplace is there a second time and from the man himself: the Calumet Club's register of 27 May 1879 prints a BIRTHPLACE column, and his entry reads \"Hubbard, Gurdon S. | 1818, Oct. 1, | Windsor, Vt. | 76 | 243 White St., Chicago.\" (os1879r078, data/research/old_settlers/people.json). WHY MONTREAL IS THE VALUE AND WINDSOR IS IN IT TOO. `origin` is where a household came FROM, and this corpus writes the route rather than one place wherever a source gives one - hh_maxwell_philip.json reads \"Sackett's Harbor, New York; born at Guilford, Vermont\" for the same shape of life. Hubbard left from Montreal and was born at Windsor; the semicolon holds the two apart rather than letting a birthplace pass for a departure. HE DID NOT ARRIVE AS A HOUSEHOLD, AND THIS FIELD DOES NOT SAY HE DID. He came at sixteen as one of the clerks the American Fur Company brought from Montreal to Mackinaw in 1817-18, seventeen years before the scene, and `party_size_on_arrival` stays null because the source counts nobody with him. The `arrival` above already carries the end of that same journey, at this grade and for this reason (T-0594); its origin is the other half of one claim and not a second one. THE GRADE IS THE SENTENCE'S AND NOT THE MAN'S: the passage stands outside the quotation marks that open four lines later at \"Having entire charge of the management of the company in the West\", so it is Henry H. Hurlbut compiling in 1881, which data/sources/chicago_antiquities_american_fur_co.json grades rung 4 and forbids being used as period evidence; the 1879 register is the man's own recollection at sixty years' distance, which under the ratified ladder (T-0513) corroborates and dates and cannot lift a rung. HIS PARENTS ARE NAMED AND ARE NOT MINTED: \"parents were Elizur and Abigail (Sage) Hubbard\", who were living at Montreal in 1818. Nothing this project holds puts either of them in Chicago on any date, so they are recorded here in prose and nowhere as persons of a town they are not attested in (T-0753)."
  },
  "reason_for_coming": {
   "value": null,
@@ -56,6 +60,15 @@
    "grade": "attested",
    "ladder_rule": "G1a",
    "sex": "male",
+   "birth_year": {
+    "value": 1802,
+    "confidence": "inferred",
+    "sources": [
+     "chicago_antiquities_american_fur_co",
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "\"He was born in Windsor, Vt., in 1802\" - Hurlbut, Chicago Antiquities (1881), pages 28-36 (bk_afc_004; data/research/books/text/hurlbut_chicago_antiquities_28_36.txt line 32). A SECOND SOURCE AGREES WITHOUT BEING ASKED, and it is the man himself: the Calumet Club's Old Settlers' register of 27 May 1879 records his age as 76 (os1879r078), which puts the birth between 28 May 1802 and 27 May 1803 and contains the printed year; its BIRTHPLACE column gives \"Windsor, Vt.\" for the second time. INFERRED AND NOT ATTESTED, on whose voice the sentence is in. It stands outside the quotation marks that open four lines later, so it is the compiler writing in 1881 and data/sources/chicago_antiquities_american_fur_co.json grades that layer rung 4; the register is a recollection set down sixty years after the fact, which under the ratified ladder (T-0513) corroborates and dates and cannot lift a rung by itself. NO AGE IS WRITTEN FOR THE SCENE DATE. A year without a day makes this man 32 or 33 on 1 July 1835 and no source here gives the month, so a single number would pick one of the two on the reader's behalf - the same refusal the arrival's `either_of_two_days` precision makes on this record already. The chapter's own \"then a youth of sixteen\" for May 1818 is the compiler's round figure beside his own printed year and is not read as a second date (T-0753)."
+   },
    "occupation": {
     "value": "packer",
     "confidence": "attested",
@@ -69,6 +82,7 @@
     "calumet_club_early_chicago_1879",
     "census_1840_chicago_familysearch_images",
     "chicago_american_1835",
+    "chicago_antiquities_american_fur_co",
     "chicago_democrat_1833_1835",
     "chicago_voter_lists_1833_1835_irad",
     "fergus_chicago_directory_1843",

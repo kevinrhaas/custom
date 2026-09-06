@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 609, title: 'Where Gurdon Hubbard was born, and where he came from', kind: 'change', ts: '2026-09-06T00:38:01.671Z', date: 'Sep 5, 2026, 7:38 PM CT',
+    items: [
+      'Gurdon Hubbard \u2014 fur trader, meat packer, one of the best-known men in the town \u2014 has had a card here for months that could not say where he was born or where he came from. Both fields read \u201Cnot attested in anything this project holds.\u201D They were, and in two places.',
+      'Henry Hurlbut\u2019s 1881 chapter on the American Fur Company, read for this project last week, prints it in one sentence: \u201CHe was born in Windsor, Vt., in 1802 and parents were Elizur and Abigail (Sage) Hubbard.\u201D The sentence after it is the one already on his card \u2014 that he left Montreal, where his parents then lived, on 13 May 1818 and reached Chicago at the end of October. The card had taken the arrival out of it and left the birth and the departure sitting there unread.',
+      'A second source agrees, and it is Hubbard himself. When the Calumet Club gathered Chicago\u2019s old settlers in 1879 he registered in his own hand, and the register\u2019s columns give his birthplace as Windsor, Vt. and his age as 76 \u2014 which puts the birth in the year Hurlbut printed.',
+      'So his card now reads: born 1802, came from Montreal, where his parents then lived; born at Windsor, Vermont. Both are graded inferred rather than attested, because the sentence is the compiler\u2019s and not the man\u2019s \u2014 it stands outside the quotation marks where Hubbard speaks four lines further down \u2014 and because a register of 1879 is a recollection sixty years after the fact.',
+      'Two things the record refuses to say. It gives no age for 1 July 1835: a year without a day makes him 32 or 33 and naming one would be choosing for the reader. And his parents, named by the source and living at Montreal in 1818, are written into the reasoning and not into the town \u2014 nothing here puts either of them in Chicago on any date.',
+    ] },
   { v: 608, title: 'Eleven townspeople and the land sale that proves they stayed', kind: 'change', ts: '2026-09-05T23:58:19.109Z', date: 'Sep 5, 2026, 6:58 PM CT',
     items: [
       'In June 1839 the ground the fort had stood on was cut into lots and auctioned, and Fergus\u2019 Chicago directory printed the whole sale \u2014 every lot, every bidder, every price. A hundred men bid. Fifteen of them are people this town already holds a card for.',
