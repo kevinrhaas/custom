@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A digit read twice, and a census page that disagreed with itself', kind: 'fix', ts: '',
+  { v: 616, title: 'A digit read twice, and a census page that disagreed with itself', kind: 'fix', ts: '2026-09-06T02:58:11.217Z', date: 'Sep 5, 2026, 9:58 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the last leaf of the 1830 federal census district that contained Chicago, on which the enumerator’s copyist added up the five pages of names before it.',
       'His column has never agreed with the pages it totals. Read a fortnight ago it gave 53 / 56 / 88 / 28 / 22 families, summing to 247 and not to the 199 he wrote underneath, while the leaves themselves carry 55 / 56 / 39 / 28 / 22 = 200 heads of family. Two of his five cells were out. The project wrote that down, refused to prefer whichever figure was convenient, and filed a re-count.',
