@@ -10,12 +10,12 @@ legacy_id: null
 parent: null
 opened: 2026-09-05
 closed: 2026-09-05
-pr: 951
-claimed_by: run 9/5/2026, 9:08:28 PM CT
+pr: 952
+claimed_by: run 9/5/2026, 9:21:37 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-06T02:29:28.462Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34005533213
+closed_at: 2026-09-06T02:35:51.572Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34006144198
 ---
 
 A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed.

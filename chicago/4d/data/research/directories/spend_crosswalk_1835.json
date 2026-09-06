@@ -9613,7 +9613,7 @@
    "outcome": "matched",
    "person_id": "perry_a_8",
    "household_id": "hh_perry_a_8",
-   "resident": "A. 8. Perry",
+   "resident": "A. [?] Perry",
    "volume": "fergus_1839",
    "source_id": "fergus_chicago_directory_1839",
    "source_ids": [
@@ -9635,7 +9635,7 @@
    "outcome": "matched",
    "person_id": "perry_a_8",
    "household_id": "hh_perry_a_8",
-   "resident": "A. 8. Perry",
+   "resident": "A. [?] Perry",
    "volume": "fergus_1843",
    "source_id": "fergus_chicago_directory_1843",
    "source_ids": [
@@ -9657,7 +9657,7 @@
    "outcome": "matched",
    "person_id": "perry_a_8",
    "household_id": "hh_perry_a_8",
-   "resident": "A. 8. Perry",
+   "resident": "A. [?] Perry",
    "volume": "norris_1844",
    "source_id": "norris_directory_1844",
    "source_ids": [

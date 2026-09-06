@@ -48,10 +48,10 @@
      "business_s_abell_attorney_and_counsellor",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 31,
+    "would_still_refuse": 30,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 24,
+     "the face holds no roof standing on it": 23,
      "this face already holds this proprietor": 7,
      "every roof on the face is spoken for": 0
     }
@@ -67,12 +67,12 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 21,
+    "would_still_refuse": 20,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 2,
      "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 11
+     "every roof on the face is spoken for": 10
     }
    },
    "a corner side or the band is a face": {
@@ -87,27 +87,27 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 21,
+    "would_still_refuse": 20,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 0,
      "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 13
+     "every roof on the face is spoken for": 12
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 60,
+  "street_only_in_register": 59,
   "adopted": 39,
-  "refused": 21,
+  "refused": 20,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 2,
    "this face already holds this proprietor": 8,
-   "every roof on the face is spoken for": 11
+   "every roof on the face is spoken for": 10
   },
-  "unplaceable_present_at_scene_date": 73,
+  "unplaceable_present_at_scene_date": 72,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -125,7 +125,7 @@
    },
    "dearborn": {
     "street_name": "Dearborn Street",
-    "businesses_naming_it": 18,
+    "businesses_naming_it": 17,
     "adopted": 6,
     "roofs_lot_front": 0,
     "roofs_corner_side": 18,
@@ -1313,14 +1313,6 @@
   {
    "business_id": "business_george_holsman",
    "business_name": "George Holsman",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_h_c_bennett",
-   "business_name": "H. C. Bennett",
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",

@@ -58601,8 +58601,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "note": "The firm advertises three times in this issue and gives no address in any of them; it is placed only by a later advertiser who takes an office 'one door east of Brewster, Hogan & Co.' on South Water Street (1833-12-17 c007)."
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -58661,16 +58663,6 @@
           }
         }
       ],
-      "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
-        "first_issue": "1834-03-04",
-        "claims": [
-          "chicago_democrat_1834_03_04#c010"
-        ],
-        "superseded": {
-          "class": "none"
-        }
-      },
       "built_at_scene_date": false,
       "survival_liberty_required": false
     },
@@ -58803,7 +58795,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1835-06-13",
         "claims": [
           "chicago_american_1835_06_13#c014",
@@ -59508,7 +59500,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-06-11",
         "claims": [
           "chicago_democrat_1834_06_11#c005",
@@ -60345,7 +60337,10 @@
       ],
       "street": null,
       "placement": {
-        "class": "street_only"
+        "class": "none",
+        "anchor": null,
+        "offset_text": null,
+        "note": "No address is advertised; Carver's own store house and lumber yard are announced four weeks later (1833-12-31 c002) and are also unplaced."
       },
       "evidence": {
         "first_issue": "1833-12-03",
@@ -60425,19 +60420,6 @@
           "merge_rule": "'David Carver' and 'David Carver, storage, commission and lumber' are one house, and the witness is a single standing advertisement: 'Storage, Commission and Lumber Business', copy-dated 1834-02-25, printed at 1834-02-25 c003 and 1834-03-04 c006 in the first record and at 1834-04-01 c006 in the second. Same copy date, same trade, same man, and neither printing gives an address."
         }
       ],
-      "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
-        "first_issue": "1834-02-25",
-        "claims": [
-          "chicago_democrat_1834_02_25#c003",
-          "chicago_democrat_1834_06_04#c010",
-          "chicago_democrat_1834_06_11#c009",
-          "chicago_democrat_1834_06_18#c010"
-        ],
-        "superseded": {
-          "class": "none"
-        }
-      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -61659,7 +61641,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1835-06-13",
         "claims": [
           "chicago_american_1835_06_13#c018"
@@ -61833,11 +61815,13 @@
       ],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
-      "street": "South Water Street",
+      "street": "Dearborn Street",
       "placement": {
         "class": "relative",
-        "anchor": "the corner of Franklin and South Water streets",
-        "offset_text": "FFICE second door west\nof Franklin and South W"
+        "anchor": "the Tremont House",
+        "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+        "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+        "street": "Dearborn Street"
       },
       "evidence": {
         "first_issue": "1833-12-17",
@@ -61983,6 +61967,174 @@
           "merge_rule": "'Giles Spring' is 'G. Spring' with the forename printed whole, and one card ties the two forms together: BOTH records carry the copy date Dec. 3, 1834 — 'G. Spring' at 1834-12-03 among its copy dates, 'Giles Spring' at 1834-11-12 c008 and 1834-11-26 c009 — and both set the office 'second door west from the corner of Franklin and South Water streets'. The removal is printed on both sides too: 'Giles Spring' takes the office first door north from the Tremont House on Dearborn-street at 1835-05-20 c022, and 'G. Spring' prints the same removal at 1835-08-05 c019. One attorney, one office, one move. Merged INTO 'G. Spring' because that record holds ten printings against three and both anchors across the whole run."
         }
       ],
+      "anchor_change": {
+        "rule": "Giles Spring's office card is reset once. From 1833-12-17 to 1834-11-26 every printing sets the office 'second door west from the corner of Franklin and South Water streets', on the copy date 17 December 1833. From 1835-05-20 the card is a different one — copy-dated 3 December 1834, seven days after the last printing of the old address — and it reads 'OFFICE, first door north from the Tremont House, on Dearborn-street'. These are two crossings of this town and not two spellings of one: Franklin and South Water is on the river's south bank at the west end of the business row, and the first Tremont House stands at the north-west corner of Lake and Dearborn, some four blocks east of it. The identity merge of 'Giles Spring' into 'G. Spring' already reads both cards off the page and says the second one moves him; this rule is that reading applied to the placement, not a new judgement. The corpus carries no printing of either card between 1834-11-26 and 1835-05-20, so the change is bracketed by those two dates and no closer — with the copy date of 3 December 1834 saying only when the new card was WRITTEN, which is not the same as when the office moved.",
+        "cannot_say": "WHEN THE OFFICE ACTUALLY MOVED, AND WHETHER IT MOVED AT ALL. A card copy-dated 3 December 1834 that first appears in this deposit on 20 May 1835 leaves five and a half months in which nothing printed here says where Spring sat; the deposit is not the paper's whole run, so the new address may have been printed weeks or months before the issue that carries it, and the old one may have gone on running beside it in issues this project does not hold. Nor does anything printed say that ONE office moved rather than that a lawyer who had rooms on South Water Street took rooms on Dearborn Street: both would read exactly like this. What the rule decides is only which anchor the card is printed under at the scene date of 1835-07-01 — the Tremont House, first printed 20 May 1835 and printed again 5 August 1835 — and that is a statement about the ADVERTISEMENT. The earlier anchor is kept with its own dates and its own eleven printings so a later pass can still tell a removal from a second office. The Dearborn address is itself a count of doors, 'first door north from the Tremont House': it fixes a side of Dearborn Street and an order along it, not a lot width, and no lot is claimed for it here.",
+        "live_anchor": "the Tremont House",
+        "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1835-05-20.",
+        "changes": [
+          {
+            "from": "the corner of Franklin and South Water streets",
+            "to": "the Tremont House",
+            "after": "1834-11-26",
+            "before": "1835-05-20"
+          }
+        ],
+        "history": [
+          {
+            "anchor": "the corner of Franklin and South Water streets",
+            "why": "Four readings of one crossing, 'the corner of Franklin and South Water streets', differing only in how much of the sentence the reading pass carried into the anchor field and, once, in what the ink left legible. 1833-12-17 / 1834-01-28 / 1834-03-04 / 1834-06-11 / 1834-08-20 / 1834-11-12 / 1834-11-26 and 1834-09-03 carry the words whole; 1834-05-28 drops the leading 'the corner of' and is read as a corner; 1834-07-09 hyphenates 'South Water-streets'; and 1834-10-15 sets the line so badly ('PEHICE second door vcot from tho corner ee / of Frankli s') that the reading could only carry 'the corner of Franklin [street]' with the second street name lost to the type. Every one of them is the same card, copy-dated 17 December 1833, counting the same two doors west from the same crossing, and the street each names is kept in its own reading, so no word is lost by grouping them.",
+            "first_issue": "1833-12-17",
+            "last_issue": "1834-11-26",
+            "readings": [
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "class": "relative",
+                "first_issue": "1833-12-17",
+                "last_issue": "1834-11-26",
+                "claims": [
+                  "chicago_democrat_1833_12_17#c004",
+                  "chicago_democrat_1834_01_28#c006",
+                  "chicago_democrat_1834_03_04#c030",
+                  "chicago_democrat_1834_06_11#c004",
+                  "chicago_democrat_1834_08_20#c003",
+                  "chicago_democrat_1834_11_12#c008",
+                  "chicago_democrat_1834_11_26#c009"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the corner of Franklin and South Water streets",
+                  "offset_text": "FFICE second door west from",
+                  "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+                  "street": "South Water Street",
+                  "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
+                }
+              },
+              {
+                "anchor": "Franklin and South Water streets",
+                "class": "corner",
+                "first_issue": "1834-05-28",
+                "last_issue": "1834-05-28",
+                "claims": [
+                  "chicago_democrat_1834_05_28#c009"
+                ],
+                "placement": {
+                  "class": "corner",
+                  "anchor": "Franklin and South Water streets",
+                  "street": "Franklin Street and South Water Street"
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water-streets",
+                "class": "relative",
+                "first_issue": "1834-07-09",
+                "last_issue": "1834-07-09",
+                "claims": [
+                  "chicago_democrat_1834_07_09#c021"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the corner of Franklin and South Water-streets",
+                  "offset_text": "ICE second door west from the corner\nf Franklin and South Water-streets.",
+                  "offset_normalized": "OFFICE second door west from the corner of Franklin and South Water-streets",
+                  "street": "South Water Street"
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "class": "corner",
+                "first_issue": "1834-09-03",
+                "last_issue": "1834-09-03",
+                "claims": [
+                  "chicago_democrat_1834_09_03#c015"
+                ],
+                "placement": {
+                  "class": "corner",
+                  "anchor": "the corner of Franklin and South Water streets",
+                  "offset_text": "OFFICE second door west from the corner",
+                  "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+                  "street": "South Water Street"
+                }
+              },
+              {
+                "anchor": "the corner of Franklin [street]",
+                "class": "relative",
+                "first_issue": "1834-10-15",
+                "last_issue": "1834-10-15",
+                "claims": [
+                  "chicago_democrat_1834_10_15#c002"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the corner of Franklin [street]",
+                  "offset_text": "PEHICE second door vcot from tho corner ee\nof Frankli s ‘ -) .",
+                  "offset_normalized": "[OF]FICE second door [w]e[s]t from the corner of Frankli[n street]",
+                  "street": "Franklin Street"
+                }
+              }
+            ],
+            "claims": [
+              "chicago_democrat_1833_12_17#c004",
+              "chicago_democrat_1834_01_28#c006",
+              "chicago_democrat_1834_03_04#c030",
+              "chicago_democrat_1834_05_28#c009",
+              "chicago_democrat_1834_06_11#c004",
+              "chicago_democrat_1834_07_09#c021",
+              "chicago_democrat_1834_08_20#c003",
+              "chicago_democrat_1834_09_03#c015",
+              "chicago_democrat_1834_10_15#c002",
+              "chicago_democrat_1834_11_12#c008",
+              "chicago_democrat_1834_11_26#c009"
+            ],
+            "live_at_scene_date": false,
+            "placement": {
+              "class": "relative",
+              "anchor": "the corner of Franklin and South Water streets",
+              "offset_text": "FFICE second door west from",
+              "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+              "street": "South Water Street",
+              "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
+            }
+          },
+          {
+            "anchor": "the Tremont House",
+            "why": null,
+            "first_issue": "1835-05-20",
+            "last_issue": "1835-08-05",
+            "readings": [
+              {
+                "anchor": "the Tremont House",
+                "class": "relative",
+                "first_issue": "1835-05-20",
+                "last_issue": "1835-08-05",
+                "claims": [
+                  "chicago_democrat_1835_05_20#c022",
+                  "chicago_democrat_1835_08_05#c019"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the Tremont House",
+                  "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+                  "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+                  "street": "Dearborn Street"
+                }
+              }
+            ],
+            "claims": [
+              "chicago_democrat_1835_05_20#c022",
+              "chicago_democrat_1835_08_05#c019"
+            ],
+            "live_at_scene_date": true,
+            "placement": {
+              "class": "relative",
+              "anchor": "the Tremont House",
+              "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+              "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+              "street": "Dearborn Street"
+            }
+          }
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -62302,7 +62454,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1833-11-26",
         "claims": [
           "chicago_democrat_1833_11_26#c019",
@@ -62958,7 +63110,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-08-27",
         "claims": [
           "chicago_democrat_1834_08_27#c008"
@@ -64152,8 +64304,11 @@
       ],
       "street": "South Water Street",
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "relative",
+        "anchor": "the Post Office",
+        "offset_text": "in South Water Street, one\nthe Post Office",
+        "offset_normalized": "in South Water Street, one [door … of] the Post Office",
+        "street": "South Water Street"
       },
       "evidence": {
         "first_issue": "1834-03-25",
@@ -64242,6 +64397,23 @@
           "merge_rule": "'John S. C. Hogan' is 'J. S. C. Hogan' with the forename printed whole, and the printing that ties the two forms is the Brewster, Hogan & Co. dissolution — set at 1834-03-04 c010 and again at 1834-06-11 c002, where the record 'John S. C. Hogan' comes from. Its tail reads 'The business will be continued at the old stand, by Jno. S. C. Hogan, where he intends keeping on hand a general assortment as heretofore', the March printing puts the dissolved firm's stand in South Water Street, and from 25 March 1834 (c010) 'J. S. C. HOGAN' advertises on his own account in that street, with 'general assortment' among the goods, one door from the Post Office he kept (1834-08-13 c017). Same man, same trade, same street, three weeks apart. Merged INTO 'J. S. C. Hogan': that is the record that can be placed — the succession notice states no address at all, and the merge does not give it one, since the Post Office anchor it inherits is the store's own printing and not the notice's."
         }
       ],
+      "placement_from": {
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
+        "first_issue": "1834-08-13",
+        "claims": [
+          "chicago_democrat_1834_08_13#c017",
+          "chicago_democrat_1834_08_20#c007",
+          "chicago_democrat_1834_09_03#c023",
+          "chicago_democrat_1834_11_19#c009",
+          "chicago_democrat_1834_12_03#c013",
+          "chicago_democrat_1834_12_17#c009",
+          "chicago_democrat_1835_05_20#c016",
+          "chicago_democrat_1835_07_01#c002"
+        ],
+        "superseded": {
+          "class": "street_only"
+        }
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -65277,7 +65449,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-09-10",
         "claims": [
           "chicago_democrat_1834_09_10#c008"
@@ -65554,7 +65726,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-11-19",
         "claims": [
           "chicago_democrat_1834_11_19#c011"
@@ -66951,8 +67123,9 @@
       ],
       "street": null,
       "placement": {
-        "class": "street_only",
-        "anchor": null
+        "class": "relative",
+        "anchor": "Fort Dearborn",
+        "offset_text": "opposite to Fort Dearborn"
       },
       "evidence": {
         "first_issue": "1833-11-26",
@@ -67029,11 +67202,10 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
-        "first_issue": "1834-03-04",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
+        "first_issue": "1834-05-14",
         "claims": [
-          "chicago_democrat_1834_03_04#c021",
-          "chicago_democrat_1834_05_07#c009"
+          "chicago_democrat_1834_05_14#c007"
         ],
         "superseded": {
           "class": "none"
@@ -67943,7 +68115,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-05-07",
         "claims": [
           "chicago_democrat_1834_05_07#c010",
@@ -68468,7 +68640,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1835-06-27",
         "claims": [
           "chicago_american_1835_06_27#c002"
@@ -72193,7 +72365,7 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it.",
+        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
         "first_issue": "1834-11-05",
         "claims": [
           "chicago_democrat_1834_11_05#c002"

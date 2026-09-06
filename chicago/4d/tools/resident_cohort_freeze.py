@@ -1,91 +1,105 @@
 #!/usr/bin/env python3
-"""What a FROZEN research cohort manifest is, on the write path and on the gate (T-0764).
+"""What a FROZEN research cohort manifest is, on both the gate and the write (T-0764).
 
-    tools/resident_cohort_freeze.py --self-test    the contract, fired against breakage
+    tools/resident_cohort_freeze.py --self-test    the assertions, fired against breakage
+
+    freeze.gate(path, derived, label)              what --gate asserts
+    freeze.write(path, derived, message)           what a regeneration is allowed to change
+
+THE GATE CONTRACT BELOW IS T-0745's, taken from `steward/t-0745-cohort-freeze-gate`
+unchanged; that branch's ticket said "take it or leave it, but do not lose it". T-0764
+is the other half of the same defect and it is the half that loses evidence: exempting
+the snapshot from the GATE stops a manifest being called stale, but the documented
+remedy for a stale manifest — regenerate without `--gate` — still OVERWRITES the
+snapshot with today's tree. `write()` below is the half that was missing.
 
 WHY THIS FILE EXISTS. Eight cohort manifests are written by
-`tools/select_resident_research_*.py`, and every one of them describes itself as
+`tools/select_resident_research_*.py` and each one is described, in its own text, as
 frozen: "the ids are frozen, so a resident minted later is not retro-claimed as
 researched", and "a person who acquires a research row after this does NOT make the
-manifest stale". Each row carries `starting_grade`, `starting_evidence`,
-`starting_presence`, `starting_occupation`, `sources`, `letter_list_returns` and
-`stratum` — a SNAPSHOT of the tree at the moment the cohort was fixed, which is what
-makes a finished pass legible: this person came into the cohort at `inferred`, on one
-source, and left it at `attested` on three.
+manifest stale". Every one of them was nevertheless gated by RE-DERIVING the whole
+document from today's tree and demanding byte equality. Those two statements cannot
+both hold. A re-derivation asserts the tree has not moved since the freeze, and the
+tree moving is precisely what the cohorts are for:
 
-Both halves of the machinery contradicted that.
+  * researching a cohort writes a `resident_research` row onto each of its members,
+    which is what `researched_ids()` refuses at selection — so a completed pass makes
+    its own gate fire. On 2026-09-05 cohorts 13, 14 and 15 were red on all 76 of 76
+    of their own people;
+  * a source landing on a card moves that person's `sources`, `grade` and
+    `occupation` — so the pilot, pass 2 and pass 3 manifests read `stale` because
+    three of their 225 people had gained a land-sales entry and a death notice.
 
-  * THE GATE re-derived the whole document from today's tree and demanded equality, so
-    the moment a source landed on any member the manifest read `stale`.
-  * THE WRITE, which is the documented remedy for that `stale`, rebuilt every row from
-    today's tree — overwriting the snapshot with the very values whose predecessors it
-    existed to record. Measured over this repository's own history on 2026-09-06:
-    46 of the 82 commits that touched the eight gated manifests rewrote the freeze,
-    and 384 snapshot cells were overwritten that way. Nobody read a diff; the numbers
-    simply became today's.
-
-So the freeze was recording the day of the last regeneration rather than the day the
-cohort was fixed, and the loss was silent in both directions.
+Neither is a defect in the manifest. Both were reported as one, for two days, on
+every branch cut from dev.
 
 WHAT IS FROZEN, AND SO WHAT IS GATED. The manifest is a RESERVATION and an identity
 lock: it says which people this pass owns, in a fixed order, and nothing about them
-that a later reading may not change. The gate asserts the frozen thing —
+that a later reading may not change. So the gate asserts the frozen thing —
 
   1. the committed file's person ids, IN ORDER, are the ones the selector's frame
-     still yields. This is the collision lock parallel runs work against;
+     still yields.  This is the collision lock three parallel runs work against;
   2. every id still names a real person in `data/residents/households/`, carrying a
      name, and not an unnamed placeholder ("the rest of the household, unnamed").
      THIS is the staleness the manifests' own text describes — a person who VANISHES,
      or turns into a count;
   3. every committed row carries exactly the fields the selector emits, so a snapshot
      cell cannot be silently dropped or invented;
-  4. everything in the document OUTSIDE `people` and the snapshot document keys
-     matches the derivation exactly, and `population_frame.sample_size` still counts
-     the people the manifest holds.
+  4. everything in the document OUTSIDE `people` and `population_frame` matches the
+     derivation exactly.
 
-— and it does not assert the SNAPSHOT. It REPORTS how many snapshot cells have moved
-since the freeze, because that number is the research landing and is worth seeing.
+— and it does not assert the SNAPSHOT: the per-person `starting_*`, `sources`,
+`letter_list_returns` and `stratum` cells, and the `population_frame` counts, which
+record the tree as it stood when the cohort was fixed. It reports how many of them
+have moved since, because that number is worth seeing and is not a failure.
 
-WHAT THIS DOES NOT WEAKEN. The selection-time refusals — the novelty rule ("zero
-overlap with the people who already carry a research row"), the strata quotas, the
-stratum-membership assertions — are meaningful when a cohort is SELECTED and stay
-exactly where they are, inside each selector's `derive`. A new manifest claiming
-somebody another pass has ruled on is still refused before it is ever committed.
+AND SO WHAT A REGENERATION MAY CHANGE. `write()` carries the committed snapshot
+forward. A person already in the manifest keeps the `starting_*`, `sources`,
+`letter_list_returns` and `stratum` cells the manifest was frozen with, and the
+document keeps its committed `population_frame`; a person the frame yields for the
+first time is frozen at today's values, because that is the moment that person's
+cohort membership begins. Everything else — the identity cells the tree owns, and
+every document field outside the snapshot — is rewritten from the derivation, which
+is what a regeneration is for.
 
-THE FIRST WRITE IS THE FREEZE. `write()` carries the committed snapshot cells forward
-onto the regenerated document for every id the manifest already holds; only an id the
-manifest has never held takes today's values, and that is a mint. Identity cells —
-`name`, `household_id`, `selection_reason` — are NOT snapshot and are refreshed, so a
-corrected name still reaches the manifest.
+WHAT THIS CANNOT RECOVER. The snapshots on disk today are NOT the day each cohort was
+fixed: every manifest has been regenerated between five and fifteen times since, most
+recently by PR #863 on 2026-09-05, and each of those writes replaced the freeze with
+the tree of its own afternoon. Nothing here reconstructs those values — a snapshot
+lifted out of an old commit and re-committed today would be this project asserting a
+provenance it cannot show, which is the one thing it does not do. What this file
+guarantees is forward: from its first write, a cell is written once.
 
-The contract is bilateral with `docs/RESEARCH/` and with `tools/check.sh`, which runs
-`--self-test` beside the eight `--gate` steps.
+WHAT THIS DOES NOT WEAKEN. The novelty refusal — "zero overlap with the people who
+already carry a research row" — is meaningful when a cohort is SELECTED and is
+self-refuting afterwards, so it stays on the write path, unchanged and still fatal
+there. A new manifest claiming somebody another pass has ruled on is refused before
+it is ever committed.
 """
 from __future__ import annotations
 
 import argparse
+import copy
 import json
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
-# The per-row cells that record the tree as it stood at the freeze. Everything else on
-# a row is identity or provenance and is refreshed by a regeneration.
-SNAPSHOT_ROW_KEYS = (
-    "starting_grade",
-    "starting_evidence",
-    "starting_presence",
-    "starting_occupation",
-    "sources",
-    "letter_list_returns",
-    "stratum",
-)
-
-# The document keys that record the frame as it stood at the freeze rather than the
+# The document keys that record the tree as it stood at the freeze rather than the
 # reservation itself. Everything else is compared exactly.
 SNAPSHOT_DOC_KEYS = ("population_frame",)
+
+# The per-person cells that record the tree at the freeze. `starting_*` is a prefix
+# because the selectors each emit their own set of them (evidence, grade, presence,
+# occupation); the rest are named. Everything not matched here — `person_id`,
+# `household_id`, `name`, `selection_reason` — is the reservation or the tree's own
+# identity, and a regeneration is allowed to rewrite it.
+SNAPSHOT_ROW_KEYS = ("sources", "letter_list_returns", "stratum")
+
+
+def is_snapshot_key(key: str) -> bool:
+    return key.startswith("starting_") or key in SNAPSHOT_ROW_KEYS
 
 
 def live_people() -> dict:
@@ -108,35 +122,8 @@ def _ids(doc: dict) -> list:
     return [row.get("person_id") for row in doc.get("people", [])]
 
 
-def preserve(committed: dict, derived: dict) -> dict:
-    """The regenerated document, with the committed freeze carried forward.
-
-    A snapshot cell is written ONCE — on the write that first put its person in the
-    manifest — and every later regeneration reads it back off the committed file. An
-    id the manifest has never held is a mint and takes today's values.
-    """
-    out = json.loads(json.dumps(derived))
-    for key in SNAPSHOT_DOC_KEYS:
-        if key in committed and key in out:
-            out[key] = json.loads(json.dumps(committed[key]))
-    frozen = {row.get("person_id"): row for row in committed.get("people", [])}
-    for row in out.get("people", []):
-        old = frozen.get(row.get("person_id"))
-        if old is None:
-            continue
-        for key in SNAPSHOT_ROW_KEYS:
-            if key in row and key in old:
-                row[key] = json.loads(json.dumps(old[key]))
-    # sample_size counts the people the manifest holds; it is arithmetic on the
-    # reservation, not a reading of the tree, so it does not freeze.
-    frame = out.get("population_frame")
-    if isinstance(frame, dict) and "sample_size" in frame:
-        frame["sample_size"] = len(out.get("people", []))
-    return out
-
-
 def check(committed: dict, derived: dict, people: dict) -> tuple[list, int]:
-    """The four assertions. Returns (failures, snapshot cells moved since the freeze)."""
+    """The four assertions. Returns (failures, cells that moved since the freeze)."""
     fails = []
 
     # 4 — everything outside the snapshot is compared exactly.
@@ -148,11 +135,6 @@ def check(committed: dict, derived: dict, people: dict) -> tuple[list, int]:
     for key in committed:
         if key not in derived:
             fails.append("%s is in the committed manifest and not in the derivation" % key)
-    frame = committed.get("population_frame")
-    if isinstance(frame, dict) and "sample_size" in frame:
-        if frame["sample_size"] != len(committed.get("people", [])):
-            fails.append("population_frame.sample_size is %s and the manifest holds %d people"
-                         % (frame["sample_size"], len(committed.get("people", []))))
 
     # 1 — the ids, in order.
     have, want = _ids(committed), _ids(derived)
@@ -186,8 +168,58 @@ def check(committed: dict, derived: dict, people: dict) -> tuple[list, int]:
             fails.append("%s's row carries %s, and the selector emits %s"
                          % (pid, sorted(row), sorted(mirror)))
             continue
-        moved += sum(1 for k in SNAPSHOT_ROW_KEYS if k in mirror and row[k] != mirror[k])
+        moved += sum(1 for k in mirror if row[k] != mirror[k])
     return fails, moved
+
+
+def preserve(committed: dict | None, derived: dict) -> tuple[dict, int]:
+    """The document a regeneration may write. Returns (doc, cells held back).
+
+    The derivation, with every snapshot cell the committed manifest already carries put
+    back over it. A person the committed manifest does not hold is frozen at today's
+    values; a document with no committed manifest beside it IS the freeze and passes
+    through untouched.
+    """
+    if committed is None:
+        return derived, 0
+    doc = copy.deepcopy(derived)
+    held = 0
+
+    for key in SNAPSHOT_DOC_KEYS:
+        if key in doc and key in committed:
+            if doc[key] != committed[key]:
+                held += 1
+            doc[key] = copy.deepcopy(committed[key])
+
+    frozen = {row.get("person_id"): row for row in committed.get("people", [])}
+    for row in doc.get("people", []):
+        was = frozen.get(row.get("person_id"))
+        if was is None:
+            continue
+        for key in list(row):
+            # A cell the committed row does not carry is a field the selector has
+            # since started emitting; it freezes now, at today's value.
+            if is_snapshot_key(key) and key in was:
+                if row[key] != was[key]:
+                    held += 1
+                row[key] = copy.deepcopy(was[key])
+    return doc, held
+
+
+def write(path: Path, derived: dict, message: str) -> int:
+    """Regenerate one manifest without rewriting its freeze."""
+    committed = None
+    if path.exists():
+        committed = json.loads(path.read_text(encoding="utf-8"))
+    doc, held = preserve(committed, derived)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    note = ""
+    if held:
+        note = ("; %d snapshot cell(s) held at the value the cohort was frozen with, "
+                "which a regeneration may not rewrite" % held)
+    print("%s%s" % (message, note))
+    return 0
 
 
 def gate(path: Path, derived: dict, label: str) -> int:
@@ -205,21 +237,6 @@ def gate(path: Path, derived: dict, label: str) -> int:
                 "landing and not staleness" % moved)
     print("%s: %d people, the frozen reservation is intact%s"
           % (label, len(committed.get("people", [])), note))
-    return 0
-
-
-def write(path: Path, derived: dict, label: str) -> int:
-    """Write the manifest, carrying any existing freeze forward. See `preserve`."""
-    minted = len(derived.get("people", []))
-    if path.exists():
-        committed = json.loads(path.read_text(encoding="utf-8"))
-        held = {row.get("person_id") for row in committed.get("people", [])}
-        minted = sum(1 for row in derived.get("people", []) if row.get("person_id") not in held)
-        derived = preserve(committed, derived)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(derived, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print("%s: wrote %d people, %d of them newly frozen (the rest keep the snapshot they "
-          "were fixed with)" % (label, len(derived.get("people", [])), minted))
     return 0
 
 
@@ -241,93 +258,103 @@ def _fixture():
 
 
 def self_test() -> int:
-    import copy
     derived, people = _fixture()
     cases, bad = [], 0
 
-    def case(label, ok, detail):
+    def case(label, committed, live, expect_fail):
+        nonlocal bad
+        fails, _moved = check(committed, derived, live)
+        ok = bool(fails) == expect_fail
+        if not ok:
+            bad += 1
+        cases.append(("ok   " if ok else "FAIL ", label,
+                      fails[0] if fails else "no failure"))
+
+    case("the committed manifest IS the derivation", copy.deepcopy(derived), people, False)
+
+    moved = copy.deepcopy(derived)
+    moved["people"][0]["starting_grade"] = "attested"
+    moved["population_frame"]["eligible_real_named_people"] = 999
+    case("a snapshot cell moving is the research landing, not staleness", moved, people, False)
+
+    reordered = copy.deepcopy(derived)
+    reordered["people"].reverse()
+    case("the ids in a different order fail", reordered, people, True)
+
+    swapped = copy.deepcopy(derived)
+    swapped["people"][0]["person_id"] = "c_three"
+    case("a person the frame no longer yields fails", swapped, people, True)
+
+    case("a person who has left the residents layer fails",
+         copy.deepcopy(derived), {"a_one": people["a_one"]}, True)
+
+    case("a person who has become an unnamed placeholder fails",
+         copy.deepcopy(derived),
+         {**people, "b_two": ({}, {"id": "b_two", "name": "The rest, unnamed"})}, True)
+
+    dropped = copy.deepcopy(derived)
+    del dropped["people"][1]["starting_grade"]
+    case("a snapshot field dropped from a row fails", dropped, people, True)
+
+    invented = copy.deepcopy(derived)
+    invented["people"][1]["starting_trade"] = "cooper"
+    case("a field invented on a row fails", invented, people, True)
+
+    doc = copy.deepcopy(derived)
+    doc["generated_by"] = "tools/somebody_elses_selector.py"
+    case("a document field outside the snapshot must match exactly", doc, people, True)
+
+    # ---- the write path: what a regeneration may and may not rewrite (T-0764)
+
+    def wcase(label, ok, detail):
         nonlocal bad
         if not ok:
             bad += 1
         cases.append(("ok   " if ok else "FAIL ", label, detail))
 
-    def gate_case(label, committed, live, expect_fail):
-        fails, _moved = check(committed, derived, live)
-        case(label, bool(fails) == expect_fail, fails[0] if fails else "no failure")
-
-    gate_case("the committed manifest IS the derivation", copy.deepcopy(derived), people, False)
-
-    moved = copy.deepcopy(derived)
-    moved["people"][0]["starting_grade"] = "attested"
-    moved["population_frame"]["eligible_real_named_people"] = 999
-    gate_case("a snapshot cell moving is the research landing, not staleness", moved, people, False)
-
-    reordered = copy.deepcopy(derived)
-    reordered["people"].reverse()
-    gate_case("the ids in a different order fail", reordered, people, True)
-
-    swapped = copy.deepcopy(derived)
-    swapped["people"][0]["person_id"] = "c_three"
-    gate_case("a person the frame no longer yields fails", swapped, people, True)
-
-    gate_case("a person who has left the residents layer fails",
-              copy.deepcopy(derived), {"a_one": people["a_one"]}, True)
-
-    gate_case("a person who has become an unnamed placeholder fails",
-              copy.deepcopy(derived),
-              {**people, "b_two": ({}, {"id": "b_two", "name": "The rest, unnamed"})}, True)
-
-    dropped = copy.deepcopy(derived)
-    del dropped["people"][1]["starting_grade"]
-    gate_case("a snapshot field dropped from a row fails", dropped, people, True)
-
-    invented = copy.deepcopy(derived)
-    invented["people"][1]["starting_trade"] = "cooper"
-    gate_case("a field invented on a row fails", invented, people, True)
-
-    doc = copy.deepcopy(derived)
-    doc["generated_by"] = "tools/somebody_elses_selector.py"
-    gate_case("a document field outside the snapshot must match exactly", doc, people, True)
-
-    miscounted = copy.deepcopy(derived)
-    miscounted["population_frame"]["sample_size"] = 9
-    gate_case("a sample_size that does not count the manifest's people fails",
-              miscounted, people, True)
-
-    # --- the write path: the freeze is written once.
-    frozen = copy.deepcopy(derived)
+    # The tree has moved under a committed cohort in every way it can: a grade rose, a
+    # source landed, the household count changed, and one member moved house.
+    committed = copy.deepcopy(derived)
     today = copy.deepcopy(derived)
     today["people"][0]["starting_grade"] = "attested"
-    today["people"][0]["name"] = "A. One, corrected"
+    today["people"][0]["household_id"] = "hh_moved"
+    today["people"][1]["stratum"] = "t"
     today["population_frame"]["eligible_real_named_people"] = 999
-    kept = preserve(frozen, today)
-    case("a regeneration keeps the grade the person was frozen at",
-         kept["people"][0]["starting_grade"] == "inferred",
-         "starting_grade → %r" % kept["people"][0]["starting_grade"])
-    case("a regeneration still refreshes a corrected name",
-         kept["people"][0]["name"] == "A. One, corrected",
-         "name → %r" % kept["people"][0]["name"])
-    case("a regeneration keeps the population frame the cohort was fixed against",
-         kept["population_frame"]["eligible_real_named_people"] == 400,
-         "eligible_real_named_people → %r"
-         % kept["population_frame"]["eligible_real_named_people"])
+    kept, held = preserve(committed, today)
 
-    minted = copy.deepcopy(derived)
-    minted["people"].append({"person_id": "c_three", "name": "C Three", "stratum": "s",
-                             "starting_grade": "attested"})
-    minted["population_frame"]["sample_size"] = 3
-    first = preserve(frozen, minted)
-    case("a person the manifest has never held is frozen at today's values",
-         first["people"][2]["starting_grade"] == "attested",
-         "starting_grade → %r" % first["people"][2]["starting_grade"])
-    case("sample_size counts the people the manifest holds, frozen frame or not",
-         first["population_frame"]["sample_size"] == 3,
-         "sample_size → %r" % first["population_frame"]["sample_size"])
-    case("preserving twice is the same document (the freeze is idempotent)",
-         preserve(frozen, kept) == kept, "second pass differs" )
+    wcase("a regeneration may not rewrite a starting_* cell",
+          kept["people"][0]["starting_grade"] == "inferred",
+          "starting_grade stayed %r" % kept["people"][0]["starting_grade"])
+    wcase("a regeneration may not rewrite the population frame",
+          kept["population_frame"]["eligible_real_named_people"] == 400,
+          "frame stayed %r" % kept["population_frame"]["eligible_real_named_people"])
+    wcase("a regeneration may not rewrite a member's stratum",
+          kept["people"][1]["stratum"] == "s", "stratum stayed %r" % kept["people"][1]["stratum"])
+    wcase("a regeneration DOES rewrite the tree's own identity cells",
+          kept["people"][0]["household_id"] == "hh_moved",
+          "household_id followed the tree to %r" % kept["people"][0]["household_id"])
+    wcase("the held-back cells are counted and reported", held == 3, "held %d" % held)
+
+    # A cohort with nothing committed beside it is being frozen right now.
+    first, held_first = preserve(None, copy.deepcopy(today))
+    wcase("the first write IS the freeze and passes through untouched",
+          first == today and held_first == 0, "held %d" % held_first)
+
+    # A person the committed manifest never held freezes at today's values.
+    grew = copy.deepcopy(today)
+    grew["people"].append({"person_id": "c_three", "name": "C Three", "stratum": "u",
+                           "starting_grade": "attested"})
+    kept2, _ = preserve(committed, grew)
+    wcase("a member the freeze does not hold is frozen at today's values",
+          kept2["people"][2]["starting_grade"] == "attested", "new member took today's grade")
+
+    # And what is written stays gateable: the preserved document must pass check().
+    fails, _ = check(kept, today, people)
+    wcase("what a regeneration writes still passes the gate against today's derivation",
+          not fails, fails[0] if fails else "no failure")
 
     for mark, label, detail in cases:
-        print("  %s %s → %s" % (mark, label, str(detail)[:110]))
+        print("  %s %s → %s" % (mark, label, detail[:110]))
     print("cohort freeze self-test: %d case(s), %d failed" % (len(cases), bad))
     return 1 if bad else 0
 

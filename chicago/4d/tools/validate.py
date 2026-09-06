@@ -4509,8 +4509,9 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
 # INSIDE one household and stops at its edge. So a kinship that crosses two
 # household records had nowhere to live but a free-text note, which is to say
 # nowhere a query can reach it — and the households this project most needs to
-# keep apart are exactly the ones a shared surname makes mergeable. Six
-# households in this dataset are Kinzies; `data/research/books/crosswalk.json`
+# keep apart are exactly the ones a shared surname makes mergeable. Four
+# household cards in this dataset are Kinzies — six until T-0839 folded two
+# duplicate initials cards on 2026-09-05; `data/research/books/crosswalk.json`
 # already has to refuse "Mr. John Kinzie" the elder against John Harris Kinzie
 # his son, and a household set recording no Kinzie relationship at all offers
 # that refusal no support.

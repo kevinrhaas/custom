@@ -14,7 +14,7 @@
   ],
   "counts": {
     "roll_records": 938,
-    "residents_considered": 1359,
+    "residents_considered": 1360,
     "residents_matched_one_line": 82,
     "residents_ambiguous": 37,
     "residents_surname_only_refused": 331
@@ -5036,13 +5036,13 @@
       "rule": "The surname 'Peck' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'Philip F. W. Peck'. A surname-only agreement is a refusal."
     },
     {
-      "name": "A. 8. Perry",
+      "name": "A. [?] Perry",
       "person_id": "perry_a_8",
       "household_id": "hh_perry_a_8",
       "grade": "inferred",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
-      "rule": "The surname 'Perry' stands on the Second Presbyterian roll and no line under it carries the initial 'A' of 'A. 8. Perry'. A surname-only agreement is a refusal."
+      "rule": "The surname 'Perry' stands on the Second Presbyterian roll and no line under it carries the initial 'A' of 'A. [?] Perry'. A surname-only agreement is a refusal."
     },
     {
       "name": "Calvin Perry",

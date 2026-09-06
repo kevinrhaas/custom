@@ -10,9 +10,9 @@ from __future__ import annotations
 import argparse
 import json
 
-import resident_cohort_freeze
-
 from select_resident_research_pass_2 import ROOT, RESIDENTS, PILOT, load_people
+
+import resident_cohort_freeze as freeze
 
 OUT = ROOT / "data/research/residents/pass_05_75_cohort.json"
 PASS2 = ROOT / "data/research/residents/pass_02_75_cohort.json"
@@ -175,9 +175,11 @@ def main() -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
     doc = derive()
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        return resident_cohort_freeze.gate(OUT, doc, "resident research pass five")
-    return resident_cohort_freeze.write(OUT, doc, "resident research pass five")
+        return freeze.gate(OUT, doc, "resident research pass five")
+    return freeze.write(OUT, doc, "resident research pass five: wrote 75 people (9 remaining named non-letter, 33 present-list, 33 uncertain-list)")
 
 
 if __name__ == "__main__":

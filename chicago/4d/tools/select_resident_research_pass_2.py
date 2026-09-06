@@ -7,7 +7,7 @@ import argparse
 import json
 from pathlib import Path
 
-import resident_cohort_freeze
+import resident_cohort_freeze as freeze
 
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
@@ -130,9 +130,11 @@ def main() -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
     doc = derive()
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        return resident_cohort_freeze.gate(OUT, doc, "resident research pass two")
-    return resident_cohort_freeze.write(OUT, doc, "resident research pass two")
+        return freeze.gate(OUT, doc, "resident research pass two")
+    return freeze.write(OUT, doc, "resident research pass two: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
 
 
 if __name__ == "__main__":

@@ -39,6 +39,18 @@ THE TWO POPULATIONS, AND ONLY ONE OF THEM IS THIS PASS'S TO FIX.
     they hold and the class they were outranked by, so the queue can see how many are
     waiting on a judgement.
 
+    T-0773 counted that population and found that only part of it is waiting on anything,
+    so it is reported in three lines rather than one. A house whose `anchor_changes` rule
+    has been WRITTEN has had the judgement made and is not waiting for it — the class rank
+    still calls it outranked, because a ruling that a house moved will routinely leave the
+    live anchor coarser than a sharper reading of where it used to be, and the rank cannot
+    see the ruling. G. Spring is that case: ruled onto Dearborn Street beside the Tremont
+    House, and still nominally outranked by a `corner` reading of the Franklin and South
+    Water office he left. And a house outranked only by a printing AFTER the scene date is
+    the same bound as the line below it working, not a judgement anyone may make: no rule
+    could prefer that address without placing the house on the strength of an
+    advertisement that had not run yet.
+
 The rank is `compile_gazetteer.placement_rank`, read from that module rather than
 retyped, so this report and the compiler cannot disagree about what outranks what.
 """
@@ -52,7 +64,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from compile_gazetteer import SCENE_DATE, placement_rank  # noqa: E402
+from compile_gazetteer import (SCENE_DATE, placement_rank,  # noqa: E402
+                               places_nothing)
 
 GAZETTEER = ROOT / "data" / "research" / "newspapers" / "gazetteer.json"
 REGISTER = ROOT / "data" / "research" / "newspapers" / "register_1835.json"
@@ -63,12 +76,33 @@ def survey():
     gaz = json.loads(GAZETTEER.read_text(encoding="utf-8"))
     reg = {b["id"]: b for b in json.loads(REGISTER.read_text(encoding="utf-8"))["businesses"]}
     scene_iso = SCENE_DATE.isoformat()
-    silent, outranked, after_scene = [], [], []
+    silent, outranked, after_scene, ruled, out_of_scene = [], [], [], [], []
+    groundless = []
     for biz in gaz["businesses"]:
-        live = placement_rank(biz.get("placement"))
+        # T-0859. "Places nothing" is a question about the PLACEMENT, not about its
+        # class: a `street_only` carrying neither a street nor an anchor names no
+        # street, and puts a shop on no more ground than `{"class": "none"}` does.
+        # Read from `compile_gazetteer` rather than retyped, for the same reason
+        # `placement_rank` already is — this report and the compiler may not disagree
+        # about what puts a storefront on the ground.
+        live = 0 if places_nothing(biz.get("placement")) else placement_rank(
+            biz.get("placement"))
         readings = biz.get("placement_readings") or []
-        placing = [r for r in readings if placement_rank(r.get("placement")) > 0]
+        placing = [r for r in readings if not places_nothing(r.get("placement"))]
         if not placing:
+            # The population this line exists for is the one that PRINTED a placing
+            # class and named no ground with it. A house whose every reading is
+            # `{"class": "none"}` is the ordinary silent advertisement, counted nowhere
+            # and rightly so.
+            if any(placement_rank(r.get("placement")) > 0 for r in readings):
+                groundless.append({
+                    "id": biz["id"],
+                    "live_class": (biz.get("placement") or {}).get("class") or "none",
+                    "groundless_class": next(
+                        r.get("class") for r in readings
+                        if placement_rank(r.get("placement")) > 0),
+                    "readings": len(readings),
+                    "action": (reg.get(biz["id"]) or {}).get("action")})
             continue
         best = max(placement_rank(r.get("placement")) for r in placing)
         if best <= live:
@@ -88,16 +122,28 @@ def survey():
             "readings": len(readings), "distinct_placing_anchors": len(anchors),
             "action": (reg.get(biz["id"]) or {}).get("action"),
             "took_a_later_printing": bool(biz.get("placement_from")),
+            "ruled": bool(biz.get("anchor_change")),
+            "live_anchor": (biz.get("anchor_change") or {}).get("live_anchor"),
+            "outranked_in_scene": any(
+                placement_rank(r.get("placement")) > live for r in in_scene),
         }
         if live == 0 and not in_scene:
             after_scene.append(row)
+        elif live == 0:
+            silent.append(row)
+        elif row["ruled"]:
+            # The judgement this report exists to count has been made for this house.
+            ruled.append(row)
+        elif not row["outranked_in_scene"]:
+            # Outranked only by an address first printed after the scene date.
+            out_of_scene.append(row)
         else:
-            (silent if live == 0 else outranked).append(row)
-    return silent, outranked, after_scene
+            outranked.append(row)
+    return silent, outranked, after_scene, ruled, out_of_scene, groundless
 
 
 def report() -> int:
-    silent, outranked, after_scene = survey()
+    silent, outranked, after_scene, ruled, out_of_scene, groundless = survey()
     gaz = json.loads(GAZETTEER.read_text(encoding="utf-8"))
     print("A HOUSE'S LIVE PLACEMENT AGAINST ITS OWN PRINTINGS — T-0440\n")
     took = [b for b in gaz["businesses"] if b.get("placement_from")]
@@ -107,10 +153,17 @@ def report() -> int:
           % len(took))
     print("  — live placement places NOTHING while a printing does      %4d  "
           "(this is the defect; it must be 0)" % len(silent))
-    print("  — live placement outranked by a printed address            %4d  "
+    print("  — outranked, and waiting on an `anchor_changes` judgement  %4d  "
           "(a judgement, and `anchor_changes` owns it)" % len(outranked))
+    print("  — outranked, and the judgement has been WRITTEN            %4d  "
+          "(an authored `anchor_changes` rule)" % len(ruled))
+    print("  — outranked only by a printing after %s        %4d  "
+          "(the scene-date bound, working)"
+          % (SCENE_DATE.isoformat(), len(out_of_scene)))
     print("  — placed by no printing on or before %s          %4d  "
           "(the scene-date bound, working)" % (SCENE_DATE.isoformat(), len(after_scene)))
+    print("  — no printing of theirs ever named any ground              %4d  "
+          "(T-0859: nothing to place them by, and none is invented)" % len(groundless))
     if took:
         print("\nSILENT WHEN MINTED, PLACED BY A LATER PRINTING — repaired here")
         for b in sorted(took, key=lambda b: b["id"]):
@@ -119,6 +172,13 @@ def report() -> int:
             print("  %-52s %-11s %s%s"
                   % (b["id"], (b.get("placement") or {}).get("class"),
                      frm["first_issue"], "  street: %s" % street if street else ""))
+    if groundless:
+        print("\nNO PRINTING OF THEIRS EVER NAMED ANY GROUND (T-0859) — a `street_only`\n"
+              "carrying neither a street nor an anchor is not an address, so these are "
+              "not placed\nand nothing is invented for them")
+        for r in sorted(groundless, key=lambda r: r["id"]):
+            print("  %-52s printed %-11s live %-11s register: %s"
+                  % (r["id"], r["groundless_class"], r["live_class"], r["action"]))
     if silent:
         print("\nSTILL SILENT WHILE A PRINTING PLACES THEM — the defect, unrepaired")
         for r in sorted(silent, key=lambda r: r["id"]):
@@ -137,11 +197,25 @@ def report() -> int:
             print("  %-52s %-11s outranked by %-11s %d distinct anchor(s), register: %s"
                   % (r["id"], r["live_class"], r["best_class"],
                      r["distinct_placing_anchors"], r["action"]))
+    if ruled:
+        print("\nOUTRANKED BY THE CLASS RANK, AND RULED ON ANYWAY — an `anchor_changes` "
+              "rule\nnames the anchors and says what the corpus leaves open; the rank "
+              "cannot see it")
+        for r in sorted(ruled, key=lambda r: r["id"]):
+            print("  %-52s %-11s live anchor: %s"
+                  % (r["id"], r["live_class"], r["live_anchor"]))
+    if out_of_scene:
+        print("\nOUTRANKED ONLY BY A PRINTING AFTER THE SCENE DATE — no judgement is "
+              "owed;\nan address that had not run yet may not place a house on %s"
+              % SCENE_DATE.isoformat())
+        for r in sorted(out_of_scene, key=lambda r: r["id"]):
+            print("  %-52s %-11s outranked by %-11s register: %s"
+                  % (r["id"], r["live_class"], r["best_class"], r["action"]))
     return 0
 
 
 def check() -> int:
-    silent, outranked, after_scene = survey()
+    silent, outranked, after_scene, ruled, out_of_scene, groundless = survey()
     if silent:
         print("PLACEMENT SILENCE FAIL — %d house(s) hold a live placement that places "
               "nothing while one of their own printings places them:" % len(silent))
@@ -153,9 +227,12 @@ def check() -> int:
     took = len([1 for b in json.loads(GAZETTEER.read_text(encoding="utf-8"))["businesses"]
                 if b.get("placement_from")])
     print("  ok    no house is placed by a printing that gave no address; %d house(s) "
-          "take a later printing's, %d wait on an `anchor_changes` judgement, %d are "
-          "placed by nothing printed on or before the scene date"
-          % (took, len(outranked), len(after_scene)))
+          "take a later printing's, %d wait on an `anchor_changes` judgement, %d have "
+          "one written, %d are outranked only by a printing after the scene date, %d are "
+          "placed by nothing printed on or before it, and %d were never given any ground "
+          "by any printing of their own"
+          % (took, len(outranked), len(ruled), len(out_of_scene), len(after_scene),
+             len(groundless)))
     return 0
 
 

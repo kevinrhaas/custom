@@ -1,5 +1,193 @@
 # STATUS
 
+## Shipped 2026-09-06 — T-0860: the three kin ties #947 read and the survey could not see
+
+**What shipped.** Kin rows on both people for three ties `dev` did not hold, each
+under a written ruling:
+
+| tie | on dev before |
+|---|---|
+| Mark Beaubien — brother of Jean Baptiste | `hh_beaubien_mark` carried **no kin at all** |
+| Charles Loomis Harmon — son of Elijah Dewey Harmon | `hh_harmon_brothers` carried **no kin at all** |
+| Isaac Dewey Harmon — son of Elijah Dewey Harmon | same |
+
+**The Miller ruling is untouched.** #947 and #949 disagree on it — #949 landed it
+at `inferred`, #947 refused it because "Samuel, the landlord" is a surname the
+dataset carries five times. The owner's call, in session: land the three, leave
+Miller as `dev` has it. That disagreement is not reopened.
+
+### Why the survey could not see them, and it was mechanical
+
+**#947 adds no tools.** It is data-only, so its three findings were readings a
+person made rather than anything the survey derives. Two separate gaps:
+
+1. `"Andreas's life of **his brother** Jean Baptiste"` — the pattern reads
+   `<relation> of <Name>`, and English puts no "of" after "his brother".
+2. `"lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey
+   Harmon, …'"` — one subject and five others, which no `<relation> <Name>`
+   pattern reaches.
+
+### One gap closed by generalising, the other deliberately not
+
+**`PROSE_POSSESSIVE`** reads `his|her <relation> <Name>`, bounded exactly as
+`PROSE` is. Measured before switching it on: **10 matches** across the committed
+prose, and the existing "must resolve to exactly one town person" step refuses
+`his mother Potawatomi` and the rest on its own. **The net is wider; the sieve is
+unchanged.**
+
+That exposed a second thing. The documented ellipsis rule — a quoted source that
+elides the surname is re-read with the SUBJECT'S — was implemented as *exactly one
+token*, a fair reading of `Samuel` and a wrong one of `Jean Baptiste`. It now
+covers a compound forename, and applies **only after the printed name has failed
+to resolve on its own**, so a name that stands alone is never rewritten and a
+re-read can fail to find somebody but cannot find the wrong somebody.
+
+**The Harmon gap gets no pattern, on purpose** — a regex fitted to that sentence
+would be fitted to that sentence. `data/residents/kin_readings.json` is an
+authored seam: a kinship a person read where no pattern reaches, recorded as a
+statement so it becomes a proposal and is ruled like any other. It earns the right
+to be **asked** and nothing about the answer.
+
+What stops it being a back door: **every entry names the path its quote stands on,
+and `--check` refuses an entry whose quote is not actually there.** Three
+self-test cases hold it — a quote that is nowhere, a card not in the tree, and the
+committed readings really standing on their cards.
+
+### Widening the net surfaced a new question, and it is answered
+
+`"his sons Charles Henry"` became landable. **Refused**, on #947's own reading:
+Andreas names the son in full, `hh_beaubien_charles_h` carries initials, and
+deciding they are one man is a crosswalk ruling rather than a kinship — the
+father's own record already says that of the two sons named, one has a household
+here.
+
+Rulings **13 → 17** (13 landed, 4 refused). Kin gate green, self-test green,
+`validate.py` PASS with 0 errors — the reciprocity check reads all four new rows.
+
+## Shipped 2026-09-06 — T-0855: the Hubbard fold rests on the man his own transcription names
+
+**What shipped.** `hubbard_g` folds onto `hubbard_henry_g`, not `hubbard_gurdon`.
+Its only press evidence is transcribed **`Hubbard, [Henry] G.`** and cites
+`person_hubbard_henry_g`; `hh_hubbard_henry_g.json` is a separate **attested** card
+in the same tree. T-0839 (#929) had put one man's record on another man.
+
+### It needed a new rule, not a bent one
+
+`C2` — an initial onto its one full forename — **refuses** a cluster with two rivals,
+on principle, and a bare `G.` has two here: Gurdon and Henry G. What settles it is not
+a name-matching inference at all: somebody read the page and wrote `[Henry]`.
+
+> **C5 — THE TRANSCRIBER NAMED HIM, IN BRACKETS.** A bracketed forename is an
+> editorial expansion by whoever transcribed the source. It is evidence about
+> IDENTITY where an initial is only evidence about spelling, so it outranks the
+> initial and settles a cluster C2 would refuse.
+
+The old ruling's `against` read *"No second Hubbard household is on any card, and no
+source reached names one."* Both halves were false. It now says so.
+
+**`chicago_democrat_1833_1835` stays on Gurdon** — three of the four cards still
+folded onto him cite it too, so it is his by other routes. Only the single wrong
+`press_evidence` entry came off, and that was checked before anything was removed.
+
+### Two defects found while fixing it, and both were hiding it
+
+1. **`--apply` could not correct a mis-fold.** Its already-folded branch only *read*
+   the stub, so rewriting the ruling and re-running changed nothing — the stub and the
+   redirect table went on naming Gurdon. It now re-points a corrected fold and records
+   `repointed_from`.
+2. **`--check` passed the whole time the ruling said Henry and the data said Gurdon.**
+   It verified a redirect points at *a* real person, never at the person the **ruling**
+   names. Two copies of one fact disagreeing — this project's oldest failure shape —
+   and it made a corrected ruling silently inert.
+
+Both are asserted now, and both were proved to fire by putting the redirect back and
+watching them catch it.
+
+### The gate the ticket asked for
+
+`bracket_conflict()`, pure and self-tested: a folded card whose reading brackets a
+forename absent from its survivor is refused. Five cases, including **the false
+positive it would otherwise have shipped** — a bracketed RANK (`Allen, [Lieut] James`)
+is not a forename and must not trip it.
+
+Measured over all 42 folded records: **one** tripped it, this one. The other 41 stand,
+so #929's consolidation is sound and this was an isolated ruling error.
+
+### Where it came from
+
+Draining the open-PR backlog. **#932** was the losing rival to #929 and superseded on
+coverage (36 clusters ruled against 31, 42 folds against 34) — but it was **right about
+this card**, and closing it on the numbers would have buried the finding. Reading a
+losing rival before closing it is what turned this up.
+
+### Visible-progress rule
+
+**Visible**, and it settles the commitment made two entries ago: a man's card now
+carries the reading that names him, and another man's stops carrying a record that was
+never his.
+
+## Shipped 2026-09-05 — T-0817: the owner's queue ranking stops going backwards
+
+**What shipped.** Two halves, because the fault has two.
+
+1. **`tools/merge-queue.mjs` — the band-stripping bug.** A new ticket is now placed
+   where its own side placed it, carrying the comment band that introduced it,
+   instead of being dumped at the end under "MERGED IN, NOT YET PLACED". And a band
+   that genuinely cannot be anchored now **refuses the merge and names the line**
+   rather than dropping it.
+2. **`tools/check_queue_order.mjs` — a gate, wired into `check.sh`.** Every re-rank
+   the base records must still be present on the branch.
+
+### Why the driver alone was never going to be enough
+
+T-0817 found the thing that matters and it is worth quoting: *"It never reaches a
+squash-merge on GitHub, because GitHub does not run this repository's merge
+drivers. So the driver protects branch merges and cannot protect the thing that
+actually lands."*
+
+That is exactly what happened with **PR #801** — the driver **refused**, correctly,
+and the ranking was lost anyway, because the refusal lives on a developer's machine
+and the merge happened on the server. `check.sh` is the required `gate` on dev's
+ruleset, so a gate refuses the merge **button**, which is the only door the
+regression actually comes through.
+
+### The driver's bug was not where the ordering rule is
+
+The ordering rule ("the side that actually re-ordered wins") is sound. The bug was
+below it: only the **ordering side's** text is walked, so any band the *other* side
+wrote was discarded outright — and because `seq()` compares only ids present in all
+three versions, six brand-new tickets under a new band do not register as a re-order
+at all. `theirsReordered` stays false, ours becomes the ordering side, and the
+owner's ranking is dropped without the "both sides re-ranked" refusal ever being
+reached. #909 measured the result: *"stripped THREE times … six tickets the owner put
+at the top came to be sitting at line 416."*
+
+### What the gate asserts, and what it deliberately does not
+
+**Set inclusion of the RE-RANK LEDGER's entries, not a date comparison.** Two
+re-ranks happened on 2026-09-05 alone, so "is our newest date ≥ theirs" would have
+passed a branch that dropped one of them. It never judges whether an order is good —
+only whether a decision the base already recorded has gone missing, which is
+decidable without reading a single ranking.
+
+It **skips rather than fails** when there is no base to read (no `origin/dev`, a
+detached checkout, an offline runner). A gate that fails for want of a network is a
+gate people learn to bypass.
+
+### Tested against the real regression, not a fixture
+
+The real `tickets/QUEUE.md` with yesterday's two re-ranks removed is **refused**, and
+both are named in the owner's own words. 37 assertions on the driver (11 new, on the
+band-stripping case and its refusal) and 13 on the gate — including the #801 scenario
+end to end in a real git repo, and the same-day case a date check would wave through.
+
+### Visible-progress rule
+
+The previous entry committed that the next run must be visible, and this one is not.
+**Exemption 1 — an owner-reported bug — which AGENTS.md says "always outranks this
+rule".** The owner asked for this fix directly, after that commitment was made. The
+commitment carries to the run after this one.
+
 ## Shipped 2026-09-05 — T-0431: blk_south_water_clark's second deal, on the drug store's party wall
 
 **What shipped.** Two roofs on `blk_south_water_clark`, the third of the four South Water

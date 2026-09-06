@@ -15,8 +15,8 @@ one family name.
 ## The two readings, over the same pool
 
 * the pool the register offers this pass: **1845** candidates
-* accepted under the pre-T-0638 reading: **656**
-* accepted under the corrected reading: **658**
+* accepted under the pre-T-0638 reading: **655**
+* accepted under the corrected reading: **657**
 * candidates the correction REFUSES that the old reading accepted: **9**
 * candidates the correction ADMITS that the old reading refused: **11**
 
@@ -35,7 +35,7 @@ rules for. `carries` is what a retirement would strand.
 | `Mills Joel C.` | Joel C. Mills | `c` | `mills` | the town already names a Mills | John A Mills (hh_mills_john_a); Samuel Mills (hh_mills_samuel) | 1 | research row T-0482 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Norton N. R.` | N. R. Norton | `r` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Norton Wm. H.` | Wm. H. Norton | `h` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet) |
-| `Perry A. 8.` | A. 8. Perry | `8` | `perry` | the town already names a Perry | Calvin Perry (hh_perry_calvin) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843, directory norris_directory_1844 |
+| `Perry A. 8.` | A. [?] Perry | `8` | `perry` | the town already names a Perry | Calvin Perry (hh_perry_calvin) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843, directory norris_directory_1844 |
 | `Wm. Osborn` | Wm. Osborn | `osborn` | `osborn` | surname already minted | B. Osborn | 1 | research row T-0485 (candidate_identity), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843 |
 
 ## Why a tool may not pick the survivor
@@ -54,12 +54,12 @@ rules for. `carries` is what a retirement would strand.
 ## The committed cohort against its own derivation
 
 The tree holds **727** letter-list households. The pass, run today
-against that same tree, derives **658**. `check.sh` runs this pass's
+against that same tree, derives **657**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 
 | households | cause |
 |---|---|
-| 75 | the town gained this surname from another pass after the mint (the town already names that family) |
+| 76 | the town gained this surname from another pass after the mint (the town already names that family) |
 | 9 | THIS FAULT — the corrected reading collides it with another record |
 | 2 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |

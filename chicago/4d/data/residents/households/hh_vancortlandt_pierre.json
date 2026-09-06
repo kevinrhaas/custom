@@ -1,8 +1,8 @@
 {
- "id": "hh_cortlandt_pierre_van",
- "name": "The Cortlandt household — a name the town's own records carry",
+ "id": "hh_vancortlandt_pierre",
+ "name": "The Vancortlandt household — a name the town's own records carry",
  "division": "unplaced",
- "head": "cortlandt_pierre_van",
+ "head": "vancortlandt_pierre",
  "source_pass": "civic",
  "arrival": {
   "value": "1835-06-20",
@@ -48,8 +48,8 @@
  },
  "persons": [
   {
-   "id": "cortlandt_pierre_van",
-   "name": "Pierre Van Cortlandt",
+   "id": "vancortlandt_pierre",
+   "name": "Pierre Vancortlandt",
    "relationship": "head",
    "grade": "attested",
    "civic_mint": true,
