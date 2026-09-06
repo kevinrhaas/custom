@@ -94,6 +94,26 @@ step "…and its own assertions still fire when broken" \
 step "the QUEUE.md merge driver still does what .gitattributes promises" \
   node tools/merge-queue-selftest.mjs
 
+# T-0817, AND IT IS A GATE BECAUSE A DRIVER CANNOT REACH FAR ENOUGH. The ranking
+# has been lost three times: 2026-09-04 ("the queue got massively reordered"),
+# again on 2026-09-05 via PR #801 — a branch cut long before the re-rank, which
+# took dev from the restored 415-line file back to the 2026-08-30 revision — and a
+# third time to the drain band (#909). The driver above REFUSED the #801 merge and
+# it made no difference, for the reason T-0817 names exactly: GitHub does not run
+# this repository's merge drivers, so a squash-merge on the server never loads one.
+# The driver protects a local `git merge` and cannot protect the thing that lands.
+#
+# check.sh is the required `gate` on dev's ruleset, so this refuses the merge
+# BUTTON, which is the only place the regression actually arrives. What it asserts
+# is not a judgement about ranking — it is that every re-rank the base already
+# records is still present here. A branch missing one predates it, and merging it
+# would put the old order back.
+step "the owner's queue ranking has not gone backwards" \
+  node tools/check_queue_order.mjs
+
+step "…and its own assertions still fire when broken" \
+  node tools/check_queue_order-selftest.mjs
+
 # THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
 # is seven repairs long, five of them in one day when `union` spliced one entry
 # into another and left valid JavaScript nobody noticed. The driver never works
@@ -1330,6 +1350,18 @@ step "no research domain reads further ahead of the town than its baseline" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_research_spend.py --self-test
+
+# T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
+# RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
+# of the tree at the moment the cohort was fixed. The reservation is re-derived and must
+# match. The snapshot is not: research landing on a member is what the cohort is FOR, and
+# gating it made a finished pass fail its own build (dev went red on 2026-09-05 that way).
+# The other half of the same contract is on the write path — `freeze.write()` carries the
+# committed snapshot forward, so regenerating a manifest can no longer overwrite the freeze
+# with today's tree, which is how "this person came in at `inferred` on one source" was
+# being lost silently, without a diff anybody read.
+step "the cohort freeze's own assertions still fire when broken" \
+  python3 tools/resident_cohort_freeze.py --self-test
 
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it

@@ -111,7 +111,7 @@
    "candidates": [
     {
      "id": "abbot_8_g",
-     "name": "8. G. Abbot",
+     "name": "[?] G. Abbot",
      "rule": "OCR variant (0.91 similarity to 'abbot')"
     },
     {
@@ -27359,7 +27359,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. 8. Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. [?] Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v03_1276",
     "nbi_v03_1282",
@@ -27368,7 +27368,7 @@
    "candidates": [
     {
      "id": "perry_a_8",
-     "name": "A. 8. Perry",
+     "name": "A. [?] Perry",
      "rule": "exact surname"
     },
     {
@@ -27432,7 +27432,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'P-ery r/Pery' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'P-ery r/Pery' at all. And if it were, a heading against A. 8. Perry; Calvin Perry; Francis Perry would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'P-ery r/Pery' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'P-ery r/Pery' at all. And if it were, a heading against A. [?] Perry; Calvin Perry; Francis Perry would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_1226",
     "nbi_v03_1287"
@@ -27440,7 +27440,7 @@
    "candidates": [
     {
      "id": "perry_a_8",
-     "name": "A. 8. Perry",
+     "name": "A. [?] Perry",
      "rule": "OCR variant (0.89 similarity to 'perry')"
     },
     {
@@ -33730,10 +33730,10 @@
   {
    "record_id": "nbi_v01_0001",
    "a": "Abbott | Chicago, lil. (Koto;, J, ami idr'Jand, 11 ICIJs",
-   "b": "Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott",
+   "b": "Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Abbott | Chicago, lil. (Koto;, J, ami idr'Jand, 11 ICIJs\" against Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Abbott | Chicago, lil. (Koto;, J, ami idr'Jand, 11 ICIJs\" against Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott.",
    "layers": [
     "census_1840",
     "residents"
@@ -33767,10 +33767,10 @@
   {
    "record_id": "nbi_v01_0002",
    "a": "Abbott | Cook Co., III. (Ayidrciü, K T.) 1884 1841.",
-   "b": "Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott",
+   "b": "Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Abbott | Cook Co., III. (Ayidrciü, K T.) 1884 1841.' against Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Abbott | Cook Co., III. (Ayidrciü, K T.) 1884 1841.' against Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott.",
    "layers": [
     "census_1840",
     "residents"
@@ -33804,10 +33804,10 @@
   {
    "record_id": "nbi_v01_0003",
    "a": "Abbott | Olcage, III. (Andreas, A, T.) !88<-6i 1-3.",
-   "b": "Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott",
+   "b": "Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Abbott | Olcage, III. (Andreas, A, T.) !88<-6i 1-3.' against Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Abbott | Olcage, III. (Andreas, A, T.) !88<-6i 1-3.' against Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott.",
    "layers": [
     "census_1840",
     "residents"
@@ -33841,10 +33841,10 @@
   {
    "record_id": "nbi_v01_0004",
    "a": "Abbott | Fulton Co, III. Witpntw, C, C. L Co.) I879t",
-   "b": "Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott",
+   "b": "Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Abbott | Fulton Co, III. Witpntw, C, C. L Co.) I879t' against Samuel E. Abbot; 8. G. Abbot; Constant Abbott; Titus H Abbott.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 4 card(s) heading 'Abbott' name Chicago or Cook County, the heading is the surname of Constant Abbott; Titus H Abbott exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Abbott | Fulton Co, III. Witpntw, C, C. L Co.) I879t' against Samuel E. Abbot; [?] G. Abbot; Constant Abbott; Titus H Abbott.",
    "layers": [
     "census_1840",
     "residents"
@@ -61709,10 +61709,10 @@
   {
    "record_id": "nbi_v01_1226",
    "a": "P-ery r | Cincago, Iii. i . . . . . : : , J. ana ikifauiai, >.) :*''5t",
-   "b": "A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry",
+   "b": "A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'P-ery r/Pery' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'P-ery r/Pery' at all. And if it were, a heading against A. 8. Perry; Calvin Perry; Francis Perry would still be a surname against a person, which is always a refusal here. Ruled on the card \"P-ery r | Cincago, Iii. i . . . . . : : , J. ana ikifauiai, >.) :*''5t\" against A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry.",
+   "rule": "Refused twice over. No candidate reaches 'P-ery r/Pery' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'P-ery r/Pery' at all. And if it were, a heading against A. [?] Perry; Calvin Perry; Francis Perry would still be a surname against a person, which is always a refusal here. Ruled on the card \"P-ery r | Cincago, Iii. i . . . . . : : , J. ana ikifauiai, >.) :*''5t\" against A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry.",
    "layers": [
     "residents",
     "voters"
@@ -77543,10 +77543,10 @@
   {
    "record_id": "nbi_v03_1276",
    "a": "Perry | Illinois, (Motet, J.) 1888-92, 2,, {_, hj„",
-   "b": "A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry",
+   "b": "A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. 8. Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Perry | Illinois, (Motet, J.) 1888-92, 2,, {_, hj„' against A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry.",
+   "rule": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. [?] Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Perry | Illinois, (Motet, J.) 1888-92, 2,, {_, hj„' against A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry.",
    "layers": [
     "residents",
     "voters"
@@ -77580,10 +77580,10 @@
   {
    "record_id": "nbi_v03_1282",
    "a": "Perry | ti.ingilor, Co., Ill, (leBaren, W., Ir„ k Ca., FubtJ 1978,",
-   "b": "A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry",
+   "b": "A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. 8. Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Perry | ti.ingilor, Co., Ill, (leBaren, W., Ir„ k Ca., FubtJ 1978,' against A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry.",
+   "rule": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. [?] Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Perry | ti.ingilor, Co., Ill, (leBaren, W., Ir„ k Ca., FubtJ 1978,' against A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry.",
    "layers": [
     "residents",
     "voters"
@@ -77617,10 +77617,10 @@
   {
    "record_id": "nbi_v03_1286",
    "a": "Perry | Maw Ywk prcvlarla! Iroepa, 1755414. IN. V, 111,1, Sse",
-   "b": "A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry",
+   "b": "A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. 8. Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Perry | Maw Ywk prcvlarla! Iroepa, 1755414. IN. V, 111,1, Sse' against A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry.",
+   "rule": "Refused. All 3 card(s) heading 'Perry' name Illinois and neither Chicago nor Cook County, so the lead against A. [?] Perry; Calvin Perry; Francis Perry stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Perry | Maw Ywk prcvlarla! Iroepa, 1755414. IN. V, 111,1, Sse' against A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry.",
    "layers": [
     "residents",
     "voters"
@@ -77654,10 +77654,10 @@
   {
    "record_id": "nbi_v03_1287",
    "a": "Pery | ±. f t , India aa. i , 111,15",
-   "b": "A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry",
+   "b": "A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'P-ery r/Pery' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'P-ery r/Pery' at all. And if it were, a heading against A. 8. Perry; Calvin Perry; Francis Perry would still be a surname against a person, which is always a refusal here. Ruled on the card 'Pery | ±. f t , India aa. i , 111,15' against A. 8. Perry; Calvin Perry; Francis Perry; Calvin Perry.",
+   "rule": "Refused twice over. No candidate reaches 'P-ery r/Pery' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'P-ery r/Pery' at all. And if it were, a heading against A. [?] Perry; Calvin Perry; Francis Perry would still be a surname against a person, which is always a refusal here. Ruled on the card 'Pery | ±. f t , India aa. i , 111,15' against A. [?] Perry; Calvin Perry; Francis Perry; Calvin Perry.",
    "layers": [
     "residents",
     "voters"
