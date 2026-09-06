@@ -265,11 +265,23 @@ carries the `geometry:` declaration and a liberty:
   `data/flora/` has no cultivated zone and no garden species.
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
 - **The drill ground south of the pickets** (Kinzie). No extent given.
-- **Named ground on the 1830 plan and not modelled**: the Big Barn with Cupola, the Wash
-  house, the Well, the Shop, the Out Buildings, the U.S. Factor's House, the Cultivated
-  Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice and each
-  would be almost entirely invention today — the plan gives a symbol and a label and no
-  form. The **Fort Cemetery** in particular is left alone deliberately.
+- **Named ground on the 1830 plan and not modelled**: the Well, the Out Buildings, the
+  U.S. Factor's House, the Cultivated Field, the Fort Cemetery, the Ferry. Each is a
+  candidate for a later slice and each would be almost entirely invention today — the plan
+  gives a symbol and a label and no form. The **Fort Cemetery** in particular is left alone
+  deliberately. The **Well** and the **Out Buildings** are T-0881's; the **Fort Cemetery**
+  is T-0882's.
+- **Three of that list are now built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
+  `fort_dearborn_wash_house` and `fort_dearborn_shop`. Their positions are pixels on the
+  plate turned to ground by one rule, stated in full on each record's `position.note` and
+  checked against the committed garrison garden — predicted centre within seven pixels
+  (2.3 m) of the drawn one. Hubbard corroborates the barn's position (*"West, and a little
+  south, of the fort was the military barn, adjoining which, on the east, was the fort
+  garden"*, leaf 75, printed p. 37) and the wash house's class, side and use (leaf 76,
+  printed p. 38); the shop has the plate and nothing else, and its record says so on every
+  line. What is invented is admitted at **L225** (the barn's cupola, named on the sheet and
+  not built) and **L226** (the wash house's and the shop's fabric, and the wash house's
+  45 cm of ground contact on the shoulder above the beach).
 - **The ordnance.** No gun is drawn. See § 6.
 
 ---

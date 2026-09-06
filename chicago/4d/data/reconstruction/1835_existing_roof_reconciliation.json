@@ -237,6 +237,39 @@
       "reasoning": "Dedicated frame church continuously in use, one roof."
     },
     {
+      "structure_id": "fort_dearborn_big_barn",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "A2",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "moderate",
+      "reasoning": "T-0883. One gable roof on the garrison's barn, placed off the 1830 Harrison plan and corroborated in position by Hubbard. A2 (barn or carriage shed) IS READ OFF THE FUNCTION AND NOT THE BAND: 47 x 31 ft stands above A2's 18-26 by 28-44 ft on both axes, which is what a plate that calls a building BIG should produce, and no wider family fits a barn. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand — this building is the eleventh, twelfth or thirteenth. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these three are service buildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
+      "structure_id": "fort_dearborn_wash_house",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "A5",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "moderate",
+      "reasoning": "T-0883. One shed roof on the garrison's wash house, placed off the 1830 Harrison plan and corroborated in class and side by Hubbard. A5 (small utility) is the nearest family this crosswalk holds — there is no laundry family — and it is read off the FUNCTION: 31 x 15 ft stands well above A5's 6-8 by 12-16 ft band, and A1's band would fit the footprint exactly at the cost of calling a wash house a stable. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand — this building is the eleventh, twelfth or thirteenth. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these three are service buildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
+      "structure_id": "fort_dearborn_shop",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "W4",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "low",
+      "reasoning": "T-0883. One gable roof on the fort's shop, placed off the 1830 Harrison plan and corroborated by nothing — it is the one of the three that has a single witness. W4 (small artisan shop) IS CHOSEN BECAUSE IT NAMES NO TRADE, which is the record's own position: the plate says 'Shop' and this project does not know whether it was the smith's or the carpenter's. W3's band would fit 32 x 24 ft exactly and W4's 14-20 by 20-30 ft does not, and the trade-neutral family is taken anyway, because a family label here is a roof-counting convenience and a trade would be a claim. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand — this building is the eleventh, twelfth or thirteenth. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these three are service buildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
       "structure_id": "fort_dearborn_artillery_house",
       "district": "fort",
       "roof_count": 1,

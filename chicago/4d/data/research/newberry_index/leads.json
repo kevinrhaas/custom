@@ -9,12 +9,12 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "6c472291247e6a0c17bf79ce9f51ded4beb46424ba549b46f3adf7c88ac5280e",
+    "fingerprint": "895f9a083246c0d07ea181cf9ba7273f31f7789a212dc2ba4c846346054de810",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 788,
       "residents": 1363,
-      "structures": 375,
+      "structures": 378,
       "voters": 345
     }
   },
@@ -24044,6 +24044,11 @@
         {
           "id": "blacksmith_shop_state_st",
           "name": "Government Blacksmith Shop",
+          "rule": "OCR variant (0.89 similarity to 'shop')"
+        },
+        {
+          "id": "fort_dearborn_shop",
+          "name": "Fort Dearborn — the shop",
           "rule": "OCR variant (0.89 similarity to 'shop')"
         },
         {

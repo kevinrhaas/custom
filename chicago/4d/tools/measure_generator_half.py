@@ -120,13 +120,19 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # structure assets, so two more meshes a change to the shared generator modules or to
 # build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
 #
+# 375 -> 378 and 373 -> 376 on 2026-09-06 (T-0883): the Big Barn with Cupola, the Wash house
+# and the Shop — three of the six things the 1830 Harrison plan names on Fort Dearborn's outer
+# ground and nothing drew. Three new `outbuilding` records, so three more committed assets and
+# three more meshes a change to the shared generator modules or to build.py would re-stale; the
+# terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 375,
+    "assets": 378,
     "restales": {
-        "generators/common/*.py": 375,
+        "generators/common/*.py": 378,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 373,
+        "generators/build.py": 376,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

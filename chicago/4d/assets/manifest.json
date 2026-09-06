@@ -189,6 +189,15 @@
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_barracks"
     },
+    "fort_dearborn_big_barn__barn_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 120808,
+      "inputs_sha256": "32b31f758f4077b1ac75835a2a557f5851e13fd9794cf22f41816d0d6a0ca59a",
+      "kind": "generated",
+      "phase_id": "barn_1830",
+      "structure_id": "fort_dearborn_big_barn"
+    },
     "fort_dearborn_blockhouse__log_1816.glb": {
       "archetype": "fort_structure",
       "baked_ao": false,
@@ -279,6 +288,15 @@
       "phase_id": "cellar_1816",
       "structure_id": "fort_dearborn_root_house"
     },
+    "fort_dearborn_shop__shop_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 93488,
+      "inputs_sha256": "a5ba59cd0f3b1ab75645428c996424f3a1ff761542bd3ce4f193f3be415c4685",
+      "kind": "generated",
+      "phase_id": "shop_1830",
+      "structure_id": "fort_dearborn_shop"
+    },
     "fort_dearborn_store_house__log_1816.glb": {
       "archetype": "fort_structure",
       "baked_ao": false,
@@ -296,6 +314,15 @@
       "kind": "generated",
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_sutlers_store"
+    },
+    "fort_dearborn_wash_house__wash_house_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 94420,
+      "inputs_sha256": "28f09c9166be4cd627e6cc5fe91ba826b1e1b9c31d39236548e7eaf42d5dc3e4",
+      "kind": "generated",
+      "phase_id": "wash_house_1830",
+      "structure_id": "fort_dearborn_wash_house"
     },
     "frederick_thomas_shop__frame_1835.glb": {
       "archetype": "frame_storefront",
