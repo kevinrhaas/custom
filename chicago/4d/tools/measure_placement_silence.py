@@ -64,7 +64,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from compile_gazetteer import SCENE_DATE, placement_rank  # noqa: E402
+from compile_gazetteer import (SCENE_DATE, placement_rank,  # noqa: E402
+                               places_nothing)
 
 GAZETTEER = ROOT / "data" / "research" / "newspapers" / "gazetteer.json"
 REGISTER = ROOT / "data" / "research" / "newspapers" / "register_1835.json"
@@ -76,11 +77,32 @@ def survey():
     reg = {b["id"]: b for b in json.loads(REGISTER.read_text(encoding="utf-8"))["businesses"]}
     scene_iso = SCENE_DATE.isoformat()
     silent, outranked, after_scene, ruled, out_of_scene = [], [], [], [], []
+    groundless = []
     for biz in gaz["businesses"]:
-        live = placement_rank(biz.get("placement"))
+        # T-0859. "Places nothing" is a question about the PLACEMENT, not about its
+        # class: a `street_only` carrying neither a street nor an anchor names no
+        # street, and puts a shop on no more ground than `{"class": "none"}` does.
+        # Read from `compile_gazetteer` rather than retyped, for the same reason
+        # `placement_rank` already is — this report and the compiler may not disagree
+        # about what puts a storefront on the ground.
+        live = 0 if places_nothing(biz.get("placement")) else placement_rank(
+            biz.get("placement"))
         readings = biz.get("placement_readings") or []
-        placing = [r for r in readings if placement_rank(r.get("placement")) > 0]
+        placing = [r for r in readings if not places_nothing(r.get("placement"))]
         if not placing:
+            # The population this line exists for is the one that PRINTED a placing
+            # class and named no ground with it. A house whose every reading is
+            # `{"class": "none"}` is the ordinary silent advertisement, counted nowhere
+            # and rightly so.
+            if any(placement_rank(r.get("placement")) > 0 for r in readings):
+                groundless.append({
+                    "id": biz["id"],
+                    "live_class": (biz.get("placement") or {}).get("class") or "none",
+                    "groundless_class": next(
+                        r.get("class") for r in readings
+                        if placement_rank(r.get("placement")) > 0),
+                    "readings": len(readings),
+                    "action": (reg.get(biz["id"]) or {}).get("action")})
             continue
         best = max(placement_rank(r.get("placement")) for r in placing)
         if best <= live:
@@ -117,11 +139,11 @@ def survey():
             out_of_scene.append(row)
         else:
             outranked.append(row)
-    return silent, outranked, after_scene, ruled, out_of_scene
+    return silent, outranked, after_scene, ruled, out_of_scene, groundless
 
 
 def report() -> int:
-    silent, outranked, after_scene, ruled, out_of_scene = survey()
+    silent, outranked, after_scene, ruled, out_of_scene, groundless = survey()
     gaz = json.loads(GAZETTEER.read_text(encoding="utf-8"))
     print("A HOUSE'S LIVE PLACEMENT AGAINST ITS OWN PRINTINGS — T-0440\n")
     took = [b for b in gaz["businesses"] if b.get("placement_from")]
@@ -140,6 +162,8 @@ def report() -> int:
           % (SCENE_DATE.isoformat(), len(out_of_scene)))
     print("  — placed by no printing on or before %s          %4d  "
           "(the scene-date bound, working)" % (SCENE_DATE.isoformat(), len(after_scene)))
+    print("  — no printing of theirs ever named any ground              %4d  "
+          "(T-0859: nothing to place them by, and none is invented)" % len(groundless))
     if took:
         print("\nSILENT WHEN MINTED, PLACED BY A LATER PRINTING — repaired here")
         for b in sorted(took, key=lambda b: b["id"]):
@@ -148,6 +172,13 @@ def report() -> int:
             print("  %-52s %-11s %s%s"
                   % (b["id"], (b.get("placement") or {}).get("class"),
                      frm["first_issue"], "  street: %s" % street if street else ""))
+    if groundless:
+        print("\nNO PRINTING OF THEIRS EVER NAMED ANY GROUND (T-0859) — a `street_only`\n"
+              "carrying neither a street nor an anchor is not an address, so these are "
+              "not placed\nand nothing is invented for them")
+        for r in sorted(groundless, key=lambda r: r["id"]):
+            print("  %-52s printed %-11s live %-11s register: %s"
+                  % (r["id"], r["groundless_class"], r["live_class"], r["action"]))
     if silent:
         print("\nSTILL SILENT WHILE A PRINTING PLACES THEM — the defect, unrepaired")
         for r in sorted(silent, key=lambda r: r["id"]):
@@ -184,7 +215,7 @@ def report() -> int:
 
 
 def check() -> int:
-    silent, outranked, after_scene, ruled, out_of_scene = survey()
+    silent, outranked, after_scene, ruled, out_of_scene, groundless = survey()
     if silent:
         print("PLACEMENT SILENCE FAIL — %d house(s) hold a live placement that places "
               "nothing while one of their own printings places them:" % len(silent))
@@ -198,8 +229,10 @@ def check() -> int:
     print("  ok    no house is placed by a printing that gave no address; %d house(s) "
           "take a later printing's, %d wait on an `anchor_changes` judgement, %d have "
           "one written, %d are outranked only by a printing after the scene date, %d are "
-          "placed by nothing printed on or before it"
-          % (took, len(outranked), len(ruled), len(out_of_scene), len(after_scene)))
+          "placed by nothing printed on or before it, and %d were never given any ground "
+          "by any printing of their own"
+          % (took, len(outranked), len(ruled), len(out_of_scene), len(after_scene),
+             len(groundless)))
     return 0
 
 

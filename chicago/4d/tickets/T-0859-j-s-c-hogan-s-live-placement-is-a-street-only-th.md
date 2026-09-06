@@ -1,7 +1,7 @@
 ---
 id: T-0859
 title: J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 960
+claimed_by: run 9/5/2026, 11:51:14 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T05:16:04.635Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34009841423
 ---
 
 J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it.
