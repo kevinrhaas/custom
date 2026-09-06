@@ -360,6 +360,115 @@ def find_slivers(cards: list) -> dict:
     return out
 
 
+# ------------------------------------------- the bled-in body (T-0769)
+#
+# The mirror of the sliver, off the same 27-point overlap and read from the other
+# end. A volume's pages are not all the same width — 689 to 733 points — and the
+# crop windows are fixed, so on a WIDE page every column's ink sits further right
+# than the boxes assume and the left edge of window c+1 falls INSIDE column c. The
+# window then reads the right-hand part of column c's lines: not as a card of its
+# own, which is what the prefix half does, but glued to the FRONT of the card it
+# assembles, heading line and body line alike. The locality patterns then match on
+# text that is not on that card.
+#
+# MEASURED before the rule, and the measurement is what fixed its two clauses.
+# Asking, over the four volumes' 6,658 committed cards, whether a body OPENS with a
+# byte-exact run that CLOSES another body on the same page:
+#
+#   run >= 15 chars | 21 pairs | 21 at column delta -1 | 0 at 0, +1, +-2, +-3
+#
+# against an ordered same-page pair population of 15,518 at delta 0 and 2,517 at
+# delta +1. The concentration is the crop geometry's own prediction and is the
+# evidence that the two readings are the same ink, exactly as in T-0601.
+#
+# WHY 15 AND NOT 6. The ticket's first pass asked for a run of six and found 117
+# candidates, which is an upper bound and not a measurement: at six characters most
+# hits are two unrelated cards that both carry `Chicago,` or `Illinois`. The floor
+# is not chosen for tidiness — it is CALIBRATED on T-0601's own nine slivers, whose
+# bodies are the entire yield of the 27-point overlap and run 11 to 14 characters.
+# A shared run longer than 14 is therefore longer than the overlap alone has ever
+# been observed to carry, and cannot be the prefix artefact wearing this shape. At
+# or below 14 the two halves are indistinguishable from the string, and this rule
+# says nothing about them rather than guessing.
+#
+# THE SECOND DISCRIMINATOR, and it is what stops the rule marking the wrong card.
+# The string relation is symmetric: `A opens with B's tail` is also what the PREFIX
+# bleed looks like when column c has ink on that line, and there the contaminated
+# card is B, not A. The window that slices column c's body line slices its HEADING
+# line at the same x, so a card carried in by this artefact opens mid-word — its
+# heading is a fragment beginning in lower case (`nner` out of `Brenner`, `lus` out
+# of `Broslus`, `berta` out of `Roberts`). Over all 6,658 cards 1,019 headings begin
+# in lower case, a base rate of 15.3 per cent; over the 21 long-run pairs, 15 do —
+# 71 per cent, an enrichment of 4.7x. The six refused by this clause are the check
+# that it is the right way round: one of them, `nbi_v02_1830`, is a precision-sample
+# row hand-adjudicated `locality_correct` off the leaf image, with the county and
+# the state read on the card. Marking it would have contradicted a reading made by
+# eye.
+#
+# A bled card is MARKED, never trimmed, and the reasons are T-0601's plus one more
+# that is decisive here: MANIFEST.text_sha256 binds the committed text and check()
+# rebuilds every `as_read` out of it, so cutting the run off a body is a gate
+# failure and not an edit. The record keeps its id and its verbatim reading, gains
+# `bleed_of` and `bleed_run`, and is withheld from the volume's counts, its leads
+# and its reading order — because all 15 name a locality ONLY inside the run, which
+# is to say they were kept for text that is not on them.
+BLEED_MIN_RUN = 15
+_FIRST_LETTER = re.compile(r"[A-Za-z]")
+
+
+def heading_is_cut(heading: str) -> bool:
+    """True when a heading opens mid-word — the window's left edge sliced it.
+
+    An index heading is a surname and is printed capitalised. A heading whose first
+    letter is lower case is a fragment of one, which is what a crop box landing
+    inside the previous column leaves behind.
+    """
+    m = _FIRST_LETTER.search(heading or "")
+    return bool(m) and m.group(0).islower()
+
+
+def shared_run(a_body: str, b_body: str) -> int:
+    """The longest run `a` OPENS with that `b` CLOSES with, byte-exact.
+
+    Proper at both ends: a run that is the whole of either body is two cards reading
+    the same, which is a duplicate and not a bleed — page 363 of volume 1 carries
+    `Sangamon Co., III. (Power, J. C.) 1876.` twice, in two columns, and it is two
+    readings of two cards citing one county history.
+    """
+    a, b = collapse(a_body), collapse(b_body)
+    for length in range(min(len(a), len(b)) - 1, 0, -1):
+        if a[:length] == b[-length:]:
+            return length
+    return 0
+
+
+def find_bleeds(cards: list) -> dict:
+    """{index of a bled card: (index of the card whose tail bled in, run length)}.
+
+    `cards` is one volume's committed reading in record order, and each card needs
+    its `heading` as well as its body: the heading is half the test.
+    """
+    bypage = {}
+    for i, card in enumerate(cards):
+        bypage.setdefault(card["page"], []).append(i)
+    out = {}
+    for idxs in bypage.values():
+        for i in idxs:
+            a = cards[i]
+            if not heading_is_cut(a.get("heading") or ""):
+                continue
+            best = None
+            for j in idxs:
+                if j == i or cards[j]["column"] != a["column"] - 1:
+                    continue
+                length = shared_run(a["body"], cards[j]["body"])
+                if length >= BLEED_MIN_RUN and (best is None or length > best[1]):
+                    best = (j, length)
+            if best:
+                out[i] = best
+    return out
+
+
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -1334,7 +1443,33 @@ def parse(volume: int) -> dict:
             "and it is withheld from this volume's counts, from the leads and from "
             "the reading order, because it is not a second card."
             % (records[j]["id"], cards[j]["column"], cards[i]["column"]))
-    live = [r for k, r in enumerate(records) if k not in slivers]
+    # The same overlap read from the other end, and on a WIDE page (T-0769). The
+    # left edge of a window falls inside the previous column, so the card it
+    # assembles OPENS with that column's tail — heading and body both — and the
+    # locality patterns match on text that is not on this card. Every one of the
+    # fifteen names a locality ONLY inside the run, so every one is withheld: it was
+    # kept for ink it does not carry. See find_bleeds().
+    bleeds = find_bleeds(cards)
+    for i, (j, length) in bleeds.items():
+        run = collapse(cards[i]["body"])[:length]
+        records[i]["normalized"]["bleed_of"] = records[j]["id"]
+        records[i]["normalized"]["bleed_run"] = run
+        records[i]["normalized"]["localities_off_own_ink"] = buckets_of(
+            collapse(cards[i]["body"])[length:])
+        records[i]["notes"] = (
+            "A BLED-IN BODY: this page is wide enough that the crop window over "
+            "column %d begins inside column %d, so the pass read the tail of %s "
+            "— %r, %d characters, byte-exact — and glued it to the front of this "
+            "card. The heading is cut in the same place, which is how the direction "
+            "is known. The card's own ink names %s, so the locality that kept it is "
+            "not on it; the record is held because the ink is real and it was really "
+            "read, and it is withheld from this volume's counts, from the leads and "
+            "from the reading order."
+            % (cards[i]["column"], cards[j]["column"], records[j]["id"], run, length,
+               ", ".join(records[i]["normalized"]["localities_off_own_ink"])
+               or "no locality at all"))
+    withheld = set(slivers) | set(bleeds)
+    live = [r for k, r in enumerate(records) if k not in withheld]
 
     leads, follow, unmatched, unmatched_chi, by_key = leads_and_follow(
         live, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
@@ -1343,6 +1478,7 @@ def parse(volume: int) -> dict:
         "cards": len(live),
         "records": len(records),
         "slivers": len(slivers),
+        "bled_in_bodies": len(bleeds),
         "by_locality": {name: sum(1 for r in live
                                   if name in r["normalized"]["localities"])
                         for name, _ in LOCALITY_BUCKETS},
@@ -1394,8 +1530,10 @@ def parse(volume: int) -> dict:
     for vol in parsed:
         path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
         if path.exists():
-            all_records.extend(r for r in (load(path).get("records") or [])
-                               if not (r.get("normalized") or {}).get("sliver_of"))
+            all_records.extend(
+                r for r in (load(path).get("records") or [])
+                if not (r.get("normalized") or {}).get("sliver_of")
+                and not (r.get("normalized") or {}).get("bleed_of"))
     # THE ID KEEPS THE VOLUME, and it is the FIRST volume the surname appears in.
     # lead_crosswalk.json (T-0590) anchors 1,248 references at `lead_v01_*`, so a
     # surname filed in both volumes must keep the id its ruling was written against;
@@ -1580,6 +1718,8 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
                 moored = False
                 break
             cards.append({"page": loc.get("index_page"), "column": loc.get("column"),
+                          "heading": re.sub(r"^p\d{4} c\d  ", "",
+                                            tlines[pair[0] - 1]),
                           "body": tlines[pair[1] - 1][8:]})
         if not moored:
             continue                      # the locator gate above has already said so
@@ -1598,12 +1738,47 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
                 bad.append("%s %s: marked a sliver of %s, and the card it truncates on "
                            "the committed text is %s"
                            % (label, rec.get("id"), marked, truth))
-        net = len(recs) - len(found)
+        # THE BLEED MARK, BOTH WAYS (T-0769), and for the same reason the sliver
+        # gate runs both ways: a records file parsed before this rule existed goes
+        # on counting a card that was kept for a locality printed in the column to
+        # its left, and nothing says so.
+        bled = find_bleeds(cards)
+        for i, rec in enumerate(recs):
+            marked = (rec.get("normalized") or {}).get("bleed_of")
+            truth = recs[bled[i][0]].get("id") if i in bled else None
+            if truth and not marked:
+                bad.append("%s %s: opens with the tail of %s in the column to its "
+                           "left and the records do not mark it — the domain is "
+                           "counting a card kept for a locality that is not on it"
+                           % (label, rec.get("id"), truth))
+            elif marked and not truth:
+                bad.append("%s %s: marked a bled-in body off %s, and the committed "
+                           "text does not make it one"
+                           % (label, rec.get("id"), marked))
+            elif marked and marked != truth:
+                bad.append("%s %s: marked a bled-in body off %s, and the card whose "
+                           "tail it opens with on the committed text is %s"
+                           % (label, rec.get("id"), marked, truth))
+            elif marked:
+                want = collapse(cards[i]["body"])[:bled[i][1]]
+                if (rec.get("normalized") or {}).get("bleed_run") != want:
+                    bad.append("%s %s: bleed_run is not the run the committed text "
+                               "shares with %s" % (label, rec.get("id"), marked))
+        overlap = set(found) & set(bled)
+        if overlap:
+            bad.append("%s: %d record(s) marked both a column sliver and a bled-in "
+                       "body — the two halves of the overlap cannot both hold"
+                       % (label, len(overlap)))
+        net = len(recs) - len(set(found) | set(bled))
         stated = (doc.get("counts") or {}).get("cards")
         if stated is not None and stated != net:
             bad.append("%s: counts.cards says %s, and the file holds %d records of "
-                       "which %d are column slivers — %d cards"
-                       % (label, stated, len(recs), len(found), net))
+                       "which %d are column slivers and %d are bled-in bodies — %d "
+                       "cards" % (label, stated, len(recs), len(found), len(bled), net))
+        stated_bleeds = (doc.get("counts") or {}).get("bled_in_bodies")
+        if stated_bleeds is not None and stated_bleeds != len(bled):
+            bad.append("%s: counts.bled_in_bodies says %s and the committed text "
+                       "carries %d" % (label, stated_bleeds, len(bled)))
 
     cross_path = domain / "crosswalk.json"
     if cross_path.exists():
@@ -1660,16 +1835,30 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
     sample_path = domain / "precision_sample.json"
     if sample_path.exists():
         sample = load(sample_path)
-        read = set()
+        read, withheld = set(), {}
         for path in sorted((domain / "records").glob("entries_vol_*.json")):
             for rec in load(path).get("records") or []:
                 read.add(rec.get("as_read"))
+                mark = (rec.get("normalized") or {}).get("bleed_of")
+                if mark:
+                    withheld[rec.get("as_read")] = (rec.get("id"), mark)
         rows = sample.get("records") or []
         for row in rows:
             if row.get("as_read") not in read:
                 bad.append("precision_sample.json %s: the card it adjudicates is no "
                            "longer in the records — re-draw the sample, do not carry "
                            "its number forward" % row.get("id"))
+            # T-0769. A sampled row is a verdict reached by eye on the leaf; a bleed
+            # mark is a verdict reached by rule that the locality is printed in the
+            # column to the left. The two cannot both stand on one card, and the
+            # sample is the older and the better-evidenced of them: a row that turns
+            # up marked is the RULE to re-argue, not the reading to overwrite.
+            elif row.get("as_read") in withheld:
+                rid, mark = withheld[row["as_read"]]
+                bad.append("precision_sample.json %s: %s is marked a bled-in body off "
+                           "%s and is adjudicated %r by eye — re-argue the rule or "
+                           "re-draw the row, and do not carry both"
+                           % (row.get("id"), rid, mark, row.get("verdict")))
             if row.get("verdict") not in ("locality_correct", "not_demonstrated"):
                 bad.append("precision_sample.json %s: verdict %r is outside the two "
                            "this file may reach" % (row.get("id"), row.get("verdict")))
@@ -1779,6 +1968,63 @@ def self_test() -> int:
         doc["counts"]["cards"] = len(doc["records"])
         dump(path, doc)
     ok &= run("a volume counting its slivers as cards", miscount_slivers)
+
+    def unmark_bleed(dom):
+        for path in sorted((dom / "records").glob("entries_vol_*.json")):
+            doc = load(path)
+            for rec in doc.get("records") or []:
+                if (rec.get("normalized") or {}).get("bleed_of"):
+                    rec["normalized"].pop("bleed_of")
+                    rec["normalized"].pop("bleed_run", None)
+                    doc["counts"]["cards"] = doc["counts"]["cards"] + 1
+                    doc["counts"]["bled_in_bodies"] = doc["counts"]["bled_in_bodies"] - 1
+                    dump(path, doc)
+                    return
+        raise AssertionError("no bled-in body in the committed records to unmark")
+    ok &= run("a bled-in body the records no longer mark", unmark_bleed)
+
+    def invent_bleed(dom):
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("bled_in_bodies")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a bled-in body")
+        doc = load(path)
+        # Not the first record, and not off itself: the fixture has to name a real
+        # OTHER card, or it tests self-reference rather than the mark.
+        for rec in doc["records"][1:]:
+            if not (rec.get("normalized") or {}).get("bleed_of"):
+                rec["normalized"]["bleed_of"] = doc["records"][0]["id"]
+                rec["normalized"]["bleed_run"] = "x" * BLEED_MIN_RUN
+                break
+        dump(path, doc)
+    ok &= run("a card marked a bled-in body off one whose tail it does not open with",
+              invent_bleed)
+
+    def miscount_bleeds(dom):
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("bled_in_bodies")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a bled-in body to "
+                                 "miscount — this fixture can no longer test what it "
+                                 "claims to")
+        doc = load(path)
+        doc["counts"]["cards"] = len(doc["records"]) - (doc["counts"].get("slivers") or 0)
+        dump(path, doc)
+    ok &= run("a volume counting its bled-in bodies as cards", miscount_bleeds)
+
+    def restate_bleed_run(dom):
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("bled_in_bodies")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a bled-in body")
+        doc = load(path)
+        for rec in doc.get("records") or []:
+            if (rec.get("normalized") or {}).get("bleed_of"):
+                rec["normalized"]["bleed_run"] = rec["normalized"]["bleed_run"][:-1]
+                break
+        dump(path, doc)
+    ok &= run("a bleed_run shortened to something the two cards do not share",
+              restate_bleed_run)
 
     ok &= run("a merge in the crosswalk",
               lambda d: dump(d / "crosswalk.json",
