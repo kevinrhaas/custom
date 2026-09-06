@@ -1,7 +1,7 @@
 ---
 id: T-0779
 title: The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 4:24:37 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34060626354
 ---
 
 The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled.
