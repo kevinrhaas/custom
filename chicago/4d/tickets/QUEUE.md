@@ -93,7 +93,6 @@ T-0828 — The lot-line fence generator mints a run id that names a lot, not a s
 # --- numbers above. Ordered by measured yield, with the crosswalk repairs first because a stale
 # --- crosswalk wastes the read that follows it: civic poll/tax/voter matched 28.7%, the 1840
 # --- census 1.0%, church and Newberry 0.0%.
-T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
 T-0714 — The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
 T-0697 — The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
 T-0695 — A garbled printed forename refuses a match the reader can still make: C!;as. for Chas., J>ctij for John, Iia for Ira

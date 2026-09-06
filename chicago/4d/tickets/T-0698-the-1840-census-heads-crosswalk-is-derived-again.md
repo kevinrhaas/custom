@@ -1,7 +1,7 @@
 ---
 id: T-0698
 title: The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 992
 claimed_by: run 9/6/2026, 10:09:03 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T16:08:15.539Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34041011986
 ---
 
