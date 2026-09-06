@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Three families the records named and the town had not written down', kind: 'feat', ts: '',
+  { v: 621, title: 'Three families the records named and the town had not written down', kind: 'feat', ts: '2026-09-06T05:01:36.002Z', date: 'Sep 6, 2026, 12:01 AM CT',
     items: [
       'Mark Beaubien and Jean Baptiste Beaubien were brothers. Charles and Isaac Harmon were the sons of Dr Elijah Dewey Harmon. All three of those facts were sitting in the town’s own records, in sentences somebody had already transcribed, and none of them had been written down as a family tie. They are now, on both people in each case.',
       'The Harmon one is the reason the household exists at all. The town’s first newspaper carried a firm called ‘C. & I. Harmon’ and nothing else; what turned those two initials into two named men was a sentence listing the doctor’s five surviving children. The household was built on that sentence — and the link it establishes, between the sons and their father, was the one thing neither record had ever been asked for.',
