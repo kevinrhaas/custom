@@ -62,6 +62,7 @@
    "name": "Dr Philip Maxwell",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "birth_year": {
     "value": 1799,

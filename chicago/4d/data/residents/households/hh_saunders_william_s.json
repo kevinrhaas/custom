@@ -52,6 +52,7 @@
    "name": "William S. Saunders",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -78,7 +79,21 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "saunders",
+     "weighed_against": [
+      "saunders_william_w"
+     ],
+     "referred_to": "owner",
+     "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town.",
+     "against_merge": "The middle initials S and W disagree. One card is letter-list only, the other a press mention; neither documents the man. No anchor. His call."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -56,6 +56,7 @@
    "name": "John Davis",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "hotel_keeper",

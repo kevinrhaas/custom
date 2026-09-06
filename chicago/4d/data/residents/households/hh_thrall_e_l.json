@@ -52,6 +52,7 @@
    "name": "E. L. Thrall",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "clothier",
     "confidence": "attested",

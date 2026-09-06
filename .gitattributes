@@ -93,3 +93,67 @@ chicago/4d/tickets/QUEUE.md merge=queue
 chicago/4d/renderers/web/js/changelog.js merge=changelog
 site/chicago/4d/js/changelog.js merge=changelog
 site/chicago/4d/walk/js/changelog.js merge=changelog
+
+# THE BUILD PRODUCTS, AND THE ONE FILE IN THIS SET THAT IS NOT ONE (T-0831).
+#
+# THE MEASUREMENT. PR #906 was open about seventy minutes. `dev` moved FIVE times
+# under it — #904, #907, #908, #905, #858 — and every one of the five merges
+# conflicted, always in generated files and never once in the substantive diff:
+#
+#   lap 1  #904   BOARD.md, tickets.json x2, build.json, walk/index.html
+#   lap 2  #907   the same five (plus STATUS.md, a real conflict, hand-merged)
+#   lap 3   --    the same five, measured with merge-tree before the lap
+#   lap 4  #905   the same five
+#   lap 5  #858   BOARD.md, tickets.json x2
+#
+# Two other PRs report it independently. #894: "each one collides on the same four
+# generated files" — four rebases paid, and the fifth is where that run's clock ran
+# out. #850: "Every conflict so far has been in a generated file... The substantive
+# diff has merged cleanly every time" — rebased twice, the gate run three times on
+# three bases, then parked on `hold` with finished, green work. #850 prices the lap
+# at ~19 minutes of honest verification, during which dev took three more merges.
+#
+# WHY KEEPING OURS IS SAFE HERE, WHICH IS THE WHOLE ARGUMENT. Each of these five is
+# ALREADY REFUSED BY THE GATE WHEN STALE — checked by reading check.sh, not assumed:
+# BOARD.md and tickets.json by `ticket.mjs check`; the site tickets.json by
+# `test_ticket_mirror.mjs`, which asserts that a mirror somebody else made stale
+# still fails; build.json and walk/index.html by `check_published.mjs`, which holds
+# that every published file is byte-identical to its source or is a declared
+# transform. So the conflict was never what protected these files — the gate was,
+# and the conflict is pure cost. That is the same reasoning chicago/4d/.gitattributes
+# already sets out for the liberty register: a conflict is safe because it stops
+# you, and where a check already stands in for it, the conflict buys nothing.
+#
+# The driver KEEPS OURS AND PRINTS the rebuild command, because a driver that
+# silently keeps ours also silently removes the merge's own reminder that the file
+# needs rebuilding. merge-changelog.mjs prints its follow-up for the same reason.
+#
+# It is NOT `merge=union`, which is banned above on measured grounds and must not
+# come back here: union is a LINE union and it turned five loud changelog conflicts
+# into five silent corruptions in one day. This driver merges no content at all.
+#
+# Register once per clone:  bash chicago/4d/tools/setup-merge-drivers.sh
+# Not registered? git falls back to the ordinary text merge and you get conflict
+# markers — the old behaviour, never something worse.
+chicago/4d/tickets/BOARD.md      merge=generated
+chicago/4d/tickets/tickets.json  merge=generated
+site/chicago/4d/tickets.json     merge=generated
+site/chicago/4d/build.json       merge=generated
+site/chicago/4d/walk/index.html  merge=generated
+
+# …AND THE FILE THAT LOOKS LIKE ONE OF THEM AND IS NOT.
+#
+# tools/dev-smoke-state.json sits in exactly the same conflict set, and treating it
+# the same way would have destroyed data. Measured before writing the rule: it is an
+# APPEND-ONLY register of smoke readings (T-0216), 62 of them; its rows carry NO
+# `id`, so T-0820's uniqueness check cannot see it; and NO step of check.sh reads it
+# at all. Nothing regenerates it and nothing would notice a merge throwing half of
+# it away. #905 resolved one lap by taking dev's side and said so — correct for one
+# lap, wrong as a standing rule, because a reading is evidence that a gate was run
+# on a tree and evidence is not regenerable.
+#
+# So this one gets a union of WHOLE READINGS — ours in ours' order, then theirs'
+# that ours does not already hold, deduplicated on a canonical form that sorts keys
+# at every depth. Never a union of lines. It refuses, leaving ordinary conflict
+# markers, if either side is not the shape it knows.
+chicago/4d/tools/dev-smoke-state.json  merge=smokestate

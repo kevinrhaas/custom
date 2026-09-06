@@ -1,7 +1,7 @@
 ---
 id: T-0813
 title: Six generated artifacts conflict on every branch: merge them by regenerating, and make a drain lap a tool
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-05
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T19:46:19.386Z
 claimed_run: null
 ---
 

@@ -52,6 +52,7 @@
    "name": "J. W. Fell",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",

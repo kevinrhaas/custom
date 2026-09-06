@@ -1,7 +1,7 @@
 {
  "schema": 2,
  "domain": "census_1840",
- "schema_note": "schema 2 groups the declaration, because the deposit is read in three image groups by three tickets. Schema 1 declared one group at the top level; the group objects below carry exactly the fields schema 1 had.",
+ "schema_note": "schema 2 groups the declaration, because the deposit is read in three image groups by three tickets. Schema 1 declared one group at the top level; the group objects below carry exactly the fields schema 1 had. T-0497 adds the top-level `declarations` array the SHARED gate (tools/research_domains.py --check) reads, which the schema-2 `groups` shape above is invisible to (T-0536); the list declared there is T-0497's own and the image groups are untouched.",
  "deposit": {
   "files": 75,
   "distinct_images": 74,
@@ -59,7 +59,7 @@
      "in_pr_670_calibration_set": true,
      "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-38.json",
-     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals \u2014 36 of 38 columns balance and are committed; free white females 20 under 30 and 40 under 50 do not and are left unreconciled with their residuals A SECOND, INDEPENDENT reading of this sheet's cells (PR #698, preserved verbatim in second_readings/33S7-9YYJ-38.json) agrees on every name and disagrees on the cells of 25 of 31 lines, with the footings of columns 15, 18 and 20 read differently. The committed cells are one reading until the two are reconciled against the sheet.",
+     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals \u2014 36 of 38 columns balance and are committed; free white females 20 under 30 and 40 under 50 do not and are left unreconciled with their residuals A SECOND, INDEPENDENT reading of this sheet's cells (PR #698, preserved verbatim in second_readings/33S7-9YYJ-38.json) agrees on every name and disagrees on the cells of 25 of 31 lines, with the footings of columns 15, 18 and 20 read differently. The committed cells are one reading until the two are reconciled against the sheet. RECONCILED by T-0559 against that second reading, at 4x to 12x on a grid re-checked against the printed heading: the two readings part on ONE cell of the thirty-one lines \u2014 line 13, column 15 \u2014 and it goes this page file's way, the mark being a written 4 and not a tally stroke. All three disputed footings (columns 15, 18 and 20) also go this page file's way at 12 read/12 footed, 20/21 and 3/5, so the committed set is unchanged at 36 of 38 columns.",
      "lines_ruled": 31,
      "page_population_key": 160,
      "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json \u2014 the enumerator\u2019s own 38 printed footings summed, blanks counted as zero"
@@ -276,7 +276,7 @@
      "in_pr_670_calibration_set": true,
      "read_state": "names_transcribed_cells_read",
      "page_file": "data/research/census_1840/pages/33S7-9YYJ-9M5.json",
-     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals \u2014 36 of 38 columns balance and are committed, the two that do not are named on the page file. The 30-versus-31 disagreement with PR #670 is SETTLED against the sheet's own footings: 30 entries, and line 26 is a named head with no mark in any column A SECOND, INDEPENDENT reading of this sheet's cells (PR #698, preserved verbatim in second_readings/33S7-9YYJ-9M5.json) agrees on every name and disagrees on the cells of 20 of 30 lines, with the footings of columns 1, 6 and 14 read differently \u2014 each reading balances a different set of columns. The committed cells are one reading until the two are reconciled against the sheet.",
+     "note": "names read by T-0523; cells read by T-0534 at a fitted column grid and checked against the printed column totals \u2014 36 of 38 columns balance and are committed, the two that do not are named on the page file. The 30-versus-31 disagreement with PR #670 is SETTLED against the sheet's own footings: 30 entries, and line 26 is a named head with no mark in any column A SECOND, INDEPENDENT reading of this sheet's cells (PR #698, preserved verbatim in second_readings/33S7-9YYJ-9M5.json) agrees on every name and disagrees on the cells of 20 of 30 lines, with the footings of columns 1, 6 and 14 read differently \u2014 each reading balances a different set of columns. The committed cells are one reading until the two are reconciled against the sheet. RECONCILED by T-0559 against that second reading, at 4x to 11x on a grid re-checked against the printed heading: the two readings part on ONE cell of the thirty lines \u2014 line 28, column 1 \u2014 and it goes the second reading's way, the ink being the terminal flourish of the surname and not a stroke. Column 1 is DE-COMMITTED as a result (9 read against a footing that re-reads as 14, alternates 10 and 16) and column 14 is committed (19 read, and 19 is one of the two readings its degraded footing admits); column 6's footing re-reads as 7, not 1, and stays unbalanced at 8 read. 36 of 38 columns are committed, and they are not the same 36.",
      "lines_ruled": 30,
      "page_population_key": 137,
      "page_population_key_source": "T-0642, data/research/census_1840/left_sheet_population_key.json \u2014 the enumerator\u2019s own 38 printed footings summed, blanks counted as zero"
@@ -1246,6 +1246,17 @@
    "query": "the collection page behind these image ids (collection 1786457)",
    "date": "2026-09-03",
    "result": "login-walled \u2014 recorded as inaccessible, not as absent. The deposited JPEGs are the record this domain reads."
+  }
+ ],
+ "declarations": [
+  {
+   "unit": "list",
+   "ticket": "T-0497",
+   "items": [
+    "dalton_data_bank_illinois_1840_census_index"
+   ],
+   "what": "The Dalton Data Bank's Illinois census index, 1840 block — 20 rows, read whole off daltondatabank.net/Illinois.html on 2026-09-05 and recorded in records/dalton_index.json. A one-SURNAME index, not a city name list: see that file's what_this_index_actually_is.",
+   "read_whole": true
   }
  ]
 }

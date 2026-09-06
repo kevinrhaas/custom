@@ -57,6 +57,7 @@
    "name": "Peter Pruyne",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "druggist",
@@ -92,6 +93,7 @@
    "name": "Dr Edmund Stoughton Kimberly",
    "relationship": "partner",
    "grade": "attested",
+   "ladder_rule": "G1a",
    "sex": "male",
    "birth_year": {
     "value": 1803,
@@ -120,8 +122,9 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "history_medicine_chicago_kimberly_maxwell",
-    "chicago_voter_lists_1833_1835_irad"
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "history_medicine_chicago_kimberly_maxwell"
    ],
    "note": "T-0478 adds exact birth data and independent biography: born April 7, 1803 at Troy, New York; Union College graduate; medical training in New York; married Marie Theresa Ellis May 16, 1829; moved to Chicago in 1832. He was clerk of the August 5, 1833 incorporation meeting and one of the first town trustees. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Tax list of the Town of Chicago, 1833 — “Kimberly, Edmund S.” (tax_1833_057, line 109); Election returns — poll list of 1834, filed 11 August 1834 — “Kimberly, Dr. E. S.” (poll_1834_063, line 232). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Kimberly' agrees with the entry's forenames; 1 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json).",
    "resident_research": {
@@ -139,15 +142,95 @@
       "regraded_on": "2026-09-04",
       "rule": "G2b",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 2 thing(s) the consolidation did not read — andreas_1884_v1, history_medicine_chicago_kimberly_maxwell. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, chicago_democrat_1833_1835, history_medicine_chicago_kimberly_maxwell. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
+   },
+   "civic_evidence": [
+    {
+     "list": "poll_1833",
+     "as_read": "Kimberly, Ed. S.",
+     "locator": "poll_1833",
+     "record_id": "poll_1833_016",
+     "describes_date": "1833",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G3"
+    },
+    {
+     "list": "poll_1834",
+     "as_read": "Kimberly, Edmund L.",
+     "locator": "poll_1834",
+     "record_id": "poll_1834_064",
+     "describes_date": "1834",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    },
+    {
+     "list": "poll_1835",
+     "as_read": "Kimberly, Edmund L.",
+     "locator": "poll_1835",
+     "record_id": "poll_1835_039",
+     "describes_date": "1835",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G1a"
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "E. S. Kimberly",
+     "locator": "chicago_democrat_1835_07_01#c010",
+     "record_id": "person_e_s_kimberly",
+     "describes_date": "1835-07-01",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C0",
+    "cluster": "kimberly",
+    "cards": [
+     "kimberly_e_s",
+     "kimberly_ed_s",
+     "kimberly_edmund_l"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   }
  ],
  "touches_removal": false,
  "review_required": false,
  "research_note": "A PARTNERSHIP RECORDED AS A HOUSEHOLD, WHICH IS A COMPROMISE AND IS FLAGGED AS ONE. Nothing says Pruyne and Kimberly shared a roof; what is documented is that they opened a shop together. They are grouped because the alternative - two single-person households, each pointing at the same building - would double the household count without adding a person, and because the schema's relationship vocabulary carries 'partner' precisely for this. ANY LATER USE THAT TREATS A HOUSEHOLD AS A DWELLING UNIT MUST READ THIS FIELD: lives_at is null here on purpose, and the household should not be given a dwelling by the inferred phase until the two men are separated. A NAME COLLISION KEPT SEPARATE: the W. Kimball who advertised dry goods at South Water and Clark in the Democrat of 26 November 1833 is a different trade and, on the evidence, a different man; he has his own household here.",
+ "old_settler_deaths": {
+  "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
+  "note": "LATER EVIDENCE OF A DEATH, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. Fergus's 1843 directory (1896) prints an obituary list of old settlers, and one of its entries meets somebody of this name. THE HEADER OF THE LIST IS QUOTED ABOVE, and it is the limit the whole reading turns on. It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload. Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. A death notice printed in 1896 says a person of this name died on a day; under the ratified ladder (T-0513) that is later evidence about a DEATH, and it is never an 1835 residence. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
+  "sources": [
+   "fergus_1843_old_settler_death_notices"
+  ],
+  "people": [
+   {
+    "person_id": "pruyne_peter",
+    "matched_as": "Peter Pruyne",
+    "matched_by": "Surname 'Pruyne' folds to the same string as the entry's, and the given name of both begins P.",
+    "matched_on_initial_only": false,
+    "resident_given_is_initial_only": false,
+    "entry_given_as_read": "Peter",
+    "entry_given_is_initial_only": false,
+    "the_agreement": "a surname and a forename spelled out on both sides",
+    "record_id": "fdn0531",
+    "trade_or_office": null,
+    "manner_of_death": "died",
+    "place_of_death": null,
+    "death_date": "1839-11",
+    "age_as_printed": null,
+    "birth_year_earliest": null,
+    "birth_year_latest": null,
+    "birth_year_arithmetic": null,
+    "as_read": "Pruyne, Peter, died November, 1839"
+   }
+  ]
+ },
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [
@@ -156,7 +239,42 @@
   ],
   "people": [
    {
-    "person_id": "kimberly_edmund_s"
+    "person_id": "kimberly_edmund_s",
+    "address_later": {
+     "value": "res. N. Water st next Lake House",
+     "confidence": "attested",
+     "describes_date": 1839,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Kimberly, Dr. Edmund S., res. N. Water st next Lake House'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "already_better_placed",
+     "clause": "2",
+     "value": null,
+     "describes_date": 1839,
+     "read_back_years": 4,
+     "placement": null,
+     "position_local_enu_m": null,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1839 prints an address against this name in 1839, and it is left where it is. An 1835 placement already stands: this household works at `pruyne_kimball_drugstore`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later. The later address stays on the record as 1839's evidence and moves nothing."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1839,
+     "read_back_years": 4,
+     "placement": null,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1839 prints where this man lived in 1839 and this pass will not carry it back to 1835. The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
+    }
    },
    {
     "person_id": "pruyne_peter",

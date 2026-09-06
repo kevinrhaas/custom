@@ -52,6 +52,7 @@
    "name": "Mrs. H. Sherman",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "female",
    "occupation": {
     "value": "dressmaker",

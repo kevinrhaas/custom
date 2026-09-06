@@ -48,6 +48,7 @@
    "name": "Thomas S. Eels",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "tailor",
     "confidence": "attested",

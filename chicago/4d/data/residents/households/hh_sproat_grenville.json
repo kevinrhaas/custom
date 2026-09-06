@@ -57,6 +57,7 @@
    "name": "Grenville Temple Sproat",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "schoolteacher",
@@ -69,7 +70,8 @@
    },
    "sources": [
     "andreas_1884_v1",
-    "chicago_democrat_1833_11_26"
+    "chicago_democrat_1833_11_26",
+    "chicago_democrat_1833_1835"
    ],
    "note": "DOCUMENTED CONTEMPORANEOUSLY AND RETROSPECTIVELY, WITH AN ORIGIN IN THE CONTEMPORARY SOURCE - which makes this the only origin in the parcel that comes from a Chicago document rather than from a memoir. Andreas spells the forename both Granville and Grenville and the index carries 'Sproot, Grenville Temple'; his English and Classical School for Boys occupied the upper storey of the Temple Building. Two women are named as teachers in the same building at different times - 'Miss Chappel (Mrs. Jeremiah Porter), Miss Sarah Warren (Mrs. Abel E. Carpenter), and S. L. Carpenter' - and none of the three is written as a household here because none of them is placed in the town on any date near the scene date.",
    "resident_research": {
@@ -83,10 +85,69 @@
     "source_ids": [
      "goodman_history_cook_county_early"
     ]
+   },
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "G. T. Sproat",
+     "locator": "chicago_democrat_1833_12_03#c015",
+     "record_id": "person_g_t_sproat",
+     "describes_date": "1833-12-03",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "G. N. Sproat",
+     "locator": "chicago_democrat_1834_01_21#c002",
+     "record_id": "person_g_n_sproat",
+     "describes_date": "1834-01-21",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C4",
+    "cluster": "sproat",
+    "cards": [
+     "sproat_g_n",
+     "sproat_g_t"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   }
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE SCHOOLMASTER OF THE TOWN'S FIRST PURPOSE-BUILT SCHOOLROOM, and a household whose presence at the scene date is genuinely open. THE PARCEL'S SCHOOLING GAP IS WORTH STATING: in a town of 3,265 people this dataset can name three teachers - Watkins, Sproat and Eliza Chappel - of whom one is documented at work in the scene year, one is uncertain and one had married and left. George Davis, teaching on Lake Street in the winter of 1834-35 and in the Presbyterian church later in 1835, is a fourth and is the most obviously missing household in this parcel."
+ "research_note": "THE SCHOOLMASTER OF THE TOWN'S FIRST PURPOSE-BUILT SCHOOLROOM, and a household whose presence at the scene date is genuinely open. THE PARCEL'S SCHOOLING GAP IS WORTH STATING: in a town of 3,265 people this dataset can name three teachers - Watkins, Sproat and Eliza Chappel - of whom one is documented at work in the scene year, one is uncertain and one had married and left. George Davis, teaching on Lake Street in the winter of 1834-35 and in the Presbyterian church later in 1835, is a fourth and is the most obviously missing household in this parcel.",
+ "old_settler_deaths": {
+  "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
+  "note": "LATER EVIDENCE OF A DEATH, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. Fergus's 1843 directory (1896) prints an obituary list of old settlers, and one of its entries meets somebody of this name. THE HEADER OF THE LIST IS QUOTED ABOVE, and it is the limit the whole reading turns on. It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload. Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. A death notice printed in 1896 says a person of this name died on a day; under the ratified ladder (T-0513) that is later evidence about a DEATH, and it is never an 1835 residence. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
+  "sources": [
+   "fergus_1843_old_settler_death_notices"
+  ],
+  "people": [
+   {
+    "person_id": "sproat_grenville",
+    "matched_as": "Grenville Temple Sproat",
+    "matched_by": "Surname 'Sproat' folds to the same string as the entry's, and the given name of both begins G.",
+    "matched_on_initial_only": false,
+    "resident_given_is_initial_only": false,
+    "entry_given_as_read": "Granville Temple",
+    "entry_given_is_initial_only": false,
+    "the_agreement": "a surname and a forename spelled out on both sides",
+    "record_id": "fdn0620",
+    "trade_or_office": "school-teacher",
+    "manner_of_death": "died",
+    "place_of_death": "Mt. Lebanon, N.Y.",
+    "death_date": "1887-02-06",
+    "age_as_printed": "aged 79",
+    "birth_year_earliest": 1807,
+    "birth_year_latest": 1808,
+    "birth_year_arithmetic": "The page prints the death as 'February 6, 1887' and the age as 'aged 79'. An age of 79 completed years means at least 79 and less than 80, so the birth falls between 1807-02-07 and 1808-02-06: the birth year is 1807 or 1808. The subtraction is this project's; the page states no year of birth.",
+    "as_read": "Sproat, Granville Temple, school-teacher, died, Mt. Lebanon, N.Y., February 6, 1887, aged 79."
+   }
+  ]
+ }
 }

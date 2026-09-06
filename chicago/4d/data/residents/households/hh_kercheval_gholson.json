@@ -54,6 +54,7 @@
    "name": "Gholson Kercheval",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "sub_agent",

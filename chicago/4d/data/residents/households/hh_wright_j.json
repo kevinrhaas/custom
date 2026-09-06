@@ -73,6 +73,21 @@
      "source": "chicago_american_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R2",
+     "cluster": "wright",
+     "weighed_against": [
+      "wright_john",
+      "wright_john_s"
+     ],
+     "referred_to": "rule",
+     "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
+     "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
+    }
    ]
   }
  ],

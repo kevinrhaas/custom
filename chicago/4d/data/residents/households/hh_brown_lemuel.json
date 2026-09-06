@@ -51,6 +51,7 @@
    "name": "Lemuel Brown",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1c",
    "sex": "male",
    "occupation": {
     "value": "blacksmith",
