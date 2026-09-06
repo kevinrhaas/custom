@@ -97,6 +97,14 @@
         "harrison_1830_river_mouth"
       ],
       "note": "THE WORDS ON THE PLATE ARE 'Out Buildings' AND NOTHING ELSE IS CLAIMED. An out building on a post of this date is a store, a privy, a hen house, a smoke house or a wood shed, and the plate names none of them; writing any one of those onto this record would be inventing a use for a building it can barely size. What the record holds is an out building on the fort's outer ground."
+    },
+    "land_owner": {
+      "value": "The ground was entered by John Baptist Baubian, 28 May 1835",
+      "confidence": "inferred",
+      "sources": [
+        "isa_public_domain_land_tract_sales"
+      ],
+      "note": "THE UNITED STATES RESERVATION. This is the same tract L108 already derives for `1835_no_build_ground.json` — from G1, Madison's line and the traced waterline — so the polygon is inherited rather than built again, and `check.sh` already re-derives it. The register's own row is the second, independent witness to the date L108 quotes from Andreas: Beaubien's pre-emption, 28 May 1835, five weeks before the scene date. The derived polygon is short of the documented 75.69 acres for the reasons L108 states, and is a floor rather than the reservation. WHETHER THE ENTRY HELD IS NOT READ HERE: it was disputed, and this row records the entry the register carries and nothing about its outcome. THE MARGIN IS 76 m: this footprint stands that far inside the tract's nearest boundary, which is more than twice the working horizontal uncertainty of anything traced off the 1834 sheets (about 20 m), so the assignment survives the error the construction carries. WHAT THIS ROW CLAIMS AND WHAT IT DOES NOT. It claims that the tract the Illinois State Archives' land-sale register describes contains this structure's committed position — the patent for this ground was ENTERED by this man on this date. It does not claim he still held the ground on 1 July 1835, that he lived here, or that he ever stood on it: a sale is a transaction, and the register's only column about residence names a county. THE SECTION LINES ARE CONSTRUCTED, NOT TRACED (L219): the grid is carried from the single PLSS corner at State & Madison, on the plat's own east-west bearing, in nominal one-mile squares."
     }
   },
   "residents": [],
@@ -121,6 +129,14 @@
         "the state of the fort in 1835 - it is five years earlier",
         "a separation between the 1830 survey and the settler-memory additions the plate admits to"
       ]
+    },
+    {
+      "source_id": "isa_public_domain_land_tract_sales",
+      "citation": "Illinois State Archives, Illinois Public Domain Land Tract Sales Database (Springfield: Office of the Secretary of State).",
+      "url": "https://apps.ilsos.gov/isa/landSalesSearch.do",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness"
     }
   ],
   "research_note": "Placed under T-0881, the second of three slices of T-0758. It is the smaller and weaker-attested of the pair the plate letters Out Buildings: one witness, no dimension, no use, and a footprint at the edge of what a re-engraved block can be read to. It is carried at inferred for POSITION, because the same transform and the same checks that placed the barn, the wash house and the shop place it, and at reconstructed for every element of its fabric. WHAT WOULD IMPROVE IT: a post return, a quartermaster's account, or the return of the 1830 original — what is readable here is Andreas's 1884 re-engraving, which is why nothing on this record is graded documented.",

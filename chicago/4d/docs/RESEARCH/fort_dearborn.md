@@ -265,13 +265,37 @@ carries the `geometry:` declaration and a liberty:
   `data/flora/` has no cultivated zone and no garden species.
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
 - **The drill ground south of the pickets** (Kinzie). No extent given.
-- **Named ground on the 1830 plan and not modelled**: the Well, the Out Buildings, the
-  U.S. Factor's House, the Cultivated Field, the Fort Cemetery, the Ferry. Each is a
-  candidate for a later slice and each would be almost entirely invention today — the plan
-  gives a symbol and a label and no form. The **Fort Cemetery** in particular is left alone
-  deliberately. The **Well** and the **Out Buildings** are T-0881's; the **Fort Cemetery**
-  is T-0882's.
-- **Three of that list are now built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
+- **Named ground on the 1830 plan and not modelled**: the U.S. Factor's House, the
+  Cultivated Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice and
+  each would be almost entirely invention today — the plan gives a symbol and a label and no
+  form. The **Fort Cemetery** in particular is left alone deliberately, and is T-0882's.
+- **The Well is read and not drawn** — 2026-09-06, T-0881, and this is a limit of the
+  tooling rather than a doubt about the evidence. The plate draws a small open ring, 14.5 px
+  across, and letters it *Well*; under the transform below that ring's centre, pixel
+  (1446.5, 887.0), is **local E +1152.50, N +139.53 — UTM 448225.20 E, 4637535.33 N**, 81.5 m
+  south and 0.5 m east of the fort's centre. **Hubbard is the second witness and both of his
+  clauses hold.** He says the well *"was in the outer inclosure and near the south gate"*
+  (leaf 75, printed p. 37): the ring stands inside the outer enclosure, and it stands 50.3 m
+  due north of the knot the same sheet letters *Gate* at pixel (1447.5, 1037), which is
+  itself 131.8 m south of the fort centre — so the well sits four-fifths of the way along the
+  walk from the fort to that gate. Nothing was moved to make that come out; the gate pixel was
+  measured after the well's coordinate was derived. **No structure record is written and no
+  geometry is baked**, because every archetype this project owns builds a walled, roofed
+  building and `data/enclosures/` builds fences, and a well is neither — the ring is a
+  draughtsman's symbol, not a diameter, and its curb, cover, sweep and depth are unattested by
+  both witnesses. **L228** carries the omission and the coordinate; T-0592's refusal of a well
+  class to the *town* (`docs/RESEARCH/wells.md`, **L216**) is a different argument and is not
+  extended here.
+- **Five of that list are now built.** 2026-09-06, T-0881: `fort_dearborn_out_building_north`
+  and `fort_dearborn_out_building_south`, the pair the plate letters *Out Buildings*. **The
+  label is plural and the plate draws TWO**, which corrects the reading T-0881 was opened on —
+  two solid blocks touching at a corner across the outer enclosure's east fence line, centred
+  on pixels (1531.5, 1119.0) and (1517.0, 1134.7), about 10 × 6.5 ft and 21 × 17 ft at the
+  derived scale. They have ONE witness between them: Hubbard walks this ground on the two
+  pages that give him the barn, the well and the wash-houses and does not mention them. What
+  they were for is not stated and is not claimed, and everything above their footprints is
+  invention, admitted at **L227**.
+- **Three of that list were built first** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
   `fort_dearborn_wash_house` and `fort_dearborn_shop`. Their positions are pixels on the
   plate turned to ground by one rule, stated in full on each record's `position.note` and
   checked against the committed garrison garden — predicted centre within seven pixels

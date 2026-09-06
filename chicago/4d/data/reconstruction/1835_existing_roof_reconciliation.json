@@ -270,6 +270,28 @@
       "reasoning": "T-0883. One gable roof on the fort's shop, placed off the 1830 Harrison plan and corroborated by nothing — it is the one of the three that has a single witness. W4 (small artisan shop) IS CHOSEN BECAUSE IT NAMES NO TRADE, which is the record's own position: the plate says 'Shop' and this project does not know whether it was the smith's or the carpenter's. W3's band would fit 32 x 24 ft exactly and W4's 14-20 by 20-30 ft does not, and the trade-neutral family is taken anyway, because a family label here is a roof-counting convenience and a trade would be a claim. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorises ten roofs in the fort district, all of them under fort_principal, and ten stand — this building is the eleventh, twelfth or thirteenth. It substitutes no anonymous slot and the zero is deliberate: the fort column's own text says 'ten principal roofs in the custom Fort Dearborn compound', and these three are service buildings on the reservation OUTSIDE the pickets, which that sentence never counted. They are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
     },
     {
+      "structure_id": "fort_dearborn_out_building_north",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "A4",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "low",
+      "reasoning": "One shed roof on the smaller of the pair, placed off the 1830 Harrison plan and corroborated by nothing — Hubbard walks this ground and does not mention them. A4 (woodshed or storage shed) IS TAKEN BECAUSE IT NAMES NO USE, which is this record's own position: the plate letters 'Out Buildings' and this project does not know what was kept in either of them. It is the same choice T-0883 made for the shop and for the same reason — a family label here is a roof-counting convenience and a use would be a claim. A4's band is 6-8 by 12-18 ft and this building measures about 6.5 by 10 ft, so it is at the small end of the family and under its depth; A3 (privy) is the only band below it and a privy is a use. T-0881. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorised ten roofs in the fort district under fort_principal and ten stand inside the pickets; T-0883 added three service buildings outside them and this is the fourth and fifth. It substitutes no anonymous slot and the zero is deliberate, for the reason the fort column's own text gives: the roofs it counts are the compound's, and the reservation outside the palisade was never in that sentence. These are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
+      "structure_id": "fort_dearborn_out_building_south",
+      "district": "fort",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "A4",
+      "substitutes_anonymous_slots": 0,
+      "confidence": "low",
+      "reasoning": "One gable roof on the larger of the pair, placed off the 1830 Harrison plan and corroborated by nothing. A4 (woodshed or storage shed) IS TAKEN BECAUSE IT NAMES NO USE, which is this record's own position: the plate letters 'Out Buildings' and this project does not know what was kept in either of them. It is the same choice T-0883 made for the shop and for the same reason — a family label here is a roof-counting convenience and a use would be a claim. THE BAND WOULD HAVE SAID A1: 17 by 21 ft sits inside A1's 12-18 by 20-32 ft exactly, and A4's band does not reach it. A1 is 'Stable', and a stable is a use the plate does not name, so the band loses to the neutral family here for the same reason the shop's did. T-0881. THE FORT COLUMN IS FULL AND THIS ROOF IS NOT IN IT. The inventory's district matrix authorised ten roofs in the fort district under fort_principal and ten stand inside the pickets; T-0883 added three service buildings outside them and this is the fourth and fifth. It substitutes no anonymous slot and the zero is deliberate, for the reason the fort column's own text gives: the roofs it counts are the compound's, and the reservation outside the palisade was never in that sentence. These are additions above the district's estimate, which is what the programme file's exceedance report exists to report. "
+    },
+    {
       "structure_id": "fort_dearborn_artillery_house",
       "district": "fort",
       "roof_count": 1,

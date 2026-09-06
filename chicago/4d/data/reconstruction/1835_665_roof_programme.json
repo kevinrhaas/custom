@@ -14,7 +14,7 @@
  ],
  "method": {
   "roof_not_record": "A structure record is not a roof. Bridges, piers, palisades, parade grounds, yards and a building the chronology puts outside July 1835 contribute nothing; the physical-roof reconciliation decides, record by record.",
-  "capacity": "3 principal roofs per platted lot plus ancillary at the programme's own 156:509 ratio (T-0079, the core density standard). The frontage rule is measured at the worst case: the smallest lot on the committed grid carries 23.56 m, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen committed party-line units average 6.072 m wide — so three fit on the meanest lot in the town and the fourth does not. It replaces one roof per lot, which five of the twelve core blocks already stood above. Capacity is a ceiling; `block_rooms` carries the restraint.",
+  "capacity": "3 principal roofs per platted lot plus ancillary at the programme's own 158:509 ratio (T-0079, the core density standard). The frontage rule is measured at the worst case: the smallest lot on the committed grid carries 23.56 m, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen committed party-line units average 6.072 m wide — so three fit on the meanest lot in the town and the fourth does not. It replaces one roof per lot, which five of the twelve core blocks already stood above. Capacity is a ceiling; `block_rooms` carries the restraint.",
   "overrun": "Where evidence has put more roofs into a family than the target allows, the excess is reported and the remainder is reduced in the families with the most slack. A documented roof is never removed to protect a family cap.",
   "family_mix": "An apportionment of the district's remainder across its schedule units, not a claim about any block. Hamilton's method throughout, so every marginal closes exactly.",
   "business_front": {
@@ -33,9 +33,9 @@
      "share": 0.4545
     },
     "principal": {
-     "n": 30,
+     "n": 32,
      "trade": 22,
-     "share": 0.7333
+     "share": 0.6875
     }
    },
    "moved": [
@@ -66,23 +66,23 @@
   "naming": "A unit is named for a block only where the plat module reaches it. Everything else is a district balance that states what it waits on."
  },
  "standing": {
-  "structure_records": 378,
+  "structure_records": 380,
   "physical_roofs": {
-   "min": 365,
-   "max": 366,
+   "min": 367,
+   "max": 368,
    "range_note": "one record — the Robinson/Caldwell cabins — is two or three cabins in its source; the ledger counts the low reading."
   },
   "by_source": {
    "generated": 251,
    "inferred_household_programme": 7,
-   "pre_existing": 76,
+   "pre_existing": 78,
    "retired_household_roofs": 31
   },
   "by_district": {
    "south": 219,
    "west": 48,
    "north": 85,
-   "fort": 13
+   "fort": 15
   },
   "by_group": {
    "ordinary_dwellings": 170,
@@ -94,13 +94,13 @@
    "institutional_public": 10,
    "fort_principal": 10,
    "barns_stables": 34,
-   "small_outbuildings": 38
+   "small_outbuildings": 40
   },
   "by_family": {
    "A1": 21,
    "A2": 13,
    "A3": 22,
-   "A4": 11,
+   "A4": 13,
    "A5": 5,
    "C1": 20,
    "C2": 7,
@@ -153,7 +153,7 @@
  },
  "remaining": {
   "roofs": 300,
-  "of_target": 665,
+  "of_target": 667,
   "by_district": {
    "south": 146,
    "west": 87,
@@ -314,7 +314,7 @@
  "coverage": {
   "schedulable_on_committed_ground": 4,
   "gated_on_coverage": 296,
-  "statement": "4 of the 300 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 665-roof programme is coverage, not recipes.",
+  "statement": "4 of the 300 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 296 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 667-roof programme is coverage, not recipes.",
   "platted_lots": 144,
   "blocks_named": 21,
   "southern_ground": {
@@ -448,7 +448,7 @@
    },
    "principal": 3,
    "ancillary": 1,
-   "frontage_weight": 0.4917,
+   "frontage_weight": 0.4688,
    "trade_roofs": 0
   },
   {
@@ -829,7 +829,7 @@
    },
    "principal": 21,
    "ancillary": 6,
-   "frontage_weight": 0.6636,
+   "frontage_weight": 0.6293,
    "trade_roofs": 4
   },
   {

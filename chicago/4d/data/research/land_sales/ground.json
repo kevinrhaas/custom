@@ -35,10 +35,10 @@
       "block_not_on_the_sheet": 0,
       "description_not_read": 3
     },
-    "structures_placed": 378,
-    "structures_reached": 66,
+    "structures_placed": 380,
+    "structures_reached": 68,
     "structures_reached_by_grade": {
-      "inferred": 15,
+      "inferred": 17,
       "reconstructed": 51
     },
     "structures_unreached_by_section": {
@@ -1809,6 +1809,14 @@
         {
           "id": "fort_dearborn_officers_quarters",
           "margin_m": 26.1
+        },
+        {
+          "id": "fort_dearborn_out_building_north",
+          "margin_m": 75.9
+        },
+        {
+          "id": "fort_dearborn_out_building_south",
+          "margin_m": 79.4
         },
         {
           "id": "fort_dearborn_palisade",

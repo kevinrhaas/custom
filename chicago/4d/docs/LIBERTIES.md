@@ -10286,10 +10286,10 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
 **Recorded:** 2026-09-04.
 
-### L219 — Sixty-six roofs are told who entered their ground by a survey grid nobody traced
-**Scope:** `structures.land_owner[constructed_section_grid]` — 66 structures
+### L219 — Sixty-eight roofs are told who entered their ground by a survey grid nobody traced
+**Scope:** `structures.land_owner[constructed_section_grid]` — 68 structures
 **Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
-traced, and 66 structures carry a `land_owner` block that rests on them. The construction is
+traced, and 68 structures carry a `land_owner` block that rests on them. The construction is
 one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
 Madison, whose own note has said since the datum work that it is the *PLSS section corner:
 sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
@@ -10314,15 +10314,17 @@ and deliberately NOT put on the ground** for being outside them. Inside them eac
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
 tract line than that drops to `reconstructed`, and the metres are printed on the row. **51 of
-the 66 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+the 68 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
 there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Three of
 the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0883, and they
 are at the bottom tier for the ordinary geometric reason rather than for an invention behind
 them: the wash house stands 12.9 m from a tract line and the shop 39.1 m, both inside the 40 m
 the middle tier asks for, on the same reservation ring the homestead beside them sits on. Only
-15 documented buildings carry the middle tier, the newest of them the garrison's barn at
-47.4 m. Two tracts are not grid squares at all
+17 documented buildings carry the middle tier, and the newest two are the fort's out buildings
+at 75.9 m and 79.4 m, added 2026-09-06 by T-0881 — the furthest inside their tract of anything
+on this list, because the reservation ring is wide where they stand. Two tracts are not grid
+squares at all
 and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
 reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10
 clipped to the committed north bank of the main stem.
@@ -10866,5 +10868,5 @@ ring claimed as a diameter: at this scale that would be 4.9 m of well head, whic
 draughtsman's convention and not a measurement.
 Related: **L227** (the two out buildings, read off the same plate in the same pass) ·
 **L216** (T-0592's refusal of a well class to the town, which this entry does not extend) ·
-**T-0881** (this) · **T-0758** (the parent) · **T-0885** (the class this refusal asks for).
+**T-0881** (this) · **T-0758** (the parent) · **T-0890** (the class this refusal asks for).
 **Recorded:** 2026-09-06 (T-0881).
