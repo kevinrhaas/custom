@@ -1,7 +1,7 @@
 ---
 id: T-0812
 title: The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 974
 claimed_by: run 9/6/2026, 2:57:36 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T09:09:14.994Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34019964966
 ---
 
