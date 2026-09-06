@@ -1,7 +1,7 @@
 ---
 id: T-0771
 title: Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 12:07:45 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34013051722
 ---
 
 Clark, Filer & Co.'s ordinal names one street in the anchor and the other in the
