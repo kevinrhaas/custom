@@ -14,7 +14,7 @@ pr: 921
 claimed_by: run 9/5/2026, 4:22:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-06T03:56:05.888Z
+closed_at: 2026-09-06T04:13:28.732Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33990347792
 ---
 **Found by T-0692's coverage pass, 2026-09-04.** Three of the town's own person records are
