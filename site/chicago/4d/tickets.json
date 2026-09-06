@@ -14824,6 +14824,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 173
+    },
+    {
+      "id": "T-0871",
+      "title": "The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 175
     }
   ]
 }
