@@ -1,7 +1,7 @@
 ---
 id: T-0876
 title: The School Section's grid and streets: the module measured off the sheet, 142 block polygons, the twelve tiers as street records with the owner's unworn status, and the three Reserved blocks tested against the 1833 sale
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0797
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 978
 claimed_by: run 9/6/2026, 5:38:44 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T11:03:10.313Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34024248868
 ---
 
