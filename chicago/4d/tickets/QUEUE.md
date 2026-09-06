@@ -84,7 +84,6 @@ T-0798 — Spend the 125 land-sale rows onto the School Section's numbered block
 
 # --- G5 — TOWN DETAILS, COMPOSITION AND ENCLOSURES. The rest of what the owner named. Each puts
 # --- something a visitor can see on the ground, off evidence already read.
-T-0881 — The Wash house and the Shop: the two buildings the 1830 plan draws standing on the fort's ground east of the pickets
 T-0882 — The fort's Well near the south gate and the Big Barn with Cupola: the two the plan names that need a form the model does not have
 T-0883 — The Out Buildings and the Fort Cemetery: placed off the 1830 plan or refused in writing, with the reason on the record
 T-0759 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door

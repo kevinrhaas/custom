@@ -1,7 +1,7 @@
 ---
 id: T-0881
 title: The Wash house and the Shop: the two buildings the 1830 plan draws standing on the fort's ground east of the pickets
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0758
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 983
 claimed_by: run 9/6/2026, 6:33:06 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-06T12:48:45.815Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34030277570
 ---
 
