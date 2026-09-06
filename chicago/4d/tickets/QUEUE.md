@@ -376,3 +376,7 @@ T-0900 — Couch, Iia — the Tremont House entry both readings of Norris 1844 f
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
 T-0902 — publish.sh and the resident synthesizer write four mirror files in two different shapes, so whichever ran last decides whether check.sh is green
 T-0905 — publish.sh minifies four resident mirror files that synthesize_resident_research.py writes expanded, so whichever ran last decides whether check.sh is green
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
