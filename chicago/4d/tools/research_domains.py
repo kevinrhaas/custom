@@ -126,6 +126,31 @@ DOMAINS = {
                 "transaction, never a residence; the register's own Residence column is "
                 "the only thing here that speaks to where a purchaser lived.",
     },
+    # The ninth, registered by T-0678 — and the last domain in this directory that was
+    # not. It has been read since T-0574 and T-0577 and adjudicated since, and the
+    # registry never held it, so `tools/measure_research_spend.py` printed it as "not
+    # registered in domains.json (not measured)" and measured NEITHER hop for 767 read
+    # units and 109 rulings that name a person this town holds a card for. A domain
+    # nothing measures is a domain that can drift for as long as nobody looks.
+    #
+    # IT IS SHAPED BY ITS OWN TOOLS AND NOT BY THIS ONE, which is why registering it
+    # took two accommodations rather than a rewrite of two generated files: its reading
+    # lives in domain-owned files at the top of the directory (people.json,
+    # death_notices.json) rather than under records/, and its crosswalk is a ROSTER
+    # crosswalk — a printed name against a town person — rather than a pairwise identity
+    # crosswalk. Both shapes are gated already, by `tools/old_settlers.py --check` and
+    # `tools/read_fergus_obits.py --check`, and both run in check.sh. See
+    # `coverage_reached_by_a_domain_file` and `check_crosswalk` below for what each
+    # accommodation does and, more importantly, what it still refuses to let past.
+    "old_settlers": {
+        "title": "The Calumet Club's old settlers",
+        "holds": "records",
+        "what": "The rolls of the Calumet Club's receptions to the old settlers of "
+                "Chicago (1879-1882) and the obituary list printed in Fergus's 1843 "
+                "directory. Every one of them is LATER EVIDENCE about a person, and the "
+                "obituary list's own header admits it also names citizens who arrived "
+                "after 1843 — so a name here is never an 1835 residence.",
+    },
     "newberry_index": {
         "title": "The Newberry genealogical index",
         "holds": "records",
@@ -321,6 +346,75 @@ def rebuild_quote(domain_dir: Path, locator: dict):
     return "\n".join(lines[first - 1:last]), None
 
 
+def is_roster_crosswalk(doc) -> bool:
+    """True for a crosswalk that rules a PRINTED NAME against the town, not spelling
+    against spelling.
+
+    Two shapes are in this directory and only one of them was ever checked here. The
+    pairwise shape is `identity.json`'s: two spellings, `into` and `from`, and a rule
+    naming both. The ROSTER shape rules one printed name against the whole residents
+    layer — `as_read` on one side, the town's own `resident_name` on the other — and its
+    refusals have no second spelling at all, because what was refused is the layer.
+    old_settlers/crosswalk.json is the second kind, generated and gated by
+    `tools/old_settlers.py`, and holding it to the first kind's fields reported all 45 of
+    its merges as naming fewer than two spellings (T-0678).
+
+    THE SHAPE IS DECIDED BY THE FILE AND NOT BY A ROW, deliberately: a file declares its
+    rules once, in a `rules` block, and every row cites one by name. A row cannot pick the
+    laxer reading by leaving a field out — a pairwise file has no `rules` block, so its
+    merges are still held to `into`/`from`/verbatim, and a roster file with a malformed
+    row fails as a roster row rather than falling through to nothing.
+    """
+    return isinstance(doc, dict) and isinstance(doc.get("rules"), dict) and bool(doc["rules"])
+
+
+def check_roster_crosswalk(doc, label: str, bad: list) -> None:
+    """The roster shape, held to the same four things the pairwise shape is.
+
+    A merge names both spellings; the rule is written down (here ONCE, in the file's own
+    `rules` block, and cited by name — which is stronger than repeating it per row, not
+    weaker, because one edit changes every row that rests on it); a surname-only merge is
+    always a refusal; and a merge carries evidence. A refusal is declared as explicitly as
+    a merge, and names the rule and the reason — the second spelling is not demanded of it
+    because there is none: the thing refused is every bearer in the layer, and the row says
+    which candidates it looked at.
+    """
+    rules = doc.get("rules") or {}
+    for i, merge in enumerate(doc.get("merges") or []):
+        where = "%s merge %d" % (label, i)
+        printed, town = str(merge.get("as_read") or ""), str(merge.get("resident_name") or "")
+        if not printed or not town:
+            bad.append("%s: a merge names fewer than two spellings" % where)
+            continue
+        rule = str(merge.get("rule") or "")
+        if not rule.strip():
+            bad.append("%s: a merge with no rule — %r into %r" % (where, printed, town))
+            continue
+        if rule not in rules:
+            bad.append("%s: the merge cites rule %r, which the file's rules block does not "
+                       "declare — %r into %r" % (where, rule, printed, town))
+        if surname_only(printed) or surname_only(town):
+            bad.append("%s: a surname-only merge is always a refusal — %r into %r"
+                       % (where, printed, town))
+        if not str(merge.get("evidence") or "").strip():
+            bad.append("%s: a merge with no evidence — %r into %r" % (where, printed, town))
+        if not merge.get("person_id"):
+            bad.append("%s: a merge naming no person in the town — %r into %r"
+                       % (where, printed, town))
+    for i, refusal in enumerate(doc.get("refusals") or []):
+        where = "%s refusal %d" % (label, i)
+        printed = str(refusal.get("as_read") or "")
+        if not printed:
+            bad.append("%s: a refusal naming no printed spelling" % where)
+            continue
+        rule = str(refusal.get("rule") or "")
+        if rule not in rules:
+            bad.append("%s: the refusal cites rule %r, which the file's rules block does "
+                       "not declare — %r" % (where, rule, printed))
+        if not str(refusal.get("why") or "").strip():
+            bad.append("%s: a refusal with no reason — %r" % (where, printed))
+
+
 def check_crosswalk(doc, label: str, bad: list) -> None:
     """`crosswalk.json` is `identity.json`'s shape, and it is held to its rules.
 
@@ -330,6 +424,8 @@ def check_crosswalk(doc, label: str, bad: list) -> None:
     spellings, because the ABSENCE of a merge reads exactly like a pair nobody has
     looked at yet and the next sweep does the work again.
     """
+    if is_roster_crosswalk(doc):
+        return check_roster_crosswalk(doc, label, bad)
     for i, merge in enumerate(doc.get("merges") or []):
         where = "%s merge %d" % (label, i)
         into, frm = str(merge.get("into") or ""), str(merge.get("from") or "")
@@ -363,6 +459,47 @@ def check_crosswalk(doc, label: str, bad: list) -> None:
                        "%r against %r" % (where, a, b))
         if not (refusal.get("evidence") or []):
             bad.append("%s: a refusal with no evidence[] — %r against %r" % (where, a, b))
+
+
+def coverage_reached_by_a_domain_file(domain_dir: Path, bad: list):
+    """(coverage key, file name) for every list a domain-owned file says it read.
+
+    The units it counts are the ones `measure_research_spend.py` counts: an entry of a
+    `records` or `claims` array carrying a name. A file with none of those names nothing.
+    """
+    for path in sorted(domain_dir.glob("*.json")):
+        if "crosswalk" in path.name or path.name in ("coverage.json", "domains.json"):
+            continue
+        try:
+            doc = load(path)
+        except Exception:
+            continue
+        if not isinstance(doc, dict):
+            continue
+        named = 0
+        sources = set()
+        if isinstance(doc.get("source_id"), str):
+            sources.add(doc["source_id"])
+        declared = doc.get("units_in")
+        containers = ("records", "claims")
+        if isinstance(declared, str) and declared.strip():
+            if not isinstance(doc.get(declared.strip()), list):
+                bad.append("%s/%s: declares units_in %r and holds no such array"
+                           % (domain_dir.name, path.name, declared))
+            containers += (declared.strip(),)
+        for key in containers:
+            for unit in doc.get(key) or []:
+                if not isinstance(unit, dict):
+                    continue
+                if any(unit.get(n) for n in ("normalized", "as_read", "quote")):
+                    named += 1
+                for field in ("source", "source_id"):
+                    if isinstance(unit.get(field), str):
+                        sources.add(unit[field])
+        if not named:
+            continue
+        for sid in sorted(sources):
+            yield coverage_key("list", sid), path.name
 
 
 def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad: list) -> dict:
@@ -437,6 +574,22 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
                        "declared image" % (name, path.name))
             continue
         reached.add(coverage_key("image", fid))
+
+    # A DOMAIN-OWNED FILE REACHES A COVERAGE ITEM TOO (T-0678). `records/` and `claims/`
+    # are this registry's own shape, and two domains do not use it: old_settlers reads
+    # into `people.json` and `death_notices.json` at the top of its directory, under the
+    # gates of `tools/old_settlers.py` and `tools/read_fergus_obits.py`. Reading only the
+    # two subdirectories reported both of its declared lists as coverage HOLES — a
+    # declaration nothing reaches — when in fact 1,084 units reach them, so registering
+    # the domain would have meant either a false red or moving two generated files out
+    # from under the tools that own them.
+    #
+    # WHAT THIS IS NOT: it is not "declared, therefore read". A file reaches an item only
+    # by NAMING it — as its own `source_id`, or on a unit's `source`/`source_id` — and
+    # only if it carries at least one named unit. A declaration with nothing behind it is
+    # still a hole, which is the whole point of the file.
+    for key, name_ in coverage_reached_by_a_domain_file(domain_dir, bad):
+        reached.add(key)
 
     for path in sorted((domain_dir / "records").glob("*.json")) if (domain_dir / "records").exists() else []:
         doc = load(path)
@@ -719,6 +872,30 @@ def _fixture(tmp: Path) -> Path:
             ],
         }],
     })
+    # The fourth shape (T-0678): a domain whose reading lives in a file at the top of its
+    # own directory, under a declared `units_in`, and whose crosswalk rules a printed name
+    # against the town rather than a spelling against a spelling. Both are in the tree
+    # because both are now things this gate has to hold.
+    old_settlers = research / "old_settlers"
+    dump(old_settlers / "roll.json", {
+        "schema": 1, "domain": "old_settlers", "source_id": "fixture_source",
+        "units_in": "people",
+        "people": [{"id": "os001", "as_read": "Adams, William H.",
+                    "normalized": "William H. Adams"}],
+    })
+    dump(old_settlers / "coverage.json", {
+        "schema": 1, "domain": "old_settlers", "generated_by": "fixture",
+        "declarations": [{"unit": "list", "items": ["fixture_source"], "ticket": "T-9999"}],
+    })
+    dump(old_settlers / "crosswalk.json", {
+        "schema": 1, "domain": "old_settlers",
+        "rules": {"OS1": "surname equal and both sides spell the forename out"},
+        "merges": [{"id": "os001", "as_read": "Adams, William H.",
+                    "resident_name": "William Hanford Adams", "person_id": "adams_william_h",
+                    "rule": "OS1", "evidence": "surname and spelled-out forename agree"}],
+        "refusals": [{"id": "os002", "as_read": "Arnold, Isaac N.", "rule": "OS1",
+                      "outcome": "refused", "why": "no bearer of the surname in the layer"}],
+    })
     return research
 
 
@@ -865,6 +1042,37 @@ def self_test() -> int:
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
+    # --- T-0678: the two accommodations that let old_settlers be registered ------------
+    run(lambda r, t: edit(r / "old_settlers" / "roll.json",
+                          lambda d: d.__setitem__("units_in", "peeple")),
+        "declares units_in", "a units_in naming an array the file does not hold")
+    run(lambda r, t: edit(r / "old_settlers" / "roll.json",
+                          lambda d: d.__setitem__("people", [])),
+        "coverage hole", "a declared list whose only reading has emptied out")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].pop("resident_name")),
+        "fewer than two spellings", "a roster merge naming only the printed spelling")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].__setitem__("rule", "OS9")),
+        "the file's rules block does not declare", "a roster merge citing an undeclared rule")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].__setitem__("as_read", "Adams")),
+        "surname-only merge", "a roster merge on a bare surname")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].pop("evidence")),
+        "with no evidence", "a roster merge with nothing behind it")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].pop("person_id")),
+        "naming no person in the town", "a roster merge that reaches nobody")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["refusals"][0].__setitem__("why", "  ")),
+        "refusal with no reason", "a roster refusal that does not say why")
+    # …and the roster shape does not let the pairwise shape off: civic has no rules block,
+    # so its merges are still held to into/from and the verbatim rule.
+    run(lambda r, t: edit(r / "civic" / "crosswalk.json",
+                          lambda d: d.__setitem__("merges", [{"into": "A. Smith"}])),
+        "fewer than two spellings", "a pairwise merge is still a pairwise merge")
+
     print("SELF-TEST PASS — every research-domain assertion fires when broken "
           "(%d cases)" % cases)
     return 0

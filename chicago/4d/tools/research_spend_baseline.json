@@ -6,11 +6,12 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 458,
+  "church": 488,
   "books": 176,
-  "directories": 7212,
+  "directories": 7228,
   "newberry_index": 4914,
-  "land_sales": 442
+  "land_sales": 442,
+  "old_settlers": 437
  },
  "witness": {
   "civic": {
@@ -27,7 +28,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1286
+   "spent": 1256
   },
   "books": {
    "read": 226,
@@ -35,7 +36,7 @@
   },
   "directories": {
    "read": 8257,
-   "spent": 1045
+   "spent": 1029
   },
   "newberry_index": {
    "read": 7005,
@@ -44,6 +45,10 @@
   "land_sales": {
    "read": 953,
    "spent": 511
+  },
+  "old_settlers": {
+   "read": 1094,
+   "spent": 657
   }
  },
  "raised": [
@@ -275,9 +280,57 @@
    "to": 7212,
    "date": "2026-09-05",
    "why": "T-0724: one ruling was retired, not skipped. The 1843 and 1844 crosswalks each recorded a refusal reading 'the surname Horn is in Fergus 1843 and no entry under it carries the initial C of Cornelius C Van Horn' — a refusal that only existed because the splitter had truncated Van Horn to Horn. With the compound surname read whole there is no Van Horn in either directory to refuse, so the ruling is gone and the unspent count rises by one against a read count that did not move. No name went unread and no source was added."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 458,
+   "to": 488,
+   "date": "2026-09-05",
+   "why": "T-0839 folded 42 duplicate town cards onto the people they name, and the spend measure dedupes a spend by its anchor: two crosswalk rows that pointed at two cards for one man now point at one, so the church domain's spent count fell by 30 without a single reading going unruled. The Second Presbyterian roll matched 92 residents and now matches 82 for exactly that reason — William Adams and William Hanford Adams were one man on two cards and are one row now. Nothing was un-read and nothing was un-ruled; the town simply stopped counting some people twice."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7211,
+   "to": 7228,
+   "date": "2026-09-05",
+   "why": "T-0839, the same cause as the church raise beside it: 42 duplicate town cards were folded onto the people they name and the spend measure dedupes by anchor, so directory rulings that reached two cards for one man now reach one. The four directories' spend re-derived to 294 people met and 587 rulings — up on trade and address reach, down on distinct anchors — and no reading was lost."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": null,
+   "to": 437,
+   "date": "2026-09-06",
+   "why": "T-0678 registered the domain: 1,094 units read since T-0574/T-0577 (Fergus's 757 death notices, the three Calumet rolls' 327 names and 10 claims) enter the measure for the first time, and 657 of them are already ruled on. The ceiling is what the domain reads on the day it was registered, not a target."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "write",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-06",
+   "why": "T-0678 spent the domain in the same commit: all 109 rulings that reach a town person are on that person's card, so the ceiling this domain enters the baseline with is ZERO unwritten."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "source",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-06",
+   "why": "T-0678: both crosswalks state their source at the top of the file, so no ruling here reaches a person without saying what it rests on. Zero, and held there."
   }
  ],
  "lowered": [
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 3,
+   "to": 0,
+   "date": "2026-09-05",
+   "why": "T-0681 paid the debt T-0635 filed. T-0666 (PR #791) read Fergus 1839's Fort Dearborn Addition lot sale of June 1839 and crosswalked 100 bidders against the town; 11 match a resident and 3 of those 11 named a card that cited nothing the ruling rests on. tools/spend_fergus_1839_lot_sale.py writes all eleven — not only the visible three, because the other eight cite the volume solely through the 1837 poll or the 1839 city register naming the same household, which makes the second hop read them as written while the lot sale itself had reached nobody. Two fields on the card, no grade moved and no placement written: the Addition was the garrison's reservation in 1835 and was not platted into lots at all, so its block and lot number locate nobody in the town this project builds. check.sh gates it in both directions. Lowering a ceiling is free and is exactly what spending a domain does; this one may not drift back up, and a later directory reading that rules on a person and does not reach their card raises it again and the gate says so."
+  },
   {
    "domain": "newberry_index",
    "from": 2619,
@@ -289,8 +342,11 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 3,
-  "land_sales": 0
+  "directories": 0,
+  "land_sales": 0,
+  "old_settlers": 0
  },
- "unsourced_ceiling": {}
+ "unsourced_ceiling": {
+  "old_settlers": 0
+ }
 }

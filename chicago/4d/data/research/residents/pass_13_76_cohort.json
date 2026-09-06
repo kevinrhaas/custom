@@ -31,6 +31,8 @@
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
+        "calumet_club_early_chicago_1879",
+        "chicago_democrat_1833_1835",
         "chicago_tribune_1882_05_19_fourth_reception",
         "chicago_voter_lists_1833_1835_irad",
         "resident_research_v4_1835_census_bridge"
@@ -118,6 +120,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_democrat_1833_1835",
         "chicago_voter_lists_1833_1835_irad"
       ]
     },
@@ -826,13 +829,17 @@
       "person_id": "cobb_silas_b",
       "name": "Silas B. Cobb",
       "stratum": "established_profile",
-      "starting_grade": "inferred",
+      "starting_grade": "attested",
       "starting_presence": "uncertain",
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
         "calumet_club_early_chicago_1879",
-        "chicago_democrat_1833_11_26"
+        "chicago_american_1835",
+        "chicago_democrat_1833_11_26",
+        "fergus_chicago_directory_1839",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ]
     },
     {

@@ -122,6 +122,15 @@
      "describes_date": "1834-07-02",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
+    },
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Hubbard, [Henry] G.",
+     "locator": "chicago_democrat_1835_08_05#c022",
+     "record_id": "person_hubbard_henry_g",
+     "describes_date": "1835-08-05",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
     }
    ]
   }

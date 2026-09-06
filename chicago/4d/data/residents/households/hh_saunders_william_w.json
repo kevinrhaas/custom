@@ -73,6 +73,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "saunders",
+     "weighed_against": [
+      "saunders_william_s"
+     ],
+     "referred_to": "owner",
+     "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town.",
+     "against_merge": "The middle initials S and W disagree. One card is letter-list only, the other a press mention; neither documents the man. No anchor. His call."
+    }
    ]
   }
  ],

@@ -5,47 +5,19 @@
  "source_id": "fergus_chicago_directory_1843",
  "rule": "so it reads back without the code:\n  SURNAME must match after both are folded (case, punctuation and the\n  transcriber's usual confusions removed), AND the first initial of the given\n  name must match. A surname-only agreement is a REFUSAL, however good it looks —\n  Fergus lists thirty-one Smiths. AND, since T-0670, where BOTH readings print a\n  full forename and the two full forenames DISAGREE the match is refused as well:\n  the initial rule was written for a town of 848 names and it declared\n  `Abbott, Thomas L.` onto Titus H. Abbott once T-0514 minted 532 more. An\n  initial standing against a full name is untouched and stays a match. The\n  forename rule lives in tools/name_agreement.py, which carries its own\n  self-test. Where one 1835 person meets more than one 1843 entry on that rule\n  the match is AMBIGUOUS and is filed as such, not resolved; where two 1835\n  people meet one 1843 entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1403,
-  "matched_one_1843_entry": 110,
-  "matched_more_than_one_ambiguous": 51,
-  "one_1843_entry_contested_by_two_residents": 43,
-  "surname_present_initial_absent_refused": 353,
-  "initial_agreed_forenames_disagreed_refused": 97,
+  "residents_considered": 1361,
+  "matched_one_1843_entry": 119,
+  "matched_more_than_one_ambiguous": 41,
+  "one_1843_entry_contested_by_two_residents": 17,
+  "surname_present_initial_absent_refused": 350,
+  "initial_agreed_forenames_disagreed_refused": 94,
   "of_those_a_garbled_printed_forename": 1,
-  "residents_left_with_no_1843_entry_by_that_refusal": 47,
+  "residents_left_with_no_1843_entry_by_that_refusal": 44,
   "could_carry_occupation": 0,
-  "could_carry_address": 78,
-  "could_carry_death_note": 72
+  "could_carry_address": 83,
+  "could_carry_death_note": 81
  },
  "matches": [
-  {
-   "resident": "A. 8. Perry",
-   "person_id": "perry_a_8",
-   "household_id": "hh_perry_a_8",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Perry' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1992",
-     "as_printed": "Perry, Abijah S., barber, ex-justice of peace, res Governm't Reservation [died September 9, 1849]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "barber, ex-justice of peace",
-     "address_1843": "res Governm't Reservation",
-     "death_note_1843": "died September 9, 1849"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
   {
    "resident": "A. B. Gould",
    "person_id": "gould_a_b",
@@ -101,6 +73,34 @@
    "resident_given_is_initial_only": true
   },
   {
+   "resident": "A. [?] Perry",
+   "person_id": "perry_a_8",
+   "household_id": "hh_perry_a_8",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Perry' folds to the same string as the 1843 entry's, and the given name of both begins A.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1992",
+     "as_printed": "Perry, Abijah S., barber, ex-justice of peace, res Governm't Reservation [died September 9, 1849]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "barber, ex-justice of peace",
+     "address_1843": "res Governm't Reservation",
+     "death_note_1843": "died September 9, 1849"
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true
+  },
+  {
    "resident": "Ahira Hubbard",
    "person_id": "hubbard_ahira",
    "household_id": "hh_hubbard_ahira",
@@ -151,6 +151,34 @@
    ],
    "could_carry": [
     "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Alexander N. Fullerton",
+   "person_id": "fullerton_alexander",
+   "household_id": "hh_fullerton_alexander",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Fullerton' folds to the same string as the 1843 entry's, and the given name of both begins A.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1030",
+     "as_printed": "Fullerton, Alexander Nathaniel, attorney at law, res 90 Dearborn [died, Chester, Vt, September 23, 1880, aged 76].",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "attorney at law",
+     "address_1843": "res 90 Dearborn",
+     "death_note_1843": "died, Chester, Vt, September 23, 1880, aged 76"
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
@@ -432,6 +460,33 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Col. Jean Baptiste Beaubien",
+   "person_id": "beaubien_jean_baptiste",
+   "household_id": "hh_beaubien_jean_baptiste",
+   "grade_1835": "attested",
+   "occupation_1835": "trader",
+   "lives_at_1835": "jb_beaubien_homestead",
+   "works_at_1835": "jb_beaubien_homestead",
+   "rule": "Surname 'Beaubien' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0309",
+     "as_printed": "Beaubien, Gen. Jean Baptiste, [died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": null,
+     "address_1843": null,
+     "death_note_1843": "died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Daniel Elston",
    "person_id": "elston_daniel",
    "household_id": "hh_elston_daniel",
@@ -460,6 +515,34 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Dr Edmund Stoughton Kimberly",
+   "person_id": "kimberly_edmund_s",
+   "household_id": "hh_pruyne_kimberly",
+   "grade_1835": "attested",
+   "occupation_1835": "physician",
+   "lives_at_1835": null,
+   "works_at_1835": "pruyne_kimball_drugstore",
+   "rule": "Surname 'Kimberly' folds to the same string as the 1843 entry's, and the given name of both begins E.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1488",
+     "as_printed": "Kimberly, Edmund Stoughten, physician, 101 Lake, res 77 State [died. Barrington, Ill., October 25, 1874, aged 72.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "physician, 101 Lake",
+     "address_1843": "res 77 State",
+     "death_note_1843": "died. Barrington, Ill., October 25, 1874, aged 72."
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Dr Elijah Dewey Harmon",
    "person_id": "harmon_elijah_d",
    "household_id": "hh_harmon_elijah_d",
@@ -478,6 +561,33 @@
      "occupation_1843": "physician",
      "address_1843": "bds C. L. Harmon",
      "death_note_1843": "died January 3, 1869, aged 86 1/3"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Dr John Taylor Temple",
+   "person_id": "temple_john_t",
+   "household_id": "hh_temple_john_t",
+   "grade_1835": "attested",
+   "occupation_1835": "physician",
+   "lives_at_1835": null,
+   "works_at_1835": "temple_building",
+   "rule": "Surname 'Temple' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2424",
+     "as_printed": "Temple, John Taylor, physician, 218 Lake [died, St. Louis, Mo., February 24, 1877, aged 73]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "physician, 218 Lake",
+     "address_1843": null,
+     "death_note_1843": "died, St. Louis, Mo., February 24, 1877, aged 73"
     }
    ],
    "could_carry": [
@@ -540,33 +650,6 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "E D Taylor",
-   "person_id": "taylor_e_d",
-   "household_id": "hh_taylor_e_d",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins E.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2414",
-     "as_printed": "Taylor, [Col.] Ezra, coffee-house, South Water, west of Clark [died Oct. 25, 1885, aged 71]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "coffee-house, South Water, west of Clark",
-     "address_1843": null,
-     "death_note_1843": "died Oct. 25, 1885, aged 71"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
   },
   {
    "resident": "E Kirby Smith",
@@ -976,6 +1059,62 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "George W. Snow",
+   "person_id": "snow_george_w",
+   "household_id": "hh_snow_george_w",
+   "grade_1835": "attested",
+   "occupation_1835": "surveyor",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Snow' folds to the same string as the 1843 entry's, and the given name of both begins G.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2318",
+     "as_printed": "Snow, George Washington, lumber merchant, S, Water, res 244-6 State. s.-w. cor Jackson [died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "lumber merchant, S, Water",
+     "address_1843": "res 244-6 State. s.-w. cor Jackson",
+     "death_note_1843": "died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13"
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "George Washington Dole",
+   "person_id": "dole_george_w",
+   "household_id": "hh_dole_george_w",
+   "grade_1835": "attested",
+   "occupation_1835": "forwarding_and_commission",
+   "lives_at_1835": null,
+   "works_at_1835": "newberry_dole_warehouse",
+   "rule": "Surname 'Dole' folds to the same string as the 1843 entry's, and the given name of both begins G.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0831",
+     "as_printed": "Dole, George Washington (Newberry &D). Michigan, bet Rush and Pine, alderman 6th ward [died April 13. 1860]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "(Newberry &D). Michigan",
+     "address_1843": "bet Rush and Pine, alderman 6th ward",
+     "death_note_1843": "died April 13. 1860"
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Gholson Kercheval",
    "person_id": "kercheval_gholson",
    "household_id": "hh_kercheval_gholson",
@@ -1244,6 +1383,33 @@
    ],
    "could_carry": [
     "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Isaac Dewey Harmon",
+   "person_id": "harmon_isaac_d",
+   "household_id": "hh_harmon_brothers",
+   "grade_1835": "attested",
+   "occupation_1835": "dry_goods_merchant",
+   "lives_at_1835": null,
+   "works_at_1835": "harmon_loomis_store",
+   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins I.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1209",
+     "as_printed": "Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "with C. L. Harmon",
+     "address_1843": null,
+     "death_note_1843": "died Nov. 8, 1891"
+    }
+   ],
+   "could_carry": [
     "death_note"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
@@ -2332,6 +2498,33 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Philip F. W. Peck",
+   "person_id": "peck_philip",
+   "household_id": "hh_peck_philip",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "lives_at_1835": "peck_store",
+   "works_at_1835": "peck_store",
+   "rule": "Surname 'Peck' folds to the same string as the 1843 entry's, and the given name of both begins P.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1977",
+     "as_printed": "Peck, Philip Ferdinand Wheeler, capitalist, res 248 Clark, n.-w. cor Jackson [died October 23, 1871, aged 62¾]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "capitalist",
+     "address_1843": "res 248 Clark, n.-w. cor Jackson",
+     "death_note_1843": "died October 23, 1871, aged 62¾"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Philo Carpenter",
    "person_id": "carpenter_philo",
    "household_id": "hh_carpenter_philo",
@@ -2406,6 +2599,33 @@
      "occupation_1843": "(H. & Chamberlin)",
      "address_1843": "res 264 Michigan",
      "death_note_1843": "died December 26, 1860, aged 61¼"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Robert Allen Kinzie",
+   "person_id": "kinzie_robert_a",
+   "household_id": "hh_kinzie_robert_a",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "lives_at_1835": null,
+   "works_at_1835": "robert_kinzie_store",
+   "rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins R.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1502",
+     "as_printed": "Kinzie, Robert Allen. [died December 13, 1873, aged 63.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": null,
+     "address_1843": null,
+     "death_note_1843": "died December 13, 1873, aged 63."
     }
    ],
    "could_carry": [
@@ -2935,6 +3155,34 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "William Hanford Adams",
+   "person_id": "adams_william_h",
+   "household_id": "hh_adams_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Adams' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0185",
+     "as_printed": "Adams, Wm. Hanford, (W. H. A. & Co.) res 121 LaSalle, bet Washington and Madison [died June 6, 1882, aged 67.]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "(W. H. A. & Co.)",
+     "address_1843": "res 121 LaSalle, bet Washington and Madison",
+     "death_note_1843": "died June 6, 1882, aged 67."
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "William Reed",
    "person_id": "reed_william",
    "household_id": "hh_reed_william",
@@ -3018,330 +3266,6 @@
  ],
  "contested": [
   {
-   "resident": "A N Fullerton",
-   "person_id": "fullerton_a_n",
-   "household_id": "hh_fullerton_a_n",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1843 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1030",
-     "as_printed": "Fullerton, Alexander Nathaniel, attorney at law, res 90 Dearborn [died, Chester, Vt, September 23, 1880, aged 76].",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "attorney at law",
-     "address_1843": "res 90 Dearborn",
-     "death_note_1843": "died, Chester, Vt, September 23, 1880, aged 76"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Alex N Fullerton",
-    "Alexander N. Fullerton",
-    "Alexander M Fullerton"
-   ]
-  },
-  {
-   "resident": "Alex N Fullerton",
-   "person_id": "fullerton_alex_n",
-   "household_id": "hh_fullerton_alex_n",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1843 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1030",
-     "as_printed": "Fullerton, Alexander Nathaniel, attorney at law, res 90 Dearborn [died, Chester, Vt, September 23, 1880, aged 76].",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "attorney at law",
-     "address_1843": "res 90 Dearborn",
-     "death_note_1843": "died, Chester, Vt, September 23, 1880, aged 76"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "A N Fullerton",
-    "Alexander N. Fullerton",
-    "Alexander M Fullerton"
-   ]
-  },
-  {
-   "resident": "Alexander M Fullerton",
-   "person_id": "fullerton_alexander_m",
-   "household_id": "hh_fullerton_alexander_m",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1843 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1030",
-     "as_printed": "Fullerton, Alexander Nathaniel, attorney at law, res 90 Dearborn [died, Chester, Vt, September 23, 1880, aged 76].",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "attorney at law",
-     "address_1843": "res 90 Dearborn",
-     "death_note_1843": "died, Chester, Vt, September 23, 1880, aged 76"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "A N Fullerton",
-    "Alex N Fullerton",
-    "Alexander N. Fullerton"
-   ]
-  },
-  {
-   "resident": "Alexander N. Fullerton",
-   "person_id": "fullerton_alexander",
-   "household_id": "hh_fullerton_alexander",
-   "grade_1835": "attested",
-   "occupation_1835": "attorney",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1843 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1030",
-     "as_printed": "Fullerton, Alexander Nathaniel, attorney at law, res 90 Dearborn [died, Chester, Vt, September 23, 1880, aged 76].",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "attorney at law",
-     "address_1843": "res 90 Dearborn",
-     "death_note_1843": "died, Chester, Vt, September 23, 1880, aged 76"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "A N Fullerton",
-    "Alex N Fullerton",
-    "Alexander M Fullerton"
-   ]
-  },
-  {
-   "resident": "Col. Jean Baptiste Beaubien",
-   "person_id": "beaubien_jean_baptiste",
-   "household_id": "hh_beaubien_jean_baptiste",
-   "grade_1835": "attested",
-   "occupation_1835": "trader",
-   "lives_at_1835": "jb_beaubien_homestead",
-   "works_at_1835": "jb_beaubien_homestead",
-   "rule": "Surname 'Beaubien' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0309",
-     "as_printed": "Beaubien, Gen. Jean Baptiste, [died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": null,
-     "death_note_1843": "died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "J B Beaubien"
-   ]
-  },
-  {
-   "resident": "Dr Edmund Stoughton Kimberly",
-   "person_id": "kimberly_edmund_s",
-   "household_id": "hh_pruyne_kimberly",
-   "grade_1835": "attested",
-   "occupation_1835": "physician",
-   "lives_at_1835": null,
-   "works_at_1835": "pruyne_kimball_drugstore",
-   "rule": "Surname 'Kimberly' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1488",
-     "as_printed": "Kimberly, Edmund Stoughten, physician, 101 Lake, res 77 State [died. Barrington, Ill., October 25, 1874, aged 72.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "physician, 101 Lake",
-     "address_1843": "res 77 State",
-     "death_note_1843": "died. Barrington, Ill., October 25, 1874, aged 72."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "E S Kimberly",
-    "Ed S Kimberly",
-    "Edmund L Kimberly"
-   ]
-  },
-  {
-   "resident": "Dr John Taylor Temple",
-   "person_id": "temple_john_t",
-   "household_id": "hh_temple_john_t",
-   "grade_1835": "attested",
-   "occupation_1835": "physician",
-   "lives_at_1835": null,
-   "works_at_1835": "temple_building",
-   "rule": "Surname 'Temple' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2424",
-     "as_printed": "Temple, John Taylor, physician, 218 Lake [died, St. Louis, Mo., February 24, 1877, aged 73]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "physician, 218 Lake",
-     "address_1843": null,
-     "death_note_1843": "died, St. Louis, Mo., February 24, 1877, aged 73"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "J T Temple"
-   ]
-  },
-  {
-   "resident": "E S Kimberly",
-   "person_id": "kimberly_e_s",
-   "household_id": "hh_kimberly_e_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kimberly' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1488",
-     "as_printed": "Kimberly, Edmund Stoughten, physician, 101 Lake, res 77 State [died. Barrington, Ill., October 25, 1874, aged 72.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "physician, 101 Lake",
-     "address_1843": "res 77 State",
-     "death_note_1843": "died. Barrington, Ill., October 25, 1874, aged 72."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Ed S Kimberly",
-    "Edmund L Kimberly",
-    "Dr Edmund Stoughton Kimberly"
-   ]
-  },
-  {
-   "resident": "Ed S Kimberly",
-   "person_id": "kimberly_ed_s",
-   "household_id": "hh_kimberly_ed_s",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kimberly' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1488",
-     "as_printed": "Kimberly, Edmund Stoughten, physician, 101 Lake, res 77 State [died. Barrington, Ill., October 25, 1874, aged 72.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "physician, 101 Lake",
-     "address_1843": "res 77 State",
-     "death_note_1843": "died. Barrington, Ill., October 25, 1874, aged 72."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "E S Kimberly",
-    "Edmund L Kimberly",
-    "Dr Edmund Stoughton Kimberly"
-   ]
-  },
-  {
-   "resident": "Edmund L Kimberly",
-   "person_id": "kimberly_edmund_l",
-   "household_id": "hh_kimberly_edmund_l",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kimberly' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1488",
-     "as_printed": "Kimberly, Edmund Stoughten, physician, 101 Lake, res 77 State [died. Barrington, Ill., October 25, 1874, aged 72.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "physician, 101 Lake",
-     "address_1843": "res 77 State",
-     "death_note_1843": "died. Barrington, Ill., October 25, 1874, aged 72."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "E S Kimberly",
-    "Ed S Kimberly",
-    "Dr Edmund Stoughton Kimberly"
-   ]
-  },
-  {
    "resident": "Eli A Rider",
    "person_id": "rider_eli_a",
    "household_id": "hh_rider_eli_a",
@@ -3395,282 +3319,6 @@
    "resident_given_is_initial_only": false,
    "contested_with": [
     "Eli A Rider"
-   ]
-  },
-  {
-   "resident": "G W Dole",
-   "person_id": "dole_g_w",
-   "household_id": "hh_dole_g_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Dole' folds to the same string as the 1843 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0831",
-     "as_printed": "Dole, George Washington (Newberry &D). Michigan, bet Rush and Pine, alderman 6th ward [died April 13. 1860]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(Newberry &D). Michigan",
-     "address_1843": "bet Rush and Pine, alderman 6th ward",
-     "death_note_1843": "died April 13. 1860"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "George Washington Dole"
-   ]
-  },
-  {
-   "resident": "G W Snow",
-   "person_id": "snow_g_w",
-   "household_id": "hh_snow_g_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Snow' folds to the same string as the 1843 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2318",
-     "as_printed": "Snow, George Washington, lumber merchant, S, Water, res 244-6 State. s.-w. cor Jackson [died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "lumber merchant, S, Water",
-     "address_1843": "res 244-6 State. s.-w. cor Jackson",
-     "death_note_1843": "died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "George W. Snow"
-   ]
-  },
-  {
-   "resident": "George W. Snow",
-   "person_id": "snow_george_w",
-   "household_id": "hh_snow_george_w",
-   "grade_1835": "attested",
-   "occupation_1835": "surveyor",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Snow' folds to the same string as the 1843 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2318",
-     "as_printed": "Snow, George Washington, lumber merchant, S, Water, res 244-6 State. s.-w. cor Jackson [died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "lumber merchant, S, Water",
-     "address_1843": "res 244-6 State. s.-w. cor Jackson",
-     "death_note_1843": "died, en route to Philadelphia, at Altoona, Pa., July 29, 1870, aged 72-10-13"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G W Snow"
-   ]
-  },
-  {
-   "resident": "George Washington Dole",
-   "person_id": "dole_george_w",
-   "household_id": "hh_dole_george_w",
-   "grade_1835": "attested",
-   "occupation_1835": "forwarding_and_commission",
-   "lives_at_1835": null,
-   "works_at_1835": "newberry_dole_warehouse",
-   "rule": "Surname 'Dole' folds to the same string as the 1843 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0831",
-     "as_printed": "Dole, George Washington (Newberry &D). Michigan, bet Rush and Pine, alderman 6th ward [died April 13. 1860]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(Newberry &D). Michigan",
-     "address_1843": "bet Rush and Pine, alderman 6th ward",
-     "death_note_1843": "died April 13. 1860"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G W Dole"
-   ]
-  },
-  {
-   "resident": "Isaac Dewey Harmon",
-   "person_id": "harmon_isaac_d",
-   "household_id": "hh_harmon_brothers",
-   "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "lives_at_1835": null,
-   "works_at_1835": "harmon_loomis_store",
-   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins I. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1209",
-     "as_printed": "Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "with C. L. Harmon",
-     "address_1843": null,
-     "death_note_1843": "died Nov. 8, 1891"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Isaac Harmon"
-   ]
-  },
-  {
-   "resident": "Isaac Harmon",
-   "person_id": "harmon_isaac",
-   "household_id": "hh_harmon_isaac",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins I. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1209",
-     "as_printed": "Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "with C. L. Harmon",
-     "address_1843": null,
-     "death_note_1843": "died Nov. 8, 1891"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Isaac Dewey Harmon"
-   ]
-  },
-  {
-   "resident": "J B Beaubien",
-   "person_id": "beaubien_j_b",
-   "household_id": "hh_beaubien_j_b",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Beaubien' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0309",
-     "as_printed": "Beaubien, Gen. Jean Baptiste, [died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": null,
-     "death_note_1843": "died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Col. Jean Baptiste Beaubien"
-   ]
-  },
-  {
-   "resident": "J S C Hogan",
-   "person_id": "hogan_j_s_c",
-   "household_id": "hh_hogan_j_s_c",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1294",
-     "as_printed": "Hogan, John Stephen Coates, ex-postmaster, bds Charles L. P. Hogan [died, Boonville, Mo., December 2, 1868, aged 63 2/3 ]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "ex-postmaster",
-     "address_1843": "bds Charles L. P. Hogan",
-     "death_note_1843": "died, Boonville, Mo., December 2, 1868, aged 63 2/3"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "John Hogan",
-    "John S. C. Hogan"
-   ]
-  },
-  {
-   "resident": "J T Temple",
-   "person_id": "temple_j_t",
-   "household_id": "hh_temple_j_t",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Temple' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2424",
-     "as_printed": "Temple, John Taylor, physician, 218 Lake [died, St. Louis, Mo., February 24, 1877, aged 73]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "physician, 218 Lake",
-     "address_1843": null,
-     "death_note_1843": "died, St. Louis, Mo., February 24, 1877, aged 73"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Dr John Taylor Temple"
    ]
   },
   {
@@ -3770,7 +3418,7 @@
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "entries_1843": [
     {
      "claim": "f1843_e1294",
@@ -3790,7 +3438,6 @@
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false,
    "contested_with": [
-    "J S C Hogan",
     "John S. C. Hogan"
    ]
   },
@@ -3802,7 +3449,7 @@
    "occupation_1835": "postmaster",
    "lives_at_1835": null,
    "works_at_1835": "hogan_store",
-   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "entries_1843": [
     {
      "claim": "f1843_e1294",
@@ -3822,7 +3469,6 @@
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false,
    "contested_with": [
-    "J S C Hogan",
     "John Hogan"
    ]
   },
@@ -3947,161 +3593,6 @@
    ]
   },
   {
-   "resident": "P F Peck",
-   "person_id": "peck_p_f",
-   "household_id": "hh_peck_p_f",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Peck' folds to the same string as the 1843 entry's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1977",
-     "as_printed": "Peck, Philip Ferdinand Wheeler, capitalist, res 248 Clark, n.-w. cor Jackson [died October 23, 1871, aged 62¾]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "capitalist",
-     "address_1843": "res 248 Clark, n.-w. cor Jackson",
-     "death_note_1843": "died October 23, 1871, aged 62¾"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "P F W Peck",
-    "Philip F. W. Peck"
-   ]
-  },
-  {
-   "resident": "P F W Peck",
-   "person_id": "peck_p_f_w",
-   "household_id": "hh_peck_p_f_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Peck' folds to the same string as the 1843 entry's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1977",
-     "as_printed": "Peck, Philip Ferdinand Wheeler, capitalist, res 248 Clark, n.-w. cor Jackson [died October 23, 1871, aged 62¾]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "capitalist",
-     "address_1843": "res 248 Clark, n.-w. cor Jackson",
-     "death_note_1843": "died October 23, 1871, aged 62¾"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "P F Peck",
-    "Philip F. W. Peck"
-   ]
-  },
-  {
-   "resident": "Philip F. W. Peck",
-   "person_id": "peck_philip",
-   "household_id": "hh_peck_philip",
-   "grade_1835": "attested",
-   "occupation_1835": "merchant",
-   "lives_at_1835": "peck_store",
-   "works_at_1835": "peck_store",
-   "rule": "Surname 'Peck' folds to the same string as the 1843 entry's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1977",
-     "as_printed": "Peck, Philip Ferdinand Wheeler, capitalist, res 248 Clark, n.-w. cor Jackson [died October 23, 1871, aged 62¾]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "capitalist",
-     "address_1843": "res 248 Clark, n.-w. cor Jackson",
-     "death_note_1843": "died October 23, 1871, aged 62¾"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "P F Peck",
-    "P F W Peck"
-   ]
-  },
-  {
-   "resident": "R A Kinzie",
-   "person_id": "kinzie_r_a",
-   "household_id": "hh_kinzie_r_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1502",
-     "as_printed": "Kinzie, Robert Allen. [died December 13, 1873, aged 63.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": null,
-     "death_note_1843": "died December 13, 1873, aged 63."
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Robert Allen Kinzie"
-   ]
-  },
-  {
-   "resident": "Robert Allen Kinzie",
-   "person_id": "kinzie_robert_a",
-   "household_id": "hh_kinzie_robert_a",
-   "grade_1835": "attested",
-   "occupation_1835": "merchant",
-   "lives_at_1835": null,
-   "works_at_1835": "robert_kinzie_store",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1502",
-     "as_printed": "Kinzie, Robert Allen. [died December 13, 1873, aged 63.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": null,
-     "death_note_1843": "died December 13, 1873, aged 63."
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "R A Kinzie"
-   ]
-  },
-  {
    "resident": "W L Kennicott",
    "person_id": "kennicott_w_l",
    "household_id": "hh_kennicott_w_l",
@@ -4130,37 +3621,6 @@
    "resident_given_is_initial_only": true,
    "contested_with": [
     "William H Kennicott"
-   ]
-  },
-  {
-   "resident": "William Adams",
-   "person_id": "adams_william",
-   "household_id": "hh_adams_william",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0185",
-     "as_printed": "Adams, Wm. Hanford, (W. H. A. & Co.) res 121 LaSalle, bet Washington and Madison [died June 6, 1882, aged 67.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(W. H. A. & Co.)",
-     "address_1843": "res 121 LaSalle, bet Washington and Madison",
-     "death_note_1843": "died June 6, 1882, aged 67."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "William Hanford Adams"
    ]
   },
   {
@@ -4220,37 +3680,6 @@
    "resident_given_is_initial_only": false,
    "contested_with": [
     "William Taylor"
-   ]
-  },
-  {
-   "resident": "William Hanford Adams",
-   "person_id": "adams_william_h",
-   "household_id": "hh_adams_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0185",
-     "as_printed": "Adams, Wm. Hanford, (W. H. A. & Co.) res 121 LaSalle, bet Washington and Madison [died June 6, 1882, aged 67.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(W. H. A. & Co.)",
-     "address_1843": "res 121 LaSalle, bet Washington and Madison",
-     "death_note_1843": "died June 6, 1882, aged 67."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "William Adams"
    ]
   },
   {
@@ -4753,246 +4182,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "G Hubbard",
-   "person_id": "hubbard_g",
-   "household_id": "hh_hubbard_g",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins G.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0073",
-     "as_printed": "G. S. HUBBARD, forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "FORWARDING AND COMMISSION",
-     "occupation_1843": "forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0112",
-     "as_printed": "G. S. HUBBARD, agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "INSURANCE COMPANIES",
-     "occupation_1843": "agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1349",
-     "as_printed": "Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "forwarding and commission, South Water",
-     "address_1843": "near Clark, res 300 Indiana, near Rush",
-     "death_note_1843": "died September 14, 1886, aged 84."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "G S Hubbard",
-   "person_id": "hubbard_g_s",
-   "household_id": "hh_hubbard_g_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins G.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0073",
-     "as_printed": "G. S. HUBBARD, forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "FORWARDING AND COMMISSION",
-     "occupation_1843": "forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0112",
-     "as_printed": "G. S. HUBBARD, agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "INSURANCE COMPANIES",
-     "occupation_1843": "agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1349",
-     "as_printed": "Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "forwarding and commission, South Water",
-     "address_1843": "near Clark, res 300 Indiana, near Rush",
-     "death_note_1843": "died September 14, 1886, aged 84."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "G T Hubbard",
-   "person_id": "hubbard_g_t",
-   "household_id": "hh_hubbard_g_t",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins G.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0073",
-     "as_printed": "G. S. HUBBARD, forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "FORWARDING AND COMMISSION",
-     "occupation_1843": "forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0112",
-     "as_printed": "G. S. HUBBARD, agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "INSURANCE COMPANIES",
-     "occupation_1843": "agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1349",
-     "as_printed": "Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "forwarding and commission, South Water",
-     "address_1843": "near Clark, res 300 Indiana, near Rush",
-     "death_note_1843": "died September 14, 1886, aged 84."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "Gordon S Hubbard",
-   "person_id": "hubbard_gordon_s",
-   "household_id": "hh_hubbard_gordon_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins G.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0073",
-     "as_printed": "G. S. HUBBARD, forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "FORWARDING AND COMMISSION",
-     "occupation_1843": "forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0112",
-     "as_printed": "G. S. HUBBARD, agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "INSURANCE COMPANIES",
-     "occupation_1843": "agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1349",
-     "as_printed": "Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "forwarding and commission, South Water",
-     "address_1843": "near Clark, res 300 Indiana, near Rush",
-     "death_note_1843": "died September 14, 1886, aged 84."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "Gurdon S Hubbard",
-   "person_id": "hubbard_gurdon_s",
-   "household_id": "hh_hubbard_gurdon_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins G.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0073",
-     "as_printed": "G. S. HUBBARD, forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "FORWARDING AND COMMISSION",
-     "occupation_1843": "forwarding merchant and dealer in produce and provisions, South-Water Street, between Clark and LaSalle streets, Chicago",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0112",
-     "as_printed": "G. S. HUBBARD, agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "INSURANCE COMPANIES",
-     "occupation_1843": "agent, Aetna Insurance Company of Hartford, Conn.; this well-known company is now prepared to take risks against fire in the City of Chicago and its vicinity at low premiums",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1349",
-     "as_printed": "Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "forwarding and commission, South Water",
-     "address_1843": "near Clark, res 300 Indiana, near Rush",
-     "death_note_1843": "died September 14, 1886, aged 84."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "Gurdon Saltonstall Hubbard",
    "person_id": "hubbard_gurdon",
    "household_id": "hh_hubbard_gurdon",
@@ -5222,44 +4411,6 @@
    "resident_given_is_initial_only": true
   },
   {
-   "resident": "J H Kinzie",
-   "person_id": "kinzie_j_h",
-   "household_id": "hh_kinzie_j_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1500",
-     "as_printed": "Kinzie, John Harris, register U.S. land office, 82 Lake, res 243 Michigan [died, on cars near Pittsburg, Pa., June 19, 1865, aged 62.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "register U.S. land office, 82 Lake",
-     "address_1843": "res 243 Michigan",
-     "death_note_1843": "died, on cars near Pittsburg, Pa., June 19, 1865, aged 62."
-    },
-    {
-     "claim": "f1843_e1501",
-     "as_printed": "Kinzie, John Harris, jr., killed, Ft. St.Charles, Ark., June 18, 1862, a. 33",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "killed, Ft. St.Charles, Ark., June 18, 1862, a. 33",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
    "resident": "J Y Jackson",
    "person_id": "jackson_j_y",
    "household_id": "hh_jackson_j_y",
@@ -5419,54 +4570,6 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "James Allen",
-   "person_id": "allen_james",
-   "household_id": "hh_allen_james",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Allen' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0194",
-     "as_printed": "Allen, James F., carpenter, res Illinois bet Pine and Sand",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "carpenter",
-     "address_1843": "res Illinois bet Pine and Sand",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0195",
-     "as_printed": "Allen, James Pierce (J. P A. & Co.) res 9 River [died, Allen's Grove, McHenry Co.. Ill.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(J. P A. & Co.)",
-     "address_1843": "res 9 River",
-     "death_note_1843": "died, Allen's Grove, McHenry Co.. Ill."
-    },
-    {
-     "claim": "f1843_e0196",
-     "as_printed": "Allen, Jas. P., & Co. [Virgil P. Walter], lumber merchants, n.-w. cor Canal and Fulton, 3d Ward",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "& Co. , lumber merchants, n.-w",
-     "address_1843": "cor Canal and Fulton, 3d Ward",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
   },
   {
    "resident": "James B Campbell",
@@ -5889,44 +4992,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "R J Hamilton",
-   "person_id": "hamilton_r_j",
-   "household_id": "hh_hamilton_r_j",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hamilton' folds to the same string as the 1843 entry's, and the given name of both begins R.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1188",
-     "as_printed": "Hamilton, Richard Jones (H. & Chamberlin), res 264 Michigan [died December 26, 1860, aged 61¼]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(H. & Chamberlin)",
-     "address_1843": "res 264 Michigan",
-     "death_note_1843": "died December 26, 1860, aged 61¼"
-    },
-    {
-     "claim": "f1843_e1189",
-     "as_printed": "Hamilton, Robert Perry (H. & White), bds Thomas E. Hamilton [died, Saratoga, N.Y., October 5. 1894. aged 75.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(H. & White)",
-     "address_1843": "bds Thomas E. Hamilton",
-     "death_note_1843": "died, Saratoga, N.Y., October 5. 1894. aged 75."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
    "resident": "Rufus Brown",
    "person_id": "brown_rufus",
    "household_id": "hh_brown_rufus",
@@ -6057,43 +5122,6 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "S B Cobb",
-   "person_id": "cobb_s_b",
-   "household_id": "hh_cobb_s_b",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Cobb' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0141",
-     "as_printed": "SILAS B. COBB, general dealer in saddles, harnesses, trunks, valises, collars, whips, carpet bags, etc., etc.; 171 Lake Street, Chicago, Ill.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "SADDLERY AND HARNESS",
-     "occupation_1843": "general dealer in saddles, harnesses, trunks, valises, collars, whips, carpet bags, etc., etc.; 171 Lake Street, Chicago, Ill",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0656",
-     "as_printed": "Cobb, Silas Bowman, saddler and harness maker. 171 Lake, res 75 Michigan ave, s.-w. cor Lake",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "saddler and harness maker. 171 Lake",
-     "address_1843": "res 75 Michigan ave, s.-w. cor Lake",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
   },
   {
    "resident": "S. Sherwood",
@@ -6249,7 +5277,7 @@
    "resident": "Silas B. Cobb",
    "person_id": "cobb_silas_b",
    "household_id": "hh_goss_cobb",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "saddler",
    "lives_at_1835": null,
    "works_at_1835": "goss_cobb_saddlery",
@@ -6316,54 +5344,6 @@
    "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "W H Brown",
-   "person_id": "brown_w_h",
-   "household_id": "hh_brown_w_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins W.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0466",
-     "as_printed": "Brown, William, grocer, res N. Water, bet Clark and Dearborn",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "grocer",
-     "address_1843": "res N. Water, bet Clark and Dearborn",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0467",
-     "as_printed": "Brown, Wm., bds Sauganash [died, Nevada City, Cal, Dec. 3, 1850.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": "bds Sauganash",
-     "death_note_1843": "died, Nevada City, Cal, Dec. 3, 1850."
-    },
-    {
-     "claim": "f1843_e0468",
-     "as_printed": "Brown, William Hubbard, [cashier], 8 LaSalle, (A. G. Burley & Co.), res 301 Illinois, n.-w. cor Pine, school agent [died, Amsterdam, Holland, June 19, 1867, aged 72.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "8 LaSalle, (A. G. Burley & Co.)",
-     "address_1843": "res 301 Illinois, n.-w. cor Pine, school agent",
-     "death_note_1843": "died, Amsterdam, Holland, June 19, 1867, aged 72."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
   },
   {
    "resident": "William H Brown",
@@ -7500,13 +6480,6 @@
    "rule": "The surname 'Crane' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. Y. Crane'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Harriet E Bates",
-   "person_id": "bates_harriet_e",
-   "surname_in_1843": "Bates",
-   "candidates": 6,
-   "rule": "The surname 'Bates' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Harriet E Bates'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Harriet Ellen Bates",
    "person_id": "bates_harriet_ellen",
    "surname_in_1843": "Bates",
@@ -8058,20 +7031,6 @@
    "surname_in_1843": "Sperry",
    "candidates": 1,
    "rule": "The surname 'Sperry' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lewis Sperry'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Lieut Allen",
-   "person_id": "allen_lieut",
-   "surname_in_1843": "Allen",
-   "candidates": 8,
-   "rule": "The surname 'Allen' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lieut Allen'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Lieut J Allen",
-   "person_id": "allen_lieut_j",
-   "surname_in_1843": "Allen",
-   "candidates": 8,
-   "rule": "The surname 'Allen' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lieut J Allen'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lieut. James Allen",
@@ -8956,44 +7915,6 @@
    }
   },
   {
-   "resident": "Anson N Taylor",
-   "person_id": "taylor_anson_n",
-   "grade_1835": "inferred",
-   "entry_1843": {
-    "claim": "f1843_e2410",
-    "as_printed": "Taylor, Augustine Deodat, carpenter and builder, res Michigan ave, bet Lake and Randolph [died March 31, 1891, aged 94-11-3.]",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "carpenter and builder",
-    "address_1843": "res Michigan ave, bet Lake and Randolph",
-    "death_note_1843": "died March 31, 1891, aged 94-11-3.",
-    "forename_1835": "Anson",
-    "forename_printed": "Augustine",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Anson' against 'Augustine'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "Anson W Taylor",
-   "person_id": "taylor_anson_w",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2410",
-    "as_printed": "Taylor, Augustine Deodat, carpenter and builder, res Michigan ave, bet Lake and Randolph [died March 31, 1891, aged 94-11-3.]",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "carpenter and builder",
-    "address_1843": "res Michigan ave, bet Lake and Randolph",
-    "death_note_1843": "died March 31, 1891, aged 94-11-3.",
-    "forename_1835": "Anson",
-    "forename_printed": "Augustine",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Anson' against 'Augustine'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
    "resident": "Charles L Bristol",
    "person_id": "bristol_charles_l",
    "grade_1835": "attested",
@@ -9770,25 +8691,6 @@
     "forename_printed": "Jonas",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'John' against 'Jonas'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "John B Beaubien",
-   "person_id": "beaubien_john_b",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e0309",
-    "as_printed": "Beaubien, Gen. Jean Baptiste, [died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80]",
-    "page": "fergus_1843_page_002",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": null,
-    "address_1843": null,
-    "death_note_1843": "died, Naperville, DuPage Co., Ill., Jan. 25, 1873, aged about 80",
-    "forename_1835": "John",
-    "forename_printed": "Jean",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'John' against 'Jean'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {

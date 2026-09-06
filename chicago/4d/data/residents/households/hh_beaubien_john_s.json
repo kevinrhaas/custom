@@ -74,7 +74,20 @@
      "rule": "G3"
     }
    ],
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D1",
+     "cluster": "beaubien",
+     "weighed_against": [
+      "beaubien_josette"
+     ],
+     "for_merge": "The surname, and in Josette's case one letter of a forename.",
+     "against_merge": "T-0839 names John S. Beaubien as a second man, not a duplicate of Jean Baptiste — the ticket's own worked warning. Josette LaFramboise Beaubien is Jean Baptiste's wife and is already a member of his household record; she is in this candidate cluster only because her forename begins with the letter J. and 'J. B. Beaubien' prints an initial."
+    }
+   ]
   }
  ],
  "touches_removal": false,

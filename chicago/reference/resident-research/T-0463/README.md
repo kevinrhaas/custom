@@ -14,7 +14,7 @@ The cohort is fixed at 75 unique, named, non-reconstructed people:
 - 25 letter list only present
 - 25 letter list only uncertain
 
-Of an eligible population of 1405 named non-reconstructed people, 150 had been
+Of an eligible population of 1362 named non-reconstructed people, 150 had been
 reviewed before this pass and 225 after it.
 
 ## Results

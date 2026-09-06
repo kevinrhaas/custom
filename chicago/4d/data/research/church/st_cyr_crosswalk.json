@@ -5,12 +5,12 @@
   "source_id": "st_cyr_register_ichr_v4",
   "pass": "T-0573",
   "target": "data/residents/households/*.json — every named person, at every grade",
-  "targets_examined": 1405,
+  "targets_examined": 1363,
   "rule": "Surnames must fold equal after case and punctuation are dropped, AND the forenames must agree initial for initial in one direction or the other. A surname-only agreement is always a refusal. A row the page prints without a forename is reported no_forename, carried and never matched.",
   "counts": {
-    "candidate": 40,
+    "candidate": 39,
     "no_forename": 4,
-    "refusal": 98,
+    "refusal": 99,
     "unmatched": 384,
     "ruled_no_town_change": 5
   },
@@ -1013,17 +1013,12 @@
           "grade": "inferred"
         },
         {
-          "person_id": "brown_w_h",
-          "name": "W H Brown",
-          "grade": "attested"
-        },
-        {
           "person_id": "brown_william_h",
           "name": "William H Brown",
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'William Joseph Brown' against 'Hanna E Brown', 'Jesse B Brown', 'Lemuel Brown', 'Rufus Brown', 'Mrs Rufus Brown', 'W H Brown', 'William H Brown'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-09-30 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'William Joseph Brown' against 'Hanna E Brown', 'Jesse B Brown', 'Lemuel Brown', 'Rufus Brown', 'Mrs Rufus Brown', 'William H Brown'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-09-30 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_019_1",
@@ -1060,17 +1055,12 @@
           "grade": "inferred"
         },
         {
-          "person_id": "brown_w_h",
-          "name": "W H Brown",
-          "grade": "attested"
-        },
-        {
           "person_id": "brown_william_h",
           "name": "William H Brown",
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Joseph Brown' against 'Hanna E Brown', 'Jesse B Brown', 'Lemuel Brown', 'Rufus Brown', 'Mrs Rufus Brown', 'W H Brown', 'William H Brown'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-10-01 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Joseph Brown' against 'Hanna E Brown', 'Jesse B Brown', 'Lemuel Brown', 'Rufus Brown', 'Mrs Rufus Brown', 'William H Brown'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-10-01 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_019_2",
@@ -1582,17 +1572,12 @@
           "grade": "inferred"
         },
         {
-          "person_id": "brown_w_h",
-          "name": "W H Brown",
-          "grade": "attested"
-        },
-        {
           "person_id": "brown_william_h",
           "name": "William H Brown",
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'E. L. Brown' against 'Hanna E Brown', 'Jesse B Brown', 'Lemuel Brown', 'Rufus Brown', 'Mrs Rufus Brown', 'W H Brown', 'William H Brown'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-03-28 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'E. L. Brown' against 'Hanna E Brown', 'Jesse B Brown', 'Lemuel Brown', 'Rufus Brown', 'Mrs Rufus Brown', 'William H Brown'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-03-28 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_028_4",
@@ -4428,23 +4413,8 @@
           "grade": "attested"
         },
         {
-          "person_id": "taylor_anson_n",
-          "name": "Anson N Taylor",
-          "grade": "inferred"
-        },
-        {
-          "person_id": "taylor_anson_w",
-          "name": "Anson W Taylor",
-          "grade": "attested"
-        },
-        {
           "person_id": "taylor_augustine",
           "name": "Augustine Deodat Taylor",
-          "grade": "attested"
-        },
-        {
-          "person_id": "taylor_e_d",
-          "name": "E D Taylor",
           "grade": "attested"
         },
         {
@@ -4463,7 +4433,7 @@
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Louisa M. Taylor' against 'Anson H. Taylor', 'Charles H. Taylor', 'Anson N Taylor', 'Anson W Taylor', 'Augustine Deodat Taylor', 'E D Taylor', 'Edmund D Taylor', 'William Taylor', 'William H Taylor'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Louisa M. Taylor' against 'Anson H. Taylor', 'Charles H. Taylor', 'Augustine Deodat Taylor', 'Edmund D Taylor', 'William Taylor', 'William H Taylor'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_082_3",
@@ -7104,12 +7074,6 @@
       "outcome": "candidate",
       "residents": [
         {
-          "person_id": "hogan_j_s_c",
-          "name": "J S C Hogan",
-          "grade": "attested",
-          "occupation": "none_recorded"
-        },
-        {
           "person_id": "hogan_john",
           "name": "John Hogan",
           "grade": "inferred",
@@ -7122,7 +7086,7 @@
           "occupation": "postmaster"
         }
       ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'John Hogan' against 'J S C Hogan', 'John Hogan', 'John S. C. Hogan'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-10 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "Surname folds equal and the forenames agree initial for initial: 'John Hogan' against 'John Hogan', 'John S. C. Hogan'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-10 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_death_04_1",
@@ -7205,31 +7169,13 @@
       "outcome": "candidate",
       "residents": [
         {
-          "person_id": "owen_t_j_v",
-          "name": "T J V Owen",
-          "grade": "attested",
-          "occupation": "none_recorded"
-        },
-        {
-          "person_id": "owen_thomas",
-          "name": "Thomas Owen",
-          "grade": "inferred",
-          "occupation": "none_recorded"
-        },
-        {
-          "person_id": "owen_thomas_j_v",
-          "name": "Thomas J V Owen",
-          "grade": "attested",
-          "occupation": "none_recorded"
-        },
-        {
           "person_id": "owen_thomas_jv",
           "name": "Thomas Jefferson Vance Owen",
           "grade": "attested",
           "occupation": "indian_agent"
         }
       ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'Thomas Owen' against 'T J V Owen', 'Thomas Owen', 'Thomas J V Owen', 'Thomas Jefferson Vance Owen'. That is a candidate and not a merge; a merge needs a second attribute to agree as well."
+      "rule": "Surname folds equal and the forenames agree initial for initial: 'Thomas Owen' against 'Thomas Jefferson Vance Owen'. That is a candidate and not a merge; a merge needs a second attribute to agree as well."
     },
     {
       "record_id": "st_cyr_death_08_1",
@@ -7271,16 +7217,60 @@
       "role": "decedent",
       "describes_date": "1837-03-01",
       "scene_year": false,
-      "outcome": "candidate",
+      "outcome": "refusal",
       "residents": [
         {
-          "person_id": "beaubien_j_b",
-          "name": "J B Beaubien",
-          "grade": "attested",
-          "occupation": "none_recorded"
+          "person_id": "beaubien_alexandre",
+          "name": "Alexandre Beaubien",
+          "grade": "attested"
+        },
+        {
+          "person_id": "beaubien_b",
+          "name": "B Beaubien",
+          "grade": "attested"
+        },
+        {
+          "person_id": "beaubien_charles_h",
+          "name": "Charles H Beaubien",
+          "grade": "inferred"
+        },
+        {
+          "person_id": "beaubien_jean_baptiste",
+          "name": "Col. Jean Baptiste Beaubien",
+          "grade": "attested"
+        },
+        {
+          "person_id": "beaubien_josette",
+          "name": "Josette LaFramboise Beaubien",
+          "grade": "inferred"
+        },
+        {
+          "person_id": "beaubien_john_s",
+          "name": "John S Beaubien",
+          "grade": "inferred"
+        },
+        {
+          "person_id": "beaubien_madore",
+          "name": "Madore Benjamin Beaubien",
+          "grade": "attested"
+        },
+        {
+          "person_id": "beaubien_mark",
+          "name": "Mark Beaubien",
+          "grade": "attested"
+        },
+        {
+          "person_id": "beaubien_medard",
+          "name": "Medard Beaubien",
+          "grade": "inferred"
+        },
+        {
+          "person_id": "beaubien_medore_b",
+          "name": "Medore B Beaubien",
+          "grade": "attested"
         }
       ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'Jerome Beaubien' against 'J B Beaubien'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1837-03-01 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Jerome Beaubien' against 'Alexandre Beaubien', 'B Beaubien', 'Charles H Beaubien', 'Col. Jean Baptiste Beaubien', 'Josette LaFramboise Beaubien', 'John S Beaubien', 'Madore Benjamin Beaubien', 'Mark Beaubien', 'Medard Beaubien', 'Medore B Beaubien'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-03-01 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "claim_id": "st_cyr_c001",

@@ -12,6 +12,8 @@ from select_resident_research_pass_3 import (
     UNCERTAIN_LETTER_IDS as PASS3_UNCERTAIN_LETTER_IDS,
 )
 
+import resident_cohort_freeze as freeze
+
 OUT = ROOT / "data/research/residents/pass_04_75_cohort.json"
 PASS2 = ROOT / "data/research/residents/pass_02_75_cohort.json"
 
@@ -131,16 +133,11 @@ def main() -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
     doc = derive()
-    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        if not OUT.exists() or json.loads(OUT.read_text()) != doc:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pass four: 75 people, committed manifest current")
-        return 0
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(rendered)
-    print("resident research pass four: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
-    return 0
+        return freeze.gate(OUT, doc, "resident research pass four")
+    return freeze.write(OUT, doc, "resident research pass four: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
 
 
 if __name__ == "__main__":

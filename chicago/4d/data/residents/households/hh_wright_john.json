@@ -85,7 +85,22 @@
      "fergus_1843_old_settler_death_notices",
      "fergus_chicago_directory_1839"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R2",
+     "cluster": "wright",
+     "weighed_against": [
+      "wright_j",
+      "wright_john_s"
+     ],
+     "referred_to": "rule",
+     "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
+     "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
+    }
+   ]
   },
   {
    "id": "wright_john_s",
@@ -118,7 +133,22 @@
      "cpl_john_s_wright_papers",
      "wright_in_memoriam_1885"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R2",
+     "cluster": "wright",
+     "weighed_against": [
+      "wright_j",
+      "wright_john"
+     ],
+     "referred_to": "rule",
+     "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
+     "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
+    }
+   ]
   }
  ],
  "touches_removal": false,

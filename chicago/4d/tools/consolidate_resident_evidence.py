@@ -784,7 +784,15 @@ def _person_ids(row) -> list:
 
 
 def declared_anchors():
-    """(domain, record_id) -> {person_id, declared_in, rule} for every LANDED match."""
+    """(domain, record_id) -> {person_id, declared_in, rule} for every LANDED match.
+
+    THE DOMAIN IS THE DIRECTORY, UNLESS THE ROW SAYS OTHERWISE (T-0839). A crosswalk
+    lives under the domain it reads — data/research/directories/... adjudicates the
+    directories — and that is where the key comes from. One adjudication is not about a
+    domain at all: the town-card merge names a person who was split across SEVERAL
+    domains at once, and its rows carry a `domains` list saying which. A row that names
+    its own domains is anchored in each of them; every other row is unchanged.
+    """
     anchors = {}
     for path in sorted(RESEARCH.rglob("*crosswalk*.json")):
         doc = load(path)
@@ -807,12 +815,14 @@ def declared_anchors():
                 people = _person_ids(row)
                 if len(people) != 1:
                     continue
+                stated = [d for d in (row.get("domains") or []) if isinstance(d, str)]
                 for record_id in _record_ids(row):
-                    anchors[(domain, record_id)] = {
-                        "person_id": people[0],
-                        "declared_in": f"{where}#{key}",
-                        "rule": "D1",
-                    }
+                    for one in (stated or [domain]):
+                        anchors[(one, record_id)] = {
+                            "person_id": people[0],
+                            "declared_in": f"{where}#{key}",
+                            "rule": "D1",
+                        }
     return anchors
 
 

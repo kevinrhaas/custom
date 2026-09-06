@@ -50,6 +50,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "miller_samuel",
+   "relation": "brother",
+   "household": "hh_miller_john",
+   "value": "miller_john",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE MIRROR OF THE ROW ON hh_miller_john. ANDREAS NAMES THE BROTHERS IN ONE BREATH: 'John Miller, brother of Samuel, the landlord, came in 1831, and run a tannery just north of Miller's tavern' (History of Chicago vol. 1, the 1833 roster). The RELATIONSHIP is documented and this row does not doubt it. INFERRED, AND THE REASON IS THE IDENTIFICATION RATHER THAN THE TIE. Andreas prints the brother as 'Samuel, the landlord' and never with a surname; the town holds exactly one Samuel Miller — hh_miller_samuel, rung G1b, named by the 1832 muster, the Democrat and the 1833 tax list — and what ties him to Andreas's landlord is a shared surname carried by the sentence and the same three years in the same town. That is one agreement, and the crosswalk rule this project uses for a MERGE asks for a second. The trade does not supply it: hh_miller_samuel records no occupation, which is an absence rather than a disagreement, and this project's own miller_house record has the tavern 'past its innkeeping days' by the scene date. So the row is written at the grade the weakest link deserves. JOHN MILLER'S CARD SAYS SAMUEL 'is not written as a household here': that was true of the hand-authored parcel and stopped being true when the civic mint gave Samuel a card of his own, which is the card this row points at."
+  }
+ ],
  "persons": [
   {
    "id": "miller_samuel",

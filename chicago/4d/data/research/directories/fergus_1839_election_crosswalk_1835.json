@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1402
+   "n": 1359
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -37,10 +37,10 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 86,
-  "residents_ambiguous": 40,
-  "residents_contested": 44,
-  "residents_surname_only_refused": 236,
+  "residents_matched_one_entry": 92,
+  "residents_ambiguous": 33,
+  "residents_contested": 23,
+  "residents_surname_only_refused": 223,
   "voters_matched_one_entry": 82,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 85,
@@ -54,7 +54,7 @@
  "residents": {
   "matches": [
    {
-    "name": "A. 8. Perry",
+    "name": "A. [?] Perry",
     "rule": "Surname 'Perry' folds to the same string as the 1837 entry's, and the given name of both begins A.",
     "entries_1837": [
      {
@@ -94,6 +94,28 @@
     ],
     "person_id": "hubbard_ahira",
     "household_id": "hh_hubbard_ahira",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
+    "name": "Alexander N. Fullerton",
+    "rule": "Surname 'Fullerton' folds to the same string as the 1837 entry's, and the given name of both begins A.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0064",
+      "as_printed": "Alex. N. Fullerton,",
+      "printed_page": 41,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "fullerton_alexander",
+    "household_id": "hh_fullerton_alexander",
     "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
@@ -450,6 +472,28 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
+    "name": "Edmund D Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins E.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0045",
+      "as_printed": "Edmund D. Taylor,",
+      "printed_page": 41,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "taylor_edmund_d",
+    "household_id": "hh_taylor_edmund_d",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
     "name": "Edward E Hunter",
     "rule": "Surname 'Hunter' folds to the same string as the 1837 entry's, and the given name of both begins E.",
     "entries_1837": [
@@ -468,6 +512,28 @@
     ],
     "person_id": "hunter_edward_e",
     "household_id": "hh_hunter_edward_e",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
+    "name": "Edward H. Haddock",
+    "rule": "Surname 'Haddock' folds to the same string as the 1837 entry's, and the given name of both begins E.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0142",
+      "as_printed": "Edw. II. Haddock,",
+      "printed_page": 42,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "haddock_edward",
+    "household_id": "hh_haddock_edward",
     "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
@@ -579,6 +645,28 @@
     "person_id": "freeman_ford",
     "household_id": "hh_freeman_ford",
     "grade_1835": "inferred",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
+    "name": "George W. Snow",
+    "rule": "Surname 'Snow' folds to the same string as the 1837 entry's, and the given name of both begins G.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0139",
+      "as_printed": "George W. Snow,",
+      "printed_page": 42,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "snow_george_w",
+    "household_id": "hh_snow_george_w",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -780,6 +868,28 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
+    "name": "Isaac Dewey Harmon",
+    "rule": "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins I.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0112",
+      "as_printed": "Isaac D. Harmon,",
+      "printed_page": 42,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "harmon_isaac_d",
+    "household_id": "hh_harmon_brothers",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
     "name": "J K Palmer",
     "rule": "Surname 'Palmer' folds to the same string as the 1837 entry's, and the given name of both begins J.",
     "entries_1837": [
@@ -865,28 +975,6 @@
     "person_id": "adams_james",
     "household_id": "hh_adams_james",
     "grade_1835": "inferred",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
-    "name": "James Allen",
-    "rule": "Surname 'Allen' folds to the same string as the 1837 entry's, and the given name of both begins J.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0568",
-      "as_printed": "John Allen",
-      "printed_page": 45,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "allen_james",
-    "household_id": "hh_allen_james",
-    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1484,6 +1572,28 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
+    "name": "Robert Allen Kinzie",
+    "rule": "Surname 'Kinzie' folds to the same string as the 1837 entry's, and the given name of both begins R.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0652",
+      "as_printed": "Robert A. Kinzie",
+      "printed_page": 46,
+      "role": "voter",
+      "ward_1837": 6,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "kinzie_robert_a",
+    "household_id": "hh_kinzie_robert_a",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
     "name": "S. Foot",
     "rule": "Surname 'Foot' folds to the same string as the 1837 entry's, and the given name of both begins S.",
     "entries_1837": [
@@ -1547,6 +1657,28 @@
     "person_id": "paine_seth",
     "household_id": "hh_paine_seth",
     "grade_1835": "inferred",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
+    "name": "Silas B. Cobb",
+    "rule": "Surname 'Cobb' folds to the same string as the 1837 entry's, and the given name of both begins S.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0352",
+      "as_printed": "Silas B. Cobb",
+      "printed_page": 43,
+      "role": "voter",
+      "ward_1837": 2,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "cobb_silas_b",
+    "household_id": "hh_goss_cobb",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1948,112 +2080,8 @@
   ],
   "contested": [
    {
-    "name": "A N Fullerton",
-    "rule": "Surname 'Fullerton' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0064",
-      "as_printed": "Alex. N. Fullerton,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "fullerton_a_n",
-    "household_id": "hh_fullerton_a_n",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Alex N Fullerton",
-     "Alexander N. Fullerton",
-     "Alexander M Fullerton"
-    ]
-   },
-   {
-    "name": "Alex N Fullerton",
-    "rule": "Surname 'Fullerton' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0064",
-      "as_printed": "Alex. N. Fullerton,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "fullerton_alex_n",
-    "household_id": "hh_fullerton_alex_n",
-    "grade_1835": "attested",
-    "contested_with": [
-     "A N Fullerton",
-     "Alexander N. Fullerton",
-     "Alexander M Fullerton"
-    ]
-   },
-   {
-    "name": "Alexander M Fullerton",
-    "rule": "Surname 'Fullerton' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0064",
-      "as_printed": "Alex. N. Fullerton,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "fullerton_alexander_m",
-    "household_id": "hh_fullerton_alexander_m",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "A N Fullerton",
-     "Alex N Fullerton",
-     "Alexander N. Fullerton"
-    ]
-   },
-   {
-    "name": "Alexander N. Fullerton",
-    "rule": "Surname 'Fullerton' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0064",
-      "as_printed": "Alex. N. Fullerton,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "fullerton_alexander",
-    "household_id": "hh_fullerton_alexander",
-    "grade_1835": "attested",
-    "contested_with": [
-     "A N Fullerton",
-     "Alex N Fullerton",
-     "Alexander M Fullerton"
-    ]
-   },
-   {
     "name": "Anson H. Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0044",
@@ -2072,66 +2100,12 @@
     "household_id": "hh_taylor_anson",
     "grade_1835": "attested",
     "contested_with": [
-     "Anson N Taylor",
-     "Anson W Taylor",
-     "Augustine Deodat Taylor"
-    ]
-   },
-   {
-    "name": "Anson N Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0044",
-      "as_printed": "Augustin D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "taylor_anson_n",
-    "household_id": "hh_taylor_anson_n",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "Anson H. Taylor",
-     "Anson W Taylor",
-     "Augustine Deodat Taylor"
-    ]
-   },
-   {
-    "name": "Anson W Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0044",
-      "as_printed": "Augustin D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "taylor_anson_w",
-    "household_id": "hh_taylor_anson_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Anson H. Taylor",
-     "Anson N Taylor",
      "Augustine Deodat Taylor"
     ]
    },
    {
     "name": "Augustine Deodat Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0044",
@@ -2150,282 +2124,7 @@
     "household_id": "hh_taylor_augustine",
     "grade_1835": "attested",
     "contested_with": [
-     "Anson H. Taylor",
-     "Anson N Taylor",
-     "Anson W Taylor"
-    ]
-   },
-   {
-    "name": "E D Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0045",
-      "as_printed": "Edmund D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "taylor_e_d",
-    "household_id": "hh_taylor_e_d",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Edmund D Taylor"
-    ]
-   },
-   {
-    "name": "E Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the 1837 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0142",
-      "as_printed": "Edw. II. Haddock,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "haddock_e",
-    "household_id": "hh_haddock_e",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E W Haddock",
-     "Edward H. Haddock",
-     "Edward E Haddock"
-    ]
-   },
-   {
-    "name": "E W Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the 1837 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0142",
-      "as_printed": "Edw. II. Haddock,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "haddock_e_w",
-    "household_id": "hh_haddock_e_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E Haddock",
-     "Edward H. Haddock",
-     "Edward E Haddock"
-    ]
-   },
-   {
-    "name": "Edmund D Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0045",
-      "as_printed": "Edmund D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "taylor_edmund_d",
-    "household_id": "hh_taylor_edmund_d",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E D Taylor"
-    ]
-   },
-   {
-    "name": "Edward E Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the 1837 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0142",
-      "as_printed": "Edw. II. Haddock,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "haddock_edward_e",
-    "household_id": "hh_haddock_edward_e",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "E Haddock",
-     "E W Haddock",
-     "Edward H. Haddock"
-    ]
-   },
-   {
-    "name": "Edward H. Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the 1837 entry's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0142",
-      "as_printed": "Edw. II. Haddock,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "haddock_edward",
-    "household_id": "hh_haddock_edward",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E Haddock",
-     "E W Haddock",
-     "Edward E Haddock"
-    ]
-   },
-   {
-    "name": "G W Snow",
-    "rule": "Surname 'Snow' folds to the same string as the 1837 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0139",
-      "as_printed": "George W. Snow,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "snow_g_w",
-    "household_id": "hh_snow_g_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "George W. Snow"
-    ]
-   },
-   {
-    "name": "George W. Snow",
-    "rule": "Surname 'Snow' folds to the same string as the 1837 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0139",
-      "as_printed": "George W. Snow,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "snow_george_w",
-    "household_id": "hh_snow_george_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "G W Snow"
-    ]
-   },
-   {
-    "name": "Isaac Dewey Harmon",
-    "rule": "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins I. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0112",
-      "as_printed": "Isaac D. Harmon,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "harmon_isaac_d",
-    "household_id": "hh_harmon_brothers",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Isaac Harmon"
-    ]
-   },
-   {
-    "name": "Isaac Harmon",
-    "rule": "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins I. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0112",
-      "as_printed": "Isaac D. Harmon,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "harmon_isaac",
-    "household_id": "hh_harmon_isaac",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Isaac Dewey Harmon"
-    ]
-   },
-   {
-    "name": "J S C Hogan",
-    "rule": "Surname 'Hogan' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0726",
-      "as_printed": "John S. C. Hogan",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": 2,
-      "voted_for": null,
-      "party": "Democratic",
-      "office": "alderman",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "hogan_j_s_c",
-    "household_id": "hh_hogan_j_s_c",
-    "grade_1835": "attested",
-    "contested_with": [
-     "John Hogan",
-     "John S. C. Hogan"
+     "Anson H. Taylor"
     ]
    },
    {
@@ -2553,7 +2252,7 @@
    },
    {
     "name": "John Hogan",
-    "rule": "Surname 'Hogan' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Hogan' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0726",
@@ -2572,13 +2271,12 @@
     "household_id": "hh_hogan_john",
     "grade_1835": "inferred",
     "contested_with": [
-     "J S C Hogan",
      "John S. C. Hogan"
     ]
    },
    {
     "name": "John S. C. Hogan",
-    "rule": "Surname 'Hogan' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Hogan' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0726",
@@ -2597,7 +2295,6 @@
     "household_id": "hh_hogan_john_s_c",
     "grade_1835": "attested",
     "contested_with": [
-     "J S C Hogan",
      "John Hogan"
     ]
    },
@@ -2829,78 +2526,6 @@
     ]
    },
    {
-    "name": "R A Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the 1837 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0652",
-      "as_printed": "Robert A. Kinzie",
-      "printed_page": 46,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kinzie_r_a",
-    "household_id": "hh_kinzie_r_a",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Robert Allen Kinzie"
-    ]
-   },
-   {
-    "name": "Robert Allen Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the 1837 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0652",
-      "as_printed": "Robert A. Kinzie",
-      "printed_page": 46,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kinzie_robert_a",
-    "household_id": "hh_kinzie_robert_a",
-    "grade_1835": "attested",
-    "contested_with": [
-     "R A Kinzie"
-    ]
-   },
-   {
-    "name": "S B Cobb",
-    "rule": "Surname 'Cobb' folds to the same string as the 1837 entry's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0352",
-      "as_printed": "Silas B. Cobb",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "cobb_s_b",
-    "household_id": "hh_cobb_s_b",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Silas B. Cobb"
-    ]
-   },
-   {
     "name": "Samuel Johnson",
     "rule": "Surname 'Johnson' folds to the same string as the 1837 entry's, and the given name of both begins S. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
@@ -2973,30 +2598,6 @@
     "contested_with": [
      "Samuel Johnson",
      "Sanford Johnson"
-    ]
-   },
-   {
-    "name": "Silas B. Cobb",
-    "rule": "Surname 'Cobb' folds to the same string as the 1837 entry's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0352",
-      "as_printed": "Silas B. Cobb",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "cobb_silas_b",
-    "household_id": "hh_goss_cobb",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "S B Cobb"
     ]
    },
    {
@@ -3314,105 +2915,6 @@
     "grade_1835": "attested"
    },
    {
-    "name": "E S Kimberly",
-    "rule": "Surname 'Kimberly' folds to the same string as the 1837 entry's, and the given name of both begins E.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0612",
-      "as_printed": "E. S. Kimberly",
-      "printed_page": 45,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0750",
-      "as_printed": "E. S. Kimberly",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 6,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kimberly_e_s",
-    "household_id": "hh_kimberly_e_s",
-    "grade_1835": "attested"
-   },
-   {
-    "name": "Ed S Kimberly",
-    "rule": "Surname 'Kimberly' folds to the same string as the 1837 entry's, and the given name of both begins E.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0612",
-      "as_printed": "E. S. Kimberly",
-      "printed_page": 45,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0750",
-      "as_printed": "E. S. Kimberly",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 6,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kimberly_ed_s",
-    "household_id": "hh_kimberly_ed_s",
-    "grade_1835": "inferred"
-   },
-   {
-    "name": "Edmund L Kimberly",
-    "rule": "Surname 'Kimberly' folds to the same string as the 1837 entry's, and the given name of both begins E.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0612",
-      "as_printed": "E. S. Kimberly",
-      "printed_page": 45,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0750",
-      "as_printed": "E. S. Kimberly",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 6,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kimberly_edmund_l",
-    "household_id": "hh_kimberly_edmund_l",
-    "grade_1835": "attested"
-   },
-   {
     "name": "Erastus Selden Bowen",
     "rule": "Surname 'Bowen' folds to the same string as the 1837 entry's, and the given name of both begins E.",
     "entries_1837": [
@@ -3444,51 +2946,6 @@
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
     "grade_1835": "inferred"
-   },
-   {
-    "name": "G W Dole",
-    "rule": "Surname 'Dole' folds to the same string as the 1837 entry's, and the given name of both begins G.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0373",
-      "as_printed": "George W. Dole",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0711",
-      "as_printed": "Geo. W. Dole",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": 2,
-      "voted_for": null,
-      "party": "Whig",
-      "office": "alderman",
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0738",
-      "as_printed": "Geo. W. Dole",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 2,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "dole_g_w",
-    "household_id": "hh_dole_g_w",
-    "grade_1835": "attested"
    },
    {
     "name": "George Davis",
@@ -3665,51 +3122,6 @@
     ],
     "person_id": "pearsons_hiram",
     "household_id": "hh_pearsons_hiram",
-    "grade_1835": "attested"
-   },
-   {
-    "name": "J H Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the 1837 entry's, and the given name of both begins J.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0498",
-      "as_printed": "James Kinzie",
-      "printed_page": 44,
-      "role": "voter",
-      "ward_1837": 4,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": true,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0707",
-      "as_printed": "JOHN H. KINZIE",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": null,
-      "voted_for": null,
-      "party": "Whig",
-      "office": "mayor",
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0749",
-      "as_printed": "J. H. Kinzie",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 6,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kinzie_j_h",
-    "household_id": "hh_kinzie_j_h",
     "grade_1835": "attested"
    },
    {
@@ -4313,72 +3725,6 @@
     "grade_1835": "attested"
    },
    {
-    "name": "P F Peck",
-    "rule": "Surname 'Peck' folds to the same string as the 1837 entry's, and the given name of both begins P.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0385",
-      "as_printed": "P. F. W. Peck",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0737",
-      "as_printed": "P. F. W. Peck",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 2,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "peck_p_f",
-    "household_id": "hh_peck_p_f",
-    "grade_1835": "attested"
-   },
-   {
-    "name": "P F W Peck",
-    "rule": "Surname 'Peck' folds to the same string as the 1837 entry's, and the given name of both begins P.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0385",
-      "as_printed": "P. F. W. Peck",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0737",
-      "as_printed": "P. F. W. Peck",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 2,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "peck_p_f_w",
-    "household_id": "hh_peck_p_f_w",
-    "grade_1835": "attested"
-   },
-   {
     "name": "Philip F. W. Peck",
     "rule": "Surname 'Peck' folds to the same string as the 1837 entry's, and the given name of both begins P.",
     "entries_1837": [
@@ -4835,21 +4181,6 @@
     "rule": "The surname 'Miller' stands in the 1837 poll and no man under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
    },
    {
-    "name": "G Hubbard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'G' of 'G Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "G S Hubbard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'G' of 'G S Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "G T Hubbard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'G' of 'G T Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Gantry Blanchard",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Blanchard' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gantry Blanchard'. A surname-only agreement is a refusal."
@@ -4905,19 +4236,9 @@
     "rule": "The surname 'Merrill' stands in the 1837 poll and no man under it carries the initial 'G' of 'George W Merrill'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Gordon S Hubbard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gordon S Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Gregory E. Legg",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Legg' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gregory E. Legg'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Gurdon S Hubbard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gurdon S Hubbard'. A surname-only agreement is a refusal."
    },
    {
     "name": "Gurdon Saltonstall Hubbard",
@@ -4943,11 +4264,6 @@
     "name": "Hanibal Ward",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Ward' stands in the 1837 poll and no man under it carries the initial 'H' of 'Hanibal Ward'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Harriet E Bates",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Bates' stands in the 1837 poll and no man under it carries the initial 'H' of 'Harriet E Bates'. A surname-only agreement is a refusal."
    },
    {
     "name": "Harriet Ellen Bates",
@@ -5020,11 +4336,6 @@
     "rule": "The surname 'Stevens' stands in the 1837 poll and no man under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
    },
    {
-    "name": "J B Beaubien",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Beaubien' stands in the 1837 poll and no man under it carries the initial 'J' of 'J B Beaubien'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "J Y Jackson",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Jackson' stands in the 1837 poll and no man under it carries the initial 'J' of 'J Y Jackson'. A surname-only agreement is a refusal."
@@ -5083,11 +4394,6 @@
     "name": "John A Clark",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Clark' stands in the 1837 poll and no man under it carries the initial 'J' of 'John A Clark'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "John B Beaubien",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Beaubien' stands in the 1837 poll and no man under it carries the initial 'J' of 'John B Beaubien'. A surname-only agreement is a refusal."
    },
    {
     "name": "John Davis",
@@ -5245,16 +4551,6 @@
     "rule": "The surname 'Lake' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lewis Lake'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Lieut Allen",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut Allen'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Lieut J Allen",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut J Allen'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Lieut J L Thompson",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Thompson' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
@@ -5400,11 +4696,6 @@
     "rule": "The surname 'Morris' stands in the 1837 poll and no man under it carries the initial 'P' of 'Potily Morris'. A surname-only agreement is a refusal."
    },
    {
-    "name": "R J Hamilton",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Hamilton' stands in the 1837 poll and no man under it carries the initial 'R' of 'R J Hamilton'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Rebecca Sherman",
     "candidates_under_that_surname": 5,
     "rule": "The surname 'Sherman' stands in the 1837 poll and no man under it carries the initial 'R' of 'Rebecca Sherman'. A surname-only agreement is a refusal."
@@ -5540,11 +4831,6 @@
     "rule": "The surname 'Hyde' stands in the 1837 poll and no man under it carries the initial 'T' of 'Thomas S. Hyde'. A surname-only agreement is a refusal."
    },
    {
-    "name": "W H Brown",
-    "candidates_under_that_surname": 7,
-    "rule": "The surname 'Brown' stands in the 1837 poll and no man under it carries the initial 'W' of 'W H Brown'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "W. G. Blanchard",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Blanchard' stands in the 1837 poll and no man under it carries the initial 'W' of 'W. G. Blanchard'. A surname-only agreement is a refusal."
@@ -5563,11 +4849,6 @@
     "name": "Willard Jones",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Jones' stands in the 1837 poll and no man under it carries the initial 'W' of 'Willard Jones'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "William Adams",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Adams' stands in the 1837 poll and no man under it carries the initial 'W' of 'William Adams'. A surname-only agreement is a refusal."
    },
    {
     "name": "William Allen",

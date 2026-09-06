@@ -4509,8 +4509,9 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
 # INSIDE one household and stops at its edge. So a kinship that crosses two
 # household records had nowhere to live but a free-text note, which is to say
 # nowhere a query can reach it — and the households this project most needs to
-# keep apart are exactly the ones a shared surname makes mergeable. Six
-# households in this dataset are Kinzies; `data/research/books/crosswalk.json`
+# keep apart are exactly the ones a shared surname makes mergeable. Four
+# household cards in this dataset are Kinzies — six until T-0839 folded two
+# duplicate initials cards on 2026-09-05; `data/research/books/crosswalk.json`
 # already has to refuse "Mr. John Kinzie" the elder against John Harris Kinzie
 # his son, and a household set recording no Kinzie relationship at all offers
 # that refusal no support.
@@ -4533,20 +4534,36 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
 #     other is half a fact: the household you read second still says the two
 #     men were unrelated, which is the defect T-0597 was opened about.
 #
-# Asymmetric relations (father/son, uncle/nephew) are deliberately NOT declared.
-# They need an inverse that depends on the other person, and declaring the term
-# without the inverse would let a one-way claim through. Add the pair together
-# or not at all.
+# THE ASYMMETRIC RELATIONS, ADDED AS PAIRS (T-0734). Until this ticket the set
+# was siblings alone, on the rule that "a relation whose inverse is unknown
+# cannot be checked for reciprocity ... add the pair together or not at all".
+# That rule is kept and satisfied rather than relaxed: `husband` is declared
+# WITH `wife`, and the parent terms WITH the child terms, so every relation
+# below still has a mirror this file can demand and check. What made them
+# askable was the corpus — the St Cyr register marries six couples this town
+# holds both halves of, and buries an infant it names the father of, and the
+# household records had no way to say so. A relation is still refused outright
+# unless its inverse appears here; uncle/nephew and cousin remain undeclared
+# because nothing in the corpus has needed them yet.
 RESIDENT_KIN_KEYS = ("person", "relation", "household", "value", "confidence")
 
 # relation -> the relations its mirror row may carry. Sibling terms differ by the
 # SEX of the person named, not by the degree of the tie, so each degree accepts
-# both of its own terms and neither of the other's.
+# both of its own terms and neither of the other's. A parent's mirror is a child
+# term and a child's mirror is a parent term, for the same reason: which of the
+# two words is right is a fact about the OTHER person's sex, and the register
+# that states the tie usually states that too.
 RESIDENT_KIN_INVERSES = {
     "brother": ("brother", "sister"),
     "sister": ("brother", "sister"),
     "half_brother": ("half_brother", "half_sister"),
     "half_sister": ("half_brother", "half_sister"),
+    "husband": ("wife",),
+    "wife": ("husband",),
+    "father": ("son", "daughter"),
+    "mother": ("son", "daughter"),
+    "son": ("father", "mother"),
+    "daughter": ("father", "mother"),
 }
 RESIDENT_KIN_RELATIONS = tuple(sorted(RESIDENT_KIN_INVERSES))
 

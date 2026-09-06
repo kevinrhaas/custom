@@ -75,7 +75,21 @@
     "source_ids": [
      "goodman_history_cook_county_early"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R1",
+     "cluster": "handy",
+     "weighed_against": [
+      "handy_henry_s"
+     ],
+     "referred_to": "rule",
+     "for_merge": "The town documents one Handy, a mason, from Andreas; Henry S. Handy is in the Democrat and Fergus's 1843 death notices. A 'Major Handy' and a Henry S. Handy may well be the same man under a militia title.",
+     "against_merge": "'Major Handy' prints no forename at all. Surname-plus-a-title is the refusal data/research/newspapers/identity.json has ratified since the press pass, and this pass does not make an exception to it. Refused by rule."
+    }
+   ]
   }
  ],
  "touches_removal": false,

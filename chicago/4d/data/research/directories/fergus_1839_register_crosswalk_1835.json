@@ -131,7 +131,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1402
+   "n": 1359
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -154,11 +154,11 @@
   "register_persons_unindexable": 3,
   "scene_reaching_rows": 4,
   "scene_reaching_residents_matched": 1,
-  "residents_matched_one_entry": 15,
-  "residents_ambiguous": 13,
+  "residents_matched_one_entry": 17,
+  "residents_ambiguous": 12,
   "residents_ambiguous_same_man_reprinted": 7,
-  "residents_contested": 6,
-  "residents_surname_only_refused": 58,
+  "residents_contested": 2,
+  "residents_surname_only_refused": 54,
   "voters_matched_one_entry": 14,
   "voters_ambiguous": 9,
   "voters_surname_only_refused": 21,
@@ -343,6 +343,35 @@
     "person_id": "davis_george",
     "household_id": "hh_davis_george",
     "grade_1835": "inferred",
+    "carry_rule": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
+   },
+   {
+    "name": "George Washington Dole",
+    "same_man_reprinted": false,
+    "rule": "Surname 'Dole' folds to the same string as the register entry's, and the given name of both begins G.",
+    "entries_1839": [
+     {
+      "claim": "f1839_r0005",
+      "as_printed": "George W. Dole",
+      "printed_page": 38,
+      "role": "treasurer",
+      "office": "treasurer",
+      "body": "city_of_chicago",
+      "ward_1839": null,
+      "year": null,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     }
+    ],
+    "offices": [
+     "treasurer"
+    ],
+    "reaches_scene": [],
+    "person_id": "dole_george_w",
+    "household_id": "hh_dole_george_w",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
    },
    {
@@ -580,6 +609,35 @@
     "carry_rule": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
    },
    {
+    "name": "William H Brown",
+    "same_man_reprinted": false,
+    "rule": "Surname 'Brown' folds to the same string as the register entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_r0041",
+      "as_printed": "Wm. If. Brown",
+      "printed_page": 38,
+      "role": "school_inspector",
+      "office": "school_inspector",
+      "body": "city_of_chicago",
+      "ward_1839": null,
+      "year": null,
+      "ex_officio": false,
+      "column_run_on": true,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     }
+    ],
+    "offices": [
+     "school_inspector"
+    ],
+    "reaches_scene": [],
+    "person_id": "brown_william_h",
+    "household_id": "hh_brown_william_h",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
+   },
+   {
     "name": "William H. Stow",
     "same_man_reprinted": false,
     "rule": "Surname 'Stow' folds to the same string as the register entry's, and the given name of both begins W.",
@@ -610,68 +668,6 @@
    }
   ],
   "contested": [
-   {
-    "name": "G W Dole",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Dole' folds to the same string as the register entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one register entry on that rule, and at most one of them is the man who held the office. The match is not made.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0005",
-      "as_printed": "George W. Dole",
-      "printed_page": 38,
-      "role": "treasurer",
-      "office": "treasurer",
-      "body": "city_of_chicago",
-      "ward_1839": null,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "treasurer"
-    ],
-    "reaches_scene": [],
-    "person_id": "dole_g_w",
-    "household_id": "hh_dole_g_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "George Washington Dole"
-    ]
-   },
-   {
-    "name": "George Washington Dole",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Dole' folds to the same string as the register entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one register entry on that rule, and at most one of them is the man who held the office. The match is not made.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0005",
-      "as_printed": "George W. Dole",
-      "printed_page": 38,
-      "role": "treasurer",
-      "office": "treasurer",
-      "body": "city_of_chicago",
-      "ward_1839": null,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "treasurer"
-    ],
-    "reaches_scene": [],
-    "person_id": "dole_george_w",
-    "household_id": "hh_dole_george_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "G W Dole"
-    ]
-   },
    {
     "name": "James Smith",
     "same_man_reprinted": false,
@@ -732,68 +728,6 @@
     "grade_1835": "attested",
     "contested_with": [
      "James Smith"
-    ]
-   },
-   {
-    "name": "W H Brown",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Brown' folds to the same string as the register entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one register entry on that rule, and at most one of them is the man who held the office. The match is not made.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0041",
-      "as_printed": "Wm. If. Brown",
-      "printed_page": 38,
-      "role": "school_inspector",
-      "office": "school_inspector",
-      "body": "city_of_chicago",
-      "ward_1839": null,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": true,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "school_inspector"
-    ],
-    "reaches_scene": [],
-    "person_id": "brown_w_h",
-    "household_id": "hh_brown_w_h",
-    "grade_1835": "attested",
-    "contested_with": [
-     "William H Brown"
-    ]
-   },
-   {
-    "name": "William H Brown",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Brown' folds to the same string as the register entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one register entry on that rule, and at most one of them is the man who held the office. The match is not made.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0041",
-      "as_printed": "Wm. If. Brown",
-      "printed_page": 38,
-      "role": "school_inspector",
-      "office": "school_inspector",
-      "body": "city_of_chicago",
-      "ward_1839": null,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": true,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "school_inspector"
-    ],
-    "reaches_scene": [],
-    "person_id": "brown_william_h",
-    "household_id": "hh_brown_william_h",
-    "grade_1835": "attested",
-    "contested_with": [
-     "W H Brown"
     ]
    }
   ],
@@ -924,51 +858,6 @@
     "reaches_scene": [],
     "person_id": "morris_b_s",
     "household_id": "hh_morris_b_s",
-    "grade_1835": "attested"
-   },
-   {
-    "name": "J H Kinzie",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Kinzie' folds to the same string as the register entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0021",
-      "as_printed": "John 11. Kinzie",
-      "printed_page": 38,
-      "role": "alderman",
-      "office": "alderman",
-      "body": "city_of_chicago",
-      "ward_1839": 6,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     },
-     {
-      "claim": "f1839_r0087",
-      "as_printed": "James Kinzie",
-      "printed_page": 39,
-      "role": "sheriff_of_cook_county",
-      "office": "sheriff_of_cook_county",
-      "body": "cook_county",
-      "ward_1839": null,
-      "year": 1831,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": "adjacent"
-     }
-    ],
-    "offices": [
-     "alderman",
-     "sheriff_of_cook_county"
-    ],
-    "reaches_scene": [
-     "adjacent"
-    ],
-    "person_id": "kinzie_j_h",
-    "household_id": "hh_kinzie_j_h",
     "grade_1835": "attested"
    },
    {
@@ -1448,11 +1337,6 @@
     "rule": "The surname 'Cook' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'J. B. Cook'. A surname-only agreement is a refusal."
    },
    {
-    "name": "James Allen",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'James Allen'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Jesse B Brown",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'Jesse B Brown'. A surname-only agreement is a refusal."
@@ -1508,16 +1392,6 @@
     "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lemuel Brown'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Lieut Allen",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut Allen'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Lieut J Allen",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut J Allen'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Lieut J L Thompson",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Thompson' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
@@ -1561,11 +1435,6 @@
     "name": "Potily Morris",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Morris' stands on printed pages 38-39 and no man under it carries the initial 'P' of 'Potily Morris'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "R A Kinzie",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Kinzie' stands on printed pages 38-39 and no man under it carries the initial 'R' of 'R A Kinzie'. A surname-only agreement is a refusal."
    },
    {
     "name": "Rebecca Sherman",

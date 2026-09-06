@@ -4,7 +4,7 @@
   "scene_date": "1835-07-01",
   "generated_by": "tools/select_resident_research_pilot.py",
   "population_frame": {
-    "eligible_real_named_people": 1405,
+    "eligible_real_named_people": 1362,
     "sample_size": 75,
     "strata": {
       "established_profile": 5,
@@ -63,7 +63,10 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839",
+        "isa_public_domain_land_tract_sales"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },
@@ -94,7 +97,13 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "calumet_club_early_chicago_1879",
+        "census_1840_chicago_familysearch_images",
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ],
       "selection_reason": "Established, occupationally identified resident selected for deeper household research."
     },

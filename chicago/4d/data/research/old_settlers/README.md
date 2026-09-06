@@ -22,6 +22,7 @@ deaths. Those receptions are a **source series**, and this directory reads it.
 | `crosswalk.json` | the identity decisions: merges, probables, refusals, each with the rule that fired |
 | `claims.json` | what the documents say *about the town*, each with its verbatim quote |
 | `text/` | the three 1882 Tribune documents as the page reprints them, and the 1879 register as the plate prints it, so every quote can be rebuilt |
+| `resident_spend_1835.json` | the ledger of T-0678's consolidation pass 4: which rulings were written onto the card they name, what each card was told, and — group by group, with the reason — what was not written |
 
 `tools/old_settlers.py --build | --check | --self-test | --apply-citations` owns all of
 it. The gate rebuilds the JSON out of the committed text, refuses a quote that differs by
@@ -166,3 +167,38 @@ than the earliest death the volume means to print.
 - A structured death-date field on a resident. Six records now carry a date of death **in
   prose**, because a `died` block is new schema surface for the residents layer and is a
   decision for a pass that owns that layer, not for a source reading.
+
+## Registered, measured, and spent (T-0678)
+
+This domain was read from T-0574 and T-0577 and adjudicated after, and until 2026-09-05 it
+was **registered in no `data/research/domains.json` entry**. So
+`tools/measure_research_spend.py` printed it as *"not registered in domains.json (not
+measured)"* and measured neither hop: 1,094 units read and 109 rulings naming a person the
+town holds a card for, none of it on any instrument. T-0678 registered it and closed the
+gap it exposed.
+
+Registering it took two accommodations in `tools/research_domains.py`, both of which are
+about SHAPE and neither of which lets anything past:
+
+- **`units_in`.** This domain's reading lives in files at the top of its own directory
+  rather than under `records/`, and `people.json` calls its array `people`. The registry
+  and the measure count `records` and `claims`, so 327 roll entries counted as zero. The
+  file now declares which array is the reading, in one key, and the gate fails if the
+  array it names is not there.
+- **The roster crosswalk.** `crosswalk.json` rules a printed name against the whole
+  residents layer — `as_read` against `resident_name` — rather than a spelling against a
+  spelling, and its refusals have no second spelling because what was refused is the layer.
+  It is now held to the roster shape's own four rules (both spellings, a rule declared in
+  the file's `rules` block, no surname-only merge, evidence behind every merge) instead of
+  being reported as 45 malformed pairwise merges.
+
+**What is on a card, and what is not.** The 45 OS1/OS2A roster merges were already written
+by `tools/old_settlers.py` as it builds. The 64 death-notice matches were not, and
+`tools/spend_old_settlers.py` writes them: an `old_settler_deaths` block on the household,
+carrying the record id, the date of death and the birth interval the printed age implies,
+with the list's own header admission quoted above the note. **No grade moves**, and the
+block is excluded from OS2A's text scan for the same reason the `directories` block is —
+left in, a death notice that prints "Flint, Dr. Austin" would hand the roster rule the
+spelling it is supposed to find independently, and two merges appeared the moment the
+block landed. The contested, ambiguous and refused rows are rivals still standing and are
+written nowhere; the ledger states each group and why.

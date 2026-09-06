@@ -31,9 +31,15 @@
   ],
   "kin_relations": [
    "brother",
+   "daughter",
+   "father",
    "half_brother",
    "half_sister",
-   "sister"
+   "husband",
+   "mother",
+   "sister",
+   "son",
+   "wife"
   ],
   "occupations": [
    "army_officer",
@@ -239,18 +245,19 @@
   ]
  },
  "counts": {
-  "households": 1381,
-  "persons": 1405,
+  "households": 1339,
+  "persons": 1363,
   "by_grade": {
-   "attested": 526,
-   "inferred": 879,
+   "attested": 491,
+   "inferred": 872,
    "reconstructed": 0
   },
   "letter_list_only": 727,
-  "projected_residents": 719,
+  "projected_residents": 715,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
-  "civic_mint": 532
+  "civic_mint": 490,
+  "merged_away": 42
  },
  "households": [
   {
@@ -410,21 +417,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_adams_william",
-   "file": "households/hh_adams_william.json",
-   "civic_mint": true,
-   "head": "adams_william",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_adams_william_h",
    "file": "households/hh_adams_william_h.json",
    "head": "adams_william_h",
@@ -563,51 +555,6 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_allen_james",
-   "file": "households/hh_allen_james.json",
-   "civic_mint": true,
-   "head": "allen_james",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_allen_lieut",
-   "file": "households/hh_allen_lieut.json",
-   "civic_mint": true,
-   "head": "allen_lieut",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_allen_lieut_j",
-   "file": "households/hh_allen_lieut_j.json",
-   "civic_mint": true,
-   "head": "allen_lieut_j",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -1559,21 +1506,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_bates_harriet_e",
-   "file": "households/hh_bates_harriet_e.json",
-   "civic_mint": true,
-   "head": "bates_harriet_e",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_bates_harriet_ellen",
    "file": "households/hh_bates_harriet_ellen.json",
    "civic_mint": true,
@@ -1742,21 +1674,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_beaubien_j_b",
-   "file": "households/hh_beaubien_j_b.json",
-   "civic_mint": true,
-   "head": "beaubien_j_b",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_beaubien_jean_baptiste",
    "file": "households/hh_beaubien_jean_baptiste.json",
    "head": "beaubien_jean_baptiste",
@@ -1770,21 +1687,6 @@
    "works_at": "jb_beaubien_homestead",
    "present_on_scene_date": "present",
    "review_required": true
-  },
-  {
-   "id": "hh_beaubien_john_b",
-   "file": "households/hh_beaubien_john_b.json",
-   "civic_mint": true,
-   "head": "beaubien_john_b",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_beaubien_john_s",
@@ -3306,21 +3208,6 @@
    "lives_at": "brown_boarding_house",
    "works_at": "brown_boarding_house",
    "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_brown_w_h",
-   "file": "households/hh_brown_w_h.json",
-   "civic_mint": true,
-   "head": "brown_w_h",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -4866,21 +4753,6 @@
    "review_required": false
   },
   {
-   "id": "hh_cobb_s_b",
-   "file": "households/hh_cobb_s_b.json",
-   "civic_mint": true,
-   "head": "cobb_s_b",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_cochrane_r",
    "file": "households/hh_cochrane_r.json",
    "civic_mint": true,
@@ -6162,21 +6034,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_dole_g_w",
-   "file": "households/hh_dole_g_w.json",
-   "civic_mint": true,
-   "head": "dole_g_w",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_dole_george_w",
@@ -7814,36 +7671,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_fullerton_a_n",
-   "file": "households/hh_fullerton_a_n.json",
-   "civic_mint": true,
-   "head": "fullerton_a_n",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_fullerton_alex_n",
-   "file": "households/hh_fullerton_alex_n.json",
-   "civic_mint": true,
-   "head": "fullerton_alex_n",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_fullerton_alexander",
    "file": "households/hh_fullerton_alexander.json",
    "head": "fullerton_alexander",
@@ -7856,22 +7683,6 @@
    "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
-  },
-  {
-   "id": "hh_fullerton_alexander_m",
-   "file": "households/hh_fullerton_alexander_m.json",
-   "civic_mint": true,
-   "head": "fullerton_alexander_m",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
   },
   {
    "id": "hh_funk_absolom",
@@ -8346,8 +8157,7 @@
    "division": "west",
    "persons": 2,
    "grades": {
-    "attested": 1,
-    "inferred": 1
+    "attested": 2
    },
    "lives_at": null,
    "works_at": "goss_cobb_saddlery",
@@ -8586,36 +8396,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_haddock_e",
-   "file": "households/hh_haddock_e.json",
-   "civic_mint": true,
-   "head": "haddock_e",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_haddock_e_w",
-   "file": "households/hh_haddock_e_w.json",
-   "civic_mint": true,
-   "head": "haddock_e_w",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_haddock_edward",
    "file": "households/hh_haddock_edward.json",
    "head": "haddock_edward",
@@ -8628,22 +8408,6 @@
    "works_at": "mansion_house",
    "present_on_scene_date": "uncertain",
    "review_required": false
-  },
-  {
-   "id": "hh_haddock_edward_e",
-   "file": "households/hh_haddock_edward_e.json",
-   "civic_mint": true,
-   "head": "haddock_edward_e",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
   },
   {
    "id": "hh_haddock_h",
@@ -8749,21 +8513,6 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_hamilton_r_j",
-   "file": "households/hh_hamilton_r_j.json",
-   "civic_mint": true,
-   "head": "hamilton_r_j",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -8927,21 +8676,6 @@
    "lives_at": "harmon_log_cabin",
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_harmon_isaac",
-   "file": "households/hh_harmon_isaac.json",
-   "civic_mint": true,
-   "head": "harmon_isaac",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -9447,21 +9181,6 @@
    "review_required": false
   },
   {
-   "id": "hh_hogan_j_s_c",
-   "file": "households/hh_hogan_j_s_c.json",
-   "civic_mint": true,
-   "head": "hogan_j_s_c",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_hogan_john",
    "file": "households/hh_hogan_john.json",
    "civic_mint": true,
@@ -9939,66 +9658,6 @@
    "review_required": false
   },
   {
-   "id": "hh_hubbard_g",
-   "file": "households/hh_hubbard_g.json",
-   "civic_mint": true,
-   "head": "hubbard_g",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_hubbard_g_s",
-   "file": "households/hh_hubbard_g_s.json",
-   "civic_mint": true,
-   "head": "hubbard_g_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_hubbard_g_t",
-   "file": "households/hh_hubbard_g_t.json",
-   "civic_mint": true,
-   "head": "hubbard_g_t",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_hubbard_gordon_s",
-   "file": "households/hh_hubbard_gordon_s.json",
-   "civic_mint": true,
-   "head": "hubbard_gordon_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_hubbard_gurdon",
    "file": "households/hh_hubbard_gurdon.json",
    "head": "hubbard_gurdon",
@@ -10009,21 +9668,6 @@
    },
    "lives_at": null,
    "works_at": "old_bank_building",
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_hubbard_gurdon_s",
-   "file": "households/hh_hubbard_gurdon_s.json",
-   "civic_mint": true,
-   "head": "hubbard_gurdon_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
    "present_on_scene_date": "present",
    "review_required": false
   },
@@ -11368,52 +11012,6 @@
    "review_required": false
   },
   {
-   "id": "hh_kimberly_e_s",
-   "file": "households/hh_kimberly_e_s.json",
-   "civic_mint": true,
-   "head": "kimberly_e_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_kimberly_ed_s",
-   "file": "households/hh_kimberly_ed_s.json",
-   "civic_mint": true,
-   "head": "kimberly_ed_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_kimberly_edmund_l",
-   "file": "households/hh_kimberly_edmund_l.json",
-   "civic_mint": true,
-   "head": "kimberly_edmund_l",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
    "id": "hh_kimberly_ira",
    "file": "households/hh_kimberly_ira.json",
    "civic_mint": true,
@@ -11643,21 +11241,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_kinzie_j_h",
-   "file": "households/hh_kinzie_j_h.json",
-   "civic_mint": true,
-   "head": "kinzie_j_h",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_kinzie_james",
    "file": "households/hh_kinzie_james.json",
    "head": "kinzie_james",
@@ -11690,21 +11273,6 @@
    "file": "households/hh_kinzie_john_s.json",
    "civic_mint": true,
    "head": "kinzie_john_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_kinzie_r_a",
-   "file": "households/hh_kinzie_r_a.json",
-   "civic_mint": true,
-   "head": "kinzie_r_a",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -14963,66 +14531,6 @@
    "review_required": false
   },
   {
-   "id": "hh_owen_t_j_v",
-   "file": "households/hh_owen_t_j_v.json",
-   "civic_mint": true,
-   "head": "owen_t_j_v",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_owen_th_j_v",
-   "file": "households/hh_owen_th_j_v.json",
-   "civic_mint": true,
-   "head": "owen_th_j_v",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_owen_thomas",
-   "file": "households/hh_owen_thomas.json",
-   "civic_mint": true,
-   "head": "owen_thomas",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_owen_thomas_j_v",
-   "file": "households/hh_owen_thomas_j_v.json",
-   "civic_mint": true,
-   "head": "owen_thomas_j_v",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
    "id": "hh_owen_thomas_jv",
    "file": "households/hh_owen_thomas_jv.json",
    "head": "owen_thomas_jv",
@@ -15470,36 +14978,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_peck_p_f",
-   "file": "households/hh_peck_p_f.json",
-   "civic_mint": true,
-   "head": "peck_p_f",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_peck_p_f_w",
-   "file": "households/hh_peck_p_f_w.json",
-   "civic_mint": true,
-   "head": "peck_p_f_w",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
   },
   {
    "id": "hh_peck_philip",
@@ -18155,21 +17633,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_snow_g_w",
-   "file": "households/hh_snow_g_w.json",
-   "civic_mint": true,
-   "head": "snow_g_w",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
    "id": "hh_snow_george_w",
    "file": "households/hh_snow_george_w.json",
    "head": "snow_george_w",
@@ -18359,36 +17822,6 @@
    "file": "households/hh_sproat_e.json",
    "civic_mint": true,
    "head": "sproat_e",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_sproat_g_n",
-   "file": "households/hh_sproat_g_n.json",
-   "civic_mint": true,
-   "head": "sproat_g_n",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_sproat_g_t",
-   "file": "households/hh_sproat_g_t.json",
-   "civic_mint": true,
-   "head": "sproat_g_t",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -19128,37 +18561,6 @@
    "review_required": false
   },
   {
-   "id": "hh_taylor_anson_n",
-   "file": "households/hh_taylor_anson_n.json",
-   "civic_mint": true,
-   "head": "taylor_anson_n",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
-   "id": "hh_taylor_anson_w",
-   "file": "households/hh_taylor_anson_w.json",
-   "civic_mint": true,
-   "head": "taylor_anson_w",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_taylor_augustine",
    "file": "households/hh_taylor_augustine.json",
    "head": "taylor_augustine",
@@ -19173,21 +18575,6 @@
    "review_required": false
   },
   {
-   "id": "hh_taylor_e_d",
-   "file": "households/hh_taylor_e_d.json",
-   "civic_mint": true,
-   "head": "taylor_e_d",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_taylor_edmund_d",
    "file": "households/hh_taylor_edmund_d.json",
    "civic_mint": true,
@@ -19199,7 +18586,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -19263,21 +18650,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_temple_j_t",
-   "file": "households/hh_temple_j_t.json",
-   "civic_mint": true,
-   "head": "temple_j_t",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_temple_john_t",
@@ -21680,5 +21052,470 @@
    "note": "tools/validate.py rejects any household whose arrival cannot have preceded the scene date, and this entry records the class rather than enumerating it. Worked examples found while writing this parcel and deliberately NOT written as households: Abram A. Markle, whose name is on the Exchange Coffee House in a Chicago American advertisement of 6 August 1836 and who took the Mansion House at an unstated point in 1835 (see hh_haddock_edward); Rebecca Sherman, who married Peter Pruyne on 20 August 1835, seven weeks after the scene date, and is therefore NOT in his household here; John M. Van Osdel, Chicago's first architect, who is a 1836 arrival; the correspondent who told Andreas 'I came to Chicago in October, 1836'; and the whole 1836 board of trustees elected at the Tremont House on 6 June 1836. THE RULE CUTS THE OTHER WAY TOO: Jeremiah Porter married at Rochester, New York on 15 June 1835 and is recorded here with presence 'uncertain' rather than excluded, because he was a resident of the town whose whereabouts on one day are unknown - which is a different finding from an arrival that had not happened yet."
   }
  ],
- "_researched_not_resident_doc": "THE EXCLUSIONS-STYLE HALF OF THIS DATASET, and it is as load-bearing as the households. Three kinds of finding live here: (a) a person whose ARRIVAL IS AFTER 1835-07-01 and who is therefore not in this scene, which is the rule tools/validate.py enforces on every household record; (b) a person the sources place at Chicago but NOT as a resident of the town; and (c) a person this project believes was here and CANNOT CITE, recorded so that the gap is visible rather than quietly filled. Adding to this list is preferred to deleting from it, exactly as data/exclusions.json requires for structures."
+ "_researched_not_resident_doc": "THE EXCLUSIONS-STYLE HALF OF THIS DATASET, and it is as load-bearing as the households. Three kinds of finding live here: (a) a person whose ARRIVAL IS AFTER 1835-07-01 and who is therefore not in this scene, which is the rule tools/validate.py enforces on every household record; (b) a person the sources place at Chicago but NOT as a resident of the town; and (c) a person this project believes was here and CANNOT CITE, recorded so that the gap is visible rather than quietly filled. Adding to this list is preferred to deleting from it, exactly as data/exclusions.json requires for structures.",
+ "merged": [
+  {
+   "person": "adams_william",
+   "household": "hh_adams_william",
+   "name": "William Adams",
+   "merged_into_person": "adams_william_h",
+   "merged_into_household": "hh_adams_william_h",
+   "record_file": "merged/hh_adams_william.json",
+   "rule": "C3",
+   "cluster": "adams",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "allen_james",
+   "household": "hh_allen_james",
+   "name": "James Allen",
+   "merged_into_person": "allen_lieut_james",
+   "merged_into_household": "hh_allen_lieut_james",
+   "record_file": "merged/hh_allen_james.json",
+   "rule": "C0",
+   "cluster": "allen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "allen_lieut",
+   "household": "hh_allen_lieut",
+   "name": "Lieut Allen",
+   "merged_into_person": "allen_lieut_james",
+   "merged_into_household": "hh_allen_lieut_james",
+   "record_file": "merged/hh_allen_lieut.json",
+   "rule": "C0",
+   "cluster": "allen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "allen_lieut_j",
+   "household": "hh_allen_lieut_j",
+   "name": "Lieut J Allen",
+   "merged_into_person": "allen_lieut_james",
+   "merged_into_household": "hh_allen_lieut_james",
+   "record_file": "merged/hh_allen_lieut_j.json",
+   "rule": "C0",
+   "cluster": "allen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "bates_harriet_e",
+   "household": "hh_bates_harriet_e",
+   "name": "Harriet E Bates",
+   "merged_into_person": "bates_harriet_ellen",
+   "merged_into_household": "hh_bates_harriet_ellen",
+   "record_file": "merged/hh_bates_harriet_e.json",
+   "rule": "C1",
+   "cluster": "bates-harriet",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "beaubien_j_b",
+   "household": "hh_beaubien_j_b",
+   "name": "J B Beaubien",
+   "merged_into_person": "beaubien_jean_baptiste",
+   "merged_into_household": "hh_beaubien_jean_baptiste",
+   "record_file": "merged/hh_beaubien_j_b.json",
+   "rule": "C2",
+   "cluster": "beaubien",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "beaubien_john_b",
+   "household": "hh_beaubien_john_b",
+   "name": "John B Beaubien",
+   "merged_into_person": "beaubien_jean_baptiste",
+   "merged_into_household": "hh_beaubien_jean_baptiste",
+   "record_file": "merged/hh_beaubien_john_b.json",
+   "rule": "C2",
+   "cluster": "beaubien",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "brown_w_h",
+   "household": "hh_brown_w_h",
+   "name": "W H Brown",
+   "merged_into_person": "brown_william_h",
+   "merged_into_household": "hh_brown_william_h",
+   "record_file": "merged/hh_brown_w_h.json",
+   "rule": "C2",
+   "cluster": "brown-william-h",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "cobb_s_b",
+   "household": "hh_cobb_s_b",
+   "name": "S B Cobb",
+   "merged_into_person": "cobb_silas_b",
+   "merged_into_household": "hh_goss_cobb",
+   "record_file": "merged/hh_cobb_s_b.json",
+   "rule": "C2",
+   "cluster": "cobb",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "dole_g_w",
+   "household": "hh_dole_g_w",
+   "name": "G W Dole",
+   "merged_into_person": "dole_george_w",
+   "merged_into_household": "hh_dole_george_w",
+   "record_file": "merged/hh_dole_g_w.json",
+   "rule": "C2",
+   "cluster": "dole",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "fullerton_a_n",
+   "household": "hh_fullerton_a_n",
+   "name": "A N Fullerton",
+   "merged_into_person": "fullerton_alexander",
+   "merged_into_household": "hh_fullerton_alexander",
+   "record_file": "merged/hh_fullerton_a_n.json",
+   "rule": "C0",
+   "cluster": "fullerton",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "fullerton_alex_n",
+   "household": "hh_fullerton_alex_n",
+   "name": "Alex N Fullerton",
+   "merged_into_person": "fullerton_alexander",
+   "merged_into_household": "hh_fullerton_alexander",
+   "record_file": "merged/hh_fullerton_alex_n.json",
+   "rule": "C0",
+   "cluster": "fullerton",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "fullerton_alexander_m",
+   "household": "hh_fullerton_alexander_m",
+   "name": "Alexander M Fullerton",
+   "merged_into_person": "fullerton_alexander",
+   "merged_into_household": "hh_fullerton_alexander",
+   "record_file": "merged/hh_fullerton_alexander_m.json",
+   "rule": "C0",
+   "cluster": "fullerton",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "haddock_e",
+   "household": "hh_haddock_e",
+   "name": "E Haddock",
+   "merged_into_person": "haddock_edward",
+   "merged_into_household": "hh_haddock_edward",
+   "record_file": "merged/hh_haddock_e.json",
+   "rule": "C0",
+   "cluster": "haddock",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "haddock_e_w",
+   "household": "hh_haddock_e_w",
+   "name": "E W Haddock",
+   "merged_into_person": "haddock_edward",
+   "merged_into_household": "hh_haddock_edward",
+   "record_file": "merged/hh_haddock_e_w.json",
+   "rule": "C0",
+   "cluster": "haddock",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "haddock_edward_e",
+   "household": "hh_haddock_edward_e",
+   "name": "Edward E Haddock",
+   "merged_into_person": "haddock_edward",
+   "merged_into_household": "hh_haddock_edward",
+   "record_file": "merged/hh_haddock_edward_e.json",
+   "rule": "C0",
+   "cluster": "haddock",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hamilton_r_j",
+   "household": "hh_hamilton_r_j",
+   "name": "R J Hamilton",
+   "merged_into_person": "hamilton_richard_j",
+   "merged_into_household": "hh_hamilton_richard_j",
+   "record_file": "merged/hh_hamilton_r_j.json",
+   "rule": "C2",
+   "cluster": "hamilton",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "harmon_isaac",
+   "household": "hh_harmon_isaac",
+   "name": "Isaac Harmon",
+   "merged_into_person": "harmon_isaac_d",
+   "merged_into_household": "hh_harmon_brothers",
+   "record_file": "merged/hh_harmon_isaac.json",
+   "rule": "C3",
+   "cluster": "harmon-isaac",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hogan_j_s_c",
+   "household": "hh_hogan_j_s_c",
+   "name": "J S C Hogan",
+   "merged_into_person": "hogan_john_s_c",
+   "merged_into_household": "hh_hogan_john_s_c",
+   "record_file": "merged/hh_hogan_j_s_c.json",
+   "rule": "C2",
+   "cluster": "hogan",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hubbard_g",
+   "household": "hh_hubbard_g",
+   "name": "G Hubbard",
+   "merged_into_person": "hubbard_henry_g",
+   "merged_into_household": "hh_hubbard_henry_g",
+   "record_file": "merged/hh_hubbard_g.json",
+   "rule": "C5",
+   "cluster": "hubbard",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hubbard_g_s",
+   "household": "hh_hubbard_g_s",
+   "name": "G S Hubbard",
+   "merged_into_person": "hubbard_gurdon",
+   "merged_into_household": "hh_hubbard_gurdon",
+   "record_file": "merged/hh_hubbard_g_s.json",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hubbard_g_t",
+   "household": "hh_hubbard_g_t",
+   "name": "G T Hubbard",
+   "merged_into_person": "hubbard_gurdon",
+   "merged_into_household": "hh_hubbard_gurdon",
+   "record_file": "merged/hh_hubbard_g_t.json",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hubbard_gordon_s",
+   "household": "hh_hubbard_gordon_s",
+   "name": "Gordon S Hubbard",
+   "merged_into_person": "hubbard_gurdon",
+   "merged_into_household": "hh_hubbard_gurdon",
+   "record_file": "merged/hh_hubbard_gordon_s.json",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "hubbard_gurdon_s",
+   "household": "hh_hubbard_gurdon_s",
+   "name": "Gurdon S Hubbard",
+   "merged_into_person": "hubbard_gurdon",
+   "merged_into_household": "hh_hubbard_gurdon",
+   "record_file": "merged/hh_hubbard_gurdon_s.json",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "kimberly_e_s",
+   "household": "hh_kimberly_e_s",
+   "name": "E S Kimberly",
+   "merged_into_person": "kimberly_edmund_s",
+   "merged_into_household": "hh_pruyne_kimberly",
+   "record_file": "merged/hh_kimberly_e_s.json",
+   "rule": "C0",
+   "cluster": "kimberly",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "kimberly_ed_s",
+   "household": "hh_kimberly_ed_s",
+   "name": "Ed S Kimberly",
+   "merged_into_person": "kimberly_edmund_s",
+   "merged_into_household": "hh_pruyne_kimberly",
+   "record_file": "merged/hh_kimberly_ed_s.json",
+   "rule": "C0",
+   "cluster": "kimberly",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "kimberly_edmund_l",
+   "household": "hh_kimberly_edmund_l",
+   "name": "Edmund L Kimberly",
+   "merged_into_person": "kimberly_edmund_s",
+   "merged_into_household": "hh_pruyne_kimberly",
+   "record_file": "merged/hh_kimberly_edmund_l.json",
+   "rule": "C0",
+   "cluster": "kimberly",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "kinzie_j_h",
+   "household": "hh_kinzie_j_h",
+   "name": "J H Kinzie",
+   "merged_into_person": "kinzie_john_h",
+   "merged_into_household": "hh_kinzie_john_h",
+   "record_file": "merged/hh_kinzie_j_h.json",
+   "rule": "C2",
+   "cluster": "kinzie-john",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "kinzie_r_a",
+   "household": "hh_kinzie_r_a",
+   "name": "R A Kinzie",
+   "merged_into_person": "kinzie_robert_a",
+   "merged_into_household": "hh_kinzie_robert_a",
+   "record_file": "merged/hh_kinzie_r_a.json",
+   "rule": "C2",
+   "cluster": "kinzie-robert",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "owen_t_j_v",
+   "household": "hh_owen_t_j_v",
+   "name": "T J V Owen",
+   "merged_into_person": "owen_thomas_jv",
+   "merged_into_household": "hh_owen_thomas_jv",
+   "record_file": "merged/hh_owen_t_j_v.json",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "owen_th_j_v",
+   "household": "hh_owen_th_j_v",
+   "name": "Th J V Owen",
+   "merged_into_person": "owen_thomas_jv",
+   "merged_into_household": "hh_owen_thomas_jv",
+   "record_file": "merged/hh_owen_th_j_v.json",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "owen_thomas",
+   "household": "hh_owen_thomas",
+   "name": "Thomas Owen",
+   "merged_into_person": "owen_thomas_jv",
+   "merged_into_household": "hh_owen_thomas_jv",
+   "record_file": "merged/hh_owen_thomas.json",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "owen_thomas_j_v",
+   "household": "hh_owen_thomas_j_v",
+   "name": "Thomas J V Owen",
+   "merged_into_person": "owen_thomas_jv",
+   "merged_into_household": "hh_owen_thomas_jv",
+   "record_file": "merged/hh_owen_thomas_j_v.json",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "peck_p_f",
+   "household": "hh_peck_p_f",
+   "name": "P F Peck",
+   "merged_into_person": "peck_philip",
+   "merged_into_household": "hh_peck_philip",
+   "record_file": "merged/hh_peck_p_f.json",
+   "rule": "C4",
+   "cluster": "peck",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "peck_p_f_w",
+   "household": "hh_peck_p_f_w",
+   "name": "P F W Peck",
+   "merged_into_person": "peck_philip",
+   "merged_into_household": "hh_peck_philip",
+   "record_file": "merged/hh_peck_p_f_w.json",
+   "rule": "C4",
+   "cluster": "peck",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "snow_g_w",
+   "household": "hh_snow_g_w",
+   "name": "G W Snow",
+   "merged_into_person": "snow_george_w",
+   "merged_into_household": "hh_snow_george_w",
+   "record_file": "merged/hh_snow_g_w.json",
+   "rule": "C2",
+   "cluster": "snow",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "sproat_g_n",
+   "household": "hh_sproat_g_n",
+   "name": "G N Sproat",
+   "merged_into_person": "sproat_grenville",
+   "merged_into_household": "hh_sproat_grenville",
+   "record_file": "merged/hh_sproat_g_n.json",
+   "rule": "C4",
+   "cluster": "sproat",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "sproat_g_t",
+   "household": "hh_sproat_g_t",
+   "name": "G T Sproat",
+   "merged_into_person": "sproat_grenville",
+   "merged_into_household": "hh_sproat_grenville",
+   "record_file": "merged/hh_sproat_g_t.json",
+   "rule": "C4",
+   "cluster": "sproat",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "taylor_anson_n",
+   "household": "hh_taylor_anson_n",
+   "name": "Anson N Taylor",
+   "merged_into_person": "taylor_anson_h",
+   "merged_into_household": "hh_taylor_anson",
+   "record_file": "merged/hh_taylor_anson_n.json",
+   "rule": "C4",
+   "cluster": "taylor-anson",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "taylor_anson_w",
+   "household": "hh_taylor_anson_w",
+   "name": "Anson W Taylor",
+   "merged_into_person": "taylor_anson_h",
+   "merged_into_household": "hh_taylor_anson",
+   "record_file": "merged/hh_taylor_anson_w.json",
+   "rule": "C4",
+   "cluster": "taylor-anson",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "taylor_e_d",
+   "household": "hh_taylor_e_d",
+   "name": "E D Taylor",
+   "merged_into_person": "taylor_edmund_d",
+   "merged_into_household": "hh_taylor_edmund_d",
+   "record_file": "merged/hh_taylor_e_d.json",
+   "rule": "C2",
+   "cluster": "taylor-edmund",
+   "ticket": "T-0839"
+  },
+  {
+   "person": "temple_j_t",
+   "household": "hh_temple_j_t",
+   "name": "J T Temple",
+   "merged_into_person": "temple_john_t",
+   "merged_into_household": "hh_temple_john_t",
+   "record_file": "merged/hh_temple_j_t.json",
+   "rule": "C2",
+   "cluster": "temple",
+   "ticket": "T-0839"
+  }
+ ],
+ "_merged_doc": "T-0839. THE REDIRECT TABLE. One row per town card folded onto another because the two named one person. The record is not deleted: it is kept whole at the `record` path with a `merged_into` block, and this table is what lets every consumer that cites the folded `person` — the crosswalks, identity_master.json, the smoke cohorts, the placed-resident parcels — still resolve it to somebody. The ruling and its reasoning are in data/residents/card_merge_rulings.json."
 }
