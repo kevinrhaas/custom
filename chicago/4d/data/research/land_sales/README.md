@@ -109,7 +109,7 @@ than on the two records agreeing, and it is refused.
 | DILL FRANK | upheld | ls0912 states **COOK**, and the 1835 poll list has a Frank Dill at Chicago |
 | SPENCER WILLIAM G | refused | one letter-list line, and a middle initial the town has never seen |
 | WILSON JOHN L | refused | the same, on the commonest name in the corpus, and the entries are 1836 |
-| GARRETT A ET CO | refused | the purchaser is a **firm**; this crosswalk proposes people (T-0849) |
+| GARRETT A ET CO | refused | the purchaser is a **firm**; this crosswalk proposes people (T-0851) |
 
 A refusal is not free: it moves the proposal into `refusals[]`, and
 `spend_land_sales.py --build` **retracts** the paragraph the earlier pass had written onto
@@ -124,7 +124,7 @@ spelling, both grade `documented` — for Cook County on the date of sale and no
 and a card whose paragraph no longer says what the crosswalk says is a gate failure, where
 `gaps()` had only ever asked whether a paragraph was PRESENT.
 
-**Still unruled:** the twenty-six spellings the first deposit matched (**T-0848**).
+**Still unruled:** the twenty-six spellings the first deposit matched (**T-0850**).
 
 **Every ruling now names the records it was made from.** `record_ids` on each match and
 each refusal in both crosswalks says which sales the ruling was made from — the spend

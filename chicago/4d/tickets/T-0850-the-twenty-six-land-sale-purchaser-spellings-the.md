@@ -1,5 +1,5 @@
 ---
-id: T-0848
+id: T-0850
 title: The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
 state: open
 epic: META

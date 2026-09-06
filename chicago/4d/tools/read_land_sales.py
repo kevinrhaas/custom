@@ -330,7 +330,7 @@ def load_rulings(domain: Path) -> dict:
     """The hand-authored rulings, keyed by the purchaser spelling they rule on.
 
     Absent is legal and means "nobody has ruled yet" — which is the state every spelling
-    was in before T-0700, and the state the other twenty-six are still in (T-0848).
+    was in before T-0700, and the state the other twenty-six are still in (T-0850).
     """
     path = domain / RULINGS_NAME
     if not path.exists():
