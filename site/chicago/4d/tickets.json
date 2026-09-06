@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 12:56 PM",
+  "generated_ct": "Sep 6, 2026, 1:10 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15384,6 +15384,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 179
+    },
+    {
+      "id": "T-0903",
+      "title": "Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 183
     }
   ]
 }

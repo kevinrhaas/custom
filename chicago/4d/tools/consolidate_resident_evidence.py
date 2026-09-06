@@ -769,7 +769,7 @@ def cluster(appearances):
         # counterpart is only in ANOTHER body — `Hadley, Mrs. T. G.` against Norris's
         # `Hadley, T. G.`, and `Mrs. Wm. B. Egan` against Norris's `Egan, Wm. B.` Both
         # are almost certainly the same shape and neither has the page to prove it, so
-        # they stay merged and T-0862 owns the reading that would settle them.
+        # they stay merged and T-0903 owns the reading that would settle them.
         wives = []
         if any(e.get("_female") for e in rows):
             husbands = defaultdict(set)
