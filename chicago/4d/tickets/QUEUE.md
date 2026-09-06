@@ -52,7 +52,6 @@
 
 
 
-T-0837 — Spend the standing synthesis write: read the promotions it proposes and land them deliberately
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
