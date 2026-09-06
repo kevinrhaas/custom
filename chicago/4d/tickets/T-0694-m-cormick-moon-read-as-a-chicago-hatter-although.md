@@ -1,7 +1,7 @@
 ---
 id: T-0694
 title: M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 973
 claimed_by: run 9/6/2026, 3:02:50 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T08:41:37.567Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34020625245
 ---
 
