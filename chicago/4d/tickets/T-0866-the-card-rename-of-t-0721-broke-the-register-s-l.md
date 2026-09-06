@@ -1,5 +1,5 @@
 ---
-id: T-0862
+id: T-0866
 title: The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
 state: open
 epic: META
