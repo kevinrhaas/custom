@@ -610,6 +610,10 @@ explicit that 1839/1840 alone is never a 1835 resident.
 
 ## Every named head has an outcome now (T-0505)
 
+**The figures in this section are T-0505's, as the pass first ran on 19 sheets against a
+town of 849 people. They are kept as written because they are what that pass found;
+the section below re-derives them against the town as it stands and says what moved.**
+
 The 498 names read off the 19 left sheets in this repo were in no state at all: three of
 them were bridged to an 1835 person and the rest were neither matched nor refused, which
 reads exactly like a pile nobody has looked at, so the next sweep would have looked at it
@@ -685,6 +689,65 @@ ground and may not.
 page-to-IPUMS-serial fingerprint is T-0504 and is not landed; T-0515 applies them. The
 ratified ladder binds throughout: an 1839 or 1840 appearance alone is never an 1835
 resident, and 1840 household composition is never back-projected to the scene.
+
+## Re-derived against the town as it stands, and gated so it stays that way (T-0698)
+
+**A file that declares its own inputs and is never re-derived declares them once, and then
+declares them falsely.** This crosswalk states at its top what it was adjudicated against,
+and `tools/check.sh` ran the pass's `--build` nowhere and its `--check` nowhere either — so
+the declaration went stale in silence across T-0514's civic mint and every sheet read after
+it. It read `residents layer, persons: 849` where the town holds **1363**, `1840 left
+sheets read in this repo: 17` where **27** are committed, and `Fergus 1843 and Norris
+1844 directory adjudications: 79` where there are now **146**. It is the same shape as an
+unread image in `coverage.json` and an unruled name in the spend meter: a gate cannot notice
+a reading it never looks at.
+
+**The counts now.** 788 named heads — **11 matched, 16 candidate,
+761 refused** — against 498/5/5/488 as T-0505 left it. The town grew, so more surnames
+are in the pools and more heads clear L2; the ladder itself is unchanged and no rule was
+loosened to get here.
+
+| rule | heads |
+|---|---|
+| `L1 unreadable_name` | 199 |
+| `L2 no_surname_in_the_1835_pools` | 327 |
+| `L3 given_name_conflict` | 169 |
+| `L4 initial_only` | 59 |
+| `L5 name_is_not_unique` | 7 |
+| `L6 matched` | 11 |
+| `L6a low_confidence_caps_at_candidate` | 4 |
+| `L7 candidate` | 12 |
+
+**The write hop, which had never run.** T-0670 tried the rebuild on its own and stopped: the
+re-derivation carried one more ruling that named a person this town holds a card for than the
+domain had spent, `tools/measure_research_spend.py` reported census_1840 at *1 ruled onto a
+person whose card has not learned it, ceiling 0*, and that run reverted rather than take a
+ruling that was not its business. `tools/spend_census_1840_heads.py` is that ruling, taken
+generally rather than for the one person it happened to be: **every head the crosswalk reaches
+is written onto the card it names** — 27 people, 11 as matches and 16 as
+candidates — with the source id in `persons[].sources` and one paragraph in `persons[].note`,
+and nothing else touched. `head_spend_1835.json` is the ledger of those writes. It carries no
+"crosswalk" in its name on purpose, so the spend meter does not read a record of writes as a
+second adjudication.
+
+**A candidate is written as a candidate.** The paragraph says so in those words — the name
+agrees and is unique on both sides, nothing independent of it was found, nothing is asserted
+from it and no household of 1840 is carried back to 1835. Reading a candidate and a match the
+same way on a card is exactly what the ladder above exists to prevent, and the pass's
+self-test holds the distinction over every paragraph it writes.
+
+**Four gate steps, in `tools/check.sh` beside the identity bridges.** The crosswalk re-derives
+from the sheets and the town; its own assertions still fire; every ruling is on the card it
+names, once each; and that pass writes two fields, moves no grade and repeats without drift.
+The third of those asks one thing more than its four predecessors do, and it is T-0700's
+lesson taken rather than relearned: it is not enough to ask whether a card carries a
+paragraph. A paragraph that is PRESENT and no longer says what the crosswalk says — a card
+still calling somebody a candidate after the ruling became a match — is wrong in the one way
+that looks exactly like being right, so a stale paragraph is a gate failure and is rewritten
+rather than doubled.
+
+**No grade moved in either direction**, and the ladder is not applied here: T-0515 applies it
+against every source at once, and this pass hands it the evidence and not the verdict.
 
 ---
 

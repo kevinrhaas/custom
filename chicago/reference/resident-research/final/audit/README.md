@@ -31,15 +31,15 @@ Each line is *how many of the 1363 people carry at least one record of that kind
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.6% | the household resolves a `lives_at` or a `works_at` |
 | voter / civic evidence | **281** | 20.6% | a poll book, tax list, muster roll, treaty payment or other public record |
-| census linkage | **31** | 2.3% | an 1840 census row bridged to this person |
+| census linkage | **45** | 3.3% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 427 | 31.3% |
+| `corroborated_across_categories` | 428 | 31.4% |
 | `two_or_more_sources_one_category` | 19 | 1.4% |
-| `one_source` | 352 | 25.8% |
+| `one_source` | 351 | 25.8% |
 | `the_letter_lists_alone` | 562 | 41.2% |
 | `no_source` | 3 | 0.2% |
 
@@ -53,7 +53,7 @@ record agree; two newspaper notices of the same name are
 | --- | ---: |
 | newspaper | 1132 |
 | civic | 281 |
-| census | 31 |
+| census | 45 |
 | church | 46 |
 | book | 193 |
 | directory | 233 |
@@ -319,10 +319,10 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1332 | no 1840 census row is bridged to this person |
+| no census linkage | 1318 | no 1840 census row is bridged to this person |
 | no address | 1287 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1267 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 914 | one source id on the card and no second category to check it against |
+| rests on one source | 913 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | no research row | 521 | no cohort ticket has reviewed this person; the programme reached 842 of 1363 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |

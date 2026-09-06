@@ -42,3 +42,16 @@ crosswalks, so the next mint cannot leave it behind in silence.
 
 **Links:** T-0670 (which found it and reverted rather than rule) · T-0514 (the mint) ·
 `tools/crosswalk_census_1840_heads.py` · `tools/measure_research_spend.py`.
+
+**Acceptance, as this run states it before working** (the four bullets of "The ask" above,
+made concrete):
+
+1. `resident_crosswalk.json` re-derives from the sheets and the town as they stand, and the
+   declared inputs it carries are the real ones.
+2. The ruling that overruns the spend meter's write ceiling is SPENT — written onto the card
+   it names — not waved through by raising the ceiling, and the rule is general: every head
+   the crosswalk reaches is on its card, a match as a match and a candidate as a candidate.
+3. `tools/check.sh` runs the crosswalk's `--check` and `--self-test` and the spend pass's
+   `--check` and `--self-test`, so neither half can drift in silence again.
+4. No record's grade moves in either direction, `bash tools/check.sh` green, and the
+   published mirror moves with the data.
