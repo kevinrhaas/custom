@@ -1,7 +1,7 @@
 ---
 id: T-0887
 title: The Out Buildings: a plural label the plate draws TWICE, on the fort's outer ground where the enclosure fence turns down to the river
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0881
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 985
 claimed_by: run 9/6/2026, 8:10:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T14:06:21.753Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34034744403
 ---
 
