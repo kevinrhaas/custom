@@ -1,7 +1,7 @@
 ---
 id: T-0743
 title: 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0657
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1010
 claimed_by: run 9/6/2026, 6:12:03 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T23:57:14.321Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34065662499
 ---
 
