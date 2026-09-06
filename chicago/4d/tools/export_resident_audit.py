@@ -183,6 +183,26 @@ def findings() -> dict:
     return out
 
 
+def ledger_conflicts() -> dict[str, list[str]]:
+    """person id -> every conflict string any pass recorded against them, in pass order.
+
+    NOT `findings()`, and that distinction is the whole of T-0845. `findings()` ASSIGNS
+    (`out[person_id] = row`), so a person two passes reviewed keeps only the last override —
+    which is right for the OUTCOME a card carries and wrong for the conflicts, because a
+    conflict pass 02 wrote is still written after pass 13 rewrites the row around it. Read
+    the newest override only and the audit reported conflicts against 68 people where the
+    ledgers hold them against 96; the twenty-eight in the gap were not resolved, they were
+    overwritten, and T-0733 never ruled on them because nothing could see them."""
+    out: dict[str, list[str]] = {}
+    for path in sorted(RESEARCH.glob("pass_*_findings.json")):
+        doc = json.loads(path.read_text())
+        for person_id, override in (doc.get("overrides") or {}).items():
+            for candidate in (override.get("candidates") or []):
+                for conflict in (candidate.get("conflicts") or []):
+                    out.setdefault(person_id, []).append(conflict)
+    return out
+
+
 def ruling_covers(ruling: dict, recorded_conflicts: list[str]) -> bool:
     """Does this ruling reach the conflicts the ledgers state RIGHT NOW?
 
@@ -282,6 +302,7 @@ COLUMNS = [
 
 def rows() -> tuple[list[dict], dict]:
     ledger = findings()
+    conflicts_recorded = ledger_conflicts()
     ruled = rulings()
     seen_rulings: set[str] = set()
     live_households: set[str] = set()
@@ -298,8 +319,7 @@ def rows() -> tuple[list[dict], dict]:
             research = person.get("resident_research") or {}
             has_research_row = bool(research.get("ticket"))
             override = ledger.get(person["id"]) or {}
-            recorded_conflicts = [t for c in (override.get("candidates") or [])
-                                  for t in (c.get("conflicts") or [])]
+            recorded_conflicts = conflicts_recorded.get(person["id"], [])
             ruling = ruled["rulings"].get(person["id"]) or {}
             if ruling:
                 seen_rulings.add(person["id"])
@@ -608,6 +628,22 @@ def render_readme(table: list[dict], cache: dict) -> str:
     add("`flag_conflicting_evidence` fires again. A ruling may not rubber-stamp a conflict")
     add("it has never read.")
     add("")
+    add("### Every pass, not the newest one")
+    add("")
+    add("**T-0845.** A person's conflicts are read from EVERY pass that reviewed them.")
+    add("`findings()` keeps only the last override written for a person, which is right for")
+    add("the outcome a card carries and wrong for the conflicts: one written in pass 02 is")
+    add("still written after pass 13 rewrites the row around it. Read the newest override")
+    add("alone and this audit reported conflicts against 68 people where the ledgers hold")
+    add("them against %d. The twenty-eight in the gap were not resolved — they were"
+        % sum(1 for r in table if r["conflict_recorded"]))
+    add("overwritten, and T-0733 ruled on none of them because nothing could see them. The")
+    add("worst was Angeline Vann, whose conflict is the one in the set that DISQUALIFIES")
+    add("rather than fails to bridge: she was born in 1834, and an infant is not the person")
+    add("a letter waits for. She is ruled `refused_date_excludes` — the only verdict here")
+    add("that is not a decline, because a decline says the bridge was not found and this")
+    add("one says no such bridge can exist.")
+    add("")
     add("### The standing constraints are not conflicts")
     add("")
     add("%d people in %d households carry `review_required`, and folding them into the"
@@ -855,8 +891,12 @@ def cmd_self_test() -> bool:
     want(sorted({r["verdict"] for r in ruled_doc["rulings"].values()}
                 - set(ruled_doc["verdicts"])), [],
          "every verdict used is a verdict defined")
-    want(all(v.startswith("declined_") for v in ruled_doc["verdicts"]), True,
-         "no ruling adopts a candidate: every verdict is a decline")
+    # T-0845 widened this from `declined_` alone. The assertion is that NO RULING ADOPTS
+    # A CANDIDATE, and a refusal is further from adoption than a decline, not nearer: a
+    # decline says the bridge was not found, a refusal says it cannot exist. One verdict
+    # is a refusal — `refused_date_excludes`, on a candidate born after the letter.
+    want(all(v.startswith(("declined_", "refused_")) for v in ruled_doc["verdicts"]), True,
+         "no ruling adopts a candidate: every verdict declines or refuses")
     want(all(r["conflict_recorded"] for r in sample if r["conflict_ruling"]), True,
          "a ruling only ever lands on a person who has a conflict on record")
     want(all(not (r["conflict_ruling"] and r["flag_conflicting_evidence"])
@@ -865,6 +905,22 @@ def cmd_self_test() -> bool:
     want(all(r["conflict_recorded"] for r in sample
              if r["flag_conflicting_evidence"]), True,
          "the unruled flag fires only on a recorded conflict")
+    # T-0845. THE COVERAGE IS TOTAL, and this is the assertion that keeps it so. The audit
+    # reports the unruled ones rather than refusing to build — deliberately, so a reader can
+    # SEE what nobody has looked at — which means the gate has to be here, in the assertions
+    # check.sh runs. A conflict written by the next pass fails this line until somebody rules
+    # on it. That is the whole difference between a backlog and a queue.
+    want(sorted(r["person_id"] for r in sample if r["flag_conflicting_evidence"]), [],
+         "every conflict the ledgers record carries a ruling")
+    # And that the ledgers are read WHOLE. `findings()` is last-wins and `ledger_conflicts()`
+    # is not; before T-0845 the audit saw conflicts against 68 people where the ledgers hold
+    # them against 96, and the twenty-eight in the gap had been overwritten, not resolved.
+    want(sum(1 for r in sample if r["conflict_recorded"]), len(ledger_conflicts()),
+         "the audit counts a conflict for every person the ledgers record one against")
+    want(len(ledger_conflicts()) > len(
+        [p for p, o in findings().items()
+         if any(c.get("conflicts") for c in (o.get("candidates") or []))]), True,
+         "reading every pass reaches people the newest override alone does not")
     want(sorted(r["person_id"] for r in sample if r["flag_standing_constraint"]) ==
          sorted(pid for hh in ruled_doc["standing_constraints"].values()
                 for pid in hh["persons"]), True,
@@ -887,7 +943,11 @@ def cmd_self_test() -> bool:
              "a ruling reaches the conflicts it names")
         want(ruling_covers(ruling, on_record + ["a conflict added after the ruling"]),
              False, "a conflict added after the ruling is one the ruling never read")
-        want(ruling_covers(ruling, [t.replace("no", "NO") for t in on_record]), False,
+        # The mutation has to be one EVERY conflict text feels. This was
+        # `t.replace("no", "NO")` until T-0845, which passed only because the first ruled
+        # row happened to contain the word; adding rulings above it in sort order turned
+        # the reword into a no-op and the assertion into a tautology.
+        want(ruling_covers(ruling, ["%s (reworded)" % t for t in on_record]), False,
              "a reworded conflict is one the ruling never read")
         want(ruling_covers(ruling, []), False,
              "a ruling on a person whose conflicts are gone reaches nothing")

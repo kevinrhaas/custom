@@ -49,18 +49,13 @@
 T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
 T-0721 — Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
-T-0839 — One person, several cards: James Allen stands on four, Gurdon Hubbard on six — 39 surname clusters hold 110 cards that may be fewer people. MERGE them — a report is not the deliverable, the merged cards are — losing nothing
 T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist
 # --- that no card carries. Nothing here reads a new source either — every one turns research
 # --- already done into household, person and business DATA, which is what the owner asked for.
-T-0677 — Thirty-five land purchasers are matched to households and not one is on the card: spend the land-sales resident crosswalk, tract, date and price
-T-0681 — T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of them are on no card: spend the lot sale onto the people it names
-T-0678 — The old_settlers domain holds 18 merges and 57 death-notice matches naming a town person, is registered in no domains.json, and reaches neither hop of the spend measure
 T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
-T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither
 
 # --- CONSOLIDATION — run it HERE, not at the end. Owner, 2026-09-03: "dont land those tickets at
 # --- the very end maybe every few you should do that consolidation". Pass 3 was T-0636; the run
@@ -70,12 +65,8 @@ T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the h
 # --- modelled, as the household-level kin[] block — graded, reciprocal, legal only against its
 # --- declared inverses. T-0734 is the measurement that ruling exists to spend: 14 of 1,404 people
 # --- carry a stated relationship to anybody, and the sources already print many more.
-T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
-T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
 T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
-T-0816 — Two independent readings of cohort 14 disagree on 46 of its 76 people: T-0509 landed one and the other is on a dead branch
 T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
-T-0764 — A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed
 
 # --- G4 — BUSINESS, OCCUPATION, AND WHERE THEY STOOD. The owner: "locations matter so capture
 # --- those too ... there are business references that have addresses later and while we don't have
@@ -340,3 +331,12 @@ T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 18
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie
+T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
+T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
+T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none
+T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
+T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed

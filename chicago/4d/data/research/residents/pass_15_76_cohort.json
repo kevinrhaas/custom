@@ -86,8 +86,11 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "blackhawk_war_chicago_enrollments_isa",
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839"
       ]
     },
     {
@@ -170,6 +173,8 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
         "chicago_voter_lists_1833_1835_irad"
       ]
     },
@@ -212,7 +217,13 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "calumet_club_early_chicago_1879",
+        "census_1840_chicago_familysearch_images",
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1843",
+        "norris_directory_1844"
       ]
     },
     {
@@ -339,6 +350,7 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
+        "chicago_american_1835",
         "chicago_antiquities_american_fur_co",
         "chicago_voter_lists_1833_1835_irad",
         "kinzie_waubun_1856"
@@ -423,7 +435,10 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_1843_old_settler_death_notices",
+        "st_cyr_register_ichr_v4"
       ]
     },
     {
@@ -506,7 +521,12 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "census_1840_chicago_familysearch_images",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839",
+        "isa_public_domain_land_tract_sales",
+        "norris_directory_1844"
       ]
     },
     {
@@ -870,7 +890,10 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839",
+        "norris_directory_1844"
       ]
     },
     {
@@ -1033,6 +1056,7 @@
       "sources": [
         "andreas_1884_v1",
         "baptisthistoryhomepage",
+        "chicago_democrat_1833_1835",
         "chicago_voter_lists_1833_1835_irad"
       ]
     },

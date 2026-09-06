@@ -51,6 +51,19 @@
   ],
   "note": "A trustee in 1833 and continuous in the record; no absence is stated for 1835."
  },
+ "kin": [
+  {
+   "person": "beaubien_madore",
+   "relation": "son",
+   "household": "hh_beaubien_jean_baptiste",
+   "value": "beaubien_jean_baptiste",
+   "confidence": "attested",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "MADORE BEAUBIEN IS THE SON OF COL. JEAN BAPTISTE BEAUBIEN, AND HIS OWN CARD HAS SAID SO IN PROSE SINCE IT WAS WRITTEN: 'He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman' — Andreas, History of Chicago vol. 1, the same reading that grades the rest of that card. NOTHING IS UPGRADED HERE. The claim was already attested on the card and already cited to andreas_1884_v1; this row only puts it where a query can reach it, because a sentence in a note is not a relationship any tool can read. THE IDENTIFICATION IS NOT A SURNAME MATCH: the town holds one Jean Baptiste Beaubien, the card names him with all three forenames and a rank, and the 1831 county licence Andreas prints has Madore selling goods 'alongside Alexander Robinson and his father'. WHAT IT DOES NOT CLAIM: his mother Mah-naw-bun-no-quah is not a person in this dataset and no row is written for her, and this row says nothing about where either man lived."
+  }
+ ],
  "persons": [
   {
    "id": "beaubien_madore",

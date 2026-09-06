@@ -163,8 +163,8 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
-### L218 — Fourteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 14 businesses
+### L218 — Fifteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 15 businesses
 **Decision:** where the 1835 record attests a trade and no source of the scene year says
 where it stood, a **street** printed against that person in Fergus's Chicago directory of
 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
@@ -177,16 +177,16 @@ doors are all later than the scene, so the choice was a stated back-projection o
 position at all — the same choice L60 records for the estray pen, decided the same way:
 an absent placement is invisible while a graded one is legible and correctable.
 **Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Fourteen businesses therefore stand
+frontage and numbered its streets for the first time. Fifteen businesses therefore stand
 on a face on the authority of a volume printed four to nine years after the scene, and
 nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names and twelve have no point at all. A reader who thinks that is too far to
+directory names and the rest have no point at all. A reader who thinks that is too far to
 carry a shop is reading the `reconstructed` chip exactly as intended.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
 dealing a business to one roof on a face is an allocation and not a reading; stacking
 that allocation on an address already read back would be two inventions under one chip.
-The 127 refusals and stand-offs are on the record beside the fourteen, so the arithmetic
+The refusals and stand-offs are on the record beside the fifteen, so the arithmetic
 is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer, and made in the same words
@@ -207,6 +207,16 @@ the same larger town let the directory spend reach more people; 105 of the new r
 clause 1, a person the 1835 papers give no trade for. Nothing was regraded and no placement was
 invented to hold the count at fifteen. **T-0670** carries the surname-uniqueness weakness that
 caused it.
+**Restated:** 2026-09-05 (T-0839), from fourteen back to fifteen, and this time the reason is
+the repair. The 2026-09-04 withdrawal above is the clearest single measurement of what
+duplicate cards cost this town: `Fullerton` reached two people, so Alexander N. Fullerton's
+1839 entry went ambiguous and his North Water Street face — the one street in the town no
+other rule can seat a shop on — was withdrawn. The two were never two men. T-0839 folded
+`A. N. Fullerton`, `Alex N Fullerton` and `Alexander M Fullerton` onto him under the owner's
+own ruling, the surname reaches one person again, and the face comes back on the same
+authority it was withdrawn under. Nothing was regraded and no placement was invented; the
+crosswalk's own uniqueness test simply stopped being confused by a man the town held four
+times. T-0670's weakness is unchanged and still open — this repaired one instance of it.
 
 ---
 
@@ -10328,9 +10338,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04.
 
-### L220 — 531 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 489 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 531 people
+**Scope:** `residents.persons[civic_mint]` — 489 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10341,17 +10351,27 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one.
+census. 531 of them, in 531 households of one when this liberty was first written; **489
+today**, because T-0839 found that some of those containers held one man twice. The pass
+minted a card for every identity the ladder graded and the town did not already carry, and
+its test for "already carry" was the name as the source printed it — so Gurdon Saltonstall
+Hubbard, who is printed G., G. S., Gurdon S., Gordon S. and G. T., was minted five times
+beside the card the town had for him. 42 of the containers were folded onto the person they
+named on 2026-09-05, under written rulings in `data/residents/card_merge_rulings.json`;
+none was deleted, each is kept whole under `data/residents/merged/` and redirected by
+`index.json`'s `merged` table, and the sources they carried are on the survivor. The number
+this liberty declares is the number of containers standing, and it will fall again as the
+remaining rulings are made.
 
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no
-confidence was upgraded to allow it: every one of the 531 is named in a record this project
+confidence was upgraded to allow it: every one of them is named in a record this project
 has transcribed, and the person carries that reading AS READ, with its locator, its record
 id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_evidence[]`,
 `press_evidence[]`, `book_evidence[]` or `census_evidence[]`. The liberty is the same one
 L207, L213 and L214 record and it is the only way this dataset can carry a person at all:
 **that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and
 `works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no
-figure drawn (L1). A reader who counts this town's households is counting 531 containers
+figure drawn (L1). A reader who counts this town's households is counting 489 containers
 that were written to hold a name, and no single record says so, because no single record
 is wrong.
 

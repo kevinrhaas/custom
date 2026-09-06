@@ -80,6 +80,18 @@ SOURCE_ID = "isa_public_domain_land_tract_sales"
 # `--check` can find its own work without guessing.
 MARKER = "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE."
 
+# THE SAME REGISTER, IN A PASS THIS ONE SUPERSEDED (T-0677). This tool was rewritten between
+# T-0635 and T-0636, and the earlier version is still pushed on `steward/salvage-t0635-mine`
+# — where T-0677's own text sends the next run to find it. Run it against dev today and all
+# thirty-one of these cards gain a SECOND paragraph about the tract sales, differently worded
+# and saying the same thing. Neither gate below could see that: `gaps` asks only whether the
+# paragraph is PRESENT and `strays` only whether an unruled card carries one. T-0677 measured
+# it — `tools/check.sh` went green with every one of the thirty-one cards doubled. `doubles`
+# is that hole closed, and this tuple is what a superseded paragraph looks like.
+SUPERSEDED_MARKERS = (
+    "THE FEDERAL TRACT SALES — A TRANSACTION, NOT A RESIDENCE.",
+)
+
 LADDER_LIMIT = (
     "This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a "
     "second independent source is what lifts a projected resident, and a land entry is a "
@@ -420,6 +432,36 @@ def strays(rows: list) -> list:
     return bad
 
 
+def _doubles_over(household_id: str, person: dict) -> list:
+    """doubles() for one already-loaded person — what the self-test needs and the gate reuses."""
+    note = person.get("note") or ""
+    out = []
+    if note.count(MARKER) > 1:
+        out.append("%s/%s — carries this pass's paragraph %d times; the register is written "
+                   "onto a card once" % (household_id, person.get("id"), note.count(MARKER)))
+    for old in SUPERSEDED_MARKERS:
+        if old in note:
+            out.append("%s/%s — carries a superseded tract-sales paragraph beside this one; "
+                       "the register is written onto a card once"
+                       % (household_id, person.get("id")))
+    return out
+
+
+def doubles() -> list:
+    """…and a card says this register ONCE, however many passes have written it.
+
+    Two ways a card ends up saying it twice and both are silent to the two gates above:
+    this pass's own paragraph appended a second time, or a superseded pass's paragraph
+    left standing beside it.
+    """
+    bad = []
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        hh = load(path)
+        for person in hh.get("persons") or []:
+            bad.extend(_doubles_over(hh.get("id"), person))
+    return bad
+
+
 def check(quiet: bool = False) -> int:
     rows = matches()
     if not LEDGER.exists():
@@ -429,7 +471,7 @@ def check(quiet: bool = False) -> int:
         print("   %s no longer re-derives from the crosswalk and the records — re-run the "
               "tool" % LEDGER.relative_to(ROOT))
         return 1
-    bad = gaps(rows) + strays(rows)
+    bad = gaps(rows) + strays(rows) + doubles()
     if bad:
         for line in bad[:20]:
             print("   %s" % line)
@@ -437,7 +479,7 @@ def check(quiet: bool = False) -> int:
             print("   …and %d more" % (len(bad) - 20))
         return 1
     if not quiet:
-        print("land tract sales: %d entry/entries on %d card(s), no strays"
+        print("land tract sales: %d entry/entries on %d card(s), no strays, none written twice"
               % (sum(len(r["entries"]) for r in rows), len(rows)))
     return 0
 
@@ -522,6 +564,18 @@ def self_test() -> int:
     silent["note"] = "Existing sentence."
     want("gaps must fire on a card that carries no paragraph",
          any("no paragraph" in g for g in _gaps_over(rows[0], silent)))
+
+    # …and the third gate must fire on both ways a card comes to say it twice (T-0677).
+    want("doubles must stay silent on the card the applier actually writes",
+         not _doubles_over("hh_x", after))
+    doubled = json.loads(json.dumps(after))
+    doubled["note"] = doubled["note"] + " " + paragraph(rows[0])
+    want("doubles must fire on a card carrying this pass's paragraph twice",
+         any("2 times" in d for d in _doubles_over("hh_x", doubled)))
+    rival = json.loads(json.dumps(after))
+    rival["note"] = rival["note"] + " " + SUPERSEDED_MARKERS[0] + " …"
+    want("doubles must fire on a superseded tract-sales paragraph left standing",
+         any("superseded" in d for d in _doubles_over("hh_x", rival)))
 
     for line in fails:
         print("   %s" % line)
