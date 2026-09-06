@@ -926,6 +926,50 @@ own cells. Recovering them needs a leaf from outside this deposit — FamilySear
 1786457, recorded as login-walled and inaccessible rather than absent, or a National Archives
 microfilm this project does not hold — and that is a new source record, not a re-reading.
 
+## Printed 232's continuation, found on the film (T-0736, 2026-09-06)
+
+The search above was exhausted and it was also right: the leaf is not in this deposit. It is on the
+**film**, and it always was.
+
+T-0736 tried both of the routes the search left open. **FamilySearch collection 1786457 is still
+shut**: the collection's search page, the image ark of printed 232's own left sheet, and the
+collection's search service were all fetched unauthenticated from the runner on 2026-09-06 and all
+three answered HTTP 403. That is inaccessibility and not absence, and nothing about what the
+collection holds may be read out of a refusal.
+
+**The National Archives microfilm was the open one, and nobody had ever looked up its roll
+number.** The 1840 population schedules are NARA microfilm publication **M704**, 580 rolls;
+archives.gov names the publication and says the images are on the genealogy sites rather than on
+NARA's own. The Allen County Public Library Genealogy Center scanned the Illinois rolls for the
+Internet Archive, one item per roll, and each item's description carries the contents of the whole
+state. **Roll 57 is "Coles, Cook, Crawford Counties"** — item `populationsc18400057unit`, 330
+leaves, public and unauthenticated.
+
+**Leaf n166 of that roll is printed page 232, and leaf n167 is its continuation.** The leaf was
+identified by its own names rather than by the page stamp: n166's 31 heads of families are printed
+232's 31, in printed 232's order, opening Nicholas W. Smith, Jos. D. Boone, Jacob Miller, Amy Brown
+and Wm J. C. Scovill. The stamp agrees, and the film's order agrees again — on this roll a left
+sheet is filmed before its own right, so the even leaves carry the names and the odd ones the
+continuations.
+
+**It pairs on both of T-0642's keys and on the sequence screen besides.** n167's TOTAL column
+carries 31 entries against 31 ruled lines, its printed footing reads 195 — the figure printed 232's
+own footings give — with 198 named as the arguable alternate at this exposure, and the column opens
+5, 7, 5, 9, 6, 4, which is printed 232's own per-line free-person count. That last strand is the
+one that matters most, because it is the same screen that REFUSED `33SQ-GYYJ-9J5`: the deposit's
+one 31-entry sheet opens 5, 6, 25, 11, 8. The pairing does not rest on the footing glyph, and the
+glyph keeps its alternate rather than being chosen.
+
+`pages/33S7-9YYJ-W6.json` now reads `paired_outside_this_deposit`, and the leaf lands as a source
+of its own — `census_1840_chicago_nara_m704_roll57`, with each leaf's URL and sha256. **No cell of
+n167 has been read.** The 31 households' industry, pension and schools cells are readable now and
+they are still unread; that is a separate demonstration and it has its own ticket. Nothing may be
+filled into them from the left sheet's own cells in the meantime.
+
+**What this says about the deposit as a whole.** It is a partial selection of frames, exactly as
+the search guessed. The ten continuations of image group 1 that stand without a partner are the
+same hole, and roll 57 is where they will be.
+
 **A by-product worth having.** Counting the deposit by side classified all 24 leaves of image
 group 51-74 for the first time: 9 left sheets and 15 right, listed in the same file so that T-0496
 does not have to open them again to find the names. One of the nine is unlike anything else here —
