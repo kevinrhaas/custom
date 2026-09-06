@@ -340,3 +340,6 @@ T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — t
 T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
 T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
 T-0861 — PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead
+T-0862 — The Wright NARA registration that every Wright-band ticket is built on has no gate: nothing verifies its raster, its checksum or its fit
+T-0863 — H. Van Den Bogart and Dr Henry Van der Bogart are probably one man, and the particle rule keeps them in two identities
+T-0864 — Is the celebrant of a register attested by it? The priest who keeps the G2c St Cyr register is graded on Andreas alone

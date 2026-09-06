@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 11:55 PM",
+  "generated_ct": "Sep 5, 2026, 11:58 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14562,6 +14562,66 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 173
+    },
+    {
+      "id": "T-0862",
+      "title": "The Wright NARA registration that every Wright-band ticket is built on has no gate: nothing verifies its raster, its checksum or its fit",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 174
+    },
+    {
+      "id": "T-0863",
+      "title": "H. Van Den Bogart and Dr Henry Van der Bogart are probably one man, and the particle rule keeps them in two identities",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 175
+    },
+    {
+      "id": "T-0864",
+      "title": "Is the celebrant of a register attested by it? The priest who keeps the G2c St Cyr register is graded on Andreas alone",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 176
     }
   ]
 }
