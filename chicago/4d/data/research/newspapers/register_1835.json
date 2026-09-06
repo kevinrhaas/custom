@@ -24,9 +24,9 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 61,
-        "unplaceable": 90
+        "new_building": 28,
+        "street_only": 59,
+        "unplaceable": 89
       },
       "by_placement_class": {
         "corner": 18,
@@ -36,9 +36,9 @@
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 25,
-        "street_only": 61,
-        "unplaceable": 73
+        "new_building": 28,
+        "street_only": 59,
+        "unplaceable": 72
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 101,
@@ -529,19 +529,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Tremont House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_b_jones_grocery_and_provision_store",
@@ -2577,11 +2577,11 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": {
         "live_anchor": "the Tremont House",
@@ -2731,11 +2731,11 @@
             ],
             "live_at_scene_date": true,
             "resolved": {
-              "kind": "unresolved",
-              "target": null,
+              "kind": "structure",
+              "target": "tremont_house_1",
               "streets": null,
               "via": null,
-              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+              "note": "The landmark is the committed structure tremont_house_1."
             },
             "resolved_on_reading": "the Tremont House",
             "readings": [
@@ -2748,11 +2748,11 @@
                   "chicago_democrat_1835_08_05#c019"
                 ],
                 "resolved": {
-                  "kind": "unresolved",
-                  "target": null,
+                  "kind": "structure",
+                  "target": "tremont_house_1",
                   "streets": null,
                   "via": null,
-                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+                  "note": "The landmark is the committed structure tremont_house_1."
                 }
               }
             ]
@@ -2760,11 +2760,11 @@
         ]
       },
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_g_w_keeney",
@@ -2985,19 +2985,19 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Dearborn street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_h_doty_co",
@@ -4852,11 +4852,11 @@
       "survival_liberty_required": true,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "unresolved",
-        "target": null,
+        "kind": "structure",
+        "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
       "anchor_change": {
         "live_anchor": "the Tremont House",
@@ -4972,11 +4972,11 @@
             ],
             "live_at_scene_date": true,
             "resolved": {
-              "kind": "unresolved",
-              "target": null,
+              "kind": "structure",
+              "target": "tremont_house_1",
               "streets": null,
               "via": null,
-              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+              "note": "The landmark is the committed structure tremont_house_1."
             },
             "resolved_on_reading": "the Tremont House",
             "readings": [
@@ -4991,11 +4991,11 @@
                   "chicago_democrat_1834_12_10#c007"
                 ],
                 "resolved": {
-                  "kind": "unresolved",
-                  "target": null,
+                  "kind": "structure",
+                  "target": "tremont_house_1",
                   "streets": null,
                   "via": null,
-                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+                  "note": "The landmark is the committed structure tremont_house_1."
                 }
               }
             ]
