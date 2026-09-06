@@ -47,7 +47,6 @@
 # --- that drifts silently, or one identity split across two cards, makes every figure under it
 # --- unarguable. Nothing here reads a source.
 T-0814 — The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
-T-0721 — Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0724 — The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
 
@@ -341,4 +340,3 @@ T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
 T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
-
