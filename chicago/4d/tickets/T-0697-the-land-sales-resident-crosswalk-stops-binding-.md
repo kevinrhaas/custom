@@ -1,7 +1,7 @@
 ---
 id: T-0697
 title: The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 994
 claimed_by: run 9/6/2026, 11:15:00 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T17:00:16.434Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34044526103
 ---
 
