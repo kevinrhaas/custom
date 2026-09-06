@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 5:47 AM",
+  "generated_ct": "Sep 6, 2026, 6:05 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15044,6 +15044,26 @@
       "closed_at": "2026-09-06T10:23:01.569Z",
       "claimed_run": null,
       "queue_rank": null
+    },
+    {
+      "id": "T-0880",
+      "title": "publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
     }
   ]
 }
