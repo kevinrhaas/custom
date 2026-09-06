@@ -84,7 +84,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 146
+      "n": 147
     },
     {
       "what": "the 1839 Chicago directory",
@@ -101,8 +101,8 @@
   ],
   "counts": {
     "named_heads": 788,
-    "matched": 11,
-    "candidate": 16,
+    "matched": 12,
+    "candidate": 15,
     "refused": 761
   },
   "counts_by_rule": {
@@ -111,9 +111,9 @@
     "L3 given_name_conflict": 169,
     "L4 initial_only": 59,
     "L5 name_is_not_unique": 7,
-    "L6 matched": 11,
+    "L6 matched": 12,
     "L6a low_confidence_caps_at_candidate": 4,
-    "L7 candidate": 12
+    "L7 candidate": 11
   },
   "printed_pages_read_here": [
     207,
@@ -12338,10 +12338,45 @@
       "household_id": "hh_couch_ira",
       "resident_name": "Ira Couch",
       "resident_grade_1835": "attested",
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Ira Couch = Ira Couch) and the name is unique on both sides, but nothing independent of the name was found: couch_ira carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The name appears on no 1835 list beyond the residents layer."
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Couch, Iia, proprietor of the Tremont House, corner of Lake and Dearborn sts"
+          ],
+          "forename_written_out_in_the_entry": false,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
+      "outcome": "matched",
+      "rule": "L6 matched",
+      "reason": "Full forename and surname agree (Ira Couch = Ira Couch), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "proposed_later_census": {
+        "year": 1840,
+        "source_id": "census_1840_chicago_familysearch_images",
+        "serial": null,
+        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
+        "head_name_transcribed": "Ira Couch",
+        "head_name_normalized": "Ira Couch",
+        "name_confidence": "high",
+        "identity_confidence": "provisional",
+        "bridge_status": "proposed",
+        "serial_mapping_confidence": null,
+        "census_page": 211,
+        "census_row": 3,
+        "source_image": "chicago/reference/census1840/33SQ-GYYJ-97P.jpg",
+        "source_kind": "1840 left image, read line by line in this repo",
+        "household": {
+          "persons_columns_read": 0,
+          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
+        },
+        "bridge_basis": "Full forename and surname agree (Ira Couch = Ira Couch), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
+      }
     },
     {
       "familysearch_id": "33SQ-GYYJ-97P",

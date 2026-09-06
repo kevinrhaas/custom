@@ -15,7 +15,7 @@
   "claims": 2073,
   "person": 2008,
   "business": 65,
-  "given_repairs": 11
+  "given_repairs": 15
  },
  "claims": [
   {
@@ -55,12 +55,24 @@
    "reading": "transcription_mediated",
    "quote": "Abbott, VV. clerk at Ward Rathbone's, residence same",
    "normalized": {
-    "printed_name": "Abbott, VV",
+    "printed_name": "Abbott, W",
     "surname": "Abbott",
-    "given": "VV",
+    "given": "W",
     "firm": false,
     "occupation": "clerk at Ward Rathbone's",
     "address": "residence same",
+    "given_repair": {
+     "as_read": "VV",
+     "reading": "W",
+     "why": "the compositor's W set by the scanner as two V's",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "image": "https://archive.org/download/generaldirectory19norr/page/leaf31.jpg",
+      "reads": "Abbott, W. clerk at Ward Rathbone's, residence same",
+      "and_the_second_hand_agrees": "Abbott, W., clerk at Ward Rathbone's, residence same"
+     },
+     "ticket": "T-0903"
+    },
     "as_printed": "Abbott, VV. clerk at Ward Rathbone's, residence same",
     "section": "directory"
    },
@@ -75,7 +87,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Abbott, VV"
+    "Abbott, W"
    ],
    "town_finding": false,
    "notes": null
@@ -12882,12 +12894,24 @@
    "reading": "transcription_mediated",
    "quote": "Couch, Iia, proprietor of the Tremont House, corner of Lake and\n  Dearborn sts",
    "normalized": {
-    "printed_name": "Couch, Iia",
+    "printed_name": "Couch, Ira",
     "surname": "Couch",
-    "given": "Iia",
+    "given": "Ira",
     "firm": false,
     "occupation": "proprietor of the Tremont House, corner of Lake and Dearborn sts",
     "address": null,
+    "given_repair": {
+     "as_read": "Iia",
+     "reading": "Ira",
+     "why": "the r of Ira read as an i. UNREPAIRED asked for this line by name: Kim Torp reads the same token '(can't read)', so the page image is the only witness there is, and it prints Ira.",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "image": "https://archive.org/download/generaldirectory19norr/page/leaf40.jpg",
+      "reads": "Couch, Ira, proprietor of the Tremont House, corner of Lake and Dearborn sts",
+      "the_second_hand_cannot_help": "Kim Torp reads this token '(can't read)'. The page image is the only witness, which is what UNREPAIRED said it would take."
+     },
+     "ticket": "T-0903"
+    },
     "as_printed": "Couch, Iia, proprietor of the Tremont House, corner of Lake and Dearborn sts",
     "section": "directory"
    },
@@ -12902,7 +12926,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Couch, Iia"
+    "Couch, Ira"
    ],
    "town_finding": false,
    "notes": null
@@ -14804,12 +14828,24 @@
    "reading": "transcription_mediated",
    "quote": "Day, VVm. Lasalle House, corner of Lasalle and Randolph sts",
    "normalized": {
-    "printed_name": "Day, VVm. Lasalle House",
+    "printed_name": "Day, Wm. Lasalle House",
     "surname": "Day",
-    "given": "VVm. Lasalle House",
+    "given": "Wm. Lasalle House",
     "firm": false,
     "occupation": "corner of Lasalle and Randolph sts",
     "address": null,
+    "given_repair": {
+     "as_read": "VVm. Lasalle House",
+     "reading": "Wm. Lasalle House",
+     "why": "the same W. Only the damaged token is repaired: the splitter reads 'Lasalle House' as part of the given name because the line prints no comma after the forename, and that is a parse, not a transcription defect",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "image": "https://archive.org/download/generaldirectory19norr/page/leaf42.jpg",
+      "reads": "Day, Wm. Lasalle House, corner of Lasalle and Randolph sts",
+      "and_the_second_hand_agrees": "Day, Wm., Lasalle House, corner of Lasalle & Randolph sts"
+     },
+     "ticket": "T-0903"
+    },
     "as_printed": "Day, VVm. Lasalle House, corner of Lasalle and Randolph sts",
     "section": "directory"
    },
@@ -14824,7 +14860,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Day, VVm. Lasalle House"
+    "Day, Wm. Lasalle House"
    ],
    "town_finding": false,
    "notes": null
@@ -25988,12 +26024,24 @@
    "reading": "transcription_mediated",
    "quote": "Hequenbourg, G. VV. clerk, at B. F. Sherman's, res same",
    "normalized": {
-    "printed_name": "Hequenbourg, G. VV",
+    "printed_name": "Hequenbourg, G. W",
     "surname": "Hequenbourg",
-    "given": "G. VV",
+    "given": "G. W",
     "firm": false,
     "occupation": "clerk, at",
     "address": "B. F. Sherman's, res same",
+    "given_repair": {
+     "as_read": "G. VV",
+     "reading": "G. W",
+     "why": "the same W, on the second of two initials",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "image": "https://archive.org/download/generaldirectory19norr/page/leaf49.jpg",
+      "reads": "Hequenbourg, G. W. clerk, at B. F. Sherman's, res same",
+      "and_the_second_hand_agrees": "Hequenbourg, G.W., clerk, at B.F. Sherman's, res same"
+     },
+     "ticket": "T-0903"
+    },
     "as_printed": "Hequenbourg, G. VV. clerk, at B. F. Sherman's, res same",
     "section": "directory"
    },
@@ -26008,7 +26056,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hequenbourg, G. VV"
+    "Hequenbourg, G. W"
    ],
    "town_finding": false,
    "notes": null

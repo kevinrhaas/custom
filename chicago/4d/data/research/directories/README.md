@@ -181,6 +181,35 @@ which is a person this reconstruction would get wrong. Rewriting a generated cla
 second source is a pass of its own, with its own rule to write down, and it has not been done
 here for the same reason T-0568 did not regrade the 65 businesses.
 
+### …and the four the second hand could not lift — T-0903
+
+**The eleven repairs above rest on a transcription. Four lines needed the scan itself.**
+`UNREPAIRED` named one of them and said what it would take — *"there is no second hand to
+correct it with … It needs the page image"* — and that one is the best line in the book:
+`Couch, Iia`, the proprietor of the Tremont House at Lake and Dearborn, whom the town holds
+as **Ira Couch**, attested. Kim Torp reads the same token `(can't read)`.
+
+**The other three are a class no sweep could have named.** `VV` is the compositor's **W**
+set by the scanner as two V's. `name_agreement.garbled()` looks for a character no
+compositor set, and `VV` is made entirely of letters, so that test is blind to it:
+`Abbott, VV.`, `Day, VVm.` and `Hequenbourg, G. VV.` sat in the claims file with nothing
+said about them at all. `--self-test` now asserts this class by hand, both ways — every
+`VV` in a forename must have a row, and no repaired reading may still carry one.
+
+**How they were read.** Each line was located by its own word coordinates in
+`generaldirectory19norr_djvu.xml`, cropped from the page image on that bounding box,
+enlarged three times and read by eye. `IMAGE_REPAIRS` in `tools/read_norris_1844.py` holds
+them on T-0695's own convention: the repair goes in `normalized.given`, the quote and
+`as_printed` keep the damage, each row asserts the token it replaces, and each cites the
+leaf image so a reader can go back to it. Two of the three `VV` readings are independently
+confirmed by Torp as well; Couch is the one where the image is the only witness there is.
+
+**What it moved.** One refusal became a match — **Ira Couch's 1844 entry** (Norris matched
+97 → 98, forename refusals 49 → 48, residents left with no 1844 entry 25 → 24). Downstream
+that entry is the discriminator independent of the name that the 1840 head crosswalk
+requires, so his 1840 census head moves `candidate` → `matched` (L7 → L6). The bridge is
+still `proposed` and no grade moved anywhere.
+
 ### What T-0632 spends them on — the layer, the ledger and the cards
 
 The crosswalks above are PROPOSALS and stop at the edge of the residents layer. T-0569
