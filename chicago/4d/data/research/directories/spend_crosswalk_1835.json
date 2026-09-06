@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 587,
+  "rulings": 588,
   "carried": 195,
-  "matched": 389,
+  "matched": 390,
   "refused": 198,
   "distinct_people": 294,
-  "distinct_claims": 638
+  "distinct_claims": 639
  },
  "rulings": [
   {
@@ -3609,6 +3609,26 @@
    ],
    "match_status": "ambiguous",
    "rule": "Surname 'Couch' folds to the same string as the 1843 entry's, and the given name of both begins I.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "matched",
+   "person_id": "couch_ira",
+   "household_id": "hh_couch_ira",
+   "resident": "Ira Couch",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e0415",
+   "claim_ids": [
+    "n1844_e0415"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Couch' folds to the same string as the 1844 entry's, and the given name of both begins I.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
