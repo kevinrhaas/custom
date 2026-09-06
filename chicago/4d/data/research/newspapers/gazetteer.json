@@ -58153,8 +58153,8 @@
           "placement": {
             "class": "none",
             "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
+            "offset_text": "ere taken a Bhop ia ‘rroklia, beg leave siost revpec",
+            "offset_normalized": "[has] taken a Shop i[n] [F]r[an]kli[n street]",
             "street": null
           }
         }
@@ -58730,9 +58730,9 @@
           "placement": {
             "class": "street_only",
             "anchor": null,
-            "offset_text": null,
-            "offset_normalized": null,
-            "street": "South Water Street"
+            "offset_text": "ding, fora shop, on Kandolph street, and arc",
+            "offset_normalized": "a large and commodious buil[d]ing, for a shop, on [R]andolph street",
+            "street": "Randolph Street"
           }
         }
       ],
@@ -59440,8 +59440,8 @@
       "placement": {
         "class": "relative",
         "anchor": "the corner of Randolph st.",
-        "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
-        "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
+        "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
+        "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
         "street": "South Water Street"
       },
       "evidence": {
@@ -59487,8 +59487,8 @@
           "placement": {
             "class": "relative",
             "anchor": "the corner of Randolph st.",
-            "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
-            "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
+            "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
+            "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
             "street": "South Water Street"
           }
         },
@@ -60027,8 +60027,8 @@
           "placement": {
             "class": "relative",
             "anchor": "Messrs. Newberry & Dole's store",
-            "offset_text": "m South Water-street, a few doora north\n(rs, Newbury & Dole's store, where he",
-            "offset_normalized": "[on] South Water-street, a few doors north [of Mess]rs. Newbury & Dole's store",
+            "offset_text": "| town, on South Water-street, a few doors north}",
+            "offset_normalized": "on South Water-street, a few doors north of Messrs. Newbury & Dole's store",
             "street": "South Water Street"
           }
         },
@@ -62591,7 +62591,8 @@
           "placement": {
             "class": "relative",
             "anchor": "the east end of South Water-street",
-            "offset_text": "the east end of South Water-s\n'occupied by Peter Cohen, which they",
+            "offset_text": "3 the east end of South Water-stree!\nlatel eccapied by Peter Cohen, wick they rede",
+            "offset_normalized": "the [store at the] east end of South Water-street lately occupied by Peter Cohen",
             "street": "South Water Street"
           }
         },
@@ -62749,6 +62750,9 @@
           ],
           "placement": {
             "class": "street_only",
+            "anchor": null,
+            "offset_text": "Mme sete Sayth Water Street,",
+            "offset_normalized": "[…] So[u]th Water Street,",
             "street": "South Water Street"
           }
         }
@@ -63895,7 +63899,9 @@
           "placement": {
             "class": "relative",
             "anchor": "Graves' Tavern",
-            "offset_text": "next door to Graves’"
+            "offset_text": ". next door to Graves’ Tavern.",
+            "offset_normalized": "next door to Graves' Tavern",
+            "street": null
           }
         },
         {
@@ -63923,7 +63929,10 @@
           ],
           "placement": {
             "class": "corner",
-            "anchor": "the corner of Dearborn and Lake streets"
+            "anchor": "the corner of Dearborn and Lake streets",
+            "offset_text": "CORNER OF DEARBORN ASD LAKE-STREETS",
+            "offset_normalized": "at the corner of Dearborn and Lake-streets",
+            "street": "Dearborn Street"
           }
         },
         {
@@ -63958,9 +63967,9 @@
           "placement": {
             "class": "corner",
             "anchor": "corner of Dearborn and Lake streets",
-            "offset_text": "CHINER OF DEARLORS.",
-            "offset_normalized": "C[OR]NER OF DEAR[BORN and Lake streets]",
-            "street": "Lake Street"
+            "offset_text": "CORFER OF DEARRORY AFD LAK&-stREETS.",
+            "offset_normalized": "CORNER OF DEARBORN AND LAKE-STREETS",
+            "street": "Dearborn Street"
           }
         },
         {
@@ -64396,8 +64405,8 @@
           "placement": {
             "class": "relative",
             "anchor": "the Post Office",
-            "offset_text": "in South Water Street, one\nthe Post Office",
-            "offset_normalized": "in South Water Street, one [door … of] the Post Office",
+            "offset_text": "in South Water Stroet, one door belo\n• Post Olice,",
+            "offset_normalized": "at his Store in South Water Street, one door below the Post Office",
             "street": "South Water Street"
           }
         }
@@ -64944,7 +64953,9 @@
           "placement": {
             "class": "relative",
             "anchor": "Fort Dearborn",
-            "offset_text": "opposite to Port Dearborn"
+            "offset_text": "1| his Wane House, opposite to Fort Dearborn,",
+            "offset_normalized": "his Ware House, opposite to Fort Dearborn",
+            "street": null
           }
         },
         {
@@ -68182,7 +68193,9 @@
           "placement": {
             "class": "relative",
             "anchor": "the Chicago Hotel",
-            "offset_text": "nearly opposite the Chi-\no Hotel"
+            "offset_text": "business in said town, nearly: ¢\ncago Hotel, where they are rey",
+            "offset_normalized": "nearly [opposite the Chi]cago Hotel",
+            "street": null
           }
         },
         {
@@ -68286,8 +68299,8 @@
           "placement": {
             "class": "corner",
             "anchor": "the corner of Lake and Canal streets, opposite the Chicago Hotel",
-            "offset_text": "e and Abbott, on the corner of Lake\nreets, opposite the Chicago Hotel,",
-            "offset_normalized": "on the corner of Lake [and Canal st]reets, opposite the Chicago Hotel",
+            "offset_text": "erce and Abbott, on the corner of Lake\nstreets, opposite the Chicazo Hotel,",
+            "offset_normalized": "in the old shop formerly occupied by Pierce and Abbott, on the corner of Lake and Canal streets, opposite the Chicago Hotel",
             "street": "Lake Street"
           }
         },

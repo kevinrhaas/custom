@@ -97,6 +97,36 @@ fallback, which is the whole of its precedence, and three things must hold:
 3. the business's OWN street is platted and is a different street. *"two doors north of Lake
    street"* said by a house on Lake Street names no crossing.
 
+### The two streets may come from two fields, and this is the limit on that (T-0771)
+
+Test 3 above joins a street the OFFSET names to a street the placement's own `street` field
+names, and that pairing is **ruled legitimate**. It has to be said out loud, because a corner
+is otherwise something the papers write in one breath — *"corner of Dearborn and Lake"* — and
+this reading builds one out of two halves that are never printed together. Clark, Filer & Co.
+prints *"their ware house on South water St. five doors east of the corner of Randolph st."*
+and the reading pass files it as it always files an address: `anchor: "the corner of Randolph
+st."`, `street: "South Water Street"`. One street in the anchor, the other in the placement.
+
+**The limit is that the second street must be the placement's own DECLARED field, and nothing
+else.** `street` is what the reading pass wrote down as the street this business stands on,
+taken from the same sentence that carries the offset — not a street inferred from a neighbour,
+not one carried over from another printing, and not one guessed from where the house is
+thought to be. So the crossing is still read entirely out of one claim, and a pairing this
+reading makes is a pairing the paper made. Where the placement declares no street, or declares
+one the plat does not hold, or declares the same street the offset names, there is no crossing
+and the phrase falls through to the `street` fallback exactly as before.
+
+**The population was measured, not assumed** — T-0771, over 86 extraction files: **six** claims
+across **four** businesses carry an anchor naming one platted street while the placement's
+`street` names a different one AND are not read as a corner first. Three resolve as
+`corner_ordinal` today (Holbrook's Democrat printing; Clark, Filer's two intact printings).
+Two are refused for want of ink, not for want of a rule — Holbrook's American printing cuts the
+street to *"De[arborn]"*, and the Democrat's torn column of 1834-06-11 cuts the count. The
+sixth is a landmark hop that carries no *n doors* phrase at all: *"in a building on Randolph
+Street, nearly in rear of the Presbyterian Church, between Clark and Dearborn streets"*, where
+the two streets are a description of where the CHURCH stands, not a crossing to count from.
+So the pairing reaches four claims and invents nothing.
+
 An ordinal off a BUILDING — *"first door west of Messrs. Jones, King & Co."* — is untouched:
 it resolves earlier, as a landmark hop, and was always placed by the building it names.
 
@@ -117,9 +147,9 @@ files:
 | — whose phrase also names a corner of two streets, which resolves first | **5** |
 | — a landmark hop, or naming no platted street | **20** |
 | — readable as an ordinal off a corner | **3** |
-| register businesses reading `corner_ordinal` at the scene date | **1** |
+| register businesses reading `corner_ordinal` at the scene date | **2** |
 
-Three readable claims, two businesses, and only one of them reaches the register:
+Three readable claims and two businesses, and since T-0771 **both** reach the register:
 
 - **John Holbrook**, Democrat 1835-06-10 c010, *"one door from Dearborn street"* — the
   store this ruling was made for. Its other printing, American 1835-06-13 c012, is NOT
@@ -128,15 +158,32 @@ Three readable claims, two businesses, and only one of them reaches the register
   printing is what carries the placement, and it also corroborates the street word the
   American's column cut away.
 - **Clark, Filer & Co.**, Democrat 1834-06-18 c009 and 1834-07-02 c014, *"their ware house
-  on South water St. five [doors east] of the corner [of Randolph st.]"* — readable at
-  claim level and **invisible to the register**, because the gazetteer's LIVE placement for
-  that house is `class: none` with a null street while three of its printings carry the
-  anchor. That is a gazetteer fault and not a fault of this policy; **T-0440** carries it.
+  on South water St. five doors east of the corner of Randolph st."* — the register reads
+  it as `corner_ordinal` and its action is `new_building`, so the warehouse now waits on a
+  seeding run rather than on a fix. It sat readable and unspent for a week, and **the reason
+  was not the one the finding named**: the ticket supposed that nothing joined the anchor's
+  Randolph Street to the placement's South Water Street, and that pairing has in fact worked
+  since the ruling shipped — test 3 above IS it. What the register actually held was a torn
+  transcription. Three printings carry this anchor; the gazetteer kept the earliest, and the
+  earliest is the Democrat of 1834-06-11, whose column is cut through the address and whose
+  reading pass supplied it as *"five [doors east] of the corner [of Randolph st.]"*.
+  `ORDINAL_DOOR` cannot count doors across a bracket — for the same reason the American's
+  *"De[arborn]"* is not a street name — so the phrase fell through to the `street` fallback
+  and the warehouse read as a reach of Randolph Street.
 
-So the honest count of what the ruling moves today is **one store**, which is what the
-measurement taken before the ruling said it would be — and one more waits on a fix
-somewhere else.
+  **The rule this produced is one line and it is not about ordinals at all.** Among printings
+  the gazetteer has already declared to be ONE reading — same class, same anchor —
+  **a supply gives way to ink**: a transcription carrying an editorial bracket yields to a
+  sibling printing that sets the same reading plainly, and the date decides only between
+  printings of equal standing. It is `compile_gazetteer.supplied_transcription`, it grades
+  three ways rather than two (an *unread* raw column outranks nothing, because it has no
+  brackets in it for the reason that nothing has been supplied into it), and it moved twelve
+  readings across the corpus — every one of them from a fragment to a fuller reading of the
+  same sentence. Exactly one live placement moved: this one. No business's street moved.
 
-**Related:** `docs/STREET-FACE-ADOPTION.md` (the policy for the other half of the problem) ·
+So the honest count of what the ruling moves today is **two stores**, one of them placed and
+one of them waiting to be built.
+
+**Related:** T-0771 (the pairing ruled, the population measured, and the supply-gives-way-to-ink rule) · `docs/STREET-FACE-ADOPTION.md` (the policy for the other half of the problem) ·
 **L215** (the metres, the side of Dearborn, and the invented building) · T-0384 (the ruling) ·
 T-0306 (the American's six storefronts) · T-0375 (the South Water roofs an adoption wanted).

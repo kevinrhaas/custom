@@ -1433,6 +1433,9 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         b["evidence"]["copy_dates"].sort()
         for r in b["placement_readings"]:
             r["claims"].sort()
+            # `_kept` is the working note absorb_reading chooses on (T-0771) and is not
+            # part of the compiled document.
+            r.pop("_kept", None)
         b["placement_readings"].sort(
             key=lambda r: (r["first_issue"], r["anchor"] or "", r["class"] or ""))
         if b.get("vendor_placements"):
@@ -1690,19 +1693,71 @@ def reading_key(placement):
     return ((p.get("class") or ""), (p.get("anchor") or ""))
 
 
+# How much of a printing's offset is INK — 0 best, 2 worst. See `supplied_transcription`.
+READ_PLAINLY, READ_WITH_A_SUPPLY, NOT_READ = 0, 1, 2
+
+
+def supplied_transcription(placement):
+    """How far this printing's offset is ink rather than supply — 0 best, 2 worst.
+
+    **T-0771.** A square bracket in a transcription means the column did not print the
+    words inside it and a reading pass put them there. `docs/CORNER-ORDINAL.md` already
+    refuses one on the way in — the Chicago American cut John Holbrook's cross street to
+    *"De[arborn]"* and a bracketed supply is not a street name — and this is the same
+    judgement applied one step earlier, between two printings rather than inside one.
+
+    Three grades, and the third is why this is not simply "count the brackets":
+
+      0  `offset_normalized` set and free of brackets — the sentence read whole.
+      1  `offset_normalized` set and carrying a supply — read, with a gap filled in.
+      2  no `offset_normalized` at all — a raw column nobody has read yet.
+
+    A raw column has no brackets in it because nothing has been supplied INTO it, not
+    because it printed plainly, so a two-grade test would let an unread column beat a
+    read sentence. It did, on the first cut of this rule: the attorney's office *"first
+    door north from the Tre[mont] House, on Dearborn-street"* — a full reading naming
+    its own street — lost to a sibling column transcribed *"FRICE firat dor north from
+    tbe Trem"*, and the house moved off Dearborn Street on the strength of it.
+    """
+    p = placement or {}
+    normalized = p.get("offset_normalized")
+    if normalized:
+        return READ_WITH_A_SUPPLY if "[" in str(normalized) else READ_PLAINLY
+    return NOT_READ
+
+
 def absorb_reading(business, reading):
     """Fold a printing's placement into a house's readings, widening the window.
 
     The placement KEPT for a reading is the earliest printing's, so the offset text
     quoted beside it is the one the anchor was first set with. Ties break on the claim
     key, because this compile is re-derived and byte-compared by the gate.
+
+    **A SUPPLY GIVES WAY TO INK (T-0771).** Ahead of the date, and only ever BETWEEN
+    printings this compile has already declared to be one reading — same class, same
+    anchor — a transcription carrying an editorial supply gives way to a sibling
+    printing that sets the same reading plainly. Clark, Filer & Co. is the case the
+    rule was written for: the Democrat's column of 1834-06-11 is torn through the
+    address and the reading pass supplied it as *"five [doors east] of the corner [of
+    Randolph st.]"*, while 1834-06-18 and 1834-07-02 print *"five doors east of the
+    corner of Randolph st."* in full. Keeping the earliest printing kept the torn one,
+    and `compile_register.ordinal_off_a_corner` cannot read a count across a bracket —
+    so a house whose own paper prints an ordinal off a corner three times read as a
+    reach of Randolph Street and nothing narrower.
+
+    Nothing is merged and nothing is supplied: the rule only CHOOSES which printing's
+    words are quoted, among printings already held to say the same thing, and the
+    anchor — which is half the reading key — is identical by construction. Where every
+    printing of a reading is supplied, or none is, the date decides exactly as before.
     """
+    cand = reading.get("_kept") or (supplied_transcription(reading["placement"]),
+                                    reading["first_issue"], min(reading["claims"]))
     for r in business["placement_readings"]:
         if reading_key(r["placement"]) != reading_key(reading["placement"]):
             continue
-        if (reading["first_issue"], min(reading["claims"])) < (r["first_issue"],
-                                                              min(r["claims"])):
+        if cand < r["_kept"]:
             r["placement"] = reading["placement"]
+            r["_kept"] = cand
         r["first_issue"] = min(r["first_issue"], reading["first_issue"])
         r["last_issue"] = max(r["last_issue"], reading["last_issue"])
         for c in reading["claims"]:
@@ -1714,6 +1769,7 @@ def absorb_reading(business, reading):
         "class": (reading["placement"] or {}).get("class"),
         "first_issue": reading["first_issue"], "last_issue": reading["last_issue"],
         "claims": list(reading["claims"]), "placement": reading["placement"],
+        "_kept": cand,
     })
 
 
