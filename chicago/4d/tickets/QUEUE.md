@@ -201,7 +201,6 @@ T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through H
 # --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is what
 # --- T-0451 left open: the committed market line is fitted to N Wacker Drive and stands 9.1 m off
 # --- the plat's own module, so the suspect is the parent line rather than the North Division.
-T-0447 — North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
@@ -256,7 +255,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- to both, which is why T-0809 outranks the remaining laps.
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0806 — Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
-T-0807 — Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
 T-0808 — The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0236 — The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
@@ -340,3 +338,4 @@ T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'J
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
 T-0859 — J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it
+
