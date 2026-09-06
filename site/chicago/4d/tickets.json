@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 1:10 PM",
+  "generated_ct": "Sep 6, 2026, 1:18 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15404,6 +15404,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 183
+    },
+    {
+      "id": "T-0904",
+      "title": "Two writers own the same four mirror files: publish.sh compacts what synthesize_resident_research.py pretty-prints, and whichever runs last decides whether the drift gate is green",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 184
     }
   ]
 }

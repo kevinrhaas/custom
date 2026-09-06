@@ -25971,7 +25971,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of N. R. Norton; Nelson R. Norton; Wm. H. Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Nelson R. Norton; Wm. H. Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v03_1011",
     "nbi_v03_1012",
@@ -25981,11 +25981,6 @@
     "nbi_v03_1019"
    ],
    "candidates": [
-    {
-     "id": "norton_n_r",
-     "name": "N. R. Norton",
-     "rule": "exact surname"
-    },
     {
      "id": "norton_nelson_r",
      "name": "Nelson R. Norton",
@@ -25998,7 +25993,6 @@
     }
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],
@@ -52291,10 +52285,10 @@
   {
    "record_id": "nbi_v03_1011",
    "a": "Norton | ! Boone Co., III. (Kett l l Co., Pub,) I877t 397. Nerton",
-   "b": "Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton",
+   "b": "Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | ! Boone Co., III. (Kett l l Co., Pub,) I877t 397. Nerton' against Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | ! Boone Co., III. (Kett l l Co., Pub,) I877t 397. Nerton' against Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
    "layers": [
     "census_1840",
     "residents",
@@ -52306,7 +52300,6 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],
@@ -52330,10 +52323,10 @@
   {
    "record_id": "nbi_v03_1012",
    "a": "Norton | — Bureau Ce, III. (Kelt 4 Co., Puh.) 18771 199, orton",
-   "b": "Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton",
+   "b": "Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | — Bureau Ce, III. (Kelt 4 Co., Puh.) 18771 199, orton' against Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | — Bureau Ce, III. (Kelt 4 Co., Puh.) 18771 199, orton' against Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
    "layers": [
     "census_1840",
     "residents",
@@ -52345,7 +52338,6 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],
@@ -52369,10 +52361,10 @@
   {
    "record_id": "nbi_v03_1013",
    "a": "r Norton | Chicago, lli. (Andreas, A. T.) 1684-6i _•?.. \"orten",
-   "b": "Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton",
+   "b": "Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'r Norton | Chicago, lli. (Andreas, A. T.) 1684-6i _•?.. \"orten' against Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'r Norton | Chicago, lli. (Andreas, A. T.) 1684-6i _•?.. \"orten' against Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
    "layers": [
     "census_1840",
     "residents",
@@ -52384,7 +52376,6 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],
@@ -52408,10 +52399,10 @@
   {
    "record_id": "nbi_v03_1016",
    "a": "Norton | „Madison Co., III. (Brink, W. R. di Co., Pubs) Norton fa",
-   "b": "Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton",
+   "b": "Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | „Madison Co., III. (Brink, W. R. di Co., Pubs) Norton fa' against Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | „Madison Co., III. (Brink, W. R. di Co., Pubs) Norton fa' against Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
    "layers": [
     "census_1840",
     "residents",
@@ -52423,7 +52414,6 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],
@@ -52447,10 +52437,10 @@
   {
    "record_id": "nbi_v03_1017",
    "a": "Norton | Pike Co., 111. (Chapman, C. C. 4 Co., Pub.| 1660,",
-   "b": "Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton",
+   "b": "Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | Pike Co., 111. (Chapman, C. C. 4 Co., Pub.| 1660,' against Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Norton | Pike Co., 111. (Chapman, C. C. 4 Co., Pub.| 1660,' against Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
    "layers": [
     "census_1840",
     "residents",
@@ -52462,7 +52452,6 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],
@@ -52486,10 +52475,10 @@
   {
    "record_id": "nbi_v03_1019",
    "a": "Norton | lii..„'.i.ra, I!ls!, rf Ihe lowijj 1803: 2_",
-   "b": "Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton",
+   "b": "Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Norton | lii..„'.i.ra, I!ls!, rf Ihe lowijj 1803: 2_\" against Cornelius Norton; Charles Norton; Thomas Norton; N. R. Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 6 card(s) heading 'Norton/r Norton' name Chicago or Cook County, the heading is the surname of Cornelius Norton; Charles Norton; Thomas Norton exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Norton | lii..„'.i.ra, I!ls!, rf Ihe lowijj 1803: 2_\" against Cornelius Norton; Charles Norton; Thomas Norton; Nelson R. Norton; Wm. H. Norton; Norton.",
    "layers": [
     "census_1840",
     "residents",
@@ -52501,7 +52490,6 @@
     "lead_v03_norton_voters"
    ],
    "person_ids": [
-    "norton_n_r",
     "norton_nelson_r",
     "norton_wm_h"
    ],

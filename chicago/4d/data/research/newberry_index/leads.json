@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "49ef680fd9a96a5036630f5901154843ca4aa8822ffd28b59379c39f159bfaa5",
+    "fingerprint": "4efa2297b1f7f27b740e5929beddc24b803a5ddf5590f4d4abf3e809948b01ae",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 788,
-      "residents": 1363,
+      "residents": 1362,
       "structures": 380,
       "voters": 345
     }
@@ -20534,11 +20534,6 @@
       ],
       "layer": "residents",
       "candidates": [
-        {
-          "id": "norton_n_r",
-          "name": "N. R. Norton",
-          "rule": "exact surname"
-        },
         {
           "id": "norton_nelson_r",
           "name": "Nelson R. Norton",

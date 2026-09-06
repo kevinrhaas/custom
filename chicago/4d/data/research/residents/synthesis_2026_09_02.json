@@ -135,6 +135,11 @@
         "name": ""
       },
       {
+        "person_id": "norton_n_r",
+        "outcome": "no_corroboration_yet",
+        "name": null
+      },
+      {
         "person_id": "o_ranwin",
         "outcome": "no_corroboration",
         "name": "Ranwin O."
@@ -984,13 +989,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1339,
-    "persons": 1363,
+    "households": 1338,
+    "persons": 1362,
     "attested": 494,
-    "inferred": 869,
+    "inferred": 868,
     "reconstructed": 0,
-    "letter_list_only": 727,
-    "projected_residents": 713,
+    "letter_list_only": 726,
+    "projected_residents": 712,
     "census_1840_linked": 3
   },
   "retirement": {
