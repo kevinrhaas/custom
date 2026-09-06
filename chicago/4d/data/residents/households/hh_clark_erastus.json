@@ -91,14 +91,25 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "regraded_on": "2026-09-04",
-    "rule": "G2e"
+    "rule": "G2e",
+    "summary": "The Norris 1844 agreement is surname plus the initial E. against one of the commonest surnames in the book, and the entry prints no trade that could discriminate. Nine years and a bare initial are not an identification.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "norris_directory_1844"
+    ],
+    "candidates": [
+     {
+      "id": "cand_e_clark_norris_1844",
+      "asserted": false
+     }
+    ]
    }
   }
  ],

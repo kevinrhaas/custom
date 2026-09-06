@@ -352,3 +352,4 @@ T-0869 — Clark, Filer & Co. advertise a warehouse five doors east of a corner 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0866 — The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
+T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
