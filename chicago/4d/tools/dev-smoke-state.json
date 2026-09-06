@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 294,
+      "takenAt": "2026-09-06T13:42:59.613Z",
+      "ref": "steward/t-0881-fort-well-outbuildings",
+      "commit": "245f623c1c56",
+      "devCommit": "bce91bdd8894",
+      "treeHash": "sha256:8c4c48b548f6325d",
+      "treeDirty": false,
+      "changelogHash": "sha256:973b558d4f19acac",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          3.5,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1457,37 +1488,6 @@
         ]
       },
       "source": "/tmp/s4_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 246,
-      "takenAt": "2026-09-06T00:27:45.832Z",
-      "ref": "steward/t-0845-unruled-conflicts",
-      "commit": "6b5e97d4c7fb",
-      "devCommit": "c647d01a11b5",
-      "treeHash": "sha256:4f6bf606d9aaec3f",
-      "treeDirty": false,
-      "changelogHash": "sha256:a7ddfa0fad4add25",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.8,
-          4
-        ]
-      },
-      "source": "/tmp/s4_d12.log"
     },
     {
       "viewport": "mobile",
