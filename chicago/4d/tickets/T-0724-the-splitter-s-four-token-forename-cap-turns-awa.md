@@ -1,7 +1,7 @@
 ---
 id: T-0724
 title: The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/5/2026, 9:42:03 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34006759051
 ---
 **Found by T-0692's coverage pass, 2026-09-04.** `split_name` caps forenames at four tokens
 and refuses anything longer (R5). `Rev. John Mary Irenaeus St Cyr` reads as surname `Cyr`

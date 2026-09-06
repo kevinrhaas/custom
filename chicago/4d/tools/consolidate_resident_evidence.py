@@ -26,6 +26,15 @@ sources as he finds them — so a consolidation sequenced after "all sweeps land
 sequenced after never. This runs again after every few sources; a pass that finds nothing
 newly closed says so and costs a run nothing.
 
+HOW IT READS A NAME (T-0724). A surname the sources print with a space in it — `St Cyr`,
+`Van Horn`, `De Wolf`, `Mac Kee` — is ONE surname, and rule N1 reads it as one. Taking
+only the last printed token used to do two wrong things at once: it dropped the man into
+a bucket that is not his family, and it pushed the particle into his forenames, where a
+long baptismal name then tripped the four-token cap. That is how the town's own card for
+`Rev. John Mary Irenaeus St Cyr` — the parish priest whose register is the rung G2c that
+grades 35 of these people — went ungraded, and how nineteen other readings sat under a
+surname nobody in 1835 would have recognised.
+
 THE MERGE RULES ARE THE NEWSPAPERS' RULES, because they are already ratified in
 `data/research/newspapers/identity.json`: surname-only is always a refusal, and the same
 surname with a different forename initial NEVER merges. Two rules are added for the
@@ -100,10 +109,24 @@ REFUSAL_RULES = {
           "style, an institution, a digit standing where an initial was misread, a "
           "description rather than a name, or more forename tokens than the cap allows. "
           "Distinct from R1, which is the true surname-only case: R1 says the record names "
-          "no forename, and saying that of 'Rev. John Mary Irenaeus St Cyr' or of "
-          "'8. G. Abbot' would be false of the record. Every R5 row carries WHICH guard "
-          "fired, because a refusal whose stated reason is untrue of the page is barely "
-          "better than no refusal at all (T-0692).",
+          "no forename, and saying that of '8. G. Abbot' would be false of the record. "
+          "Every R5 row carries WHICH guard fired, because a refusal whose stated reason "
+          "is untrue of the page is barely better than no refusal at all (T-0692). The "
+          "four-token cap no longer stands in for a compound surname: N1 reads those, and "
+          "what the cap refuses now is a line carrying more than a name (T-0724).",
+}
+
+NAME_RULES = {
+    "N1": "A SURNAME PRINTED WITH A SPACE IN IT IS ONE SURNAME. The surname is the last "
+          "printed token plus any unbroken run of particles standing immediately in front "
+          "of it — st, ste, van, von, de, del, den, der, du, la, le, mac, mc, ten, ter — "
+          "so `Van Horn` keys as `vanhorn` and never lands in the `horn` bucket beside a "
+          "man who is not kin to him. The run is DECLINED where any token in front of the "
+          "particle is not name-shaped (the directories set names capitalised and trades "
+          "in lower case), which is what keeps `Peterson. GPO. captain schooner St. "
+          "Joseph` from minting a man whose surname is a schooner. Declining always falls "
+          "back to the last-token reading, so the rule can only ever read a name the old "
+          "one misread — it can never invent one (T-0724).",
 }
 
 # The ratified ladder, 2026-09-03, verbatim in the policy doc. One rung, one id, and the
@@ -178,8 +201,59 @@ ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
                "richd": "richard", "alexr": "alexander", "hy": "henry", "nathl": "nathaniel"}
 
 
+# SURNAME PARTICLES (T-0724). A surname the sources print with a space in it — `St
+# Cyr`, `Van Horn`, `De Wolf`, `Mac Kee` — is ONE surname, and reading only its last
+# token does two wrong things at once. It merges the man onto a family that is not his
+# (`Van Horn` lands in the `horn` bucket beside every Horn in town), and it pushes the
+# particle into the forenames, where a long baptismal name then trips the four-token
+# cap. Both happened to `Rev. John Mary Irenaeus St Cyr` — the parish priest whose own
+# register is the rung G2c that grades 35 of the town's people, and the one man the
+# ladder could not see.
+#
+# The list is deliberately short and historical: these are the particles the 1835 corpus
+# actually prints. `o` is absent because `O'Brien` is one printed token already, and a
+# bare `O.` is a middle initial, not a particle.
+SURNAME_PARTICLES = {"st", "ste", "van", "von", "de", "del", "den", "der",
+                     "du", "la", "le", "mac", "mc", "ten", "ter"}
+
+
 def clean(token: str) -> str:
     return re.sub(r"[^a-z]", "", (token or "").lower())
+
+
+def absorb_particles(parts: list[str]) -> tuple[list[str], list[str]]:
+    """(surname tokens, the tokens left in front of it) for a name printed forename-first.
+
+    THE RULE, stated so it can be argued with: the surname is the LAST printed token
+    plus any unbroken run of particles standing immediately before it. Nothing else
+    moves — a token that is not on the particle list is a forename and stays one, so
+    `Della Smith` is still a woman called Della and never a surname `dellasmith`.
+
+    The run is taken even when it eats every token in front of it: `St Cyr` on its own
+    then reads as the surname `stcyr` with NO forename, which is exactly what it is,
+    and `cluster` refuses it R1 rather than minting a man whose forename is `st`.
+
+    AND IT IS TAKEN ONLY WHERE EVERYTHING IN FRONT IS STILL NAME-SHAPED. The 1844
+    directory prints `Peterson. GPO. captain schooner St. Joseph, house Canal st`, and
+    absorbing that `St` mints a man whose surname is a schooner and whose forenames are
+    `captain schooner`. The directories print names capitalised and trades in lower
+    case, so a lower-case token in front of the particle is the tell: decline, and the
+    line falls back to the reading it has today — refused by the four-token cap, which
+    is the truthful outcome. Declining is always the conservative half of this rule."""
+    surname = [parts[-1]]
+    rest = list(parts[:-1])
+    while rest and clean(rest[-1]) in SURNAME_PARTICLES:
+        if not all(is_name_shaped(t) for t in rest[:-1]):
+            break
+        surname.insert(0, rest.pop())
+    return surname, rest
+
+
+def is_name_shaped(token: str) -> bool:
+    """A printed token a reader would take for part of a person's name: it opens with a
+    capital, the way every source here sets a forename and no source sets a trade."""
+    letters = [ch for ch in (token or "") if ch.isalpha()]
+    return not letters or letters[0].isupper()
 
 
 def split_name(text: str) -> tuple[str, list[str]] | None:
@@ -225,9 +299,17 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
             # lists set "Mason Sabrina A." and "Norton N. R." with no comma at all, and
             # reading the last token as the surname made thirty of the town's own cards
             # unparseable — a name ending in a lone initial is never a surname.
-            surname_part, given_part = parts[0], " ".join(parts[1:])
+            # A particle leads the surname here too: the letter lists set "Van Horn
+            # Cornelius C." as readily as they set "Norton N. R.".
+            head = 1
+            while (head + 1 < len(parts) - 1
+                   and clean(parts[head - 1]) in SURNAME_PARTICLES):
+                head += 1
+            surname_part, given_part = " ".join(parts[:head]), " ".join(parts[head:])
         else:
-            surname_part, given_part = parts[-1], " ".join(parts[:-1])
+            surname_tokens, given_tokens = absorb_particles(parts)
+            surname_part = " ".join(surname_tokens)
+            given_part = " ".join(given_tokens)
     tokens = [t for t in re.split(r"[\s.]+", given_part) if clean(t)]
     if any(ch.isdigit() for ch in surname_part + given_part):
         return None, ("a digit stands inside the printed name. On a directory line that "
@@ -246,9 +328,10 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
                       "never a man")
 
     if len(tokens) > 4:
-        return None, (f"{len(tokens)} forename tokens, and the splitter caps at four — "
-                      "which is what a compound surname read as one token does to a "
-                      "long baptismal name")
+        return None, (f"{len(tokens)} forename tokens, and the splitter caps at four. "
+                      "A compound surname is no longer the cause of this — `St Cyr`, "
+                      "`Van Horn` and `De Wolf` are read as one surname (T-0724) — so "
+                      "what is left here is a line carrying more than a name")
     given = []
     for token in tokens:
         key = clean(token)
@@ -980,6 +1063,7 @@ def build():
                 "rule that merged or refused each reading. Hand-edit and --check says so.",
         "generated_by": GENERATED_BY,
         "scene_year": SCENE_YEAR,
+        "name_rules": NAME_RULES,
         "merge_rules": MERGE_RULES,
         "refusal_rules": REFUSAL_RULES,
         "counts": {
@@ -1689,6 +1773,21 @@ def cmd_self_test() -> int:
         ("BEAUMONT & SKINNER", None),
         ("Reading Room (Y. M. A.), 37 Clark, 2d story", None),
         ("Abbott", None),
+        # T-0724 — THE PARTICLE. The priest first: five forename tokens under the old
+        # reading, three under this one, and a surname that is his own.
+        ("Rev. John Mary Irenaeus St Cyr", ("stcyr", ["john", "mary", "irenaeus"])),
+        ("St Cyr, Rev. John Mary Irenaeus", ("stcyr", ["john", "mary", "irenaeus"])),
+        # …and the readings from the corpus that were quietly wrong the same way.
+        ("Cornelius C. Van Horn", ("vanhorn", ["cornelius", "c"])),
+        ("H. Van Den Bogart", ("vandenbogart", ["h"])),
+        ("Calvin De Wolf", ("dewolf", ["calvin"])),
+        ("De Wolf, Calvin", ("dewolf", ["calvin"])),
+        ("Van Horn Cornelius C.", ("vanhorn", ["cornelius", "c"])),
+        # THE COUNTER-CASES. A word that is not on the particle list is a forename and
+        # stays one; and a particle standing alone in front of the surname leaves no
+        # forename at all rather than inventing one called `st`.
+        ("Della Smith", ("smith", ["della"])),
+        ("St Cyr", None),
     ]
     for text, want in cases:
         got = split_name(text)
@@ -1716,7 +1815,9 @@ def cmd_self_test() -> int:
     # genuinely prints no forename; R5 says which guard actually fired.
     for text, rule, must_say in [
             ("8. G. Abbot", "R5", "digit"),
-            ("Rev. John Mary Irenaeus St Cyr", "R5", "four"),
+            # The cap still fires — on a line that carries more than a name, which is
+            # what is left of R5 now that the compound surname is read (T-0724).
+            ("one of the daughters of M. Colewell", "R5", "caps at four"),
             ("Heacock's wife and children, unnamed", "R5", "'and'"),
             ("Abbott", "R1", "no forename"),
     ]:
@@ -1728,6 +1829,34 @@ def cmd_self_test() -> int:
         print(f"  {'ok   ' if ok else 'FAIL'} {text!r} is refused {rule} and says why"
               f" -> {rows[0]['rule'] + ': ' + rows[0]['why'][:60] if rows else 'no refusal'}")
         failures += 0 if ok else 1
+
+    # ---- T-0724: THE PRIEST IS READ, AND HE IS NOT A CYR --------------------
+    priest, refused = cluster([
+        {"domain": "residents", "record_id": "p1",
+         "normalized": "Rev. John Mary Irenaeus St Cyr", "as_read": "St Cyr",
+         "evidence_class": "town_layer", "source_id": None},
+        {"domain": "civic", "record_id": "p2", "normalized": "John Cyr",
+         "as_read": "John Cyr", "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    surnames = sorted({i["surname"] for i in priest})
+    ok = (surnames == ["cyr", "stcyr"] and len(priest) == 2
+          and not [r for r in refused if r.get("record_id") == "p1"])
+    print(f"  {'ok   ' if ok else 'FAIL'} the priest reads as St Cyr and never merges onto"
+          f" a Cyr -> {surnames}")
+    failures += 0 if ok else 1
+
+    # No bucket may hold two surnames — the property the particle rule must not break.
+    mixed = cluster([
+        {"domain": "d", "record_id": str(i), "normalized": n, "as_read": n,
+         "evidence_class": "poll_1835", "source_id": "s"}
+        for i, n in enumerate(["Calvin De Wolf", "Calvin Wolf", "Cornelius Van Horn",
+                               "Cornelius Horn", "John St Cyr", "John Cyr"])
+    ])[0]
+    if len(mixed) == 6:
+        print("  ok    six readings across three particle pairs stay six identities")
+    else:
+        print(f"  FAIL  the particle pairs collapsed: {len(mixed)} identities")
+        failures += 1
 
     # ---- T-0692: THE COVERAGE INVARIANT ------------------------------------
     # A person record the ladder is silent about, with nothing saying why, is exactly
