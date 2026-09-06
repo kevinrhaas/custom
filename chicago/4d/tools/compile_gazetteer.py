@@ -1239,6 +1239,17 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             if w["first_issue"] <= scene_iso:
                 live = w
         biz["placement"] = live["placement"]
+        # T-0773. AND THE STREET GOES WITH IT. `street` is taken from whichever claim
+        # MINTS the house, so a rule that moves the live anchor across town leaves the
+        # street of the anchor it superseded behind — and `compile_register` adopts a
+        # street face off that field, not off the placement. G. Spring's rule put his
+        # office on Dearborn-street beside the Tremont House while the row went on
+        # reading South Water Street, which is the frontage the ruling had just retired.
+        # Only where the live reading names ONE street: a corner reading names two, and
+        # a `street` field holding both is not a street this town can adopt against.
+        live_street = (live["placement"] or {}).get("street")
+        if live_street and " and " not in live_street:
+            biz["street"] = live_street
         biz["anchor_change"] = {
             "rule": why,
             "cannot_say": cannot,

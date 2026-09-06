@@ -69,6 +69,22 @@ four spellings and one wreck of a line — *"PEHICE second door vcot from tho co
 Frankli s"* — which could only carry `the corner of Franklin [street]` with the second street
 name lost to the type.
 
+### The street had to go with it
+
+A house's `street` is taken from whichever claim MINTS it, and `compile_register` adopts a
+street face off that field rather than off the placement. So the first build of this rule
+put Spring's office on Dearborn-street and left his row reading **South Water Street** — the
+frontage the ruling had just retired, and the one the adoption pass would have set him on.
+The street now follows the live reading wherever a rule names a single one; a corner reading
+names two, and a `street` field holding both is not a street this town can adopt against, so
+those are left alone. Matthias Mason & Co. is unaffected — its live reading names Main Street
+and its row already did.
+
+His register row is `street_only` on Dearborn Street rather than a building, because *"the
+Tremont House"* resolves to nothing the committed town holds even though `tremont_house_1` is
+in it. That is **T-0406**'s question — the Tremont House answering to the name the papers
+print — and it is open with a branch on it. Nothing here touches it.
+
 ### The guard this rule broke first
 
 Writing it exposed a defect in the mechanism. `anchor_changes` collected a house's readings
@@ -81,6 +97,31 @@ seven claims and eleven months of window — and guard 4, the guard that exists 
 printing silently dropped, could not see it, because the anchor was still claimed. An anchor
 now holds every reading printed under it. The Matthias Mason rule is unaffected: it has no
 repeated anchor string, and neither does any other house.
+
+### And the gate that then refused it
+
+With all eleven printings visible, `compile_register.py` refused the rule outright: *"the
+readings grouped under the anchor 'the corner of Franklin and South Water streets' resolve
+to 2 different things in the committed town"* — a `corner` of Franklin and South Water, and
+a `street` reach of South Water alone. That gate is right in principle and was wrong here,
+for a reason worth writing down.
+
+The reading it objected to is 1834-05-28, and what survives of that printing is *"[corne]r
+[F]ra[n]klin and South W[at]er-str[ee]t"*. The word **of** went with the type, so
+`resolve_anchor`'s corner pattern — which looks for "corner of X and Y" — does not match,
+and all that resolves is the reach of South Water Street. It is the same corner, read
+through a broken line.
+
+`resolve_anchor`'s own docstring says a `street` resolution does not put a building on the
+ground, and `ANCHOR_KIND_RANK` ranks it below everything that does; the anchor history
+already resolves a group on its BEST reading for exactly this reason — *"'Graves' Tavern'
+resolving where 'Graves' Tavern, on Main-street' does not is a fact about how much of the
+sentence one reading pass swept into the field."* The gate nonetheless excused the reading
+that swept in NOTHING (`unresolved`) and refused the one that swept in half. It now excuses
+a `street` reach too — **but only where the placing resolution names that street.** A reach
+the landmark does not name is still two places declared one landmark and still fails, and a
+group that resolves to two different reaches and to nothing that places fails as well. Three
+self-test cases, all firing.
 
 ## 2. J. K. Botsford — ALREADY RULED, by T-0324, and no rule may be written
 
