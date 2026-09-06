@@ -347,6 +347,47 @@ def street_records(anchor):
     return out
 
 
+def cross_check_numbering():
+    """The reading in ROWS above, against T-0875's independent reading of the same sheet.
+
+    Two runs read all 142 numerals off this sheet within hours of each other and neither
+    could see the other's work: this module's table was read off the resampled raster, and
+    `data/traces/school_section_block_numbering.json` was read by
+    `tools/read_school_section_numerals.py` on the sheet's own pixels. They agree on every
+    one of the 142 cells. That is worth more than either reading alone, so it is a GATE
+    rather than a remark: if the two ever diverge, this tool stops.
+    """
+    other = load("data/traces/school_section_block_numbering.json")
+    theirs = {(b["column"] - 1, b["tier"] - 1): b["number"] for b in other["blocks"]}
+    ours = {}
+    for rj, row in enumerate(ROWS):
+        for cells, num in row:
+            for c in (cells if isinstance(cells, tuple) else (cells,)):
+                ours[(c, rj)] = num
+    disagree = sorted((k, theirs[k], ours[k]) for k in set(theirs) & set(ours)
+                      if theirs[k] != ours[k])
+    if disagree:
+        raise SystemExit(
+            "the two readings of the School Section's numerals disagree, and one of them is "
+            "wrong: " + "; ".join("cell c%dr%d — T-0875 reads %s, this module reads %s"
+                                  % (c + 1, r + 1, a, b) for (c, r), a, b in disagree))
+    missing = sorted(set(theirs) - set(ours))
+    if missing:
+        raise SystemExit("T-0875 numbers cells this module emits no block for: %s" % (missing,))
+    return dict(
+        against="data/traces/school_section_block_numbering.json",
+        ticket="T-0875",
+        cells_compared=len(set(theirs) & set(ours)),
+        disagreements=0,
+        note=("Two independent readings of the same sheet, made hours apart by runs that could "
+              "not see each other — one off the resampled raster, one off the sheet's own pixels "
+              "— agree on all 142 numerals, cell for cell. This module gates on that agreement: "
+              "if the two ever diverge it refuses to run. The four cells this module holds and "
+              "that reading does not are the east halves of blocks 73, 74, 83 and 84, which span "
+              "two cells apiece here because Market Street stops at Adams."),
+    )
+
+
 def sale_test():
     """The October 1833 sale of the school section, as this project already holds it."""
     entries = load("data/research/land_sales/entries.json")["entries"]
@@ -540,6 +581,7 @@ def main():
                            % (sale["rows_resolving_to_a_block"], len(sale["blocks_sold"]))),
         ),
         sale_test=sale,
+        numbering_cross_check=cross_check_numbering(),
         summary=dict(blocks=len(blocks),
                      reserved=sorted(RESERVED),
                      cut_by_south_branch=sorted(BANK_PENDING),

@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The mile square south of Madison, drawn and numbered', kind: 'change', ts: '',
+  { v: 633, title: 'The mile square south of Madison, drawn and numbered', kind: 'change', ts: '2026-09-06T10:31:10.495Z', date: 'Sep 6, 2026, 5:31 AM CT',
     items: [
       'South of Madison Street lies a mile square this reconstruction has never held: Section 16, the school section, which the state sold lot by lot in October 1833. Wright drew it whole on his 1834 survey \u2014 a grid of blocks, numbered one by one, with three of them lettered Reserved. All hundred and forty-two blocks are in the dataset now, with the twelve streets ruled across them.',
       'The numbers were read off the sheet rather than counted along it. A hundred and forty of them are ink. Two are not: the corner blocks at Madison and the west line, and at Madison and State, are lettered Reserved and carry no numeral at all, and take 1 and 142 from the sequence around them.',

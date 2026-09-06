@@ -76,6 +76,16 @@ section-16 rows to a block number, and the **27** distinct blocks it names —
 — are **exactly** the blocks read here in the four northern rows, with the two reserved
 corners missing from both. A different hand, a different record, the same 27 numbers.
 
+**And a second reading, made blind.** T-0875 read all 142 numerals off the same sheet
+within hours of this one, on the sheet's own pixels rather than on the resampled raster,
+and neither run could see the other's work. The two agree on **every one of the 142 cells**
+— `tools/read_school_section_numerals.py`'s
+`data/traces/school_section_block_numbering.json` against the table in
+`tools/generate_school_section_grid.py`. That is now a gate rather than a remark: this
+module compares the two on every run and refuses to write if they diverge. Its measured
+grid lines agree with that reading's to within 13 m east-west and 18 m north-south, and
+that reading independently records the same vertical stretch (it puts it at 2.6 %).
+
 Three numerals are graded `inferred` rather than read, and each says why in its own entry:
 **1** and **142** (lettered, not numbered) and **77**, whose second glyph is written
 without a crossbar and reads as either 7 or 1 at 3×. 71 is read in ink two tiers west, the

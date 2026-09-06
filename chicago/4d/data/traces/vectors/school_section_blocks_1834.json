@@ -376,6 +376,13 @@
     "first_date": "1833-10-22",
     "last_date": "1833-10-25"
   },
+  "numbering_cross_check": {
+    "against": "data/traces/school_section_block_numbering.json",
+    "ticket": "T-0875",
+    "cells_compared": 142,
+    "disagreements": 0,
+    "note": "Two independent readings of the same sheet, made hours apart by runs that could not see each other — one off the resampled raster, one off the sheet's own pixels — agree on all 142 numerals, cell for cell. This module gates on that agreement: if the two ever diverge it refuses to run. The four cells this module holds and that reading does not are the east halves of blocks 73, 74, 83 and 84, which span two cells apiece here because Market Street stops at Adams."
+  },
   "summary": {
     "blocks": 142,
     "reserved": [
