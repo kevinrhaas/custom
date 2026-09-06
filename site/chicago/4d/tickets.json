@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 7:41 PM",
+  "generated_ct": "Sep 5, 2026, 7:44 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14382,6 +14382,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 176
+    },
+    {
+      "id": "T-0845",
+      "title": "T-0733 ruled 68 of the 96 people the ledgers record a conflict against: the audit reads only the newest override, so 28 conflicts an earlier pass wrote are unruled and invisible",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "937",
+      "claimed_by": "run 9/5/2026, 6:23:25 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T00:28:34.200Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33996384592",
+      "queue_rank": null
     },
     {
       "id": "T-0846",
