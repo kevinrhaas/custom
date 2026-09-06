@@ -28,7 +28,7 @@
   "derived_refusals": 1828,
   "declared_merges": 379,
   "appearances_moved_by_a_landed_adjudication": 157,
-  "declared_refusals": 1685
+  "declared_refusals": 1680
  },
  "identities": [
   {"id":"id_abbot_samuel_e","surname":"abbot","forename":"samuel e","merge_rules":["M1"],"appearances":[{"domain":"census_1840","record_id":"33S7-9YYN-3CDH:28","source_id":"census_1840_cook_county","as_read":"Saml E Abbot","locator":"239:28","describes_date":"1840","evidence_class":"census_1840","normalized":"Samuel E. Abbot"}],"domains":["census_1840"],"sources_offered":["census_1840_cook_county"]},
@@ -10282,12 +10282,8 @@
   {"a":"Herrick | — Roekford and Winnebago Co.,111.","b":"Ira Herrick","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_0913","data/research/newberry_index/leads.json"]},
   {"a":"Heee | _Pike Co., III. (Chapman, C C. 4 Co., Fade.) 186»!","b":"Anthony Heere","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_0925","data/research/newberry_index/leads.json"]},
   {"a":"Hoard | 7...-~S3° Chicago, III. (Andreas, A. T.) 1804-6| 1-2.","b":"Joshua Howard","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1008","data/research/newberry_index/leads.json"]},
-  {"a":"Horan | Cook Co., III. (Andreas, A. T.) 1884 .139,","b":"Cornelius C Van Horn","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1031","data/research/newberry_index/leads.json"]},
   {"a":"Holltday | 1 _Jtduoo Co,, III. (Brink, llcOonoovd, 4 Co., Pub:.) 1878, T6,","b":"William Holliday","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1057","data/research/newberry_index/leads.json"]},
   {"a":"Hopkins | 0, (Bailey, F. ] Boone Co,, III, {Kett & Co., Pub'> > o 7 7 i 3 5 4 .","b":"Henry Hopkins","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1097","data/research/newberry_index/leads.json"]},
-  {"a":"Horan r | I Boono Co., III. (Kett it Co., Pub.) 1877d","b":"Cornelius C Van Horn","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1102","data/research/newberry_index/leads.json"]},
-  {"a":"Horn | Fulton Co , III. (Chapman, C, C. ; Co.) I879i :","b":"Cornelius C Van Horn","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1104","data/research/newberry_index/leads.json"]},
-  {"a":"Horn | R. —Edgw Co., III. (LofJaoo, W., «•., 4 Co. Pub,) I879,-","b":"Cornelius C Van Horn","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1105","data/research/newberry_index/leads.json"]},
   {"a":"Horr | . Caaoll Co., III. Otto, R. F. 4 Co., Pjd«Ot8f9, 40b.","b":"Raiph C. Horr","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1108","data/research/newberry_index/leads.json"]},
   {"a":"Hove | Feltea Cc , III.' (Chapman, C. C. U Ce.) 167ÜI","b":"Hiram Hovey","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1137","data/research/newberry_index/leads.json"]},
   {"a":"Hovey | • Tioga Co., iII.V., 1785-1888. (Gay, W B.) n.d.","b":"Hiram Hovey","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v02_1141","data/research/newberry_index/leads.json"]},
@@ -10467,7 +10463,6 @@
   {"a":"Ogden | \" r - Co., III. (LeBaren, W., >., k Co.. Pub, ) 1879:","b":"Mahlon D. Ogden; W B Ogden","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1061","data/research/newberry_index/leads.json"]},
   {"a":"Ogden | Sangamon Co,, III. (Power, J, C.) 1876,","b":"Mahlon D. Ogden; W B Ogden","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1062","data/research/newberry_index/leads.json"]},
   {"a":"Win | Chicago, III. (Moset, J, and Kirkland, J.) ICC\";","b":"Payne Win.","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1067","data/research/newberry_index/leads.json"]},
-  {"a":"horne, | [•-\" «»», III, ItVuu,: 'a . . .","b":"Cornelius C Van Horn","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1104","data/research/newberry_index/leads.json"]},
   {"a":"Owen | Fulton Co, 111. (Chapman, C. C. £ Co) 1879t 1","b":"J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1119","data/research/newberry_index/leads.json"]},
   {"a":"Owena | _Madlson Co., III. (Brink, W. B. et Co., Pubs.)","b":"J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1121","data/research/newberry_index/leads.json"]},
   {"a":"Haddock | Illinois. Soo. Sons Am. Rev. 1 8 9 6 : 2 0 0 . Paddo","b":"E. H. Haddock; Edward H. Haddock; H Haddock; E. H. Haddock; Edward E. Haddock; E. H. Haddock","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v03_1127","data/research/newberry_index/leads.json"]},
