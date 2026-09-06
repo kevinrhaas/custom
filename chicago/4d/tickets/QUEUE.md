@@ -363,3 +363,5 @@ T-0871 — The residents-manifest rebuild has no self-test and silently accepts 
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
 T-0873 — publish.sh minifies the four resident cards the synthesizer writes pretty, so the first republish after a synthesis spend turns the drift ratchet red
+T-0877 — The School Section's twelve north-south lines are read and not committed: Des Plaines, Jefferson, Clinton, Canal, Market, Wells and Clark run south of Madison and five more tiers carry no name
+T-0878 — Wright's 1834 registration is three per cent long in y: the School Section's mile measures 1658.65 m north-south and 1603.04 m east-west on the same fit
