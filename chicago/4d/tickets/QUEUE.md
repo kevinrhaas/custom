@@ -340,3 +340,4 @@ T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that
 T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
 
 T-0859 — J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it
+T-0862 — The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
