@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 609, title: 'Twenty-eight objections that had been overwritten rather than answered', kind: 'fix', ts: '2026-09-06T00:28:33.923Z', date: 'Sep 5, 2026, 7:28 PM CT',
+    items: [
+      'Earlier today this project finished answering every recorded objection against an identification it had considered and declined \u2014 the man of that name is documented in another county, the two spellings differ, the scan cannot be reached. Ninety-six people had one standing against them. Sixty-eight were answered.',
+      'The other twenty-eight were not missed so much as invisible. When a second pass of research revisits somebody, it writes a fresh summary over the old one, and the audit that lists everybody\u2019s open questions reads only the newest. So an objection recorded in an early pass and written over by a later one simply stopped being reported. It had not been resolved. Nothing had happened to it at all.',
+      'That is the same fault as the one being fixed, one floor up: a question nobody can see reads exactly like a question nobody has. The audit now reads every pass that ever looked at a person rather than the last, and all ninety-six are answered.',
+      'One of the twenty-eight matters more than the rest. Angeline Vann of Missouri was put forward as the person a letter was waiting for at the Chicago post office \u2014 and she was born in 1834. An infant is not the addressee of a letter, and this is the only objection in the whole set that makes an identification impossible rather than merely unproven. Every other answer names the record that would reopen it; hers names none, because none can exist.',
+      'The check that runs before anything ships now fails if an objection goes unanswered, so the next one cannot quietly pile up. Nothing about the town changed, no grade moved, and no identification was adopted \u2014 the point of all of this is that the town says what it does not know.',
+    ] },
   { v: 608, title: 'Eleven townspeople and the land sale that proves they stayed', kind: 'change', ts: '2026-09-05T23:58:19.109Z', date: 'Sep 5, 2026, 6:58 PM CT',
     items: [
       'In June 1839 the ground the fort had stood on was cut into lots and auctioned, and Fergus\u2019 Chicago directory printed the whole sale \u2014 every lot, every bidder, every price. A hundred men bid. Fifteen of them are people this town already holds a card for.',
