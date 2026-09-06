@@ -22,7 +22,7 @@ T-0666's Fort Dearborn lot crosswalk matches 11 bidders to residents and 3 of th
 
 **Acceptance:** (state it before working — the definition of done, never weakened to pass)
 
-Every one of the 11 resident matches in `fergus_1839_lots_crosswalk_1835.json` carries, on
+Every one of the resident matches in `fergus_1839_lots_crosswalk_1835.json` carries, on
 the person's OWN card, a paragraph naming the Fort Dearborn Addition sale of 10-24 June
 1839: the bidder as printed, each bid's block and lot, its price, the printed page and the
 claim id it was read into, the crosswalk's own identity rule, and the crosswalk's own
@@ -37,4 +37,9 @@ The measure's second hop is the visible number: `directories` unwritten falls fr
 It is deliberately NOT the whole of the acceptance, because the instrument reads a card's
 citations at the HOUSEHOLD level, so 8 of these 11 already read "written" on the strength
 of a different Fergus 1839 pass while the lot sale had reached nobody. The deliverable is
-the eleven paragraphs, not the counter.
+the paragraphs, not the counter.
+
+The title says 11 because that is what the crosswalk held when the ticket was written. While
+this was in flight T-0839's card merges landed on `dev` and folded 42 duplicate residents,
+which settled four of the contested names; the crosswalk now declares 15 matches over 44
+lots, and the pass writes whatever it declares rather than a number fixed in advance.

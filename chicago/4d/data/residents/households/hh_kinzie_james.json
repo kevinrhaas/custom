@@ -106,6 +106,19 @@
      "source": "chicago_antiquities_american_fur_co",
      "rule": "G5"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D1",
+     "cluster": "kinzie-john",
+     "weighed_against": [
+      "kinzie_juliette"
+     ],
+     "for_merge": "The surname, and the letter J.",
+     "against_merge": "T-0839's own warning: John H. Kinzie and James Kinzie are brothers, not a duplicate. Juliette Augusta Magill Kinzie is John Harris's wife and already a member of his household record."
+    }
    ]
   }
  ],

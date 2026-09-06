@@ -73,6 +73,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R2",
+     "cluster": "temple",
+     "weighed_against": [
+      "temple_john_t"
+     ],
+     "referred_to": "owner",
+     "for_merge": "'T. Temple' in the Democrat of 3 December 1834 is most probably Dr John Taylor Temple with the first initial dropped — the paper prints him as J. T. Temple the year before.",
+     "against_merge": "T matches neither Temple's forename initial: the town's two documented Temples are John and Peter. A card whose only forename token is a MIDDLE initial has no rule in this project that attaches it, and inventing one here would attach every stray middle initial in the corpus. His call."
+    }
    ]
   }
  ],
