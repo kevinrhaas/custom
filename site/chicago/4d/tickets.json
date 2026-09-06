@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 9:52 AM",
+  "generated_ct": "Sep 6, 2026, 10:08 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14168,7 +14168,7 @@
     {
       "id": "T-0828",
       "title": "The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id",
-      "state": "open",
+      "state": "claimed",
       "epic": "TOWN",
       "requested_by": "steward",
       "seen": false,
@@ -14178,11 +14178,11 @@
       "opened": "2026-09-05",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/6/2026, 10:08:07 AM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34041163701",
       "queue_rank": 9
     },
     {
