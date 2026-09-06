@@ -96,6 +96,14 @@ REFUSAL_RULES = {
     "R4": "Same surname and same forename initial, but two different full forenames "
           "(Jonathan against John). Two men until something says otherwise.",
     "D2": "A refusal already declared by a domain's own crosswalk or by identity.json.",
+    "R6": "A FEMALE HONORIFIC STANDING ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not "
+          "Rufus Brown: the honorific strip leaves the husband's forename tokens on both "
+          "readings, so M1 fires and folds a wife onto her husband. A reading whose "
+          "forename tokens are ENTIRELY those of a reading of the same surname printed "
+          "WITHOUT a female honorific is a different person and never merges onto it. "
+          "The refusal is exact-match only, because that is the shape the honorific "
+          "strip creates: `Mrs. Sabrina Mason` beside `Mason Sabrina A.` is one woman "
+          "printed twice and M3 must still join her (T-0723).",
     "R5": "A PRINTED NAME THIS SPLITTER CANNOT READ AS (surname, forename) AT ALL — a firm "
           "style, an institution, a digit standing where an initial was misread, a "
           "description rather than a name, or more forename tokens than the cap allows. "
@@ -172,6 +180,11 @@ CLASS_FAMILIES = {
 
 HONORIFICS = {"mr", "mrs", "miss", "dr", "rev", "capt", "col", "gen", "lt", "sergt",
               "sgt", "maj", "hon", "esq", "jr", "sr", "widow", "mme", "madame"}
+# THE FEMALE TITLES, held apart from the rest of HONORIFICS because they carry a fact the
+# others do not: a woman printed under her husband's name. `Mrs Rufus Brown` and `Rufus
+# Brown` are two people, and the strip above makes them one reading (T-0723). R6 reads
+# this set and nothing else does.
+FEMALE_HONORIFICS = {"mrs", "miss", "madame", "mme", "widow"}
 ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
                "chas": "charles", "thos": "thomas", "robt": "robert", "jos": "joseph",
                "saml": "samuel", "danl": "daniel", "benj": "benjamin", "edw": "edward",
@@ -303,6 +316,30 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
             continue
         given.append(ABBREVIATED.get(key, key))
     return (surname, given), None
+
+
+def female_honorific(text: str) -> str | None:
+    """A female title LEADING a printed name — `Mrs Rufus Brown` — or None.
+
+    T-0723. `split_name_or_reason` strips every honorific, which is right for `John
+    Bates Jr.` and wrong for `Mrs Rufus Brown`: what the strip throws away there is the
+    only thing on the page saying she is not him. This reads the title back off the
+    printed string so `cluster` can hold the pair apart.
+
+    THE TITLE HAS TO LEAD, and that is the whole of the test: the husband-name form
+    prints it directly in front of the name it qualifies — `Mrs. Geo. Anderson`,
+    `Atkinson, Mrs. Joseph`, `Brown, Mrs. Rufus B.` — so the title is the first token of
+    the string, or the first token after the comma in the surname-first printings. A
+    title that TRAILS a forename is an annotation on a woman's own name and not a
+    husband's: the letter lists set `Gooding, Caroline Miss`, and reading that as a
+    husband called Caroline would split one woman into two.
+    """
+    if not text or not isinstance(text, str):
+        return None
+    text = re.sub(r"[\[(][^\])]*[\])]", " ", text)
+    head = text.partition(",")[2] if "," in text else text
+    first = next((clean(t) for t in re.split(r"[\s.]+", head) if clean(t)), None)
+    return first if first in FEMALE_HONORIFICS else None
 
 
 def forename_signature(given: list[str]) -> tuple[str, ...]:
@@ -650,6 +687,8 @@ def cluster(appearances):
         surname, given = parsed
         entry["_surname"] = surname
         entry["_given"] = given
+        entry["_female"] = female_honorific(
+            entry.get("normalized") or entry.get("as_read"))
         buckets[surname].append(entry)
 
     identities, refusals = [], []
@@ -661,8 +700,14 @@ def cluster(appearances):
             "as_read": entry.get("as_read"),
         })
 
-    for surname in sorted(buckets):
-        rows = buckets[surname]
+    def anchor(rows, surname, refusals):
+        """One surname's readings folded into anchors by M2 and M3. -> signature -> members.
+
+        Hoisted out of the loop below for T-0723: the wives R6 holds apart from their
+        husbands are a bucket of their own and have to be anchored by the same rules —
+        `Mrs Rufus Brown` and `Brown, Mrs. Rufus B.` are one woman, and it is M3 that
+        says so.
+        """
         anchors = {}                     # signature -> members, for full-forename readings
         pending = []
         for entry in rows:
@@ -702,6 +747,63 @@ def cluster(appearances):
                 anchors[chosen].append(entry)
             else:
                 anchors.setdefault(forename_signature(given), []).append(entry)
+        return anchors
+
+    for surname in sorted(buckets):
+        rows = buckets[surname]
+        # R6, T-0723. A woman whose only printed name is her husband's. The honorific is
+        # stripped before the tokens are compared, so `Mrs Rufus Brown` and `Rufus Brown`
+        # arrive here letter for letter identical and M1 folds her onto him.
+        #
+        # THE PAGE HAS TO SAY SO, and this is what keeps the rule from inventing women.
+        # `Mrs. Eliza Haight` and `Mrs. Diana Hamilton` are the SAME shape — a leading
+        # title on forename tokens the corpus also prints bare — and they are one woman
+        # each, printed under her own name. Nothing about the tokens tells Eliza from
+        # Rufus; this splitter holds no lexicon of men's names and guessing one is how a
+        # real woman gets torn off her own evidence. So R6 fires only where a SOURCE
+        # PRINTS BOTH READINGS: Fergus 1843 sets `Brown, Rufus B.` at entry 458 and
+        # `Brown, Mrs. Rufus B.` at 459, and a directory does not enter one person twice
+        # under two spellings. That is a fact about the page rather than about the name.
+        #
+        # WHAT IT DELIBERATELY DOES NOT REACH: a husband-name printing whose bare
+        # counterpart is only in ANOTHER body — `Hadley, Mrs. T. G.` against Norris's
+        # `Hadley, T. G.`, and `Mrs. Wm. B. Egan` against Norris's `Egan, Wm. B.` Both
+        # are almost certainly the same shape and neither has the page to prove it, so
+        # they stay merged and T-0862 owns the reading that would settle them.
+        wives = []
+        if any(e.get("_female") for e in rows):
+            husbands = defaultdict(set)
+            for entry in rows:
+                if not entry.get("_female"):
+                    husbands[forename_signature(entry["_given"])].add(
+                        entry.get("source_id"))
+            printed_together = {
+                forename_signature(e["_given"])
+                for e in rows if e.get("_female") and e.get("source_id")
+                and e["source_id"]
+                in husbands.get(forename_signature(e["_given"]), ())}
+            if printed_together:
+                wives = [e for e in rows if e.get("_female")
+                         and forename_signature(e["_given"]) in husbands]
+        if wives:
+            proof = sorted({e["source_id"] for e in wives if e.get("source_id")
+                            and forename_signature(e["_given"]) in printed_together})
+            refusals.append({
+                "rule": "R6",
+                "why": ("a female honorific standing on a man's own name: these readings "
+                        "carry the husband's forename tokens and nothing else, so the "
+                        "honorific strip makes them identical to his. A wife is not her "
+                        "husband and never merges onto him"),
+                "surname": surname,
+                "honorifics": sorted({e["_female"] for e in wives}),
+                "held_apart": sorted(
+                    {" ".join(forename_signature(e["_given"])).title() + " "
+                     + surname.title() for e in wives}),
+                "records": sorted({e["record_id"] for e in wives}),
+                "printed_together_in": proof,
+            })
+            rows = [e for e in rows if e not in wives]
+        anchors = anchor(rows, surname, refusals)
         # R2/R4 ARE STATED ONCE PER SURNAME, NOT ONCE PER PAIR, and the difference is
         # 17,726 rows against 1,100. Every identity left standing in a bucket is left
         # standing because of one of these two rules, and enumerating the cross product
@@ -729,6 +831,27 @@ def cluster(appearances):
                 "members": members,
                 "merge_rules": sorted({m.get("_merge_rule", "M1") for m in members}),
             })
+        # The wives R6 held apart, anchored among THEMSELVES by the same rules. The
+        # identity carries the honorific in its id and in a field of its own, because a
+        # card that reads `Rufus B Brown` twice with nothing to tell the two apart is
+        # exactly the confusion this rule exists to end.
+        if wives:
+            for honorific in sorted({e["_female"] for e in wives}):
+                mine = [e for e in wives if e["_female"] == honorific]
+                her_anchors = anchor(mine, surname, refusals)
+                for signature in sorted(her_anchors):
+                    members = her_anchors[signature]
+                    identities.append({
+                        "id": "id_" + surname + "_" + honorific + "_"
+                              + ("_".join(signature) or "x"),
+                        "surname": surname,
+                        "forename": " ".join(signature),
+                        "honorific": honorific,
+                        "members": members,
+                        "merge_rules": sorted({m.get("_merge_rule", "M1")
+                                               for m in members}),
+                        "held_apart_by": "R6",
+                    })
     return identities, refusals
 
 
@@ -1005,6 +1128,8 @@ def build():
             "town_person_ids": town_person_ids,
             "household_id": town[0].get("household_id") if town else None,
             "merge_rules": identity["merge_rules"],
+            "honorific": identity.get("honorific"),
+            "held_apart_by": identity.get("held_apart_by"),
             "appearances": [compact(m) for m in members],
             "domains": sorted({m["domain"] for m in members}),
             "sources_offered": sorted(offered),
@@ -1747,6 +1872,62 @@ def cmd_self_test() -> int:
             ok = got == (want[0], want[1])
         print(f"  {'ok   ' if ok else 'FAIL'} split_name({text!r}) -> {got}")
         failures += 0 if ok else 1
+
+    # ---- T-0723: A WIFE IS NOT HER HUSBAND -----------------------------------
+    # The honorific strip is right for `John Bates Jr.` and it is what folded
+    # `Mrs Rufus Brown` onto `Rufus Brown`. These four cases are the rule and its two
+    # edges; break R6 and the first two fail, loosen it and the last two do.
+    def bucket(*rows):
+        ids, refs = cluster([
+            {"domain": d, "record_id": rid, "normalized": name, "as_read": name,
+             "evidence_class": "directory_1843", "source_id": src}
+            for rid, name, d, src in rows])
+        return ids, refs
+
+    ids, refs = bucket(
+        ("d1", "Brown, Rufus B.", "directories", "fergus_1843"),
+        ("d2", "Brown, Mrs. Rufus B.", "directories", "fergus_1843"),
+        ("t0", "Rufus Brown", "residents", None),
+        ("t1", "Mrs Rufus Brown", "residents", None))
+    wife = [i for i in ids if i.get("held_apart_by") == "R6"]
+    husband = [i for i in ids if not i.get("held_apart_by")]
+    if (len(wife) == 1 and len(husband) == 1
+            and {m["record_id"] for m in wife[0]["members"]} == {"d2", "t1"}
+            and any(r["rule"] == "R6" for r in refs)):
+        print("  ok    a female honorific on the husband's own name is held apart (R6)")
+    else:
+        print(f"  FAIL  Mrs Rufus Brown was not held apart from Rufus Brown: "
+              f"{[(i['id'], sorted(m['record_id'] for m in i['members'])) for i in ids]}")
+        failures += 1
+
+    ids, _ = bucket(
+        ("d1", "Gooding, Caroline", "newspapers", "papers"),
+        ("d2", "Gooding, Caroline Miss", "newspapers", "papers"))
+    if len(ids) == 1:
+        print("  ok    a title TRAILING a woman's own forename never splits her")
+    else:
+        print("  FAIL  'Gooding, Caroline Miss' was split off her own card")
+        failures += 1
+
+    ids, _ = bucket(
+        ("c1", "Eliza Haight", "census_1840", "census_1840_cook_county"),
+        ("d1", "Haight, Mrs. Eliza", "directories", "fergus_1843"))
+    if len(ids) == 1:
+        print("  ok    a leading title no ONE source prints beside the bare name merges")
+    else:
+        print("  FAIL  Mrs Eliza Haight was split from the census's Eliza Haight on no "
+              "evidence but the shape of the name")
+        failures += 1
+
+    ids, _ = bucket(
+        ("d1", "Mason Sabrina A.", "directories", "fergus_1843"),
+        ("d2", "Mrs. Sabrina Mason", "directories", "fergus_1843"))
+    if len(ids) == 1:
+        print("  ok    M3 still joins a woman printed with and without her title")
+    else:
+        print("  FAIL  R6 fired on tokens that are not the other reading's, letter for "
+              "letter — the exact-match half of the rule is gone")
+        failures += 1
 
     surname_only = cluster([{"domain": "newberry_index", "record_id": "nbi_1",
                              "normalized": "Abbott", "as_read": "Abbott",

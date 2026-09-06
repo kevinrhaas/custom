@@ -531,6 +531,19 @@
   },
   {
    "outcome": "merged",
+   "person_id": "norton_nelson_r",
+   "folded_person_id": "norton_n_r",
+   "rule": "C2",
+   "cluster": "norton",
+   "record_ids": [],
+   "domains": [],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0839: 'norton_n_r' and 'norton_nelson_r' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'norton'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "owen_thomas_jv",
    "folded_person_id": "owen_t_j_v",
    "rule": "C0",

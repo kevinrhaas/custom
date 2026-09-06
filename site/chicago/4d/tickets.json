@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 12:11 PM",
+  "generated_ct": "Sep 6, 2026, 12:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12308,7 +12308,7 @@
     {
       "id": "T-0723",
       "title": "One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12318,11 +12318,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/6/2026, 12:56:09 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34049511702",
       "queue_rank": 0
     },
     {

@@ -64,7 +64,8 @@
     "note": "'Nelson R. Norton, ship-carpenter, and builder of the first draw-bridge over the main river, at Dearborn Street, in March, 1834, came November 16, 1833 (he also built the first sloop, the \"Clarissa,\" launched May 12, 1836)'."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "chicago_democrat_1833_1835"
    ],
    "note": "AN ARRIVAL DATED TO THE DAY - 16 NOVEMBER 1833 - which only four households in this parcel have, and a trade that ties a person to two dated artefacts. HE IS IN THE DATASET BECAUSE THE 1835 TOWN CANNOT BE BUILT WITHOUT HIS TRADE. Andreas's roster is the only list this project holds that names artisans at all, and every name on it is a documented alternative to an inferred one.",
    "resident_research": {
@@ -86,6 +87,15 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — andreas_1884_v1. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
+   },
+   "merged_from": {
+    "ticket": "T-0839",
+    "rule": "C2",
+    "cluster": "norton",
+    "cards": [
+     "norton_n_r"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   }
  ],

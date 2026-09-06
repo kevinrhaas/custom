@@ -93,7 +93,20 @@
      }
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D3",
+     "cluster": "brown-rufus",
+     "weighed_against": [
+      "brown_mrs_rufus"
+     ],
+     "for_merge": "Nothing but the strip. After it, both readings are `Rufus B Brown` letter for letter, which is M1 — and M1 firing here is the defect, not the argument.",
+     "against_merge": "Fergus 1843 prints them as two entries, one after the other: 458 `Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]` and 459 `Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]`. Two trades, two death notices eighteen years apart, one address — a husband and a wife at 189 Lake, and a directory does not enter one person twice under two spellings. The cards read as one person only because the splitter strips `Mrs` before it compares the names."
+    }
+   ]
   },
   {
    "id": "brown_mrs_rufus",
@@ -128,7 +141,20 @@
      "fergus_chicago_directory_1839",
      "fergus_chicago_directory_1843"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D3",
+     "cluster": "brown-rufus",
+     "weighed_against": [
+      "brown_rufus"
+     ],
+     "for_merge": "Nothing but the strip. After it, both readings are `Rufus B Brown` letter for letter, which is M1 — and M1 firing here is the defect, not the argument.",
+     "against_merge": "Fergus 1843 prints them as two entries, one after the other: 458 `Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]` and 459 `Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]`. Two trades, two death notices eighteen years apart, one address — a husband and a wife at 189 Lake, and a directory does not enter one person twice under two spellings. The cards read as one person only because the splitter strips `Mrs` before it compares the names."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -4,17 +4,17 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1363,
-  "open_clusters": 19,
-  "cards_in_open_clusters": 42,
+  "town_people": 1362,
+  "open_clusters": 18,
+  "cards_in_open_clusters": 40,
   "rulings": {
-   "distinct": 8,
-   "merge": 24,
+   "distinct": 9,
+   "merge": 25,
    "undecided_owner": 7,
    "undecided_rule": 8
   },
-  "landed_merges": 24,
-  "cards_folded": 42
+  "landed_merges": 25,
+  "cards_folded": 43
  },
  "landed": [
   {
@@ -200,6 +200,16 @@
    "rule": "C2"
   },
   {
+   "cluster": "norton",
+   "survivor": "norton_nelson_r",
+   "survivor_household": "hh_norton_nelson_r",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "norton_n_r"
+   ],
+   "rule": "C2"
+  },
+  {
    "cluster": "owen",
    "survivor": "owen_thomas_jv",
    "survivor_household": "hh_owen_thomas_jv",
@@ -288,7 +298,7 @@
      "sources": [
       "andreas_1884_v1"
      ],
-     "ruling": "deferred",
+     "ruling": "distinct",
      "ruled_in": "brown-rufus"
     },
     {
@@ -299,7 +309,7 @@
      "sources": [
       "andreas_1884_v1"
      ],
-     "ruling": "deferred",
+     "ruling": "distinct",
      "ruled_in": "brown-rufus"
     }
    ],
@@ -639,44 +649,6 @@
      "for": [
       "the same forename, 'john'",
       "kinzie_john_h is an anchor — the town documents this person"
-     ],
-     "against": []
-    }
-   ]
-  },
-  {
-   "surname": "norton",
-   "cards": [
-    {
-     "person": "norton_n_r",
-     "household": "hh_norton_n_r",
-     "name": "N. R. Norton",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "ruling": "deferred",
-     "ruled_in": "norton"
-    },
-    {
-     "person": "norton_nelson_r",
-     "household": "hh_norton_nelson_r",
-     "name": "Nelson R. Norton",
-     "anchor": true,
-     "sources": [
-      "andreas_1884_v1"
-     ],
-     "ruling": "deferred",
-     "ruled_in": "norton"
-    }
-   ],
-   "pairs": [
-    {
-     "a": "norton_n_r",
-     "b": "norton_nelson_r",
-     "for": [
-      "an initial against its forename, 'n' and 'nelson'",
-      "norton_nelson_r is an anchor — the town documents this person"
      ],
      "against": []
     }
