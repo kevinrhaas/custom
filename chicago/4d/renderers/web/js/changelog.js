@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A record put on the wrong Hubbard, and the man it belonged to', kind: 'fix', ts: '',
+  { v: 619, title: 'A record put on the wrong Hubbard, and the man it belonged to', kind: 'fix', ts: '2026-09-06T04:23:03.058Z', date: 'Sep 5, 2026, 11:23 PM CT',
     items: [
       'Two men in this town were called Hubbard and something beginning with G. One is Gurdon Saltonstall Hubbard, the packer and forwarding merchant the records are full of. The other is Henry G. Hubbard, who is named far less often. A record belonging to Henry has been sitting on Gurdon’s card, and it is now back on Henry’s.',
       'Yesterday’s consolidation gathered six scattered Hubbard cards onto one man, which was right five times. The sixth card gives only the initial — ‘G.’ — and on the strength of Gurdon being the better documented Hubbard it went to him. But the person who transcribed that page had already answered the question, writing the name as ‘Hubbard, [Henry] G.’ The brackets are theirs: they read the page and said who it was.',
