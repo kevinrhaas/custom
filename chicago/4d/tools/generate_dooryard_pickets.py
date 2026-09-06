@@ -162,8 +162,14 @@ def lot_frame(block, lot):
     return fm, (ux, uy), (vx, vy), lu, lv
 
 
-def candidates():
-    """Every platted lot that passes clauses 1–4, with its house."""
+def candidates(require_household: bool = True):
+    """Every platted lot that passes clauses 1–4, with its house.
+
+    `require_household=False` drops CLAUSE 4 ONLY, which is the alternative reading
+    T-0772 puts to the owner: a dooryard garden that follows the HOUSE rather than the
+    household. It is a measurement path — `--compare-rules` — and no writing path ever
+    passes it, so the committed record cannot move by reading this.
+    """
     lots = load(LOTS_PATH)
     sidecars = {}
     for path in sorted(SIDECARS.glob("*.json")):
@@ -194,9 +200,10 @@ def candidates():
             fn = fn.get("value") if isinstance(fn, dict) else fn
             if not is_dwelling_function(fn):
                 continue
-            occ = st.get("occupants")
-            if not occ or "hh_" not in json.dumps(occ):
-                continue
+            if require_household:
+                occ = st.get("occupants")
+                if not occ or "hh_" not in json.dumps(occ):
+                    continue
             out.append((block, i, lot, sid, sc, fn))
     return out, sidecars
 
@@ -504,11 +511,60 @@ def record(runs, openings, refused):
     }
 
 
+def compare_rules() -> int:
+    """Both readings of clause 4, counted — the measurement T-0772 is blocked on.
+
+    Writes nothing. The HOUSEHOLD rule is the one in force: a garden is a household's,
+    and the lot is admitted on the structure record's `occupants` prose naming an `hh_`
+    id. The HOUSE rule is the alternative: one dwelling alone on a platted lot has a
+    kitchen garden behind it by archetype and by function, whoever lived in it. Clause 5
+    — room at the back for a plot that hits nothing — is applied to both, so the two
+    numbers below are gardens actually drawable and not pools.
+    """
+    house_pool, sidecars = candidates(require_household=False)
+    hh_pool, _ = candidates(require_household=True)
+
+    def drawable(pool):
+        ok, refused = [], []
+        for block, index, lot, sid, sc, fn in pool:
+            plot, why = plot_for(block, index, lot, sid, sc, sidecars)
+            (refused if plot is None else ok).append((f"{block['id']}_lot{index}", sid, why))
+        return ok, refused
+
+    house_ok, house_no = drawable(house_pool)
+    hh_ok, hh_no = drawable(hh_pool)
+    hh_ids = {r[0] for r in hh_ok}
+    print("CLAUSE 4, BOTH WAYS — T-0772's question, counted against the tree in front of it")
+    print(f"  the HOUSEHOLD rule (in force): {len(hh_pool)} lot(s) admitted, "
+          f"{len(hh_ok)} garden(s) drawn, {len(hh_no)} refused for want of room")
+    print(f"  the HOUSE rule (the alternative): {len(house_pool)} lot(s) admitted, "
+          f"{len(house_ok)} garden(s) drawn, {len(house_no)} refused for want of room")
+    added = [(lot_id, sid) for lot_id, sid, _ in house_ok if lot_id not in hh_ids]
+    print(f"  gardens the house rule would ADD: {len(added)}")
+    # HOW WELL FOUNDED IS THE HOUSE UNDER EACH ADDED GARDEN, in the project's own grading
+    # of what the building IS. A garden behind a reconstructed cottage is an invention
+    # resting on an invention, which is the cost the owner is being asked to weigh.
+    by_grade: dict[str, int] = {}
+    for lot_id, sid in added:
+        st = load(STRUCTURES / f"{sid}.json")
+        fn = st.get("function")
+        grade = fn.get("confidence", "ungraded") if isinstance(fn, dict) else "ungraded"
+        by_grade[grade] = by_grade.get(grade, 0) + 1
+        print(f"    + {lot_id}  {sid}  ({grade})")
+    for grade in sorted(by_grade):
+        print(f"  added, by the house's own function grade: {grade} {by_grade[grade]}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
+    ap.add_argument("--compare-rules", action="store_true",
+                    help="count clause 4 both ways (T-0772); write nothing")
     args = ap.parse_args()
+    if args.compare_rules:
+        return compare_rules()
     runs, openings, refused = build_record()
     text = json.dumps(record(runs, openings, refused), indent=2, ensure_ascii=False) + "\n"
     if args.check:
