@@ -216,6 +216,20 @@ the town. The keenest buyers are Ebenezer and John Hale on fourteen blocks each,
 Bronson on thirteen (with eight more under the register's spelling `Broson`), and Hiram
 Pearsons on twelve, who is also the man who enters seventeen ring tracts above.
 
+**And the rows are not parcels (T-0885).** Every count above is a count of REGISTER
+ROWS, which is what the source offers. The ground is smaller: 335 live rows name only
+**297 distinct block-and-lot parcels**, because **38 parcels are entered twice**, under
+two names, on the same day and the same page of volume 818, each row with its own
+purchase number. Six of the 38 carry the register's `AS` suffix on one of the two rows —
+an assignment, the one shape of duplicate this source explains itself. **Twenty-six are a
+single pair of names: every parcel Ebenezer Hale enters, John Hale enters as well**,
+which is why the keenest-purchaser table reads two Hales at its head. One of the 38 is a
+price disagreement rather than a name pair — block 72 lot 2, entered at **$8.00** and at
+**$80.00**, same day, same page — and both figures are carried as read. Nothing here
+merges a name or drops a row: whether a pair is one transaction or two is an identity
+ruling, `resident_crosswalk.json` is where this domain makes those, and T-0885 leaves the
+Hales an open question with the evidence beside it.
+
 **Six blocks changed no hands at all: 1, 41, 87, 88, 126 and 142.** Four of those are
 exactly the four Wright writes `Reserved` across and draws no numeral on. **Neither
 reading was made from the other** — one is a plat traced off a sheet in 2026, the other an

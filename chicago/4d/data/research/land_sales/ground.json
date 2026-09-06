@@ -47,6 +47,106 @@
       "16": 1
     },
     "school_section": {
+      "parcels": {
+        "live_rows_counted": 335,
+        "void_rows_excluded": 1,
+        "distinct_parcels": 297,
+        "parcels_entered_more_than_once": 38,
+        "of_those_the_day_agrees_on": 38,
+        "of_those_the_page_agrees_on": 38,
+        "of_those_the_price_agrees_on": 37,
+        "of_those_carrying_an_assignment_mark": 6,
+        "name_pairs": [
+          {
+            "purchasers": [
+              "Ebenezer Hale",
+              "John Hale"
+            ],
+            "parcels": 26,
+            "an_assignment_mark_on_a_row": false
+          },
+          {
+            "purchasers": [
+              "Giles As Williams",
+              "Gordon S Williams"
+            ],
+            "parcels": 4,
+            "an_assignment_mark_on_a_row": true
+          },
+          {
+            "purchasers": [
+              "Ashbel Steele",
+              "F G Blanchard"
+            ],
+            "parcels": 2,
+            "an_assignment_mark_on_a_row": false
+          },
+          {
+            "purchasers": [
+              "Ashbel Steele",
+              "F G As Blanchard"
+            ],
+            "parcels": 1,
+            "an_assignment_mark_on_a_row": true
+          },
+          {
+            "purchasers": [
+              "Charles L Harmon",
+              "Isaac D Harmon"
+            ],
+            "parcels": 1,
+            "an_assignment_mark_on_a_row": false
+          },
+          {
+            "purchasers": [
+              "Dole",
+              "Newberry"
+            ],
+            "parcels": 1,
+            "an_assignment_mark_on_a_row": false
+          },
+          {
+            "purchasers": [
+              "Edward H Haddock",
+              "Josiah P Cook"
+            ],
+            "parcels": 1,
+            "an_assignment_mark_on_a_row": false
+          },
+          {
+            "purchasers": [
+              "Henry Vanderbogert",
+              "John As Vanderbogert"
+            ],
+            "parcels": 1,
+            "an_assignment_mark_on_a_row": true
+          },
+          {
+            "purchasers": [
+              "Joseph Stanley",
+              "Morgan L Chapley"
+            ],
+            "parcels": 1,
+            "an_assignment_mark_on_a_row": false
+          }
+        ],
+        "price_disagreements": [
+          {
+            "block": 72,
+            "lot_as_read": "2",
+            "rows": [
+              "ls0179",
+              "ls0216"
+            ],
+            "prices_as_read": [
+              "8.00",
+              "80.00"
+            ],
+            "reading": "The same parcel, the same day and the same page, entered at two prices. One of the two is a slip — of the clerk's pen or of the transcription — and this project does not know which, so both are carried as read."
+          }
+        ],
+        "what_this_is_not": "Not a merge and not a refusal. The rows all stand; this only counts the ground under them, so that a row count is never read as a parcel count. Identity is ruled on in data/research/land_sales/resident_crosswalk.json."
+      },
       "rows_in_the_section": 337,
       "put_on_a_block": 336,
       "of_which_name_a_lot_inside_it": 218,

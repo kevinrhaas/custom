@@ -366,3 +366,5 @@ T-0878 — Wright's 1834 registration is three per cent long in y: the School Se
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
 T-0880 — publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat
+T-0884 — The register sells Russel Heacock lot 7 of block 117 and his committed house stands 7 m outside block 118: one of the two is out by more than the construction admits
+T-0885 — A row is not a parcel: 38 school-section parcels are entered twice, 26 of them every parcel Ebenezer Hale buys and John Hale buys too
