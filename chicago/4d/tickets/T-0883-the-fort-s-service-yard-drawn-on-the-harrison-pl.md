@@ -1,7 +1,7 @@
 ---
 id: T-0883
 title: The fort's service yard, drawn on the Harrison plan: the Big Barn with Cupola, the Wash house and the Shop placed off the plate
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0758
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 980
 claimed_by: run 9/6/2026, 5:33:26 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T11:55:22.780Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34027344945
 ---
 
