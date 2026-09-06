@@ -613,14 +613,14 @@
   {
    "familysearch_id": "33S7-9YYJ-VJ",
    "page_population_key": 117,
-   "page_population_key_state": "read_this_pass",
+   "page_population_key_state": "read_but_not_corroborated",
    "page_population_key_alternates": [
     107
    ],
-   "page_population_key_note": "1-1-7. The middle glyph is a short slant with a tick at its foot, and it is not this hand's 0, which is a filled oval; 107 is named because the glyph is short enough to be argued and because the pairing must not rest on the arguable.",
+   "page_population_key_note": "1-1-7. The middle glyph is a short slant with a tick at its foot, and it is not this hand's 0, which is a filled oval; 107 is named because the glyph is short enough to be argued and because the pairing must not rest on the arguable. T-0762 adds the evidence T-0656 could not have: 33S7-9YYN-3CF6 line 9 is a committed 10 in this same enumerator's hand, and its 0 is a closed filled oval nothing like this glyph - so the middle glyph is not a 0 and 117 is the reading. But the SAME pass read the 31 lines of the column line by line and they sum to 84, so the footing this key rests on is not corroborated by the column it foots. The key stands at 117 - it is what the enumerator wrote, and it is what a left sheet would have to match - but it should be tested as the WEAKER of this leaf's two keys, and no pairing should turn on it alone.",
    "line_count_key": 31,
-   "line_count_key_state": "counted_this_pass",
-   "line_count_key_note": "31 counted off the full leaf, which is what coverage.json carries. tools/census_total_column.py measures 35 groups at dy 55 - the two-figure over-count again.",
+   "line_count_key_state": "measured_this_pass",
+   "line_count_key_note": "31, and T-0762 CONFIRMS it by measurement rather than by count: the row grid is fitted to the TOTAL column's own ink, 30 bands at the working ink threshold of which the one at y2597-2724 is two entries, and no further line appears when the threshold is dropped to 30 and to 22 grey levels. The 35 groups tools/census_total_column.py measures at dy 55 are the two-figure over-count again.",
    "state": "unpaired",
    "paired_to_printed_page": null,
    "evidence": "Neither 117 nor 107 is any left sheet's page population anywhere in the deposit; the five 31-line left sheets of this group foot 175, 151, 160, 195 and 181. The sequence screen puts its best match at 0.23, the noise floor, so the refusal does not turn on which of the two readings is right.",
@@ -719,7 +719,10 @@
      "share": 0.194
     }
    ],
-   "refusals": null
+   "refusals": null,
+   "read_line_by_line_by": "T-0762",
+   "total_column_read": 84,
+   "total_column_closes": false
   },
   {
    "familysearch_id": "33S7-9YYN-3CF6",
