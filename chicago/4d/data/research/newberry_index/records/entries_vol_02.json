@@ -5,16 +5,17 @@
   "source_id": "newberry_genealogical_index",
   "volume": 2,
   "counts": {
-    "cards": 1876,
+    "cards": 1874,
     "records": 1877,
     "slivers": 1,
+    "bled_in_bodies": 2,
     "by_locality": {
       "chicago": 285,
       "cook_county": 206,
       "illinois_named": 153,
-      "illinois_abbreviated": 1564
+      "illinois_abbreviated": 1562
     },
-    "distinct_surname_keys": 1252,
+    "distinct_surname_keys": 1250,
     "leads": 243,
     "leads_by_layer": {
       "census_1840": 72,
@@ -23,7 +24,7 @@
       "voters": 37
     },
     "chicago_or_cook_cards": 491,
-    "cards_matching_no_known_work": 1013,
+    "cards_matching_no_known_work": 1011,
     "chicago_or_cook_cards_matching_no_known_work": 98
   },
   "records": [
@@ -47088,7 +47089,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v02_1733",
+        "bleed_run": "« • • C , Ill ,",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_02",
@@ -47102,7 +47106,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 2 begins inside column 1, so the pass read the tail of nbi_v02_1733 — '« • • C , Ill ,', 15 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v02_1735",
@@ -48815,7 +48819,10 @@
           "illinois_abbreviated"
         ],
         "chicago_or_cook": false,
-        "works_cited": []
+        "works_cited": [],
+        "bleed_of": "nbi_v02_1797",
+        "bleed_run": "mpage Co., III.",
+        "localities_off_own_ink": []
       },
       "locator": {
         "list": "vol_02",
@@ -48829,7 +48836,7 @@
       },
       "reading": "transcription_mediated",
       "confidence": "documented",
-      "notes": "A card in the Newberry index, not a statement about a person. What is documented is that the index files this surname with a citation naming illinois_abbreviated; the citation itself is unread until the work it names is opened."
+      "notes": "A BLED-IN BODY: this page is wide enough that the crop window over column 3 begins inside column 2, so the pass read the tail of nbi_v02_1797 — 'mpage Co., III.', 15 characters, byte-exact — and glued it to the front of this card. The heading is cut in the same place, which is how the direction is known. The card's own ink names no locality at all, so the locality that kept it is not on it; the record is held because the ink is real and it was really read, and it is withheld from this volume's counts, from the leads and from the reading order."
     },
     {
       "id": "nbi_v02_1799",

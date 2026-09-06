@@ -8,6 +8,7 @@
     "cards": 410,
     "records": 410,
     "slivers": 0,
+    "bled_in_bodies": 0,
     "by_locality": {
       "chicago": 120,
       "cook_county": 87,
