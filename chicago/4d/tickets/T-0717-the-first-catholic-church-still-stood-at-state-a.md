@@ -1,7 +1,7 @@
 ---
 id: T-0717
 title: The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 9:16:22 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34038457857
 ---
 
 The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31.
