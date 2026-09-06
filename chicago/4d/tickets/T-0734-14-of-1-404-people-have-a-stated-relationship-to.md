@@ -1,7 +1,7 @@
 ---
 id: T-0734
 title: 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-05
+pr: 947
 claimed_by: run 9/5/2026, 7:53:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T02:03:35.296Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34002273100
 ---
 

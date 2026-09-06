@@ -66,7 +66,6 @@ T-0753 — Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the h
 # --- modelled, as the household-level kin[] block — graded, reciprocal, legal only against its
 # --- declared inverses. T-0734 is the measurement that ruling exists to spend: 14 of 1,404 people
 # --- carry a stated relationship to anybody, and the sources already print many more.
-T-0734 — 14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print
 T-0732 — James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households
 T-0691 — The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
 T-0816 — Two independent readings of cohort 14 disagree on 46 of its 76 people: T-0509 landed one and the other is on a dead branch
