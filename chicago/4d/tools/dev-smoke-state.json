@@ -2,6 +2,68 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 144,
+      "takenAt": "2026-09-06T19:27:47.231Z",
+      "ref": "steward/t-0778-block5-lot5",
+      "commit": "9017595f51a3",
+      "devCommit": "7dd7eb961f25",
+      "treeHash": "sha256:4077cd0929a009d4",
+      "treeDirty": false,
+      "changelogHash": "sha256:9270830c3b22424d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.8,
+          2.7
+        ]
+      },
+      "source": "/tmp/s_m12c.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 288,
+      "takenAt": "2026-09-06T19:27:47.130Z",
+      "ref": "steward/t-0778-block5-lot5",
+      "commit": "9017595f51a3",
+      "devCommit": "7dd7eb961f25",
+      "treeHash": "sha256:4077cd0929a009d4",
+      "treeDirty": false,
+      "changelogHash": "sha256:9270830c3b22424d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.8,
+          2.7
+        ]
+      },
+      "source": "/tmp/s_d1c.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1269,69 +1331,6 @@
         ]
       },
       "source": "/tmp/s2_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 149,
-      "takenAt": "2026-09-06T06:29:54.696Z",
-      "ref": "steward/t-0696-tiebreak-discriminator",
-      "commit": "dc7d828a2a2c",
-      "devCommit": "ddd195a60c72",
-      "treeHash": "sha256:140d420ce76ef49f",
-      "treeDirty": false,
-      "changelogHash": "sha256:2292adc9aa98d159",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.1,
-          2.9
-        ]
-      },
-      "source": "/tmp/s2_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 168,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 168,
-      "takenAt": "2026-09-06T06:29:54.623Z",
-      "ref": "steward/t-0696-tiebreak-discriminator",
-      "commit": "dc7d828a2a2c",
-      "devCommit": "ddd195a60c72",
-      "treeHash": "sha256:140d420ce76ef49f",
-      "treeDirty": false,
-      "changelogHash": "sha256:2292adc9aa98d159",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.1,
-          2.9
-        ]
-      },
-      "source": "/tmp/s2_m.log"
     },
     {
       "viewport": "mobile",

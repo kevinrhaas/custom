@@ -15,10 +15,12 @@
   "compiler_note": "Printed page 3, already recorded in data/sources/fergus_chicago_directory_1839.json: the volume is Fergus's 1876 completion, out of Old Settlers' recollections, of a list he set up from memory in 1839. This list reads like a clerk's abstract of the sale and may well be one; this reading cannot show that it is, so it is graded as the rest of the volume is.",
   "ditto_note": "The printer sets a repeated bidder as a ditto mark, and the scan ruins it into II, 11, It, », „ and a dozen more. A bidder cell with no word of three or more letters is read as a ditto and carries the name above it with bidder_ditto true — the mark IS the printer saying the same name, so the name is not an inference, but which mark it was is not recoverable and the ink is kept in as_printed.",
   "counts": {
-    "claims": 267,
-    "rows": 267,
+    "claims": 268,
+    "rows": 268,
+    "rows_the_row_map_gathered": 267,
+    "rows_added_off_the_page_image": 1,
     "bidders_named": 100,
-    "rows_with_a_lot_number": 264,
+    "rows_with_a_lot_number": 265,
     "rows_with_an_amount": 249,
     "cells_the_scan_destroyed": {
       "lot": 62,
@@ -32,7 +34,7 @@
       "withheld_from_sale": 10,
       "rows": 102
     },
-    "rows_scan_verified": 102,
+    "rows_scan_verified": 103,
     "aggregate_printed_usd": 100000
   },
   "claims": [
@@ -3811,6 +3813,51 @@
       "entities": [],
       "town_finding": false,
       "notes": "the same brace over block 5's lots 1 to 5"
+    },
+    {
+      "id": "f1839_lot0268",
+      "kind": "civic",
+      "reading": "scan_verified",
+      "quote": "Reserved.",
+      "normalized": {
+        "as_printed": {
+          "block": null,
+          "lot": null,
+          "bidder": null,
+          "amount": null
+        },
+        "bidder": null,
+        "bidder_ditto": false,
+        "bidder_wrapped": false,
+        "block": 5,
+        "block_carried": true,
+        "lot": 5,
+        "amount_usd": null,
+        "withheld_from_sale": "reserved",
+        "addition": "Fort Dearborn Addition to the Town of Chicago",
+        "row_added_off_the_page_image": true
+      },
+      "locator": {
+        "text_file": "fergus_1839_leaf_059.txt",
+        "spans": [
+          {
+            "line": 199,
+            "from": 6,
+            "to": 15
+          }
+        ],
+        "lines": [
+          199,
+          199
+        ],
+        "page": "fergus_1839_leaf_059",
+        "printed_page": 47,
+        "column": "R"
+      },
+      "describes_date": "1839-06",
+      "entities": [],
+      "town_finding": false,
+      "notes": "printed page 47's right half ends on block 5, whose lots 1 to 5 are braced together against a single Reserved. The OCR mapped words to the first four and none at all to the fifth, so the row map gathers four rows where the page prints five and lot 5 had no claim. The page image prints 5 as the last line of the column at y 3275, inside the same brace, with no bidder and no price — so the lot number is read off the image and the withholding is the brace's own Reserved., quoted from the committed text."
     },
     {
       "id": "f1839_lot0069",
