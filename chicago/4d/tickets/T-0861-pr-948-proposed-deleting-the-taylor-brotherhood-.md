@@ -1,7 +1,7 @@
 ---
 id: T-0861
 title: PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead
-state: claimed
+state: done
 epic: TOWN
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 965
 claimed_by: run 9/5/2026, 11:55:23 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T05:03:38.002Z
 claimed_run: null
 ---
 
