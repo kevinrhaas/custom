@@ -1,7 +1,7 @@
 ---
 id: T-0837
 title: Spend the standing synthesis write: read the promotions it proposes and land them deliberately
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-0814
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 1:33:00 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34016638505
 ---
 
 Spend the standing synthesis write: read the promotions it proposes and land them deliberately.
