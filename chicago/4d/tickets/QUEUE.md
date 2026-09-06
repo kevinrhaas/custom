@@ -52,7 +52,6 @@
 
 
 
-T-0837 — Spend the standing synthesis write: read the promotions it proposes and land them deliberately
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
@@ -79,8 +78,6 @@ T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- so a lot-and-block address can finally land on ground. T-0773 is the later-printing rule the
 # --- ask names directly; T-0771 and T-0696 are the readers that spend it.
 T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
-T-0783 — The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere
-T-0694 — M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit
 T-0797 — The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale
 T-0798 — Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale
 
@@ -353,9 +350,16 @@ T-0869 — Clark, Filer & Co. advertise a warehouse five doors east of a corner 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0866 — The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
-T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0868 — Norris 1844 normalizes 'Jones, B. & Co. dry goods and groceries' as a person, not a firm, so the firm filter never sees it
+T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
+T-0873 — publish.sh minifies the four resident cards the synthesizer writes pretty, so the first republish after a synthesis spend turns the drift ratchet red
+T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
+

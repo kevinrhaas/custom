@@ -693,6 +693,15 @@
       "phase_id": "shell_1835",
       "structure_id": "lake_house_construction"
     },
+    "lasalle_lake_house__documented_1834.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 35404,
+      "inputs_sha256": "9edabac4323a3a02a230460c70fb56ec64ed1e22dff650761f540f04d0d28775",
+      "kind": "generated",
+      "phase_id": "documented_1834",
+      "structure_id": "lasalle_lake_house"
+    },
     "lasalle_slough_crossing__crossing_1835.glb": {
       "archetype": "bridge_timber",
       "baked_ao": false,
@@ -3277,8 +3286,8 @@
     "thomas_church_store__frame_1834.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 69684,
-      "inputs_sha256": "b52189f8eacce5bfecfacb91b722e60c87adccdceab1342d715aade8d53caa65",
+      "bytes": 66252,
+      "inputs_sha256": "505ba406252e1d82f1d90abcb1ca3ae9f4fa8eaf1af8707aca02ee41a219fe0f",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "thomas_church_store"

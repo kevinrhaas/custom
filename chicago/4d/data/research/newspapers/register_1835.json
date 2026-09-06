@@ -9,7 +9,7 @@
       "persons": 2630,
       "businesses": 206
     },
-    "structures": 374,
+    "structures": 375,
     "structures_sharing_a_name": 36,
     "streets": 28,
     "resident_persons": 1363
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 863,
+        "none_recorded": 860,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 869,
+      "households_total": 866,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -10624,7 +10624,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "bailey_bennet",
-      "action_note": "data/residents/ already holds this person as bailey_bennet (hh_bailey_bennet, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as bailey_bennet (hh_bailey_bennet, attested). The papers add mentions and dates."
     },
     {
       "id": "person_bennett",
@@ -14023,7 +14023,7 @@
       "last_seen": "1834-01-28",
       "action": "enrich",
       "action_target": "frame_david_p",
-      "action_note": "data/residents/ already holds this person as frame_david_p (hh_frame_david_p, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as frame_david_p (hh_frame_david_p, attested). The papers add mentions and dates."
     },
     {
       "id": "person_david_reel",
@@ -15420,7 +15420,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "sen_elijah_wentworth",
-      "action_note": "data/residents/ already holds this person as sen_elijah_wentworth (hh_sen_elijah_wentworth, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as sen_elijah_wentworth (hh_sen_elijah_wentworth, attested). The papers add mentions and dates."
     },
     {
       "id": "person_elisha_h_hazzard",

@@ -121,12 +121,12 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
 #
 STATED = {
-    "assets": 374,
+    "assets": 375,
     "restales": {
-        "generators/common/*.py": 374,
+        "generators/common/*.py": 375,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 372,
+        "generators/build.py": 373,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

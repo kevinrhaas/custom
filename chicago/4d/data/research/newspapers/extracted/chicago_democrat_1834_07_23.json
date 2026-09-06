@@ -326,7 +326,10 @@
         {
           "as_printed": "WM. McCALEB.",
           "normalized": "[uncertain: Wm. McCaleb]",
-          "role": "proprietor"
+          "role": "proprietor",
+          "associated_places": [
+            "St. Joseph"
+          ]
         },
         {
           "as_printed": "E. P. DEACON, _|",
@@ -355,7 +358,7 @@
           "street": null
         }
       },
-      "notes": "THE SUCCESSION HALF of claim c005's dissolution, and it is what keeps Chicago's pine coming: the LUMBER business is continued by E. P. Deacon alone at the steam mill, while the stock of goods is sold off at cost by McCaleb. So Carver's Chicago yard loses a partnership and keeps a supplier. Two businesses are compiled from these two claims — the dissolved partnership, contradicted, and E. P. Deacon's continuing mill, not contradicted — which is the shape ruling 3 is meant to produce. The year on the second dateline prints '1838' at line 3558 and is read 1834 from the issue and from the insertion code '6w34'; it is not bracketed in the entity because the reading is the paper's own arithmetic, and it is stated here."
+      "notes": "THE SUCCESSION HALF of claim c005's dissolution, and it is what keeps Chicago's pine coming: the LUMBER business is continued by E. P. Deacon alone at the steam mill, while the stock of goods is sold off at cost by McCaleb. So Carver's Chicago yard loses a partnership and keeps a supplier. Two businesses are compiled from these two claims — the dissolved partnership, contradicted, and E. P. Deacon's continuing mill, not contradicted — which is the shape ruling 3 is meant to produce. The year on the second dateline prints '1838' at line 3558 and is read 1834 from the issue and from the insertion code '6w34'; it is not bracketed in the entity because the reading is the paper's own arithmetic, and it is stated here. T-0694: McCaleb's entity now carries St. Joseph, the place his partner's entity on this claim already carries and the place c005's dissolution notice puts the same pair of men at in this same issue. He is the retiring partner of a St. Joseph steam mill selling off its stock, not a Chicago storefront, and reading his role as `proprietor` with no place is what would let a later pass raise one for him here."
     },
     {
       "id": "c007",
