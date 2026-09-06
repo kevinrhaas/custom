@@ -146,7 +146,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 775
+   "n": 836
   }
  ],
  "counts": {
@@ -166,8 +166,8 @@
   "letter_list_ambiguous": 18,
   "letter_list_surname_only_refused": 152,
   "heads_1840_matched_one_entry": 18,
-  "heads_1840_ambiguous": 8,
-  "heads_1840_surname_only_refused": 55
+  "heads_1840_ambiguous": 9,
+  "heads_1840_surname_only_refused": 60
  },
  "residents": {
   "matches": [
@@ -5265,6 +5265,59 @@
     "reaches_scene": []
    },
    {
+    "name": "F. C. Sherman",
+    "same_man_reprinted": true,
+    "rule": "Surname 'Sherman' folds to the same string as the register entry's, and the given name of both begins F.",
+    "entries_1839": [
+     {
+      "claim": "f1839_r0059",
+      "as_printed": "Francis C. Sherman",
+      "printed_page": 39,
+      "role": "mayor_of_chicago",
+      "office": "mayor_of_chicago",
+      "body": "city_of_chicago",
+      "ward_1839": null,
+      "year": 1841,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     },
+     {
+      "claim": "f1839_r0080",
+      "as_printed": "Francis C. Sherman",
+      "printed_page": 39,
+      "role": "mayor_of_chicago",
+      "office": "mayor_of_chicago",
+      "body": "city_of_chicago",
+      "ward_1839": null,
+      "year": 1862,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     },
+     {
+      "claim": "f1839_r0081",
+      "as_printed": "Francis C. Sherman",
+      "printed_page": 39,
+      "role": "mayor_of_chicago",
+      "office": "mayor_of_chicago",
+      "body": "city_of_chicago",
+      "ward_1839": null,
+      "year": 1864,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     }
+    ],
+    "offices": [
+     "mayor_of_chicago"
+    ],
+    "reaches_scene": []
+   },
+   {
     "name": "John H. Kinzie",
     "same_man_reprinted": false,
     "rule": "Surname 'Kinzie' folds to the same string as the register entry's, and the given name of both begins J.",
@@ -5495,6 +5548,11 @@
     "rule": "The surname 'Mason' stands on printed pages 38-39 and no man under it carries the initial 'B' of 'Benjamin Mason'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Casper Miller",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Miller' stands on printed pages 38-39 and no man under it carries the initial 'C' of 'Casper Miller'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Charles Brown",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'C' of 'Charles Brown'. A surname-only agreement is a refusal."
@@ -5503,6 +5561,11 @@
     "name": "Charles Murphy",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Murphy' stands on printed pages 38-39 and no man under it carries the initial 'C' of 'Charles Murphy'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Charles Raymond",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Raymond' stands on printed pages 38-39 and no man under it carries the initial 'C' of 'Charles Raymond'. A surname-only agreement is a refusal."
    },
    {
     "name": "Christopher Smith",
@@ -5518,6 +5581,11 @@
     "name": "Daniel Miller",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Miller' stands on printed pages 38-39 and no man under it carries the initial 'D' of 'Daniel Miller'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "E. A. Rucker",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Rucker' stands on printed pages 38-39 and no man under it carries the initial 'E' of 'E. A. Rucker'. A surname-only agreement is a refusal."
    },
    {
     "name": "Edward Colvin",
@@ -5598,6 +5666,11 @@
     "name": "John Calhoun",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Calhoun' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'John Calhoun'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John Davis",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Davis' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'John Davis'. A surname-only agreement is a refusal."
    },
    {
     "name": "John Davis",
@@ -5708,6 +5781,11 @@
     "name": "William R. Miller",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Miller' stands on printed pages 38-39 and no man under it carries the initial 'W' of 'William R. Miller'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William Raymond",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Raymond' stands on printed pages 38-39 and no man under it carries the initial 'W' of 'William Raymond'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?] Allen",

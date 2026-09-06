@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 46,
+    "pages_held": 48,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 246,
@@ -45511,6 +45511,26 @@
       "printed_page": 233,
       "sheet_side": "left",
       "read_pass": "names (T-0496)",
+      "fingerprintable": false,
+      "why_not": "names read, cells not: this page has no committed per-line age-band cells (cells_state: 'not_read').",
+      "lines": []
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "image": "chicago/reference/census1840/33SQ-GYYJ-RK.jpg",
+      "printed_page": 213,
+      "sheet_side": "left",
+      "read_pass": "names (T-0746)",
+      "fingerprintable": false,
+      "why_not": "names read, cells not: this page has no committed per-line age-band cells (cells_state: 'not_read').",
+      "lines": []
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "image": "chicago/reference/census1840/33SQ-GYYJ-RY.jpg",
+      "printed_page": 212,
+      "sheet_side": "left",
+      "read_pass": "names (T-0746)",
       "fingerprintable": false,
       "why_not": "names read, cells not: this page has no committed per-line age-band cells (cells_state: 'not_read').",
       "lines": []

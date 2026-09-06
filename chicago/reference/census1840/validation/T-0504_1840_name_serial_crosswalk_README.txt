@@ -52,7 +52,7 @@ COUNTS as of this build
 
   households in the extract          964
   distinct fingerprints among them   622
-  pages held                         46
+  pages held                         48
   pages carrying committed cells     21
   lines read on those pages          636
     unique                           246
@@ -119,7 +119,7 @@ WHAT SHOULD HAPPEN NEXT
 1. Printed page 215 (image 33S7-9YYJ-9WF) is flagged in `pages_worth_a_second_look`: 12 of
    its 29 read lines carry a pattern no household in the extract carries. Either its
    families were enumerated outside the extract's boundary or its column grid is displaced.
-2. The pages whose names are read but whose age-band cells are not - printed 206, 222, 226, 230, 232, 233, 235, 238 -
+2. The pages whose names are read but whose age-band cells are not - printed 206, 212, 213, 222, 226, 230, 232, 233, 235, 238 -
    are worth about thirty more resolvable lines each. Reading their cells is the cheapest
    remaining gain here, and needs no new source.
 3. The ambiguous rows need a second axis, not a better read of the same columns. The 1839
