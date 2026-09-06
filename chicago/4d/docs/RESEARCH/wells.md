@@ -234,9 +234,9 @@ reading would make the record look tidiest.
 
 **The count is the liberty and it is stated as one.** The source is plural about the men —
 *"the watermen"*, *"private enterprise"*, *"according to competition"* — so more than one cart
-worked this town. One is drawn because the place is drawn once. `docs/LIBERTIES.md` **L225**
+worked this town. One is drawn because the place is drawn once. `docs/LIBERTIES.md` **L227**
 carries all of it.
 
-**Links:** T-0759 · T-0592 · **L225** · **L146** (the boats, the same grade for the same shape
+**Links:** T-0759 · T-0592 · **L227** · **L146** (the boats, the same grade for the same shape
 of claim) · **L162** (the town's unhitched vehicles) · `data/yard/town_water_cart.json` ·
 `data/research/civic/claims/town_findings_andreas_v1.json#c012,c013,c014`.

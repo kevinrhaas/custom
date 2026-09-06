@@ -10286,10 +10286,10 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Covers:** `sauganash_hotel.frame_1831.form.cross_wing_depth_m`.
 **Recorded:** 2026-09-04.
 
-### L219 — Sixty-three roofs are told who entered their ground by a survey grid nobody traced
-**Scope:** `structures.land_owner[constructed_section_grid]` — 63 structures
+### L219 — Sixty-six roofs are told who entered their ground by a survey grid nobody traced
+**Scope:** `structures.land_owner[constructed_section_grid]` — 66 structures
 **Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
-traced, and 63 structures carry a `land_owner` block that rests on them. The construction is
+traced, and 66 structures carry a `land_owner` block that rests on them. The construction is
 one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
 Madison, whose own note has said since the datum work that it is the *PLSS section corner:
 sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
@@ -10313,11 +10313,16 @@ that meet at that corner — 9, 10, 15 and 16 — and **213 of the 375 sales are
 and deliberately NOT put on the ground** for being outside them. Inside them each assignment
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
-tract line than that drops to `reconstructed`, and the metres are printed on the row. **49 of
-the 63 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+tract line than that drops to `reconstructed`, and the metres are printed on the row. **51 of
+the 66 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
-there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Only 14
-documented buildings carry the middle tier. Two tracts are not grid squares at all
+there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Three of
+the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0883, and they
+are at the bottom tier for the ordinary geometric reason rather than for an invention behind
+them: the wash house stands 12.9 m from a tract line and the shop 39.1 m, both inside the 40 m
+the middle tier asks for, on the same reservation ring the homestead beside them sits on. Only
+15 documented buildings carry the middle tier, the newest of them the garrison's barn at
+47.4 m. Two tracts are not grid squares at all
 and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
 reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10
 clipped to the committed north bank of the main stem.
@@ -10336,7 +10341,7 @@ refuses.
 Related: **L108** (the reservation boundary, from the same corner and the same bearing) ·
 **L182** (Madison's centreline, likewise) · **L216** (the other placement that rests on lot
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
-**Recorded:** 2026-09-04.
+**Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
 ### L220 — 490 people join the town on the town's own lists, and a household is written round each of them
 
@@ -10723,7 +10728,70 @@ notice) · **L26** (the archetype's chimney) · **L148** (the clapboard stock) �
 **Covers:** `lasalle_lake_house.occupants`, `lasalle_lake_house.documented_1834.position`, `lasalle_lake_house.documented_1834.form.stories`, `lasalle_lake_house.documented_1834.form.wall_height_m`, `lasalle_lake_house.documented_1834.form.roof_pitch_deg`, `lasalle_lake_house.documented_1834.form.plan`, `lasalle_lake_house.documented_1834.form.bays`, `lasalle_lake_house.documented_1834.form.chimneys`, `lasalle_lake_house.documented_1834.form.paint`.
 **Recorded:** 2026-09-06 (T-0783).
 
-### L225 — One water cart, at the one point in the sentence that carries a location
+### L225 — The word the draughtsman thought worth writing is the one thing on this barn the model does not build
+**Decision:** `fort_dearborn_big_barn` stands west and a little south of Fort Dearborn with a
+plain gable roof. The plan that puts it there letters it **"Big Barn with Cupola"**, and the
+cupola is **not built**. The record carries it as `form.cupola`, graded `attested` — a source
+states it in so many words — with `geometry: "absent"` beside the value, so the omission is on
+the building's own card rather than in a reviewer's head.
+**Why:** the `outbuilding` archetype has no cupola and cannot acquire one cheaply. A cupola is
+a size, a set of louvres or lights, a roof of its own and a station along a ridge, and this
+building's ridge runs at a pitch that is itself inferred from period practice rather than
+measured off anything. That is four inventions stacked on an inference in order to render one
+word. The barn is honest with a plain gable and a record that says what is missing; it would be
+dishonest with a cupola this project designed.
+**Consequence:** a visitor sees a large log barn beside the garrison garden and does not see the
+one feature that made an 1830 engineer bother to name it. The `Evidence` panel says so. Anyone
+who later gives this archetype a cupola should come back here first — the parameters wanted are
+in this entry, not in the mesh.
+**What is NOT claimed:** nothing about the cupola's form. Its size, its glazing, its louvring
+and where it sat on the ridge are all unstated by both witnesses and are unstated here. A
+second plan of this fort, a post return, or the return of Harrison's 1830 original — what is
+readable today is Andreas's 1884 re-engraving of it — would replace this entry with geometry.
+Related: **T-0883** (this), **T-0758** (the parent: six things the plan names and nothing drew).
+**Covers:** `fort_dearborn_big_barn.barn_1830.form.cupola`.
+**Recorded:** 2026-09-06 (T-0883).
+
+### L226 — Two buildings the fort's engineer named, and nothing else on earth describes
+**Decision:** `fort_dearborn_wash_house` and `fort_dearborn_shop` stand east and south-east of
+Fort Dearborn's pickets. **Where they stand and how big they are is read off a plan. What they
+are made of, how high they are, what shape their roofs are and where their doors are is
+invented**, and every one of those attributes is graded `reconstructed` on both records, so a
+visitor turning the reconstructed tier off sees the two buildings' fabric go with it. The same
+grade covers **`fort_dearborn_big_barn.barn_1830.form.loft`** — a hay loft nobody attests, on a
+barn two witnesses do. And the wash house carries a **`ground_contact: approach_not_modelled`**
+declaration: one corner of it stands 0.45 m clear of the modelled terrain.
+**Why:** the Harrison plan of 1830 is a plan. It letters *Wash house* and *Shop* against two
+drawn buildings and it says nothing about either one's elevation, because no plan does. Gurdon
+Hubbard corroborates the wash house's class, its side of the fort and what was done in it —
+*"rude wash-houses … in which the men and women of the garrison conducted their laundry
+operations"* — and gives it one adjective, `rude`, which is not a material. He does not mention
+the shop at all. So there are two buildings whose position this project can defend to a few
+metres and whose walls it cannot defend at all, and the alternative to inventing the walls was
+leaving two named buildings off the model for a fifth year. `RECONSTRUCTED IS A TIER, NOT A
+FAILURE` (AGENTS.md) is the ruling that says build them and grade them down.
+**What was invented, item by item.** The wash house: `plank` construction (reasoned from `rude`
+and from a wet trade wanting air through its walls, which is reasoning and not evidence), a
+shed roof at 20 degrees, a 2.3 m eave, a man door, and which wall it is in. The shop: `log`
+construction, a gable at 34 degrees, a 3.0 m eave, a man door, its side, and no paint. Every
+figure is the `outbuilding` archetype's own size-aware default or the 34 degrees every other
+Fort Dearborn record here carries; none of them is a reading.
+**Consequence:** a visitor walking east out of the fort's south gate meets two small working
+buildings on ground that was empty, and the confidence view tells them the difference between
+the two claims being made — the footprint chips read `inferred`, the wall chips read
+`reconstructed`. At the wash house they also meet a 45 cm step they cannot take, because the
+building sits on the shoulder where the ground begins to fall to the beach and nothing in this
+model builds the sill, blocks or bank of sand that would have met it there.
+**What is NOT claimed:** which trade the shop was. A post of this size kept a smith and usually
+a carpenter and it would cost nothing to write one in; neither is written, because the plate
+says *Shop*. Nor is the wash house claimed to be the only one — Hubbard says wash-houses,
+plural, and one is drawn, and the record carries the disagreement rather than resolving it.
+Related: **L225** (the barn's cupola) · **T-0883** (this) · **T-0758** (the parent) ·
+**T-0881** (the well and the Out Buildings, still unplaced).
+**Covers:** `fort_dearborn_big_barn.barn_1830.form.loft`, `fort_dearborn_shop.shop_1830.form.construction`, `fort_dearborn_shop.shop_1830.form.roof_type`, `fort_dearborn_shop.shop_1830.form.roof_pitch_deg`, `fort_dearborn_shop.shop_1830.form.wall_height_m`, `fort_dearborn_shop.shop_1830.form.door`, `fort_dearborn_shop.shop_1830.form.door_side`, `fort_dearborn_shop.shop_1830.form.paint`, `fort_dearborn_wash_house.wash_house_1830.form.roof_type`, `fort_dearborn_wash_house.wash_house_1830.form.roof_pitch_deg`, `fort_dearborn_wash_house.wash_house_1830.form.wall_height_m`, `fort_dearborn_wash_house.wash_house_1830.form.door`, `fort_dearborn_wash_house.wash_house_1830.form.door_side`, `fort_dearborn_wash_house.wash_house_1830.ground_contact`.
+**Recorded:** 2026-09-06 (T-0883).
+
+### L227 — One water cart, at the one point in the sentence that carries a location
 **Decision:** `data/yard/town_water_cart.json` stands **one** two-wheeled cart with a
 hogshead mounted at local east 1220.0, north -262.4 — the foot of Randolph Street — facing
 the water on Randolph's own bearing, unhitched, unmanned and unmarked. That a cart stood

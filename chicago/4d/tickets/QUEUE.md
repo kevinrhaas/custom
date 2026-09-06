@@ -83,7 +83,8 @@ T-0788 — Wright numbers all 58 blocks of the Original Town and this project ha
 
 # --- G5 — TOWN DETAILS, COMPOSITION AND ENCLOSURES. The rest of what the owner named. Each puts
 # --- something a visitor can see on the ground, off evidence already read.
-T-0758 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
+T-0881 — The fort's well and the Out Buildings: the class T-0592 refused the town, and a plural label the plate draws once
+T-0882 — The Fort Cemetery: a burial ground is not a building, and this model has no record type that can say what it is
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
 T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
@@ -365,4 +366,5 @@ T-0878 — Wright's 1834 registration is three per cent long in y: the School Se
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
 T-0880 — publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat
-T-0884 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
+T-0884 — The register sells Russel Heacock lot 7 of block 117 and his committed house stands 7 m outside block 118: one of the two is out by more than the construction admits
+T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across

@@ -547,7 +547,86 @@ def reach_structures(rows, structures, to_grid):
     return assigned
 
 
-def school_section_counts(rows):
+def school_section_parcels(placed, entries):
+    """A ROW IS NOT A PARCEL, and in this sale the difference is 38 of them (T-0885).
+
+    Every count of who bought the south is a count of REGISTER ROWS — that is what the
+    source offers and what `school_section_counts` prints. It is not the same as a count
+    of ground: 335 live rows name only 297 distinct block-and-lot parcels, because 38
+    parcels are entered more than once, under two different names, on the same day and
+    the same page of the volume, with a purchase number apiece.
+
+    Twenty-six of those 38 are ONE pair of names — every parcel Ebenezer Hale enters,
+    John Hale enters as well — which is why the keenest-purchaser table reads two Hales
+    at the top of it. Six of the 38 carry the register's `AS` suffix on one of the two
+    rows, which reads as an assignment and is the one shape of duplicate this source
+    explains itself. The rest, the Hales among them, it does not.
+
+    NOTHING HERE MERGES A NAME OR DROPS A ROW. Whether the pair is one transaction, an
+    assignment written without its mark, or two men entering one lot is an identity
+    ruling, and this file makes none: `resident_crosswalk.json` is where the domain rules
+    on identity. What this does is stop the difference being invisible — a table that
+    says `rows` beside a table that says `parcels` cannot be read as the same number by
+    accident.
+    """
+    by_id = {e["record_id"]: e for e in entries}
+    live = [r for r in placed if not r["void"]]
+    parcels = {}
+    for row in live:
+        key = (row["ground"]["block_number"], row["ground"]["lot_as_read"])
+        parcels.setdefault(key, []).append(row)
+    repeated = {k: v for k, v in parcels.items() if len(v) > 1}
+
+    def marked(row):
+        return by_id[row["record_id"]]["purchaser_as_read"].rstrip().endswith(" AS")
+
+    pairs, prices_agree, days_agree, pages_agree, with_mark = {}, 0, 0, 0, 0
+    disagreements = []
+    for key, rows_here in sorted(repeated.items()):
+        names = tuple(sorted({r["purchaser_normalized"] for r in rows_here}))
+        entry = pairs.setdefault(names, {"purchasers": list(names), "parcels": 0,
+                                         "an_assignment_mark_on_a_row": False})
+        entry["parcels"] += 1
+        prices = {by_id[r["record_id"]]["total_price"] for r in rows_here}
+        days = {r["date_purchased"] for r in rows_here}
+        pages = {(by_id[r["record_id"]]["volume"], by_id[r["record_id"]]["page"])
+                 for r in rows_here}
+        prices_agree += len(prices) == 1
+        days_agree += len(days) == 1
+        pages_agree += len(pages) == 1
+        if any(marked(r) for r in rows_here):
+            entry["an_assignment_mark_on_a_row"] = True
+            with_mark += 1
+        if len(prices) > 1:
+            disagreements.append({
+                "block": key[0], "lot_as_read": key[1],
+                "rows": sorted(r["record_id"] for r in rows_here),
+                "prices_as_read": sorted(prices),
+                "reading": "The same parcel, the same day and the same page, entered "
+                           "at two prices. One of the two is a slip — of the clerk's "
+                           "pen or of the transcription — and this project does not "
+                           "know which, so both are carried as read."})
+
+    return {
+        "live_rows_counted": len(live),
+        "void_rows_excluded": len(placed) - len(live),
+        "distinct_parcels": len(parcels),
+        "parcels_entered_more_than_once": len(repeated),
+        "of_those_the_day_agrees_on": days_agree,
+        "of_those_the_page_agrees_on": pages_agree,
+        "of_those_the_price_agrees_on": prices_agree,
+        "of_those_carrying_an_assignment_mark": with_mark,
+        "name_pairs": sorted(pairs.values(), key=lambda p: (-p["parcels"],
+                                                            p["purchasers"])),
+        "price_disagreements": disagreements,
+        "what_this_is_not": "Not a merge and not a refusal. The rows all stand; this "
+                            "only counts the ground under them, so that a row count is "
+                            "never read as a parcel count. Identity is ruled on in "
+                            "data/research/land_sales/resident_crosswalk.json.",
+    }
+
+
+def school_section_counts(rows, entries):
     """Who bought the south, counted off the rows that landed on the plat.
 
     THE FIRST HONEST STATEMENT OF IT this project can make: until T-0797 traced the
@@ -572,6 +651,7 @@ def school_section_counts(rows):
     busiest = sorted(by_block.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:10]
     keenest = sorted(by_buyer.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:10]
     return {
+        "parcels": school_section_parcels(placed, entries),
         "rows_in_the_section": len(sixteen),
         "put_on_a_block": len(placed),
         "of_which_name_a_lot_inside_it": named_a_lot,
@@ -710,7 +790,7 @@ def derive():
             grade: sum(1 for b in blocks.values() if b["confidence"] == grade)
             for grade in ("inferred", "reconstructed")},
         "structures_unreached_by_section": {k: len(v) for k, v in sorted(unreached.items())},
-        "school_section": school_section_counts(rows),
+        "school_section": school_section_counts(rows, entries),
     }
 
     doc = {
@@ -854,6 +934,25 @@ def report():
     for row in ss["keenest_purchasers"]:
         print(f"    {row['purchaser']:<26} {row['blocks']} block(s)")
 
+    par = ss["parcels"]
+    print("\n  AND THE ROWS ARE NOT PARCELS")
+    print(f"    live rows                  {par['live_rows_counted']}"
+          f" ({par['void_rows_excluded']} void row excluded)")
+    print(f"    distinct block-and-lot     {par['distinct_parcels']}")
+    print(f"    entered more than once     {par['parcels_entered_more_than_once']}"
+          f" — the day agrees on {par['of_those_the_day_agrees_on']},"
+          f" the page on {par['of_those_the_page_agrees_on']},"
+          f" the price on {par['of_those_the_price_agrees_on']}")
+    print(f"    with an assignment mark    {par['of_those_carrying_an_assignment_mark']}")
+    for pair in par["name_pairs"]:
+        mark = "  (one row marked AS)" if pair["an_assignment_mark_on_a_row"] else ""
+        print(f"      {' and '.join(pair['purchasers']):<44}"
+              f" {pair['parcels']} parcel(s){mark}")
+    for bad in par["price_disagreements"]:
+        print(f"    block {bad['block']} lot {bad['lot_as_read']} is entered at "
+              f"{' and '.join('$' + v for v in bad['prices_as_read'])}"
+              f" ({', '.join(bad['rows'])})")
+
     print("\nTHE GROUND UNDER THE TOWN")
     by_tract = {}
     for sid, block in blocks.items():
@@ -953,6 +1052,44 @@ def self_test():
     assert SCHOOL_BLOCK.match("06126") is None
     checks.append("a bare block, a lot-and-block, a voided row and an unread "
                   "description are each read as what they are")
+
+    # A ROW IS NOT A PARCEL (T-0885). The counts above are rows, and 38 parcels carry
+    # more than one of them; the arithmetic that says so is held here, along with the
+    # claim the summary makes about every repeated parcel — that the two rows agree on
+    # the day and on the page of the volume, which is what makes them the same sale
+    # written twice rather than two sales of the same ground months apart.
+    par = ss["parcels"]
+    entries_by_id = {e["record_id"]: e for e in load(DOMAIN / "entries.json")["entries"]}
+    live = [r for r in landed if not r["void"]]
+    seen = {}
+    for row in live:
+        seen.setdefault((row["ground"]["block_number"], row["ground"]["lot_as_read"]),
+                        []).append(row)
+    repeated = {k: v for k, v in seen.items() if len(v) > 1}
+    assert par["live_rows_counted"] == len(live) == len(landed) - par["void_rows_excluded"]
+    assert par["distinct_parcels"] == len(seen) < len(live), par
+    assert par["parcels_entered_more_than_once"] == len(repeated)
+    assert sum(pair["parcels"] for pair in par["name_pairs"]) == len(repeated)
+    assert par["of_those_the_day_agrees_on"] == par["of_those_the_page_agrees_on"] \
+        == len(repeated), par
+    for rows_here in repeated.values():
+        assert len({r["date_purchased"] for r in rows_here}) == 1
+        assert len({(entries_by_id[r["record_id"]]["volume"],
+                     entries_by_id[r["record_id"]]["page"]) for r in rows_here}) == 1
+        assert len({entries_by_id[r["record_id"]]["purchase_no"]
+                    for r in rows_here}) == len(rows_here), "one purchase number, two rows"
+        assert len({r["purchaser_normalized"] for r in rows_here}) > 1, \
+            "a parcel repeated under ONE name would be a duplicated row, not a pair"
+    assert par["of_those_the_price_agrees_on"] + len(par["price_disagreements"]) \
+        == len(repeated)
+    checks.append(f"{len(live)} rows are {len(seen)} parcels: every one of the "
+                  f"{len(repeated)} repeated parcels is two names on one day, one page "
+                  "and two purchase numbers")
+
+    # And nothing here merged a name or dropped a row to get that number.
+    assert ss["put_on_a_block"] == len(landed)
+    assert ss["distinct_purchasers"] == len({r["purchaser_normalized"] for r in landed})
+    checks.append("counting parcels changed no row count and merged no spelling")
 
     for line in checks:
         print("  ok  " + line)

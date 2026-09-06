@@ -1,5 +1,5 @@
 ---
-id: T-0884
+id: T-0886
 title: The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
 state: open
 epic: META
@@ -54,6 +54,6 @@ readings are weighed and one adopted with the reasoning written into
 is that the channel was open water on the scene date then the terrain's own dating file is
 the place that has to say so.
 
-**Links:** T-0759 · **L225** · `docs/RESEARCH/wells.md` § 5 ·
+**Links:** T-0759 · **L227** · `docs/RESEARCH/wells.md` § 5 ·
 `data/terrain/epochs/e1834_harbor_cut/shoreline.geojson` ·
 `data/terrain/1835_intown_water_dating.json` · `data/yard/town_water_cart.json`
