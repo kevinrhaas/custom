@@ -372,12 +372,12 @@ def find_slivers(cards: list) -> dict:
 # text that is not on that card.
 #
 # MEASURED before the rule, and the measurement is what fixed its two clauses.
-# Asking, over the four volumes' 6,696 committed cards, whether a body OPENS with a
+# Asking, over the four volumes' 6,658 committed cards, whether a body OPENS with a
 # byte-exact run that CLOSES another body on the same page:
 #
-#   run >= 15 chars | 22 pairs | 22 at column delta -1 | 0 at 0, +1, +-2, +-3
+#   run >= 15 chars | 21 pairs | 21 at column delta -1 | 0 at 0, +1, +-2, +-3
 #
-# against an ordered same-page pair population of 15,548 at delta 0 and 2,565 at
+# against an ordered same-page pair population of 15,518 at delta 0 and 2,517 at
 # delta +1. The concentration is the crop geometry's own prediction and is the
 # evidence that the two readings are the same ink, exactly as in T-0601.
 #
@@ -397,10 +397,10 @@ def find_slivers(cards: list) -> dict:
 # card is B, not A. The window that slices column c's body line slices its HEADING
 # line at the same x, so a card carried in by this artefact opens mid-word — its
 # heading is a fragment beginning in lower case (`nner` out of `Brenner`, `lus` out
-# of `Broslus`, `berta` out of `Roberts`). Over all 6,696 cards 1,024 headings begin
-# in lower case, a base rate of 15.3 per cent; over the 22 long-run pairs, 15 do —
-# 68 per cent, an enrichment of 4.5x. The seven refused by this clause are the check
-# that it is the right way round: one of them, `nbi_v02_1835`, is a precision-sample
+# of `Broslus`, `berta` out of `Roberts`). Over all 6,658 cards 1,019 headings begin
+# in lower case, a base rate of 15.3 per cent; over the 21 long-run pairs, 15 do —
+# 71 per cent, an enrichment of 4.7x. The six refused by this clause are the check
+# that it is the right way round: one of them, `nbi_v02_1830`, is a precision-sample
 # row hand-adjudicated `locality_correct` off the leaf image, with the county and
 # the state read on the card. Marking it would have contradicted a reading made by
 # eye.
@@ -629,6 +629,28 @@ def page_number_slot(body: str, m) -> bool:
     return bool(PAGE_LIST_BEFORE.search(pre[:-1]))
 
 
+# FOUR — THE INQUISITIONS AGAIN, WHERE THE REGNAL YEAR IS TOO WRECKED FOR REGNAL.
+# T-0766. REGNAL above tells 'Calendarium, Hen. III. and Edw. I' apart from 'Cook Co.,
+# Ill.' by the regnal abbreviation standing in front of the stroke, and that abbreviation
+# is three or four letters of the worst text in the volume: it comes back as 'Han,',
+# 'Hee,', 'Ken,', 'Ron,' and 'ben,', and the numeral comes back lowercase. So the guard
+# fires on the cards whose OCR happened to survive and misses the ones whose OCR did not
+# — nbi_v03_0614 is the proof, 'Calendafium, Han, iii. and i n .', volume 1's false
+# positive wearing a different wreck.
+#
+# The discriminator is not the regnal year but the SERIES. Every one of these cards cites
+# the same work, `Calendarium Inquisitionum post mortem`, and 'Calendarium' is eleven
+# letters where the regnal abbreviation is three — long enough to be recognised through
+# the photostat by similarity, which is how this file already matches the works a
+# citation names (`token_like`). The threshold is measured, not guessed: at 0.55 it
+# strikes 38 cards over the four volumes and every one of them is this series; at 0.50 it
+# begins to take real Illinois cards, because 'Blanchard' and 'Cicncharu' — the publisher
+# of the DuPage and Sangamon county histories — are as close to 'calendarium' as some of
+# these wrecks are. The cost of the rule at 0.55 is zero cards, and the measurement is in
+# the README.
+CALENDARIUM = ("calendarium", 0.55)
+
+
 CITATION_YEAR = re.compile(r"(?<!\d)1[5-9]\d\d(?!\d)")
 
 
@@ -661,6 +683,8 @@ def buckets_of(body: str):
         if name == "illinois_abbreviated" and call_number_slot(body, m):
             continue
         if name == "illinois_abbreviated" and page_number_slot(body, m):
+            continue
+        if name == "illinois_abbreviated" and token_like(body, *CALENDARIUM):
             continue
         out.append(name)
         spans.append((m.start(), m.end()))
@@ -2167,6 +2191,18 @@ def self_test() -> int:
          "III, Hepgoed fam. (He'agaod. W.l 1898. See lad", []),
         ("the regnal Calendarium, which REGNAL already refused",
          "England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I. 1865.)", []),
+        ("the regnal Calendarium with its regnal year wrecked (nbi_v03_0614, T-0766)",
+         "\u2014 Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |", []),
+        ("the same series where the title itself is wrecked (nbi_v01_hibald, T-0766)",
+         "tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.", []),
+        ("a county history the Calendarium rule must not take (T-0766's measured cost)",
+         "j* \" 6 ' Co., Ill, (Cicncharu, R.) I882l pt.2t", ["illinois_abbreviated"]),
+        ("the regnal Calendarium with its regnal year wrecked (T-0766)",
+         "\u2014 Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |", []),
+        ("the same series where the title itself is wrecked (T-0766)",
+         "tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.", []),
+        ("a county history the Calendarium rule must not take (T-0766's measured cost)",
+         "j* \" 6 ' Co., Ill, (Cicncharu, R.) I882l pt.2t", ["illinois_abbreviated"]),
         ("a wrapped locality, which the call-number rule must not touch",
          "III. f(Moses, J, j n d Kirkland, J.) I89J,", ["illinois_abbreviated"]),
         ("a wrecked reading that still carries its date (nbi_v01_1796's class)",

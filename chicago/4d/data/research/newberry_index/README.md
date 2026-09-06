@@ -79,7 +79,7 @@ drawn on one volume is not a measurement of another.
 |---|---|---|---|---|---|
 | 1 (A-C) | 40 | 39 | **0.975** | 20/20 | 19/20 |
 | 2 (C-H) | 40 | 39 | **0.975** | 20/20 | 19/20 |
-| 3 (H-P) | 40 | 37 | **0.925** | 20/20 | 17/20 |
+| 3 (H-P) | 40 | 38 | **0.950** | 20/20 | 18/20 |
 | 4 (P-Z) | 40 | 39 | **0.975** | 20/20 | 19/20 |
 
 Volumes 1-3 are the figures **after T-0600**, which struck 443 stanzas that name a locality
@@ -148,11 +148,13 @@ that is not on the card** (the sliver, `nbi_v03_0913`, is the one T-0600 struck)
   opens `lil.`. That is on no card; the `illinois_abbreviated` pattern anchors on
   start-of-line as well as on a comma, and the rule above the card satisfies it. Volume
   2's banner class and this are the same failure at two different sources.
-- **The regnal class, through the rule written to stop it** — `nbi_v03_0653`,
-  'Messendene family. — England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I.
-  1865.)', read by the photostat as `Calendafium, Han, iii. and i n .`. `REGNAL` wants
-  the regnal name and a capitalised numeral; here neither survived. Volume 1 struck 35
-  cards with that rule and volume 3 shows what it still lets through.
+- **The regnal class, through the rule written to stop it — SINCE STRUCK (T-0766)** —
+  `nbi_v03_0653`, 'Messendene family. — England. (Roberts, C., Ed. Calendarium, Hen. III.
+  and Edw. I. 1865.)', read by the photostat as `Calendafium, Han, iii. and i n .`.
+  `REGNAL` wants the regnal name and a capitalised numeral; here neither survived. Volume
+  1 struck 35 cards with that rule and volume 3 showed what it still let through; the
+  `CALENDARIUM` rule below matches the SERIES instead of the regnal year and took this
+  card and 37 others.
 
 One more thing volume 3 shows that is not a precision error: on the widest pages the
 printed column 3 begins left of the 519-point crop, and its headings lose their opening
@@ -215,6 +217,39 @@ whose entries are filed by regnal year — `Calendarium, Hen. III. and Edw. I` �
 `, III.` is the shape of `, Ill.`. `REGNAL` in the tool refuses them; 35 cards left
 volume 1 when it was added, and volume 1's sample was redrawn afterwards.
 
+**AND IT FOUND THEM AGAIN, BECAUSE THE REGNAL YEAR IS THE PART THE PHOTOSTAT DESTROYS
+(T-0766).** `REGNAL` tells the inquisitions apart from a county by the three or four
+letters standing in front of the stroke, and those letters come back as `Han,`, `Hee,`,
+`Ken,`, `Ron,` and `ben,` with the numeral in lowercase. So the guard fires on the cards
+whose OCR survived and misses the ones whose OCR did not. The discriminator that does not
+depend on the wreck is the SERIES: every one of these cards cites the same work, and
+`Calendarium` is eleven letters where the regnal abbreviation is three — long enough to be
+recognised through the photostat by similarity, which is how this file already matches the
+works a citation names. `CALENDARIUM` is `token_like(body, "calendarium", 0.55)`, and the
+threshold is measured rather than chosen: **38 cards left the four volumes — 17, 6, 15 and
+0 — and every one of them is this series.** At 0.50 the rule begins taking real Illinois
+cards, because `Blanchard` and its wreck `Cicncharu` — the publisher of the DuPage and
+Sangamon county histories — are as close to `calendarium` as some of these are. Both ends
+of that are self-test cases.
+
+**THE FOUR DISCRIMINATORS THAT WERE REFUSED, AND WHAT EACH WOULD HAVE COST.** T-0766 asked
+whether a rule could separate the remaining bad keeps from a wrapped locality — `..., Cook
+Co.,` at the end of one line and `Ill. (Andreas, A. T.) 1884-6` at the head of the next —
+and the answer for four of the five shapes is no, measured over all four volumes as they
+now stand, against the 4,297 cards that rest on `illinois_abbreviated` alone:
+
+| the rule proposed | what it would strike | why it is refused |
+|---|---|---|
+| the stroke is the last ink on the line | 104 | **51** of them carry a county in front of it — 'Rockford and Winnebago Co., Ill.' is the commonest card in this index, and the citation simply wrapped |
+| digits immediately after the stroke | 50 | 6 carry a county in front of it, and the rest are the column-sliver class, which is T-0601's and not a locality rule's |
+| a start-of-line stroke followed by a lowercase word | 36 | it takes `nbi_v01_2418`'s class, the ticket's own bad keep — and also the Eppler card, whose body reads `i li,i,,gilen Co., III. (LeBtreo…) I87B`, a real Illinois county history the pattern happened to match at the head of the line first |
+| `index` in front of the stroke — 'See index III.' | **0** | the class is real (a genealogy's index volume in roman) but no rule reaches it: the words that would identify it are the words the photostat destroys, and 'See index' comes back as `So,\|„de,` |
+
+A filter that costs real Illinois cards to catch four is the wrong trade, and the sample
+already names the cost; these four are written down here so the next reader does not
+re-derive them. The class that CAN be caught is the one that names a work, and the work is
+what `CALENDARIUM` matches on.
+
 **Surnames are recovered, not read.** A heading is often clipped by its neighbour, so
 `er, E P Adams` is a real reading of an Adams card. The comparison key is the longest
 word of three letters or more in the heading, which is `Adams` there and `Aldridge` in
@@ -223,7 +258,7 @@ heading verbatim.
 
 **Citations are clustered, and more than half of them are not.** The works table in the
 tool matches a citation by pattern or by similarity to one canonical spelling. It reaches
-3,068 of the 6,688 cards read so far. The 3,620 it does not reach are overwhelmingly Illinois
+3,061 of the 6,658 cards read so far. The 3,597 it does not reach are overwhelmingly Illinois
 COUNTY histories — Chapman, LeBaron, Brink & McDonough, Baldwin, Murray Williamson,
 Power — published by houses nobody has written a pattern for, and only **365** of them
 name Chicago or Cook County. That residue is the weakest part of this reading and it is
@@ -292,15 +327,16 @@ count defect and not a reading defect.
 
 **What this rule does NOT catch, and a caution about a claim it disproves.**
 `coverage.json` said volume 2's one remaining bad keep was "a column sliver of the shape
-T-0601 carries". It is not. `nbi_v02_0607` — `Hallam | , 111.19 Hallam faaily.` — opens
+T-0601 carries". It is not. `nbi_v02_0606` — `Hallam | , 111.19 Hallam faaily.` — opens
 with `, 111.19`, which is the **tail** of the card in the column to its *left*
 (`Hall | -±~2.' la letk» te,'», 111.19`). That is the mirror artefact: a window catching
 the right edge of the previous column on a page wide enough to push it past the boundary,
 and it contaminates a body rather than duplicating a card — which makes it a precision
 defect, not a count one. It is measured and ruled on in the next section (T-0769), which
 also says why the rule written there does not reach this card. (The record id was
-`nbi_v02_0610` when this paragraph was written; T-0765's strike of 32 rows renumbered it,
-which is the positional-id hazard both these rules are built around.)
+`nbi_v02_0610` when this paragraph was written, and `nbi_v02_0607` an hour later; T-0765's
+strike of 32 rows and T-0766's of 38 more each renumbered it, which is the positional-id
+hazard both these rules are built around.)
 
 ## The bled-in body, measured and ruled — T-0769
 
@@ -313,17 +349,17 @@ glued to the **front** of the card it assembles, heading line and body line alik
 locality patterns then match on text that is not on that card.
 
 **The measurement, and it fixed both clauses of the rule.** Asking, over the four volumes'
-6,696 committed cards, whether a body OPENS with a byte-exact run that CLOSES another body
+6,658 committed cards, whether a body OPENS with a byte-exact run that CLOSES another body
 on the same page:
 
 | shared run | pairs | at delta −1 | at 0 | at +1 | at ±2, ±3 |
 |---|---|---|---|---|---|
-| ≥ 6 characters | 122 | 118 | 4 | 0 | 0 |
-| ≥ 9 characters | 77 | **77** | 0 | 0 | 0 |
-| ≥ 15 characters | 22 | **22** | 0 | 0 | 0 |
+| ≥ 6 characters | 121 | 117 | 4 | 0 | 0 |
+| ≥ 9 characters | 76 | **76** | 0 | 0 | 0 |
+| ≥ 15 characters | 21 | **21** | 0 | 0 | 0 |
 
-against an ordered same-page pair population of 15,548 at delta 0, 2,565 at ±1, 1,290 at
-±2 and 653 at ±3. The concentration at delta −1 is the crop geometry's own prediction and
+against an ordered same-page pair population of 15,518 at delta 0, 2,517 at ±1, 1,270 at
+±2 and 646 at ±3. The concentration at delta −1 is the crop geometry's own prediction and
 is the evidence that the two readings are the same ink, exactly as in T-0601.
 
 **Why the floor is 15 and not 6.** The ticket's first pass asked for a run of six and found
@@ -342,9 +378,9 @@ like when column c has ink on that line, and there the contaminated card is B, n
 window that slices column c's body line slices its **heading** line at the same x, so a
 card carried in by this artefact opens mid-word — its heading is a fragment beginning in
 lower case (`nner` out of `Brenner`, `lus` out of `Broslus`, `berta` out of `Roberts`).
-Over all 6,696 cards 1,024 headings begin in lower case, a base rate of **15.3 per cent**;
-over the 22 long-run pairs, **15 do — 68 per cent**, an enrichment of 4.5×. The seven the
-clause refuses are the check that it is the right way round: one of them, `nbi_v02_1835`,
+Over all 6,658 cards 1,019 headings begin in lower case, a base rate of **15.3 per cent**;
+over the 21 long-run pairs, **15 do — 71 per cent**, an enrichment of 4.7×. The six the
+clause refuses are the check that it is the right way round: one of them, `nbi_v02_1830`,
 is a precision-sample row hand-adjudicated `locality_correct` against the leaf image, with
 the county and the state read on the card. Marking it would have contradicted a reading
 made by eye.
@@ -377,7 +413,7 @@ counting a card kept for a locality printed in the column to its left. `counts` 
 not open with, a volume counting its bleeds as cards, and a `bleed_run` restated to
 something the two cards do not share.
 
-**What it does not reach, said plainly.** `nbi_v02_0607` — the volume 2 bad keep this
+**What it does not reach, said plainly.** `nbi_v02_0606` — the volume 2 bad keep this
 ticket was filed off — is a bled-in body of exactly this shape, and the rule does **not**
 mark it: its shared run is `, 111.19`, eight characters, well inside what the 27-point
 overlap carries on its own. Its precision-sample verdict is `not_demonstrated` either way,
@@ -395,11 +431,11 @@ cannot both stand on one card.
 
 ## Volume 1 (A-C), read 2026-09-03 under T-0570
 
-987 pages cropped and walked · **58,488 cards** assembled · **2,414 kept** for naming
+987 pages cropped and walked · **58,488 cards** assembled · **2,397 kept** for naming
 Chicago, Cook County or Illinois, of which 3 are column slivers and 10 are bled-in
-bodies, so **2,401 cards** ·
+bodies, so **2,384 cards** ·
 of those **562 name Chicago or Cook County** ·
-1,598 distinct surname keys · **398 leads** across four layers (residents 196, census
+1,582 distinct surname keys · **398 leads** across four layers (residents 196, census
 1840 123, voters 62, structures 17) · **0 merges**. (Kept and Chicago/Cook are the
 post-T-0600 figures — 2,579 and 581 before the rules. T-0601's re-parse moved the lead
 counts again, and almost none of that is T-0601: run against today's people layers the
@@ -432,11 +468,11 @@ volumes are on the Internet Archive (`historyofchicago01mose`, `historyofchicago
 
 ## Volume 2 (C-H), read 2026-09-03 under T-0578
 
-1,016 pages cropped and walked · **58,589 cards** assembled · **1,877 kept** for naming
+1,016 pages cropped and walked · **58,589 cards** assembled · **1,871 kept** for naming
 Chicago, Cook County or Illinois, of which 1 is a column sliver and 2 are bled-in
-bodies, so **1,874 cards** ·
+bodies, so **1,868 cards** ·
 of those **491 name Chicago or Cook County** ·
-1,250 distinct surname keys · **243 leads** across four layers (residents 126, census
+1,244 distinct surname keys · **243 leads** across four layers (residents 126, census
 1840 72, voters 37, structures 8) · **0 merges**. (1,987 and 501 before T-0600.)
 
 Fewer kept cards than volume 1 (1,877 against 2,414) on more pages, and the reason is the
@@ -448,11 +484,11 @@ against 23.3 per cent of volume 1's.
 
 ## Volume 3 (H-P), read 2026-09-03 under T-0579
 
-1,003 pages cropped and walked · **68,552 cards** assembled · **1,995 kept** for naming
+1,003 pages cropped and walked · **68,552 cards** assembled · **1,980 kept** for naming
 Chicago, Cook County or Illinois, of which 4 are column slivers and 3 are bled-in
-bodies, so **1,988 cards** ·
+bodies, so **1,973 cards** ·
 of those **502 name Chicago or Cook County** ·
-1,402 distinct surname keys · **238 leads** across four layers (residents 113, census
+1,387 distinct surname keys · **238 leads** across four layers (residents 113, census
 1840 75, voters 42, structures 8) · **0 merges**. (2,131 and 520 before T-0600.)
 
 The most cards assembled of any volume so far (68,552 against 58,488 and 58,589) on
@@ -481,9 +517,9 @@ deleted: a project that only records its final figure cannot show that it earned
 
 | volume | pages | cards assembled | per page | kept | column slivers | bled-in bodies | cards | Chicago/Cook | precision |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 (A-C) | 987 | 58,488 | 59 | 2,414 | 3 | 10 | 2,401 | 562 | 0.975 |
-| 2 (C-H) | 1,016 | 58,589 | 58 | 1,877 | 1 | 2 | 1,874 | 491 | 0.975 |
-| 3 (H-P) | 1,003 | 68,552 | 68 | 1,995 | 4 | 3 | 1,988 | 502 | 0.925 |
+| 1 (A-C) | 987 | 58,488 | 59 | 2,397 | 3 | 10 | 2,384 | 562 | 0.975 |
+| 2 (C-H) | 1,016 | 58,589 | 58 | 1,871 | 1 | 2 | 1,868 | 491 | 0.975 |
+| 3 (H-P) | 1,003 | 68,552 | 68 | 1,980 | 4 | 3 | 1,973 | 502 | 0.950 |
 | 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | not checked | 246 | 9 | 0.513 |
 | **4 (P-Z), OCR** | **918** | **33,357** | **36** | **410** | **not checked** | **0** | **410** | **207** | **0.975** |
 
@@ -500,7 +536,7 @@ looked for slivers in the 33,357 cards it assembled. Its `cards` column therefor
 `kept` because none have been deducted, not because none exist. Its **0** in the bled-in
 column IS a measurement: T-0769's pass ran over all four committed readings, this one
 included, and found none in it — the re-read's pages carry the artefact at a rate of
-zero in 410, against 10 in 2,414 in volume 1.
+zero in 410, against 10 in 2,397 in volume 1.
 
 
 **Volume 4's row is the OCR one.** It is what `records/entries_vol_04.json` holds, what
