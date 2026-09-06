@@ -1,5 +1,5 @@
 {
-  "_doc": "THE RULINGS ON RECORDED CONFLICTS — T-0733.\n\nThe final resident audit (T-0512) was the first artifact that could see, in one place, every person the research ledgers had recorded a conflict against. It found them and nothing ruled on any of them. A conflict that is recorded and never adjudicated reads, to anybody downstream, exactly like a conflict nobody found — which is the whole reason this file exists.\n\nWHAT A RULING IS. A written adjudication of a conflict the ledgers already record, made on the evidence already committed. It asserts NOTHING new: every verdict here is a DECLINE, and a decline is what the layer already does silently — the candidate was never asserted, the card carries no identity on its strength. This file writes down the decision that was already taken, names the ground it was taken on, and — the part that was missing — names the record that would REOPEN it. No grade rises here, nobody is minted, no candidate is adopted to close a conflict.\n\nTHE RULINGS ARE PINNED TO THE CONFLICT TEXT THEY READ. `ruled_conflicts` carries the conflict strings verbatim as the ledgers state them. If a ledger's conflict is reworded, or a new conflict is added to a person already ruled, the ruling no longer covers that person and the audit's `flag_conflicting_evidence` fires again. That is deliberate: a ruling may never rubber-stamp a conflict it has not read.\n\nTHE STANDING CONSTRAINTS ARE NOT CONFLICTS, and folding them in was a defect in the flag. Eight households carry `review_required`, and every one of the eight carries `touches_removal` with it: they are the households the final removal of the Potawatomi from Chicago reaches, and AGENTS.md requires the flag to stand permanently on them so no scene containing them can be marked `released`. It is a standing ethical constraint, not an open evidentiary question, and no research can retire it. The audit now counts them under `flag_standing_constraint` instead.",
+  "_doc": "THE RULINGS ON RECORDED CONFLICTS — T-0733.\n\nThe final resident audit (T-0512) was the first artifact that could see, in one place, every person the research ledgers had recorded a conflict against. It found them and nothing ruled on any of them. A conflict that is recorded and never adjudicated reads, to anybody downstream, exactly like a conflict nobody found — which is the whole reason this file exists.\n\nWHAT A RULING IS. A written adjudication of a conflict the ledgers already record, made on the evidence already committed. It asserts NOTHING new: every verdict here is a DECLINE, and a decline is what the layer already does silently — the candidate was never asserted, the card carries no identity on its strength. This file writes down the decision that was already taken, names the ground it was taken on, and — the part that was missing — names the record that would REOPEN it. No grade rises here, nobody is minted, no candidate is adopted to close a conflict.\n\nTHE RULINGS ARE PINNED TO THE CONFLICT TEXT THEY READ. `ruled_conflicts` carries the conflict strings verbatim as the ledgers state them. If a ledger's conflict is reworded, or a new conflict is added to a person already ruled, the ruling no longer covers that person and the audit's `flag_conflicting_evidence` fires again. That is deliberate: a ruling may never rubber-stamp a conflict it has not read.\n\nTHE STANDING CONSTRAINTS ARE NOT CONFLICTS, and folding them in was a defect in the flag. Eight households carry `review_required`, and every one of the eight carries `touches_removal` with it: they are the households the final removal of the Potawatomi from Chicago reaches, and AGENTS.md requires the flag to stand permanently on them so no scene containing them can be marked `released`. It is a standing ethical constraint, not an open evidentiary question, and no research can retire it. The audit now counts them under `flag_standing_constraint` instead.\n\nEVERY PASS, NOT THE NEWEST ONE — T-0845. This file first covered the 68 people the audit could see a conflict on, and the audit could see 68 of 96: `findings()` keeps only the last override written for a person, so a conflict recorded in an early pass and overwritten by a later one stopped being reported and was never ruled. Twenty-eight were in that state. The exporter now reads a person's conflicts from EVERY pass that reviewed them, and refuses a ledger conflict no ruling reaches — the mirror of the orphan-ruling refusal it already made. `cohort_ticket` on those twenty-eight names the pass that WROTE the conflict, which is not always the pass whose outcome the card carries.",
   "ticket": "T-0733",
   "ruled_on": "2026-09-05",
   "verdicts": {
@@ -8,7 +8,8 @@
     "declined_no_bridge": "The candidate is plausible on name and period and no record links the two people. The candidate is NOT adopted. Plausibility is not evidence; the town asserts nothing on this candidate's strength.",
     "declined_names_not_equated": "Two spellings, or two cards, are kept apart rather than collapsed, because no source equates them. The merge is NOT made. Collapsing them would assert an identity no record states, which is the more expensive error here than carrying two rows.",
     "declined_forename_refused": "The candidate's forename or middle initial is refused by the town's own committed readings. The candidate is NOT adopted. The initial is the discriminator and it disagrees; the printed page that resolves it reopens the question.",
-    "declined_reading_unverified": "The page behind the candidate has not been seen — an index entry, a truncated excerpt, an unavailable scan — so the reading the match rests on cannot be checked. The candidate is NOT adopted. This is a decline on the ACCESS to the evidence, not on the evidence; the page itself reopens it."
+    "declined_reading_unverified": "The page behind the candidate has not been seen — an index entry, a truncated excerpt, an unavailable scan — so the reading the match rests on cannot be checked. The candidate is NOT adopted. This is a decline on the ACCESS to the evidence, not on the evidence; the page itself reopens it.",
+    "refused_date_excludes": "A date the record itself states makes the identification impossible, not merely unproved: the candidate could not have been the person the Chicago item names. The candidate is REFUSED rather than declined. Every other verdict here says a bridge was not found and names the record that would supply one; this one says no such record can exist, and only a demonstrated error in the stated date reopens it."
   },
   "standing_constraints": {
     "hh_beaubien_jean_baptiste": {
@@ -82,6 +83,15 @@
     }
   },
   "rulings": {
+    "abbott_constant": {
+      "verdict": "declined_no_bridge",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No direct Chicago link."
+      ],
+      "reopens_on": "a Chicago record — a poll list, a notice, a deed — naming Dr. Constant Abbott in the town. The candidate rests on the name alone, and the name alone is what the letter list already gives."
+    },
     "akers_simon": {
       "verdict": "declined_chronology",
       "cohort_ticket": "T-0508",
@@ -90,6 +100,15 @@
         "Two years after the scene and on an initial agreement only; the crosswalk hands on evidence, not a verdict."
       ],
       "reopens_on": "a record dated to 1835 or earlier that ties Simon Akers to the town, rather than the 1837 crosswalk agreement two years past the scene."
+    },
+    "albee_clark_b": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Documented Michigan setting and no direct letter link."
+      ],
+      "reopens_on": "a record putting Clark B. Albee on the Chicago side of Lake Michigan, or a Grand Haven source that has him collecting mail here."
     },
     "allen_william": {
       "verdict": "declined_chronology",
@@ -100,6 +119,15 @@
       ],
       "reopens_on": "a record naming William Allen in Chicago at or before 1835-07-01; this project's directory policy holds that an 1839 or 1840 entry never attests 1835 presence."
     },
+    "alling_prudde": {
+      "verdict": "declined_no_bridge",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No Chicago, Illinois or scene-date discriminator was found."
+      ],
+      "reopens_on": "any discriminator at all — an Illinois residence, an occupation, a date — that Prudden Alling and the letter-list entry both carry. The pass searched for one and found none."
+    },
     "avery_charles": {
       "verdict": "declined_forename_refused",
       "cohort_ticket": "T-0508",
@@ -109,14 +137,33 @@
       ],
       "reopens_on": "a printing that resolves the letter list's forename against the directory man's middle initial, or a record that carries the initial the list omits."
     },
+    "bailey_bennet": {
+      "verdict": "declined_chronology",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No record bridges the 1834 letter to the 1843 directory entry."
+      ],
+      "reopens_on": "a record between the 1834 letter and the 1843 Mechanics' Institute entry that carries Bennet Bailey across the nine years. The two ends are plausible and nothing joins them."
+    },
     "bailly_joseph": {
       "verdict": "declined_competing_residence",
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "Documented Porter County residence; no source links him to this letter.",
         "His household stood on the Little Calumet in Indiana; a letter waiting at the Chicago post office is what a trader who collected mail here leaves, not a residence."
       ],
       "reopens_on": "a record placing Joseph Bailly under a Chicago roof rather than at his documented Little Calumet household in Indiana."
+    },
+    "bartlett_charles_h": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Regional farm rather than Chicago town; letter not identified in the finding aid."
+      ],
+      "reopens_on": "the Diamond Lake finding aid's own text on the letter, or a Chicago record placing Charles H. Bartlett in the town rather than on the regional farm."
     },
     "bishop_j_e": {
       "verdict": "declined_no_bridge",
@@ -132,6 +179,7 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "No direct Chicago post-office link; common name.",
         "Fergus 1843's Chicago hardware Blair carries no middle initial and a later arrival; Winnebago is another county. Neither bridges the postal entry."
       ],
       "reopens_on": "a record carrying the middle initial G. beside a Chicago residence at the scene date; Fergus 1843's hardware Blair carries none and Winnebago is another county."
@@ -141,6 +189,7 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "Documented Ohio residence and no Chicago migration bridge.",
         "A competing Ohio identity of the same uncommon name is caution, not a bridge; the Chicago corpus never repeats the name."
       ],
       "reopens_on": "a Chicago record repeating the name Rouse Bly; the competing Ohio identity of the same uncommon name is caution, not a bridge."
@@ -172,6 +221,69 @@
       ],
       "reopens_on": "a seed-date bridge across the four-year gap between the letter and the candidate's record."
     },
+    "brooks_gardner": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No direct link to the Chicago post-office entry."
+      ],
+      "reopens_on": "a record tying the Des Plaines settler to the Chicago post office, rather than to the district the post office served. A hinterland farmer collecting mail in town is not a resident of it."
+    },
+    "burdick_paul": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Milwaukee residence; no linking Chicago record."
+      ],
+      "reopens_on": "a Chicago record naming Paul Burdick, or a Milwaukee one that has him removing here before the letter."
+    },
+    "butterfield_ben": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Lockport residence; no record links him to this letter."
+      ],
+      "reopens_on": "a record joining the Lockport Butterfield to this letter. Lockport is on the canal line and its people had Chicago business; business is not residence."
+    },
+    "case_nehemiah": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Buffalo geography and no Chicago discriminator."
+      ],
+      "reopens_on": "any discriminator beyond the name that the Buffalo man and the letter-list entry share. Buffalo supplied a great deal of Chicago's migration, which makes the candidate plausible and not identified."
+    },
+    "chadwick_joseph": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No Chicago location or letter linkage; candidate left for Texas by December 1835."
+      ],
+      "reopens_on": "a Chicago record naming Joseph M. Chadwick before he left for Texas. The Goliad chronology does not exclude an 1834 letter here; it simply has nothing to say about one."
+    },
+    "chappel_eliza_mir": {
+      "verdict": "declined_reading_unverified",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "The scan is unavailable; Mir-to-Miss remains unverified."
+      ],
+      "reopens_on": "the original scan of the letter list. Everything turns on whether the printed 'Mir' is a misreading of 'Miss', and until the page is seen the merge would rest on a conjecture about type."
+    },
+    "churchill_alfred": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Hinterland residence and no explicit letter linkage."
+      ],
+      "reopens_on": "a record naming Alfred Churchill in the town rather than at Flag Creek, or a Flag Creek source that mentions the waiting letter."
+    },
     "cleaveland_wm_p": {
       "verdict": "declined_reading_unverified",
       "cohort_ticket": "T-0486",
@@ -181,6 +293,15 @@
       ],
       "reopens_on": "the page itself, with heading and pagination, so that Andreas's William P. Cleaveland can be read against the January 1834 postal entry."
     },
+    "comstock_h_h": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Michigan rather than Chicago residence; no letter bridge."
+      ],
+      "reopens_on": "a record carrying H. H. Comstock from Kalamazoo County to Chicago, or a Chicago source that spells out the initials the letter list prints."
+    },
     "conger_thomas": {
       "verdict": "declined_competing_residence",
       "cohort_ticket": "T-0485",
@@ -189,6 +310,33 @@
         "Michigan office and no Chicago bridge; name not rare enough for merge."
       ],
       "reopens_on": "a Chicago record for Thomas Conger; the candidate's office is in Michigan and the name is not rare enough to merge on."
+    },
+    "couch_james": {
+      "verdict": "declined_chronology",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Reviewed histories place the Couch hotel operation after the 1 July 1835 scene date."
+      ],
+      "reopens_on": "a source placing James Couch in Chicago on or before 1 July 1835. The hotel is the wrong end of the evidence — it postdates the scene, and the man may still have been here without it."
+    },
+    "covell_thomas_r": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Salt Creek lay outside Chicago town; no explicit link to the letter."
+      ],
+      "reopens_on": "a record linking the Salt Creek settler to this letter. Salt Creek lay outside the town and the letter is the only thing that would bring him into it."
+    },
+    "curtenius_fredk": {
+      "verdict": "declined_forename_refused",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Middle initial differs and the source supplies no Chicago link."
+      ],
+      "reopens_on": "a printing that gives Curtenius the middle initial the letter list carries, or a Chicago record naming him at all. The initial is the discriminator here and it disagrees."
     },
     "dalton_edward": {
       "verdict": "declined_reading_unverified",
@@ -208,6 +356,15 @@
       ],
       "reopens_on": "a record that expands the 1835 entry's initial E.; other E-named Dimmicks exist and none is ruled out."
     },
+    "dow_albert_f": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No 1835 migration or household bridge."
+      ],
+      "reopens_on": "an 1835 migration record, or a household bridge, joining the Ottawa Dow to Chicago. Neither was found."
+    },
     "downer_pierce": {
       "verdict": "declined_competing_residence",
       "cohort_ticket": "T-0485",
@@ -222,6 +379,7 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "Later Peoria-area settlement and no direct letter bridge.",
         "Peoria is not Chicago and the account names no Chicago residence; three directories refuse the surname on the initial."
       ],
       "reopens_on": "a Chicago record for Alva Dunlap; the account names Peoria and three directories refuse the surname on the initial."
@@ -235,6 +393,33 @@
       ],
       "reopens_on": "a record dated at or before 1835-07-01; the candidate's dated Chicago transit is September 1835, after the scene."
     },
+    "fairchilds_ransom": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No Chicago link; name normalization unverified."
+      ],
+      "reopens_on": "a source printing Fairchilds and Fairchild as one man, together with a Chicago record for him. The normalization and the residence both fail, and either alone would be enough to hold."
+    },
+    "felch_alaneon": {
+      "verdict": "declined_forename_refused",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Given-name reading differs and no migration bridge exists."
+      ],
+      "reopens_on": "a printing that equates the letter list's Alaneon with Alson, or a record carrying the Racine man to Chicago. The forename reading is what the match rests on and it is unverified."
+    },
+    "filer_elihu_d": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No Chicago-to-Racine migration bridge."
+      ],
+      "reopens_on": "a record of removal between Chicago and Racine in either direction. Elihu D. Filer is documented at Racine and nothing moves him."
+    },
     "fitzgerald_thos": {
       "verdict": "declined_competing_residence",
       "cohort_ticket": "T-0485",
@@ -243,6 +428,15 @@
         "Michigan geography and common name; no Chicago bridge."
       ],
       "reopens_on": "a Chicago record for Thomas Fitzgerald; the candidate's geography is Michigan and the name is common."
+    },
+    "ford_ebenezer": {
+      "verdict": "declined_no_bridge",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "The roster does not explicitly identify the later letter recipient."
+      ],
+      "reopens_on": "a roster, discharge or pay record that names the garrison's Ebenezer Ford as the man the later letter waited for. The roster establishes that a man of the name was here; it does not reach the letter."
     },
     "fraser_wm_h": {
       "verdict": "declined_names_not_equated",
@@ -261,6 +455,15 @@
         "No independent source yet resolves whether one or two people."
       ],
       "reopens_on": "an independent source that equates or separates Wm. H. Frazer and Wm. H. Fraser; until one exists the two cards stand apart."
+    },
+    "galusha_ezra": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No record directly links him to the letter; documented hinterland residence."
+      ],
+      "reopens_on": "a Chicago record naming Ezra Galusha, rather than the Warrenville residence that is already documented and is the whole difficulty."
     },
     "garton_elijah": {
       "verdict": "declined_competing_residence",
@@ -288,6 +491,15 @@
         "Eight-year gap after the postal entry; no source explicitly expands the 1835 initials or connects the records."
       ],
       "reopens_on": "a record that expands the 1835 initials A. B. nearer the scene than the 1843 sailor eight years later."
+    },
+    "griswold_eben": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "No chronology or identifier links him to the letter."
+      ],
+      "reopens_on": "a chronology or an identifier — an arrival, an occupation, a kinsman — shared by the Berrien County man and the letter-list entry."
     },
     "hateh_betsey": {
       "verdict": "declined_competing_residence",
@@ -343,6 +555,15 @@
       ],
       "reopens_on": "a record placing this man in Chicago at the scene date; the candidate's geography is Aurora."
     },
+    "house_chester": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Hinterland residence; Judith versus Lucinda spouse conflict."
+      ],
+      "reopens_on": "a source that both places Chester House in the town and settles whether his wife was Judith or Lucinda. Two records disagree on the wife, so they are not yet demonstrably one household."
+    },
     "how_phineas": {
       "verdict": "declined_competing_residence",
       "cohort_ticket": "T-0485",
@@ -388,6 +609,15 @@
       ],
       "reopens_on": "a Chicago record for William Luce dated to the scene; he is documented at Racine before the May 1835 letter list."
     },
+    "makepiece_george_r": {
+      "verdict": "declined_names_not_equated",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Makepiece/Makepeace variant unverified; no direct letter link."
+      ],
+      "reopens_on": "a source printing Makepiece and Makepeace as one man. Until then the Joliet Makepeace and the letter list's Makepiece stay two spellings and not one person."
+    },
     "mclintock_thomas": {
       "verdict": "declined_no_bridge",
       "cohort_ticket": "T-0484",
@@ -411,9 +641,10 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "Miles/Mills source conflict; no direct link to the Chicago letter.",
         "The passage carries a Miles/Mills spelling conflict, and two directories refuse the surname on the initial."
       ],
-      "reopens_on": "a printing that settles the Miles/Mills spelling conflict; two directories refuse the surname on the initial."
+      "reopens_on": "a printing that settles the Miles/Mills spelling conflict; two directories refuse the surname on the initial. A Chicago record for the man is wanted with it: the passage links him to no Chicago letter even before the spelling is settled."
     },
     "minard_ira": {
       "verdict": "declined_competing_residence",
@@ -429,9 +660,10 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "No direct bridge to the Chicago letter; printed 2 counts letters, not people.",
         "Kane County, and nothing ties the pair to the Chicago post office; the Newberry card is a 'Milner' heading."
       ],
-      "reopens_on": "a record tying the pair to the Chicago post office; the candidate is in Kane County and the Newberry card is a 'Milner' heading."
+      "reopens_on": "a record tying the pair to the Chicago post office; the candidate is in Kane County and the Newberry card is a 'Milner' heading. The letter list's printed '2' counts letters and not people, so it is not evidence of a second Miner either."
     },
     "moody_robert": {
       "verdict": "declined_competing_residence",
@@ -465,6 +697,7 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "No external bridge.",
         "Committed refusals stand against every other Murray reached — St Mary's 'John Murray', the 1834 poll's 'Patrick Murray', Fergus 1839."
       ],
       "reopens_on": "a source equating this Alonzo with another Murray the town holds; committed refusals stand against St Mary's 'John Murray', the 1834 poll's 'Patrick Murray' and Fergus 1839."
@@ -474,6 +707,7 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "No external bridge.",
         "The surname is common here — James H, Patrick and John are separately held — and no source equates the two Alonzos."
       ],
       "reopens_on": "a source that equates the two Alonzos; the surname is common here and James H., Patrick and John Murray are separately held."
@@ -510,18 +744,29 @@
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "Different return dates and no linking record.",
         "Nothing outside the letter lists names either spelling, so collapsing the pair would invent the man they collapse into."
       ],
-      "reopens_on": "a record outside the letter lists naming either spelling; collapsing the pair would invent the man they collapse into."
+      "reopens_on": "a record outside the letter lists naming either spelling; collapsing the pair would invent the man they collapse into. The pair also return on different dates, which is a second reason to hold them apart and not only an absence of evidence for joining them."
     },
     "parcell_aron": {
       "verdict": "declined_names_not_equated",
       "cohort_ticket": "T-0508",
       "research_outcome": "candidate_identity",
       "ruled_conflicts": [
+        "Different return dates and no linking record.",
         "Nothing outside the letter lists names either spelling; collapsing them asserts an identity no source states."
       ],
-      "reopens_on": "a record outside the letter lists naming either spelling; collapsing them would assert an identity no source states."
+      "reopens_on": "a record outside the letter lists naming either spelling; collapsing them would assert an identity no source states. The pair also return on different dates, which is a second reason to hold them apart and not only an absence of evidence for joining them."
+    },
+    "parkes_curtis": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Porter County residence and no direct letter bridge."
+      ],
+      "reopens_on": "a record joining the Porter County Parkes to this letter. Porter County traders collected mail at Chicago, which is why the letter is not evidence of residence."
     },
     "parsons_edward": {
       "verdict": "declined_chronology",
@@ -549,6 +794,15 @@
         "Homer/New Lenox is competing residence; no source directly ties him to the Chicago post-office item."
       ],
       "reopens_on": "a source tying the Homer / New Lenox man to the Chicago post-office item."
+    },
+    "reel_absolam": {
+      "verdict": "declined_competing_residence",
+      "cohort_ticket": "T-0463",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Indiana record and no Chicago link; Absolam/Absalom spelling differs."
+      ],
+      "reopens_on": "an Illinois record for the man, and a printing that equates Absolam with Absalom. The Indiana record answers neither question."
     },
     "ritchey_james": {
       "verdict": "declined_competing_residence",
@@ -630,6 +884,15 @@
         "Geneva Township is competing geography; no independent evidence ties this claimant to the Chicago letter."
       ],
       "reopens_on": "independent evidence tying the early Geneva Township claimant to the Chicago letter."
+    },
+    "vann_angeline": {
+      "verdict": "refused_date_excludes",
+      "cohort_ticket": "T-0462",
+      "research_outcome": "candidate_identity",
+      "ruled_conflicts": [
+        "Born 1834 and later Missouri geography."
+      ],
+      "reopens_on": "only a demonstrated error in the birth year. Angeline Vann of Missouri was an infant when the letter was advertised, and an infant is not the person a letter waits for. This is the one conflict in the set that disqualifies rather than fails to bridge, and it is why the vocabulary needs a verdict that is not a decline: a decline says the bridge was not found, and here the bridge cannot exist."
     },
     "vaughan_alanson_b": {
       "verdict": "declined_forename_refused",

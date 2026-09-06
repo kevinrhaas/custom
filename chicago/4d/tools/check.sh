@@ -1663,6 +1663,19 @@ step "the old-settlers rolls rebuild from their committed transcription" \
 step "…and its own assertions still fire when broken" \
   python3 tools/old_settlers.py --self-test
 
+# T-0678, consolidation pass 4. The rolls above are spent onto their cards by the tool
+# that builds them; Fergus's 1843 old-settler death notices were not spent by anybody, and
+# 38 rulings that named a town person had never reached that person's card. The pass that
+# closes that gap is checked the same way passes 1-3 are: the ledger and every card
+# re-derive from the crosswalk, no card carries the block without a ruling behind it, and
+# the group this pass declares ALREADY spent by tools/old_settlers.py is verified rather
+# than believed.
+step "Fergus's death notices are on the cards the crosswalk names" \
+  python3 tools/spend_old_settlers.py --check
+
+step "…and that pass writes one block, moves no grade and repeats without drift" \
+  python3 tools/spend_old_settlers.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 
