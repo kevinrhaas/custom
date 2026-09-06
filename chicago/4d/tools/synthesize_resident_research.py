@@ -10,13 +10,24 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "tools"))
+# T-0838.  `--drift` runs this writer against a throwaway copy of the tree and compares,
+# so the copy needs to be able to tell the tool where its data lives.  Set by `--drift`
+# on the subprocess it spawns and by nothing else; a bare run resolves as it always did.
+ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_ROOT") \
+    else Path(__file__).resolve().parents[1]
+# The DATA root is overridable (above); the tools directory is NOT — it is where this
+# file lives. Deriving the import path from ROOT instead breaks `--drift`, whose scratch
+# copy carries data and no tools: measured, ModuleNotFoundError on rebuild_resident_index.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 
 CHICAGO = ROOT.parent
@@ -34,6 +45,7 @@ PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
 CENSUS_SOURCE = DATA / "sources" / "census_1840_chicago_name_crosswalk.json"
+DRIFT_BASELINE = RESEARCH / "synthesis_drift_baseline.json"
 PROJECTED = "projected_resident"
 
 # Every note prefix this tool has ever written, stripped repeatedly before the current
@@ -490,6 +502,127 @@ def summary(before,after,ledger,stats):
     return "\n".join(lines)
 
 
+# T-0838 (of T-0814) — THE DRIFT GATE.
+#
+# Every other generated artefact here is held to its generator by re-derivation:
+# `data/datum.json` is re-derived by check.sh, baked geometry by `validate.py --stale`.
+# This writer, which owns the `resident_research` block on all 1,404 people, was not.
+# `--check` re-derives the population IN MEMORY and validates the invariants; it never
+# compares that derivation against the committed cards, so on 2026-09-05 a writer whose
+# output stood 132 household files away from the repository still reported `OK: 1404
+# people` and check.sh was satisfied.  T-0509's eight corroborations were sitting in that
+# gap, invisible.
+#
+# Why a scratch tree rather than a `write=False` pass.  The committed state is the result
+# of THIS writer followed by `apply_census_1840_bridges.apply()`, which the tail of
+# `main()` runs precisely so a run of either tool converges on the same bytes (T-0491).
+# A synthesis-only in-memory derivation would therefore disagree with the repository
+# wherever the bridges own the answer, and report drift that is not there.  Running the
+# real pair, unmodified, against a copy of the tree is what the ticket's own measurement
+# did, and it cannot drift from the thing it is checking.
+#
+# Why a baseline rather than a hard fail on any difference.  The standing drift is a
+# hundred-odd cards of unspent promotion that WANT READING before they land, by the
+# tickets entitled to rule on them — T-0814 split that spend out to T-0837 for exactly
+# that reason.  A hard fail would have turned check.sh red for every run in the repo
+# until that reading was done.  So the gate is a RATCHET: the drift standing today is
+# written down file by file, a file that drifts and is not on that list fails, and a file
+# on the list that stops drifting fails too, so the list can only shrink and a spend has
+# to shrink it in its own commit.  New invisible drift is what this makes impossible.
+DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH", "site/chicago/4d/data")
+
+
+def _scratch(tmp: Path) -> Path:
+    """A throwaway REPO root the writer can be run against: the trees it writes copied,
+    the reference library it only reads symlinked."""
+    for rel in DRIFT_ROOTS:
+        dst = tmp / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(REPO / rel, dst)
+    (tmp / "chicago" / "reference").symlink_to(CHICAGO / "reference")
+    return tmp
+
+
+def _files(root: Path) -> set:
+    return {q.relative_to(root) for rel in DRIFT_ROOTS for q in (root / rel).rglob("*") if q.is_file()}
+
+
+def drift_paths():
+    """The repo-relative files the writer would change, add or delete, in sorted order."""
+    with tempfile.TemporaryDirectory(prefix="synthesis-drift-") as tmp:
+        scratch = _scratch(Path(tmp))
+        run = subprocess.run([sys.executable, str(Path(__file__).resolve())],
+                             cwd=str(ROOT), capture_output=True, text=True,
+                             env={**os.environ, "SYNTH_SCRATCH_ROOT": str(scratch / "chicago" / "4d")})
+        if run.returncode != 0:
+            raise SystemExit("the writer failed on its own scratch copy:\n" + (run.stderr or run.stdout))
+        out = []
+        for rel in sorted(_files(scratch) | _files(REPO)):
+            a, b = REPO / rel, scratch / rel
+            if not a.exists() or not b.exists() or a.read_bytes() != b.read_bytes():
+                out.append(rel.as_posix())
+        return out
+
+
+def drift(write_baseline=False):
+    paths = drift_paths()
+    if write_baseline:
+        dump(DRIFT_BASELINE, {
+            "ticket": "T-0838",
+            "note": ("The files the committed tree and a fresh run of this writer disagree on. "
+                     "The gate is a ratchet: a file that drifts and is not listed here fails, and "
+                     "a listed file that stops drifting fails too, so a spend has to shrink this "
+                     "list in its own commit. Regenerate with --write-baseline, never by hand. "
+                     "T-0837 owns spending what is standing."),
+            "count": len(paths), "paths": paths}, 2)
+        print(f"  wrote {DRIFT_BASELINE.relative_to(REPO)}: {len(paths)} file(s) standing")
+        return 0
+    if not DRIFT_BASELINE.exists():
+        print(f"  FAIL {DRIFT_BASELINE.relative_to(REPO)} is missing — run --write-baseline")
+        return 1
+    allowed = set((load(DRIFT_BASELINE).get("paths") or []))
+    now = set(paths)
+    new, healed = sorted(now - allowed), sorted(allowed - now)
+    for path in new[:10]:
+        print(f"  FAIL {path} has drifted from the writer and is not on the T-0838 baseline")
+    if len(new) > 10:
+        print(f"  FAIL …and {len(new) - 10} more")
+    if new:
+        print("  Run tools/synthesize_resident_research.py and read what it proposes before "
+              "landing it — or, if the drift is deliberate and ruled on, --write-baseline.")
+    for path in healed[:10]:
+        print(f"  FAIL {path} no longer drifts — shrink the baseline in this commit (--write-baseline)")
+    if len(healed) > 10:
+        print(f"  FAIL …and {len(healed) - 10} more")
+    if new or healed:
+        return 1
+    print(f"  ok    the writer stands {len(now)} known file(s) from the tree, "
+          "every one of them on the T-0838 baseline")
+    return 0
+
+
+def drift_self_test():
+    """The gate has to fire.  Both directions, against the committed baseline."""
+    baseline = load(DRIFT_BASELINE) if DRIFT_BASELINE.exists() else {}
+    paths = list(baseline.get("paths") or [])
+    if not paths:
+        print("FAIL: the drift baseline is empty, so neither direction of the ratchet is testable")
+        return 1
+    allowed, problems = set(paths), []
+    # A file that drifts and is not listed must fail; a listed file that stops must fail too.
+    for label, now in (("undeclared drift", allowed | {"chicago/4d/data/residents/households/hh_not_real.json"}),
+                       ("healed drift", allowed - set(paths[:1]))):
+        new, healed = now - allowed, allowed - now
+        if not (new or healed):
+            problems.append(f"the ratchet does not fire on {label}")
+    if problems:
+        [print(" -", p) for p in problems]
+        print("DRIFT SELF-TEST FAIL")
+        return 1
+    print(f"ok: the ratchet fires in both directions over {len(paths)} baselined file(s)")
+    return 0
+
+
 def check():
     index=load(INDEX); docs=[load(p) for p in HOUSEHOLDS.glob("*.json")]; people=[p for d in docs for p in d.get("persons") or []]; problems=[]
     rec=[p.get("id") for p in people if p.get("grade")=="reconstructed"]
@@ -537,7 +670,13 @@ def check():
 
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument("--check",action="store_true"); args=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument("--check",action="store_true")
+    ap.add_argument("--drift",action="store_true",help="the T-0814 ratchet: what the writer would change, against the committed baseline")
+    ap.add_argument("--write-baseline",action="store_true",help="regenerate the drift baseline (never hand-edit it)")
+    ap.add_argument("--drift-self-test",action="store_true")
+    args=ap.parse_args()
+    if args.drift_self_test: return drift_self_test()
+    if args.drift or args.write_baseline: return drift(write_baseline=args.write_baseline)
     if args.check: return check()
     index=load(INDEX); current_before=snapshot(index)
     prior_ledger=load(LEDGER) if LEDGER.exists() else {}

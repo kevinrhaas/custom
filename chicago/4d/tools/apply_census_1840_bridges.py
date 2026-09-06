@@ -12,13 +12,20 @@ import argparse
 import csv
 import gzip
 import json
+import os
 import re
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+# T-0836: rerooted with the synthesis it is re-applied by, so `--drift` can run the pair
+# against a scratch copy of the tree.  Unset in every ordinary run.
+ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_ROOT") \
+    else Path(__file__).resolve().parents[1]
 import sys
-sys.path.insert(0, str(ROOT / "tools"))
+# The DATA root is overridable (above); the tools directory is NOT — it is where this
+# file lives. Deriving the import path from ROOT instead breaks `--drift`, whose scratch
+# copy carries data and no tools: measured, ModuleNotFoundError on rebuild_resident_index.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 
 DATA = ROOT / "data"
