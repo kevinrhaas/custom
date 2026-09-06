@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The Steamboat Hotel had wandered off its own street', kind: 'fix', ts: '',
+  { v: 631, title: 'The Steamboat Hotel had wandered off its own street', kind: 'fix', ts: '2026-09-06T09:14:02.386Z', date: 'Sep 6, 2026, 4:14 AM CT',
     items: [
       'Two sources say the same six words about John Davis\u2019s house: it was \u201Con North Water Street, near Kinzie\u201D. The building in this town has been standing 38 metres north of North Water Street, on the far side of Kinzie Street, fronting onto nothing at all.',
       'The cause was one number written down in August. Whoever placed the hotel read Kinzie Street off the 1834 survey sheet by eye and put its line 23 metres north of where this town\u2019s own record of Kinzie runs. The house was then set carefully against that misread line \u2014 the right reasoning, applied to the wrong street.',
