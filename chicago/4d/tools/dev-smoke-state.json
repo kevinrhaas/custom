@@ -2,6 +2,106 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "9-12",
+      "parts": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 115,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the facade tones reach the render — winding the tone off changed 370 structure(s) (want >=300) and moved the worst cell by 2, mean 0.01 (need worst>=3, mean>=0.03)",
+        "mobile 390x780: the shadow reach reaches the render — winding ±120 m back to ±60 m moved the worst cell by 1, mean 0.00 (need worst>=4)"
+      ],
+      "wallSeconds": 396,
+      "takenAt": "2026-09-06T03:40:34.062Z",
+      "ref": "steward/t-0788-wright-block-numerals",
+      "commit": "16b69c3f44a8",
+      "devCommit": "c4e5a90fdcd5",
+      "treeHash": "sha256:760ed75c99c5b284",
+      "treeDirty": false,
+      "changelogHash": "sha256:5d5712da8e7be9a9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3,
+          3.9,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_m912.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 369,
+      "takenAt": "2026-09-06T03:40:33.984Z",
+      "ref": "steward/t-0788-wright-block-numerals",
+      "commit": "16b69c3f44a8",
+      "devCommit": "c4e5a90fdcd5",
+      "treeHash": "sha256:760ed75c99c5b284",
+      "treeDirty": false,
+      "changelogHash": "sha256:5d5712da8e7be9a9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3,
+          3.9,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d1112.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 220,
+      "takenAt": "2026-09-06T03:40:33.904Z",
+      "ref": "steward/t-0788-wright-block-numerals",
+      "commit": "16b69c3f44a8",
+      "devCommit": "c4e5a90fdcd5",
+      "treeHash": "sha256:760ed75c99c5b284",
+      "treeDirty": false,
+      "changelogHash": "sha256:5d5712da8e7be9a9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3,
+          3.9,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1400,71 +1500,6 @@
       "source": "/tmp/smoke_d5.log"
     },
     {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 138,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 394,
-      "takenAt": "2026-09-05T20:01:21.454Z",
-      "ref": "steward/t-0497-dalton-index",
-      "commit": "79382dca4128",
-      "devCommit": "8d07ef6ebad4",
-      "treeHash": "sha256:2461318ceb5ece71",
-      "treeDirty": false,
-      "changelogHash": "sha256:ad03e4aec0062279",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.2,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke_d4.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 239,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 360,
-      "takenAt": "2026-09-05T20:01:21.357Z",
-      "ref": "steward/t-0497-dalton-index",
-      "commit": "79382dca4128",
-      "devCommit": "8d07ef6ebad4",
-      "treeHash": "sha256:2461318ceb5ece71",
-      "treeDirty": false,
-      "changelogHash": "sha256:ad03e4aec0062279",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.2,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke_m2.log"
-    },
-    {
       "viewport": "mobile",
       "stage": "3-6",
       "parts": [
@@ -1591,38 +1626,6 @@
         ]
       },
       "source": "/tmp/smoke_d23b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "11-12",
-      "parts": [
-        11,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 50,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 421,
-      "takenAt": "2026-09-04T23:26:31.940Z",
-      "ref": "steward/t-0635-consolidation-pass-2",
-      "commit": "59e72b98d47f",
-      "devCommit": "36d1dde22287",
-      "treeHash": "sha256:aaa5d8f01b64ae4f",
-      "treeDirty": false,
-      "changelogHash": "sha256:0b2e6f2405015ef9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          4.2,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d1112.log"
     },
     {
       "viewport": "mobile",
