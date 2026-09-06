@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 630, title: 'The hatter who was never in Chicago', kind: 'fix', ts: '2026-09-06T08:42:35.752Z', date: 'Sep 6, 2026, 3:42 AM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about a shop that was never built, and the reason it could have been.',
+      'M\u2019Cormick & Moon sold hats \u2014 to Chicago, out of No. 109 Jefferson Avenue, Detroit. Their advertisement of 2 July 1834 says so twice: once in the address and once where they sign it. The town read that notice and kept two records of it. The FIRM knew it stood in Detroit. The PERSON knew only that he was a hatter, and had no address at all.',
+      'That gap matters because of which of the two a passer-by is built from. When this project decides whether somebody printed in a newspaper may be seated in the town, it asks the person\u2019s record where he is \u2014 and a hatter with a trade and nowhere to be is exactly the shape it seats. Two other refusals happened to stand in front of this one, so nobody was ever put on the plat in Michigan. It was luck, not a rule.',
+      'The man now carries Detroit, read off his own printing. So does Wm. McCaleb, half of a steam saw mill at St. Joseph, whose partner on the same page had carried it all along and who had not.',
+      'And the check that found the second one now runs on every claim in the corpus: where an advertisement ends its trade with a town, the men who keep that house have to carry the town too. It works out which words are towns from the places this project has already read, rather than from a list somebody types \u2014 which is how it knows that a firm advertising as agents of the Merchants Line has not told anyone where it lives.',
+    ] },
   { v: 629, title: 'A house the newspaper measured, at LaSalle and Lake', kind: 'feat', ts: '2026-09-06T07:48:37.558Z', date: 'Sep 6, 2026, 2:48 AM CT',
     items: [
       'There is a new house on the corner of LaSalle and Lake, and it is the right size. Sixteen feet by thirty \u2014 four hundred and eighty square feet, two rooms, one chimney, no paint. That is not a guess: it is what the Chicago Democrat printed on 21 May 1834, over an advertisement offering the house for sale at $250, possession on the first of the month.',
