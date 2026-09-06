@@ -85,7 +85,6 @@ T-0788 — Wright numbers all 58 blocks of the Original Town and this project ha
 # --- something a visitor can see on the ground, off evidence already read.
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
-T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 
 # --- G6 — THE READING, AND IT STAYS BELOW THE SPEND. Reading another volume moves none of the
 # --- numbers above. Ordered by measured yield, with the crosswalk repairs first because a stale
