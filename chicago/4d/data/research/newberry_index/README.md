@@ -318,8 +318,10 @@ The gate runs **both ways**, and the second half is the one that earns its keep:
 that calls itself a sliver has to be one on the committed text, **and every sliver the
 committed text carries has to be marked**. Without that second clause a records file
 parsed before this rule existed goes on counting one card twice and nothing says so.
-Three cases in `--self-test` cover it: a sliver unmarked, a card marked a sliver of one it
-does not truncate, and a volume counting its slivers as cards.
+Five cases in `--self-test` cover it: a sliver unmarked, a card marked a sliver of one it
+does not truncate, a volume counting its slivers as cards, a reading nobody scanned at
+all, and a scan whose figures have drifted from the text beside them (the last two are
+T-0810's, below).
 
 **Not one of the 160 adjudicated precision rows is a sliver**, so no row leaves the sample
 and every precision figure in this file is unchanged. That is the sense in which this is a
@@ -429,6 +431,60 @@ sampled row that turns up marked as a bled-in body is reported as the contradict
 because a verdict reached by eye on the leaf and a verdict reached by rule on the string
 cannot both stand on one card.
 
+### The zero volume 4 had not earned — T-0810
+
+`byte_exact: 0` is what the T-0601 rule returns for an OCR reading **whether or not the
+volume has slivers**, and volume 4 had been carrying that zero since the day it was
+re-read. The rule tests a byte-exact prefix, and that test is exactly right for volumes
+1-3 and cannot hold for volume 4:
+
+- volumes 1-3 come out of `pdftotext` over four crop boxes. The sliver and the full card
+  are the **same ink returned twice by the same extraction**, so the reader's own errors
+  come through verbatim on both and the prefix is exact to the byte. That exactness is
+  the whole test, and it is what keeps two different cards citing one county history from
+  matching.
+- volume 4 comes out of `pdftoppm` + `tesseract` over the same four boxes. The two
+  readings of the overlap are **two OCR runs over two separately rendered images**, so a
+  real sliver there would agree closely and never exactly. The byte-exact rule can only
+  ever return 0, and a 0 it can only ever return says nothing.
+
+So the volume is scanned by a second measure that does not care which engine made the
+characters: **positional character agreement over the two bodies' common prefix**, taken
+over every same-page pair whose columns are adjacent. It separates cleanly on the
+readings this domain already holds.
+
+| reading | column-boundary pairs | byte-exact slivers | highest agreement among the rest |
+|---|---|---|---|
+| 1 (A-C), text layer | 1,112 | 3 | — (a sliver scores 1.000) |
+| 2 (C-H), text layer | 593 | 1 | 0.921 |
+| 3 (H-P), text layer | 791 | 4 | — (a sliver scores 1.000) |
+| **4 (P-Z), OCR** | **21** | **0** | **0.216** |
+
+Every one of the eight slivers in volumes 1-3 scores **1.000**. The closest boundary pair
+that is *not* a sliver scores **0.921**, and it is the pair this section already names:
+`nbi_v02_1738` (Lanphere) against `nbi_v02_1741` (Lant), `Sangamon Co, III. (Power, J. C.)
+1878.` against `Sangamon Co, III, (Power, J. C.) I876. Lapham remi`. Two surnames citing
+one county history — the same false positive the `alpha()` fold produced and the
+byte-exact rule was shaped to refuse. Volume 4's whole population of 21 boundary pairs
+tops out at **0.216**, on `nbi_v04_0364` against `nbi_v04_0365` — `nen Chieago, Ili,
+(Moves, J, i oh SEE` against `Lasalle Gey, Ill, (Qsldwin, E) 1977; 233,403.`, which are
+two different cards and look it. Nothing in volume 4 is a truncation of anything.
+
+A second reading of the same result: the sliver class leaves a **short-body tail** behind
+it, and volume 4 has none. Bodies under 20 characters are 54 of 2,397, 33 of 1,871 and 34
+of 1,980 in volumes 1-3 (2.3 %, 1.8 %, 1.7 %) and **2 of 410** in volume 4 (0.5 %) — and
+both of those two, `nbi_v04_0139` and `nbi_v04_0331`, stand in column 3, the rightmost,
+which has no column to its right and so cannot be truncating one.
+
+**The measure reports; it does not mark.** Nothing between 0.921 and 1.000 has ever been
+observed, so no threshold for marking an *inexact* sliver has been earned, and inventing
+one would strike cards on a number no reading has tested. What the scan does instead is
+put its figures in the records file as `sliver_scan`, where `--check` re-derives all of
+them from the committed text. A volume's zero is then a zero that was **measured beside
+the text it is committed with**, a records file with no scan fails the gate as a reading
+nobody checked, and a re-read that starts producing slivers moves the numbers and is
+caught rather than inherited.
+
 ## Volume 1 (A-C), read 2026-09-03 under T-0570
 
 987 pages cropped and walked · **58,488 cards** assembled · **2,397 kept** for naming
@@ -521,7 +577,7 @@ deleted: a project that only records its final figure cannot show that it earned
 | 2 (C-H) | 1,016 | 58,589 | 58 | 1,871 | 1 | 2 | 1,868 | 491 | 0.975 |
 | 3 (H-P) | 1,003 | 68,552 | 68 | 1,980 | 4 | 3 | 1,973 | 502 | 0.950 |
 | 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | not checked | 246 | 9 | 0.513 |
-| **4 (P-Z), OCR** | **918** | **33,357** | **36** | **410** | **not checked** | **0** | **410** | **207** | **0.975** |
+| **4 (P-Z), OCR** | **918** | **33,357** | **36** | **410** | **0** | **0** | **410** | **207** | **0.975** |
 
 `kept` is the rows in the committed text; `cards` is what the volume actually read, which
 is `kept` less the column slivers T-0601 marked and the bled-in bodies T-0769 marked. The
@@ -529,14 +585,15 @@ precision figures are unchanged: not one of the 160 adjudicated rows is a sliver
 bled-in body, so no row leaves the sample and no number in it moves. `chicago_or_cook` is
 unchanged too — all fifteen bled-in bodies were kept on the Illinois abbreviation alone.
 
-The OCR re-read of volume 4 (T-0775) carries **no sliver count**, and the blank is
-deliberate rather than a zero. T-0601's pass ran over the text-layer reading; the re-read
-rewrote every card in the volume, so that pass does not describe it and nothing has yet
-looked for slivers in the 33,357 cards it assembled. Its `cards` column therefore repeats
-`kept` because none have been deducted, not because none exist. Its **0** in the bled-in
-column IS a measurement: T-0769's pass ran over all four committed readings, this one
-included, and found none in it — the re-read's pages carry the artefact at a rate of
-zero in 410, against 10 in 2,397 in volume 1.
+The OCR re-read of volume 4 (T-0775) now carries **0 column slivers, measured** — the
+blank that stood in that cell until T-0810 is gone. T-0601's pass had run over the
+text-layer reading, which found one; the re-read rewrote every card in the volume, so
+that figure did not describe it and nothing had looked. It has since been looked for
+twice over and the volume has none: see *The zero volume 4 had not earned* below. Its
+`cards` column repeats `kept` because there is nothing to deduct. Its **0** in the
+bled-in column is a measurement of the same kind: T-0769's pass ran over all four
+committed readings, this one included, and found none in it — the re-read's pages carry
+that artefact at a rate of zero in 410, against 10 in 2,397 in volume 1.
 
 
 **Volume 4's row is the OCR one.** It is what `records/entries_vol_04.json` holds, what
