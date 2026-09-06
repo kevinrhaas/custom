@@ -1,7 +1,7 @@
 ---
 id: T-0769
 title: A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1003
 claimed_by: run 9/6/2026, 2:32:38 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T20:37:59.012Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34055014009
 ---
 
