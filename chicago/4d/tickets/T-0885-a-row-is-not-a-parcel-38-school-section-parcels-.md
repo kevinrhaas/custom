@@ -1,7 +1,7 @@
 ---
 id: T-0885
 title: A row is not a parcel: 38 school-section parcels are entered twice, 26 of them every parcel Ebenezer Hale buys and John Hale buys too
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 981
 claimed_by: run 9/6/2026, 6:51:47 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T12:12:15.959Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34029206125
 ---
 
