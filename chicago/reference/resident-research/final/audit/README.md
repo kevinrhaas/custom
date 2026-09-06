@@ -37,9 +37,9 @@ Each line is *how many of the 1362 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 417 | 30.6% |
+| `corroborated_across_categories` | 420 | 30.8% |
 | `two_or_more_sources_one_category` | 20 | 1.5% |
-| `one_source` | 359 | 26.4% |
+| `one_source` | 356 | 26.1% |
 | `the_letter_lists_alone` | 563 | 41.3% |
 | `no_source` | 3 | 0.2% |
 
@@ -56,7 +56,7 @@ record agree; two newspaper notices of the same name are
 | census | 30 |
 | church | 46 |
 | book | 192 |
-| directory | 220 |
+| directory | 225 |
 | secondary | 75 |
 
 The category of a source id is the audit's one judgement, and it is a written
@@ -247,7 +247,7 @@ secondary). A source id no rule reaches stops the build.
 
 ## The conflicts, and what was ruled on them
 
-Under **T-0733**. The ledgers record a conflict against a candidate for **68**
+Under **T-0733**. The ledgers record a conflict against a candidate for **96**
 of the 1362 people. Before T-0733 nothing ruled on any of them, and a conflict
 that is recorded and never adjudicated reads, to anybody downstream, exactly like
 a conflict nobody found. `data/research/residents/conflict_rulings.json` is the
@@ -260,12 +260,13 @@ card carries no identity on its strength. What was missing was the writing down.
 
 | verdict | people | what it means |
 | --- | ---: | --- |
-| `declined_competing_residence` | 35 | An independent record documents the candidate living somewhere other than the 1835 town, and nothing puts them under a Chicago roof. The candidate is NOT adopted. This rules out the match on the present record; it does not rule the town person out of existence, and it is not a statement that the two people are different. |
-| `declined_chronology` | 12 | The only record joining the candidate to the town stands years away from the scene date, on the wrong side of it. The candidate is NOT adopted. A date gap is not a refutation of identity — it is the absence of a bridge, and a nearer record reopens it. |
-| `declined_names_not_equated` | 8 | Two spellings, or two cards, are kept apart rather than collapsed, because no source equates them. The merge is NOT made. Collapsing them would assert an identity no record states, which is the more expensive error here than carrying two rows. |
-| `declined_forename_refused` | 6 | The candidate's forename or middle initial is refused by the town's own committed readings. The candidate is NOT adopted. The initial is the discriminator and it disagrees; the printed page that resolves it reopens the question. |
-| `declined_no_bridge` | 5 | The candidate is plausible on name and period and no record links the two people. The candidate is NOT adopted. Plausibility is not evidence; the town asserts nothing on this candidate's strength. |
-| `declined_reading_unverified` | 2 | The page behind the candidate has not been seen — an index entry, a truncated excerpt, an unavailable scan — so the reading the match rests on cannot be checked. The candidate is NOT adopted. This is a decline on the ACCESS to the evidence, not on the evidence; the page itself reopens it. |
+| `declined_competing_residence` | 53 | An independent record documents the candidate living somewhere other than the 1835 town, and nothing puts them under a Chicago roof. The candidate is NOT adopted. This rules out the match on the present record; it does not rule the town person out of existence, and it is not a statement that the two people are different. |
+| `declined_chronology` | 14 | The only record joining the candidate to the town stands years away from the scene date, on the wrong side of it. The candidate is NOT adopted. A date gap is not a refutation of identity — it is the absence of a bridge, and a nearer record reopens it. |
+| `declined_names_not_equated` | 9 | Two spellings, or two cards, are kept apart rather than collapsed, because no source equates them. The merge is NOT made. Collapsing them would assert an identity no record states, which is the more expensive error here than carrying two rows. |
+| `declined_forename_refused` | 8 | The candidate's forename or middle initial is refused by the town's own committed readings. The candidate is NOT adopted. The initial is the discriminator and it disagrees; the printed page that resolves it reopens the question. |
+| `declined_no_bridge` | 8 | The candidate is plausible on name and period and no record links the two people. The candidate is NOT adopted. Plausibility is not evidence; the town asserts nothing on this candidate's strength. |
+| `declined_reading_unverified` | 3 | The page behind the candidate has not been seen — an index entry, a truncated excerpt, an unavailable scan — so the reading the match rests on cannot be checked. The candidate is NOT adopted. This is a decline on the ACCESS to the evidence, not on the evidence; the page itself reopens it. |
+| `refused_date_excludes` | 1 | A date the record itself states makes the identification impossible, not merely unproved: the candidate could not have been the person the Chicago item names. The candidate is REFUSED rather than declined. Every other verdict here says a bridge was not found and names the record that would supply one; this one says no such record can exist, and only a demonstrated error in the stated date reopens it. |
 | **unruled** | **0** | a recorded conflict no ruling reaches; the flag fires |
 
 A ruling is pinned to the conflict text it read: `ruled_conflicts` carries the
@@ -273,6 +274,21 @@ ledger's strings verbatim, and the moment one is reworded — or a second confli
 is added to a person already ruled — the ruling stops reaching them and
 `flag_conflicting_evidence` fires again. A ruling may not rubber-stamp a conflict
 it has never read.
+
+### Every pass, not the newest one
+
+**T-0845.** A person's conflicts are read from EVERY pass that reviewed them.
+`findings()` keeps only the last override written for a person, which is right for
+the outcome a card carries and wrong for the conflicts: one written in pass 02 is
+still written after pass 13 rewrites the row around it. Read the newest override
+alone and this audit reported conflicts against 68 people where the ledgers hold
+them against 96. The twenty-eight in the gap were not resolved — they were
+overwritten, and T-0733 ruled on none of them because nothing could see them. The
+worst was Angeline Vann, whose conflict is the one in the set that DISQUALIFIES
+rather than fails to bridge: she was born in 1834, and an infant is not the person
+a letter waits for. She is ruled `refused_date_excludes` — the only verdict here
+that is not a decline, because a decline says the bridge was not found and this
+one says no such bridge can exist.
 
 ### The standing constraints are not conflicts
 
@@ -305,11 +321,11 @@ defect in this export.
 | no census linkage | 1332 | no 1840 census row is bridged to this person |
 | no address | 1286 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1266 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 922 | one source id on the card and no second category to check it against |
+| rests on one source | 919 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 563 | known only from the post office's uncalled-for lists |
 | no research row | 520 | no cohort ticket has reviewed this person; the programme reached 842 of 1362 |
+| conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
 | candidate identity open | 93 | a candidate was found and not asserted; the identity is still a question |
-| conflicting evidence, ruled | 68 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
 | standing constraint | 13 | the household carries `review_required` with `touches_removal`: the final removal of the Potawatomi reaches it, no scene holding it may be `released`, and no research retires the flag |
 | no source of their own | 3 | the collective `household_member` rows — "the rest of the Beaubien household, unnamed" and its two fellows — which are an inferred count of people, not named individuals; the household record carries the sources |
 | conflicting evidence, unruled | 0 | the ledger records a conflict against a candidate and no ruling in `data/research/residents/conflict_rulings.json` reaches it (T-0733) |
