@@ -12,7 +12,7 @@
     "structures": 374,
     "structures_sharing_a_name": 36,
     "streets": 28,
-    "resident_persons": 1362
+    "resident_persons": 1363
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1371,
-        "new_resident": 1235,
+        "enrich": 1366,
+        "new_resident": 1240,
         "replace_invented": 24
       },
       "letter_list_only": 1936
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 862,
+        "none_recorded": 863,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 868,
+      "households_total": 869,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -13163,9 +13163,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1834-07-23",
-      "action": "enrich",
-      "action_target": "horn_cornelius_c_van",
-      "action_note": "data/residents/ already holds this person as horn_cornelius_c_van (hh_horn_cornelius_c_van, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_costa_stefario",
@@ -17563,9 +17563,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "cleve_h_p_van",
-      "action_note": "data/residents/ already holds this person as cleve_h_p_van (hh_cleve_h_p_van, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_pearsons",
@@ -17662,9 +17662,9 @@
       "letter_list_only": false,
       "first_seen": "1834-02-04",
       "last_seen": "1834-02-04",
-      "action": "enrich",
-      "action_target": "bogart_henry_van_der",
-      "action_note": "data/residents/ already holds this person as bogart_henry_van_der (hh_bogart_henry_van_der, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_vanderbogart",
@@ -21138,9 +21138,9 @@
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
-      "action": "enrich",
-      "action_target": "grand_jaqua_le",
-      "action_note": "data/residents/ already holds this person as grand_jaqua_le (hh_grand_jaqua_le, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_jaques_elzabeth",
@@ -28321,9 +28321,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "cortlandt_pierre_van",
-      "action_note": "data/residents/ already holds this person as cortlandt_pierre_van (hh_cortlandt_pierre_van, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_pike_luke",
