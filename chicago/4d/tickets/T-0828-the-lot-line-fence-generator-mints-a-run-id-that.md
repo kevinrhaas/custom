@@ -1,7 +1,7 @@
 ---
 id: T-0828
 title: The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id
-state: claimed
+state: done
 epic: TOWN
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 989
 claimed_by: run 9/6/2026, 10:08:07 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T15:35:45.654Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34041163701
 ---
 
