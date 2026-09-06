@@ -150,6 +150,36 @@ in `grading_proposal.json` and no pass has ever carried it onto the card; 76 of 
 `attested` rungs sitting unspent. That is a different job from reading a new source, and it
 is the one that moves the number.
 
+### The spend, made 2026-09-05 (T-0720)
+
+`tools/spend_ladder_rungs.py --build` carried those rungs onto the cards. It writes ONE
+scalar — `ladder_rule`, immediately after `grade` — and only where the ladder AGREES with
+the grade and the subtype the card already carries. Nothing else on a card moves: not the
+grade, not a source, not a note. That is what makes it safe to run across cards four other
+passes derive, and it is why the pass cannot close the gap by grading anybody down.
+
+| | before | after |
+|---|---|---|
+| carrying a `ladder_rule` on the card | 531 | **1,313** |
+| carrying none | 873 | **91** |
+| a rung ruled and never written | 864 | **0** |
+
+The 782 spent are G3 628, G1b 76, G2e 48, G1a 20, G1c 10 — 106 of them `attested` rungs
+that had been sitting in the proposal since 3 September.
+
+**The 82 the ladder disagrees with are the owner's**, listed in
+`data/research/residents/ladder_spend.json` with the reason, and left off the cards:
+
+| | people |
+|---|---|
+| the rung proposes a LOWER grade than the card carries | 45 — T-0515 already ruled on each and declined it, and the refusal is on the card |
+| the ladder abstains (G5) | 36 — an abstention is not a rung, so there is none to write |
+| the same grade with a different `resident_subtype` | 1 |
+
+Those 82 now report as `ruled_but_disputed` in `ladder_coverage.json` rather than as an
+unspent rung, so `proposed_not_written` means what it says and reads nought. The nine
+below are unchanged: the ladder still cannot see them.
+
 **The nine the ladder cannot see, each with the reason it abstained.** Two are absorbed:
 `canonical_person_id` is `town[0]`, so an identity holding two town cards reported one and
 dropped the other in silence — `brown_mrs_rufus` onto `brown_rufus` (a wife whose only
@@ -163,9 +193,9 @@ unnamed` is a description; `Beckford` and `Mrs Temple` name no forename at all; 
 `Rev. John Mary Irenaeus St Cyr` — the parish priest whose own register is rung G2c — is
 turned away by a four-token cap that a compound surname trips.
 
-**Nothing here was applied.** No grade moved and no household file was touched: the ticket
-keeps the measurement and the regrade in separate passes, and `grading_proposal.json` is
-byte-identical across this one.
+**No grade has moved.** The measurement above touched no household file, and the spend
+that followed it wrote a rung and nothing else: `grading_proposal.json` is byte-identical
+across both, and every grade on every card is still the one the pass that wrote it derived.
 
 ## The review half — what each source turned out to be worth
 

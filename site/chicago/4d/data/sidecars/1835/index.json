@@ -4278,6 +4278,18 @@
       "asset": "gltf/recon_1835_blk_south_water_clark_a3_05__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_south_water_clark_a3_07",
+      "name": "Reconstructed A3 privy #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_a3_07.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_a3_07__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_clark_c2_06",
+      "name": "Reconstructed C2 store-residence #06",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_c2_06.json",
+      "asset": "gltf/recon_1835_blk_south_water_clark_c2_06__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_south_water_clark_d1_04",
       "name": "Reconstructed D1 older log dwelling #04",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_clark_d1_04.json",

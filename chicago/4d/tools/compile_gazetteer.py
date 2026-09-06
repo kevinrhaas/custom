@@ -1153,8 +1153,20 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         # anchors was unreachable for exactly the houses whose placement most needed
         # ordering. Silence is still kept in `placement_readings` with its own dates;
         # what it may not do is take part in a judgement about which anchor is live.
-        held = {r["anchor"]: r for r in biz["placement_readings"]
-                if placement_rank(r.get("placement")) > 0}
+        #
+        # T-0773. One anchor STRING can be carried by more than one reading of the same
+        # house, because a reading is grouped by its whole placement and not by its
+        # anchor alone: G. Spring's "the corner of Franklin and South Water streets" is
+        # read `relative` across seven printings from 1833-12-17 and `corner` once on
+        # 1834-09-03, two readings under one name. Keyed one-to-one, the later of the two
+        # overwrote the earlier and the rule's history lost seven claims and eleven
+        # months of window WITHOUT tripping guard 4 — the drop was invisible to the very
+        # guard that exists to catch it, because the anchor was still claimed. An anchor
+        # therefore holds every reading printed under it, and a group takes all of them.
+        held = {}
+        for r in biz["placement_readings"]:
+            if placement_rank(r.get("placement")) > 0:
+                held.setdefault(r["anchor"], []).append(r)
         claimed, windows, bad = [], [], False
         for g in groups:
             readings = g.get("readings") or []
@@ -1181,7 +1193,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 bad = True
                 break
             claimed.extend(readings)
-            rs = [held[r] for r in readings]
+            rs = [one for r in readings for one in held[r]]
             windows.append({
                 "name": g.get("name"),
                 "why": (g.get("why") or "").strip() or None,
@@ -1227,6 +1239,17 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             if w["first_issue"] <= scene_iso:
                 live = w
         biz["placement"] = live["placement"]
+        # T-0773. AND THE STREET GOES WITH IT. `street` is taken from whichever claim
+        # MINTS the house, so a rule that moves the live anchor across town leaves the
+        # street of the anchor it superseded behind — and `compile_register` adopts a
+        # street face off that field, not off the placement. G. Spring's rule put his
+        # office on Dearborn-street beside the Tremont House while the row went on
+        # reading South Water Street, which is the frontage the ruling had just retired.
+        # Only where the live reading names ONE street: a corner reading names two, and
+        # a `street` field holding both is not a street this town can adopt against.
+        live_street = (live["placement"] or {}).get("street")
+        if live_street and " and " not in live_street:
+            biz["street"] = live_street
         biz["anchor_change"] = {
             "rule": why,
             "cannot_say": cannot,

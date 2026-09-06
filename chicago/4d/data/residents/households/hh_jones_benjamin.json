@@ -55,6 +55,7 @@
    "name": "Benjamin Jones",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "grocer",

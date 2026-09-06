@@ -1,7 +1,7 @@
 ---
 id: T-0733
 title: 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 930
+claimed_by: run 9/5/2026, 5:35:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T22:54:32.517Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33996203401
 ---
 
 103 people carry a conflicting-evidence flag the final audit can see and no ruling reaches.

@@ -52,6 +52,7 @@
    "name": "Capt. J. M. Baxley",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "army_officer",
     "confidence": "attested",

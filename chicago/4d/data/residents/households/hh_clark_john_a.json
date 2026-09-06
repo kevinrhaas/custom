@@ -73,6 +73,19 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D1",
+     "cluster": "clark-john",
+     "weighed_against": [
+      "clark_john_k"
+     ],
+     "for_merge": "The forename and the surname.",
+     "against_merge": "Both cards print an explicit middle initial and the two disagree — A against K — with no anchor on either side to say one of them is mis-set. Two men until something says otherwise, and the ruling is written onto both cards so the next pass does not re-ask."
+    }
    ]
   }
  ],

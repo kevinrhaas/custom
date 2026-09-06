@@ -684,7 +684,10 @@
       "sources": [
         "andreas_1884_v1",
         "chicago_democrat_1833_11_26",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839",
+        "isa_public_domain_land_tract_sales"
       ]
     },
     {
@@ -852,7 +855,12 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "fergus_chicago_directory_1839",
+        "isa_public_domain_land_tract_sales",
+        "norris_directory_1844"
       ]
     },
     {
@@ -1019,7 +1027,10 @@
       "letter_list_returns": [],
       "sources": [
         "andreas_1884_v1",
-        "chicago_voter_lists_1833_1835_irad"
+        "census_1840_chicago_familysearch_images",
+        "chicago_democrat_1833_1835",
+        "chicago_voter_lists_1833_1835_irad",
+        "norris_directory_1844"
       ]
     },
     {

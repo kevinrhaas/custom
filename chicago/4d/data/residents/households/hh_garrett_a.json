@@ -54,6 +54,7 @@
    "name": "A. Garrett",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "auctioneer",
     "confidence": "attested",

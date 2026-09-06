@@ -52,6 +52,7 @@
    "name": "Elmira Fowler",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "dressmaker",
     "confidence": "attested",

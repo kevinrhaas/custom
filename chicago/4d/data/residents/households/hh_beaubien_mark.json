@@ -54,6 +54,7 @@
    "name": "Mark Beaubien",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "tavern_keeper",
@@ -103,6 +104,19 @@
  "touches_removal": false,
  "review_required": false,
  "research_note": "THE MOST FAMOUS HOUSEHOLD IN THE TOWN AND ONE OF THE THINNEST RECORDS IN THIS PARCEL, which is worth stating plainly because it is the shape of the whole problem. Everything Mark Beaubien DID is documented - the tavern, the ferry licence, the election held in his house, the naming of the Sauganash. Everything about him as a RESIDENT on 1 July 1835 - his roof, his work, his family, his arrival year - is unattested. Three of the five household fields here are conjectural and one of the two persons is a placeholder. That is the honest state of the evidence and the confidence view should paint it that way.",
+ "kin": [
+  {
+   "person": "beaubien_mark",
+   "relation": "brother",
+   "household": "hh_beaubien_jean_baptiste",
+   "value": "beaubien_jean_baptiste",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "MARK BEAUBIEN AND JEAN BAPTISTE BEAUBIEN ARE BROTHERS. Mark's own card reaches for \"Andreas's life of his brother Jean Baptiste\" to date the family's move to Chicago from Milwaukee, and states the tie while doing it. Graded inferred: the brotherhood is stated in the source, and the reading that ties the elided forename to this card — twelve Beaubiens stand in the dataset — is this project's. Ruled under T-0734; found by PR #947."
+  }
+ ],
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
   "sources": [

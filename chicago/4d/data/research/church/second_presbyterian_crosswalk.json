@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 938,
-    "residents_considered": 1401,
-    "residents_matched_one_line": 92,
+    "residents_considered": 1359,
+    "residents_matched_one_line": 82,
     "residents_ambiguous": 37,
-    "residents_surname_only_refused": 351
+    "residents_surname_only_refused": 331
   },
   "matched": [
     {
@@ -68,24 +68,6 @@
           "record": "second_presb_0379",
           "as_read": "Adams, Miss Hattie | Profession. | September 14, 1870. | Deceased.",
           "admitted": "1870-09-14",
-          "how_admitted": "profession",
-          "printed_page": 176,
-          "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
-      "name": "William Adams",
-      "person_id": "adams_william",
-      "household_id": "hh_adams_william",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Adams' folds to the same string as the roll line's, and the given name of both begins W.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0388",
-          "as_read": "Adams, W. W. | Profession. | July 3, 1846. | Dismissed.",
-          "admitted": "1846-07-03",
           "how_admitted": "profession",
           "printed_page": 176,
           "a_married_womans_entry": false
@@ -161,24 +143,6 @@
           "how_admitted": "letter",
           "printed_page": 178,
           "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
-      "name": "Harriet E Bates",
-      "person_id": "bates_harriet_e",
-      "household_id": "hh_bates_harriet_e",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Bates' folds to the same string as the roll line's, and the given name of both begins H.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0410",
-          "as_read": "Bates, Mrs. Harriet E. | Profession. | March 6, 1847. | Dismissed.",
-          "admitted": "1847-03-06",
-          "how_admitted": "profession",
-          "printed_page": 178,
-          "a_married_womans_entry": true
         }
       ]
     },
@@ -327,24 +291,6 @@
       ]
     },
     {
-      "name": "W H Brown",
-      "person_id": "brown_w_h",
-      "household_id": "hh_brown_w_h",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Brown' folds to the same string as the roll line's, and the given name of both begins W.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0453",
-          "as_read": "Brown, William H. | Letter. | June 1, 1842. | Deceased,",
-          "admitted": "1842-06-01",
-          "how_admitted": "letter",
-          "printed_page": 180,
-          "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
       "name": "William H Brown",
       "person_id": "brown_william_h",
       "household_id": "hh_brown_william_h",
@@ -430,24 +376,6 @@
           "admitted": "1852-06-25",
           "how_admitted": "letter",
           "printed_page": 182,
-          "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
-      "name": "S B Cobb",
-      "person_id": "cobb_s_b",
-      "household_id": "hh_cobb_s_b",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Cobb' folds to the same string as the roll line's, and the given name of both begins S.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0120",
-          "as_read": "Cobb, Stephen A, | Profession. | April 3, 1889.",
-          "admitted": "1889-04-03",
-          "how_admitted": "profession",
-          "printed_page": 160,
           "a_married_womans_entry": false
         }
       ]
@@ -561,24 +489,6 @@
       ]
     },
     {
-      "name": "G W Dole",
-      "person_id": "dole_g_w",
-      "household_id": "hh_dole_g_w",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Dole' folds to the same string as the roll line's, and the given name of both begins G.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0534",
-          "as_read": "Dole, George W. | Letter. | June I, 1842. | Dismissed.",
-          "admitted": "1842-06-01",
-          "how_admitted": "letter",
-          "printed_page": 184,
-          "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
       "name": "George Washington Dole",
       "person_id": "dole_george_w",
       "household_id": "hh_dole_george_w",
@@ -669,64 +579,10 @@
       ]
     },
     {
-      "name": "A N Fullerton",
-      "person_id": "fullerton_a_n",
-      "household_id": "hh_fullerton_a_n",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Fullerton' folds to the same string as the roll line's, and the given name of both begins A.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0552",
-          "as_read": "Fullerton, Mrs. A. N. | Letter. | June I, 1842. | Deceased.",
-          "admitted": "1842-06-01",
-          "how_admitted": "letter",
-          "printed_page": 186,
-          "a_married_womans_entry": true
-        }
-      ]
-    },
-    {
-      "name": "Alex N Fullerton",
-      "person_id": "fullerton_alex_n",
-      "household_id": "hh_fullerton_alex_n",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Fullerton' folds to the same string as the roll line's, and the given name of both begins A.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0552",
-          "as_read": "Fullerton, Mrs. A. N. | Letter. | June I, 1842. | Deceased.",
-          "admitted": "1842-06-01",
-          "how_admitted": "letter",
-          "printed_page": 186,
-          "a_married_womans_entry": true
-        }
-      ]
-    },
-    {
       "name": "Alexander N. Fullerton",
       "person_id": "fullerton_alexander",
       "household_id": "hh_fullerton_alexander",
       "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Fullerton' folds to the same string as the roll line's, and the given name of both begins A.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0552",
-          "as_read": "Fullerton, Mrs. A. N. | Letter. | June I, 1842. | Deceased.",
-          "admitted": "1842-06-01",
-          "how_admitted": "letter",
-          "printed_page": 186,
-          "a_married_womans_entry": true
-        }
-      ]
-    },
-    {
-      "name": "Alexander M Fullerton",
-      "person_id": "fullerton_alexander_m",
-      "household_id": "hh_fullerton_alexander_m",
-      "grade": "inferred",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Fullerton' folds to the same string as the roll line's, and the given name of both begins A.",
       "roll_lines": [
@@ -762,7 +618,7 @@
       "name": "Silas B. Cobb",
       "person_id": "cobb_silas_b",
       "household_id": "hh_goss_cobb",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Cobb' folds to the same string as the roll line's, and the given name of both begins S.",
       "roll_lines": [
@@ -1529,42 +1385,6 @@
           "how_admitted": "letter",
           "printed_page": 203,
           "a_married_womans_entry": true
-        }
-      ]
-    },
-    {
-      "name": "Anson N Taylor",
-      "person_id": "taylor_anson_n",
-      "household_id": "hh_taylor_anson_n",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins A.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0323",
-          "as_read": "Taylor, Miss Anna M. | Letter, | January 29, 1890.",
-          "admitted": "1890-01-29",
-          "how_admitted": "letter",
-          "printed_page": 172,
-          "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
-      "name": "Anson W Taylor",
-      "person_id": "taylor_anson_w",
-      "household_id": "hh_taylor_anson_w",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins A.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0323",
-          "as_read": "Taylor, Miss Anna M. | Letter, | January 29, 1890.",
-          "admitted": "1890-01-29",
-          "how_admitted": "letter",
-          "printed_page": 172,
-          "a_married_womans_entry": false
         }
       ]
     },
@@ -3038,33 +2858,6 @@
       "rule": "The surname 'Alden' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Ebenozer Alden'. A surname-only agreement is a refusal."
     },
     {
-      "name": "James Allen",
-      "person_id": "allen_james",
-      "household_id": "hh_allen_james",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 10,
-      "rule": "The surname 'Allen' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'James Allen'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Lieut Allen",
-      "person_id": "allen_lieut",
-      "household_id": "hh_allen_lieut",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 10,
-      "rule": "The surname 'Allen' stands on the Second Presbyterian roll and no line under it carries the initial 'L' of 'Lieut Allen'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Lieut J Allen",
-      "person_id": "allen_lieut_j",
-      "household_id": "hh_allen_lieut_j",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 10,
-      "rule": "The surname 'Allen' stands on the Second Presbyterian roll and no line under it carries the initial 'L' of 'Lieut J Allen'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "Lieut. James Allen",
       "person_id": "allen_lieut_james",
       "household_id": "hh_allen_lieut_james",
@@ -4127,15 +3920,6 @@
       "rule": "The surname 'Hamilton' stands on the Second Presbyterian roll and no line under it carries the initial 'D' of 'Diana Hamilton'. A surname-only agreement is a refusal."
     },
     {
-      "name": "R J Hamilton",
-      "person_id": "hamilton_r_j",
-      "household_id": "hh_hamilton_r_j",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Hamilton' stands on the Second Presbyterian roll and no line under it carries the initial 'R' of 'R J Hamilton'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "Richard Jones Hamilton",
       "person_id": "hamilton_richard_j",
       "household_id": "hh_hamilton_richard_j",
@@ -4170,15 +3954,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Harmon' stands on the Second Presbyterian roll and no line under it carries the initial 'D' of 'D Harmon'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Isaac Harmon",
-      "person_id": "harmon_isaac",
-      "household_id": "hh_harmon_isaac",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 1,
-      "rule": "The surname 'Harmon' stands on the Second Presbyterian roll and no line under it carries the initial 'I' of 'Isaac Harmon'. A surname-only agreement is a refusal."
     },
     {
       "name": "M D Harmon",
@@ -4242,15 +4017,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 5,
       "rule": "The surname 'Hill' stands on the Second Presbyterian roll and no line under it carries the initial 'I' of 'Isaac L. Hill'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "J S C Hogan",
-      "person_id": "hogan_j_s_c",
-      "household_id": "hh_hogan_j_s_c",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 1,
-      "rule": "The surname 'Hogan' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J S C Hogan'. A surname-only agreement is a refusal."
     },
     {
       "name": "John Hogan",
@@ -4361,42 +4127,6 @@
       "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Elijah Kent Hubbard'. A surname-only agreement is a refusal."
     },
     {
-      "name": "G Hubbard",
-      "person_id": "hubbard_g",
-      "household_id": "hh_hubbard_g",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'G Hubbard'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "G S Hubbard",
-      "person_id": "hubbard_g_s",
-      "household_id": "hh_hubbard_g_s",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'G S Hubbard'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "G T Hubbard",
-      "person_id": "hubbard_g_t",
-      "household_id": "hh_hubbard_g_t",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'G T Hubbard'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Gordon S Hubbard",
-      "person_id": "hubbard_gordon_s",
-      "household_id": "hh_hubbard_gordon_s",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gordon S Hubbard'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "Gurdon Saltonstall Hubbard",
       "person_id": "hubbard_gurdon",
       "household_id": "hh_hubbard_gurdon",
@@ -4404,15 +4134,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 5,
       "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gurdon Saltonstall Hubbard'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Gurdon S Hubbard",
-      "person_id": "hubbard_gurdon_s",
-      "household_id": "hh_hubbard_gurdon_s",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gurdon S Hubbard'. A surname-only agreement is a refusal."
     },
     {
       "name": "Henry G Hubbard",
@@ -5207,42 +4928,6 @@
       "rule": "The surname 'Owen' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J V Owen'. A surname-only agreement is a refusal."
     },
     {
-      "name": "T J V Owen",
-      "person_id": "owen_t_j_v",
-      "household_id": "hh_owen_t_j_v",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Owen' stands on the Second Presbyterian roll and no line under it carries the initial 'T' of 'T J V Owen'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Th J V Owen",
-      "person_id": "owen_th_j_v",
-      "household_id": "hh_owen_th_j_v",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Owen' stands on the Second Presbyterian roll and no line under it carries the initial 'T' of 'Th J V Owen'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Thomas Owen",
-      "person_id": "owen_thomas",
-      "household_id": "hh_owen_thomas",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Owen' stands on the Second Presbyterian roll and no line under it carries the initial 'T' of 'Thomas Owen'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Thomas J V Owen",
-      "person_id": "owen_thomas_j_v",
-      "household_id": "hh_owen_thomas_j_v",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Owen' stands on the Second Presbyterian roll and no line under it carries the initial 'T' of 'Thomas J V Owen'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "Thomas Jefferson Vance Owen",
       "person_id": "owen_thomas_jv",
       "household_id": "hh_owen_thomas_jv",
@@ -5342,24 +5027,6 @@
       "rule": "The surname 'Pease' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'H. Pease'. A surname-only agreement is a refusal."
     },
     {
-      "name": "P F Peck",
-      "person_id": "peck_p_f",
-      "household_id": "hh_peck_p_f",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Peck' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'P F Peck'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "P F W Peck",
-      "person_id": "peck_p_f_w",
-      "household_id": "hh_peck_p_f_w",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 5,
-      "rule": "The surname 'Peck' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'P F W Peck'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "Philip F. W. Peck",
       "person_id": "peck_philip",
       "household_id": "hh_peck_philip",
@@ -5369,13 +5036,13 @@
       "rule": "The surname 'Peck' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'Philip F. W. Peck'. A surname-only agreement is a refusal."
     },
     {
-      "name": "A. 8. Perry",
+      "name": "A. [?] Perry",
       "person_id": "perry_a_8",
       "household_id": "hh_perry_a_8",
       "grade": "inferred",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
-      "rule": "The surname 'Perry' stands on the Second Presbyterian roll and no line under it carries the initial 'A' of 'A. 8. Perry'. A surname-only agreement is a refusal."
+      "rule": "The surname 'Perry' stands on the Second Presbyterian roll and no line under it carries the initial 'A' of 'A. [?] Perry'. A surname-only agreement is a refusal."
     },
     {
       "name": "Calvin Perry",
@@ -5702,15 +5369,6 @@
       "rule": "The surname 'Smith' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'George Smith'. A surname-only agreement is a refusal."
     },
     {
-      "name": "G W Snow",
-      "person_id": "snow_g_w",
-      "household_id": "hh_snow_g_w",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 1,
-      "rule": "The surname 'Snow' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'G W Snow'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "George W. Snow",
       "person_id": "snow_george_w",
       "household_id": "hh_snow_george_w",
@@ -5792,15 +5450,6 @@
       "rule": "The surname 'Strong' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'George Strong'. A surname-only agreement is a refusal."
     },
     {
-      "name": "E D Taylor",
-      "person_id": "taylor_e_d",
-      "household_id": "hh_taylor_e_d",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 9,
-      "rule": "The surname 'Taylor' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'E D Taylor'. A surname-only agreement is a refusal."
-    },
-    {
       "name": "Edmund D Taylor",
       "person_id": "taylor_edmund_d",
       "household_id": "hh_taylor_edmund_d",
@@ -5826,15 +5475,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 9,
       "rule": "The surname 'Taylor' stands on the Second Presbyterian roll and no line under it carries the initial 'W' of 'William H Taylor'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "J T Temple",
-      "person_id": "temple_j_t",
-      "household_id": "hh_temple_j_t",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Temple' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J T Temple'. A surname-only agreement is a refusal."
     },
     {
       "name": "Dr John Taylor Temple",

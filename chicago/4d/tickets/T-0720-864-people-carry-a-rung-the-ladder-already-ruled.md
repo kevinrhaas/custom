@@ -1,7 +1,7 @@
 ---
 id: T-0720
 title: 864 people carry a rung the ladder already ruled and no pass has written onto their card, 76 of them attested: spend the proposal onto the cards the civic mint does not own
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 927
+claimed_by: run 9/5/2026, 4:50:43 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T22:27:14.551Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33994095741
 ---
 **Measured by T-0692's `--coverage`, 2026-09-04, on dev.** Of the 1,404 person records in
 `data/residents/`, 531 carry a `ladder_rule` and 873 do not — and for **864 of those 873 the

@@ -78,7 +78,10 @@ pipeline and is not part of any of the above.
 at that household's edge. A family tie between two households had nowhere to go
 but a free-text note, which is to say nowhere a query can reach it — and the
 households this dataset most needs to keep apart are exactly the ones a shared
-surname makes mergeable. Six households here are Kinzies.
+surname makes mergeable. Four household cards here are Kinzies — six until
+T-0839 folded two duplicate initials cards on 2026-09-05, and T-0732 ruled on
+what the family's remaining prose claims are worth
+(`data/research/residents/kinzie_kinship_ruling.json`).
 
 `kin` is an optional household-level list. Each row is an ordinary graded claim
 block — `value` names the **other person**, so `walk_attested()` checks its
@@ -104,7 +107,51 @@ mothers — and that is the first thing a summary flattens:
   record that omits it still reads as no relationship at all, which is the
   defect the ticket was opened about.
 
-Asymmetric relations (father/son, uncle/nephew) are deliberately **not**
-declared. Their inverse depends on the other person, and declaring a term
-without its inverse would let a one-way claim through. Add the pair together or
-not at all.
+A relation is refused outright unless its inverse is declared, and the rule is
+satisfied rather than relaxed when the set grows: **T-0734 added the asymmetric
+pairs together** — `husband`/`wife`, and the parent terms against the child
+terms — so `father` is legal only against `son` or `daughter`, and a `father`
+whose mirror row also says `father` is the one-way claim the rule exists to
+catch. `uncle`/`nephew` and `cousin` are still undeclared, because nothing in
+the corpus has needed them.
+
+## The kinship the corpus states, surveyed and ruled on (T-0734)
+
+The audit that opened T-0734 found **14 of 1,404** people related to anybody at
+all, and the cause was never that the sources are silent: the St Cyr register
+marries six couples this town holds both halves of, and nothing had read it.
+
+Two files, and they are two on purpose:
+
+| file | |
+|---|---|
+| `kin_survey.json` | **DERIVED** by `tools/survey_stated_kin.py`. Every stated kinship in the committed corpus, with both ends resolved against this layer. Re-derived by `--check`; hand-edits lose. |
+| `kin_rulings.json` | **AUTHORED**. One verdict per landable proposal — `landed`, `refused` or `deferred` — each with its reason. No pass may rewrite it. |
+
+`tools/check.sh` runs `survey_stated_kin.py --check`, which fails while a
+proposal whose two people this dataset holds is unanswered, while a `landed`
+ruling has no reciprocal `kin` rows on the two records, or while a `refused` one
+has them anyway. A newly stated kinship is therefore a red build rather than
+something to notice one day.
+
+How a name becomes a person differs by source, and the line is drawn at
+identity, never at the tie:
+
+- **A register entry** resolves through the `..._evidence[].record_id`
+  back-links the cards already carry. Most of these people exist *because of*
+  the entry that names them, so nothing is matched by name at all. Where a
+  back-link is missing but a townsperson shares the name, the row is
+  `identity_not_asserted` and is **not** proposed — the town's John Murphy is
+  attested from three sources that are not the register and no one has ever
+  established that he is the register's groom.
+- **Prose already quoted onto a card** takes that card's head as the subject and
+  resolves the other party by the st_cyr crosswalk's own rule: surname folds
+  equal, forenames agree initial for initial, and **exactly one** townsperson
+  may match. Two is `ambiguous` and is reported rather than guessed. A bare
+  forename inside a card (`brother of Samuel`) is read with the subject's
+  surname and then has to resolve like any other name.
+
+The 1840 census households are the densest kinship the corpus holds and are
+deliberately **not** read: the crosswalk is stale against both the pages
+(T-0714) and the town (T-0698), and kin read off it would land on the wrong
+people.

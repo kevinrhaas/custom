@@ -164,6 +164,23 @@ NAME_KEYS = ("normalized", "as_read", "quote")
 # why, which is the shape of every silent hole this gate exists to close.
 NOT_A_READING_KEY = "not_a_reading"
 
+# WHERE A FILE'S NAMED UNITS LIVE, when they do not live in `records` or `claims`
+# (T-0678). old_settlers/people.json holds 327 roll entries under `people`, and this
+# instrument read every one of them as nothing — a domain that had read three rolls
+# measured as though it had read one. The declaration is in the file, beside
+# `not_a_reading` and for the same reason: which array is the reading is a fact about
+# that file. It cannot inflate a domain, because the units still have to carry a name,
+# and it cannot be used to hide one — withholding is `not_a_reading`'s job and that one
+# has to give a reason.
+UNITS_IN_KEY = "units_in"
+
+
+def unit_containers(doc: dict) -> tuple:
+    declared = doc.get(UNITS_IN_KEY)
+    if isinstance(declared, str) and declared.strip():
+        return ("records", "claims", declared.strip())
+    return ("records", "claims")
+
 # Where a ruling may name a unit it adjudicated, as a plain string. These are the
 # two blocks the crosswalks already use for "what this rests on"; a string in one
 # of them that IS an id this domain has read is an anchor (T-0602), and a string
@@ -394,7 +411,7 @@ def anchor_of(ruling: dict) -> str | None:
 def named_units(doc: dict) -> int:
     """The named units a file holds, whether or not they are a fresh reading."""
     total = 0
-    for key in ("records", "claims"):
+    for key in unit_containers(doc):
         units = doc.get(key)
         if not isinstance(units, list):
             continue
@@ -447,7 +464,7 @@ def units_read(domain_dir: Path) -> set:
         doc = read_json(path)
         if not isinstance(doc, dict):
             continue
-        for key in ("records", "claims"):
+        for key in unit_containers(doc):
             for unit in doc.get(key) or []:
                 if isinstance(unit, dict) and isinstance(unit.get("id"), str):
                     ids.add(unit["id"])
@@ -923,6 +940,27 @@ def self_test() -> int:
               count_read(d)[0] == 4)
         (d / "precision_sample.json").write_text(json.dumps(dict(sample, not_a_reading="  ")))
         fires("…nor does a blank reason", count_read(d)[0] == 4)
+
+    # --- T-0678: a reading filed under the domain's own word for it. old_settlers holds
+    # 327 roll entries under `people`, and this instrument counted them as nothing until
+    # the file said which array was the reading.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        roll = {"records": [{"id": "r1", "normalized": "A"}],
+                "people": [{"id": "os1", "normalized": "B"}, {"id": "os2", "as_read": "C"}]}
+        (d / "roll.json").write_text(json.dumps(roll))
+        fires("an undeclared array is read as nothing", count_read(d)[0] == 1)
+        (d / "roll.json").write_text(json.dumps(dict(roll, units_in="people")))
+        fires("a declared array is counted beside records and claims",
+              count_read(d)[0] == 3)
+        fires("…and its ids can anchor a ruling like any other read unit",
+              {"r1", "os1", "os2"} <= units_read(d))
+        (d / "roll.json").write_text(json.dumps(dict(roll, units_in="  ")))
+        fires("a blank units_in declares nothing", count_read(d)[0] == 1)
+        (d / "roll.json").write_text(json.dumps(dict(roll, units_in="people",
+                                                     not_a_reading="a re-reading")))
+        fires("…and a declared array is still withheld when the file says it is not a "
+              "reading", count_read(d)[0] == 0)
 
     # --- T-0602, FAULT TWO: a written refusal counted as nothing. The five
     # newberry refusals cite card ids in `evidence` as plain strings, and the

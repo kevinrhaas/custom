@@ -9,10 +9,10 @@
       "persons": 2630,
       "businesses": 206
     },
-    "structures": 372,
+    "structures": 374,
     "structures_sharing_a_name": 36,
     "streets": 28,
-    "resident_persons": 1404
+    "resident_persons": 1362
   },
   "counts": {
     "businesses": {
@@ -24,8 +24,8 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 60,
+        "new_building": 25,
+        "street_only": 61,
         "unplaceable": 90
       },
       "by_placement_class": {
@@ -36,8 +36,8 @@
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 60,
+        "new_building": 25,
+        "street_only": 61,
         "unplaceable": 73
       },
       "outside_the_plat": 5,
@@ -48,9 +48,9 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1386,
-        "new_resident": 1222,
-        "replace_invented": 22
+        "enrich": 1371,
+        "new_resident": 1235,
+        "replace_invented": 24
       },
       "letter_list_only": 1936
     },
@@ -59,12 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 868,
+        "none_recorded": 862,
         "printer": 1,
-        "saddler": 1,
         "tavern_keeper": 2
       },
-      "households_total": 875,
+      "households_total": 868,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -2563,8 +2562,8 @@
         "Spring, G.",
         "Giles Spring"
       ],
-      "street": "South Water Street",
-      "street_id": "south_water",
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-12-17",
@@ -2578,22 +2577,194 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "corner",
+        "kind": "unresolved",
         "target": null,
-        "streets": [
-          "franklin",
-          "south_water"
-        ],
+        "streets": null,
         "via": null,
-        "note": "A crossing of two platted streets: franklin and south_water."
+        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
-      "anchor_change": null,
+      "anchor_change": {
+        "live_anchor": "the Tremont House",
+        "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1835-05-20.",
+        "changes": [
+          {
+            "from": "the corner of Franklin and South Water streets",
+            "to": "the Tremont House",
+            "after": "1834-11-26",
+            "before": "1835-05-20"
+          }
+        ],
+        "rule": "Giles Spring's office card is reset once. From 1833-12-17 to 1834-11-26 every printing sets the office 'second door west from the corner of Franklin and South Water streets', on the copy date 17 December 1833. From 1835-05-20 the card is a different one — copy-dated 3 December 1834, seven days after the last printing of the old address — and it reads 'OFFICE, first door north from the Tremont House, on Dearborn-street'. These are two crossings of this town and not two spellings of one: Franklin and South Water is on the river's south bank at the west end of the business row, and the first Tremont House stands at the north-west corner of Lake and Dearborn, some four blocks east of it. The identity merge of 'Giles Spring' into 'G. Spring' already reads both cards off the page and says the second one moves him; this rule is that reading applied to the placement, not a new judgement. The corpus carries no printing of either card between 1834-11-26 and 1835-05-20, so the change is bracketed by those two dates and no closer — with the copy date of 3 December 1834 saying only when the new card was WRITTEN, which is not the same as when the office moved.",
+        "cannot_say": "WHEN THE OFFICE ACTUALLY MOVED, AND WHETHER IT MOVED AT ALL. A card copy-dated 3 December 1834 that first appears in this deposit on 20 May 1835 leaves five and a half months in which nothing printed here says where Spring sat; the deposit is not the paper's whole run, so the new address may have been printed weeks or months before the issue that carries it, and the old one may have gone on running beside it in issues this project does not hold. Nor does anything printed say that ONE office moved rather than that a lawyer who had rooms on South Water Street took rooms on Dearborn Street: both would read exactly like this. What the rule decides is only which anchor the card is printed under at the scene date of 1835-07-01 — the Tremont House, first printed 20 May 1835 and printed again 5 August 1835 — and that is a statement about the ADVERTISEMENT. The earlier anchor is kept with its own dates and its own eleven printings so a later pass can still tell a removal from a second office. The Dearborn address is itself a count of doors, 'first door north from the Tremont House': it fixes a side of Dearborn Street and an order along it, not a lot width, and no lot is claimed for it here.",
+        "history": [
+          {
+            "anchor": "the corner of Franklin and South Water streets",
+            "first_issue": "1833-12-17",
+            "last_issue": "1834-11-26",
+            "claims": [
+              "chicago_democrat_1833_12_17#c004",
+              "chicago_democrat_1834_01_28#c006",
+              "chicago_democrat_1834_03_04#c030",
+              "chicago_democrat_1834_05_28#c009",
+              "chicago_democrat_1834_06_11#c004",
+              "chicago_democrat_1834_07_09#c021",
+              "chicago_democrat_1834_08_20#c003",
+              "chicago_democrat_1834_09_03#c015",
+              "chicago_democrat_1834_10_15#c002",
+              "chicago_democrat_1834_11_12#c008",
+              "chicago_democrat_1834_11_26#c009"
+            ],
+            "live_at_scene_date": false,
+            "resolved": {
+              "kind": "corner",
+              "target": null,
+              "streets": [
+                "franklin",
+                "south_water"
+              ],
+              "via": null,
+              "note": "A crossing of two platted streets: franklin and south_water."
+            },
+            "resolved_on_reading": "the corner of Franklin and South Water streets",
+            "readings": [
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "first_issue": "1833-12-17",
+                "last_issue": "1834-11-26",
+                "claims": [
+                  "chicago_democrat_1833_12_17#c004",
+                  "chicago_democrat_1834_01_28#c006",
+                  "chicago_democrat_1834_03_04#c030",
+                  "chicago_democrat_1834_06_11#c004",
+                  "chicago_democrat_1834_08_20#c003",
+                  "chicago_democrat_1834_11_12#c008",
+                  "chicago_democrat_1834_11_26#c009"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "franklin",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: franklin and south_water."
+                }
+              },
+              {
+                "anchor": "Franklin and South Water streets",
+                "first_issue": "1834-05-28",
+                "last_issue": "1834-05-28",
+                "claims": [
+                  "chicago_democrat_1834_05_28#c009"
+                ],
+                "resolved": {
+                  "kind": "street",
+                  "target": null,
+                  "streets": [
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "The anchor is a reach of south_water and names nothing narrower."
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water-streets",
+                "first_issue": "1834-07-09",
+                "last_issue": "1834-07-09",
+                "claims": [
+                  "chicago_democrat_1834_07_09#c021"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "franklin",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: franklin and south_water."
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "first_issue": "1834-09-03",
+                "last_issue": "1834-09-03",
+                "claims": [
+                  "chicago_democrat_1834_09_03#c015"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "franklin",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: franklin and south_water."
+                }
+              },
+              {
+                "anchor": "the corner of Franklin [street]",
+                "first_issue": "1834-10-15",
+                "last_issue": "1834-10-15",
+                "claims": [
+                  "chicago_democrat_1834_10_15#c002"
+                ],
+                "resolved": {
+                  "kind": "unresolved",
+                  "target": null,
+                  "streets": null,
+                  "via": null,
+                  "note": "The anchor 'the corner of Franklin [street]' names nothing the committed town holds."
+                }
+              }
+            ]
+          },
+          {
+            "anchor": "the Tremont House",
+            "first_issue": "1835-05-20",
+            "last_issue": "1835-08-05",
+            "claims": [
+              "chicago_democrat_1835_05_20#c022",
+              "chicago_democrat_1835_08_05#c019"
+            ],
+            "live_at_scene_date": true,
+            "resolved": {
+              "kind": "unresolved",
+              "target": null,
+              "streets": null,
+              "via": null,
+              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+            },
+            "resolved_on_reading": "the Tremont House",
+            "readings": [
+              {
+                "anchor": "the Tremont House",
+                "first_issue": "1835-05-20",
+                "last_issue": "1835-08-05",
+                "claims": [
+                  "chicago_democrat_1835_05_20#c022",
+                  "chicago_democrat_1835_08_05#c019"
+                ],
+                "resolved": {
+                  "kind": "unresolved",
+                  "target": null,
+                  "streets": null,
+                  "via": null,
+                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+                }
+              }
+            ]
+          }
+        ]
+      },
       "outside_plat": null,
-      "action": "new_building",
-      "action_target": "franklin+south_water",
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Placeable against the committed town. A crossing of two platted streets: franklin and south_water."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
     },
     {
       "id": "business_g_w_keeney",
@@ -8340,8 +8511,8 @@
       "first_seen": "1835-06-13",
       "last_seen": "1835-06-17",
       "action": "enrich",
-      "action_target": "fullerton_a_n",
-      "action_note": "data/residents/ already holds this person as fullerton_a_n (hh_fullerton_a_n, attested). The papers add mentions and dates."
+      "action_target": "fullerton_alexander",
+      "action_note": "data/residents/ already holds this person as fullerton_alexander (hh_fullerton_alexander, attested). The papers add mentions and dates."
     },
     {
       "id": "person_a_o_t_breed",
@@ -8460,9 +8631,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "abbot_8_g",
-      "action_note": "data/residents/ already holds this person as abbot_8_g (hh_abbot_8_g, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_abbot_green",
@@ -8802,8 +8973,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "fullerton_alexander_m",
-      "action_note": "data/residents/ already holds this person as fullerton_alexander_m (hh_fullerton_alexander_m, inferred). The papers add mentions and dates."
+      "action_target": "fullerton_alexander",
+      "action_note": "data/residents/ already holds this person as fullerton_alexander (hh_fullerton_alexander, attested). The papers add mentions and dates."
     },
     {
       "id": "person_alexander_h_howard",
@@ -9318,9 +9489,9 @@
       "letter_list_only": false,
       "first_seen": "1834-11-12",
       "last_seen": "1834-11-12",
-      "action": "enrich",
-      "action_target": "taylor_anson_w",
-      "action_note": "data/residents/ already holds this person as taylor_anson_w (hh_taylor_anson_w, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_anstin_mr_al",
@@ -10122,8 +10293,8 @@
       "first_seen": "1835-08-26",
       "last_seen": "1835-08-26",
       "action": "enrich",
-      "action_target": "bates_harriet_e",
-      "action_note": "data/residents/ already holds this person as bates_harriet_e (hh_bates_harriet_e, attested). The papers add mentions and dates."
+      "action_target": "bates_harriet_ellen",
+      "action_note": "data/residents/ already holds this person as bates_harriet_ellen (hh_bates_harriet_ellen, attested). The papers add mentions and dates."
     },
     {
       "id": "person_bates_harriet_ellen",
@@ -10133,8 +10304,8 @@
       "first_seen": "1835-08-26",
       "last_seen": "1835-08-26",
       "action": "enrich",
-      "action_target": "bates_harriet_e",
-      "action_note": "data/residents/ already holds this person as bates_harriet_e (hh_bates_harriet_e, attested). The papers add mentions and dates."
+      "action_target": "bates_harriet_ellen",
+      "action_note": "data/residents/ already holds this person as bates_harriet_ellen (hh_bates_harriet_ellen, attested). The papers add mentions and dates."
     },
     {
       "id": "person_bates_j_jr",
@@ -10242,9 +10413,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-24",
-      "action": "enrich",
-      "action_target": "beaubien_j_b",
-      "action_note": "data/residents/ already holds this person as beaubien_j_b (hh_beaubien_j_b, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_bebee_orson",
@@ -11200,8 +11371,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "brown_w_h",
-      "action_note": "data/residents/ already holds this person as brown_w_h (hh_brown_w_h, attested). The papers add mentions and dates."
+      "action_target": "brown_william_h",
+      "action_note": "data/residents/ already holds this person as brown_william_h (hh_brown_william_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_bruen_hir",
@@ -14258,8 +14429,8 @@
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
       "action": "enrich",
-      "action_target": "dole_g_w",
-      "action_note": "data/residents/ already holds this person as dole_g_w (hh_dole_g_w, attested). The papers add mentions and dates."
+      "action_target": "dole_george_w",
+      "action_note": "data/residents/ already holds this person as dole_george_w (hh_dole_george_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_doles_petar",
@@ -14555,8 +14726,8 @@
       "first_seen": "1835-07-08",
       "last_seen": "1835-07-29",
       "action": "enrich",
-      "action_target": "taylor_e_d",
-      "action_note": "data/residents/ already holds this person as taylor_e_d (hh_taylor_e_d, attested). The papers add mentions and dates."
+      "action_target": "taylor_edmund_d",
+      "action_note": "data/residents/ already holds this person as taylor_edmund_d (hh_taylor_edmund_d, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_dimmick",
@@ -14588,8 +14759,8 @@
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-30",
       "action": "enrich",
-      "action_target": "haddock_e",
-      "action_note": "data/residents/ already holds this person as haddock_e (hh_haddock_e, attested). The papers add mentions and dates."
+      "action_target": "haddock_edward",
+      "action_note": "data/residents/ already holds this person as haddock_edward (hh_haddock_edward, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_haddock",
@@ -14599,8 +14770,8 @@
       "first_seen": "1834-06-18",
       "last_seen": "1834-06-18",
       "action": "enrich",
-      "action_target": "haddock_e",
-      "action_note": "data/residents/ already holds this person as haddock_e (hh_haddock_e, attested). The papers add mentions and dates."
+      "action_target": "haddock_edward",
+      "action_note": "data/residents/ already holds this person as haddock_edward (hh_haddock_edward, attested). The papers add mentions and dates."
     },
     {
       "id": "person_e_k_hubbard",
@@ -14697,9 +14868,9 @@
       "letter_list_only": false,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "kimberly_e_s",
-      "action_note": "data/residents/ already holds this person as kimberly_e_s (hh_kimberly_e_s, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_e_simons",
@@ -14752,9 +14923,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-18",
       "last_seen": "1834-03-18",
-      "action": "enrich",
-      "action_target": "haddock_e",
-      "action_note": "data/residents/ already holds this person as haddock_e (hh_haddock_e, attested). The papers add mentions and dates."
+      "action": "replace_invented",
+      "action_target": "merchant",
+      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_e_wentworth",
@@ -14896,8 +15067,8 @@
       "first_seen": "1835-03-25",
       "last_seen": "1835-03-25",
       "action": "enrich",
-      "action_target": "taylor_e_d",
-      "action_note": "data/residents/ already holds this person as taylor_e_d (hh_taylor_e_d, attested). The papers add mentions and dates."
+      "action_target": "taylor_edmund_d",
+      "action_note": "data/residents/ already holds this person as taylor_edmund_d (hh_taylor_edmund_d, attested). The papers add mentions and dates."
     },
     {
       "id": "person_edmund_s_kimberly",
@@ -14906,9 +15077,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-08-13",
-      "action": "enrich",
-      "action_target": "kimberly_e_s",
-      "action_note": "data/residents/ already holds this person as kimberly_e_s (hh_kimberly_e_s, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_edmund_uncertain_poke",
@@ -16073,8 +16244,8 @@
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
       "action": "enrich",
-      "action_target": "fullerton_a_n",
-      "action_note": "data/residents/ already holds this person as fullerton_a_n (hh_fullerton_a_n, attested). The papers add mentions and dates."
+      "action_target": "fullerton_alexander",
+      "action_note": "data/residents/ already holds this person as fullerton_alexander (hh_fullerton_alexander, attested). The papers add mentions and dates."
     },
     {
       "id": "person_fullerton_botsford",
@@ -16160,9 +16331,9 @@
       "letter_list_only": false,
       "first_seen": "1834-01-21",
       "last_seen": "1834-01-21",
-      "action": "enrich",
-      "action_target": "sproat_g_n",
-      "action_note": "data/residents/ already holds this person as sproat_g_n (hh_sproat_g_n, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_g_s_hubbard",
@@ -16172,8 +16343,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-11-19",
       "action": "enrich",
-      "action_target": "hubbard_g",
-      "action_note": "data/residents/ already holds this person as hubbard_g (hh_hubbard_g, attested). The papers add mentions and dates."
+      "action_target": "hubbard_gurdon",
+      "action_note": "data/residents/ already holds this person as hubbard_gurdon (hh_hubbard_gurdon, attested). The papers add mentions and dates."
     },
     {
       "id": "person_g_spring",
@@ -16205,8 +16376,8 @@
       "first_seen": "1833-12-03",
       "last_seen": "1834-02-25",
       "action": "enrich",
-      "action_target": "sproat_g_t",
-      "action_note": "data/residents/ already holds this person as sproat_g_t (hh_sproat_g_t, attested). The papers add mentions and dates."
+      "action_target": "sproat_grenville",
+      "action_note": "data/residents/ already holds this person as sproat_grenville (hh_sproat_grenville, attested). The papers add mentions and dates."
     },
     {
       "id": "person_g_w_dole",
@@ -16216,8 +16387,8 @@
       "first_seen": "1833-12-10",
       "last_seen": "1834-11-19",
       "action": "enrich",
-      "action_target": "dole_g_w",
-      "action_note": "data/residents/ already holds this person as dole_g_w (hh_dole_g_w, attested). The papers add mentions and dates."
+      "action_target": "dole_george_w",
+      "action_note": "data/residents/ already holds this person as dole_george_w (hh_dole_george_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_g_w_ewin_g",
@@ -16271,8 +16442,8 @@
       "first_seen": "1834-06-18",
       "last_seen": "1834-12-24",
       "action": "enrich",
-      "action_target": "snow_g_w",
-      "action_note": "data/residents/ already holds this person as snow_g_w (hh_snow_g_w, attested). The papers add mentions and dates."
+      "action_target": "snow_george_w",
+      "action_note": "data/residents/ already holds this person as snow_george_w (hh_snow_george_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_g_w_woodward",
@@ -16292,9 +16463,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "gabbs_james_i1",
-      "action_note": "data/residents/ already holds this person as gabbs_james_i1 (hh_gabbs_james_i1, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_galusha_ezra",
@@ -16612,8 +16783,8 @@
       "first_seen": "1835-07-08",
       "last_seen": "1835-07-08",
       "action": "enrich",
-      "action_target": "dole_g_w",
-      "action_note": "data/residents/ already holds this person as dole_g_w (hh_dole_g_w, attested). The papers add mentions and dates."
+      "action_target": "dole_george_w",
+      "action_note": "data/residents/ already holds this person as dole_george_w (hh_dole_george_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_george_w_snow",
@@ -16623,8 +16794,8 @@
       "first_seen": "1833-12-10",
       "last_seen": "1834-08-13",
       "action": "enrich",
-      "action_target": "snow_g_w",
-      "action_note": "data/residents/ already holds this person as snow_g_w (hh_snow_g_w, attested). The papers add mentions and dates."
+      "action_target": "snow_george_w",
+      "action_note": "data/residents/ already holds this person as snow_george_w (hh_snow_george_w, attested). The papers add mentions and dates."
     },
     {
       "id": "person_george_walker",
@@ -16942,8 +17113,8 @@
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
       "action": "enrich",
-      "action_target": "hubbard_g",
-      "action_note": "data/residents/ already holds this person as hubbard_g (hh_hubbard_g, attested). The papers add mentions and dates."
+      "action_target": "hubbard_gurdon",
+      "action_note": "data/residents/ already holds this person as hubbard_gurdon (hh_hubbard_gurdon, attested). The papers add mentions and dates."
     },
     {
       "id": "person_gordon_william",
@@ -17151,8 +17322,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-11",
       "action": "enrich",
-      "action_target": "hubbard_g",
-      "action_note": "data/residents/ already holds this person as hubbard_g (hh_hubbard_g, attested). The papers add mentions and dates."
+      "action_target": "hubbard_gurdon",
+      "action_note": "data/residents/ already holds this person as hubbard_gurdon (hh_hubbard_gurdon, attested). The papers add mentions and dates."
     },
     {
       "id": "person_gustavus_c",
@@ -17701,8 +17872,8 @@
       "first_seen": "1834-09-03",
       "last_seen": "1834-09-10",
       "action": "enrich",
-      "action_target": "hamilton_r_j",
-      "action_note": "data/residents/ already holds this person as hamilton_r_j (hh_hamilton_r_j, attested). The papers add mentions and dates."
+      "action_target": "hamilton_richard_j",
+      "action_note": "data/residents/ already holds this person as hamilton_richard_j (hh_hamilton_richard_j, attested). The papers add mentions and dates."
     },
     {
       "id": "person_hamilton_s_henry",
@@ -17932,8 +18103,8 @@
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
       "action": "enrich",
-      "action_target": "harmon_isaac",
-      "action_note": "data/residents/ already holds this person as harmon_isaac (hh_harmon_isaac, attested). The papers add mentions and dates."
+      "action_target": "harmon_isaac_d",
+      "action_note": "data/residents/ already holds this person as harmon_isaac_d (hh_harmon_brothers, attested). The papers add mentions and dates."
     },
     {
       "id": "person_harmon_loomis_co",
@@ -19010,8 +19181,8 @@
       "first_seen": "1835-08-05",
       "last_seen": "1835-08-05",
       "action": "enrich",
-      "action_target": "hubbard_g",
-      "action_note": "data/residents/ already holds this person as hubbard_g (hh_hubbard_g, attested). The papers add mentions and dates."
+      "action_target": "hubbard_gurdon",
+      "action_note": "data/residents/ already holds this person as hubbard_gurdon (hh_hubbard_gurdon, attested). The papers add mentions and dates."
     },
     {
       "id": "person_hubbard_henry_g",
@@ -19439,8 +19610,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "harmon_isaac",
-      "action_note": "data/residents/ already holds this person as harmon_isaac (hh_harmon_isaac, attested). The papers add mentions and dates."
+      "action_target": "harmon_isaac_d",
+      "action_note": "data/residents/ already holds this person as harmon_isaac_d (hh_harmon_brothers, attested). The papers add mentions and dates."
     },
     {
       "id": "person_isaac_harmon",
@@ -19450,8 +19621,8 @@
       "first_seen": "1833-12-17",
       "last_seen": "1834-07-30",
       "action": "enrich",
-      "action_target": "harmon_isaac",
-      "action_note": "data/residents/ already holds this person as harmon_isaac (hh_harmon_isaac, attested). The papers add mentions and dates."
+      "action_target": "harmon_isaac_d",
+      "action_note": "data/residents/ already holds this person as harmon_isaac_d (hh_harmon_brothers, attested). The papers add mentions and dates."
     },
     {
       "id": "person_isaac_l_hill",
@@ -19592,9 +19763,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-04",
       "last_seen": "1834-03-18",
-      "action": "enrich",
-      "action_target": "allen_james",
-      "action_note": "data/residents/ already holds this person as allen_james (hh_allen_james, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_b_barnard",
@@ -19614,9 +19785,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-17",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "beaubien_j_b",
-      "action_note": "data/residents/ already holds this person as beaubien_j_b (hh_beaubien_j_b, attested). The papers add mentions and dates."
+      "action": "replace_invented",
+      "action_target": "merchant",
+      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_j_b_brown",
@@ -19647,9 +19818,9 @@
       "letter_list_only": false,
       "first_seen": "1834-04-16",
       "last_seen": "1834-04-16",
-      "action": "enrich",
-      "action_target": "beaubien_j_b",
-      "action_note": "data/residents/ already holds this person as beaubien_j_b (hh_beaubien_j_b, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_b_tuttle",
@@ -20120,9 +20291,9 @@
       "letter_list_only": false,
       "first_seen": "1834-03-04",
       "last_seen": "1834-11-19",
-      "action": "enrich",
-      "action_target": "temple_j_t",
-      "action_note": "data/residents/ already holds this person as temple_j_t (hh_temple_j_t, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_u_lius_pe_r_rin",
@@ -21935,9 +22106,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-03",
       "last_seen": "1835-07-29",
-      "action": "enrich",
-      "action_target": "temple_j_t",
-      "action_note": "data/residents/ already holds this person as temple_j_t (hh_temple_j_t, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_john_thomas",
@@ -24081,8 +24252,8 @@
       "first_seen": "1834-03-25",
       "last_seen": "1834-03-25",
       "action": "enrich",
-      "action_target": "allen_lieut",
-      "action_note": "data/residents/ already holds this person as allen_lieut (hh_allen_lieut, attested). The papers add mentions and dates."
+      "action_target": "allen_lieut_james",
+      "action_note": "data/residents/ already holds this person as allen_lieut_james (hh_allen_lieut_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_lieut_j_allen",
@@ -24092,8 +24263,8 @@
       "first_seen": "1835-07-18",
       "last_seen": "1835-07-18",
       "action": "enrich",
-      "action_target": "allen_lieut",
-      "action_note": "data/residents/ already holds this person as allen_lieut (hh_allen_lieut, attested). The papers add mentions and dates."
+      "action_target": "allen_lieut_james",
+      "action_note": "data/residents/ already holds this person as allen_lieut_james (hh_allen_lieut_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_lieut_j_l_thompson",
@@ -24114,8 +24285,8 @@
       "first_seen": "1834-08-13",
       "last_seen": "1834-08-13",
       "action": "enrich",
-      "action_target": "allen_lieut",
-      "action_note": "data/residents/ already holds this person as allen_lieut (hh_allen_lieut, attested). The papers add mentions and dates."
+      "action_target": "allen_lieut_james",
+      "action_note": "data/residents/ already holds this person as allen_lieut_james (hh_allen_lieut_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_lieutenant_5th_infantry_assistant_commissary_of_subsistence",
@@ -27194,8 +27365,8 @@
       "first_seen": "1833-12-03",
       "last_seen": "1834-11-12",
       "action": "enrich",
-      "action_target": "peck_p_f",
-      "action_note": "data/residents/ already holds this person as peck_p_f (hh_peck_p_f, attested). The papers add mentions and dates."
+      "action_target": "peck_philip",
+      "action_note": "data/residents/ already holds this person as peck_philip (hh_peck_philip, attested). The papers add mentions and dates."
     },
     {
       "id": "person_p_f_w_peck",
@@ -27205,8 +27376,8 @@
       "first_seen": "1834-04-16",
       "last_seen": "1834-08-20",
       "action": "enrich",
-      "action_target": "peck_p_f",
-      "action_note": "data/residents/ already holds this person as peck_p_f (hh_peck_p_f, attested). The papers add mentions and dates."
+      "action_target": "peck_philip",
+      "action_note": "data/residents/ already holds this person as peck_philip (hh_peck_philip, attested). The papers add mentions and dates."
     },
     {
       "id": "person_p_j_carli",
@@ -27656,8 +27827,8 @@
       "first_seen": "1834-09-10",
       "last_seen": "1834-09-10",
       "action": "enrich",
-      "action_target": "peck_p_f",
-      "action_note": "data/residents/ already holds this person as peck_p_f (hh_peck_p_f, attested). The papers add mentions and dates."
+      "action_target": "peck_philip",
+      "action_note": "data/residents/ already holds this person as peck_philip (hh_peck_philip, attested). The papers add mentions and dates."
     },
     {
       "id": "person_peck_sidney",
@@ -28470,8 +28641,8 @@
       "first_seen": "1833-12-10",
       "last_seen": "1834-03-18",
       "action": "enrich",
-      "action_target": "kinzie_r_a",
-      "action_note": "data/residents/ already holds this person as kinzie_r_a (hh_kinzie_r_a, attested). The papers add mentions and dates."
+      "action_target": "kinzie_robert_a",
+      "action_note": "data/residents/ already holds this person as kinzie_robert_a (hh_kinzie_robert_a, attested). The papers add mentions and dates."
     },
     {
       "id": "person_r_a_neff",
@@ -28547,8 +28718,8 @@
       "first_seen": "1834-01-28",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "hamilton_r_j",
-      "action_note": "data/residents/ already holds this person as hamilton_r_j (hh_hamilton_r_j, attested). The papers add mentions and dates."
+      "action_target": "hamilton_richard_j",
+      "action_note": "data/residents/ already holds this person as hamilton_richard_j (hh_hamilton_richard_j, attested). The papers add mentions and dates."
     },
     {
       "id": "person_r_kenworthy",
@@ -29009,8 +29180,8 @@
       "first_seen": "1834-03-18",
       "last_seen": "1835-08-22",
       "action": "enrich",
-      "action_target": "hamilton_r_j",
-      "action_note": "data/residents/ already holds this person as hamilton_r_j (hh_hamilton_r_j, attested). The papers add mentions and dates."
+      "action_target": "hamilton_richard_j",
+      "action_note": "data/residents/ already holds this person as hamilton_richard_j (hh_hamilton_richard_j, attested). The papers add mentions and dates."
     },
     {
       "id": "person_richard_jacob",
@@ -29724,8 +29895,8 @@
       "first_seen": "1835-06-13",
       "last_seen": "1835-06-13",
       "action": "enrich",
-      "action_target": "cobb_s_b",
-      "action_note": "data/residents/ already holds this person as cobb_s_b (hh_cobb_s_b, attested). The papers add mentions and dates."
+      "action_target": "cobb_silas_b",
+      "action_note": "data/residents/ already holds this person as cobb_silas_b (hh_goss_cobb, attested). The papers add mentions and dates."
     },
     {
       "id": "person_s_c_stimson",
@@ -30824,8 +30995,8 @@
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "cobb_s_b",
-      "action_note": "data/residents/ already holds this person as cobb_s_b (hh_cobb_s_b, attested). The papers add mentions and dates."
+      "action_target": "cobb_silas_b",
+      "action_note": "data/residents/ already holds this person as cobb_silas_b (hh_goss_cobb, attested). The papers add mentions and dates."
     },
     {
       "id": "person_silas_w_sherman",
@@ -32077,9 +32248,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-12",
-      "action": "enrich",
-      "action_target": "temple_j_t",
-      "action_note": "data/residents/ already holds this person as temple_j_t (hh_temple_j_t, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_t_godfrey",
@@ -32122,8 +32293,8 @@
       "first_seen": "1834-06-18",
       "last_seen": "1834-11-19",
       "action": "enrich",
-      "action_target": "owen_thomas",
-      "action_note": "data/residents/ already holds this person as owen_thomas (hh_owen_thomas, inferred). The papers add mentions and dates."
+      "action_target": "owen_thomas_jv",
+      "action_note": "data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested). The papers add mentions and dates."
     },
     {
       "id": "person_t_johnston",
@@ -32330,9 +32501,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-10",
       "last_seen": "1835-08-19",
-      "action": "enrich",
-      "action_target": "temple_j_t",
-      "action_note": "data/residents/ already holds this person as temple_j_t (hh_temple_j_t, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_temple_p",
@@ -32375,8 +32546,8 @@
       "first_seen": "1834-07-02",
       "last_seen": "1834-08-20",
       "action": "enrich",
-      "action_target": "owen_thomas",
-      "action_note": "data/residents/ already holds this person as owen_thomas (hh_owen_thomas, inferred). The papers add mentions and dates."
+      "action_target": "owen_thomas_jv",
+      "action_note": "data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested). The papers add mentions and dates."
     },
     {
       "id": "person_thacker_ailen_d",
@@ -32661,8 +32832,8 @@
       "first_seen": "1833-12-24",
       "last_seen": "1833-12-24",
       "action": "enrich",
-      "action_target": "owen_thomas",
-      "action_note": "data/residents/ already holds this person as owen_thomas (hh_owen_thomas, inferred). The papers add mentions and dates."
+      "action_target": "owen_thomas_jv",
+      "action_note": "data/residents/ already holds this person as owen_thomas_jv (hh_owen_thomas_jv, attested). The papers add mentions and dates."
     },
     {
       "id": "person_thomas_jones",
@@ -33519,8 +33690,8 @@
       "first_seen": "1834-08-20",
       "last_seen": "1834-08-20",
       "action": "enrich",
-      "action_target": "harmon_isaac",
-      "action_note": "data/residents/ already holds this person as harmon_isaac (hh_harmon_isaac, attested). The papers add mentions and dates."
+      "action_target": "harmon_isaac_d",
+      "action_note": "data/residents/ already holds this person as harmon_isaac_d (hh_harmon_brothers, attested). The papers add mentions and dates."
     },
     {
       "id": "person_uncertain_isaac_scarrett",
@@ -33783,8 +33954,8 @@
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
       "action": "enrich",
-      "action_target": "allen_lieut",
-      "action_note": "data/residents/ already holds this person as allen_lieut (hh_allen_lieut, attested). The papers add mentions and dates."
+      "action_target": "allen_lieut_james",
+      "action_note": "data/residents/ already holds this person as allen_lieut_james (hh_allen_lieut_james, attested). The papers add mentions and dates."
     },
     {
       "id": "person_uncertain_luene_ann",
@@ -34916,8 +35087,8 @@
       "first_seen": "1834-05-28",
       "last_seen": "1834-05-28",
       "action": "enrich",
-      "action_target": "brown_w_h",
-      "action_note": "data/residents/ already holds this person as brown_w_h (hh_brown_w_h, attested). The papers add mentions and dates."
+      "action_target": "brown_william_h",
+      "action_note": "data/residents/ already holds this person as brown_william_h (hh_brown_william_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_w_h_taylor",
@@ -35895,8 +36066,8 @@
       "first_seen": "1834-03-25",
       "last_seen": "1834-03-25",
       "action": "enrich",
-      "action_target": "adams_william",
-      "action_note": "data/residents/ already holds this person as adams_william (hh_adams_william, attested). The papers add mentions and dates."
+      "action_target": "adams_william_h",
+      "action_note": "data/residents/ already holds this person as adams_william_h (hh_adams_william_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_william_allger",
@@ -36423,8 +36594,8 @@
       "first_seen": "1834-06-04",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "brown_w_h",
-      "action_note": "data/residents/ already holds this person as brown_w_h (hh_brown_w_h, attested). The papers add mentions and dates."
+      "action_target": "brown_william_h",
+      "action_note": "data/residents/ already holds this person as brown_william_h (hh_brown_william_h, attested). The papers add mentions and dates."
     },
     {
       "id": "person_wm_h_fraser",

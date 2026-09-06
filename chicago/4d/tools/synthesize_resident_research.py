@@ -16,6 +16,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+
 CHICAGO = ROOT.parent
 REPO = CHICAGO.parent
 DATA = ROOT / "data"
@@ -42,7 +45,61 @@ NOTE_PREFIXES = re.compile(
     r"|PROJECTED RESIDENT\. Documented in Chicago post-office evidence but not "
     r"independently corroborated strongly enough for attested circa-1835 residence\. "
     r"|Originally documented in Chicago post-office evidence; independent resident "
-    r"research now corroborates the identity\. )", re.I)
+    r"research now corroborates the identity\. "
+    r"|GRADED BY THE OWNER'S RATIFIED LADDER.*?\(T-0822\)\. )", re.I)
+
+
+# T-0822 — THE LADDER SUPERSEDES THIS FILE'S LETTER-LIST RULE, and the reason is the one
+# `mint_civic_residents.py` already gives for declining in the other direction.
+#
+# This pass grades a `letter_list_only` person out of ONE corpus: the resident-research
+# CSVs under reference/resident-research.  No row there means the research found nothing
+# it could tie to the name — a documented no-find in THAT corpus, and not a finding about
+# the poll lists, the militia enrolments or the press.  The owner's grading ladder,
+# ratified 2026-09-03 and applied by `mint_civic_residents.py --regrade` (T-0515, T-0699),
+# reads seven domains; where a rung fires it writes it onto the card as
+# `resident_research.rule` + `regraded_on`, with the rows it read in `civic_evidence` and
+# `press_evidence`.
+#
+# So this pass was demoting 62 grades the ladder had ruled on, using evidence it had not
+# read: 17 people back to `inferred` and all 62 back to `projected_resident`, on cards the
+# cohort being run had nothing to do with.  Every cohort ticket in the programme had to
+# notice the reversion and undo it by hand before it could merge — T-0508 did it twice —
+# which is a trap and not a workflow.  The grade and the note on those 17 cards said
+# opposite things in the meantime, and a reader got whichever the card showed first.
+#
+# `mint_civic_residents.py` already declines the mirror image of this: it will not
+# downgrade a person carrying an adjudicated `resident_research` outcome, because "a rung
+# fired on the evidence it could see is not a finding about the evidence it could not",
+# and because "the synthesis would put the grade straight back".  The deference was
+# one-directional, and that asymmetry was the bug.  It is mutual now — neither tool
+# overturns a grade the other has explicitly ruled on, and the beaten rule is recorded on
+# the card rather than left to be rediscovered.
+#
+# WHAT STILL CROSSES THE LINE, both ways: NEW evidence.  A corroborated research outcome
+# is a second reading the ladder never made, so it still promotes a ladder-graded person
+# to `attested`.  Only the DEMOTION defers.
+def ladder_ruled(person):
+    """Has the owner's ratified ladder ruled on this identity's grade?
+
+    True only for the stamp `apply_regrade` writes when a rung actually FIRED. A
+    declined downgrade writes `resident_research.refusals` and no stamp, so it is
+    not a ruling on the grade and this pass is free to grade as it always did.
+    """
+    rr = person.get("resident_research") or {}
+    return bool(rr.get("regraded_on") and rr.get("rule"))
+
+
+def ladder_prefix(person):
+    """The note that says which rule won and which one was beaten (T-0822)."""
+    rr = person.get("resident_research") or {}
+    return (f"GRADED BY THE OWNER'S RATIFIED LADDER — rule {rr.get('rule')}, applied "
+            f"{rr.get('regraded_on')}. This identity is {person.get('grade')} because that "
+            f"rung fired on the civic and press rows recorded on this card, which the "
+            f"resident-research corpus does not read. This programme's letter-list rule of "
+            f"2026-09-02 would call it a projected resident on the absence of a research "
+            f"row; it is superseded here, and a no-find in one corpus is not a finding "
+            f"about another (T-0822). ")
 
 
 RETIREMENT_NOTE = "T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced."
@@ -390,30 +447,14 @@ def scrub(obj, targets):
     return obj
 
 
-def rebuild_index(index, docs, stats):
-    old={r.get("id"):r for r in index.get("households") or []}; rows=[]; grades=Counter(); letter=projected=census=0
-    for path,doc in sorted(docs.items(),key=lambda kv:kv[1].get("id",kv[0].name)):
-        people=doc.get("persons") or []; g=Counter(p.get("grade") for p in people if p.get("grade")); grades.update(g)
-        ll=sum(bool(p.get("letter_list_only")) for p in people); pr=sum(p.get("resident_subtype")==PROJECTED for p in people); ce=sum(bool(p.get("later_census")) for p in people)
-        letter+=ll; projected+=pr; census+=ce; hid=doc.get("id"); row=dict(old.get(hid) or {})
-        row.update({"id":hid,"file":f"households/{path.name}","head":doc.get("head"),"division":doc.get("division"),
-                    "persons":len(people),"grades":dict(sorted(g.items())),"lives_at":value(doc.get("lives_at")),
-                    "works_at":value(doc.get("works_at")),"present_on_scene_date":value(doc.get("present_on_scene_date")),
-                    "review_required":bool(doc.get("review_required"))})
-        if ll: row["letter_list_only"]=True
-        else: row.pop("letter_list_only",None)
-        if pr: row["projected_resident"]=True
-        else: row.pop("projected_resident",None)
-        if ce: row["census_1840_linked"]=ce
-        else: row.pop("census_1840_linked",None)
-        rows.append(row)
-    index["households"]=rows; index.setdefault("vocabulary",{})["grades"]=["attested","inferred","reconstructed"]
+def rebuild_index(index,docs,stats):
+    """The rows and counts from the manifest's one owner (T-0715), plus the three
+    things this programme AUTHORS: the vocabulary it ratifies, the frozen count of
+    what the 2026-09-02 synthesis retired, and the manifest's own prose."""
+    rebuild(index,docs)
+    index.setdefault("vocabulary",{})["grades"]=["attested","inferred","reconstructed"]
     index["vocabulary"]["resident_subtypes"]=[PROJECTED]
-    counts=dict(index.get("counts") or {}); counts.update({"households":len(rows),"persons":sum(r["persons"] for r in rows),
-        "by_grade":{"attested":grades.get("attested",0),"inferred":grades.get("inferred",0),"reconstructed":grades.get("reconstructed",0)},
-        "letter_list_only":letter,"projected_residents":projected,"census_1840_linked":census,
-        "reconstructed_removed_in_2026_09_02_synthesis":stats["removed_people"]})
-    index["counts"]=counts
+    index["counts"]["reconstructed_removed_in_2026_09_02_synthesis"]=stats["removed_people"]
     index["_doc"]=("Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed is reserved for a later explicit reconstruction pass and is intentionally zero after the 2026-09-02 synthesis. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.")
     return index
 
@@ -438,6 +479,7 @@ def summary(before,after,ledger,stats):
       f"**{stats['removed_people']} reconstructed people were retired** and {stats['removed_households']} empty household containers removed. {stats['retained_hh_inf']} evidence-based people/households formerly seated by the reconstructed programme were retained but made unplaced. Reconstructed building stock was abandoned as unassigned rather than deleted.","",
       "## Research adjudication","",f"The synthesis resolved **{ledger['research']['reviewed_people']} unique research outcomes**: "+", ".join(f"{k}: {v}" for k,v in sorted(outcomes.items()))+".","",
       "A post-office letter now documents a real named person considered reachable through Chicago; it is not automatic proof of Chicago residence. Independently corroborated letter-list identities are `attested`; other qualifying letter-list names are `inferred` + `projected_resident`. Candidate identities remain explicitly unasserted with evidence for/against retained.","",
+      f"**The owner's ratified grading ladder outranks that letter-list rule** (T-0822). {len(ledger['research'].get('letter_list_deferred_to_ladder') or [])} letter-list people carry a rung `mint_civic_residents.py --regrade` fired on the seven domains the ladder reads (T-0515, T-0699), recorded on the card as `resident_research.rule` + `regraded_on`. This pass reads one corpus — the resident-research CSVs — so the absence of a row there is a no-find in that corpus and not a finding about the poll lists, the enrolments or the press. It no longer demotes those grades, and each of those cards now carries the ladder's rule and the rule it beat in the note. New evidence still crosses the line in both directions: a corroborated research outcome promotes a ladder-graded person to `attested`.","",
       "## Profile enrichment","",f"Structured promotion changed **{len(promoted)} corroborated profiles** where independent sources state usable facts (occupation, Chicago arrival year, birth-year/family evidence). Candidate-only matches never supply canonical facts.",""]
     for row in promoted[:60]: lines.append(f"- `{row['person_id']}` ({row['ticket']}): "+", ".join(row["changes"]))
     lines += ["","## 1840 census evidence","",f"**{len(census.get('linked') or [])} one-to-one resident links** were made to named 1840 census heads. Each link retains serial/page/row and separate name/serial mapping confidence plus household totals.","",
@@ -521,7 +563,7 @@ def main():
         stats["removed_people"]=int(prior_retirement.get("removed_people") or 0)
         stats["removed_households"]=int(prior_retirement.get("removed_households") or 0)
     persons={p.get("id"):(p,d) for d in docs.values() for p in d.get("persons") or [] if p.get("id")}
-    outcomes=Counter(); promoted=[]; unmatched=[]
+    outcomes=Counter(); promoted=[]; unmatched=[]; deferred=[]
     for pid,item in sorted(research.items()):
         outcome=item.get("outcome") or "no_corroboration_yet"; outcomes[outcome]+=1
         if pid not in persons: unmatched.append({"person_id":pid,"outcome":outcome,"name":item.get("name_normalized")}); continue
@@ -538,6 +580,11 @@ def main():
             if outcome in CORROBORATED:
                 p["grade"]="attested"; p.pop("resident_subtype",None); p["sources"]=list(dict.fromkeys((p.get("sources") or [])+independent(item)))
                 prefix="INDEPENDENTLY CORROBORATED RESIDENT. "
+            elif ladder_ruled(p):
+                # T-0822. The ladder ruled this identity on evidence this corpus does not
+                # read; the grade and the subtype are its call, and the note says so.
+                deferred.append(pid)
+                prefix=ladder_prefix(p)
             else:
                 p["grade"]="inferred"; p["resident_subtype"]=PROJECTED
                 prefix="PROJECTED RESIDENT. Documented in Chicago post-office evidence but not independently corroborated strongly enough for attested circa-1835 residence. "
@@ -554,10 +601,18 @@ def main():
             if changes: promoted.append({"person_id":pid,"ticket":item.get("ticket"),"changes":changes,"source_ids":independent(item)})
     missing=[]
     for pid,(p,_hh) in persons.items():
-        if p.get("letter_list_only") and pid not in research: p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
+        if not (p.get("letter_list_only") and pid not in research): continue
+        if ladder_ruled(p):
+            # T-0822, and this is where fifteen of the seventeen were being demoted: no
+            # research row is a no-find in this corpus, never a finding about the seven
+            # domains the ladder read. Defer, and rewrite the note to match the grade.
+            deferred.append(pid)
+            p["note"]=(ladder_prefix(p)+strip_note_prefixes(p.get("note") or "")).strip()
+            continue
+        p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
     ledger={"date":"2026-09-02","scene_date":"1835-07-01","tickets":["T-0487","T-0488","T-0489","T-0490"],
         "owner_ruling":{"attested":"confidently corroborated real named circa-1835 Chicago resident","inferred":"real named person reasonably believed to belong to circa-1835 Chicago","projected_resident":"inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile","reconstructed":"reserved for later explicit reconstruction; zero now"},
-        "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"promoted_facts":promoted},
+        "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"letter_list_deferred_to_ladder":sorted(set(deferred)),"promoted_facts":promoted},
         "census_workbook_inventory":workbook_inventory(),"structure_policy":"Keep reconstructed building stock as anonymous unassigned stock; remove retired resident occupancy references instead of deleting geometry."}
     attach_census(persons,ledger); dump(CENSUS_SOURCE,census_source(),2)
     targets={x for x in removed_people|removed_hh|unlink_people if x}; changed=[]
@@ -610,7 +665,7 @@ def main():
     if apply_census_1840_bridges.apply() != 0:
         raise SystemExit("the 1840 identity bridges did not re-apply cleanly")
     after=snapshot(load(INDEX))
-    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"census_links":len((load(LEDGER).get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
+    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"letter_list_deferred_to_ladder":len(set(deferred)),"census_links":len((load(LEDGER).get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
     return 0
 
 if __name__ == "__main__": raise SystemExit(main())

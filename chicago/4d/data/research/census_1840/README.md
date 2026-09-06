@@ -350,18 +350,48 @@ stated here rather than one reading being chosen by whichever landed first:
 | 229 (`33S7-9YYJ-9M5`) | 30 | 30 of 30 | **20** | free white males Under 5: 9 read against 14 footed on the second reading, 10 against 10 on the committed one; free white males 30 under 40: 8 read against 7 footed on the second reading, 8 against 1 on the committed one; free white females Under 5: 19 read against 19 footed on the second reading, 19 against 11 on the committed one |
 | 231 (`33S7-9YYJ-38`) | 31 | 31 of 31 | **25** | free white females 5 under 10: 9 read against 9 footed on the second reading, 12 against 12 on the committed one; free white females 20 under 30: 20 read against 20 footed on the second reading, 20 against 21 on the committed one; free white females 40 under 50: 3 read against 3 footed on the second reading, 3 against 5 on the committed one |
 
-The names agree on every line. The cells do not, and the pattern is not scatter: on 229 the strokes
-one reading puts in the first column (free white males Under 5) the other puts in column 14 (free
-white females Under 5), and on 231 marks sit in column 15 on one reading and column 18 on the other.
-The two readings also read the FOOTINGS differently in exactly those columns — which is why each
-reading balances, on a different set of columns, and each records a different pair as unreconciled
-(second reading: free white males Under 5, free white males 30 under 40 on 229 and free white females 5 under 10 on 231;
-committed: free white males 30 under 40, free white females Under 5 and free white females 20 under 30, free white females 40 under 50). Two grids fitted
-to the same photograph put the same marks in different columns, and a footing read at the wrong
-column agrees with the marks read at the wrong column. **That means a column that balances is
-not, on its own, a column read right**, and the committed cells of 229 and 231 are ONE reading
-until the two are reconciled against the sheets — which is what the reconciliation ticket filed
-with this PR asks for, starting from the columns named above.
+**SUPERSEDED BY THE RECONCILIATION BELOW.** The table above counts each reading's `cells` block,
+and each reading's `cells` block is masked to that reading's OWN committed columns — so the 20 and
+the 25 are mostly the two MASKS differing, not the two readings differing. Compared on the raw
+`cells_first_pass` blocks, which is what each pass actually read off the sheet, **the two readings
+of 229 differ on ONE line and the two readings of 231 differ on ONE line.** The paragraph that
+stood here inferred a grid disagreement from those figures — strokes one reading put in column 1
+and the other in column 14 — and there is no such disagreement on either sheet. What the two
+passes really disagreed about is the FOOTINGS, and that is what made each of them balance a
+different set of columns. The finding the section was written for survives the correction intact:
+**a column that balances is not, on its own, a column read right** — both passes balanced column 1
+of 229, at 10 and at 9.
+
+### RECONCILED against the sheets, T-0559
+
+Both pages were re-read against the images at 4x to 12x, on a grid re-fitted off each sheet's own
+vertical rules and checked against the printed heading before a cell was read (column 1 `Under 5`,
+column 14 `Under 5` under FEMALES, column 15 `5 under 10`, column 18 `20 under 30`, column 20
+`40 under 50`). Every disputed cell and all six disputed footings are decided; the decisions and
+the reasoning are stated per column in each page file's `cells_note`, and
+`second_readings/` is untouched.
+
+| what was in dispute | decided | prevailing reading |
+|---|---|---|
+| 229 line 28 (Patrick Sanderken), column 1 | no stroke | second reading — the ink is the terminal flourish of the surname, one continuous tapering movement out of the last letter, where the free-standing tally on line 27 stands clear of the name |
+| 229 column 1 footing | **14** (alt. 10, 16) | second reading — the second glyph is an open angular crossing with no closed bowl, this hand's 4 rather than its 0 |
+| 229 column 6 footing | **7** (alt. 1) | second reading — one glyph, a long diagonal with a barred head, unambiguous at 9x |
+| 229 column 14 footing | **19** (alt. 11) | second reading — two faint slants on the worst paper on the sheet, and 19 is the alternate the committed file itself recorded |
+| 231 line 13 (Michael Duffy), column 15 | **4** | committed reading — a written numeral, a filled angular head with a stem crossing it, where every tally on the sheet is a single thin slant |
+| 231 column 15 footing | **12** (alt. 9) | committed reading — two glyphs, a clean slant clear of the blot and then the filled bowl, not one blotted 9 |
+| 231 column 18 footing | **21** (alt. 20) | committed reading — a 2 and then a straight hooked slant, this hand's 1 and not its 0 |
+| 231 column 20 footing | **5** (alt. 3) | committed reading — a stroke entering from the upper right into a full open bowl, the construction of the 5s at columns 15 and 21 of printed page 229 |
+
+**What moved.** On 229, column 1 is DE-COMMITTED — it was committed at 10 read against 10 footed and
+is now 9 read against 14 footed, residual 5 — and column 14 is COMMITTED at 19, because both passes
+read its thirteen cells at 19 independently and 19 is one of the two readings its footing admits.
+Column 6 stays unbalanced at 8 read against 7 footed. The page still commits 36 of 38 columns and
+they are not the same 36; its reading population falls from 152 to 151. On 231 nothing moved: all
+three footings and the one disputed cell go the committed reading's way, and the 36 committed
+columns stand. Where a footing was decided against a reading's cells, the reading is left unbalanced
+with its residual stated rather than a stroke being found to close it — the five extra strokes 229's
+column 1 footing implies are not on the sheet, and all six candidate lines (16, 19, 22, 28, 29, 30)
+were examined at magnification and every one is a name terminal.
 
 Printed 229's line count is settled at 30 by both readings independently, on the same argument
 (the footings close on 30 lines and there is no 31st ruled line), so that finding stands whichever
@@ -1139,3 +1169,44 @@ reading touched. The counts moved because the gate can now see what was already 
 Five new self-test cases hold it: an image declared read that no `pages/`
 file reaches, an inventoried image that names a page file, a read image that names none, a
 declared page file that is not committed, and an image with no `read_state` at all.
+
+## The Dalton Data Bank index is one surname, not a city (T-0497, 2026-09-05)
+
+`data/sources/dalton_1840_chicago_census_index.json` had been cited for exactly one man since
+T-0479, and the ticket that asked for it to be read whole described it as *"a free 1840 Chicago
+head-of-household index by ward"* and *"the cheapest second reading of the 1840 heads the project
+can get"*. **It is neither.** The Dalton Data Bank is a one-surname genealogical databank: its
+Illinois page extracts Dalton, Dolton and Daulton entries out of census indexes, marriages, births,
+deaths, directories, land sales and naturalizations, and its whole 1840 census block is **20
+Illinois rows**. It cannot cross-check the spelling of any 1840 head who was not called Dalton, and
+it is not a second reading of the 964 IPUMS households.
+
+All three of its pages were fetched on 2026-09-05 (HTTP 200 each: the front page, `Illinois.html`,
+`Illinois_Page_2.html`); there are no per-ward pages, because the ward is a value inside a row.
+
+| what the 1840 block holds | rows |
+|---|---|
+| Illinois rows, read whole | 20 |
+| in a Chicago ward | 3 — Edward Dalton (1st), Michael Dalton (2nd), "Mr. Dalton" (1st) |
+| Cook County outside a Chicago ward | 4 — Thornton Precinct, Bridgeport, and two with no place |
+| outside Cook County | 13 — Morgan, Knox, Pike, Adams, Scott, Jo Daviess |
+
+The rows are in `records/dalton_index.json` (names only: the page's rights are `check_required`),
+and `dalton_index_crosswalk.json` beside it carries the adjudication — 0 merges, 7 refusals, 1
+candidate — in `identity.json`'s shape. It is written as its own file because `crosswalk.json` is
+generated by `tools/crosswalk_census_1840_heads.py --build` and a hand edit there would be lost.
+
+**The one thing the reading changes, and it changes no grade.** T-0479 kept the index's *Edward
+Dalton, Chicago 1st Ward* as an unasserted candidate for the letter-list Edward Dalton, and read
+the First Ward as part of the agreement. The block, read whole, carries a **second** First-Ward
+Dalton household — *"Mr. Dalton, Cook Co., 1 Ward Chicago"*, surname-only and so never an identity
+here — and a third in the Second Ward. The ward locates the name among at least two Dalton
+households and narrows nothing. The candidate stands exactly where T-0479 left it, now qualified;
+T-0513 consolidates and T-0514/T-0515 apply.
+
+**Swept and empty, which is evidence rather than a gap.** The surname meets **0** of PR #670's 210
+named heads, **0** of the 1833–1835 poll and voter lists, and **0** of the federal tract sales the
+`land_sales` domain read through 1836. The first of those is the useful one: the three Chicago-ward
+Dalton households the index names are not on any of the seven printed pages read so far, so they
+stand on unread images of this deposit — something for T-0496 and T-0657–T-0659 to watch for. The
+index's own 1820 and 1830 blocks carry no Cook County row at all.

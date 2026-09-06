@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1401
+   "n": 1359
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -40,10 +40,10 @@
  "counts": {
   "bidders": 100,
   "bidders_with_a_usable_surname": 100,
-  "residents_matched_one_bidder": 11,
+  "residents_matched_one_bidder": 15,
   "residents_ambiguous": 3,
-  "residents_contested": 26,
-  "residents_surname_only_refused": 89,
+  "residents_contested": 12,
+  "residents_surname_only_refused": 86,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
   "voters_surname_only_refused": 43,
@@ -345,6 +345,102 @@
     "person_id": "bronson_arthur",
     "household_id": "hh_bronson_arthur",
     "grade_1835": "inferred",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
+    "name": "Edmund D Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the bidder's, and the given name of both begins E.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "E. W. Taylor",
+      "lots_bid": 1,
+      "amount_read_usd": 506,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0134",
+        "block": 8,
+        "block_carried": true,
+        "lot": 23,
+        "amount_usd": 506,
+        "as_printed": {
+         "block": null,
+         "lot": null,
+         "bidder": "E. W. Taylor,",
+         "amount": "506"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false
+       }
+      ]
+     }
+    ],
+    "person_id": "taylor_edmund_d",
+    "household_id": "hh_taylor_edmund_d",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
+    "name": "Edward H. Haddock",
+    "rule": "Surname 'Haddock' folds to the same string as the bidder's, and the given name of both begins E.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "E. H. Haddock",
+      "lots_bid": 3,
+      "amount_read_usd": 534,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0171",
+        "block": 9,
+        "block_carried": true,
+        "lot": 30,
+        "amount_usd": 232,
+        "as_printed": {
+         "block": null,
+         "lot": "70",
+         "bidder": "E. H. Haddock,",
+         "amount": "232"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0185",
+        "block": 10,
+        "block_carried": true,
+        "lot": 12,
+        "amount_usd": 151,
+        "as_printed": {
+         "block": null,
+         "lot": "In)",
+         "bidder": "E. H. Haddock,",
+         "amount": "15"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0186",
+        "block": 10,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 151,
+        "as_printed": {
+         "block": null,
+         "lot": "Oo",
+         "bidder": "\"",
+         "amount": "I51"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       }
+      ]
+     }
+    ],
+    "person_id": "haddock_edward",
+    "household_id": "hh_haddock_edward",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
@@ -666,6 +762,39 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
+    "name": "Philip F. W. Peck",
+    "rule": "Surname 'Peck' folds to the same string as the bidder's, and the given name of both begins P.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "P. F. W. Peck",
+      "lots_bid": 1,
+      "amount_read_usd": 511,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0133",
+        "block": 8,
+        "block_carried": true,
+        "lot": 22,
+        "amount_usd": 511,
+        "as_printed": {
+         "block": null,
+         "lot": "22",
+         "bidder": "P. F. W. Peck,",
+         "amount": "51 1"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false
+       }
+      ]
+     }
+    ],
+    "person_id": "peck_philip",
+    "household_id": "hh_peck_philip",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
     "name": "R. C. Bristol",
     "rule": "Surname 'Bristol' folds to the same string as the bidder's, and the given name of both begins R.",
     "bids_1839": [
@@ -762,6 +891,54 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
+    "name": "Silas B. Cobb",
+    "rule": "Surname 'Cobb' folds to the same string as the bidder's, and the given name of both begins S.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "S. B. Cobb",
+      "lots_bid": 2,
+      "amount_read_usd": 516.0,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0183",
+        "block": 10,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 268.5,
+        "as_printed": {
+         "block": null,
+         "lot": "O",
+         "bidder": "S. B. Cobb,",
+         "amount": "268^"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0184",
+        "block": 10,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 247.5,
+        "as_printed": {
+         "block": null,
+         "lot": "^",
+         "bidder": "it",
+         "amount": "247^"
+        },
+        "printed_page": 49,
+        "bidder_ditto": true
+       }
+      ]
+     }
+    ],
+    "person_id": "cobb_silas_b",
+    "household_id": "hh_goss_cobb",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
     "name": "W. Kimball",
     "rule": "Surname 'Kimball' folds to the same string as the bidder's, and the given name of both begins W.",
     "bids_1839": [
@@ -813,7 +990,7 @@
   "contested": [
    {
     "name": "Col. Jean Baptiste Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. B. Beaubien",
@@ -843,454 +1020,8 @@
     "household_id": "hh_beaubien_jean_baptiste",
     "grade_1835": "attested",
     "contested_with": [
-     "J B Beaubien",
      "Josette LaFramboise Beaubien",
-     "John B Beaubien",
      "John S Beaubien"
-    ]
-   },
-   {
-    "name": "E D Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the bidder's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "E. W. Taylor",
-      "lots_bid": 1,
-      "amount_read_usd": 506,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0134",
-        "block": 8,
-        "block_carried": true,
-        "lot": 23,
-        "amount_usd": 506,
-        "as_printed": {
-         "block": null,
-         "lot": null,
-         "bidder": "E. W. Taylor,",
-         "amount": "506"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "taylor_e_d",
-    "household_id": "hh_taylor_e_d",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Edmund D Taylor"
-    ]
-   },
-   {
-    "name": "E Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the bidder's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "E. H. Haddock",
-      "lots_bid": 3,
-      "amount_read_usd": 534,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0171",
-        "block": 9,
-        "block_carried": true,
-        "lot": 30,
-        "amount_usd": 232,
-        "as_printed": {
-         "block": null,
-         "lot": "70",
-         "bidder": "E. H. Haddock,",
-         "amount": "232"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0185",
-        "block": 10,
-        "block_carried": true,
-        "lot": 12,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "In)",
-         "bidder": "E. H. Haddock,",
-         "amount": "15"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0186",
-        "block": 10,
-        "block_carried": true,
-        "lot": 13,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "Oo",
-         "bidder": "\"",
-         "amount": "I51"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "haddock_e",
-    "household_id": "hh_haddock_e",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E W Haddock",
-     "Edward H. Haddock",
-     "Edward E Haddock"
-    ]
-   },
-   {
-    "name": "E W Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the bidder's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "E. H. Haddock",
-      "lots_bid": 3,
-      "amount_read_usd": 534,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0171",
-        "block": 9,
-        "block_carried": true,
-        "lot": 30,
-        "amount_usd": 232,
-        "as_printed": {
-         "block": null,
-         "lot": "70",
-         "bidder": "E. H. Haddock,",
-         "amount": "232"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0185",
-        "block": 10,
-        "block_carried": true,
-        "lot": 12,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "In)",
-         "bidder": "E. H. Haddock,",
-         "amount": "15"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0186",
-        "block": 10,
-        "block_carried": true,
-        "lot": 13,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "Oo",
-         "bidder": "\"",
-         "amount": "I51"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "haddock_e_w",
-    "household_id": "hh_haddock_e_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E Haddock",
-     "Edward H. Haddock",
-     "Edward E Haddock"
-    ]
-   },
-   {
-    "name": "Edmund D Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the bidder's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "E. W. Taylor",
-      "lots_bid": 1,
-      "amount_read_usd": 506,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0134",
-        "block": 8,
-        "block_carried": true,
-        "lot": 23,
-        "amount_usd": 506,
-        "as_printed": {
-         "block": null,
-         "lot": null,
-         "bidder": "E. W. Taylor,",
-         "amount": "506"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "taylor_edmund_d",
-    "household_id": "hh_taylor_edmund_d",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E D Taylor"
-    ]
-   },
-   {
-    "name": "Edward E Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the bidder's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "E. H. Haddock",
-      "lots_bid": 3,
-      "amount_read_usd": 534,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0171",
-        "block": 9,
-        "block_carried": true,
-        "lot": 30,
-        "amount_usd": 232,
-        "as_printed": {
-         "block": null,
-         "lot": "70",
-         "bidder": "E. H. Haddock,",
-         "amount": "232"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0185",
-        "block": 10,
-        "block_carried": true,
-        "lot": 12,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "In)",
-         "bidder": "E. H. Haddock,",
-         "amount": "15"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0186",
-        "block": 10,
-        "block_carried": true,
-        "lot": 13,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "Oo",
-         "bidder": "\"",
-         "amount": "I51"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "haddock_edward_e",
-    "household_id": "hh_haddock_edward_e",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "E Haddock",
-     "E W Haddock",
-     "Edward H. Haddock"
-    ]
-   },
-   {
-    "name": "Edward H. Haddock",
-    "rule": "Surname 'Haddock' folds to the same string as the bidder's, and the given name of both begins E. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "E. H. Haddock",
-      "lots_bid": 3,
-      "amount_read_usd": 534,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0171",
-        "block": 9,
-        "block_carried": true,
-        "lot": 30,
-        "amount_usd": 232,
-        "as_printed": {
-         "block": null,
-         "lot": "70",
-         "bidder": "E. H. Haddock,",
-         "amount": "232"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0185",
-        "block": 10,
-        "block_carried": true,
-        "lot": 12,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "In)",
-         "bidder": "E. H. Haddock,",
-         "amount": "15"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0186",
-        "block": 10,
-        "block_carried": true,
-        "lot": 13,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "Oo",
-         "bidder": "\"",
-         "amount": "I51"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "haddock_edward",
-    "household_id": "hh_haddock_edward",
-    "grade_1835": "attested",
-    "contested_with": [
-     "E Haddock",
-     "E W Haddock",
-     "Edward E Haddock"
-    ]
-   },
-   {
-    "name": "J B Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. B. Beaubien",
-      "lots_bid": 1,
-      "amount_read_usd": 225,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0074",
-        "block": 5,
-        "block_carried": true,
-        "lot": 11,
-        "amount_usd": 225,
-        "as_printed": {
-         "block": null,
-         "lot": "1 1",
-         "bidder": "J. B. Beaubien,",
-         "amount": "225"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "beaubien_j_b",
-    "household_id": "hh_beaubien_j_b",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Col. Jean Baptiste Beaubien",
-     "Josette LaFramboise Beaubien",
-     "John B Beaubien",
-     "John S Beaubien"
-    ]
-   },
-   {
-    "name": "J H Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. H. Kinzie",
-      "lots_bid": 3,
-      "amount_read_usd": 631,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0090",
-        "block": 7,
-        "block_carried": true,
-        "lot": 10,
-        "amount_usd": 273,
-        "as_printed": {
-         "block": null,
-         "lot": "IO",
-         "bidder": "J. H. Kinzie,",
-         "amount": "273"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0091",
-        "block": 7,
-        "block_carried": true,
-        "lot": 11,
-        "amount_usd": 207,
-        "as_printed": {
-         "block": null,
-         "lot": "1 1",
-         "bidder": "II",
-         "amount": "207"
-        },
-        "printed_page": 48,
-        "bidder_ditto": true
-       },
-       {
-        "claim": "f1839_lot0100",
-        "block": 7,
-        "block_carried": true,
-        "lot": 20,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "20",
-         "bidder": "J. H. Kinzie,",
-         "amount": "151"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "kinzie_j_h",
-    "household_id": "hh_kinzie_j_h",
-    "grade_1835": "attested",
-    "contested_with": [
-     "James Kinzie",
-     "John Harris Kinzie",
-     "Juliette Augusta Magill Kinzie",
-     "John S Kinzie"
     ]
    },
    {
@@ -1331,7 +1062,7 @@
    },
    {
     "name": "James Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1391,7 +1122,6 @@
     "household_id": "hh_kinzie_james",
     "grade_1835": "attested",
     "contested_with": [
-     "J H Kinzie",
      "John Harris Kinzie",
      "Juliette Augusta Magill Kinzie",
      "John S Kinzie"
@@ -1468,46 +1198,8 @@
     ]
    },
    {
-    "name": "John B Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. B. Beaubien",
-      "lots_bid": 1,
-      "amount_read_usd": 225,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0074",
-        "block": 5,
-        "block_carried": true,
-        "lot": 11,
-        "amount_usd": 225,
-        "as_printed": {
-         "block": null,
-         "lot": "1 1",
-         "bidder": "J. B. Beaubien,",
-         "amount": "225"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "beaubien_john_b",
-    "household_id": "hh_beaubien_john_b",
-    "grade_1835": "attested",
-    "contested_with": [
-     "J B Beaubien",
-     "Col. Jean Baptiste Beaubien",
-     "Josette LaFramboise Beaubien",
-     "John S Beaubien"
-    ]
-   },
-   {
     "name": "John Harris Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1567,7 +1259,6 @@
     "household_id": "hh_kinzie_john_h",
     "grade_1835": "attested",
     "contested_with": [
-     "J H Kinzie",
      "James Kinzie",
      "Juliette Augusta Magill Kinzie",
      "John S Kinzie"
@@ -1575,7 +1266,7 @@
    },
    {
     "name": "John S Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. B. Beaubien",
@@ -1605,15 +1296,13 @@
     "household_id": "hh_beaubien_john_s",
     "grade_1835": "inferred",
     "contested_with": [
-     "J B Beaubien",
      "Col. Jean Baptiste Beaubien",
-     "Josette LaFramboise Beaubien",
-     "John B Beaubien"
+     "Josette LaFramboise Beaubien"
     ]
    },
    {
     "name": "John S Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1673,7 +1362,6 @@
     "household_id": "hh_kinzie_john_s",
     "grade_1835": "attested",
     "contested_with": [
-     "J H Kinzie",
      "James Kinzie",
      "John Harris Kinzie",
      "Juliette Augusta Magill Kinzie"
@@ -1753,7 +1441,7 @@
    },
    {
     "name": "Josette LaFramboise Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Beaubien' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. B. Beaubien",
@@ -1783,15 +1471,13 @@
     "household_id": "hh_beaubien_jean_baptiste",
     "grade_1835": "inferred",
     "contested_with": [
-     "J B Beaubien",
      "Col. Jean Baptiste Beaubien",
-     "John B Beaubien",
      "John S Beaubien"
     ]
    },
    {
     "name": "Juliette Augusta Magill Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 5 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1851,218 +1537,9 @@
     "household_id": "hh_kinzie_john_h",
     "grade_1835": "attested",
     "contested_with": [
-     "J H Kinzie",
      "James Kinzie",
      "John Harris Kinzie",
      "John S Kinzie"
-    ]
-   },
-   {
-    "name": "P F Peck",
-    "rule": "Surname 'Peck' folds to the same string as the bidder's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "P. F. W. Peck",
-      "lots_bid": 1,
-      "amount_read_usd": 511,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0133",
-        "block": 8,
-        "block_carried": true,
-        "lot": 22,
-        "amount_usd": 511,
-        "as_printed": {
-         "block": null,
-         "lot": "22",
-         "bidder": "P. F. W. Peck,",
-         "amount": "51 1"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "peck_p_f",
-    "household_id": "hh_peck_p_f",
-    "grade_1835": "attested",
-    "contested_with": [
-     "P F W Peck",
-     "Philip F. W. Peck"
-    ]
-   },
-   {
-    "name": "P F W Peck",
-    "rule": "Surname 'Peck' folds to the same string as the bidder's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "P. F. W. Peck",
-      "lots_bid": 1,
-      "amount_read_usd": 511,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0133",
-        "block": 8,
-        "block_carried": true,
-        "lot": 22,
-        "amount_usd": 511,
-        "as_printed": {
-         "block": null,
-         "lot": "22",
-         "bidder": "P. F. W. Peck,",
-         "amount": "51 1"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "peck_p_f_w",
-    "household_id": "hh_peck_p_f_w",
-    "grade_1835": "attested",
-    "contested_with": [
-     "P F Peck",
-     "Philip F. W. Peck"
-    ]
-   },
-   {
-    "name": "Philip F. W. Peck",
-    "rule": "Surname 'Peck' folds to the same string as the bidder's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "P. F. W. Peck",
-      "lots_bid": 1,
-      "amount_read_usd": 511,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0133",
-        "block": 8,
-        "block_carried": true,
-        "lot": 22,
-        "amount_usd": 511,
-        "as_printed": {
-         "block": null,
-         "lot": "22",
-         "bidder": "P. F. W. Peck,",
-         "amount": "51 1"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "peck_philip",
-    "household_id": "hh_peck_philip",
-    "grade_1835": "attested",
-    "contested_with": [
-     "P F Peck",
-     "P F W Peck"
-    ]
-   },
-   {
-    "name": "S B Cobb",
-    "rule": "Surname 'Cobb' folds to the same string as the bidder's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "S. B. Cobb",
-      "lots_bid": 2,
-      "amount_read_usd": 516.0,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0183",
-        "block": 10,
-        "block_carried": true,
-        "lot": 10,
-        "amount_usd": 268.5,
-        "as_printed": {
-         "block": null,
-         "lot": "O",
-         "bidder": "S. B. Cobb,",
-         "amount": "268^"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0184",
-        "block": 10,
-        "block_carried": true,
-        "lot": 11,
-        "amount_usd": 247.5,
-        "as_printed": {
-         "block": null,
-         "lot": "^",
-         "bidder": "it",
-         "amount": "247^"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "cobb_s_b",
-    "household_id": "hh_cobb_s_b",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Silas B. Cobb"
-    ]
-   },
-   {
-    "name": "Silas B. Cobb",
-    "rule": "Surname 'Cobb' folds to the same string as the bidder's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "S. B. Cobb",
-      "lots_bid": 2,
-      "amount_read_usd": 516.0,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0183",
-        "block": 10,
-        "block_carried": true,
-        "lot": 10,
-        "amount_usd": 268.5,
-        "as_printed": {
-         "block": null,
-         "lot": "O",
-         "bidder": "S. B. Cobb,",
-         "amount": "268^"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0184",
-        "block": 10,
-        "block_carried": true,
-        "lot": 11,
-        "amount_usd": 247.5,
-        "as_printed": {
-         "block": null,
-         "lot": "^",
-         "bidder": "it",
-         "amount": "247^"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ],
-    "person_id": "cobb_silas_b",
-    "household_id": "hh_goss_cobb",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "S B Cobb"
     ]
    }
   ],
@@ -2273,16 +1750,6 @@
     "name": "Anson H. Taylor",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Taylor' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'A' of 'Anson H. Taylor'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Anson N Taylor",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Taylor' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'A' of 'Anson N Taylor'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Anson W Taylor",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Taylor' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'A' of 'Anson W Taylor'. A surname-only agreement is a refusal."
    },
    {
     "name": "Augustine Deodat Taylor",
@@ -2558,11 +2025,6 @@
     "name": "P T Russell",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Russell' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'P' of 'P T Russell'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "R A Kinzie",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Kinzie' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'R' of 'R A Kinzie'. A surname-only agreement is a refusal."
    },
    {
     "name": "R. Stewart",

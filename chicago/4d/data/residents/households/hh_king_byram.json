@@ -52,6 +52,7 @@
    "name": "Byram King",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "hardware_merchant",
     "confidence": "attested",

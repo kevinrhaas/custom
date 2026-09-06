@@ -5,16 +5,16 @@
  "source_id": "norris_directory_1844",
  "rule": "so it reads back without the code:\n  SURNAME must match after both are folded (case, punctuation and the scanner's\n  usual confusions removed), AND the first initial of the given name must match.\n  A surname-only agreement is a REFUSAL, however good it looks — Norris lists\n  eleven Smiths. AND, since T-0670, where BOTH readings print a full forename and\n  the two full forenames DISAGREE the match is refused as well: the initial rule\n  was written for a town of 848 names and it declared `Abbott, Thomas L.` onto\n  Titus H. Abbott once T-0514 minted 532 more. An initial standing against a full\n  name is untouched and stays a match. The forename rule lives in\n  tools/name_agreement.py, which carries its own self-test. Where one 1835 person\n  meets more than one 1844 entry on that rule the match is AMBIGUOUS and is filed\n  as such, not resolved.",
  "counts": {
-  "residents_considered": 1402,
-  "matched_one_1844_entry": 90,
-  "matched_more_than_one_ambiguous": 28,
-  "one_1844_entry_contested_by_two_residents": 39,
-  "surname_present_initial_absent_refused": 340,
+  "residents_considered": 1360,
+  "matched_one_1844_entry": 97,
+  "matched_more_than_one_ambiguous": 23,
+  "one_1844_entry_contested_by_two_residents": 16,
+  "surname_present_initial_absent_refused": 336,
   "initial_agreed_forenames_disagreed_refused": 50,
   "of_those_a_garbled_printed_forename": 2,
   "residents_left_with_no_1844_entry_by_that_refusal": 26,
-  "could_carry_occupation": 62,
-  "could_carry_address": 68
+  "could_carry_occupation": 63,
+  "could_carry_address": 73
  },
  "matches": [
   {
@@ -33,31 +33,6 @@
      "printed_page": 43,
      "occupation_1844": "grocery and provisions, South Water st",
      "address_1844": "b Dearborn and State sts"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "A. 8. Perry",
-   "person_id": "perry_a_8",
-   "household_id": "hh_perry_a_8",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Perry' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1425",
-     "as_printed": "Perry, A. S. barber, house reservation",
-     "printed_page": 51,
-     "occupation_1844": "barber",
-     "address_1844": "house reservation"
     }
    ],
    "could_carry": [
@@ -142,6 +117,31 @@
    "resident_given_is_initial_only": true
   },
   {
+   "resident": "A. [?] Perry",
+   "person_id": "perry_a_8",
+   "household_id": "hh_perry_a_8",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Perry' folds to the same string as the 1844 entry's, and the given name of both begins A.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1425",
+     "as_printed": "Perry, A. S. barber, house reservation",
+     "printed_page": 51,
+     "occupation_1844": "barber",
+     "address_1844": "house reservation"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": true
+  },
+  {
    "resident": "Absolom Funk",
    "person_id": "funk_absolom",
    "household_id": "hh_funk_absolom",
@@ -211,6 +211,30 @@
    ],
    "could_carry": [
     "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Alexander N. Fullerton",
+   "person_id": "fullerton_alexander",
+   "household_id": "hh_fullerton_alexander",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Fullerton' folds to the same string as the 1844 entry's, and the given name of both begins A.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0659",
+     "as_printed": "Fullerton, A. N. attorney at law, h Dearborn st",
+     "printed_page": 35,
+     "occupation_1844": "attorney at law",
+     "address_1844": "h Dearborn st"
+    }
+   ],
+   "could_carry": [
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -551,6 +575,30 @@
    "resident_given_is_initial_only": true
   },
   {
+   "resident": "Edmund D Taylor",
+   "person_id": "taylor_edmund_d",
+   "household_id": "hh_taylor_edmund_d",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins E.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1750",
+     "as_printed": "Taylor, E. coft'ee house, South Water st. 2d ward",
+     "printed_page": 58,
+     "occupation_1844": "coft'ee house, South Water st. 2d ward",
+     "address_1844": null
+    }
+   ],
+   "could_carry": [
+    "occupation"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Edward A. Rogers",
    "person_id": "rogers_edward_a",
    "household_id": "hh_rogers_edward_a",
@@ -822,6 +870,54 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "George W. Snow",
+   "person_id": "snow_george_w",
+   "household_id": "hh_snow_george_w",
+   "grade_1835": "attested",
+   "occupation_1835": "surveyor",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Snow' folds to the same string as the 1844 entry's, and the given name of both begins G.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1671",
+     "as_printed": "Snow, G. W. lumber merchant, South Water st. h State st",
+     "printed_page": 56,
+     "occupation_1844": "lumber merchant, South Water st",
+     "address_1844": "h State st"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "George Washington Dole",
+   "person_id": "dole_george_w",
+   "household_id": "hh_dole_george_w",
+   "grade_1835": "attested",
+   "occupation_1835": "forwarding_and_commission",
+   "lives_at_1835": null,
+   "works_at_1835": "newberry_dole_warehouse",
+   "rule": "Surname 'Dole' folds to the same string as the 1844 entry's, and the given name of both begins G.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0512",
+     "as_printed": "Dole, Geo. W. of Newberry & D. house Michigan st. b Rush & Pine",
+     "printed_page": 32,
+     "occupation_1844": "of Newberry & D",
+     "address_1844": "house Michigan st. b Rush & Pine"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Giles Spring",
    "person_id": "spring_giles",
    "household_id": "hh_spring_giles",
@@ -837,6 +933,30 @@
      "printed_page": 56,
      "occupation_1844": "of S. & Goodrich",
      "address_1844": "h Adams st. b State and Clark sts"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Gurdon Saltonstall Hubbard",
+   "person_id": "hubbard_gurdon",
+   "household_id": "hh_hubbard_gurdon",
+   "grade_1835": "attested",
+   "occupation_1835": "packer",
+   "lives_at_1835": null,
+   "works_at_1835": "old_bank_building",
+   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0915",
+     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
+     "printed_page": 41,
+     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
+     "address_1844": "h Indiana, b Cass and Rush (See card)"
     }
    ],
    "could_carry": [
@@ -1720,6 +1840,28 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Philip F. W. Peck",
+   "person_id": "peck_philip",
+   "household_id": "hh_peck_philip",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "lives_at_1835": "peck_store",
+   "works_at_1835": "peck_store",
+   "rule": "Surname 'Peck' folds to the same string as the 1844 entry's, and the given name of both begins P.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1414",
+     "as_printed": "Peck, P. F. W. house corner of Clark and Jackson sts",
+     "printed_page": 51,
+     "occupation_1844": null,
+     "address_1844": "house corner of Clark and Jackson sts"
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Philo Carpenter",
    "person_id": "carpenter_philo",
    "household_id": "hh_carpenter_philo",
@@ -1956,6 +2098,30 @@
    ],
    "could_carry": [
     "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Silas B. Cobb",
+   "person_id": "cobb_silas_b",
+   "household_id": "hh_goss_cobb",
+   "grade_1835": "attested",
+   "occupation_1835": "saddler",
+   "lives_at_1835": null,
+   "works_at_1835": "goss_cobb_saddlery",
+   "rule": "Surname 'Cobb' folds to the same string as the 1844 entry's, and the given name of both begins S.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0377",
+     "as_printed": "Cobb, Silas B. saddler and harness maker, 171 Lake st. res Michi gan avenue",
+     "printed_page": 29,
+     "occupation_1844": "saddler and harness maker, 171 Lake st",
+     "address_1844": "res Michi gan avenue"
+    }
+   ],
+   "could_carry": [
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -2211,125 +2377,6 @@
  ],
  "contested": [
   {
-   "resident": "A N Fullerton",
-   "person_id": "fullerton_a_n",
-   "household_id": "hh_fullerton_a_n",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0659",
-     "as_printed": "Fullerton, A. N. attorney at law, h Dearborn st",
-     "printed_page": 35,
-     "occupation_1844": "attorney at law",
-     "address_1844": "h Dearborn st"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Alex N Fullerton",
-    "Alexander N. Fullerton",
-    "Alexander M Fullerton"
-   ]
-  },
-  {
-   "resident": "Alex N Fullerton",
-   "person_id": "fullerton_alex_n",
-   "household_id": "hh_fullerton_alex_n",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0659",
-     "as_printed": "Fullerton, A. N. attorney at law, h Dearborn st",
-     "printed_page": 35,
-     "occupation_1844": "attorney at law",
-     "address_1844": "h Dearborn st"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "A N Fullerton",
-    "Alexander N. Fullerton",
-    "Alexander M Fullerton"
-   ]
-  },
-  {
-   "resident": "Alexander M Fullerton",
-   "person_id": "fullerton_alexander_m",
-   "household_id": "hh_fullerton_alexander_m",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0659",
-     "as_printed": "Fullerton, A. N. attorney at law, h Dearborn st",
-     "printed_page": 35,
-     "occupation_1844": "attorney at law",
-     "address_1844": "h Dearborn st"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "A N Fullerton",
-    "Alex N Fullerton",
-    "Alexander N. Fullerton"
-   ]
-  },
-  {
-   "resident": "Alexander N. Fullerton",
-   "person_id": "fullerton_alexander",
-   "household_id": "hh_fullerton_alexander",
-   "grade_1835": "attested",
-   "occupation_1835": "attorney",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Fullerton' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0659",
-     "as_printed": "Fullerton, A. N. attorney at law, h Dearborn st",
-     "printed_page": 35,
-     "occupation_1844": "attorney at law",
-     "address_1844": "h Dearborn st"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "A N Fullerton",
-    "Alex N Fullerton",
-    "Alexander M Fullerton"
-   ]
-  },
-  {
    "resident": "Anson H. Taylor",
    "person_id": "taylor_anson_h",
    "household_id": "hh_taylor_anson",
@@ -2337,7 +2384,7 @@
    "occupation_1835": "carpenter",
    "lives_at_1835": null,
    "works_at_1835": "south_branch_raft_bridge",
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
    "entries_1844": [
     {
      "claim": "n1844_e1746",
@@ -2353,68 +2400,6 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false,
    "contested_with": [
-    "Anson N Taylor",
-    "Anson W Taylor",
-    "Augustine Deodat Taylor"
-   ]
-  },
-  {
-   "resident": "Anson N Taylor",
-   "person_id": "taylor_anson_n",
-   "household_id": "hh_taylor_anson_n",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1746",
-     "as_printed": "Taylor, A. D. builder, house Michigan ave. b Lake and Randolph",
-     "printed_page": 58,
-     "occupation_1844": "builder",
-     "address_1844": "house Michigan ave. b Lake and Randolph"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Anson H. Taylor",
-    "Anson W Taylor",
-    "Augustine Deodat Taylor"
-   ]
-  },
-  {
-   "resident": "Anson W Taylor",
-   "person_id": "taylor_anson_w",
-   "household_id": "hh_taylor_anson_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1746",
-     "as_printed": "Taylor, A. D. builder, house Michigan ave. b Lake and Randolph",
-     "printed_page": 58,
-     "occupation_1844": "builder",
-     "address_1844": "house Michigan ave. b Lake and Randolph"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Anson H. Taylor",
-    "Anson N Taylor",
     "Augustine Deodat Taylor"
    ]
   },
@@ -2426,7 +2411,7 @@
    "occupation_1835": "carpenter",
    "lives_at_1835": null,
    "works_at_1835": "st_marys_church",
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 4 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
    "entries_1844": [
     {
      "claim": "n1844_e1746",
@@ -2442,63 +2427,7 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false,
    "contested_with": [
-    "Anson H. Taylor",
-    "Anson N Taylor",
-    "Anson W Taylor"
-   ]
-  },
-  {
-   "resident": "E D Taylor",
-   "person_id": "taylor_e_d",
-   "household_id": "hh_taylor_e_d",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1750",
-     "as_printed": "Taylor, E. coft'ee house, South Water st. 2d ward",
-     "printed_page": 58,
-     "occupation_1844": "coft'ee house, South Water st. 2d ward",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Edmund D Taylor"
-   ]
-  },
-  {
-   "resident": "Edmund D Taylor",
-   "person_id": "taylor_edmund_d",
-   "household_id": "hh_taylor_edmund_d",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1750",
-     "as_printed": "Taylor, E. coft'ee house, South Water st. 2d ward",
-     "printed_page": 58,
-     "occupation_1844": "coft'ee house, South Water st. 2d ward",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "E D Taylor"
+    "Anson H. Taylor"
    ]
   },
   {
@@ -2553,307 +2482,6 @@
    "resident_given_is_initial_only": false,
    "contested_with": [
     "Eli A Rider"
-   ]
-  },
-  {
-   "resident": "G Hubbard",
-   "person_id": "hubbard_g",
-   "household_id": "hh_hubbard_g",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0915",
-     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
-     "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
-     "address_1844": "h Indiana, b Cass and Rush (See card)"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "G S Hubbard",
-    "G T Hubbard",
-    "Gordon S Hubbard",
-    "Gurdon Saltonstall Hubbard",
-    "Gurdon S Hubbard"
-   ]
-  },
-  {
-   "resident": "G S Hubbard",
-   "person_id": "hubbard_g_s",
-   "household_id": "hh_hubbard_g_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0915",
-     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
-     "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
-     "address_1844": "h Indiana, b Cass and Rush (See card)"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "G Hubbard",
-    "G T Hubbard",
-    "Gordon S Hubbard",
-    "Gurdon Saltonstall Hubbard",
-    "Gurdon S Hubbard"
-   ]
-  },
-  {
-   "resident": "G T Hubbard",
-   "person_id": "hubbard_g_t",
-   "household_id": "hh_hubbard_g_t",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0915",
-     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
-     "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
-     "address_1844": "h Indiana, b Cass and Rush (See card)"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "G Hubbard",
-    "G S Hubbard",
-    "Gordon S Hubbard",
-    "Gurdon Saltonstall Hubbard",
-    "Gurdon S Hubbard"
-   ]
-  },
-  {
-   "resident": "G W Dole",
-   "person_id": "dole_g_w",
-   "household_id": "hh_dole_g_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Dole' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0512",
-     "as_printed": "Dole, Geo. W. of Newberry & D. house Michigan st. b Rush & Pine",
-     "printed_page": 32,
-     "occupation_1844": "of Newberry & D",
-     "address_1844": "house Michigan st. b Rush & Pine"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "George Washington Dole"
-   ]
-  },
-  {
-   "resident": "G W Snow",
-   "person_id": "snow_g_w",
-   "household_id": "hh_snow_g_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Snow' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1671",
-     "as_printed": "Snow, G. W. lumber merchant, South Water st. h State st",
-     "printed_page": 56,
-     "occupation_1844": "lumber merchant, South Water st",
-     "address_1844": "h State st"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "George W. Snow"
-   ]
-  },
-  {
-   "resident": "George W. Snow",
-   "person_id": "snow_george_w",
-   "household_id": "hh_snow_george_w",
-   "grade_1835": "attested",
-   "occupation_1835": "surveyor",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Snow' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1671",
-     "as_printed": "Snow, G. W. lumber merchant, South Water st. h State st",
-     "printed_page": 56,
-     "occupation_1844": "lumber merchant, South Water st",
-     "address_1844": "h State st"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G W Snow"
-   ]
-  },
-  {
-   "resident": "George Washington Dole",
-   "person_id": "dole_george_w",
-   "household_id": "hh_dole_george_w",
-   "grade_1835": "attested",
-   "occupation_1835": "forwarding_and_commission",
-   "lives_at_1835": null,
-   "works_at_1835": "newberry_dole_warehouse",
-   "rule": "Surname 'Dole' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0512",
-     "as_printed": "Dole, Geo. W. of Newberry & D. house Michigan st. b Rush & Pine",
-     "printed_page": 32,
-     "occupation_1844": "of Newberry & D",
-     "address_1844": "house Michigan st. b Rush & Pine"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G W Dole"
-   ]
-  },
-  {
-   "resident": "Gordon S Hubbard",
-   "person_id": "hubbard_gordon_s",
-   "household_id": "hh_hubbard_gordon_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0915",
-     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
-     "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
-     "address_1844": "h Indiana, b Cass and Rush (See card)"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G Hubbard",
-    "G S Hubbard",
-    "G T Hubbard",
-    "Gurdon Saltonstall Hubbard",
-    "Gurdon S Hubbard"
-   ]
-  },
-  {
-   "resident": "Gurdon S Hubbard",
-   "person_id": "hubbard_gurdon_s",
-   "household_id": "hh_hubbard_gurdon_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0915",
-     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
-     "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
-     "address_1844": "h Indiana, b Cass and Rush (See card)"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G Hubbard",
-    "G S Hubbard",
-    "G T Hubbard",
-    "Gordon S Hubbard",
-    "Gurdon Saltonstall Hubbard"
-   ]
-  },
-  {
-   "resident": "Gurdon Saltonstall Hubbard",
-   "person_id": "hubbard_gurdon",
-   "household_id": "hh_hubbard_gurdon",
-   "grade_1835": "attested",
-   "occupation_1835": "packer",
-   "lives_at_1835": null,
-   "works_at_1835": "old_bank_building",
-   "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G. CONTESTED: 6 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0915",
-     "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
-     "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
-     "address_1844": "h Indiana, b Cass and Rush (See card)"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "G Hubbard",
-    "G S Hubbard",
-    "G T Hubbard",
-    "Gordon S Hubbard",
-    "Gurdon S Hubbard"
    ]
   },
   {
@@ -3044,88 +2672,6 @@
    ]
   },
   {
-   "resident": "P F Peck",
-   "person_id": "peck_p_f",
-   "household_id": "hh_peck_p_f",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Peck' folds to the same string as the 1844 entry's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1414",
-     "as_printed": "Peck, P. F. W. house corner of Clark and Jackson sts",
-     "printed_page": 51,
-     "occupation_1844": null,
-     "address_1844": "house corner of Clark and Jackson sts"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "P F W Peck",
-    "Philip F. W. Peck"
-   ]
-  },
-  {
-   "resident": "P F W Peck",
-   "person_id": "peck_p_f_w",
-   "household_id": "hh_peck_p_f_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Peck' folds to the same string as the 1844 entry's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1414",
-     "as_printed": "Peck, P. F. W. house corner of Clark and Jackson sts",
-     "printed_page": 51,
-     "occupation_1844": null,
-     "address_1844": "house corner of Clark and Jackson sts"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "P F Peck",
-    "Philip F. W. Peck"
-   ]
-  },
-  {
-   "resident": "Philip F. W. Peck",
-   "person_id": "peck_philip",
-   "household_id": "hh_peck_philip",
-   "grade_1835": "attested",
-   "occupation_1835": "merchant",
-   "lives_at_1835": "peck_store",
-   "works_at_1835": "peck_store",
-   "rule": "Surname 'Peck' folds to the same string as the 1844 entry's, and the given name of both begins P. CONTESTED: 3 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1414",
-     "as_printed": "Peck, P. F. W. house corner of Clark and Jackson sts",
-     "printed_page": 51,
-     "occupation_1844": null,
-     "address_1844": "house corner of Clark and Jackson sts"
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "P F Peck",
-    "P F W Peck"
-   ]
-  },
-  {
    "resident": "Rufus Brown",
    "person_id": "brown_rufus",
    "household_id": "hh_brown_rufus",
@@ -3148,61 +2694,6 @@
    "resident_given_is_initial_only": false,
    "contested_with": [
     "Mrs Rufus Brown"
-   ]
-  },
-  {
-   "resident": "S B Cobb",
-   "person_id": "cobb_s_b",
-   "household_id": "hh_cobb_s_b",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Cobb' folds to the same string as the 1844 entry's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0377",
-     "as_printed": "Cobb, Silas B. saddler and harness maker, 171 Lake st. res Michi gan avenue",
-     "printed_page": 29,
-     "occupation_1844": "saddler and harness maker, 171 Lake st",
-     "address_1844": "res Michi gan avenue"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "Silas B. Cobb"
-   ]
-  },
-  {
-   "resident": "Silas B. Cobb",
-   "person_id": "cobb_silas_b",
-   "household_id": "hh_goss_cobb",
-   "grade_1835": "inferred",
-   "occupation_1835": "saddler",
-   "lives_at_1835": null,
-   "works_at_1835": "goss_cobb_saddlery",
-   "rule": "Surname 'Cobb' folds to the same string as the 1844 entry's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0377",
-     "as_printed": "Cobb, Silas B. saddler and harness maker, 171 Lake st. res Michi gan avenue",
-     "printed_page": 29,
-     "occupation_1844": "saddler and harness maker, 171 Lake st",
-     "address_1844": "res Michi gan avenue"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "S B Cobb"
    ]
   },
   {
@@ -3577,37 +3068,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "J S C Hogan",
-   "person_id": "hogan_j_s_c",
-   "household_id": "hh_hogan_j_s_c",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hogan' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0868",
-     "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
-     "printed_page": 40,
-     "occupation_1844": "at C. L. P. Hogan's",
-     "address_1844": null
-    },
-    {
-     "claim": "n1844_e0869",
-     "as_printed": "Hogan, Joseph, currier, at Johnnott, Wells & Co.'s",
-     "printed_page": 40,
-     "occupation_1844": "currier, at Johnnott, Wells & Co.'s",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true
-  },
-  {
    "resident": "J Y Jackson",
    "person_id": "jackson_j_y",
    "household_id": "hh_jackson_j_y",
@@ -3700,45 +3160,6 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "James Allen",
-   "person_id": "allen_james",
-   "household_id": "hh_allen_james",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Allen' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0016",
-     "as_printed": "Allen, James F. carpenter, house Illinois street, b. Pine and Sand",
-     "printed_page": 21,
-     "occupation_1844": "carpenter",
-     "address_1844": "house Illinois street, b. Pine and Sand"
-    },
-    {
-     "claim": "n1844_e0017",
-     "as_printed": "Allen, J. P. & Co. lumber merchants en Canal street, 3d Ward",
-     "printed_page": 21,
-     "occupation_1844": "& Co. lumber merchants en Canal street, 3d Ward",
-     "address_1844": null
-    },
-    {
-     "claim": "n1844_e0018",
-     "as_printed": "Allen, J. P. of J. P. A. & Co., house River street, 1st Ward",
-     "printed_page": 21,
-     "occupation_1844": "of J. P. A. & Co",
-     "address_1844": "house River street, 1st Ward"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false
   },
   {
    "resident": "James Smith",
@@ -3887,38 +3308,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "R J Hamilton",
-   "person_id": "hamilton_r_j",
-   "household_id": "hh_hamilton_r_j",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hamilton' folds to the same string as the 1844 entry's, and the given name of both begins R.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0782",
-     "as_printed": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
-     "printed_page": 38,
-     "occupation_1844": "of",
-     "address_1844": "H. & Chamberlaine, h Mich b Cass <fe Hush"
-    },
-    {
-     "claim": "n1844_e0783",
-     "as_printed": "Hamilton, Robert P. of H. & White, res T. E. Hamilton's",
-     "printed_page": 38,
-     "occupation_1844": "of",
-     "address_1844": "H. & White, res T. E. Hamilton's"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true
-  },
-  {
    "resident": "Russel E. Heacock",
    "person_id": "heacock_russel_e",
    "household_id": "hh_heacock_russel_e",
@@ -4065,77 +3454,6 @@
     }
    ],
    "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "W H Brown",
-   "person_id": "brown_w_h",
-   "household_id": "hh_brown_w_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Brown' folds to the same string as the 1844 entry's, and the given name of both begins W.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0224",
-     "as_printed": "Brown, William, grocer, res North Water st. b Clark and Dearborn",
-     "printed_page": 26,
-     "occupation_1844": "grocer",
-     "address_1844": "res North Water st. b Clark and Dearborn"
-    },
-    {
-     "claim": "n1844_e0225",
-     "as_printed": "Brown, William, res Sauganash Hotel",
-     "printed_page": 26,
-     "occupation_1844": null,
-     "address_1844": "res Sauganash Hotel"
-    },
-    {
-     "claim": "n1844_e0226",
-     "as_printed": "Brown, William H. attorney, office Bank Building, res cor Illinois and P<ne sts",
-     "printed_page": 26,
-     "occupation_1844": "attorney, office Bank Building",
-     "address_1844": "res cor Illinois and P<ne sts"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "William Adams",
-   "person_id": "adams_william",
-   "household_id": "hh_adams_william",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the 1844 entry's, and the given name of both begins W.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0010",
-     "as_printed": "Adams, W. H. & Co. boot and shoe dealers, 138 Lake st (See card)",
-     "printed_page": 21,
-     "occupation_1844": "& Co. boot and shoe dealers, 138 Lake st (See card)",
-     "address_1844": null
-    },
-    {
-     "claim": "n1844_e0011",
-     "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison",
-     "printed_page": 21,
-     "occupation_1844": "of W",
-     "address_1844": "H. A. & Co. residence iasalle. street, b Washington and Madison"
-    }
-   ],
-   "could_carry": [
-    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -5280,13 +4598,6 @@
    "rule": "The surname 'Ward' is in Norris 1844 and no entry under it carries the initial 'H' of 'Hanibal Ward'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Harriet E Bates",
-   "person_id": "bates_harriet_e",
-   "surname_in_1844": "Bates",
-   "candidates": 3,
-   "rule": "The surname 'Bates' is in Norris 1844 and no entry under it carries the initial 'H' of 'Harriet E Bates'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Harriet Ellen Bates",
    "person_id": "bates_harriet_ellen",
    "surname_in_1844": "Bates",
@@ -5425,13 +4736,6 @@
    "surname_in_1844": "Harman",
    "candidates": 1,
    "rule": "The surname 'Harman' is in Norris 1844 and no entry under it carries the initial 'I' of 'Isaac Harman'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Isaac Harmon",
-   "person_id": "harmon_isaac",
-   "surname_in_1844": "Harmon",
-   "candidates": 2,
-   "rule": "The surname 'Harmon' is in Norris 1844 and no entry under it carries the initial 'I' of 'Isaac Harmon'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Isaac L. Hill",
@@ -5887,20 +5191,6 @@
    "surname_in_1844": "Sperry",
    "candidates": 1,
    "rule": "The surname 'Sperry' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lewis Sperry'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Lieut Allen",
-   "person_id": "allen_lieut",
-   "surname_in_1844": "Allen",
-   "candidates": 5,
-   "rule": "The surname 'Allen' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lieut Allen'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Lieut J Allen",
-   "person_id": "allen_lieut_j",
-   "surname_in_1844": "Allen",
-   "candidates": 5,
-   "rule": "The surname 'Allen' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lieut J Allen'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lieut J L Thompson",

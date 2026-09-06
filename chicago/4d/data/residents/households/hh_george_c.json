@@ -52,6 +52,7 @@
    "name": "C. George",
    "relationship": "head",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "occupation": {
     "value": "baker",
     "confidence": "attested",
