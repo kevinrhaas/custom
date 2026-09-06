@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 617, title: 'A record put on the wrong Hubbard, and the man it belonged to', kind: 'fix', ts: '2026-09-06T04:07:36.370Z', date: 'Sep 5, 2026, 11:07 PM CT',
+    items: [
+      'Two men in this town were called Hubbard and something beginning with G. One is Gurdon Saltonstall Hubbard, the packer and forwarding merchant the records are full of. The other is Henry G. Hubbard, who is named far less often. A record belonging to Henry has been sitting on Gurdon’s card, and it is now back on Henry’s.',
+      'Yesterday’s consolidation gathered six scattered Hubbard cards onto one man, which was right five times. The sixth card gives only the initial — ‘G.’ — and on the strength of Gurdon being the better documented Hubbard it went to him. But the person who transcribed that page had already answered the question, writing the name as ‘Hubbard, [Henry] G.’ The brackets are theirs: they read the page and said who it was.',
+      'That is the rule this changes. A bracketed name is somebody’s reading of the original; an initial is only a way of writing a name down. So the reading now wins, and it settles cases the old rule refused to guess at — with two men sharing an initial, guessing was exactly the wrong thing to do.',
+      'Nothing else moved off Gurdon. One newspaper run that the wrong card brought stays with him, because three of the other five cards cite it too; it was checked before anything was taken away. He keeps five readings, all plainly his.',
+      'Two faults underneath this were the reason it survived. The tool that lands these decisions could not change its mind: correcting the written ruling and re-running it left the old answer in place, silently. And the check that guards the whole arrangement only asked whether a folded record pointed at somebody real, never at the person the ruling actually named — so the file said Henry, the town said Gurdon, and nothing complained.',
+      'Both are fixed, and the check now reads the transcription too: a record whose page names one man cannot be filed under another. It was tested on all forty-two folded records — this was the only one wrong.',
+    ] },
   { v: 616, title: 'Nothing you can see: the running order kept being quietly undone', kind: 'fix', ts: '2026-09-06T02:57:58.075Z', date: 'Sep 5, 2026, 9:57 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the list that decides what gets worked on next, and about that list being silently rolled back three times.',
