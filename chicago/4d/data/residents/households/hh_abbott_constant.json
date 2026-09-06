@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Dr. Constant Abbott is a strong regional candidate documented in DuPage and Ottawa by 1836, but no source supplies a dated Chicago migration or links him to this return.",
     "evidence_against": "No direct Chicago link.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "dupage_constant_abbott"
     ],
     "candidate_ids": [
      "cand_dr_constant_abbott__abbott_constant"
-    ]
+    ],
+    "summary": "Dr. Constant Abbott is a strong regional candidate documented in DuPage and Ottawa by 1836, but no source supplies a dated Chicago migration or links him to this return. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

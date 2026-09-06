@@ -69,20 +69,22 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "The entry is a near-certain duplicate of Eliza Chappel Porter: Mir likely misreads Miss, and the letter appeared 16 days after her marriage. It is not merged until the original scan is inspected.",
     "evidence_against": "The scan is unavailable; Mir-to-Miss remains unverified.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
-     "rochester_porter_chappel_marriage",
-     "chm_eliza_chappel"
+     "chicago_democrat_1833_1835",
+     "chm_eliza_chappel",
+     "rochester_porter_chappel_marriage"
     ],
     "candidate_ids": [
      "cand_eliza_chappel_porter__chappel_eliza_mir"
-    ]
+    ],
+    "summary": "The entry is a near-certain duplicate of Eliza Chappel Porter: Mir likely misreads Miss, and the letter appeared 16 days after her marriage. It is not merged until the original scan is inspected. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

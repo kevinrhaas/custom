@@ -70,19 +70,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A contemporary 1835 letter and local histories place distinctive-name Chester House at House's Grove from 1833. He is probably the recipient, but as a hinterland resident, not proof of Chicago residence; sources conflict on spouse name.",
     "evidence_against": "Hinterland residence; Judith versus Lucinda spouse conflict.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "talcott_chester_house_1835"
     ],
     "candidate_ids": [
      "cand_chester_house_of_house_s_grove__house_chester"
-    ]
+    ],
+    "summary": "A contemporary 1835 letter and local histories place distinctive-name Chester House at House's Grove from 1833. He is probably the recipient, but as a hinterland resident, not proof of Chicago residence; sources conflict on spouse name. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

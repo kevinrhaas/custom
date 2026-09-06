@@ -295,6 +295,9 @@ def research_rows():
                     out[pid] = item
         except Exception:
             continue
+    for item in out.values():
+        if item.get("sources"):
+            item["sources"] = [s for s in item["sources"] if s not in FINDING_AIDS]
     return out
 
 
@@ -308,6 +311,19 @@ def research_block(item):
         if item.get(src): block[dst] = item[src]
     if item.get("candidates"): block["candidates"] = item["candidates"]
     return block
+
+
+# T-0837.  A FINDING AID IS NOT A SOURCE FOR A PERSON, and this writer was carrying one
+# onto cards.  `read_newberry_index.py` states the rule and gates it: the Newberry
+# genealogical index is a 1960 finding aid, "the whole failure mode of an index is that a
+# surname in it looks like evidence", and its id may not appear anywhere under
+# data/residents.  The research CSVs legitimately record it — a reader consulted it, and
+# saying so is how the next reader knows the shelf was looked at — but `research_block`
+# copies a row's `source_ids` onto the card verbatim, so thirteen cards in the standing
+# spend cited it and the Newberry gate would have gone red the moment they landed.  The
+# id is dropped where the rows are READ, so neither the card's citation list nor a
+# promotion's `sources` can carry it.
+FINDING_AIDS = {"newberry_genealogical_index"}
 
 
 def independent(item):
@@ -329,10 +345,49 @@ def evidence_text(item):
     return " ".join(bits)
 
 
+SCENE_YEAR = 1835
+
+# T-0837 (of T-0814) — A TRADE PRINTED AFTER THE SCENE IS NOT AN 1835 OCCUPATION.
+#
+# The guard above reads a trade only out of the pass's own words, because a cited volume's
+# imprint describes the BOOK.  Two defects survived that and stood in the drift T-0838
+# measured, both of them promotions to `attested` on the 1835 `occupation` field:
+#
+#   bailey_bennet -> carpenter, cited to Fergus 1839 and Norris 1843.  The pass's own row
+#     ends "Carried as 1837 and 1839 evidence; the 1835 grade does not move" — the reader
+#     refused the back-projection in writing and the writer did it anyway.
+#   chapman_chas_h -> printer, cited to Fergus 1839, which prints him a REAL ESTATE
+#     DEALER.  "printer" is in the pass's words only in "where 'II.' is the printer's H" —
+#     the compositor of the volume, the T-0510 defect recurring inside the row itself.
+#
+# Both deleted the `later_occupation` pointer T-0693 wrote for exactly these people, and
+# the note that says why: "a directory of 1839 is evidence about 1839".  So two guards,
+# and each one alone refuses both:
+#
+#   DATE.  A trade reaches the 1835 field only if a corroborating source demonstrably
+#     describes 1835 or earlier.  `describes_date` is the field that says so; a source
+#     that will not say when ("nineteenth century") is not evidence about the scene, and
+#     refusing it is the conservative direction.
+#   POSSESSIVE.  "the printer's H" is a trade predicated of the volume, not of the man.
+#
+# A refusal is not a silence: every one is named in the ledger's `refused_promotions`
+# with the trade, the sources and the reason, so what did not land is as readable as what
+# did.  The card keeps `none_recorded` for 1835 and keeps T-0693's dated pointer.
+def source_years(sid):
+    return [int(y) for y in re.findall(r"\b(1[6-9]\d{2})\b", str(source_doc(sid).get("describes_date") or ""))]
+
+
+def describes_scene_or_earlier(srcs):
+    """Does any corroborating source say, in `describes_date`, that it is about 1835 or
+    before?  Unreadable dates count as no such claim."""
+    years = [y for sid in srcs for y in source_years(sid)]
+    return bool(years) and min(years) <= SCENE_YEAR
+
+
 def promote(person, hh, item):
     srcs = independent(item)
-    if not srcs: return []
-    text = evidence_text(item); low = text.lower(); changes = []
+    if not srcs: return [], []
+    text = evidence_text(item); low = text.lower(); changes = []; refused = []
     # A TRADE IS READ ONLY OUT OF THE PASS'S OWN WORDS.  A cited volume's imprint is a
     # description of the BOOK, not of the person: Norris 1844 was printed by Ellis &
     # Fergus and the St Cyr register was kept by a priest, and scanning those citations
@@ -342,13 +397,32 @@ def promote(person, hh, item):
     # a printer (T-0508).  Neither was ever committed.
     own = item_text(item).lower()
     for pat, occ in OCCUPATIONS:
-        if re.search(pat, own):
+        m = re.search(pat, own)
+        if m:
             old = person.get("occupation") or {}
-            if value(old) in (None, "", "none_recorded") or old.get("confidence") == "reconstructed":
-                person["occupation"] = {"value": occ, "confidence": "attested", "sources": srcs,
-                    "note": f"{item.get('ticket')}: independently corroborated resident research. " +
-                            (item.get("evidence_for") or item.get("summary") or "")}
-                changes.append(f"occupation={occ}")
+            if not (value(old) in (None, "", "none_recorded") or old.get("confidence") == "reconstructed"):
+                break
+            # T-0837: the two guards.  Possessive first, because it says the match is not
+            # about this person at all; the date guard then says it is not about 1835.
+            tail = re.match(r"['\u2019]s(?:\s+\S+)?", own[m.end():])
+            if tail:
+                refused.append({"field": "occupation", "value": occ, "source_ids": srcs,
+                    "reason": f"the pass's words carry '{occ}' only as a possessive "
+                              f"('{own[m.start():m.end()] + tail.group(0)}'), which describes the "
+                              "volume or its compositor and not this person's trade "
+                              "(T-0510, T-0837)"})
+                break
+            if not describes_scene_or_earlier(srcs):
+                refused.append({"field": "occupation", "value": occ, "source_ids": srcs,
+                    "reason": "no corroborating source describes 1835 or earlier, so this trade "
+                              "is evidence about a later year and is not an 1835 occupation; the "
+                              "dated later_occupation pointer on this card is what holds it "
+                              "(T-0693, T-0837)"})
+                break
+            person["occupation"] = {"value": occ, "confidence": "attested", "sources": srcs,
+                "note": f"{item.get('ticket')}: independently corroborated resident research. " +
+                        (item.get("evidence_for") or item.get("summary") or "")}
+            changes.append(f"occupation={occ}")
             break
     for pat in (r"(?:moved|came|arrived|settled)\s+(?:to|in|at)\s+chicago(?:,? illinois)?\s+(?:in )?(18[0-3]\d)",
                 r"(?:moved|came|arrived|settled)\s+(?:here|there)\s+in\s+(18[0-3]\d)"):
@@ -379,7 +453,7 @@ def promote(person, hh, item):
         person.setdefault("biographical_evidence", {})["family"] = {"value": family, "confidence": "attested",
             "sources": srcs, "note": "Retained as biographical evidence; no weakly linked household members were minted."}
         changes.append("family_evidence")
-    return changes
+    return changes, refused
 
 
 def census_source():
@@ -564,6 +638,71 @@ def drift_paths():
         return out
 
 
+def promotion_self_test():
+    """The two T-0837 guards have to refuse, and the promotion they guard has to still land.
+
+    Written against the three rows that were actually standing in the T-0838 drift, so
+    the test says what the defect WAS and not merely that a regex matches.
+    """
+    problems = []
+    cases = (
+        # label, item, expect (None to refuse), the reason fragment a refusal must carry
+        ("bailey_bennet: a trade printed in 1839 and 1843",
+         {"ticket": "T-0509", "sources": ["chicago_democrat_1833_1835",
+                                          "fergus_chicago_directory_1839",
+                                          "norris_chicago_directory_1843"],
+          "summary": "Fergus 1839 prints 'Bailey, Bennett, carpenter and builder'. "
+                     "Carried as 1837 and 1839 evidence; the 1835 grade does not move."},
+         None, "describes 1835 or earlier"),
+        ("chapman_chas_h: the compositor of the volume, not the man",
+         {"ticket": "T-0509", "sources": ["fergus_chicago_directory_1839"],
+          "summary": "Fergus 1839 prints 'Chapman, Charles II., real estate dealer, "
+                     "Randolph street', where 'II.' is the printer's H."},
+         None, "possessive"),
+        ("a trade the scene's own newspaper prints still lands",
+         {"ticket": "T-0509", "sources": ["chicago_democrat_1833_1835", "hathaway_1834"],
+          "summary": "The Democrat advertises him a blacksmith on Water street in 1834."},
+         "blacksmith", None))
+    for label, item, want, fragment in cases:
+        person, hh = {"occupation": {"value": "none_recorded"}}, {}
+        changes, refused = promote(person, hh, item)
+        got = (person.get("occupation") or {}).get("value")
+        if want is None:
+            if got != "none_recorded":
+                problems.append(f"{label}: the guard did not refuse — occupation became {got!r}")
+            elif not refused:
+                problems.append(f"{label}: refused silently, with nothing named in the ledger")
+            elif fragment not in " ".join(r["reason"] for r in refused):
+                problems.append(f"{label}: refused for the wrong reason — {refused[0]['reason']!r}")
+        elif got != want:
+            problems.append(f"{label}: expected occupation {want!r}, got {got!r} (changes={changes})")
+    # And the guard must not fire on a card that already carries a trade: the refusal is
+    # about what may be WRITTEN into the 1835 field, never about what is already there.
+    person = {"occupation": {"value": "farmer", "confidence": "attested"}}
+    changes, refused = promote(person, {}, {"ticket": "T-0509", "sources": ["fergus_chicago_directory_1839"],
+                                            "summary": "a carpenter in 1839"})
+    if refused or (person["occupation"]["value"] != "farmer"):
+        problems.append("a card that already states a trade was touched by the guard")
+    if problems:
+        [print(" -", q) for q in problems]
+        print("PROMOTION SELF-TEST FAIL")
+        return 1
+    print(f"ok: the occupation guards refuse {len(cases) - 1} back-projection(s), name each "
+          "refusal, and still land a trade the scene's own sources print")
+    return 0
+
+
+def ratchet(allowed, now):
+    """The ratchet, as arithmetic: what drifts undeclared, and what has stopped drifting.
+
+    Named and lifted out of `drift()` so `--drift-self-test` can exercise the RULE rather
+    than the day's baseline.  It used to test the rule by perturbing the committed list,
+    which meant the test went dark the moment the list emptied — and an empty list is the
+    goal state, reached the day T-0837 spent the last of the standing drift.
+    """
+    return sorted(set(now) - set(allowed)), sorted(set(allowed) - set(now))
+
+
 def drift(write_baseline=False):
     paths = drift_paths()
     if write_baseline:
@@ -581,8 +720,8 @@ def drift(write_baseline=False):
         print(f"  FAIL {DRIFT_BASELINE.relative_to(REPO)} is missing — run --write-baseline")
         return 1
     allowed = set((load(DRIFT_BASELINE).get("paths") or []))
+    new, healed = ratchet(allowed, set(paths))
     now = set(paths)
-    new, healed = sorted(now - allowed), sorted(allowed - now)
     for path in new[:10]:
         print(f"  FAIL {path} has drifted from the writer and is not on the T-0838 baseline")
     if len(new) > 10:
@@ -602,24 +741,34 @@ def drift(write_baseline=False):
 
 
 def drift_self_test():
-    """The gate has to fire.  Both directions, against the committed baseline."""
-    baseline = load(DRIFT_BASELINE) if DRIFT_BASELINE.exists() else {}
-    paths = list(baseline.get("paths") or [])
-    if not paths:
-        print("FAIL: the drift baseline is empty, so neither direction of the ratchet is testable")
-        return 1
-    allowed, problems = set(paths), []
-    # A file that drifts and is not listed must fail; a listed file that stops must fail too.
-    for label, now in (("undeclared drift", allowed | {"chicago/4d/data/residents/households/hh_not_real.json"}),
-                       ("healed drift", allowed - set(paths[:1]))):
-        new, healed = now - allowed, allowed - now
-        if not (new or healed):
-            problems.append(f"the ratchet does not fire on {label}")
+    """The gate has to fire.  Both directions, and on any baseline including an empty one."""
+    problems = []
+    a, b = "chicago/4d/data/residents/households/hh_a.json", "chicago/4d/data/residents/households/hh_b.json"
+    for label, allowed, now, want_new, want_healed in (
+            ("undeclared drift on an empty baseline", set(), {a}, [a], []),
+            ("undeclared drift beside a declared one", {a}, {a, b}, [b], []),
+            ("healed drift", {a, b}, {a}, [], [b]),
+            ("both at once", {a}, {b}, [b], [a]),
+            ("a baseline that matches the tree", {a}, {a}, [], []),
+            ("nothing standing at all", set(), set(), [], [])):
+        new, healed = ratchet(allowed, now)
+        if (new, healed) != (want_new, want_healed):
+            problems.append(f"{label}: got new={new} healed={healed}, want new={want_new} healed={want_healed}")
+    baseline = load(DRIFT_BASELINE) if DRIFT_BASELINE.exists() else None
+    if baseline is None:
+        problems.append("the drift baseline is missing — run --write-baseline")
+    else:
+        paths = baseline.get("paths")
+        if not isinstance(paths, list):
+            problems.append("the drift baseline has no `paths` list")
+        elif baseline.get("count") != len(paths):
+            problems.append(f"the drift baseline's count ({baseline.get('count')}) is not len(paths) ({len(paths)})")
     if problems:
         [print(" -", p) for p in problems]
         print("DRIFT SELF-TEST FAIL")
         return 1
-    print(f"ok: the ratchet fires in both directions over {len(paths)} baselined file(s)")
+    n = len((baseline or {}).get("paths") or [])
+    print(f"ok: the ratchet fires in both directions; the committed baseline stands {n} file(s)")
     return 0
 
 
@@ -674,8 +823,10 @@ def main():
     ap.add_argument("--drift",action="store_true",help="the T-0814 ratchet: what the writer would change, against the committed baseline")
     ap.add_argument("--write-baseline",action="store_true",help="regenerate the drift baseline (never hand-edit it)")
     ap.add_argument("--drift-self-test",action="store_true")
+    ap.add_argument("--promotion-self-test",action="store_true",help="the T-0837 guards: a trade printed after the scene is not an 1835 occupation")
     args=ap.parse_args()
     if args.drift_self_test: return drift_self_test()
+    if args.promotion_self_test: return promotion_self_test()
     if args.drift or args.write_baseline: return drift(write_baseline=args.write_baseline)
     if args.check: return check()
     index=load(INDEX); current_before=snapshot(index)
@@ -702,7 +853,7 @@ def main():
         stats["removed_people"]=int(prior_retirement.get("removed_people") or 0)
         stats["removed_households"]=int(prior_retirement.get("removed_households") or 0)
     persons={p.get("id"):(p,d) for d in docs.values() for p in d.get("persons") or [] if p.get("id")}
-    outcomes=Counter(); promoted=[]; unmatched=[]; deferred=[]
+    outcomes=Counter(); promoted=[]; refused_promotions=[]; unmatched=[]; deferred=[]
     for pid,item in sorted(research.items()):
         outcome=item.get("outcome") or "no_corroboration_yet"; outcomes[outcome]+=1
         if pid not in persons: unmatched.append({"person_id":pid,"outcome":outcome,"name":item.get("name_normalized")}); continue
@@ -736,8 +887,9 @@ def main():
                 prefix = "INDEPENDENTLY CORROBORATED RESIDENT. Originally documented in Chicago post-office evidence; independent resident research now corroborates the identity. "
             p["note"]=(prefix+existing).strip()
         if outcome in CORROBORATED:
-            changes=promote(p,hh,item)
+            changes,refusals=promote(p,hh,item)
             if changes: promoted.append({"person_id":pid,"ticket":item.get("ticket"),"changes":changes,"source_ids":independent(item)})
+            for r in refusals: refused_promotions.append({"person_id":pid,"ticket":item.get("ticket"),**r})
     missing=[]
     for pid,(p,_hh) in persons.items():
         if not (p.get("letter_list_only") and pid not in research): continue
@@ -751,7 +903,7 @@ def main():
         p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
     ledger={"date":"2026-09-02","scene_date":"1835-07-01","tickets":["T-0487","T-0488","T-0489","T-0490"],
         "owner_ruling":{"attested":"confidently corroborated real named circa-1835 Chicago resident","inferred":"real named person reasonably believed to belong to circa-1835 Chicago","projected_resident":"inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile","reconstructed":"reserved for later explicit reconstruction; zero now"},
-        "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"letter_list_deferred_to_ladder":sorted(set(deferred)),"promoted_facts":promoted},
+        "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"letter_list_deferred_to_ladder":sorted(set(deferred)),"promoted_facts":promoted,"refused_promotions":sorted(refused_promotions,key=lambda r:(r["person_id"],r["field"]))},
         "census_workbook_inventory":workbook_inventory(),"structure_policy":"Keep reconstructed building stock as anonymous unassigned stock; remove retired resident occupancy references instead of deleting geometry."}
     attach_census(persons,ledger); dump(CENSUS_SOURCE,census_source(),2)
     targets={x for x in removed_people|removed_hh|unlink_people if x}; changed=[]
