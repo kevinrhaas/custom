@@ -18,9 +18,13 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "Montreal, where his parents Elizur and Abigail (Sage) Hubbard then lived; born at Windsor, Vermont",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_antiquities_american_fur_co",
+   "calumet_club_early_chicago_1879"
+  ],
+  "note": "WHAT THE FIELD IS FOR, SETTLED AGAINST THE SEVENTEEN RECORDS THAT ALREADY CARRY IT (T-0753). This value replaces 'Not attested in anything this project holds', which stopped being true when T-0575 read Hurlbut. The doubt worth answering first was whether `origin` is the right home for it at all: Hubbard did not arrive as a household, he arrived as an indentured company clerk of sixteen, seventeen years before the scene, and whatever household stands under his name in 1835 is not the one that left Montreal. But the field as this dataset USES it is where the HEAD came from, not where a household emigrated as a unit, and four of the seventeen belong to men whose own `party_size_on_arrival` is 1 - hh_harmon_elijah_d, hh_maxwell_philip, hh_porter_jeremiah and hh_st_cyr_john_mary - while hh_beaubien_jean_baptiste (1812), hh_robinson_alexander (1816) and hh_caldwell_billy (1820) carry one from further before the scene than this man does. So the field is right and a bare 'Montreal' would have been the wrong VALUE: it names the departure and throws the birth away. THE COMPOSED FORM IS THE HOUSE FORM. hh_maxwell_philip prints \"Sackett's Harbor, New York; born at Guilford, Vermont\" - departure point, then birthplace - and hh_caldwell_billy and hh_robinson_alexander fold the parents into the same string. This value is that form and nothing new. WHAT EACH SOURCE CARRIES. Montreal, the parents and their names are Hurlbut's: Chicago Antiquities (1881) pages 28-36, \"He was born in Windsor, Vt., in 1802 and parents were Elizur and Abigail (Sage) Hubbard. Mr. Hubbard left Montreal, were his parents then lived, May 13, 1818\" (bk_afc_004; data/research/books/text/hurlbut_chicago_antiquities_28_36.txt lines 32-33). Windsor is corroborated independently by the man himself: the Calumet Club's register of 27 May 1879 prints \"Hubbard, Gurdon S. | 1818, Oct. 1, | Windsor, Vt. | 76 | 243 White St., Chicago.\" in its BIRTHPLACE column (os1879r078, data/research/old_settlers/people.json). WHY INFERRED AND NOT ATTESTED. Hurlbut's sentence stands OUTSIDE the quotation marks that open two lines later at 'Having entire charge of the management of the company in the West' - it is the compiler writing in 1881, not Hubbard speaking, and data/sources/chicago_antiquities_american_fur_co.json grades that layer rung 4 and says in terms that nothing from the compiler's own narrative may be used as period evidence. The register does not lift it: under the ratified ladder (T-0513) a later recollection corroborates, enriches and dates and cannot move a rung by itself. Two later sources agreeing is still two later sources, so the ceiling the rung-4 layer supports is `inferred`, and this record stops there."
  },
  "reason_for_coming": {
   "value": null,
@@ -64,11 +68,21 @@
     ],
     "note": "A forwarding and packing merchant. data/structures/old_bank_building.json records that he packed there in the 1834 season; Andreas's chapter heading calls him 'Gurdon S. Hubbard, the oldest living resident of Chicago' and he supplied Andreas with the Ramsey Crooks correspondence on the early fur trade."
    },
+   "birth_year": {
+    "value": 1802,
+    "confidence": "inferred",
+    "sources": [
+     "chicago_antiquities_american_fur_co",
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "Hurlbut: 'He was born in Windsor, Vt., in 1802' (bk_afc_004). The Calumet Club register of 27 May 1879 agrees without repeating him - the man gave his own age as 76 that day (os1879r078), which puts the birth between 28 May 1802 and 27 May 1803 and contains Hurlbut's year. INFERRED, for the reason the origin block sets out at length: the sentence is the 1881 compiler's own narrative at rung 4, and a self-reported age in 1879 corroborates it without lifting it (T-0513). THIS RECORD CARRIES NO `age_on_scene_date`, ALONE AMONG THE NINE THAT CARRY A BIRTH YEAR, AND THE OMISSION IS THE FINDING. Neither source gives a day or a month. Read together they bound the birth to 28 May - 31 December 1802, so this man was either 32 or 33 on 1 July 1835 and nothing this project holds chooses between them. Writing one of the two would pick on the reader's behalf, which is the precise thing this household already refuses one field above: its arrival carries precision `either_of_two_days` because Hurlbut offers the last day of October or the first of November and declines to choose. The age has no `precision` vocabulary to say that in, so it is left off the record rather than stated to a year the evidence does not reach."
+   },
    "sources": [
     "andreas_1884_v1",
     "calumet_club_early_chicago_1879",
     "census_1840_chicago_familysearch_images",
     "chicago_american_1835",
+    "chicago_antiquities_american_fur_co",
     "chicago_democrat_1833_1835",
     "chicago_voter_lists_1833_1835_irad",
     "fergus_chicago_directory_1843",
