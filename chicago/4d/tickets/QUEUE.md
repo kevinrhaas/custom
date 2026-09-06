@@ -84,7 +84,9 @@ T-0798 — Spend the 125 land-sale rows onto the School Section's numbered block
 
 # --- G5 — TOWN DETAILS, COMPOSITION AND ENCLOSURES. The rest of what the owner named. Each puts
 # --- something a visitor can see on the ground, off evidence already read.
-T-0758 — The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
+T-0881 — The Wash house and the Shop: the two buildings the 1830 plan draws standing on the fort's ground east of the pickets
+T-0882 — The fort's Well near the south gate and the Big Barn with Cupola: the two the plan names that need a form the model does not have
+T-0883 — The Out Buildings and the Fort Cemetery: placed off the 1830 plan or refused in writing, with the reason on the record
 T-0759 — Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
 T-0717 — The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31
 T-0718 — Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
