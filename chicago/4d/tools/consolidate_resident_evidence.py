@@ -68,6 +68,7 @@ PROPOSAL = OUT_DIR / "grading_proposal.json"
 LADDER_COVERAGE = OUT_DIR / "ladder_coverage.json"
 POLICY = ROOT / "docs" / "RESEARCH" / "resident-grading-policy.md"
 INDEX = RESIDENTS / "index.json"
+CARD_RULINGS = RESIDENTS / "card_merge_rulings.json"
 
 SCENE_YEAR = 1835
 GENERATED_BY = "tools/consolidate_resident_evidence.py --build"
@@ -1402,7 +1403,19 @@ def cmd_build(write=True):
     return master, coverage, proposal, ladder
 
 
-def invariants(master, proposal, ladder=None) -> list[str]:
+def deferred_card_clusters(path: Path = CARD_RULINGS) -> dict:
+    """The duplicate clusters T-0839's ruling pass deliberately left standing.
+
+    A deferred entry names the cards, the ticket that owns them and why — it is a
+    written ruling that the cards are duplicates and that a NAMED ticket is moving
+    them, which is the only thing that may hold the gate below open. Anything else
+    carrying two cards on one identity is a duplicate nobody has ruled on.
+    """
+    doc = load(path) or {}
+    return {frozenset(row.get("cards") or []): row for row in doc.get("deferred") or []}
+
+
+def invariants(master, proposal, ladder=None, deferred=None) -> list[str]:
     """The assertions the acceptance names. Each returns a sentence, or nothing."""
     problems = []
     seen = {}
@@ -1426,6 +1439,38 @@ def invariants(master, proposal, ladder=None) -> list[str]:
         for rule in row["merge_rules"]:
             if rule not in MERGE_RULES:
                 problems.append(f"identity {row['id']} cites unknown merge rule {rule}")
+    # T-0843. ONE IDENTITY, ONE CARD — the gate that stops the NEXT duplicate.
+    #
+    # T-0839 found 39 surname clusters holding 110 town cards that were fewer people
+    # and PR #929 folded 42 of them under written rulings; `consolidate_town_cards.py
+    # --check` gates that every candidate cluster carries one. That is ruling COVERAGE
+    # over the duplicates that exist. This is the other half, and the owner's ticket is
+    # explicit that it is the half that matters: a minting pass that writes a new card
+    # for a person the town already holds fails HERE, in the file whose whole job is to
+    # say what one identity is, rather than silently in the population count.
+    #
+    # The test is the master's own answer to its own question. An identity carrying two
+    # `town_person_ids` is an identity the master's M1/M2/M3 merged and the town wrote
+    # twice — nothing derived here, just the row read back. The only way past it is a
+    # DEFERRAL: a written entry in data/residents/card_merge_rulings.json naming the
+    # cards, the ticket that owns them and the reason. Two stand today, both handed to
+    # T-0723 by name, and neither may be widened without editing that file and saying so.
+    deferred = deferred_card_clusters() if deferred is None else deferred
+    for row in master["identities"]:
+        cards = row.get("town_person_ids") or []
+        if len(cards) < 2:
+            continue
+        entry = deferred.get(frozenset(cards))
+        if entry is None:
+            problems.append(
+                f"identity {row['id']} stands on {len(cards)} town cards "
+                f"({', '.join(cards)}) and nothing rules on them: one person, one card "
+                "— either merge them under a ruling in data/residents/"
+                "card_merge_rulings.json or defer them there to a named ticket (T-0843)")
+        elif not entry.get("to") or not entry.get("why"):
+            problems.append(
+                f"identity {row['id']} is deferred without a ticket or a reason "
+                "(T-0843: a deferral is a written ruling, not a silence)")
     for entry in proposal["proposals"]:
         rule = entry["rule"]
         if rule not in GRADE_RULES:
@@ -1813,6 +1858,49 @@ def cmd_self_test() -> int:
         failures += 1
     else:
         print("  ok    an initial-only forename with two rivals is refused, not guessed")
+
+    # ---- T-0843: one identity, one card ------------------------------------
+    def only_cards(*rows):
+        return {"identities": [{"id": i, "surname": "x", "forename": "y",
+                                "merge_rules": ["M1"], "appearances": [],
+                                "town_person_ids": list(cards)} for i, cards in rows],
+                "refusals": []}
+
+    empty_proposal = {"proposals": []}
+    twinned = invariants(only_cards(("id_hubbard_gurdon", ["hubbard_g_s", "hubbard_gurdon"])),
+                         empty_proposal, deferred={})
+    if not any("one person, one card" in problem for problem in twinned):
+        print("  FAIL an identity standing on two town cards did not fail the gate")
+        failures += 1
+    else:
+        print("  ok    an identity on two town cards fails until something rules on them")
+
+    ruled = invariants(only_cards(("id_hubbard_gurdon", ["hubbard_g_s", "hubbard_gurdon"])),
+                       empty_proposal,
+                       deferred={frozenset(["hubbard_g_s", "hubbard_gurdon"]):
+                                 {"to": "T-0000", "why": "a stated reason"}})
+    if ruled:
+        print(f"  FAIL a deferral naming a ticket and a reason did not open the gate: {ruled}")
+        failures += 1
+    else:
+        print("  ok    …and a deferral naming a ticket and a reason is what opens it")
+
+    silent = invariants(only_cards(("id_hubbard_gurdon", ["hubbard_g_s", "hubbard_gurdon"])),
+                        empty_proposal,
+                        deferred={frozenset(["hubbard_g_s", "hubbard_gurdon"]): {"to": "T-0000"}})
+    if not any("without a ticket or a reason" in problem for problem in silent):
+        print("  FAIL a deferral that states no reason was accepted")
+        failures += 1
+    else:
+        print("  ok    a deferral that states no reason is not a ruling")
+
+    single = invariants(only_cards(("id_hubbard_gurdon", ["hubbard_gurdon"])),
+                        empty_proposal, deferred={})
+    if single:
+        print(f"  FAIL one identity on one card was reported as a duplicate: {single}")
+        failures += 1
+    else:
+        print("  ok    one identity on one card says nothing")
 
     different = cluster([
         {"domain": "d", "record_id": "1", "normalized": "John Smith",

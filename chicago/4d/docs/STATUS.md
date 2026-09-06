@@ -1,5 +1,76 @@
 # STATUS
 
+## Shipped 2026-09-06 — T-0843: the mints ask the identity master before they write a card
+
+**What shipped.** The prevention half of T-0839. #929 folded 42 duplicate cards under
+written rulings and gated that every candidate cluster carries one — that is *ruling
+coverage over the duplicates that exist*, and it stops nothing from writing the next one.
+
+**The cause.** Three of the four minting passes test "does the town already carry this
+person?" by SURNAME, and the proxy is partial by design: each skips the households minted
+by itself and by the passes below it, so a card one of those wrote is invisible to it.
+A man his sources spell six ways goes straight through the gap.
+
+**The instrument.** `tools/identity_master_guard.py` — new — hands a candidate name to
+`consolidate_resident_evidence.cluster()`, the identity master's OWN function, inside its
+own surname bucket, with every identity of that surname standing as an anchor whether it
+holds a committed card or not. It refuses only where the master merges (M1/M2/M3); where
+the master refuses to choose between rivals (R2/R3/R4) so does this, and the candidate is
+minted. Wired into the documented, placed and letter-list passes as refusal 9, each
+consulted BLIND to exactly the households its own surname test skips, so no pass reads
+back its own answer and all three stay re-derivable beside each other. `mint_civic_
+residents.py` already consulted the master (its refusal 2) and is unchanged.
+
+### The rules are not re-implemented, and the first draft is why
+
+Written out by hand from `MERGE_RULES`, the resolver reported **19** committed cards as
+duplicates of each other where the master itself reports **2**. A hand copy of M2 cannot
+see the rivals that HOLD a merge apart: `C. S. Hunt` looks like the one Charles Hunt on a
+card until you notice the bucket also prints `Cha Hunt`, which is R3 and not a merge. The
+resolver defers to `cluster()` for that reason, and the case is a self-test.
+
+### What it costs the town today: nothing
+
+| pass | accepted | newly refused |
+|---|---|---|
+| documented | 39 | **0** |
+| placed | 5 | **0** |
+| letter_list | 658 | **0** |
+
+`identity_master_guard.py --report` is the measurement: 1,356 of 6,697 identities stand on
+a committed card, 2 stand on more than one, and reading all 1,362 person records back as if
+they were being minted today resolves exactly those 4 onto a different card. Both pairs are
+`brown_rufus`/`brown_mrs_rufus` and `norton_n_r`/`norton_nelson_r`, deferred to **T-0723**
+by name in `data/residents/card_merge_rulings.json`. It is a lock, not a repair.
+
+### The gate
+
+`consolidate_resident_evidence.py --check` now fails when any identity stands on more than
+one town card. The only way past is a DEFERRAL in `card_merge_rulings.json` naming the cards,
+the ticket that owns them and the reason — a deferral without a ticket or without a reason
+fails too. Four self-test cases assert it fires. `check.sh` gains the guard's own self-test.
+
+### The gate caught one within the hour, and it is filed rather than decided
+
+Merging `dev` brought T-0724 (#931), which taught the splitter that a compound surname is
+one surname — and `Bogart, Dr. Henry Van der` and `H. Vanderbogart` fell into one bucket
+for the first time, where M2 attached the initial. Two town cards, one identity, and dev's
+own `consolidate_town_cards.py --check` was green on it because the cluster carried an
+`undecided` row, which is the ticket's whole argument about ruling coverage in one example.
+
+It is **T-0865**, deferred by name in `card_merge_rulings.json`. It is not decided here:
+the death notices put the doctor's death at 8 April 1835 and the letter this card was
+minted from ran on 20 May 1835 — ordinary for an uncalled-for letter, and still something
+somebody has to weigh. T-0843 owns the lock on the door, not the adjudication behind it.
+
+### One derived row moved, and it is the right one
+
+`docs/RESEARCH/letter-list-surname-collisions.md` counted `Norton N. R.` as a candidate only
+the corrected surname reading refuses. It is now refused under BOTH readings, because the
+master resolves those initials onto the committed Nelson R. Norton whichever token the old
+rule took for a surname. Collisions **9 → 8**. Nothing was retired to make that happen; the
+report says so in its own prose.
+
 ## Shipped 2026-09-06 — T-0860: the three kin ties #947 read and the survey could not see
 
 **What shipped.** Kin rows on both people for three ties `dev` did not hold, each

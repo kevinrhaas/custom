@@ -7,6 +7,14 @@ pre-T-0638 reading of a printed name, once under the corrected one — and repor
 difference. `--check` re-derives it and fails if this file has drifted from what the
 tree now says, so it cannot quietly go stale.
 
+T-0843 MOVED ONE ROW OUT OF THIS REPORT AND THE REASON IS WORTH READING. The pass
+now consults the cross-domain identity master before it writes a card, so
+`Norton N. R.` is refused under BOTH readings — the master resolves the initials
+onto the committed Nelson R. Norton whichever token the old rule took for a
+surname. It was never a difference between the two readings; the surname test was
+simply too blunt to see it under one of them. The count below fell by one
+accordingly, and nothing was retired to make that happen.
+
 T-0660 asks for this list before anything is retired, and the reason is in the third
 section: the pass's own ranking would not always keep the better record, and two of
 these collisions are not duplicates at all but two different men who cannot both hold
@@ -15,9 +23,9 @@ one family name.
 ## The two readings, over the same pool
 
 * the pool the register offers this pass: **1845** candidates
-* accepted under the pre-T-0638 reading: **655**
+* accepted under the pre-T-0638 reading: **654**
 * accepted under the corrected reading: **657**
-* candidates the correction REFUSES that the old reading accepted: **9**
+* candidates the correction REFUSES that the old reading accepted: **8**
 * candidates the correction ADMITS that the old reading refused: **11**
 
 ## The collisions — what the paper printed, and who holds the surname instead
@@ -33,7 +41,6 @@ rules for. `carries` is what a retirement would strand.
 | `Frederick W. Page` | Frederick W. Page | `page` | `page` | surname already minted | Elisha S. Page | 1 | research row T-0510 (no_corroboration) |
 | `Mason Sabrina A.` | Sabrina A. Mason | `a` | `mason` | the town already names a Mason | Matthias Mason (hh_mason_matthias) | 1 | research row T-0482 (no_corroboration_yet) |
 | `Mills Joel C.` | Joel C. Mills | `c` | `mills` | the town already names a Mills | John A Mills (hh_mills_john_a); Samuel Mills (hh_mills_samuel) | 1 | research row T-0482 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
-| `Norton N. R.` | N. R. Norton | `r` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Norton Wm. H.` | Wm. H. Norton | `h` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet) |
 | `Perry A. 8.` | A. [?] Perry | `8` | `perry` | the town already names a Perry | Calvin Perry (hh_perry_calvin) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843, directory norris_directory_1844 |
 | `Wm. Osborn` | Wm. Osborn | `osborn` | `osborn` | surname already minted | B. Osborn | 1 | research row T-0485 (candidate_identity), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843 |
@@ -59,8 +66,8 @@ against that same tree, derives **657**. `check.sh` runs this pass's
 
 | households | cause |
 |---|---|
-| 76 | the town gained this surname from another pass after the mint (the town already names that family) |
-| 9 | THIS FAULT — the corrected reading collides it with another record |
+| 77 | the town gained this surname from another pass after the mint (the town already names that family) |
+| 8 | THIS FAULT — the corrected reading collides it with another record |
 | 2 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |
 

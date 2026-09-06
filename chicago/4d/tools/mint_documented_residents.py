@@ -33,7 +33,7 @@ note. The division vocabulary gains `unplaced` for exactly this, because writing
 `south` because most of the town was south is the kind of quiet invention this project
 exists not to make.
 
-THE EIGHT REFUSALS, AND WHY EACH ONE IS THERE.
+THE NINE REFUSALS, AND WHY EACH ONE IS THERE.
 
   1. `garbled`                — the transcription bracketed the name as uncertain.
   2. `a firm, not a person`   — 'Hamilton & Sons'. A firm cannot head a household; it
@@ -63,6 +63,19 @@ THE EIGHT REFUSALS, AND WHY EACH ONE IS THERE.
                                 candidate costs the town one documented resident, a
                                 wrongly accepted one mints a second copy of a real man
                                 or answers a question the project has already opened.
+  9. `the identity master already holds this person on a committed card` — refusal 7
+                                is a surname proxy and it is deliberately PARTIAL: it
+                                skips the households minted by this pass and by every
+                                pass below it, so a card one of those wrote is invisible
+                                to it. `tools/identity_master_guard.py` asks the
+                                cross-domain identity master instead, which resolves on
+                                surname AND forename signature and can therefore look
+                                into that blind spot without the bluntness. It refuses
+                                only where the master's own M1/M2/M3 merge this name
+                                onto a card; where the master refuses to choose between
+                                rivals (R2/R3/R4) so does this, and the candidate is
+                                minted. T-0843, the half of T-0839 that stops the next
+                                duplicate rather than folding the last one.
   8. `surname already minted`  — one surname, one household, across the whole pass. A
                                 shared surname reads as kinship and this pass claims
                                 none; it is also how the same man under two printed
@@ -94,6 +107,9 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from identity_master_guard import (  # noqa: E402  (T-0843; refusal 9)
+    IdentityGuard, blind_person_ids, refusal as guard_refusal,
+)
 
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
@@ -361,6 +377,11 @@ def mint(docs: dict, index: dict):
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_family_names(docs, index)
     in_town = in_town_places()
+    # T-0843. The identity master, consulted with the same precedence this pass's
+    # surname test already obeys: blind to its own output and to every pass below it.
+    guard = IdentityGuard.load()
+    blind = blind_person_ids(docs, lambda path, doc: any(
+        minted_by(path, doc, pass_name, prefix) for pass_name, prefix in MINTED_PASSES))
 
     def norm(s):
         return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
@@ -406,6 +427,8 @@ def mint(docs: dict, index: dict):
                       + "; ".join(outside) + ")")
         elif fam in known:
             reason = f"the town already names a {fam.title()}"
+        elif (hit := guard.holder(name, blind_to=blind)) is not None:
+            reason = guard_refusal(hit)
         elif fam in taken:
             reason = "surname already minted"
         if reason:

@@ -1,7 +1,7 @@
 ---
 id: T-0843
 title: Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0839
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 967
+claimed_by: run 9/6/2026, 12:34:17 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T06:05:01.136Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34014186285
 ---
 
 Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one.
