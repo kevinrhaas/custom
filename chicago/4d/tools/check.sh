@@ -1365,6 +1365,28 @@ step "the minted letter-list residents re-derive from the register" \
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
 
+# T-0714, and the owner asked for it directly. The bridges gate above proves the eleven
+# links this project HAS made. The crosswalk below is the adjudication those links come
+# out of — every named 1840 head given an outcome against the 1835 pools — and it was the
+# one crosswalk in this repo that nothing gated. `crosswalk_norris_1844`,
+# `crosswalk_fergus_1843`, the three Fergus 1839 crosswalks and the death notices all fail
+# the moment their committed file stops re-deriving; this one drifted 290 heads without a
+# red build, because the sheets kept being read and the adjudication was never re-run.
+# Gated here in the same commit that re-derived it, so it never lands red.
+step "every named 1840 head still adjudicates as the pages and the pools say" \
+  python3 tools/crosswalk_census_1840_heads.py --check
+
+# …and the class of fault, not just this instance of it. An ungated derivation is a
+# research output that can silently stop existing, and until T-0714 nothing could answer
+# "which tools can re-derive themselves and are never asked to?" without a hand audit.
+# This is a RATCHET: the ungated set may shrink, and may not grow. A new tool arrives
+# gated, or with a deliberate line in data/research/check_gate_baseline.json.
+step "no new tool carries a --check mode the gate never runs" \
+  python3 tools/audit_check_gates.py --gate --quiet
+
+step "…and the audit's own assertions still fire when broken" \
+  python3 tools/audit_check_gates.py --self-test
+
 # THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
 # lots of research being done ... but there are not outputs or updates to the household
 # and resident data". The bridges gate above proves the links the project HAS made are

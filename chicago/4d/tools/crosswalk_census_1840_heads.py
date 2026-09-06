@@ -3,6 +3,7 @@
 
     tools/crosswalk_census_1840_heads.py --build   write data/research/census_1840/resident_crosswalk.json
     tools/crosswalk_census_1840_heads.py --check   the outcomes on disk still follow from the inputs
+    tools/crosswalk_census_1840_heads.py --report  what each sheet produced, per sheet
     tools/crosswalk_census_1840_heads.py --self-test
 
 WHY THIS EXISTS. After PR #670 exactly three of the 1840 heads were bridged to an
@@ -878,9 +879,10 @@ def domain_crosswalk(doc: dict) -> dict:
         "passes": [x for x in (existing.get("passes") or [])
                    if x.get("ticket") != TICKET] + [{
             "ticket": TICKET,
-            "what": "every named head on the 19 left sheets read in this repo, "
+            "what": "every named head on the %d left sheets read in this repo, "
                     "adjudicated against the residents layer, the voter lists, the "
-                    "letter-list names and the recovered v1 bridge rows",
+                    "letter-list names and the recovered v1 bridge rows"
+                    % len({r["familysearch_id"] for r in doc["heads"]}),
             "heads_adjudicated": doc["counts"]["named_heads"],
             "outcomes": doc["counts"],
             "candidates_are_not_here": "a candidate is neither a merge nor a refusal and "
@@ -891,6 +893,85 @@ def domain_crosswalk(doc: dict) -> dict:
         "merges": merges,
         "refusals": refusals,
     }
+
+
+def report(baseline_path: str | None = None) -> int:
+    """T-0714 — say what the sheets produced, per sheet, as a number.
+
+    The question the owner asked of this whole layer is "did reading those pages
+    produce anything?", and until now the only answer was the total. A sheet is the
+    unit that gets READ, so a sheet is the unit the answer has to come in. With
+    --baseline <an earlier resident_crosswalk.json> it also names which heads the
+    re-derivation ADDED and which outcomes moved, because a re-derivation that moves
+    a claim about a person has to be readable line by line, not trusted wholesale.
+    """
+    if not OUT.exists():
+        print("MISSING: %s — run --build" % OUT.relative_to(ROOT))
+        return 1
+    doc = load(OUT)
+    heads = doc.get("heads") or []
+
+    def sheet_key(row):
+        return (row.get("printed_page"), row.get("familysearch_id"))
+
+    def page_label(page):
+        # 33S7-9YYJ-9MX carries `printed_page: "unknown"` — the number is torn off the
+        # image, not missing from the reading. Say that rather than printing None.
+        return "unknown" if page in (None, "", "unknown") else str(page)
+
+    sheets: dict = {}
+    for row in heads:
+        s = sheets.setdefault(sheet_key(row), {"matched": 0, "candidate": 0, "refused": 0})
+        s[row["outcome"]] = s.get(row["outcome"], 0) + 1
+
+    print("NAMED 1840 HEADS ADJUDICATED, BY SHEET — %d head(s) off %d sheet(s)"
+          % (len(heads), len(sheets)))
+    print("  %-8s %-16s %6s %8s %10s %8s" % ("printed", "familysearch", "heads",
+                                             "matched", "candidate", "refused"))
+    for (page, fsid), s in sorted(sheets.items(), key=lambda kv: (kv[0][0] or 0, kv[0][1])):
+        n = s["matched"] + s["candidate"] + s["refused"]
+        print("  %-8s %-16s %6d %8d %10d %8d"
+              % (page_label(page), fsid, n, s["matched"], s["candidate"], s["refused"]))
+    print("  %-8s %-16s %6d %8d %10d %8d"
+          % ("total", "", len(heads), doc["counts"]["matched"],
+             doc["counts"]["candidate"], doc["counts"]["refused"]))
+
+    if not baseline_path:
+        return 0
+
+    was = json.loads(Path(baseline_path).read_text())
+
+    def line_key(row):
+        return (row.get("familysearch_id"), row.get("printed_page"), row.get("line"),
+                row.get("as_read"))
+
+    before = {line_key(r): r for r in (was.get("heads") or [])}
+    added = [r for r in heads if line_key(r) not in before]
+    dropped = [r for r in before.values() if line_key(r) not in {line_key(h) for h in heads}]
+
+    by_sheet: dict = {}
+    for row in added:
+        by_sheet[sheet_key(row)] = by_sheet.get(sheet_key(row), 0) + 1
+    print()
+    print("AGAINST %s — %d head(s) added, %d dropped"
+          % (baseline_path, len(added), len(dropped)))
+    for (page, fsid), n in sorted(by_sheet.items(), key=lambda kv: (kv[0][0] or 0, kv[0][1])):
+        print("  added  printed %-7s %-16s %4d" % (page_label(page), fsid, n))
+    for row in dropped:
+        print("  DROPPED  printed %-7s line %-3s %s"
+              % (page_label(row.get("printed_page")), row.get("line"),
+                 row.get("normalized")))
+
+    moved = [(before[line_key(r)], r) for r in heads
+             if line_key(r) in before and before[line_key(r)]["outcome"] != r["outcome"]]
+    print()
+    print("  %d head(s) already on disk changed outcome" % len(moved))
+    for old_row, row in sorted(moved, key=lambda pair: (pair[1].get("printed_page") or 0,
+                                                        pair[1].get("line") or 0)):
+        print("  %-10s -> %-10s printed %-7s line %-3s %-24s %s"
+              % (old_row["outcome"], row["outcome"], page_label(row.get("printed_page")),
+                 row.get("line"), row.get("normalized"), row["rule"]))
+    return 0
 
 
 def check() -> int:
@@ -985,9 +1066,16 @@ def main() -> int:
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--report", action="store_true",
+                    help="what each sheet produced, as a number per sheet")
+    ap.add_argument("--baseline", metavar="PATH",
+                    help="an earlier resident_crosswalk.json; --report then names the "
+                         "heads added and the outcomes that moved")
     args = ap.parse_args()
     if args.self_test:
         return self_test()
+    if args.report:
+        return report(args.baseline)
     if args.check:
         return check()
     if args.build:

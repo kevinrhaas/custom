@@ -23,8 +23,8 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 792,
-   "spent": 508
+   "read": 812,
+   "spent": 819
   },
   "church": {
    "read": 1744,
@@ -336,6 +336,14 @@
    "to": 438,
    "date": "2026-09-06",
    "why": "T-0837 spent the standing synthesis write, and the old-settlers roll re-derived against the moved residents layer: one name that had matched a card no longer does. No new page was read — 1,094 read is unchanged — so this is the town moving under a reading, not a reading running ahead of the town. Ruling on the 438 is T-0700's kind of work and not this ticket's."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "write",
+   "from": 0,
+   "to": 1,
+   "date": "2026-09-06",
+   "why": "T-0714, 2026-09-06. The 1840 crosswalk was re-derived after 290 named heads of finished reading had never been put to the ladder, and the new adjudication reaches one town person the old one did not: Ira Couch, printed page 211 line 3 of image 33SQ-GYYJ-97P, ruled L7 candidate — the name agrees and is unique on both sides, with nothing independent of the name to hold the pair together. His card cites no 1840 source, so the ruling has reached the person and not the card. It is raised by exactly one rather than spent here because this crosswalk mints nobody and writes no household file by design; the write is T-0899's, on the ratified ladder, where a candidate stays a candidate."
   }
  ],
  "lowered": [
@@ -356,7 +364,7 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 0,
+  "census_1840": 1,
   "civic": 0,
   "directories": 0,
   "land_sales": 0,
