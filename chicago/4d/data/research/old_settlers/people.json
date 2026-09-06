@@ -4,6 +4,7 @@
  "generated_by": "tools/old_settlers.py --build",
  "what": "THREE rolls. The register of the Calumet Club's FIRST Old Settlers' reception, 27 May 1879, read off the printed plate of Early Chicago (pages 84-90) — the one roll in the series that carries each man's own year of arrival, birthplace and age. And the two rolls chicagology 063 reprints: the 118 guests present at the Calumet Club's fourth annual Old Settlers' reception of 18 May 1882, and John Wentworth's roll of settlers dead since 1 January 1881 — read as it is printed, matched against the residents layer under declared rules, and carrying the ladder rung this source PROPOSES and does not apply.",
  "scene_relation": "later_evidence_only",
+ "units_in": "people",
  "identity_rules": {
   "OS1": "surname equal AND both sides spell the first forename out AND they agree (a middle initial, where both give one, must agree too) → MERGED. Only an OS1 merge may be written onto a resident record.",
   "OS2A": "surname equal AND the forename initial agrees AND the resident's own record spells the roster's forename somewhere in it — its id, its name or its research note → MERGED. The spelling is the discriminator the roster does not supply.",

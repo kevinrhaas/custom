@@ -72,6 +72,63 @@
       "records": 1338,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
+    "residents/household:old_settler_deaths.people[].age_as_printed": {
+      "records": 45
+    },
+    "residents/household:old_settler_deaths.people[].as_read": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].birth_year_arithmetic": {
+      "records": 43
+    },
+    "residents/household:old_settler_deaths.people[].birth_year_earliest": {
+      "records": 43
+    },
+    "residents/household:old_settler_deaths.people[].birth_year_latest": {
+      "records": 43
+    },
+    "residents/household:old_settler_deaths.people[].death_date": {
+      "records": 58
+    },
+    "residents/household:old_settler_deaths.people[].entry_given_as_read": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].entry_given_is_initial_only": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].manner_of_death": {
+      "records": 63
+    },
+    "residents/household:old_settler_deaths.people[].matched_as": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].matched_by": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].matched_on_initial_only": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].person_id": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].place_of_death": {
+      "records": 35
+    },
+    "residents/household:old_settler_deaths.people[].record_id": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].resident_given_is_initial_only": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].the_agreement": {
+      "records": 64
+    },
+    "residents/household:old_settler_deaths.people[].trade_or_office": {
+      "records": 23
+    },
+    "residents/household:old_settler_deaths.the_header_admission": {
+      "records": 64
+    },
     "residents/household:persons[].merge_ruling[].against_merge": {
       "records": 42
     },
