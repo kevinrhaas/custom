@@ -50,6 +50,19 @@ one town card. The only way past is a DEFERRAL in `card_merge_rulings.json` nami
 the ticket that owns them and the reason — a deferral without a ticket or without a reason
 fails too. Four self-test cases assert it fires. `check.sh` gains the guard's own self-test.
 
+### The gate caught one within the hour, and it is filed rather than decided
+
+Merging `dev` brought T-0724 (#931), which taught the splitter that a compound surname is
+one surname — and `Bogart, Dr. Henry Van der` and `H. Vanderbogart` fell into one bucket
+for the first time, where M2 attached the initial. Two town cards, one identity, and dev's
+own `consolidate_town_cards.py --check` was green on it because the cluster carried an
+`undecided` row, which is the ticket's whole argument about ruling coverage in one example.
+
+It is **T-0865**, deferred by name in `card_merge_rulings.json`. It is not decided here:
+the death notices put the doctor's death at 8 April 1835 and the letter this card was
+minted from ran on 20 May 1835 — ordinary for an uncalled-for letter, and still something
+somebody has to weigh. T-0843 owns the lock on the door, not the adjudication behind it.
+
 ### One derived row moved, and it is the right one
 
 `docs/RESEARCH/letter-list-surname-collisions.md` counted `Norton N. R.` as a candidate only

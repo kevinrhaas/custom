@@ -4,13 +4,13 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1362,
-  "open_clusters": 18,
-  "cards_in_open_clusters": 40,
+  "town_people": 1363,
+  "open_clusters": 19,
+  "cards_in_open_clusters": 42,
   "rulings": {
    "distinct": 8,
    "merge": 24,
-   "undecided_owner": 6,
+   "undecided_owner": 7,
    "undecided_rule": 8
   },
   "landed_merges": 24,
@@ -1046,6 +1046,48 @@
      "for": [
       "share 1 source(s): chicago_democrat_1833_1835",
       "an initial against its forename, 'john' and 'j'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "vanderbogart",
+   "cards": [
+    {
+     "person": "vanderbogart_h",
+     "household": "hh_vanderbogart_h",
+     "name": "H. Vanderbogart",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "deferred",
+     "ruled_in": "vanderbogart-henry"
+    },
+    {
+     "person": "vanderbogart_henry",
+     "household": "hh_vanderbogart_henry",
+     "name": "Henry Vanderbogart",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "deferred",
+     "ruled_in": "vanderbogart-henry"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "vanderbogart_h",
+     "b": "vanderbogart_henry",
+     "for": [
+      "share 2 source(s): chicago_democrat_1833_1835, fergus_1843_old_settler_death_notices",
+      "an initial against its forename, 'h' and 'henry'"
      ],
      "against": [
       "neither card is an anchor: nothing here documents the person beyond a list"

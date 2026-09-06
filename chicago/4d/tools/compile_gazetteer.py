@@ -1048,26 +1048,47 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
     # AND IT IS BOUNDED BY THE SCENE DATE, for the reason `anchor_changes` already is
     # and AGENTS.md rule 3 states generally: an address first printed after 1 July 1835
     # was not up on 1 July 1835, and a house is not placed in this town on the strength
-    # of it. Jones, King & Co. is the case — silent through its 1834 printings and given
-    # South Water Street on 1835-08-05 — and it stays silent here.
+    # of it. Jones, King & Co. was written here as the case — silent through its 1834
+    # printings and given South Water Street on 1835-08-05 — and T-0859 found that it is
+    # not: that 1835-08-05 notice is a fire-insurance agency card printing no address at
+    # all, and the South Water Street beside it is the extraction's business-level field.
+    # The house is silent on BOTH counts and the scene bound is not what holds it. The
+    # bound itself is unchanged and still fires — `--self-test` asserts it on a fixture
+    # rather than on a house that turned out not to be one.
+    #
+    # AND "PLACES NOTHING" IS A QUESTION ABOUT THE PLACEMENT, NOT ABOUT ITS CLASS
+    # (T-0859). This pass fired only where the live rank was zero, and one class can be
+    # written without the field that gives it meaning: a `street_only` carrying neither
+    # a `street` nor an `anchor` names no street and puts a shop on no ground, yet it
+    # ranks 1 and outranks nothing-at-all. So a printing that gave no address could
+    # outrank eight that did, and the report filed the house under "waiting on an
+    # `anchor_changes` judgement" — a judgement nobody could write, because guard 3 of
+    # that rule admits only anchors some printing carries and this one carries none.
+    # `places_nothing()` is the test, used on both sides here so the pass cannot take a
+    # reading it would itself refuse to be held by. Nothing else changes: the same
+    # earliest-placing tie-break, the same scene-date bound, the same refusal to let one
+    # printed address override another.
     scene_iso_placement = SCENE_DATE.isoformat()
     for biz in businesses.values():
-        if placement_rank(biz.get("placement")) > 0:
+        if not places_nothing(biz.get("placement")):
             continue
         placing = [r for r in biz["placement_readings"]
-                   if placement_rank(r.get("placement")) > 0
+                   if not places_nothing(r.get("placement"))
                    and r["first_issue"] <= scene_iso_placement]
         if not placing:
             continue
         first = min(placing, key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(biz.get("placement") or {"class": "none"})
         biz["placement"] = first["placement"]
         biz["placement_from"] = {
             "rule": "T-0440: the minting printing gave no address, so the house is "
                     "placed by the earliest printing that did. A printing that omits "
-                    "the address does not contradict one that gives it.",
+                    "the address does not contradict one that gives it. T-0859: a "
+                    "`street_only` naming neither a street nor an anchor is such a "
+                    "printing, whatever its class says.",
             "first_issue": first["first_issue"],
             "claims": sorted(first["claims"]),
-            "superseded": {"class": "none"},
+            "superseded": {"class": superseded.get("class") or "none"},
         }
         # The street the same reading names, where the minting printing named none.
         # This is the reading's OWN `street` field and not a second inference: the
@@ -1727,6 +1748,31 @@ def placement_rank(placement):
     order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
     cls = (placement or {}).get("class")
     return order.index(cls) if cls in order else -1
+
+
+def places_nothing(placement):
+    """True where a placement puts a storefront on NO ground at all (T-0859).
+
+    `placement_rank` reads the CLASS, and one class can be written without the field
+    that gives it its meaning: a `street_only` carrying neither a `street` nor an
+    `anchor` names no street, so it can no more put a shop on the ground than
+    `{"class": "none"}` can. Twelve claims in the corpus carry one and eleven houses
+    hold one, and J. S. C. Hogan is the case that made it visible — his live placement
+    came off a two-line notice of three hundred cedar posts that gives no address
+    whatever, and it outranked eight printings that place him one door from the Post
+    Office. The class and the `South Water Street` beside it came from the extraction's
+    BUSINESS-level `street` field, supplied by a reader who knew where the store was.
+
+    This is a statement about the PLACEMENT RECORD, not about the advertisement. Eight
+    of the twelve notices do print a street in their prose, and the reading simply did
+    not carry it into the placement; that is a defect in the extraction and it is
+    T-0861's, not this function's. Either way the placement itself names no ground, and
+    a reading that names no ground may not outrank one that does.
+    """
+    p = placement or {}
+    if placement_rank(p) <= 0:
+        return True
+    return p.get("class") == "street_only" and not p.get("street") and not p.get("anchor")
 
 
 # --------------------------------------------------------------------------
@@ -2719,6 +2765,64 @@ def self_test():
         if got and placement_rank(got.get("placement")) > 0:
             failures.append("an address first printed after the scene date %s placed "
                             "the house at it: %r" % (scene_iso, got["placement"]))
+
+    # A `street_only` THAT NAMES NO STREET PLACES NOTHING (T-0859). `placement_rank`
+    # reads the CLASS, and one class can be written without the field that gives it
+    # meaning. J. S. C. Hogan's live placement came off a two-line notice of three
+    # hundred cedar posts that prints no address whatever, and it outranked eight
+    # printings that place him one door from the Post Office; the report then filed him
+    # under a judgement nobody could write. Both directions are asserted: that the
+    # empty class no longer holds a house, and that a `street_only` which DOES name its
+    # street still does.
+    EMPTY_STREET_ONLY = {"class": "street_only", "anchor": None}
+    if not places_nothing(EMPTY_STREET_ONLY):
+        failures.append("a street_only naming neither a street nor an anchor is read as "
+                        "placing something")
+    if places_nothing({"class": "street_only", "street": "Lake Street"}):
+        failures.append("a street_only that names its street is read as placing nothing")
+    if places_nothing({"class": "relative", "anchor": "the hotel"}):
+        failures.append("a relative placement is read as placing nothing")
+    if not places_nothing({"class": "none"}):
+        failures.append("`none` is read as placing something")
+    cases.append("a street_only naming no street places no more than `none` does")
+
+    out = run_anchor(silent_then_placed(LATE, early_placement=EMPTY_STREET_ONLY),
+                     {"merges": [], "anchor_changes": []}, None,
+                     "a printing that named no street does not hold the placement")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the empty-street_only case lost the house it was declared on")
+    elif (got["placement"] or {}).get("anchor") != "the hotel":
+        failures.append("a house whose first printing named no street is left placed by "
+                        "it: %r" % got["placement"])
+    elif got["placement_from"]["superseded"]["class"] != "street_only":
+        failures.append("the repair did not record the class it superseded: %r"
+                        % got["placement_from"]["superseded"])
+    elif len(got["placement_readings"]) != 2:
+        failures.append("the street-less printing was dropped rather than kept as a "
+                        "reading: %d kept" % len(got["placement_readings"]))
+
+    # …and it may not be taken UP either, or the pass would place a house on a reading
+    # it has just ruled places nothing.
+    out = run_anchor(silent_then_placed(EMPTY_STREET_ONLY),
+                     {"merges": [], "anchor_changes": []}, None,
+                     "a street-less printing is not taken up by the repair either")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and placement_rank(got.get("placement")) > 0:
+        failures.append("a house silent when minted was placed by a later printing that "
+                        "names no street: %r" % got["placement"])
+    if got and got.get("placement_from"):
+        failures.append("the repair claimed a house it placed on nothing")
+
+    # …and a street_only that DOES name its street is still an address, and still holds.
+    out = run_anchor(silent_then_placed(LATE, early_placement={
+        "class": "street_only", "street": "South Water Street"}),
+        {"merges": [], "anchor_changes": []}, None,
+        "a street_only that names its street is still an address")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and (got["placement"] or {}).get("class") != "street_only":
+        failures.append("a house printed with a named street in its first week was "
+                        "re-placed by a later printing: %r" % got["placement"])
 
     # …and an anchor rule may now be written for a house one of whose printings gave no
     # address at all. Before T-0440 the `null` anchor of a silent printing could neither
