@@ -83,6 +83,17 @@
  *    yard wagons have an ox-yoke lying on the grass beside them. The yoke is the
  *    honest half of a team, the same way the empty bench is the honest half of
  *    the Trowbridge sitters.
+ *  * T-0759 ADDS ONE MORE VEHICLE AND IT IS NOT ON A STREET. Andreas's Water
+ *    Works section says how this town drank in 1835 — from the lake, by cart —
+ *    and describes the vehicle exactly: "two wheeled vehicles, upon which
+ *    hogsheads were mounted", driven into the water "generally at the foot of
+ *    Randolph Street". So `buildCart` gained a cask, mounted when the record
+ *    says `hogshead`, and `data/yard/town_water_cart.json` stands ONE of them
+ *    at the point Randolph's committed line meets the committed waterline. One,
+ *    and only there: the same sentence sends the watermen "around town" to
+ *    "their customers' houses" and names no street, no door and no count, and
+ *    dealing barrels to doors off that would be inventing a business's customer
+ *    list. What is refused is written on the record, not only here.
  */
 
 import * as THREE from 'three';
@@ -1182,6 +1193,21 @@ function buildCart(buf, wagon, form, terrain, level, problems) {
     pushPole(buf, x, z, base, fx, fz, sx, sz, L / 2, bed - 0.035, shaft,
       s * (CART_SHAFT_GAUGE_M / 2), SHAFT_T_M / 2, level);
   }
+  // A HOGSHEAD MOUNTED ON IT, and only when the record says so (T-0759).
+  // Andreas gives the water cart its two defining facts and no third — "two
+  // wheeled vehicles, upon which hogsheads were mounted" — so the cask is a
+  // flag on the vehicle rather than a fourth `kind`: it changes what the cart
+  // carries, not what the cart is, exactly as `tilt` does for a wagon. It lies
+  // on its side ALONG the cart's own line, resting on the box floor, because a
+  // cask filled by pail and run off through a hose at the bung lies down; the
+  // record's own numbers give its length and its two diameters, and the belly
+  // is checked against the box it has to sit inside rather than assumed to fit.
+  if (wagon.hogshead) {
+    const [caskL, caskBelly, caskHead] = form.hogshead;
+    const caskR = Math.min(caskBelly, W - 0.06) / 2;
+    pushBarrel(buf, x, bed + 0.035 + caskR, z, [fx, 0, fz], [0, 1, 0],
+      Math.min(caskL, L), caskR, (caskHead / caskBelly) * caskR, level);
+  }
   if (wagon.yoke) pushYoke(buf, x, z, base, fx, fz, sx, sz, form, L, level);
   return true;
 }
@@ -1456,6 +1482,10 @@ function readForm(record) {
     // contract as everything above — the record owns the claim, this file owns
     // only what a triangle is made of.
     cart: v('cart_m', [1.98, 1.07, 0.5, 1.42, 0.86, 2.44]),
+    // T-0759's one addition: the cask a WATER CART carries. Same contract as
+    // every line here — the record owns the claim, and the fallback exists only
+    // so a record written before this parcel does not throw.
+    hogshead: v('hogshead_m', [1.22, 0.84, 0.7]),
     yoke: v('ox_yoke_m', [1.42, 0.12, 0.34, 0.05]),
     yokeOffset: 1.35,
     // T-0057's building material. Same contract again: every size is the record's

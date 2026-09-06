@@ -133,12 +133,9 @@ not Chicago and it is not evidence of anything in Chicago.
    eleven records inside the pickets and the garrison garden outside them come off that very
    sheet. The omission is the outer enclosure's, not the well's, and it is filed as its own
    ticket.
-5. **The water carts are the visible thing this reading found, and they are not taken here.**
-   A cart, a hogshead, a barrel at a door and a watering place at the foot of Randolph Street
-   are a documented piece of this town that the model does not have. They rest on one
-   retrospective sentence written in 1884 about a trade nobody minuted, so anything drawn from
-   them is `inferred` at best — and that is a demonstration of its own, with its own liberty.
-   It is filed as its own ticket.
+5. **The water carts are the visible thing this reading found, and T-0759 took them.** See
+   § 5 below: one cart stands at the foot of Randolph Street, and the barrel at the door is
+   refused.
 
 **Nothing is drawn by this ticket, no confidence moves, and no geometry is baked.** What
 changes is that the question is answered on the record, with citations, where the next run
@@ -150,3 +147,96 @@ will find it.
 `data/sources/harrison_1830_river_mouth.json` · `data/sources/hubbard_autobiography_1911.json` ·
 T-0333 (the one clause of the 5 August 1835 code that has been read) · T-0436 (the corporation
 limits the fire ordinance binds inside).
+
+## 5 · What T-0759 drew, and what it refused
+
+**T-0592 left the carts undrawn and said why; T-0759 drew one and this section is the
+argument.** The ticket's own text named the trap before any work started — *"one cart on the
+one street the sentence names is as unsupported a distribution as one well on the one lot
+whose address resolves"* — and the answer is that a distribution and a **place** are not the
+same claim. A well on lot 7 would be the only well in a town of 3,265 people, and wells
+attach to houses everywhere, so drawing one is a statement about all the others. The watering
+place is not like that: it is a single locus, the source names it, and it is the one thing in
+the whole passage that carries a location. Drawing it distributes nothing.
+
+**What stands.** `data/yard/town_water_cart.json`, one record on the yard layer — a
+two-wheeled cart with a hogshead mounted, at local east 1220.0, north -262.4, facing the
+water on Randolph's own bearing. It is not baked and it is not an archetype: `yard.js` draws
+it from the record's numbers and the committed heightfield, which is the same argument that
+lets that layer stand a barrel on a footway and the boat layer float a hull on the water
+plane. The cart is T-0064's cart, reused rather than re-invented; the cask is the one number
+this parcel adds, and it is bounded by the unit — a hogshead is 63 wine gallons before it is
+an object, which comes out near 1.22 m on the stave by 0.84 m at the bilge, and 0.84 m has
+then to fit inside the cart's 1.07 m body, which it does.
+
+**The position is derived rather than chosen, and that is why it is `inferred`.** The
+committed `randolph` centreline, extended east on its own bearing, crosses the committed
+heightfield's z = 0 waterline at east 1224.1 north -262.43, and the traced 1834 shoreline at
+east 1223.0 north -262.4. Two independently committed surfaces, 1.1 m apart. The cart stands
+4.1 m back from that line so its shafts lie down on the wet sand — the project's standing
+pose for every vehicle in the scene, because there is no team here and never will be.
+*"Having driven into the lake"* is the act the source reports, not a pose a model with no
+animals in it can honestly draw.
+
+**The bank can be driven down, and that is a check rather than an argument.** Sampling the
+heightfield east along Randolph's line: +2.62 m at east 1205, +1.09 at 1218, the waterline at
+1224.1 — about 1 in 7.3 over the last 19 m. Had the ground fallen off a bluff there, the
+reading would have had a problem to answer.
+
+### The water at the foot of Randolph is not the lake, and this is not resolved
+
+Andreas says the watermen drove into **the lake**. Sampling the same committed line further
+east says otherwise:
+
+| local east | what the committed surfaces give |
+|---|---|
+| to 1224 | dry land, the south sand ridge, falling to the waterline |
+| 1224 – ~1305 | water, about -1.1 m at its deepest |
+| ~1320 – ~1470 | **the sand bar**, standing dry at about +1.23 m |
+| beyond ~1478 | the open lake, falling away steadily |
+
+So the water this cart stands at is the old southward channel behind the bar — which
+`shoreline.geojson` names in the same feature as the reservation's lake shore — and the lake
+proper is 254 m further out across dry sand. **That matters because the trade existed to
+avoid exactly that water.** The same sentence opens with the settlers casting *"longing eyes
+towards the lake, realizing that that source of water supply was the true one and not to be
+compared to the sluggish and unprepossessing river."*
+
+Three readings are open and this project picks none of them: that Andreas's *"the lake"* is
+loose for the water at the end of Randolph Street; that the old channel was closed, dry or
+fordable by July 1835 — Wright draws it narrowing and nothing in this repository dates it;
+or that the carts crossed the bar and the street name marks where they left the town rather
+than where they stood. It is filed as its own ticket rather than answered by whichever
+reading would make the record look tidiest.
+
+### What is refused, and why each refusal is not an absence
+
+* **A cart, or a barrel, on any street of the town.** *"Their journeys around town"* names no
+  street, no route, no customer and no hour. The town's verges already carry T-0064's
+  sixty-eight vehicles under their own rule; none of them is a water cart, and none is made
+  one by this record.
+* **The barrel at a customer's door — the cheaper half, refused on the same ground the wells
+  were.** *"Backing their carts up to the doors of their customers' houses ... they filled the
+  barrels or other receptacles placed there for the purpose"* attests the fixture as plainly
+  as anything in the passage and identifies **not one door**. Nor is there an aggregate to
+  deal from, which is § 4's first argument reappearing intact: no ordinance requires a water
+  barrel, no assessment lists one, no plat draws one. And the price is itself evidence against
+  dealing them everywhere — five to ten cents the barrel is real money in this town, and a
+  paid trade with competition in it had **some** households as customers and not all of them.
+  A barrel at every door would draw a public utility; barrels at doors chosen by this project
+  would be it inventing a business's customer list.
+* **The waterman, his team, his pail and his leathern hose.** No figures, no animals; the pail
+  and the hose are held gear rather than standing objects.
+* **A worn cart track down the bank.** Repeated driving-in over *"some years"* would wear one,
+  and the inference is reasonable — but a track is terrain, the committed heightfield is
+  derived and gated, and cutting ruts into it to illustrate a sentence would put an invention
+  inside the one surface whose value is that it is not invented.
+
+**The count is the liberty and it is stated as one.** The source is plural about the men —
+*"the watermen"*, *"private enterprise"*, *"according to competition"* — so more than one cart
+worked this town. One is drawn because the place is drawn once. `docs/LIBERTIES.md` **L227**
+carries all of it.
+
+**Links:** T-0759 · T-0592 · **L227** · **L146** (the boats, the same grade for the same shape
+of claim) · **L162** (the town's unhitched vehicles) · `data/yard/town_water_cart.json` ·
+`data/research/civic/claims/town_findings_andreas_v1.json#c012,c013,c014`.

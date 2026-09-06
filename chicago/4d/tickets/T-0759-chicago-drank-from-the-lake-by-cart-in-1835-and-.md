@@ -1,7 +1,7 @@
 ---
 id: T-0759
 title: Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 982
+claimed_by: run 9/6/2026, 6:59:23 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T12:45:58.579Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34031638142
 ---
 
 Andreas's Water Works section says how this town got its drinking water, and T-0592 read it:
