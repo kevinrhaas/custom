@@ -39,6 +39,18 @@ THE TWO POPULATIONS, AND ONLY ONE OF THEM IS THIS PASS'S TO FIX.
     they hold and the class they were outranked by, so the queue can see how many are
     waiting on a judgement.
 
+    T-0773 counted that population and found that only part of it is waiting on anything,
+    so it is reported in three lines rather than one. A house whose `anchor_changes` rule
+    has been WRITTEN has had the judgement made and is not waiting for it — the class rank
+    still calls it outranked, because a ruling that a house moved will routinely leave the
+    live anchor coarser than a sharper reading of where it used to be, and the rank cannot
+    see the ruling. G. Spring is that case: ruled onto Dearborn Street beside the Tremont
+    House, and still nominally outranked by a `corner` reading of the Franklin and South
+    Water office he left. And a house outranked only by a printing AFTER the scene date is
+    the same bound as the line below it working, not a judgement anyone may make: no rule
+    could prefer that address without placing the house on the strength of an
+    advertisement that had not run yet.
+
 The rank is `compile_gazetteer.placement_rank`, read from that module rather than
 retyped, so this report and the compiler cannot disagree about what outranks what.
 """
@@ -63,7 +75,7 @@ def survey():
     gaz = json.loads(GAZETTEER.read_text(encoding="utf-8"))
     reg = {b["id"]: b for b in json.loads(REGISTER.read_text(encoding="utf-8"))["businesses"]}
     scene_iso = SCENE_DATE.isoformat()
-    silent, outranked, after_scene = [], [], []
+    silent, outranked, after_scene, ruled, out_of_scene = [], [], [], [], []
     for biz in gaz["businesses"]:
         live = placement_rank(biz.get("placement"))
         readings = biz.get("placement_readings") or []
@@ -88,16 +100,28 @@ def survey():
             "readings": len(readings), "distinct_placing_anchors": len(anchors),
             "action": (reg.get(biz["id"]) or {}).get("action"),
             "took_a_later_printing": bool(biz.get("placement_from")),
+            "ruled": bool(biz.get("anchor_change")),
+            "live_anchor": (biz.get("anchor_change") or {}).get("live_anchor"),
+            "outranked_in_scene": any(
+                placement_rank(r.get("placement")) > live for r in in_scene),
         }
         if live == 0 and not in_scene:
             after_scene.append(row)
+        elif live == 0:
+            silent.append(row)
+        elif row["ruled"]:
+            # The judgement this report exists to count has been made for this house.
+            ruled.append(row)
+        elif not row["outranked_in_scene"]:
+            # Outranked only by an address first printed after the scene date.
+            out_of_scene.append(row)
         else:
-            (silent if live == 0 else outranked).append(row)
-    return silent, outranked, after_scene
+            outranked.append(row)
+    return silent, outranked, after_scene, ruled, out_of_scene
 
 
 def report() -> int:
-    silent, outranked, after_scene = survey()
+    silent, outranked, after_scene, ruled, out_of_scene = survey()
     gaz = json.loads(GAZETTEER.read_text(encoding="utf-8"))
     print("A HOUSE'S LIVE PLACEMENT AGAINST ITS OWN PRINTINGS — T-0440\n")
     took = [b for b in gaz["businesses"] if b.get("placement_from")]
@@ -107,8 +131,13 @@ def report() -> int:
           % len(took))
     print("  — live placement places NOTHING while a printing does      %4d  "
           "(this is the defect; it must be 0)" % len(silent))
-    print("  — live placement outranked by a printed address            %4d  "
+    print("  — outranked, and waiting on an `anchor_changes` judgement  %4d  "
           "(a judgement, and `anchor_changes` owns it)" % len(outranked))
+    print("  — outranked, and the judgement has been WRITTEN            %4d  "
+          "(an authored `anchor_changes` rule)" % len(ruled))
+    print("  — outranked only by a printing after %s        %4d  "
+          "(the scene-date bound, working)"
+          % (SCENE_DATE.isoformat(), len(out_of_scene)))
     print("  — placed by no printing on or before %s          %4d  "
           "(the scene-date bound, working)" % (SCENE_DATE.isoformat(), len(after_scene)))
     if took:
@@ -137,11 +166,25 @@ def report() -> int:
             print("  %-52s %-11s outranked by %-11s %d distinct anchor(s), register: %s"
                   % (r["id"], r["live_class"], r["best_class"],
                      r["distinct_placing_anchors"], r["action"]))
+    if ruled:
+        print("\nOUTRANKED BY THE CLASS RANK, AND RULED ON ANYWAY — an `anchor_changes` "
+              "rule\nnames the anchors and says what the corpus leaves open; the rank "
+              "cannot see it")
+        for r in sorted(ruled, key=lambda r: r["id"]):
+            print("  %-52s %-11s live anchor: %s"
+                  % (r["id"], r["live_class"], r["live_anchor"]))
+    if out_of_scene:
+        print("\nOUTRANKED ONLY BY A PRINTING AFTER THE SCENE DATE — no judgement is "
+              "owed;\nan address that had not run yet may not place a house on %s"
+              % SCENE_DATE.isoformat())
+        for r in sorted(out_of_scene, key=lambda r: r["id"]):
+            print("  %-52s %-11s outranked by %-11s register: %s"
+                  % (r["id"], r["live_class"], r["best_class"], r["action"]))
     return 0
 
 
 def check() -> int:
-    silent, outranked, after_scene = survey()
+    silent, outranked, after_scene, ruled, out_of_scene = survey()
     if silent:
         print("PLACEMENT SILENCE FAIL — %d house(s) hold a live placement that places "
               "nothing while one of their own printings places them:" % len(silent))
@@ -153,9 +196,10 @@ def check() -> int:
     took = len([1 for b in json.loads(GAZETTEER.read_text(encoding="utf-8"))["businesses"]
                 if b.get("placement_from")])
     print("  ok    no house is placed by a printing that gave no address; %d house(s) "
-          "take a later printing's, %d wait on an `anchor_changes` judgement, %d are "
-          "placed by nothing printed on or before the scene date"
-          % (took, len(outranked), len(after_scene)))
+          "take a later printing's, %d wait on an `anchor_changes` judgement, %d have "
+          "one written, %d are outranked only by a printing after the scene date, %d are "
+          "placed by nothing printed on or before it"
+          % (took, len(outranked), len(ruled), len(out_of_scene), len(after_scene)))
     return 0
 
 
