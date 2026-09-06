@@ -1690,18 +1690,81 @@ def reading_key(placement):
     return ((p.get("class") or ""), (p.get("anchor") or ""))
 
 
+# A BRACKET IS THE READING PASS SAYING IT COULD NOT SEE THE WORD (T-0771). Square
+# brackets in `offset_normalized` mark a SUPPLY — a word the pass reconstructed because
+# the column cut, blotted or mis-set it — and this project refuses to spend one:
+# `docs/CORNER-ORDINAL.md` turns away the American's "De[arborn]" because a bracketed
+# supply is not a street name. That refusal is right and nothing here relaxes it.
+#
+# What it does not settle is which PRINTING of one reading a house keeps. Clark, Filer &
+# Co. advertise one sentence three times — "their ware house on South water St. five
+# doors east of the corner of Randolph st." — and the Democrat prints it whole on
+# 1834-06-18 and 1834-07-02 and damaged on 1834-06-11, "five [doors east] of the corner
+# [of Randolph st.]". All three are ONE reading: same class, same anchor. Keeping the
+# earliest kept the damaged one, so the ordinal reader met a supply where the count
+# should be, refused it, and the register put a documented warehouse on the whole of
+# South Water Street instead of five doors along it.
+#
+# `docs/CORNER-ORDINAL.md` already states the rule this wants — *an anchor printed four
+# ways is resolved on its BEST reading* — because the printings are declared to be one
+# landmark and which of them a pass swept most of the sentence into is a fact about the
+# pass. The offset is the rest of that same sentence and takes the same rule.
+#
+# THE TEST IS EQUALITY, WHICH IS THE WHOLE OF THE CARE. A printing displaces the one
+# held only when unbracketing the held text yields the candidate's text exactly, up to
+# case and run of whitespace — the SAME SENTENCE, one printing of it damaged and one
+# whole. Nothing is gained, nothing is lost, and only the brackets go. A candidate that
+# says LESS does not qualify however few brackets it carries, and a printing carrying no
+# `offset_normalized` at all never qualifies: an absent normalisation is not a whole one.
+# A first pass here ranked printings by bracket COUNT and moved five houses onto worse
+# transcriptions — G. Spring's office off Dearborn Street onto South Water — which is
+# why the rule is equality and not a score.
+#
+# The limit: this chooses between printings of ONE reading and never between readings.
+# Two different anchors are two readings and are still dated against each other by
+# `anchor_change`; a damaged printing that is the only printing of its reading keeps that
+# reading, still bracketed, still refused downstream. Nothing is unbracketed, nothing is
+# merged, and no word enters the tree that some printing did not set.
+SUPPLIED = re.compile(r"\[[^\]]*\]")
+
+
+def unbracketed(placement):
+    """A printing's normalised offset with its supplies opened, or None if it has none.
+
+    `None` for a placement carrying no `offset_normalized`, which is how a printing that
+    was never normalised stays out of the comparison entirely.
+    """
+    text = (placement or {}).get("offset_normalized")
+    if not text:
+        return None
+    return " ".join(SUPPLIED.sub(lambda m: m.group(0)[1:-1], str(text)).split()).lower()
+
+
+def wholer(candidate, held):
+    """True when `candidate` prints the sentence `held` had to supply part of."""
+    a, b = unbracketed(candidate), unbracketed(held)
+    if a is None or b is None or a != b:
+        return False
+    return not SUPPLIED.search(str(candidate["offset_normalized"])) \
+        and bool(SUPPLIED.search(str(held["offset_normalized"])))
+
+
 def absorb_reading(business, reading):
     """Fold a printing's placement into a house's readings, widening the window.
 
     The placement KEPT for a reading is the earliest printing's, so the offset text
-    quoted beside it is the one the anchor was first set with. Ties break on the claim
-    key, because this compile is re-derived and byte-compared by the gate.
+    quoted beside it is the one the anchor was first set with — UNLESS a later printing
+    sets the very same sentence without the supplies the earliest needed, in which case
+    the whole printing displaces the damaged one (T-0771; see the note above). Ties break
+    on the claim key, because this compile is re-derived and byte-compared by the gate.
     """
     for r in business["placement_readings"]:
         if reading_key(r["placement"]) != reading_key(reading["placement"]):
             continue
-        if (reading["first_issue"], min(reading["claims"])) < (r["first_issue"],
-                                                              min(r["claims"])):
+        if wholer(reading["placement"], r["placement"]) \
+                or ((reading["first_issue"], min(reading["claims"]))
+                    < (r["first_issue"], min(r["claims"]))
+                    and not wholer(r["placement"], reading["placement"])):
             r["placement"] = reading["placement"]
         r["first_issue"] = min(r["first_issue"], reading["first_issue"])
         r["last_issue"] = max(r["last_issue"], reading["last_issue"])

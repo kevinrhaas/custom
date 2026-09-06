@@ -223,6 +223,35 @@ def admission_faults(declared: set[str], recs: dict[str, dict],
 
 # ---------------------------------------------------------------- the corpus sweep
 
+# T-0771 asked TWO things of this sweep, and both are counted rather than assumed.
+#
+# THE SPLIT. An ordinal counts doors from a CROSSING, so the reader needs two streets;
+# and where a claim carries them, one is usually in the `anchor` and the other in the
+# placement's own `street` field. Clark, Filer & Co. read "the corner of Randolph st."
+# in the anchor and "South Water Street" in `street`, and the question T-0771 opened was
+# whether an anchor naming one street of a crossing may take the second from there.
+# It may, it always has, and `compile_register.ordinal_off_a_corner`'s third test IS
+# that pairing — the doubt was about the code and not about the corpus. So this counts
+# the shape: how many `n doors` claims are split that way, and how many instead carry
+# both streets in the anchor.
+#
+# THE SUPPLY. The other half of T-0771, and the fault that actually held Clark, Filer &
+# Co. off the ground for a week. A square bracket is the reading pass saying it could
+# not see the word, and this project does not spend a supply — so a phrase whose count
+# or cross street falls inside brackets is refused, correctly. What is worth COUNTING is
+# how often that happens, because a refusal nobody can see is a refusal nobody fixes.
+# Eleven claims across the corpus print an `n doors` phrase the reader cannot reach for
+# this reason. It is not a licence to unbracket any of them: where another printing of
+# the SAME reading sets the sentence whole, `compile_gazetteer.absorb_reading` keeps
+# that printing, and where none does the phrase stays refused.
+BRACKETED = re.compile(r"\[[^\]]*\]")
+
+
+def opened(text: str) -> str:
+    """A transcription with its bracketed supplies opened — for COUNTING only."""
+    return BRACKETED.sub(lambda m: m.group(0)[1:-1], text)
+
+
 def sweep() -> dict:
     """Every `n doors from` phrase the corpus prints, and what the reading does with it.
 
@@ -230,7 +259,7 @@ def sweep() -> dict:
     rather than counted by hand, so a later reading pass that adds one moves the number.
     """
     town = compile_register.read_town()
-    rows = []
+    rows, hidden = [], []
     for path in sorted(EXTRACTED.glob("*.json")):
         for claim in load(path)["claims"]:
             placement = ((claim.get("business") or {}).get("placement") or {})
@@ -241,12 +270,31 @@ def sweep() -> dict:
                 if match:
                     break
             if not match:
+                # A phrase a SUPPLY hides: no `n doors` reading today, and one the
+                # moment the brackets are opened. Counted, never opened for real.
+                normalised = str(placement.get("offset_normalized") or "")
+                if BRACKETED.search(normalised) and \
+                        compile_register.ORDINAL_DOOR.search(opened(normalised)):
+                    hidden.append({
+                        "issue": path.stem, "claim": claim["id"],
+                        "business": (claim.get("business") or {}).get("name"),
+                        "phrase": " ".join(normalised.split())[:70]})
                 continue
             reference = compile_register.streets_in(town, match.group(3), True)
             along = compile_register.streets_in(town, placement.get("street"), False)
             corner = bool(compile_register.CORNER.search(str(placement.get(field) or "")))
-            readable = (len(reference) == 1 and len(along) == 1
-                        and reference[0] != along[0] and not corner)
+            pair = (len(reference) == 1 and len(along) == 1
+                    and reference[0] != along[0] and not corner)
+            # A pair of streets is not a corner until the plat says they meet (T-0771).
+            crosses = pair and compile_register.streets_cross(town, along[0],
+                                                              reference[0])
+            readable = pair and crosses
+            # The crossing's two streets, split between the anchor and `street` — the
+            # shape T-0771 asked to have counted. Measured on every row, readable or
+            # not, because the question is about the CORPUS and not about what resolves.
+            in_anchor = compile_register.streets_in(town, placement.get("anchor"), True)
+            split = (len(reference) == 1 and len(along) == 1 and reference[0] != along[0]
+                     and in_anchor == reference and along[0] not in in_anchor)
             rows.append({
                 "issue": path.stem, "claim": claim["id"],
                 "business": (claim.get("business") or {}).get("name"),
@@ -254,11 +302,17 @@ def sweep() -> dict:
                 "reference": reference, "along": along,
                 "reads_as_a_corner_first": corner,
                 "readable_as_an_ordinal": readable,
+                "streets_split_across_anchor_and_street": split,
+                "named_streets_do_not_cross": bool(pair and not crosses),
             })
     return {"claims": rows,
             "total": len(rows),
             "readable": sum(1 for r in rows if r["readable_as_an_ordinal"]),
             "corner_first": sum(1 for r in rows if r["reads_as_a_corner_first"]),
+            "split": sum(1 for r in rows
+                         if r["streets_split_across_anchor_and_street"]),
+            "parallel": sum(1 for r in rows if r["named_streets_do_not_cross"]),
+            "hidden_by_a_supply": hidden,
             "landmark_or_unresolved": sum(
                 1 for r in rows
                 if not r["readable_as_an_ordinal"] and not r["reads_as_a_corner_first"])}
@@ -315,11 +369,27 @@ def report() -> str:
               "  %-58s %d" % ("— read as a corner of two streets first", s["corner_first"]),
               "  %-58s %d" % ("— a landmark hop, or naming no platted street",
                               s["landmark_or_unresolved"]),
-              "  %-58s %d" % ("— readable as an ordinal off a corner", s["readable"]), ""]
+              "  %-58s %d" % ("— readable as an ordinal off a corner", s["readable"]),
+              "  %-58s %d" % ("— the crossing split anchor/`street` (T-0771)",
+                              s["split"]),
+              "  %-58s %d" % ("— refused: the two streets named never meet (T-0771)",
+                              s["parallel"]), ""]
     for row in s["claims"]:
         if row["readable_as_an_ordinal"]:
             lines.append("    %s#%s  %s — %r"
                          % (row["issue"], row["claim"], row["business"], row["phrase"]))
+    for row in s["claims"]:
+        if row["named_streets_do_not_cross"]:
+            lines.append("    %s#%s  %s — %r"
+                         % (row["issue"], row["claim"], row["business"], row["phrase"]))
+            lines.append("        %s and %s are parallel: the plat holds no such corner."
+                         % (row["along"][0], row["reference"][0]))
+    lines += ["",
+              "  %-58s %d" % ("phrases a bracketed supply hides from the reader",
+                              len(s["hidden_by_a_supply"])), ""]
+    for row in s["hidden_by_a_supply"]:
+        lines.append("    %s#%s  %s — %r"
+                     % (row["issue"], row["claim"], row["business"], row["phrase"]))
     return "\n".join(lines)
 
 
