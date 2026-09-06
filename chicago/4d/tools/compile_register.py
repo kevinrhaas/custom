@@ -1314,6 +1314,21 @@ def compile_register(gazetteer, town, quiet=True):
                            r["resolved"]["via"], tuple(r["resolved"]["streets"] or []))
                           for r in w["readings"]
                           if r["resolved"]["kind"] != "unresolved"}
+                # A `street` resolution whose whole reach is crossed by a `corner` in the
+                # SAME window is not a second landmark (T-0773). It is the one crossing
+                # with less of the sentence swept into the anchor field, which is the
+                # thing a grouping exists to say — the same fact `dated_anchor` above
+                # already resolves each window on its BEST reading for. G. Spring's
+                # office is the case: 'the corner of Franklin and South Water streets'
+                # four times, and 'Franklin and South Water streets' once on 1834-05-28,
+                # where only the word 'corner' is missing and `CORNER` therefore does not
+                # fire. A street the window's corners do NOT cross still counts, and two
+                # structures, two businesses or two different corners still fail — the
+                # guard only stops calling a coarser reading of one place a second place.
+                crossed = {s for kind, _t, _v, streets in placed
+                           if kind in ("corner", "corner_ordinal") for s in streets}
+                placed = {p for p in placed
+                          if not (p[0] == "street" and p[3] and set(p[3]) <= crossed)}
                 if len(placed) > 1:
                     problems.append(
                         "%s: the readings grouped under the anchor %r resolve to %d "
@@ -1948,6 +1963,49 @@ def self_test():
                          window("Dole's Warehouse", False, ["Dole's Warehouse"]),
                          window("the hotel", True, ["the hotel"])))]),
             "no reading of the LIVE printing resolves to")
+    # T-0773. …but a READING THAT LOST THE WORD 'corner' is not a second landmark. It
+    # resolves to a reach of one of the streets its own crossing is made of, which is a
+    # coarser reading of the same place and not another place. G. Spring's corner is the
+    # live case: 'the corner of Franklin and South Water streets' four times and
+    # 'Franklin and South Water streets' once on 1834-05-28, where only that word is
+    # missing and `CORNER` therefore never fires. The window still resolves on its best
+    # reading, so what it places is the crossing.
+    def mixed_window(name, live, specs, first="1834-01-01", last="1834-06-01"):
+        return {"anchor": name, "why": None, "first_issue": first, "last_issue": last,
+                "readings": [{"anchor": a, "class": pl["class"], "first_issue": first,
+                              "last_issue": last, "claims": ["c#%s" % a], "placement": pl}
+                             for a, pl in specs],
+                "claims": ["c#%s" % a for a, _pl in specs],
+                "live_at_scene_date": live, "placement": specs[0][1]}
+
+    CROSSING = [("the corner of Lake and Dearborn streets",
+                 {"class": "corner", "anchor": "the corner of Lake and Dearborn streets"}),
+                ("Lake street", {"class": "corner", "anchor": "Lake street"})]
+    case("a street the window's own corner crosses is not a second landmark",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      mixed_window("the corner of Lake and Dearborn streets", False,
+                                   CROSSING),
+                      window("the hotel", True, ["the hotel"],
+                             "1834-09-10", "1834-12-10")))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved"]["kind"]
+             == "corner")
+         else "the window resolved as %r"
+              % d["businesses"][0]["anchor_change"]["history"][0]["resolved"])
+    refuses("a street the window's corner does NOT cross is still a second landmark",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         mixed_window("the corner of Lake and Dearborn streets", False,
+                                      CROSSING[:1] + [("South Water street", {
+                                          "class": "corner",
+                                          "anchor": "South Water street"})]),
+                         window("the hotel", True, ["the hotel"],
+                                "1834-09-10", "1834-12-10")))]),
+            "one landmark is one place")
+
     refuses("readings called one landmark may not resolve to two",
             gaz([biz("b1", street="Lake Street",
                      placement={"class": "relative", "anchor": "the hotel"},

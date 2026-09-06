@@ -89,11 +89,32 @@ def survey():
             "action": (reg.get(biz["id"]) or {}).get("action"),
             "took_a_later_printing": bool(biz.get("placement_from")),
         }
+        row["ruled_by"] = ("anchor_change" if biz.get("anchor_change")
+                          else "anchor_refusal" if biz.get("anchor_refusal") else None)
+        row["refusal_kind"] = (biz.get("anchor_refusal") or {}).get("kind")
         if live == 0 and not in_scene:
             after_scene.append(row)
         else:
             (silent if live == 0 else outranked).append(row)
     return silent, outranked, after_scene
+
+
+def adjudicated(outranked):
+    """The three states of a house a later printed address outranks (T-0773).
+
+    An AUTHORED anchor change can leave its house in this population and must not be
+    counted as waiting on itself: G. Spring's office is placed by the 1835 card that
+    reads "first door north from the Tremont House", which is a `relative` reading, and
+    his superseded 1834 readings of the corner of Franklin and South Water are `corner`
+    and outrank it on class alone. That is the rule working, not a judgement owed. A
+    declared REFUSAL is the other half — the judgement was made and was that no rule may
+    be written — and what is left over is the only number this report was ever asking
+    for: the houses nobody has ruled on either way.
+    """
+    ruled = [r for r in outranked if r["ruled_by"] == "anchor_change"]
+    refused = [r for r in outranked if r["ruled_by"] == "anchor_refusal"]
+    waiting = [r for r in outranked if not r["ruled_by"]]
+    return ruled, refused, waiting
 
 
 def report() -> int:
@@ -107,8 +128,12 @@ def report() -> int:
           % len(took))
     print("  — live placement places NOTHING while a printing does      %4d  "
           "(this is the defect; it must be 0)" % len(silent))
+    ruled, refused, waiting = adjudicated(outranked)
     print("  — live placement outranked by a printed address            %4d  "
           "(a judgement, and `anchor_changes` owns it)" % len(outranked))
+    print("      · ruled by an authored anchor change                   %4d" % len(ruled))
+    print("      · declared refused a change, with the kind checked     %4d" % len(refused))
+    print("      · waiting on a judgement nobody has made               %4d" % len(waiting))
     print("  — placed by no printing on or before %s          %4d  "
           "(the scene-date bound, working)" % (SCENE_DATE.isoformat(), len(after_scene)))
     if took:
@@ -137,6 +162,12 @@ def report() -> int:
             print("  %-52s %-11s outranked by %-11s %d distinct anchor(s), register: %s"
                   % (r["id"], r["live_class"], r["best_class"],
                      r["distinct_placing_anchors"], r["action"]))
+            print("  %-52s   %s" % ("", {
+                "anchor_change": "RULED — an authored anchor change places this house; "
+                                 "the outranking readings are its own superseded ones",
+                "anchor_refusal": "REFUSED — %s (identity.json refused_anchor_changes)"
+                                  % r["refusal_kind"],
+            }.get(r["ruled_by"], "WAITING — nobody has ruled on this house either way")))
     return 0
 
 
@@ -152,10 +183,13 @@ def check() -> int:
         return 1
     took = len([1 for b in json.loads(GAZETTEER.read_text(encoding="utf-8"))["businesses"]
                 if b.get("placement_from")])
+    ruled, refused, waiting = adjudicated(outranked)
     print("  ok    no house is placed by a printing that gave no address; %d house(s) "
-          "take a later printing's, %d wait on an `anchor_changes` judgement, %d are "
-          "placed by nothing printed on or before the scene date"
-          % (took, len(outranked), len(after_scene)))
+          "take a later printing's, %d are outranked by one (%d ruled by an authored "
+          "anchor change, %d declared refused one, %d waiting), %d are placed by "
+          "nothing printed on or before the scene date"
+          % (took, len(outranked), len(ruled), len(refused), len(waiting),
+             len(after_scene)))
     return 0
 
 

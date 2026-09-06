@@ -61833,11 +61833,13 @@
       ],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
-      "street": "South Water Street",
+      "street": "Dearborn Street",
       "placement": {
         "class": "relative",
-        "anchor": "the corner of Franklin and South Water streets",
-        "offset_text": "FFICE second door west\nof Franklin and South W"
+        "anchor": "the Tremont House",
+        "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+        "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+        "street": "Dearborn Street"
       },
       "evidence": {
         "first_issue": "1833-12-17",
@@ -61983,6 +61985,176 @@
           "merge_rule": "'Giles Spring' is 'G. Spring' with the forename printed whole, and one card ties the two forms together: BOTH records carry the copy date Dec. 3, 1834 — 'G. Spring' at 1834-12-03 among its copy dates, 'Giles Spring' at 1834-11-12 c008 and 1834-11-26 c009 — and both set the office 'second door west from the corner of Franklin and South Water streets'. The removal is printed on both sides too: 'Giles Spring' takes the office first door north from the Tremont House on Dearborn-street at 1835-05-20 c022, and 'G. Spring' prints the same removal at 1835-08-05 c019. One attorney, one office, one move. Merged INTO 'G. Spring' because that record holds ten printings against three and both anchors across the whole run."
         }
       ],
+      "anchor_change": {
+        "rule": "TWO CARDS, TWO ADDRESSES, AND THE COPY DATES SAY SO THEMSELVES. From 1833-12-17 to 1834-11-26 Giles Spring's advertisement runs under the date line 'Chicago, Dec. 17, 1833' and reads 'OFFICE second door west from the corner of Franklin and South Water streets'. From 1835-05-20 that card is gone and a new one stands in its place under a new date line, 'Chicago, Dec. 3, 1834': 'OFFICE, first door north from the Tremont House, on Dearborn-street.' These are two different landmarks and this project holds both. The corner of Franklin and South Water streets is a crossing at the west end of South Water Street, and the Tremont House is the first hotel of that name, on the north-west corner of Lake and Dearborn — nowhere near it, on another street, and a building rather than a crossing. They are not two spellings of one place. The corpus carries no printing of this notice between 1834-11-26 and 1835-05-20, so the corpus alone brackets the change by those two dates; the advertisement's OWN new copy date, 3 December 1834, falls one week after the last printing of the old address and narrows it much further, which is the sort of evidence a date line is good for and the reason it is recorded here rather than in the computed history.",
+        "cannot_say": "WHETHER THE OLD OFFICE WAS GIVEN UP, AND HOW FAR NORTH THE NEW ONE STOOD. Nothing printed anywhere in this corpus says the Franklin and South Water rooms were closed rather than kept, sublet or handed on to another attorney; a man may advertise from one address and hold two, and the papers only ever print the one he wants custom at. 'first door north from the Tremont House' fixes a side of Dearborn Street and an order along it and not a lot width, exactly as 'second door west from the corner' did at the old address, and this reconstruction holds a door-width for neither frontage. The bracket is also softer than it looks: a date line states when the COPY was written, not when the books were carried up the street, so 3 December 1834 is the earliest the new address was being advertised and not the day the office moved. And this rule decides nothing about the Tremont House itself — that the notice puts it on Dearborn Street in December 1834 is a fact about a landmark building the reconstruction cares about independently, and it is not asserted here.",
+        "live_anchor": "the Tremont House",
+        "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1835-05-20.",
+        "street": "Dearborn Street",
+        "street_was": "South Water Street",
+        "changes": [
+          {
+            "from": "the corner of Franklin and South Water streets",
+            "to": "the Tremont House",
+            "after": "1834-11-26",
+            "before": "1835-05-20"
+          }
+        ],
+        "history": [
+          {
+            "anchor": "the corner of Franklin and South Water streets",
+            "why": "Five printings of ONE crossing, differing only in how much of it the type carried into the anchor field. \"the corner of Franklin and South Water streets\" is set whole on 1833-12-17 and again on 1834-09-03 — two readings of one string, one counted as a relative offset and one as a corner, which is why this anchor is carried by two reading records rather than one. 1834-05-28 loses the words 'the corner of' and reads as the crossing itself; 1834-07-09 sets it with a hyphen, 'South Water-streets'; and 1834-10-15 is the wrecked column that keeps '[OF]FICE second door [w]e[s]t from the corner of Frankli[n]' and loses the cross street altogether. Franklin and South Water is one crossing on the plat, every one of the five is the same sentence of the same card, and each reading keeps its own dates, class and offset text, so grouping them takes no word away.",
+            "first_issue": "1833-12-17",
+            "last_issue": "1834-11-26",
+            "readings": [
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "class": "relative",
+                "first_issue": "1833-12-17",
+                "last_issue": "1834-11-26",
+                "claims": [
+                  "chicago_democrat_1833_12_17#c004",
+                  "chicago_democrat_1834_01_28#c006",
+                  "chicago_democrat_1834_03_04#c030",
+                  "chicago_democrat_1834_06_11#c004",
+                  "chicago_democrat_1834_08_20#c003",
+                  "chicago_democrat_1834_11_12#c008",
+                  "chicago_democrat_1834_11_26#c009"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the corner of Franklin and South Water streets",
+                  "offset_text": "FFICE second door west from",
+                  "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+                  "street": "South Water Street",
+                  "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
+                }
+              },
+              {
+                "anchor": "Franklin and South Water streets",
+                "class": "corner",
+                "first_issue": "1834-05-28",
+                "last_issue": "1834-05-28",
+                "claims": [
+                  "chicago_democrat_1834_05_28#c009"
+                ],
+                "placement": {
+                  "class": "corner",
+                  "anchor": "Franklin and South Water streets",
+                  "street": "Franklin Street and South Water Street"
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water-streets",
+                "class": "relative",
+                "first_issue": "1834-07-09",
+                "last_issue": "1834-07-09",
+                "claims": [
+                  "chicago_democrat_1834_07_09#c021"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the corner of Franklin and South Water-streets",
+                  "offset_text": "ICE second door west from the corner\nf Franklin and South Water-streets.",
+                  "offset_normalized": "OFFICE second door west from the corner of Franklin and South Water-streets",
+                  "street": "South Water Street"
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "class": "corner",
+                "first_issue": "1834-09-03",
+                "last_issue": "1834-09-03",
+                "claims": [
+                  "chicago_democrat_1834_09_03#c015"
+                ],
+                "placement": {
+                  "class": "corner",
+                  "anchor": "the corner of Franklin and South Water streets",
+                  "offset_text": "OFFICE second door west from the corner",
+                  "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+                  "street": "South Water Street"
+                }
+              },
+              {
+                "anchor": "the corner of Franklin [street]",
+                "class": "relative",
+                "first_issue": "1834-10-15",
+                "last_issue": "1834-10-15",
+                "claims": [
+                  "chicago_democrat_1834_10_15#c002"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the corner of Franklin [street]",
+                  "offset_text": "PEHICE second door vcot from tho corner ee\nof Frankli s ‘ -) .",
+                  "offset_normalized": "[OF]FICE second door [w]e[s]t from the corner of Frankli[n street]",
+                  "street": "Franklin Street"
+                }
+              }
+            ],
+            "claims": [
+              "chicago_democrat_1833_12_17#c004",
+              "chicago_democrat_1834_01_28#c006",
+              "chicago_democrat_1834_03_04#c030",
+              "chicago_democrat_1834_05_28#c009",
+              "chicago_democrat_1834_06_11#c004",
+              "chicago_democrat_1834_07_09#c021",
+              "chicago_democrat_1834_08_20#c003",
+              "chicago_democrat_1834_09_03#c015",
+              "chicago_democrat_1834_10_15#c002",
+              "chicago_democrat_1834_11_12#c008",
+              "chicago_democrat_1834_11_26#c009"
+            ],
+            "live_at_scene_date": false,
+            "placement": {
+              "class": "relative",
+              "anchor": "the corner of Franklin and South Water streets",
+              "offset_text": "FFICE second door west from",
+              "offset_normalized": "office second door west from the corner of Franklin and South Water streets",
+              "street": "South Water Street",
+              "note": "Counted in doors WEST from a named corner, which fixes a side of the street and an order along it but not a lot width."
+            }
+          },
+          {
+            "anchor": "the Tremont House",
+            "why": "One anchor, printed twice and cut both times by the column edge: 'first d[oo]r north from the Tre[mont] House, on Dearborn-street' on 1835-05-20 and 'first do[o]r north from the Trem[ont House, on Dearborn street]' on 1835-08-05, the second finished off the 19 August setting of the same card. The reading pass states the bracket rather than assuming it — no other Chicago house of the period fits 'Tre—' — and the two printings are one reading record because they carry one anchor string.",
+            "first_issue": "1835-05-20",
+            "last_issue": "1835-08-05",
+            "readings": [
+              {
+                "anchor": "the Tremont House",
+                "class": "relative",
+                "first_issue": "1835-05-20",
+                "last_issue": "1835-08-05",
+                "claims": [
+                  "chicago_democrat_1835_05_20#c022",
+                  "chicago_democrat_1835_08_05#c019"
+                ],
+                "placement": {
+                  "class": "relative",
+                  "anchor": "the Tremont House",
+                  "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+                  "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+                  "street": "Dearborn Street"
+                }
+              }
+            ],
+            "claims": [
+              "chicago_democrat_1835_05_20#c022",
+              "chicago_democrat_1835_08_05#c019"
+            ],
+            "live_at_scene_date": true,
+            "placement": {
+              "class": "relative",
+              "anchor": "the Tremont House",
+              "offset_text": "FFICE. frat door north from the Trea\nHouse, on Dearburn-strest.",
+              "offset_normalized": "OFFICE, first door north from the Tre[mont] House, on Dearborn-street",
+              "street": "Dearborn Street"
+            }
+          }
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -63849,6 +64021,76 @@
           }
         }
       ],
+      "anchor_refusal": {
+        "kind": "printed_in_the_same_weeks",
+        "refused_because": "T-0324 read every printing of both of this house's addresses and settled them: \"next door to Graves' Tavern\" and \"the corner of Dearborn and Lake streets\" are ONE frontage — not two premises, and not a move. Both run in a single issue, 1834-04-01 c009 and c010, six weeks after the move a reordering would have to record; and through that whole stretch the corner card is being re-set with fresh date lines, Feb 4 then Feb 24 then Apr 22, while the tavern card keeps running, which is not what a man does with an advertisement he has forgotten to pull. Graves' Tavern is itself that corner: it is the Mansion House, held in this reconstruction since 2026-08-11 on the north side of Lake Street just east of Dearborn. So these anchors have no before and no after to be put in, and a rule may only be written where one anchor stops before the next starts — any dates such a rule stated here would be false whatever it said about the ground. docs/RESEARCH/botsford_graves_1834.md is the reading and its table is the evidence.",
+        "live_anchor": "Graves' Tavern",
+        "live_class": "relative",
+        "outranked_by": [
+          {
+            "anchor": "Dearborn Street and Lake Street",
+            "class": "corner",
+            "first_issue": "1834-02-25",
+            "last_issue": "1834-02-25",
+            "claims": [
+              "chicago_democrat_1834_02_25#c001"
+            ]
+          },
+          {
+            "anchor": "the corner of Dearborn and Lake streets",
+            "class": "corner",
+            "first_issue": "1834-03-04",
+            "last_issue": "1834-12-03",
+            "claims": [
+              "chicago_democrat_1834_03_04#c005",
+              "chicago_democrat_1834_09_24#c009",
+              "chicago_democrat_1834_12_03#c019"
+            ]
+          },
+          {
+            "anchor": "corner of Dearborn and Lake-sts.",
+            "class": "corner",
+            "first_issue": "1834-04-01",
+            "last_issue": "1834-04-30",
+            "claims": [
+              "chicago_democrat_1834_04_01#c010",
+              "chicago_democrat_1834_04_23#c002",
+              "chicago_democrat_1834_04_23#c008",
+              "chicago_democrat_1834_04_30#c005"
+            ]
+          },
+          {
+            "anchor": "corner of Dearborn and Lake streets",
+            "class": "corner",
+            "first_issue": "1834-04-23",
+            "last_issue": "1834-10-01",
+            "claims": [
+              "chicago_democrat_1834_04_23#c003",
+              "chicago_democrat_1834_06_04#c018",
+              "chicago_democrat_1834_10_01#c006"
+            ]
+          },
+          {
+            "anchor": "CORNER OF DEARBORN AND LAKE-STREETS",
+            "class": "corner",
+            "first_issue": "1834-07-02",
+            "last_issue": "1834-07-09",
+            "claims": [
+              "chicago_democrat_1834_07_02#c058",
+              "chicago_democrat_1834_07_09#c026"
+            ]
+          },
+          {
+            "anchor": "Dearborn and Lake streets",
+            "class": "corner",
+            "first_issue": "1834-11-12",
+            "last_issue": "1834-11-12",
+            "claims": [
+              "chicago_democrat_1834_11_12#c006"
+            ]
+          }
+        ]
+      },
       "proprietors_merged": [
         {
           "into": "J. K. Botsford",
@@ -64242,6 +64484,30 @@
           "merge_rule": "'John S. C. Hogan' is 'J. S. C. Hogan' with the forename printed whole, and the printing that ties the two forms is the Brewster, Hogan & Co. dissolution — set at 1834-03-04 c010 and again at 1834-06-11 c002, where the record 'John S. C. Hogan' comes from. Its tail reads 'The business will be continued at the old stand, by Jno. S. C. Hogan, where he intends keeping on hand a general assortment as heretofore', the March printing puts the dissolved firm's stand in South Water Street, and from 25 March 1834 (c010) 'J. S. C. HOGAN' advertises on his own account in that street, with 'general assortment' among the goods, one door from the Post Office he kept (1834-08-13 c017). Same man, same trade, same street, three weeks apart. Merged INTO 'J. S. C. Hogan': that is the record that can be placed — the succession notice states no address at all, and the merge does not give it one, since the Post Office anchor it inherits is the store's own printing and not the notice's."
         }
       ],
+      "anchor_refusal": {
+        "kind": "silence_is_not_an_anchor",
+        "refused_because": "The reading this house is placed by names no anchor at all — 1834-03-25 gives South Water Street and stops, and 1834-06-11 gives nothing — while 'the Post Office' is first printed on 1834-08-13 and runs unbroken to the scene date. A silence about an anchor is not an earlier anchor, so there is no pair here for a change to order: guard 2 of the rule above says one anchor is not a change, and dressing the silent printing up as the first of two would assert that this house's anchor CHANGED on a date, when what changed is only how much of the address the card printed. What is genuinely owed is the question T-0440 answered one rank lower — whether a printing that named a street and no anchor may be superseded by a printing of the same house that names one. That is a rule about SILENCE and not a judgement between two addresses, and it belongs to its own ticket rather than to a rule smuggled in here.",
+        "live_anchor": null,
+        "live_class": "street_only",
+        "outranked_by": [
+          {
+            "anchor": "the Post Office",
+            "class": "relative",
+            "first_issue": "1834-08-13",
+            "last_issue": "1835-07-01",
+            "claims": [
+              "chicago_democrat_1834_08_13#c017",
+              "chicago_democrat_1834_08_20#c007",
+              "chicago_democrat_1834_09_03#c023",
+              "chicago_democrat_1834_11_19#c009",
+              "chicago_democrat_1834_12_03#c013",
+              "chicago_democrat_1834_12_17#c009",
+              "chicago_democrat_1835_05_20#c016",
+              "chicago_democrat_1835_07_01#c002"
+            ]
+          }
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -66427,6 +66693,8 @@
         "cannot_say": "WHICH SIDE OF THE STREET MOVED. Nothing printed anywhere in this corpus says whether the shop moved along Lake Street, or the house across from it changed hands and name, or a compositor was handed fresh copy for a reason nobody printed. All three would read exactly like this. The scene date is 1835-07-01, ten months after the later reading first ran, so the anchor live at the scene date is the Tremont House — that is a statement about the ADVERTISEMENT and not about the building, and the earlier anchor is kept with its own dates so a later pass can still tell the two cases apart. The reconstruction's own placement of `mason_blacksmith_shop` was set opposite `mansion_house` on the strength of the 1833-11-26 printing alone, and it has not been moved here: moving it would decide the question this note exists to leave open.",
         "live_anchor": "the Tremont House",
         "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1834-09-10.",
+        "street": "Main Street",
+        "street_was": null,
         "changes": [
           {
             "from": "Graves' Tavern",
@@ -67038,6 +67306,23 @@
         "superseded": {
           "class": "none"
         }
+      },
+      "anchor_refusal": {
+        "kind": "silence_is_not_an_anchor",
+        "refused_because": "This house's live placement is a street_only reading that names neither an anchor nor a street the model holds — the register reads it 'unplaceable' on exactly that ground — and the printing that outranks it, 1834-05-14, reads 'opposite to Fort Dearborn'. Silence is not an anchor, so the two are not a change of one; and the question underneath is far bigger than a reordering. docs/RESEARCH/dole_warehouse_south.md carries a standing guard about this firm: Newberry & Dole's forwarding warehouse stood on the NORTH bank of the river, immediately east of where the Rush Street bridge later stood, and it is NOT the George W. Dole warehouse this project already models south of the river — 'do not merge the two, and do not move this one to the river'. 'opposite to Fort Dearborn' agrees with that north bank, and acting on it would place a building this town does not hold at all, which is a structure to argue for and not an anchor to reorder. T-0396 holds this firm's other open question, which Newberry stood in it, and nothing here touches that.",
+        "live_anchor": null,
+        "live_class": "street_only",
+        "outranked_by": [
+          {
+            "anchor": "Fort Dearborn",
+            "class": "relative",
+            "first_issue": "1834-05-14",
+            "last_issue": "1834-05-14",
+            "claims": [
+              "chicago_democrat_1834_05_14#c007"
+            ]
+          }
+        ]
       },
       "built_at_scene_date": true,
       "survival_liberty_required": false
@@ -68478,6 +68763,23 @@
         },
         "street_from_reading": "South Water Street"
       },
+      "anchor_refusal": {
+        "kind": "after_the_scene_date",
+        "refused_because": "'the stand formerly occupied by Clark & Co.' is printed once, on 1835-07-04, three days after the scene date, and AGENTS.md rule 3 has already decided what that means: an address first printed after 1 July 1835 was not up on 1 July 1835 and this town is not placed on the strength of it. The live placement is the 1835-06-27 reading — 'Apply to [...] ROCKWELL, [S]outh Wate[r street]', South Water Street and nothing narrower — and it stands. There is nothing here for a judgement to weigh, because the better address is outside the scene; and if the corpus ever carries a printing of the same stand on or before the scene date, this refusal fails its own kind's guard rather than going quietly out of date.",
+        "live_anchor": null,
+        "live_class": "street_only",
+        "outranked_by": [
+          {
+            "anchor": "the stand formerly occupied by Clark & Co.",
+            "class": "relative",
+            "first_issue": "1835-07-04",
+            "last_issue": "1835-07-04",
+            "claims": [
+              "chicago_american_1835_07_04#c004"
+            ]
+          }
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },
@@ -69132,6 +69434,23 @@
           }
         }
       ],
+      "anchor_refusal": {
+        "kind": "after_the_scene_date",
+        "refused_because": "Every printing this house has runs after the scene date, the earliest on 1835-07-22, and the one that outranks the rest is the last of them: 1835-08-12 reads 'call at [h]i[s] room [in] South [Wa]ter street, (A. Garrett's Auction Room)'. So the narrower address is six weeks outside the scene, and AGENTS.md rule 3 refuses it there for the same reason it refuses the address that would have placed Jones, King & Co. The South Water Street of the 1835-07-22 card is what the house keeps. What is missing here is not a judgement between two printed addresses — it is a printing inside the scene.",
+        "live_anchor": null,
+        "live_class": "street_only",
+        "outranked_by": [
+          {
+            "anchor": "A. Garrett's Auction Room",
+            "class": "relative",
+            "first_issue": "1835-08-12",
+            "last_issue": "1835-08-12",
+            "claims": [
+              "chicago_democrat_1835_08_12#c005"
+            ]
+          }
+        ]
+      },
       "built_at_scene_date": true,
       "survival_liberty_required": false
     },

@@ -1153,8 +1153,20 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         # anchors was unreachable for exactly the houses whose placement most needed
         # ordering. Silence is still kept in `placement_readings` with its own dates;
         # what it may not do is take part in a judgement about which anchor is live.
-        held = {r["anchor"]: r for r in biz["placement_readings"]
-                if placement_rank(r.get("placement")) > 0}
+        # ONE ANCHOR STRING CAN BE PRINTED BY MORE THAN ONE READING, so this is a
+        # mapping to a LIST and not to a reading (T-0773). G. Spring's office is the
+        # case: "the corner of Franklin and South Water streets" is carried BOTH by the
+        # relative reading that runs 1833-12-17 to 1834-11-26 and by the corner reading
+        # of 1834-09-03, because `absorb_reading` keeps a class apart from a class. A
+        # dict keyed on the string kept whichever came last, so a group naming that
+        # anchor computed its window from one printing and silently dropped the other —
+        # while guard 4, which exists to stop exactly that, saw the string claimed and
+        # passed. The window it then printed was 1834-05-28 to 1834-10-15 on a house
+        # whose corner was printed from December 1833 to November 1834.
+        held = {}
+        for r in biz["placement_readings"]:
+            if placement_rank(r.get("placement")) > 0:
+                held.setdefault(r["anchor"], []).append(r)
         claimed, windows, bad = [], [], False
         for g in groups:
             readings = g.get("readings") or []
@@ -1181,7 +1193,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 bad = True
                 break
             claimed.extend(readings)
-            rs = [held[r] for r in readings]
+            rs = [x for r in readings for x in held[r]]
             windows.append({
                 "name": g.get("name"),
                 "why": (g.get("why") or "").strip() or None,
@@ -1227,6 +1239,21 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             if w["first_issue"] <= scene_iso:
                 live = w
         biz["placement"] = live["placement"]
+        # AND THE STREET GOES WITH IT (T-0773). Mason & Co.'s two anchors stand on one
+        # street, so until G. Spring nothing had ever asked what a house's `street`
+        # should be when its anchor moves ACROSS town: his office is at the corner of
+        # Franklin and South Water to 1834-11-26 and first door north of the Tremont
+        # House, on Dearborn-street, from 1835-05-20. Leaving `street` on the old
+        # reading half-moves the house — `compile_register` reads that field for
+        # `street_id`, so the register would have placed him on South Water Street with
+        # a Dearborn anchor. The value taken is the LIVE reading's own `street` and not
+        # a second inference, under the same two limits the T-0440 pass takes it under:
+        # never a crossing, never "unstated". What it replaces is written down.
+        live_street = (live["placement"] or {}).get("street")
+        street_was = biz.get("street")
+        if live_street and " and " not in live_street and live_street != "unstated" \
+                and live_street != street_was:
+            biz["street"] = live_street
         biz["anchor_change"] = {
             "rule": why,
             "cannot_say": cannot,
@@ -1234,6 +1261,8 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             "live_reason": "The last of these anchors first printed on or before the "
                            "scene date %s; this one was first printed %s."
                            % (scene_iso, live["first_issue"]),
+            "street": biz.get("street"),
+            "street_was": street_was if biz.get("street") != street_was else None,
             "changes": [{"from": a["name"], "to": b2["name"],
                          "after": a["last_issue"], "before": b2["first_issue"]}
                         for a, b2 in zip(windows, windows[1:])],
@@ -1244,6 +1273,122 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                          "placement": w["placement"]}
                         for w in windows],
         }
+    # AND THE REFUSAL OF ONE (T-0773). `anchor_changes` above is the only thing that may
+    # prefer one printed address to another, and six houses of the 206 hold a live
+    # placement that a later printing of their own outranks. Five of the six must NOT
+    # get a rule — and until now the only record of that judgement was the ABSENCE of
+    # one, which reads exactly like a house nobody has looked at yet. So the next sweep
+    # finds the same six, and does the same reading again. That is the argument
+    # `refused_places` and `refused_firm_merges` already make, and this is the same
+    # record kept the other way up: the refusal is declared, it names verbatim an anchor
+    # it is refusing to be reordered by, and its KIND is CHECKED against the readings
+    # rather than taken on the author's word. Three kinds, and each is a different
+    # reason the corpus cannot order two printed addresses:
+    #
+    #   `printed_in_the_same_weeks` — the two anchors ran concurrently, so there is no
+    #       before and no after to put them in. J. K. Botsford's "next door to Graves'
+    #       Tavern" and his "corner of Dearborn and Lake streets" run in ONE issue six
+    #       weeks after the move they would have to record, and Graves' Tavern IS that
+    #       corner (T-0324, docs/RESEARCH/botsford_graves_1834.md).
+    #   `silence_is_not_an_anchor` — the outranked reading names NO anchor. One anchor
+    #       is not a change (guard 2 above), and calling a printing that gave only a
+    #       street the EARLIER anchor asserts a move nothing printed says.
+    #   `after_the_scene_date` — every printing that outranks the live placement first
+    #       ran after the scene date, so it does not place this house in this town at
+    #       all. AGENTS.md rule 3 has already decided it and no anchor rule is owed.
+    #
+    # A refusal may not outlive its pair, exactly as T-0399's may not: a house no
+    # printing outranks any more is a judgement about nothing, and is an error here
+    # rather than a line nobody notices has stopped being true.
+    REFUSED_ANCHOR_KINDS = {"printed_in_the_same_weeks", "silence_is_not_an_anchor",
+                            "after_the_scene_date"}
+    declared_anchor_changes = {r.get("business")
+                               for r in identity.get("anchor_changes", [])}
+    for rule in identity.get("refused_anchor_changes", []):
+        bid = rule.get("business")
+        kind = rule.get("kind")
+        why = (rule.get("refused_because") or "").strip()
+        label = "identity.json refused_anchor_change %r" % bid
+        bkey = bid[len("business_"):] if (bid or "").startswith("business_") else bid
+        if not bkey or bkey not in businesses:
+            problems.append("%s: no business of that id is compiled — a refusal about a "
+                            "house that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        if bid in declared_anchor_changes:
+            problems.append("%s: this house is DECLARED an anchor change and refused one "
+                            "in the same file" % label)
+            continue
+        if kind not in REFUSED_ANCHOR_KINDS:
+            problems.append("%s: kind %r is not one of %s — a refusal whose reason is "
+                            "free text is a reason nothing can check"
+                            % (label, kind, ", ".join(sorted(REFUSED_ANCHOR_KINDS))))
+            continue
+        if not why:
+            problems.append("%s: no `refused_because` — a refusal nobody argued is a "
+                            "refusal the next reader will overturn by accident" % label)
+            continue
+        biz = businesses[bkey]
+        live = biz.get("placement") or {}
+        live_rank = placement_rank(live)
+        placing = [r for r in biz["placement_readings"]
+                   if placement_rank(r.get("placement")) > 0]
+        over = [r for r in placing if placement_rank(r.get("placement")) > live_rank]
+        if not over:
+            problems.append("%s: no printing of this house outranks its live placement "
+                            "(%s) — a refusal whose pair has gone is a judgement about "
+                            "nothing, and reads as one still standing"
+                            % (label, live.get("class") or "none"))
+            continue
+        anchors = sorted({r["anchor"] for r in over if r.get("anchor")})
+        if not anchors:
+            problems.append("%s: the printings that outrank this house name no anchor at "
+                            "all, so there is nothing here to refuse being reordered by"
+                            % label)
+            continue
+        if not any(a in why for a in anchors):
+            problems.append("%s: `refused_because` must name one of %s VERBATIM, so the "
+                            "judgement can be read back without the code"
+                            % (label, ", ".join(repr(a) for a in anchors)))
+            continue
+        if kind == "silence_is_not_an_anchor" and live.get("anchor"):
+            problems.append("%s: the live placement names the anchor %r, so its printing "
+                            "was not silent about one — that is a change to argue, not a "
+                            "silence to refuse" % (label, live["anchor"]))
+            continue
+        if kind == "after_the_scene_date":
+            early = min(r["first_issue"] for r in over)
+            if early <= scene_iso:
+                problems.append("%s: %s outranks this house and was first printed %s, on "
+                                "or before the scene date %s — the bound is not what is "
+                                "holding this back" % (label, ", ".join(repr(a) for a in
+                                                                        anchors),
+                                                       early, scene_iso))
+                continue
+        if kind == "printed_in_the_same_weeks":
+            same = [r for r in placing if r.get("anchor") == live.get("anchor")
+                    and placement_rank(r.get("placement")) == live_rank]
+            overlap = [(a, b2) for a in same for b2 in over
+                       if a["first_issue"] <= b2["last_issue"]
+                       and b2["first_issue"] <= a["last_issue"]]
+            if not overlap:
+                problems.append("%s: the live anchor and the anchors that outrank it were "
+                                "never printed in the same weeks, so there IS a before "
+                                "and an after here and the refusal is the wrong one"
+                                % label)
+                continue
+        biz["anchor_refusal"] = {
+            "kind": kind,
+            "refused_because": why,
+            "live_anchor": live.get("anchor"),
+            "live_class": live.get("class") or "none",
+            "outranked_by": [
+                {"anchor": r["anchor"], "class": r["class"],
+                 "first_issue": r["first_issue"], "last_issue": r["last_issue"],
+                 "claims": sorted(r["claims"])}
+                for r in sorted(over, key=lambda r: (r["first_issue"], r["anchor"] or ""))],
+        }
+
     # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
     # and had nowhere to live until now. `firm_surnames()` groups the register on the
     # partner surname alone, so it puts together houses that are not one house — the two
@@ -2038,6 +2183,10 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               "reading of those accounted for, the live one computed from the scene date"
               % (readings, many,
                  sum(1 for b in doc["businesses"] if b.get("anchor_change"))))
+        print("  ok    %d house(s) whose live address a later printing outranks and "
+              "which are REFUSED a change, each naming an anchor it will not be "
+              "reordered by and a kind the readings themselves confirm"
+              % sum(1 for b in doc["businesses"] if b.get("anchor_refusal")))
         print("  ok    %d firm group(s) refused rather than merged, each naming the "
               "printings the refusal rests on"
               % len(identity_doc.get("refused_firm_merges", [])))
@@ -2728,6 +2877,146 @@ def self_test():
     elif len(got["placement_readings"]) != 3:
         failures.append("the silent printing was dropped from the readings by the "
                         "anchor rule: %d kept" % len(got["placement_readings"]))
+
+    # ONE ANCHOR STRING, TWO READINGS — AND THE STREET THAT GOES WITH THE LIVE ONE
+    # (T-0773). `absorb_reading` keeps a class apart from a class, so one anchor printed
+    # once as a relative offset and once as a corner is TWO reading records under one
+    # string. The lookup this rule matches declarations against was a dict keyed on that
+    # string and kept whichever came last, so a group naming it computed its window from
+    # one printing and dropped the other — while guard 4, whose whole job is to refuse a
+    # dropped printing, saw the string claimed and passed. G. Spring's corner is the live
+    # case: printed from 1833-12-17 to 1834-11-26 and reported as 1834-05-28 to
+    # 1834-10-15. The same fixture asserts the other half, which Mason & Co. could never
+    # have shown because both his anchors stand on one street: when the live anchor is on
+    # a different street from the superseded one, `street` moves with it.
+    def placement_docs(*specs):
+        return [{"issue_id": iid, "claims": [
+            {"id": "zr0", "kind": "business", "reading": "transcription_mediated",
+             "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                          "street": street, "placement": placement}}]}
+                for iid, street, placement in specs]
+
+    TWO_READINGS = placement_docs(
+        (early_id, "Lake Street", {"class": "relative", "anchor": "the tavern",
+                                   "offset_text": "opposite the tavern"}),
+        (late_id, "Lake Street", {"class": "corner", "anchor": "the tavern"}),
+        (after_id, "Dearborn Street", {"class": "relative", "anchor": "the hotel",
+                                       "offset_text": "next to the hotel"}))
+    out = run_anchor(TWO_READINGS,
+                     anchor_rule([dict(GRAVES, readings=["the tavern"],
+                                       why="the tavern, printed as an offset and as a "
+                                           "corner"),
+                                  TREMONT]),
+                     None, "one anchor string carried by two readings")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None or not got.get("anchor_change"):
+        failures.append("the two-readings-one-anchor case lost its anchor change")
+    else:
+        window = got["anchor_change"]["history"][0]
+        if len(window["readings"]) != 2:
+            failures.append("an anchor carried by two readings kept %d of them — the "
+                            "other is a printing silently dropped from the history"
+                            % len(window["readings"]))
+        elif (window["first_issue"], window["last_issue"]) != (dates[0][0],
+                                                               [d for d, i in dates
+                                                                if i == late_id][0]):
+            failures.append("an anchor carried by two readings reports the window of "
+                            "one: %s to %s" % (window["first_issue"],
+                                               window["last_issue"]))
+
+    out = run_anchor(placement_docs(
+        (early_id, "Lake Street", {"class": "relative", "anchor": "the tavern",
+                                   "offset_text": "opposite the tavern",
+                                   "street": "Lake Street"}),
+        (late_id, "Dearborn Street", {"class": "relative", "anchor": "the hotel",
+                                      "offset_text": "next to the hotel",
+                                      "street": "Dearborn Street"})),
+        anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
+        None, "the street moves with the anchor that is live")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None or not got.get("anchor_change"):
+        failures.append("the moving-street case lost its anchor change")
+    elif got.get("street") != "Dearborn Street":
+        failures.append("a house whose live anchor stands on another street kept the "
+                        "superseded one: %r" % got.get("street"))
+    elif got["anchor_change"]["street_was"] != "Lake Street":
+        failures.append("the street an anchor change replaced was not written down: %r"
+                        % got["anchor_change"]["street_was"])
+
+    # AND THE REFUSAL OF A CHANGE (T-0773). Five of the six houses a later printed
+    # address outranks must never get a rule, and the refusal is declared so that the
+    # next sweep does not read them again. Every guard below is a way a refusal could
+    # quietly stand for something the readings do not say.
+    def refusal(kind, why, business="business_a_smith_co", changes=None):
+        return {"merges": [], "anchor_changes": changes or [],
+                "refused_anchor_changes": [{"business": business, "kind": kind,
+                                            "refused_because": why}]}
+
+    SILENT_THEN_ANCHORED = placement_docs(
+        (early_id, "Lake Street", {"class": "street_only", "street": "Lake Street"}),
+        (late_id, "Lake Street", {"class": "relative", "anchor": "the hotel",
+                                  "offset_text": "next to the hotel"}))
+    out = run_anchor(SILENT_THEN_ANCHORED,
+                     refusal("silence_is_not_an_anchor",
+                             "the printing this house is placed by names no anchor, and "
+                             "'the hotel' is the first that does"),
+                     None, "a refused anchor change, declared with its kind")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None or not got.get("anchor_refusal"):
+        failures.append("a declared refusal left no record of itself on the house")
+    elif got["anchor_refusal"]["kind"] != "silence_is_not_an_anchor":
+        failures.append("a refusal recorded the wrong kind: %r"
+                        % got["anchor_refusal"]["kind"])
+    elif [r["anchor"] for r in got["anchor_refusal"]["outranked_by"]] != ["the hotel"]:
+        failures.append("a refusal did not name the printings that outrank the house: %r"
+                        % got["anchor_refusal"]["outranked_by"])
+    elif (got["placement"] or {}).get("class") != "street_only":
+        failures.append("a REFUSAL re-placed the house it refused to re-place: %r"
+                        % got["placement"])
+
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", "nothing outranks this house"),
+               "must name one of", "a refusal that does not name what outranks it")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("the corpus is quiet", "'the hotel' came later"),
+               "is not one of", "a refusal whose reason is free text")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("after_the_scene_date", "'the hotel' came later"),
+               "the bound is not what is holding this back",
+               "a refusal blaming the scene date for a printing inside it")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("printed_in_the_same_weeks", "'the hotel' came later"),
+               "never printed in the same weeks",
+               "a refusal claiming concurrency where there is a before and an after")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", "'the hotel' came later",
+                       business="business_nobody_at_all"),
+               "no business of that id is compiled",
+               "a refusal about a house nobody claimed")
+    run_anchor(placement_docs(
+        (early_id, "Lake Street", {"class": "relative", "anchor": "the tavern",
+                                   "offset_text": "opposite the tavern"}),
+        (late_id, "Lake Street", {"class": "corner",
+                                  "anchor": "Lake and Dearborn streets"})),
+        refusal("silence_is_not_an_anchor",
+                "'Lake and Dearborn streets' came later"),
+        "was not silent about one",
+        "a silence refusal on a house whose live printing named an anchor")
+    run_anchor(placement_docs(
+        (early_id, "Lake Street", {"class": "relative", "anchor": "the tavern",
+                                   "offset_text": "opposite the tavern"}),
+        (late_id, "Lake Street", {"class": "relative", "anchor": "the hotel",
+                                  "offset_text": "next to the hotel"})),
+        refusal("silence_is_not_an_anchor", "'the hotel' came later"),
+        "no printing of this house outranks its live placement",
+        "a refusal whose pair has gone")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", "'the hotel' came later",
+                       changes=anchor_rule(
+                           [{"name": "the tavern", "readings": ["the tavern"]},
+                            TREMONT])["anchor_changes"]),
+               "DECLARED an anchor change and refused one in the same file",
+               "a house both declared and refused a change")
 
     # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
     # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the
