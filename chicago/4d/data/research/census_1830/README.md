@@ -38,10 +38,19 @@ and not the county column, is what binds the leaves together — the heading is 
 alone and every other leaf leaves the cell empty. T-0605 was opened on T-0498's belief that the
 district ran ON past n584; it runs BACK to n576, and the unread leaves were at the front.
 
-**What does not close.** n586's family column, as read, gives 53 / 56 / 88 / 28 / 22 per page —
-which sums to 247, not to the 199 written under it — while the leaves as read carry 55 / 56 / 39
-/ 28 / 22 = 200. Pages 1 and 3 are where the recapitulation and the leaves part. Neither figure
-is preferred, nothing in this domain is graded on it, and the re-count is a ticket of its own.
+**What does not close, and it is now one cell and not two.** T-0757 re-read n586's family
+column off the item's full-resolution derivative — twice the linear resolution the leaves were
+read at — and re-counted the name rows of n576 and n580 off the same images, independently of
+T-0498's and T-0605's crops. The leaf counts stand: 55 and 39. Page 1 of the recapitulation does
+not: it is 55, not the 53 T-0605 read, so it AGREES with n576 and the disagreement there was a
+reading error. The column now gives 55 / 56 / 88 / 28 / 22, which sums to 249 against the 199
+written under it, and the one real disagreement left is page 3 — 88 written against the 39 heads
+on n580. Recorded as an observation and not adopted: with page 3 taken as 38 the column would sum
+to exactly 199, so the copyist's own total is consistent with 38 and with nothing else — but the
+ink is unambiguously 88 at that magnification, this project does not correct a page to make a sum
+work, and 38 would still be one short of 39. The total itself is 199 and not the 197 T-0605
+offered as available. Neither the 88 nor the 39 is preferred and nothing in this domain is graded
+on either.
 
 **The district is not called Chicago.** The heading is `Peoria & Putnam Counties & Territory
 attached`, written once on n580 and dittoed. Cook County was five months in the future. The
