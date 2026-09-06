@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 285,
+      "takenAt": "2026-09-06T17:32:47.826Z",
+      "ref": "steward/t-0695-garbled-forenames",
+      "commit": "63b74bd5e732",
+      "devCommit": "0d3d641e5b74",
+      "treeHash": "sha256:693b4fa8ddd0b5f6",
+      "treeDirty": false,
+      "changelogHash": "sha256:9e83a9c28b4cc2bf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.4,
+          3.6,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "2-3",
       "parts": [
         2,
@@ -1306,38 +1337,6 @@
         ]
       },
       "source": "/tmp/wr/smoke_d_2.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 138,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 388,
-      "takenAt": "2026-09-06T03:41:28.587Z",
-      "ref": "steward/t-0787-wright-nara-register",
-      "commit": "ee09bed28479",
-      "devCommit": "96cdc4d177af",
-      "treeHash": "sha256:13c299ad4c13102f",
-      "treeDirty": false,
-      "changelogHash": "sha256:d01d5346bb8601ed",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4,
-          3.3
-        ]
-      },
-      "source": "/tmp/wr/s2_d.log"
     },
     {
       "viewport": "mobile",
