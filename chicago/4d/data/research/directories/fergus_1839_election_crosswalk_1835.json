@@ -54,7 +54,7 @@
  "residents": {
   "matches": [
    {
-    "name": "A. 8. Perry",
+    "name": "A. [?] Perry",
     "rule": "Surname 'Perry' folds to the same string as the 1837 entry's, and the given name of both begins A.",
     "entries_1837": [
      {
