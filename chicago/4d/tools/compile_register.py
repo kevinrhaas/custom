@@ -1620,6 +1620,15 @@ def self_test():
              "occupant_text": "", "function": "dwelling_to_let",
              "identity_text": "John Wright's Building to Let",
              "occupation": None, "anonymous": False},
+            # T-0406's own case, and the real record's shape: a record whose NAME
+            # carries a disambiguator the printed corpus never uses — there was a second
+            # Tremont House — and an AKA carrying the plain form the Democrat prints.
+            {"id": "tremont_house_1", "name": "Tremont House (the first)",
+             "name_words": [{"tremont", "house", "first"}, {"tremont", "house"}],
+             "aka_head_words": [{"tremont", "house"}], "aka_texts": ["Tremont House"],
+             "occupant_words": set(), "occupant_text": "", "function": "tavern_inn",
+             "identity_text": "Tremont House (the first) ; Tremont House",
+             "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
@@ -1810,6 +1819,29 @@ def self_test():
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
                                        d["businesses"][0]["action"]))
+    # 4b. T-0406. AN AKA IS HOW A RECORD ANSWERS TO THE NAME THE PAPERS PRINT, and it
+    #     resolves on the SAME whole-set rule as a name. The committed Tremont is named
+    #     "Tremont House (the first)" and the Democrat prints "the Tremont House" — the
+    #     anchor of six advertisements. Loosening the rule to containment would have
+    #     resolved it and would also have put "the store" on the first store in the town.
+    case("an anchor resolves on a record's AKA, not only on its name",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont House"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "structure"
+                            and d["businesses"][0]["anchor"]["target"] == "tremont_house_1")
+         else "anchor=%r" % d["businesses"][0]["anchor"])
+    case("…and the aka still only matches WHOLE: a SUBSET names nothing",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "unresolved"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and a SUPERSET names nothing either",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont House stables"})]),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] == "unresolved"
+         else "anchor=%r" % d["businesses"][0]["anchor"])
     case("…and an anchor naming exactly ONE still places on it",
          gaz([biz("b1", street="Lake Street", placement={
              "class": "relative", "anchor": "Dole's Warehouse"})]),
