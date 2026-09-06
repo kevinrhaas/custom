@@ -23,9 +23,9 @@
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2916,
-   "appearances_on_an_identity_the_town_already_carries": 298,
-   "unmatched": 4048
+   "identities": 2915,
+   "appearances_on_an_identity_the_town_already_carries": 299,
+   "unmatched": 4047
   },
   "newspapers": {
    "names_read": 2274,
@@ -97,7 +97,7 @@
   "civic|newspapers": 104,
   "civic|old_settlers": 30,
   "civic|residents": 265,
-  "directories|directories": 2916,
+  "directories|directories": 2915,
   "directories|newspapers": 167,
   "directories|old_settlers": 32,
   "directories|residents": 172,

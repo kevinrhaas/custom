@@ -149,6 +149,42 @@ which is a person this reconstruction would get wrong. Rewriting a generated cla
 second source is a pass of its own, with its own rule to write down, and it has not been done
 here for the same reason T-0568 did not regrade the 65 businesses.
 
+### The scanner's damage, read off the page image — T-0695
+
+**Fifteen forenames in the file above were not two people disagreeing; they were a scanner
+that could not read a contraction.** `C!;as.` for *Chas.*, `Iia` for *Ira*, `V/m.` for *Wm.*,
+`A/.el` for *Azel*, `Ge>~.` for *Geo.*, `Alonzt> C.` for *Alonzo C.*, `VV` for the compositor's
+*W* four times over, and a comma read as a double quote or a caret three times more. A refusal
+against a token like that is a transcription defect wearing the clothes of a judgement:
+`tools/name_agreement.py` already said so on the two the crosswalk could see
+(`garbled_reading: true`), and said nothing about the rest, because a garbled reading made
+entirely of letters — `Iia`, `VV` — passes every test a machine can write.
+
+**So the reading was fixed, and the rule was left alone.** Each line was located by its own word
+coordinates in the scan's djvu XML, cropped from the page image at three times and read by eye.
+`norris_1844_forename_corrections.json` is the result: HAND-AUTHORED, the only hand-authored
+file in this reading, and applied by `tools/read_norris_1844.py --build` to
+`normalized.given` and nowhere else. **The quote and `as_printed` keep the damage** — a tidied
+quote cannot be found again — and the token the machine saw is kept beside the reading in
+`normalized.given_as_ocr`, so the claim still shows both. Every correction asserts the token it
+replaces, so if the text deposit is ever re-read and a line moves, `--build` and `--check` fail
+loudly instead of writing the wrong forename onto the wrong man.
+
+**Fourteen of the fifteen are independently corroborated** by Kim Torp's transcription of the
+same book, typed from a different copy and already aligned to this reading by T-0576. It was not
+consulted to make the readings; it is quoted in the corrections file as a check on them
+afterwards. The fifteenth is Couch, where she wrote `(can't read)`.
+
+**What it moved, and it is smaller than the damage suggests.** One refusal became a match:
+**Ira Couch, proprietor of the Tremont House**, whose 1844 entry the crosswalk had been refusing
+because the page's *Ira* reached it as `Iia`. Downstream, that entry is the independent
+discriminator the 1840 head crosswalk needed, so Ira Couch's 1840 census head moves from
+`candidate` to `matched` (L7 → L6) — a bridge that is still `proposed`, and no grade moved
+anywhere. The rest of the fifteen change nothing about who matches whom, and one of them settles
+a question the other way: **the page prints `Hale, Benj. F.`, not John.** The town's John Hale
+is not that man, and his refusal now stands on the corrected reading instead of on the damage —
+which is the point of reading the page rather than arguing with the OCR.
+
 ### What T-0632 spends them on — the layer, the ledger and the cards
 
 The crosswalks above are PROPOSALS and stop at the edge of the residents layer. T-0569

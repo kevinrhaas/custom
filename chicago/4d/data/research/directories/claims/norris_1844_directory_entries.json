@@ -56,10 +56,11 @@
    "normalized": {
     "printed_name": "Abbott, VV",
     "surname": "Abbott",
-    "given": "VV",
+    "given": "W",
     "firm": false,
     "occupation": "clerk at Ward Rathbone's",
     "address": "residence same",
+    "given_as_ocr": "VV",
     "as_printed": "Abbott, VV. clerk at Ward Rathbone's, residence same",
     "section": "directory"
    },
@@ -2567,10 +2568,11 @@
    "normalized": {
     "printed_name": "Barry, Edward\"",
     "surname": "Barry",
-    "given": "Edward\"",
+    "given": "Edward",
     "firm": false,
     "occupation": "laborer",
     "address": "house near North Branch Bridge",
+    "given_as_ocr": "Edward\"",
     "as_printed": ".Barry, Edward\", laborer, house near North Branch Bridge",
     "section": "directory"
    },
@@ -7341,10 +7343,11 @@
    "normalized": {
     "printed_name": "Burch, G/H",
     "surname": "Burch",
-    "given": "G/H",
+    "given": "G. H",
     "firm": false,
     "occupation": "of Newberry &",
     "address": "B. res City Hotel",
+    "given_as_ocr": "G/H",
     "as_printed": "Burch, G/H. of Newberry & B. res City Hotel",
     "section": "directory"
    },
@@ -12859,10 +12862,11 @@
    "normalized": {
     "printed_name": "Couch, Iia",
     "surname": "Couch",
-    "given": "Iia",
+    "given": "Ira",
     "firm": false,
     "occupation": "proprietor of the Tremont House, corner of Lake and Dearborn sts",
     "address": null,
+    "given_as_ocr": "Iia",
     "as_printed": "Couch, Iia, proprietor of the Tremont House, corner of Lake and Dearborn sts",
     "section": "directory"
    },
@@ -14781,10 +14785,11 @@
    "normalized": {
     "printed_name": "Day, VVm. Lasalle House",
     "surname": "Day",
-    "given": "VVm. Lasalle House",
+    "given": "Wm. Lasalle House",
     "firm": false,
     "occupation": "corner of Lasalle and Randolph sts",
     "address": null,
+    "given_as_ocr": "VVm. Lasalle House",
     "as_printed": "Day, VVm. Lasalle House, corner of Lasalle and Randolph sts",
     "section": "directory"
    },
@@ -20237,10 +20242,11 @@
    "normalized": {
     "printed_name": "Frost, Ge>~",
     "surname": "Frost",
-    "given": "Ge>~",
+    "given": "Geo",
     "firm": false,
     "occupation": null,
     "address": "h Michigan avenue",
+    "given_as_ocr": "Ge>~",
     "as_printed": "Frost, Ge>~. h Michigan avenue",
     "section": "directory"
    },
@@ -24050,10 +24056,11 @@
    "normalized": {
     "printed_name": "Hale, J>ctij. F",
     "surname": "Hale",
-    "given": "J>ctij. F",
+    "given": "Benj. F",
     "firm": false,
     "occupation": "botanic physician, 185 Lake st",
     "address": "res Wells st",
+    "given_as_ocr": "J>ctij. F",
     "as_printed": "Hale, J>ctij. F. botanic physician, 185 Lake st. res Wells st",
     "section": "directory"
    },
@@ -25941,10 +25948,11 @@
    "normalized": {
     "printed_name": "Hequenbourg, G. VV",
     "surname": "Hequenbourg",
-    "given": "G. VV",
+    "given": "G. W",
     "firm": false,
     "occupation": "clerk, at",
     "address": "B. F. Sherman's, res same",
+    "given_as_ocr": "G. VV",
     "as_printed": "Hequenbourg, G. VV. clerk, at B. F. Sherman's, res same",
     "section": "directory"
    },
@@ -30529,10 +30537,11 @@
    "normalized": {
     "printed_name": "Kane, Patrick\"",
     "surname": "Kane",
-    "given": "Patrick\"",
+    "given": "Patrick",
     "firm": false,
     "occupation": "drayman",
     "address": "house Kinzie st. b Clark and Lasalle sts",
+    "given_as_ocr": "Patrick\"",
     "as_printed": "Kane, Patrick\", drayman, house Kinzie st. b Clark and Lasalle sts",
     "section": "directory"
    },
@@ -33567,10 +33576,11 @@
    "normalized": {
     "printed_name": "Leach, Patrick^",
     "surname": "Leach",
-    "given": "Patrick^",
+    "given": "Patrick",
     "firm": false,
     "occupation": "laborer, N. Water st",
     "address": "b Dearborn and Wolcott sts",
+    "given_as_ocr": "Patrick^",
     "as_printed": "Leach, Patrick^ laborer, N. Water st. b Dearborn and Wolcott sts",
     "section": "directory"
    },
@@ -34187,10 +34197,11 @@
    "normalized": {
     "printed_name": "Lill, V/m",
     "surname": "Lill",
-    "given": "V/m",
+    "given": "Wm",
     "firm": false,
     "occupation": "of L. & Diversy, brewers, n Sand <fc Chicago Avenue",
     "address": null,
+    "given_as_ocr": "V/m",
     "as_printed": "Lill, V/m. of L. & Diversy, brewers, n Sand <fc Chicago Avenue",
     "section": "directory"
    },
@@ -43642,10 +43653,11 @@
    "normalized": {
     "printed_name": "Peck, A/.el",
     "surname": "Peck",
-    "given": "A/.el",
+    "given": "Azel",
     "firm": false,
     "occupation": "builder",
     "address": "h Clinton, b Washington and Madison sts",
+    "given_as_ocr": "A/.el",
     "as_printed": "Peck, A/.el, builder, h Clinton, b Washington and Madison sts",
     "section": "directory"
    },
@@ -44138,10 +44150,11 @@
    "normalized": {
     "printed_name": "Perrior, William\"",
     "surname": "Perrior",
-    "given": "William\"",
+    "given": "William",
     "firm": false,
     "occupation": "jailor",
     "address": "res Jail Buildings",
+    "given_as_ocr": "William\"",
     "as_printed": "Perrior, William\", jailor, res Jail Buildings",
     "section": "directory"
    },
@@ -58119,10 +58132,11 @@
    "normalized": {
     "printed_name": "Wesencraft, C!;as",
     "surname": "Wesencraft",
-    "given": "C!;as",
+    "given": "Chas",
     "firm": false,
     "occupation": "carpenter and wagon maker, c Clin and Monroe",
     "address": null,
+    "given_as_ocr": "C!;as",
     "as_printed": "Wesencraft, C!;as. carpenter and wagon maker, c Clin and Monroe",
     "section": "directory"
    },
@@ -59669,10 +59683,11 @@
    "normalized": {
     "printed_name": "Wood, Alonzt> C",
     "surname": "Wood",
-    "given": "Alonzt> C",
+    "given": "Alonzo C",
     "firm": false,
     "occupation": "mason builder",
     "address": "house Cass sf. b Indiana and Ohio",
+    "given_as_ocr": "Alonzt> C",
     "as_printed": "Wood, Alonzt> C. mason builder, house Cass sf. b Indiana and Ohio",
     "section": "directory"
    },

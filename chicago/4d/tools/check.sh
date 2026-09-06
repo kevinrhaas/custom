@@ -1656,6 +1656,12 @@ step "…and the tie discriminator's do too" \
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
 
+# T-0695. The fifteen forenames read off the page image are the only hand-authored thing
+# in that reading, and each one asserts the OCR token it replaces. That assertion is the
+# whole safety of the repair, so it is proved to fire rather than assumed to.
+step "…and the hand-authored forename corrections still refuse to apply to text that moved" \
+  python3 tools/read_norris_1844.py --self-test
+
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 

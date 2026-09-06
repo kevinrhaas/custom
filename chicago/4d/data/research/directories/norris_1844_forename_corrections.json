@@ -1,0 +1,184 @@
+{
+ "schema": 1,
+ "_doc": "HAND-AUTHORED, and the only hand-authored file in this reading. T-0695: the forenames of Norris 1844 that archive.org's OCR destroyed, read off the page images themselves. tools/read_norris_1844.py --build applies it to normalized.given ONLY; the quote and as_printed keep the damage, because a tidied quote cannot be found again. Every entry asserts the `was` token the generated claim carries, so a re-read that moves a line makes its correction stop matching and --check fails rather than silently writing the wrong forename onto the wrong man.",
+ "applied_by": "tools/read_norris_1844.py --build",
+ "ticket": "T-0695",
+ "read_off": {
+  "item": "generaldirectory19norr",
+  "images": "https://archive.org/download/generaldirectory19norr/page/leaf31.jpg and leaf33, 36, 40, 42, 45, 48, 49, 52, 54, 55, 61, 70, 71 — the same scan the OCR is of, at 1592 x 2860, which is the coordinate space generaldirectory19norr_djvu.xml is written in",
+  "how": "each entry's line was located by its own word coordinates in the scan's djvu XML, cropped from the page image on that line's bounding box, enlarged three times and read by eye. A correction is written only where the ink is legible; where it is not, the token stays as the OCR left it and this file says so below."
+ },
+ "grade_note": "A corrected entry's `reading` stays `transcription_mediated` and its grade does not move. What changed is one token of one field: the SURNAME was never in doubt on any of these lines, and the forename now says what the compositor set. Nothing here mints, matches or regrades a person — the crosswalks do that, and they are re-derived against the corrected reading in the same commit.",
+ "what_the_image_could_not_settle": [
+  "Whether Norris's `Wm.`, `Geo.`, `Chas.` and `Benj.` stand for William, George, Charles and Benjamin is a question about the printers' contractions, not about this scan. tools/name_agreement.py holds that table and is unchanged here; this file corrects only what the scanner did to the ink.",
+  "`Day, Wm. Lasalle House` is corrected to the ink and no further. The splitter reads `Lasalle House` as part of the given name because the line prints no comma after the forename; that is a parse, not a transcription defect, and it is left alone."
+ ],
+ "entries": {
+  "n1844_e0002": {
+   "given": {
+    "was": "VV",
+    "read": "W",
+    "why": "the compositor's W, set by the scanner as two V's — the entry above and below it print full forenames, and the line reads `Abbott, W. clerk at Ward Rathbone's`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Abbott, W., clerk at Ward Rathbone's, residence same"
+   }
+  },
+  "n1844_e0083": {
+   "given": {
+    "was": "Edward\"",
+    "read": "Edward",
+    "why": "a speck over the comma after the forename read as a double quote; the page prints `Barry, Edward, laborer`"
+   },
+   "second_reading": {
+    "bucket": "identical",
+    "genealogytrails_quote": "Barry, Edward, laborer, house near North Branch Bridge"
+   }
+  },
+  "n1844_e0237": {
+   "given": {
+    "was": "G/H",
+    "read": "G. H",
+    "why": "the full stop between two initials read as a solidus; the page prints `Burch, G. H. of Newberry & B.`"
+   },
+   "second_reading": {
+    "bucket": "identical",
+    "genealogytrails_quote": "Burch, G.H. of Newberry & B, res City Hotel"
+   }
+  },
+  "n1844_e0415": {
+   "given": {
+    "was": "Iia",
+    "read": "Ira",
+    "why": "the r of Ira read as an i; the page prints `Couch, Ira, proprietor of the Tremont House`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Couch, (can't read), proprietor of the Tremont House, corner of Lake and Dearborn sts"
+   }
+  },
+  "n1844_e0477": {
+   "given": {
+    "was": "VVm. Lasalle House",
+    "read": "Wm. Lasalle House",
+    "why": "W set as two V's; the page prints `Day, Wm. Lasalle House`. Only the damaged token is corrected — see what_the_image_could_not_settle"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Day, Wm., Lasalle House, corner of Lasalle & Randolph sts"
+   }
+  },
+  "n1844_e0653": {
+   "given": {
+    "was": "Ge>~",
+    "read": "Geo",
+    "why": "the o and the full stop of the contraction lost to scanner artefacts; the page prints `Frost, Geo. h Michigan avenue`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Frost, Geo., h Michigan ave"
+   }
+  },
+  "n1844_e0776": {
+   "given": {
+    "was": "J>ctij. F",
+    "read": "Benj. F",
+    "why": "THE PAGE DOES NOT SAY JOHN. Read at three times on leaf 48, the line prints `Hale, Benj. F. botanic physician` — the B is set with a broken upper bowl, which is what the OCR resolved as `J>`. The town's John Hale is therefore NOT this man, and the refusal against him stands on the corrected reading instead of on the damage"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Hale, Benj. F., botanic physician, 185 Lake st res Wells st"
+   }
+  },
+  "n1844_e0837": {
+   "given": {
+    "was": "G. VV",
+    "read": "G. W",
+    "why": "W set as two V's; the page prints `Hequenbourg, G. W. clerk, at B. F. Sherman's`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Hequenbourg, G.W., clerk, at B.F. Sherman's, res same"
+   }
+  },
+  "n1844_e0985": {
+   "given": {
+    "was": "Patrick\"",
+    "read": "Patrick",
+    "why": "the comma after the forename read as a double quote; the page prints `Kane, Patrick, drayman`"
+   },
+   "second_reading": {
+    "bucket": "identical",
+    "genealogytrails_quote": "Kane, Patrick, drayman, house Kinzie st b Clark & Lasalle sts"
+   }
+  },
+  "n1844_e1083": {
+   "given": {
+    "was": "Patrick^",
+    "read": "Patrick",
+    "why": "the comma after the forename read as a caret; the page prints `Leach, Patrick, laborer`"
+   },
+   "second_reading": {
+    "bucket": "identical",
+    "genealogytrails_quote": "Leach, Patrick, laborer, N. Water st. b Dearborn & Wolcott sts"
+   }
+  },
+  "n1844_e1103": {
+   "given": {
+    "was": "V/m",
+    "read": "Wm",
+    "why": "the W of the contraction split into V and a solidus; the page prints `Lill, Wm. of L. & Diversy, brewers` — the brewer of Lill & Diversey"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Lill, Wm. of L. & Diversy, brewers, n Sand & Chicago Ave."
+   }
+  },
+  "n1844_e1408": {
+   "given": {
+    "was": "A/.el",
+    "read": "Azel",
+    "why": "the z read as a solidus and a full stop; the page prints `Peck, Azel, builder`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Peck, Azel, builder, h Clinton b Washington & Madison sts"
+   }
+  },
+  "n1844_e1424": {
+   "given": {
+    "was": "William\"",
+    "read": "William",
+    "why": "the comma after the forename read as a double quote; the page prints `Perrior, William, jailor`"
+   },
+   "second_reading": {
+    "bucket": "identical",
+    "genealogytrails_quote": "Perrior, William, jailor, res Jail buildings"
+   }
+  },
+  "n1844_e1875": {
+   "given": {
+    "was": "C!;as",
+    "read": "Chas",
+    "why": "the h of the contraction shattered into ! and ;; the page prints `Wesencraft, Chas. carpenter and wagon maker`, and the entry below it prints `Wesencraft, Wm. painter`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Wesencraft, Chas., carpenter and wagon maker, c Clin and Monroe"
+   }
+  },
+  "n1844_e1925": {
+   "given": {
+    "was": "Alonzt> C",
+    "read": "Alonzo C",
+    "why": "the o of Alonzo read as t and a bracket; the page prints `Wood, Alonzo C. mason builder`"
+   },
+   "second_reading": {
+    "bucket": "agrees",
+    "genealogytrails_quote": "Wood, Alonzo C., mason builder, house Cass st., b Indiana and Ohio"
+   }
+  }
+ },
+ "corroborated_by": "Kim Torp's independent transcription of the same book (T-0576, second_readings/norris_1844_genealogytrails.json), typed from a different copy in 2002. It was NOT consulted to make these readings — the page image was — and it is quoted here as a check on them afterwards. It agrees with 14 of the 15, INCLUDING Hale: she reads 'Hale, Benj. F.' where this ticket expected John. The fifteenth is Couch, where she wrote '(can't read)' and the page image is the only witness there is."
+}

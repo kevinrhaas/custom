@@ -22,6 +22,7 @@ import json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEXT = os.path.join(ROOT, "data/research/directories/text")
 OUT = os.path.join(ROOT, "data/research/directories/claims/norris_1844_directory_entries.json")
+CORRECTIONS = os.path.join(ROOT, "data/research/directories/norris_1844_forename_corrections.json")
 
 # The directory proper: leaves 31-75 of the scan, printed pages 21-65.
 FIRST_LEAF, LAST_LEAF, LEAF_TO_PRINTED = 31, 75, -10
@@ -39,6 +40,33 @@ ADDENDA_FROM = (72, 28)
 FIRM = re.compile(r"^[^,]{0,40}\s&\s|&\s*Co\b|\bBrothers\b", re.I)
 TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "sr", "sen"}
 PLACE = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
+
+
+# T-0695. THE SCANNER'S DAMAGE, READ OFF THE PAGE IMAGE. A forename the OCR broke
+# (`C!;as.` for `Chas.`, `Iia` for `Ira`) refuses a match no reader of the page would
+# refuse. The repair goes in `normalized.given` and NOWHERE ELSE: `quote` and
+# `as_printed` keep the damage, because a tidied quote cannot be found again, and the
+# damaged token is kept beside the reading in `given_as_ocr` so the claim itself still
+# shows what the machine saw. Every correction asserts the token it replaces, so if the
+# text deposit is ever re-read and a line moves, the assertion fails loudly instead of
+# writing the wrong forename onto the wrong man.
+def load_corrections() -> dict:
+    with open(CORRECTIONS, encoding="utf-8") as fh:
+        return json.load(fh)["entries"]
+
+
+def correct_given(claim_id: str, norm: dict, corrections: dict, warnings: list) -> None:
+    fix = corrections.get(claim_id)
+    if not fix or "given" not in fix:
+        return
+    was, read = fix["given"]["was"], fix["given"]["read"]
+    if norm.get("given") != was:
+        warnings.append("%s: the correction expects given %r and the text now reads %r "
+                        "— re-read the page before trusting either"
+                        % (claim_id, was, norm.get("given")))
+        return
+    norm["given"] = read
+    norm["given_as_ocr"] = was
 
 
 def header_like(line: str) -> bool:
@@ -116,6 +144,7 @@ def split_entry(text: str):
 
 def build_claims():
     claims, warnings = [], []
+    corrections = load_corrections()
     n = 0
     for leaf in range(FIRST_LEAF, LAST_LEAF + 1):
         lines = leaf_lines(leaf)
@@ -139,12 +168,14 @@ def build_claims():
             n += 1
             raw = "\n".join(lines[first - 1:last])
             flat = re.sub(r"\s+", " ", raw.replace("-\n", "")).strip()
+            claim_id = "n1844_e%04d" % n
             norm = split_entry(flat)
+            correct_given(claim_id, norm, corrections, warnings)
             norm["as_printed"] = flat
             after = (leaf, first) >= ADDENDA_FROM
             norm["section"] = "addenda" if after else "directory"
             claims.append({
-                "id": "n1844_e%04d" % n,
+                "id": claim_id,
                 "kind": "business" if norm["firm"] else "person",
                 "reading": "transcription_mediated",
                 "quote": raw,
@@ -198,9 +229,67 @@ def payload(claims):
     }
 
 
+def self_test() -> int:
+    """The corrections' own guard, proved to fire. T-0695: the whole safety of a
+    hand-authored repair is that it names the token it replaces, so a re-read that
+    moves a line cannot silently put the wrong forename on the wrong man."""
+    ok = True
+
+    def want(label, cond):
+        nonlocal ok
+        print("  %s  %s" % ("ok  " if cond else "FAIL", label))
+        ok = ok and bool(cond)
+
+    corrections = load_corrections()
+    want("every correction names the token it replaces and the token it reads",
+         all(set(f["given"]) >= {"was", "read", "why"} for f in corrections.values()))
+    want("no correction is a no-op",
+         all(f["given"]["was"] != f["given"]["read"] for f in corrections.values()))
+
+    warnings = []
+    norm = {"given": "C!;as"}
+    correct_given("n1844_e1875", norm, corrections, warnings)
+    want("a matching correction is applied, and keeps the OCR token beside it",
+         norm["given"] == "Chas" and norm["given_as_ocr"] == "C!;as" and not warnings)
+
+    warnings = []
+    norm = {"given": "Chas"}
+    correct_given("n1844_e1875", norm, corrections, warnings)
+    want("a correction whose `was` no longer matches the text refuses to apply",
+         norm["given"] == "Chas" and "given_as_ocr" not in norm and len(warnings) == 1)
+
+    warnings = []
+    norm = {"given": "Thomas L"}
+    correct_given("n1844_e0001", norm, corrections, warnings)
+    want("an uncorrected entry is left exactly as the text reads it",
+         norm == {"given": "Thomas L"} and not warnings)
+
+    claims, build_warnings = build_claims()
+    corrected = [c for c in claims if "given_as_ocr" in c["normalized"]]
+    want("every correction lands on a claim in the built file, and only there",
+         len(corrected) == len(corrections)
+         and {c["id"] for c in corrected} == set(corrections))
+    want("the quote and as_printed keep the damage",
+         all(c["normalized"]["given_as_ocr"] in c["normalized"]["as_printed"]
+             or c["normalized"]["given_as_ocr"] in c["quote"] for c in corrected))
+    want("the build itself warns about nothing that is a correction",
+         not [w for w in build_warnings if "the correction expects given" in w])
+    print("norris 1844 corrections self-test: %s" % ("all assertions fire" if ok else "BROKEN"))
+    return 0 if ok else 1
+
+
 def main():
+    if "--self-test" in sys.argv:
+        return self_test()
     claims, warnings = build_claims()
     doc = payload(claims)
+    unmatched = [w for w in warnings if "the correction expects given" in w]
+    if unmatched:
+        for w in unmatched:
+            print("  correction:", w, file=sys.stderr)
+        print("norris 1844: %d hand-authored forename correction(s) no longer match the "
+              "text they were written against" % len(unmatched), file=sys.stderr)
+        return 1
     if "--check" in sys.argv:
         got = json.load(open(OUT, encoding="utf-8"))
         if got != doc:
