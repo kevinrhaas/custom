@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 4:14 AM",
+  "generated_ct": "Sep 6, 2026, 5:12 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13588,7 +13588,7 @@
     {
       "id": "T-0797",
       "title": "The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13596,14 +13596,14 @@
       "legacy_id": null,
       "parent": "T-0791",
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-06",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-06T09:42:03.228Z",
       "claimed_run": null,
-      "queue_rank": 6
+      "queue_rank": null
     },
     {
       "id": "T-0798",
@@ -14944,6 +14944,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 175
+    },
+    {
+      "id": "T-0875",
+      "title": "The School Section's 142 block numerals, read off the registered 600-dpi sheet and each cited to its crop: the boustrophedon scheme stated, and the run the South Branch makes unreadable refused rather than guessed",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0797",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "976",
+      "claimed_by": "run 9/6/2026, 4:42:12 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T10:12:23.426Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34024504440",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0876",
+      "title": "The School Section's grid and streets: the module measured off the sheet, 142 block polygons, the twelve tiers as street records with the owner's unworn status, and the three Reserved blocks tested against the 1833 sale",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0797",
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 6
     }
   ]
 }
