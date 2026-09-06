@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 11:23 PM",
+  "generated_ct": "Sep 5, 2026, 11:42 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14522,6 +14522,26 @@
       "closed_at": "2026-09-06T04:12:10.045Z",
       "claimed_run": null,
       "queue_rank": null
+    },
+    {
+      "id": "T-0860",
+      "title": "Three stated kin ties PR #947 read that the survey's patterns could not reach: the Beaubien brotherhood and the two Harmon sons",
+      "state": "claimed",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "run 9/5/2026, 11:42:50 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 173
     }
   ]
 }
