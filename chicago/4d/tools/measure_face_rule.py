@@ -44,7 +44,7 @@ frontage. It is a zero across the stores and the warehouses, two of the three le
 block parcel may actually be dealt.
 
 The letters that are not zero are stated rather than trimmed away. **W's one** arrived on
-2026-09-06 with T-0880: `fort_dearborn_shop`, the garrison workshop the 1830 Harrison plan
+2026-09-06 with T-0883: `fort_dearborn_shop`, the garrison workshop the 1830 Harrison plan
 letters on Fort Dearborn's outer ground, which this table puts **381 m** from the State
 Street centreline — further off than T's, and for a harder reason than distance. The
 military reservation was UNPLATTED in 1835 and no street crossed it (see

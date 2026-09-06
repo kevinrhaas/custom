@@ -10317,7 +10317,7 @@ tract line than that drops to `reconstructed`, and the metres are printed on the
 the 66 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
 there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Three of
-the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0880, and they
+the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0883, and they
 are at the bottom tier for the ordinary geometric reason rather than for an invention behind
 them: the wash house stands 12.9 m from a tract line and the shop 39.1 m, both inside the 40 m
 the middle tier asks for, on the same reservation ring the homestead beside them sits on. Only
@@ -10341,7 +10341,7 @@ refuses.
 Related: **L108** (the reservation boundary, from the same corner and the same bearing) ·
 **L182** (Madison's centreline, likewise) · **L216** (the other placement that rests on lot
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
-**Recorded:** 2026-09-04; count restated 2026-09-06 (T-0880).
+**Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
 ### L220 — 490 people join the town on the town's own lists, and a household is written round each of them
 
@@ -10748,9 +10748,9 @@ in this entry, not in the mesh.
 and where it sat on the ridge are all unstated by both witnesses and are unstated here. A
 second plan of this fort, a post return, or the return of Harrison's 1830 original — what is
 readable today is Andreas's 1884 re-engraving of it — would replace this entry with geometry.
-Related: **T-0880** (this), **T-0758** (the parent: six things the plan names and nothing drew).
+Related: **T-0883** (this), **T-0758** (the parent: six things the plan names and nothing drew).
 **Covers:** `fort_dearborn_big_barn.barn_1830.form.cupola`.
-**Recorded:** 2026-09-06 (T-0880).
+**Recorded:** 2026-09-06 (T-0883).
 
 ### L226 — Two buildings the fort's engineer named, and nothing else on earth describes
 **Decision:** `fort_dearborn_wash_house` and `fort_dearborn_shop` stand east and south-east of
@@ -10786,7 +10786,7 @@ model builds the sill, blocks or bank of sand that would have met it there.
 a carpenter and it would cost nothing to write one in; neither is written, because the plate
 says *Shop*. Nor is the wash house claimed to be the only one — Hubbard says wash-houses,
 plural, and one is drawn, and the record carries the disagreement rather than resolving it.
-Related: **L225** (the barn's cupola) · **T-0880** (this) · **T-0758** (the parent) ·
+Related: **L225** (the barn's cupola) · **T-0883** (this) · **T-0758** (the parent) ·
 **T-0881** (the well and the Out Buildings, still unplaced).
 **Covers:** `fort_dearborn_big_barn.barn_1830.form.loft`, `fort_dearborn_shop.shop_1830.form.construction`, `fort_dearborn_shop.shop_1830.form.roof_type`, `fort_dearborn_shop.shop_1830.form.roof_pitch_deg`, `fort_dearborn_shop.shop_1830.form.wall_height_m`, `fort_dearborn_shop.shop_1830.form.door`, `fort_dearborn_shop.shop_1830.form.door_side`, `fort_dearborn_shop.shop_1830.form.paint`, `fort_dearborn_wash_house.wash_house_1830.form.roof_type`, `fort_dearborn_wash_house.wash_house_1830.form.roof_pitch_deg`, `fort_dearborn_wash_house.wash_house_1830.form.wall_height_m`, `fort_dearborn_wash_house.wash_house_1830.form.door`, `fort_dearborn_wash_house.wash_house_1830.form.door_side`, `fort_dearborn_wash_house.wash_house_1830.ground_contact`.
-**Recorded:** 2026-09-06 (T-0880).
+**Recorded:** 2026-09-06 (T-0883).

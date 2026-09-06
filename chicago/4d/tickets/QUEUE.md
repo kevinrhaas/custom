@@ -367,4 +367,4 @@ T-0878 — Wright's 1834 registration is three per cent long in y: the School Se
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
 T-0880 — publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat
-
+T-0883 — The fort's service yard, drawn on the Harrison plan: the Big Barn with Cupola, the Wash house and the Shop placed off the plate

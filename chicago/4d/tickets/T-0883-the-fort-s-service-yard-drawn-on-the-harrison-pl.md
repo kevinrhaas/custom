@@ -1,5 +1,5 @@
 ---
-id: T-0880
+id: T-0883
 title: The fort's service yard, drawn on the Harrison plan: the Big Barn with Cupola, the Wash house and the Shop placed off the plate
 state: claimed
 epic: META

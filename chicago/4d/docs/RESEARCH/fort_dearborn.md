@@ -271,7 +271,7 @@ carries the `geometry:` declaration and a liberty:
   gives a symbol and a label and no form. The **Fort Cemetery** in particular is left alone
   deliberately. The **Well** and the **Out Buildings** are T-0881's; the **Fort Cemetery**
   is T-0882's.
-- **Three of that list are now built** — 2026-09-06, T-0880: `fort_dearborn_big_barn`,
+- **Three of that list are now built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
   `fort_dearborn_wash_house` and `fort_dearborn_shop`. Their positions are pixels on the
   plate turned to ground by one rule, stated in full on each record's `position.note` and
   checked against the committed garrison garden — predicted centre within seven pixels
