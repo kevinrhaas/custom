@@ -23,8 +23,8 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 792,
-   "spent": 508
+   "read": 812,
+   "spent": 819
   },
   "church": {
    "read": 1744,
@@ -344,6 +344,14 @@
    "to": 456,
    "date": "2026-09-06",
    "why": "T-0697. The reading did not move: all 953 records still carry a ruling, before and after (verified by diffing the record_ids of matches+refusals across the change — 953 covered on both sides). What moved is how the instrument ANCHORS a ruling. ANCHOR_KEYS ranks household_id above record_ids, so a matched purchaser dedups onto ONE household and a refused one dedups onto each of the records behind it. This ticket moved 100 purchaser spellings from refusal to match — the crosswalk stopped refusing on a count of namesakes and started putting the reading to every person of the surname — and their record anchors collapsed into 100 household anchors. The domain is spent MORE (34 cards to 124, the write hop reads 139 of 139 reaching a card) and measures 14 less. The ceiling is raised by exactly that artifact."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "write",
+   "from": 0,
+   "to": 1,
+   "date": "2026-09-06",
+   "why": "T-0714, 2026-09-06. The 1840 crosswalk was re-derived after 290 named heads of finished reading had never been put to the ladder, and the new adjudication reaches one town person the old one did not: Ira Couch, printed page 211 line 3 of image 33SQ-GYYJ-97P, ruled L7 candidate — the name agrees and is unique on both sides, with nothing independent of the name to hold the pair together. His card cites no 1840 source, so the ruling has reached the person and not the card. It is raised by exactly one rather than spent here because this crosswalk mints nobody and writes no household file by design; the write is T-0899's, on the ratified ladder, where a candidate stays a candidate."
   }
  ],
  "lowered": [
@@ -364,7 +372,7 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 0,
+  "census_1840": 1,
   "civic": 0,
   "directories": 0,
   "land_sales": 0,
