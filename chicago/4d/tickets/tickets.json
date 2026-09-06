@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 6:59 AM",
+  "generated_ct": "Sep 6, 2026, 7:08 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15064,6 +15064,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 176
+    },
+    {
+      "id": "T-0884",
+      "title": "The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
     }
   ]
 }
