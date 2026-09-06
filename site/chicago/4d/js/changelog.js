@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 616, title: 'Nothing you can see: the running order kept being quietly undone', kind: 'fix', ts: '2026-09-06T02:57:58.075Z', date: 'Sep 5, 2026, 9:57 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about the list that decides what gets worked on next, and about that list being silently rolled back three times.',
+      'The owner sets the running order, and writes the reason for each decision at the top of the list. Three times now, a piece of work begun before one of those decisions has been finished afterwards and put the older order back — carrying six items he had placed at the very top down to somewhere near line four hundred, along with the note explaining why they were there.',
+      'Two separate faults, and both are fixed. The first: when two versions of the list disagreed, the tool settling them only ever kept the notes from one side, so a heading written on the other side vanished — and new items arriving under it were swept to the bottom rather than left where they had been put. Items now stay where whoever added them put them, and the heading travels with them. If a heading genuinely cannot be placed, the tool now stops and says which one, instead of dropping it.',
+      'The second fault is why the first was not enough. That tool only runs when the two versions are combined on someone’s own machine — and the step that actually publishes work does not run it at all. So the rollback kept arriving through the one door nothing was watching.',
+      'That door is now watched. Before any work can be accepted, the list is checked against the current one, and work carrying fewer of the owner’s recorded decisions than the version it is being added to is refused outright, naming the decisions it had lost. It makes no judgement about what the right order is — only that a decision already taken has not gone missing.',
+      'Tested against the real thing rather than a stand-in: the actual list, with the two decisions made yesterday removed, is refused, and both are named in the owner’s own words.',
+    ] },
   { v: 615, title: 'What each research list looked like before it was researched, kept', kind: 'fix', ts: '2026-09-06T02:45:26.361Z', date: 'Sep 5, 2026, 9:45 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about eight lists of townspeople \u2014 six hundred and four people between them \u2014 and a record of what each of them looked like before anybody researched them, which was quietly being erased and rewritten every few days.',

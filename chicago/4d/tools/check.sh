@@ -94,6 +94,26 @@ step "…and its own assertions still fire when broken" \
 step "the QUEUE.md merge driver still does what .gitattributes promises" \
   node tools/merge-queue-selftest.mjs
 
+# T-0817, AND IT IS A GATE BECAUSE A DRIVER CANNOT REACH FAR ENOUGH. The ranking
+# has been lost three times: 2026-09-04 ("the queue got massively reordered"),
+# again on 2026-09-05 via PR #801 — a branch cut long before the re-rank, which
+# took dev from the restored 415-line file back to the 2026-08-30 revision — and a
+# third time to the drain band (#909). The driver above REFUSED the #801 merge and
+# it made no difference, for the reason T-0817 names exactly: GitHub does not run
+# this repository's merge drivers, so a squash-merge on the server never loads one.
+# The driver protects a local `git merge` and cannot protect the thing that lands.
+#
+# check.sh is the required `gate` on dev's ruleset, so this refuses the merge
+# BUTTON, which is the only place the regression actually arrives. What it asserts
+# is not a judgement about ranking — it is that every re-rank the base already
+# records is still present here. A branch missing one predates it, and merging it
+# would put the old order back.
+step "the owner's queue ranking has not gone backwards" \
+  node tools/check_queue_order.mjs
+
+step "…and its own assertions still fire when broken" \
+  node tools/check_queue_order-selftest.mjs
+
 # THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
 # is seven repairs long, five of them in one day when `union` spliced one entry
 # into another and left valid JavaScript nobody noticed. The driver never works
