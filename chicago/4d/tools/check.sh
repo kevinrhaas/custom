@@ -1365,6 +1365,39 @@ step "the minted letter-list residents re-derive from the register" \
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
 
+# T-0698. THE HEAD CROSSWALK BESIDE THE BRIDGES, and the gate it never had.
+# `crosswalk_census_1840_heads.py` adjudicates every named head on the left sheets against
+# the 1835 name pools and DECLARES ITS OWN INPUTS at the top of the file it writes. Nothing
+# ran its `--check`, so the declaration went stale in silence across T-0514's mint and every
+# sheet read after it: `residents layer, persons: 849` where the town held 1,404, `1840 left
+# sheets read in this repo: 17` where 25 were committed, `directory adjudications: 79` where
+# there were 134. A file that states what it was derived from and is never re-derived states
+# what it was derived from ONCE, and then states it falsely.
+#
+# It is the same shape as coverage.json's unread image and the spend meter's unruled name:
+# the gate cannot notice a reading it never looked at. It looks now.
+step "the 1840 head crosswalk re-derives from the sheets and the town as they stand" \
+  python3 tools/crosswalk_census_1840_heads.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/crosswalk_census_1840_heads.py --self-test
+
+# THE WRITE HOP OF THE SAME CROSSWALK. Re-deriving it is what found the second half of the
+# defect: the rebuild carries 788 heads where the committed file carried 498, and 27 of its
+# rulings name a person this town holds a card for where 10 did. T-0670 tried the rebuild
+# alone, the spend meter reported one ruling ruled onto a person whose card had not learned
+# it against a ceiling of 0, and that run reverted rather than rule. `spend_census_1840_heads.py`
+# is the ruling: whatever the crosswalk reaches, the card is told — a MATCH as a match and a
+# CANDIDATE as a candidate that asserts nothing. Gated in the same three directions as the
+# four passes before it: a ruling that stops reaching its card, a card carrying a paragraph
+# for a ruling the crosswalk never made, and — T-0700's lesson, taken here rather than
+# relearned — a paragraph that is PRESENT but no longer says what the crosswalk says.
+step "…and the 1840 heads are on the 27 cards they name, once each and still true" \
+  python3 tools/spend_census_1840_heads.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_census_1840_heads.py --self-test
+
 # THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
 # lots of research being done ... but there are not outputs or updates to the household
 # and resident data". The bridges gate above proves the links the project HAS made are
