@@ -1,5 +1,5 @@
 ---
-id: T-0915
+id: T-0920
 title: Any run that publishes turns dev's gate red: publish.sh rewrites four residents files the synthesizer ratchet then refuses, on an untouched dev
 state: open
 epic: META
@@ -38,10 +38,10 @@ the freshly published one are equal object for object on every one of the four â
 from 21,519 pretty-printed lines to one minified line and nothing in it moves. So the payload a
 visitor loads is not wrong today; what is wrong is that the committed mirror was written by a
 DIFFERENT formatter than the one `publish.sh` uses now, and the synthesizer's ratchet compares
-bytes. Every run is told to publish in the same commit as
-its change (AGENTS.md, and the steward prompt), so every run that obeys either lands 21k lines
-of unrelated residents churn in its PR or reverts the mirror by hand and says why. T-0746 did
-the latter on 2026-09-06 and is what found this.
+bytes. Every run is told to publish in the same commit as its change (AGENTS.md, and the
+steward prompt), so every run that obeys either lands 21k lines of unrelated residents churn in
+its PR or reverts the mirror by hand and says why. T-0916 did the latter on 2026-09-06 and is
+what found this.
 
 **Acceptance:** (state it before working â€” never weakened to pass)
 - Say WHICH side is wrong: the committed mirror (publish it and take the diff, with the 21,520

@@ -1,7 +1,7 @@
 ---
-id: T-0911
+id: T-0916
 title: The 1840 census images 51-74: printed 212 (33SQ-GYYJ-RY) and 213 (33SQ-GYYJ-RK) read line by line to the name
-state: done
+state: open
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-06
-closed: 2026-09-06
-pr: 1009
-claimed_by: run 9/6/2026, 5:19:03 PM CT
+closed: null
+pr: null
+claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-06T23:23:09.435Z
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34062955531
+closed_at: null
+claimed_run: null
 ---
 
 The 1840 census images 51-74: printed 212 (33SQ-GYYJ-RY) and 213 (33SQ-GYYJ-RK) read line by line to the name.
@@ -33,5 +33,5 @@ Piece 1 of 4 of **T-0746 — The 1840 census images 51-74: the names and cells o
 - Neither leaf is in PR #670's calibration set (printed 229-235), so the cross-check clause
   of the parent has nothing to bite on here; the PR says so rather than passing silently.
 - The cells are NOT read by this piece and every page file says so; nothing may be taken as
-  a zero. T-0914 owns them.
+  a zero. T-0919 owns them.
 - `coverage.json` group 3 has its counts RECOMPUTED from the images array, not incremented.

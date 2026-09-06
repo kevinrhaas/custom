@@ -1,7 +1,7 @@
 ---
 id: T-0746
 title: The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0496
 opened: 2026-09-05
-closed: null
+closed: 2026-09-06
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 6:25:21 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T23:25:24.519Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34062955531
 ---
 
 The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line.
