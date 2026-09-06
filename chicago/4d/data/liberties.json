@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 228,
+  "count": 229,
   "liberties": [
     {
       "id": "L1",
@@ -14290,6 +14290,37 @@
         {
           "label": "Recorded",
           "text": "2026-09-06 (T-0881)."
+        }
+      ]
+    },
+    {
+      "id": "L229",
+      "title": "A fence round one grave, and a burial ground left as a polygon",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-06",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`data/enclosures/fort_dearborn_jouett_grave_pickets.json` stands a picket fence **3.05 x 2.44 m — 10 x 8 ft** — on the west verge of the road that ran past Fort Dearborn's garrison garden, at local east 1107.0, north 64.8, its long side on the road's bearing of 51.3 degrees. **The plot's size, its shape, its orientation, and every dimension of the fence — 1.07 m high, two rail courses, 5 ft bays, 4-inch posts, 3.5-inch pales at a pale's width apart — are invented**, and all of them are graded `reconstructed` on the record, so a visitor turning the reconstructed tier off is left with nothing here. **What is not invented is that a fenced grave was there.** The 1830 Harrison plan letters *Grave of Mrs Chas Jouett* on that ground, and Gurdon Hubbard, remembering it independently, gives it its fabric and its side of the road in one clause — *\"by the west side of the road, adjoining the government garden, in a picket-fence inclosure, was the grave of his wife\"* (`hubbard_autobiography_1911`, claim `bk_hub_063`, leaf 76, printed p. 38)."
+        },
+        {
+          "label": "What is NOT drawn, and this half is the point",
+          "text": "no mound, no slab, no headboard, no marker of any kind, no gate, and no ground treatment inside the fence. Nothing in either witness describes any of them, a marker's form is a matter of who paid for it, and this project does not model human remains or the ground over them on a guess. The fence was attested; the fence is what stands. **And the Fort Cemetery is not drawn at all.** The same sheet letters a named parcel of that name between the road and the lake, south-south-east of the fort — 5,886 m², about an acre and a half — and draws it exactly as it draws John Crafts's Lot beside it: two property lines and a name. No fence, no gate, no marker, no burial and no count. It is read whole and resolved to ground in `data/traces/harrison_1830_fort_burial_ground.json`, and it is refused as fabric there rather than furnished out of nothing. A polygon that says *this ground was a burying ground and this project cannot say what stood on it* is a truthful record; a fenced enclosure invented around it would not be."
+        },
+        {
+          "label": "Why",
+          "text": "T-0758 asked for six things the plan names and nothing draws, and its own acceptance said each must be *\"either placed off the plan with a stated grade and its own note, or refused in writing with the reason on the record — no silent omissions.\"* These are the two answers that clause allows, one of each, and which one a thing gets was decided by what the sources give it: one has two witnesses and a named fabric, the other has a boundary and a word."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a quartermaster or post return, a chaplain's register or a burial list for Fort Dearborn 1816-1836; a later plat that draws the cemetery parcel again with a fence on it; or a removal record from the 1840s, when the town moved its burying grounds, naming what was lifted from either place. Any one of those turns the polygon into a place and the invented dimensions into measured ones. Related: **L228** (the same sheet, the same ticket family, and the other answer — two buildings BUILT off one witness) · **L226** (the same plate, the same grade, for two buildings whose walls are invented) · **L45** and **L47** (the fort's other `geometry: absent` declarations) · **L1** (no figure is drawn) · tickets **T-0882** (this), **T-0758** (the parent), **T-0883** (the three buildings off the same sheet)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-06 (T-0882)."
         }
       ]
     },
