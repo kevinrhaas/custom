@@ -91,7 +91,6 @@ T-0772 — Twelve dooryard gardens went with the retired households: should a ga
 # --- crosswalk wastes the read that follows it: civic poll/tax/voter matched 28.7%, the 1840
 # --- census 1.0%, church and Newberry 0.0%.
 T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
-T-0765 — A page number in a citation is read as the state: ', 111,' after a digit run, 65 kept cards across the four volumes
 T-0766 — The Illinois abbreviation still matches on the wreck of a word — 'Eng.', an author's initials, a France card — and those are the bad keeps the four precision samples have left
 T-0769 — A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card
 T-0810 — The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced
