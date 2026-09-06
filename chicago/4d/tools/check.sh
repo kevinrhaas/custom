@@ -167,6 +167,19 @@ step "platted block parcels match their recipe and the committed lots" \
 step "the residents manifest re-derives from the household cards" \
   python3 tools/rebuild_resident_index.py --check
 
+# The kinship the corpus already states (T-0734). The audit that opened that ticket
+# found 14 of 1,404 people related to anybody at all, and the reason was never that
+# the sources were silent: the register marries couples this town holds both halves
+# of, and nothing read it. The survey is DERIVED from the corpus, so it grows when a
+# reading lands, and this step is what makes that growth impossible to ignore - a
+# newly stated kinship whose two ends the town holds is a proposal, and a proposal
+# nobody has ruled on is a red build rather than a thing to notice one day.
+step "every stated kinship the corpus offers has been ruled on" \
+  python3 tools/survey_stated_kin.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/survey_stated_kin.py --self-test
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also
