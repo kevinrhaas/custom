@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1373,
-        "new_resident": 1233,
+        "enrich": 1371,
+        "new_resident": 1235,
         "replace_invented": 24
       },
       "letter_list_only": 1936
@@ -8459,9 +8459,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "abbot_8_g",
-      "action_note": "data/residents/ already holds this person as abbot_8_g (hh_abbot_8_g, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_abbot_green",
@@ -16291,9 +16291,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "gabbs_james_i1",
-      "action_note": "data/residents/ already holds this person as gabbs_james_i1 (hh_gabbs_james_i1, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_galusha_ezra",
