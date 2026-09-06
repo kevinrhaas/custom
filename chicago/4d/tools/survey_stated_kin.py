@@ -95,6 +95,7 @@ project does not write a claim its gate cannot read.
 """
 from __future__ import annotations
 
+import itertools
 import json
 import re
 import sys
@@ -108,6 +109,7 @@ HOUSEHOLDS = RESIDENTS / "households"
 CHURCH = ROOT / "data" / "research" / "church" / "records"
 SURVEY = RESIDENTS / "kin_survey.json"
 RULINGS = RESIDENTS / "kin_rulings.json"
+READINGS = RESIDENTS / "kin_readings.json"
 
 SCHEMA = "chicago4d.kin_survey.v1"
 
@@ -137,6 +139,23 @@ HONORIFIC = re.compile(
 PROSE = re.compile(
     r"\b(half[- _]?brothers?|half[- _]?sisters?|brothers?|sisters?|sons?|daughters?"
     r"|fathers?|mothers?|wife|wives|widow|husbands?)\s+of\s+"
+    r"((?:[A-Z][A-Za-z'À-ÿ]*\.?)(?:\s+[A-Z][A-Za-z'À-ÿ]*\.?){0,3})"
+)
+
+# `his|her <relation> <Name>` — the SAME statement without the "of" (T-0734, the
+# ties #947 read and this survey could not see). Mark Beaubien's own card reaches
+# for "Andreas's life of HIS BROTHER Jean Baptiste" to date the family's move, and
+# the pattern above cannot match it because English does not put an "of" there.
+#
+# It is a generalisation of PROSE and not a loosening of it: the name is bounded
+# the same way, and every candidate still has to resolve to EXACTLY ONE town
+# person before it can be proposed. Measured over the committed prose before it
+# was added — 10 matches, of which the resolution step refuses "his mother
+# Potawatomi", "his mother Mah" (a hyphenated name the bound truncates) and the
+# other non-names on its own. The net is wider; the sieve is unchanged.
+PROSE_POSSESSIVE = re.compile(
+    r"\b(?:his|her|their)\s+(half[- _]?brothers?|half[- _]?sisters?|brothers?|sisters?"
+    r"|sons?|daughters?|fathers?|mothers?|wife|wives|widow|husbands?)\s+"
     r"((?:[A-Z][A-Za-z'À-ÿ]*\.?)(?:\s+[A-Z][A-Za-z'À-ÿ]*\.?){0,3})"
 )
 
@@ -333,7 +352,7 @@ def read_cards(docs: dict[str, dict]) -> list[dict]:
         # again as if a source had said so.
         blob = json.dumps({k: v for k, v in h.items() if k != "kin"}, ensure_ascii=False)
         seen: set[tuple] = set()
-        for m in PROSE.finditer(blob):
+        for m in itertools.chain(PROSE.finditer(blob), PROSE_POSSESSIVE.finditer(blob)):
             rel = PROSE_RELATION.get(m.group(1).lower().replace("_", " ").replace("-", " ")) \
                 or PROSE_RELATION.get(m.group(1).lower())
             other = m.group(2).strip()
@@ -342,7 +361,26 @@ def read_cards(docs: dict[str, dict]) -> list[dict]:
             seen.add((rel, other))
             start = max(0, m.start() - 90)
             surname = fold(head_name)[-1:] if fold(head_name) else []
-            ellipsis = len(fold(other)) == 1 and surname
+            # THE ELLIPSIS, AND IT IS NOT ONLY ONE TOKEN LONG (T-0734).
+            #
+            # The rule below the PROSE pattern says a name a quoted source leaves
+            # without a surname is read with the SUBJECT'S — Andreas prints "John
+            # Miller, brother of Samuel". That was implemented as "exactly one
+            # token", which is a fair reading of `Samuel` and a wrong one of `Jean
+            # Baptiste`: Mark Beaubien's card says "his brother Jean Baptiste", two
+            # tokens, both forenames, no surname anywhere in them. The sentence
+            # elides the surname exactly as Andreas's does; it just happens to elide
+            # it after a COMPOUND forename.
+            #
+            # So the test is what it always meant: the name carries no surname the
+            # town knows. If the name resolves on its own it is left alone; only a
+            # name that resolves to NOBODY is re-read with the subject's surname,
+            # and it must then still resolve to exactly one person like any other.
+            # A wrong guess cannot land here — it can only fail to resolve twice.
+            # The resolver does not exist here, so this only says the name is SHORT
+            # ENOUGH to be an ellipsis; `classify` decides, because only it can ask
+            # whether the name resolves on its own first.
+            ellipsis = bool(surname) and 1 <= len(fold(other)) <= 2
             out.append(dict(_statement(
                 f"{hid}__{rel}__{re.sub(r'[^a-z0-9]+', '_', other.lower()).strip('_')}",
                 "card_prose", hid, blob[start:m.end() + 60],
@@ -362,13 +400,37 @@ def classify(statements: list[dict], town: Town) -> list[dict]:
             rows.append(row)
             continue
         unasserted = False
-        if st["source"] == "card_prose":
+        if st.get("authored_reading"):
+            # AN AUTHORED READING NAMES BOTH PEOPLE OUTRIGHT, which is the whole
+            # difference between it and a derived statement: a pattern finds a
+            # NAME and has to work out who that is, while a person reading a
+            # sentence has already done that and says so. So this resolves by
+            # person id and not by name — and an id that is not on a card resolves
+            # to nobody, so a typo cannot invent a tie. The quote behind it is
+            # verified separately by authored_quote_problems().
+            def _seat(end):
+                for hid, doc in town.docs.items():
+                    for person in doc.get("persons") or []:
+                        if person["id"] == end:
+                            return [(hid, end, person.get("name") or end)]
+                return []
+            subj = _seat(st["subject_record"])
+            other = _seat(st["other_record"])
+        elif st["source"] == "card_prose":
             hid = st["locator"]
             subj = [(hid, town.docs[hid]["head"], st["subject_as_read"])]
             other_name = st["other_as_read"]
-            if st.get("other_read_with_subject_surname"):
-                other_name = f"{other_name} {fold(st['subject_as_read'])[-1]}"
             other = town.resolve(other_name)
+            # THE NAME AS PRINTED FIRST, the ellipsis only if it names nobody. A
+            # quoted source that elides the surname ("brother of Samuel", "his
+            # brother Jean Baptiste") is re-read with the SUBJECT'S surname — but
+            # only after the printed name has been given its chance, so a name that
+            # stands on its own is never rewritten. The re-read still has to resolve
+            # to exactly one town person, so this can fail to find somebody; it
+            # cannot find the wrong somebody.
+            if not other and st.get("other_read_with_subject_surname"):
+                other_name = f"{other_name} {fold(st['subject_as_read'])[-1]}"
+                other = town.resolve(other_name)
         else:
             subj = town.by_source_record(st["subject_record"])
             other = town.by_source_record(st["other_record"])
@@ -397,10 +459,63 @@ def classify(statements: list[dict], town: Town) -> list[dict]:
 REPORTED = ("landable", "ambiguous", "same_household", "identity_not_asserted")
 
 
+def read_authored() -> list[dict]:
+    """Kinship a person read in prose no pattern can parse (T-0734).
+
+    THE QUOTE IS VERIFIED, WHICH IS WHAT MAKES THIS A SEAM AND NOT A BACK DOOR.
+    An authored statement is the right to be ASKED about a sentence — Andreas
+    states the Harmon parentage as a list of five children, which is one subject
+    and five others, and a regex fitted to that sentence would be fitted to that
+    sentence. But a file where anybody can type a kinship is a file that will
+    eventually carry one nobody read. So every entry names the path its quote
+    stands on, and an entry whose quote is NOT there is a problem rather than a
+    statement: the reading has to still be true of the tree.
+
+    Beyond that it earns nothing. The statement it produces is classified,
+    resolved against the residents layer and ruled exactly like a derived one.
+    """
+    out: list[dict] = []
+    if not READINGS.exists():
+        return out
+    doc = json.loads(READINGS.read_text(encoding="utf-8"))
+    for r in doc.get("readings") or []:
+        out.append(dict(_statement(
+            r["id"], r.get("source") or "authored_reading", r["subject"]["household"],
+            r.get("quote", "")[:300], r["subject"]["person"], r["relation"],
+            r["other"]["person"], r["subject"]["person"], r["other"]["person"]),
+            authored_reading=True))
+    return out
+
+
+def authored_quote_problems() -> list[str]:
+    """Every authored reading's quote must still stand where it says it does."""
+    problems: list[str] = []
+    if not READINGS.exists():
+        return problems
+    doc = json.loads(READINGS.read_text(encoding="utf-8"))
+    for r in doc.get("readings") or []:
+        path = ROOT / r.get("where", "")
+        if not path.exists():
+            problems.append(f"authored reading '{r['id']}' cites {r.get('where')!r}, "
+                            f"which is not in the tree")
+            continue
+        # The card is JSON, so the quote is stored escaped; compare against the
+        # decoded text of the whole document rather than its raw bytes.
+        blob = json.dumps(json.loads(path.read_text(encoding="utf-8")),
+                          ensure_ascii=False)
+        needle = " ".join(r.get("quote", "").split())
+        if needle and needle not in " ".join(blob.split()):
+            problems.append(
+                f"authored reading '{r['id']}' quotes a sentence that is NOT in "
+                f"{r.get('where')}. A reading is only worth anything while the "
+                f"source still says it; re-read the card or drop the entry.")
+    return problems
+
+
 def derive() -> dict:
     docs = load_town()
     town = Town(docs)
-    rows = classify(read_church() + read_cards(docs), town)
+    rows = classify(read_church() + read_cards(docs) + read_authored(), town)
     counts = Counter(r["outcome"] for r in rows)
     return {
         "schema": SCHEMA,
@@ -452,6 +567,7 @@ def check(quiet: bool = False, docs: dict | None = None,
           survey: dict | None = None, rulings: dict | None = None) -> list[str]:
     """Re-derive, then hold every landable proposal to a written ruling."""
     problems: list[str] = []
+    problems += authored_quote_problems()
     fresh = derive() if survey is None else survey
     if survey is None:
         if not SURVEY.exists():
@@ -583,6 +699,40 @@ def self_test() -> int:
     check_that("two townspeople of one name are ambiguous, never guessed",
                len(Town({"hh_a": hh_a, "hh_b": {"id": "hh_b", "head": "p_b", "persons": [
                    {"id": "p_b", "name": "John Doe"}]}}).resolve("John Doe")) == 2)
+
+    # T-0734 — THE AUTHORED-READING SEAM, and the one thing that keeps it honest.
+    # A file where anybody can type a kinship is a file that will eventually carry
+    # one nobody read, so every entry names the path its quote stands on and the
+    # quote has to still be there. These are that assertion, broken on purpose.
+    import tempfile
+    _real = READINGS
+    try:
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "readings_bad.json"
+            bad.write_text(json.dumps({"readings": [{
+                "id": "x", "where": "data/residents/households/hh_harmon_brothers.json",
+                "quote": "a sentence that is nowhere in this repository at all",
+                "source": "andreas_1884_v1",
+                "subject": {"household": "hh_harmon_brothers", "person": "harmon_charles_l"},
+                "relation": "son",
+                "other": {"household": "hh_harmon_elijah_d", "person": "harmon_elijah_d"}}]}),
+                encoding="utf-8")
+            globals()["READINGS"] = bad
+            check_that("an authored reading whose quote is NOT on the card it cites is refused",
+                       bool(authored_quote_problems()))
+            missing = Path(td) / "readings_missing.json"
+            missing.write_text(json.dumps({"readings": [{
+                "id": "y", "where": "data/residents/households/hh_nobody_at_all.json",
+                "quote": "anything", "source": "s",
+                "subject": {"household": "h", "person": "p"}, "relation": "son",
+                "other": {"household": "h2", "person": "p2"}}]}), encoding="utf-8")
+            globals()["READINGS"] = missing
+            check_that("...and one citing a card that is not in the tree is refused too",
+                       bool(authored_quote_problems()))
+    finally:
+        globals()["READINGS"] = _real
+    check_that("the committed readings' quotes are all really on their cards",
+               not authored_quote_problems())
 
     print(f"\n{len(fails)} failure(s)")
     return 1 if fails else 0

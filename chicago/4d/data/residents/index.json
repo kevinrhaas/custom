@@ -21252,10 +21252,10 @@
    "person": "hubbard_g",
    "household": "hh_hubbard_g",
    "name": "G Hubbard",
-   "merged_into_person": "hubbard_gurdon",
-   "merged_into_household": "hh_hubbard_gurdon",
+   "merged_into_person": "hubbard_henry_g",
+   "merged_into_household": "hh_hubbard_henry_g",
    "record_file": "merged/hh_hubbard_g.json",
-   "rule": "C0",
+   "rule": "C5",
    "cluster": "hubbard",
    "ticket": "T-0839"
   },
