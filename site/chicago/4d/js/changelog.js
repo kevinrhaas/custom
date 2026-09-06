@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'One door from the Post Office: what Hogan\u2019s own notices say', kind: 'change', ts: '',
+  { v: 624, title: 'One door from the Post Office: what Hogan\u2019s own notices say', kind: 'change', ts: '2026-09-06T05:56:28.236Z', date: 'Sep 6, 2026, 12:56 AM CT',
     items: [
       'Hogan\u2019s Store is the log building where Chicago\u2019s mail began, and you can walk up to it. Its card has always admitted one thing it could not answer: nothing said which way the building faced, so it was turned to front Lake Street, the street it sits on.',
       'The newspapers do say something, and nobody had read it onto the card. From August 1834 to the issue of 1 July 1835 \u2014 the very day this town reconstructs \u2014 eight of Hogan\u2019s own notices give his address as \u201Cat his store in South Water Street, one door of the Post Office\u201D. The word between \u201Cone\u201D and \u201Cthe Post Office\u201D is torn away with the column edge, so east and west are both readings the line cannot settle.',
