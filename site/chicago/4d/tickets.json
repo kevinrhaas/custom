@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 4:47 PM",
+  "generated_ct": "Sep 6, 2026, 5:02 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -13248,7 +13248,7 @@
     {
       "id": "T-0779",
       "title": "The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13258,11 +13258,11 @@
       "opened": "2026-09-04",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/6/2026, 4:24:37 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34060626354",
       "queue_rank": 8
     },
     {
@@ -15504,6 +15504,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": null
+    },
+    {
+      "id": "T-0910",
+      "title": "Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 178
     }
   ]
 }
