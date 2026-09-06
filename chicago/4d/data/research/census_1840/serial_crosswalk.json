@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 46,
+    "pages_held": 47,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 246,
@@ -26331,6 +26331,16 @@
         "no_band_level_cells": 0,
         "pattern_carried_by_no_household": 0
       }
+    },
+    {
+      "familysearch_id": "33S7-9YYJ-FJ",
+      "image": "chicago/reference/census1840/33S7-9YYJ-FJ.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "The leaf's own printed rules located first - the body between the horizontal rules at y 596 and y 2940 and the TOTAL cell between the vertical rules at x 1287 and x 1476 - because the earlier measurement of this column was taken over a window that ran past both. The TOTAL column's ink then grouped inside those rules; the seven industry columns measured the same way and READ FIRST, because their five printed footings are the only arithmetic on the leaf that can be closed independently of the figure this ticket asks about. All five close. The glyph key is taken off those closures and off the enumerator's own footing row, and the TOTAL column is then read against it: 21 of the 30 lines carry a committed figure, 9 are recorded unread.",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
+      "lines": []
     },
     {
       "familysearch_id": "33S7-9YYJ-JM",
