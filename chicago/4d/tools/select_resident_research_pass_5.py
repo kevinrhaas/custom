@@ -12,6 +12,8 @@ import json
 
 from select_resident_research_pass_2 import ROOT, RESIDENTS, PILOT, load_people
 
+import resident_cohort_freeze as freeze
+
 OUT = ROOT / "data/research/residents/pass_05_75_cohort.json"
 PASS2 = ROOT / "data/research/residents/pass_02_75_cohort.json"
 PASS3 = ROOT / "data/research/residents/pass_03_75_cohort.json"
@@ -173,18 +175,11 @@ def main() -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
     doc = derive()
-    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        # The committed manifest is intentionally compact. Formatting is not
-        # evidence; compare the parsed frozen manifest to the re-derived object.
-        if not OUT.exists() or json.loads(OUT.read_text()) != doc:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pass five: 75 people, committed manifest current")
-        return 0
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(rendered)
-    print("resident research pass five: wrote 75 people (9 remaining named non-letter, 33 present-list, 33 uncertain-list)")
-    return 0
+        return freeze.gate(OUT, doc, "resident research pass five")
+    return freeze.write(OUT, doc, "resident research pass five: wrote 75 people (9 remaining named non-letter, 33 present-list, 33 uncertain-list)")
 
 
 if __name__ == "__main__":
