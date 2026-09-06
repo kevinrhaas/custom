@@ -24,7 +24,7 @@
    "it_would_have_cost": 0,
    "it_would_have_cost_ids": []
   },
-  "refused_for_want_of_a_face": 2,
+  "refused_for_want_of_a_face": 3,
   "refused_for_want_of_a_face_note": "The count of businesses REFUSED FOR WANT OF A FACE, which is how many a wider reading would let back into the deal — not how many it would seat. `costed_readings` below deals every reading out in full and reports what each actually stands up (T-0416).",
   "costed_readings": {
    "lot front only": {
@@ -48,10 +48,10 @@
      "business_s_abell_attorney_and_counsellor",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 30,
+    "would_still_refuse": 31,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 23,
+     "the face holds no roof standing on it": 24,
      "this face already holds this proprietor": 7,
      "every roof on the face is spoken for": 0
     }
@@ -67,10 +67,10 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 20,
+    "would_still_refuse": 21,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 2,
+     "the face holds no roof standing on it": 3,
      "this face already holds this proprietor": 8,
      "every roof on the face is spoken for": 10
     }
@@ -87,10 +87,10 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 20,
+    "would_still_refuse": 21,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 0,
+     "the face holds no roof standing on it": 1,
      "this face already holds this proprietor": 8,
      "every roof on the face is spoken for": 12
     }
@@ -98,16 +98,16 @@
   }
  },
  "counts": {
-  "street_only_in_register": 59,
+  "street_only_in_register": 60,
   "adopted": 39,
-  "refused": 20,
+  "refused": 21,
   "refused_by_reason": {
    "not present at the scene date": 0,
-   "the face holds no roof standing on it": 2,
+   "the face holds no roof standing on it": 3,
    "this face already holds this proprietor": 8,
    "every roof on the face is spoken for": 10
   },
-  "unplaceable_present_at_scene_date": 72,
+  "unplaceable_present_at_scene_date": 71,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -163,6 +163,20 @@
     "roofs_home_named": 0,
     "roofs_home_inferred": 4,
     "roofs_yard": 2,
+    "roofs_in_centreline_band_declined": 0
+   },
+   "monroe": {
+    "street_name": "Monroe Street",
+    "businesses_naming_it": 1,
+    "adopted": 0,
+    "roofs_lot_front": 0,
+    "roofs_corner_side": 0,
+    "roofs_on_the_adopted_face": 0,
+    "roofs_free": 0,
+    "roofs_home": 0,
+    "roofs_home_named": 0,
+    "roofs_home_inferred": 0,
+    "roofs_yard": 0,
     "roofs_in_centreline_band_declined": 0
    },
    "north_water": {
@@ -1357,6 +1371,14 @@
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
    "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_ebenezer_s_more_attorney_at_law",
+   "business_name": "Ebenezer S. More, attorney at law",
+   "street_id": "monroe",
+   "street_name": "Monroe Street",
+   "refusal": "the face holds no roof standing on it",
+   "detail": "no roof stands on this street under an adopted reading: 0 has its platted lot on it, 0 end a tier against it, and 0 lie within the centreline band, which the owner declined as a face on 2026-08-30."
   },
   {
    "business_id": "business_john_dave_north_water_street",
