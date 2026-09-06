@@ -103,3 +103,51 @@ rebuilds from sources (`identity_master.json`, `source_coverage.json`, `register
 `street_face_adoptions.json`, the Newberry leads) — #880 already regenerated exactly those by
 hand rather than reconciling them. `*_baseline.json` must stay OUT of it: a ratchet is a
 measurement, and regenerating one silently lowers a bar.
+
+---
+
+## ACCEPTANCE 1, DESIGNED — and it is bigger and better than this ticket described
+
+Asked for on 2026-09-06 after the lap shipped. Reading the deploy to design it found that the
+premise was wrong in the project's favour: **the mirror never needed to be tracked at all.**
+
+**The evidence.** `deploy.yml` already ASSEMBLES into `site/` on the runner — it builds the
+`/chicago/4d/dev/` preview there from a worktree — and then uploads with
+`actions/upload-pages-artifact` `path: site`. Pages serves what the RUNNER holds, not what the
+commit holds. And `publish.sh` is a pure copy: its own header says "copy the publishable tree
+into site/". So `site/chicago/4d/` — **2,280 tracked files** — is a build output that happens
+to be committed.
+
+**The design, then, is not "take five files off the PR surface" but:**
+
+1. **Untrack `site/chicago/4d/**` and run `tools/publish.sh` in `deploy.yml` before the upload.**
+2. `check_published.mjs` changes from *"the committed mirror matches the dataset"* to
+   *"publish.sh PRODUCES a mirror that matches"*. That is STRICTER, not weaker, and it keeps
+   R-BUG3c-b's sentence — *do not measure the file you built, measure the file you ship* —
+   because deploy publishes exactly the tree it just verified.
+3. `BOARD.md` and `tickets.json` go the same way: pure functions of the ticket files, and
+   `ticket.mjs check` ALREADY regenerates and compares them, so nothing is lost by not
+   committing them.
+4. `.gitattributes` drops the `merge=generated` lines; `queue` and `changelog` stay.
+5. `tools/dev-smoke-state.json` STAYS TRACKED. It is a ledger of readings, not a build output —
+   real data with its own append-union driver, and regenerating it is not a thing that can be
+   done.
+
+**What it dissolves, all at once:** every mirror conflict for every PR forever (not just the
+five files); the need for merge drivers, the `$GIT_DIR/info/attributes` injection, the PAT and
+the lap, on those paths; and **the site byte budget** — `SITE_BUDGET_MB` measures a tracked
+tree, and there would no longer be one, which retires the fault that produced SIX tickets in a
+day (T-0722/0725/0731/0774/0803) and takes T-0727's boot-payload budget from "nice to have" to
+"the only site budget there is".
+
+**WHY IT WAS NOT DONE IN THE SESSION THAT DESIGNED IT.** It untracks 2,280 files, rewrites the
+gate that R-BUG3c-b bought with three parcels, and changes the single deploy authority — and
+it interacts with the `/v/` frozen snapshots and the dev-preview assembly, neither of which was
+traced. That is a piece of work with its own gate and its own smoke, not a change to land
+unattended at 04:00 behind an auto-merge. The lap (acceptance 2) is in place and holding the
+line meanwhile, which is exactly what it was for.
+
+**The one thing to check first, because it decides the shape:** whether `/v/release-vNNN/`
+snapshots and `chicago-4d-promote-to-prod.yml` read the COMMITTED mirror. If a frozen snapshot
+is taken from the tree rather than rebuilt, it needs the mirror at that commit and this design
+needs a step that materialises one.
