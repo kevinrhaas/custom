@@ -1,7 +1,7 @@
 ---
 id: T-0691
 title: The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
-state: open
+state: blocked-owner
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
-blocked_on: null
+claimed_by: run 9/6/2026, 12:24:21 PM CT
+blocked_on: Held by T-0660, which is blocked-owner: T-0691's acceptance item 2 is 'whatever T-0660's ruling is, applied here by the same tool to all 76', and its own body says 'Do not work this before T-0660 is ruled on'. Item 1 (wire --check into check.sh) cannot go green on its own either, because --check is red exactly on the 87 records that ruling governs. Unblocks the moment T-0660 is answered.
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34048091257
 ---
 
 The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks.
