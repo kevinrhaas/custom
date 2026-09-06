@@ -10,7 +10,8 @@
   "books": 176,
   "directories": 7228,
   "newberry_index": 4914,
-  "land_sales": 442
+  "land_sales": 442,
+  "old_settlers": 437
  },
  "witness": {
   "civic": {
@@ -44,6 +45,10 @@
   "land_sales": {
    "read": 953,
    "spent": 511
+  },
+  "old_settlers": {
+   "read": 1094,
+   "spent": 657
   }
  },
  "raised": [
@@ -283,6 +288,30 @@
    "to": 7228,
    "date": "2026-09-05",
    "why": "T-0839, the same cause as the church raise beside it: 42 duplicate town cards were folded onto the people they name and the spend measure dedupes by anchor, so directory rulings that reached two cards for one man now reach one. The four directories' spend re-derived to 294 people met and 587 rulings — up on trade and address reach, down on distinct anchors — and no reading was lost."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": null,
+   "to": 437,
+   "date": "2026-09-06",
+   "why": "T-0678 registered the domain: 1,094 units read since T-0574/T-0577 (Fergus's 757 death notices, the three Calumet rolls' 327 names and 10 claims) enter the measure for the first time, and 657 of them are already ruled on. The ceiling is what the domain reads on the day it was registered, not a target."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "write",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-06",
+   "why": "T-0678 spent the domain in the same commit: all 109 rulings that reach a town person are on that person's card, so the ceiling this domain enters the baseline with is ZERO unwritten."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "source",
+   "from": null,
+   "to": 0,
+   "date": "2026-09-06",
+   "why": "T-0678: both crosswalks state their source at the top of the file, so no ruling here reaches a person without saying what it rests on. Zero, and held there."
   }
  ],
  "lowered": [
@@ -298,7 +327,10 @@
   "census_1840": 0,
   "civic": 0,
   "directories": 3,
-  "land_sales": 0
+  "land_sales": 0,
+  "old_settlers": 0
  },
- "unsourced_ceiling": {}
+ "unsourced_ceiling": {
+  "old_settlers": 0
+ }
 }
