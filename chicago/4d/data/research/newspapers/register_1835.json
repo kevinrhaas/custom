@@ -24,8 +24,8 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 60,
+        "new_building": 25,
+        "street_only": 61,
         "unplaceable": 90
       },
       "by_placement_class": {
@@ -36,8 +36,8 @@
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 60,
+        "new_building": 25,
+        "street_only": 61,
         "unplaceable": 73
       },
       "outside_the_plat": 5,
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1373,
-        "new_resident": 1233,
+        "enrich": 1371,
+        "new_resident": 1235,
         "replace_invented": 24
       },
       "letter_list_only": 1936
@@ -2562,8 +2562,8 @@
         "Spring, G.",
         "Giles Spring"
       ],
-      "street": "South Water Street",
-      "street_id": "south_water",
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-12-17",
@@ -2577,22 +2577,194 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "corner",
+        "kind": "unresolved",
         "target": null,
-        "streets": [
-          "franklin",
-          "south_water"
-        ],
+        "streets": null,
         "via": null,
-        "note": "A crossing of two platted streets: franklin and south_water."
+        "note": "The anchor 'the Tremont House' names nothing the committed town holds."
       },
-      "anchor_change": null,
+      "anchor_change": {
+        "live_anchor": "the Tremont House",
+        "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1835-05-20.",
+        "changes": [
+          {
+            "from": "the corner of Franklin and South Water streets",
+            "to": "the Tremont House",
+            "after": "1834-11-26",
+            "before": "1835-05-20"
+          }
+        ],
+        "rule": "Giles Spring's office card is reset once. From 1833-12-17 to 1834-11-26 every printing sets the office 'second door west from the corner of Franklin and South Water streets', on the copy date 17 December 1833. From 1835-05-20 the card is a different one — copy-dated 3 December 1834, seven days after the last printing of the old address — and it reads 'OFFICE, first door north from the Tremont House, on Dearborn-street'. These are two crossings of this town and not two spellings of one: Franklin and South Water is on the river's south bank at the west end of the business row, and the first Tremont House stands at the north-west corner of Lake and Dearborn, some four blocks east of it. The identity merge of 'Giles Spring' into 'G. Spring' already reads both cards off the page and says the second one moves him; this rule is that reading applied to the placement, not a new judgement. The corpus carries no printing of either card between 1834-11-26 and 1835-05-20, so the change is bracketed by those two dates and no closer — with the copy date of 3 December 1834 saying only when the new card was WRITTEN, which is not the same as when the office moved.",
+        "cannot_say": "WHEN THE OFFICE ACTUALLY MOVED, AND WHETHER IT MOVED AT ALL. A card copy-dated 3 December 1834 that first appears in this deposit on 20 May 1835 leaves five and a half months in which nothing printed here says where Spring sat; the deposit is not the paper's whole run, so the new address may have been printed weeks or months before the issue that carries it, and the old one may have gone on running beside it in issues this project does not hold. Nor does anything printed say that ONE office moved rather than that a lawyer who had rooms on South Water Street took rooms on Dearborn Street: both would read exactly like this. What the rule decides is only which anchor the card is printed under at the scene date of 1835-07-01 — the Tremont House, first printed 20 May 1835 and printed again 5 August 1835 — and that is a statement about the ADVERTISEMENT. The earlier anchor is kept with its own dates and its own eleven printings so a later pass can still tell a removal from a second office. The Dearborn address is itself a count of doors, 'first door north from the Tremont House': it fixes a side of Dearborn Street and an order along it, not a lot width, and no lot is claimed for it here.",
+        "history": [
+          {
+            "anchor": "the corner of Franklin and South Water streets",
+            "first_issue": "1833-12-17",
+            "last_issue": "1834-11-26",
+            "claims": [
+              "chicago_democrat_1833_12_17#c004",
+              "chicago_democrat_1834_01_28#c006",
+              "chicago_democrat_1834_03_04#c030",
+              "chicago_democrat_1834_05_28#c009",
+              "chicago_democrat_1834_06_11#c004",
+              "chicago_democrat_1834_07_09#c021",
+              "chicago_democrat_1834_08_20#c003",
+              "chicago_democrat_1834_09_03#c015",
+              "chicago_democrat_1834_10_15#c002",
+              "chicago_democrat_1834_11_12#c008",
+              "chicago_democrat_1834_11_26#c009"
+            ],
+            "live_at_scene_date": false,
+            "resolved": {
+              "kind": "corner",
+              "target": null,
+              "streets": [
+                "franklin",
+                "south_water"
+              ],
+              "via": null,
+              "note": "A crossing of two platted streets: franklin and south_water."
+            },
+            "resolved_on_reading": "the corner of Franklin and South Water streets",
+            "readings": [
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "first_issue": "1833-12-17",
+                "last_issue": "1834-11-26",
+                "claims": [
+                  "chicago_democrat_1833_12_17#c004",
+                  "chicago_democrat_1834_01_28#c006",
+                  "chicago_democrat_1834_03_04#c030",
+                  "chicago_democrat_1834_06_11#c004",
+                  "chicago_democrat_1834_08_20#c003",
+                  "chicago_democrat_1834_11_12#c008",
+                  "chicago_democrat_1834_11_26#c009"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "franklin",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: franklin and south_water."
+                }
+              },
+              {
+                "anchor": "Franklin and South Water streets",
+                "first_issue": "1834-05-28",
+                "last_issue": "1834-05-28",
+                "claims": [
+                  "chicago_democrat_1834_05_28#c009"
+                ],
+                "resolved": {
+                  "kind": "street",
+                  "target": null,
+                  "streets": [
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "The anchor is a reach of south_water and names nothing narrower."
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water-streets",
+                "first_issue": "1834-07-09",
+                "last_issue": "1834-07-09",
+                "claims": [
+                  "chicago_democrat_1834_07_09#c021"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "franklin",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: franklin and south_water."
+                }
+              },
+              {
+                "anchor": "the corner of Franklin and South Water streets",
+                "first_issue": "1834-09-03",
+                "last_issue": "1834-09-03",
+                "claims": [
+                  "chicago_democrat_1834_09_03#c015"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "franklin",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: franklin and south_water."
+                }
+              },
+              {
+                "anchor": "the corner of Franklin [street]",
+                "first_issue": "1834-10-15",
+                "last_issue": "1834-10-15",
+                "claims": [
+                  "chicago_democrat_1834_10_15#c002"
+                ],
+                "resolved": {
+                  "kind": "unresolved",
+                  "target": null,
+                  "streets": null,
+                  "via": null,
+                  "note": "The anchor 'the corner of Franklin [street]' names nothing the committed town holds."
+                }
+              }
+            ]
+          },
+          {
+            "anchor": "the Tremont House",
+            "first_issue": "1835-05-20",
+            "last_issue": "1835-08-05",
+            "claims": [
+              "chicago_democrat_1835_05_20#c022",
+              "chicago_democrat_1835_08_05#c019"
+            ],
+            "live_at_scene_date": true,
+            "resolved": {
+              "kind": "unresolved",
+              "target": null,
+              "streets": null,
+              "via": null,
+              "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+            },
+            "resolved_on_reading": "the Tremont House",
+            "readings": [
+              {
+                "anchor": "the Tremont House",
+                "first_issue": "1835-05-20",
+                "last_issue": "1835-08-05",
+                "claims": [
+                  "chicago_democrat_1835_05_20#c022",
+                  "chicago_democrat_1835_08_05#c019"
+                ],
+                "resolved": {
+                  "kind": "unresolved",
+                  "target": null,
+                  "streets": null,
+                  "via": null,
+                  "note": "The anchor 'the Tremont House' names nothing the committed town holds."
+                }
+              }
+            ]
+          }
+        ]
+      },
       "outside_plat": null,
-      "action": "new_building",
-      "action_target": "franklin+south_water",
+      "action": "street_only",
+      "action_target": "dearborn",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Placeable against the committed town. A crossing of two platted streets: franklin and south_water."
+      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor 'the Tremont House' names nothing the committed town holds."
     },
     {
       "id": "business_g_w_keeney",
@@ -8459,9 +8631,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "abbot_8_g",
-      "action_note": "data/residents/ already holds this person as abbot_8_g (hh_abbot_8_g, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_abbot_green",
@@ -16291,9 +16463,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "gabbs_james_i1",
-      "action_note": "data/residents/ already holds this person as gabbs_james_i1 (hh_gabbs_james_i1, inferred). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_galusha_ezra",

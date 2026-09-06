@@ -39,7 +39,7 @@
     "loses_against_the_reading_in_force": [
      "business_cooley_and_halsman",
      "business_fullerton_botsford",
-     "business_j_b_brown_dearborn_street_grocery",
+     "business_g_spring",
      "business_j_l_wilson_co",
      "business_james_grant",
      "business_magie_wilkinson",
@@ -48,10 +48,10 @@
      "business_s_abell_attorney_and_counsellor",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 31,
+    "would_still_refuse": 32,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 24,
+     "the face holds no roof standing on it": 25,
      "this face already holds this proprietor": 7,
      "every roof on the face is spoken for": 0
     }
@@ -67,12 +67,12 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 21,
+    "would_still_refuse": 22,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 2,
      "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 11
+     "every roof on the face is spoken for": 12
     }
    },
    "a corner side or the band is a face": {
@@ -87,25 +87,25 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 21,
+    "would_still_refuse": 22,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 0,
      "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 13
+     "every roof on the face is spoken for": 14
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 60,
+  "street_only_in_register": 61,
   "adopted": 39,
-  "refused": 21,
+  "refused": 22,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 2,
    "this face already holds this proprietor": 8,
-   "every roof on the face is spoken for": 11
+   "every roof on the face is spoken for": 12
   },
   "unplaceable_present_at_scene_date": 73,
   "by_street": {
@@ -125,7 +125,7 @@
    },
    "dearborn": {
     "street_name": "Dearborn Street",
-    "businesses_naming_it": 18,
+    "businesses_naming_it": 19,
     "adopted": 6,
     "roofs_lot_front": 0,
     "roofs_corner_side": 18,
@@ -392,7 +392,7 @@
    "first_issue": "1835-07-22",
    "last_issue": "1835-07-29",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_randolph_dearborn_h1_14",
+   "structure_id": "recon_1835_south_c3_040",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -499,7 +499,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1834-07-09",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_randolph_dearborn_d1_16",
+   "structure_id": "recon_1835_blk_randolph_dearborn_d3_15",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -531,6 +531,45 @@
    "claims_lot": false,
    "order_is_a_claim": false,
    "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_g_spring",
+   "business_name": "G. Spring",
+   "trade": "attorney and counsellor at law, and solicitor in chancery",
+   "proprietors": [
+    "G. Spring",
+    "Spring, G.",
+    "Giles Spring"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_democrat_1833_12_17#c004",
+    "chicago_democrat_1834_01_28#c006",
+    "chicago_democrat_1834_03_04#c030",
+    "chicago_democrat_1834_05_28#c009",
+    "chicago_democrat_1834_06_11#c004",
+    "chicago_democrat_1834_07_09#c021",
+    "chicago_democrat_1834_08_20#c003",
+    "chicago_democrat_1834_09_03#c015",
+    "chicago_democrat_1834_10_15#c002",
+    "chicago_democrat_1834_11_12#c008",
+    "chicago_democrat_1834_11_26#c009",
+    "chicago_democrat_1835_05_20#c022",
+    "chicago_democrat_1835_08_05#c019"
+   ],
+   "first_issue": "1833-12-17",
+   "last_issue": "1835-08-05",
+   "mentions": 13,
+   "structure_id": "recon_1835_blk_randolph_clark_c2_01",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_h_doty_co",
@@ -593,32 +632,6 @@
    "claims_lot": false,
    "order_is_a_claim": false,
    "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
-   "business_id": "business_j_b_brown_dearborn_street_grocery",
-   "business_name": "J. B. Brown, Dearborn Street grocery",
-   "trade": "groceries",
-   "proprietors": [
-    "J. B. Brown",
-    "J. B. Tuttle"
-   ],
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "street_text": "Dearborn Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_democrat_1834_07_02#c021"
-   ],
-   "first_issue": "1834-07-02",
-   "last_issue": "1834-07-02",
-   "mentions": 1,
-   "structure_id": "recon_1835_south_c3_040",
-   "face": "corner side",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
@@ -705,7 +718,7 @@
    "first_issue": "1834-09-17",
    "last_issue": "1835-07-18",
    "mentions": 9,
-   "structure_id": "recon_1835_blk_randolph_clark_c2_01",
+   "structure_id": "recon_1835_blk_randolph_clark_d6_04",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -874,7 +887,7 @@
    "first_issue": "1835-06-08",
    "last_issue": "1835-07-04",
    "mentions": 3,
-   "structure_id": "recon_1835_blk_randolph_clark_d6_04",
+   "structure_id": "recon_1835_blk_randolph_dearborn_d1_16",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -992,7 +1005,7 @@
    "first_issue": "1835-06-24",
    "last_issue": "1835-08-01",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_randolph_dearborn_d3_15",
+   "structure_id": "recon_1835_blk_randolph_dearborn_h1_14",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1321,6 +1334,14 @@
   {
    "business_id": "business_h_c_bennett",
    "business_name": "H. C. Bennett",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_j_b_brown_dearborn_street_grocery",
+   "business_name": "J. B. Brown, Dearborn Street grocery",
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",

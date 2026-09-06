@@ -54,7 +54,29 @@
  "residents": {
   "matches": [
    {
-    "name": "A. 8. Perry",
+    "name": "A. Garrett",
+    "rule": "Surname 'Garrett' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0527",
+      "as_printed": "Garrett, Augustus, auctioneer, real estate, bds. Sauganash Hotel",
+      "printed_page": 15,
+      "occupation_1839": "auctioneer, real estate",
+      "address_1839": "bds. Sauganash Hotel",
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "garrett_a",
+    "household_id": "hh_garrett_a",
+    "grade_1835": "attested",
+    "occupation_1835": "auctioneer",
+    "lives_at_1835": null,
+    "could_carry": [],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
+   },
+   {
+    "name": "A. [?] Perry",
     "rule": "Surname 'Perry' folds to the same string as the 1839 entry's, and the given name of both begins A.",
     "entries_1839": [
      {
@@ -75,28 +97,6 @@
     "could_carry": [
      "occupation"
     ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "A. Garrett",
-    "rule": "Surname 'Garrett' folds to the same string as the 1839 entry's, and the given name of both begins A.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0527",
-      "as_printed": "Garrett, Augustus, auctioneer, real estate, bds. Sauganash Hotel",
-      "printed_page": 15,
-      "occupation_1839": "auctioneer, real estate",
-      "address_1839": "bds. Sauganash Hotel",
-      "streets_1839": [],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "garrett_a",
-    "household_id": "hh_garrett_a",
-    "grade_1835": "attested",
-    "occupation_1835": "auctioneer",
-    "lives_at_1835": null,
-    "could_carry": [],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {

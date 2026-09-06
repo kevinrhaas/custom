@@ -9,7 +9,7 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "f72fd7d99ee84a8507ad913a8ef583c13096a1d84693971f8e22f9c2c62d3bf5",
+    "fingerprint": "36ca5aa705f747dc8d5e27288067c838626a08471574afff6d859045707ec4c9",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 788,
@@ -65,7 +65,7 @@
       "candidates": [
         {
           "id": "abbot_8_g",
-          "name": "8. G. Abbot",
+          "name": "[?] G. Abbot",
           "rule": "OCR variant (0.91 similarity to 'abbot')"
         },
         {
@@ -21636,7 +21636,7 @@
       "candidates": [
         {
           "id": "perry_a_8",
-          "name": "A. 8. Perry",
+          "name": "A. [?] Perry",
           "rule": "exact surname"
         },
         {
@@ -21695,7 +21695,7 @@
       "candidates": [
         {
           "id": "perry_a_8",
-          "name": "A. 8. Perry",
+          "name": "A. [?] Perry",
           "rule": "OCR variant (0.89 similarity to 'perry')"
         },
         {

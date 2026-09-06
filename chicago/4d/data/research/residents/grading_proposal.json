@@ -59,19 +59,20 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6695,
+  "identities": 6697,
   "by_grade": {
-   "not_1835_resident": 4271,
+   "None": 37,
+   "not_1835_resident": 4270,
    "inferred": 1940,
-   "attested": 450,
-   "None": 34
+   "attested": 450
   },
   "by_subtype": {
-   "None": 4986,
+   "None": 4988,
    "projected_resident": 1709
   },
   "by_rule": {
-   "G0": 4271,
+   "G5": 37,
+   "G0": 4270,
    "G3": 1708,
    "G1b": 379,
    "G2b": 38,
@@ -80,13 +81,13 @@
    "G2e": 125,
    "G2c": 34,
    "G2a": 34,
-   "G5": 34,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 68,
-  "conflicts": 67
+  "proposed_changes_to_existing_people": 71,
+  "conflicts": 70
  },
  "proposals": [
+  {"identity":"id_abbot_g","name":"G Abbot","canonical_person_id":"abbot_8_g","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
   {"identity":"id_abbot_samuel_e","name":"Samuel E Abbot","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYN-3CDH:28"],"evidence_classes":["census_1840"]},
   {"identity":"id_abbott_constant","name":"Constant Abbott","canonical_person_id":"abbott_constant","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_constant_abbott"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_abbott_thomas_l","name":"Thomas L Abbott","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0176","directories:n1844_e0001"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -2318,6 +2319,7 @@
   {"identity":"id_furlonsr_michael","name":"Michael Furlonsr","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0663"],"evidence_classes":["directory_1844"]},
   {"identity":"id_furman_lieut_john_g","name":"Lieut John G Furman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0227"],"evidence_classes":["death_notice"]},
   {"identity":"id_fussey_john","name":"John Fussey","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1035","directories:n1844_e0664"],"evidence_classes":["directory_1843","directory_1844"]},
+  {"identity":"id_gabbs_james","name":"James Gabbs","canonical_person_id":"gabbs_james_i1","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
   {"identity":"id_gabel_peter","name":"Peter Gabel","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_022_1"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_gadsl_henry","name":"Henry Gadsl","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-9HY:10"],"evidence_classes":["census_1840"]},
   {"identity":"id_gaff_peter","name":"Peter Gaff","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-98M:15"],"evidence_classes":["census_1840"]},
@@ -3077,8 +3079,8 @@
   {"identity":"id_hubbard_ahira","name":"Ahira Hubbard","canonical_person_id":"hubbard_ahira","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e1348","census_1840:33S7-9YYJ-9M5:19","directories:n1844_e0914","newspapers:person_hubbard_a_b"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_1833_1835","town_layer"]},
   {"identity":"id_hubbard_b","name":"B Hubbard","canonical_person_id":"hubbard_b","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_b_hubbard"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_hubbard_elijah_kent","name":"Elijah Kent Hubbard","canonical_person_id":"hubbard_elijah_kent","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0308","civic:poll_1835_033","newspapers:person_e_k_hubbard","newspapers:person_hubbard_e_k"],"evidence_classes":["death_notice","newspaper_1833_1835","poll_1835","town_layer"]},
-  {"identity":"id_hubbard_gurdon_saltonstall","name":"Gurdon Saltonstall Hubbard","canonical_person_id":"hubbard_gurdon","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e1349","newspapers:person_hubbard_henry_g","civic:poll_1834_055","directories:f1843_e0073","directories:f1843_e0112","directories:n1844_e0915","newspapers:person_col_g_s_hubbard","newspapers:person_g_s_hubbard","civic:poll_1835_034","newspapers:person_gordon_s_hubbard","civic:tax_1833_046","census_1840:33S7-9YYJ-W6:17"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_1833_1835","poll_1834","poll_1835","tax_1833","town_layer"]},
-  {"identity":"id_hubbard_henry_g","name":"Henry G Hubbard","canonical_person_id":"hubbard_henry_g","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_056","newspapers:person_henry_g_hubbard","directories:n1844_e0916","directories:f1843_e1350"],"evidence_classes":["directory_1843","directory_1844","newspaper_1833_1835","poll_1834","town_layer"]},
+  {"identity":"id_hubbard_gurdon_saltonstall","name":"Gurdon Saltonstall Hubbard","canonical_person_id":"hubbard_gurdon","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e1349","civic:poll_1834_055","directories:f1843_e0073","directories:f1843_e0112","directories:n1844_e0915","newspapers:person_col_g_s_hubbard","newspapers:person_g_s_hubbard","civic:poll_1835_034","newspapers:person_gordon_s_hubbard","civic:tax_1833_046","census_1840:33S7-9YYJ-W6:17","newspapers:person_gurdon_s_hubbard"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_1833_1835","poll_1834","poll_1835","tax_1833","town_layer"]},
+  {"identity":"id_hubbard_henry_g","name":"Henry G Hubbard","canonical_person_id":"hubbard_henry_g","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_056","newspapers:person_henry_g_hubbard","newspapers:person_hubbard_henry_g","directories:n1844_e0916","directories:f1843_e1350"],"evidence_classes":["directory_1843","directory_1844","newspaper_1833_1835","poll_1834","town_layer"]},
   {"identity":"id_hubbard_moses","name":"Moses Hubbard","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1351","directories:n1844_e0917"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_hubbard_otis","name":"Otis Hubbard","canonical_person_id":"hubbard_otis","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1834_057"],"evidence_classes":["poll_1834","town_layer"]},
   {"identity":"id_hubinge_peley_mis","name":"Peley Mis Hubinge","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_hubinge_peley_mis"],"evidence_classes":["newspaper_letter_list"]},
@@ -4851,7 +4853,7 @@
   {"identity":"id_perkins_daniel","name":"Daniel Perkins","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1989"],"evidence_classes":["directory_1843"]},
   {"identity":"id_perring_almon","name":"Almon Perring","canonical_person_id":"perring_almon","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_almon_perring"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_perrior_william","name":"William Perrior","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1991","directories:n1844_e1424"],"evidence_classes":["directory_1843","directory_1844"]},
-  {"identity":"id_perry_abijah_s","name":"Abijah S Perry","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1992","directories:n1844_e1425"],"evidence_classes":["directory_1843","directory_1844"]},
+  {"identity":"id_perry_abijah_s","name":"Abijah S Perry","canonical_person_id":"perry_a_8","rule":"G5","grade":null,"resident_subtype":null,"evidence":["directories:f1843_e1992","directories:n1844_e1425"],"evidence_classes":["directory_1843","directory_1844","town_layer"]},
   {"identity":"id_perry_calvin","name":"Calvin Perry","canonical_person_id":"perry_calvin","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1834_089"],"evidence_classes":["poll_1834","town_layer"]},
   {"identity":"id_perry_francis","name":"Francis Perry","canonical_person_id":"perry_francis","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_francis_perry"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_person_read","name":"Read Person","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_person_read"],"evidence_classes":["newspaper_letter_list"]},
@@ -6784,6 +6786,7 @@
   {"identity":"id_zigler_isaac","name":"Isaac Zigler","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1956"],"evidence_classes":["directory_1844"]}
  ],
  "changes_to_existing_people": [
+  {"identity":"id_abbot_g","person_id":"abbot_8_g","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_andrews_davi","person_id":"andrews_davi","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_andrus_thomas","person_id":"andrus_thomas","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_barrows_mary","person_id":"barrows_mary","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
@@ -6809,6 +6812,7 @@
   {"identity":"id_egan_emeline","person_id":"egan_emeline","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_egan_william_bradshaw","person_id":"egan_william_b","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2b","direction":"down"},
   {"identity":"id_evans_sciota","person_id":"evans_sciota","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
+  {"identity":"id_gabbs_james","person_id":"gabbs_james_i1","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_gale_stephen_f","person_id":"gale_stephen_f","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2b","direction":"down"},
   {"identity":"id_greene_major_john","person_id":"greene_john","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_hall_benjamin","person_id":"hall_benjamin","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
@@ -6835,6 +6839,7 @@
   {"identity":"id_norton_nelson_r","person_id":"norton_nelson_r","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_orsemus_morrison","person_id":"orsemus_morrison","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_owenshousehold_unnamed","person_id":"owen_household_unnamed","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
+  {"identity":"id_perry_abijah_s","person_id":"perry_a_8","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_porter_eliza_chappel","person_id":"porter_eliza_chappel","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_porter_jeremiah","person_id":"porter_jeremiah","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_porthier_joseph","person_id":"porthier_joseph","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
@@ -6854,6 +6859,7 @@
   {"identity":"id_wright_john_s","person_id":"wright_john_s","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"}
  ],
  "conflicts": [
+  {"identity":"id_abbot_g","kind":"abstention","rule":"G5","person_id":"abbot_8_g","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_andrews_davi","kind":"downgrade","rule":"G3","person_id":"andrews_davi","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_andrus_thomas","kind":"downgrade","rule":"G3","person_id":"andrus_thomas","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_barrows_mary","kind":"downgrade","rule":"G3","person_id":"barrows_mary","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
@@ -6879,6 +6885,7 @@
   {"identity":"id_egan_emeline","kind":"abstention","rule":"G5","person_id":"egan_emeline","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_egan_william_bradshaw","kind":"downgrade","rule":"G2b","person_id":"egan_william_b","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_evans_sciota","kind":"downgrade","rule":"G3","person_id":"evans_sciota","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
+  {"identity":"id_gabbs_james","kind":"abstention","rule":"G5","person_id":"gabbs_james_i1","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_gale_stephen_f","kind":"downgrade","rule":"G2b","person_id":"gale_stephen_f","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_greene_major_john","kind":"abstention","rule":"G5","person_id":"greene_john","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_hall_benjamin","kind":"abstention","rule":"G5","person_id":"hall_benjamin","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
@@ -6905,6 +6912,7 @@
   {"identity":"id_norton_nelson_r","kind":"downgrade","rule":"G3","person_id":"norton_nelson_r","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_orsemus_morrison","kind":"downgrade","rule":"G3","person_id":"orsemus_morrison","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_owenshousehold_unnamed","kind":"abstention","rule":"G5","person_id":"owen_household_unnamed","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
+  {"identity":"id_perry_abijah_s","kind":"abstention","rule":"G5","person_id":"perry_a_8","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["directory_1843","directory_1844","town_layer"]},
   {"identity":"id_porter_eliza_chappel","kind":"abstention","rule":"G5","person_id":"porter_eliza_chappel","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_porter_jeremiah","kind":"abstention","rule":"G5","person_id":"porter_jeremiah","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["death_notice","town_layer"]},
   {"identity":"id_porthier_joseph","kind":"abstention","rule":"G5","person_id":"porthier_joseph","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},

@@ -350,23 +350,6 @@
   {
    "outcome": "merged",
    "person_id": "hubbard_gurdon",
-   "folded_person_id": "hubbard_g",
-   "rule": "C0",
-   "cluster": "hubbard",
-   "record_ids": [
-    "person_hubbard_henry_g"
-   ],
-   "domains": [
-    "newspapers"
-   ],
-   "sources": [
-    "chicago_democrat_1833_1835"
-   ],
-   "evidence": "T-0839: 'hubbard_g' and 'hubbard_gurdon' are one person under rule C0; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'hubbard'."
-  },
-  {
-   "outcome": "merged",
-   "person_id": "hubbard_gurdon",
    "folded_person_id": "hubbard_g_s",
    "rule": "C0",
    "cluster": "hubbard",
@@ -442,6 +425,23 @@
     "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'hubbard_gurdon_s' and 'hubbard_gurdon' are one person under rule C0; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'hubbard'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "hubbard_henry_g",
+   "folded_person_id": "hubbard_g",
+   "rule": "C5",
+   "cluster": "hubbard",
+   "record_ids": [
+    "person_hubbard_henry_g"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0839: 'hubbard_g' and 'hubbard_henry_g' are one person under rule C5; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'hubbard'."
   },
   {
    "outcome": "merged",

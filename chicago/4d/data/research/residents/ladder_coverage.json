@@ -13,7 +13,7 @@
   },
   "ruled_but_disputed": {
    "says": "The ladder ruled this person and its rung DISAGREES with the grade or the subtype the card carries, so the row is on the owner's conflict list rather than written onto the card. Nothing is graded down to close a coverage gap (T-0720).",
-   "people": 68
+   "people": 71
   },
   "absorbed_by_another_card": {
    "says": "The person's row stands on an identity the ladder ruled, but that identity names a DIFFERENT town card as its canonical person, so the rung was never offered to this one. Two cards, one identity.",
@@ -21,7 +21,7 @@
   },
   "refused_no_identity": {
    "says": "The consolidation built no identity for this name and said so at the time: the refusal is in identity_master.json with its rule. The ladder abstains, and here is the reason it abstained.",
-   "people": 7
+   "people": 4
   }
  },
  "counts": {
@@ -33,17 +33,17 @@
    "G2b": 7,
    "G2e": 7,
    "G3": 20,
-   "G5": 34
+   "G5": 37
   },
   "refused_by_rule": {
    "R1": 2,
-   "R5": 5
+   "R5": 2
   },
-  "the_ladder_has_never_looked": 9,
-  "on_the_owners_conflict_list": 68
+  "the_ladder_has_never_looked": 6,
+  "on_the_owners_conflict_list": 71
  },
  "person_records": [
-  {"person_id":"abbot_8_g","household_id":"hh_abbot_8_g","name":"8. G. Abbot","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"a digit stands inside the printed name. On a directory line that is an address and the row is an institution; on a town card it is an OCR misreading of an initial (S. read as 8, H. as I1), so the name as stored is not a name the town ever used"},
+  {"person_id":"abbot_8_g","household_id":"hh_abbot_8_g","name":"[?] G. Abbot","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_abbot_g","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"andrews_davi","household_id":"hh_andrews_davi","name":"Davi Andrews","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","resident_research_cook_county_andrews_1884"],"identity":"id_andrews_davi","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"andrus_thomas","household_id":"hh_andrus_thomas","name":"Thomas Andrus","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","rr_dupage_andrus_1882"],"identity":"id_andrus_thomas","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"barrows_mary","household_id":"hh_barrows_mary","name":"Mary Barrows","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","early_illinois_barrows_school"],"identity":"id_barrows_mary","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
@@ -74,7 +74,7 @@
   {"person_id":"egan_william_b","household_id":"hh_egan_william_b","name":"Dr William Bradshaw Egan","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_voter_lists_1833_1835_irad","fergus_chicago_directory_1839"],"identity":"id_egan_william_bradshaw","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"egan_emeline","household_id":"hh_egan_william_b","name":"Emeline Egan","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_egan_emeline","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"evans_sciota","household_id":"hh_evans_sciota","name":"Sciota Evans","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","rr_cook_democratic_republicans_1834"],"identity":"id_evans_sciota","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"gabbs_james_i1","household_id":"hh_gabbs_james_i1","name":"James I1. Gabbs","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"a digit stands inside the printed name. On a directory line that is an address and the row is an institution; on a town card it is an OCR misreading of an initial (S. read as 8, H. as I1), so the name as stored is not a name the town ever used"},
+  {"person_id":"gabbs_james_i1","household_id":"hh_gabbs_james_i1","name":"James [?] Gabbs","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_gabbs_james","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"gale_stephen_f","household_id":"hh_gale_stephen_f","name":"Stephen F. Gale","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","calumet_club_early_chicago_1879","chicago_voter_lists_1833_1835_irad"],"identity":"id_gale_stephen_f","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"greene_john","household_id":"hh_greene_john","name":"Major John Greene","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","drloih_fort_dearborn"],"identity":"id_greene_major_john","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"handy_major","household_id":"hh_handy_major","name":"Major Handy","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_handy_major","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
@@ -101,7 +101,7 @@
   {"person_id":"norton_nelson_r","household_id":"hh_norton_nelson_r","name":"Nelson R. Norton","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_norton_nelson_r","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"orsemus_morrison","household_id":"hh_orsemus_morrison","name":"Morrison Orsemus","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","resident_research_cook_morrison_album"],"identity":"id_orsemus_morrison","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"owen_household_unnamed","household_id":"hh_owen_thomas_jv","name":"Owen's household, unnamed","grade_on_the_card":"inferred","resident_subtype":null,"sources":[],"identity":"id_owenshousehold_unnamed","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"perry_a_8","household_id":"hh_perry_a_8","name":"A. 8. Perry","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835","fergus_chicago_directory_1839"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"a digit stands inside the printed name. On a directory line that is an address and the row is an institution; on a town card it is an OCR misreading of an initial (S. read as 8, H. as I1), so the name as stored is not a name the town ever used"},
+  {"person_id":"perry_a_8","household_id":"hh_perry_a_8","name":"A. [?] Perry","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835","fergus_chicago_directory_1839"],"identity":"id_perry_abijah_s","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"porter_jeremiah","household_id":"hh_porter_jeremiah","name":"Rev. Jeremiah Porter","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_porter_jeremiah","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"porter_eliza_chappel","household_id":"hh_porter_jeremiah","name":"Eliza Chappel Porter","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_porter_eliza_chappel","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"porthier_joseph","household_id":"hh_porthier_joseph","name":"Joseph Porthier","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","buck_pioneer_milwaukee_porthier_1835"],"identity":"id_porthier_joseph","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},

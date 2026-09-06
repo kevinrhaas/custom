@@ -1,5 +1,131 @@
 # STATUS
 
+## Shipped 2026-09-06 — T-0860: the three kin ties #947 read and the survey could not see
+
+**What shipped.** Kin rows on both people for three ties `dev` did not hold, each
+under a written ruling:
+
+| tie | on dev before |
+|---|---|
+| Mark Beaubien — brother of Jean Baptiste | `hh_beaubien_mark` carried **no kin at all** |
+| Charles Loomis Harmon — son of Elijah Dewey Harmon | `hh_harmon_brothers` carried **no kin at all** |
+| Isaac Dewey Harmon — son of Elijah Dewey Harmon | same |
+
+**The Miller ruling is untouched.** #947 and #949 disagree on it — #949 landed it
+at `inferred`, #947 refused it because "Samuel, the landlord" is a surname the
+dataset carries five times. The owner's call, in session: land the three, leave
+Miller as `dev` has it. That disagreement is not reopened.
+
+### Why the survey could not see them, and it was mechanical
+
+**#947 adds no tools.** It is data-only, so its three findings were readings a
+person made rather than anything the survey derives. Two separate gaps:
+
+1. `"Andreas's life of **his brother** Jean Baptiste"` — the pattern reads
+   `<relation> of <Name>`, and English puts no "of" after "his brother".
+2. `"lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey
+   Harmon, …'"` — one subject and five others, which no `<relation> <Name>`
+   pattern reaches.
+
+### One gap closed by generalising, the other deliberately not
+
+**`PROSE_POSSESSIVE`** reads `his|her <relation> <Name>`, bounded exactly as
+`PROSE` is. Measured before switching it on: **10 matches** across the committed
+prose, and the existing "must resolve to exactly one town person" step refuses
+`his mother Potawatomi` and the rest on its own. **The net is wider; the sieve is
+unchanged.**
+
+That exposed a second thing. The documented ellipsis rule — a quoted source that
+elides the surname is re-read with the SUBJECT'S — was implemented as *exactly one
+token*, a fair reading of `Samuel` and a wrong one of `Jean Baptiste`. It now
+covers a compound forename, and applies **only after the printed name has failed
+to resolve on its own**, so a name that stands alone is never rewritten and a
+re-read can fail to find somebody but cannot find the wrong somebody.
+
+**The Harmon gap gets no pattern, on purpose** — a regex fitted to that sentence
+would be fitted to that sentence. `data/residents/kin_readings.json` is an
+authored seam: a kinship a person read where no pattern reaches, recorded as a
+statement so it becomes a proposal and is ruled like any other. It earns the right
+to be **asked** and nothing about the answer.
+
+What stops it being a back door: **every entry names the path its quote stands on,
+and `--check` refuses an entry whose quote is not actually there.** Three
+self-test cases hold it — a quote that is nowhere, a card not in the tree, and the
+committed readings really standing on their cards.
+
+### Widening the net surfaced a new question, and it is answered
+
+`"his sons Charles Henry"` became landable. **Refused**, on #947's own reading:
+Andreas names the son in full, `hh_beaubien_charles_h` carries initials, and
+deciding they are one man is a crosswalk ruling rather than a kinship — the
+father's own record already says that of the two sons named, one has a household
+here.
+
+Rulings **13 → 17** (13 landed, 4 refused). Kin gate green, self-test green,
+`validate.py` PASS with 0 errors — the reciprocity check reads all four new rows.
+
+## Shipped 2026-09-06 — T-0855: the Hubbard fold rests on the man his own transcription names
+
+**What shipped.** `hubbard_g` folds onto `hubbard_henry_g`, not `hubbard_gurdon`.
+Its only press evidence is transcribed **`Hubbard, [Henry] G.`** and cites
+`person_hubbard_henry_g`; `hh_hubbard_henry_g.json` is a separate **attested** card
+in the same tree. T-0839 (#929) had put one man's record on another man.
+
+### It needed a new rule, not a bent one
+
+`C2` — an initial onto its one full forename — **refuses** a cluster with two rivals,
+on principle, and a bare `G.` has two here: Gurdon and Henry G. What settles it is not
+a name-matching inference at all: somebody read the page and wrote `[Henry]`.
+
+> **C5 — THE TRANSCRIBER NAMED HIM, IN BRACKETS.** A bracketed forename is an
+> editorial expansion by whoever transcribed the source. It is evidence about
+> IDENTITY where an initial is only evidence about spelling, so it outranks the
+> initial and settles a cluster C2 would refuse.
+
+The old ruling's `against` read *"No second Hubbard household is on any card, and no
+source reached names one."* Both halves were false. It now says so.
+
+**`chicago_democrat_1833_1835` stays on Gurdon** — three of the four cards still
+folded onto him cite it too, so it is his by other routes. Only the single wrong
+`press_evidence` entry came off, and that was checked before anything was removed.
+
+### Two defects found while fixing it, and both were hiding it
+
+1. **`--apply` could not correct a mis-fold.** Its already-folded branch only *read*
+   the stub, so rewriting the ruling and re-running changed nothing — the stub and the
+   redirect table went on naming Gurdon. It now re-points a corrected fold and records
+   `repointed_from`.
+2. **`--check` passed the whole time the ruling said Henry and the data said Gurdon.**
+   It verified a redirect points at *a* real person, never at the person the **ruling**
+   names. Two copies of one fact disagreeing — this project's oldest failure shape —
+   and it made a corrected ruling silently inert.
+
+Both are asserted now, and both were proved to fire by putting the redirect back and
+watching them catch it.
+
+### The gate the ticket asked for
+
+`bracket_conflict()`, pure and self-tested: a folded card whose reading brackets a
+forename absent from its survivor is refused. Five cases, including **the false
+positive it would otherwise have shipped** — a bracketed RANK (`Allen, [Lieut] James`)
+is not a forename and must not trip it.
+
+Measured over all 42 folded records: **one** tripped it, this one. The other 41 stand,
+so #929's consolidation is sound and this was an isolated ruling error.
+
+### Where it came from
+
+Draining the open-PR backlog. **#932** was the losing rival to #929 and superseded on
+coverage (36 clusters ruled against 31, 42 folds against 34) — but it was **right about
+this card**, and closing it on the numbers would have buried the finding. Reading a
+losing rival before closing it is what turned this up.
+
+### Visible-progress rule
+
+**Visible**, and it settles the commitment made two entries ago: a man's card now
+carries the reading that names him, and another man's stops carrying a record that was
+never his.
+
 ## Shipped 2026-09-05 — T-0817: the owner's queue ranking stops going backwards
 
 **What shipped.** Two halves, because the fault has two.

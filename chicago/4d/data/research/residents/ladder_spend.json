@@ -14,7 +14,7 @@
   "person_records": 1362,
   "carried_by_the_civic_mint": 489,
   "rungs_spent": 796,
-  "conflicts_for_the_owner": 68,
+  "conflicts_for_the_owner": 71,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 88,
@@ -23,7 +23,7 @@
    "G3": 628
   },
   "conflicts_by_kind": {
-   "abstention": 34,
+   "abstention": 37,
    "downgrade": 33,
    "subtype": 1
   }
@@ -7202,6 +7202,21 @@
  ],
  "conflicts": [
   {
+   "person_id": "abbot_8_g",
+   "household_id": "hh_abbot_8_g",
+   "name": "[?] G. Abbot",
+   "identity": "id_abbot_g",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
    "person_id": "andrews_davi",
    "household_id": "hh_andrews_davi",
    "name": "Davi Andrews",
@@ -7592,6 +7607,21 @@
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
+   "person_id": "gabbs_james_i1",
+   "household_id": "hh_gabbs_james_i1",
+   "name": "James [?] Gabbs",
+   "identity": "id_gabbs_james",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
    "person_id": "gale_stephen_f",
    "household_id": "hh_gale_stephen_f",
    "name": "Stephen F. Gale",
@@ -7959,6 +7989,21 @@
    "rule": "G5",
    "grade": "inferred",
    "resident_subtype": null,
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
+   "person_id": "perry_a_8",
+   "household_id": "hh_perry_a_8",
+   "name": "A. [?] Perry",
+   "identity": "id_perry_abijah_s",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
    "kind": "abstention",
    "proposed": {
     "grade": null,
