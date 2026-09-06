@@ -41,6 +41,11 @@ ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = ROOT / "data" / "research" / "land_sales"
 RESIDENTS = ROOT / "data" / "residents"
 SOURCE_ID = "isa_public_domain_land_tract_sales"
+# The one file under the domain that is NOT derived from the deposit: the RULINGS on the
+# crosswalk's proposals (T-0700). A judgement is not a derivation, so it is hand-authored,
+# it is not in GENERATED, and --check validates it instead of re-deriving it.
+RULINGS_NAME = "resident_rulings.json"
+RULING_KINDS = ("upheld", "refused")
 # THE DEPOSITS, IN THE ORDER THEY WERE ADDED, and that order is load-bearing. Record
 # ids are positional — `ls0001` upward across the whole reading — and data/structures/
 # *.json cite them by id, so a new deposit APPENDS and never renumbers what is already
@@ -321,7 +326,21 @@ def resident_names() -> list:
     return out
 
 
-def build_resident_crosswalk(rows: list, ids: dict) -> dict:
+def load_rulings(domain: Path) -> dict:
+    """The hand-authored rulings, keyed by the purchaser spelling they rule on.
+
+    Absent is legal and means "nobody has ruled yet" — which is the state every spelling
+    was in before T-0700, and the state the other twenty-six are still in (T-0848).
+    """
+    path = domain / RULINGS_NAME
+    if not path.exists():
+        return {}
+    doc = load(path)
+    return {r["purchaser_as_read"]: r for r in doc.get("ruled") or []}
+
+
+def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
+                            rulings: dict | None = None) -> dict:
     """Propose a correspondence between a purchaser and a person the town already holds.
 
     ONE rule, and it is deliberately the strictest of the ones this project uses: the
@@ -336,9 +355,19 @@ def build_resident_crosswalk(rows: list, ids: dict) -> dict:
     # "a spelling pair whose evidence names no unit this domain has read — write the
     # record id" — and it is provenance either way: a refusal a reader cannot trace back
     # to the rows behind it is a refusal nobody can check.
-    by_name = {}
+    by_name, residences = {}, {}
     for row in rows:
         by_name.setdefault(row["purchaser"], []).append(ids[row["purchase_no"]])
+        # EVERY row of a spelling, not the first. T-0700: Frank Dill enters the same
+        # quarter-section twice on one day and only the SECOND row states COOK, so a
+        # first-row read graded him `inferred` and printed `residence_column: UNKNOWN`
+        # while the register was saying Cook County on the page. The README's rule is
+        # that a COOK row grades `documented` for residence in Cook County on the date
+        # of sale; it can only fire if the reading sees the row that carries it.
+        seen_res = residences.setdefault(row["purchaser"], [])
+        if row["residence"] not in seen_res:
+            seen_res.append(row["residence"])
+    rulings = load_rulings(domain) if rulings is None else rulings
     people = resident_names()
     by_surname = {}
     for pid, name, hh in people:
@@ -351,7 +380,7 @@ def build_resident_crosswalk(rows: list, ids: dict) -> dict:
             continue
         seen.add(as_read)
         surname, givens = surname_of(as_read), givens_of(as_read)
-        cook = row["residence"].upper() == "COOK"
+        cook = any(r.upper() == "COOK" for r in residences[as_read])
         candidates = by_surname.get(surname, [])
         if not givens:
             refusals.append({
@@ -391,6 +420,25 @@ def build_resident_crosswalk(rows: list, ids: dict) -> dict:
                 "evidence": ["data/residents/" + (RESIDENTS / "index.json").name],
             })
             continue
+        # THE RULING, if one has been made. The rule above PROPOSES; it does not decide,
+        # and tools/spend_land_sales.py re-adjudicates nothing by its own rule 1, so
+        # before T-0700 there was nobody between the proposal and the card. A refusal
+        # here moves the proposal out of `matches[]` and states the ruling as the rule
+        # that refused it; the card is retracted by spend_land_sales.py --build.
+        ruling = rulings.get(as_read)
+        if ruling and ruling.get("ruling") == "refused":
+            refusals.append({
+                "a": as_read, "b": name,
+                "rule": ruling["reasoning"],
+                "record_ids": sorted(by_name[as_read]),
+                "evidence": ["data/research/land_sales/" + RULINGS_NAME],
+                "ruled_on": ruling.get("ruled_on"),
+                "ruled_under": ruling.get("ticket"),
+                "was_proposed_as": "%s matches %s: the residents layer holds exactly one "
+                                   "person of the surname and the forename agrees %s."
+                                   % (as_read, name, why),
+            })
+            continue
         matches.append({
             "purchaser_as_read": as_read,
             "record_ids": sorted(by_name[as_read]),
@@ -400,8 +448,12 @@ def build_resident_crosswalk(rows: list, ids: dict) -> dict:
             "match": grade,
             "rule": "%s matches %s: the residents layer holds exactly one person of the "
                     "surname and the forename agrees %s." % (as_read, name, why),
-            "residence_column": row["residence"],
+            "residence_column": ", ".join(residences[as_read]),
             "evidence_grade": "documented" if cook else "inferred",
+            "ruling": ({"ruling": ruling["ruling"], "ruled_on": ruling.get("ruled_on"),
+                        "ticket": ruling.get("ticket"),
+                        "checked_against": ruling.get("checked_against") or [],
+                        "reasoning": ruling["reasoning"]} if ruling else None),
             "what_it_evidences": (
                 "The register states this purchaser's residence as COOK, so the sale is "
                 "contemporary evidence that a man of this name lived in Cook County on "
@@ -424,7 +476,14 @@ def build_resident_crosswalk(rows: list, ids: dict) -> dict:
         # it rests on cannot be spent.
         "source_id": SOURCE_ID,
         "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, "
-                "or writes to data/residents/. T-0514 and T-0515 spend this file.",
+                "or writes to data/residents/. T-0514 and T-0515 spend this file. A match "
+                "carrying a `ruling` block has been ADJUDICATED (T-0700, "
+                "resident_rulings.json); one carrying `ruling: null` is still only what "
+                "the mechanical rule proposed, and a refused proposal is in refusals[] "
+                "with the ruling as its rule.",
+        "ruled": {"upheld": sum(1 for m in matches if (m.get("ruling") or {}).get("ruling") == "upheld"),
+                  "refused": sum(1 for r in refusals if r.get("ruled_under")),
+                  "unruled": sum(1 for m in matches if not m.get("ruling"))},
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),
                    "matched": len(matches), "refused": len(refusals)},
         "matches": matches,
@@ -545,7 +604,7 @@ def derive(domain: Path) -> dict:
     out["entries.json"] = build_entries(rows, ordered)
     out["coverage.json"] = build_coverage(rows)
     out["crosswalk.json"] = build_crosswalk(rows, ids)
-    out["resident_crosswalk.json"] = build_resident_crosswalk(rows, ids)
+    out["resident_crosswalk.json"] = build_resident_crosswalk(rows, ids, domain)
     return out
 
 
@@ -560,11 +619,61 @@ def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
     return 0
 
 
+def check_rulings(domain: Path, rows: list, ids: dict) -> list:
+    """The rulings file is hand-authored, so the gate reads it rather than re-deriving it.
+
+    What it holds: a ruling names a spelling the register actually sold to, it rules on a
+    proposal the mechanical rule actually made, it agrees with that proposal about WHO is
+    being ruled on, and it says on the record what kind of ruling it is and why. A ruling
+    that fails any of those rules on nothing at all.
+    """
+    path = domain / RULINGS_NAME
+    if not path.exists():
+        return []
+    doc = load(path)
+    bad = []
+    if doc.get("schema") != 1:
+        bad.append("land_sales: %s: schema must be 1" % RULINGS_NAME)
+    proposed = {m["purchaser_as_read"]: m["resident_id"]
+                for m in build_resident_crosswalk(rows, ids, domain, rulings={})["matches"]}
+    seen = set()
+    for r in doc.get("ruled") or []:
+        who = r.get("purchaser_as_read")
+        if who in seen:
+            bad.append("land_sales: %s: %r is ruled on twice" % (RULINGS_NAME, who))
+        seen.add(who)
+        if who not in proposed:
+            bad.append("land_sales: %s: %r is not a purchaser the crosswalk proposed a "
+                       "match for — a ruling on nothing" % (RULINGS_NAME, who))
+            continue
+        if r.get("resident_id") != proposed[who]:
+            bad.append("land_sales: %s: %r is ruled against %r and the crosswalk proposed "
+                       "%r" % (RULINGS_NAME, who, r.get("resident_id"), proposed[who]))
+        if r.get("ruling") not in RULING_KINDS:
+            bad.append("land_sales: %s: %r has ruling %r, not one of %s"
+                       % (RULINGS_NAME, who, r.get("ruling"), ", ".join(RULING_KINDS)))
+        for field in ("ruled_on", "ticket", "reasoning"):
+            if not (r.get(field) or "").strip():
+                bad.append("land_sales: %s: %r states no %s" % (RULINGS_NAME, who, field))
+        if not (r.get("checked_against") or []):
+            bad.append("land_sales: %s: %r names nothing it was checked against — a "
+                       "judgement nobody can go back to" % (RULINGS_NAME, who))
+    return bad
+
+
 def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
     bad = []
     missing = [d["tsv"] for d in DEPOSITS if not (domain / "text" / d["tsv"]).exists()]
     if missing:
         return ["land_sales: the deposit %s is not committed" % m for m in missing]
+    rows = read_tsv(domain)
+    ordered, n = [], 1
+    for dep in DEPOSITS:
+        mine = [r for r in rows if r["_file"] == dep["tsv"]]
+        ordered += build_records(mine, start=n)["records"]
+        n += len(mine)
+    bad += check_rulings(domain, rows,
+                         {row["purchase_no"]: rec["id"] for row, rec in zip(rows, ordered)})
     out = derive(domain)
     for rel, doc in out.items():
         path = domain / rel
@@ -596,7 +705,14 @@ def _fixture(tmp: Path) -> Path:
         # the fixture could not tell "declared read" from "refused as truncated" at all.
         + "\t".join(["0000003", "HALE JOHN", "UNKNOWN", "", "LOT2BL79", "16", "39N",
                      "14E", "3", "COOK", "0000.00", "000.00", "60.00", "SC",
-                     "10/22/1833", "817", "100"]) + "\n", encoding="utf-8")
+                     "10/22/1833", "817", "100"]) + "\n"
+        # A SECOND row for the same purchaser spelling, and the COOK one is the second.
+        # T-0700: build_resident_crosswalk read the residence off the first row of a
+        # spelling, so a purchaser whose Cook County row came second was graded inferred
+        # while the register said COOK on the page. Frank Dill is the real case.
+        + "\t".join(["0000005", "HALE JOHN", "COOK", "", "LOT3BL79", "16", "39N",
+                     "14E", "3", "COOK", "0000.00", "000.00", "60.00", "SC",
+                     "10/22/1833", "817", "101"]) + "\n", encoding="utf-8")
     # The second deposit — the ring townships (T-0676). It is in the fixture because a
     # reading spread over two files is exactly what can go wrong quietly: ids that
     # restart, a coverage block that declares one file's sections against the other's
@@ -636,8 +752,52 @@ def self_test() -> int:
             print("SELF-TEST: a refusal must name the records it was made from"); return 1
         fired.append("a refusal names the records it was made from")
 
+        hale = [m for m in cross["matches"] if m["purchaser_as_read"] == "HALE JOHN"]
+        if not hale or hale[0]["evidence_grade"] != "documented":
+            print("SELF-TEST: a COOK row anywhere in a spelling must grade the match "
+                  "documented, not only a COOK row that comes first"); return 1
+        if hale[0]["residence_column"] != "UNKNOWN, COOK":
+            print("SELF-TEST: the match must print every residence its rows state"); return 1
+        fired.append("a COOK row that is not the first still grades the match documented")
+
+        # THE RULING LAYER (T-0700). A refusal moves the proposal out of matches[] and
+        # states the ruling as the rule that refused it — and the gate refuses a ruling
+        # that rules on a proposal nobody made.
+        rulings = d / RULINGS_NAME
+        dump(rulings, {"schema": 1, "ruled": [{
+            "purchaser_as_read": "HALE JOHN", "resident_id": hale[0]["resident_id"],
+            "ruling": "refused", "ruled_on": "2026-09-05", "ticket": "T-0700",
+            "checked_against": ["the fixture"], "reasoning": "the fixture refuses it"}]})
+        build(d, quiet=True)
+        cross = load(d / "resident_crosswalk.json")
+        if any(m["purchaser_as_read"] == "HALE JOHN" for m in cross["matches"]):
+            print("SELF-TEST: a refused ruling must leave matches[]"); return 1
+        ref = [r for r in cross["refusals"] if r["a"] == "HALE JOHN"]
+        if not ref or ref[0].get("ruled_under") != "T-0700":
+            print("SELF-TEST: a refused ruling must land in refusals[] naming its ticket")
+            return 1
+        if cross["ruled"]["refused"] != 1:
+            print("SELF-TEST: the crosswalk must count what has been ruled"); return 1
+        fired.append("a refused ruling moves the proposal into refusals[] under its ticket")
+
+        doc = load(rulings)
+        doc["ruled"][0]["purchaser_as_read"] = "NOBODY AT ALL"
+        dump(rulings, doc)
+        if not check(d, quiet=True):
+            print("SELF-TEST: a ruling on a proposal nobody made did not fail the gate")
+            return 1
+        fired.append("a ruling on a proposal nobody made fails the gate")
+        doc["ruled"][0].update({"purchaser_as_read": "HALE JOHN", "reasoning": ""})
+        dump(rulings, doc)
+        if not check(d, quiet=True):
+            print("SELF-TEST: a ruling with no reasoning did not fail the gate"); return 1
+        fired.append("a ruling that states no reasoning fails the gate")
+        rulings.unlink()
+        build(d, quiet=True)
+        cross = load(d / "resident_crosswalk.json")
+
         ring = load(d / records_name(DEPOSITS[1]["tsv"]))
-        if [r["id"] for r in ring["records"]] != ["ls0004"]:
+        if [r["id"] for r in ring["records"]] != ["ls0005"]:
             print("SELF-TEST: the second deposit's ids must continue the first's"); return 1
         if ring["records"][0]["locator"]["text_file"] != DEPOSITS[1]["tsv"]:
             print("SELF-TEST: a record must cite the deposit it is on"); return 1

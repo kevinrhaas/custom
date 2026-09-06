@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "domain": "land_sales",
+  "hand_authored": true,
+  "_doc": "RULINGS on the crosswalk's proposals. tools/read_land_sales.py --build folds this file onto resident_crosswalk.json; --check refuses a ruling that names a spelling the register does not hold, or a person the proposal did not name. This file is HAND-AUTHORED and is the one file under data/research/land_sales/ that is not derived from the deposit — a judgement is not a derivation, and the project does not pretend otherwise.",
+  "why_this_exists": "build_resident_crosswalk() applies ONE mechanical rule: the surname agrees, the residents layer holds exactly one person of that surname, and the first forename agrees in full or as an initial. That rule proposes; it does not decide. tools/spend_land_sales.py's own rule 1 says so in as many words — 'ONLY WHAT THE CROSSWALK ALREADY DECLARED. This pass re-adjudicates nothing.' — so between the proposal and the card there was nobody. T-0700 is the ticket that noticed it, against the nine spellings the ring townships added (T-0676).",
+  "the_ruling_rule": "A proposal is UPHELD only where the town's own record of the person carries something the register's row can be checked against BEYOND a bare name — a middle initial the register repeats, a trade the purchase is consistent with, a second document, or the register's own Residence column. Where the town holds nothing but a name read once off a post-office letter list, the proposal rests on the residents layer being THIN rather than on the two records agreeing: an uncalled-for letter says a correspondent thought the name reachable at Chicago, and a tract entry says a name entered ground, and two name-only readings do not make an identity. Such a proposal is REFUSED. A ruling never raises a grade, never mints a resident, and never asserts a residence; a refusal retracts what a pass had already written.",
+  "scope": "The nine purchaser spellings the ring deposit (T-0676) added, and no others. The twenty-six spellings the first deposit matched are unruled and are T-0848.",
+  "ruled_by": "the steward loop, under T-0700",
+  "ruled": [
+    {
+      "purchaser_as_read": "PEARSONS H",
+      "resident_id": "pearsons_hiram",
+      "ruling": "upheld",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["isa_public_domain_land_tract_sales", "andreas_1884_v1", "chicago_voter_lists_1833_1835_irad"],
+      "reasoning": "The initial alone would not carry it. What carries it is that the SAME register spells him PEARSONS HIRAM on twenty-eight other rows, one of which states COOK, and that the seventeen H rows are one hand at work: sixteen of them fall on a single day, 26 June 1835, in one township, T39N R13E, and eight of those in one section. A speculator buying half of section 10 and all four eighths of section 14 in an afternoon is the man the town already holds buying at the ring, not a second Pearsons who happens to share the county, the month and the surname."
+    },
+    {
+      "purchaser_as_read": "NEWBERRY WALTER L",
+      "resident_id": "newberry_walter_loomis",
+      "ruling": "upheld",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["isa_public_domain_land_tract_sales", "chicago_american_1835", "fergus_chicago_directory_1839", "fergus_chicago_directory_1843"],
+      "reasoning": "The middle initial is the check the bare-name rule lacks, and it agrees: the town's man is Walter LOOMIS Newberry, attested at the American of 1835 and in both Fergus directories, and the register writes WALTER L. Six ring tracts entered on 26 and 27 June 1835 sit beside the town lots he was trading in the same season. Nothing here says he lived on any of it."
+    },
+    {
+      "purchaser_as_read": "WHITLOCK JAMES",
+      "resident_id": "whitlock_james",
+      "ruling": "upheld",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["isa_public_domain_land_tract_sales", "chicago_democrat_1833_1835"],
+      "reasoning": "The town's James Whitlock is documented in four numbers of the Democrat between March and July 1835 AT A TRADE, and the trade is register of the land office. A land-office register entering a federal tract in June 1835 is the purchase the record would predict; the two readings are consistent in occupation as well as in name, which is the corroboration the mechanical rule could not see. The trade is what upholds this, and it is not evidence that he lived on the eighty acres in T38N R14E."
+    },
+    {
+      "purchaser_as_read": "CAMPBELL JAMES B",
+      "resident_id": "campbell_james_b",
+      "ruling": "upheld",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["isa_public_domain_land_tract_sales", "chicago_voter_lists_1833_1835_irad", "chicago_democrat_1833_1835", "fergus_chicago_directory_1839", "norris_directory_1844", "calumet_club_early_chicago_1879"],
+      "reasoning": "The middle initial agrees — the register writes CAMPBELL JAMES B and the town holds James B Campbell — and the town holds him across nine sources, from the poll lists of 1833-1835 to the old-settler notices, which is the densest record of the nine. Two tracts on one day, 8 August 1835, in T38N R14E and T38N R15E."
+    },
+    {
+      "purchaser_as_read": "FRAME DAVID P",
+      "resident_id": "frame_david_p",
+      "ruling": "upheld",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["isa_public_domain_land_tract_sales", "chicago_democrat_1833_1835"],
+      "reasoning": "The town's record is a single post-office letter list — the weakest it accepts — and by the ruling rule that alone would refuse. It does not, because the list did not print a bare name: the Democrat of 28 January 1834 prints 'David P.Frame' and the register writes FRAME DAVID P. All three tokens agree, and a middle initial is exactly the second discriminator T-0696 says the crosswalks want. Upheld on the initial, and on nothing else: the entry proposes no residence, and the identity remains inferred."
+    },
+    {
+      "purchaser_as_read": "DILL FRANK",
+      "resident_id": "dill_frank",
+      "ruling": "upheld",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["isa_public_domain_land_tract_sales", "chicago_voter_lists_1833_1835_irad"],
+      "reasoning": "The register itself supplies the check. Of the two rows entering the south-east quarter of section 12, T40N R13E on 10 April 1835, ls0912 states the purchaser's Residence as COOK — so the source that names him also places him in Cook County that spring, and the town's 1835 poll list places a Frank Dill at Chicago in the same year. Two records, an uncommon forename, and the county agreeing between them. WHAT THE RULING ALSO FOUND: the crosswalk was grading this proposal `inferred` and printing `residence_column: UNKNOWN`, because build_resident_crosswalk read the residence off the FIRST row of a spelling and the first row is the UNKNOWN one. The README's own rule is that a COOK row grades `documented` for residence in Cook County on the date of sale. The generator now reads every row of a spelling, and this proposal grades documented for that and nothing more — Cook County in 1835 reaches far beyond the town, and no residence in Chicago is asserted here."
+    },
+    {
+      "purchaser_as_read": "SPENCER WILLIAM G",
+      "resident_id": "spencer_william",
+      "ruling": "refused",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["chicago_democrat_1833_1835", "isa_public_domain_land_tract_sales"],
+      "reasoning": "SPENCER WILLIAM G is refused against William Spencer: the town's whole record of that man is one line of a post-office letter list — 'Spencer, William' in the Democrat's return of uncalled-for letters of 1 July 1835 — with no trade, no street and no second document, and the register adds a middle initial G the town has never seen. The mechanical rule fired because the residents layer holds exactly one Spencer, which is a fact about how thin the layer is and not about the man. Two name-only readings, disagreeing on the one token that could discriminate them."
+    },
+    {
+      "purchaser_as_read": "WILSON JOHN L",
+      "resident_id": "wilson_john",
+      "ruling": "refused",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["chicago_democrat_1833_1835", "isa_public_domain_land_tract_sales"],
+      "reasoning": "WILSON JOHN L is refused against John Wilson. The town's John Wilson is known from a single return of uncalled-for letters, the Democrat of 28 January 1834, and nothing else names him; the register adds a middle initial L the town has never seen; and John Wilson is the commonest name in this corpus, so the rule's premise — exactly one of the surname in the residents layer — measures the layer and not the population. The three entries are also of 26 January and 10 March 1836, half a year past the town's last sight of the name. Refused on the ruling rule, and it would be refused on the initial alone."
+    },
+    {
+      "purchaser_as_read": "GARRETT A ET CO",
+      "resident_id": "garrett_a",
+      "ruling": "refused",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": ["chicago_american_1835", "chicago_democrat_1833_1835", "isa_public_domain_land_tract_sales"],
+      "reasoning": "GARRETT A ET CO is refused against A. Garrett — not because the firm is a stranger, but because the purchaser is a FIRM and this crosswalk proposes correspondences between a purchaser and a PERSON. 'ET CO' is the register saying the buyer was a partnership; the eighty acres in T38N R14E entered on 1 December 1835 were entered by the house, and a card that says this person entered them says something the page does not. The town's A. Garrett is well attested — an auctioneer in four numbers of the American and the Democrat — and the identification of the firm with him is probably right and is not what is refused. Reading firms as entities in their own right, so a partnership's purchase can be recorded against the partnership and its partners named, is T-0849."
+    }
+  ]
+}

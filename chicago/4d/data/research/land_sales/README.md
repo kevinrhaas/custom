@@ -73,11 +73,58 @@ not land.
 
 **Nine more purchaser spellings meet a person the town already holds** — William Spencer,
 Walter L. Newberry, James Whitlock, James B. Campbell, A. Garrett, John L. Wilson,
-H. Pearsons, David P. Frame and Frank Dill — which is 35 matched spellings against 396
-refused across the whole domain. Two of them are the interesting ones: **Hiram Pearsons
-enters seventeen ring tracts** and **Walter Newberry six**, both while the town's own
-lots were being traded. None carries a stated residence, so all nine are `inferred`, and
-nothing here mints or regrades a resident.
+H. Pearsons, David P. Frame and Frank Dill. Two of them are the interesting ones: **Hiram
+Pearsons enters seventeen ring tracts** and **Walter Newberry six**, both while the town's
+own lots were being traded. **All nine have now been RULED ON** — six upheld, three refused
+— which is the section below, and it is what leaves the domain at 35 matched spellings
+against 396 refused.
+
+## The ruling layer (T-0700)
+
+`build_resident_crosswalk()` PROPOSES; it does not decide. `tools/spend_land_sales.py`'s
+own rule 1 — *"ONLY WHAT THE CROSSWALK ALREADY DECLARED. This pass re-adjudicates
+nothing"* — means that between the mechanical rule and the card there was **nobody**, and
+the ring's nine spellings reached thirty-one town cards that way. `resident_rulings.json`
+is where a judgement is written instead. It is **hand-authored** — the one file under this
+domain that is not derived from the deposit, because a judgement is not a derivation —
+and `--build` folds it onto the crosswalk while `--check` validates it: a ruling must name
+a spelling the register holds, rule on a proposal the mechanical rule actually made, agree
+with that proposal about who is being ruled on, and state its ticket, its date, what it was
+checked against, and its reasoning.
+
+**The ruling rule.** A proposal is upheld only where the town's own record of the person
+carries something the register's row can be checked against BEYOND a bare name — a middle
+initial the register repeats, a trade the purchase is consistent with, a second document,
+or the register's own Residence column. Where the town holds nothing but a name read once
+off a post-office letter list, the proposal rests on the residents layer being THIN rather
+than on the two records agreeing, and it is refused.
+
+| spelling | ruling | what carried it |
+|---|---|---|
+| PEARSONS H | upheld | the same register spells him HIRAM on 28 other rows; 16 of the 17 H rows fall on one day in one township |
+| NEWBERRY WALTER L | upheld | the middle initial agrees with Walter **Loomis** Newberry, attested in the American and both Fergus directories |
+| WHITLOCK JAMES | upheld | the town's James Whitlock is **register of the land office** — the purchase is what his trade would predict |
+| CAMPBELL JAMES B | upheld | the middle initial agrees, and nine sources hold him |
+| FRAME DAVID P | upheld | the letter list printed "David P.Frame"; all three tokens agree |
+| DILL FRANK | upheld | ls0912 states **COOK**, and the 1835 poll list has a Frank Dill at Chicago |
+| SPENCER WILLIAM G | refused | one letter-list line, and a middle initial the town has never seen |
+| WILSON JOHN L | refused | the same, on the commonest name in the corpus, and the entries are 1836 |
+| GARRETT A ET CO | refused | the purchaser is a **firm**; this crosswalk proposes people (T-0849) |
+
+A refusal is not free: it moves the proposal into `refusals[]`, and
+`spend_land_sales.py --build` **retracts** the paragraph the earlier pass had written onto
+the card. That retraction is the write made reversible, and it is held by a round-trip
+assertion in `--self-test`.
+
+**What ruling on them found.** The crosswalk read each purchaser's residence off the FIRST
+row of that spelling. Frank Dill enters the same quarter-section twice on 10 April 1835 and
+only the second row states COOK, so he was graded `inferred` against a source that places
+him in Cook County; Hiram Pearsons was the same. The reading now takes every row of a
+spelling, both grade `documented` — for Cook County on the date of sale and nothing more —
+and a card whose paragraph no longer says what the crosswalk says is a gate failure, where
+`gaps()` had only ever asked whether a paragraph was PRESENT.
+
+**Still unruled:** the twenty-six spellings the first deposit matched (**T-0848**).
 
 **Every ruling now names the records it was made from.** `record_ids` on each match and
 each refusal in both crosswalks says which sales the ruling was made from — the spend
@@ -101,11 +148,11 @@ section query, the deposit line, the purchase number and the register's own volu
 page. `data/research/domains.json` states it; `tools/research_domains.py --check` holds
 the shape and `tools/read_land_sales.py --check` holds the reading.
 
-**Hand-authored:** this README, and nothing else. Every judgement in the crosswalks was
+**Hand-authored:** this README and `resident_rulings.json`, and nothing else. Every judgement in the crosswalks was
 made by a rule that is written out beside it.
 
 **Generated, and re-derived by the gate:** `entries.json`, one `records/entries_*.json`
-per deposit, `coverage.json`, `crosswalk.json` and `resident_crosswalk.json` — all
+per deposit, `coverage.json`, `crosswalk.json` and `resident_crosswalk.json` (which folds the hand-authored rulings) — all
 written by `tools/read_land_sales.py --build` from the committed deposits in `text/`,
 and all re-derived by `--check`, which refuses a committed file that has drifted. The
 deposits themselves are written by `tools/harvest_land_sales.py --sweep`, which reaches

@@ -342,3 +342,5 @@ T-0846 — The four other spend passes can write the same paragraph onto a card 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie
+T-0848 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
+T-0849 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it

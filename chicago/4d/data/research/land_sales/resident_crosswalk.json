@@ -3,11 +3,16 @@
   "domain": "land_sales",
   "generated_by": "tools/read_land_sales.py --build",
   "source_id": "isa_public_domain_land_tract_sales",
-  "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file.",
+  "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
+  "ruled": {
+    "upheld": 6,
+    "refused": 3,
+    "unruled": 29
+  },
   "counts": {
     "purchasers": 431,
-    "matched": 38,
-    "refused": 393
+    "matched": 35,
+    "refused": 396
   },
   "matches": [
     {
@@ -47,9 +52,10 @@
       "household_id": "hh_pearsons_hiram",
       "match": "forename_agrees",
       "rule": "PEARSONS HIRAM matches Hiram Pearsons: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+      "residence_column": "UNKNOWN, COOK",
+      "evidence_grade": "documented",
+      "ruling": null,
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
       "purchaser_as_read": "ELSTON DANIEL",
@@ -63,6 +69,7 @@
       "rule": "ELSTON DANIEL matches Daniel Elston: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -77,6 +84,7 @@
       "rule": "HARTZELL THOMAS matches Thomas Hartzell: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "ILLINOIS",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -90,8 +98,9 @@
       "household_id": "hh_wolcott_alexander",
       "match": "forename_agrees",
       "rule": "WOLCOTT ALEXANDER matches Alexander Wolcott: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "ILLINOIS",
+      "residence_column": "ILLINOIS, UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -118,6 +127,7 @@
       "rule": "BRONSON ARTHUR matches Arthur Bronson: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -132,6 +142,7 @@
       "rule": "CARVER DAVID matches David Carver: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -147,6 +158,7 @@
       "rule": "CASEY EDWARD W matches Edward W. Casey: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -161,6 +173,7 @@
       "rule": "CHANDLER JOSEPH matches Joseph Chandler: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -176,6 +189,7 @@
       "rule": "CLYBOURNE ARCHIBALD matches Archibald Clybourne: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -190,6 +204,7 @@
       "rule": "COLE PARKER M matches Parker M. Cole: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -207,6 +222,7 @@
       "rule": "DOLE GEORGE W matches George Washington Dole: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -226,6 +242,7 @@
       "rule": "FULLERTON ALEXANDER matches Alexander N. Fullerton: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -265,6 +282,7 @@
       "rule": "HALE JOHN matches John Hale: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -280,6 +298,7 @@
       "rule": "INGERSOLL CHESTER matches Chester Ingersoll: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -298,6 +317,7 @@
       "rule": "KINGSTON PAUL matches Paul Kingston: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -313,6 +333,7 @@
       "rule": "LLOYD ALEXANDER matches Alexander Lloyd: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -332,6 +353,7 @@
       "rule": "NEWBERRY WALTER S matches Walter Loomis Newberry: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -347,6 +369,7 @@
       "rule": "PECK P F W matches Philip F. W. Peck: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -361,6 +384,7 @@
       "rule": "PRUYNE P matches Peter Pruyne: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -375,6 +399,7 @@
       "rule": "PRUYNE P AND CO matches Peter Pruyne: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -392,6 +417,7 @@
       "rule": "PRUYNE PETER matches Peter Pruyne: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -409,6 +435,7 @@
       "rule": "SPENCE JAMES matches James C Spence: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -425,6 +452,7 @@
       "rule": "STEELE ASHBEL matches Ashbel Steele: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -439,6 +467,7 @@
       "rule": "VANDERBOGERT HENRY matches Henry Vanderbogert: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -457,6 +486,7 @@
       "rule": "WESSENCRAFT CHARLES matches Charles Wessencraft: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -474,6 +504,7 @@
       "rule": "WEST HENRY C matches Henry C. West: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -489,8 +520,9 @@
       "household_id": "hh_ludby_john",
       "match": "forename_agrees",
       "rule": "LUDBY JOHN matches John Ludby: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "COOK",
+      "residence_column": "COOK, UNKNOWN",
       "evidence_grade": "documented",
+      "ruling": null,
       "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
@@ -506,6 +538,7 @@
       "rule": "MINARD IRA matches Ira Minard: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -530,21 +563,7 @@
       "rule": "PRICE JEREMIAH matches Jeremiah Price: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "SPENCER WILLIAM G",
-      "record_ids": [
-        "ls0585",
-        "ls0586"
-      ],
-      "resident_id": "spencer_william",
-      "resident_name": "William Spencer",
-      "household_id": "hh_spencer_william",
-      "match": "forename_agrees",
-      "rule": "SPENCER WILLIAM G matches William Spencer: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -564,6 +583,18 @@
       "rule": "NEWBERRY WALTER L matches Walter Loomis Newberry: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-05",
+        "ticket": "T-0700",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_american_1835",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843"
+        ],
+        "reasoning": "The middle initial is the check the bare-name rule lacks, and it agrees: the town's man is Walter LOOMIS Newberry, attested at the American of 1835 and in both Fergus directories, and the register writes WALTER L. Six ring tracts entered on 26 and 27 June 1835 sit beside the town lots he was trading in the same season. Nothing here says he lived on any of it."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -578,6 +609,16 @@
       "rule": "WHITLOCK JAMES matches James Whitlock: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-05",
+        "ticket": "T-0700",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835"
+        ],
+        "reasoning": "The town's James Whitlock is documented in four numbers of the Democrat between March and July 1835 AT A TRADE, and the trade is register of the land office. A land-office register entering a federal tract in June 1835 is the purchase the record would predict; the two readings are consistent in occupation as well as in name, which is the corroboration the mechanical rule could not see. The trade is what upholds this, and it is not evidence that he lived on the eighty acres in T38N R14E."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -593,36 +634,20 @@
       "rule": "CAMPBELL JAMES B matches James B Campbell: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "GARRETT A ET CO",
-      "record_ids": [
-        "ls0693"
-      ],
-      "resident_id": "garrett_a",
-      "resident_name": "A. Garrett",
-      "household_id": "hh_garrett_a",
-      "match": "initial_agrees",
-      "rule": "GARRETT A ET CO matches A. Garrett: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "WILSON JOHN L",
-      "record_ids": [
-        "ls0707",
-        "ls0708",
-        "ls0714"
-      ],
-      "resident_id": "wilson_john",
-      "resident_name": "John Wilson",
-      "household_id": "hh_wilson_john",
-      "match": "forename_agrees",
-      "rule": "WILSON JOHN L matches John Wilson: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-05",
+        "ticket": "T-0700",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_voter_lists_1833_1835_irad",
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1839",
+          "norris_directory_1844",
+          "calumet_club_early_chicago_1879"
+        ],
+        "reasoning": "The middle initial agrees — the register writes CAMPBELL JAMES B and the town holds James B Campbell — and the town holds him across nine sources, from the poll lists of 1833-1835 to the old-settler notices, which is the densest record of the nine. Two tracts on one day, 8 August 1835, in T38N R14E and T38N R15E."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -653,6 +678,17 @@
       "rule": "PEARSONS H matches Hiram Pearsons: the residents layer holds exactly one person of the surname and the forename agrees as an initial only.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-05",
+        "ticket": "T-0700",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "andreas_1884_v1",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "The initial alone would not carry it. What carries it is that the SAME register spells him PEARSONS HIRAM on twenty-eight other rows, one of which states COOK, and that the seventeen H rows are one hand at work: sixteen of them fall on a single day, 26 June 1835, in one township, T39N R13E, and eight of those in one section. A speculator buying half of section 10 and all four eighths of section 14 in an afternoon is the man the town already holds buying at the ring, not a second Pearsons who happens to share the county, the month and the surname."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -667,6 +703,16 @@
       "rule": "FRAME DAVID P matches David P. Frame: the residents layer holds exactly one person of the surname and the forename agrees in full.",
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-05",
+        "ticket": "T-0700",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835"
+        ],
+        "reasoning": "The town's record is a single post-office letter list — the weakest it accepts — and by the ruling rule that alone would refuse. It does not, because the list did not print a bare name: the Democrat of 28 January 1834 prints 'David P.Frame' and the register writes FRAME DAVID P. All three tokens agree, and a middle initial is exactly the second discriminator T-0696 says the crosswalks want. Upheld on the initial, and on nothing else: the entry proposes no residence, and the identity remains inferred."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -680,9 +726,19 @@
       "household_id": "hh_dill_frank",
       "match": "forename_agrees",
       "rule": "DILL FRANK matches Frank Dill: the residents layer holds exactly one person of the surname and the forename agrees in full.",
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+      "residence_column": "UNKNOWN, COOK",
+      "evidence_grade": "documented",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-05",
+        "ticket": "T-0700",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "The register itself supplies the check. Of the two rows entering the south-east quarter of section 12, T40N R13E on 10 April 1835, ls0912 states the purchaser's Residence as COOK — so the source that names him also places him in Cook County that spring, and the town's 1835 poll list places a Frank Dill at Chicago in the same year. Two records, an uncommon forename, and the county agreeing between them. WHAT THE RULING ALSO FOUND: the crosswalk was grading this proposal `inferred` and printing `residence_column: UNKNOWN`, because build_resident_crosswalk read the residence off the FIRST row of a spelling and the first row is the UNKNOWN one. The README's own rule is that a COOK row grades `documented` for residence in Cook County on the date of sale. The generator now reads every row of a spelling, and this proposal grades documented for that and nothing more — Cook County in 1835 reaches far beyond the town, and no residence in Chicago is asserted here."
+      },
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     }
   ],
   "refusals": [
@@ -3676,6 +3732,21 @@
       ]
     },
     {
+      "a": "SPENCER WILLIAM G",
+      "b": "William Spencer",
+      "rule": "SPENCER WILLIAM G is refused against William Spencer: the town's whole record of that man is one line of a post-office letter list — 'Spencer, William' in the Democrat's return of uncalled-for letters of 1 July 1835 — with no trade, no street and no second document, and the register adds a middle initial G the town has never seen. The mechanical rule fired because the residents layer holds exactly one Spencer, which is a fact about how thin the layer is and not about the man. Two name-only readings, disagreeing on the one token that could discriminate them.",
+      "record_ids": [
+        "ls0585",
+        "ls0586"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-05",
+      "ruled_under": "T-0700",
+      "was_proposed_as": "SPENCER WILLIAM G matches William Spencer: the residents layer holds exactly one person of the surname and the forename agrees in full."
+    },
+    {
       "a": "TALCOTT ASAHELL",
       "b": "0 residents named Talcott",
       "rule": "TALCOTT ASAHELL is refused against 0 residents named Talcott: the rule needs exactly one person of the surname in the residents layer, and there are 0.",
@@ -4262,6 +4333,20 @@
       ]
     },
     {
+      "a": "GARRETT A ET CO",
+      "b": "A. Garrett",
+      "rule": "GARRETT A ET CO is refused against A. Garrett — not because the firm is a stranger, but because the purchaser is a FIRM and this crosswalk proposes correspondences between a purchaser and a PERSON. 'ET CO' is the register saying the buyer was a partnership; the eighty acres in T38N R14E entered on 1 December 1835 were entered by the house, and a card that says this person entered them says something the page does not. The town's A. Garrett is well attested — an auctioneer in four numbers of the American and the Democrat — and the identification of the firm with him is probably right and is not what is refused. Reading firms as entities in their own right, so a partnership's purchase can be recorded against the partnership and its partners named, is T-0849.",
+      "record_ids": [
+        "ls0693"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-05",
+      "ruled_under": "T-0700",
+      "was_proposed_as": "GARRETT A ET CO matches A. Garrett: the residents layer holds exactly one person of the surname and the forename agrees as an initial only."
+    },
+    {
       "a": "HALL GEORGE",
       "b": "2 residents named Hall",
       "rule": "HALL GEORGE is refused against 2 residents named Hall: the rule needs exactly one person of the surname in the residents layer, and there are 2.",
@@ -4360,6 +4445,22 @@
       "evidence": [
         "data/residents/index.json"
       ]
+    },
+    {
+      "a": "WILSON JOHN L",
+      "b": "John Wilson",
+      "rule": "WILSON JOHN L is refused against John Wilson. The town's John Wilson is known from a single return of uncalled-for letters, the Democrat of 28 January 1834, and nothing else names him; the register adds a middle initial L the town has never seen; and John Wilson is the commonest name in this corpus, so the rule's premise — exactly one of the surname in the residents layer — measures the layer and not the population. The three entries are also of 26 January and 10 March 1836, half a year past the town's last sight of the name. Refused on the ruling rule, and it would be refused on the initial alone.",
+      "record_ids": [
+        "ls0707",
+        "ls0708",
+        "ls0714"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-05",
+      "ruled_under": "T-0700",
+      "was_proposed_as": "WILSON JOHN L matches John Wilson: the residents layer holds exactly one person of the surname and the forename agrees in full."
     },
     {
       "a": "FAULKNER JOSEPH M",
