@@ -1918,6 +1918,68 @@
         ]
       },
       "source": "/tmp/d10b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 279,
+      "takenAt": "2026-09-06T21:16:16.760Z",
+      "ref": "steward/t-0717-st-marys-phase-end",
+      "commit": "05a87bb1e4f2",
+      "devCommit": "57584e9fee91",
+      "treeHash": "sha256:a3177854b8ce0fc7",
+      "treeDirty": false,
+      "changelogHash": "sha256:68796f63e4163c15",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          3.5,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_f2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 275,
+      "takenAt": "2026-09-06T21:06:38.193Z",
+      "ref": "steward/t-0717-st-marys-phase-end",
+      "commit": "8bab600fbebb",
+      "devCommit": "39c261a7a280",
+      "treeHash": "sha256:0cecb431de954791",
+      "treeDirty": false,
+      "changelogHash": "sha256:beb63f6819ab6500",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.2,
+          2.2
+        ]
+      },
+      "source": "/tmp/smoke_final_d1.log"
     }
   ]
 }

@@ -1,7 +1,7 @@
 ---
 id: T-0691
 title: The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
-state: open
+state: blocked-tech
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-09-04
 closed: null
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: T-0660's owner ruling: whether a mint-time refusal (rules 7/8) may un-mint a standing letter-list record. T-0691's own acceptance says 'Do not work this before T-0660 is ruled on', and its acceptance 2 is 'whatever T-0660's ruling is, applied here by the same tool'. Acceptance 1 alone (wiring --check into check.sh) cannot ship on its own: the check is red today (the tree holds 727 letter-list households, the derivation gives 658), so wiring it turns the gate red without the ruling that says what to do about the 76.
 needs_bake: false
 closed_at: null
 claimed_run: null
