@@ -13,9 +13,9 @@
   "the_1840_census_households": "The densest kinship the corpus holds, and its crosswalk is 235 named heads stale on dev (T-0714) and derived against 849 residents where the town now holds 1,404 (T-0698). Kin read off it would land on the wrong people. Deliberately out of this pass."
  },
  "counts": {
-  "statements_read": 257,
-  "both_ends_in_town": 30,
-  "landable": 17,
+  "statements_read": 258,
+  "both_ends_in_town": 31,
+  "landable": 18,
   "same_household": 3,
   "ambiguous": 0,
   "identity_not_asserted": 10,
@@ -270,6 +270,31 @@
     {
      "household": "hh_harmon_elijah_d",
      "person": "harmon_elijah_d"
+    }
+   ],
+   "outcome": "landable"
+  },
+  {
+   "id": "read_taylor_augustine__brother__taylor_anson_h",
+   "source": "encyclopedia_chicago_church_architecture",
+   "locator": "hh_taylor_augustine",
+   "as_read": "Chicago History Museum identifies Augustine Deodat Taylor as designer and builder of St. Mary's in 1833 using balloon-frame construction, while keeping him distinct from brother Anson who hauled lumber.",
+   "subject_as_read": "taylor_augustine",
+   "relation": "brother",
+   "other_as_read": "taylor_anson_h",
+   "subject_record": "taylor_augustine",
+   "other_record": "taylor_anson_h",
+   "authored_reading": true,
+   "subject": [
+    {
+     "household": "hh_taylor_augustine",
+     "person": "taylor_augustine"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_taylor_anson",
+     "person": "taylor_anson_h"
     }
    ],
    "outcome": "landable"

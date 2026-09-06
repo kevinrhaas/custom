@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 621, title: 'A brotherhood that was nearly deleted for being made up', kind: 'fix', ts: '2026-09-06T04:55:44.758Z', date: 'Sep 5, 2026, 11:55 PM CT',
+    items: [
+      'Augustine Taylor built St Mary\u2019s church in 1833. Anson Taylor hauled the timber for it. The town\u2019s record of Augustine has said in passing for months that the two were brothers \u2014 and a piece of work now closed had concluded that nobody ever said so, and moved to strike the sentence out as a family invented from a shared surname.',
+      'It was very nearly right to be suspicious. Five Taylor households stand in this parcel, and a shared surname is exactly the kind of thing this project refuses to build a family on. But somebody had said so: the Chicago History Museum\u2019s own account of the church separates the builder from \u2018brother Anson who hauled lumber\u2019, and that reading has been sitting in this project\u2019s research files, cited and verified, the whole time.',
+      'So the sentence stays, and it has been promoted from a remark into a recorded relationship on both men\u2019s records \u2014 which is what it should have been all along. It is marked as reasoned rather than certain, because what the files hold is a summary of the encyclopedia rather than the page itself.',
+      'One thing deliberately left alone. The same closed work also claimed Anson\u2019s real brother was Charles. Nothing found here says that either way, so it has not been written down \u2014 if it is true, it is a second family the records are sitting on, and it deserves its own reading rather than being carried along by this one.',
+    ] },
   { v: 620, title: 'Three families the records named and the town had not written down', kind: 'feat', ts: '2026-09-06T04:43:12.048Z', date: 'Sep 5, 2026, 11:43 PM CT',
     items: [
       'Mark Beaubien and Jean Baptiste Beaubien were brothers. Charles and Isaac Harmon were the sons of Dr Elijah Dewey Harmon. All three of those facts were sitting in the town’s own records, in sentences somebody had already transcribed, and none of them had been written down as a family tie. They are now, on both people in each case.',

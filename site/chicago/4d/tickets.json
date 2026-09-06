@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 11:44 PM",
+  "generated_ct": "Sep 5, 2026, 11:55 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14542,6 +14542,26 @@
       "closed_at": "2026-09-06T04:44:55.469Z",
       "claimed_run": null,
       "queue_rank": null
+    },
+    {
+      "id": "T-0861",
+      "title": "PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead",
+      "state": "claimed",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": "run 9/5/2026, 11:55:23 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 173
     }
   ]
 }
