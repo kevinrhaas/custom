@@ -57,6 +57,30 @@
   ],
   "note": "THE ONE HOUSEHOLD IN THIS PARCEL WHOSE HEAD IS DOCUMENTED TO HAVE LEFT. Andreas: 'In 1834, Dr. Harmon migrated to Texas, and until the time of his death - January 3, 1869 - divided his sojourns between that State and Chicago.' A man who divides his sojourns between Texas and Chicago is in one of them on 1 July 1835 and the source does not say which. Recorded as uncertain, and it must not be silently resolved to 'present' because his sons were here."
  },
+ "kin": [
+  {
+   "person": "harmon_elijah_d",
+   "relation": "father",
+   "household": "hh_harmon_brothers",
+   "value": "harmon_charles_l",
+   "confidence": "attested",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE DOCTOR'S TWO ELDEST SONS, NAMED IN THE SAME SENTENCE THAT RESOLVED THE FIRM'S INITIALS. Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.' Both ends of this row stand in that list under their full names, and the doctor is the man whose life it is, so the tie is read off the page rather than reasoned from a surname. It is the sentence hh_harmon_brothers already cites to turn 'C. & I. Harmon' of the Chicago Democrat into two named men; T-0734's finding is that the same sentence was never allowed to reach the other household, which went on reading as a doctor related to nobody. A KINSHIP IS NOT A PLACEMENT AND IT IS NOT A PRESENCE. Dr Harmon left for Texas in 1834 and his own record carries present_on_scene_date 'uncertain' for exactly that reason; this row does not touch it, and it must not be read as putting either generation anywhere on 1 July 1835."
+  },
+  {
+   "person": "harmon_elijah_d",
+   "relation": "father",
+   "household": "hh_harmon_brothers",
+   "value": "harmon_isaac_d",
+   "confidence": "attested",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE DOCTOR'S TWO ELDEST SONS, NAMED IN THE SAME SENTENCE THAT RESOLVED THE FIRM'S INITIALS. Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.' Both ends of this row stand in that list under their full names, and the doctor is the man whose life it is, so the tie is read off the page rather than reasoned from a surname. It is the sentence hh_harmon_brothers already cites to turn 'C. & I. Harmon' of the Chicago Democrat into two named men; T-0734's finding is that the same sentence was never allowed to reach the other household, which went on reading as a doctor related to nobody. A KINSHIP IS NOT A PLACEMENT AND IT IS NOT A PRESENCE. Dr Harmon left for Texas in 1834 and his own record carries present_on_scene_date 'uncertain' for exactly that reason; this row does not touch it, and it must not be read as putting either generation anywhere on 1 July 1835."
+  }
+ ],
  "persons": [
   {
    "id": "harmon_elijah_d",

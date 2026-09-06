@@ -57,6 +57,30 @@
   ],
   "note": "He was the claimant of the Fort Dearborn reservation in 1835 and the residence was his until 1839."
  },
+ "kin": [
+  {
+   "person": "beaubien_jean_baptiste",
+   "relation": "brother",
+   "household": "hh_beaubien_mark",
+   "value": "beaubien_mark",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "MARK AND JEAN BAPTISTE BEAUBIEN ARE BROTHERS, ON THIS PROJECT'S OWN READING OF ANDREAS. hh_beaubien_mark's arrival note already carries the tie in prose — 'Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about 1800 and the move to Chicago in 1812' — and cites andreas_1884_v1 for it. INFERRED RATHER THAN ATTESTED, AND THE REASON IS PROVENANCE, NOT DOUBT. No page of Andreas is quoted verbatim for this relationship anywhere in the corpus: what is committed is this project's summary of the passage, and a summary is a reading. Re-reading the page and filing the sentence as a claim would upgrade the row; T-0734 will not upgrade a confidence to make a row look better. WHY IT IS WORTH WRITING ANYWAY. Nine households in this dataset are Beaubiens and several of them are unruled cards of the same man (T-0839); a relationship recorded between the two whose identities are NOT in doubt is the opposite of a merge, and states that these two particular cards are two people."
+  },
+  {
+   "person": "beaubien_jean_baptiste",
+   "relation": "father",
+   "household": "hh_beaubien_madore",
+   "value": "beaubien_madore",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "MADORE BEAUBIEN IS JEAN BAPTISTE'S SON, BY HIS FIRST MARRIAGE. hh_beaubien_madore's own record says it — 'He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman' — and hh_beaubien_jean_baptiste's says the same thing from the other side: he 'married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore'. Both cite andreas_1884_v1, and the county court's 1831 licence to sell goods names Madore 'alongside Alexander Robinson and his father'. INFERRED, ON THE SAME GROUND AS THE BROTHER ROW ABOVE: the corpus holds this project's reading of Andreas rather than a quoted page. THE OTHER SON IS DELIBERATELY NOT WRITTEN. Charles Henry is named in the same clause, but the card hh_beaubien_charles_h sits in the contested Beaubien cluster T-0839 is ruling on, and binding a relationship to a card whose identity is unruled would launder that ruling. It is recorded as a refusal in data/research/residents/stated_kinship.json."
+  }
+ ],
  "persons": [
   {
    "id": "beaubien_jean_baptiste",

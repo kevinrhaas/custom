@@ -2132,6 +2132,22 @@ step "the final resident audit still re-derives from the residents layer" \
 step "…and its own assertions still fire when broken" \
   python3 tools/export_resident_audit.py --self-test
 
+# T-0734. validate.py already checks a kin row's SHAPE — both ends resolve, the mirror
+# exists, a half brother's mirror is not a plain brother. What no gate could see is the
+# thing the ticket was opened about: whether the kinship the corpus STATES ever reached
+# the records. A household that simply omits a documented tie is silently valid, which is
+# how 1,362 people came to carry 24 relationships between them. So the ledger of stated
+# ties is held against the committed cards in both directions — a row the ledger says
+# landed must be on both records with the grade and the source it claims, and a pair the
+# ledger REFUSED must carry no row at all, because a refusal that has quietly been landed
+# by a later pass is a ruling nobody made. The counts are derived here, so an unruled pair
+# cannot hide behind a stale number.
+step "the kinship the sources state still reaches the household records" \
+  python3 tools/read_stated_kinship.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_stated_kinship.py --self-test
+
 printf '\n'
 if [ "$FAILED" -eq 0 ]; then
   printf '\033[32mCHECK PASS\033[0m\n'

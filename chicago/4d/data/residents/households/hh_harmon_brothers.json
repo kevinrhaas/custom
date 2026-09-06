@@ -55,6 +55,30 @@
   ],
   "note": "Documented trading in November 1833; nothing follows the firm to 1835. Their father left for Texas in 1834 and they did not."
  },
+ "kin": [
+  {
+   "person": "harmon_charles_l",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "attested",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE DOCTOR'S TWO ELDEST SONS, NAMED IN THE SAME SENTENCE THAT RESOLVED THE FIRM'S INITIALS. Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.' Both ends of this row stand in that list under their full names, and the doctor is the man whose life it is, so the tie is read off the page rather than reasoned from a surname. It is the sentence hh_harmon_brothers already cites to turn 'C. & I. Harmon' of the Chicago Democrat into two named men; T-0734's finding is that the same sentence was never allowed to reach the other household, which went on reading as a doctor related to nobody. A KINSHIP IS NOT A PLACEMENT AND IT IS NOT A PRESENCE. Dr Harmon left for Texas in 1834 and his own record carries present_on_scene_date 'uncertain' for exactly that reason; this row does not touch it, and it must not be read as putting either generation anywhere on 1 July 1835."
+  },
+  {
+   "person": "harmon_isaac_d",
+   "relation": "son",
+   "household": "hh_harmon_elijah_d",
+   "value": "harmon_elijah_d",
+   "confidence": "attested",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "THE DOCTOR'S TWO ELDEST SONS, NAMED IN THE SAME SENTENCE THAT RESOLVED THE FIRM'S INITIALS. Andreas's life of Dr Elijah Dewey Harmon lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey Harmon, Harriet Harmon, Lucretia Harmon, and Welthyan Loomis Harmon.' Both ends of this row stand in that list under their full names, and the doctor is the man whose life it is, so the tie is read off the page rather than reasoned from a surname. It is the sentence hh_harmon_brothers already cites to turn 'C. & I. Harmon' of the Chicago Democrat into two named men; T-0734's finding is that the same sentence was never allowed to reach the other household, which went on reading as a doctor related to nobody. A KINSHIP IS NOT A PLACEMENT AND IT IS NOT A PRESENCE. Dr Harmon left for Texas in 1834 and his own record carries present_on_scene_date 'uncertain' for exactly that reason; this row does not touch it, and it must not be read as putting either generation anywhere on 1 July 1835."
+  }
+ ],
  "persons": [
   {
    "id": "harmon_charles_l",

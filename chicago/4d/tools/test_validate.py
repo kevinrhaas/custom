@@ -2681,7 +2681,8 @@ def _resident_index(households: list, **kw) -> dict:
             "divisions": ["south", "north", "west", "fort", "outside_town"],
             "arrival_precision": ["day", "either_of_two_days", "month", "season",
                                    "year", "not_later_than"],
-            "kin_relations": ["brother", "half_brother", "half_sister", "sister"],
+            "kin_relations": ["brother", "daughter", "father", "half_brother",
+                              "half_sister", "mother", "sister", "son"],
         },
         "counts": {"households": len(households),
                    "persons": sum(len(h["persons"]) for h in households),
@@ -3034,6 +3035,32 @@ def test_the_residents_manifest_cannot_drift_from_its_records() -> None:
     rep = _run_residents([inside])
     check("a kin row pointing at its own household is an error",
           any("links two households" in e for e in rep.errors), rep.errors)
+
+    # T-0734. The parent/child pair is asymmetric, and it was declared only once
+    # BOTH its directions were: `father` answers `son`/`daughter` and nothing
+    # else, so the reciprocity check has a mirror to demand at each end. The
+    # thing to prove is that the direction is now load-bearing — a father whose
+    # mirror row also says father is two men each claiming to have fathered the
+    # other, and it has to fail the same way the flattened half brother does.
+    rep = _run_residents(_kin_pair(rel_a="father", rel_b="son"))
+    check("a father/son pair passes, so a firing below means something",
+          not rep.errors, rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="mother", rel_b="daughter"))
+    check("the same pair reads across the sexes: mother/daughter passes",
+          not rep.errors, rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="father", rel_b="father"))
+    check("two men who each say they fathered the other is an error",
+          any("flattening" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="father", rel_b="brother"))
+    check("a father whose mirror row says brother is an error",
+          any("flattening" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="son", rel_b="half_brother"))
+    check("a son whose mirror row says half brother is an error",
+          any("flattening" in e for e in rep.errors), rep.errors)
 
     def short_kin(idx):
         idx["vocabulary"]["kin_relations"] = ["brother"]

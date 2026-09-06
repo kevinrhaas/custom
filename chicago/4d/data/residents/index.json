@@ -31,9 +31,13 @@
   ],
   "kin_relations": [
    "brother",
+   "daughter",
+   "father",
    "half_brother",
    "half_sister",
-   "sister"
+   "mother",
+   "sister",
+   "son"
   ],
   "occupations": [
    "army_officer",

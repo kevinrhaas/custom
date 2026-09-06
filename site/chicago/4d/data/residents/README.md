@@ -104,7 +104,32 @@ mothers — and that is the first thing a summary flattens:
   record that omits it still reads as no relationship at all, which is the
   defect the ticket was opened about.
 
-Asymmetric relations (father/son, uncle/nephew) are deliberately **not**
-declared. Their inverse depends on the other person, and declaring a term
-without its inverse would let a one-way claim through. Add the pair together or
-not at all.
+An asymmetric relation may be declared only **together with its own inverse** —
+the term on its own would let a one-way claim through, which is why the original
+set declared none of them. T-0734 added the parent/child pair as a pair:
+`father` and `mother` accept `son`/`daughter` and nothing else, `son` and
+`daughter` accept `father`/`mother` and nothing else, so the reciprocity rule has
+a mirror to demand at both ends and a father whose mirror row says `brother`
+fails exactly as a flattened half brother does. Relations whose inverse is still
+open — uncle/nephew, in-laws, step-kin — stay undeclared under the same rule: add
+the pair together or not at all.
+
+### What is actually written, and what was refused (T-0734)
+
+`kin` says whether a tie is RECORDED; it cannot say whether a tie the corpus
+states was ever written down, and a household that simply omits one is silently
+valid. That is how 1,362 people came to carry 24 relationships between them.
+`data/research/residents/stated_kinship.json` is the ledger of every kinship the
+committed corpus states between two people — five landed as ten reciprocal rows,
+eleven refused, each refusal with its reason — and `tools/read_stated_kinship.py
+--check` (in `tools/check.sh`) holds it against the cards in both directions: a
+row the ledger says landed must be on both records with the grade and the source
+it claims, and a pair the ledger refused must carry no row at all.
+
+The refusals are the more useful half. Only one of the eleven fails for want of
+evidence about the relationship; ten fail because **the other person is not in
+this layer** — a bride at Naperville, a Potawatomi chief at the Calumet, an
+unnamed daughter of Payne, and above all the 54 married couples of St Mary's
+baptismal register, 85 of whose Chicago adults reach no surname here at all. The
+town is thin on kinship mainly because it is thin on the women and on the French,
+Métis, Irish and German Catholic households the poll books never recorded.

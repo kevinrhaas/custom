@@ -4533,20 +4533,30 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
 #     other is half a fact: the household you read second still says the two
 #     men were unrelated, which is the defect T-0597 was opened about.
 #
-# Asymmetric relations (father/son, uncle/nephew) are deliberately NOT declared.
-# They need an inverse that depends on the other person, and declaring the term
-# without the inverse would let a one-way claim through. Add the pair together
-# or not at all.
+# An asymmetric relation may only be declared TOGETHER WITH ITS OWN INVERSE — the
+# term without the inverse would let a one-way claim through, which is what the
+# original set was protecting against by declaring none of them. T-0734 declares
+# the parent/child pair as a pair: `father` and `mother` accept `son`/`daughter`
+# and nothing else, `son` and `daughter` accept `father`/`mother` and nothing
+# else, so the reciprocity check has a mirror to demand at both ends and a
+# father whose mirror row says "brother" fails exactly as a half brother does.
+# Relations whose inverse is still open — uncle/nephew, in-laws, step-kin — stay
+# undeclared under the same rule: add the pair together or not at all.
 RESIDENT_KIN_KEYS = ("person", "relation", "household", "value", "confidence")
 
-# relation -> the relations its mirror row may carry. Sibling terms differ by the
-# SEX of the person named, not by the degree of the tie, so each degree accepts
-# both of its own terms and neither of the other's.
+# relation -> the relations its mirror row may carry. A term differs from its
+# partner by the SEX of the person named, not by the degree or the direction of
+# the tie, so each accepts both terms of the answering generation and neither of
+# any other. Sibling degrees stay apart from each other: half is the point.
 RESIDENT_KIN_INVERSES = {
     "brother": ("brother", "sister"),
     "sister": ("brother", "sister"),
     "half_brother": ("half_brother", "half_sister"),
     "half_sister": ("half_brother", "half_sister"),
+    "father": ("son", "daughter"),
+    "mother": ("son", "daughter"),
+    "son": ("father", "mother"),
+    "daughter": ("father", "mother"),
 }
 RESIDENT_KIN_RELATIONS = tuple(sorted(RESIDENT_KIN_INVERSES))
 

@@ -113,5 +113,18 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "MINTED FROM THE CONSOLIDATED CIVIC, CHURCH, PRESS, BOOK AND CENSUS EVIDENCE (T-0513, T-0514). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here is written unattested in its own block, because the lists that name this person name a person and not a family. What is claimed is that the sources cited on the member below name them at Chicago, and the grade is the owner's ratified ladder applied by tools/consolidate_resident_evidence.py --build and spent by tools/mint_civic_residents.py, which prints every refusal. docs/LIBERTIES.md L215 carries the liberty and the tension with L213."
+ "research_note": "MINTED FROM THE CONSOLIDATED CIVIC, CHURCH, PRESS, BOOK AND CENSUS EVIDENCE (T-0513, T-0514). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here is written unattested in its own block, because the lists that name this person name a person and not a family. What is claimed is that the sources cited on the member below name them at Chicago, and the grade is the owner's ratified ladder applied by tools/consolidate_resident_evidence.py --build and spent by tools/mint_civic_residents.py, which prints every refusal. docs/LIBERTIES.md L215 carries the liberty and the tension with L213.",
+ "kin": [
+  {
+   "person": "miller_samuel",
+   "relation": "brother",
+   "household": "hh_miller_john",
+   "value": "miller_john",
+   "confidence": "inferred",
+   "sources": [
+    "andreas_1884_v1"
+   ],
+   "note": "'JOHN MILLER, BROTHER OF SAMUEL, THE LANDLORD' — ANDREAS, VERBATIM, IN THE CLAUSE THAT GIVES JOHN HIS TRADE: 'John Miller, brother of Samuel, the landlord, came in 1831, and run a tannery just north of Miller's tavern.' The RELATIONSHIP is documented and this record has spent it once already — hh_miller_john's reason_for_coming is 'To follow a brother already keeping a tavern at the forks'. THE INFERENCE IS THE IDENTITY, NOT THE KINSHIP. Andreas writes 'Samuel, the landlord'; this layer holds one Samuel Miller, hh_miller_samuel, minted by the civic pass from the 1832 muster, the 1833 tax list and the Chicago Democrat, with no trade recorded and no family. Forename and surname agree exactly, no second Samuel Miller is carried, and the project already treats the tavern-keeping Samuel as the man behind data/structures/miller_house.json ('Samuel's house, not John's', in hh_miller_john's own lives_at note). That binding is a reading, so the row is inferred and says so rather than borrowing the certainty of the quote. WHAT THIS ROW DOES NOT DO. It gives miller_samuel no trade, no dwelling and no arrival: his present_on_scene_date stays 'uncertain', because a brother is not a presence."
+  }
+ ]
 }

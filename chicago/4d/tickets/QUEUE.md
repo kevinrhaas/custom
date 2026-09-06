@@ -344,3 +344,4 @@ T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
+T-0852 — Andreas prints 'Julia K. Clark, half-brother of A. Clybourne, then living with him' and the town holds a John K Clark: the forename is damaged and nobody has ruled on it

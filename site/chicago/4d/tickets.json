@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 8:21 PM",
+  "generated_ct": "Sep 5, 2026, 8:25 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -14462,6 +14462,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 176
+    },
+    {
+      "id": "T-0852",
+      "title": "Andreas prints 'Julia K. Clark, half-brother of A. Clybourne, then living with him' and the town holds a John K Clark: the forename is damaged and nobody has ruled on it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 178
     }
   ]
 }
