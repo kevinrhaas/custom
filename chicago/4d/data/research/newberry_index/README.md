@@ -292,22 +292,114 @@ count defect and not a reading defect.
 
 **What this rule does NOT catch, and a caution about a claim it disproves.**
 `coverage.json` said volume 2's one remaining bad keep was "a column sliver of the shape
-T-0601 carries". It is not. `nbi_v02_0610` — `Hallam | , 111.19 Hallam faaily.` — opens
+T-0601 carries". It is not. `nbi_v02_0607` — `Hallam | , 111.19 Hallam faaily.` — opens
 with `, 111.19`, which is the **tail** of the card in the column to its *left*
 (`Hall | -±~2.' la letk» te,'», 111.19`). That is the mirror artefact: a window catching
 the right edge of the previous column on a page wide enough to push it past the boundary,
 and it contaminates a body rather than duplicating a card — which makes it a precision
-defect, not a count one. A first pass finds **117** candidates at delta −1 against 4 at
-every other delta, but most of those are two cards sharing a common word and the figure
-is an upper bound that needs adjudicating card by card. It is filed as its own ticket
-rather than folded into this rule.
+defect, not a count one. It is measured and ruled on in the next section (T-0769), which
+also says why the rule written there does not reach this card. (The record id was
+`nbi_v02_0610` when this paragraph was written; T-0765's strike of 32 rows renumbered it,
+which is the positional-id hazard both these rules are built around.)
+
+## The bled-in body, measured and ruled — T-0769
+
+The mirror of the sliver, off the same 27-point overlap and read from the other end. A
+volume's pages are not all the same width — **689 to 733 points** — and the crop boxes are
+fixed, so on a wide page every column's ink sits further right than the boxes assume and
+the **left edge of window c+1 falls inside column c**. The window then reads the right-hand
+part of column c's lines: not as a card of its own, which is what the prefix half does, but
+glued to the **front** of the card it assembles, heading line and body line alike. The
+locality patterns then match on text that is not on that card.
+
+**The measurement, and it fixed both clauses of the rule.** Asking, over the four volumes'
+6,696 committed cards, whether a body OPENS with a byte-exact run that CLOSES another body
+on the same page:
+
+| shared run | pairs | at delta −1 | at 0 | at +1 | at ±2, ±3 |
+|---|---|---|---|---|---|
+| ≥ 6 characters | 122 | 118 | 4 | 0 | 0 |
+| ≥ 9 characters | 77 | **77** | 0 | 0 | 0 |
+| ≥ 15 characters | 22 | **22** | 0 | 0 | 0 |
+
+against an ordered same-page pair population of 15,548 at delta 0, 2,565 at ±1, 1,290 at
+±2 and 653 at ±3. The concentration at delta −1 is the crop geometry's own prediction and
+is the evidence that the two readings are the same ink, exactly as in T-0601.
+
+**Why the floor is 15 and not 6.** The ticket's first pass asked for a run of six and found
+117 candidates. That is an upper bound and not a measurement: at six characters most hits
+are two unrelated cards that both carry `Chicago,` or `Illinois`, and the median body is 47
+characters long. The floor here is not chosen for tidiness — it is **calibrated on T-0601's
+own slivers**, whose bodies are the entire yield of the 27-point overlap and run **11 to 14
+characters**. A shared run longer than 14 is longer than the overlap alone has ever been
+observed to carry, so it cannot be the prefix artefact wearing this shape. At or below 14
+the two halves are indistinguishable from the string, and this rule says nothing about them
+rather than guessing.
+
+**The second discriminator, and it is what stops the rule marking the wrong card.** The
+string relation is symmetric: *A opens with B's tail* is also what the PREFIX bleed looks
+like when column c has ink on that line, and there the contaminated card is B, not A. The
+window that slices column c's body line slices its **heading** line at the same x, so a
+card carried in by this artefact opens mid-word — its heading is a fragment beginning in
+lower case (`nner` out of `Brenner`, `lus` out of `Broslus`, `berta` out of `Roberts`).
+Over all 6,696 cards 1,024 headings begin in lower case, a base rate of **15.3 per cent**;
+over the 22 long-run pairs, **15 do — 68 per cent**, an enrichment of 4.5×. The seven the
+clause refuses are the check that it is the right way round: one of them, `nbi_v02_1835`,
+is a precision-sample row hand-adjudicated `locality_correct` against the leaf image, with
+the county and the state read on the card. Marking it would have contradicted a reading
+made by eye.
+
+**So the rule is: same page · column delta exactly −1 · a byte-exact run of ≥ 15 characters
+that is a proper prefix of the right card's body and a proper suffix of the left card's ·
+and the right card's heading cut.** It finds **15 cards** — 10 in volume 1, 2 in volume 2,
+3 in volume 3, none in volume 4's OCR re-read.
+
+**Every one of the fifteen names a locality only inside the run.** That is not an
+assumption, it is what the pass measured: re-derive the buckets on each body with the run
+taken off the front and all fifteen name nothing at all. They were kept for ink they do not
+carry, so all fifteen are withheld — from the volume's `cards`, from `by_locality`, from
+the leads and from the reading order. None of the fifteen names Chicago or Cook County, so
+`chicago_or_cook_cards` is unchanged in every volume, and no lead is lost.
+
+**A bled card is marked, never trimmed.** T-0601's three reasons hold here — the ids are
+positional, the ink is real and was really read, a wrong call should stay visible — and one
+more is decisive: `MANIFEST.text_sha256` binds the committed text and `check()` rebuilds
+every `as_read` out of it, so cutting the run off a body is a gate failure and not an edit.
+The record keeps its id and its verbatim reading and gains `normalized.bleed_of`,
+`normalized.bleed_run` and `normalized.localities_off_own_ink`.
+
+The gate runs **both ways**, for the reason T-0601's does: a record that calls itself a
+bled-in body has to be one on the committed text, **and every bled-in body the committed
+text carries has to be marked**, or a records file parsed before this rule existed goes on
+counting a card kept for a locality printed in the column to its left. `counts` carries
+`bled_in_bodies` beside `slivers`, and `cards` is `records` less both. Four cases in
+`--self-test` cover it: a bleed unmarked, a card marked a bleed off one whose tail it does
+not open with, a volume counting its bleeds as cards, and a `bleed_run` restated to
+something the two cards do not share.
+
+**What it does not reach, said plainly.** `nbi_v02_0607` — the volume 2 bad keep this
+ticket was filed off — is a bled-in body of exactly this shape, and the rule does **not**
+mark it: its shared run is `, 111.19`, eight characters, well inside what the 27-point
+overlap carries on its own. Its precision-sample verdict is `not_demonstrated` either way,
+so no figure moves; but the class named in that row's note was T-0601's and is corrected to
+this one. The 117-candidate band between six and fourteen characters is left unruled, and
+the honest statement about it is that the string cannot tell the two halves of the overlap
+apart down there. A rule that guessed would be marking the wrong card about as often as the
+right one.
+
+**Not one of the fifteen is in the precision sample**, so no row leaves it and every
+precision figure in this file is unchanged. `--check` enforces that in both directions: a
+sampled row that turns up marked as a bled-in body is reported as the contradiction it is,
+because a verdict reached by eye on the leaf and a verdict reached by rule on the string
+cannot both stand on one card.
 
 ## Volume 1 (A-C), read 2026-09-03 under T-0570
 
 987 pages cropped and walked · **58,488 cards** assembled · **2,414 kept** for naming
-Chicago, Cook County or Illinois, of which 3 are column slivers, so **2,411 cards** ·
+Chicago, Cook County or Illinois, of which 3 are column slivers and 10 are bled-in
+bodies, so **2,401 cards** ·
 of those **562 name Chicago or Cook County** ·
-1,605 distinct surname keys · **398 leads** across four layers (residents 196, census
+1,598 distinct surname keys · **398 leads** across four layers (residents 196, census
 1840 123, voters 62, structures 17) · **0 merges**. (Kept and Chicago/Cook are the
 post-T-0600 figures — 2,579 and 581 before the rules. T-0601's re-parse moved the lead
 counts again, and almost none of that is T-0601: run against today's people layers the
@@ -341,9 +433,10 @@ volumes are on the Internet Archive (`historyofchicago01mose`, `historyofchicago
 ## Volume 2 (C-H), read 2026-09-03 under T-0578
 
 1,016 pages cropped and walked · **58,589 cards** assembled · **1,877 kept** for naming
-Chicago, Cook County or Illinois, of which 1 is a column sliver, so **1,876 cards** ·
+Chicago, Cook County or Illinois, of which 1 is a column sliver and 2 are bled-in
+bodies, so **1,874 cards** ·
 of those **491 name Chicago or Cook County** ·
-1,252 distinct surname keys · **243 leads** across four layers (residents 126, census
+1,250 distinct surname keys · **243 leads** across four layers (residents 126, census
 1840 72, voters 37, structures 8) · **0 merges**. (1,987 and 501 before T-0600.)
 
 Fewer kept cards than volume 1 (1,877 against 2,414) on more pages, and the reason is the
@@ -356,7 +449,8 @@ against 23.3 per cent of volume 1's.
 ## Volume 3 (H-P), read 2026-09-03 under T-0579
 
 1,003 pages cropped and walked · **68,552 cards** assembled · **1,995 kept** for naming
-Chicago, Cook County or Illinois, of which 4 are column slivers, so **1,991 cards** ·
+Chicago, Cook County or Illinois, of which 4 are column slivers and 3 are bled-in
+bodies, so **1,988 cards** ·
 of those **502 name Chicago or Cook County** ·
 1,402 distinct surname keys · **238 leads** across four layers (residents 113, census
 1840 75, voters 42, structures 8) · **0 merges**. (2,131 and 520 before T-0600.)
@@ -385,24 +479,28 @@ own text layer was worth, measured rather than asserted, and it is the reason th
 reader was built at all. The second is what the re-read did to those numbers. Neither is
 deleted: a project that only records its final figure cannot show that it earned it.
 
-| volume | pages | cards assembled | per page | kept | column slivers | cards | Chicago/Cook | precision |
-|---|---|---|---|---|---|---|---|---|
-| 1 (A-C) | 987 | 58,488 | 59 | 2,414 | 3 | 2,411 | 562 | 0.975 |
-| 2 (C-H) | 1,016 | 58,589 | 58 | 1,877 | 1 | 1,876 | 491 | 0.975 |
-| 3 (H-P) | 1,003 | 68,552 | 68 | 1,995 | 4 | 1,991 | 502 | 0.925 |
-| 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | 246 | 9 | 0.513 |
-| **4 (P-Z), OCR** | **918** | **33,357** | **36** | **410** | **not checked** | **410** | **207** | **0.975** |
+| volume | pages | cards assembled | per page | kept | column slivers | bled-in bodies | cards | Chicago/Cook | precision |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 (A-C) | 987 | 58,488 | 59 | 2,414 | 3 | 10 | 2,401 | 562 | 0.975 |
+| 2 (C-H) | 1,016 | 58,589 | 58 | 1,877 | 1 | 2 | 1,874 | 491 | 0.975 |
+| 3 (H-P) | 1,003 | 68,552 | 68 | 1,995 | 4 | 3 | 1,988 | 502 | 0.925 |
+| 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | not checked | 246 | 9 | 0.513 |
+| **4 (P-Z), OCR** | **918** | **33,357** | **36** | **410** | **not checked** | **0** | **410** | **207** | **0.975** |
 
 `kept` is the rows in the committed text; `cards` is what the volume actually read, which
-is `kept` less the column slivers T-0601 marked. The precision figures are unchanged: not
-one of the 160 adjudicated rows is a sliver, so no row leaves the sample and no number in
-it moves.
+is `kept` less the column slivers T-0601 marked and the bled-in bodies T-0769 marked. The
+precision figures are unchanged: not one of the 160 adjudicated rows is a sliver or a
+bled-in body, so no row leaves the sample and no number in it moves. `chicago_or_cook` is
+unchanged too — all fifteen bled-in bodies were kept on the Illinois abbreviation alone.
 
 The OCR re-read of volume 4 (T-0775) carries **no sliver count**, and the blank is
 deliberate rather than a zero. T-0601's pass ran over the text-layer reading; the re-read
 rewrote every card in the volume, so that pass does not describe it and nothing has yet
 looked for slivers in the 33,357 cards it assembled. Its `cards` column therefore repeats
-`kept` because none have been deducted, not because none exist.
+`kept` because none have been deducted, not because none exist. Its **0** in the bled-in
+column IS a measurement: T-0769's pass ran over all four committed readings, this one
+included, and found none in it — the re-read's pages carry the artefact at a rate of
+zero in 410, against 10 in 2,414 in volume 1.
 
 
 **Volume 4's row is the OCR one.** It is what `records/entries_vol_04.json` holds, what

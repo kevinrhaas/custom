@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 2:32 PM",
+  "generated_ct": "Sep 6, 2026, 3:07 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15464,6 +15464,26 @@
       "closed_at": "2026-09-06T18:25:43.205Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34048091257",
       "queue_rank": null
+    },
+    {
+      "id": "T-0906",
+      "title": "publish.sh minifies the four residents files the T-0838 drift ratchet expects pretty, so every PR that publishes lands the gate red",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 184
     }
   ]
 }
