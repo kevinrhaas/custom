@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The missing half of a census page was on the film', kind: 'change', ts: '',
+  { v: 654, title: 'The missing half of a census page was on the film', kind: 'change', ts: '2026-09-06T22:51:40.363Z', date: 'Sep 6, 2026, 5:51 PM CT',
     items: [
       'The 1840 census wrote each family across two facing pages. The left one carries the name and the ages; the right one carries everything else \u2014 how many of the household worked in trade or on the lake, whether anyone drew a soldier\u2019s pension, how many went to school and how many over twenty could not read. This project holds seventy-four photographs of Chicago\u2019s 1840 schedules, and for printed page 232 \u2014 thirty-one households, among them Gurdon Hubbard and John Kinzie \u2014 it holds only the left one.',
       'Yesterday that was searched to the end. Every right-hand sheet in the deposit was opened, thirty-three of them household continuations, and not one is the pair: the page needs a sheet of thirty-one entries footing 193 or 195, and the nearest is twelve out. The conclusion drawn was careful and it was correct \u2014 that this is a fact about the seventy-four photographs and not about the book. The 1840 volume had a facing leaf for every page it enumerated.',
