@@ -74,7 +74,6 @@ T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leave
 # --- so a lot-and-block address can finally land on ground. T-0773 is the later-printing rule the
 # --- ask names directly; T-0771 and T-0696 are the readers that spend it.
 T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
-T-0771 — Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner
 T-0696 — The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none
 T-0783 — The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere
 T-0812 — The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8
