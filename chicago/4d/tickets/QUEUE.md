@@ -341,4 +341,4 @@ T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
 T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
-
+T-0855 — A card whose only evidence reads Hubbard, [Henry] G. was folded onto Gurdon Saltonstall Hubbard: one man's record is on the wrong person
