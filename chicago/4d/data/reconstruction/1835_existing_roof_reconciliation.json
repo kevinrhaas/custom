@@ -962,6 +962,17 @@
       "substitutes_anonymous_slots": 1,
       "confidence": "low",
       "reasoning": "Dedicated stable is inferred from documented horse service; one detached roof retained."
+    },
+    {
+      "structure_id": "lasalle_lake_house",
+      "district": "south",
+      "roof_count": 1,
+      "inventory_eligible": true,
+      "inventory_roof_count": 1,
+      "likely_family": "D1",
+      "substitutes_anonymous_slots": 1,
+      "confidence": "moderate",
+      "reasoning": "One documented single-storey frame dwelling roof, 16 by 30 ft from the Chicago Democrat's own for-sale notice. D1 is read off the AREA and not the proportion: 480 sq ft sits inside D1's 320-520 sq ft band, while the printed shape - wider than it is deep - matches no family band, because the bands describe eaves-front houses deeper than their front."
     }
   ]
 }
