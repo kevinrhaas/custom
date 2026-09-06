@@ -362,3 +362,4 @@ T-0871 — The residents-manifest rebuild has no self-test and silently accepts 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
+T-0873 — publish.sh minifies the four resident cards the synthesizer writes pretty, so the first republish after a synthesis spend turns the drift ratchet red
