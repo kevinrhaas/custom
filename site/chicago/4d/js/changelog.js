@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 608, title: 'Eleven townspeople and the land sale that proves they stayed', kind: 'change', ts: '2026-09-05T23:58:19.109Z', date: 'Sep 5, 2026, 6:58 PM CT',
+    items: [
+      'In June 1839 the ground the fort had stood on was cut into lots and auctioned, and Fergus\u2019 Chicago directory printed the whole sale \u2014 every lot, every bidder, every price. A hundred men bid. Fifteen of them are people this town already holds a card for.',
+      'That reading was done weeks ago and then went nowhere. Not one of those cards said a word about it, and several cited the volume nowhere at all \u2014 so as far as the project could tell, the sale had never reached anybody.',
+      'All fifteen now carry it: which blocks and lots the man bid on, what he paid, and the page it is printed on. Arthur Bronson took fifteen lots for $4,869; John Foot took one for $152. Together they bid $17,055 across forty-four lots.',
+      'What the sale is NOT allowed to say is written on the card beside what it says. A bid in June 1839 is evidence the man was still in Chicago four years after the summer this town reconstructs \u2014 it is not evidence about that summer, and nobody\u2019s grade moves on it. And a lot number from this sale places nobody: in 1835 that ground was the garrison\u2019s reservation and was not divided into lots at all. No house moves, and none is added.',
+      'The sale table\u2019s own shorthand is kept rather than tidied away. Where the printer wrote a ditto mark under the name above instead of writing the name again, the card says so; where a row carries its block number forward from an earlier line rather than printing one, the card says that too. Twenty-three of the forty-four rows print a ditto mark rather than a name, and forty-three take their block number from an earlier line.',
+      'The check that runs before every change now reads this both ways: a ruling that stops reaching its card fails, and so does a card that claims a bid the sale never records.',
+    ] },
   { v: 607, title: 'Nothing you can see: a card that said the same thing twice', kind: 'fix', ts: '2026-09-05T23:42:35.427Z', date: 'Sep 5, 2026, 6:42 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the record cards behind the people who live here, and a way one of them could quietly come to say the same thing twice over.',

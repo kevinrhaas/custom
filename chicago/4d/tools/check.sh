@@ -1636,6 +1636,21 @@ step "…and the land tract sales are on the 31 cards they name, once each" \
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
   python3 tools/spend_land_sales.py --self-test
 
+# T-0681. The third list in the same volume as the two above: the Fort Dearborn Addition lot
+# sale of 10-24 June 1839, printed pages 47-49. T-0666 crosswalked its 100 bidders and 11 of
+# them are people this town holds a card for; not one of those cards had been told what the
+# sale says, and three cited nothing the ruling rests on at all — the ceiling T-0635 recorded
+# as "T-0666's to pay". This pass writes the eleven, and it is gated in the same two
+# directions as its predecessors: a ruling that stops reaching its card, and a card that
+# carries the paragraph for a ruling the crosswalk never made. The paragraph says BID and
+# never residence, and it says so twice — the Addition was the garrison's reservation in
+# 1835 and was not platted into lots at all, so a block and lot from this sale place nobody.
+step "…and the Fort Dearborn Addition lot sale is on every card it names" \
+  python3 tools/spend_fergus_1839_lot_sale.py --check
+
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_fergus_1839_lot_sale.py --self-test
+
 # T-0554. The Calumet Club's old-settlers receptions are a source SERIES read out of the
 # Tribune's reprints, and the thing that goes wrong with a source like this is silent
 # drift: a name hand-tidied, a quote paraphrased, a merge asserted in a file and never
