@@ -164,8 +164,6 @@ p0034 c2  Lopun
         Sangamon Co., III. (Power, J. C.) 1876,
 p0034 c2  Logon
         ) _Sctaylar and Drown Co'a., 111. (3dnk, W. ft. & Ca. rtrnt.)
-p0035 c1  Leeea f n
-        G 196 lafland. (Roboela, C. id, Calenduium, Ben, iii. and I d . I ,
 p0035 c2  Loi Bden
         Christian Co., III. (Brink, McDonoueh 4 Co..
 p0035 c2  d I, Lobman
@@ -846,8 +844,6 @@ p0169 c3  Mahonoy
         lack-on Co., Ill, (Brink, McDonooxl, A Co., Puha.) 1876, 74.
 p0171 c0  Main
         Cnicago, III. Second Presh Ch., 1847-0?. , S n « f
-p0174 c3  evorea
-        tafias- (Bobena, C., l _ CalenOart,». Hem, ill. and I d . 1.
 p0175 c0  Mnlherbe
         Christian Co., Ill, (Brink, McDonough 4t Co..
 p0175 c2  Mallary
@@ -866,8 +862,6 @@ p0177 c3  ono r
         Cook Co., III. (Andreas, A. T.) 1884 ,606.
 p0177 c3  ono r
         Sangamon Co., Ill, (Power, J. C.) I876.
-p0178 c1  -Maloon
-        — — Ergliod. (Roberts. C, U . Calpndirium. Htn, iii. mrl tém I .
 p0179 c0  Ualtrxsn
         Cook Co., III. (Andreas, A. T.) 1884 t735.
 p0179 c3  anard
@@ -992,8 +986,6 @@ p0220 c3  vin
         Bureau Co., III. (Kett 4 Co., Pub.) „ , n j ? 9 .
 p0221 c2  Marwino
         Cook Co.,'ill. (Andreas, A. T.) 1884 ,881.
-p0221 c3  Marynea, or Marino,
-        England, («oberh, C, Ed. Calendarium, Her;, iii. _ l _ |
 p0223 c2  Uaoon
         " y S i n Æ m ï i u r r , , . W,lli.m»a a PMp.. PobO 1879, Eliot, Me
 p0223 c2  Uaoon
@@ -1064,10 +1056,6 @@ p0238 c3  Mttthewson
         — Fulton C o , III. , C , . . „ „ , C . C . 6 C . )
 p0238 c3  Uatthoysen
         —Edgxr C*, lil. M a w , w., »., 4 ( . . . J s t a ) 1079. — -. j
-p0241 c2  Maurun
-        _ (npl.nd, (Robert^ C Zi_ Cslendarium, Ken, iii, ssd Edw. I . I V a u r a n FHC
-p0241 c3  Maurd n
-        tnxland. (Robertfc C., Ed, Calondirium, Hon, iii. and Urn I.
 p0241 c3  Maurepas
         Chicago, III, (Andreas, A. T.) 1884-6i 2__3. i
 p0242 c2  jj Maury
@@ -1200,8 +1188,6 @@ p0271 c2  tlerpentlialor
         Cook Co., III. (Andreas, A. T.) 18B4 i589. Uo
 p0272 c3  Marker
         i Cook Co., HI. (Andreas, A. T.) 1884 '084.
-p0273 c0  Morleberg
-        ftftand. IRobe-H C, td, Caleodatlum, H<», III. [ _ [ _ . I ,
 p0275 c0  Morrick
         DuPage CO., III. iBIanihanl, SO 1882:pt,Si
 p0275 c3  Morrill
@@ -1226,8 +1212,6 @@ p0280 c0  Merwin
         Cook Co., lit, (Andres;, ',. T.l 1884 1450 .
 p0280 c3  Meaerwo
         1 alalia Co., i l l . c „ 1877: 465.
-p0281 c3  Mttetndene
-        — Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |
 p0282 c3  Mees lek
         oi. Clair Co., III. (Brink, McDonough 4 Co., Puha 11031, 315. 1
 p0285 c1  Uettere
@@ -1996,8 +1980,6 @@ p0466 c1  Nohe
         Ogle Co,, III. (Kett, H. F., It Co.) 1878t 632.
 p0467 c1  Koonan
         Chicago, III. (Moses,
-p0468 c2  Noxdylce
-        • tsflind. (Robert,, C, Ed. Cllendirrurn. Ho,, iii. ejwltdw I .
 p0469 c2  Herrie
         Winnebago Co., Ill, (Kelt, H. F„ 4 Co., Pub ) ' (Bro
 p0469 c2  Norrle
@@ -2240,8 +2222,6 @@ p0527 c2  Owon
         Sangamon Co., III. (Power, J. C.) 1876. Owen ftu
 p0528 c2  Owena
         _Madlson Co., III. (Brink, W. B. et Co., Pubs.)
-p0529 c1  Oxnard
-        - . . . tnaland. (Raljatte. C, td. Celendarium, Han, iii. ann f<,„ |. i ___
 p0529 c3  Paoa
         Illinois. (Mosos, J.) 1888-92., 2». See Ind«
 p0530 c1  Paokard
@@ -2614,8 +2594,6 @@ p0651 c2  Petlin
         I —-Cook Co.. Ill, (La Salle Book Co., Pub.) 1900, Povoril
 p0651 c3  Povoa
         - * < > • > . Ca., III. ( » . William™
-p0651 c3  Povorul
-        tnrland. (Bobtrtt, C, l i . C.lendariuia. Han, III, .note,,;,
 p0652 c2  Peyton
         " Fl*M C», III, (Chapman, C. C. 61 Co,) 1879,
 p0653 c0  I ' Pfau
@@ -2832,8 +2810,6 @@ p0710 c0  Pond
         r—Chicago, nJ. (Andreaa, A. T.) iaS4-8t Z - 3 S
 p0710 c0  Fand
         Sangamon Co,, III. (Power, J. C.) 1876.
-p0711 c2  Pontefraoto
-        — England. (Robert!, C, Ed. Caleodarlino, Hep, lil. md Edw. |,
 p0711 c3  Pontln
         • Christian Co., III, (Drink, McOor.:uli 4 Ce.. S
 p0712 c1  Pool
@@ -2972,8 +2948,6 @@ p0749 c3  rontlao r
         Chicago, III, (Andreas, A, T.) 1884-61 3. See
 p0751 c0  iToacott
         Chicago, III. (Andreas, A. T.) 18B4-8i _ _ .
-p0753 c2  Preetbury
-        Englaod, tot*««, C, U . Cilaoearkim. Hon, ill. aodEd». I .
 p0754 c0  Praaton
         Chicago, lil. (Andreas, A, T.) 1304-6) _.
 p0754 c0  Praaton
@@ -3074,8 +3048,6 @@ p0771 c1  Prunty
         __Adem« Co., III. IMon.y. Wllllimtoo 4 Phelp,, Poto.) I8Í9,
 p0771 c1  Pruaaott
         Chicago, III. (Andreas, A. T.) 1684-6i 2-3. Pruyn f
-p0771 c2  Prua
-        in-land. (tttberla, C, _ Calendarium, Ron, lil. and Edw. 1. T - —
 p0771 c2  Pryoe
         W, C l IC97. ' F 8323.309 Pika Co., III.
 p0771 c3  ryor
@@ -3830,8 +3802,6 @@ p0949 c2  Roth
         DuPagi Co., Ill, (Blanehard, R.) 1882, p t . 2 :
 p0949 c2  Roth
         IlllNOIS. Roth
-p0950 c0  Rerihoe
-        - Inuland. (Robert., C, U . Calendarium, Han, iii. and low ,. —
 p0950 c0  Rothman
         ' — Fulton Co, III, (Chapman, pj C, ti Co-1 13/9: Roto
 p0951 c2  Rounds

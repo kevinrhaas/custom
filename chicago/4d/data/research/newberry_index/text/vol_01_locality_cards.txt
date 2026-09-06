@@ -82,8 +82,6 @@ p0015 c3  Affleck
         _S1. Clahr Co., III. (Brink, Mhxeaega A Co., Pub. ) IJ-.H 2 3 0 .
 p0016 c0  Agard
         Winnebago Co., Ill, (Kctl, H, F„ & Co., Pub)
-p0016 c2  Aguilar
-        J. le*I..J. IHoben,. C. Q Calendarium. Hes, iii. and Edw. I. Jo
 p0016 c3  Aikon
         — Cbicaee, III, (Andreat, A, T.) 1884-6i i 2 3.
 p0016 c3  Aiken
@@ -306,8 +304,6 @@ p0051 c3  - Anthony
         SI. Clair Co., III. (Brink, McDonough & Co., Publ.) I88I1 3 1 4 .
 p0051 c3  - Anthony
         i PiVoa Co., III. (Chapman, C C. k Co., FjgtjJ 1880,
-p0053 c0  Apparaon
-        Inaland. IRobertt, C, Ed. Cltendarlum, Han, iii, Iwl ed
 p0053 c0  ApplO
         aa—O.» U., III. ir.oi., H, F., L Co.) 16/4: 677
 p0053 c1  Appleby
@@ -328,8 +324,6 @@ p0055 c1  Archer
         _ Bureau Co., III. (Kett 4 Co., Pub.) 1877: 228.
 p0055 c1  Aroher
         Sangamon Co., III. (Power J . C.) 1876. Arohor f a
-p0055 c3  hibald
-        tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.
 p0056 c0  Arendorrr
         Fulton Co , III. (Cnapman, C. C. í Co.) 187
 p0056 c0  Arendt
@@ -370,8 +364,6 @@ p0062 c0  Artorburn
         •r Co., III. (LaBxnxi, W., *., 4 Co., Pobi ) 1079/
 p0062 c2  Arte
         —Pike Co., III. (Chipman, C. C. 4 Co., Puta.1 1880,
-p0062 c2  Arundel, or Arundell
-        — t r o t l a n d . IRoberll. C, U . Calendarium, Han, iii. and tew i.
 p0062 c3  Aaohe
         DuPag, Co,, III. (Blanchard, H.) 1882: „ 2» t
 p0063 c2  ft Aahcraft
@@ -772,8 +764,6 @@ p0141 c2  Baum
         i! j Fulton Co , III. (Chipman, C. C. Li Co.) 1879i Waihlentw Co.,
 p0141 c3  ann
         Bookford and Winnebago Co.,111.
-p0142 c0  Bevent, or Beouvont
-        trelied, (latera, C„ Ed. Caleadartwn, lion, lil. a_j Edw I.
 p0142 c1  Baxtar
         . P Boon. Co, III, (Kelt 4 Co, Pub.) 1877. 409.
 p0142 c1  uaxter
@@ -932,20 +922,12 @@ p0160 c0  Belerd
         I si Oak Co., III. IBrtnk, Mcflonough 4 Co., Publ 11881, 5 4 .
 p0160 c0  Belli
         Ce, III. (Murray. Will:,. iPh-'p,. Puba,11879,
-p0160 c1  Beiael
-        Enxiaad. (Boeerta, C, Ed. Calendarium, Han, III, and Edw. I. ,
-p0160 c1  Hoko
-        . — England. (Rober!,, C, Jd, Calendarlgm, Han, iii. and Edw. I .
-p0160 c1  Bekingh'in r
-        agtand. (Boberta. C, Ed. Calaedarlam, Ben, ill. and Edw. I .
 p0161 c2  Belden
         Chicago, 1:1. (Andreas, f.. TJ - ' « t
 p0161 c2  Belden
         I^Bureau'co.', III. (Kett & Co, Pub.) 1877: 348.
 p0161 c3  Holding
         li Co, 111. (Kelt, R. F. 4 Co,iubaJ IBlBr . 449
-p0162 c0  Belhua,Bellue, or Delueo
-        — .. taalaad. (Roberta, C, U. Calaodariiiaa, Ban, lil. and Eire I,
 p0162 c1  Belknap
         —.Bureau Ce., Ill, (Kett 4 Co, fab.) I877i 348. J
 p0163 c0  Bell
@@ -1030,8 +1012,6 @@ p0174 c3  enton
         «CD., III. (Hurray, Wflliamio«& Phi.'pi,_Pola.llerj,
 p0175 c0  Bonton
         licago, III. Second Presti. Ca , 1842-92. (Grant,
-p0175 c2  Berber
-        gland. (Roberta. C, Ed. Calendarium. Hee, lil. aad Edw. i.
 p0175 c3  Berg
         Cook Co., III. (Anc'rccs, K T.) 1884 , , S 4 S
 p0175 c3  Berg
@@ -1042,8 +1022,6 @@ p0176 c0  Bergonroth
         Fullon Co , III. (Chaoman, C. C. {'. Co 1 1B79i •
 p0176 c3  Berkoy
         Madison Co., III. (Brink, W. fl. 4 Co.. fobs.) 1
-p0176 c3  Berleye, Uorloye
-        . Intland. IRcbe-u, C. Ed. Calwaiandm. Han, III. and Edw. L
 p0177 c1  Bernoval
         — Bureau Co., III. (Kelt A Co., Pub.) 1877) 213.
 p0178 c0  , Berry
@@ -1340,8 +1318,6 @@ p0220 c2  Bohun
         ' I Cwk Co., III. (Andreas, A. T.) 1804 ,726. : Boioe f e m l l y
 p0220 c3  onne
         Cook Co, III. (And.:::, A. T.) Í3C4 , 7 . 2 6
-p0221 c1  See Boketon
-        Cnrl.nd. (Robertl, C, t i . Calendlaiima, Heao, iii. «ndide* i .
 p0221 c2  Boldrey
         ide. , Cumbedirad, laipee and Richland Co'l, III. (Balloy, F, A.
 p0221 c2  ld, I Boldt
@@ -2518,8 +2494,6 @@ p0397 c0  CaTamugh
         LsSslle Co,, III. (BUiiwia, E.) 1J77I 257.
 p0398 c1  Cawthon
         Pike Co., III. (Chapman, C. C. 4 Co., Pub,.)
-p0398 c2  Cayley
-        -,—. tetland. (Robert,. C. te. Calendarium, Hee, iii. .nd ( Cearnell
 p0398 c3  Cecil
         —C*m Co., III. (LeBaron, W„ Sr., 4 Co., Publ.) 18(9,
 p0399 c2  Chace
@@ -3374,8 +3348,6 @@ p0579 c1  Crowltt
         Illinois. (Motet, J.) 1888-92. 2Y See Index
 p0579 c1  ' Creye
         -——a fn-l.nd. IPoowtl, C„ Ed. Crtraitllum. Hep, iii. .er f e w 1.
-p0579 c3  Crlnnon
-        _ England, (Bekert., C, U . C.ltndarlim, Ht», Iii. aal I " ' L
 p0580 c2  Crleo
         62,86-7,76-BO,111,112,114-7,118,
 p0580 c2  Crleo
@@ -3386,8 +3358,6 @@ p0582 c3  Crooker
         Chicago, III. (Andreas, A, T.) 1684-61 1-3.
 p0582 c3  Crocker
         IhingiKn Co., lil. (LeBaron, W„ lr., <k Co.. _ b _ \ ,878,
-p0584 c1  ian, Croft
-        . Enxtind. Ilteberll. C. l _ Calendarium, Ker, iii. and Edw. I.
 p0584 c2  Crofta
         Pike Co., III. (Chapman, C. C. & Co., Pub,.) 1880:
 p0584 c2  Crofrhar
@@ -3508,8 +3478,6 @@ p0616 c1  Boo Curry
         Ad.mi Co., III. (Murray, Williamson ft Phelp,. Pubi.l IBfSi
 p0616 c1  Curry
         72 . Schuyler n d Brow. Co'l., III. (Brink, W. B. k Co , Puhl.) ,
-p0617 c0  Cartel,
-        iarbnd. IHobtrrt, C, Id; CLndalirm. Heg, iii. led Eitw. i .
 p0617 c0  Curt ee,Curt ice,or Curti
         ^ ' C e o a ' c o . ' , 111. (nnd.ccs, A. T.) 1834 .762
 p0618 c1  Curtia
@@ -4164,8 +4132,6 @@ p0810 c1  Drury
         Illinois. Soc. Sons Am. Rev, 1896: 314.
 p0811 c1  ryer
         Sangamon Co., III. (Power, J. CJ 1876,
-p0811 c3  Dublin, px Dubllniee
-        . Enxlted. (Rcawrti, C. t_ Calendarium, ben, iii. ted (ny I
 p0813 c0  Dudley
         Illinois. Sec. Sons Am. Rev. 1896: 116.
 p0816 c0  Duff

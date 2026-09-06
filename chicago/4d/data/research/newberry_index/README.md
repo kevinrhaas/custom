@@ -79,7 +79,7 @@ drawn on one volume is not a measurement of another.
 |---|---|---|---|---|---|
 | 1 (A-C) | 40 | 39 | **0.975** | 20/20 | 19/20 |
 | 2 (C-H) | 40 | 39 | **0.975** | 20/20 | 19/20 |
-| 3 (H-P) | 40 | 37 | **0.925** | 20/20 | 17/20 |
+| 3 (H-P) | 40 | 38 | **0.950** | 20/20 | 18/20 |
 | 4 (P-Z) | 40 | 39 | **0.975** | 20/20 | 19/20 |
 
 Volumes 1-3 are the figures **after T-0600**, which struck 443 stanzas that name a locality
@@ -148,11 +148,13 @@ that is not on the card** (the sliver, `nbi_v03_0913`, is the one T-0600 struck)
   opens `lil.`. That is on no card; the `illinois_abbreviated` pattern anchors on
   start-of-line as well as on a comma, and the rule above the card satisfies it. Volume
   2's banner class and this are the same failure at two different sources.
-- **The regnal class, through the rule written to stop it** — `nbi_v03_0653`,
-  'Messendene family. — England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I.
-  1865.)', read by the photostat as `Calendafium, Han, iii. and i n .`. `REGNAL` wants
-  the regnal name and a capitalised numeral; here neither survived. Volume 1 struck 35
-  cards with that rule and volume 3 shows what it still lets through.
+- **The regnal class, through the rule written to stop it — SINCE STRUCK (T-0766)** —
+  `nbi_v03_0653`, 'Messendene family. — England. (Roberts, C., Ed. Calendarium, Hen. III.
+  and Edw. I. 1865.)', read by the photostat as `Calendafium, Han, iii. and i n .`.
+  `REGNAL` wants the regnal name and a capitalised numeral; here neither survived. Volume
+  1 struck 35 cards with that rule and volume 3 showed what it still let through; the
+  `CALENDARIUM` rule below matches the SERIES instead of the regnal year and took this
+  card and 37 others.
 
 One more thing volume 3 shows that is not a precision error: on the widest pages the
 printed column 3 begins left of the 519-point crop, and its headings lose their opening
@@ -215,6 +217,39 @@ whose entries are filed by regnal year — `Calendarium, Hen. III. and Edw. I` �
 `, III.` is the shape of `, Ill.`. `REGNAL` in the tool refuses them; 35 cards left
 volume 1 when it was added, and volume 1's sample was redrawn afterwards.
 
+**AND IT FOUND THEM AGAIN, BECAUSE THE REGNAL YEAR IS THE PART THE PHOTOSTAT DESTROYS
+(T-0766).** `REGNAL` tells the inquisitions apart from a county by the three or four
+letters standing in front of the stroke, and those letters come back as `Han,`, `Hee,`,
+`Ken,`, `Ron,` and `ben,` with the numeral in lowercase. So the guard fires on the cards
+whose OCR survived and misses the ones whose OCR did not. The discriminator that does not
+depend on the wreck is the SERIES: every one of these cards cites the same work, and
+`Calendarium` is eleven letters where the regnal abbreviation is three — long enough to be
+recognised through the photostat by similarity, which is how this file already matches the
+works a citation names. `CALENDARIUM` is `token_like(body, "calendarium", 0.55)`, and the
+threshold is measured rather than chosen: **38 cards left the four volumes — 17, 6, 15 and
+0 — and every one of them is this series.** At 0.50 the rule begins taking real Illinois
+cards, because `Blanchard` and its wreck `Cicncharu` — the publisher of the DuPage and
+Sangamon county histories — are as close to `calendarium` as some of these are. Both ends
+of that are self-test cases.
+
+**THE FOUR DISCRIMINATORS THAT WERE REFUSED, AND WHAT EACH WOULD HAVE COST.** T-0766 asked
+whether a rule could separate the remaining bad keeps from a wrapped locality — `..., Cook
+Co.,` at the end of one line and `Ill. (Andreas, A. T.) 1884-6` at the head of the next —
+and the answer for four of the five shapes is no, measured over all four volumes as they
+now stand, against the 4,297 cards that rest on `illinois_abbreviated` alone:
+
+| the rule proposed | what it would strike | why it is refused |
+|---|---|---|
+| the stroke is the last ink on the line | 104 | **51** of them carry a county in front of it — 'Rockford and Winnebago Co., Ill.' is the commonest card in this index, and the citation simply wrapped |
+| digits immediately after the stroke | 50 | 6 carry a county in front of it, and the rest are the column-sliver class, which is T-0601's and not a locality rule's |
+| a start-of-line stroke followed by a lowercase word | 36 | it takes `nbi_v01_2418`'s class, the ticket's own bad keep — and also the Eppler card, whose body reads `i li,i,,gilen Co., III. (LeBtreo…) I87B`, a real Illinois county history the pattern happened to match at the head of the line first |
+| `index` in front of the stroke — 'See index III.' | **0** | the class is real (a genealogy's index volume in roman) but no rule reaches it: the words that would identify it are the words the photostat destroys, and 'See index' comes back as `So,\|„de,` |
+
+A filter that costs real Illinois cards to catch four is the wrong trade, and the sample
+already names the cost; these four are written down here so the next reader does not
+re-derive them. The class that CAN be caught is the one that names a work, and the work is
+what `CALENDARIUM` matches on.
+
 **Surnames are recovered, not read.** A heading is often clipped by its neighbour, so
 `er, E P Adams` is a real reading of an Adams card. The comparison key is the longest
 word of three letters or more in the heading, which is `Adams` there and `Aldridge` in
@@ -223,7 +258,7 @@ heading verbatim.
 
 **Citations are clustered, and more than half of them are not.** The works table in the
 tool matches a citation by pattern or by similarity to one canonical spelling. It reaches
-3,068 of the 6,688 cards read so far. The 3,620 it does not reach are overwhelmingly Illinois
+3,061 of the 6,658 cards read so far. The 3,597 it does not reach are overwhelmingly Illinois
 COUNTY histories — Chapman, LeBaron, Brink & McDonough, Baldwin, Murray Williamson,
 Power — published by houses nobody has written a pattern for, and only **365** of them
 name Chicago or Cook County. That residue is the weakest part of this reading and it is
@@ -387,9 +422,9 @@ deleted: a project that only records its final figure cannot show that it earned
 
 | volume | pages | cards assembled | per page | kept | column slivers | cards | Chicago/Cook | precision |
 |---|---|---|---|---|---|---|---|---|
-| 1 (A-C) | 987 | 58,488 | 59 | 2,414 | 3 | 2,411 | 562 | 0.975 |
-| 2 (C-H) | 1,016 | 58,589 | 58 | 1,877 | 1 | 1,876 | 491 | 0.975 |
-| 3 (H-P) | 1,003 | 68,552 | 68 | 1,995 | 4 | 1,991 | 502 | 0.925 |
+| 1 (A-C) | 987 | 58,488 | 59 | 2,397 | 3 | 2,394 | 562 | 0.975 |
+| 2 (C-H) | 1,016 | 58,589 | 58 | 1,871 | 1 | 1,870 | 491 | 0.975 |
+| 3 (H-P) | 1,003 | 68,552 | 68 | 1,980 | 4 | 1,976 | 502 | 0.950 |
 | 4 (P-Z), text layer | 918 | 6,548 | 7 | 247 | 1 | 246 | 9 | 0.513 |
 | **4 (P-Z), OCR** | **918** | **33,357** | **36** | **410** | **not checked** | **410** | **207** | **0.975** |
 

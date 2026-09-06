@@ -520,6 +520,28 @@ def page_number_slot(body: str, m) -> bool:
     return bool(PAGE_LIST_BEFORE.search(pre[:-1]))
 
 
+# FOUR — THE INQUISITIONS AGAIN, WHERE THE REGNAL YEAR IS TOO WRECKED FOR REGNAL.
+# T-0766. REGNAL above tells 'Calendarium, Hen. III. and Edw. I' apart from 'Cook Co.,
+# Ill.' by the regnal abbreviation standing in front of the stroke, and that abbreviation
+# is three or four letters of the worst text in the volume: it comes back as 'Han,',
+# 'Hee,', 'Ken,', 'Ron,' and 'ben,', and the numeral comes back lowercase. So the guard
+# fires on the cards whose OCR happened to survive and misses the ones whose OCR did not
+# — nbi_v03_0614 is the proof, 'Calendafium, Han, iii. and i n .', volume 1's false
+# positive wearing a different wreck.
+#
+# The discriminator is not the regnal year but the SERIES. Every one of these cards cites
+# the same work, `Calendarium Inquisitionum post mortem`, and 'Calendarium' is eleven
+# letters where the regnal abbreviation is three — long enough to be recognised through
+# the photostat by similarity, which is how this file already matches the works a
+# citation names (`token_like`). The threshold is measured, not guessed: at 0.55 it
+# strikes 38 cards over the four volumes and every one of them is this series; at 0.50 it
+# begins to take real Illinois cards, because 'Blanchard' and 'Cicncharu' — the publisher
+# of the DuPage and Sangamon county histories — are as close to 'calendarium' as some of
+# these wrecks are. The cost of the rule at 0.55 is zero cards, and the measurement is in
+# the README.
+CALENDARIUM = ("calendarium", 0.55)
+
+
 CITATION_YEAR = re.compile(r"(?<!\d)1[5-9]\d\d(?!\d)")
 
 
@@ -552,6 +574,8 @@ def buckets_of(body: str):
         if name == "illinois_abbreviated" and call_number_slot(body, m):
             continue
         if name == "illinois_abbreviated" and page_number_slot(body, m):
+            continue
+        if name == "illinois_abbreviated" and token_like(body, *CALENDARIUM):
             continue
         out.append(name)
         spans.append((m.start(), m.end()))
@@ -1921,6 +1945,18 @@ def self_test() -> int:
          "III, Hepgoed fam. (He'agaod. W.l 1898. See lad", []),
         ("the regnal Calendarium, which REGNAL already refused",
          "England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I. 1865.)", []),
+        ("the regnal Calendarium with its regnal year wrecked (nbi_v03_0614, T-0766)",
+         "\u2014 Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |", []),
+        ("the same series where the title itself is wrecked (nbi_v01_hibald, T-0766)",
+         "tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.", []),
+        ("a county history the Calendarium rule must not take (T-0766's measured cost)",
+         "j* \" 6 ' Co., Ill, (Cicncharu, R.) I882l pt.2t", ["illinois_abbreviated"]),
+        ("the regnal Calendarium with its regnal year wrecked (T-0766)",
+         "\u2014 Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |", []),
+        ("the same series where the title itself is wrecked (T-0766)",
+         "tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.", []),
+        ("a county history the Calendarium rule must not take (T-0766's measured cost)",
+         "j* \" 6 ' Co., Ill, (Cicncharu, R.) I882l pt.2t", ["illinois_abbreviated"]),
         ("a wrapped locality, which the call-number rule must not touch",
          "III. f(Moses, J, j n d Kirkland, J.) I89J,", ["illinois_abbreviated"]),
         ("a wrecked reading that still carries its date (nbi_v01_1796's class)",

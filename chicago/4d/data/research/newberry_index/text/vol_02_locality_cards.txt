@@ -696,8 +696,6 @@ p0207 c1  Gllmore
         Chicago, lil. (Andreas, A. T.) 84 g j j - ^ Ollm
 p0207 c1  Gilmoro
         ,st. 'mag. a ,111,17-8.Soe l ^ e x ^ u j
-p0209 c3  Gymurr ee r
-        •mm— leahed. (Hob««, C, l i . Caleadtdvm. Hea, III. „ j
 p0209 c3  Gingorlch
         Uneitdoo Co., III. (leBwoa, * . , »., * Co, PidaaiSIBi
 p0210 c1  Ripe
@@ -2234,8 +2232,6 @@ p0632 c1  Hotehkiea
         Cook Co., III. (Andrees, A. T J 1884 i 4 5 B .
 p0633 c0  otolHrr-
         Winnebago Co., III. (Kelt, I ' , F., 6 Co., Pu
-p0633 c1  Hot en
-        . ) 1908. Fjxfian-I. irtoeerti, C. .Ed. Clendxeram. t i n , ill. .nd [da. I.
 p0633 c1  B Hotten
         — Cook Co., lil. (Andreas, A..T.. :CC4 , 732.
 p0633 c1  Hotx f r
@@ -2498,8 +2494,6 @@ p0694 c1  ou n icx Hunter
         '"-et ) . . - . . e..,.. K , A f her, I I I , I 1 lf(75,
 p0694 c1  Hunter
         Sec index. — England. (Rebecta, C, ^d. ________ Hea, iii. and Edw. I.
-p0694 c3  Huntinpdon
-        43, — — legland. (Rotvrta, C. 74.' Calendarium. Hep, iii. and Cdw. I.
 p0695 c1  Huntirr ton
         I 11.1 — r t o r w l o l i . t t . f r i l n x u i . n . C . ) 1(159. See
 p0695 c1  'Pontingten
@@ -3520,8 +3514,6 @@ p0947 c2  l aaater
         Cornwall, Eng. HeralrJic ch. notes H - . f/ewers, —Pike Ce, III. (Chapman,
 p0947 c3  lla
         III. (Chapman, C C I Co.. Puba.) lOiJOa
-p0947 c3  or Laaaelaa
-        d. IfUads, C, t j . Calrndarlaa,. Han, iii. and Edw I.
 p0948 c2  Rockaway Laahlll
         CanellCe, III. (Keö, H. I . 4 Co, PubaJ I87B, 496,
 p0949 c1  Laewen
@@ -3642,8 +3634,6 @@ p0986 c3  L rr
         ChicigO, III., Dircclery, 1639. ( T r ' f a t h.rl. s-r
 p0986 c3  ' err
         — Fulton Ce, III. (Chepraan, C. Sa - Co.) 1879a
-p0987 c3  Lorhc
-        dand. (Robert., C. Ed. Carandarium, Hee, iii. and Edw I.
 p0988 c2  Lehnaan
         00, DuPage Co., III. (Blancitatd, K.) I6C2: pt.2t
 p0988 c2  l hman
@@ -3716,8 +3706,6 @@ p1003 c1  t do l'llomjooau r
         !'• S« mdxau r 0639 61 UJalle Co., III,
 p1003 c2  or leyttleton r
         le Co., III, mmm*. E.J 1877! 34«. 1901. Sej, Ind«.
-p1003 c3  votot
-        fcerta, C. Ed. Calendarium, Hee, iii. aod fd.,1.
 p1004 c2  Levorett
         Cl004jtl06,lll. g 8884.68 L
 p1005 c2  Levil
