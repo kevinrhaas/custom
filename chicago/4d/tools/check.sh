@@ -1645,7 +1645,7 @@ step "…and that pass writes two fields, moves no grade and repeats without dri
 # carries the paragraph for a ruling the crosswalk never made. The paragraph says BID and
 # never residence, and it says so twice — the Addition was the garrison's reservation in
 # 1835 and was not platted into lots at all, so a block and lot from this sale place nobody.
-step "…and the Fort Dearborn Addition lot sale is on the 11 cards it names" \
+step "…and the Fort Dearborn Addition lot sale is on every card it names" \
   python3 tools/spend_fergus_1839_lot_sale.py --check
 
 step "…and that pass writes two fields, moves no grade and repeats without drift" \
