@@ -14482,6 +14482,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 176
+    },
+    {
+      "id": "T-0856",
+      "title": "H. Van Den Bogart and Dr Henry Van der Bogart are one man printed two ways, and the particle rule now keeps them in two identities",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
+    },
+    {
+      "id": "T-0857",
+      "title": "The priest keeps the register that is rung G2c and his own card cites only Andreas: st_cyr_john_mary is graded attested on a single later volume",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 178
     }
   ]
 }

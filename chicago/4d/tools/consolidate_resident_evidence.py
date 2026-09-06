@@ -119,12 +119,17 @@ REFUSAL_RULES = {
 NAME_RULES = {
     "N1": "A SURNAME PRINTED WITH A SPACE IN IT IS ONE SURNAME. The surname is the last "
           "printed token plus any unbroken run of particles standing immediately in front "
-          "of it — st, ste, van, von, de, del, den, der, du, la, le, mac, mc, ten, ter — "
+          "of it — st, ste, van, von, de, del, du, la, le, mac, mc, ten, ter, each of "
+          "which can lead a surname on its own; `den` and `der` are deliberately absent, "
+          "because this corpus prints them only inside `Van den`/`Van der` Bogart, where "
+          "reading them keys one man's two printings apart (T-0856) — "
           "so `Van Horn` keys as `vanhorn` and never lands in the `horn` bucket beside a "
           "man who is not kin to him. The run is DECLINED where any token in front of the "
           "particle is not name-shaped (the directories set names capitalised and trades "
           "in lower case), which is what keeps `Peterson. GPO. captain schooner St. "
-          "Joseph` from minting a man whose surname is a schooner. Declining always falls "
+          "Joseph` from minting a man whose surname is a schooner, and it is declined "
+          "where the particle is the last forename left (the letter lists' `Ste "
+          "Beadieston` is a Beadieston). Declining always falls "
           "back to the last-token reading, so the rule can only ever read a name the old "
           "one misread — it can never invent one (T-0724).",
 }
@@ -211,9 +216,15 @@ ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
 # ladder could not see.
 #
 # The list is deliberately short and historical: these are the particles the 1835 corpus
-# actually prints. `o` is absent because `O'Brien` is one printed token already, and a
-# bare `O.` is a middle initial, not a particle.
-SURNAME_PARTICLES = {"st", "ste", "van", "von", "de", "del", "den", "der",
+# actually prints, and every one of them can LEAD a surname on its own. `o` is absent
+# because `O'Brien` is one printed token already and a bare `O.` is a middle initial.
+#
+# `den` and `der` are absent too, and for a reason worth writing down. This corpus prints
+# them only as the SECOND particle of `Van den Bogart` / `Van der Bogart` — one man, two
+# printings, one letter of OCR apart. Reading them would key the two apart and mint a
+# second Bogart into a town of 1,404 people, which is a worse error than the one this rule
+# repairs. T-0856 is the ticket that rules on that pair; this list grows when it lands.
+SURNAME_PARTICLES = {"st", "ste", "van", "von", "de", "del",
                      "du", "la", "le", "mac", "mc", "ten", "ter"}
 
 
@@ -229,9 +240,10 @@ def absorb_particles(parts: list[str]) -> tuple[list[str], list[str]]:
     moves — a token that is not on the particle list is a forename and stays one, so
     `Della Smith` is still a woman called Della and never a surname `dellasmith`.
 
-    The run is taken even when it eats every token in front of it: `St Cyr` on its own
-    then reads as the surname `stcyr` with NO forename, which is exactly what it is,
-    and `cluster` refuses it R1 rather than minting a man whose forename is `st`.
+    THE RUN NEVER EATS THE LAST FORENAME. The letter lists print `Beadieston, Ste` and
+    the town's card for that person is `Ste Beadieston` — a man whose whole forename is
+    a word on the particle list. Absorbing it would leave a surname `stebeadieston` and
+    nobody to carry it, so the run stops one token short and he stays a Beadieston.
 
     AND IT IS TAKEN ONLY WHERE EVERYTHING IN FRONT IS STILL NAME-SHAPED. The 1844
     directory prints `Peterson. GPO. captain schooner St. Joseph, house Canal st`, and
@@ -243,7 +255,10 @@ def absorb_particles(parts: list[str]) -> tuple[list[str], list[str]]:
     surname = [parts[-1]]
     rest = list(parts[:-1])
     while rest and clean(rest[-1]) in SURNAME_PARTICLES:
-        if not all(is_name_shaped(t) for t in rest[:-1]):
+        remaining = rest[:-1]
+        if not any(clean(t) and clean(t) not in HONORIFICS for t in remaining):
+            break
+        if not all(is_name_shaped(t) for t in remaining):
             break
         surname.insert(0, rest.pop())
     return surname, rest
@@ -1779,15 +1794,19 @@ def cmd_self_test() -> int:
         ("St Cyr, Rev. John Mary Irenaeus", ("stcyr", ["john", "mary", "irenaeus"])),
         # …and the readings from the corpus that were quietly wrong the same way.
         ("Cornelius C. Van Horn", ("vanhorn", ["cornelius", "c"])),
-        ("H. Van Den Bogart", ("vandenbogart", ["h"])),
+        # …and the pair the list deliberately does not read: `den` is not a particle
+        # here, so this stays the reading it has always had rather than keying apart
+        # from `Van der Bogart`, which is the same man (T-0856).
+        ("H. Van Den Bogart", ("bogart", ["h", "van", "den"])),
         ("Calvin De Wolf", ("dewolf", ["calvin"])),
         ("De Wolf, Calvin", ("dewolf", ["calvin"])),
         ("Van Horn Cornelius C.", ("vanhorn", ["cornelius", "c"])),
         # THE COUNTER-CASES. A word that is not on the particle list is a forename and
-        # stays one; and a particle standing alone in front of the surname leaves no
-        # forename at all rather than inventing one called `st`.
+        # stays one; and a particle that IS somebody's whole forename is left alone,
+        # which is what keeps the letter lists' `Ste Beadieston` a Beadieston.
         ("Della Smith", ("smith", ["della"])),
-        ("St Cyr", None),
+        ("Ste Beadieston", ("beadieston", ["ste"])),
+        ("Beadieston, Ste", ("beadieston", ["ste"])),
     ]
     for text, want in cases:
         got = split_name(text)

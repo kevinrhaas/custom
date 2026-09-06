@@ -5,7 +5,7 @@
 - **T-0724** The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c · claimed · run 9/5/2026, 9:42:03 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/34006759051)
 - **T-0447** North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it · **OWNER** · SEEN · claimed · run 9/4/2026, 2:25:19 PM CT · [the run](https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737)
 
-## In the queue, in the owner’s order (177)
+## In the queue, in the owner’s order (179)
 
 - **T-0814** The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card
 - **T-0721** Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them
@@ -184,6 +184,8 @@
 - **T-0849** Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none
 - **T-0848** Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 - **T-0852** tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
+- **T-0856** H. Van Den Bogart and Dr Henry Van der Bogart are one man printed two ways, and the particle rule now keeps them in two identities
+- **T-0857** The priest keeps the register that is rung G2c and his own card cites only Andreas: st_cyr_john_mary is graded attested on a single later volume
 
 ## ⏸ Waiting on an owner decision (6)
 

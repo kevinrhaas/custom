@@ -9,7 +9,7 @@
   "matched_one_1843_entry": 119,
   "matched_more_than_one_ambiguous": 41,
   "one_1843_entry_contested_by_two_residents": 17,
-  "surname_present_initial_absent_refused": 351,
+  "surname_present_initial_absent_refused": 350,
   "initial_agreed_forenames_disagreed_refused": 94,
   "of_those_a_garbled_printed_forename": 1,
   "residents_left_with_no_1843_entry_by_that_refusal": 44,
@@ -5918,13 +5918,6 @@
    "surname_in_1843": "Abbott",
    "candidates": 2,
    "rule": "The surname 'Abbott' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Constant Abbott'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Cornelius C Van Horn",
-   "person_id": "horn_cornelius_c_van",
-   "surname_in_1843": "Horn",
-   "candidates": 1,
-   "rule": "The surname 'Horn' is in Fergus 1843 and no entry under it carries the initial 'C' of 'Cornelius C Van Horn'. A surname-only agreement is a refusal."
   },
   {
    "resident": "D H Butterfield",

@@ -4648,21 +4648,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_cleve_h_p_van",
-   "file": "households/hh_cleve_h_p_van.json",
-   "civic_mint": true,
-   "head": "cleve_h_p_van",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_clift_benjamin_h",
    "file": "households/hh_clift_benjamin_h.json",
    "civic_mint": true,
@@ -5134,21 +5119,6 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_cortlandt_pierre_van",
-   "file": "households/hh_cortlandt_pierre_van.json",
-   "civic_mint": true,
-   "head": "cortlandt_pierre_van",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_cory_john_l",
@@ -7575,22 +7545,6 @@
    "review_required": false
   },
   {
-   "id": "hh_framboise_joseph_le",
-   "file": "households/hh_framboise_joseph_le.json",
-   "civic_mint": true,
-   "head": "framboise_joseph_le",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_frame_david_p",
    "file": "households/hh_frame_david_p.json",
    "letter_list_only": true,
@@ -8255,21 +8209,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_grand_jaqua_le",
-   "file": "households/hh_grand_jaqua_le.json",
-   "civic_mint": true,
-   "head": "grand_jaqua_le",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_granger_harrison",
@@ -9513,21 +9452,6 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false
-  },
-  {
-   "id": "hh_horn_cornelius_c_van",
-   "file": "households/hh_horn_cornelius_c_van.json",
-   "civic_mint": true,
-   "head": "horn_cornelius_c_van",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -11650,7 +11574,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -11931,10 +11855,41 @@
    "projected_resident": true
   },
   {
+   "id": "hh_leframboise_joseph",
+   "file": "households/hh_leframboise_joseph.json",
+   "civic_mint": true,
+   "head": "leframboise_joseph",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
+  },
+  {
    "id": "hh_legg_gregory_e",
    "file": "households/hh_legg_gregory_e.json",
    "letter_list_only": true,
    "head": "legg_gregory_e",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_legrand_jaqua",
+   "file": "households/hh_legrand_jaqua.json",
+   "civic_mint": true,
+   "head": "legrand_jaqua",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -19264,6 +19219,36 @@
    "review_required": false
   },
   {
+   "id": "hh_vancleve_h_p",
+   "file": "households/hh_vancleve_h_p.json",
+   "civic_mint": true,
+   "head": "vancleve_h_p",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
+   "id": "hh_vancortlandt_pierre",
+   "file": "households/hh_vancortlandt_pierre.json",
+   "civic_mint": true,
+   "head": "vancortlandt_pierre",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_vanderbogart_h",
    "file": "households/hh_vanderbogart_h.json",
    "letter_list_only": true,
@@ -19357,6 +19342,21 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_vanhorn_cornelius_c",
+   "file": "households/hh_vanhorn_cornelius_c.json",
+   "civic_mint": true,
+   "head": "vanhorn_cornelius_c",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_vann_angeline",

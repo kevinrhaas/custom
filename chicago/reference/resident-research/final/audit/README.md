@@ -30,16 +30,16 @@ Each line is *how many of the 1362 people carry at least one record of that kind
 | household membership | **44** | 3.2% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.6% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **280** | 20.6% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **281** | 20.6% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **30** | 2.2% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 421 | 30.9% |
+| `corroborated_across_categories` | 422 | 31.0% |
 | `two_or_more_sources_one_category` | 20 | 1.5% |
-| `one_source` | 356 | 26.1% |
+| `one_source` | 355 | 26.1% |
 | `the_letter_lists_alone` | 562 | 41.3% |
 | `no_source` | 3 | 0.2% |
 
@@ -52,7 +52,7 @@ record agree; two newspaper notices of the same name are
 | category | people citing at least one |
 | --- | ---: |
 | newspaper | 1131 |
-| civic | 280 |
+| civic | 281 |
 | census | 30 |
 | church | 46 |
 | book | 192 |
@@ -321,7 +321,7 @@ defect in this export.
 | no census linkage | 1332 | no 1840 census row is bridged to this person |
 | no address | 1286 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1266 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 918 | one source id on the card and no second category to check it against |
+| rests on one source | 917 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 562 | known only from the post office's uncalled-for lists |
 | no research row | 520 | no cohort ticket has reviewed this person; the programme reached 842 of 1362 |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
