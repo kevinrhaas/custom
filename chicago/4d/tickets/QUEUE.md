@@ -340,3 +340,4 @@ T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that
 T-0854 — The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
 
 T-0861 — Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground
+
