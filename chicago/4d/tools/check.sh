@@ -1589,6 +1589,19 @@ step "the research domains hold one shape" \
 # the people of 1835, and the layer the panel renders those meetings from. A hand-edit
 # to any of them — a match nudged out of "ambiguous", a refusal quietly dropped, a
 # trade written into a card — would have shipped unopposed. All three rebuild and diff.
+# T-0670, T-0696. THE TWO RULE MODULES the directory crosswalks import rather than
+# restate: the forename agreement that refuses `Abbott, Thomas L.` onto Titus H. Abbott,
+# and the tie discriminator that may NARROW a contested or ambiguous tie on a trade and
+# may never make it a match. Both carry their own self-test and NEITHER was gated, so a
+# loosened rule — one more contraction, a premises allowed to break a tie after all —
+# would have re-derived both crosswalks quietly and passed every check below. The
+# crosswalks are re-derived here; the rules they are re-derived BY were not.
+step "the directory forename rule's own assertions still fire when broken" \
+  python3 tools/name_agreement.py --self-test
+
+step "…and the tie discriminator's do too" \
+  python3 tools/tiebreak.py --self-test
+
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
 
