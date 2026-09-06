@@ -12,6 +12,11 @@ Andreas: the **American Fur Company factory building**, erected by Capt. Bradley
 Baptiste Beaubien in **1817**. Beaubien afterwards converted an earlier cabin to a barn and built
 a new residence and a small trading post.
 
+> **Corrected 2026-09-06 (T-0718), and read § 6 before using the sentence above.** The **1817**
+> in it belongs to a *different building* — the Dean house at the lake shore — and Andreas dates
+> the factory building's arrival to **1822**. The record's `documented_range` carries the same
+> correction; the bound itself was not moved on that ticket, and § 6 says why.
+
 A second source gives the same building a **different origin** — the United States Factory House,
 bought from the government by the Fur Company in 1822 — and that reading, its conflict with
 Andreas and the identity question it opens are § 6 below, not this section.
@@ -21,22 +26,63 @@ reservation is dated **28 May 1835**, recorded **26 June 1835**, price **$94.61*
 and unchallenged on 1835-07-01. It was voided by *Wilcox v. Jackson*, 38 U.S. 498, in **1839**,
 which is outside this scene.
 
-## 2. The corner is contested inside a single source
+## 2. The corner, decided — north-east
 
-| passage | reading | what the passage is about |
+**Settled 2026-09-06 under T-0718, against the previous adoption.** This section used to be
+headed *"the corner is contested inside a single source"* and adopted the **south-west** on the
+rule that a statement *about* the thing outranks a statement that merely passes it. The rule is
+right; the reading it was applied to was wrong. Both pages were then read directly off the
+archive.org scan of `historyofchicago01andr`.
+
+| passage | reading | what the passage actually is |
 |---|---|---|
-| Andreas, scan p. 185 | *"where now is the **southwest** corner of South Water Street and Michigan Avenue"* | the homestead itself |
-| Andreas, scan p. 339 | *"go east upon South Water Street until you come to the **northeast** corner"* | a boundary walk in Block 5, using the corner as a waypoint |
+| Andreas, scan p. 185 | *"where now is the **southwest** corner of South Water Street and Michigan Avenue"* | Andreas's own one-sentence summary of the homestead — followed immediately by the 1839 sale |
+| Andreas, scan p. 339 | *"go east upon South Water Street until you come to the **northeast** corner"* | **John Wentworth's address of 21 May 1881, reprinted** — and expressly an instruction for finding this house |
 
-**The south-west is adopted**, on the ground that a statement *about* the thing outranks a
-statement that passes it. The two readings are about **45 m** apart — roughly twice the
-georeference's own error, and the largest single uncertainty on the record.
+**Scan p. 339 is not a boundary walk and it is not Andreas.** Verbatim:
+
+> If you wish to find the traditional residence of General Jean Baptiste Beaubien, after he moved
+> from what was before known as the John-Dean house, go east upon South Water Street until you come
+> to the northeast corner of South Water Street and Michigan Avenue, and you will find it.
+
+**One witness, not two.** That is word for word the sentence `chicagology_prefire052` reprints and
+`wentworth_1881_fort_dearborn` holds as a document. Andreas 1884 is carrying Wentworth 1881, so the
+north-east reaches this project twice from a single mouth — recorded here so that no later run
+counts it twice.
+
+**The south-west sentence cites the transaction that contradicts it.** Andreas p. 185 continues:
+*"This was bid in at the land sale in June, 1839, by James H. Collins, for $1,049."* That is the
+sale Wentworth narrates on p. 339, same buyer and same price — and Wentworth says which land it
+was:
+
+> …the land upon the **east side of Michigan Avenue, in Block 5, between South Water Street and the
+> lots reserved**, where the Marine Hospital afterward was, except the corner lot, known as Lot 11 …
+> Mr. Collins bid $1,049 for the next five lots, 10, 9, 8, 7, and 6, **where Beaubien's house,
+> out-buildings, and garden were**.
+
+East of Michigan Avenue, north of South Water Street, south of the reserved lots: the **north-east
+quadrant**, and the only one of the four the sale can have been in. P. 185's second clause places
+the ground its first clause mis-sites.
+
+**The move.** About **47 m** north-east, to E 448199.8, N 4637570.6 (EPSG:26916) — the same OSM
+intersection centre as before with the offset mirrored, so the two placements are comparable. The
+point stands on traced ground at **+3.48 m** above the summer-1835 water surface, against +2.51 m
+where it stood before. Confidence stays `inferred`: a better-argued corner is still a retrospective
+corner.
+
+**What is still open.** Wentworth's own lot list puts the house on lots 6–10, the five lots *north*
+of corner lot 11 — so the buildings stood some distance north of the corner and his "you will find
+it" is a finder's approximation. No plat of the Fort Dearborn Addition with a lot dimension for
+Block 5 has been read here, so that distance is not quantified and is not invented. **The committed
+point is a floor: the true position is at the corner or north of it, never south or west of it.**
 
 ## 3. A caveat that matters more than the corner
 
 **Neither street existed here in 1835.** The reservation was unplatted, no street crossed it, and
 South Water Street was ordered pitched only *"from the United States Reservation to Randolph
-Street"*. Andreas is writing in 1884 and locating an 1817 building by the streets of his own day.
+Street"*. Wentworth is speaking in 1881 and Andreas writing in 1884, both locating an old building by the
+streets of their own day — and the Fort Dearborn Addition whose Block 5 they cite was not platted
+until 1839.
 Any future evidence should be read as fixing this building relative to the **fort**, not to a grid
 that arrived later. The facade bearing has **no attested basis whatever** and is a placeholder
 inherited from the retrospective grid.
@@ -104,34 +150,80 @@ descriptions are independent of each other as *texts* and not as *testimony*.
 Different buyer, different seller, five years apart, and two bearings from the fort that are
 not the same bearing — South Water and Michigan is *north* of the fort, not south of it.
 
-### Is the building standing in 1835 the Factory House? **Not established here.**
+> **The first two rows of that table are withdrawn (T-0718, 2026-09-06).** Andreas scan p. 205
+> says the factory building went to the American Fur Company and on to Beaubien in **1822**, which
+> is Hubbard's year and Hubbard's chain; the "Beaubien, 1817" reading came from a *different*
+> Andreas passage about a *different* house. The sources never disagreed about this building. The
+> last row — the bearing from the fort — stands, and it is now the whole of the open question.
 
-That is the honest answer, and it is the answer three separate things push toward:
+### The John Dean question, answered — and it fails on the *house*, not the man
 
-1. **Thirteen years.** `bk_afc_009` is a claim of **1822** about a scene of **1835**. Nothing
-   reached follows the building across that gap.
-2. **The bearing.** Hurlbut's Hubbard puts the Factory House just *south* of Fort Dearborn.
-   This record stands *north* of it, on Andreas's retrospective corner.
-3. **John Dean.** Wentworth's 1881 address, as reprinted by `chicagology_prefire052`, locates
-   "the traditional residence of Gen. Jean Baptiste Beaubien, **after he moved from what was
-   before known as the John-Dean house**". John Dean is the man Hubbard names as the factor who
-   succeeded Jouett at the **Factor House**. If those two John Deans are one man — and no
-   source reached says so, which is why this is `inferred` and stays that way — then the same
-   evidence that supplies the origin also says Beaubien **left** that house, and the building
-   at the corner is the one he moved *to*, not the Factory House at all.
+**T-0718, 2026-09-06.** The question § 6 opened was this: Hubbard names **John Dean** as the United
+States factor who succeeded Jouett at the Factor House (`bk_hub_063`), and Wentworth finds
+Beaubien's residence *"after he moved from what was before known as the John-Dean house"*. If those
+two John Deans were one man, Beaubien had **left** the Factory House and this record modelled the
+house he moved *to*.
 
-**Nothing in the record moved, was resized or was regraded on this evidence, and nothing
-should until the identity is settled.** The origin is recorded as what it is: a sourced claim
-about the building's past, thirteen years upstream of the scene, whose connection to the
-massing standing here on 1835-07-01 is unproved. Point 3 is a question about *position*, which
-this dossier does not answer and which is out of this ticket's scope; it is filed as its own
-ticket rather than argued here.
+**The premise does not survive the reading.** Two further Andreas pages, read directly off the scan:
 
-**One more thing this evidence does not license.** `bk_hub_063` calls the Factor House
-**two-story**; this record's `form.stories` is `1`, `inferred` from the type and the date. That
-is a live tension and not a correction: it would only bear on this record if the identity in
-point 3 were settled the other way, and regrading a storey count on an unsettled identity is
-exactly the move this ticket forbids. Filed, not applied.
+> **p. 183** — In 1815, a short time before the rebuilding of the fort, an army contractor named
+> **Dean**, built a house **on the lake shore, at the mouth of the Chicago River, near where is now
+> the foot of Randolph Street**. In 1817, Mr. Beaubien purchased this house, which was **a low,
+> gloomy building of five rooms, for $1,000** … After this purchase he lived in the Dean house for
+> several years, his son Alexander being born there. He used the old cabin after this for a barn.
+
+> **p. 191** — While living in Chicago, Mr. Varnum boarded in **the old John Dean house**, with J. B.
+> Beaubien, then its owner. … After the goods belonging to the United States remaining in the
+> factory had been disposed of, **the building, which was just south of the fort**, was bought by a
+> Mr. Whiting … It was sold by Mr. Whiting to the American Fur Company, and by that company to Jean
+> Baptiste Beaubien, whose residence it remained until 1839.
+
+> **p. 205** — In 1822, after the abandonment of the United States Factory at Chicago, by Government,
+> **the factory building was bought by the American Fur Company, and soon after sold to John B.
+> Beaubien, who made it his dwelling house.**
+
+**The John-Dean house is a third building.** Andreas gives it a builder, a year, a site, a price and
+a room count, and p. 191 holds it apart from the factory in a single paragraph — the John Dean house
+on one side, *"the building, which was just south of the fort"* on the other. So Wentworth's sentence
+does **not** say Beaubien left the Factor House; it says he left the lakeshore house at the foot of
+Randolph Street.
+
+**Whether contractor Dean and factor John Dean are one man is *not established*, in as many words.**
+Andreas supplies the forename "John" for the house; Hubbard supplies the office for the man; nothing
+reached joins them. It no longer bears on this record either way, because the sentence turns on which
+*house* Beaubien left and Andreas answers that directly.
+
+### So is the modelled building the Factory House? More likely than it was — still not proved
+
+Read forward, Andreas's own sequence is: the **Dean house** at the lake shore from 1817; the
+**factory building** from **1822** (p. 205, and `bk_afc_009` gives the same year and the same chain);
+and Wentworth's *"traditional residence, after he moved from … the John-Dean house"* is then that
+second building, at the corner § 2 now places this record on.
+
+**Two corrections fall out of that**, and they are corrections to this dossier, not new claims:
+
+1. **Andreas and Hurlbut's Hubbard do not disagree about the factory building.** The table above —
+   "Beaubien, 1817" against "the American Fur Company, 1822, from the U.S." — was an artefact of a
+   **conflation**: the 1817 purchase in Andreas is the *Dean house*, and Andreas dates the factory
+   building's arrival to 1822 exactly as Hubbard does. The disagreement this dossier reported was
+   never between the sources.
+2. **The record's phase is misnamed.** `factory_1817` fuses the two buildings in its id and in its
+   `documented_range.from`. Nothing was moved on T-0718: changing the bound renames the phase and
+   with it the committed GLB, two manifests, the 1835 sidecar and a `docs/LIBERTIES.md` coverage
+   line. The bound stands as a **floor** — the modelled building is older than 1817 on either
+   reading — and the correction is carried by its own ticket.
+
+**What still blocks the identity is a position, not a date.** Andreas p. 191 and Hurlbut's Hubbard
+both put the factory building **just south of the fort**; this record stands **north** of it, on the
+corner two passages agree the homestead occupied. That contradiction is the whole of what is left of
+the question, and it is filed as its own ticket rather than resolved by preferring whichever source
+agrees with the position already committed.
+
+**Nothing was resized or regraded on this evidence.** `bk_hub_063`'s **two storeys** against this
+record's inferred one is now *more* relevant than it was, and `form.stories` is still **1** — see the
+value's own note. Doubling the massing of the oldest building in the dataset on a 1911 recollection
+of 1818, about a building whose sources site it somewhere this record is not, is the move § 6 forbids.
+If the identity ticket settles toward the Factor House, the value moves to 2 and the building rebakes.
 
 ## 7. Open threads
 
@@ -139,10 +231,14 @@ exactly the move this ticket forbids. Filed, not applied.
   from date and place alone**; if it was frame the record is on the wrong archetype.
 - Wentworth and Quaife on Fort Dearborn (both now source records in this project) for the
   reservation's building group.
-- **Whether the modelled building is the Factory House at all** (§ 6, point 3), which is the
-  same question as the SW-versus-NE corner and is filed as its own ticket.
-- Any source that names John Dean the factor and the "John-Dean house" as one and the same,
-  which would settle § 6 point 3 in either direction.
+- **Whether the modelled building is the Factory House at all.** No longer the same question as
+  the corner — the corner is decided (§ 2) and the John Dean premise is answered (§ 6). What is
+  left is the bearing: two sources put the factory building *just south of the fort* and this
+  record stands north of it.
+- **A lot dimension for Block 5 of the Fort Dearborn Addition**, which would turn Wentworth's lots
+  6–10 into a distance north of the corner and tighten § 2 from a floor to a position.
+- **Any plan or description of the John-Dean house**, the 1815 lakeshore building of five rooms at
+  the foot of Randolph Street — a documented Chicago building this project does not model at all.
 - The 1835 pre-emption papers themselves, which may describe improvements.
 
 ## The parcel's shared inventions
