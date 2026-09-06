@@ -34,7 +34,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 775
+   "n": 836
   }
  ],
  "counts": {
@@ -50,8 +50,8 @@
   "letter_list_matched_one_bidder": 51,
   "letter_list_ambiguous": 3,
   "letter_list_surname_only_refused": 188,
-  "heads_1840_matched_one_bidder": 24,
-  "heads_1840_ambiguous": 0,
+  "heads_1840_matched_one_bidder": 26,
+  "heads_1840_ambiguous": 1,
   "heads_1840_surname_only_refused": 58
  },
  "residents": {
@@ -7379,6 +7379,50 @@
     ]
    },
    {
+    "name": "F. C. Sherman",
+    "rule": "Surname 'Sherman' folds to the same string as the bidder's, and the given name of both begins F.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "F. C. Sherman",
+      "lots_bid": 2,
+      "amount_read_usd": 326,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0077",
+        "block": 6,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 163,
+        "as_printed": {
+         "block": null,
+         "lot": "3",
+         "bidder": "F. C. Sherman,",
+         "amount": "163"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false
+       },
+       {
+        "claim": "f1839_lot0078",
+        "block": 6,
+        "block_carried": true,
+        "lot": 4,
+        "amount_usd": 163,
+        "as_printed": {
+         "block": null,
+         "lot": "4",
+         "bidder": "If",
+         "amount": "163"
+        },
+        "printed_page": 48,
+        "bidder_ditto": true
+       }
+      ]
+     }
+    ]
+   },
+   {
     "name": "J. Russell",
     "rule": "Surname 'Russell' folds to the same string as the bidder's, and the given name of both begins J.",
     "bids_1839": [
@@ -7694,6 +7738,35 @@
          "amount": "2000"
         },
         "printed_page": 47,
+        "bidder_ditto": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Nathan E. King",
+    "rule": "Surname 'King' folds to the same string as the bidder's, and the given name of both begins N.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "N. King",
+      "lots_bid": 1,
+      "amount_read_usd": 400,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0135",
+        "block": 8,
+        "block_carried": true,
+        "lot": 24,
+        "amount_usd": 400,
+        "as_printed": {
+         "block": null,
+         "lot": "24",
+         "bidder": "N. King,",
+         "amount": "400"
+        },
+        "printed_page": 48,
         "bidder_ditto": false
        }
       ]
@@ -8125,7 +8198,60 @@
     ]
    }
   ],
-  "ambiguous": [],
+  "ambiguous": [
+   {
+    "name": "James N. Morrison",
+    "rule": "Surname 'Morrison' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. Morrison",
+      "lots_bid": 1,
+      "amount_read_usd": 251,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0256",
+        "block": 15,
+        "block_carried": true,
+        "lot": 3,
+        "amount_usd": 251,
+        "as_printed": {
+         "block": null,
+         "lot": "3",
+         "bidder": "J. Morrison,",
+         "amount": "251"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       }
+      ]
+     },
+     {
+      "bidder_as_printed": "J. M. Morrison",
+      "lots_bid": 1,
+      "amount_read_usd": 263,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0260",
+        "block": 15,
+        "block_carried": true,
+        "lot": 7,
+        "amount_usd": 263,
+        "as_printed": {
+         "block": null,
+         "lot": "7",
+         "bidder": "J. M. Morrison,",
+         "amount": "263"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false
+       }
+      ]
+     }
+    ]
+   }
+  ],
   "refusals": [
    {
     "name": "B. S. Sherman",

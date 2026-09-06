@@ -92,7 +92,10 @@ T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0779 — The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled
 T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
-T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
+T-0911 — The 1840 census images 51-74: printed 212 (33SQ-GYYJ-RY) and 213 (33SQ-GYYJ-RK) read line by line to the name
+T-0912 — The 1840 census images 51-74: printed 214 (33SQ-GYYJ-BP) and 220 (33SQ-GYYJ-P5) read line by line to the name
+T-0913 — The 1840 census images 51-74: printed 223 (33SQ-GYYJ-LV) and 240 (33SQ-GYYJ-CK) read line by line to the name
+T-0914 — The 1840 census images 51-74: the group's cells and its fifteen continuation leaves are unread — settle what is left and file the readers
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
 T-0744 — 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
@@ -376,3 +379,4 @@ T-0900 — Couch, Iia — the Tremont House entry both readings of Norris 1844 f
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
 T-0902 — publish.sh and the resident synthesizer write four mirror files in two different shapes, so whichever ran last decides whether check.sh is green
 T-0905 — publish.sh minifies four resident mirror files that synthesize_resident_research.py writes expanded, so whichever ran last decides whether check.sh is green
+T-0915 — Any run that publishes turns dev's gate red: publish.sh rewrites four residents files the synthesizer ratchet then refuses, on an untouched dev

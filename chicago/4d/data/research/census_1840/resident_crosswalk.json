@@ -54,7 +54,7 @@
       "what": "1840 left sheets read in this repo",
       "path": "data/research/census_1840/pages/",
       "available": true,
-      "n": 27
+      "n": 29
     },
     {
       "what": "residents layer, persons",
@@ -100,19 +100,19 @@
     }
   ],
   "counts": {
-    "named_heads": 788,
+    "named_heads": 849,
     "matched": 12,
-    "candidate": 15,
-    "refused": 761
+    "candidate": 16,
+    "refused": 821
   },
   "counts_by_rule": {
-    "L1 unreadable_name": 199,
-    "L2 no_surname_in_the_1835_pools": 327,
-    "L3 given_name_conflict": 169,
-    "L4 initial_only": 59,
-    "L5 name_is_not_unique": 7,
+    "L1 unreadable_name": 205,
+    "L2 no_surname_in_the_1835_pools": 360,
+    "L3 given_name_conflict": 179,
+    "L4 initial_only": 68,
+    "L5 name_is_not_unique": 9,
     "L6 matched": 12,
-    "L6a low_confidence_caps_at_candidate": 4,
+    "L6a low_confidence_caps_at_candidate": 5,
     "L7 candidate": 11
   },
   "printed_pages_read_here": [
@@ -121,6 +121,8 @@
     209,
     210,
     211,
+    212,
+    213,
     215,
     216,
     217,
@@ -9623,61 +9625,19 @@
           "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
-      "person_id": "davis_john",
-      "household_id": "hh_davis_john",
-      "resident_name": "John Davis",
-      "resident_grade_1835": "attested",
-      "discriminators": [
-        {
-          "kind": "directory_persistence",
-          "year": 1844,
-          "source_id": "norris_directory_1844",
-          "entries": [
-            "Davis, John, sailor, North Water st. b Wolcott and Kinzie sts"
-          ],
-          "forename_written_out_in_the_entry": true,
-          "entry_carries_an_address": true,
-          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
-          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
-        },
-        {
-          "kind": "directory_persistence",
-          "year": 1843,
-          "source_id": "fergus_chicago_directory_1843",
-          "entries": [
-            "Davis, John, tailor. North Water, near Kinzie [d. Apr. 28, 1883, a. 68.]"
-          ],
-          "forename_written_out_in_the_entry": true,
-          "entry_carries_an_address": true,
-          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
-          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
-        }
+      "outcome": "refused",
+      "rule": "L5 name_is_not_unique",
+      "reason": "The name 'John Davis' is borne by 1 person(s) of 1835 and appears on 2 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
+      "candidates_1835": [
+        "davis_john"
       ],
-      "outcome": "matched",
-      "rule": "L6 matched",
-      "reason": "Full forename and surname agree (John Davis = John Davis), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
-      "proposed_later_census": {
-        "year": 1840,
-        "source_id": "census_1840_chicago_familysearch_images",
-        "serial": null,
-        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
-        "head_name_transcribed": "John Davis",
-        "head_name_normalized": "John Davis",
-        "name_confidence": "medium",
-        "identity_confidence": "provisional",
-        "bridge_status": "proposed",
-        "serial_mapping_confidence": null,
-        "census_page": 232,
-        "census_row": 13,
-        "source_image": "chicago/reference/census1840/33S7-9YYJ-W6.jpg",
-        "source_kind": "1840 left image, read line by line in this repo",
-        "household": {
-          "persons_columns_read": 0,
-          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
-        },
-        "bridge_basis": "Full forename and surname agree (John Davis = John Davis), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
-        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
-      }
+      "other_1840_lines_with_this_name": [
+        {
+          "familysearch_id": "33SQ-GYYJ-RY",
+          "printed_page": 212,
+          "line": 14
+        }
+      ]
     },
     {
       "familysearch_id": "33S7-9YYJ-W6",
@@ -13974,6 +13934,1086 @@
       "outcome": "refused",
       "rule": "L1 unreadable_name",
       "reason": "The name as read is '[?]as. Johnson', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 1,
+      "as_read": "Casper Miller",
+      "normalized": "Casper Miller",
+      "name_confidence": "medium",
+      "surname": "miller",
+      "forename": "casper",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'casper'.",
+      "surname_bearers_1835": [
+        "miller_fred",
+        "miller_george",
+        "miller_john",
+        "miller_samuel"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 2,
+      "as_read": "Mrs. Nancy S[k]iner",
+      "normalized": "Mrs. Nancy Skinner",
+      "name_confidence": "low",
+      "surname": "skinner",
+      "forename": "mrs",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'skinner' is carried by 3 person(s) of 1835 (E F Skinner, Heury C. Skinner, Joseph Skinner) and none of their given names is 'mrs'.",
+      "surname_bearers_1835": [
+        "skinner_e_f",
+        "skinner_heury_c",
+        "skinner_joseph"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 3,
+      "as_read": "W. B. [B]ischof",
+      "normalized": "W. B. Bischof",
+      "name_confidence": "low",
+      "surname": "bischof",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'bischof'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 4,
+      "as_read": "Eth[an] [?] Small",
+      "normalized": "Ethan [?] Small",
+      "name_confidence": "low",
+      "surname": "small",
+      "forename": "ethan",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L1 unreadable_name",
+      "reason": "The name as read is 'Eth[an] [?] Small', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 5,
+      "as_read": "Chas. Raymond",
+      "normalized": "Charles Raymond",
+      "name_confidence": "medium",
+      "surname": "raymond",
+      "forename": "charles",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'raymond'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 6,
+      "as_read": "W. B. Cart[er]",
+      "normalized": "W. B. Carter",
+      "name_confidence": "low",
+      "surname": "carter",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'W. B. Carter' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'carter'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "carter_j"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 7,
+      "as_read": "Nathan E. King",
+      "normalized": "Nathan E. King",
+      "name_confidence": "medium",
+      "surname": "king",
+      "forename": "nathan",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "surname_bearers_1835": [
+        "king_byra",
+        "king_byram",
+        "king_byron",
+        "king_hyram",
+        "king_john_lyle",
+        "king_nehemiah",
+        "king_sherman",
+        "king_tuthill"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 8,
+      "as_read": "[Ch]adwell & H. Neal",
+      "normalized": "Chadwell & H. Neal",
+      "name_confidence": "low",
+      "surname": "neal",
+      "forename": "chadwell",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'neal'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 9,
+      "as_read": "J. M. Bag[ie]r",
+      "normalized": "J. M. Bagier",
+      "name_confidence": "low",
+      "surname": "bagier",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'bagier'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 10,
+      "as_read": "Sam[l]. McClure",
+      "normalized": "Samuel McClure",
+      "name_confidence": "low",
+      "surname": "mcclure",
+      "forename": "samuel",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'mcclure'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 11,
+      "as_read": "[?]. H. Drader",
+      "normalized": "[?] H. Drader",
+      "name_confidence": "low",
+      "surname": "drader",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L1 unreadable_name",
+      "reason": "The name as read is '[?]. H. Drader', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 12,
+      "as_read": "E. [A]. Ru[c]ker",
+      "normalized": "E. A. Rucker",
+      "name_confidence": "low",
+      "surname": "rucker",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'rucker'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 13,
+      "as_read": "E. C. Ryan",
+      "normalized": "E. C. Ryan",
+      "name_confidence": "medium",
+      "surname": "ryan",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'E. C. Ryan' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'ryan'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "ryan_thomas"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 14,
+      "as_read": "Ludwig Abell",
+      "normalized": "Ludwig Abell",
+      "name_confidence": "low",
+      "surname": "abell",
+      "forename": "ludwig",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'abell' is carried by 1 person(s) of 1835 (Sidney Abell) and none of their given names is 'ludwig'.",
+      "surname_bearers_1835": [
+        "abell_sidney"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 15,
+      "as_read": "[D]. B. Potts",
+      "normalized": "D. B. Potts",
+      "name_confidence": "low",
+      "surname": "potts",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'potts'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 16,
+      "as_read": "N. K. Bat[h]",
+      "normalized": "N. K. Bath",
+      "name_confidence": "low",
+      "surname": "bath",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'bath'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 17,
+      "as_read": "Robert [B]olga[n]",
+      "normalized": "Robert Bolgan",
+      "name_confidence": "low",
+      "surname": "bolgan",
+      "forename": "robert",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'bolgan'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 18,
+      "as_read": "Wm. Ra[n]ki[n]",
+      "normalized": "William Rankin",
+      "name_confidence": "low",
+      "surname": "rankin",
+      "forename": "william",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'rankin'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 19,
+      "as_read": "J. D. Child[s]",
+      "normalized": "J. D. Childs",
+      "name_confidence": "low",
+      "surname": "childs",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'J. D. Childs' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'childs'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "childs_sarah"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 20,
+      "as_read": "S. R. Hod[g]son",
+      "normalized": "S. R. Hodgson",
+      "name_confidence": "low",
+      "surname": "hodgson",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'hodgson'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 21,
+      "as_read": "Chas. Parker",
+      "normalized": "Charles Parker",
+      "name_confidence": "low",
+      "surname": "parker",
+      "forename": "charles",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'parker' is carried by 1 person(s) of 1835 (Manson Parker) and none of their given names is 'charles'.",
+      "surname_bearers_1835": [
+        "parker_manson"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 22,
+      "as_read": "John G[r]in[k]",
+      "normalized": "John Grink",
+      "name_confidence": "low",
+      "surname": "grink",
+      "forename": "john",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'grink'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 23,
+      "as_read": "C. S. Wil[d]er",
+      "normalized": "C. S. Wilder",
+      "name_confidence": "low",
+      "surname": "wilder",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'wilder'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 24,
+      "as_read": "John G. Ragan",
+      "normalized": "John G. Ragan",
+      "name_confidence": "low",
+      "surname": "ragan",
+      "forename": "john",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'ragan'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 25,
+      "as_read": "A. S. Penne[y]",
+      "normalized": "A. S. Penney",
+      "name_confidence": "low",
+      "surname": "penney",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'penney'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 26,
+      "as_read": "Peter Page",
+      "normalized": "Peter Page",
+      "name_confidence": "low",
+      "surname": "page",
+      "forename": "peter",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'page' is carried by 2 person(s) of 1835 (Elisha S. Page, Frederick W. Page) and none of their given names is 'peter'.",
+      "surname_bearers_1835": [
+        "page_elisha_s",
+        "page_frederick_w"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 27,
+      "as_read": "[?]ny M[o]lcor[k]",
+      "normalized": "[?]ny Molcork",
+      "name_confidence": "low",
+      "surname": "molcork",
+      "forename": "ny",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L1 unreadable_name",
+      "reason": "The name as read is '[?]ny M[o]lcor[k]', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 28,
+      "as_read": "J. A. Ballantine",
+      "normalized": "J. A. Ballantine",
+      "name_confidence": "medium",
+      "surname": "ballantine",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'J. A. Ballantine' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'ballantine'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "ballantine_geor"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 29,
+      "as_read": "N. H. Magie",
+      "normalized": "N. H. Magie",
+      "name_confidence": "low",
+      "surname": "magie",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'magie'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RK",
+      "printed_page": 213,
+      "line": 30,
+      "as_read": "F. C. Sherman",
+      "normalized": "F. C. Sherman",
+      "name_confidence": "medium",
+      "surname": "sherman",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "sherman_h",
+        "sherman_rebecca",
+        "sherman_silas_w"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 1,
+      "as_read": "[?] Sawyer",
+      "normalized": "P. Sawyer",
+      "name_confidence": "low",
+      "surname": "sawyer",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'sawyer'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 2,
+      "as_read": "Joseph Shields",
+      "normalized": "Joseph Shields",
+      "name_confidence": "medium",
+      "surname": "shields",
+      "forename": "joseph",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'shields'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 3,
+      "as_read": "And[?]son S. Cox",
+      "normalized": "Anderson S. Cox",
+      "name_confidence": "low",
+      "surname": "cox",
+      "forename": "anderson",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'cox'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 4,
+      "as_read": "Robert Bade[?]",
+      "normalized": "Robert Bader",
+      "name_confidence": "low",
+      "surname": "bader",
+      "forename": "robert",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'bader'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 5,
+      "as_read": "D. H. W[?]stendart",
+      "normalized": "D. H. Westendart",
+      "name_confidence": "low",
+      "surname": "westendart",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'westendart'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 6,
+      "as_read": "Marg[?]t Harra[e]d",
+      "normalized": "Margaret Harraed",
+      "name_confidence": "low",
+      "surname": "harraed",
+      "forename": "margaret",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'harraed'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 7,
+      "as_read": "David Parmeter",
+      "normalized": "David Parmeter",
+      "name_confidence": "low",
+      "surname": "parmeter",
+      "forename": "david",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'parmeter'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 8,
+      "as_read": "Rob[t]. H. Yates",
+      "normalized": "Robert H. Yates",
+      "name_confidence": "low",
+      "surname": "yates",
+      "forename": "robert",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'yates'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 9,
+      "as_read": "Wm. Raymond",
+      "normalized": "William Raymond",
+      "name_confidence": "medium",
+      "surname": "raymond",
+      "forename": "william",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'raymond'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 10,
+      "as_read": "Jno. Harvey.",
+      "normalized": "John Harvey",
+      "name_confidence": "medium",
+      "surname": "harvey",
+      "forename": "john",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'harvey'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 11,
+      "as_read": "Geo. E. L[?]",
+      "normalized": "Geo. E. L[?]",
+      "name_confidence": "low",
+      "surname": "l",
+      "forename": "george",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L1 unreadable_name",
+      "reason": "The name as read is 'Geo. E. L[?]', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 12,
+      "as_read": "[?]. W. Sh[e]r[er]",
+      "normalized": "[?] W. Sherer",
+      "name_confidence": "low",
+      "surname": "sherer",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L1 unreadable_name",
+      "reason": "The name as read is '[?]. W. Sh[e]r[er]', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 13,
+      "as_read": "W. F. Butler",
+      "normalized": "W. F. Butler",
+      "name_confidence": "medium",
+      "surname": "butler",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'butler'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 14,
+      "as_read": "Jno. Davis",
+      "normalized": "John Davis",
+      "name_confidence": "medium",
+      "surname": "davis",
+      "forename": "john",
+      "same_name_support": [
+        {
+          "pool": "voter_lists",
+          "list": "tax_1833",
+          "record_id": "tax_1833_024",
+          "name": "John Davis",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "voter_lists",
+          "list": "poll_1834",
+          "record_id": "poll_1834_032",
+          "name": "John Davis",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_john_davis",
+          "name": "John Davis",
+          "source_ids": [
+            "chicago_american_1835",
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "B — VERY LIKELY 1835",
+          "name": "John Davis",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "B — VERY LIKELY 1835",
+          "name": "John Davis",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        }
+      ],
+      "outcome": "refused",
+      "rule": "L5 name_is_not_unique",
+      "reason": "The name 'John Davis' is borne by 1 person(s) of 1835 and appears on 2 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
+      "candidates_1835": [
+        "davis_john"
+      ],
+      "other_1840_lines_with_this_name": [
+        {
+          "familysearch_id": "33S7-9YYJ-W6",
+          "printed_page": 232,
+          "line": 13
+        }
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 15,
+      "as_read": "Isaac [S]ilverna[?]",
+      "normalized": "Isaac Silvernal",
+      "name_confidence": "low",
+      "surname": "silvernal",
+      "forename": "isaac",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'silvernal'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 16,
+      "as_read": "Mary Hill[a]rd",
+      "normalized": "Mary Hillard",
+      "name_confidence": "low",
+      "surname": "hillard",
+      "forename": "mary",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'hillard'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 17,
+      "as_read": "Martin Sha[n]uel",
+      "normalized": "Martin Shanuel",
+      "name_confidence": "low",
+      "surname": "shanuel",
+      "forename": "martin",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'shanuel'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 18,
+      "as_read": "[?]. [?]. K[o]elbach",
+      "normalized": "[?] Koelbach",
+      "name_confidence": "low",
+      "surname": "koelbach",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L1 unreadable_name",
+      "reason": "The name as read is '[?]. [?]. K[o]elbach', graded low, and carries a character the reader could not make out. A name that cannot be spelled cannot support an identity in either direction — the refusal is of the READING, not of the person, and a second reading of the line reopens it."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 19,
+      "as_read": "James N. Morrison",
+      "normalized": "James N. Morrison",
+      "name_confidence": "low",
+      "surname": "morrison",
+      "forename": "james",
+      "same_name_support": [],
+      "person_id": "morrison_james_m",
+      "household_id": "hh_morrison_james_m",
+      "resident_name": "James M Morrison",
+      "resident_grade_1835": "inferred",
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Morrison, James M. carpenter, house Clark st. near Madison st"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Morrison, James M., carpenter, res 131 Clark [died Dec. 28,1868, a. 62]"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
+      "outcome": "candidate",
+      "rule": "L6a low_confidence_caps_at_candidate",
+      "reason": "Full forename and surname agree (James N. Morrison = James M Morrison), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name. The identity would hold, but the reader graded THIS name `low`, and a spelling that is not firm may not be asserted as an identity. Re-reading line 19 of 33SQ-GYYJ-RY is what promotes it.",
+      "would_be_matched_on_a_firmer_read": true
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 20,
+      "as_read": "L. And[re]ws",
+      "normalized": "L. Andrews",
+      "name_confidence": "low",
+      "surname": "andrews",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'L. Andrews' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'andrews'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "andrews_davi",
+        "andrews_julian",
+        "andrews_thomas",
+        "andrews_william"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 21,
+      "as_read": "Geo. E. Howe",
+      "normalized": "George E. Howe",
+      "name_confidence": "medium",
+      "surname": "howe",
+      "forename": "george",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'howe' is carried by 1 person(s) of 1835 (Sarah D Howe) and none of their given names is 'george'.",
+      "surname_bearers_1835": [
+        "howe_sarah_d"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 22,
+      "as_read": "J. K. Wiggin[s]",
+      "normalized": "J. K. Wiggins",
+      "name_confidence": "low",
+      "surname": "wiggins",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'wiggins'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 23,
+      "as_read": "Jas. Clement[s]",
+      "normalized": "James Clements",
+      "name_confidence": "low",
+      "surname": "clements",
+      "forename": "james",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'clements'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 24,
+      "as_read": "John K[a]nt",
+      "normalized": "John Kant",
+      "name_confidence": "low",
+      "surname": "kant",
+      "forename": "john",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'kant'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 25,
+      "as_read": "A. Lawrence",
+      "normalized": "A. Lawrence",
+      "name_confidence": "medium",
+      "surname": "lawrence",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'A. Lawrence' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'lawrence'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "lawrence_james_r"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 26,
+      "as_read": "J. C. Wal[t]er",
+      "normalized": "J. C. Walter",
+      "name_confidence": "low",
+      "surname": "walter",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'J. C. Walter' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'walter'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "walter_francis"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 27,
+      "as_read": "[P]hil. Williams",
+      "normalized": "Phil. Williams",
+      "name_confidence": "low",
+      "surname": "williams",
+      "forename": "phil",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'williams' is carried by 3 person(s) of 1835 (Charles C. Williams, Eli B Williams, John L Williams) and none of their given names is 'phil'.",
+      "surname_bearers_1835": [
+        "williams_charles_c",
+        "williams_eli_b",
+        "williams_john_l"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 28,
+      "as_read": "Wm. Holmes",
+      "normalized": "William Holmes",
+      "name_confidence": "medium",
+      "surname": "holmes",
+      "forename": "william",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'holmes' is carried by 1 person(s) of 1835 (Hiram Holmes) and none of their given names is 'william'.",
+      "surname_bearers_1835": [
+        "holmes_hiram"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 29,
+      "as_read": "George Merrill",
+      "normalized": "George Merrill",
+      "name_confidence": "medium",
+      "surname": "merrill",
+      "forename": "george",
+      "same_name_support": [
+        {
+          "pool": "voter_lists",
+          "list": "poll_1835",
+          "record_id": "poll_1835_047",
+          "name": "George W. Merrill",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "A — CONFIRMED 1835 VOTER",
+          "name": "George W Merrill",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "A — CONFIRMED 1835 VOTER",
+          "name": "George W Merrill",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        }
+      ],
+      "person_id": "merrill_george_w",
+      "household_id": "hh_merrill_george_w",
+      "resident_name": "George W Merrill",
+      "resident_grade_1835": "attested",
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Merrill, George, provision store, corner of Lake and Lasalle sts"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Merrill, George W., provisions, etc., 157 Lake, s.e. cor LaSalle"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
+      "outcome": "matched",
+      "rule": "L6 matched",
+      "reason": "Full forename and surname agree (George Merrill = George W Merrill), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "proposed_later_census": {
+        "year": 1840,
+        "source_id": "census_1840_chicago_familysearch_images",
+        "serial": null,
+        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
+        "head_name_transcribed": "George Merrill",
+        "head_name_normalized": "George Merrill",
+        "name_confidence": "medium",
+        "identity_confidence": "provisional",
+        "bridge_status": "proposed",
+        "serial_mapping_confidence": null,
+        "census_page": 212,
+        "census_row": 29,
+        "source_image": "chicago/reference/census1840/33SQ-GYYJ-RY.jpg",
+        "source_kind": "1840 left image, read line by line in this repo",
+        "household": {
+          "persons_columns_read": 0,
+          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
+        },
+        "bridge_basis": "Full forename and surname agree (George Merrill = George W Merrill), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
+      }
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 30,
+      "as_read": "J. W. Salisbury",
+      "normalized": "J. W. Salisbury",
+      "name_confidence": "medium",
+      "surname": "salisbury",
+      "forename": null,
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'J. W. Salisbury' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'salisbury'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "salisbury_stephen_m"
+      ]
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-RY",
+      "printed_page": 212,
+      "line": 31,
+      "as_read": "Jo[s]. Barton",
+      "normalized": "Jos. Barton",
+      "name_confidence": "low",
+      "surname": "barton",
+      "forename": "joseph",
+      "same_name_support": [],
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'barton' is carried by 1 person(s) of 1835 (James Barton) and none of their given names is 'joseph'.",
+      "surname_bearers_1835": [
+        "barton_james"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-ZQ",
