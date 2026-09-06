@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Where Gurdon Hubbard came from, and the word that would be wrong', kind: 'change', ts: '',
+  { v: 611, title: 'Where Gurdon Hubbard came from, and the word that would be wrong', kind: 'change', ts: '2026-09-06T01:03:34.544Z', date: 'Sep 5, 2026, 8:03 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the card behind Gurdon Saltonstall Hubbard \u2014 fur trader, meat packer, town trustee, and the man called in 1879 the oldest living resident of Chicago.',
       'A sentence in Henry Hurlbut\u2019s Chicago Antiquities of 1881 has been filed here for weeks: he was born at Windsor, Vermont, in 1802, his parents were Elizur and Abigail (Sage) Hubbard, and he left Montreal, where they were then living, on 13 May 1818. Only the last part had ever reached his card, which said where he came from was not attested in anything this project holds.',
