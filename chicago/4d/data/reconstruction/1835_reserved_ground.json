@@ -56,6 +56,10 @@
       "reserved_for": "unstated",
       "confidence": "inferred",
       "sources": ["wright_1834_nara_hup"],
+      "what_may_stand_here": {
+        "rule": "A structure record may stand on reserved ground when its own committed evidence puts it there. Everything else is refused — in particular, no roof of the 665-roof programme's anonymous infill. Nothing stands here today: this ground is a mile outside the modelled town and carries no committed footprint at all.",
+        "permitted": []
+      },
       "sale_test": {
         "result": "corroborated",
         "note": "No row of the sale sells a lot in block 1, and the sale reached this tier: it sells in every OTHER block of the two northern rows. A reservation the sale steps around is the strongest corroboration this dataset can give it.",
@@ -78,6 +82,10 @@
       "reserved_for": "unstated",
       "confidence": "inferred",
       "sources": ["wright_1834_nara_hup"],
+      "what_may_stand_here": {
+        "rule": "A structure record may stand on reserved ground when its own committed evidence puts it there. Everything else is refused — in particular, no roof of the 665-roof programme's anonymous infill. Nothing stands here today: this ground is a mile outside the modelled town and carries no committed footprint at all.",
+        "permitted": []
+      },
       "sale_test": {
         "result": "corroborated",
         "note": "No row of the sale sells a lot in block 142, and the sale reached this tier: it sells in every OTHER block of the two northern rows. A reservation the sale steps around is the strongest corroboration this dataset can give it.",
@@ -100,6 +108,10 @@
       "reserved_for": "unstated",
       "confidence": "inferred",
       "sources": ["wright_1834_nara_hup"],
+      "what_may_stand_here": {
+        "rule": "A structure record may stand on reserved ground when its own committed evidence puts it there. Everything else is refused — in particular, no roof of the 665-roof programme's anonymous infill. Nothing stands here today: this ground is a mile outside the modelled town and carries no committed footprint at all.",
+        "permitted": []
+      },
       "sale_test": {
         "result": "untested",
         "note": "No row of the sale sells a lot in block 87 or block 88 — but the sale never reached this far south. Its 217 block-resolved rows all lie in the four northern rows of the grid, so its silence here is silence and not corroboration.",
@@ -122,6 +134,10 @@
       "reserved_for": "unstated",
       "confidence": "inferred",
       "sources": ["wright_1834_nara_hup"],
+      "what_may_stand_here": {
+        "rule": "A structure record may stand on reserved ground when its own committed evidence puts it there. Everything else is refused — in particular, no roof of the 665-roof programme's anonymous infill. Nothing stands here today: this ground is a mile outside the modelled town and carries no committed footprint at all.",
+        "permitted": []
+      },
       "sale_test": {
         "result": "untested",
         "note": "No row of the sale sells a lot in block 87 or block 88 — but the sale never reached this far south. Its 217 block-resolved rows all lie in the four northern rows of the grid, so its silence here is silence and not corroboration.",

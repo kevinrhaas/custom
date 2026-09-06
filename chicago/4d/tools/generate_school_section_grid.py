@@ -414,6 +414,13 @@ def reservation_records(blocks, sale, sold):
                 reserved_for="unstated",
                 confidence=conf,
                 sources=["wright_1834_nara_hup"],
+                what_may_stand_here=dict(
+                    rule=("A structure record may stand on reserved ground when its own committed "
+                          "evidence puts it there. Everything else is refused \u2014 in particular, no "
+                          "roof of the 665-roof programme's anonymous infill. Nothing stands here "
+                          "today: this ground is a mile outside the modelled town and carries no "
+                          "committed footprint at all."),
+                    permitted=[]),
                 sale_test=dict(result=result, note=verdict,
                                tested_against="data/research/land_sales/entries.json, "
                                               "section 16 T39N R14E, the October 1833 school-section sale"),
