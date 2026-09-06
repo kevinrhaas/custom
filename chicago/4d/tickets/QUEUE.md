@@ -90,7 +90,7 @@ T-0772 — Twelve dooryard gardens went with the retired households: should a ga
 # --- census 1.0%, church and Newberry 0.0%.
 T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
-T-0736 — Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells
+T-0912 — Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
 T-0762 — The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line
 T-0743 — 33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138
