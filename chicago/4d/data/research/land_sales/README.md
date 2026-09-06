@@ -73,17 +73,45 @@ not land.
 
 **Nine more purchaser spellings meet a person the town already holds** — William Spencer,
 Walter L. Newberry, James Whitlock, James B. Campbell, A. Garrett, John L. Wilson,
-H. Pearsons, David P. Frame and Frank Dill — which is 35 matched spellings against 396
-refused across the whole domain. Two of them are the interesting ones: **Hiram Pearsons
+H. Pearsons, David P. Frame and Frank Dill — which was 35 matched spellings against 396
+refused across the whole domain when they were read (T-0697 has since re-run the rule
+that made those counts; the domain now reads 139 against 292). Two of them are the interesting ones: **Hiram Pearsons
 enters seventeen ring tracts** and **Walter Newberry six**, both while the town's own
 lots were being traded. None carries a stated residence, so all nine are `inferred`, and
 nothing here mints or regrades a resident.
+
+**THE SURNAME GATHERS THE RIVALS AND THE FORENAME DECIDES BETWEEN THEM (T-0697).** Until
+that ticket the rule needed EXACTLY ONE person of the surname in the residents layer, and
+a count of namesakes says nothing about the reading in hand: it made the crosswalk fire
+LESS as the town grew truer, so seating 531 people (T-0514) COST this register three
+rulings with nothing new read. The reading is now put to every person of the surname and
+named onto the one it agrees with, on the merge rules this project already ratified —
+`tools/namesake.py`, which restates identity master's M1/M2/M3 and R3/R4 and imports the
+directories' own forename rule. **139 purchaser spellings now meet 124 people the town
+holds, against 38 spellings and 35 people before**, and consolidation pass 3 carries 421
+entries onto 124 cards where it carried 180 onto 34. Nothing new was read to get there.
+
+The refusals it keeps are the ones the forename makes, and three kinds are new: a middle
+initial that disagrees (`KING JOHN R` is not John Lyle King), M3's guard (`WRIGHT JOHN F`
+is not John Wright while John S. Wright stands beside him), and a suffix (`CHURCH THOS JR`
+names the son, and the town's one Thomas Church is not said to be either man). Two
+readings the rule named onto ONE person are put back to each other and refused where they
+are not the same man — `BOND HARVEY` and `BOND HEMAN` both meet an `H Bond`, and the
+initial cannot say which. **T-0697 also asked whether a purchase date, a trade or a lot
+could break what the forename leaves standing, and all three are refused**, with the
+reasons in `tools/namesake.py`'s `REFUSED_DISCRIMINATORS` rather than in prose: the
+register prints no trade at all, a man may enter ground in a county he has not moved to,
+and preferring the rival the town has already placed on the ground is how a reconstruction
+invents a fact (the ruling T-0696 made for the directories, which allowed a trade to
+NARROW a tie and had one to narrow with).
 
 **Every ruling now names the records it was made from.** `record_ids` on each match and
 each refusal in both crosswalks says which sales the ruling was made from — the spend
 meter asked for it in as many words, and it is provenance regardless: a refusal a reader
 cannot trace back to its rows is a refusal nobody can check. 480 rulings in this domain
-anchored to nothing before; none does now, and the domain reads 953 against 511 ruled on.
+anchored to nothing before; none does now, and every one of the 953 records carries a
+ruling — the same 953 before T-0697 and after it, which is the thing that did NOT move
+when a hundred spellings crossed from refused to matched.
 
 **Twenty-four people the town already holds meet a purchaser** — Arthur Bronson, David
 Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel

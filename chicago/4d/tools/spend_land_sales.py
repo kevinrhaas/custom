@@ -577,6 +577,17 @@ def self_test() -> int:
     want("doubles must fire on a superseded tract-sales paragraph left standing",
          any("superseded" in d for d in _doubles_over("hh_x", rival)))
 
+    # T-0697. `tools/mint_placed_residents.py` rebuilds some of the cards this pass writes
+    # — J. K. Boyer since the crosswalk stopped counting namesakes — and re-attaches this
+    # pass's citation instead of deleting it. It names the source id and the marker itself
+    # rather than importing them, exactly as it does for passes 1 and 2, so a drift between
+    # the two copies would silently start deleting the register's citation again.
+    mint = (ROOT / "tools" / "mint_placed_residents.py").read_text(encoding="utf-8")
+    want("the placed mint must carry this pass's source id",
+         'LAND_SALES_SOURCE = "%s"' % SOURCE_ID in mint)
+    want("the placed mint must carry this pass's marker",
+         'LAND_SALES_MARKER = "%s"' % MARKER in mint)
+
     for line in fails:
         print("   %s" % line)
     print("land tract sales self-test: %s" % ("FAILED" if fails else "ok"))
