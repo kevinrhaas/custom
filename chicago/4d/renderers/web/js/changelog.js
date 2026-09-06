@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The number on every block, read off the surveyor\u2019s sheet', kind: 'change', ts: '',
+  { v: 624, title: 'The number on every block, read off the surveyor\u2019s sheet', kind: 'change', ts: '2026-09-06T05:54:46.841Z', date: 'Sep 6, 2026, 12:54 AM CT',
     items: [
       'Nothing you can see in the town changed today. This is about the numbers Chicago used for addresses before it had street numbers \u2014 block 16, block 39 \u2014 and about having six of them yesterday and twenty-four today.',
       'James S. Wright surveyed the town in 1834 and wrote a numeral across every block. This project could read two of them, off a small crop; every other number was counted outward from those two, one block at a time along the same row. So the count stopped at the end of the row, because nobody could tell whether the next row down carried on, started again, or ran backwards.',
