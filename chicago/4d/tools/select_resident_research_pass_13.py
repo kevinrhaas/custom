@@ -50,6 +50,8 @@ from __future__ import annotations
 
 import argparse
 import json
+
+import resident_cohort_freeze
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -309,24 +311,14 @@ def run(pass_no: int, argv=None) -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args(argv)
     path = out_path(pass_no)
-    # Minting is the first write only. A later regeneration refreshes each member's
-    # `starting_*` snapshot against today's records; it re-selects nobody, because
-    # FRAME is frozen.
+    # Minting is the first write only. A later regeneration re-selects nobody, because
+    # FRAME is frozen, and it no longer refreshes the `starting_*` snapshot either:
+    # `resident_cohort_freeze.write` carries the committed freeze forward (T-0764).
     doc = derive(pass_no, minting=not args.gate and not path.exists())
+    label = "resident research pass %d" % pass_no
     if args.gate:
-        # The committed manifest is the frozen thing; formatting is not evidence.
-        if not path.exists() or json.loads(path.read_text(encoding="utf-8")) != doc:
-            raise SystemExit("%s is stale; regenerate it without --gate"
-                             % path.relative_to(ROOT))
-        print("resident research pass %d: %d people, committed manifest current"
-              % (pass_no, len(doc["people"])))
-        return 0
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print("resident research pass %d: wrote %d people (%s)"
-          % (pass_no, len(doc["people"]),
-             ", ".join("%s %s" % (v, k) for k, v in sorted(doc["population_frame"]["strata"].items()))))
-    return 0
+        return resident_cohort_freeze.gate(path, doc, label)
+    return resident_cohort_freeze.write(path, doc, label)
 
 
 if __name__ == "__main__":

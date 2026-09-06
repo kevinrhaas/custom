@@ -1318,6 +1318,15 @@ step "no research domain reads further ahead of the town than its baseline" \
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_research_spend.py --self-test
 
+# T-0764. What a frozen cohort manifest IS — the reservation and the identity lock —
+# and what it is not: the per-person `starting_*`, `sources`, `letter_list_returns` and
+# `stratum` cells are a SNAPSHOT of the tree at the freeze. Every one of the eight gates
+# below runs on this contract, so a source landing on a member is reported as the
+# research landing rather than reported as `stale` and then silently overwritten by the
+# regeneration that was the documented remedy for it.
+step "a frozen research cohort is written once, and the freeze's own assertions fire when broken" \
+  python3 tools/resident_cohort_freeze.py --self-test
+
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
 # to the 1835 record. Re-derive the fixed cohort and its public review payload.

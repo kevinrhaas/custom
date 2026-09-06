@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 
+import resident_cohort_freeze
+
 from select_resident_research_pass_2 import ROOT, PILOT, load_people
 from select_resident_research_pass_3 import (
     ESTABLISHED_IDS as PASS3_ESTABLISHED_IDS,
@@ -131,16 +133,9 @@ def main() -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
     doc = derive()
-    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
     if args.gate:
-        if not OUT.exists() or json.loads(OUT.read_text()) != doc:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pass four: 75 people, committed manifest current")
-        return 0
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(rendered)
-    print("resident research pass four: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
-    return 0
+        return resident_cohort_freeze.gate(OUT, doc, "resident research pass four")
+    return resident_cohort_freeze.write(OUT, doc, "resident research pass four")
 
 
 if __name__ == "__main__":

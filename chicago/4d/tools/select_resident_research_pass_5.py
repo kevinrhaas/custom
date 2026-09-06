@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 import json
 
+import resident_cohort_freeze
+
 from select_resident_research_pass_2 import ROOT, RESIDENTS, PILOT, load_people
 
 OUT = ROOT / "data/research/residents/pass_05_75_cohort.json"
@@ -173,18 +175,9 @@ def main() -> int:
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args()
     doc = derive()
-    rendered = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
     if args.gate:
-        # The committed manifest is intentionally compact. Formatting is not
-        # evidence; compare the parsed frozen manifest to the re-derived object.
-        if not OUT.exists() or json.loads(OUT.read_text()) != doc:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pass five: 75 people, committed manifest current")
-        return 0
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(rendered)
-    print("resident research pass five: wrote 75 people (9 remaining named non-letter, 33 present-list, 33 uncertain-list)")
-    return 0
+        return resident_cohort_freeze.gate(OUT, doc, "resident research pass five")
+    return resident_cohort_freeze.write(OUT, doc, "resident research pass five")
 
 
 if __name__ == "__main__":

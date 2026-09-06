@@ -4,6 +4,8 @@ from __future__ import annotations
 import argparse
 import json
 
+import resident_cohort_freeze
+
 from select_resident_research_pass_2 import ROOT, RESIDENTS, PILOT, load_people, member
 
 OUT = ROOT / "data/research/residents/pass_03_75_cohort.json"
@@ -79,13 +81,14 @@ def derive() -> dict:
             "people": people}
 
 def main() -> int:
-    ap = argparse.ArgumentParser(); ap.add_argument("--gate", action="store_true"); args = ap.parse_args()
-    rendered = json.dumps(derive(), indent=2, ensure_ascii=False) + "\n"
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gate", action="store_true")
+    args = ap.parse_args()
+    doc = derive()
     if args.gate:
-        if not OUT.exists() or OUT.read_text() != rendered: raise SystemExit(f"{OUT.relative_to(ROOT)} is stale")
-        print("resident research pass three: 75 people, committed manifest current"); return 0
-    OUT.write_text(rendered)
-    print("resident research pass three: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
-    return 0
+        return resident_cohort_freeze.gate(OUT, doc, "resident research pass three")
+    return resident_cohort_freeze.write(OUT, doc, "resident research pass three")
 
-if __name__ == "__main__": raise SystemExit(main())
+
+if __name__ == "__main__":
+    raise SystemExit(main())
