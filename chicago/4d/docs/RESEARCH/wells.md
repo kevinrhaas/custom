@@ -144,6 +144,58 @@ not Chicago and it is not evidence of anything in Chicago.
 changes is that the question is answered on the record, with citations, where the next run
 will find it.
 
+## 5 · The fort's well, measured — and still not drawn (T-0881)
+
+Clause 4 above left the fort's well open, and T-0881 is where it was answered. **It is measured
+and it is refused a mesh, and those are two separate decisions.**
+
+**The measurement.** On Internet Archive leaf n242 of `historyofchicago01andr`, rotated 90
+degrees anticlockwise so the sheet's true-north arrow stands vertical (2715 x 2003 px), the plan
+draws a small ring immediately left of the word *Well*. Its ink runs x 1440-1453, y 880-894, so
+the ring's centre is pixel **(1446.5, 887.0)**; the ink centroid agrees at (1446.1, 886.9). Under
+the transform every Fort Dearborn record on this plate uses — enclosure centre at pixel
+(1445, 644) = UTM 448224.70 E, 4637616.80 N, 1.10 ft/px = 0.33528 m/px — that centre is **1.5 px
+east and 243.0 px south of the fort centre, which is 0.5 m east and 81.5 m south of it**:
+
+| | value |
+|---|---|
+| ring centre, plate pixel | (1446.5, 887.0) |
+| offset from the enclosure centre | +0.5 m east, 81.5 m south |
+| **UTM (EPSG:26916)** | **448225.20 E, 4637535.33 N** |
+| uncertainty | +/-20 % on the offset, +/-20 m on the fort itself |
+
+Two things fall out of it that the page-scale reading could not see. **The well sits all but
+exactly due south of the enclosure's centre** — half a metre east of its centre line, which at
+this ink weight is zero. And **it is 52.6 m south of the southern extent of the stockade's ink**,
+which is well outside the pickets and well inside the outer fence, with the plate's `Gate` lettered
+on that fence further south again. Hubbard's *"in the outer inclosure and near the south gate"* is
+therefore corroborated in the part that matters — outer enclosure, south side — and is looser than
+the plate in the part that does not: the ring is nearer the stockade than the gate. The
+disagreement is recorded rather than smoothed, exactly as the wash house records his beach.
+
+**The ring is a symbol and carries no dimension.** Its outer diameter is about 14 px, which at
+this scale is 4.7 m. No well at Fort Dearborn was four and a half metres across. The ring is the
+engraver's point marker, and **nothing about the well's size may be taken from it** — which is why
+the coordinate above is the only number this reading yields.
+
+**Why no geometry, restated for this well specifically.** Clause 1 of the ruling refused a well
+CLASS for the town because there was no rule to place them by. That reasoning does not apply here:
+this well is placed, by two witnesses, to a coordinate. What applies instead is simpler and is the
+whole of it — **this project has no way to draw a well.** `data/structures.schema.json` offers
+twelve archetypes and none of them is a well; the nearest, `outbuilding`, builds a walled and
+roofed shed, and a shed is not a well head. Building one would mean inventing a curb, its
+material, its height, and whether it was drawn by a windlass, a sweep or a bucket on a rope — four
+inventions to render a ring the engraver drew to mark a spot. **`estray_pen` is the precedent for
+what to do instead** (L60): keep the evidence record, refuse the geometry the archetype cannot
+honestly build, and say so. Here there is no evidence record to keep either, because a structure
+record with no buildable form does not validate — so the evidence is banked HERE, at the
+coordinate, where the next run will find it.
+
+**What would change it:** a well or well-head layer, drawn renderer-side from its own record the
+way `renderers/web/js/enclosures.js` draws the estray pen's fence — no bake, no archetype, and
+one documented instance to draw. That is filed as its own ticket, and it inherits the coordinate
+above rather than re-reading the plate.
+
 **Links:** T-0592 · T-0423 · `docs/LOT-ADDRESS.md` · **L216** ·
 `data/research/newspapers/lot_addresses.json` ·
 `data/research/civic/claims/town_findings_andreas_v1.json#c009,c011,c012,c013,c014` ·

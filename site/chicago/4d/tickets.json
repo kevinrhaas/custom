@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 7:44 AM",
+  "generated_ct": "Sep 6, 2026, 7:59 AM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15164,6 +15164,26 @@
       "closed_at": "2026-09-06T12:12:15.959Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34029206125",
       "queue_rank": null
+    },
+    {
+      "id": "T-0887",
+      "title": "A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 179
     }
   ]
 }
