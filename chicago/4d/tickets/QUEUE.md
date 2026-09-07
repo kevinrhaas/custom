@@ -58,7 +58,6 @@ T-0843 — Stop the cause: a minting pass must consult the identity master befor
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist
 # --- that no card carries. Nothing here reads a new source either — every one turns research
 # --- already done into household, person and business DATA, which is what the owner asked for.
-T-0700 — The nine ring purchasers that meet a person the town already holds are proposals nobody has ruled on
 
 # --- CONSOLIDATION — run it HERE, not at the end. Owner, 2026-09-03: "dont land those tickets at
 # --- the very end maybe every few you should do that consolidation". Pass 3 was T-0636; the run
@@ -378,4 +377,5 @@ T-0905 — publish.sh minifies four resident mirror files that synthesize_reside
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0921 — publish.sh minifies four site mirror files the resident synthesizer writes pretty, so whichever ran last flips the T-0838 drift ratchet
-
+T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
+T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it

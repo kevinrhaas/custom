@@ -3,6 +3,69 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 364,
+      "takenAt": "2026-09-07T00:51:56.941Z",
+      "ref": "steward/t-0700-ring-purchasers",
+      "commit": "ceace5002ad1",
+      "devCommit": "66b1208b0c3c",
+      "treeHash": "sha256:a2b0fe8e42e4ad98",
+      "treeDirty": false,
+      "changelogHash": "sha256:d90c312810c91861",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_d1112.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 197,
+      "takenAt": "2026-09-07T00:51:56.861Z",
+      "ref": "steward/t-0700-ring-purchasers",
+      "commit": "ceace5002ad1",
+      "devCommit": "66b1208b0c3c",
+      "treeHash": "sha256:a2b0fe8e42e4ad98",
+      "treeDirty": false,
+      "changelogHash": "sha256:d90c312810c91861",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1227,37 +1290,6 @@
       "source": "/tmp/smoke_d1b.log"
     },
     {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 290,
-      "takenAt": "2026-09-06T13:53:35.146Z",
-      "ref": "steward/t-0881-fort-well-outbuildings",
-      "commit": "cffb418fe53e",
-      "devCommit": "9b489ece302f",
-      "treeHash": "sha256:63fdb35fb312fb26",
-      "treeDirty": false,
-      "changelogHash": "sha256:c3df996721e701bd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          3.7,
-          2.5
-        ]
-      },
-      "source": "/tmp/smoke_d1b.log"
-    },
-    {
       "viewport": "mobile",
       "stage": "1-4",
       "parts": [
@@ -1292,38 +1324,6 @@
         ]
       },
       "source": "/tmp/smoke_m14.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "11-12",
-      "parts": [
-        11,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 80,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 454,
-      "takenAt": "2026-09-06T08:59:34.917Z",
-      "ref": "steward/t-0694-mccormick-moon-detroit",
-      "commit": "8bffb02f3e3c",
-      "devCommit": "e688197a7844",
-      "treeHash": "sha256:d9fad5e2108f3d62",
-      "treeDirty": true,
-      "changelogHash": "sha256:475954978b05e824",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          3.8,
-          3.2
-        ]
-      },
-      "source": "/tmp/smoke_final.log"
     },
     {
       "viewport": "mobile",
