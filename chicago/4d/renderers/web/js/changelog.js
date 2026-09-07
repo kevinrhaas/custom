@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The other half of printed page 232, read at last', kind: 'change', ts: '',
+  { v: 665, title: 'The other half of printed page 232, read at last', kind: 'change', ts: '2026-09-07T06:41:39.889Z', date: 'Sep 7, 2026, 1:41 AM CT',
     items: [
       'Nothing you can see in the town changed today. Yesterday this project found the missing right-hand half of one 1840 census page — the sheet that carries the numbers rather than the names — on a reel of National Archives microfilm a library had scanned and given away. Today it was read, all thirty-one households of it, cell by cell.',
       'It is unquestionably the right leaf. Its column of family sizes was read top to bottom before it was compared with anything: 5, 7, 5, 9, 6, 4, 10, and on down to a household of one. Set beside the thirty-one families counted off the facing page — read five years earlier, off a different photograph, by somebody who could not see this leaf — every number agrees, in order. Thirty-one of thirty-one. Slide the sheets against each other by a line and the agreement collapses to four.',
