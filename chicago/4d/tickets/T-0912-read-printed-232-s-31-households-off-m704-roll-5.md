@@ -1,7 +1,7 @@
 ---
 id: T-0912
 title: Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0736
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1011
 claimed_by: run 9/6/2026, 6:39:21 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T00:19:50.954Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34067314217
 ---
 
