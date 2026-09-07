@@ -82,7 +82,6 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
 T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
 T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
@@ -464,3 +463,8 @@ T-0950 — Dr Henry Van der Bogart stands on two town cards: the death notice's 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0952 — Re-lay #1009 on today's dev: printed 212 and 213 are a real reading on a 29-commit-old tree, and the mirror came off the PR surface underneath it
+T-0953 — Re-lay #992 on today's dev: the 1840 head crosswalk, whose T-0896 collides with a different T-0896 that landed while it waited
