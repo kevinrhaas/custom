@@ -730,7 +730,7 @@
       "sheets": [
         {
           "sheet": "serial_crosswalk",
-          "rows": 637,
+          "rows": 698,
           "columns": 15,
           "probable_header_row": 1,
           "probable_headers": [

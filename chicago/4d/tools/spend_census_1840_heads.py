@@ -244,6 +244,51 @@ def _without_mine(note: str) -> str:
     return note[:note.index(MARKER)].strip()
 
 
+def retract_from_person(person: dict) -> bool:
+    """The exact inverse of `apply_to_person`, for a card no ruling reaches any more.
+
+    `strays` has always been able to SEE a withdrawn ruling whose paragraph still stood —
+    it says so in its own docstring — and nothing could ever clear one, so the gate could
+    only be satisfied by hand. T-0963 is the first reading to withdraw one: a second
+    "John Davis" arrives on printed 212 and the crosswalk refuses BOTH heads under L5
+    (`name_is_not_unique`), so the match written onto hh_davis_john by T-0698 is no longer
+    a ruling this pass may spend. A refusal is never spent, so the card must carry neither
+    the paragraph nor the citation this pass put there — and the withdrawal stays legible
+    in the ledger, which is derived and re-derives to a row that is simply gone.
+    """
+    changed = False
+    note = (person.get("note") or "").strip()
+    if MARKER in note:
+        person["note"] = _without_mine(note)
+        changed = True
+        # Only when this pass's own paragraph came off: the citation is what `apply` adds
+        # beside it, and stripping one without the other leaves a source behind a card
+        # that nothing on the card can account for.
+        sources = person.get("sources") or []
+        if SOURCE_ID in sources:
+            person["sources"] = [s for s in sources if s != SOURCE_ID]
+    return changed
+
+
+def retract(quiet: bool = False) -> int:
+    ruled = {r["person_id"] for r in rulings()}
+    dropped = 0
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        hh = load(path)
+        moved = False
+        for person in hh.get("persons") or []:
+            if person.get("id") in ruled:
+                continue
+            if retract_from_person(person):
+                dropped += 1
+                moved = True
+        if moved:
+            dump(path, hh)
+    if not quiet and dropped:
+        print("1840 census heads: withdrawn from %d resident record(s)" % dropped)
+    return dropped
+
+
 def apply(quiet: bool = False) -> int:
     touched = 0
     for row in rulings():
@@ -264,6 +309,7 @@ def apply(quiet: bool = False) -> int:
 
 def build(quiet: bool = False) -> int:
     dump(LEDGER, ledger_doc())
+    retract(quiet=quiet)
     apply(quiet=quiet)
     if not quiet:
         print("wrote %s" % LEDGER.relative_to(ROOT))
@@ -423,6 +469,19 @@ def self_test() -> int:
     missing = json.loads(json.dumps(before))
     fires("a card citing nothing is a gap", len(_gaps_over(row, missing)) == 2)
 
+    # T-0963: the withdrawal. `strays` could always see a ruling that had gone away and
+    # nothing could clear it, so the inverse is held here as tightly as the write is.
+    withdrawn = json.loads(json.dumps(after))
+    fires("a withdrawn ruling takes its paragraph off", retract_from_person(withdrawn)
+          and MARKER not in (withdrawn.get("note") or ""))
+    fires("…and its citation with it", SOURCE_ID not in (withdrawn.get("sources") or []))
+    fires("…and leaves the record otherwise exactly as it was found",
+          withdrawn == before)
+    fires("withdrawing twice writes nothing", retract_from_person(withdrawn) is False)
+    untouched = json.loads(json.dumps(before))
+    fires("a card this pass never wrote is left alone",
+          retract_from_person(untouched) is False and untouched == before)
+
     # A candidate must say so, and a match must not be written as one.
     for r in rows:
         text = paragraph(r)
@@ -438,7 +497,7 @@ def self_test() -> int:
     for line in fails:
         print("   FAIL: %s" % line)
     print("1840 census heads self-test: %d assertion group(s), %d failure(s)"
-          % (13 + 4 * len(rows), len(fails)))
+          % (18 + 4 * len(rows), len(fails)))
     return 1 if fails else 0
 
 

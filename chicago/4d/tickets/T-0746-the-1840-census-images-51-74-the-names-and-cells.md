@@ -1,7 +1,7 @@
 ---
 id: T-0746
 title: The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0496
 opened: 2026-09-05
-closed: null
+closed: 2026-09-07
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T12:06:10.512Z
 claimed_run: null
 ---
 
