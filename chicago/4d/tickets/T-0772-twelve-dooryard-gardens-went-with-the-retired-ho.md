@@ -1,7 +1,7 @@
 ---
 id: T-0772
 title: Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
-state: open
+state: blocked-owner
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-09-04
 closed: null
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Does a dooryard garden follow the HOUSEHOLD or the HOUSE? Clause 4 of generate_dooryard_pickets.py asks for a household recorded as living on the lot, and since T-0516 withdrew the stale occupants prose that leaves the town ONE garden (Elijah Harmon's, blk_randolph_franklin_lot2) where it drew eighteen on 2026-08-18 and thirteen on 2026-09-02. The HOUSE reading — one dwelling standing alone on a platted lot, by archetype and by function — would keep thirteen or more on a weaker but still true claim: houses of this kind had kitchen gardens behind them. Household = fewer gardens, each resting on a named household; house = more gardens, resting on the archetype. If the HOUSE rule wins, the same question is asked of the lot-line fences, which run off the same occupancy test. docs/LIBERTIES.md L129 now states the count in force and the drift either way.
 needs_bake: false
 closed_at: null
 claimed_run: null

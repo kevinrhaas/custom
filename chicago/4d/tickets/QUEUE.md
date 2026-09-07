@@ -81,7 +81,6 @@ T-0788 — Wright numbers all 58 blocks of the Original Town and this project ha
 
 # --- G5 — TOWN DETAILS, COMPOSITION AND ENCLOSURES. The rest of what the owner named. Each puts
 # --- something a visitor can see on the ground, off evidence already read.
-T-0772 — Twelve dooryard gardens went with the retired households: should a garden follow the house or the household?
 
 # --- G6 — THE READING, AND IT STAYS BELOW THE SPEND. Reading another volume moves none of the
 # --- numbers above. Ordered by measured yield, with the crosswalk repairs first because a stale
