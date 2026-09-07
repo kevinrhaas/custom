@@ -569,11 +569,19 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-L3.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet, filled",
+     "lines_with_an_entry": 27,
+     "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, schools",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "read_line_by_line",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-L3.json",
+     "lines_with_an_entry_note": "27, measured (T-0744). The TOTAL column's ink over the module's own cell window x 1164-1358 resolves into 27 row positions carrying a figure, plus two marks refused as ink that is not an entry (12 x 14 at y 1607, 9 x 19 at y 1758). Corroborated rather than asserted: the five written industry columns hold sixteen entries on thirteen distinct rows and every one of those rows is also a TOTAL row. Both prior figures are superseded. This file carried 31 'to the nearest line' from the contact-sheet pass; pairing_key_26_50.json carried 29, measured over x 0.300-0.360 of the width, which on this 3912 px leaf is x 1173-1408 - 9 px inside the cell's left rule and 50 px past its right one, into MINING.",
+     "paired_to_printed_page": null,
+     "paired_by": "unpaired. T-0656 refused printed 218 (33S7-9YYJ-PC) on the population key alone; T-0744 counted the lines and the refusal is now held by both keys - 115 against PC's 113, and 27 lines against PC's 30.",
+     "read_by": "T-0744 (piece 3 of the split of T-0657)",
+     "what_was_read": "the column geometry from read_census_continuation.py unaided - it accepts this leaf and names the eight middle columns off 43 printed rules at a 68 px pitch - the seven industry columns line by line, all five written ones closing exactly on the enumerator's own printed footings 1, 3, 7, 1 and 2, the TOTAL column line by line against a glyph key those closures calibrate (21 lines committed, 6 unread), and the footer row. The slaves, pensioners, deaf/dumb/blind/insane and schools blocks carry no ink on this leaf and are recorded as not written rather than as zeros.",
+     "what_was_not_read": "lines 6, 7, 11, 14, 19 and 26 of the TOTAL column: a two-figure number the pass would not settle (11), the boldest and tallest ink in the column undivided (14), a component whose strokes run together (6), two fragments (7, 19) and the one matched pair the 4/11 discriminator leaves between its bands (26). The 21 committed lines sum to 71 against a printed 115 and the 44-person residual is left standing.",
+     "line_count_settled": "T-0744's ask. The count is 27. The contact sheet's 31 was 'to the nearest line' and the strip's 29 was measured over a window that missed the cell's own printed rules on both sides; neither was a count of rows.",
+     "matched_pair_settled": "five of this leaf's six two-stroke figures are committed 4 on T-0652's axis-separation metric, scaled onto this hand by the ratio of mean single-stroke height (1.153): lines 1, 16 and 17 fall inside 33S7-9YYJ-24's labelled within-4 band and lines 9 and 15 stand about 2 px above it and 10 px below a gap between two digits. Line 26 at 28.6 px lies between the bands and stays unread. The footing refuses the 11 reading independently: six 11s carry the column to 117 against a printed 115 before an unread line is counted."
     },
     {
      "index": 31,
