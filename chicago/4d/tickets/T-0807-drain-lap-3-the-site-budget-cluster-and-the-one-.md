@@ -1,7 +1,7 @@
 ---
 id: T-0807
 title: Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 914
+claimed_by: run 9/5/2026, 2:57:39 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T20:06:48.559Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33988438917
 ---
 
 **Re-cut 2026-09-05 17:10Z against the live backlog.** The three heaviest PRs left, and
@@ -57,3 +57,73 @@ files were real recorded in the merge commit. `data/streets/1835.json` verified 
 #889's repair — no duplicate `west_water`. The T-0722/T-0803 ticket reconciled to dev's.
 `./tools/check.sh` exit 0 with `Queue OK`, `check-changelog.mjs` green, no conflict marker
 under `chicago/4d/` or `site/`. **Open PRs against `dev`: 0.**
+
+---
+
+## STATUS 2026-09-05 — the lap was re-derived and its membership is EMPTY
+
+The ticket's own warning held: the table above went stale in under two hours. Re-derived
+against the live backlog before any merge was attempted, per the rule this ticket cites.
+
+**Open PRs against `dev` at the time of this run: 5, and NONE of them is this lap.**
+`#912`, `#911`, `#856`, `#850`, `#841` were all opened today, all inside the last four
+hours, and all are live in-flight work by concurrent runs. Closing or merging another
+run's open branch is not this lap's business, so the count this ticket's acceptance
+asked to drive to 0 is measured, stated, and correctly left alone.
+
+### What actually happened to the three PRs
+
+| PR | ticket | disposition | when |
+|---|---|---|---|
+| [#801](https://github.com/kevinrhaas/custom/pull/801) | T-0447, owner | **MERGED** into dev as `89aaae238` | 17:12:40Z |
+| [#834](https://github.com/kevinrhaas/custom/pull/834) | T-0693, owner | closed unmerged — **superseded** by [#908](https://github.com/kevinrhaas/custom/pull/908), which merged | 19:22:40Z |
+| [#835](https://github.com/kevinrhaas/custom/pull/835) | T-0508, owner | closed unmerged — **superseded** by [#904](https://github.com/kevinrhaas/custom/pull/904), which merged | 17:13:28Z |
+
+So all three owner tickets landed, and **not one of them landed by being drained**. The
+lap this ticket describes was never run, and by the time a run reached it there was
+nothing left to merge. That is the same finding the drain band already recorded for lap 1
+— "THE LANE DRAINED ITSELF ... the binding constraint was never *nobody is merging*" —
+holding for a second time, and it is the honest reason this ticket closes without a
+merge in it.
+
+**The subtraction this ticket asked for was never needed**, because neither heavy PR was
+ever hand-merged: #834's 116 and #835's 186 conflicts were paid by re-cutting the work on
+a fresh branch (#908, #904), which regenerates the published mirror by construction. The
+subtraction's *prediction* was right — the mirror was most of the file count and none of
+the work — but the cheaper route was the one the lane took, and re-cutting beat draining.
+
+### The verification the acceptance still owed, and its results
+
+1. **`data/streets/1835.json` against #889's repair — CLEAN.** 28 street records, ids
+   unique, exactly one `west_water` object. #882's duplicate is gone and has not returned
+   through any of the merges since. This ticket had flagged #801 as the most dangerous
+   merge in the lap for touching this file; #801 merged and the file is intact.
+
+2. **T-0722 / T-0803 reconciled — both CLOSED, both already answered.** They are one stop
+   filed twice, four hours apart, and dev has since answered it twice over:
+   - [#836](https://github.com/kevinrhaas/custom/pull/836) took the duplicated changelog
+     out of the mirror and committed `docs/SITE-BUDGET.md`, the by-kind census T-0722's
+     ask 1 said "has never been printed". `site/chicago/4d/walk/js/changelog.js` is now
+     an 898-byte re-export beside the single 1.48 MiB copy.
+   - [#823](https://github.com/kevinrhaas/custom/pull/823) re-budgeted 32 -> 36 MB as a
+     third conscious re-budget, with the reasoning T-0803 demanded written into
+     `tools/validate.py` above `SITE_BUDGET_MB`: what exhausted 32, what supports 36, and
+     the two items that will exhaust it again named rather than discovered (T-0364, T-0438).
+   - Measured on this branch: the published tree is **31,889,319 bytes = 30.41 MiB of the
+     36 MB budget — 5.59 MiB of headroom**, against the 944 bytes T-0803 was filed on.
+     Ask 3, "give the gate some headroom rather than landing exactly on 32", is met with a
+     number. T-0713, the PR T-0803 required be unblocked or re-parked, merged as #840.
+
+3. **The T-0722 ticket-id collision is resolved the way this ticket directed** — "Take
+   dev's" — by closing both ids against the PRs that did their work, rather than deleting
+   either file. The two records disagree on the number (32.1 MB / 936 bytes) because they
+   were measured hours apart, and both measurements are true; neither is rewritten.
+
+4. **T-0447 unlocked.** Its PR #801 merged at 17:12:40Z while the ticket was still
+   `claimed` with `pr: null`, so `inflight` kept naming `steward/t-0447-north-water-east-end`
+   as a rival branch on an owner ticket — the exact corpse-lock AGENTS.md warns about, and
+   it had already been holding for three hours. Closed `done --pr 801`.
+
+**Not done here, and deliberately:** T-0688 (the wagon-variety gate, the one red #801 was
+parked on) stays open in the queue where #801 filed it. T-0728 (dev's stale sidecars)
+stays open. Neither is drain work and neither is this ticket's to answer.

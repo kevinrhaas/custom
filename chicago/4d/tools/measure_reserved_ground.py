@@ -31,6 +31,11 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RESERVED_PATH = DATA / "reconstruction" / "1835_reserved_ground.json"
 LOTS_PATH = DATA / "traces" / "vectors" / "thompson_lots.json"
+# The Town of Chicago is not the only platted ground this project holds. Since T-0797 the
+# School Section south of Madison is a module of its own — a different sheet, a different
+# survey and a different block-numbering — and three of its blocks are reserved. A
+# reservation is resolved against whichever module emits its block.
+SCHOOL_SECTION_PATH = DATA / "traces" / "vectors" / "school_section_blocks_1834.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from plat_occupancy import footprints  # noqa: E402
@@ -57,6 +62,7 @@ def measure() -> tuple[list[dict], list[str]]:
     """(rows, problems). One row per structure touching reserved ground."""
     reserved = {b["block_id"]: b for b in load(RESERVED_PATH)["blocks"]}
     grid = {b["id"]: b for b in load(LOTS_PATH)["blocks"]}
+    grid.update({b["id"]: b for b in load(SCHOOL_SECTION_PATH)["blocks"]})
     datum = load(DATA / "datum.json")
     placed = footprints(datum)
 
@@ -65,7 +71,7 @@ def measure() -> tuple[list[dict], list[str]]:
     for block_id, hold in sorted(reserved.items()):
         block = grid.get(block_id)
         if block is None:
-            problems.append(f"{block_id}: reserved, and the plat module does not emit it")
+            problems.append(f"{block_id}: reserved, and no plat module emits it")
             continue
         if block.get("lots"):
             problems.append(f"{block_id}: reserved, and the committed grid still "

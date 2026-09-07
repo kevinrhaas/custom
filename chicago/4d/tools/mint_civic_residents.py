@@ -429,6 +429,21 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
     for key, value in prior.items():
         if key not in doc:
             doc[key] = value
+    # `kin` HAS A SLOT, AND IT IS NOT THE END (T-0597, T-0734). Every other key
+    # another pass adds is a block this record simply also carries, so the end is
+    # as good a place as any; a kinship is part of the household's own account of
+    # itself and the two hand-authored records that had one put it immediately
+    # before `persons`. Carrying it to the end would give the layer two orders for
+    # one key, decided by which pass happened to mint the card.
+    if "kin" in doc:
+        kin = doc.pop("kin")
+        rebuilt = {}
+        for key, value in doc.items():
+            if key == "persons":
+                rebuilt["kin"] = kin
+            rebuilt[key] = value
+        doc.clear()
+        doc.update(rebuilt)
     by_id = {p.get("id"): p for p in prior.get("persons") or []}
     for person in doc["persons"]:
         old = by_id.get(person["id"]) or {}
@@ -1284,6 +1299,18 @@ def self_test() -> int:
                   dict(prior, source_pass="letter_list")).get("directories"):
         failed += 1
         print("   FAIL carry_over took a record that is not this pass's")
+
+    # a kinship another pass ruled on comes back in the slot the layer keeps for it
+    with_kin = carry_over(record(_row(), [_app()], {}, set()),
+                          dict(prior, kin=[{"person": "p", "relation": "wife",
+                                            "household": "hh_x", "value": "q",
+                                            "confidence": "attested"}]))
+    if "kin" not in with_kin:
+        failed += 1
+        print("   FAIL a kin row written by another pass is re-derived away")
+    elif list(with_kin).index("kin") != list(with_kin).index("persons") - 1:
+        failed += 1
+        print("   FAIL a carried kin block does not land immediately before persons")
 
     # the two source labels the identity master hands over unresolved
     if source_of(_app(domain="newspapers", source_id="chicago_newspapers_1833_1835",

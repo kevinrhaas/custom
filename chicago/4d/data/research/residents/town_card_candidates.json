@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1362,
-  "open_clusters": 18,
-  "cards_in_open_clusters": 40,
+  "town_people": 1363,
+  "open_clusters": 19,
+  "cards_in_open_clusters": 42,
   "rulings": {
    "distinct": 8,
-   "merge": 23,
-   "undecided_owner": 6,
+   "merge": 24,
+   "undecided_owner": 7,
    "undecided_rule": 8
   },
-  "landed_merges": 23,
+  "landed_merges": 24,
   "cards_folded": 42
  },
  "landed": [
@@ -150,13 +150,22 @@
    "survivor_household": "hh_hubbard_gurdon",
    "survivor_on_the_cards": true,
    "folded": [
-    "hubbard_g",
     "hubbard_g_s",
     "hubbard_g_t",
     "hubbard_gordon_s",
     "hubbard_gurdon_s"
    ],
    "rule": "C0"
+  },
+  {
+   "cluster": "hubbard",
+   "survivor": "hubbard_henry_g",
+   "survivor_household": "hh_hubbard_henry_g",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hubbard_g"
+   ],
+   "rule": "C5"
   },
   {
    "cluster": "kimberly",
@@ -331,7 +340,8 @@
      "name": "John K Clark",
      "anchor": false,
      "sources": [
-      "chicago_american_1835"
+      "chicago_american_1835",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "distinct",
      "ruled_in": "clark-john"
@@ -387,6 +397,7 @@
      "sources": [
       "chicago_voter_lists_1833_1835_irad",
       "fergus_chicago_directory_1843",
+      "isa_public_domain_land_tract_sales",
       "norris_directory_1844"
      ],
      "ruling": "distinct",
@@ -439,7 +450,8 @@
      "anchor": false,
      "sources": [
       "chicago_democrat_1833_1835",
-      "fergus_1843_old_settler_death_notices"
+      "fergus_1843_old_settler_death_notices",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "undecided",
      "ruled_in": "handy"
@@ -762,7 +774,8 @@
      "name": "L W Smith",
      "anchor": false,
      "sources": [
-      "chicago_voter_lists_1833_1835_irad"
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "undecided",
      "ruled_in": "smith-lawrence"
@@ -889,7 +902,8 @@
       "andreas_1884_v1",
       "baptisthistoryhomepage",
       "chicago_democrat_1833_1835",
-      "chicago_voter_lists_1833_1835_irad"
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "merge",
      "ruled_in": "temple"
@@ -1012,7 +1026,8 @@
      "anchor": false,
      "sources": [
       "chicago_democrat_1833_1835",
-      "fergus_1843_old_settler_death_notices"
+      "fergus_1843_old_settler_death_notices",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "undecided",
      "ruled_in": "thompson"
@@ -1037,6 +1052,48 @@
      "for": [
       "share 1 source(s): chicago_democrat_1833_1835",
       "an initial against its forename, 'john' and 'j'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "vanderbogart",
+   "cards": [
+    {
+     "person": "vanderbogart_h",
+     "household": "hh_vanderbogart_h",
+     "name": "H. Vanderbogart",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "vanderbogart"
+    },
+    {
+     "person": "vanderbogart_henry",
+     "household": "hh_vanderbogart_henry",
+     "name": "Henry Vanderbogart",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "vanderbogart"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "vanderbogart_h",
+     "b": "vanderbogart_henry",
+     "for": [
+      "share 2 source(s): chicago_democrat_1833_1835, fergus_1843_old_settler_death_notices",
+      "an initial against its forename, 'h' and 'henry'"
      ],
      "against": [
       "neither card is an anchor: nothing here documents the person beyond a list"

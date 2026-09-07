@@ -2681,7 +2681,9 @@ def _resident_index(households: list, **kw) -> dict:
             "divisions": ["south", "north", "west", "fort", "outside_town"],
             "arrival_precision": ["day", "either_of_two_days", "month", "season",
                                    "year", "not_later_than"],
-            "kin_relations": ["brother", "half_brother", "half_sister", "sister"],
+            "kin_relations": ["brother", "daughter", "father", "half_brother",
+                              "half_sister", "husband", "mother", "sister",
+                              "son", "wife"],
         },
         "counts": {"households": len(households),
                    "persons": sum(len(h["persons"]) for h in households),
@@ -3034,6 +3036,35 @@ def test_the_residents_manifest_cannot_drift_from_its_records() -> None:
     rep = _run_residents([inside])
     check("a kin row pointing at its own household is an error",
           any("links two households" in e for e in rep.errors), rep.errors)
+
+    # The asymmetric pairs T-0734 declared. The rule they were held out under is
+    # unchanged — a relation is legal only against its DECLARED inverses — so the
+    # only thing that has changed is that husband/wife and parent/child now have
+    # some, and a one-way claim is still refused.
+
+    rep = _run_residents(_kin_pair(rel_a="husband", rel_b="wife"))
+    check("a husband whose mirror row says wife passes",
+          not rep.errors, rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="husband", rel_b="husband"))
+    check("a husband whose mirror row also says husband is an error",
+          any("degree of a tie" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="father", rel_b="son"))
+    check("a father whose mirror row says son passes",
+          not rep.errors, rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="mother", rel_b="daughter"))
+    check("a mother whose mirror row says daughter passes",
+          not rep.errors, rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="father", rel_b="father"))
+    check("a father whose mirror row also says father - a one-way claim - is an error",
+          any("degree of a tie" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents(_kin_pair(rel_a="son", rel_b="wife"))
+    check("a son whose mirror row says wife is an error",
+          any("degree of a tie" in e for e in rep.errors), rep.errors)
 
     def short_kin(idx):
         idx["vocabulary"]["kin_relations"] = ["brother"]

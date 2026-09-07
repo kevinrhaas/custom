@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 5, 2026, 8:08 PM",
+  "generated_ct": "Sep 6, 2026, 7:29 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -539,7 +539,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 159
+      "queue_rank": 122
     },
     {
       "id": "T-0031",
@@ -663,7 +663,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 158
+      "queue_rank": 121
     },
     {
       "id": "T-0038",
@@ -951,7 +951,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 157
+      "queue_rank": 120
     },
     {
       "id": "T-0054",
@@ -987,7 +987,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 156
+      "queue_rank": 119
     },
     {
       "id": "T-0056",
@@ -2427,7 +2427,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 155
+      "queue_rank": 118
     },
     {
       "id": "T-0137",
@@ -3273,7 +3273,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 58
+      "queue_rank": 26
     },
     {
       "id": "T-0191",
@@ -3507,7 +3507,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 140
+      "queue_rank": 103
     },
     {
       "id": "T-0207",
@@ -3723,7 +3723,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 141
+      "queue_rank": 104
     },
     {
       "id": "T-0219",
@@ -3741,7 +3741,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 100
+      "queue_rank": 65
     },
     {
       "id": "T-0220",
@@ -3921,7 +3921,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 153
+      "queue_rank": 116
     },
     {
       "id": "T-0231",
@@ -3939,7 +3939,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 138
+      "queue_rank": 101
     },
     {
       "id": "T-0232",
@@ -3957,7 +3957,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 135
+      "queue_rank": 98
     },
     {
       "id": "T-0233",
@@ -3993,7 +3993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 136
+      "queue_rank": 99
     },
     {
       "id": "T-0235",
@@ -4029,7 +4029,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 131
+      "queue_rank": 94
     },
     {
       "id": "T-0237",
@@ -4047,7 +4047,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 54
+      "queue_rank": 22
     },
     {
       "id": "T-0238",
@@ -4065,7 +4065,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 132
+      "queue_rank": 95
     },
     {
       "id": "T-0239",
@@ -4083,7 +4083,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 152
+      "queue_rank": 115
     },
     {
       "id": "T-0240",
@@ -4317,7 +4317,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 59
+      "queue_rank": 27
     },
     {
       "id": "T-0253",
@@ -4335,7 +4335,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 60
+      "queue_rank": 28
     },
     {
       "id": "T-0254",
@@ -4371,7 +4371,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 160
+      "queue_rank": 123
     },
     {
       "id": "T-0256",
@@ -4569,7 +4569,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 104
+      "queue_rank": 69
     },
     {
       "id": "T-0267",
@@ -4605,7 +4605,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 110
+      "queue_rank": 75
     },
     {
       "id": "T-0271",
@@ -4623,7 +4623,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 142
+      "queue_rank": 105
     },
     {
       "id": "T-0272",
@@ -4731,7 +4731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 106
+      "queue_rank": 71
     },
     {
       "id": "T-0279",
@@ -4749,7 +4749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 107
+      "queue_rank": 72
     },
     {
       "id": "T-0280",
@@ -4767,7 +4767,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 108
+      "queue_rank": 73
     },
     {
       "id": "T-0281",
@@ -4857,7 +4857,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 55
+      "queue_rank": 23
     },
     {
       "id": "T-0286",
@@ -4875,7 +4875,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 56
+      "queue_rank": 24
     },
     {
       "id": "T-0289",
@@ -5109,7 +5109,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 137
+      "queue_rank": 100
     },
     {
       "id": "T-0302",
@@ -5127,7 +5127,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 109
+      "queue_rank": 74
     },
     {
       "id": "T-0304",
@@ -5397,7 +5397,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 81
+      "queue_rank": 48
     },
     {
       "id": "T-0321",
@@ -5595,7 +5595,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 105
+      "queue_rank": 70
     },
     {
       "id": "T-0333",
@@ -5631,7 +5631,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 102
+      "queue_rank": 67
     },
     {
       "id": "T-0335",
@@ -5973,7 +5973,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 57
+      "queue_rank": 25
     },
     {
       "id": "T-0365",
@@ -6081,7 +6081,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 154
+      "queue_rank": 117
     },
     {
       "id": "T-0372",
@@ -6189,7 +6189,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 143
+      "queue_rank": 106
     },
     {
       "id": "T-0378",
@@ -6333,7 +6333,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 64
+      "queue_rank": 32
     },
     {
       "id": "T-0386",
@@ -6387,7 +6387,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 144
+      "queue_rank": 107
     },
     {
       "id": "T-0389",
@@ -6423,7 +6423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 68
+      "queue_rank": 35
     },
     {
       "id": "T-0392",
@@ -6459,7 +6459,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 75
+      "queue_rank": 42
     },
     {
       "id": "T-0396",
@@ -6477,7 +6477,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 67
+      "queue_rank": 34
     },
     {
       "id": "T-0397",
@@ -6513,7 +6513,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 74
+      "queue_rank": 41
     },
     {
       "id": "T-0399",
@@ -6603,7 +6603,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 66
+      "queue_rank": 33
     },
     {
       "id": "T-0404",
@@ -6621,7 +6621,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 76
+      "queue_rank": 43
     },
     {
       "id": "T-0405",
@@ -6639,12 +6639,12 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 77
+      "queue_rank": 44
     },
     {
       "id": "T-0406",
       "title": "'the Tremont House' resolves to nothing, because the committed record is named 'Tremont House (the first)'",
-      "state": "open",
+      "state": "done",
       "epic": "PAPERS",
       "requested_by": "loop",
       "seen": false,
@@ -6652,12 +6652,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-08-29",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "911",
+      "claimed_by": "run 9/5/2026, 2:03:46 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 65
+      "closed_at": "2026-09-05T19:48:33.296Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33985752856",
+      "queue_rank": null
     },
     {
       "id": "T-0407",
@@ -6675,7 +6677,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 69
+      "queue_rank": 36
     },
     {
       "id": "T-0408",
@@ -6693,7 +6695,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 70
+      "queue_rank": 37
     },
     {
       "id": "T-0409",
@@ -6729,7 +6731,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 71
+      "queue_rank": 38
     },
     {
       "id": "T-0411",
@@ -6747,7 +6749,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 72
+      "queue_rank": 39
     },
     {
       "id": "T-0412",
@@ -6785,7 +6787,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 73
+      "queue_rank": 40
     },
     {
       "id": "T-0414",
@@ -6899,7 +6901,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 97
+      "queue_rank": 62
     },
     {
       "id": "T-0420",
@@ -6935,7 +6937,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 98
+      "queue_rank": 63
     },
     {
       "id": "T-0422",
@@ -6953,7 +6955,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 99
+      "queue_rank": 64
     },
     {
       "id": "T-0423",
@@ -6991,7 +6993,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 79
+      "queue_rank": 46
     },
     {
       "id": "T-0425",
@@ -7009,7 +7011,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 78
+      "queue_rank": 45
     },
     {
       "id": "T-0426",
@@ -7065,7 +7067,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 80
+      "queue_rank": 47
     },
     {
       "id": "T-0429",
@@ -7141,7 +7143,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 63
+      "queue_rank": 31
     },
     {
       "id": "T-0433",
@@ -7159,7 +7161,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 161
+      "queue_rank": 124
     },
     {
       "id": "T-0435",
@@ -7177,7 +7179,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 101
+      "queue_rank": 66
     },
     {
       "id": "T-0436",
@@ -7195,7 +7197,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 103
+      "queue_rank": 68
     },
     {
       "id": "T-0437",
@@ -7213,7 +7215,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 133
+      "queue_rank": 96
     },
     {
       "id": "T-0438",
@@ -7231,7 +7233,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 163
+      "queue_rank": 126
     },
     {
       "id": "T-0439",
@@ -7249,7 +7251,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 164
+      "queue_rank": 127
     },
     {
       "id": "T-0440",
@@ -7370,7 +7372,7 @@
     {
       "id": "T-0447",
       "title": "North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it",
-      "state": "claimed",
+      "state": "done",
       "epic": "GROUND",
       "requested_by": "owner",
       "seen": true,
@@ -7378,14 +7380,14 @@
       "legacy_id": null,
       "parent": "T-0443",
       "opened": "2026-08-31",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": "801",
       "claimed_by": "run 9/4/2026, 2:25:19 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T19:59:08.887Z",
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737",
-      "queue_rank": 92
+      "queue_rank": null
     },
     {
       "id": "T-0448",
@@ -7421,7 +7423,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 165
+      "queue_rank": 128
     },
     {
       "id": "T-0450",
@@ -7626,7 +7628,7 @@
       "claimed_by": null,
       "blocked_on": "T-0219",
       "needs_bake": true,
-      "queue_rank": 111
+      "queue_rank": 76
     },
     {
       "id": "T-0465",
@@ -7643,7 +7645,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": true,
-      "queue_rank": 112
+      "queue_rank": 77
     },
     {
       "id": "T-0466",
@@ -7660,7 +7662,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 113
+      "queue_rank": 78
     },
     {
       "id": "T-0467",
@@ -7677,7 +7679,7 @@
       "claimed_by": null,
       "blocked_on": "T-0464",
       "needs_bake": false,
-      "queue_rank": 114
+      "queue_rank": 79
     },
     {
       "id": "T-0468",
@@ -7694,7 +7696,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 115
+      "queue_rank": 80
     },
     {
       "id": "T-0469",
@@ -7711,7 +7713,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 116
+      "queue_rank": 81
     },
     {
       "id": "T-0470",
@@ -7728,7 +7730,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": false,
-      "queue_rank": 117
+      "queue_rank": 82
     },
     {
       "id": "T-0471",
@@ -7745,7 +7747,7 @@
       "claimed_by": null,
       "blocked_on": "T-0468",
       "needs_bake": true,
-      "queue_rank": 118
+      "queue_rank": 83
     },
     {
       "id": "T-0472",
@@ -7762,7 +7764,7 @@
       "claimed_by": null,
       "blocked_on": "T-0470",
       "needs_bake": false,
-      "queue_rank": 119
+      "queue_rank": 84
     },
     {
       "id": "T-0473",
@@ -7779,7 +7781,7 @@
       "claimed_by": null,
       "blocked_on": "T-0465",
       "needs_bake": true,
-      "queue_rank": 120
+      "queue_rank": 85
     },
     {
       "id": "T-0474",
@@ -7796,7 +7798,7 @@
       "claimed_by": null,
       "blocked_on": "T-0473",
       "needs_bake": true,
-      "queue_rank": 121
+      "queue_rank": 86
     },
     {
       "id": "T-0475",
@@ -7813,7 +7815,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 122
+      "queue_rank": 87
     },
     {
       "id": "T-0476",
@@ -7830,7 +7832,7 @@
       "claimed_by": null,
       "blocked_on": "T-0475",
       "needs_bake": true,
-      "queue_rank": 123
+      "queue_rank": 88
     },
     {
       "id": "T-0477",
@@ -7847,7 +7849,7 @@
       "claimed_by": null,
       "blocked_on": "T-0474",
       "needs_bake": true,
-      "queue_rank": 124
+      "queue_rank": 89
     },
     {
       "id": "T-0478",
@@ -8649,7 +8651,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "queue_rank": 166
+      "queue_rank": 129
     },
     {
       "id": "T-0521",
@@ -8687,7 +8689,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 145
+      "queue_rank": 108
     },
     {
       "id": "T-0523",
@@ -8965,7 +8967,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 167
+      "queue_rank": 130
     },
     {
       "id": "T-0538",
@@ -9745,7 +9747,7 @@
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "queue_rank": 35
+      "queue_rank": 6
     },
     {
       "id": "T-0582",
@@ -10301,7 +10303,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 146
+      "queue_rank": 109
     },
     {
       "id": "T-0613",
@@ -11161,7 +11163,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 162
+      "queue_rank": 125
     },
     {
       "id": "T-0663",
@@ -11361,7 +11363,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 61
+      "queue_rank": 29
     },
     {
       "id": "T-0673",
@@ -11381,7 +11383,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 62
+      "queue_rank": 30
     },
     {
       "id": "T-0674",
@@ -11401,7 +11403,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 134
+      "queue_rank": 97
     },
     {
       "id": "T-0675",
@@ -11541,7 +11543,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 147
+      "queue_rank": 110
     },
     {
       "id": "T-0684",
@@ -11641,7 +11643,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 148
+      "queue_rank": 111
     },
     {
       "id": "T-0689",
@@ -11661,7 +11663,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 93
+      "queue_rank": 58
     },
     {
       "id": "T-0690",
@@ -11681,12 +11683,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 168
+      "queue_rank": 131
     },
     {
       "id": "T-0691",
       "title": "The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks",
-      "state": "open",
+      "state": "blocked-tech",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11697,11 +11699,11 @@
       "closed": null,
       "pr": null,
       "claimed_by": null,
-      "blocked_on": null,
+      "blocked_on": "T-0660's owner ruling: whether a mint-time refusal (rules 7/8) may un-mint a standing letter-list record. T-0691's own acceptance says 'Do not work this before T-0660 is ruled on', and its acceptance 2 is 'whatever T-0660's ruling is, applied here by the same tool'. Acceptance 1 alone (wiring --check into check.sh) cannot ship on its own: the check is red today (the tree holds 727 letter-list households, the derivation gives 658), so wiring it turns the gate red without the ruling that says what to do about the 76.",
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 7
+      "queue_rank": null
     },
     {
       "id": "T-0692",
@@ -11746,7 +11748,7 @@
     {
       "id": "T-0694",
       "title": "M'Cormick & Moon read as a Chicago hatter although their own notice gives No. 109 Jefferson Avenue, Detroit",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11754,19 +11756,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "973",
+      "claimed_by": "run 9/6/2026, 3:02:50 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 17
+      "closed_at": "2026-09-06T08:41:37.567Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34020625245",
+      "queue_rank": null
     },
     {
       "id": "T-0695",
       "title": "A garbled printed forename refuses a match the reader can still make: C!;as. for Chas., J>ctij for John, Iia for Ira",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11774,19 +11776,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "995",
+      "claimed_by": "run 9/6/2026, 12:03:15 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 29
+      "closed_at": "2026-09-06T17:33:27.655Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34047194177",
+      "queue_rank": null
     },
     {
       "id": "T-0696",
       "title": "The directory crosswalks want a second discriminator: a trade separates 6 of the 33 contested groups and an 1835 premises 8, and the rule has none",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11794,19 +11796,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "969",
+      "claimed_by": "run 9/6/2026, 12:56:31 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 14
+      "closed_at": "2026-09-06T06:17:49.633Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34015075391",
+      "queue_rank": null
     },
     {
       "id": "T-0697",
       "title": "The land-sales resident crosswalk stops binding when a surname stops being unique: 531 new people cost it three rulings with nothing new read",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -11814,14 +11816,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "994",
+      "claimed_by": "run 9/6/2026, 11:15:00 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 28
+      "closed_at": "2026-09-06T17:00:16.434Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34044526103",
+      "queue_rank": null
     },
     {
       "id": "T-0698",
@@ -11841,7 +11843,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 26
+      "queue_rank": 5
     },
     {
       "id": "T-0699",
@@ -12146,7 +12148,7 @@
     {
       "id": "T-0714",
       "title": "The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -12154,14 +12156,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "993",
+      "claimed_by": "run 9/6/2026, 11:00:46 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 27
+      "closed_at": "2026-09-06T16:54:03.465Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34043907719",
+      "queue_rank": null
     },
     {
       "id": "T-0715",
@@ -12186,7 +12188,7 @@
     {
       "id": "T-0716",
       "title": "Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12194,19 +12196,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1005",
+      "claimed_by": "run 9/6/2026, 4:03:51 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 34
+      "closed_at": "2026-09-06T21:29:33.258Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34059671448",
+      "queue_rank": null
     },
     {
       "id": "T-0717",
       "title": "The first Catholic church still stood at State and Lake in June 1837, and st_marys_church.json ends its phase on 1836-12-31",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12214,19 +12216,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "988",
+      "claimed_by": "run 9/6/2026, 9:16:22 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 22
+      "closed_at": "2026-09-06T14:58:57.659Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34038457857",
+      "queue_rank": null
     },
     {
       "id": "T-0718",
       "title": "Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12234,14 +12236,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "990",
+      "claimed_by": "run 9/6/2026, 9:16:55 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 23
+      "closed_at": "2026-09-06T15:50:06.728Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34038473898",
+      "queue_rank": null
     },
     {
       "id": "T-0720",
@@ -12266,7 +12268,7 @@
     {
       "id": "T-0721",
       "title": "Three town cards are named from an OCR misreading of an initial — 8. G. Abbot, A. 8. Perry, James I1. Gabbs — so no identity can be built from them",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12274,14 +12276,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "921",
+      "claimed_by": "run 9/5/2026, 4:22:06 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 1
+      "closed_at": "2026-09-06T04:13:28.732Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33990347792",
+      "queue_rank": null
     },
     {
       "id": "T-0722",
@@ -12321,12 +12323,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 2
+      "queue_rank": 0
     },
     {
       "id": "T-0724",
       "title": "The splitter's four-token forename cap turns away Rev. John Mary Irenaeus St Cyr, the parish priest whose own register is rung G2c",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12334,14 +12336,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "931",
+      "claimed_by": "run 9/5/2026, 4:35:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 3
+      "closed_at": "2026-09-05T23:03:40.571Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33993351212",
+      "queue_rank": null
     },
     {
       "id": "T-0725",
@@ -12381,7 +12383,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 129
+      "queue_rank": 93
     },
     {
       "id": "T-0728",
@@ -12401,7 +12403,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 49
+      "queue_rank": 17
     },
     {
       "id": "T-0729",
@@ -12421,7 +12423,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 50
+      "queue_rank": 18
     },
     {
       "id": "T-0731",
@@ -12446,7 +12448,7 @@
     {
       "id": "T-0732",
       "title": "James Kinzie's card says he is half brother to Robert A. Kinzie too, in prose, citing nothing — and there are two Robert Kinzie households",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12454,14 +12456,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "950",
+      "claimed_by": "run 9/5/2026, 8:35:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 6
+      "closed_at": "2026-09-06T02:22:29.046Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34004139758",
+      "queue_rank": null
     },
     {
       "id": "T-0733",
@@ -12486,7 +12488,7 @@
     {
       "id": "T-0734",
       "title": "14 of 1,404 people have a stated relationship to anybody else: the kinship the sources already print",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12494,14 +12496,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "949",
+      "claimed_by": "run 9/5/2026, 8:17:18 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 5
+      "closed_at": "2026-09-06T02:17:28.097Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34003339603",
+      "queue_rank": null
     },
     {
       "id": "T-0735",
@@ -12526,7 +12528,7 @@
     {
       "id": "T-0736",
       "title": "Printed 232's continuation leaf is not in this deposit: find it in FamilySearch collection 1786457 or on the National Archives microfilm, and read the 31 households' industry, pension and schools cells",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12534,14 +12536,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-06",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/6/2026, 4:59:50 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 38
+      "closed_at": "2026-09-06T22:17:47.162Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34061858818",
+      "queue_rank": null
     },
     {
       "id": "T-0739",
@@ -12626,7 +12628,7 @@
     {
       "id": "T-0743",
       "title": "33S7-9YYJ-FJ read line by line: the TOTAL column, and whether the footing that refused the printed-207 pairing is 135 or 138",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -12634,14 +12636,14 @@
       "legacy_id": null,
       "parent": "T-0657",
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1010",
+      "claimed_by": "run 9/6/2026, 6:12:03 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 41
+      "closed_at": "2026-09-06T23:57:14.321Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34065662499",
+      "queue_rank": null
     },
     {
       "id": "T-0744",
@@ -12661,7 +12663,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 42
+      "queue_rank": 9
     },
     {
       "id": "T-0745",
@@ -12701,7 +12703,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 39
+      "queue_rank": 8
     },
     {
       "id": "T-0747",
@@ -12741,12 +12743,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 43
+      "queue_rank": 10
     },
     {
       "id": "T-0753",
       "title": "Hurlbut gives Gurdon Hubbard a birth and a Montreal origin, and the household record holds neither",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12754,14 +12756,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "943",
+      "claimed_by": "run 9/5/2026, 7:36:29 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 4
+      "closed_at": "2026-09-06T00:59:47.906Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34001601114",
+      "queue_rank": null
     },
     {
       "id": "T-0754",
@@ -12781,7 +12783,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 44
+      "queue_rank": 11
     },
     {
       "id": "T-0755",
@@ -12801,7 +12803,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 45
+      "queue_rank": 12
     },
     {
       "id": "T-0756",
@@ -12841,12 +12843,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 9
+      "queue_rank": 2
     },
     {
       "id": "T-0758",
       "title": "The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12854,19 +12856,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
+      "closed": "2026-09-06",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": true,
-      "closed_at": null,
+      "closed_at": "2026-09-06T10:33:23.841Z",
       "claimed_run": null,
-      "queue_rank": 20
+      "queue_rank": null
     },
     {
       "id": "T-0759",
       "title": "Chicago drank from the lake by cart in 1835 and the town has no waterman: the hogshead cart, the watering place at the foot of Randolph and the barrel at the door",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12874,14 +12876,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "982",
+      "claimed_by": "run 9/6/2026, 6:59:23 AM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 21
+      "closed_at": "2026-09-06T12:45:58.579Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34031638142",
+      "queue_rank": null
     },
     {
       "id": "T-0761",
@@ -12901,12 +12903,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 46
+      "queue_rank": 13
     },
     {
       "id": "T-0762",
       "title": "The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -12914,14 +12916,14 @@
       "legacy_id": null,
       "parent": "T-0528",
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1008",
+      "claimed_by": "run 9/6/2026, 5:22:11 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 40
+      "closed_at": "2026-09-06T23:10:02.503Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34063360894",
+      "queue_rank": null
     },
     {
       "id": "T-0763",
@@ -12941,12 +12943,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 52
+      "queue_rank": 20
     },
     {
       "id": "T-0764",
       "title": "A cohort manifest's starting_* snapshot is rewritten every time the manifest is regenerated, so the freeze records today's tree rather than the day it was fixed",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12954,19 +12956,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "952",
+      "claimed_by": "run 9/5/2026, 9:21:37 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 10
+      "closed_at": "2026-09-06T02:35:51.572Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34006144198",
+      "queue_rank": null
     },
     {
       "id": "T-0765",
       "title": "A page number in a citation is read as the state: ', 111,' after a digit run, 65 kept cards across the four volumes",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12974,19 +12976,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "999",
+      "claimed_by": "run 9/6/2026, 1:38:23 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 30
+      "closed_at": "2026-09-06T18:43:58.797Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34049602990",
+      "queue_rank": null
     },
     {
       "id": "T-0766",
       "title": "The Illinois abbreviation still matches on the wreck of a word — 'Eng.', an author's initials, a France card — and those are the bad keeps the four precision samples have left",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12994,14 +12996,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
+      "closed": "2026-09-06",
+      "pr": "1001",
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-06T20:06:39.143Z",
       "claimed_run": null,
-      "queue_rank": 31
+      "queue_rank": null
     },
     {
       "id": "T-0767",
@@ -13041,12 +13043,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 94
+      "queue_rank": 59
     },
     {
       "id": "T-0769",
       "title": "A card body can OPEN with the TAIL of the card in the column to its left, so a locality is matched on text that is not on the card",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13054,14 +13056,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1003",
+      "claimed_by": "run 9/6/2026, 2:32:38 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 32
+      "closed_at": "2026-09-06T20:37:59.012Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34055014009",
+      "queue_rank": null
     },
     {
       "id": "T-0770",
@@ -13081,12 +13083,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 95
+      "queue_rank": 60
     },
     {
       "id": "T-0771",
       "title": "Clark, Filer & Co.'s 'five doors east of the corner of Randolph st.' names one street in the anchor and the other in the placement, so the corner-ordinal reader never sees a corner",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13094,14 +13096,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "966",
+      "claimed_by": "run 9/6/2026, 12:01:32 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 13
+      "closed_at": "2026-09-06T05:47:58.073Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34012821945",
+      "queue_rank": null
     },
     {
       "id": "T-0772",
@@ -13121,12 +13123,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 24
+      "queue_rank": 4
     },
     {
       "id": "T-0773",
       "title": "Seven houses hold a printed address that a later printing outranks, and only an anchor_changes rule may reorder them",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13134,14 +13136,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "959",
+      "claimed_by": "run 9/5/2026, 10:42:07 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 12
+      "closed_at": "2026-09-06T04:32:21.566Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34009497541",
+      "queue_rank": null
     },
     {
       "id": "T-0774",
@@ -13201,7 +13203,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 149
+      "queue_rank": 112
     },
     {
       "id": "T-0777",
@@ -13221,12 +13223,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 150
+      "queue_rank": 113
     },
     {
       "id": "T-0778",
       "title": "Block 5 lot 5 of the Fort Dearborn sale has no claim at all: the row map never gathered it, and the printed page 47 brace covers it",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13234,19 +13236,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1000",
+      "claimed_by": "run 9/6/2026, 1:33:33 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 36
+      "closed_at": "2026-09-06T18:54:48.750Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34051766484",
+      "queue_rank": null
     },
     {
       "id": "T-0779",
       "title": "The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13254,14 +13256,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1006",
+      "claimed_by": "run 9/6/2026, 4:24:37 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 37
+      "closed_at": "2026-09-06T22:07:43.995Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34060626354",
+      "queue_rank": null
     },
     {
       "id": "T-0780",
@@ -13301,7 +13303,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 51
+      "queue_rank": 19
     },
     {
       "id": "T-0782",
@@ -13326,7 +13328,7 @@
     {
       "id": "T-0783",
       "title": "The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13334,14 +13336,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "972",
+      "claimed_by": "run 9/6/2026, 1:39:57 AM CT",
       "blocked_on": null,
       "needs_bake": true,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 15
+      "closed_at": "2026-09-06T07:39:09.660Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34016939269",
+      "queue_rank": null
     },
     {
       "id": "T-0784",
@@ -13386,7 +13388,7 @@
     {
       "id": "T-0787",
       "title": "The Wright 1834 sheet has arrived whole at 600 dpi and nothing can cite it yet: register the National Archives reproduction beside the BPL master, in its own pixel space, with the scale bar as the check",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13394,14 +13396,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "956",
+      "claimed_by": "run 9/5/2026, 9:44:39 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 82
+      "closed_at": "2026-09-06T03:42:13.250Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34006978138",
+      "queue_rank": null
     },
     {
       "id": "T-0788",
@@ -13421,7 +13423,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 11
+      "queue_rank": 3
     },
     {
       "id": "T-0789",
@@ -13441,7 +13443,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 83
+      "queue_rank": 49
     },
     {
       "id": "T-0790",
@@ -13461,7 +13463,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 84
+      "queue_rank": 50
     },
     {
       "id": "T-0791",
@@ -13501,7 +13503,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 85
+      "queue_rank": 51
     },
     {
       "id": "T-0793",
@@ -13541,7 +13543,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 86
+      "queue_rank": 52
     },
     {
       "id": "T-0795",
@@ -13561,7 +13563,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 87
+      "queue_rank": 53
     },
     {
       "id": "T-0796",
@@ -13581,12 +13583,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 88
+      "queue_rank": 54
     },
     {
       "id": "T-0797",
       "title": "The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13594,19 +13596,19 @@
       "legacy_id": null,
       "parent": "T-0791",
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-06",
       "pr": null,
       "claimed_by": null,
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-06T09:42:03.228Z",
       "claimed_run": null,
-      "queue_rank": 18
+      "queue_rank": null
     },
     {
       "id": "T-0798",
       "title": "Spend the 125 land-sale rows onto the School Section's numbered blocks: purchaser onto ground, dated to the sale",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13614,14 +13616,14 @@
       "legacy_id": null,
       "parent": "T-0791",
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "979",
+      "claimed_by": "run 9/6/2026, 5:47:10 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 19
+      "closed_at": "2026-09-06T11:26:00.711Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34028090901",
+      "queue_rank": null
     },
     {
       "id": "T-0799",
@@ -13641,7 +13643,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 89
+      "queue_rank": 55
     },
     {
       "id": "T-0800",
@@ -13661,7 +13663,7 @@
       "needs_bake": true,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 90
+      "queue_rank": 56
     },
     {
       "id": "T-0801",
@@ -13681,7 +13683,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 91
+      "queue_rank": 57
     },
     {
       "id": "T-0802",
@@ -13701,12 +13703,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 48
+      "queue_rank": 15
     },
     {
       "id": "T-0803",
       "title": "The published tree is 936 bytes under the 32 MiB budget, so no PR that publishes anything can pass validate.py again",
-      "state": "withdrawn",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13715,11 +13717,11 @@
       "parent": null,
       "opened": "2026-09-04",
       "closed": "2026-09-05",
-      "pr": null,
+      "pr": "823",
       "claimed_by": null,
       "blocked_on": "Superseded, and the fault is measured gone. All five of T-0722, T-0725, T-0731, T-0774 and T-0803 reported the SAME thing within one day — the published tree sitting a few hundred bytes under SITE_BUDGET_MB on dev at 06a0a9ec/1e9108aa, so the next PR to publish anything failed the gate. T-0722 fixed it in PR #836 by publishing changelog.js once instead of twice. Measured on this tree: 30.412 MB of 32, 1.588 MB of headroom, and ZERO pairs of published files over 64 KB with identical bytes — the condition #836's new validate.py rule now gates, so it cannot return the way it arrived. Withdrawn on the owner's instruction of 2026-09-05, 'do it if those tickets are useless now', after checking each one's own claim rather than the band's summary of them.  CORRECTION, same day: this reason first cited \"30.412 MB of 32, 1.588 MB of headroom\". The 32 came from tools/site_budget.py, which still hardcoded it while tools/validate.py — the gate that actually refuses a merge — had been raised to 36 by T-0593 (#823). The true figures are 30.5 MB of 36 and 5.5 MB of headroom, so the withdrawal stands and stands wider than stated. site_budget.py now reads SITE_BUDGET_MB out of the gate rather than restating it.",
       "needs_bake": false,
-      "closed_at": "2026-09-05T20:03:55.552Z",
+      "closed_at": "2026-09-05T19:59:09.129Z",
       "claimed_run": null,
       "queue_rank": null
     },
@@ -13741,7 +13743,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 139
+      "queue_rank": 102
     },
     {
       "id": "T-0805",
@@ -13781,12 +13783,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 126
+      "queue_rank": 91
     },
     {
       "id": "T-0807",
       "title": "Drain lap 3: the three heavy owner PRs, where the published mirror is most of the file count and none of the work",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "owner",
       "seen": false,
@@ -13794,14 +13796,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "914",
+      "claimed_by": "run 9/5/2026, 2:57:39 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 127
+      "closed_at": "2026-09-05T20:06:48.559Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33988438917",
+      "queue_rank": null
     },
     {
       "id": "T-0808",
@@ -13821,7 +13823,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 128
+      "queue_rank": 92
     },
     {
       "id": "T-0809",
@@ -13841,12 +13843,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 125
+      "queue_rank": 90
     },
     {
       "id": "T-0810",
       "title": "The OCR re-read of Newberry volume 4 has never been checked for column slivers: T-0601's pass ran over the text-layer reading the re-read replaced",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13854,14 +13856,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "1004",
+      "claimed_by": "run 9/6/2026, 4:30:16 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 33
+      "closed_at": "2026-09-06T21:47:30.008Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34058359931",
+      "queue_rank": null
     },
     {
       "id": "T-0811",
@@ -13886,7 +13888,7 @@
     {
       "id": "T-0812",
       "title": "The Steamboat Hotel's placement reads Kinzie Street at local N +276 and the committed kinzie record is at N +252.8",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13894,14 +13896,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-04",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "974",
+      "claimed_by": "run 9/6/2026, 2:57:36 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 16
+      "closed_at": "2026-09-06T09:09:14.994Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34019964966",
+      "queue_rank": null
     },
     {
       "id": "T-0813",
@@ -13926,7 +13928,7 @@
     {
       "id": "T-0814",
       "title": "The synthesizer's write has drifted hundreds of household cards away from the repository and --check cannot see it, so T-0509's eight corroborations never reach a card",
-      "state": "open",
+      "state": "split",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13934,14 +13936,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
+      "closed": "2026-09-05",
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/5/2026, 3:21:30 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 0
+      "closed_at": "2026-09-05T20:24:23.177Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649",
+      "queue_rank": null
     },
     {
       "id": "T-0815",
@@ -13966,7 +13968,7 @@
     {
       "id": "T-0816",
       "title": "Two independent readings of cohort 14 disagree on 46 of its 76 people: T-0509 landed one and the other is on a dead branch",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13974,19 +13976,19 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "946",
+      "claimed_by": "run 9/5/2026, 8:30:56 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 8
+      "closed_at": "2026-09-06T01:56:44.564Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34003861327",
+      "queue_rank": null
     },
     {
       "id": "T-0817",
       "title": "QUEUE.md lost the owner's 2026-09-04 research-first order a second time, to a PR cut before the re-rank",
-      "state": "open",
+      "state": "done",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -13994,14 +13996,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-05",
+      "pr": "913",
+      "claimed_by": "run 9/5/2026, 2:51:42 PM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
+      "closed_at": "2026-09-05T19:59:51.886Z",
       "claimed_run": null,
-      "queue_rank": 130
+      "queue_rank": null
     },
     {
       "id": "T-0818",
@@ -14041,7 +14043,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 47
+      "queue_rank": 14
     },
     {
       "id": "T-0820",
@@ -14141,7 +14143,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 53
+      "queue_rank": 21
     },
     {
       "id": "T-0827",
@@ -14161,12 +14163,12 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 96
+      "queue_rank": 61
     },
     {
       "id": "T-0828",
       "title": "The lot-line fence generator mints a run id that names a lot, not a side, so two sides of one lot share an id",
-      "state": "open",
+      "state": "done",
       "epic": "TOWN",
       "requested_by": "steward",
       "seen": false,
@@ -14174,14 +14176,14 @@
       "legacy_id": null,
       "parent": null,
       "opened": "2026-09-05",
-      "closed": null,
-      "pr": null,
-      "claimed_by": null,
+      "closed": "2026-09-06",
+      "pr": "989",
+      "claimed_by": "run 9/6/2026, 10:08:07 AM CT",
       "blocked_on": null,
       "needs_bake": false,
-      "closed_at": null,
-      "claimed_run": null,
-      "queue_rank": 25
+      "closed_at": "2026-09-06T15:35:45.654Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34041163701",
+      "queue_rank": null
     },
     {
       "id": "T-0829",
@@ -14201,7 +14203,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 151
+      "queue_rank": 114
     },
     {
       "id": "T-0830",
@@ -14221,7 +14223,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 170
+      "queue_rank": 133
     },
     {
       "id": "T-0831",
@@ -14281,7 +14283,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 169
+      "queue_rank": 132
     },
     {
       "id": "T-0834",
@@ -14301,7 +14303,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 171
+      "queue_rank": 134
     },
     {
       "id": "T-0835",
@@ -14321,7 +14323,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 172
+      "queue_rank": 135
     },
     {
       "id": "T-0836",
@@ -14341,7 +14343,47 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 173
+      "queue_rank": 136
+    },
+    {
+      "id": "T-0837",
+      "title": "Spend the standing synthesis write: read the promotions it proposes and land them deliberately",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0814",
+      "opened": "2026-09-05",
+      "closed": "2026-09-06",
+      "pr": "970",
+      "claimed_by": "run 9/6/2026, 1:34:27 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T07:23:19.897Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34016717936",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0838",
+      "title": "Gate the synthesizer's drift: the committed cards must re-derive from the writer that owns them",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0814",
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "917",
+      "claimed_by": "run 9/5/2026, 3:25:53 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-05T20:38:58.596Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/33989596649",
+      "queue_rank": null
     },
     {
       "id": "T-0839",
@@ -14364,6 +14406,66 @@
       "queue_rank": null
     },
     {
+      "id": "T-0841",
+      "title": "The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 143
+    },
+    {
+      "id": "T-0842",
+      "title": "Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 144
+    },
+    {
+      "id": "T-0843",
+      "title": "Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0839",
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 1
+    },
+    {
       "id": "T-0844",
       "title": "Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie",
       "state": "open",
@@ -14381,7 +14483,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 175
+      "queue_rank": 137
     },
     {
       "id": "T-0845",
@@ -14421,7 +14523,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 174
+      "queue_rank": 138
     },
     {
       "id": "T-0848",
@@ -14441,7 +14543,27 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 176
+      "queue_rank": 139
+    },
+    {
+      "id": "T-0849",
+      "title": "Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 140
     },
     {
       "id": "T-0850",
@@ -14461,7 +14583,7 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 177
+      "queue_rank": 176
     },
     {
       "id": "T-0851",
@@ -14481,7 +14603,1027 @@
       "needs_bake": false,
       "closed_at": null,
       "claimed_run": null,
-      "queue_rank": 178
+      "queue_rank": 177
+    },
+    {
+      "id": "T-0852",
+      "title": "tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 141
+    },
+    {
+      "id": "T-0854",
+      "title": "The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 142
+    },
+    {
+      "id": "T-0855",
+      "title": "A card whose only evidence reads Hubbard, [Henry] G. was folded onto Gurdon Saltonstall Hubbard: one man's record is on the wrong person",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "958",
+      "claimed_by": "run 9/5/2026, 10:58:09 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T04:12:10.045Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0857",
+      "title": "GitHub's merge never runs this repo's merge drivers, so every PR reads as conflicting and auto-merge can never fire",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 16
+    },
+    {
+      "id": "T-0859",
+      "title": "J. S. C. Hogan's live placement is a street_only that names no street: the cedar-post notice gives no address and T-0440's repair cannot see it",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-06",
+      "pr": "960",
+      "claimed_by": "run 9/5/2026, 11:51:14 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T05:16:04.635Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34009841423",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0860",
+      "title": "Three stated kin ties PR #947 read that the survey's patterns could not reach: the Beaubien brotherhood and the two Harmon sons",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-05",
+      "pr": "961",
+      "claimed_by": "run 9/5/2026, 11:42:50 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T04:44:55.469Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0861",
+      "title": "Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 146
+    },
+    {
+      "id": "T-0862",
+      "title": "The Wright NARA registration that every Wright-band ticket is built on has no gate: nothing verifies its raster, its checksum or its fit",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 145
+    },
+    {
+      "id": "T-0863",
+      "title": "H. Van Den Bogart and Dr Henry Van der Bogart are probably one man, and the particle rule keeps them in two identities",
+      "state": "withdrawn",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-06",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Duplicate of T-0842, filed first by PR #931 (T-0724), which is where the finding originated",
+      "needs_bake": false,
+      "closed_at": "2026-09-06T05:04:41.248Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0864",
+      "title": "Is the celebrant of a register attested by it? The priest who keeps the G2c St Cyr register is graded on Andreas alone",
+      "state": "withdrawn",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-06",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Duplicate of T-0841, filed first by PR #931 (T-0724), which is where the finding originated",
+      "needs_bake": false,
+      "closed_at": "2026-09-06T05:04:41.394Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0865",
+      "title": "PR #948 proposed deleting the Taylor brotherhood as unsourced and a committed source states it: land the tie instead",
+      "state": "done",
+      "epic": "TOWN",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": "2026-09-06",
+      "pr": "965",
+      "claimed_by": "run 9/5/2026, 11:55:23 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T05:03:38.002Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0866",
+      "title": "The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-05",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 148
+    },
+    {
+      "id": "T-0867",
+      "title": "The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 149
+    },
+    {
+      "id": "T-0868",
+      "title": "Norris 1844 normalizes 'Jones, B. & Co. dry goods and groceries' as a person, not a firm, so the firm filter never sees it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 150
+    },
+    {
+      "id": "T-0869",
+      "title": "Clark, Filer & Co. advertise a warehouse five doors east of a corner the plat does not have: is the Democrat's 'Randolph st.' a mis-set cross street, or a firm naming a corner it did not stand on?",
+      "state": "open",
+      "epic": "PAPERS",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 147
+    },
+    {
+      "id": "T-0871",
+      "title": "The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check",
+      "state": "open",
+      "epic": "PIPELINE",
+      "requested_by": "steward",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 151
+    },
+    {
+      "id": "T-0872",
+      "title": "Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 152
+    },
+    {
+      "id": "T-0873",
+      "title": "publish.sh minifies the four resident cards the synthesizer writes pretty, so the first republish after a synthesis spend turns the drift ratchet red",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 153
+    },
+    {
+      "id": "T-0874",
+      "title": "publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 156
+    },
+    {
+      "id": "T-0875",
+      "title": "The School Section's 142 block numerals, read off the registered 600-dpi sheet and each cited to its crop: the boustrophedon scheme stated, and the run the South Branch makes unreadable refused rather than guessed",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0797",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "976",
+      "claimed_by": "run 9/6/2026, 4:42:12 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T10:12:23.426Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34024504440",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0876",
+      "title": "The School Section's grid and streets: the module measured off the sheet, 142 block polygons, the twelve tiers as street records with the owner's unworn status, and the three Reserved blocks tested against the 1833 sale",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "owner",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0797",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "977",
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T10:31:10.409Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0877",
+      "title": "The School Section's twelve north-south lines are read and not committed: Des Plaines, Jefferson, Clinton, Canal, Market, Wells and Clark run south of Madison and five more tiers carry no name",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 154
+    },
+    {
+      "id": "T-0878",
+      "title": "Wright's 1834 registration is three per cent long in y: the School Section's mile measures 1658.65 m north-south and 1603.04 m east-west on the same fit",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 155
+    },
+    {
+      "id": "T-0879",
+      "title": "publish.sh minifies four mirrored resident cards that the synthesis-drift ratchet then fails: any run that publishes must hand-revert them",
+      "state": "withdrawn",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T10:23:01.569Z",
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0880",
+      "title": "publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 157
+    },
+    {
+      "id": "T-0881",
+      "title": "The fort's well and the Out Buildings: the class T-0592 refused the town, and a plural label the plate draws once",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0758",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "984",
+      "claimed_by": "run 9/6/2026, 7:44:42 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T13:43:15.150Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34033480306",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0882",
+      "title": "The Fort Cemetery: a burial ground is not a building, and this model has no record type that can say what it is",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0758",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "987",
+      "claimed_by": "run 9/6/2026, 9:15:44 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T14:50:45.243Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34037535931",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0883",
+      "title": "The fort's service yard, drawn on the Harrison plan: the Big Barn with Cupola, the Wash house and the Shop placed off the plate",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0758",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "980",
+      "claimed_by": "run 9/6/2026, 5:33:26 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T11:55:22.780Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34027344945",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0884",
+      "title": "The register sells Russel Heacock lot 7 of block 117 and his committed house stands 7 m outside block 118: one of the two is out by more than the construction admits",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 158
+    },
+    {
+      "id": "T-0885",
+      "title": "A row is not a parcel: 38 school-section parcels are entered twice, 26 of them every parcel Ebenezer Hale buys and John Hale buys too",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "981",
+      "claimed_by": "run 9/6/2026, 6:51:47 AM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T12:12:15.959Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34029206125",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0886",
+      "title": "The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 160
+    },
+    {
+      "id": "T-0887",
+      "title": "A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 159
+    },
+    {
+      "id": "T-0890",
+      "title": "tools/web_derivatives.sh compresses with an unpinned `npx --yes @gltf-transform/cli`, so a runner with a newer CLI rewrites the generator string in all 380 web assets",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 161
+    },
+    {
+      "id": "T-0891",
+      "title": "The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 162
+    },
+    {
+      "id": "T-0892",
+      "title": "The synthesizer drift ratchet turns red the moment anybody publishes: its T-0838 baseline names the data/ paths and not their site/ mirrors",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 163
+    },
+    {
+      "id": "T-0893",
+      "title": "The Beaubien homestead's phase id and start date still say 1817, and Andreas's own pages say the factory building reached Beaubien in 1822",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 164
+    },
+    {
+      "id": "T-0894",
+      "title": "Two sources put the Factory House just SOUTH of Fort Dearborn and jb_beaubien_homestead stands north of it: that bearing is all that is left of the identity question, and form.stories waits on it",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 165
+    },
+    {
+      "id": "T-0895",
+      "title": "The John-Dean house: an army contractor built a five-room house at the foot of Randolph Street in 1815, Beaubien bought it in 1817 for $1,000, and this project models nothing there",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 166
+    },
+    {
+      "id": "T-0896",
+      "title": "Drain the 18 --check-capable tools tools/check.sh never runs: gate each or record why it cannot be gated",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 167
+    },
+    {
+      "id": "T-0898",
+      "title": "The published residents mirror has two writers that disagree on its shape, and publish.sh losing the race turns the T-0838 drift ratchet red",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 168
+    },
+    {
+      "id": "T-0899",
+      "title": "Ira Couch's card has not learned the 1840 candidate ruled onto him: spend it, and drop the write-hop ceiling back to zero",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 169
+    },
+    {
+      "id": "T-0900",
+      "title": "Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 170
+    },
+    {
+      "id": "T-0901",
+      "title": "A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 171
+    },
+    {
+      "id": "T-0902",
+      "title": "publish.sh and the resident synthesizer write four mirror files in two different shapes, so whichever ran last decides whether check.sh is green",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 172
+    },
+    {
+      "id": "T-0903",
+      "title": "The four Norris forenames the second hand could not lift, read off the page image — Iia is Ira Couch of the Tremont House",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "997",
+      "claimed_by": "run 9/6/2026, 1:07:36 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T18:25:43.205Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34048091257",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0905",
+      "title": "publish.sh minifies four resident mirror files that synthesize_resident_research.py writes expanded, so whichever ran last decides whether check.sh is green",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 173
+    },
+    {
+      "id": "T-0909",
+      "title": "The Chappel shore drawing has no candidate left: the cheapest question is the depositor's, and it has never been asked",
+      "state": "blocked-owner",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": "Where did the Eliza Chappel shore drawing come from? The file was deposited with a social-media filename and no artist, date or repository, and T-0716 has now eliminated the last candidate on the picture. Every automated route this runner can reach has been run and recorded; the only one with a person behind it is you. If the scan came from a book, a museum page or a Facebook post, one sentence naming it settles what a catalogue sweep may not.",
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": null
+    },
+    {
+      "id": "T-0910",
+      "title": "Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 174
+    },
+    {
+      "id": "T-0911",
+      "title": "Printed 232's continuation leaf is found: NARA microfilm M704 roll 57 leaf n167, landed as a source and paired to the page on both of T-0642's keys",
+      "state": "done",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0736",
+      "opened": "2026-09-06",
+      "closed": "2026-09-06",
+      "pr": "1007",
+      "claimed_by": "run 9/6/2026, 5:18:09 PM CT",
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": "2026-09-06T22:50:48.035Z",
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34061858818",
+      "queue_rank": null
+    },
+    {
+      "id": "T-0912",
+      "title": "Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "S",
+      "legacy_id": null,
+      "parent": "T-0736",
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 7
+    },
+    {
+      "id": "T-0921",
+      "title": "publish.sh minifies four site mirror files the resident synthesizer writes pretty, so whichever ran last flips the T-0838 drift ratchet",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 175
     }
   ]
 }

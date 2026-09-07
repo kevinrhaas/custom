@@ -2127,13 +2127,37 @@
  "free_population_by_the_sheets_footings": 195,
  "pairing": {
   "paired_to_continuation_sheet": null,
-  "state": "unpaired_search_exhausted",
-  "paired_by": "T-0543",
-  "why": "this leaf holds 31 lines and its free population is 193 by its own marks and 195 by its own footings, and NOT ONE of the 33 household continuation sheets in this deposit foots either figure. Every right sheet of all three image groups was looked at, image by image, with its TOTAL footing and the reason it is not the pair; 17 of those footings were read for the first time in that pass. The one sheet that matches this page on the line count, 33SQ-GYYJ-9J5 at 31 entries, foots 179 and its TOTAL column opens 5, 6, 25, 11, 8 against this page's 5, 7, 5, 9, 6 \u2014 refused on the population key and again on the sequence. The evidence is in continuation_search_page_232.json.",
+  "paired_to_continuation_leaf": "NARA M704 roll 57, leaf n167 (Internet Archive populationsc18400057unit), source census_1840_chicago_nara_m704_roll57",
+  "state": "paired_outside_this_deposit",
+  "paired_by": "T-0736",
+  "why": "T-0543 exhausted the search INSIDE this deposit and was right: none of the 33 household continuation sheets among the 74 images foots printed 232. T-0736 went outside it by the second route that ticket named. The 1840 population schedules survive on NARA microfilm publication M704, and roll 57 is the one whose description reads \u201cColes, Cook, Crawford Counties\u201d; the Allen County Public Library Genealogy Center's scan of that roll is public and unauthenticated on the Internet Archive. Leaf n166 of it IS printed page 232 \u2014 identified by its own 31 heads of families, which are this page's 31 in this page's order, and not by the stamp alone \u2014 and leaf n167 is the facing right sheet of the same opening. It pairs on BOTH of T-0642's keys and on the sequence screen besides.",
   "page_population_key": 193,
   "page_population_key_alternate": 195,
   "line_count_key": 31,
-  "what_this_costs_the_page": "the family TOTAL, the six industry columns, pensioners, the deaf/dumb/blind/insane block and the schools and illiteracy columns of these 31 households are not readable from what this project holds. They are ABSENT rather than unread, and nothing should be filled into them from this sheet's own cells.",
-  "not_one_cell_of_this_reading_was_changed_by_the_search": true
+  "the_continuation_leafs_keys": {
+   "printed_total_footing_as_read": "195",
+   "printed_total_footing_alternate": "198",
+   "alternate_note": "the third glyph of the footing is open at this exposure and 198 is the arguable reading. The pairing does NOT rest on it: it is carried by the line count, by the sequence screen, and above all by the 31 names on the facing leaf. Where the glyph matters \u2014 to the enumerator's own arithmetic \u2014 it is left with its alternate named rather than chosen.",
+   "entries_in_the_total_column": 31,
+   "total_column_opens": [
+    5,
+    7,
+    5,
+    9,
+    6,
+    4
+   ],
+   "this_pages_free_persons_open": [
+    5,
+    7,
+    5,
+    9,
+    6,
+    4
+   ]
+  },
+  "the_screen_that_refused_the_rival": "T-0543 refused 33SQ-GYYJ-9J5 \u2014 the deposit's one 31-entry right sheet \u2014 on the population key and again because its TOTAL column opens 5, 6, 25, 11, 8 against this page's 5, 7, 5, 9, 6. n167's column opens on this page's own five figures, so the same screen that refused the rival names this leaf.",
+  "what_this_costs_the_page": "Nothing, once the leaf is read. The family TOTAL, the seven industry columns, the pensioners block, the deaf/dumb/blind/insane block and the schools and illiteracy columns of these 31 households are now READABLE \u2014 they stand on n167 \u2014 and they are still UNREAD. They stay recorded as absent from this project's holdings until the reading ticket lands them; nothing is to be filled into them from this sheet's own cells in the meantime.",
+  "not_one_cell_of_this_reading_was_changed_by_the_pairing": true
  }
 }

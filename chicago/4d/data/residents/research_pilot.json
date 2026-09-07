@@ -6484,16 +6484,16 @@
     {
       "person_id": "gabbs_james_i1",
       "household_id": "hh_gabbs_james_i1",
-      "name_as_recorded": "James I1. Gabbs",
+      "name_as_recorded": "James [?] Gabbs",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-09-02",
       "outcome": "no_corroboration",
       "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
       "queries": [
-        "\"James I1. Gabbs\" Chicago 1835",
-        "\"James I1. Gabbs\" Illinois 1834 1835",
-        "\"James I1. Gabbs\" Chicago directory 1839",
-        "\"James I1. Gabbs\" genealogy occupation migration"
+        "\"James [?] Gabbs\" Chicago 1835",
+        "\"James [?] Gabbs\" Illinois 1834 1835",
+        "\"James [?] Gabbs\" Chicago directory 1839",
+        "\"James [?] Gabbs\" genealogy occupation migration"
       ],
       "sources": [],
       "candidates": [],

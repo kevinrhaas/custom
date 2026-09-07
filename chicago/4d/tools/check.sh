@@ -94,6 +94,26 @@ step "…and its own assertions still fire when broken" \
 step "the QUEUE.md merge driver still does what .gitattributes promises" \
   node tools/merge-queue-selftest.mjs
 
+# T-0817, AND IT IS A GATE BECAUSE A DRIVER CANNOT REACH FAR ENOUGH. The ranking
+# has been lost three times: 2026-09-04 ("the queue got massively reordered"),
+# again on 2026-09-05 via PR #801 — a branch cut long before the re-rank, which
+# took dev from the restored 415-line file back to the 2026-08-30 revision — and a
+# third time to the drain band (#909). The driver above REFUSED the #801 merge and
+# it made no difference, for the reason T-0817 names exactly: GitHub does not run
+# this repository's merge drivers, so a squash-merge on the server never loads one.
+# The driver protects a local `git merge` and cannot protect the thing that lands.
+#
+# check.sh is the required `gate` on dev's ruleset, so this refuses the merge
+# BUTTON, which is the only place the regression actually arrives. What it asserts
+# is not a judgement about ranking — it is that every re-rank the base already
+# records is still present here. A branch missing one predates it, and merging it
+# would put the old order back.
+step "the owner's queue ranking has not gone backwards" \
+  node tools/check_queue_order.mjs
+
+step "…and its own assertions still fire when broken" \
+  node tools/check_queue_order-selftest.mjs
+
 # THE CHANGELOG'S MERGE DRIVER. Same reasoning, higher stakes: this file's history
 # is seven repairs long, five of them in one day when `union` spliced one entry
 # into another and left valid JavaScript nobody noticed. The driver never works
@@ -167,6 +187,19 @@ step "platted block parcels match their recipe and the committed lots" \
 step "the residents manifest re-derives from the household cards" \
   python3 tools/rebuild_resident_index.py --check
 
+# The kinship the corpus already states (T-0734). The audit that opened that ticket
+# found 14 of 1,404 people related to anybody at all, and the reason was never that
+# the sources were silent: the register marries couples this town holds both halves
+# of, and nothing read it. The survey is DERIVED from the corpus, so it grows when a
+# reading lands, and this step is what makes that growth impossible to ignore - a
+# newly stated kinship whose two ends the town holds is a proposal, and a proposal
+# nobody has ruled on is a red build rather than a thing to notice one day.
+step "every stated kinship the corpus offers has been ruled on" \
+  python3 tools/survey_stated_kin.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/survey_stated_kin.py --self-test
+
 # The inferred-household layer (K1 phase two) is the same shape of thing: an
 # authored recipe — an occupation census, a roof-adoption table and a placement
 # list — expanded into households, occupancy blocks and structure records. It also
@@ -174,6 +207,20 @@ step "the residents manifest re-derives from the household cards" \
 # onto water or off the modelled ground fails here rather than in a bake.
 step "inferred households, adoptions and their buildings match the programme" \
   python3 tools/synthesize_resident_research.py --check
+
+# T-0838 (of T-0814). The step above re-derives the population IN MEMORY and checks its invariants;
+# it never asks whether that derivation matches the cards on disk, and on 2026-09-05 it
+# reported `OK: 1404 people` while the writer stood 132 household files from the tree,
+# with T-0509's eight corroborations sitting in the gap. This is the missing half — the
+# same re-derivation contract datum.json and the baked GLBs are held to, run against a
+# throwaway copy of the tree so it cannot touch the real one. It is a RATCHET over the
+# drift standing on 2026-09-05: undeclared drift fails, and drift that heals has to
+# shrink the baseline in the commit that heals it. T-0837 owns spending what is standing.
+step "the resident synthesizer has not drifted further from the cards it writes" \
+  python3 tools/synthesize_resident_research.py --drift
+
+step "…and that ratchet fires in both directions" \
+  python3 tools/synthesize_resident_research.py --drift-self-test
 
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
@@ -202,6 +249,21 @@ step "the platted block and lot grid re-derives from the module" \
 # 4,411 m2 bowtie with a plausible depth rather than refusing.
 step "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
+
+# T-0875. The School Section's 142 block numerals, read off the 600-dpi NA sheet.
+# It sits beside the Thompson grid because it is the same question answered the
+# other way round: there, two legible numerals could not say how a run passes from
+# one tier to the next and the numbering is refused past one tier; here the whole
+# grid is legible and the boustrophedon is observed, not argued. The trace is
+# GENERATED from the reading table and the committed registration, so `--check` is
+# what keeps a hand-edited numeral out — and the assertion that earns its keep is
+# the one that re-derives 120 of the 142 from the scheme alone, written
+# independently of the table it checks.
+step "the School Section's block numerals re-derive from the reading and the scheme" \
+  python3 tools/read_school_section_numerals.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_school_section_numerals.py --self-test
 
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
@@ -1303,6 +1365,28 @@ step "the minted letter-list residents re-derive from the register" \
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
 
+# T-0714, and the owner asked for it directly. The bridges gate above proves the eleven
+# links this project HAS made. The crosswalk below is the adjudication those links come
+# out of — every named 1840 head given an outcome against the 1835 pools — and it was the
+# one crosswalk in this repo that nothing gated. `crosswalk_norris_1844`,
+# `crosswalk_fergus_1843`, the three Fergus 1839 crosswalks and the death notices all fail
+# the moment their committed file stops re-deriving; this one drifted 290 heads without a
+# red build, because the sheets kept being read and the adjudication was never re-run.
+# Gated here in the same commit that re-derived it, so it never lands red.
+step "every named 1840 head still adjudicates as the pages and the pools say" \
+  python3 tools/crosswalk_census_1840_heads.py --check
+
+# …and the class of fault, not just this instance of it. An ungated derivation is a
+# research output that can silently stop existing, and until T-0714 nothing could answer
+# "which tools can re-derive themselves and are never asked to?" without a hand audit.
+# This is a RATCHET: the ungated set may shrink, and may not grow. A new tool arrives
+# gated, or with a deliberate line in data/research/check_gate_baseline.json.
+step "no new tool carries a --check mode the gate never runs" \
+  python3 tools/audit_check_gates.py --gate --quiet
+
+step "…and the audit's own assertions still fire when broken" \
+  python3 tools/audit_check_gates.py --self-test
+
 # THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
 # lots of research being done ... but there are not outputs or updates to the household
 # and resident data". The bridges gate above proves the links the project HAS made are
@@ -1317,6 +1401,18 @@ step "no research domain reads further ahead of the town than its baseline" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/measure_research_spend.py --self-test
+
+# T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
+# RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
+# of the tree at the moment the cohort was fixed. The reservation is re-derived and must
+# match. The snapshot is not: research landing on a member is what the cohort is FOR, and
+# gating it made a finished pass fail its own build (dev went red on 2026-09-05 that way).
+# The other half of the same contract is on the write path — `freeze.write()` carries the
+# committed snapshot forward, so regenerating a manifest can no longer overwrite the freeze
+# with today's tree, which is how "this person came in at `inferred` on one source" was
+# being lost silently, without a diff anybody read.
+step "the cohort freeze's own assertions still fire when broken" \
+  python3 tools/resident_cohort_freeze.py --self-test
 
 # T-0442, T-0462, T-0463, T-0478, and T-0479. These reviews sit beside household facts on purpose: a plausible
 # biography must stay a candidate until something more than the name bridges it
@@ -1544,8 +1640,29 @@ step "the research domains hold one shape" \
 # the people of 1835, and the layer the panel renders those meetings from. A hand-edit
 # to any of them — a match nudged out of "ambiguous", a refusal quietly dropped, a
 # trade written into a card — would have shipped unopposed. All three rebuild and diff.
+# T-0670, T-0696. THE TWO RULE MODULES the directory crosswalks import rather than
+# restate: the forename agreement that refuses `Abbott, Thomas L.` onto Titus H. Abbott,
+# and the tie discriminator that may NARROW a contested or ambiguous tie on a trade and
+# may never make it a match. Both carry their own self-test and NEITHER was gated, so a
+# loosened rule — one more contraction, a premises allowed to break a tie after all —
+# would have re-derived both crosswalks quietly and passed every check below. The
+# crosswalks are re-derived here; the rules they are re-derived BY were not.
+step "the directory forename rule's own assertions still fire when broken" \
+  python3 tools/name_agreement.py --self-test
+
+step "…and the tie discriminator's do too" \
+  python3 tools/tiebreak.py --self-test
+
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
+
+# T-0695. The eleven forenames archive.org's OCR set in characters no compositor had are
+# repaired in the READING against Kim Torp's independent transcription, and the quote
+# keeps the damage. The table that does it is the thing that rots: an entry re-read, a
+# leaf re-committed, and a row stops matching — or a new garble arrives with no row. The
+# self-test fails on either, and on a repair that tidied a quote.
+step "…and every garbled forename in them is repaired, cited, and none is left unnamed" \
+  python3 tools/read_norris_1844.py --self-test
 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
@@ -1688,6 +1805,14 @@ step "…and its own assertions still fire when broken" \
 # database truncated at its own 150-row ceiling must never appear in the coverage
 # declaration — a ceiling recorded as a completed read is the one error here nothing
 # downstream could catch.
+# T-0697. THE RULE THE RESIDENT CROSSWALK IMPORTS RATHER THAN RESTATES, gated for the
+# same reason T-0696 gated the directories' two: the crosswalk below is re-derived here
+# and the rule it is re-derived BY was not, so a loosened namesake rule — one more name
+# folded onto another, M3's guard dropped, a suffix read as decoration — would re-derive
+# the crosswalk quietly and pass every check after it.
+step "the namesake rule's own assertions still fire when broken" \
+  python3 tools/namesake.py --self-test
+
 step "the land tract sales re-derive from their committed deposit" \
   python3 tools/read_land_sales.py --check
 

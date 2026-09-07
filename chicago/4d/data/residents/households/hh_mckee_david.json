@@ -79,6 +79,14 @@
     "notes": "Early Chicago histories independently identify David McKee as the government/agency blacksmith near the foot of State Street. The occupation and institutional role are distinctive enough to corroborate the resident record, while the exact July 1835 workplace continuity is not extended beyond the sources.",
     "source_ids": [
      "goodman_history_cook_county_early"
+    ],
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, chicago_tribune_1882_04_25_old_settler_deaths, kinzie_waubun_1856. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
     ]
    }
   }

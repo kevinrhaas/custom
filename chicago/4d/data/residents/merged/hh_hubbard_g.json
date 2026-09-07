@@ -1,14 +1,15 @@
 {
  "id": "hh_hubbard_g",
  "merged_into": {
-  "person": "hubbard_gurdon",
-  "household": "hh_hubbard_gurdon",
+  "person": "hubbard_henry_g",
+  "household": "hh_hubbard_henry_g",
   "person_merged": "hubbard_g",
-  "rule": "C0",
+  "rule": "C5",
   "cluster": "hubbard",
   "ticket": "T-0839",
   "on": "2026-09-05",
-  "note": "THIS RECORD IS NOT DELETED AND NOTHING ON IT IS LOST. The card below is the record exactly as it stood when the merge landed; the person it names is now carried by the household above, and data/residents/index.json's `merged` table redirects the id. The reasoning is in data/residents/card_merge_rulings.json."
+  "note": "THIS RECORD IS NOT DELETED AND NOTHING ON IT IS LOST. The card below is the record exactly as it stood when the merge landed; the person it names is now carried by the household above, and data/residents/index.json's `merged` table redirects the id. The reasoning is in data/residents/card_merge_rulings.json.",
+  "repointed_from": "hubbard_gurdon"
  },
  "superseded_record": {
   "id": "hh_hubbard_g",

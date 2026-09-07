@@ -1,7 +1,7 @@
 ---
 id: T-0783
 title: The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 972
+claimed_by: run 9/6/2026, 1:39:57 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T07:39:09.660Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34016939269
 ---
 
 The 16-by-30-foot house at Lasalle and Lake is a documented Chicago building with a corner and a footprint, and the town places it nowhere.

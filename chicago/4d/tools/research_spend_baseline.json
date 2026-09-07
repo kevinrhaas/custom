@@ -8,10 +8,10 @@
   "census_1840": 284,
   "church": 488,
   "books": 176,
-  "directories": 7228,
+  "directories": 7229,
   "newberry_index": 4914,
-  "land_sales": 442,
-  "old_settlers": 437
+  "land_sales": 456,
+  "old_settlers": 438
  },
  "witness": {
   "civic": {
@@ -23,8 +23,8 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 792,
-   "spent": 508
+   "read": 812,
+   "spent": 819
   },
   "church": {
    "read": 1744,
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8257,
-   "spent": 1029
+   "spent": 1028
   },
   "newberry_index": {
    "read": 7005,
@@ -44,11 +44,11 @@
   },
   "land_sales": {
    "read": 953,
-   "spent": 511
+   "spent": 497
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 657
+   "spent": 656
   }
  },
  "raised": [
@@ -274,6 +274,14 @@
    "why": "T-0679 restores the Fergus 1839 population table's 1840 line off the page image (4,479). It is a civic figure with town_finding: true and no name in it, so it adds one unspent unit that no ruling can ever spend; the ceiling takes the one rather than the row being dropped."
   },
   {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7211,
+   "to": 7212,
+   "date": "2026-09-05",
+   "why": "T-0724: one ruling was retired, not skipped. The 1843 and 1844 crosswalks each recorded a refusal reading 'the surname Horn is in Fergus 1843 and no entry under it carries the initial C of Cornelius C Van Horn' — a refusal that only existed because the splitter had truncated Van Horn to Horn. With the compound surname read whole there is no Van Horn in either directory to refuse, so the ruling is gone and the unspent count rises by one against a read count that did not move. No name went unread and no source was added."
+  },
+  {
    "domain": "church",
    "hop": "read",
    "from": 458,
@@ -312,6 +320,38 @@
    "to": 0,
    "date": "2026-09-06",
    "why": "T-0678: both crosswalks state their source at the top of the file, so no ruling here reaches a person without saying what it rests on. Zero, and held there."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7228,
+   "to": 7229,
+   "date": "2026-09-06",
+   "why": "T-0724, re-applied after merging dev. The ruling this retires is the same one the ticket retired the first time: the 1843 and 1844 crosswalks each held a refusal reading 'the surname Horn is in Fergus 1843 and no entry under it carries the initial C of Cornelius C Van Horn', which existed only because the splitter truncated Van Horn to Horn. With the compound surname read whole there is no Van Horn in either directory to refuse. dev's own ceiling moved to 7228 under T-0839 while this branch was in flight, so the +1 is applied once more on top of it. Read count unmoved; no name went unread."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 437,
+   "to": 438,
+   "date": "2026-09-06",
+   "why": "T-0837 spent the standing synthesis write, and the old-settlers roll re-derived against the moved residents layer: one name that had matched a card no longer does. No new page was read — 1,094 read is unchanged — so this is the town moving under a reading, not a reading running ahead of the town. Ruling on the 438 is T-0700's kind of work and not this ticket's."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 442,
+   "to": 456,
+   "date": "2026-09-06",
+   "why": "T-0697. The reading did not move: all 953 records still carry a ruling, before and after (verified by diffing the record_ids of matches+refusals across the change — 953 covered on both sides). What moved is how the instrument ANCHORS a ruling. ANCHOR_KEYS ranks household_id above record_ids, so a matched purchaser dedups onto ONE household and a refused one dedups onto each of the records behind it. This ticket moved 100 purchaser spellings from refusal to match — the crosswalk stopped refusing on a count of namesakes and started putting the reading to every person of the surname — and their record anchors collapsed into 100 household anchors. The domain is spent MORE (34 cards to 124, the write hop reads 139 of 139 reaching a card) and measures 14 less. The ceiling is raised by exactly that artifact."
+  },
+  {
+   "domain": "census_1840",
+   "hop": "write",
+   "from": 0,
+   "to": 1,
+   "date": "2026-09-06",
+   "why": "T-0714, 2026-09-06. The 1840 crosswalk was re-derived after 290 named heads of finished reading had never been put to the ladder, and the new adjudication reaches one town person the old one did not: Ira Couch, printed page 211 line 3 of image 33SQ-GYYJ-97P, ruled L7 candidate — the name agrees and is unique on both sides, with nothing independent of the name to hold the pair together. His card cites no 1840 source, so the ruling has reached the person and not the card. It is raised by exactly one rather than spent here because this crosswalk mints nobody and writes no household file by design; the write is T-0899's, on the ratified ladder, where a candidate stays a candidate."
   }
  ],
  "lowered": [
@@ -332,7 +372,7 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 0,
+  "census_1840": 1,
   "civic": 0,
   "directories": 0,
   "land_sales": 0,

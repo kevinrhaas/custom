@@ -68,3 +68,28 @@ to buy 60 KB would be exactly the wrong trade. The ceiling needs a real answer, 
 
 **Done when** the published tree is back under the budget with room to grow, the report
 that says where the bytes are is committed, and `./tools/check.sh` passes on dev.
+
+---
+
+## CLOSED 2026-09-05 by T-0807 — answered by PR #836, which the ticket record never recorded
+
+#836, "the mirror was shipping the changelog twice — publish it once, and say where the
+32 MB is", merged at 16:07:50Z and answers this ticket's first two asks directly:
+
+- **Ask 1, the report that has never been printed:** `docs/SITE-BUDGET.md` is committed —
+  the published tree by directory and by kind, GLBs against JSON against textures.
+- **Ask 2, what the mirror owes a visitor:** the changelog was being published twice.
+  `site/chicago/4d/walk/js/changelog.js` is now an 898-byte re-export of the single copy
+  at `site/chicago/4d/js/changelog.js`, which is the contract path Manager and the
+  launcher parse and which did not move.
+- **Ask 3, headroom:** answered by the 32 -> 36 re-budget in #823 (T-0593). The tree
+  measures 31,889,319 bytes = 30.41 MiB of 36, so 5.59 MiB of slack.
+- **Ask 4, whether the ceiling is real at 32:** answered in the note above
+  `SITE_BUDGET_MB` in `tools/validate.py` — Pages allows 1 GB a site with a 100 MB
+  per-file cap, the LFS clause is about FORMAT not size, and 32 was this project's own
+  discipline rather than a platform edge.
+
+This ticket and **T-0803** are the same stop filed twice, four hours apart; both close
+here. The refusal both of them wrote down — that the budget must never be met by shrinking
+a note, because the notes are the product — was honoured: nothing was trimmed to fit, a
+duplicate was removed and the number was re-set on purpose.

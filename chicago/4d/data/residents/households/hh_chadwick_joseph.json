@@ -89,21 +89,30 @@
    ],
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Joseph M. Chadwick, a military engineer who lived in Illinois before reaching Texas in December 1835, is a possible candidate. The missing middle initial and absent Chicago bridge keep the identity unasserted.",
     "evidence_against": "No Chicago location or letter linkage; candidate left for Texas by December 1835.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839",
      "tsaha_joseph_chadwick"
     ],
     "candidate_ids": [
      "cand_joseph_m_chadwick_later_of_goliad__chadwick_joseph"
     ],
     "regraded_on": "2026-09-04",
-    "rule": "G2e"
+    "rule": "G2e",
+    "summary": "The 1837 election return prints 'J. W. Chadwick'; the resident is Joseph Chadwick with no middle initial recorded, so the W. is unsupported rather than agreeing, and the match is refused. Pass 3's candidate stands: Joseph M. Chadwick, a military engineer in Illinois before reaching Texas in December 1835, whose middle initial also fails to agree.",
+    "candidates": [
+     {
+      "id": "cand_joseph_m_chadwick_texas",
+      "asserted": false
+     }
+    ]
    }
   }
  ],

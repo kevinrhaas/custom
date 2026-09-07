@@ -177,9 +177,42 @@ ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
                "saml": "samuel", "danl": "daniel", "benj": "benjamin", "edw": "edward",
                "richd": "richard", "alexr": "alexander", "hy": "henry", "nathl": "nathaniel"}
 
+# A COMPOUND SURNAME IS ONE SURNAME (T-0724). This corpus prints the particle with a
+# space — `Rev. John Mary Irenaeus St Cyr`, `Cornelius C. Van Horn`, `H. Van Den Bogart`,
+# `Calvin De Wolf` — and a splitter that takes only the LAST token reads the priest as a
+# `Cyr` and leaves `St` standing among his forenames, which is what pushed him over the
+# four-token cap and kept the man who kept the G2c register off the ladder entirely.
+# Worse than the cap: `St Cyr` and `Cyr` are two different surnames, so the old reading
+# was one rival `Cyr` away from merging him onto somebody else.
+#
+# The list is CLOSED and it is a list of PRINTINGS, not of languages. Every entry below
+# is one this project has actually read in the corpus, and the rule a reader would say
+# out loud is "the particle belongs to the name that follows it". Guessing at compounds
+# beyond what is printed is exactly how one Cyr becomes another man's.
+# Trimmed to exactly this on the evidence: a first draft carried `ste`, `des`, `del`,
+# `da` and `di` on the strength of the languages rather than the corpus, and `ste`
+# immediately took the forename off `Ste Beadieston` — a man the letter lists print
+# `Beadieston, Ste`, whose only printing in the whole corpus is that one. A particle
+# nobody here has printed can only cost a reading; it can never win one.
+SURNAME_PARTICLES = {"st", "van", "von", "de", "den", "der", "du", "la", "le",
+                     "mc", "mac"}
+
 
 def clean(token: str) -> str:
     return re.sub(r"[^a-z]", "", (token or "").lower())
+
+
+def name_shaped(token: str) -> bool:
+    """Is this token printed the way a forename is — capitalised, or a bare initial?
+
+    The particle rule leans on this and nothing else does. `Peterson. GPO. captain
+    schooner St. Joseph` is a Norris directory line with a vessel read into the name,
+    and the ONLY thing on the page separating it from `Rev. John Mary Irenaeus St Cyr`
+    is that the word before its particle is `schooner` and the word before the priest's
+    is `Irenaeus`. A trade is set lower case; a forename is not.
+    """
+    letters = re.sub(r"[^A-Za-z]", "", token or "")
+    return bool(letters) and (letters[0].isupper() or len(letters) == 1)
 
 
 def split_name(text: str) -> tuple[str, list[str]] | None:
@@ -225,9 +258,21 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
             # lists set "Mason Sabrina A." and "Norton N. R." with no comma at all, and
             # reading the last token as the surname made thirty of the town's own cards
             # unparseable — a name ending in a lone initial is never a surname.
-            surname_part, given_part = parts[0], " ".join(parts[1:])
+            end = 1
+            while end < len(parts) - 1 and clean(parts[end - 1]) in SURNAME_PARTICLES:
+                end += 1        # "St Cyr N. R." — the particle carries the token after it
+            surname_part, given_part = " ".join(parts[:end]), " ".join(parts[end:])
         else:
-            surname_part, given_part = parts[-1], " ".join(parts[:-1])
+            start = len(parts) - 1
+            while start > 0 and clean(parts[start - 1]) in SURNAME_PARTICLES:
+                start -= 1      # "Van Den Bogart" is one surname, and so is "St Cyr"
+            if start and not name_shaped(parts[start - 1]):
+                # The particle is preceded by a word that is not printed as a forename,
+                # which on a directory line means the trade has been read into the name.
+                # Give the particle back: the reading falls to the token count below and
+                # is refused there, which is what it was before this rule existed.
+                start = len(parts) - 1
+            surname_part, given_part = " ".join(parts[start:]), " ".join(parts[:start])
     tokens = [t for t in re.split(r"[\s.]+", given_part) if clean(t)]
     if any(ch.isdigit() for ch in surname_part + given_part):
         return None, ("a digit stands inside the printed name. On a directory line that "
@@ -246,9 +291,11 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
                       "never a man")
 
     if len(tokens) > 4:
-        return None, (f"{len(tokens)} forename tokens, and the splitter caps at four — "
-                      "which is what a compound surname read as one token does to a "
-                      "long baptismal name")
+        return None, (f"{len(tokens)} forename tokens, and the splitter caps at four. "
+                      "The compound surnames this corpus prints are joined to the name "
+                      "before the count now (T-0724), so a reading still over the cap "
+                      "is a line whose trade, address or description has been read "
+                      "into the name")
     given = []
     for token in tokens:
         key = clean(token)
@@ -1714,9 +1761,12 @@ def cmd_self_test() -> int:
     # Each of these was filed as R1 "names no forename" before this pass, and that
     # sentence is false of every one of them. R1 is now reserved for the record that
     # genuinely prints no forename; R5 says which guard actually fired.
+    # `Rev. John Mary Irenaeus St Cyr` used to stand third in this list. He is no longer
+    # refused at all — T-0724 joined the particle to the surname and brought him inside
+    # the cap — so his place is taken by a directory line that genuinely IS over it.
     for text, rule, must_say in [
             ("8. G. Abbot", "R5", "digit"),
-            ("Rev. John Mary Irenaeus St Cyr", "R5", "four"),
+            ("Enos Wra. C. jr. at A. Clyburn's", "R5", "four"),
             ("Heacock's wife and children, unnamed", "R5", "'and'"),
             ("Abbott", "R1", "no forename"),
     ]:
@@ -1775,6 +1825,70 @@ def cmd_self_test() -> int:
         failures += 1
     else:
         print("  ok    same surname, different initial — two identities and a stated refusal")
+
+    # ---- T-0724: A COMPOUND SURNAME IS ONE SURNAME -------------------------
+    # The priest is the case that opened the ticket, but he is not the only one: the
+    # corpus prints `Van`, `De`, `La`, `Mc` and `Von` with a space too, and every one of
+    # these readings was giving away its particle to the forenames. Each `want` below is
+    # a printing this project has actually read.
+    for text, want in [
+            ("Rev. John Mary Irenaeus St Cyr", ("stcyr", ["john", "mary", "irenaeus"])),
+            ("J. M. I. St Cyr", ("stcyr", ["j", "m", "i"])),
+            ("Cornelius C. Van Horn", ("vanhorn", ["cornelius", "c"])),
+            ("Calvin De Wolf", ("dewolf", ["calvin"])),
+            ("Dr Henry Van der Bogart", ("vanderbogart", ["henry"])),
+            ("H. Van Den Bogart", ("vandenbogart", ["h"])),
+            ("Joseph La Frombois", ("lafrombois", ["joseph"])),
+            ("David Mc Kee", ("mckee", ["david"])),
+            # THE COUNTER-CASE, and the reason the fix is a particle rule and not a
+            # raised cap: `Cyr` is a different surname from `St Cyr`, and a splitter
+            # that merely counted higher would have put the priest on this man.
+            ("John Cyr", ("cyr", ["john"])),
+            # A surname printed alone keeps its particle and stays surname-only, which
+            # is a refusal one line below — never a man called `De`.
+            ("De Camp", ("decamp", [])),
+            # The surname-first printing takes the particle forward, not backward.
+            ("St Cyr N. R.", ("stcyr", ["n", "r"])),
+    ]:
+        got = split_name(text)
+        ok = got == (want[0], want[1])
+        print(f"  {'ok   ' if ok else 'FAIL'} split_name({text!r}) -> {got}")
+        failures += 0 if ok else 1
+
+    # A TRADE IS NOT A FORENAME. Norris sets a vessel into this line, and the particle
+    # rule would happily have made `St. Joseph` the man's surname and `captain schooner`
+    # two of his forenames. The word before the particle is lower case, so the rule
+    # stands down and the line falls back to the token count that always refused it.
+    schooner = "Peterson. GPO. captain schooner St. Joseph"
+    parsed, why = split_name_or_reason(schooner)
+    if parsed is not None or "four" not in (why or ""):
+        print(f"  FAIL a directory line with a vessel in it parsed as a man -> {parsed}")
+        failures += 1
+    else:
+        print("  ok    a trade before the particle stands the rule down, and the line "
+              "is still refused")
+
+    particled = cluster([
+        {"domain": "d", "record_id": "1", "normalized": "John Mary Irenaeus St Cyr",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "2", "normalized": "John Cyr",
+         "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    surnames = sorted(i["surname"] for i in particled[0])
+    if surnames != ["cyr", "stcyr"]:
+        print(f"  FAIL a St Cyr and a Cyr did not stay two surnames -> {surnames}")
+        failures += 1
+    else:
+        print("  ok    St Cyr and Cyr are two surnames, and no identity spans both")
+
+    particle_only = cluster([{"domain": "d", "record_id": "1", "normalized": "De Camp",
+                              "as_read": "De Camp", "evidence_class": "finding_aid",
+                              "source_id": "s"}])
+    if particle_only[0] or not any(r["rule"] == "R1" for r in particle_only[1]):
+        print("  FAIL 'De Camp' was read as a forename 'De' and minted an identity")
+        failures += 1
+    else:
+        print("  ok    a bare compound surname is a refusal, not a man called 'De'")
     return failures
 
 

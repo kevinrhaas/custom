@@ -141,9 +141,9 @@ and read as *"the consolidation never reached them"*. It had reached all but nin
 
 | what the ladder can say | people |
 |---|---|
-| **a rung already ruled, never written onto the card** | **864** — G3 650, G1b 76, G2e 56, G5 36, G1a 20, G2b 16, G1c 10 |
-| the person's row sits on an identity that names ANOTHER card as canonical | 2 |
-| the splitter built no identity from the name, and says which guard refused it | 7 — R5 5, R1 2 |
+| **a rung already ruled, never written onto the card** | **864** — G3 649, G1b 76, G2e 56, G5 36, G1a 20, G2b 17, G1c 10 |
+| the person's row sits on an identity that names ANOTHER card as canonical | 3 |
+| the splitter built no identity from the name, and says which guard refused it | 6 — R5 4, R1 2 |
 
 **So the bottleneck is the SPEND, not the reading.** For 864 of 873 people the rung exists
 in `grading_proposal.json` and no pass has ever carried it onto the card; 76 of them are
@@ -186,12 +186,25 @@ dropped the other in silence — `brown_mrs_rufus` onto `brown_rufus` (a wife wh
 printed name is her husband's, and the honorific strip makes the two indistinguishable) and
 `norton_n_r` onto `norton_nelson_r` (where the merge is right and the town simply carries
 the man twice). Master rows now carry `town_person_ids`, so an absorbed card is visible
-rather than silent. The other seven are refusals the master has recorded all along:
-`8. G. Abbot`, `A. 8. Perry` and `James I1. Gabbs` are OCR misreadings of an initial
-(S. read as 8, H. as I1) rather than names the town used; `Heacock's wife and children,
-unnamed` is a description; `Beckford` and `Mrs Temple` name no forename at all; and
-`Rev. John Mary Irenaeus St Cyr` — the parish priest whose own register is rung G2c — is
-turned away by a four-token cap that a compound surname trips.
+rather than silent. **A third joined them on 2026-09-05** — `vanderbogart_h`, the town's
+`H. Vanderbogart`, onto `Dr Henry Van der Bogart`, whom the compound-surname rule below
+finally let the splitter read as the same surname. The other six are refusals the master
+has recorded all along: `8. G. Abbot`, `A. 8. Perry` and `James I1. Gabbs` are OCR
+misreadings of an initial (S. read as 8, H. as I1) rather than names the town used;
+`Heacock's wife and children, unnamed` is a description; and `Beckford` and `Mrs Temple`
+name no forename at all.
+
+`Rev. John Mary Irenaeus St Cyr` used to be the seventh, turned away by the four-token cap
+that his compound surname tripped. **T-0724 fixed the splitter and he now carries a rung —
+but the rung is G5, not the G2c the ticket expected, and that difference is the finding.**
+G2c is *a party to a marriage or burial in the parish*, and the priest is a party to
+neither: he is the officiant, and the reader of `st_cyr_marriages_1834_1839.json` and
+`st_cyr_deaths_1834_1837.json` yields the people the register is *about*. So the
+consolidation can see exactly one appearance of him — his own town card, citing Andreas —
+and G5 is the ladder abstaining and filing him as a conflict for the owner, which is the
+honest answer to what these seven domains actually hold. **Whether the keeper of a register
+may be graded on it is a change to a ratified rung and therefore the owner's to make; it is
+filed as its own ticket rather than decided here.**
 
 **No grade has moved.** The measurement above touched no household file, and the spend
 that followed it wrote a rung and nothing else: `grading_proposal.json` is byte-identical
@@ -240,12 +253,12 @@ and every refusal in `identity_master.json` names the rule that made it.
 | **M2** | An initial-only forename attaches to the ONE full forename of that surname carrying the initial. Two rivals is R3, never a choice. |
 | **M3** | A middle initial on one reading and absent on the other, forename and surname agreeing, no rival middle initial. |
 | **D1** | A merge already declared by a domain's crosswalk or by `identity.json`. **A landed adjudication outranks everything derived here** — 74 appearances moved on this rule in this pass, including `W. H. Adams` of the 1833 poll, whom R3 had refused while `civic/voter_crosswalk.json` had matched him a month earlier. |
-| **R1** | Surname only — the record genuinely prints no forename. Never merges onto a person. 383 derived refusals, plus the whole Newberry finding aid. |
-| **R2** | Same surname, different forename initial. Never merges. 956. |
-| **R3** | An initial-only forename with two or more rival full forenames of that surname — refused with the rivals named. 150. |
-| **R4** | Same surname and initial, two different full forenames. 80. |
+| **R1** | Surname only — the record genuinely prints no forename. Never merges onto a person. 389 derived refusals, plus the whole Newberry finding aid. |
+| **R2** | Same surname, different forename initial. Never merges. 970. |
+| **R3** | An initial-only forename with two or more rival full forenames of that surname — refused with the rivals named. 182. |
+| **R4** | Same surname and initial, two different full forenames. 79. |
 | **D2** | A refusal already declared by a crosswalk or `identity.json`. 1,574. |
-| **R5** | **A printed name the splitter cannot read as (surname, forename) at all** — a firm style, an institution, a digit standing where an initial was misread, a description rather than a name, more forename tokens than the four-token cap. 266, each row naming which guard fired. |
+| **R5** | **A printed name the splitter cannot read as (surname, forename) at all** — a firm style, an institution, a digit standing where an initial was misread, a description rather than a name, more forename tokens than the four-token cap. 264, each row naming which guard fired. |
 
 **Why R5 exists, and what it cost to not have it (T-0692).** Until 2026-09-04 every one of
 those 266 rows was filed as R1, *"names no forename"* — and that sentence is false of most
@@ -259,6 +272,56 @@ each refusal now says which guard fired.
 R2 and R4 are stated **once per surname**, naming everyone the bucket holds apart, not once
 per pair: the cross product of forty Smiths is 780 rows that say what the bucket already
 says.
+
+### A compound surname is one surname (T-0724)
+
+`St`, `Van`, `Von`, `De`, `Den`, `Der`, `Du`, `La`, `Le`, `Mc` and `Mac` are printed with a
+space in this corpus, and the splitter used to take only the LAST token for the surname.
+So `Rev. John Mary Irenaeus St Cyr` read as a **`Cyr`** with five forenames — `Rev · John ·
+Mary · Irenaeus · St` — and the token cap turned him away. **The cap was the symptom.** The
+fault was that `St Cyr` and `Cyr` are two different surnames, and the old reading was one
+rival `Cyr` away from putting the priest on another man; raising the cap would have made
+that likelier, not safer.
+
+The particle and everything after it now belong to the surname, and a stack of them
+(`Van Den Bogart`, `Van der Bogart`) is absorbed together. Two guards keep it honest:
+
+- **The list is closed, and it is a list of printings rather than of languages.** Every
+  particle above is one this corpus actually prints. A first draft carried `Ste`, `Des`,
+  `Del`, `Da` and `Di` on the strength of the languages, and `Ste` immediately took the
+  forename off `Ste Beadieston` — a man whose single printing in the whole corpus is the
+  post office's `Beadieston, Ste`. A particle nobody here has printed can only cost a
+  reading; it can never win one.
+- **A trade is not a forename.** Norris prints `Peterson. GPO. captain schooner St. Joseph`,
+  and the rule would have made `St. Joseph` the man's surname and `captain schooner` two of
+  his forenames. The only thing on the page separating that line from the priest's is that
+  the word before its particle is `schooner` and the word before his is `Irenaeus`. When
+  the token before the particle is not printed as a forename — capitalised, or a bare
+  initial — the rule stands down and the reading falls back to the cap that always refused
+  it.
+
+**What it moved, reported rather than applied.** Nineteen identities were re-keyed onto
+their true surname — `Van Horn`, `Van Acker`, `Van Cleve`, `Van Cortlandt`, `Van Fleet`,
+`Van Osdel`, `Van Vatzah`, `Van de Velde`, `Von Schnideau`, `De Roche`, `De Tonty`,
+`De Lasalle`, `La Frombois`, `Le Claire`, `Le Framboise`, `Le Grand`, `Mc Kee`,
+`Van Den Bogart` and `St Cyr`. Two refusals were lifted (`Rev. John Mary Irenaeus St Cyr`
+and `Van de Velde, Rt.-Rev. Jas. Oliver`) and one was gained, correctly: the 1840 census's
+`J. M. Van Osdel` now sits in the same surname bucket as Jesse Redifer, John M. and John
+Mills Vanosdel, and R3 refuses to guess which `J.` he is — a refusal that could not even be
+stated while he was keyed as an `Osdel`. **Three town cards moved and none of them was
+touched**: `st_cyr_john_mary` gains a rung (G5), `mckee_david` rises from G5 to **G2b** on
+the 1832 Black Hawk war enrolment the surname now reaches, and `vanderbogart_h` is absorbed onto
+`Dr Henry Van der Bogart` at G2e. All of it stands in `grading_proposal.json`; the minting and regrade passes
+that own the civic-minted cards were re-run in the same commit, because their gate refuses
+a layer that no longer re-derives from the ladder.
+
+**And it un-merged one man, on purpose.** `Bogart, Dr. Henry Van der` and `H. Van Den
+Bogart` both truncated to `bogart` and were carried as one identity — a merge nobody ruled
+on, made by taking the last token. They are now `vanderbogart` and `vandenbogart`, two
+surnames, and the consolidation keeps two surnames apart; `hh_vandenbogart_h` was minted and
+the town's person count went 1,404 to 1,405. It is very likely the same man. It is also very
+likely a ruling somebody has to make on the page rather than an assumption the splitter
+makes silently, which is what T-0724's acceptance asked for. **T-0842** holds the reading.
 
 ## Running it
 

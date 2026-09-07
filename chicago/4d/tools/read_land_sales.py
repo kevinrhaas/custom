@@ -37,6 +37,9 @@ import sys
 import tempfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import namesake  # noqa: E402  (the namesake rule this imports rather than restates)
+
 ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = ROOT / "data" / "research" / "land_sales"
 RESIDENTS = ROOT / "data" / "residents"
@@ -343,12 +346,17 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                             rulings: dict | None = None) -> dict:
     """Propose a correspondence between a purchaser and a person the town already holds.
 
-    ONE rule, and it is deliberately the strictest of the ones this project uses: the
-    surname must agree, exactly one person of that surname may exist in the residents
-    layer, and the purchaser's first forename must agree with that person's first
-    forename in full — or be a single initial that matches it, which is a weaker match
-    and is graded as one. Everything else is a refusal, written out with the rule that
-    made it, because an absent match reads exactly like a pair nobody looked at.
+    THE SURNAME GATHERS THE RIVALS AND THE FORENAME DECIDES BETWEEN THEM (T-0697).
+    Until this ticket the middle clause was a COUNT — exactly one person of the surname
+    could exist in the residents layer — and a count of namesakes says nothing about the
+    reading in hand. It made the rule fire LESS as the town grew truer: T-0514 seated 531
+    people and this crosswalk LOST three rulings with nothing new read. The reading is now
+    put to every person of the surname and named onto the one it agrees with, on the merge
+    rules this project already ratified (`tools/namesake.py`, which restates identity
+    master's M1/M2/M3 and R3/R4 and imports the directories' forename rule). Two
+    survivors or none is still a refusal, written out with the rivals NAMED, because an
+    absent match reads exactly like a pair nobody looked at — and "there are 5" never said
+    which five people refused the reading.
     """
     # `record_ids` is the ruling's anchor: WHICH sales this purchaser spelling was
     # adjudicated from. tools/measure_research_spend.py asks for it in as many words —
@@ -392,51 +400,57 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                 "evidence": ["data/research/land_sales/text/" + row["_file"]],
             })
             continue
-        if len(candidates) != 1:
+        if not candidates:
             refusals.append({
-                "a": as_read,
-                "b": "%d residents named %s" % (len(candidates), surname.title()),
-                "rule": "%s is refused against %s: the rule needs exactly one person of "
-                        "the surname in the residents layer, and there are %d."
-                        % (as_read, "%d residents named %s" % (len(candidates), surname.title()),
-                           len(candidates)),
+                "a": as_read, "b": "0 residents named %s" % surname.title(),
+                "rule": "%s is refused against 0 residents named %s: the residents layer "
+                        "holds nobody of the surname." % (as_read, surname.title()),
                 "record_ids": sorted(by_name[as_read]),
                 "evidence": ["data/residents/index.json"],
             })
             continue
-        pid, name, hh = candidates[0]
-        their = name.split()[0].upper()
-        mine = givens[0]
-        if mine == their:
-            grade, why = "forename_agrees", "in full"
-        elif len(mine) == 1 and their.startswith(mine):
-            grade, why = "initial_agrees", "as an initial only"
-        else:
+        ruling = namesake.choose(" ".join(givens), [
+            {"key": pid, "name": name, "given": " ".join(name.split()[:-1])}
+            for pid, name, hh in candidates])
+        if not ruling["named"]:
+            rival_names = [r["name"] for r in ruling["rivals"]]
             refusals.append({
-                "a": as_read, "b": name,
-                "rule": "%s is refused against %s: the surname agrees and the forename "
-                        "does not." % (as_read, name),
+                "a": as_read,
+                "b": rival_names[0] if len(rival_names) == 1
+                     else "%d residents named %s" % (len(candidates), surname.title()),
+                "rule": "%s is refused against %s: %s."
+                        % (as_read, " and ".join(rival_names) if len(rival_names) <= 3
+                           else "%d residents named %s" % (len(candidates), surname.title()),
+                           ruling["why"]),
+                "rivals": ruling["rivals"],
                 "record_ids": sorted(by_name[as_read]),
-                "evidence": ["data/residents/" + (RESIDENTS / "index.json").name],
+                "evidence": ["data/residents/index.json"],
             })
             continue
-        # THE RULING, if one has been made. The rule above PROPOSES; it does not decide,
-        # and tools/spend_land_sales.py re-adjudicates nothing by its own rule 1, so
-        # before T-0700 there was nobody between the proposal and the card. A refusal
-        # here moves the proposal out of `matches[]` and states the ruling as the rule
-        # that refused it; the card is retracted by spend_land_sales.py --build.
-        ruling = rulings.get(as_read)
-        if ruling and ruling.get("ruling") == "refused":
+        pid, name, hh = [c for c in candidates if c[0] == ruling["named"]][0]
+        grade = ruling["grade"]
+        why = "in full" if grade == "forename_agrees" else "as an initial only"
+        proposed = "%s matches %s: %s, and the forename agrees %s." % (
+            as_read, name, ruling["why"], why)
+        # THE RULING, if one has been made — and it is a SECOND decision, not this one.
+        # `namesake.choose` above says which person of the surname a reading names; it
+        # PROPOSES, and tools/spend_land_sales.py re-adjudicates nothing by its own rule
+        # 1, so before T-0700 there was nobody between the proposal and the card. A hand
+        # ruling of `refused` moves the proposal out of `matches[]` and states the ruling
+        # as the rule that refused it; the card is retracted by spend_land_sales.py
+        # --build. The two are held in separate names — `ruling` is the mechanical rule's
+        # verdict, `verdict` the hand ruling on it — because collapsing them would let a
+        # judgement be read as a derivation.
+        verdict = rulings.get(as_read)
+        if verdict and verdict.get("ruling") == "refused":
             refusals.append({
                 "a": as_read, "b": name,
-                "rule": ruling["reasoning"],
+                "rule": verdict["reasoning"],
                 "record_ids": sorted(by_name[as_read]),
                 "evidence": ["data/research/land_sales/" + RULINGS_NAME],
-                "ruled_on": ruling.get("ruled_on"),
-                "ruled_under": ruling.get("ticket"),
-                "was_proposed_as": "%s matches %s: the residents layer holds exactly one "
-                                   "person of the surname and the forename agrees %s."
-                                   % (as_read, name, why),
+                "ruled_on": verdict.get("ruled_on"),
+                "ruled_under": verdict.get("ticket"),
+                "was_proposed_as": proposed,
             })
             continue
         matches.append({
@@ -446,14 +460,16 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
             "resident_name": name,
             "household_id": hh,
             "match": grade,
-            "rule": "%s matches %s: the residents layer holds exactly one person of the "
-                    "surname and the forename agrees %s." % (as_read, name, why),
+            "rule": proposed,
+            "rivals": ruling["rivals"] if len(candidates) > 1 else [],
+            # EVERY row of the spelling, not the first (T-0700). The register states
+            # residence per row, and Frank Dill's second row is the one that says COOK.
             "residence_column": ", ".join(residences[as_read]),
             "evidence_grade": "documented" if cook else "inferred",
-            "ruling": ({"ruling": ruling["ruling"], "ruled_on": ruling.get("ruled_on"),
-                        "ticket": ruling.get("ticket"),
-                        "checked_against": ruling.get("checked_against") or [],
-                        "reasoning": ruling["reasoning"]} if ruling else None),
+            "ruling": ({"ruling": verdict["ruling"], "ruled_on": verdict.get("ruled_on"),
+                        "ticket": verdict.get("ticket"),
+                        "checked_against": verdict.get("checked_against") or [],
+                        "reasoning": verdict["reasoning"]} if verdict else None),
             "what_it_evidences": (
                 "The register states this purchaser's residence as COOK, so the sale is "
                 "contemporary evidence that a man of this name lived in Cook County on "
@@ -463,6 +479,38 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                 "proposes no residence, and under the ratified ladder it corroborates "
                 "rather than mints."),
         })
+    # T-0697, and it is the same rule read from the other end. `choose` asks which of
+    # several people of a surname a reading names; this asks whether several readings
+    # named onto ONE person are one man. `H Bond` is met by both HARVEY and HEMAN and
+    # the initial cannot say which, and `WENTWORTH ELIJAH SEN` is the father of
+    # `WENTWORTH ELIJAH` against a town holding one card. Both groups are refused
+    # whole, with the rival readings named: keeping the first and dropping the rest
+    # would be the count of namesakes again, wearing a hat.
+    by_person = {}
+    for mt in matches:
+        by_person.setdefault(mt["resident_id"], []).append(mt)
+    kept = []
+    for mt in matches:
+        group = by_person[mt["resident_id"]]
+        if len(group) == 1:
+            kept.append(mt)
+            continue
+        verdict = namesake.collide([{"key": g["purchaser_as_read"],
+                                     "given": " ".join(g["purchaser_as_read"].split()[1:])}
+                                    for g in group])
+        if verdict["same_man"]:
+            kept.append(mt)
+            continue
+        refusals.append({
+            "a": mt["purchaser_as_read"], "b": mt["resident_name"],
+            "rule": "%s is refused against %s: %s."
+                    % (mt["purchaser_as_read"], mt["resident_name"], verdict["why"]),
+            "rival_readings": [g["purchaser_as_read"] for g in group
+                               if g["purchaser_as_read"] != mt["purchaser_as_read"]],
+            "record_ids": mt["record_ids"],
+            "evidence": ["data/residents/index.json"],
+        })
+    matches = kept
     return {
         "schema": 1,
         "domain": "land_sales",

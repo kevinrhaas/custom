@@ -205,14 +205,23 @@ ok(missing.length === 0,
 // measurement is the deliverable rather than a footnote: before the split every
 // record was pinned at `reconstructed` by its wear grade, so no street could
 // draw at any other level whatever its line said.
-const stands = streets.filter((r) => shipped(r) === ATTESTED);
-const moved = streets.filter((r) => shipped(r) !== before(r));
+// A STREET THAT WAS NEVER OPENED IS NOT IN THIS MEASUREMENT. T-0713's finding is about
+// the gap between a street's LINE and the invented wear on its TRACK, and the twelve
+// lines Wright ruled across the School Section have no track: they compile with
+// `opened: false` and a zero track width, and the renderer draws no ribbon for them.
+// Grading their wear `reconstructed` to keep the count below would be asserting an
+// invented wear on ground nobody had yet worn (T-0797).
+const trodden = streets.filter((r) => r.opened !== false);
+const stands = trodden.filter((r) => shipped(r) === ATTESTED);
+const moved = trodden.filter((r) => shipped(r) !== before(r));
 ok(stands.length >= 17,
-  `the platted streets stand at full confidence — ${stands.length} attested of ${streets.length}`);
-ok(moved.length === stands.length + streets.filter((r) => shipped(r) === LEVEL.inferred).length,
-  `every street whose line outgrades its track moved — ${moved.length} of ${streets.length}`);
-ok(streets.every((r) => before(r) === INVENTED),
-  'every shipped street still carries an invented WEAR — which is why the split was needed');
+  `the platted streets stand at full confidence — ${stands.length} attested of ${trodden.length}`);
+ok(moved.length === stands.length + trodden.filter((r) => shipped(r) === LEVEL.inferred).length,
+  `every street whose line outgrades its track moved — ${moved.length} of ${trodden.length}`);
+ok(trodden.every((r) => before(r) === INVENTED),
+  'every trodden street still carries an invented WEAR — which is why the split was needed');
+ok(streets.length - trodden.length === 12,
+  `and the unopened School Section tiers ship with no track at all — ${streets.length - trodden.length}`);
 ok(streets.filter((r) => shipped(r) === INVENTED).every((r) => r.geometry_confidence === 'reconstructed'),
   'and the only ribbons still graded invented are the ones whose LINE is invented');
 

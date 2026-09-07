@@ -15,10 +15,12 @@
   "compiler_note": "Printed page 3, already recorded in data/sources/fergus_chicago_directory_1839.json: the volume is Fergus's 1876 completion, out of Old Settlers' recollections, of a list he set up from memory in 1839. This list reads like a clerk's abstract of the sale and may well be one; this reading cannot show that it is, so it is graded as the rest of the volume is.",
   "ditto_note": "The printer sets a repeated bidder as a ditto mark, and the scan ruins it into II, 11, It, », „ and a dozen more. A bidder cell with no word of three or more letters is read as a ditto and carries the name above it with bidder_ditto true — the mark IS the printer saying the same name, so the name is not an inference, but which mark it was is not recoverable and the ink is kept in as_printed.",
   "counts": {
-    "claims": 267,
-    "rows": 267,
-    "bidders_named": 100,
-    "rows_with_a_lot_number": 264,
+    "claims": 268,
+    "rows": 268,
+    "rows_the_row_map_gathered": 267,
+    "rows_added_off_the_page_image": 1,
+    "bidders_named": 96,
+    "rows_with_a_lot_number": 265,
     "rows_with_an_amount": 249,
     "cells_the_scan_destroyed": {
       "lot": 62,
@@ -30,9 +32,11 @@
       "amount": 27,
       "block": 4,
       "withheld_from_sale": 10,
-      "rows": 102
+      "bidder": 13,
+      "bidder_ditto": 3,
+      "rows": 113
     },
-    "rows_scan_verified": 102,
+    "rows_scan_verified": 114,
     "aggregate_printed_usd": 100000
   },
   "claims": [
@@ -900,7 +904,7 @@
     {
       "id": "f1839_lot0017",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "5\nT.  Church  and  H.\n0.  Stone,\n1077",
       "normalized": {
         "as_printed": {
@@ -909,7 +913,7 @@
           "bidder": "T. Church and H. 0. Stone,",
           "amount": "1077"
         },
-        "bidder": "T. Church and H. 0. Stone",
+        "bidder": "T. Church and H. O. Stone",
         "bidder_ditto": false,
         "bidder_wrapped": true,
         "block": 3,
@@ -953,10 +957,10 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "T. Church and H. 0. Stone"
+        "T. Church and H. O. Stone"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the page prints the letter O in H. O. Stone; the OCR read the digit zero. The name is set over two lines and this is the folded cell, so the correction asserts the folded ink"
     },
     {
       "id": "f1839_lot0018",
@@ -2558,7 +2562,7 @@
     {
       "id": "f1839_lot0047",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "27\nD.\nBrainarcl,\n230",
       "normalized": {
         "as_printed": {
@@ -2567,7 +2571,7 @@
           "bidder": "D. Brainarcl,",
           "amount": "230"
         },
-        "bidder": "D. Brainarcl",
+        "bidder": "D. Brainard",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 4,
@@ -2611,7 +2615,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "D. Brainarcl"
+        "D. Brainard"
       ],
       "town_finding": false,
       "notes": null
@@ -2867,7 +2871,7 @@
           "bidder": "Dr . H. Humphrey,",
           "amount": "43i"
         },
-        "bidder": "Dr . H. Humphrey",
+        "bidder": "Dr. H. Humphrey",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 4,
@@ -2911,10 +2915,10 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "Dr . H. Humphrey"
+        "Dr. H. Humphrey"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the page sets Dr. close, with no space before the point"
     },
     {
       "id": "f1839_lot0053",
@@ -3224,7 +3228,7 @@
     {
       "id": "f1839_lot0058",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "38\nJ-\nBurgess,\n226",
       "normalized": {
         "as_printed": {
@@ -3233,7 +3237,7 @@
           "bidder": "J- Burgess,",
           "amount": "226"
         },
-        "bidder": "J- Burgess",
+        "bidder": "J. Burgess",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 4,
@@ -3277,7 +3281,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "J- Burgess"
+        "J. Burgess"
       ],
       "town_finding": false,
       "notes": null
@@ -3285,7 +3289,7 @@
     {
       "id": "f1839_lot0059",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "39\n!c\n.  Walker,\n408",
       "normalized": {
         "as_printed": {
@@ -3294,7 +3298,7 @@
           "bidder": "!c . Walker,",
           "amount": "408"
         },
-        "bidder": "!c . Walker",
+        "bidder": "C. Walker",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 4,
@@ -3338,10 +3342,10 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "!c . Walker"
+        "C. Walker"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the exclamation is the printer's brace over lots 39 and 40, which the OCR gathered into the name"
     },
     {
       "id": "f1839_lot0060",
@@ -3811,6 +3815,51 @@
       "entities": [],
       "town_finding": false,
       "notes": "the same brace over block 5's lots 1 to 5"
+    },
+    {
+      "id": "f1839_lot0268",
+      "kind": "civic",
+      "reading": "scan_verified",
+      "quote": "Reserved.",
+      "normalized": {
+        "as_printed": {
+          "block": null,
+          "lot": null,
+          "bidder": null,
+          "amount": null
+        },
+        "bidder": null,
+        "bidder_ditto": false,
+        "bidder_wrapped": false,
+        "block": 5,
+        "block_carried": true,
+        "lot": 5,
+        "amount_usd": null,
+        "withheld_from_sale": "reserved",
+        "addition": "Fort Dearborn Addition to the Town of Chicago",
+        "row_added_off_the_page_image": true
+      },
+      "locator": {
+        "text_file": "fergus_1839_leaf_059.txt",
+        "spans": [
+          {
+            "line": 199,
+            "from": 6,
+            "to": 15
+          }
+        ],
+        "lines": [
+          199,
+          199
+        ],
+        "page": "fergus_1839_leaf_059",
+        "printed_page": 47,
+        "column": "R"
+      },
+      "describes_date": "1839-06",
+      "entities": [],
+      "town_finding": false,
+      "notes": "printed page 47's right half ends on block 5, whose lots 1 to 5 are braced together against a single Reserved. The OCR mapped words to the first four and none at all to the fifth, so the row map gathers four rows where the page prints five and lot 5 had no claim. The page image prints 5 as the last line of the column at y 3275, inside the same brace, with no bidder and no price — so the lot number is read off the image and the withholding is the brace's own Reserved., quoted from the committed text."
     },
     {
       "id": "f1839_lot0069",
@@ -5997,7 +6046,7 @@
     {
       "id": "f1839_lot0108",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "28\nR.  T.  Plaines,\n303",
       "normalized": {
         "as_printed": {
@@ -6006,7 +6055,7 @@
           "bidder": "R. T. Plaines,",
           "amount": "303"
         },
-        "bidder": "R. T. Plaines",
+        "bidder": "R. T. Haines",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 7,
@@ -6045,10 +6094,10 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "R. T. Plaines"
+        "R. T. Haines"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the H is read as Pl. This is the one that mattered: the crosswalk matches on surname, so a Plaines who is not in the town split R. T. Haines, who bought on five other rows of this same list, into two bidders"
     },
     {
       "id": "f1839_lot0109",
@@ -6898,7 +6947,7 @@
     {
       "id": "f1839_lot0124",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "13\nO.  II.  Thompson,\n503",
       "normalized": {
         "as_printed": {
@@ -6907,7 +6956,7 @@
           "bidder": "O. II. Thompson,",
           "amount": "503"
         },
-        "bidder": "O. II. Thompson",
+        "bidder": "O. H. Thompson",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 8,
@@ -6946,7 +6995,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "O. II. Thompson"
+        "O. H. Thompson"
       ],
       "town_finding": false,
       "notes": null
@@ -6963,7 +7012,7 @@
           "bidder": "II",
           "amount": "576"
         },
-        "bidder": "O. II. Thompson",
+        "bidder": "O. H. Thompson",
         "bidder_ditto": true,
         "bidder_wrapped": false,
         "block": 8,
@@ -7002,7 +7051,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "O. II. Thompson"
+        "O. H. Thompson"
       ],
       "town_finding": false,
       "notes": null
@@ -7019,7 +7068,7 @@
           "bidder": "II",
           "amount": "890"
         },
-        "bidder": "O. II. Thompson",
+        "bidder": "O. H. Thompson",
         "bidder_ditto": true,
         "bidder_wrapped": false,
         "block": 8,
@@ -7058,7 +7107,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "O. II. Thompson"
+        "O. H. Thompson"
       ],
       "town_finding": false,
       "notes": null
@@ -7351,7 +7400,7 @@
     {
       "id": "f1839_lot0132",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "2 1\nT.  Wadsworth,\n466",
       "normalized": {
         "as_printed": {
@@ -7360,7 +7409,7 @@
           "bidder": "T. Wadsworth,",
           "amount": "466"
         },
-        "bidder": "T. Wadsworth",
+        "bidder": "J. Wadsworth",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 8,
@@ -7399,10 +7448,10 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "T. Wadsworth"
+        "J. Wadsworth"
       ],
       "town_finding": false,
-      "notes": null
+      "notes": "the page prints J. Wadsworth, who takes eleven other lots on these pages; no T. Wadsworth is printed anywhere in the sale"
     },
     {
       "id": "f1839_lot0133",
@@ -7691,7 +7740,7 @@
           "bidder": "J. J- Phelps,",
           "amount": "5io"
         },
-        "bidder": "J. J- Phelps",
+        "bidder": "J. J. Phelps",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 8,
@@ -7730,7 +7779,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "J. J- Phelps"
+        "J. J. Phelps"
       ],
       "town_finding": false,
       "notes": null
@@ -7738,7 +7787,7 @@
     {
       "id": "f1839_lot0139",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "28\nPrancis  Walker,\n776",
       "normalized": {
         "as_printed": {
@@ -7747,7 +7796,7 @@
           "bidder": "Prancis Walker,",
           "amount": "776"
         },
-        "bidder": "Prancis Walker",
+        "bidder": "Francis Walker",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 8,
@@ -7786,7 +7835,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "Prancis Walker"
+        "Francis Walker"
       ],
       "town_finding": false,
       "notes": null
@@ -7794,7 +7843,7 @@
     {
       "id": "f1839_lot0140",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "29\nJohn  PTnnerty,\n475",
       "normalized": {
         "as_printed": {
@@ -7803,7 +7852,7 @@
           "bidder": "John PTnnerty,",
           "amount": "475"
         },
-        "bidder": "John PTnnerty",
+        "bidder": "John Fennerty",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 8,
@@ -7842,7 +7891,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "John PTnnerty"
+        "John Fennerty"
       ],
       "town_finding": false,
       "notes": null
@@ -10647,7 +10696,7 @@
     },
     {
       "id": "f1839_lot0191",
-      "kind": "civic",
+      "kind": "person",
       "reading": "scan_verified",
       "quote": "231",
       "normalized": {
@@ -10657,8 +10706,8 @@
           "bidder": null,
           "amount": "231"
         },
-        "bidder": null,
-        "bidder_ditto": false,
+        "bidder": "J. Russell",
+        "bidder_ditto": true,
         "bidder_wrapped": false,
         "block": 10,
         "block_carried": true,
@@ -10685,9 +10734,11 @@
         "column": "L"
       },
       "describes_date": "1839-06",
-      "entities": [],
+      "entities": [
+        "J. Russell"
+      ],
       "town_finding": false,
-      "notes": null
+      "notes": "the page prints a ditto mark against this lot and the OCR mapped no ink to the cell at all, so the row reached the reading with no bidder while the lot above and the lot below both carry one"
     },
     {
       "id": "f1839_lot0192",
@@ -10971,7 +11022,7 @@
     },
     {
       "id": "f1839_lot0197",
-      "kind": "civic",
+      "kind": "person",
       "reading": "scan_verified",
       "quote": "4* \n205",
       "normalized": {
@@ -10981,8 +11032,8 @@
           "bidder": null,
           "amount": "205"
         },
-        "bidder": null,
-        "bidder_ditto": false,
+        "bidder": "J. Y. Scammon",
+        "bidder_ditto": true,
         "bidder_wrapped": false,
         "block": 10,
         "block_carried": true,
@@ -11014,9 +11065,11 @@
         "column": "L"
       },
       "describes_date": "1839-06",
-      "entities": [],
+      "entities": [
+        "J. Y. Scammon"
+      ],
       "town_finding": false,
-      "notes": null
+      "notes": "the page prints a ditto mark against this lot and the OCR mapped no ink to the cell at all, so the row reached the reading with no bidder while the lot above and the lot below both carry one"
     },
     {
       "id": "f1839_lot0198",
@@ -11763,7 +11816,7 @@
     },
     {
       "id": "f1839_lot0211",
-      "kind": "civic",
+      "kind": "person",
       "reading": "scan_verified",
       "quote": "4^ \n51",
       "normalized": {
@@ -11773,8 +11826,8 @@
           "bidder": null,
           "amount": "51"
         },
-        "bidder": null,
-        "bidder_ditto": false,
+        "bidder": "A. D. Stewart",
+        "bidder_ditto": true,
         "bidder_wrapped": false,
         "block": 11,
         "block_carried": true,
@@ -11806,9 +11859,11 @@
         "column": "L"
       },
       "describes_date": "1839-06",
-      "entities": [],
+      "entities": [
+        "A. D. Stewart"
+      ],
       "town_finding": false,
-      "notes": null
+      "notes": "the page prints a ditto mark against this lot and the OCR mapped no ink to the cell at all, so the row reached the reading with no bidder while the lot above and the lot below both carry one"
     },
     {
       "id": "f1839_lot0212",
@@ -12592,7 +12647,7 @@
     {
       "id": "f1839_lot0226",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "3 \nJ.  Iv.  Botsford, \n470",
       "normalized": {
         "as_printed": {
@@ -12601,7 +12656,7 @@
           "bidder": "J. Iv. Botsford,",
           "amount": "470"
         },
-        "bidder": "J. Iv. Botsford",
+        "bidder": "J. K. Botsford",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 13,
@@ -12640,7 +12695,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "J. Iv. Botsford"
+        "J. K. Botsford"
       ],
       "town_finding": false,
       "notes": null
@@ -12657,7 +12712,7 @@
           "bidder": "\"",
           "amount": "47°"
         },
-        "bidder": "J. Iv. Botsford",
+        "bidder": "J. K. Botsford",
         "bidder_ditto": true,
         "bidder_wrapped": false,
         "block": 13,
@@ -12696,7 +12751,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "J. Iv. Botsford"
+        "J. K. Botsford"
       ],
       "town_finding": false,
       "notes": null
@@ -14404,7 +14459,7 @@
     {
       "id": "f1839_lot0258",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "5 \nH.  A.  Blakeslv, \n279",
       "normalized": {
         "as_printed": {
@@ -14413,7 +14468,7 @@
           "bidder": "H. A. Blakeslv,",
           "amount": "279"
         },
-        "bidder": "H. A. Blakeslv",
+        "bidder": "H. A. Blakesly",
         "bidder_ditto": false,
         "bidder_wrapped": false,
         "block": 15,
@@ -14452,7 +14507,7 @@
       },
       "describes_date": "1839-06",
       "entities": [
-        "H. A. Blakeslv"
+        "H. A. Blakesly"
       ],
       "town_finding": false,
       "notes": null

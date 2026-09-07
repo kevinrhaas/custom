@@ -1,7 +1,7 @@
 ---
 id: T-0447
 title: North Water Street's west end runs across Wolf Point, which the Thompson plat does not give it
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0443
 opened: 2026-08-31
-closed: null
+closed: 2026-09-05
 pr: 801
 claimed_by: run 9/4/2026, 2:25:19 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-05T19:59:08.887Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33909443737
 ---
 
@@ -84,3 +84,21 @@ options, and this PR waits on it.
 
 Also raised on the way: **T-0684** — `steamboat_hotel`'s placement note reads Kinzie
 Street at local N +276 where the committed `kinzie` record is at N +252.8.
+
+---
+
+## CLOSED 2026-09-05 by T-0807 — PR #801 merged three hours before this ticket was read
+
+#801 merged into `dev` as `89aaae238` at 17:12:40Z, carrying the work the STATUS above
+describes as complete: all four acceptance items met, `tools/check.sh` green, three of the
+four `--for-diff` smoke legs green.
+
+The ticket record did not follow the merge — it stayed `claimed` with `pr: null`, so
+`ticket.mjs inflight` went on naming `steward/t-0447-north-water-east-end` as a rival
+branch on an open owner ticket and no run could take it. Closed against the PR that
+actually landed it.
+
+**The one red is still open and still owned elsewhere.** `the town's wagons vary in type
+and in the way they stand` is T-0688 — the gate counts street bearings, so re-deriving a
+street took it from 9 buckets to 7 against a floor of 8. #801 merged with that unresolved;
+closing this ticket does not close that, and T-0688 keeps its place in the queue.
