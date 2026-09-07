@@ -1,7 +1,7 @@
 ---
 id: T-0956
 title: Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames
-state: open
+state: done
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0932
 opened: 2026-09-07
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-07
+pr: 841
+claimed_by: run 9/7/2026, 5:12:40 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-07T10:13:53.614Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34109535187
 ---
 
 Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames.
