@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A census footing, and which of its two digits can be read', kind: 'change', ts: '', date: '',
+  { v: 661, title: 'A census footing, and which of its two digits can be read', kind: 'change', ts: '2026-09-07T02:59:43.000Z', date: 'Sep 6, 2026, 9:59 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about one cell at the foot of one page of the 1840 census of Chicago, and about saying how much of a mark can be read rather than all of it or none of it.',
       'The page has a block of columns headed SCHOOLS, one of which counts scholars. Its body carries a single entry — forty — and at the foot of the column the enumerator wrote a sum. An earlier reading found that sum, saw it stood where a 40 would stand, and refused to call it 40: the second of its shapes does not close into a nought, and a figure chosen because it makes a column add up is not a reading.',
