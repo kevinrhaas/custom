@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 277,
+      "takenAt": "2026-09-07T09:58:56.861Z",
+      "ref": "steward/t-0788-wright-block-numerals",
+      "commit": "b1b335949b9e",
+      "devCommit": "13951f6c81c8",
+      "treeHash": "sha256:ead2cdd852a3c9c8",
+      "treeDirty": false,
+      "changelogHash": "sha256:921e60f15a0e2e83",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          2.8,
+          1.4
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1353,37 +1384,6 @@
         ]
       },
       "source": "/tmp/smoke_mobile.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 279,
-      "takenAt": "2026-09-06T21:16:16.760Z",
-      "ref": "steward/t-0717-st-marys-phase-end",
-      "commit": "05a87bb1e4f2",
-      "devCommit": "57584e9fee91",
-      "treeHash": "sha256:a3177854b8ce0fc7",
-      "treeDirty": false,
-      "changelogHash": "sha256:68796f63e4163c15",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.7,
-          3.5,
-          2.6
-        ]
-      },
-      "source": "/tmp/smoke_f2.log"
     },
     {
       "viewport": "mobile",
