@@ -15,6 +15,12 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-07  THE SAND BAR, over three walkthrough screenshots. First instruction "place that
+#               ticket at top of queue"; then his own correction, "that land is showing when it's
+#               reconstructed, the tip of the stretch is still off, not as big a deal ... file
+#               this ticket in the appropriate place" — so it sits with T-0799/T-0800 instead.
+#               Filed as T-0939 and T-0940 after a THIRD id collision: the numbers first used
+#               were taken on dev by other runs while this was being written.
 #   2026-09-07  "put several tickets at the top of the queue ... whatever is needed so they fire
 #               first to merge and close the open PRs ... We want to close as many as you can" —
 #               the owner. 22 PRs stood open. A new band LEADS the file: T-0857 first because it
@@ -134,7 +140,6 @@ T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0912 — Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
-T-0754 — 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl
 T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 
@@ -215,6 +220,22 @@ T-0795 — Every watercourse Wright draws, counted on the new sheet: the three M
 T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
 T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+# --- FOUR TICKETS, ONE BAR, AND NONE OF THEM MOVES WHAT ANOTHER OWNS: T-0799 traces it off the
+# --- full sheet, T-0800 argues its height, T-0939 stops it running to the horizon, T-0940 makes
+# --- its surface sand. T-0799 runs first if any two are picked up. Owner-reported from the
+# --- walkthrough over three screenshots, 2026-09-07, and filed HERE rather than at the top on
+# --- his own instruction once he saw the land was present: "not as big a deal".
+# ---
+# --- T-0939 CORRECTS A WRONG FIRST DIAGNOSIS OF MINE. I said the box ends at n=-400 so the hook
+# --- has no ground at all. It has too much: terrain.js carries a 1.55 km SKIRT outside the box
+# --- under the generator's rule "carry each boundary vertex outward, keeping its own height", so
+# --- the 80 m of bar standing on the n=-400 row (e 1320-1390 at +1.21 m) is extruded south for
+# --- 1.55 km — three and a half times the bar's own length, dead flat, no taper. That is the
+# --- owner's "forever sandy stretch", photographed from water level. The skirt is RIGHT for the
+# --- mainland shore in the same frame and wrong for the bar, from the same row of vertices, so
+# --- it must not simply be removed.
+T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
+T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 
 # --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is what
@@ -427,3 +448,8 @@ T-0925 — Three runs read 33S7-9YYJ-L3 on the same morning and their line count
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
+T-0935 — S. W. Sherman never wrote a nought at the foot of 6H or 5V, so the only footing nought in the deposit is on a leaf whose hand is unestablished: settle whether 33S7-9YYJ-8D is his
