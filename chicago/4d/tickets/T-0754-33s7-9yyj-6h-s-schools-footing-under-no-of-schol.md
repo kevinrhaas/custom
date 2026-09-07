@@ -1,7 +1,7 @@
 ---
 id: T-0754
 title: 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1018
 claimed_by: run 9/6/2026, 9:11:48 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T02:58:37.121Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34075274047
 ---
 
