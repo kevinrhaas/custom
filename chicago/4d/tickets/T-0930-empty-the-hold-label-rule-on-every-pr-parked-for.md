@@ -1,7 +1,7 @@
 ---
 id: T-0930
 title: Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/7/2026, 4:14:23 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34104583371
 ---
 
 `hold` means a person is needed. It is not a parking space, and a PR left under it
