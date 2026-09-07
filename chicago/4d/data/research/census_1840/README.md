@@ -103,6 +103,14 @@ columns** — the first cells read anywhere in this group.
 |---|---|---|---|---|
 | 212 | `33SQ-GYYJ-RY` | 31 | 19 of 20 | 1 male 55–100, line 13 |
 | 213 | `33SQ-GYYJ-RK` | 30 | 18 of 18 | 2 females, line 2 |
+| 214 | `33SQ-GYYJ-BP` | 30 | 16 of 17 | 1 male under 10, line 1 |
+| 220 | `33SQ-GYYJ-P5` | 31 | 16 of 16 | none, body and footing alike |
+
+**T-0964 then read printed 214 and 220 the same way**, and printed 220 is the first leaf of this
+deposit whose every footed column closes with nothing left open. Printed 214 leaves one:
+`m_30_40`'s footing glyph is two diagonals under broken ink, and read as 11 it would stand 7
+short of seventeen plainly formed marks, so its printed total is `null` and the read 18 is
+labelled unchecked rather than either figure being forced.
 
 Two things this pass leaves open rather than closing. Printed 212's `f_10_15` footing glyph
 sits under the closing rule and is **not settled**: the read total of 8 stands without a
@@ -115,6 +123,23 @@ enumerator's numeral alphabet for both leaves: `f_10_15` closes at 3 against a b
 an open bowl, `m_u5` at 4 against two parallel diagonals, `f_u5` at 6 against an elongated
 slanted loop.
 
+**Printed 214 and 220 then split that "two parallel diagonals" in two, and the join is what
+does it.** Printed 214's `m_u5` closes at **11** over two diagonals that are separate, of equal
+length and evenly spaced; its `f_5_10` closes at **14** over a 1 beside a pair that MEET, and
+its `f_40_50` closes at **4** over that joined pair standing alone. Printed 220's `m_15_20`
+closes at **4** over the joined pair again. So in this hand a joined pair is a 4 and a disjoint
+pair is two 1s, and printed 213's entry describes the joined form. Printed 220 adds two more:
+`m_5_10` closes at 7 and `f_15_20` at 7 over the same hooked glyph, and `m_20_30` at 16 over a 1
+beside the elongated slanted loop that 213 already gave as 6.
+
+**A long name flourish is not a mark, and on these leaves it costs three cells if it is taken
+for one.** Both sheets are ruled vertically only — no threshold finds a horizontal rule anywhere
+in either body — and the enumerator's terminal flourishes run out past the first printed rule
+into the males-under-5 column. Three of them do it: Dunican and Morrison on printed 214, Cook on
+printed 220. Each was traced back to its own name at magnification before being set aside, and
+each column then closes on its footing exactly; counting them would have put printed 214's
+`m_u5` at 13 against a printed 11 and printed 220's at 14 against a printed 13.
+
 **The free coloured block of this group is not empty.** Printed 212 line 13 is a household
 with no free white cell at all — a free coloured head of household — and printed 213 line 2
 is a free white household of six with two free coloured females in it. Both close against the
@@ -122,7 +147,9 @@ free coloured footing row at the foot of their own leaf. This is still LATER EVI
 here mints an 1835 resident.
 
 Each leaf now carries a derived **page population key** — 107 for printed 212, 116 for printed
-213 — which is what T-0967 will pair the group's fifteen continuation sheets against.
+213, 154 for printed 214 and 135 for printed 220 — which is what T-0967 will pair the group's
+fifteen continuation sheets against. Printed 214's key carries its one unchecked column inside
+it: a continuation sheet reading 147 would be the same leaf with `m_30_40` read as 11.
 
 ## Three pages in this deposit are not household pages
 

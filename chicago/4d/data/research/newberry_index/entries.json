@@ -25,9 +25,9 @@
           "illinois_abbreviated": 1960
         },
         "distinct_surname_keys": 1582,
-        "leads": 402,
+        "leads": 414,
         "leads_by_layer": {
-          "census_1840": 127,
+          "census_1840": 139,
           "residents": 196,
           "structures": 17,
           "voters": 62
@@ -52,9 +52,9 @@
           "illinois_abbreviated": 1556
         },
         "distinct_surname_keys": 1244,
-        "leads": 245,
+        "leads": 251,
         "leads_by_layer": {
-          "census_1840": 74,
+          "census_1840": 80,
           "residents": 126,
           "structures": 8,
           "voters": 37
@@ -79,9 +79,9 @@
           "illinois_abbreviated": 1656
         },
         "distinct_surname_keys": 1387,
-        "leads": 242,
+        "leads": 248,
         "leads_by_layer": {
-          "census_1840": 79,
+          "census_1840": 85,
           "residents": 113,
           "structures": 8,
           "voters": 42
@@ -106,9 +106,9 @@
           "illinois_abbreviated": 226
         },
         "distinct_surname_keys": 342,
-        "leads": 108,
+        "leads": 109,
         "leads_by_layer": {
-          "census_1840": 41,
+          "census_1840": 42,
           "residents": 50,
           "structures": 3,
           "voters": 14

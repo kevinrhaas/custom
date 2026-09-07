@@ -4,10 +4,10 @@
  "generated_by": "tools/consolidate_resident_evidence.py --build",
  "domains": {
   "census_1840": {
-   "names_read": 761,
-   "identities": 749,
-   "appearances_on_an_identity_the_town_already_carries": 45,
-   "unmatched": 716
+   "names_read": 816,
+   "identities": 803,
+   "appearances_on_an_identity_the_town_already_carries": 48,
+   "unmatched": 768
   },
   "church": {
    "names_read": 520,
@@ -23,15 +23,15 @@
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2915,
+   "identities": 2916,
    "appearances_on_an_identity_the_town_already_carries": 298,
    "unmatched": 4048
   },
   "newspapers": {
    "names_read": 2274,
    "identities": 2081,
-   "appearances_on_an_identity_the_town_already_carries": 1281,
-   "unmatched": 993
+   "appearances_on_an_identity_the_town_already_carries": 1280,
+   "unmatched": 994
   },
   "old_settlers": {
    "names_read": 744,
@@ -79,13 +79,13 @@
   }
  },
  "overlap": {
-  "census_1840|census_1840": 749,
+  "census_1840|census_1840": 803,
   "census_1840|church": 24,
-  "census_1840|civic": 24,
-  "census_1840|directories": 142,
-  "census_1840|newspapers": 49,
+  "census_1840|civic": 26,
+  "census_1840|directories": 147,
+  "census_1840|newspapers": 50,
   "census_1840|old_settlers": 14,
-  "census_1840|residents": 41,
+  "census_1840|residents": 43,
   "church|church": 480,
   "church|civic": 3,
   "church|directories": 44,
@@ -97,13 +97,13 @@
   "civic|newspapers": 104,
   "civic|old_settlers": 30,
   "civic|residents": 265,
-  "directories|directories": 2915,
-  "directories|newspapers": 167,
+  "directories|directories": 2916,
+  "directories|newspapers": 166,
   "directories|old_settlers": 32,
   "directories|residents": 173,
   "newspapers|newspapers": 2081,
   "newspapers|old_settlers": 49,
-  "newspapers|residents": 1121,
+  "newspapers|residents": 1120,
   "old_settlers|old_settlers": 736,
   "old_settlers|residents": 51,
   "residents|residents": 1358
@@ -115,13 +115,13 @@
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 393,
-   "R5": 265,
-   "R2": 973,
-   "R3": 128,
+   "R1": 395,
+   "R5": 269,
+   "R2": 979,
+   "R3": 132,
    "R4": 78,
    "R6": 5
   },
-  "declared_refusals": 2016
+  "declared_refusals": 2051
  }
 }
