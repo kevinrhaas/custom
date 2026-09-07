@@ -378,4 +378,5 @@ T-0905 — publish.sh minifies four resident mirror files that synthesize_reside
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
-
+T-0923 — 33S7-9YYJ-L3's TOTAL column turns on a two-stroke glyph this leaf carries no alphabet for: find a leaf of the same hand with committed line values
+T-0924 — The SCHOOLS block of 33S7-9YYJ-L3 carries ink and is unread: T-0744 read the TOTAL column and the footer row and swept nothing to its right

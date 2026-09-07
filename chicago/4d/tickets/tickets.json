@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 7:38 PM",
+  "generated_ct": "Sep 6, 2026, 7:54 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15564,6 +15564,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 8
+    },
+    {
+      "id": "T-0923",
+      "title": "33S7-9YYJ-L3's TOTAL column turns on a two-stroke glyph this leaf carries no alphabet for: find a leaf of the same hand with committed line values",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
+    },
+    {
+      "id": "T-0924",
+      "title": "The SCHOOLS block of 33S7-9YYJ-L3 carries ink and is unread: T-0744 read the TOTAL column and the footer row and swept nothing to its right",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 178
     }
   ]
 }
