@@ -91,6 +91,39 @@ this means for T-0504 and T-0505 is that the 210 rows cannot be used as ground t
 a serial fingerprint or an identity bridge until they have been re-read against the
 images, and that a bridge built on #670's row NUMBERS is unsafe on at least page 231.
 
+## Images 51-74: the first cells read from the third group
+
+T-0741 inventoried all 24 images of the third group and read nothing else from them; T-0746
+was then split by printed page into five pieces, because two left sheets to the cell is one
+run's demonstration and the group holds seven left sheets, a recapitulation leaf and fifteen
+continuations. **T-0963 read printed 212 and 213 in full — names AND all thirty-eight
+columns** — the first cells read anywhere in this group.
+
+| printed page | image | lines | footing columns closed | free coloured |
+|---|---|---|---|---|
+| 212 | `33SQ-GYYJ-RY` | 31 | 19 of 20 | 1 male 55–100, line 13 |
+| 213 | `33SQ-GYYJ-RK` | 30 | 18 of 18 | 2 females, line 2 |
+
+Two things this pass leaves open rather than closing. Printed 212's `f_10_15` footing glyph
+sits under the closing rule and is **not settled**: the read total of 8 stands without a
+check. And its `m_20_30` closes on 33 only because the cells of lines 20 and 27 are read
+**from** that footing rather than from their own ink — they carry a glyph this hand does not
+use for 3 elsewhere on the leaf, and the column is labelled as closing by construction.
+
+Printed 213's footings are crisp where 212's are faint, and they are what fixes the
+enumerator's numeral alphabet for both leaves: `f_10_15` closes at 3 against a bold curl over
+an open bowl, `m_u5` at 4 against two parallel diagonals, `f_u5` at 6 against an elongated
+slanted loop.
+
+**The free coloured block of this group is not empty.** Printed 212 line 13 is a household
+with no free white cell at all — a free coloured head of household — and printed 213 line 2
+is a free white household of six with two free coloured females in it. Both close against the
+free coloured footing row at the foot of their own leaf. This is still LATER EVIDENCE: nothing
+here mints an 1835 resident.
+
+Each leaf now carries a derived **page population key** — 107 for printed 212, 116 for printed
+213 — which is what T-0967 will pair the group's fifteen continuation sheets against.
+
 ## Three pages in this deposit are not household pages
 
 `33S7-9YYJ-95F`, printed page **206**, is a printed left sheet used as the enumeration's

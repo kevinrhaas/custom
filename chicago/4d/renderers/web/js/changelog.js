@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 671, title: 'Two census sheets read to the cell, and a column nobody had looked in', kind: 'change', ts: '2026-09-07T12:28:33.453Z', date: 'Sep 7, 2026, 7:28 AM CT',
+    items: [
+      'Nothing in the town moved today. Two more leaves of the 1840 federal census of Chicago have been read off the page images \u2014 printed pages 212 and 213 \u2014 and this time to the cell rather than only to the name.',
+      'Sixty-one households, every one of them a ruled line with a name on it and thirty-eight columns beside it: thirteen age bands for the free white males, thirteen for the females, and twelve for free coloured persons. Every line got a record, readable or not, in the enumerator\u2019s own walking order, because that order is the only spatial signal the 1840 census carries.',
+      'The check is the sheet\u2019s own arithmetic. The enumerator added each column at the foot of his leaf, so a reading either closes on his figure or it does not. Printed 213 closes on all eighteen of its footings, residual zero on every one. Printed 212 closes on nineteen of twenty and the twentieth is left open: its glyph sits under the closing rule and cannot be read, so the total stands there without a check rather than being dressed up as one.',
+      'One column on 212 closes only because two of its cells were read FROM the footing instead of from their own ink, and it says so on the column. A number that had to be inferred to make a sum work is not corroboration of that sum, and pretending otherwise is how a reading becomes a wish.',
+      'The free coloured block of these sheets had been assumed empty and it is not. Printed 212, line 13 is a household with no free white cell at all \u2014 a free coloured man at the head of it \u2014 and printed 213, line 2 is a white household of six with two free coloured women in it. Both close against the free coloured footing row on their own leaf, so neither rests on one reader\u2019s eye.',
+      'This is evidence from 1840, five years after the July day this reconstruction is set on. It says a person was in Chicago then. It never says where they stood in 1835, and nobody gained a house today.',
+    ] },
   { v: 670, title: 'Twenty-seven men matched to an 1840 census line, and fifteen cards that had never been told', kind: 'fix', ts: '2026-09-07T11:40:31.320Z', date: 'Sep 7, 2026, 6:40 AM CT',
     items: [
       'Nothing in the town moved today. This is about a piece of research that was finished, checked, and never arrived.',
