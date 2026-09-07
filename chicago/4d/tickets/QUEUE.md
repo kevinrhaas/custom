@@ -382,3 +382,6 @@ T-0850 — The twenty-six land-sale purchaser spellings the first deposit matche
 T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
 T-0925 — Three runs read 33S7-9YYJ-L3 on the same morning and their line counts disagree: reconcile PRs #1013, #1014 and #1015 into one reading of the leaf
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
