@@ -7,15 +7,15 @@
   "passes": [
     {
       "ticket": "T-0505",
-      "what": "every named head on the 27 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
-      "heads_adjudicated": 788,
+      "what": "every named head on the 29 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
+      "heads_adjudicated": 849,
       "outcomes": {
-        "named_heads": 788,
+        "named_heads": 849,
         "matched": 12,
-        "candidate": 15,
-        "refused": 761
+        "candidate": 16,
+        "refused": 821
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 15 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -103,20 +103,6 @@
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     },
     {
-      "from": "John Davis",
-      "into": "John Davis",
-      "rule": "The 1840 head written 'John Davis' at printed page 232 line 13 (33S7-9YYJ-W6) and the 1835 person 'John Davis' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
-      "evidence": [
-        "33S7-9YYJ-W6",
-        "T-0505",
-        "data/research/census_1840/resident_crosswalk.json",
-        "norris_directory_1844",
-        "fergus_chicago_directory_1843"
-      ],
-      "person_id": "davis_john",
-      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
-    },
-    {
       "from": "Gurdon S. Hubbard",
       "into": "Gurdon Saltonstall Hubbard",
       "rule": "The 1840 head written 'Gurdon S. Hubbard' at printed page 232 line 17 (33S7-9YYJ-W6) and the 1835 person 'Gurdon Saltonstall Hubbard' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
@@ -181,6 +167,20 @@
         "fergus_chicago_directory_1843"
       ],
       "person_id": "dole_george_w",
+      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
+    },
+    {
+      "from": "George Merrill",
+      "into": "George W Merrill",
+      "rule": "The 1840 head written 'George Merrill' at printed page 212 line 29 (33SQ-GYYJ-RY) and the 1835 person 'George W Merrill' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "data/research/census_1840/resident_crosswalk.json",
+        "norris_directory_1844",
+        "fergus_chicago_directory_1843"
+      ],
+      "person_id": "merrill_george_w",
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     }
   ],
@@ -1307,18 +1307,8 @@
     },
     {
       "a": "Cornelius Norton",
-      "b": "N. R. Norton",
-      "rule": "'Cornelius Norton' at printed page 219 line 9 (33S7-9YYJ-9K3) is NOT 'N. R. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'cornelius'.",
-      "evidence": [
-        "33S7-9YYJ-9K3",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Cornelius Norton",
       "b": "Nelson R. Norton",
-      "rule": "'Cornelius Norton' at printed page 219 line 9 (33S7-9YYJ-9K3) is NOT 'Nelson R. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'cornelius'.",
+      "rule": "'Cornelius Norton' at printed page 219 line 9 (33S7-9YYJ-9K3) is NOT 'Nelson R. Norton': The surname 'norton' is carried by 2 person(s) of 1835 (Nelson R. Norton, Wm. H. Norton) and none of their given names is 'cornelius'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1328,7 +1318,7 @@
     {
       "a": "Cornelius Norton",
       "b": "Wm. H. Norton",
-      "rule": "'Cornelius Norton' at printed page 219 line 9 (33S7-9YYJ-9K3) is NOT 'Wm. H. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'cornelius'.",
+      "rule": "'Cornelius Norton' at printed page 219 line 9 (33S7-9YYJ-9K3) is NOT 'Wm. H. Norton': The surname 'norton' is carried by 2 person(s) of 1835 (Nelson R. Norton, Wm. H. Norton) and none of their given names is 'cornelius'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -2427,18 +2417,8 @@
     },
     {
       "a": "Charles Norton",
-      "b": "N. R. Norton",
-      "rule": "'Charles Norton' at printed page 226 line 18 (33S7-9YYJ-B3) is NOT 'N. R. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'charles'.",
-      "evidence": [
-        "33S7-9YYJ-B3",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Charles Norton",
       "b": "Nelson R. Norton",
-      "rule": "'Charles Norton' at printed page 226 line 18 (33S7-9YYJ-B3) is NOT 'Nelson R. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'charles'.",
+      "rule": "'Charles Norton' at printed page 226 line 18 (33S7-9YYJ-B3) is NOT 'Nelson R. Norton': The surname 'norton' is carried by 2 person(s) of 1835 (Nelson R. Norton, Wm. H. Norton) and none of their given names is 'charles'.",
       "evidence": [
         "33S7-9YYJ-B3",
         "T-0505",
@@ -2448,7 +2428,7 @@
     {
       "a": "Charles Norton",
       "b": "Wm. H. Norton",
-      "rule": "'Charles Norton' at printed page 226 line 18 (33S7-9YYJ-B3) is NOT 'Wm. H. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'charles'.",
+      "rule": "'Charles Norton' at printed page 226 line 18 (33S7-9YYJ-B3) is NOT 'Wm. H. Norton': The surname 'norton' is carried by 2 person(s) of 1835 (Nelson R. Norton, Wm. H. Norton) and none of their given names is 'charles'.",
       "evidence": [
         "33S7-9YYJ-B3",
         "T-0505",
@@ -4797,18 +4777,8 @@
     },
     {
       "a": "Thomas Norton",
-      "b": "N. R. Norton",
-      "rule": "'Thomas Norton' at printed page 209 line 1 (33SQ-GYYJ-93Y) is NOT 'N. R. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'thomas'.",
-      "evidence": [
-        "33SQ-GYYJ-93Y",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Thomas Norton",
       "b": "Nelson R. Norton",
-      "rule": "'Thomas Norton' at printed page 209 line 1 (33SQ-GYYJ-93Y) is NOT 'Nelson R. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'thomas'.",
+      "rule": "'Thomas Norton' at printed page 209 line 1 (33SQ-GYYJ-93Y) is NOT 'Nelson R. Norton': The surname 'norton' is carried by 2 person(s) of 1835 (Nelson R. Norton, Wm. H. Norton) and none of their given names is 'thomas'.",
       "evidence": [
         "33SQ-GYYJ-93Y",
         "T-0505",
@@ -4818,7 +4788,7 @@
     {
       "a": "Thomas Norton",
       "b": "Wm. H. Norton",
-      "rule": "'Thomas Norton' at printed page 209 line 1 (33SQ-GYYJ-93Y) is NOT 'Wm. H. Norton': The surname 'norton' is carried by 3 person(s) of 1835 (N. R. Norton, Nelson R. Norton, Wm. H. Norton) and none of their given names is 'thomas'.",
+      "rule": "'Thomas Norton' at printed page 209 line 1 (33SQ-GYYJ-93Y) is NOT 'Wm. H. Norton': The surname 'norton' is carried by 2 person(s) of 1835 (Nelson R. Norton, Wm. H. Norton) and none of their given names is 'thomas'.",
       "evidence": [
         "33SQ-GYYJ-93Y",
         "T-0505",
@@ -5453,6 +5423,296 @@
         "33SQ-GYYJ-RJ",
         "T-0505",
         "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "N. B. Carter",
+      "b": "J. Carter",
+      "rule": "'N. B. Carter' at printed page 213 line 6 (33SQ-GYYJ-RK) is NOT 'J. Carter': The head is written 'N. B. Carter' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'carter'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Byra King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byra King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Byram King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byram King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Byron King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byron King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Hyram King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Hyram King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "John Lyle King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'John Lyle King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Nehemiah King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Nehemiah King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Sherman King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Sherman King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Nathan E. King",
+      "b": "Tuthill King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Tuthill King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "H. H. Ryan",
+      "b": "Thomas Ryan",
+      "rule": "'H. H. Ryan' at printed page 213 line 13 (33SQ-GYYJ-RK) is NOT 'Thomas Ryan': The head is written 'H. H. Ryan' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'ryan'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "A. S. Bennet",
+      "b": "Lyman Bennet",
+      "rule": "'A. S. Bennet' at printed page 213 line 25 (33SQ-GYYJ-RK) is NOT 'Lyman Bennet': The head is written 'A. S. Bennet' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'bennet'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "Thomas Page",
+      "b": "Elisha S. Page",
+      "rule": "'Thomas Page' at printed page 213 line 26 (33SQ-GYYJ-RK) is NOT 'Elisha S. Page': The surname 'page' is carried by 2 person(s) of 1835 (Elisha S. Page, Frederick W. Page) and none of their given names is 'thomas'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Thomas Page",
+      "b": "Frederick W. Page",
+      "rule": "'Thomas Page' at printed page 213 line 26 (33SQ-GYYJ-RK) is NOT 'Frederick W. Page': The surname 'page' is carried by 2 person(s) of 1835 (Elisha S. Page, Frederick W. Page) and none of their given names is 'thomas'.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "F. C. Sherman",
+      "b": "Mrs. H. Sherman",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Mrs. H. Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "F. C. Sherman",
+      "b": "Rebecca Sherman",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Rebecca Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "F. C. Sherman",
+      "b": "Silas W Sherman",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Silas W Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "Martin Stewart",
+      "b": "James Stewart",
+      "rule": "'Martin Stewart' at printed page 212 line 17 (33SQ-GYYJ-RY) is NOT 'James Stewart': The surname 'stewart' is carried by 2 person(s) of 1835 (James Stewart, R. Stewart) and none of their given names is 'martin'.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Martin Stewart",
+      "b": "R. Stewart",
+      "rule": "'Martin Stewart' at printed page 212 line 17 (33SQ-GYYJ-RY) is NOT 'R. Stewart': The surname 'stewart' is carried by 2 person(s) of 1835 (James Stewart, R. Stewart) and none of their given names is 'martin'.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "George C. More",
+      "b": "Ebenezer S More",
+      "rule": "'George C. More' at printed page 212 line 21 (33SQ-GYYJ-RY) is NOT 'Ebenezer S More': The surname 'more' is carried by 1 person(s) of 1835 (Ebenezer S More) and none of their given names is 'george'.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "P. Lawrence",
+      "b": "James R. Lawrence",
+      "rule": "'P. Lawrence' at printed page 212 line 25 (33SQ-GYYJ-RY) is NOT 'James R. Lawrence': The head is written 'P. Lawrence' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'lawrence'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "J. C. Walker",
+      "b": "George E. Walker",
+      "rule": "'J. C. Walker' at printed page 212 line 26 (33SQ-GYYJ-RY) is NOT 'George E. Walker': The head is written 'J. C. Walker' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'walker'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "J. C. Walker",
+      "b": "George H Walker",
+      "rule": "'J. C. Walker' at printed page 212 line 26 (33SQ-GYYJ-RY) is NOT 'George H Walker': The head is written 'J. C. Walker' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'walker'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "J. C. Walker",
+      "b": "James Walker",
+      "rule": "'J. C. Walker' at printed page 212 line 26 (33SQ-GYYJ-RY) is NOT 'James Walker': The head is written 'J. C. Walker' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'walker'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "J. C. Walker",
+      "b": "Jeremiah Walker",
+      "rule": "'J. C. Walker' at printed page 212 line 26 (33SQ-GYYJ-RY) is NOT 'Jeremiah Walker': The head is written 'J. C. Walker' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'walker'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "William Williams",
+      "b": "Charles C. Williams",
+      "rule": "'William Williams' at printed page 212 line 27 (33SQ-GYYJ-RY) is NOT 'Charles C. Williams': The surname 'williams' is carried by 3 person(s) of 1835 (Charles C. Williams, Eli B Williams, John L Williams) and none of their given names is 'william'.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "William Williams",
+      "b": "Eli B Williams",
+      "rule": "'William Williams' at printed page 212 line 27 (33SQ-GYYJ-RY) is NOT 'Eli B Williams': The surname 'williams' is carried by 3 person(s) of 1835 (Charles C. Williams, Eli B Williams, John L Williams) and none of their given names is 'william'.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "William Williams",
+      "b": "John L Williams",
+      "rule": "'William Williams' at printed page 212 line 27 (33SQ-GYYJ-RY) is NOT 'John L Williams': The surname 'williams' is carried by 3 person(s) of 1835 (Charles C. Williams, Eli B Williams, John L Williams) and none of their given names is 'william'.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "W. Nelson",
+      "b": "John M. Nelson",
+      "rule": "'W. Nelson' at printed page 212 line 28 (33SQ-GYYJ-RY) is NOT 'John M. Nelson': The head is written 'W. Nelson' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'nelson'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "J. W. Salisbury",
+      "b": "Stephen M. Salisbury",
+      "rule": "'J. W. Salisbury' at printed page 212 line 30 (33SQ-GYYJ-RY) is NOT 'Stephen M. Salisbury': The head is written 'J. W. Salisbury' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'salisbury'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RY",
+        "T-0505",
+        "L4 initial_only"
       ]
     },
     {
