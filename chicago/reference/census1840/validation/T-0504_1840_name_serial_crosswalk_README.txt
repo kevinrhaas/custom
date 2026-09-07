@@ -52,7 +52,7 @@ COUNTS as of this build
 
   households in the extract          964
   distinct fingerprints among them   622
-  pages held                         52
+  pages held                         53
   pages carrying committed cells     23
   lines read on those pages          697
     unique                           267

@@ -1451,3 +1451,66 @@ above them, and both are short by exactly five: the TOTAL column reads **193** a
 of **198**, and manufactures and trades reads **10** against **15**. Commerce (4), navigation of
 canals, lakes and rivers (18) and learned professions (8) close exactly. Nothing was re-read to
 make the other two come out, and no cause is proposed for the repeated 5.
+
+---
+
+## The other recapitulation, read — and the six blocks of printed 237 are the six wards (T-0966, 2026-09-07)
+
+`33SQ-GYYJ-PW` is the leaf T-0741 found and said should be opened first, and it is now read in
+full: **all thirty numbered pages across every free-white age band and every free-coloured
+column**, the five written ward subtotals, and the grand total. It names nobody, and no serial,
+resident or household may be hung on any line of it. `pages/33SQ-GYYJ-PW.json` carries every
+cell.
+
+**The brace and the closing rules give the six wards their extents.**
+
+| ward | enumerating pages | persons read here |
+|---|---|---|
+| First | 1–8 | 1,169 |
+| Second | 9–17 | 1,317 |
+| Third | 18–19 | 287 |
+| Fourth | 20 | 191 |
+| Fifth | 21–23 | 362 |
+| Sixth | 24–30 | 1,160 |
+
+**The finding this pass exists to record.** Printed 237 (`33S7-9YYJ-V2`, T-0529) is the other
+recapitulation the book's certificate page names. It carries thirty ruled lines of division
+totals gathered into six blocks, and it carries no ward name, so T-0529 could not say what its
+blocks were. Its blocks hold **8, 9, 2, 1, 3 and 7 lines**. This leaf's wards hold **8, 9, 2, 1,
+3 and 7 pages**, in that order — including the two shapes that are unlike anything else on either
+sheet. 237's fourth block is a *lone line of 189 with no footing of its own*; the Fourth Ward here
+is a *lone page closed by a rule with no subtotal row*. 237's fifth block is the three lines whose
+footing T-0529 could not read; the Fifth Ward here is three pages, and its three page totals are
+**159, 133 and 70** against 237's **159, 133, 70**.
+
+So the two leaves are the same recapitulation, and **printed 237's thirty division totals are the
+thirty enumerating pages of the city, in ward order**. That is the first attribution of any 1840
+Chicago enumerating page to a ward, and it is what makes the rest of the reading programme
+placeable: a page number now carries a ward.
+
+**Nineteen of the thirty pages agree to the person** between two independently written leaves read
+by two different passes off two different images. The eleven that differ are listed with their
+signed difference in `against_printed_237.line_by_line`; nine are within six persons. Two are not:
+page 1 stands 11 over 237, and page 24 stands 19 over it. Page 24's line is written hard against
+the Sixth Ward's opening rule, which crosses its upper halves; page 1's line is clear and its
+excess is unexplained. Neither leaf is adjusted to meet the other.
+
+**The internal checks, and where they stop.** The enumerator's own arithmetic is read as a check
+on the cells, never as a substitute for them, because five of the six subtotal rows are written
+*between* a pair of rules 24 to 37 px apart and the rules cross their glyphs. The First and Fifth
+Wards close on **every** column, male and female; the Second and Sixth close on 29 of 31; the
+Third is the one whose subtotal row is largely illegible and six of its cells are recorded
+unread rather than guessed. The free-white **male** grand total is the strongest single check on
+the leaf: read cell by cell the thirty lines sum to **2,407** and the enumerator's own grand-total
+row sums to **2,407** as well, with the per-column differences cancelling exactly.
+
+**The residual of 4 that 237 leaves open is not resolved, and a larger one is now on the table.**
+The thirty lines here sum to **4,486** persons. 237's thirty division totals sum to 4,466 and its
+foot carries 4,470, which is also the published 1840 figure and what the book's certificate page
+writes. Twenty persons separate the two readings and nothing here closes that; the eleven
+disagreeing pages are where to look, and they are named.
+
+**What it is worth to the reading programme.** Thirty pages at these populations is 4,486 persons
+against the 4,834 the IPUMS extract holds for its 964 Chicago households — so the deposit's own
+recapitulation and the extract disagree by 348, in the same direction the extract already
+disagreed with the published 4,470. That is a completeness test with a number in it now.

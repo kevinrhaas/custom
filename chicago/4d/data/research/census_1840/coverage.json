@@ -1108,9 +1108,10 @@
      "lines_with_an_entry": 30,
      "what_it_is": "NOT AN ENUMERATING PAGE. The left-sheet form is used as a RECAPITULATION of the Chicago city enumeration: instead of names the first column runs 1 to 30 under the heading 'Page', each numbered page carrying its own totals across the free-white age bands, and a brace in the left margin groups the thirty pages into First, Second, Third, Fourth, Fifth and Sixth Ward. Ward subtotal rules cut across the table and a grand total closes it. The margin heading reads 'Recapitulation of [?] (Chicago City) preceding pages', with one word struck through before the parenthesis.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
-     "printed_page_note": "no printed page number is legible where this form carries it. On every other left sheet of this group the number is printed at the TOP RIGHT, past the marshal's signature; here that corner carries the signature 'S. W. Sherman' and nothing else. It is not guessed from the run of its neighbours."
+     "read_state": "read_in_full",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-PW.json",
+     "printed_page_note": "no printed page number is legible where this form carries it. On every other left sheet of this group the number is printed at the TOP RIGHT, past the marshal's signature; here that corner carries the signature 'S. W. Sherman' and nothing else. It is not guessed from the run of its neighbours.",
+     "what_was_read": "T-0966 read the leaf in full: all thirty numbered pages across every free-white age band and every free-coloured column, the five written ward subtotals, and the grand total. The brace names the wards and the closing rules fix their extents - 8, 9, 2, 1, 3 and 7 pages for the First through Sixth Ward. Compared line for line against printed 237 (33S7-9YYJ-V2), whose six blocks hold 8, 9, 2, 1, 3 and 7 lines in the same order: the two recapitulations are the same recapitulation, so 237's division totals ARE the wards, and 19 of the 30 pages agree to the person between the two leaves. No name, no serial and no household is derived from it, and none can be."
     },
     {
      "index": 68,
@@ -1239,7 +1240,8 @@
      "index": 67,
      "finding": "the group holds a THIRD non-household sheet, and it is the one that names the wards. Thirty numbered enumerating pages, each with its own free-white age-band totals, braced into First through Sixth Ward, with ward subtotal rules and a grand total. The margin heading reads 'Recapitulation of [?] (Chicago City) preceding pages'.",
      "why_it_matters": "the README already records two non-household sheets - printed 206, the certificate, and printed 237, 'the other recapitulation', whose THIRTY ruled lines carry division totals gathered into SIX blocks summing to 4,466 against the 4,470 written at its foot. This sheet has the SAME shape - thirty rows, six groups - but broken out by age band and with the six groups NAMED as the city's wards. So it is a second, independent statement of the same recapitulation: it can be added against 237's division totals, it may bear on the residual of 4 that 237 leaves open, and it attributes every one of the thirty enumerating pages to a ward. Thirty pages at the ~31 ruled lines these sheets carry is about 930 households against the 964 the IPUMS extract holds, so it is also a completeness test for the whole reading programme. NONE of that is done here: this pass records that the sheet exists and what it is.",
-     "not_read_here": true
+     "not_read_here": false,
+     "now_read": "T-0966 (2026-09-07) read it in full and did the addition against 237 that this note said was not attempted: the six blocks of 237 are the six wards, page for page, and 19 of the 30 pages agree to the person. The residual of 4 that 237 leaves open is NOT resolved - this leaf's own thirty lines sum to 4,486 against 237's 4,466 and the 4,470 written at 237's foot - and the completeness test is now measurable: 30 pages, 4,486 persons read here."
     },
     {
      "image": "33SQ-GYYJ-BH",
