@@ -180,15 +180,20 @@ Those 82 now report as `ruled_but_disputed` in `ladder_coverage.json` rather tha
 unspent rung, so `proposed_not_written` means what it says and reads nought. The nine
 below are unchanged: the ladder still cannot see them.
 
-**The nine the ladder cannot see, each with the reason it abstained.** Two are absorbed:
+**The nine the ladder cannot see, each with the reason it abstained.** Two were absorbed:
 `canonical_person_id` is `town[0]`, so an identity holding two town cards reported one and
 dropped the other in silence — `brown_mrs_rufus` onto `brown_rufus` (a wife whose only
 printed name is her husband's, and the honorific strip makes the two indistinguishable) and
 `norton_n_r` onto `norton_nelson_r` (where the merge is right and the town simply carries
 the man twice). Master rows now carry `town_person_ids`, so an absorbed card is visible
-rather than silent. **A third joined them on 2026-09-05** — `vanderbogart_h`, the town's
-`H. Vanderbogart`, onto `Dr Henry Van der Bogart`, whom the compound-surname rule below
-finally let the splitter read as the same surname. The other six are refusals the master
+rather than silent. **T-0723 answered both, and they are two different answers**: R6 below
+holds Mrs Rufus Brown apart and she has a rung of her own, while the Nortons were one man
+and the cards are one card, merged under rule C2 of
+`data/residents/card_merge_rulings.json`. **A third joined them on 2026-09-05 and stands** —
+`vanderbogart_h`, the town's `H. Vanderbogart`, onto `Dr Henry Van der Bogart`, whom the
+compound-surname rule below finally let the splitter read as the same surname. It is
+undecided on purpose and T-0842 owns it: merging them to close the coverage gap would be
+the old splitter's guess wearing a ruling's clothes. The other six are refusals the master
 has recorded all along: `8. G. Abbot`, `A. 8. Perry` and `James I1. Gabbs` are OCR
 misreadings of an initial (S. read as 8, H. as I1) rather than names the town used;
 `Heacock's wife and children, unnamed` is a description; and `Beckford` and `Mrs Temple`
@@ -259,6 +264,7 @@ and every refusal in `identity_master.json` names the rule that made it.
 | **R4** | Same surname and initial, two different full forenames. 79. |
 | **D2** | A refusal already declared by a crosswalk or `identity.json`. 1,574. |
 | **R5** | **A printed name the splitter cannot read as (surname, forename) at all** — a firm style, an institution, a digit standing where an initial was misread, a description rather than a name, more forename tokens than the four-token cap. 264, each row naming which guard fired. |
+| **R6** | **A female honorific standing on a man's own name.** `Mrs Rufus Brown` is not Rufus Brown. Refused only where one SOURCE prints both readings as separate entries; 5 surnames. |
 
 **Why R5 exists, and what it cost to not have it (T-0692).** Until 2026-09-04 every one of
 those 266 rows was filed as R1, *"names no forename"* — and that sentence is false of most
@@ -272,6 +278,37 @@ each refusal now says which guard fired.
 R2 and R4 are stated **once per surname**, naming everyone the bucket holds apart, not once
 per pair: the cross product of forty Smiths is 780 rows that say what the bucket already
 says.
+
+### A wife is not her husband (T-0723)
+
+The honorific strip is right for `John Bates Jr.` — a Bates, not a Jr. — and it is what
+folded `Mrs Rufus Brown` onto `Rufus Brown`: what it throws away there is the only thing on
+the page saying she is not him. The two readings arrive at the comparison letter for letter
+identical, M1 fires, and a woman ends on her husband's card with no rung of her own.
+
+**R6 refuses that merge, and the PAGE has to prove it.** The refusal fires only where one
+source prints both readings as separate entries. Fergus 1843 sets `Brown, Rufus B., warehouse
+man, John P. Chapin & Co., res 189 Lake` at entry 458 and `Brown, Mrs. Rufus B., dress and
+cloak maker, 189 Lake, up stairs` at 459 — two trades, one address, two death notices
+eighteen years apart — and a directory does not enter one person twice under two spellings.
+That is a fact about the page rather than about the name, and the fact is what the rule
+stands on.
+
+**Why it is not a rule about names.** `Mrs. Eliza Haight` and `Mrs. Diana Hamilton` are the
+same shape and are one woman each, printed under her own forename. Nothing in the letters of
+a name says Rufus is a man and Eliza is not; this splitter holds no lexicon of men's names,
+and inventing one would tear a real woman off her own evidence. Two further guards keep the
+rule narrow: the title must LEAD the name it qualifies, because the letter lists set
+`Gooding, Caroline Miss` with the title trailing her own forename; and the tokens must match
+the bare reading exactly, so M3 still joins `Mrs. Sabrina Mason` to `Mason Sabrina A.`
+
+Five surnames meet the test — Anderson, Atkinson, Brown, Gale and Johnson, all of them on
+Fergus 1843's own pages. Two printings of the same shape are deliberately **left merged**
+because no single source prints both readings: `Hadley, Mrs. T. G.` against Norris 1844's
+`Hadley, T. G.`, and `Mrs. Wm. B. Egan` against Norris's `Egan, Wm. B.` T-0903 owns the
+reading that would settle them. `data/residents/card_merge_rulings.json` states the same
+refusal card-side as **D3**, and the derivation's four cases are asserted in
+`--self-test`.
 
 ### A compound surname is one surname (T-0724)
 

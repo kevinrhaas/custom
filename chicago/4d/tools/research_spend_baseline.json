@@ -6,7 +6,7 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 488,
+  "church": 489,
   "books": 176,
   "directories": 7229,
   "newberry_index": 4914,
@@ -28,7 +28,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1256
+   "spent": 1255
   },
   "books": {
    "read": 226,
@@ -352,6 +352,14 @@
    "to": 1,
    "date": "2026-09-06",
    "why": "T-0714, 2026-09-06. The 1840 crosswalk was re-derived after 290 named heads of finished reading had never been put to the ladder, and the new adjudication reaches one town person the old one did not: Ira Couch, printed page 211 line 3 of image 33SQ-GYYJ-97P, ruled L7 candidate — the name agrees and is unique on both sides, with nothing independent of the name to hold the pair together. His card cites no 1840 source, so the ruling has reached the person and not the card. It is raised by exactly one rather than spent here because this crosswalk mints nobody and writes no household file by design; the write is T-0899's, on the ratified ladder, where a candidate stays a candidate."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 488,
+   "to": 489,
+   "date": "2026-09-07",
+   "why": "T-0723 folded the duplicate card 'N. R. Norton' onto Nelson R. Norton, and the Second Presbyterian roll's crosswalk had carried a surname-only refusal against each of them. Retiring the duplicate retires one ruling, so the church domain's unspent count rose by exactly one (488 -> 489) without a single new line of church research being read. The ceiling follows the arithmetic of the fold, not a fresh read."
   }
  ],
  "lowered": [

@@ -60,13 +60,13 @@ rules for. `carries` is what a retirement would strand.
 
 ## The committed cohort against its own derivation
 
-The tree holds **727** letter-list households. The pass, run today
+The tree holds **726** letter-list households. The pass, run today
 against that same tree, derives **657**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 
 | households | cause |
 |---|---|
-| 77 | the town gained this surname from another pass after the mint (the town already names that family) |
+| 76 | the town gained this surname from another pass after the mint (the town already names that family) |
 | 8 | THIS FAULT — the corrected reading collides it with another record |
 | 2 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |

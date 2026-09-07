@@ -16,27 +16,10 @@
     "D1": "TWO PEOPLE THE SOURCES NAME SEPARATELY. A spouse, a sibling, a parent and child, or two explicit and different forenames.",
     "D2": "A DATE CONTRADICTION. One card's person is dead, or absent, on a day the other's is documented alive in the town.",
     "C5": "THE TRANSCRIBER NAMED HIM, IN BRACKETS. A reading that carries a bracketed forename — 'Hubbard, [Henry] G.' — is an editorial expansion by whoever transcribed the source: somebody looked at the page and said who this is. That names the person directly, so it outranks any inference drawn from the initials, and in particular it settles a cluster C2 would REFUSE for having two rivals. The bracket is evidence about identity; the initial is only evidence about spelling. Applied no further than a forename the transcription itself supplies.",
-    "U1": "UNDECIDED, AND THE QUESTION IS FILED. Two cards a candidate test joins where the answer needs a reading of the page rather than a rule — both readings are stated, neither is taken, and a ticket owns it. An undecided cluster still satisfies the gate, because the gate asks that a cluster be WEIGHED, not that it be merged."
+    "U1": "UNDECIDED, AND THE QUESTION IS FILED. Two cards a candidate test joins where the answer needs a reading of the page rather than a rule — both readings are stated, neither is taken, and a ticket owns it. An undecided cluster still satisfies the gate, because the gate asks that a cluster be WEIGHED, not that it be merged.",
+    "D3": "A FEMALE HONORIFIC ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not Rufus Brown. The honorific is stripped before two names are compared, which leaves the husband's forename tokens standing on both readings and makes the pair identical; a woman whose only printed name is her husband's is a real and common shape in this corpus and she is never her husband. The refusal is the card-side statement of R6 in tools/consolidate_resident_evidence.py, which holds the two identities apart in the derivation, and it fires on the same evidence: a SOURCE that prints both readings as separate entries (T-0723)."
   },
   "deferred": [
-    {
-      "cluster": "brown-rufus",
-      "cards": [
-        "brown_rufus",
-        "brown_mrs_rufus"
-      ],
-      "to": "T-0723",
-      "why": "T-0723 — 'one identity, two town cards' — owns both this cluster and the Norton one by name, and a branch for it was in flight when this pass ran. Ruling them here would put two runs on the same two cards. The rulings are recorded below as this pass reads them and the cards are left for T-0723 to move."
-    },
-    {
-      "cluster": "norton",
-      "cards": [
-        "norton_n_r",
-        "norton_nelson_r"
-      ],
-      "to": "T-0723",
-      "why": "The same. T-0723 names N. R. Norton and Nelson R. Norton in its title."
-    },
     {
       "cluster": "vanderbogart-henry",
       "cards": [
@@ -133,6 +116,23 @@
           ],
           "against_merge": "T-0839 names John S. Beaubien as a second man, not a duplicate of Jean Baptiste — the ticket's own worked warning. Josette LaFramboise Beaubien is Jean Baptiste's wife and is already a member of his household record; she is in this candidate cluster only because her forename begins with the letter J. and 'J. B. Beaubien' prints an initial.",
           "for_merge": "The surname, and in Josette's case one letter of a forename."
+        }
+      ]
+    },
+    {
+      "id": "brown-rufus",
+      "surname": "brown",
+      "rulings": [
+        {
+          "state": "distinct",
+          "rule": "D3",
+          "members": [
+            "brown_rufus",
+            "brown_mrs_rufus"
+          ],
+          "against_merge": "Fergus 1843 prints them as two entries, one after the other: 458 `Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]` and 459 `Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]`. Two trades, two death notices eighteen years apart, one address — a husband and a wife at 189 Lake, and a directory does not enter one person twice under two spellings. The cards read as one person only because the splitter strips `Mrs` before it compares the names.",
+          "for_merge": "Nothing but the strip. After it, both readings are `Rufus B Brown` letter for letter, which is M1 — and M1 firing here is the defect, not the argument.",
+          "survivor_note": "Neither card moves. The derivation now holds them apart too: R6 in tools/consolidate_resident_evidence.py refuses the merge and mints her a ladder rung of her own, so `Mrs Rufus Brown` stops being a card the ladder never reached."
         }
       ]
     },
@@ -626,6 +626,23 @@
           "for": "Robert Allen Kinzie — merchant, at his own store in the west division, Andreas and the voter rolls — is the one Kinzie whose initials are R. A., and no other Kinzie card carries the letter R at all.",
           "against": "T-0732 records that there are two Robert Kinzie households in the wider research; the town's cards hold exactly one, and this merge does not touch that question.",
           "survivor_note": "Hand-authored; no pass owns it."
+        }
+      ]
+    },
+    {
+      "id": "norton",
+      "surname": "norton",
+      "rulings": [
+        {
+          "state": "merge",
+          "rule": "C2",
+          "survivor": "norton_nelson_r",
+          "folded": [
+            "norton_n_r"
+          ],
+          "for": "One man carried twice. `N. R. Norton` is a letter-list card minted from a single return of uncalled-for letters — the Democrat of 1 July 1835, column 5, printing `Norton N. R.` — and it claims nothing else: no trade, no street, no arrival, no second member. `Nelson R. Norton` is the town's only ship-carpenter, arrived 16 November 1833, builder of the Dearborn Street drawbridge in March 1834. The initials agree letter for letter, N against Nelson and R against R, and he is the ONE full forename of this surname carrying N: the town's other Norton card is `Wm. H. Norton`, a W. That is C2 exactly, and identity_master.json has been deriving the same merge under M2 since it was written — id_norton_nelson_r holds both cards and names only the first as canonical, which is why the letter-list card never got a ladder rung at all (T-0692).",
+          "against": "A letter list names a person whose mail is at Chicago and nothing more, so the folded card could in principle be a Norton the town does not otherwise hold. Nothing reached says so: no second N. Norton is printed anywhere in the corpus, and the card's own research pass (T-0483) closed `no_corroboration_yet` — it found no separate man, which is the outcome that makes the initial's one rival the only rival.",
+          "survivor_note": "The survivor is the card that carries the TRADE, the dated arrival and the structures-layer link (data/structures/dearborn_street_drawbridge.json names him as its builder). The letter-list card carries one appearance, and the merge brings it onto him as what it is: a letter waiting at the post office on 1 July 1835, the scene date, for a man the town already documents."
         }
       ]
     },

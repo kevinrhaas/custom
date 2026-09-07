@@ -16,7 +16,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1360
+   "n": 1359
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -35,9 +35,9 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 157,
+  "residents_matched_one_entry": 158,
   "residents_ambiguous": 46,
-  "residents_contested": 34,
+  "residents_contested": 32,
   "residents_surname_only_refused": 276,
   "voters_matched_one_entry": 123,
   "voters_ambiguous": 39,
@@ -49,7 +49,7 @@
   "heads_1840_ambiguous": 47,
   "heads_1840_surname_only_refused": 183,
   "residents_could_carry_occupation": 98,
-  "residents_could_carry_street": 95
+  "residents_could_carry_street": 96
  },
  "residents": {
   "matches": [
@@ -2998,6 +2998,32 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
+    "name": "Nelson R. Norton",
+    "rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins N.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1107",
+      "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts",
+      "printed_page": 26,
+      "occupation_1839": "bridge-builder, n.-w. cor. N. State",
+      "address_1839": "and Indiana sts",
+      "streets_1839": [
+       "and Indiana sts"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "norton_nelson_r",
+    "household_id": "hh_norton_nelson_r",
+    "grade_1835": "attested",
+    "occupation_1835": "ship_carpenter",
+    "lives_at_1835": null,
+    "could_carry": [
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
+   },
+   {
     "name": "O I Thompson",
     "rule": "Surname 'Thompson' folds to the same string as the 1839 entry's, and the given name of both begins O.",
     "entries_1839": [
@@ -4741,65 +4767,6 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
     "contested_with": [
      "Rufus Brown"
-    ]
-   },
-   {
-    "name": "N. R. Norton",
-    "rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins N. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e1107",
-      "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts",
-      "printed_page": 26,
-      "occupation_1839": "bridge-builder, n.-w. cor. N. State",
-      "address_1839": "and Indiana sts",
-      "streets_1839": [
-       "and Indiana sts"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "norton_n_r",
-    "household_id": "hh_norton_n_r",
-    "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
-    "contested_with": [
-     "Nelson R. Norton"
-    ]
-   },
-   {
-    "name": "Nelson R. Norton",
-    "rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins N. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e1107",
-      "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts",
-      "printed_page": 26,
-      "occupation_1839": "bridge-builder, n.-w. cor. N. State",
-      "address_1839": "and Indiana sts",
-      "streets_1839": [
-       "and Indiana sts"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "norton_nelson_r",
-    "household_id": "hh_norton_nelson_r",
-    "grade_1835": "attested",
-    "occupation_1835": "ship_carpenter",
-    "lives_at_1835": null,
-    "could_carry": [
-     "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
-    "contested_with": [
-     "N. R. Norton"
     ]
    },
    {

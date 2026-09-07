@@ -10,11 +10,11 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1361,
+  "residents_considered": 1360,
   "matched_one_1844_entry": 98,
   "matched_more_than_one_ambiguous": 23,
   "one_1844_entry_contested_by_two_residents": 16,
-  "surname_present_initial_absent_refused": 336,
+  "surname_present_initial_absent_refused": 335,
   "initial_agreed_forenames_disagreed_refused": 48,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_1844_entry_by_that_refusal": 24,
@@ -6382,13 +6382,6 @@
    "surname_in_1844": "Palmer",
    "candidates": 1,
    "rule": "The surname 'Palmer' is in Norris 1844 and no entry under it carries the initial 'N' of 'N. H. Palmer'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "N. R. Norton",
-   "person_id": "norton_n_r",
-   "surname_in_1844": "Norton",
-   "candidates": 6,
-   "rule": "The surname 'Norton' is in Norris 1844 and no entry under it carries the initial 'N' of 'N. R. Norton'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Nathaniel Carpenter",
