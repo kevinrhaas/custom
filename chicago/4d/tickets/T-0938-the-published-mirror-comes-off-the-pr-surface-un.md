@@ -1,7 +1,7 @@
 ---
 id: T-0938
 title: The published mirror comes off the PR surface: untrack site/chicago/4d/ and have deploy.yml publish it
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: T-0857
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1023
 claimed_by: run 9/6/2026, 11:25:53 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T04:45:58.975Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34082709036
 ---
 
