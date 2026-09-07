@@ -61,11 +61,17 @@ TEXTS = ("peoria_putnam_1830_leaves_576_578.txt",
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
 SOURCE_ID = "census_1830_peoria_county_chicago_precinct"
-TICKET = "T-0498, T-0605"
+TICKET = "T-0498, T-0605, T-0757"
 
-# The film item, fixed so a later run can go back to the same pixels.
+# The film item, fixed so a later run can go back to the same pixels. Every record's
+# locator cites the _w2400 derivative, which is what the leaves were read at. The item
+# also serves a FULL-RESOLUTION derivative at .../page/{leaf}.jpg — about twice the
+# linear resolution — and T-0757 re-read n586's family column and re-counted n576's and
+# n580's name rows off that one. Both URLs are stable; the locators are not rewritten,
+# because the reading they carry was made at the magnification they name.
 ITEM = "populationsc18300024unit"
 IMAGE_URL = "https://archive.org/download/%s/page/{leaf}_w2400.jpg" % ITEM
+FULL_RES_IMAGE_URL = "https://archive.org/download/%s/page/{leaf}.jpg" % ITEM
 
 # Rows whose letters are genuinely open. The value is what else the ink could be —
 # never a preference, and never resolved by what would be convenient.
@@ -133,14 +139,24 @@ LEAF_TOTALS = {
              "page": 299, "division_page": 1, "ticket": "T-0605",
              "note": "As CORRECTED by the enumerator. He struck and rewrote six of the nine "
                      "cells and the recapitulation on n586 carries the same six corrections, "
-                     "which is what binds this leaf to this division."},
+                     "which is what binds this leaf to this division. The 55 entries were "
+                     "RE-COUNTED for T-0757 off the full-resolution image in two crops "
+                     "overlapping by one row (Hiram Cleaveland), independently of T-0605's "
+                     "four crops, and stand. n586's page-1 family cell, re-read at the same "
+                     "magnification, is 55 and not the 53 T-0605 read — so this leaf and the "
+                     "recapitulation now agree."},
     "n578": {"first_five_male_columns_as_read": [37, 16, 29, 21, 37], "entries": 56,
              "page": 300, "division_page": 2, "ticket": "T-0605"},
     "n580": {"first_five_male_columns_as_read": [20, 9, 9, 2, 3], "entries": 39,
              "page": 301, "division_page": 3, "ticket": "T-0498",
              "note": "T-0498 read the fifth column as 3; the recapitulation's third row, "
                      "which is this leaf's totals row, prints 38. The reading is left as "
-                     "T-0498 made it and the disagreement is recorded rather than patched."},
+                     "T-0498 made it and the disagreement is recorded rather than patched. "
+                     "The 39 entries were RE-COUNTED for T-0757 off the full-resolution image "
+                     "in two crops overlapping by one row (John Paylin) and stand. n586's "
+                     "page-3 family cell is 88 at that magnification and is NOT 38 or 39, so "
+                     "this leaf and the recapitulation remain the division's one open "
+                     "disagreement."},
     "n582": {"first_five_male_columns_as_read": [16, 5, 14, 8, 10], "entries": 28,
              "page": 302, "division_page": 4, "ticket": "T-0498"},
     "n584": {"first_five_male_columns_as_read": [15, 8, 8, 5, 13], "entries": 22,
@@ -153,12 +169,36 @@ RECAPITULATION = {
     "image": "n586",
     "page": 304,
     "text_file": "peoria_putnam_1830_recapitulation_n586.txt",
-    "families_per_page_as_read": {"1": 53, "2": 56, "3": 88, "4": 28, "5": 22},
+    "families_per_page_as_read": {"1": 55, "2": 56, "3": 88, "4": 28, "5": 22},
     "division_total_as_read": 199,
-    "discrepancy": "The family column as read sums to 247, not to the 199 written under it, "
-                   "and the leaves as read carry 200 heads. Pages 1 and 3 are where the "
-                   "column and the leaves disagree (53 against 55 on n576, 88 against 39 on "
-                   "n580). Recorded, not resolved: nothing in this domain is graded on it.",
+    "read_at": "Full-resolution page derivative, %s, 7170 x 6529 px — twice the linear "
+               "resolution of the _w2400 derivative every record's locator cites. Cells "
+               "autocontrasted and enlarged 7x; the two open cells 10x to 12x beside known "
+               "glyphs from this same leaf. T-0757." % FULL_RES_IMAGE_URL.format(leaf="n586"),
+    "image_url_full_res": FULL_RES_IMAGE_URL.format(leaf="n586"),
+    "superseded_reading": "T-0605 read page 1 as 53 off the _w2400 derivative and offered 197 "
+                          "as available for the total. T-0757 re-read both at twice that "
+                          "magnification: page 1 is 55 (both digits are this hand's 5, "
+                          "identical to the 5 of '15' in the page-1 male row and unlike the 3 "
+                          "of '23' beside it) and the total is 199 (the leading 1 is carried "
+                          "in on an approach stroke; both following figures are 9s).",
+    "discrepancy": "The family column as re-read sums to 249, not to the 199 written under it, "
+                   "and the leaves as read carry 200 heads. ONE cell of the five now disagrees "
+                   "with the leaf it totals, not two: page 1 was a reading error and is "
+                   "corrected to 55, which is what n576 carries; page 3 prints 88 against the "
+                   "39 heads on n580 and is a real disagreement, left open. Recorded, not "
+                   "resolved: nothing in this domain is graded on it.",
+    "arithmetic_observation_not_adopted": "With page 3 taken as 38 the column would sum to 199 "
+                   "exactly, so the copyist's own total is consistent with 38 and with nothing "
+                   "else. That is an observation about his arithmetic and NOT a reading: the "
+                   "ink is unambiguously 88 at full resolution (both digits are closed "
+                   "figure-eights, matching the 8 of the page-3 male row's '38' and the 8 of "
+                   "the page-4 family cell's '28'), and this project does not correct a page "
+                   "to make a sum work. 38 would in any case still be one short of n580's 39.",
+    "leaf_counts_re_derived": "T-0757 re-counted the name rows of n576 and n580 off the "
+                   "full-resolution images, independently of T-0498's and T-0605's crops, in "
+                   "two crops per leaf overlapping by one row so that no row falls in a seam "
+                   "(Hiram Cleaveland on n576, John Paylin on n580). Both stand: 55 and 39.",
 }
 
 
