@@ -133,6 +133,24 @@ jobs:
               p.write_text(new)
               print(f"stamped: {stamp}")
           PY
+      # The 4D ticket board is GENERATED, not committed (T-0937), so the tree this
+      # job checked out does not carry site/chicago/4d/tickets.json — the URL
+      # Manager's queue card reads (T-0030). Build it here, into the artifact.
+      #
+      # `board` is a pure function of chicago/4d/tickets/*.md and takes
+      # milliseconds; it writes tickets/tickets.json and mirrors it into site/.
+      #
+      # NOT FATAL, and that is fleet doctrine rather than laziness: deploy is
+      # ungated on purpose (see chicago-4d-promote-to-prod.yml — a hard test gate
+      # on deploy once froze a fleet site for ~21 hours). A board that fails to
+      # build must cost one JSON file, not the whole site.
+      - name: Materialise the 4D ticket board into the artifact
+        run: |
+          if [ -d chicago/4d/tickets ]; then
+            (cd chicago/4d && node tools/ticket.mjs board) \
+              || echo "::warning::4D ticket board did not build — /chicago/4d/tickets.json will be missing from this deploy"
+          fi
+
       # The /chicago/4d/dev/ integration preview. No-ops until the `dev` ref
       # exists, so this workflow is safe on a repo that has never activated the
       # pipeline. Scoped to the 4D app: the script copies only site/chicago/4d/.
@@ -146,6 +164,12 @@ jobs:
             # the stamp on a branch that never moved.
             when="$(git show -s --format=%cI FETCH_HEAD)"
             git worktree add _dev-src FETCH_HEAD
+            # The preview copies _dev-src/site/chicago/4d wholesale, so the dev
+            # worktree needs its generated board too (T-0937) — otherwise the
+            # preview would be the one tier missing /tickets.json. Same
+            # non-fatal treatment as the production tree above.
+            (cd _dev-src/chicago/4d && node tools/ticket.mjs board) \
+              || echo "::warning::dev-preview: 4D ticket board did not build in the dev worktree"
             node .github/chicago-4d-dev-preview.mjs _dev-src "$sha" "$when"
             git worktree remove --force _dev-src
           else

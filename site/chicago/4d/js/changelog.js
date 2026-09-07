@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 661, title: 'The three files every branch fought over are not files any more', kind: 'change', ts: '2026-09-07T03:36:54.941Z', date: 'Sep 6, 2026, 10:36 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is about why work on the town kept arriving late, and it is the plainest fault this project has had in weeks.',
+      'The backlog is kept as one file per ticket. Two summaries are built from those files — a readable board, and a machine copy that this site publishes so the fleet’s manager can show the queue. Both were rebuilt automatically and then committed, like any other file.',
+      'That is what jammed the work. The first thing any run does is claim its ticket, and claiming rewrites all three summaries — before a single word of the actual job is done. So two runs working on entirely unrelated things collided immediately, in files neither of them had thought about, and one of them had to stop and redo the merge by hand. One recent piece of work was interrupted five times in seventy minutes, and every one of the five collisions was in a generated file rather than in anything either run had written.',
+      'A rule had been added to reconcile them automatically, and it worked — on a developer’s machine. GitHub does not run rules that live inside a repository, so the merge that actually decides whether work can land never saw it, and kept calling every branch conflicted.',
+      'The summaries are no longer committed at all. A file that is not stored cannot be fought over, by a person or by a server. Everything that needs one now builds its own the moment it needs it — the checks, the publishing step, and the deploy that assembles this site — so the published queue this site serves is exactly what it was, and the collisions are gone rather than automated around.',
+      'The publishing stamps two other files the same way and they are unchanged for now; taking the whole published copy of the site out of the repository is the larger half, and it is written down as the next piece rather than smuggled in beside this one.',
+    ] },
   { v: 660, title: 'A census page that is either fours or elevens, settled', kind: 'change', ts: '2026-09-07T02:40:54.338Z', date: 'Sep 6, 2026, 9:40 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is one leaf of the 1840 census of Chicago \u2014 a right-hand page that carries the numbers and no names \u2014 read line by line for the first time.',
