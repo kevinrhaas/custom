@@ -1,7 +1,7 @@
 ---
 id: T-0927
 title: Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/7/2026, 12:32:29 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34087017525
 ---
 
 Six open PRs propose work that is already on `dev` under another number. Each is closed —
