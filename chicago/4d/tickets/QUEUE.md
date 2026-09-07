@@ -84,7 +84,6 @@
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
 T-0955 — Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now
 T-0956 — Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames
-T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
 # --- ==========================================================================
 # --- THE CORE DATASET — OWNER INSTRUCTION, 2026-09-04, RE-ISSUED 2026-09-05
