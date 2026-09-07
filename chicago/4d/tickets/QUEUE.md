@@ -133,7 +133,6 @@ T-0788 — Wright numbers all 58 blocks of the Original Town and this project ha
 # --- census 1.0%, church and Newberry 0.0%.
 T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
-T-0912 — Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
 T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
@@ -457,8 +456,9 @@ T-0946 — The placement derivation module cannot express a frontage on a street
 T-0947 — Two reconciliations of the same T-0812 ruling put the Steamboat Hotel 36 m apart: dev carries one and PR #975 the other, with no test that would have caught it
 T-0948 — A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
 T-0949 — The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
-T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
 T-0950 — Dr Henry Van der Bogart stands on two town cards: the death notice's Henry and the letter list's H., newly visible since T-0724 taught the splitter the compound surname
+
