@@ -77,7 +77,7 @@ def mint_with(reading, docs: dict, index: dict):
     """`mint()` run under a given reading of a printed name.
 
     Every one of the pass's own rules is used unchanged — the pool, the ranking and
-    all eight refusals — because a second implementation of them would be measuring
+    all nine refusals — because a second implementation of them would be measuring
     something other than the pass.
     """
     original = m.surname
@@ -278,6 +278,14 @@ def lines(d: dict) -> list[str]:
         "pre-T-0638 reading of a printed name, once under the corrected one — and reports the",
         "difference. `--check` re-derives it and fails if this file has drifted from what the",
         "tree now says, so it cannot quietly go stale.",
+        "",
+        "T-0843 MOVED ONE ROW OUT OF THIS REPORT AND THE REASON IS WORTH READING. The pass",
+        "now consults the cross-domain identity master before it writes a card, so",
+        "`Norton N. R.` is refused under BOTH readings — the master resolves the initials",
+        "onto the committed Nelson R. Norton whichever token the old rule took for a",
+        "surname. It was never a difference between the two readings; the surname test was",
+        "simply too blunt to see it under one of them. The count below fell by one",
+        "accordingly, and nothing was retired to make that happen.",
         "",
         "T-0660 asks for this list before anything is retired, and the reason is in the third",
         "section: the pass's own ranking would not always keep the better record, and two of",

@@ -100,7 +100,6 @@ T-0930 — Empty the hold label: rule on every PR parked for the owner, closing 
 
 
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
-T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
 # --- G2 — SPEND WHAT IS ALREADY ADJUDICATED. The bottleneck, and it has not moved: rulings exist
 # --- that no card carries. Nothing here reads a new source either — every one turns research
@@ -460,3 +459,7 @@ T-0947 — Two reconciliations of the same T-0812 ruling put the Steamboat Hotel
 T-0948 — A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
 T-0949 — The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
 T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0950 — Dr Henry Van der Bogart stands on two town cards: the death notice's Henry and the letter list's H., newly visible since T-0724 taught the splitter the compound surname
