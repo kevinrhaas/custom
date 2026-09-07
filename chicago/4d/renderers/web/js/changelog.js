@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The census page was leaning, and every column read the wrong one', kind: 'change', ts: '',
+  { v: 661, title: 'The census page was leaning, and every column read the wrong one', kind: 'change', ts: '2026-09-07T03:02:49.116Z', date: 'Sep 6, 2026, 10:02 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is one leaf of the 1840 census of Chicago \u2014 a right-hand page, the one that carries a household\u2019s size and its trades rather than its name \u2014 and the reason two earlier passes could not make its columns add up.',
       'The page is a printed grid, and reading it means finding the printed rules and reading whatever sits between them. An earlier pass measured those rules once, along the bottom of the leaf. It was careful, and it was right only at the bottom: the whole form leans, every rule sliding twenty to thirty pixels left as it goes down the page, so at the top the window was a half-column out.',
