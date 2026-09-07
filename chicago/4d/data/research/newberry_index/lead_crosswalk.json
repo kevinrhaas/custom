@@ -44,16 +44,16 @@
   }
  ],
  "counts": {
-  "leads_ruled": 971,
-  "cards_ruled": 1374,
+  "leads_ruled": 976,
+  "cards_ruled": 1380,
   "by_outcome": {
-   "refused": 714,
+   "refused": 719,
    "candidate": 257
   },
   "by_class": {
-   "ocr_variant_only": 337,
+   "ocr_variant_only": 338,
    "testable_in_a_held_work": 257,
-   "locality_absent": 282,
+   "locality_absent": 286,
    "surname_only_chicago": 95
   },
   "matched": 0,
@@ -13730,6 +13730,33 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v02_foot_census_1840",
+   "surname_key": "foot",
+   "spellings_as_printed": [
+    "Foot a"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading 'Foot a' name Illinois and neither Chicago nor Cook County, so the lead against an arc with a hook at its left foot stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v02_0090"
+   ],
+   "candidates": [
+    {
+     "id": "33S7-9YYJ-L3:l21",
+     "name": "an arc with a hook at its left foot",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v02_foot_residents",
    "surname_key": "foot",
    "spellings_as_printed": [
@@ -13821,6 +13848,40 @@
     "county_histories_kett_and_co"
    ],
    "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_foote_census_1840",
+   "surname_key": "foote",
+   "spellings_as_printed": [
+    "Foote"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Foote' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Foote' at all. And if it were, a heading against an arc with a hook at its left foot would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v02_0087",
+    "nbi_v02_0088",
+    "nbi_v02_0089",
+    "nbi_v02_0091",
+    "nbi_v02_0092"
+   ],
+   "candidates": [
+    {
+     "id": "33S7-9YYJ-L3:l21",
+     "name": "an arc with a hook at its left foot",
+     "rule": "OCR variant (0.89 similarity to 'foot')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "andreas_history_of_chicago",
+    "county_histories_kett_and_co"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
    "discriminators": []
   },
   {
@@ -14002,6 +14063,33 @@
    "held_works": [
     "andreas_history_of_chicago"
    ],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_footo_census_1840",
+   "surname_key": "footo",
+   "spellings_as_printed": [
+    "Footo f"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Footo f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Footo f' at all. And if it were, a heading against an arc with a hook at its left foot would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v02_0086"
+   ],
+   "candidates": [
+    {
+     "id": "33S7-9YYJ-L3:l21",
+     "name": "an arc with a hook at its left foot",
+     "rule": "OCR variant (0.89 similarity to 'foot')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "century_encyclopedia_of_biography"
+   ],
+   "held_works": [],
    "discriminators": []
   },
   {
@@ -16861,8 +16949,8 @@
    ],
    "layer": "census_1840",
    "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Hand' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Hand' at all. And if it were, a heading against Mrs L[?] Handy would still be a surname against a person, which is always a refusal here.",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading 'Hand' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v02_0648"
    ],
@@ -16871,6 +16959,11 @@
      "id": "33S7-9YYJ-2T:l9",
      "name": "Mrs L[?] Handy",
      "rule": "OCR variant (0.89 similarity to 'handy')"
+    },
+    {
+     "id": "33S7-9YYJ-L3:l2",
+     "name": "a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing",
+     "rule": "exact surname"
     }
    ],
    "person_ids": [],
@@ -16927,7 +17020,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'Handy/Handy or Handy' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'Handy/Handy or Handy' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v02_0651",
     "nbi_v02_0652"
@@ -16937,6 +17030,11 @@
      "id": "33S7-9YYJ-2T:l9",
      "name": "Mrs L[?] Handy",
      "rule": "exact surname"
+    },
+    {
+     "id": "33S7-9YYJ-L3:l2",
+     "name": "a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing",
+     "rule": "OCR variant (0.89 similarity to 'hand')"
     }
    ],
    "person_ids": [],
@@ -17669,12 +17767,17 @@
    ],
    "layer": "census_1840",
    "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Head' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Head' at all. And if it were, a heading against Daniel Heald would still be a surname against a person, which is always a refusal here.",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading 'Head' name Illinois and neither Chicago nor Cook County, so the lead against an arc with a blob at its head; Daniel Heald stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v02_0817"
    ],
    "candidates": [
+    {
+     "id": "33S7-9YYJ-L3:l25",
+     "name": "an arc with a blob at its head",
+     "rule": "exact surname"
+    },
     {
      "id": "33S7-9YYJ-RC:l10",
      "name": "Daniel Heald",
@@ -22124,6 +22227,39 @@
     "century_encyclopedia_of_biography",
     "county_histories_kett_and_co",
     "moses_kirkland_history_of_chicago"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v03_liner_census_1840",
+   "surname_key": "liner",
+   "spellings_as_printed": [
+    "liner"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'liner' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'liner' at all. And if it were, a heading against an arc below the 5 above it, on its own line would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v03_0669",
+    "nbi_v03_0670",
+    "nbi_v03_0671",
+    "nbi_v03_0672"
+   ],
+   "candidates": [
+    {
+     "id": "33S7-9YYJ-L3:l20",
+     "name": "an arc below the 5 above it, on its own line",
+     "rule": "OCR variant (0.89 similarity to 'line')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "andreas_history_of_chicago",
+    "sons_of_the_american_revolution_illinois_1896"
    ],
    "held_works": [
     "andreas_history_of_chicago"
@@ -29735,6 +29871,35 @@
    ],
    "person_ids": [],
    "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v03_rule_census_1840",
+   "surname_key": "rule",
+   "spellings_as_printed": [
+    "Rule",
+    "Rule r"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 2 card(s) heading 'Rule/Rule r' name Illinois and neither Chicago nor Cook County, so the lead against a 5, the top stroke crossing the cell rule stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v03_1936",
+    "nbi_v03_1937"
+   ],
+   "candidates": [
+    {
+     "id": "33S7-9YYJ-L3:l22",
+     "name": "a 5, the top stroke crossing the cell rule",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
    "held_works": [],
    "discriminators": []
   },
@@ -42849,15 +43014,17 @@
   {
    "record_id": "nbi_v02_0087",
    "a": "Foote | Boone Co., III. (Kelt 4 Co., Pub.) 1877: 3 4 8 .",
-   "b": "John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | Boone Co., III. (Kelt 4 Co., Pub.) 1877: 3 4 8 .' against John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | Boone Co., III. (Kelt 4 Co., Pub.) 1877: 3 4 8 .' against an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_foote_census_1840",
     "lead_v02_foote_residents",
     "lead_v02_foote_voters"
    ],
@@ -42887,15 +43054,17 @@
   {
    "record_id": "nbi_v02_0088",
    "a": "Foote | Chicago, III. (Andreas, A; T.) 1P-\"4-6l 2-3.",
-   "b": "John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | Chicago, III. (Andreas, A; T.) 1P-\"4-6l 2-3.' against John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | Chicago, III. (Andreas, A; T.) 1P-\"4-6l 2-3.' against an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_foote_census_1840",
     "lead_v02_foote_residents",
     "lead_v02_foote_voters"
    ],
@@ -42925,15 +43094,17 @@
   {
    "record_id": "nbi_v02_0089",
    "a": "Foote | Fulton C o , I i i . (CLapLian, C, t i Co.) IU79l",
-   "b": "John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | Fulton C o , I i i . (CLapLian, C, t i Co.) IU79l' against John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | Fulton C o , I i i . (CLapLian, C, t i Co.) IU79l' against an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_foote_census_1840",
     "lead_v02_foote_residents",
     "lead_v02_foote_voters"
    ],
@@ -42963,15 +43134,17 @@
   {
    "record_id": "nbi_v02_0091",
    "a": "Foote | — Rockford and Winnebago Co.,111.",
-   "b": "John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | — Rockford and Winnebago Co.,111.' against John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | — Rockford and Winnebago Co.,111.' against an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_foote_census_1840",
     "lead_v02_foote_residents",
     "lead_v02_foote_voters"
    ],
@@ -43001,15 +43174,17 @@
   {
    "record_id": "nbi_v02_0092",
    "a": "Foote | — W i i i t . e L t o Co., l i l , (Kell, I I . F., ü ( Y . i b.)",
-   "b": "John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | — W i i i t . e L t o Co., l i l , (Kell, I I . F., ü ( Y . i b.)' against John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 5 card(s) heading 'Foote' name Chicago or Cook County, the heading is the surname of John Foote; Star Foote exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Foote | — W i i i t . e L t o Co., l i l , (Kell, I I . F., ü ( Y . i b.)' against an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_foote_census_1840",
     "lead_v02_foote_residents",
     "lead_v02_foote_voters"
    ],
@@ -66509,15 +66684,17 @@
   {
    "record_id": "nbi_v02_0086",
    "a": "Footo f | Illinois, Encyclo of biog.fCentnrv Co., Pub.)",
-   "b": "John Foot; S. Foot; John Foot; Starr Foot; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foot; Starr Foot; John Foot",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Footo f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Footo f' at all. And if it were, a heading against John Foot; S. Foot would still be a surname against a person, which is always a refusal here. Ruled on the card 'Footo f | Illinois, Encyclo of biog.fCentnrv Co., Pub.)' against John Foot; S. Foot; John Foot; Starr Foot; John Foot.",
+   "rule": "Refused twice over. No candidate reaches 'Footo f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Footo f' at all. And if it were, a heading against an arc with a hook at its left foot would still be a surname against a person, which is always a refusal here. Ruled on the card 'Footo f | Illinois, Encyclo of biog.fCentnrv Co., Pub.)' against an arc with a hook at its left foot; John Foot; S. Foot; John Foot; Starr Foot; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_footo_census_1840",
     "lead_v02_footo_residents",
     "lead_v02_footo_voters"
    ],
@@ -66545,15 +66722,17 @@
   {
    "record_id": "nbi_v02_0090",
    "a": "Foot a | » _ 0 g l e Co,, lll..(Kctt, H. F., 4 Co.) 1878: 7 5 5",
-   "b": "John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
+   "b": "an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Foot a' name Illinois and neither Chicago nor Cook County, so the lead against John Foot; S. Foot; John Foote; Star Foote stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Foot a | » _ 0 g l e Co,, lll..(Kctt, H. F., 4 Co.) 1878: 7 5 5' against John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
+   "rule": "Refused. All 1 card(s) heading 'Foot a' name Illinois and neither Chicago nor Cook County, so the lead against an arc with a hook at its left foot stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Foot a | » _ 0 g l e Co,, lll..(Kctt, H. F., 4 Co.) 1878: 7 5 5' against an arc with a hook at its left foot; John Foot; S. Foot; John Foote; Star Foote; John Foot; Starr Foot; John Foote; Star Foote; John Foot.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v02_foot_census_1840",
     "lead_v02_foot_residents",
     "lead_v02_foot_voters"
    ],
@@ -69076,10 +69255,10 @@
   {
    "record_id": "nbi_v02_0648",
    "a": "Hand | _ _ Sangamon Co,, III. (Power, J, C) 1876.: 19.",
-   "b": "Mrs L[?] Handy; George E Hands; Henry S Handy; Major Handy",
+   "b": "Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing; George E Hands; Henry S Handy; Major Handy",
    "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Hand' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Hand' at all. And if it were, a heading against Mrs L[?] Handy would still be a surname against a person, which is always a refusal here. Ruled on the card 'Hand | _ _ Sangamon Co,, III. (Power, J, C) 1876.: 19.' against Mrs L[?] Handy; George E Hands; Henry S Handy; Major Handy.",
+   "class": "locality_absent",
+   "rule": "Refused. All 1 card(s) heading 'Hand' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Hand | _ _ Sangamon Co,, III. (Power, J, C) 1876.: 19.' against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing; George E Hands; Henry S Handy; Major Handy.",
    "layers": [
     "census_1840",
     "residents"
@@ -69113,10 +69292,10 @@
   {
    "record_id": "nbi_v02_0651",
    "a": "Handy or Handy | Illinois. See, Sent Am. Rev, I896U44.",
-   "b": "Mrs L[?] Handy; Henry S Handy; Major Handy",
+   "b": "Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing; Henry S Handy; Major Handy",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Handy/Handy or Handy' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Handy or Handy | Illinois. See, Sent Am. Rev, I896U44.' against Mrs L[?] Handy; Henry S Handy; Major Handy.",
+   "rule": "Refused. All 2 card(s) heading 'Handy/Handy or Handy' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Handy or Handy | Illinois. See, Sent Am. Rev, I896U44.' against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing; Henry S Handy; Major Handy.",
    "layers": [
     "census_1840",
     "residents"
@@ -69149,10 +69328,10 @@
   {
    "record_id": "nbi_v02_0652",
    "a": "Handy | tin.cagc, 111, (Andreat, A. T„ . , « I ill",
-   "b": "Mrs L[?] Handy; Henry S Handy; Major Handy",
+   "b": "Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing; Henry S Handy; Major Handy",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Handy/Handy or Handy' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Handy | tin.cagc, 111, (Andreat, A. T„ . , « I ill' against Mrs L[?] Handy; Henry S Handy; Major Handy.",
+   "rule": "Refused. All 2 card(s) heading 'Handy/Handy or Handy' name Illinois and neither Chicago nor Cook County, so the lead against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Handy | tin.cagc, 111, (Andreat, A. T„ . , « I ill' against Mrs L[?] Handy; a long horizontal stroke running right to the cell rule with a bowl beneath it — this hand's 5, the form T-0656 read in the footing; Henry S Handy; Major Handy.",
    "layers": [
     "census_1840",
     "residents"
@@ -69666,10 +69845,10 @@
   {
    "record_id": "nbi_v02_0817",
    "a": "Head | _ _ Dudley Fam. (Dudley, D.) 1806-94. Seoinjc, III.",
-   "b": "Daniel Heald",
+   "b": "an arc with a blob at its head; Daniel Heald",
    "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Head' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Head' at all. And if it were, a heading against Daniel Heald would still be a surname against a person, which is always a refusal here. Ruled on the card 'Head | _ _ Dudley Fam. (Dudley, D.) 1806-94. Seoinjc, III.' against Daniel Heald.",
+   "class": "locality_absent",
+   "rule": "Refused. All 1 card(s) heading 'Head' name Illinois and neither Chicago nor Cook County, so the lead against an arc with a blob at its head; Daniel Heald stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Head | _ _ Dudley Fam. (Dudley, D.) 1806-94. Seoinjc, III.' against an arc with a blob at its head; Daniel Heald.",
    "layers": [
     "census_1840"
    ],
@@ -75038,6 +75217,130 @@
    "ticket": "T-0590"
   },
   {
+   "record_id": "nbi_v03_0669",
+   "a": "liner | * Cook Co., III. (Andreas, A. T.) 1884 :508, I",
+   "b": "an arc below the 5 above it, on its own line",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'liner' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'liner' at all. And if it were, a heading against an arc below the 5 above it, on its own line would still be a surname against a person, which is always a refusal here. Ruled on the card 'liner | * Cook Co., III. (Andreas, A. T.) 1884 :508, I' against an arc below the 5 above it, on its own line.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_liner_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0669",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1343,
+     1344
+    ],
+    "index_page": 311,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_0670",
+   "a": "liner | .Illinois, Soc. Sans Am. Rev. 1896: \" • . . .",
+   "b": "an arc below the 5 above it, on its own line",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'liner' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'liner' at all. And if it were, a heading against an arc below the 5 above it, on its own line would still be a surname against a person, which is always a refusal here. Ruled on the card 'liner | .Illinois, Soc. Sans Am. Rev. 1896: \" • . . .' against an arc below the 5 above it, on its own line.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_liner_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0670",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1345,
+     1346
+    ],
+    "index_page": 311,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_0671",
+   "a": "liner | J 683.7 Fulton Co , III. it-hapmau, C b. .c: ,o.l 1U/J:",
+   "b": "an arc below the 5 above it, on its own line",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'liner' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'liner' at all. And if it were, a heading against an arc below the 5 above it, on its own line would still be a surname against a person, which is always a refusal here. Ruled on the card 'liner | J 683.7 Fulton Co , III. it-hapmau, C b. .c: ,o.l 1U/J:' against an arc below the 5 above it, on its own line.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_liner_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0671",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1347,
+     1348
+    ],
+    "index_page": 311,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_0672",
+   "a": "liner | r 83,001 Chicago, 111. (Andreas, A. T.) 1884-61 2 - SB",
+   "b": "an arc below the 5 above it, on its own line",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'liner' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'liner' at all. And if it were, a heading against an arc below the 5 above it, on its own line would still be a surname against a person, which is always a refusal here. Ruled on the card 'liner | r 83,001 Chicago, 111. (Andreas, A. T.) 1884-61 2 - SB' against an arc below the 5 above it, on its own line.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_liner_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0672",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1349,
+     1350
+    ],
+    "index_page": 311,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
    "record_id": "nbi_v03_0681",
    "a": "Mitcholl | Chicago, III, «ndreat, A, T.) I884-61 1.3. Mitch",
    "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
@@ -79256,6 +79559,68 @@
     ],
     "index_page": 965,
     "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_1936",
+   "a": "Rule r | Bureau Co,, III. (Kett eV Co, Pub,) 1877: 393.",
+   "b": "a 5, the top stroke crossing the cell rule",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "rule": "Refused. All 2 card(s) heading 'Rule/Rule r' name Illinois and neither Chicago nor Cook County, so the lead against a 5, the top stroke crossing the cell rule stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Rule r | Bureau Co,, III. (Kett eV Co, Pub,) 1877: 393.' against a 5, the top stroke crossing the cell rule.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_rule_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_1936",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3877,
+     3878
+    ],
+    "index_page": 968,
+    "column": 3
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_1937",
+   "a": "Rule | LM3di3on Co., III. (Brink, W. fl. & f o . , Pub*)",
+   "b": "a 5, the top stroke crossing the cell rule",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "rule": "Refused. All 2 card(s) heading 'Rule/Rule r' name Illinois and neither Chicago nor Cook County, so the lead against a 5, the top stroke crossing the cell rule stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Rule | LM3di3on Co., III. (Brink, W. fl. & f o . , Pub*)' against a 5, the top stroke crossing the cell rule.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_rule_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_1937",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     3879,
+     3880
+    ],
+    "index_page": 969,
+    "column": 0
    },
    "ticket": "T-0590"
   },
