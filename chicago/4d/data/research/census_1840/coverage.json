@@ -516,11 +516,18 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-FJ.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 29,
      "what_it_is": "continuation sheet: slaves, family total, industry, pensioners, schools",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "read_line_by_line",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-FJ.json",
+     "lines_with_an_entry_note": "29, measured against the leaf's own 30-line grid (T-0743): 30 ruled lines carry ink and line 14 carries only a 13 x 14 px mark, half the height of every figure the leaf writes. This file carried 31 'to the nearest line' from the contact-sheet pass and pairing_key_26_50.json carried 28 counted by eye off a strip; both are superseded by a grid measured over two independent sets of ink.",
+     "paired_to_printed_page": null,
+     "paired_by": "unpaired. T-0656 refused every candidate; T-0743 re-tried the strongest of them (printed 207) line by line and the refusal stands.",
+     "read_by": "T-0743 (piece 2 of the split of T-0657)",
+     "what_was_read": "the column geometry off the leaf's own printed rules (read_census_continuation.py refuses this leaf and the rules were located by hand from its own continuity profile), the row index as a uniform 30-line grid fitted over the TOTAL column's groups and the five written industry columns together, the five industry columns line by line - all five of which close exactly on the enumerator's own printed footings, 2, 9, 4, 3 and 3 - the TOTAL column line by line against a glyph key those closures calibrate (21 lines committed, 9 unread), and the footer row. The slaves, pensioners, deaf/dumb/blind/insane and schools blocks carry no ink on this leaf and are recorded as not written rather than as zeros.",
+     "what_was_not_read": "lines 5, 6, 7, 10, 11, 13, 14, 23 and 24 of the TOTAL column. Lines 6 and 24 are groups too tall or too wide to hold one figure and were not divided; lines 5, 11 and 23 carry an industry entry and no TOTAL ink above the threshold; the rest are fragments. The 21 committed lines sum to 93 against a printed footing of 135 and the 42-person residual is left standing.",
+     "footing_settled": "T-0743's ask. The footing is 135. 138 is refused on the glyph - the leaf's own 8 is a crossed figure-eight and the footing's third glyph is the uncrossed bowl-under-a-right-curling-top it writes seven times in the body - and 185 on the arithmetic, which would need every one of the nine unread lines to be a two-figure number."
     },
     {
      "index": 28,
