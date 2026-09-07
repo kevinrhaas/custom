@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 9:56 PM",
+  "generated_ct": "Sep 6, 2026, 10:14 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -12768,7 +12768,7 @@
     {
       "id": "T-0754",
       "title": "33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl",
-      "state": "open",
+      "state": "claimed",
       "epic": "META",
       "requested_by": "loop",
       "seen": false,
@@ -12778,11 +12778,11 @@
       "opened": "2026-09-05",
       "closed": null,
       "pr": null,
-      "claimed_by": null,
+      "claimed_by": "run 9/6/2026, 9:24:27 PM CT",
       "blocked_on": null,
       "needs_bake": false,
       "closed_at": null,
-      "claimed_run": null,
+      "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34075958321",
       "queue_rank": 15
     },
     {
@@ -15804,6 +15804,46 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 1
+    },
+    {
+      "id": "T-0934",
+      "title": "A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 183
+    },
+    {
+      "id": "T-0935",
+      "title": "S. W. Sherman never wrote a nought at the foot of 6H or 5V, so the only footing nought in the deposit is on a leaf whose hand is unestablished: settle whether 33S7-9YYJ-8D is his",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 184
     }
   ]
 }

@@ -1,5 +1,5 @@
 ---
-id: T-0927
+id: T-0935
 title: S. W. Sherman never wrote a nought at the foot of 6H or 5V, so the only footing nought in the deposit is on a leaf whose hand is unestablished: settle whether 33S7-9YYJ-8D is his
 state: open
 epic: META
