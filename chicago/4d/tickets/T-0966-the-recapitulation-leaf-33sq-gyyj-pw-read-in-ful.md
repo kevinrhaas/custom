@@ -1,7 +1,7 @@
 ---
 id: T-0966
 title: The recapitulation leaf 33SQ-GYYJ-PW read in full: thirty page totals braced into six wards, and the grand total that closes them
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-07
+pr: 1035
 claimed_by: run 9/7/2026, 12:14:00 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T17:56:57.209Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34146410074
 ---
 
