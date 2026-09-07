@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 672, title: 'A match withdrawn by the arrival of a namesake', kind: 'fix', ts: '2026-09-07T14:01:22.337Z', date: 'Sep 7, 2026, 9:01 AM CT',
+    items: [
+      'Nothing in the town moved today. A ruling this project had already made was taken back, because the evidence that supported it stopped supporting it.',
+      'John Davis kept the Steamboat Hotel and he is on his own card as a matched head of the 1840 federal census \u2014 printed page 232, line 13, one John Davis on the sheets and one John Davis among the people of 1835. A name that is unique on both sides is allowed to identify a man here. That is the rule, and it had been met.',
+      'Reading two more leaves of the same census produced a second John Davis, printed page 212, line 14. There are now two of him on the sheets and one of him in the town, and a name two people share cannot identify either of them. Both heads are refused, and the paragraph that had been written onto the hotel-keeper\u2019s card is off it again, along with the citation that came with it.',
+      'Nobody decided this. The rule that refuses a shared name is the same rule that granted the match, run again over more sheets; the point of writing rules down is that they are allowed to take things away as well as give them. What was missing was the hand to carry it out: the check that watches for a card still carrying a paragraph for a ruling that has been withdrawn has been in place for a while, and until today the only way to satisfy it was by hand. The pass can now withdraw its own work, and it is held to leaving the record exactly as it found it.',
+      'This is what reading more of a source is supposed to do. Nine other files that are compiled rather than written \u2014 four crosswalks between the directories and the town, the index of who is who across every source, the final audit of what every person rests on \u2014 moved with it, and every one of them was rebuilt by the tool that owns it rather than edited.',
+    ] },
   { v: 671, title: 'Two census sheets read to the cell, and a column nobody had looked in', kind: 'change', ts: '2026-09-07T12:28:33.453Z', date: 'Sep 7, 2026, 7:28 AM CT',
     items: [
       'Nothing in the town moved today. Two more leaves of the 1840 federal census of Chicago have been read off the page images \u2014 printed pages 212 and 213 \u2014 and this time to the cell rather than only to the name.',
