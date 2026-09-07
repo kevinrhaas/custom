@@ -1,7 +1,7 @@
 ---
 id: T-0955
 title: Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0932
 opened: 2026-09-07
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/7/2026, 4:49:07 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34107716339
 ---
 
 Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now.
