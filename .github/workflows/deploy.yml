@@ -136,8 +136,18 @@ jobs:
       # The /chicago/4d/dev/ integration preview. No-ops until the `dev` ref
       # exists, so this workflow is safe on a repo that has never activated the
       # pipeline. Scoped to the 4D app: the script copies only site/chicago/4d/.
+      #
+      # THE MIRROR IS BUILT HERE, NOT READ OUT OF THE BRANCH. It used to be
+      # copied straight from the dev worktree, which worked only while
+      # `site/chicago/4d/` was committed. T-0937/T-0938 took that generated tree
+      # off the PR surface — correctly: it was the thing every branch conflicted
+      # on — and the preview went to a 404 the same day, because its only source
+      # was the copy in git. Production was untouched and every deploy stayed
+      # green, so nothing said so. A build product has to be built, so this runs
+      # the app's own publisher in the worktree first and mirrors what it writes.
       - name: Assemble the 4D dev preview (no-op until the dev ref exists)
         run: |
+          set -euo pipefail
           if git fetch origin dev 2>/dev/null; then
             sha="$(git rev-parse --short FETCH_HEAD)"
             # The dev HEAD's own commit date, so the preview gate can say how
@@ -146,6 +156,9 @@ jobs:
             # the stamp on a branch that never moved.
             when="$(git show -s --format=%cI FETCH_HEAD)"
             git worktree add _dev-src FETCH_HEAD
+            # Publish inside the worktree. `set -e` above means a failure here
+            # fails the deploy rather than quietly shipping yesterday's preview.
+            ( cd _dev-src/chicago/4d && bash tools/publish.sh )
             node .github/chicago-4d-dev-preview.mjs _dev-src "$sha" "$when"
             git worktree remove --force _dev-src
           else
