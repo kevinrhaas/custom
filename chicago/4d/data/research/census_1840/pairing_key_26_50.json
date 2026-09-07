@@ -410,12 +410,12 @@
    "page_population_key": 115,
    "page_population_key_state": "read_this_pass",
    "page_population_key_note": "1-1-5, the 5 with the long horizontal top stroke that runs to the cell's right rule.",
-   "line_count_key": null,
-   "line_count_key_state": "not_counted_this_pass",
-   "line_count_key_note": "coverage.json carries 31 from the contact-sheet pass. tools/census_total_column.py --x0 0.300 --x1 0.360 --y0 0.175 --y1 0.918 measures 29 groups at dy 45 and 55. The two are not reconciled here and the count is left to T-0657, which reads this sheet line by line - the pairing does not turn on it, because no left sheet in the deposit comes within 2 of 115 on the population key.",
+   "line_count_key": 27,
+   "line_count_key_state": "read_line_by_line",
+   "line_count_key_note": "27, measured by T-0744's line-by-line reading (data/research/census_1840/pages/33S7-9YYJ-L3.json). Both figures this file and coverage.json carried are superseded. coverage.json's 31 was 'to the nearest line' off the contact sheet. This file's 29 was measured with census_total_column.py over x 0.300-0.360 and y 0.175-0.918 of the image; on this 3912 x 3448 leaf that is x 1173-1408, which stops 9 px inside the TOTAL cell's left rule at 1164 and runs 50 px past its right rule at 1358 into MINING. Over the printed rules themselves the same tool finds 30 groups, and those 30 components resolve into 27 rows carrying a figure plus two marks refused as ink that is not an entry. The count is corroborated by the five written industry columns, whose sixteen entries stand on thirteen distinct rows, every one of them also a TOTAL row.",
    "state": "unpaired",
    "paired_to_printed_page": null,
-   "evidence": "No left sheet read anywhere in the deposit carries a page population of 115. The nearest is 33S7-9YYJ-PC (printed 218) at 113, two short, and PC holds 30 lines against a count this pass would not commit. Two persons is inside the width of a bad footing glyph and outside what an exact-match rule allows, so it is recorded as a refusal rather than a pair.",
+   "evidence": "No left sheet read anywhere in the deposit carries a page population of 115. The nearest is 33S7-9YYJ-PC (printed 218) at 113, two short. T-0656 recorded that as a refusal on one key with the other uncounted; T-0744 counted it, and PC holds 30 lines against this leaf's measured 27. The refusal is now held by BOTH keys, which is what T-0642's test asks for, and no relaxation short of abandoning the exact-match rule reaches either.",
    "candidates_considered": [
     {
      "printed_page": 216,
@@ -492,10 +492,11 @@
     {
      "printed_page": 218,
      "familysearch_id": "33S7-9YYJ-PC",
-     "rule": "population 2 short, line count not established",
-     "why": "PC foots 113 by all 38 of its columns and its own cells hold 113 too, so its key is not soft. This sheet's 115 would have to be a misreading of 113 for the pair to stand, and the footing's final glyph is this hand's unambiguous 5."
+     "rule": "population 2 short, line count 3 short",
+     "why": "PC foots 113 by all 38 of its columns and its own cells hold 113 too, so its key is not soft. This sheet's 115 would have to be a misreading of 113 for the pair to stand, and the footing's final glyph is this hand's unambiguous 5. T-0744 adds the second key: PC carries 30 lines with an entry and this leaf carries 27, measured against its own printed cell rules."
     }
-   ]
+   ],
+   "read_line_by_line": "T-0744, piece 3 of the split of T-0657. The page file supersedes the strip measurements this file made."
   },
   {
    "familysearch_id": "33S7-9YYJ-V2",

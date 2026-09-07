@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 659, title: 'A census page that is either fours or elevens, settled', kind: 'change', ts: '2026-09-07T02:02:45.836Z', date: 'Sep 6, 2026, 9:02 PM CT',
+    items: [
+      'Nothing you can see in the town changed today. This is one leaf of the 1840 census of Chicago \u2014 a right-hand page that carries the numbers and no names \u2014 read line by line for the first time.',
+      'Two earlier passes had counted its lines and disagreed: thirty-one from a glance at the contact sheet, twenty-nine from a measurement. Both were wrong, and the second for a reason worth naming \u2014 the window it measured over missed the printed rules of the very column it was counting, on both sides. Counted over the rules themselves the page carries twenty-seven households.',
+      'The way in was the trade columns. Five of the seven are written on, each with the enumerator\u2019s own sum at the foot, and all five come out exactly as he wrote them: 1, 3, 7, 1 and 2. That is the page teaching a reader its own hand \u2014 its 1, its 0 and its 2 are known figures afterwards, not guesses.',
+      'Which leaves the figure this leaf keeps writing: two strokes side by side, either a 4 or an 11, on six of its lines. It is not a matter of taste. Another leaf of this census closes on its own footing, so arithmetic labels every glyph on it, and on that page the two strokes of a 4 stand about half as far apart as two separate digits do. Measured that way, five of the six are fours. The sixth falls between and is left unread.',
+      'The page itself agrees. Read all six as elevens and the column carries 117 people against the 115 the enumerator wrote underneath it \u2014 before a single unread line is counted. The reading was made on the ink first and checked against his arithmetic afterwards, and nothing was moved to make it come out.',
+      'The leaf still has no partner. Its nearest candidate was refused before on population alone; it is now refused on the line count too, which is the second key that refusal always wanted.',
+    ] },
   { v: 658, title: 'Seventeen garden fences gone, and the note that still counted them', kind: 'change', ts: '2026-09-07T01:31:59.540Z', date: 'Sep 6, 2026, 8:31 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about a note that had stopped describing the town it was written for.',
