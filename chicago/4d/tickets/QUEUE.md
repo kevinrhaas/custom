@@ -126,7 +126,6 @@
 # --- numbers above. Ordered by measured yield, with the crosswalk repairs first because a stale
 # --- crosswalk wastes the read that follows it: civic poll/tax/voter matched 28.7%, the 1840
 # --- census 1.0%, church and Newberry 0.0%.
-T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 17 sheets, and the town now holds 1,404 and 25
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
 T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
@@ -463,7 +462,6 @@ T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0952 — Re-lay #1009 on today's dev: printed 212 and 213 are a real reading on a 29-commit-old tree, and the mirror came off the PR surface underneath it
-T-0953 — Re-lay #992 on today's dev: the 1840 head crosswalk, whose T-0896 collides with a different T-0896 that landed while it waited
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
@@ -478,3 +476,4 @@ T-0960 — Mrs C. Taylor keeps a house on Water Street in the Democrat of 19 Aug
 T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
 T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
 T-0961 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
+T-0962 — measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told

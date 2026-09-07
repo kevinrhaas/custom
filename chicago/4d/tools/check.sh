@@ -1403,6 +1403,31 @@ step "the 1840 identity bridges re-derive and back-project nothing" \
 step "every named 1840 head still adjudicates as the pages and the pools say" \
   python3 tools/crosswalk_census_1840_heads.py --check
 
+# THE WRITE HOP OF THE SAME CROSSWALK, and the half T-0698 was actually still owed. The
+# gate above proves the adjudication re-derives; it says nothing about whether the ruling
+# ever reached the person it names. Measured on dev before this pass: 27 heads ruled
+# `matched` or `candidate`, and 12 of the 27 cards carried the source at all — Philo
+# Carpenter, John Calhoun, Ira Couch and George W. Dole among the twelve MATCHES whose
+# cards had never been told. `measure_research_spend.py` read census_1840 as fully spent
+# throughout, because its second hop reads crosswalk.json's spelling rulings and never
+# looked at resident_crosswalk.json's heads. A meter that cannot see a hop reports it green.
+#
+# T-0670 met the same wall from the other side, hit the ceiling on ONE ruling and reverted
+# rather than rule. `spend_census_1840_heads.py` is that ruling taken generally: whatever
+# the crosswalk reaches, the card is told — a MATCH as a match, and a CANDIDATE in a
+# paragraph that says in its own words that nothing independent of the name was found and
+# that nothing is asserted from it. Two fields, no grade, and the ladder limit quoted
+# rather than paraphrased.
+step "…and the 1840 heads are on the 27 cards they name, once each and still true" \
+  python3 tools/spend_census_1840_heads.py --check
+
+# The third direction, and it is T-0700's lesson taken rather than relearned: it is not
+# enough to ask whether a card carries a paragraph. A paragraph that is PRESENT and no
+# longer says what the crosswalk says — a card still calling somebody a candidate after
+# the ruling became a match — is wrong in the one way that looks exactly like being right.
+step "…and that pass writes two fields, moves no grade and repeats without drift" \
+  python3 tools/spend_census_1840_heads.py --self-test
+
 # …and the class of fault, not just this instance of it. An ungated derivation is a
 # research output that can silently stop existing, and until T-0714 nothing could answer
 # "which tools can re-derive themselves and are never asked to?" without a hand audit.
