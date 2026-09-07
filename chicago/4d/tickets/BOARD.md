@@ -277,7 +277,7 @@
 
 ## Finished, newest first — 100 of 542; the older ones are in the ticket files (100)
 
-- **T-0744** 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on · **OWNER** · Sep 6, 2026, 8:24 PM · [PR #0](https://github.com/kevinrhaas/custom/pull/0)
+- **T-0744** 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on · **OWNER** · Sep 6, 2026, 8:24 PM · [PR #1013](https://github.com/kevinrhaas/custom/pull/1013)
 - **T-0762** The 1840 census image 26-50: continuation sheet 33S7-9YYJ-VJ read line by line · **OWNER** · Sep 6, 2026, 6:10 PM · [PR #1008](https://github.com/kevinrhaas/custom/pull/1008)
 - **T-0911** Printed 232's continuation leaf is found: NARA microfilm M704 roll 57 leaf n167, landed as a source and paired to the page on both of T-0642's keys · Sep 6, 2026, 5:50 PM · [PR #1007](https://github.com/kevinrhaas/custom/pull/1007)
 - **T-0779** The bidder column of Fergus 1839's Fort Dearborn sale is still the OCR's: three ditto marks it mapped no ink for, and the names it mangled · Sep 6, 2026, 5:07 PM · [PR #1006](https://github.com/kevinrhaas/custom/pull/1006)
