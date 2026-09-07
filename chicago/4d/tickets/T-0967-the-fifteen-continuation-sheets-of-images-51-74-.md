@@ -1,7 +1,7 @@
 ---
 id: T-0967
 title: The fifteen continuation sheets of images 51-74 read line by line, and paired to their left sheets - splits again on measurement, one leaf to a run
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-07
-closed: null
+closed: 2026-09-07
 pr: null
 claimed_by: run 9/7/2026, 1:08:37 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T18:08:54.328Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34150044943
 ---
 
