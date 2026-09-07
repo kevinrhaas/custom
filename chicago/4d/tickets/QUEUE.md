@@ -82,7 +82,6 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0955 — Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now
 T-0956 — Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames
 T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
@@ -115,10 +114,10 @@ T-0930 — Empty the hold label: rule on every PR parked for the owner, closing 
 # --- G4 — BUSINESS, OCCUPATION, AND WHERE THEY STOOD. The owner: "locations matter so capture
 # --- those too ... there are business references that have addresses later and while we don't have
 # --- that in 1835, you might use a documented address from later to position the business".
-# --- T-0788 LEADS BECAUSE IT IS THE ENABLER — Wright numbers all 58 blocks of the Original Town,
-# --- so a lot-and-block address can finally land on ground. T-0773 is the later-printing rule the
+# --- T-0788 WAS THE ENABLER AND LANDED 2026-09-07 (#955): twenty-two of Wright's numerals read off
+# --- the georeferenced sheet, so a lot-and-block address rests on ground. The 34 blocks it could
+# --- not reach are T-0858, appended at the foot of this file. T-0773 is the later-printing rule the
 # --- ask names directly; T-0771 and T-0696 are the readers that spend it.
-T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
 
 # --- CONSOLIDATION — second pass, same rule.
 
@@ -472,3 +471,7 @@ T-0953 — Re-lay #992 on today's dev: the 1840 head crosswalk, whose T-0896 col
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
