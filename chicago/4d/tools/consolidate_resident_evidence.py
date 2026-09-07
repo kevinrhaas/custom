@@ -423,6 +423,15 @@ def read_census_1840():
     out = []
     for path in sorted((RESEARCH / "census_1840" / "pages").glob("*.json")):
         doc = load(path) or {}
+        if doc.get("page_kind") == "recapitulation":
+            # A recapitulation carries no head of family. Its records are PAGES of
+            # the enumeration and their `as_read` is the page number written in the
+            # column the form prints for names, so feeding them here produces thirty
+            # "refusals" of names that were never names — R5 fired on all thirty of
+            # 33SQ-GYYJ-PW's when T-0966 read it, which inflated the derived-refusal
+            # count for a source that had gained no name at all. The same guard, for
+            # the same reason, is in census_1840_fingerprint.py.
+            continue
         for record in doc.get("records", []):
             if not (record.get("normalized") or record.get("as_read")):
                 continue

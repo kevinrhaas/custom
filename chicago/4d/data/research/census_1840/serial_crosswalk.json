@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 54,
+    "pages_held": 55,
     "pages_fingerprintable": 25,
     "lines_read_on_fingerprintable_pages": 752,
     "unique": 294,
@@ -49826,6 +49826,16 @@
         "no_band_level_cells": 0,
         "pattern_carried_by_no_household": 1
       }
+    },
+    {
+      "familysearch_id": "33SQ-GYYJ-PW",
+      "image": "chicago/reference/census1840/33SQ-GYYJ-PW.jpg",
+      "printed_page": null,
+      "sheet_side": "left",
+      "read_pass": "the recapitulation leaf read in full (T-0966, piece 4 of T-0746)",
+      "fingerprintable": false,
+      "why_not": "a RECAPITULATION sheet: every ruled line is a division total of the enumeration, not a household, so there is no family whose age-band fingerprint could be compared and no head to name. No serial may be hung on any line of it, and pairing it to a left sheet would not help - a recapitulation's left sheet carries aggregates too, not the twenty-six free-white age bands this tool matches on.",
+      "lines": []
     },
     {
       "familysearch_id": "33SQ-GYYJ-RJ",
