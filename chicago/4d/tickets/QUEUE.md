@@ -110,7 +110,6 @@ T-0930 — Empty the hold label: rule on every PR parked for the owner, closing 
 # --- modelled, as the household-level kin[] block — graded, reciprocal, legal only against its
 # --- declared inverses. T-0734 is the measurement that ruling exists to spend: 14 of 1,404 people
 # --- carry a stated relationship to anybody, and the sources already print many more.
-T-0757 — The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
 
 # --- G4 — BUSINESS, OCCUPATION, AND WHERE THEY STOOD. The owner: "locations matter so capture
 # --- those too ... there are business references that have addresses later and while we don't have
@@ -468,3 +467,7 @@ T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0952 — Re-lay #1009 on today's dev: printed 212 and 213 are a real reading on a 29-commit-old tree, and the mirror came off the PR surface underneath it
 T-0953 — Re-lay #992 on today's dev: the 1840 head crosswalk, whose T-0896 collides with a different T-0896 that landed while it waited
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen

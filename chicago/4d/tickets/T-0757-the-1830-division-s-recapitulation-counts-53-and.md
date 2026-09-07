@@ -1,7 +1,7 @@
 ---
 id: T-0757
 title: The 1830 division's recapitulation counts 53 and 88 families on leaves that carry 55 and 39: re-count both against the enumerator's column
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-07
+pr: 953
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T08:38:16.021Z
 claimed_run: null
 ---
 
