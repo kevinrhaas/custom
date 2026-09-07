@@ -10,7 +10,7 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene.",
  "counts": {
-  "heads_adjudicated": 849,
+  "heads_adjudicated": 904,
   "rulings_that_reach_a_person": 28,
   "people_written": 28,
   "matched": 12,

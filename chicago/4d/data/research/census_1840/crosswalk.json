@@ -7,13 +7,13 @@
   "passes": [
     {
       "ticket": "T-0505",
-      "what": "every named head on the 29 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
-      "heads_adjudicated": 849,
+      "what": "every named head on the 31 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
+      "heads_adjudicated": 904,
       "outcomes": {
-        "named_heads": 849,
+        "named_heads": 904,
         "matched": 12,
         "candidate": 16,
-        "refused": 821
+        "refused": 876
       },
       "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
@@ -5283,6 +5283,126 @@
         "33SQ-GYYJ-992",
         "T-0505",
         "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Robert Hamilton",
+      "b": "Amos C Hamilton",
+      "rule": "'Robert Hamilton' at printed page 223 line 2 (33SQ-GYYJ-LV) is NOT 'Amos C Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'robert'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Robert Hamilton",
+      "b": "Diana Hamilton",
+      "rule": "'Robert Hamilton' at printed page 223 line 2 (33SQ-GYYJ-LV) is NOT 'Diana Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'robert'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Robert Hamilton",
+      "b": "Richard Jones Hamilton",
+      "rule": "'Robert Hamilton' at printed page 223 line 2 (33SQ-GYYJ-LV) is NOT 'Richard Jones Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'robert'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Michael Burk",
+      "b": "James Burk",
+      "rule": "'Michael Burk' at printed page 223 line 3 (33SQ-GYYJ-LV) is NOT 'James Burk': The surname 'burk' is carried by 1 person(s) of 1835 (James Burk) and none of their given names is 'michael'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Charles C. Dow",
+      "b": "Albert F. Dow",
+      "rule": "'Charles C. Dow' at printed page 223 line 10 (33SQ-GYYJ-LV) is NOT 'Albert F. Dow': The surname 'dow' is carried by 2 person(s) of 1835 (Albert F. Dow, Stephen E Dow) and none of their given names is 'charles'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Charles C. Dow",
+      "b": "Stephen E Dow",
+      "rule": "'Charles C. Dow' at printed page 223 line 10 (33SQ-GYYJ-LV) is NOT 'Stephen E Dow': The surname 'dow' is carried by 2 person(s) of 1835 (Albert F. Dow, Stephen E Dow) and none of their given names is 'charles'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "William Wilson",
+      "b": "John Wilson",
+      "rule": "'William Wilson' at printed page 223 line 13 (33SQ-GYYJ-LV) is NOT 'John Wilson': The surname 'wilson' is carried by 1 person(s) of 1835 (John Wilson) and none of their given names is 'william'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Edward Ryan",
+      "b": "Thomas Ryan",
+      "rule": "'Edward Ryan' at printed page 223 line 14 (33SQ-GYYJ-LV) is NOT 'Thomas Ryan': The surname 'ryan' is carried by 1 person(s) of 1835 (Thomas Ryan) and none of their given names is 'edward'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "John Casey",
+      "b": "Edward W. Casey",
+      "rule": "'John Casey' at printed page 223 line 16 (33SQ-GYYJ-LV) is NOT 'Edward W. Casey': The surname 'casey' is carried by 1 person(s) of 1835 (Edward W. Casey) and none of their given names is 'john'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Barney Anderson",
+      "b": "Eli F Anderson",
+      "rule": "'Barney Anderson' at printed page 223 line 17 (33SQ-GYYJ-LV) is NOT 'Eli F Anderson': The surname 'anderson' is carried by 1 person(s) of 1835 (Eli F Anderson) and none of their given names is 'barney'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Alexander Ford",
+      "b": "Ebenezer Ford",
+      "rule": "'Alexander Ford' at printed page 223 line 20 (33SQ-GYYJ-LV) is NOT 'Ebenezer Ford': The surname 'ford' is carried by 1 person(s) of 1835 (Ebenezer Ford) and none of their given names is 'alexander'.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "E. Ryan",
+      "b": "Thomas Ryan",
+      "rule": "'E. Ryan' at printed page 223 line 28 (33SQ-GYYJ-LV) is NOT 'Thomas Ryan': The head is written 'E. Ryan' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'ryan'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-LV",
+        "T-0505",
+        "L4 initial_only"
       ]
     },
     {

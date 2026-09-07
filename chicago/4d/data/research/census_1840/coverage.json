@@ -981,8 +981,9 @@
      "lines_with_an_entry": 27,
      "what_it_is": "names + free-white age bands, filled for 27 lines and blank below them. The left margin carries a vertical manuscript annotation beginning 'Chicago'.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_read_partly_reconciled",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-CK.json",
+     "note": "T-0965: 27 names and all thirty-eight cell columns read off the sheet. Sixteen of the eighteen footed columns close exactly; m_20_30 and m_30_40 do NOT, because four cells (line 15 in m_30_40, lines 24, 25 and 26 in m_20_30) carry a two-stroke form the leaf fixes nowhere else and are recorded unread. The derived totals are a floor: at least 51 free white males, 41 free white females and 1 free coloured male."
     },
     {
      "index": 58,
@@ -1058,8 +1059,9 @@
      "lines_with_an_entry": 28,
      "what_it_is": "names + free-white age bands, filled for 28 lines and blank below them.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "names_and_cells_read",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-LV.json",
+     "note": "T-0965: 28 names and all thirty-eight cell columns read off the sheet. Every one of the seventeen columns the leaf carries a printed footing for closes exactly, residual zero; 67 free white males, 48 free white females and 2 free coloured females, 117 persons."
     },
     {
      "index": 64,

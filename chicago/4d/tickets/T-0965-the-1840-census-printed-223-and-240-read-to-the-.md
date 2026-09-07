@@ -1,7 +1,7 @@
 ---
 id: T-0965
 title: The 1840 census printed 223 and 240 read to the name and the cell: 33SQ-GYYJ-LV and 33SQ-GYYJ-CK
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-07
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-07
+pr: 1034
+claimed_by: run 9/7/2026, 11:02:31 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-07T17:08:31.880Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34141067278
 ---
 
 The 1840 census printed 223 and 240 read to the name and the cell: 33SQ-GYYJ-LV and 33SQ-GYYJ-CK.
