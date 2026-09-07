@@ -82,7 +82,6 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
 T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
 T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
