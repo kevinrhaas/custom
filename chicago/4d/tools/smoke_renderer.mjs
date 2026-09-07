@@ -11707,7 +11707,16 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /727 of the people here are known ONLY from the post office/.test(residents.prose)
+      // T-0524's rule, applied here at last: this one still carried 727 as a typed
+      // literal and went red the day T-0723 folded the duplicate Norton card and the
+      // cohort became 726 — right about a town that had changed, which is exactly the
+      // rot that ticket named. The figure is read out of `residents/index.json` beside
+      // every other count in this section, so what is asserted is that the SENTENCE
+      // agrees with the DATA rather than with a number somebody typed. The floor keeps
+      // it from passing on an empty cohort.
+      expected.letterList > 0
+      && new RegExp(`${expected.letterList} of the people here are known ONLY from the post office`)
+        .test(residents.prose)
       && /per cent of this town/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
