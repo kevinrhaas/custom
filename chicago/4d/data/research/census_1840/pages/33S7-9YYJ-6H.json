@@ -93,7 +93,7 @@
  },
  "column_ink_census_note": "A per-column ink census over the body, counting pixels 70 grey levels below each column's own 60th percentile, is committed under `column_ink_census` as the structural finding it is: it says which columns were written in at all, and it is reproducible from the image without reading a single digit. The single-width columns are clean; the wide blocks (slaves, deaf/dumb/blind/insane, schools) carry many printed rules inside the band and their counts are dominated by those rules, so they are reported but are NOT read as evidence of an entry either way.",
  "closes": false,
- "cells_state": "industry_columns_read_and_closed; line_index_committed; total_column_read_against_its_own_footing_on_27_of_29_written_lines; slaves_pensioners_deaf_dumb_blind_insane_swept_and_blank; schools_block_read_at_1_and_40_on_line_1; schools_footing_closes_primary_and_common_at_1",
+ "cells_state": "industry_columns_read_and_closed; line_index_committed; total_column_read_against_its_own_footing_on_27_of_29_written_lines; slaves_pensioners_deaf_dumb_blind_insane_swept_and_blank; schools_block_read_at_1_and_40_on_line_1; schools_footing_closes_primary_and_common_at_1; schools_seventh_column_bounded_swept_and_blank",
  "records": [
   {
    "line": 1,
@@ -1455,7 +1455,8 @@
  "tickets": [
   "T-0627",
   "T-0628",
-  "T-0645"
+  "T-0645",
+  "T-0755"
  ],
  "line_index": {
   "lines": 31,
@@ -1677,9 +1678,13 @@
    "schools_no_of_scholars_primary": [
     3534,
     3602
+   ],
+   "schools_no_of_scholars_at_public_charge": [
+    3602,
+    3654
    ]
   },
-  "seventh_schools_column_not_bounded": "No. of Scholars at public charge is bounded on the left at x3602 and has no right-hand rule at any threshold down to 0.30: the leaf curls into the binding at about x3640 and the gutter takes both the rule and the cell. It is NOT swept and NOT read, and it is not recorded as blank. That is T-0755.",
+  "seventh_schools_column_not_bounded": "SUPERSEDED 2026-09-07 by T-0755: the column IS bounded, on the right at x3654, and the refusal below is what the instrument said rather than what the leaf says. As written: \"No. of Scholars at public charge is bounded on the left at x3602 and has no right-hand rule at any threshold down to 0.30: the leaf curls into the binding at about x3640 and the gutter takes both the rule and the cell. It is NOT swept and NOT read, and it is not recorded as blank. That is T-0755.\" See seventh_schools_column_T0755.",
   "the_sheet_rises_to_the_right": {
    "measured": "the y of the darkest row of the upper body horizontal rule, in 80 px windows",
    "samples": {
@@ -1696,6 +1701,58 @@
    },
    "slope_px_per_px": -0.01022,
    "why_it_matters": "the committed line_index was fitted to the industry run at x1363-1865. A glyph 2200 px to its right sits about 23 px higher than the index predicts, and without this correction the SCHOOLS figures look like they fall between lines 1 and 2."
+  },
+  "seventh_schools_column_T0755": {
+   "ticket": "T-0755",
+   "outcome": "BOUNDED, SWEPT, AND BLANK. The seventh SCHOOLS column stands x3602-x3654 and 31 of 31 lines carry no ink. The rule was not lost to the binding; it was lost to two properties of the instrument that looked for it, and a second exposure of the leaf (T-0934) was never needed to find it.",
+   "instrument": "tools/read_gutter_column.py 33S7-9YYJ-6H --left 3602 --search 3625,3672, with the four bounded SCHOOLS columns passed as --control. It reads no digits, like the two modules it is built on; it locates rules, says how much of the leaf the exposure holds, and sweeps the cell with read_census_lower_blocks' own ink_mask / components / solid / enclosed-paper instrument.",
+   "why_the_first_pass_missed_it": {
+    "the_threshold_was_absolute": "T-0629 measured rules in grey levels below background and dropped to cover 0.30 looking for this one. Down this gutter the PAPER falls with the ink — 207 at x3474, 198 at x3602, 176 at x3654, 4 at x3680 — so a rule of perfectly ordinary depth stops clearing a threshold set on paper at 207. Measured as relative darkness, (paper - value) / paper against a local paper level, the rule at x3654 reads 0.65-0.75 where the committed rule at x3602 reads 0.73-0.86 in the same bands. It was never faint; it was measured against the wrong paper.",
+    "the_profile_was_taken_over_the_whole_body": "These rules LEAN. The rule committed at x3602 stands at x3590 at y619-819 and x3603 at y2219-2419: +0.00554 px per row, 13 px over the leaf, fitted over 12 bands at 2.03 px rms. A rule smeared over 13 px of its own lean is a broad shallow trough, and the nearer it stands to the gutter the sooner that trough sinks under the fluting. This is T-0761's fault, met here on the rule it costs the most."
+   },
+   "where_the_leaf_actually_ends": "The saturated edge is NOT vertical and that is why the upper leaf looks closed: it stands at x3659 at y619-819 and recedes to x3677 by y2419-2619. So the right rule is inside the gutter's black over the top two thirds of the body and clear of it below y2219 — which is exactly the four bands it measures in. The tool reports the eight upper bands as at_edge rather than letting the gutter win their argmax.",
+   "the_right_rule": {
+    "measured": [
+     {
+      "y0": 2219,
+      "y1": 2419,
+      "x": 3655,
+      "strength": 0.748,
+      "paper": 176,
+      "leaf_edge": 3675
+     },
+     {
+      "y0": 2419,
+      "y1": 2619,
+      "x": 3655,
+      "strength": 0.69,
+      "paper": 185,
+      "leaf_edge": 3677
+     },
+     {
+      "y0": 2619,
+      "y1": 2819,
+      "x": 3656,
+      "strength": 0.645,
+      "paper": 185,
+      "leaf_edge": 3676
+     },
+     {
+      "y0": 2819,
+      "y1": 2940,
+      "x": 3659,
+      "strength": 0.709,
+      "paper": 170,
+      "leaf_edge": 3674
+     }
+    ],
+    "lean": "+0.00671 px per row over the four bands, 0.83 px rms — the same sign and within a fifth of the magnitude of the x3602 rule's own +0.00554. A crease does not lean with the printing.",
+    "it_has_paper_on_both_sides": "the paper level at x3655-3674 runs 176 down to 170 and the saturated edge is 20 px further right, so x3654 is a mark ON the leaf and not the leaf's own edge.",
+    "quoted_at": "x3654 in bounds_px, which is where it stands in the y bands the other bounds are quoted from — the committed x3474 / x3534 / x3602 are likewise the lower-leaf positions of rules that stand 8-13 px left of them under the heading."
+   },
+   "the_width_test": "THE ARBITER, and it extrapolates nothing. On this form a column's printed heading is set centred between its own two rules: measured the same way in the same call, the four bounded SCHOOLS columns centre to -1.5, -0.5, -1.0 and -0.5 px. At the heading the left rule stands at x3586 and the seventh column's two lines of type are centred on x3613.0, so the heading demands a right rule at x3640.0 — a column 54.0 px wide. The two tracked rules give 52.2, 52.4, 52.7 and 52.9 px in the four bands where both are measurable. Within 1.8 px, and no quantity in that comparison has been carried across the leaf.",
+   "the_rival_rejected": "A second, weaker vertical stands about 25 px right of x3602 and is what the eye picks first at the foot of the leaf. Tracked the same way (--search 3618,3642) it is not a rule: its argmax jumps between x3641 in the upper leaf and x3629 in the lower, it fits a NEGATIVE lean of -0.00613 px/row against every other rule's positive one at 3.45 px rms, and the column it would bound shrinks monotonically from 47.6 px at y619 to 22.4 px at y2940 — against the 54.0 px the heading demands. It is the leaf's fluting, which is also what the magnified crops show: a field of parallel longitudinal creases running the whole height of the body from x3606 to the gutter.",
+   "what_lies_beyond_x3654": "about 20 px of leaf, then the binding. Whether that is the form's outer frame, a margin, or more column cannot be told from this exposure and is not claimed. The seven printed SCHOOLS heads are all accounted for by the seven columns now bounded, which is the reason for saying the block is complete rather than that the strip beyond is empty."
   }
  },
  "lower_blocks_T0629": {
@@ -1790,6 +1847,29 @@
    "the_other_five_schools_columns": "no footing ink, consistent with their being empty in the body.",
    "slaves_pensioners_ddbi": "no footing ink either — measured this pass, and it extends footer_blank_columns_note, which had not covered the slaves block."
   },
-  "what_this_does_not_close": "the sheet. The TOTAL column still stands 7 short of its 144 footing and two of its glyphs are unread; nothing in these four blocks bears on that."
+  "what_this_does_not_close": "the sheet. The TOTAL column still stands 7 short of its 144 footing and two of its glyphs are unread; nothing in these four blocks bears on that.",
+  "seventh_schools_column_reading_T0755": {
+   "ticket": "T-0755",
+   "result": "THIRTY-ONE COLUMNS SWEPT NOW, NOT THIRTY. No. of Scholars at public charge carries no ink on any of the 31 lines and none at the foot. Ten components survive the sweep of the body and every one is 8-11 px wide; this leaf's committed glyphs are 27-48 px wide.",
+   "the_sweep": "between the two TRACKED rules, inset 14 px each side rather than read_census_lower_blocks' 9: a rule standing in the gutter's own shading throws a wider skirt, and at 9 px the sweep returns nine components that are all fragments of the x3654 rule. The swept core is therefore about 24 px of a 52 px cell.",
+   "what_survived": [
+    "x3626-3637 y2071-2128, 11x57, area 172, aspect 5.18, solid 0.142, encloses 0 px",
+    "x3627-3635 y2144-2165, 8x21, area 70, solid 0.119, encloses 25 px",
+    "x3628-3636 y2836-2853, 8x17, area 63, solid 0.191, encloses 0 px",
+    "x3618-3626 y1924-1944, 8x20, area 50, solid 0.219, encloses 0 px",
+    "x3616-3624 y1428-1443, 8x15, area 61, solid 0.058, encloses 0 px",
+    "x3626-3635 y1578-1595, 9x17, area 53, solid 0.144, encloses 0 px",
+    "x3624-3632 y2387-2402, 8x15, area 54, solid 0.142, encloses 0 px",
+    "x3622-3631 y1401-1419, 9x18, area 47, solid 0.105, encloses 0 px",
+    "x3620-3631 y2311-2323, 11x12, area 47, solid 0.045, encloses 0 px",
+    "x3622-3633 y2535-2548, 11x13, area 46, solid 0.021, encloses 0 px"
+   ],
+   "why_none_of_it_is_writing": "every one is a vertical sliver of the fluting: 8-11 px wide against a hand whose narrowest committed glyph is 27 px, and mostly twice as tall as wide. The 8x21 that encloses 25 px encloses as much as the body nought does and is a third of its width — a flute crossed by another flute, not a bowl.",
+   "the_scale_argument_that_makes_the_sweep_admissible": "a figure of this hand is 27-48 px wide. The cell runs x3603-3655 at y2319 and the swept core x3616-3640, so a 27 px figure standing ANYWHERE between the rules must cross that core by at least 12 px, and a 40 px one by 25. The widest component the sweep returns is 11 px. The core being narrower than the cell therefore costs the reading nothing.",
+   "the_visual_pass": "the whole column, x3592-3668 by y619-2940, was flat-fielded against a vertical 90th-percentile background and read at 4x in three panels, so the strip beyond the sweep's inset was looked at too. Fluting, grain and the two rules; no written mark of any scale.",
+   "the_footing": "NO INK. read_glyph_box.py on x3610-3654 y2955-3008 returns nothing at ink>45 and, at ink>35 and below, one component at x3644-3654 y2993-3008 of solid 0.59-0.82 — the corner where the x3654 rule crosses the lower footer rule; this leaf's footing glyphs run solid 0.095-0.144. Measured in the same call, the committed footing 1 at x3493-3523 30x36 and the three components of the no_of_scholars footing reproduce T-0754's boxes exactly, so the instrument is the one that read them.",
+   "blank_is_a_zero_T0755": "the form's own rule, as T-0629 applied it to 744 cells of the other blocks and to five of the six swept SCHOOLS columns: a blank cell on this form is a zero. This commits 0 on all 31 lines of the seventh column, and the block is now read entire. Nothing here is recorded 0 for want of a reading — the cell is bounded, swept, looked at, and empty.",
+   "what_this_does_not_settle": "T-0754's footing figure under No. of Scholars, which is in the SIXTH column and still unread; the second reading it leaves open turns on a nought's right limb falling on the x3602 rule, and nothing measured here bears on that. T-0934 therefore still stands: a second exposure is still what would settle the sixth column's foot, even though the seventh column no longer needs one. And T-0761 is corroborated rather than closed — the lean is measured here on one leaf's rules, not fixed in read_census_continuation.py."
+  }
  }
 }

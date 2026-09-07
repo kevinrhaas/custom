@@ -1,7 +1,7 @@
 ---
 id: T-0755
 title: The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-07
+pr: 1038
+claimed_by: run 9/7/2026, 1:56:28 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-07T19:49:00.059Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34153381677
 ---
 
 The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank.
