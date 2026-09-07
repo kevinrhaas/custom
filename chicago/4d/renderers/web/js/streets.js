@@ -947,8 +947,15 @@ ${graded ? 'varying float vTrackConfidence;\n' : ''}${shader.fragmentShader}`.re
 export function createStreets({ terrain, records = [], confidence = null } = {}) {
   const group = new THREE.Group();
   group.name = 'streets';
+  // A PLATTED BUT UNOPENED STREET DRAWS NOTHING. The twelve east-west lines Wright
+  // rules across the School Section are survey lines over prairie, not roads: they
+  // compile with `opened: false` and `track_width_m: 0`, and there is no worn strip
+  // to paint. Excluded here rather than downstream so they also take no part in
+  // `blocksGrowth` — the flora belts keep their timber across the grid, which is the
+  // owner's own reading of the sheet (T-0797).
   const prepared = records.filter((r) => Array.isArray(r.path_local_enu_m)
-      && r.path_local_enu_m.length >= 2).map(prepare);
+      && r.path_local_enu_m.length >= 2
+      && r.opened !== false && (r.track_width_m ?? 6) > 0).map(prepare);
   const buffers = new Map();
   // T-0110. With refinement a panel is no longer a fixed six indices, so the
   // smoke's panel-accounting gate reads these counters instead of index math.

@@ -1,7 +1,7 @@
 ---
 id: T-0797
 title: The School Section's grid and streets: 142 blocks numbered off the sheet, four named and eight unnamed tiers with the unworn status the owner read, and the three Reserved blocks tested against the 1833 sale
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0791
 opened: 2026-09-05
-closed: null
+closed: 2026-09-06
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-06T09:42:03.228Z
 claimed_run: null
 ---
 

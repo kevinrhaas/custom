@@ -4,6 +4,13 @@
 T-0487..T-0490.  Write with no arguments; `--check` validates the committed
 invariants.  The 1840 census is retained as later evidence and never silently
 back-projected into the 1835 scene.
+
+THIS WRITER DOES NOT OWN THE PUBLISHED MIRROR.  `site/chicago/4d/` is generated and
+untracked, and it has exactly one writer, `tools/publish.sh`, which ships the residents
+layer minified.  This writer emits the tracked, diff-readable form under
+`data/residents/` and nothing else.  Two writers of the same four paths, disagreeing
+about whitespace alone, is what turned `tools/check.sh` red on every run that published
+(T-0933, fixed by T-0938); `drift_self_test` below holds that one-owner rule now.
 """
 from __future__ import annotations
 
@@ -40,7 +47,6 @@ RESEARCH = DATA / "research" / "residents"
 REFERENCE = CHICAGO / "reference" / "resident-research"
 CENSUS_DIR = CHICAGO / "reference" / "census1840" / "validation"
 CENSUS_CSV = CENSUS_DIR / "H_1840_chicago_with_names_partial.csv"
-SITE = REPO / "site" / "chicago" / "4d"
 PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
@@ -219,6 +225,40 @@ OCCUPATIONS = [
     (r"clerk", "clerk"), (r"seaman|sailor", "seaman"), (r"boatman", "boatman"),
     (r"trader", "trader")]
 
+SCENE_YEAR = 1835
+
+# T-0837, finding 2 — A TRADE PRINTED AFTER THE SCENE IS NOT AN 1835 OCCUPATION.
+# The 1835 `occupation` field is a claim about July 1835.  A directory of 1839, one of
+# 1843 and a county biography written decades later are evidence about 1839, 1843 and
+# "the nineteenth century"; T-0693 already wrote the other half of this rule, minting
+# `occupation.later_occupation` as a POINTER that leaves the 1835 field at
+# `none_recorded`.  This pass was overwriting that pointer — deleting the note that
+# explains why the field is empty — and landing the later trade at `attested`.  So a
+# trade may only be written into the 1835 field out of a source that SAYS 1835: the
+# cited source's `describes_date` has to name a span this scene date falls inside.
+# A source with no `describes_date`, or one as vague as "nineteenth century", names no
+# date at all and cannot carry the claim.
+_YEARS = re.compile(r"1[6-9]\d{2}")
+
+
+def describes_scene(sid):
+    """Does this source's own `describes_date` cover 1835-07-01?"""
+    years = [int(y) for y in _YEARS.findall(str(source_doc(sid).get("describes_date") or ""))]
+    if not years: return False
+    return min(years) <= SCENE_YEAR <= max(years)
+
+
+# T-0837, finding 1 — A TRADE IN THE POSSESSIVE BELONGS TO SOMEBODY ELSE.
+# The same defect T-0510 and T-0508 found in a cited volume's imprint, arriving this
+# time through the pass's OWN prose.  Chapman's row reads "…where 'II.' is the printer's
+# H", meaning the compositor who set Fergus' type, and the scan for `printer` matched it
+# and made Charles H. Chapman a printer — cited to a volume that prints him a real
+# estate dealer, and ahead of the `merchant` the same sentence gives him, because
+# `printer` sits earlier in the table and the first match wins.  A trade in the
+# possessive is a reference to whoever owns the thing being described — a printer's H,
+# a priest's register, an editor's column — and never a predicate about this person.
+POSSESSIVE = re.compile(r"\u2019s|'s")
+
 
 def load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
@@ -298,13 +338,34 @@ def research_rows():
     return out
 
 
-def research_block(item):
+# T-0837, and it is a ratified rule this pass had no way of knowing.  A FINDING AID POINTS
+# AT EVIDENCE; IT IS NOT EVIDENCE.  `read_newberry_index.py --check` refuses the string
+# `newberry_genealogical_index` anywhere under data/residents, data/structures or
+# data/reconstruction — "a finding aid published in 1960 [that] may not stand behind a
+# person, a household or a building" — and pass 14 nonetheless cites it on thirteen rows,
+# so the standing write landed thirteen cards the provenance gate then refused.  The card
+# keeps whatever the aid POINTED AT; it does not get to cite the pointer.
+FINDING_AIDS = {"newberry_genealogical_index"}
+
+
+def research_block(item, refusals=None):
     block = {"programme": "resident-research-2026", "ticket": item.get("ticket"),
              "outcome": item.get("outcome"), "reviewed_on": item.get("reviewed_on"),
              "asserted_identity": item.get("outcome") in CORROBORATED}
     for src, dst in (("proposed_facts","proposed_facts"),("evidence_for","evidence_for"),
                      ("evidence_against","evidence_against"),("summary","summary"),
                      ("notes","notes"),("sources","source_ids"),("candidate_ids","candidate_ids")):
+        if src == "sources" and item.get(src):
+            kept = [x for x in item[src] if x not in FINDING_AIDS]
+            for x in item[src]:
+                if x in FINDING_AIDS and refusals is not None:
+                    refusals.append({"person_id": item.get("person_id") or item.get("id"),
+                                     "proposed": f"source_id={x}",
+                                     "refused_because": "a finding aid points at evidence and is "
+                                     "not evidence; no card under data/residents may cite it "
+                                     "(read_newberry_index.py --check, T-0837)"})
+            if kept: block[dst] = kept
+            continue
         if item.get(src): block[dst] = item[src]
     if item.get("candidates"): block["candidates"] = item["candidates"]
     return block
@@ -329,7 +390,7 @@ def evidence_text(item):
     return " ".join(bits)
 
 
-def promote(person, hh, item):
+def promote(person, hh, item, refusals):
     srcs = independent(item)
     if not srcs: return []
     text = evidence_text(item); low = text.lower(); changes = []
@@ -342,14 +403,36 @@ def promote(person, hh, item):
     # a printer (T-0508).  Neither was ever committed.
     own = item_text(item).lower()
     for pat, occ in OCCUPATIONS:
-        if re.search(pat, own):
-            old = person.get("occupation") or {}
-            if value(old) in (None, "", "none_recorded") or old.get("confidence") == "reconstructed":
-                person["occupation"] = {"value": occ, "confidence": "attested", "sources": srcs,
-                    "note": f"{item.get('ticket')}: independently corroborated resident research. " +
-                            (item.get("evidence_for") or item.get("summary") or "")}
-                changes.append(f"occupation={occ}")
+        m = re.search(pat, own)
+        if not m: continue
+        old = person.get("occupation") or {}
+        # A REFUSAL IS ONLY A REFUSAL IF THE WRITE WOULD OTHERWISE LAND.  Where the field
+        # already carries a trade this pass would not have overwritten it anyway, so
+        # recording one here would report eight standing values as declined every run.
+        if not (value(old) in (None, "", "none_recorded") or old.get("confidence") == "reconstructed"):
             break
+        if POSSESSIVE.match(own[m.end():m.end() + 2]):        # T-0837 finding 1
+            refusals.append({"person_id": person.get("id"), "proposed": f"occupation={occ}",
+                             "refused_because": "the trade is written in the possessive, so it "
+                             "belongs to whoever owns the thing being described and not to this "
+                             "person (T-0837, and T-0510's imprint defect in the pass's own words)",
+                             "read_from": own[max(0, m.start() - 40):m.end() + 20].strip()})
+            break
+        dated = [s for s in srcs if describes_scene(s)]        # T-0837 finding 2
+        if not dated:
+            refusals.append({"person_id": person.get("id"), "proposed": f"occupation={occ}",
+                             "refused_because": "no cited source describes the 1835 scene, so this "
+                             "is a later trade and belongs in occupation.later_occupation, which "
+                             "T-0693 already writes; the 1835 field stays as it stands",
+                             "source_ids": srcs,
+                             "describes_date": [str(source_doc(s).get("describes_date") or "")
+                                                for s in srcs]})
+            break
+        person["occupation"] = {"value": occ, "confidence": "attested", "sources": dated,
+            "note": f"{item.get('ticket')}: independently corroborated resident research. " +
+                    (item.get("evidence_for") or item.get("summary") or "")}
+        changes.append(f"occupation={occ}")
+        break
     for pat in (r"(?:moved|came|arrived|settled)\s+(?:to|in|at)\s+chicago(?:,? illinois)?\s+(?:in )?(18[0-3]\d)",
                 r"(?:moved|came|arrived|settled)\s+(?:here|there)\s+in\s+(18[0-3]\d)"):
         m = re.search(pat, low)
@@ -529,7 +612,18 @@ def summary(before,after,ledger,stats):
 # written down file by file, a file that drifts and is not on that list fails, and a file
 # on the list that stops drifting fails too, so the list can only shrink and a spend has
 # to shrink it in its own commit.  New invisible drift is what this makes impossible.
-DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH", "site/chicago/4d/data")
+#
+# `site/chicago/4d/data` WAS A THIRD ROOT AND IS NOT ONE ANY MORE (T-0938, and it is
+# the fix for T-0933).  The published mirror is untracked and generated now, so it is
+# not part of "the committed tree" this ratchet compares a fresh writer run against —
+# and the copytree below would raise on a clone that has not published.  It was also
+# actively wrong while it worked: this writer emitted the mirror minified and
+# `apply_census_1840_bridges.py` emitted four of the same paths pretty-printed, so
+# `bash tools/publish.sh` on an untouched `dev` turned this gate red on four files whose
+# parsed values were identical.  The mirror has ONE writer now — `tools/publish.sh` —
+# and one gate, `tools/check_published_residents.mjs`, which asserts the shipped form
+# carries the source's value.
+DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH")
 
 
 def _scratch(tmp: Path) -> Path:
@@ -573,7 +667,10 @@ def drift(write_baseline=False):
                      "The gate is a ratchet: a file that drifts and is not listed here fails, and "
                      "a listed file that stops drifting fails too, so a spend has to shrink this "
                      "list in its own commit. Regenerate with --write-baseline, never by hand. "
-                     "T-0837 owns spending what is standing."),
+                     "T-0837 spent the 155 files T-0838 baselined and the list is EMPTY, which is "
+                     "the state this ratchet exists to reach and not a disabled gate: at zero the "
+                     "first drift to appear fails, and --drift-self-test proves that direction "
+                     "explicitly rather than driving itself off this list."),
             "count": len(paths), "paths": paths}, 2)
         print(f"  wrote {DRIFT_BASELINE.relative_to(REPO)}: {len(paths)} file(s) standing")
         return 0
@@ -601,25 +698,87 @@ def drift(write_baseline=False):
     return 0
 
 
+def round_trip_problems():
+    """T-0933: `bash tools/publish.sh` followed by `--drift` has to stay green.
+
+    The fault this guards is not a value in a file, so re-running the round trip here
+    would not catch it — it is STRUCTURAL, and it came back twice in two shapes:
+
+    1.  A SECOND WRITER.  `site/chicago/4d/data` was a DRIFT_ROOT while `publish.sh`
+        minified what this writer pretty-printed, so publishing turned the ratchet red
+        on four resident files whose parsed values were identical, and the two honest
+        answers to a red gate — regenerate, or baseline it — were both wrong.  A
+        generated tree has one writer and is not something a re-derivation ratchet can
+        compare a fresh run against, so no root may live under the mirror.
+    2.  ORDER.  The gate IS the round trip only because `tools/check.sh` publishes
+        before it asks this ratchet.  Move the publish below the drift step, or drop
+        it, and what the gate measures is once again whatever the last run left behind.
+    """
+    problems = []
+    mirror = (REPO / "site" / "chicago" / "4d").resolve()
+    for rel in DRIFT_ROOTS:
+        root = (REPO / rel).resolve()
+        if root == mirror or mirror in root.parents:
+            problems.append(f"DRIFT_ROOT {rel} lies in the published mirror, which is generated "
+                            "and has one writer, tools/publish.sh (T-0933)")
+
+    gate = Path(__file__).resolve().parent / "check.sh"
+    if not gate.exists():
+        problems.append("tools/check.sh is missing — publish-then-drift is untestable")
+        return problems
+    lines = [ln for ln in gate.read_text(encoding="utf-8").splitlines()
+             if not ln.lstrip().startswith("#")]
+    def first(needle, unless=None):
+        return next((i for i, ln in enumerate(lines)
+                     if needle in ln and not (unless and unless in ln)), None)
+    publishes = first("bash tools/publish.sh")
+    drifts = first("--drift", unless="--drift-self-test")
+    if publishes is None:
+        problems.append("tools/check.sh no longer runs tools/publish.sh, so the gate is not the "
+                        "publish-then-drift round trip (T-0933)")
+    elif drifts is None:
+        problems.append("tools/check.sh no longer runs --drift, so nothing takes the round trip")
+    elif publishes > drifts:
+        problems.append("tools/check.sh runs --drift before tools/publish.sh: the ratchet sees "
+                        "whatever the last run left in the mirror, not what this one made (T-0933)")
+    return problems
+
+
 def drift_self_test():
-    """The gate has to fire.  Both directions, against the committed baseline."""
-    baseline = load(DRIFT_BASELINE) if DRIFT_BASELINE.exists() else {}
-    paths = list(baseline.get("paths") or [])
-    if not paths:
-        print("FAIL: the drift baseline is empty, so neither direction of the ratchet is testable")
-        return 1
-    allowed, problems = set(paths), []
+    """The gate has to fire.  Both directions.
+
+    T-0837.  This test used to drive itself off the COMMITTED baseline and fail outright
+    when that list was empty — "neither direction is testable" — which made a fully spent
+    baseline, the state this whole ratchet exists to reach, indistinguishable from a
+    broken one.  T-0837 spent it to zero and the gate went red on success.  The ratchet is
+    set arithmetic over two sets and needs no committed drift to exercise: it is tested
+    against a synthetic baseline, and the real one is then held to the only invariant that
+    survives at zero — it exists, and it is a list.
+    """
+    problems = []
+    fixture = {"chicago/4d/data/residents/households/hh_self_test_a.json",
+               "chicago/4d/data/residents/households/hh_self_test_b.json"}
     # A file that drifts and is not listed must fail; a listed file that stops must fail too.
-    for label, now in (("undeclared drift", allowed | {"chicago/4d/data/residents/households/hh_not_real.json"}),
-                       ("healed drift", allowed - set(paths[:1]))):
+    for label, now in (("undeclared drift", fixture | {"chicago/4d/data/residents/households/hh_not_real.json"}),
+                       ("healed drift", fixture - {sorted(fixture)[0]}),
+                       ("drift against an empty baseline", {"chicago/4d/data/residents/households/hh_not_real.json"})):
+        allowed = set() if label.endswith("empty baseline") else fixture
         new, healed = now - allowed, allowed - now
         if not (new or healed):
             problems.append(f"the ratchet does not fire on {label}")
+    # …and the ratchet has to be readable in the first place.
+    if not DRIFT_BASELINE.exists():
+        problems.append(f"{DRIFT_BASELINE.name} is missing — run --write-baseline")
+    elif not isinstance((load(DRIFT_BASELINE).get("paths")), list):
+        problems.append(f"{DRIFT_BASELINE.name} has no `paths` list to ratchet over")
+    problems += round_trip_problems()
     if problems:
         [print(" -", p) for p in problems]
         print("DRIFT SELF-TEST FAIL")
         return 1
-    print(f"ok: the ratchet fires in both directions over {len(paths)} baselined file(s)")
+    print("ok: the ratchet fires on undeclared drift, on healed drift and against an "
+          f"empty baseline; {len(load(DRIFT_BASELINE).get('paths') or [])} file(s) stand today; "
+          "and publish-then-drift is still a round trip this gate takes")
     return 0
 
 
@@ -702,7 +861,7 @@ def main():
         stats["removed_people"]=int(prior_retirement.get("removed_people") or 0)
         stats["removed_households"]=int(prior_retirement.get("removed_households") or 0)
     persons={p.get("id"):(p,d) for d in docs.values() for p in d.get("persons") or [] if p.get("id")}
-    outcomes=Counter(); promoted=[]; unmatched=[]; deferred=[]
+    outcomes=Counter(); promoted=[]; refused=[]; unmatched=[]; deferred=[]
     for pid,item in sorted(research.items()):
         outcome=item.get("outcome") or "no_corroboration_yet"; outcomes[outcome]+=1
         if pid not in persons: unmatched.append({"person_id":pid,"outcome":outcome,"name":item.get("name_normalized")}); continue
@@ -713,7 +872,7 @@ def main():
         # apply, which is a ruling and not a restatement.  Assigning a fresh dict deleted
         # 143 of them the first time this pass was re-run after that ticket landed, in files
         # this cohort does not even touch.  Keys this function derives still win.
-        merged=dict(p.get("resident_research") or {}); merged.update(research_block(item))
+        merged=dict(p.get("resident_research") or {}); merged.update(research_block(dict(item,person_id=pid),refused))
         p["resident_research"]=merged
         if p.get("letter_list_only"):
             if outcome in CORROBORATED:
@@ -736,7 +895,7 @@ def main():
                 prefix = "INDEPENDENTLY CORROBORATED RESIDENT. Originally documented in Chicago post-office evidence; independent resident research now corroborates the identity. "
             p["note"]=(prefix+existing).strip()
         if outcome in CORROBORATED:
-            changes=promote(p,hh,item)
+            changes=promote(p,hh,item,refused)
             if changes: promoted.append({"person_id":pid,"ticket":item.get("ticket"),"changes":changes,"source_ids":independent(item)})
     missing=[]
     for pid,(p,_hh) in persons.items():
@@ -751,7 +910,10 @@ def main():
         p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
     ledger={"date":"2026-09-02","scene_date":"1835-07-01","tickets":["T-0487","T-0488","T-0489","T-0490"],
         "owner_ruling":{"attested":"confidently corroborated real named circa-1835 Chicago resident","inferred":"real named person reasonably believed to belong to circa-1835 Chicago","projected_resident":"inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile","reconstructed":"reserved for later explicit reconstruction; zero now"},
-        "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"letter_list_deferred_to_ladder":sorted(set(deferred)),"promoted_facts":promoted},
+        "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"letter_list_deferred_to_ladder":sorted(set(deferred)),"promoted_facts":promoted,
+        # T-0837.  A promotion this pass DECLINED, and why, so a refusal is as legible as a
+        # landing and nobody re-proposes it by reading the cards and finding nothing there.
+        "refused_promotions":sorted(refused,key=lambda r:(r["person_id"],r["proposed"]))},
         "census_workbook_inventory":workbook_inventory(),"structure_policy":"Keep reconstructed building stock as anonymous unassigned stock; remove retired resident occupancy references instead of deleting geometry."}
     attach_census(persons,ledger); dump(CENSUS_SOURCE,census_source(),2)
     targets={x for x in removed_people|removed_hh|unlink_people if x}; changed=[]
@@ -778,20 +940,16 @@ def main():
         if path not in docs: path.unlink()
     after=snapshot(index); ledger["before"]=before; ledger["after"]=after; ledger["retirement"]=stats; dump(LEDGER,ledger,2); SUMMARY.write_text(summary(before,after,ledger,stats),encoding="utf-8")
     programme=load(PROGRAMME); programme["resident_population_active"]=False; programme["resident_population_status"]="Retired from resident list by owner ruling 2026-09-02; building stock may remain anonymous until a later explicit reconstructed-population pass."; dump(PROGRAMME,programme,2)
-    sitehh=SITE/"data"/"residents"/"households"; sitehh.mkdir(parents=True,exist_ok=True); names={p.name for p in docs}
-    for p in sitehh.glob("*.json"):
-        if p.name not in names: p.unlink()
-    # Minified, matching tools/publish.sh: the published residents layer is under a
-    # size budget the authored tree is not (see the comment there).
-    for p,d in docs.items():
-        (sitehh/p.name).write_text(json.dumps(d,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-    (SITE/"data"/"residents"/"index.json").write_text(
-        json.dumps(load(INDEX),ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-    sitestruct=SITE/"data"/"structures"
-    if sitestruct.exists():
-        for p in changed:
-            q=sitestruct/p.name
-            if q.exists(): q.write_text(p.read_text(encoding="utf-8"),encoding="utf-8")
+    # THIS WRITER DOES NOT WRITE THE PUBLISHED MIRROR (T-0938).  It used to keep
+    # `site/chicago/4d/data/residents/` and the changed structure records in step
+    # itself, back when the mirror was committed and a stale one was a red gate on the
+    # branch that made it stale.  The mirror is untracked and generated now: it has one
+    # writer, `tools/publish.sh`, which `tools/check.sh` runs before it asks
+    # `check_published.mjs` and `check_published_residents.mjs` whether what it produced
+    # matches this tree.  Two writers of one file is how T-0933 happened — this one
+    # emitted the residents layer minified, `apply_census_1840_bridges.py` emitted four
+    # of the same paths pretty-printed, and whichever ran last decided whether the gate
+    # was green.  One owner, stated here and in publish.sh, is the whole of the fix.
     # T-0491. `attach_census` above is the 2 September partial name matcher, and the
     # adjudicated v4 identity bridges outrank it — `apply_census_1840_bridges.py` owns
     # them and keeps this file's result underneath as `legacy_partial_matcher`. The two
@@ -804,7 +962,7 @@ def main():
     if apply_census_1840_bridges.apply() != 0:
         raise SystemExit("the 1840 identity bridges did not re-apply cleanly")
     after=snapshot(load(INDEX))
-    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"letter_list_deferred_to_ladder":len(set(deferred)),"census_links":len((load(LEDGER).get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
+    print(json.dumps({"before":before,"after":after,"research_reviewed":len(research),"outcomes":dict(outcomes),"promoted_profiles":len(promoted),"refused_promotions":len(refused),"letter_list_deferred_to_ladder":len(set(deferred)),"census_links":len((load(LEDGER).get("census_1840") or {}).get("linked") or []),"retirement":stats},indent=2))
     return 0
 
 if __name__ == "__main__": raise SystemExit(main())

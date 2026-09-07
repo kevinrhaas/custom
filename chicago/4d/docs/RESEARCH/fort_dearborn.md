@@ -265,11 +265,69 @@ carries the `geometry:` declaration and a liberty:
   `data/flora/` has no cultivated zone and no garden species.
   `fort_dearborn_garrison_garden.form.planting`, `geometry: absent`, **L45**.
 - **The drill ground south of the pickets** (Kinzie). No extent given.
-- **Named ground on the 1830 plan and not modelled**: the Big Barn with Cupola, the Wash
-  house, the Well, the Shop, the Out Buildings, the U.S. Factor's House, the Cultivated
-  Field, the Fort Cemetery, the Ferry. Each is a candidate for a later slice and each
-  would be almost entirely invention today — the plan gives a symbol and a label and no
-  form. The **Fort Cemetery** in particular is left alone deliberately.
+- **Named ground on the 1830 plan and not modelled**: the Well, the Out Buildings, the
+  U.S. Factor's House, the Cultivated Field, the Ferry. Each is a candidate for a later
+  slice and each would be almost entirely invention today — the plan gives a symbol and a
+  label and no form. The Fort Cemetery left this list on 2026-09-06 (T-0882) and the Out
+  Buildings on the same day (T-0881); both are two bullets down.
+- **Two more of that list are now built, and the list was wrong about one of them** —
+  2026-09-06, T-0881: `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b`.
+  The plate letters *Out Buildings* against a PAIR of solid blocks about 160 m south of
+  the pickets — 224 px and 69 px of ink, 7.0 m apart, with the outer fence line running
+  between them — and every reading of this sheet before T-0881, including the line above,
+  had it as one building with a plural label. It is two. Same transform, same anchor, same
+  +/-20 %; the blocks were separated from the fence line they touch by eroding the ink mask
+  by 3 x 3 and taking each surviving component's own second moments, which is on both
+  records because an eye-read box would have carried the fence into the building. One
+  witness only — Hubbard never mentions them — and everything above the ground is invented
+  at **L228**.
+- **The Well is measured and still not drawn** — T-0881. Its ring on the plate centres at
+  pixel (1446.5, 887.0), which is 0.5 m east and 81.5 m south of the enclosure centre:
+  UTM 448225.20 E, 4637535.33 N, all but exactly due south of the fort and 52.6 m clear of
+  the stockade's ink, which corroborates Hubbard's *"in the outer inclosure"* and is nearer
+  the fort than his *"near the south gate"*. No mesh: this project has no well archetype,
+  the ring is a 14 px point symbol carrying no dimension, and a shed is not a well head.
+  The coordinate is banked in `docs/RESEARCH/wells.md` § 5 so a well layer inherits it
+  rather than re-reading the plate.
+- **The Fort Cemetery is read and refused** — 2026-09-06, T-0882, and the refusal is now a
+  record rather than a silence. The sheet letters the name across a strip of ground between
+  the road and the lake, south-south-east of the fort, and draws it exactly as it draws
+  John Crafts's Lot beside it: two property lines and a name. Both boundaries were fitted
+  over the plate (0.7 px and 0.5 px of scatter), both die on the road's south-east edge
+  (0.2 px), and the parcel resolves to 5,886 m² — about an acre and a half — with its
+  corners at local ENU (1058, -5), (1124, -86), (1120, -154) and (1023, -33). Nothing in
+  `data/structures/` stands inside it or within 30 m of it. It is **not built**, and the
+  reason is on the record: no fence is drawn on a sheet that draws the garden's worm fence
+  and the stockade, no gate, no wall, no marker, no path, no count of burials and no
+  position for any of them. `data/traces/harrison_1830_fort_burial_ground.json` is the
+  reading and the refusal; **L229** is the liberty.
+- **One burial on this ground IS built** — 2026-09-06, T-0882: `fort_dearborn_jouett_grave_pickets`,
+  a picket fence 10 × 8 ft on the west verge of the road at local east 1107.0, north 64.8.
+  Two independent witnesses: the plate letters *Grave of Mrs Chas Jouett*, and Hubbard has
+  *"by the west side of the road, adjoining the government garden, in a picket-fence
+  inclosure, was the grave of his wife"* (leaf 76, printed p. 38). The position is derived
+  from the label's ink centre dropped perpendicular onto the line the plate draws as the
+  garden's south-east side — which is the road's north-west edge, the road band measuring
+  23.9 m across — and lands 9.9 m outside the committed garden's south-east face, on the
+  road side of it, which is where both witnesses put it. **Nothing but the fence is drawn**:
+  no mound, no marker, no gate, no ground treatment. Its size and every dimension of the
+  fence are invented and graded `reconstructed` (**L229**).
+- **And the grave is not Charles Jouett's.** This dossier and
+  `fort_dearborn_garrison_garden`'s position note both called it his until T-0882 read the
+  label. The plate says *Mrs* Chas Jouett; Hubbard says *his wife*; and the Fergus 1843
+  old-settler death notices have Charles Jouett dying at Trigg County, Kentucky on 28 May
+  1834, aged 62 (`fdn0347`). The garden record is corrected and its geometry is untouched.
+- **Three of that list are now built** — 2026-09-06, T-0883: `fort_dearborn_big_barn`,
+  `fort_dearborn_wash_house` and `fort_dearborn_shop`. Their positions are pixels on the
+  plate turned to ground by one rule, stated in full on each record's `position.note` and
+  checked against the committed garrison garden — predicted centre within seven pixels
+  (2.3 m) of the drawn one. Hubbard corroborates the barn's position (*"West, and a little
+  south, of the fort was the military barn, adjoining which, on the east, was the fort
+  garden"*, leaf 75, printed p. 37) and the wash house's class, side and use (leaf 76,
+  printed p. 38); the shop has the plate and nothing else, and its record says so on every
+  line. What is invented is admitted at **L225** (the barn's cupola, named on the sheet and
+  not built) and **L226** (the wash house's and the shop's fabric, and the wash house's
+  45 cm of ground contact on the shoulder above the beach).
 - **The ordnance.** No gun is drawn. See § 6.
 
 ---

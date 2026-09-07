@@ -69,19 +69,21 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0462",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "no_corroboration",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A Buffalo directory supplies a competing Nehemiah Case, but wrong geography and no migration bridge make it a rejected match rather than a Chicago identity.",
     "evidence_against": "Buffalo geography and no Chicago discriminator.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
-     "buffalo_nehemiah_case"
+     "buffalo_nehemiah_case",
+     "chicago_democrat_1833_1835"
     ],
     "candidate_ids": [
      "cand_nehemiah_case_of_buffalo__case_nehemiah"
-    ]
+    ],
+    "summary": "A Buffalo directory supplies a competing Nehemiah Case, but wrong geography and no migration bridge make it a rejected match rather than a Chicago identity. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
    }
   }
  ],

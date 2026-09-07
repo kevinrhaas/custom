@@ -17,10 +17,10 @@
     "reviewed_people": 873,
     "outcome_counts": {
       "candidate": 5,
-      "candidate_identity": 122,
-      "corroborated": 54,
-      "corroborated_enrichment": 43,
-      "no_corroboration": 243,
+      "candidate_identity": 117,
+      "corroborated": 55,
+      "corroborated_enrichment": 40,
+      "no_corroboration": 250,
       "no_corroboration_yet": 406
     },
     "unmatched_research_person_ids": [
@@ -181,28 +181,71 @@
       }
     ],
     "letter_list_missing_research_row": [],
+    "letter_list_deferred_to_ladder": [
+      "albert_shepherd",
+      "allen_william",
+      "ambrose_joshua",
+      "avery_charles",
+      "bailly_joseph",
+      "barry_john_s",
+      "bishop_j_e",
+      "blair_william_g",
+      "blake_levi",
+      "bradford_harriet",
+      "bristol_r_c",
+      "brookes_samuel",
+      "burbee_jonathan",
+      "chadwick_joseph",
+      "clark_erastus",
+      "cole_parker_m",
+      "covell_thomas_r",
+      "crawford_james",
+      "dean_james_l",
+      "dement_wm",
+      "fish_e_m",
+      "fitzgerald_thos",
+      "fitzsimmons_john",
+      "flint_a_w",
+      "ford_ebenezer",
+      "gooding_caroline",
+      "gould_a_b",
+      "hopkins_henry",
+      "jordan_j_b",
+      "lamb_a",
+      "lansing_andrew",
+      "lawrence_james_r",
+      "lee_george",
+      "lucas_robert",
+      "luce_william",
+      "mack_stephen",
+      "matthews_james_g",
+      "merrill_winthrop",
+      "minard_ira",
+      "moreland_thomas_u",
+      "murray_alonzo",
+      "neff_r_a",
+      "northrop_francis_b",
+      "osborn_wm",
+      "paine_seth",
+      "palmer_n_h",
+      "parsons_edward",
+      "poke_edward",
+      "powell_geo_n",
+      "risley_horace",
+      "rogers_edward_a",
+      "scott_john",
+      "simons_e",
+      "simpson_john_p",
+      "stevens_issac",
+      "thompson_john",
+      "toby_samuel",
+      "walker_george_e",
+      "williams_charles_c",
+      "wilson_john",
+      "winson_wm",
+      "wood_wm"
+    ],
     "promoted_facts": [
-      {
-        "person_id": "bailey_bennet",
-        "ticket": "T-0509",
-        "changes": [
-          "occupation=carpenter"
-        ],
-        "source_ids": [
-          "fergus_chicago_directory_1839",
-          "norris_chicago_directory_1843"
-        ]
-      },
-      {
-        "person_id": "chapman_chas_h",
-        "ticket": "T-0509",
-        "changes": [
-          "occupation=printer"
-        ],
-        "source_ids": [
-          "fergus_chicago_directory_1839"
-        ]
-      },
       {
         "person_id": "hathaway_joshua",
         "ticket": "T-0483",
@@ -214,16 +257,6 @@
         ]
       },
       {
-        "person_id": "tuller_elam",
-        "ticket": "T-0509",
-        "changes": [
-          "occupation=farmer"
-        ],
-        "source_ids": [
-          "whiteside_elam_tuller"
-        ]
-      },
-      {
         "person_id": "woodworth_james_h",
         "ticket": "T-0486",
         "changes": [
@@ -232,6 +265,92 @@
         "source_ids": [
           "ushouse_james_h_woodworth"
         ]
+      }
+    ],
+    "refused_promotions": [
+      {
+        "person_id": "bailey_bennet",
+        "proposed": "occupation=carpenter",
+        "refused_because": "no cited source describes the 1835 scene, so this is a later trade and belongs in occupation.later_occupation, which T-0693 already writes; the 1835 field stays as it stands",
+        "source_ids": [
+          "fergus_chicago_directory_1839",
+          "norris_chicago_directory_1843"
+        ],
+        "describes_date": [
+          "1839",
+          "nineteenth century"
+        ]
+      },
+      {
+        "person_id": "chamberlain_l_c",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "chambers_john",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "chapman_chas_h",
+        "proposed": "occupation=printer",
+        "refused_because": "the trade is written in the possessive, so it belongs to whoever owns the thing being described and not to this person (T-0837, and T-0510's imprint defect in the pass's own words)",
+        "read_from": "r, randolph street', where 'ii.' is the printer's h. the papers run"
+      },
+      {
+        "person_id": "chase_peter",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "cook_rowland_i",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "cooley_edward_v",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "dunn_dangerfield",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "fowler_elmira",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "greene_john",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "ingersall_david",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "lewis_samuel",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "paige_b_r",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "richards_charles_t",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "romer_carl",
+        "proposed": "source_id=newberry_genealogical_index",
+        "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
       }
     ]
   },
@@ -865,13 +984,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1380,
-    "persons": 1404,
-    "attested": 526,
-    "inferred": 878,
+    "households": 1339,
+    "persons": 1363,
+    "attested": 494,
+    "inferred": 869,
     "reconstructed": 0,
     "letter_list_only": 727,
-    "projected_residents": 719,
+    "projected_residents": 713,
     "census_1840_linked": 3
   },
   "retirement": {

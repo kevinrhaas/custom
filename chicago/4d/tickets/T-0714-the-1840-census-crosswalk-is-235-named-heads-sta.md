@@ -1,7 +1,7 @@
 ---
 id: T-0714
 title: The 1840 census crosswalk is 235 named heads stale on dev and no gate says so: 498 on disk against 733 read from the pages
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 993
+claimed_by: run 9/6/2026, 11:00:46 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T16:54:03.465Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34043907719
 ---
 
 **Found while bringing #817 forward, 2026-09-04.** On a clean `dev`:

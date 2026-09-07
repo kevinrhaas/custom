@@ -120,8 +120,6 @@ p0093 c3  Sharer
         —— Ogle Co, Ill, (Kett, He Fi ui s
 p0094 c1  i Sharp
         — Cook Co.,, Ill, (Andreas, A, 7)) 1884 4875.
-p0095 c3  Gherpa
-        é ShbAtis. John. (Davis, A, 4.018881, 111.
 p0096 c3  Shattuck
         w=— Boone Co, Ill, (Kett & Co, Pub.) 1877: 413,
 p0099 c0  Bhaw
@@ -182,8 +180,6 @@ p0146 c1  Blumons Simonda,or Simons
         —— LaSalle Coy; Ill, (Bzldicin, E.) 10771, 319.
 p0149 c2  Bimons
         aces | — Chicago, lil, (Andraas, A, T,) 1884-6) 3+ Sea
-p0152 c1  Simpson, Simson,or Sympaon
-        wet) 190011120, 75,111,117, E 67.63 a=
 p0153 c3  MEDI, Sime
         Evrae _—— Sangamon Cou, Ill, (Powor, J. G,) 1873,
 p0154 c2  Sinolair
@@ -662,8 +658,6 @@ p0714 c0  Wolshotmer
         | — Boone Co,, Ill, (Ket & Co,, Pub,) 1877; 568. \-
 p0715 c0  Wendel
         Cook Coy, Hil, (Apdecet, Av Ts) 1084
-p0716 c0  Wenger
-        95,111. E %.H 45 7
 p0716 c2  Wentworth
         Cook Co, Il, (indroas, A. T.) 1884 #232- H Fader
 p0716 c2  Wentworth

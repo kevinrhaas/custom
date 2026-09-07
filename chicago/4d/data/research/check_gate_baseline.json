@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "ticket": "T-0714",
+  "what": "The tools carrying a --check mode that tools/check.sh does not run with --check. A ratchet, not a target: this list may shrink, and audit_check_gates.py --gate fails when it grows.",
+  "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it genuinely cannot be gated, re-run --write in the same commit that says why in the PR.",
+  "counts": {
+    "check_capable": 100,
+    "ungated": 18
+  },
+  "ungated": [
+    {
+      "tool": "tools/compare_norris_1844_readings.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/complete_resident_research_pass_14.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/crosswalk_norris_1844_advertiser.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/generate_inferred_households.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/generate_inferred_names.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/generate_school_section_grid.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/measure_street_widths.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/mint_documented_residents.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/mint_letter_list_residents.py",
+      "other_modes_in_check_sh": [
+        "--gate",
+        "--self-test"
+      ]
+    },
+    {
+      "tool": "tools/read_census_1830.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/read_norris_1844_advertiser.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/read_st_marys_baptisms.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/read_voter_lists.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/rename_household_ids.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/replace_invented_residents.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/trace_shoreline.py",
+      "other_modes_in_check_sh": []
+    },
+    {
+      "tool": "tools/verify_fergus_1839_first_ward.py",
+      "other_modes_in_check_sh": [
+        "--offline"
+      ]
+    },
+    {
+      "tool": "generators/placeholder.py",
+      "other_modes_in_check_sh": []
+    }
+  ]
+}

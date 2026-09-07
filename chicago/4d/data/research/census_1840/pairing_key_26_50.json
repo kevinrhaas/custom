@@ -285,7 +285,15 @@
      "rule": "line count and sequence agree, population 3 to 5 short",
      "why": "the pairing rests on a footing glyph this pass could not settle and on a strip reading that is not committed. T-0657 reads this sheet line by line; if its TOTAL column sums to 138 and the middle footing glyph is then read as an 8, this pair should be tried again - and 93G's own two figures, 140 printed against 138 by its cells, should be tried with it."
     }
-   ]
+   ],
+   "line_by_line_reading": {
+    "ticket": "T-0743",
+    "page_file": "data/research/census_1840/pages/33S7-9YYJ-FJ.json",
+    "what_it_settles": "THE FOOTING IS 135. This file named 138 and 185 as the readings a reader might disagree with, because the pairing to printed 207 turns on them, and asked T-0657 to settle it. 138 is refused on the glyph: the leaf's own 8 stands at line 2 of the TOTAL column and is a crossed figure-eight, while the footing's third glyph is the uncrossed bowl-under-a-right-curling-top the body writes seven times over. 185 is refused on the arithmetic: the 21 committed lines sum to 93, and 185 would leave 92 for the 9 unread lines - a mean of 10.2, when only two of the nine are groups wide or tall enough to hold two figures.",
+    "line_count_key_restated": "29, not the 28 this file counted by eye off a magnified strip. A uniform 30-line grid (first line y 668.0, pitch 75.60 px) fits every one of the TOTAL column's 30 groups and every one of the five written industry columns' 17 entries within 28 px, and all but three within 16. One of the 30 lines carries only a 13 x 14 px mark - half the height of every figure the leaf writes - so 29 lines carry an entry. The 32 groups this file's own census_total_column.py run reported came from a window (x 0.305-0.365, y 0.175-0.900) that runs past the TOTAL cell's right rule at x 1476 and opens above the heading rule at y 590; inside the leaf's own rules the same grouping rule reports 30, and 30 again at dy 45.",
+    "the_pairing": "still REFUSED, and now on the population key alone. The line-count key no longer refuses it - 29 against 93G's 30 - but the population key is where this file put the weight and it does not move: 93G is 140 by its own printed footings and 138 by its own cells, and this leaf's footing is 135. The 'try it again if the column sums to 138' clause below is answered and the answer is no.",
+    "what_would_still_settle_it": "the nine unread lines. They must account for 42 persons if the footing is 135 and 45 if it is 138, and two of them are two-figure groups this pass would not divide. That is a better exposure's work rather than a better reader's."
+   }
   },
   {
    "familysearch_id": "33S7-9YYJ-K2",
@@ -402,12 +410,12 @@
    "page_population_key": 115,
    "page_population_key_state": "read_this_pass",
    "page_population_key_note": "1-1-5, the 5 with the long horizontal top stroke that runs to the cell's right rule.",
-   "line_count_key": null,
-   "line_count_key_state": "not_counted_this_pass",
-   "line_count_key_note": "coverage.json carries 31 from the contact-sheet pass. tools/census_total_column.py --x0 0.300 --x1 0.360 --y0 0.175 --y1 0.918 measures 29 groups at dy 45 and 55. The two are not reconciled here and the count is left to T-0657, which reads this sheet line by line - the pairing does not turn on it, because no left sheet in the deposit comes within 2 of 115 on the population key.",
+   "line_count_key": 27,
+   "line_count_key_state": "read_line_by_line",
+   "line_count_key_note": "27, measured by T-0744's line-by-line reading (data/research/census_1840/pages/33S7-9YYJ-L3.json). Both figures this file and coverage.json carried are superseded. coverage.json's 31 was 'to the nearest line' off the contact sheet. This file's 29 was measured with census_total_column.py over x 0.300-0.360 and y 0.175-0.918 of the image; on this 3912 x 3448 leaf that is x 1173-1408, which stops 9 px inside the TOTAL cell's left rule at 1164 and runs 50 px past its right rule at 1358 into MINING. Over the printed rules themselves the same tool finds 30 groups, and those 30 components resolve into 27 rows carrying a figure plus two marks refused as ink that is not an entry. The count is corroborated by the five written industry columns, whose sixteen entries stand on thirteen distinct rows, every one of them also a TOTAL row.",
    "state": "unpaired",
    "paired_to_printed_page": null,
-   "evidence": "No left sheet read anywhere in the deposit carries a page population of 115. The nearest is 33S7-9YYJ-PC (printed 218) at 113, two short, and PC holds 30 lines against a count this pass would not commit. Two persons is inside the width of a bad footing glyph and outside what an exact-match rule allows, so it is recorded as a refusal rather than a pair.",
+   "evidence": "No left sheet read anywhere in the deposit carries a page population of 115. The nearest is 33S7-9YYJ-PC (printed 218) at 113, two short. T-0656 recorded that as a refusal on one key with the other uncounted; T-0744 counted it, and PC holds 30 lines against this leaf's measured 27. The refusal is now held by BOTH keys, which is what T-0642's test asks for, and no relaxation short of abandoning the exact-match rule reaches either.",
    "candidates_considered": [
     {
      "printed_page": 216,
@@ -484,10 +492,11 @@
     {
      "printed_page": 218,
      "familysearch_id": "33S7-9YYJ-PC",
-     "rule": "population 2 short, line count not established",
-     "why": "PC foots 113 by all 38 of its columns and its own cells hold 113 too, so its key is not soft. This sheet's 115 would have to be a misreading of 113 for the pair to stand, and the footing's final glyph is this hand's unambiguous 5."
+     "rule": "population 2 short, line count 3 short",
+     "why": "PC foots 113 by all 38 of its columns and its own cells hold 113 too, so its key is not soft. This sheet's 115 would have to be a misreading of 113 for the pair to stand, and the footing's final glyph is this hand's unambiguous 5. T-0744 adds the second key: PC carries 30 lines with an entry and this leaf carries 27, measured against its own printed cell rules."
     }
-   ]
+   ],
+   "read_line_by_line": "T-0744, piece 3 of the split of T-0657. The page file supersedes the strip measurements this file made."
   },
   {
    "familysearch_id": "33S7-9YYJ-V2",
@@ -613,14 +622,14 @@
   {
    "familysearch_id": "33S7-9YYJ-VJ",
    "page_population_key": 117,
-   "page_population_key_state": "read_this_pass",
+   "page_population_key_state": "read_but_not_corroborated",
    "page_population_key_alternates": [
     107
    ],
-   "page_population_key_note": "1-1-7. The middle glyph is a short slant with a tick at its foot, and it is not this hand's 0, which is a filled oval; 107 is named because the glyph is short enough to be argued and because the pairing must not rest on the arguable.",
+   "page_population_key_note": "1-1-7. The middle glyph is a short slant with a tick at its foot, and it is not this hand's 0, which is a filled oval; 107 is named because the glyph is short enough to be argued and because the pairing must not rest on the arguable. T-0762 adds the evidence T-0656 could not have: 33S7-9YYN-3CF6 line 9 is a committed 10 in this same enumerator's hand, and its 0 is a closed filled oval nothing like this glyph - so the middle glyph is not a 0 and 117 is the reading. But the SAME pass read the 31 lines of the column line by line and they sum to 84, so the footing this key rests on is not corroborated by the column it foots. The key stands at 117 - it is what the enumerator wrote, and it is what a left sheet would have to match - but it should be tested as the WEAKER of this leaf's two keys, and no pairing should turn on it alone.",
    "line_count_key": 31,
-   "line_count_key_state": "counted_this_pass",
-   "line_count_key_note": "31 counted off the full leaf, which is what coverage.json carries. tools/census_total_column.py measures 35 groups at dy 55 - the two-figure over-count again.",
+   "line_count_key_state": "measured_this_pass",
+   "line_count_key_note": "31, and T-0762 CONFIRMS it by measurement rather than by count: the row grid is fitted to the TOTAL column's own ink, 30 bands at the working ink threshold of which the one at y2597-2724 is two entries, and no further line appears when the threshold is dropped to 30 and to 22 grey levels. The 35 groups tools/census_total_column.py measures at dy 55 are the two-figure over-count again.",
    "state": "unpaired",
    "paired_to_printed_page": null,
    "evidence": "Neither 117 nor 107 is any left sheet's page population anywhere in the deposit; the five 31-line left sheets of this group foot 175, 151, 160, 195 and 181. The sequence screen puts its best match at 0.23, the noise floor, so the refusal does not turn on which of the two readings is right.",
@@ -719,7 +728,10 @@
      "share": 0.194
     }
    ],
-   "refusals": null
+   "refusals": null,
+   "read_line_by_line_by": "T-0762",
+   "total_column_read": 84,
+   "total_column_closes": false
   },
   {
    "familysearch_id": "33S7-9YYN-3CF6",
@@ -835,9 +847,9 @@
    "page_population_key": 154,
    "page_population_key_state": "read_this_pass",
    "page_population_key_note": "1-5-4, the 5 in the bowl-and-top-stroke form and the 4 in two strokes.",
-   "line_count_key": 28,
-   "line_count_key_state": "counted_this_pass",
-   "line_count_key_note": "28 counted off the magnified strip. tools/census_total_column.py --x0 0.305 --x1 0.360 --y0 0.175 --y1 0.925 measures 33 groups at dy 55, and four of those are pairs whose boxes overlap in y - one number each, split where the second digit steps back - which brings the measurement to 28 as well once the footer group is dropped. coverage.json carried 23.",
+   "line_count_key": 29,
+   "line_count_key_state": "corrected_by_T-0748",
+   "line_count_key_note": "29, read by T-0748 off the DE-LEANED TOTAL column and stable from 45 grey levels of ink down to 12. The 28 this file carried was the leaf's LEAN read through a straight window - the form's rules move 20 to 30 px left down the page - and not, as T-0747 supposed, a threshold hiding figures. coverage.json carried 23 before that.",
    "state": "unpaired",
    "paired_to_printed_page": null,
    "evidence": "No left sheet read anywhere in the deposit foots 154. The nearest is 33SQ-GYYJ-97P (printed 211) at 158, four away over 30 lines against this sheet's 28 - refused on both keys, and the sequence screen puts 97P at 0.23, the noise floor, so nothing but the arithmetic proximity recommends it.",
@@ -943,7 +955,8 @@
      "rule": "population 4 short, line count 2 short, sequence at the noise floor",
      "why": "the closest population match in the group, and it fails every other test. 97P closes exactly on all twenty-one columns it foots, so its 158 is not soft."
     }
-   ]
+   ],
+   "verdict_after_the_reading": "REFUSED STILL, on one key rather than two. T-0748 read this leaf line by line: 29 lines, and the enumerator's footing of 154 re-read and unchanged. Against 33SQ-GYYJ-97P (printed 211, 158 over 30 lines) the line-count half of the refusal is now one short rather than two, which this file's own amendment - a line that enumerates nobody cannot carry a family total on the facing leaf - would close if 97P holds such a line. That has not been shown and is not assumed. The population half stands untouched at four short, and the test requires both keys. Unpaired."
   },
   {
    "familysearch_id": "33SQ-GYYJ-9CZ",
