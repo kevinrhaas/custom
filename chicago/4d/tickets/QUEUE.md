@@ -82,7 +82,6 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0927 — Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
 T-0928 — Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
 T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
 T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
