@@ -25,6 +25,27 @@ step() {
   fi
 }
 
+# THE MIRROR IS BUILT FIRST, BECAUSE IT IS NOT IN THE REPOSITORY ANY MORE (T-0938).
+#
+# `site/chicago/4d/` used to be committed, so every step below could assume it was
+# simply there — and `check_published.mjs` ran under an `if [ -d ]` guard that made a
+# fresh checkout skip the gate silently. It is untracked and .gitignored now (see
+# /.gitignore for the measurement), which turns that assumption into an absence: a
+# clone has no mirror at all until something publishes one.
+#
+# So the gate publishes one, here, before anything reads it. That is not a workaround;
+# it is the honest reading of what check_published.mjs asserts. The claim was never
+# "the mirror somebody committed matches its source" — it was "what publish.sh produces
+# matches its source", and with the mirror off the PR surface that is the only reading
+# left. Everything downstream now measures a mirror this run made, so a stale one is
+# not a state that can exist.
+#
+# It costs about a second (measured: 1.0 s on a warm tree), and it is a REAL publish
+# rather than a `--dry-run`, so publish.sh's own refusals — a derivative that no longer
+# answers for its master — fail the gate here rather than at deploy time.
+step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-0938)" \
+  bash tools/publish.sh
+
 step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
   python3 tools/validate.py --all $STRICT
 
@@ -1166,17 +1187,23 @@ step "…and its own assertions still fire when broken" \
 # unchecked files on its first run, one of them a build.json two days stale.
 # Skipped rather than failed when the mirror is absent, so a fresh checkout that
 # has not published yet still gates cleanly.
-if [ -d ../../site/chicago/4d ]; then
-  step "published mirror matches its source" \
-    node tools/check_published.mjs
+# NO LONGER GUARDED BY `[ -d ]` (T-0938). The guard existed because a fresh checkout
+# might not have published yet, and it meant exactly that checkout skipped this gate
+# without saying so. The mirror is untracked now and the step at the top of this file
+# publishes it, so the mirror always exists here and the question is always asked.
+step "publish.sh produces a mirror that matches its source" \
+  node tools/check_published.mjs
 
-  # …and the one layer in it publish.sh transforms rather than copies. The residents
-  # records ship minified for the size budget, so the byte comparison above cannot see
-  # them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
-  # files, nothing dropped.
-  step "the published residents layer carries its source's value" \
-    node tools/check_published_residents.mjs
-fi
+# …and the one layer in it publish.sh transforms rather than copies. The residents
+# records ship minified for the size budget, so the byte comparison above cannot see
+# them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
+# files, nothing dropped. It is also the ONLY owner of that claim now: until T-0938 the
+# two writers of the residents layer each wrote the mirror themselves and
+# `apply_census_1840_bridges.py --check` asserted its own copy was fresh, which is how
+# two owners came to disagree about whitespace and turn this gate red on any run that
+# published (T-0933).
+step "the published residents layer carries its source's value" \
+  node tools/check_published_residents.mjs
 
 # …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
 # already run. `ticket.mjs done` needs the PR number that only exists once the PR
@@ -1655,6 +1682,14 @@ step "…and the tie discriminator's do too" \
 
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
+
+# T-0695. The eleven forenames archive.org's OCR set in characters no compositor had are
+# repaired in the READING against Kim Torp's independent transcription, and the quote
+# keeps the damage. The table that does it is the thing that rots: an entry re-read, a
+# leaf re-committed, and a row stops matching — or a new garble arrives with no row. The
+# self-test fails on either, and on a repair that tidied a quote.
+step "…and every garbled forename in them is repaired, cited, and none is left unnamed" \
+  python3 tools/read_norris_1844.py --self-test
 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
@@ -2235,6 +2270,21 @@ step "…and its own assertions still fire when broken" \
 
 step "…and its own assertions still fire when broken" \
   python3 tools/consolidate_resident_evidence.py --self-test
+
+# T-0843, the OTHER half of T-0839. `consolidate_town_cards.py --check` above gates that
+# every duplicate cluster the town already holds carries a written ruling; that is ruling
+# coverage, and it says nothing about the next duplicate. Three of the four minting passes
+# test "does the town already carry this person?" by SURNAME, and that proxy is partial by
+# design — each skips the households minted by itself and by the passes below it, so a card
+# one of those wrote is invisible to it. `identity_master_guard.py` is the precise
+# instrument for that blind spot: it hands a candidate name to the master's own `cluster()`,
+# inside its own surname bucket, with every identity of that surname standing as an anchor
+# whether it holds a card or not, and refuses only where the master itself merges. Gated
+# because the whole value of it is that it is the master's answer and not a hand copy — a
+# first draft written out by hand reported 19 committed cards as duplicates where the master
+# reports 2, because a copy of M2 cannot see the rivals that HOLD a merge apart.
+step "the mints' consultation of the identity master is the master's own rules" \
+  python3 tools/identity_master_guard.py --self-test
 
 # T-0512, the second half of the owner's publish ask. The final audit is the one file that
 # says, for every person in the town, what they rest on — which ticket reviewed them, which

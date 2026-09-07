@@ -120,15 +120,17 @@ The map in `tools/smoke_budget.mjs` can only ever ADD parts:
   from under the map, if the renumbering arithmetic breaks, or if an unmapped
   path ever stops meaning the whole gate. `check.sh` runs it.
 
-**One limitation, stated rather than worked around.** `tools/publish.sh` restamps
-the build id into `site/chicago/4d/walk/index.html` on every publish, and that
-file is the page itself — every part clicks its markup — so it maps to the whole
-gate. A published change will therefore always be told "the whole gate", even
-when the only edit to that file is the one stamp line. The map is path-based and
-cannot tell a stamp from a markup change, and making it guess would be a way to
-shrink a gate quietly. **Read the diff.** If `walk/index.html` differs only in
-its `gate-build` line, the parts your other paths name are the recipe, and say so
-in the PR.
+**The limitation this page used to state is GONE (T-0938), and it is worth
+recording what it was.** `tools/publish.sh` restamps the build id into
+`site/chicago/4d/walk/index.html` on every publish, and that file is the page
+itself — every part clicks its markup — so under the old map a published change
+was always told "the whole gate", however small the real edit. Run #1464
+(2026-09-03) ran seven legs for two census page files and lost its budget to it.
+The mirror is untracked and generated now, so it can never appear in a
+`git diff --name-only` and `--for-diff` prices a PR on the source it changed,
+which is the only thing a PR changes. The six `site/chicago/4d/` rows are gone
+from the map with it; the self-test asserts the mirror is still untracked, and
+fails — asking for the rows back — if that ever stops being true.
 
 **A staged run is not the gate**, and it says so on its own first line. The gate
 is both viewports, every part. What this page buys is the ability to spend ten

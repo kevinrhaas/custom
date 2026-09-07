@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import argparse
 import json
+
+import resident_cohort_freeze
 from pathlib import Path
 
 from select_resident_research_pass_2 import load_people
@@ -25,10 +27,14 @@ def derive() -> dict:
 
     # T-0479 keeps a compact frozen manifest. Re-derive it against current
     # canonical resident records so a renamed/moved/deleted person cannot hide
-    # behind copied display metadata.
-    expected_cohort = derive_pass5_cohort()
-    if cohort != expected_cohort:
-        raise SystemExit("pass-five cohort is stale; regenerate with select_resident_research_pass_5.py")
+    # behind copied display metadata — on the same freeze contract the cohort's
+    # own gate uses, so a member whose stratum snapshot has moved since the freeze
+    # is the research landing and not staleness (T-0764).
+    fails, _moved = resident_cohort_freeze.check(
+        cohort, derive_pass5_cohort(), resident_cohort_freeze.live_people())
+    if fails:
+        raise SystemExit("the pass-five cohort is not the frame's frozen cohort:\n  - %s"
+                         % "\n  - ".join(fails))
 
     baseline = prior.get("reviews", [])[:300]
     tickets = prior.get("tickets", [prior.get("ticket")])

@@ -30,7 +30,7 @@ Each line is *how many of the 1362 people carry at least one record of that kind
 | household membership | **44** | 3.2% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.6% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **315** | 23.1% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **313** | 23.0% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **31** | 2.3% | an 1840 census row bridged to this person |
 
 ## What each person rests on
@@ -52,11 +52,11 @@ record agree; two newspaper notices of the same name are
 | category | people citing at least one |
 | --- | ---: |
 | newspaper | 1132 |
-| civic | 315 |
+| civic | 313 |
 | census | 31 |
 | church | 46 |
 | book | 193 |
-| directory | 233 |
+| directory | 234 |
 | secondary | 80 |
 
 The category of a source id is the audit's one judgement, and it is a written

@@ -30,9 +30,17 @@ THE RULE, and every clause of it is doing work. A lot gets a dooryard picket iff
      building's committed footprint.
 
 Every metre of every perimeter below is then DERIVED from the committed lot polygon
-and the committed footprint. Nothing here is hand-placed, which is what makes 23
-garden fences auditable rather than 23 numbers someone typed; `--check` re-derives the
+and the committed footprint. Nothing here is hand-placed, which is what makes every
+garden fence auditable rather than a number someone typed; `--check` re-derives the
 record byte for byte in `tools/check.sh`.
+
+HOW MANY IS AN OUTPUT, NOT A SETTING. No count is written down here, because the rule
+above decides it afresh on every run and the committed record is the only place it is
+true. It has been eighteen (2026-08-18), fifteen, thirteen and — since T-0516 withdrew
+the stale `occupants` prose clause 4 reads — ONE. Whether clause 4 is the right test at
+all is the owner's open question, T-0772: a garden could follow the HOUSE rather than
+the HOUSEHOLD. Do not restate a count in this docstring or in `docs/LIBERTIES.md` L129;
+both went stale by seventeen once already.
 
 WHAT IS INVENTED is the treatment and the plot geometry — the fence type, its height,
 its pale rhythm, the size of the plot, its position at the back of the lot and the gate

@@ -570,8 +570,24 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
         doc = load(path)
         fid = doc.get("familysearch_id")
         if not fid:
-            bad.append("%s/pages/%s: names no familysearch_id, so it reaches no "
-                       "declared image" % (name, path.name))
+            # A PAGE READ OFF A LEAF THE DEPOSIT DOES NOT HOLD (T-0912). census_1840's
+            # coverage is the 74-image FamilySearch deposit, and printed page 232's
+            # continuation is not in it — that absence is a finding of its own
+            # (continuation_search_page_232.json exhausted all 74 looking for it). The
+            # leaf was read off the Internet Archive's scan of NARA M704 roll 57
+            # instead. Such a page names no familysearch_id because it has none, and
+            # inventing one would be a false coverage claim. What it must still do is
+            # name WHAT IT READ: a `source_record` that is a real record in
+            # data/sources/. It reaches no coverage item, and that is correct — it
+            # declares nothing about the deposit.
+            sid = doc.get("source_record")
+            if not sid:
+                bad.append("%s/pages/%s: names neither a familysearch_id nor a "
+                           "source_record, so nothing says what it read"
+                           % (name, path.name))
+            elif known_sources and sid not in known_sources:
+                bad.append("%s/pages/%s: names source_record %r, which is not a "
+                           "source record" % (name, path.name, sid))
             continue
         reached.add(coverage_key("image", fid))
 
@@ -985,6 +1001,18 @@ def self_test() -> int:
     run(lambda r, t: edit(r / "census_1840/coverage.json",
                           lambda d: _images(d)[0].pop("read_state")),
         "no read_state", "an image the gate cannot grade")
+
+    # 4c. an off-deposit page — one read off a leaf the deposit does not hold — still
+    # has to say what it read. T-0912.
+    run(lambda r, t: edit(r / "census_1840/pages/33S7-FIXT-A.json",
+                          lambda d: d.pop("familysearch_id")),
+        "names neither a familysearch_id nor a source_record",
+        "an off-deposit page that names no source either")
+    run(lambda r, t: edit(r / "census_1840/pages/33S7-FIXT-A.json",
+                          lambda d: (d.pop("familysearch_id"),
+                                     d.update(source_record="no_such_source"))),
+        "which is not a source record",
+        "an off-deposit page naming a source record that does not exist")
 
     # 5. a merge with no rule, and a rule that does not read back
     run(lambda r, t: edit(r / "civic/crosswalk.json",

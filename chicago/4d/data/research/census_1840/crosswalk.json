@@ -7,15 +7,15 @@
   "passes": [
     {
       "ticket": "T-0505",
-      "what": "every named head on the 19 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
+      "what": "every named head on the 27 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
       "heads_adjudicated": 788,
       "outcomes": {
         "named_heads": 788,
-        "matched": 11,
-        "candidate": 16,
+        "matched": 12,
+        "candidate": 15,
         "refused": 761
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 15 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -140,6 +140,19 @@
         "fergus_chicago_directory_1843"
       ],
       "person_id": "calhoun_john",
+      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
+    },
+    {
+      "from": "Ira Couch",
+      "into": "Ira Couch",
+      "rule": "The 1840 head written 'Ira Couch' at printed page 211 line 3 (33SQ-GYYJ-97P) and the 1835 person 'Ira Couch' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "evidence": [
+        "33SQ-GYYJ-97P",
+        "T-0505",
+        "data/research/census_1840/resident_crosswalk.json",
+        "norris_directory_1844"
+      ],
+      "person_id": "couch_ira",
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     },
     {

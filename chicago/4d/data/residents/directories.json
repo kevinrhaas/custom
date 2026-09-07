@@ -65,8 +65,8 @@
     "contested": 17
    },
    "norris_1844": {
-    "people": 136,
-    "single_entry": 97,
+    "people": 137,
+    "single_entry": 98,
     "ambiguous": 23,
     "contested": 16
    },
@@ -6375,6 +6375,27 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Couch' folds to the same string as the 1844 entry's, and the given name of both begins I.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e0415",
+       "printed_page": 30,
+       "as_printed": "Couch, Iia, proprietor of the Tremont House, corner of Lake and Dearborn sts"
+      }
+     ],
+     "holds": [],
+     "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -6382,7 +6403,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {

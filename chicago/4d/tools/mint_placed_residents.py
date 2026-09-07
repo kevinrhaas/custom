@@ -140,6 +140,9 @@ from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     minted_by, paper_for, plain_fragment, slug, surname, titles_in,
     town_family_names, words,
 )
+from identity_master_guard import (  # noqa: E402  (T-0843)
+    IdentityGuard, blind_person_ids, refusal as guard_refusal,
+)
 
 PREFIX = "hh_placed_"
 LETTER_LIST_PREFIX = "hh_ll_"   # tools/mint_letter_list_residents.py; see the mint
@@ -304,6 +307,14 @@ def mint(docs: dict, index: dict):
     # this pass SEES `hh_doc_` and gives way to it, and does not see its own output
     # or the letter-list pass below it, which gives way to this one in turn.
     known = town_family_names(docs, index, skip=_ORDER_SKIP)
+    # T-0843. The surname test above is blind to the households `_ORDER_SKIP` names —
+    # this pass's own, the letter-list pass's and the civic pass's. The identity master
+    # resolves on surname AND forename signature, so it can see into that blind spot
+    # without the bluntness that made the proxy partial in the first place. Consulted
+    # with the SAME precedence, so nothing here reads back this pass's own answer.
+    guard = IdentityGuard.load()
+    blind = blind_person_ids(docs, lambda path, doc: any(
+        minted_by(path, doc, pass_name, prefix) for pass_name, prefix in _ORDER_SKIP))
     in_town = in_town_places()
 
     candidates = [p for p in register["persons"]
@@ -362,6 +373,8 @@ def mint(docs: dict, index: dict):
                       "one issue, and fewer than two committed residents beside them")
         elif fam in known:
             reason = f"the town already names a {fam.title()}"
+        elif (hit := guard.holder(name, blind_to=blind)) is not None:
+            reason = guard_refusal(hit)
         elif fam in taken:
             reason = "surname already minted"
         if reason:
