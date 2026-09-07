@@ -126,7 +126,6 @@
 # --- numbers above. Ordered by measured yield, with the crosswalk repairs first because a stale
 # --- crosswalk wastes the read that follows it: civic poll/tax/voter matched 28.7%, the 1840
 # --- census 1.0%, church and Newberry 0.0%.
-T-0963 — The 1840 census printed 212 and 213 read to the name and the cell: 33SQ-GYYJ-RY and 33SQ-GYYJ-RK, every line, every column closed against the sheet's own footings
 T-0964 — The 1840 census printed 214 and 220 read to the name and the cell: 33SQ-GYYJ-BP and 33SQ-GYYJ-P5
 T-0965 — The 1840 census printed 223 and 240 read to the name and the cell: 33SQ-GYYJ-LV and 33SQ-GYYJ-CK
 T-0966 — The recapitulation leaf 33SQ-GYYJ-PW read in full: thirty page totals braced into six wards, and the grand total that closes them
