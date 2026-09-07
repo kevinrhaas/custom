@@ -134,7 +134,6 @@ T-0698 — The 1840 census heads crosswalk is derived against 849 residents and 
 T-0581 — Moses and Kirkland's History of Chicago (1895) is the largest Chicago work the Newberry index points at that this project does not hold: read its Chicago and Cook County families for 1835 residents, households and businesses
 T-0912 — Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
 T-0746 — The 1840 census images 51-74: the names and cells of the sheets the inventory finds, read line by line
-T-0754 — 33S7-9YYJ-6H's SCHOOLS footing under No. of Scholars is written and does not read: two glyphs where a 40 would stand, and no bowl
 T-0755 — The seventh SCHOOLS column of 33S7-9YYJ-6H, No. of Scholars at public charge, is in the binding gutter and is recorded unread rather than blank
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 
