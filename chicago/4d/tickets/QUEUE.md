@@ -15,6 +15,13 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-07  "put several tickets at the top of the queue ... whatever is needed so they fire
+#               first to merge and close the open PRs ... We want to close as many as you can" —
+#               the owner. 22 PRs stood open. A new band LEADS the file: T-0857 first because it
+#               is why each of the others costs a lap, then the closures in order of how many PRs
+#               a run can retire. The lane went to ONE slice in the same instruction ("1
+#               continuous lane"), which is the other half of the fix — two slices meant every
+#               landing invalidated the other in-flight branch. Nothing below this band moved.
 #   2026-09-05  "Pull 802 up" — the owner, after T-0802's fault was caught live: T-0722 sat
 #               `claimed` on a queue a run reads top-down for hours after PR #836 landed its
 #               work. Moved into the blocking band beside T-0819.
@@ -39,6 +46,43 @@
 #   2026-09-03  best-yield research first · consolidate every few, not at the end · the Sauganash
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+
+# --- ==========================================================================
+# --- DRAIN THE OPEN PRs — OWNER INSTRUCTION, 2026-09-07. THIS BAND RUNS FIRST.
+# --- ==========================================================================
+# --- "put several tickets at the top of the queue and push that to dev, whatever is needed so
+# --- they fire first to merge and close the open PRs ... We want to close as many as you can."
+# ---
+# --- 22 PRs open at 02:40Z. They are not one problem. Roughly a third are RIVALS whose work
+# --- already landed under another number, a third are FINISHED units that only need a dev lap,
+# --- and the rest are readings taken against a tree that has since moved. The bands below are
+# --- ordered by PRs retired per run, cheapest first — so the pile shortens from the first run.
+# ---
+# --- T-0857 LEADS UNDER ORDERING RULE 4: it blocks every ticket under it. GitHub never runs this
+# --- repo's merge drivers, so a branch that merges clean locally still reads as conflicting and
+# --- auto-merge cannot fire. That is why a finished, green PR needs a lap at all, and why the
+# --- lap has to be repeated every time dev moves.
+# ---
+# --- THE LANE IS AT ONE SLICE (steward focus.json, same instruction). That is the other half:
+# --- dev now moves only when this run moves it, so a lap taken is a lap that lands. Work ONE PR
+# --- at a time and merge the moment its gate is green — do not lap three branches in parallel
+# --- and watch each landing invalidate the other two.
+# ---
+# --- T-0933 IS THE OTHER BLOCKER, AND IT IS NEW: publish.sh on an untouched dev turns check.sh
+# --- red on four resident files, over whitespace alone. Every lap below publishes, so every lap
+# --- below meets it. Do NOT baseline it and do NOT regenerate around it — fix the owner of the
+# --- byte form, or the T-0838 ratchet gets spent on a non-fault.
+# ---
+# --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
+# --- winner did not, including a family that was nearly deleted as invented when a verified
+# --- source states it. A duplicate label is a reason to look, never a reason to close.
+T-0857 — GitHub's merge never runs this repo's merge drivers, so every PR reads as conflicting and auto-merge can never fire
+T-0933 — publish.sh minifies four resident files the synthesizer writer pretty-prints, so tools/check.sh goes red on any run that publishes
+T-0927 — Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
+T-0928 — Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
+T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
+T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
+T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
 # --- ==========================================================================
 # --- THE CORE DATASET — OWNER INSTRUCTION, 2026-09-04, RE-ISSUED 2026-09-05
@@ -112,7 +156,6 @@ T-0761 — The banded rule profile read_census_continuation.py needs: the printe
 # --- touches, which is worse, and it is why this band is the right place for it.
 T-0819 — The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
 T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
-T-0857 — GitHub's merge never runs this repo's merge drivers, so every PR reads as conflicting and auto-merge can never fire
 T-0728 — dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
 T-0729 — dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
 T-0781 — tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
@@ -384,4 +427,3 @@ T-0925 — Three runs read 33S7-9YYJ-L3 on the same morning and their line count
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
-
