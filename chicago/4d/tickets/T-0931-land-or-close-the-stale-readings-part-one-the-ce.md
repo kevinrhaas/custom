@@ -1,7 +1,7 @@
 ---
 id: T-0931
 title: Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0929
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/7/2026, 2:11:15 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34093983589
 ---
 
 These PRs carry real reading and their base is far enough behind `dev` that a lap is not
