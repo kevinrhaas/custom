@@ -847,9 +847,9 @@
    "page_population_key": 154,
    "page_population_key_state": "read_this_pass",
    "page_population_key_note": "1-5-4, the 5 in the bowl-and-top-stroke form and the 4 in two strokes.",
-   "line_count_key": 28,
-   "line_count_key_state": "counted_this_pass",
-   "line_count_key_note": "28 counted off the magnified strip. tools/census_total_column.py --x0 0.305 --x1 0.360 --y0 0.175 --y1 0.925 measures 33 groups at dy 55, and four of those are pairs whose boxes overlap in y - one number each, split where the second digit steps back - which brings the measurement to 28 as well once the footer group is dropped. coverage.json carried 23.",
+   "line_count_key": 29,
+   "line_count_key_state": "corrected_by_T-0748",
+   "line_count_key_note": "29, read by T-0748 off the DE-LEANED TOTAL column and stable from 45 grey levels of ink down to 12. The 28 this file carried was the leaf's LEAN read through a straight window - the form's rules move 20 to 30 px left down the page - and not, as T-0747 supposed, a threshold hiding figures. coverage.json carried 23 before that.",
    "state": "unpaired",
    "paired_to_printed_page": null,
    "evidence": "No left sheet read anywhere in the deposit foots 154. The nearest is 33SQ-GYYJ-97P (printed 211) at 158, four away over 30 lines against this sheet's 28 - refused on both keys, and the sequence screen puts 97P at 0.23, the noise floor, so nothing but the arithmetic proximity recommends it.",
@@ -955,7 +955,8 @@
      "rule": "population 4 short, line count 2 short, sequence at the noise floor",
      "why": "the closest population match in the group, and it fails every other test. 97P closes exactly on all twenty-one columns it foots, so its 158 is not soft."
     }
-   ]
+   ],
+   "verdict_after_the_reading": "REFUSED STILL, on one key rather than two. T-0748 read this leaf line by line: 29 lines, and the enumerator's footing of 154 re-read and unchanged. Against 33SQ-GYYJ-97P (printed 211, 158 over 30 lines) the line-count half of the refusal is now one short rather than two, which this file's own amendment - a line that enumerates nobody cannot carry a family total on the facing leaf - would close if 97P holds such a line. That has not been shown and is not assumed. The population half stands untouched at four short, and the test requires both keys. Unpaired."
   },
   {
    "familysearch_id": "33SQ-GYYJ-9CZ",
