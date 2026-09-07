@@ -49,9 +49,9 @@ with a corner on water or beyond the modelled ground is refused outright.
 | block boundary | `inferred` | arithmetic on inferred inputs: street lines whose own `geometry_confidence` is `inferred`, offset by a module width `street_control.json` also grades `inferred`. Arithmetic does not upgrade its inputs. |
 | alley width (18 ft) | as attested as the street | the module figure, and the 1834 traverses read 17.1–18.7 ft on the same passes that settled the street |
 | alley **position** | `conjectural` | nothing in `data/sources/` says which blocks were alleyed, or whether the alley ran with a block's long axis or across it |
-| lot lines | `conjectural` | four to a face is a reading of **one** block (§ 4). Applying it to eighteen others is inference from a single instance |
-| lot **numbers** | `conjectural`, inside a numbered block only | the scheme is block 18's, read once; the lines it numbers are the module's, drawn from no sheet. A number on a line nobody drew is conjectural whatever the number's provenance (§ 4a) |
-| block **numbers** | `inferred`, six blocks only | two numerals on the crop, counted one block per step along their own tier. Everywhere else — the other two tiers, the West Division, where the run begins and ends — is refused in writing (§ 4a). Block ids still name the streets that bound them, which is a description that never goes wrong |
+| lot lines | `conjectural` | four to a face is a reading of **four** blocks (§ 4, § 4b) — 20, 18, 16 and 40. Applying it to fifteen others is still inference, and a lot line drawn from no sheet is still a line nobody drew |
+| lot **numbers** | `conjectural`, inside a numbered block only | the scheme is read on four blocks in two tiers (§ 4b); the lines it numbers are still the module's, drawn from no sheet. A number on a line nobody drew is conjectural whatever the number's provenance (§ 4a) |
+| block **numbers** | `inferred`, all nineteen blocks and two omissions | **read off the sheet, one crop per block** (§ 4b): twenty-two numerals, plus the Public Square counted between two of them. Still `inferred` and not `documented`, because which block carries a numeral is an identification made through a ±20 m fit. The tiers outside the committed street grid are refused in writing (§ 4b). Block ids still name the streets that bound them, which is a description that never goes wrong |
 
 ## 4. The single reading behind four lots to a face
 
@@ -98,6 +98,42 @@ it, and the anonymous roof sitting on Spring's documented dwelling-house — in
 
 The same crop is the reason the alley is drawn east–west: two rows of lots facing opposite ways
 require something between them.
+
+### 4b. Superseded 2026-09-06 — the numerals, read
+
+**T-0788, owner ask.** § 4a's count is over. Every numeral the grid can reach is now READ off the
+georeferenced BPL scan, one IIIF crop per block, cut from that block's own committed street
+lines — so the block a numeral belongs to is settled by the fit, not by counting from a
+neighbour. **All nineteen generated blocks and two of the five omissions carry a number**, where
+six did before, and **144 lots** are numbered where 40 were.
+
+| tier | west → east |
+|---|---|
+| South Water – Lake | 21 20 19 18 17 16 — *falls* eastward |
+| Lake – Randolph | *28 29* · river · 31 32 33 34 35 36 — **rises** eastward |
+| Randolph – Washington | *45 44 43* 42 41 40 · **Public Square** · 38 37 — *falls* eastward |
+
+*(italic: West Division, west of the South Branch)*
+
+**The run reverses tier by tier**, which is exactly what § 4a refused to guess at, and it names
+the possibility it refused: a boustrophedon. Counting straight down would have numbered the Lake
+tier backwards.
+
+**All four of § 4a's counted numbers — 21, 20, 17, 16 — are confirmed by the sheet.** Nothing
+built on them moves; they stop being arithmetic.
+
+**The Public Square has no numeral.** Wright letters *Public Square* across the block where the
+number would go, so **39** is counted across one block from 40 and 38 read either side of it, and
+is marked `numeral_on_sheet: false`.
+
+**The lot scheme is read on four blocks now** — 20, 18, 16 and 40 — each printing 4 3 2 1 across
+the north row west to east and 5 6 7 8 across the south row. Block 40 is in a tier whose block
+numbering runs the other way, so the lot run belongs to the block and not the tier. The GRADE
+does not move: the lines are still the module's.
+
+Refusals, crop regions and the one cell that is two blocks (`blk_randolph_canal`, spanning 44 and
+43 with the river between) are in `docs/RESEARCH/thompson_block_numbering.md` § 0 and in the
+authored record.
 
 ## 5. What the grid corroborates, and where it disagrees
 

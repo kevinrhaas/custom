@@ -89,12 +89,12 @@ def block_numbering() -> dict:
     module carries none, and the numbers land on blocks whose geometry is derived
     exactly as it was before. T-0358.
 
-    Two numerals are read off the owner's crop of Wright's 1834 sheet — 19 and 18,
-    side by side in the South Water tier — and every other number in that file is
-    counted one block per step along the same tier. Nothing outside the tier is
-    numbered: the crop fixes the direction of the run inside a row and says nothing
-    about how it passes from one row to the next, and a number counted across that
-    gap would look exactly like a number that was read.
+    The numerals are read off the georeferenced BPL scan of Wright's 1834 sheet, one
+    crop per block, cut from that block's own committed street lines — so which block
+    carries a numeral is settled by the fit and not by counting from a neighbour. The
+    run turns out to REVERSE tier by tier (South Water falls eastward, Lake rises,
+    Randolph falls), which is why the earlier reading was right to refuse to count
+    across a tier. Blocks outside the reach of the committed grid stay unnumbered.
     """
     doc = load(NUMBERING_PATH)
     return {b["block_id"]: b for b in doc["blocks"]}, doc
@@ -547,11 +547,10 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "Written by tools/generate_plat_lots.py, which re-derives this file byte for byte "
             "offline on every commit (tools/check.sh). Block ids name the streets that bound "
             "a block, which is a description and not a claim. Thompson's own block NUMBERS "
-            "are carried separately, in `plat_block_number`, and only for the six blocks of "
-            "the South Water tier that two numerals on Wright's 1834 sheet can be counted "
-            "along — see `block_numbering` below and "
-            "data/traces/thompson_block_numbering.json. Every other block in this file is "
-            "unnumbered on purpose."),
+            "are carried separately, in `plat_block_number`, read block by block off the "
+            "georeferenced Wright 1834 scan — see `block_numbering` below and "
+            "data/traces/thompson_block_numbering.json. A block left unnumbered here is one "
+            "the sheet was not read on, and the authored file says which and why."),
         "tool": "tools/generate_plat_lots.py",
         "generated_from": [
             "data/traces/street_control.json",
@@ -619,10 +618,11 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "lot_scheme": numbering_doc["lot_numbering"]["scheme"],
             "lot_confidence": numbering_doc["lot_numbering"]["confidence"],
             "refused": [r["scope"] for r in numbering_doc["refused"]],
-            "note": ("Two numerals were read and the rest were counted along one tier. "
-                     "`numeral_on_sheet` on each block says which is which, and the "
-                     "authored file carries the reading, the identification and the "
-                     "refusals in full."),
+            "note": ("Each numeral is read on a crop cut to that block's own committed "
+                     "ground, so the reading is identified by the georeference rather than "
+                     "counted from a neighbour. `numeral_on_sheet` on each block says which "
+                     "numbers are read and which are not, and the authored file carries the "
+                     "reading, the crop regions and the refusals in full."),
         },
         "confidence": "inferred",
         "confidence_note": (
