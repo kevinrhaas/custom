@@ -625,8 +625,8 @@
  "by_page": {
   "unit": "page",
   "why_not_ward": "The ticket asks for these figures by ward where T-0504 attached one. It attached pages: no 1840 material read by this project divides Chicago into wards, and inventing a ward boundary to report against would be worse than reporting the unit that exists.",
-  "pages_with_attached_households": 21,
-  "households_attached": 267,
+  "pages_with_attached_households": 23,
+  "households_attached": 297,
   "coverage_note": "T-0504's fingerprint join is unique for a minority of households and ambiguous for the rest — 531 of 964 can EVER be resolved by age-band pattern alone. So this section describes the households that happen to be attached and is NOT a sample of the town; do not compare page means as if it were.",
   "pages": [
    {
@@ -679,6 +679,13 @@
     "mean_household_size": 6.111
    },
    {
+    "familysearch_id": "33SQ-GYYJ-BP",
+    "printed_page": 214,
+    "households_attached": 17,
+    "persons": 120,
+    "mean_household_size": 7.059
+   },
+   {
     "familysearch_id": "33S7-9YYJ-9WF",
     "printed_page": 215,
     "households_attached": 1,
@@ -705,6 +712,13 @@
     "households_attached": 12,
     "persons": 134,
     "mean_household_size": 11.167
+   },
+   {
+    "familysearch_id": "33SQ-GYYJ-P5",
+    "printed_page": 220,
+    "households_attached": 13,
+    "persons": 81,
+    "mean_household_size": 6.231
    },
    {
     "familysearch_id": "33S7-9YYJ-2T",
