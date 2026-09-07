@@ -15,6 +15,12 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-07  THE SAND BAR, over three walkthrough screenshots. First instruction "place that
+#               ticket at top of queue"; then his own correction, "that land is showing when it's
+#               reconstructed, the tip of the stretch is still off, not as big a deal ... file
+#               this ticket in the appropriate place" — so it sits with T-0799/T-0800 instead.
+#               Filed as T-0939 and T-0940 after a THIRD id collision: the numbers first used
+#               were taken on dev by other runs while this was being written.
 #   2026-09-07  "put several tickets at the top of the queue ... whatever is needed so they fire
 #               first to merge and close the open PRs ... We want to close as many as you can" —
 #               the owner. 22 PRs stood open. A new band LEADS the file: T-0857 first because it
@@ -214,6 +220,22 @@ T-0795 — Every watercourse Wright draws, counted on the new sheet: the three M
 T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
 T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+# --- FOUR TICKETS, ONE BAR, AND NONE OF THEM MOVES WHAT ANOTHER OWNS: T-0799 traces it off the
+# --- full sheet, T-0800 argues its height, T-0939 stops it running to the horizon, T-0940 makes
+# --- its surface sand. T-0799 runs first if any two are picked up. Owner-reported from the
+# --- walkthrough over three screenshots, 2026-09-07, and filed HERE rather than at the top on
+# --- his own instruction once he saw the land was present: "not as big a deal".
+# ---
+# --- T-0939 CORRECTS A WRONG FIRST DIAGNOSIS OF MINE. I said the box ends at n=-400 so the hook
+# --- has no ground at all. It has too much: terrain.js carries a 1.55 km SKIRT outside the box
+# --- under the generator's rule "carry each boundary vertex outward, keeping its own height", so
+# --- the 80 m of bar standing on the n=-400 row (e 1320-1390 at +1.21 m) is extruded south for
+# --- 1.55 km — three and a half times the bar's own length, dead flat, no taper. That is the
+# --- owner's "forever sandy stretch", photographed from water level. The skirt is RIGHT for the
+# --- mainland shore in the same frame and wrong for the bar, from the same row of vertices, so
+# --- it must not simply be removed.
+T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
+T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 
 # --- THE GROUND WEST AND NORTH OF THE RIVER — owner fault reports, 2026-08-31. T-0827 is what
