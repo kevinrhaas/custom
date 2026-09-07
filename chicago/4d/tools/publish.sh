@@ -3,6 +3,13 @@
 # site/, so anything not copied here does not ship — which is deliberate: the
 # uncompressed GLB masters, the research dossiers and the raw dataset all stay
 # in the repo and out of the payload.
+#
+# THIS SCRIPT IS THE ONE WRITER OF site/chicago/4d/. The mirror is generated and
+# untracked (T-0938), and the residents layer is shipped MINIFIED here and nowhere
+# else, so no other tool may write those paths. When synthesize_resident_research.py
+# wrote them too — pretty-printed — whichever ran last decided whether the gate was
+# green, and `bash tools/publish.sh` on an untouched dev turned tools/check.sh red on
+# four files whose parsed values were identical (T-0933).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

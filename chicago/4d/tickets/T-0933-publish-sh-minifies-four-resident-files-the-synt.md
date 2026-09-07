@@ -91,3 +91,35 @@ added to `synthesis_drift_baseline.json` (4) and no resident record's content ch
 
 Left open because the ticket is the owner's and confirming an acceptance list belongs to
 the run that takes it deliberately.
+
+---
+
+**VERIFIED AND CLOSED, 2026-09-07**, on `dev` at `fd911e75c` — the acceptance list taken
+deliberately, as T-0938's note asked. The reproduction does not reproduce: `bash
+tools/publish.sh` exits 0 and `python3 tools/synthesize_resident_research.py --drift` then
+prints `the writer stands 0 known file(s) from the tree`, where the ticket recorded four
+FAIL lines. Against the list:
+
+1. **One owner, stated in both tools' docstrings.** The publisher won, and the reason is
+   that a generated tree should not have three authors. It was stated in section comments
+   only, so this run put it in the two places a reader starts: the module docstring of
+   `synthesize_resident_research.py` and the header of `tools/publish.sh`.
+2. **`publish.sh && check.sh` twice on a clean tree, green both times.** Both runs
+   `CHECK PASS` (3m08s, 3m05s), and `check.sh` runs `publish.sh` itself, so that is four
+   publishes. `git status` is empty after all of them — no tracked file changes. The only
+   byte that moves between two publishes is the wall-clock build stamp, in
+   `site/build.json` and the `#gate-build` line of `walk/index.html`: 2,294 of 2,296
+   mirror files are identical across runs, that stamp is what it is for, and the mirror is
+   untracked (T-0938) so it is not a diff anybody sees.
+3. **A self-test asserts the round trip.** This was the one real gap, and it is now closed
+   rather than argued: `round_trip_problems()` runs inside `--drift-self-test`, which
+   `check.sh` already runs. It does not re-run the round trip — the fault is structural,
+   not a value in a file — it holds the two shapes the fault took. A DRIFT_ROOT under
+   `site/chicago/4d/` fails (that is exactly the 2026-09-06 configuration), and so does a
+   `check.sh` that stops running `publish.sh`, or runs `--drift` before it, which is what
+   makes every gate run the round trip in the first place. All four directions were shown
+   firing against doctored copies before this was committed.
+4. **Nothing added to the baseline.** `synthesis_drift_baseline.json` is `count: 0`,
+   `paths: []`, unchanged by this run.
+5. **No resident record's content changed.** The tracked tree is clean after four
+   publishes and two full gates; nothing under `data/residents/` was written.

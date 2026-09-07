@@ -4,6 +4,13 @@
 T-0487..T-0490.  Write with no arguments; `--check` validates the committed
 invariants.  The 1840 census is retained as later evidence and never silently
 back-projected into the 1835 scene.
+
+THIS WRITER DOES NOT OWN THE PUBLISHED MIRROR.  `site/chicago/4d/` is generated and
+untracked, and it has exactly one writer, `tools/publish.sh`, which ships the residents
+layer minified.  This writer emits the tracked, diff-readable form under
+`data/residents/` and nothing else.  Two writers of the same four paths, disagreeing
+about whitespace alone, is what turned `tools/check.sh` red on every run that published
+(T-0933, fixed by T-0938); `drift_self_test` below holds that one-owner rule now.
 """
 from __future__ import annotations
 
@@ -691,6 +698,52 @@ def drift(write_baseline=False):
     return 0
 
 
+def round_trip_problems():
+    """T-0933: `bash tools/publish.sh` followed by `--drift` has to stay green.
+
+    The fault this guards is not a value in a file, so re-running the round trip here
+    would not catch it — it is STRUCTURAL, and it came back twice in two shapes:
+
+    1.  A SECOND WRITER.  `site/chicago/4d/data` was a DRIFT_ROOT while `publish.sh`
+        minified what this writer pretty-printed, so publishing turned the ratchet red
+        on four resident files whose parsed values were identical, and the two honest
+        answers to a red gate — regenerate, or baseline it — were both wrong.  A
+        generated tree has one writer and is not something a re-derivation ratchet can
+        compare a fresh run against, so no root may live under the mirror.
+    2.  ORDER.  The gate IS the round trip only because `tools/check.sh` publishes
+        before it asks this ratchet.  Move the publish below the drift step, or drop
+        it, and what the gate measures is once again whatever the last run left behind.
+    """
+    problems = []
+    mirror = (REPO / "site" / "chicago" / "4d").resolve()
+    for rel in DRIFT_ROOTS:
+        root = (REPO / rel).resolve()
+        if root == mirror or mirror in root.parents:
+            problems.append(f"DRIFT_ROOT {rel} lies in the published mirror, which is generated "
+                            "and has one writer, tools/publish.sh (T-0933)")
+
+    gate = Path(__file__).resolve().parent / "check.sh"
+    if not gate.exists():
+        problems.append("tools/check.sh is missing — publish-then-drift is untestable")
+        return problems
+    lines = [ln for ln in gate.read_text(encoding="utf-8").splitlines()
+             if not ln.lstrip().startswith("#")]
+    def first(needle, unless=None):
+        return next((i for i, ln in enumerate(lines)
+                     if needle in ln and not (unless and unless in ln)), None)
+    publishes = first("bash tools/publish.sh")
+    drifts = first("--drift", unless="--drift-self-test")
+    if publishes is None:
+        problems.append("tools/check.sh no longer runs tools/publish.sh, so the gate is not the "
+                        "publish-then-drift round trip (T-0933)")
+    elif drifts is None:
+        problems.append("tools/check.sh no longer runs --drift, so nothing takes the round trip")
+    elif publishes > drifts:
+        problems.append("tools/check.sh runs --drift before tools/publish.sh: the ratchet sees "
+                        "whatever the last run left in the mirror, not what this one made (T-0933)")
+    return problems
+
+
 def drift_self_test():
     """The gate has to fire.  Both directions.
 
@@ -718,12 +771,14 @@ def drift_self_test():
         problems.append(f"{DRIFT_BASELINE.name} is missing — run --write-baseline")
     elif not isinstance((load(DRIFT_BASELINE).get("paths")), list):
         problems.append(f"{DRIFT_BASELINE.name} has no `paths` list to ratchet over")
+    problems += round_trip_problems()
     if problems:
         [print(" -", p) for p in problems]
         print("DRIFT SELF-TEST FAIL")
         return 1
     print("ok: the ratchet fires on undeclared drift, on healed drift and against an "
-          f"empty baseline; {len(load(DRIFT_BASELINE).get('paths') or [])} file(s) stand today")
+          f"empty baseline; {len(load(DRIFT_BASELINE).get('paths') or [])} file(s) stand today; "
+          "and publish-then-drift is still a round trip this gate takes")
     return 0
 
 
