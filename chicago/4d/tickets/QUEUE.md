@@ -480,3 +480,4 @@ T-0858 — The other 34 Original Town numerals are unread because the street gri
 T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
 T-0961 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
 T-0962 — measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told
+T-0968 — A green deploy is not proof the site is reachable: /chicago/4d/dev/ served a 404 for hours while every deploy reported success, and nothing checks a URL after publishing
