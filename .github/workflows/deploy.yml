@@ -19,11 +19,18 @@ name: Deploy to GitHub Pages
 # The dev step no-ops while the `dev` ref does not exist, so this file is safe to
 # merge before the pipeline is activated — chicago-4d-pipeline-setup.yml creates
 # the branch. Whichever ref triggers a run, MAIN is always assembled at the root.
+#
+# THE 4D TRIGGER IS `chicago/4d/**`, NOT `site/**` (T-0938). The published mirror
+# `site/chicago/4d/` is untracked and generated now — this job publishes it below —
+# so a 4D change never touches `site/**` and a `site/**`-only filter would have made
+# every 4D merge a silent no-deploy. The other tenants in this monorepo are still
+# committed under `site/` and keep the `site/**` trigger.
 on:
   push:
     branches: [main, dev]
     paths:
       - 'site/**'
+      - 'chicago/4d/**'
       - '.github/workflows/deploy.yml'
       - '.github/chicago-4d-dev-preview.mjs'
   workflow_dispatch:
@@ -80,6 +87,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # BUILD THE 4D MIRROR BEFORE ANYTHING READS site/ (T-0938). `site/chicago/4d/`
+      # is untracked and .gitignored — a generated tree with one writer,
+      # `chicago/4d/tools/publish.sh` — so the checkout above does not contain it and
+      # the artifact would ship a 4D-shaped hole: no /chicago/4d/walk/, no
+      # /chicago/4d/js/changelog.js (which Manager and the polecat.live launcher parse),
+      # no /chicago/4d/tickets.json. publish.sh also runs `ticket.mjs board`, so it
+      # subsumes the separate board step this workflow used to carry for T-0937.
+      #
+      # NOT FATAL, and that is fleet doctrine rather than laziness: deploy is ungated on
+      # purpose (see chicago-4d-promote-to-prod.yml — a hard test gate on deploy once
+      # froze a fleet site for ~21 hours). A publish that fails must cost the 4D app,
+      # not every other tenant in this monorepo. The `[ -f ]` guards downstream — the
+      # stamp step, and the dev preview's own check — already read as "no gate to stamp,
+      # skipping", so a missed publish degrades rather than deploying a lie.
+      - name: Publish the 4D mirror into the artifact (site/chicago/4d is generated)
+        run: |
+          (cd chicago/4d && bash tools/publish.sh) \
+            || echo "::warning::4D publish failed — /chicago/4d/ will be missing or stale in this deploy"
       - name: Sanity-check JS parses
         run: |
           set -e
@@ -88,8 +113,15 @@ jobs:
           # module instead — the Joliet game bundle under site/joliet/app/ is
           # ESM, and its Babylon chunk is several MB, so this also keeps the
           # check off stdin size limits by pointing at the file directly.
+          #
+          # WALKS THE TREE, NOT THE INDEX (T-0938). This was `git ls-files 'site/**/*.js'`,
+          # which enumerates what is COMMITTED — and the whole of site/chicago/4d/ is
+          # generated now, so the 4D renderer's modules would have dropped straight out of
+          # the check that exists to stop a syntax error shipping as a blank page. `find`
+          # asks the tree that is about to be uploaded, which is the tree the question is
+          # about. It runs after the publish above for the same reason.
           fail=0
-          for f in $(git ls-files 'site/**/*.js'); do
+          for f in $(find site -name '*.js' -type f | sort); do
             if ! node --input-type=module --check < "$f" >/dev/null 2>&1; then
               # Fall back to script parsing for genuine classic scripts.
               if ! node --check "$f" >/dev/null 2>&1; then
@@ -133,21 +165,15 @@ jobs:
               p.write_text(new)
               print(f"stamped: {stamp}")
           PY
+      # The 4D ticket board (T-0937, T-0030 — the URL Manager's queue card reads) needs
+      # no step of its own: `tools/publish.sh` above runs `ticket.mjs board` and copies
+      # the result to site/chicago/4d/tickets.json. One writer, one place it is run.
+
       # The /chicago/4d/dev/ integration preview. No-ops until the `dev` ref
       # exists, so this workflow is safe on a repo that has never activated the
       # pipeline. Scoped to the 4D app: the script copies only site/chicago/4d/.
-      #
-      # THE MIRROR IS BUILT HERE, NOT READ OUT OF THE BRANCH. It used to be
-      # copied straight from the dev worktree, which worked only while
-      # `site/chicago/4d/` was committed. T-0937/T-0938 took that generated tree
-      # off the PR surface — correctly: it was the thing every branch conflicted
-      # on — and the preview went to a 404 the same day, because its only source
-      # was the copy in git. Production was untouched and every deploy stayed
-      # green, so nothing said so. A build product has to be built, so this runs
-      # the app's own publisher in the worktree first and mirrors what it writes.
       - name: Assemble the 4D dev preview (no-op until the dev ref exists)
         run: |
-          set -euo pipefail
           if git fetch origin dev 2>/dev/null; then
             sha="$(git rev-parse --short FETCH_HEAD)"
             # The dev HEAD's own commit date, so the preview gate can say how
@@ -156,9 +182,14 @@ jobs:
             # the stamp on a branch that never moved.
             when="$(git show -s --format=%cI FETCH_HEAD)"
             git worktree add _dev-src FETCH_HEAD
-            # Publish inside the worktree. `set -e` above means a failure here
-            # fails the deploy rather than quietly shipping yesterday's preview.
-            ( cd _dev-src/chicago/4d && bash tools/publish.sh )
+            # The preview copies _dev-src/site/chicago/4d wholesale, and that directory
+            # does not exist in a fresh worktree: the mirror is generated, not committed
+            # (T-0938; T-0937 for the board inside it). So the dev worktree gets its own
+            # publish, exactly as the production tree does above — otherwise /dev/ would
+            # be an empty preview while production looked fine, which is the failure this
+            # tier exists to catch. Same non-fatal treatment as the production tree.
+            (cd _dev-src/chicago/4d && bash tools/publish.sh) \
+              || echo "::warning::dev-preview: 4D publish failed in the dev worktree — /chicago/4d/dev/ will be missing or stale"
             node .github/chicago-4d-dev-preview.mjs _dev-src "$sha" "$when"
             git worktree remove --force _dev-src
           else
