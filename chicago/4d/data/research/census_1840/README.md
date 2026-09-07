@@ -1342,6 +1342,55 @@ recorded in the baseline, and **T-0899** spends it and drops the ceiling back to
 by one with a named person on it is a debt anybody can see; a re-derivation that quietly wrote the
 card would not be.
 
+## The ruling reached the card, and the meter that said it already had (T-0698, 2026-09-07)
+
+**T-0714 made the adjudication re-derive and gated it. It did not make the ruling arrive.**
+`crosswalk_census_1840_heads.py --check` was green on `dev` and said what it always says —
+788 named heads, 12 matched, 15 candidate, 761 refused. Those 27 matched and candidate heads
+name a person this town holds a card for. **Twelve of the 27 cards carried the source at all,
+and fifteen did not** — among them seven of the twelve MATCHES, including Philo Carpenter,
+John Calhoun, Ira Couch, George W. Dole and William H. Stow. The town's best-documented men
+were matched to a line on an 1840 sheet and their cards had never been told.
+
+**And the instrument that exists to catch exactly this reported the domain fully spent.**
+`tools/measure_research_spend.py`'s second hop counts a ruling that names a person whose card
+has not learned it, and it read census_1840 as *27 reached, 27 on a card, 0 unwritten*
+throughout. It reads `crosswalk.json` — the spelling-pair rulings — and has never looked at
+`resident_crosswalk.json`'s heads. A meter that cannot see a hop reports it green. That is why
+this stayed invisible under a gate that was already watching, and it is the same shape as the
+fault T-0714 fixed one layer up: *a gate cannot notice a reading it never looks at.*
+
+**T-0670 met the same wall from the other side.** It rebuilt the crosswalk, the rebuild carried
+one ruling more than the domain had spent, `measure_research_spend.py` reported *ceiling 0 (+1)*,
+and that run reverted rather than take a ruling that was not its business.
+`tools/spend_census_1840_heads.py` is that ruling taken generally rather than for the one person
+it happened to be: **whatever the crosswalk reaches, the card is told.** 27 people — 12 as matches
+and 15 as candidates — each gaining the source id in `persons[].sources` and one paragraph in
+`persons[].note`. `head_spend_1835.json` is the ledger of those writes. It carries no "crosswalk"
+in its name on purpose, so the spend meter does not read a record of writes as a second
+adjudication.
+
+**A candidate is written as a candidate.** The paragraph says so in those words — the name agrees
+and is unique on both sides, nothing independent of it was found, nothing is asserted from it and
+no household of 1840 is carried back to 1835. A match's paragraph names the discriminator that
+decided it. Reading a candidate and a match the same way on a card is exactly what the crosswalk's
+ladder exists to prevent, and the pass's self-test holds the distinction over every paragraph it
+writes.
+
+**Two fields, and no grade moved in either direction.** Not an arrival, not a claim block, not a
+placement, and above all not `present_on_scene_date`; `--self-test` holds that by diffing a record
+through the applier and asserting the changed key set. The ladder is not applied here — T-0515
+applies it against every source at once, and this pass hands it the evidence and not the verdict.
+`grades_changed: 0` is in the ledger's own counts.
+
+**Three gate steps in `tools/check.sh`, beside the `--check` T-0714 added.** Every ruling is on the
+card it names, once each; no card carries a paragraph for a ruling the crosswalk never made; and —
+T-0700's lesson taken rather than relearned — a paragraph that is PRESENT but no longer says what
+the crosswalk says is a failure, not a pass. A card still calling somebody a candidate after the
+ruling became a match is wrong in the one way that looks exactly like being right.
+
+---
+
 ## One page read here is not in the deposit at all: printed 232's continuation
 
 `pages/m704_r57_n167.json` is the only reading in this directory taken off a leaf the
