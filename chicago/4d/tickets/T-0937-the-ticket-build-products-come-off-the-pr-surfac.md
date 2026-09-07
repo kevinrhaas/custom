@@ -1,7 +1,7 @@
 ---
 id: T-0937
 title: The ticket build products come off the PR surface: BOARD.md and both tickets.json are generated on demand, never committed
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0857
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1022
 claimed_by: run 9/6/2026, 10:32:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T04:01:48.655Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34079629230
 ---
 
