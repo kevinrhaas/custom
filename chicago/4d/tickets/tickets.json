@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 6:39 PM",
+  "generated_ct": "Sep 6, 2026, 7:02 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15564,6 +15564,26 @@
       "closed_at": null,
       "claimed_run": "https://github.com/kevinrhaas/polecat-platform/actions/runs/34067314217",
       "queue_rank": 8
+    },
+    {
+      "id": "T-0922",
+      "title": "Printed 232's continuation foots 198 against a column that reads 193: T-0642's footing key no longer closes on the one pairing made outside the deposit",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
     }
   ]
 }

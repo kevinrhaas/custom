@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 47,
+    "pages_held": 48,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 246,
@@ -45533,6 +45533,16 @@
       "read_pass": "names (T-0496)",
       "fingerprintable": false,
       "why_not": "names read, cells not: this page has no committed per-line age-band cells (cells_state: 'not_read').",
+      "lines": []
+    },
+    {
+      "familysearch_id": null,
+      "image": "n167_w2400.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "T-0912, 2026-09-06",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
       "lines": []
     }
   ],

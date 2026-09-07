@@ -569,11 +569,28 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
     for path in sorted((domain_dir / "pages").glob("*.json")) if (domain_dir / "pages").exists() else []:
         doc = load(path)
         fid = doc.get("familysearch_id")
-        if not fid:
-            bad.append("%s/pages/%s: names no familysearch_id, so it reaches no "
-                       "declared image" % (name, path.name))
+        if fid:
+            reached.add(coverage_key("image", fid))
             continue
-        reached.add(coverage_key("image", fid))
+        # A LEAF READ FROM OUTSIDE THE DEPOSIT (T-0912). Until printed 232's
+        # continuation was found on NARA M704 roll 57, every page file in this
+        # project had been read off the FamilySearch deposit and so had a
+        # FamilySearch id to reach a declared image by. That leaf has none — it is
+        # not in the deposit, which is the whole reason T-0543 could not find it —
+        # and it reaches its coverage through the SOURCE RECORD that landed it
+        # instead. The rule is not relaxed: a page file must still name something
+        # that exists, and a page naming neither an id nor a known source is still
+        # a hole. What changes is only that a source is now a second way to name
+        # one.
+        sid = doc.get("source")
+        if not sid:
+            bad.append("%s/pages/%s: names neither a familysearch_id nor a source, "
+                       "so it reaches nothing" % (name, path.name))
+        elif known_sources and sid not in known_sources:
+            bad.append("%s/pages/%s: names source %r, which is not a committed "
+                       "source record" % (name, path.name, sid))
+        else:
+            reached.add(coverage_key("source", sid))
 
     # A DOMAIN-OWNED FILE REACHES A COVERAGE ITEM TOO (T-0678). `records/` and `claims/`
     # are this registry's own shape, and two domains do not use it: old_settlers reads
