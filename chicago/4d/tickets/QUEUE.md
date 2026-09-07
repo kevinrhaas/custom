@@ -84,7 +84,6 @@
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
 T-0955 — Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now
 T-0956 — Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames
-T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
 # --- ==========================================================================
 # --- THE CORE DATASET — OWNER INSTRUCTION, 2026-09-04, RE-ISSUED 2026-09-05
@@ -472,3 +471,7 @@ T-0953 — Re-lay #992 on today's dev: the 1840 head crosswalk, whose T-0896 col
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
+T-0957 — Two readings of 33S7-9YYJ-L3 disagree on the line count and on the printed footing: 27 lines and 115, or 28 lines and 113
+T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
+T-0959 — The School Section's tier lines are level and 4th on dev and skewed and 5th on the rival reading: settle the ordinal and the skew against Wright's sheet
+T-0960 — Mrs C. Taylor keeps a house on Water Street in the Democrat of 19 August 1835 and the town has no card for her
