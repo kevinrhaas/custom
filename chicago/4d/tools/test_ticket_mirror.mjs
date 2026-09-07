@@ -77,6 +77,31 @@ const published = () => {
 try {
   console.log(`ticket mirror — sandbox at ${tmp}`);
 
+  /* --- half zero: an UNBUILT tree builds itself (T-0937) ----------------- */
+  //
+  // BOARD.md, tickets.json and the mirror are untracked as of T-0937 — they were
+  // the most-conflicting files in the repository, because a run's first act is
+  // `ticket.mjs claim` and that rewrites all three before any work is done. So a
+  // fresh clone and every CI checkout now start with NONE of them, and each reader
+  // has to be able to make its own.
+  //
+  // This half exists because the regression is silent in the worst possible way:
+  // on a developer's machine the three files survive from the last run, so the gate
+  // stays green while a CI checkout publishes no /chicago/4d/tickets.json at all —
+  // and that URL is Manager's queue card (T-0030). Nobody would see a red.
+  //
+  // The mirror assertion is the sharp one. `mirrorTickets` deliberately copies only
+  // when the source was actually rewritten, so that a mirror somebody else made
+  // stale is never laundered (half two below). An absent mirror is not a stale one,
+  // and it must be filled anyway — that is the case this line pins.
+  for (const f of [SRC, BOARD, MIRROR]) if (existsSync(f)) rmSync(f);
+  ticket('board');
+  check('an unbuilt tree generates tickets.json', existsSync(SRC));
+  check('…and BOARD.md', existsSync(BOARD));
+  check('…and the published mirror, though nothing rewrote the source before it',
+    existsSync(MIRROR) && readFileSync(MIRROR, 'utf8') === readFileSync(SRC, 'utf8'),
+    existsSync(MIRROR) ? 'mirror matches source' : 'mirror absent');
+
   // A published tree: the board regenerated, then copied the way publish.sh
   // copies it. This is the state every run is in when it reaches step 2.
   ticket('board');

@@ -349,8 +349,21 @@ def ledger_doc() -> dict:
 # --- the write -------------------------------------------------------------------------
 
 def apply_to_person(person: dict, row: dict) -> bool:
-    """The ONLY mutation this tool performs. Two keys, and rule 2 is held here."""
+    """The ONLY mutation this tool performs. Two keys, and rule 2 is held here.
+
+    T-0700 added the third case: a paragraph ALREADY on the card that no longer says what
+    the crosswalk says. Before it, the write was add-only — `if MARKER not in note` — so a
+    ruling that changed what the evidence means left the old sentence standing and both
+    gates passed, because they asked whether a paragraph was PRESENT and never whether it
+    was RIGHT. Frank Dill is the case: his match now grades documented off a COOK row the
+    first-row read could not see, and his card was still saying "a purchase and nothing
+    more". A stale paragraph is cut and rewritten, never patched.
+    """
     changed = False
+    note = (person.get("note") or "").strip()
+    if MARKER in note and paragraph(row) not in note:
+        person["note"] = note[:note.index(MARKER)].rstrip()
+        changed = True
     if SOURCE_ID not in (person.get("sources") or []):
         person["sources"] = (person.get("sources") or []) + [SOURCE_ID]
         changed = True
@@ -359,6 +372,56 @@ def apply_to_person(person: dict, row: dict) -> bool:
         person["note"] = (note + " " + paragraph(row)).strip()
         changed = True
     return changed
+
+
+def retract_from_person(person: dict, household: dict) -> bool:
+    """The inverse of apply_to_person, and the reason it can exist: the paragraph is the
+    LAST thing appended to the note, so it can be cut back off at its marker.
+
+    T-0700. Before it, a proposal could only ever be written: the crosswalk proposed, this
+    pass wrote, and nothing could take it back. A ruling that REFUSES a proposal has to be
+    able to, or the ruling is only a file — A. Garrett & Co. is a firm, and the card said
+    the man entered eighty acres. If the paragraph is not the tail of the note the cut is
+    refused rather than guessed at, and the caller says so.
+    """
+    note = person.get("note") or ""
+    if MARKER not in note:
+        return False
+    head = note[:note.index(MARKER)].rstrip()
+    person["note"] = head
+    if SOURCE_ID in (person.get("sources") or []):
+        person["sources"] = [s for s in person["sources"] if s != SOURCE_ID]
+    # …and the source id goes only if NOTHING else on the card still rests on it.
+    if SOURCE_ID in json.dumps(household, ensure_ascii=False):
+        person["sources"] = sorted(set((person.get("sources") or []) + [SOURCE_ID]))
+    return True
+
+
+def retract(quiet: bool = False) -> int:
+    """Cards this pass wrote that the crosswalk no longer names — a refused ruling."""
+    ruled = {(r["household_id"], r["person_id"]) for r in matches()}
+    taken = 0
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        hh = load(path)
+        changed = False
+        for person in hh.get("persons") or []:
+            note = person.get("note") or ""
+            if MARKER not in note or (hh.get("id"), person.get("id")) in ruled:
+                continue
+            if not note.rstrip().endswith(LADDER_LIMIT):
+                raise SystemExit(
+                    "%s/%s — this pass's paragraph is no longer the tail of the note, so "
+                    "it cannot be cut off at its marker. Retract it by hand and say why."
+                    % (hh.get("id"), person.get("id")))
+            if retract_from_person(person, hh):
+                changed = True
+                taken += 1
+        if changed:
+            dump(path, hh)
+    if taken and not quiet:
+        print("land tract sales: retracted from %d resident record(s) — a ruling refused "
+              "the proposal behind them (T-0700)" % taken)
+    return taken
 
 
 def apply(quiet: bool = False) -> int:
@@ -381,6 +444,7 @@ def apply(quiet: bool = False) -> int:
 
 def build(quiet: bool = False) -> int:
     dump(LEDGER, ledger_doc())
+    retract(quiet=quiet)
     apply(quiet=quiet)
     if not quiet:
         print("wrote %s" % LEDGER.relative_to(ROOT))
@@ -411,9 +475,16 @@ def gaps(rows: list) -> list:
         if SOURCE_ID not in (person.get("sources") or []):
             bad.append("%s/%s — matched by the crosswalk and the card does not cite %s"
                        % (row["household_id"], row["person_id"], SOURCE_ID))
-        if MARKER not in (person.get("note") or ""):
+        note = person.get("note") or ""
+        if MARKER not in note:
             bad.append("%s/%s — matched by the crosswalk and the card carries no paragraph"
                        % (row["household_id"], row["person_id"]))
+        elif paragraph(row) not in note:
+            # T-0700. PRESENT is not RIGHT: this is the gate that would have caught a card
+            # still saying "a purchase and nothing more" after the crosswalk had regraded
+            # the same rows documented.
+            bad.append("%s/%s — carries a paragraph that no longer says what the crosswalk "
+                       "says: re-run the tool" % (row["household_id"], row["person_id"]))
     return bad
 
 
@@ -510,8 +581,11 @@ def _gaps_over(row: dict, person: dict) -> list:
     if SOURCE_ID not in (person.get("sources") or []):
         out.append("%s/%s — does not cite %s" % (row["household_id"], row["person_id"],
                                                  SOURCE_ID))
-    if MARKER not in (person.get("note") or ""):
+    note = person.get("note") or ""
+    if MARKER not in note:
         out.append("%s/%s — no paragraph" % (row["household_id"], row["person_id"]))
+    elif paragraph(row) not in note:
+        out.append("%s/%s — stale paragraph" % (row["household_id"], row["person_id"]))
     return out
 
 
@@ -536,6 +610,35 @@ def self_test() -> int:
          all(all(c in paragraph(r) for c in r["carry"]) for r in rows))
     want("no paragraph may assert residence at Chicago",
          all("lived at Chicago" not in paragraph(r) for r in rows))
+
+    # T-0700: a paragraph that is PRESENT but no longer says what the crosswalk says is a
+    # gate failure, not a pass. This is the assertion that would have caught Frank Dill's.
+    stale = json.loads(json.dumps({"id": rows[0]["person_id"], "sources": [SOURCE_ID],
+                                   "note": paragraph(rows[0]).replace("enters this person",
+                                                                      "enters this fellow")}))
+    want("a paragraph that no longer matches the crosswalk must fail the gate",
+         any("stale" in line for line in _gaps_over(rows[0], stale)))
+    want("a paragraph that matches the crosswalk must pass",
+         not _gaps_over(rows[0], {"id": rows[0]["person_id"], "sources": [SOURCE_ID],
+                                  "note": paragraph(rows[0])}))
+
+    # T-0700: the write is REVERSIBLE, or a ruling that refuses a proposal cannot reach
+    # the card it was written onto. Apply, retract, and the record must be what it was.
+    original = {"id": "x", "name": "X", "grade": "projected_resident",
+                "sources": ["some_source"], "note": "Existing sentence.",
+                "occupation": {"value": "cooper", "confidence": "inferred"}}
+    roundtrip = json.loads(json.dumps(original))
+    apply_to_person(roundtrip, rows[0])
+    want("the write must be reversible: apply then retract returns the record",
+         retract_from_person(roundtrip, {"id": "hh_x", "persons": [roundtrip]})
+         and roundtrip == original)
+    # …and the source id STAYS when another block on the card still rests on it.
+    kept = json.loads(json.dumps(original))
+    apply_to_person(kept, rows[0])
+    retract_from_person(kept, {"id": "hh_x", "persons": [kept],
+                               "arrival": {"sources": [SOURCE_ID]}})
+    want("a retraction must not strip a source id another block still cites",
+         SOURCE_ID in kept["sources"] and MARKER not in kept["note"])
 
     # Rule 2, held over a synthetic record: two keys move and no others.
     before = {"id": "x", "name": "X", "grade": "projected_resident",

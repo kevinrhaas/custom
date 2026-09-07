@@ -4,6 +4,13 @@
 T-0487..T-0490.  Write with no arguments; `--check` validates the committed
 invariants.  The 1840 census is retained as later evidence and never silently
 back-projected into the 1835 scene.
+
+THIS WRITER DOES NOT OWN THE PUBLISHED MIRROR.  `site/chicago/4d/` is generated and
+untracked, and it has exactly one writer, `tools/publish.sh`, which ships the residents
+layer minified.  This writer emits the tracked, diff-readable form under
+`data/residents/` and nothing else.  Two writers of the same four paths, disagreeing
+about whitespace alone, is what turned `tools/check.sh` red on every run that published
+(T-0933, fixed by T-0938); `drift_self_test` below holds that one-owner rule now.
 """
 from __future__ import annotations
 
@@ -40,7 +47,6 @@ RESEARCH = DATA / "research" / "residents"
 REFERENCE = CHICAGO / "reference" / "resident-research"
 CENSUS_DIR = CHICAGO / "reference" / "census1840" / "validation"
 CENSUS_CSV = CENSUS_DIR / "H_1840_chicago_with_names_partial.csv"
-SITE = REPO / "site" / "chicago" / "4d"
 PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
@@ -606,7 +612,18 @@ def summary(before,after,ledger,stats):
 # written down file by file, a file that drifts and is not on that list fails, and a file
 # on the list that stops drifting fails too, so the list can only shrink and a spend has
 # to shrink it in its own commit.  New invisible drift is what this makes impossible.
-DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH", "site/chicago/4d/data")
+#
+# `site/chicago/4d/data` WAS A THIRD ROOT AND IS NOT ONE ANY MORE (T-0938, and it is
+# the fix for T-0933).  The published mirror is untracked and generated now, so it is
+# not part of "the committed tree" this ratchet compares a fresh writer run against —
+# and the copytree below would raise on a clone that has not published.  It was also
+# actively wrong while it worked: this writer emitted the mirror minified and
+# `apply_census_1840_bridges.py` emitted four of the same paths pretty-printed, so
+# `bash tools/publish.sh` on an untouched `dev` turned this gate red on four files whose
+# parsed values were identical.  The mirror has ONE writer now — `tools/publish.sh` —
+# and one gate, `tools/check_published_residents.mjs`, which asserts the shipped form
+# carries the source's value.
+DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH")
 
 
 def _scratch(tmp: Path) -> Path:
@@ -681,6 +698,52 @@ def drift(write_baseline=False):
     return 0
 
 
+def round_trip_problems():
+    """T-0933: `bash tools/publish.sh` followed by `--drift` has to stay green.
+
+    The fault this guards is not a value in a file, so re-running the round trip here
+    would not catch it — it is STRUCTURAL, and it came back twice in two shapes:
+
+    1.  A SECOND WRITER.  `site/chicago/4d/data` was a DRIFT_ROOT while `publish.sh`
+        minified what this writer pretty-printed, so publishing turned the ratchet red
+        on four resident files whose parsed values were identical, and the two honest
+        answers to a red gate — regenerate, or baseline it — were both wrong.  A
+        generated tree has one writer and is not something a re-derivation ratchet can
+        compare a fresh run against, so no root may live under the mirror.
+    2.  ORDER.  The gate IS the round trip only because `tools/check.sh` publishes
+        before it asks this ratchet.  Move the publish below the drift step, or drop
+        it, and what the gate measures is once again whatever the last run left behind.
+    """
+    problems = []
+    mirror = (REPO / "site" / "chicago" / "4d").resolve()
+    for rel in DRIFT_ROOTS:
+        root = (REPO / rel).resolve()
+        if root == mirror or mirror in root.parents:
+            problems.append(f"DRIFT_ROOT {rel} lies in the published mirror, which is generated "
+                            "and has one writer, tools/publish.sh (T-0933)")
+
+    gate = Path(__file__).resolve().parent / "check.sh"
+    if not gate.exists():
+        problems.append("tools/check.sh is missing — publish-then-drift is untestable")
+        return problems
+    lines = [ln for ln in gate.read_text(encoding="utf-8").splitlines()
+             if not ln.lstrip().startswith("#")]
+    def first(needle, unless=None):
+        return next((i for i, ln in enumerate(lines)
+                     if needle in ln and not (unless and unless in ln)), None)
+    publishes = first("bash tools/publish.sh")
+    drifts = first("--drift", unless="--drift-self-test")
+    if publishes is None:
+        problems.append("tools/check.sh no longer runs tools/publish.sh, so the gate is not the "
+                        "publish-then-drift round trip (T-0933)")
+    elif drifts is None:
+        problems.append("tools/check.sh no longer runs --drift, so nothing takes the round trip")
+    elif publishes > drifts:
+        problems.append("tools/check.sh runs --drift before tools/publish.sh: the ratchet sees "
+                        "whatever the last run left in the mirror, not what this one made (T-0933)")
+    return problems
+
+
 def drift_self_test():
     """The gate has to fire.  Both directions.
 
@@ -708,12 +771,14 @@ def drift_self_test():
         problems.append(f"{DRIFT_BASELINE.name} is missing — run --write-baseline")
     elif not isinstance((load(DRIFT_BASELINE).get("paths")), list):
         problems.append(f"{DRIFT_BASELINE.name} has no `paths` list to ratchet over")
+    problems += round_trip_problems()
     if problems:
         [print(" -", p) for p in problems]
         print("DRIFT SELF-TEST FAIL")
         return 1
     print("ok: the ratchet fires on undeclared drift, on healed drift and against an "
-          f"empty baseline; {len(load(DRIFT_BASELINE).get('paths') or [])} file(s) stand today")
+          f"empty baseline; {len(load(DRIFT_BASELINE).get('paths') or [])} file(s) stand today; "
+          "and publish-then-drift is still a round trip this gate takes")
     return 0
 
 
@@ -875,20 +940,16 @@ def main():
         if path not in docs: path.unlink()
     after=snapshot(index); ledger["before"]=before; ledger["after"]=after; ledger["retirement"]=stats; dump(LEDGER,ledger,2); SUMMARY.write_text(summary(before,after,ledger,stats),encoding="utf-8")
     programme=load(PROGRAMME); programme["resident_population_active"]=False; programme["resident_population_status"]="Retired from resident list by owner ruling 2026-09-02; building stock may remain anonymous until a later explicit reconstructed-population pass."; dump(PROGRAMME,programme,2)
-    sitehh=SITE/"data"/"residents"/"households"; sitehh.mkdir(parents=True,exist_ok=True); names={p.name for p in docs}
-    for p in sitehh.glob("*.json"):
-        if p.name not in names: p.unlink()
-    # Minified, matching tools/publish.sh: the published residents layer is under a
-    # size budget the authored tree is not (see the comment there).
-    for p,d in docs.items():
-        (sitehh/p.name).write_text(json.dumps(d,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-    (SITE/"data"/"residents"/"index.json").write_text(
-        json.dumps(load(INDEX),ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-    sitestruct=SITE/"data"/"structures"
-    if sitestruct.exists():
-        for p in changed:
-            q=sitestruct/p.name
-            if q.exists(): q.write_text(p.read_text(encoding="utf-8"),encoding="utf-8")
+    # THIS WRITER DOES NOT WRITE THE PUBLISHED MIRROR (T-0938).  It used to keep
+    # `site/chicago/4d/data/residents/` and the changed structure records in step
+    # itself, back when the mirror was committed and a stale one was a red gate on the
+    # branch that made it stale.  The mirror is untracked and generated now: it has one
+    # writer, `tools/publish.sh`, which `tools/check.sh` runs before it asks
+    # `check_published.mjs` and `check_published_residents.mjs` whether what it produced
+    # matches this tree.  Two writers of one file is how T-0933 happened — this one
+    # emitted the residents layer minified, `apply_census_1840_bridges.py` emitted four
+    # of the same paths pretty-printed, and whichever ran last decided whether the gate
+    # was green.  One owner, stated here and in publish.sh, is the whole of the fix.
     # T-0491. `attach_census` above is the 2 September partial name matcher, and the
     # adjudicated v4 identity bridges outrank it — `apply_census_1840_bridges.py` owns
     # them and keeps this file's result underneath as `legacy_partial_matcher`. The two

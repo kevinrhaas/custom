@@ -232,7 +232,19 @@ is the contract. The short form:
   actually see it, not only in a PR body. **Closing after `publish.sh` is fine**: the tool
   carries `tickets.json` to the published mirror itself, so the order below — publish,
   push, PR, close with the number the PR just got — ends green with no second publish
-  (T-0154; before it, that order left the mirror gate red every time).
+  (T-0154; before it, that order left the mirror gate red every time — and since
+  T-0938 the mirror is not committed, so no order of operations can leave a stale one
+  in a PR at all).
+- **The build products are GENERATED AND UNTRACKED, so there is nothing to stage**
+  (T-0937 for the board, T-0938 for the rest). `tickets/BOARD.md`,
+  `tickets/tickets.json` and the whole of `site/chicago/4d/` are .gitignored. They used to be the repository's worst conflict source, and for a reason
+  worth knowing: `claim` is a run's FIRST act and rewrites all three, so two branches
+  conflicted before either had done any work — and GitHub's server-side merge runs none of
+  this repo's merge drivers, so `merge=generated` never reached the merge that decides
+  mergeability (T-0857). Untracked files cannot conflict. Everything that needs one builds
+  it: `ticket.mjs check`/`board`, `publish.sh` before its copy, `deploy.yml` before the
+  Pages upload. **Never `git add -f` them**; if one shows in `git status`, the ignore rule
+  is the fault.
 - **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
   "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
   rule is what makes his priorities durable across runs.
@@ -326,7 +338,16 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The
   `--published` run is the one that matters: the source tree loads uncompressed masters and
   the site loads compressed derivatives, and bugs have shipped in the gap twice.
-- **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
+- **You no longer publish in the same commit — `site/chicago/4d/` is not committed at
+  all (T-0938).** The mirror is a build product with one writer, `tools/publish.sh`,
+  and it is untracked and .gitignored. `tools/check.sh` runs publish.sh first and then
+  asks `check_published.mjs` whether what it produced matches its source; `deploy.yml`
+  publishes both the production tree and the dev-preview worktree before the Pages
+  upload; `chicago-4d-bake.yml` publishes before it uploads the mirror the smoke runs
+  against. So the URLs are unchanged and a run that forgets to publish can no longer
+  ship an invisible change — there is nothing left for it to forget. Run publish.sh
+  when you want to LOOK at the published tree (`--published` measurements, a local
+  serve); the gate runs it for you either way.
   `site/chicago/4d/` is a generated mirror and `deploy.yml` only fires on `site/**`, so
   skipping it ships nothing while looking merged.
 - **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with all three
