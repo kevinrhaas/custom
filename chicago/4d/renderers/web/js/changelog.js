@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 674, title: 'A census sheet that closes exactly, and a pairing it refuses', kind: 'change', ts: '2026-09-07T18:29:33.995Z', date: 'Sep 7, 2026, 1:29 PM CT',
+    items: [
+      'Nothing in the town moved today. One more leaf of the 1840 federal census of Chicago has been read off the page images \u2014 this time a right-hand sheet, the half that carries the numbers rather than the names.',
+      'A household in 1840 is one ruled line spanning two pages. The left sheet has the head\u2019s name and the ages under his roof; the right sheet continues the line with the size of the family and who in it worked in farming, trade or the professions. A right-hand sheet carries no name and no page number \u2014 its number is printed in the corner the binding takes \u2014 so nothing written on it says which left sheet it belongs to.',
+      'This one holds 24 households. All 24 were read, and the family sizes sum to 123 against the enumerator\u2019s own total of 123 at the foot of his column: exact, nothing left over. It is only the second continuation sheet in this deposit to close like that.',
+      'That total had been recorded as 125 by an earlier, coarser look. This hand writes a 3 and a 5 quite differently, and the last glyph is the 3. What settles it is not an opinion about handwriting: the column for learned professions carries a 1 and a 2 and nothing else, and its total is written in that same shape. One and two make three.',
+      'The interesting result is a refusal. Exactly one left sheet in the deposit also has 24 filled lines \u2014 printed page 235 \u2014 and the matching counts had been noted as a hint that the two might be halves of one leaf. So the footing row of page 235 was read, and its columns add to 106 where the continuation says 123. A pair has to agree on both the count and the population. The hint is recorded as refused rather than quietly adopted, and the sheet stays unplaced.',
+      'One column does not close either: two households in manufactures and trades add to five against a printed six. The missing one is left missing \u2014 a residual spent to make a page look finished is the beginning of a page that is no longer evidence. This is 1840, five years after the July day this reconstruction is set on; nobody gained a house today.',
+    ] },
   { v: 673, title: 'Two more census leaves read to the cell, and a figure the sheet will not settle', kind: 'change', ts: '2026-09-07T16:33:18.529Z', date: 'Sep 7, 2026, 11:33 AM CT',
     items: [
       'Nothing in the town moved today. Two more leaves of the 1840 federal census of Chicago have been read off the page images \u2014 printed pages 223 and 240 \u2014 to the name and to the cell.',
