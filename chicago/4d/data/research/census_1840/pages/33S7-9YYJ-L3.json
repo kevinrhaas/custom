@@ -1,0 +1,440 @@
+{
+ "schema": 1,
+ "familysearch_id": "33S7-9YYJ-L3",
+ "image": "chicago/reference/census1840/33S7-9YYJ-L3.jpg",
+ "printed_page": null,
+ "printed_page_note": "No printed page number is on this exposure. A continuation leaf carries its number in the top margin above the SCHOOLS block; that margin is in the binding shadow here, and the leaf is identified by its FamilySearch image id alone.",
+ "sheet_side": "right",
+ "state": "Illinois",
+ "county": "Cook",
+ "division": null,
+ "division_note": "The printed heading of this leaf carries only 'by the Marshal of the \u2026 District (or Territory) of' with 'Illinois' written in. The enumerator's name is on the LEFT sheet, and this leaf is unpaired, so no division is asserted here.",
+ "reading": "scan_verified",
+ "read_pass": "the TOTAL column and the footer row",
+ "ticket": "T-0744",
+ "what_this_pass_read": [
+  "the printed column grid, measured at three heights and checked against the printed headings",
+  "the enumerator's footer row, every cell of it, across the TOTAL and the seven industry columns",
+  "the TOTAL column of the body: every figure located, measured and described, nine of them read"
+ ],
+ "what_this_pass_did_not_read": [
+  "the twelve SLAVES columns",
+  "the PENSIONERS block",
+  "the DEAF AND DUMB, BLIND AND INSANE blocks (white and coloured)",
+  "the seven SCHOOLS columns \u2014 there is ink in this block on this leaf and it is NOT swept here",
+  "the seven industry columns line by line \u2014 only their footings are read"
+ ],
+ "lines_ruled_with_an_entry": null,
+ "line_count_note": "NOT SETTLED, and this pass says why rather than picking between the two numbers it was given. coverage.json carries 31 from the contact-sheet pass; tools/census_total_column.py measured 29 groups; tools/read_census_continuation.py finds 30 at dy 45 and 55. Measured here at a single ink threshold (45 grey levels below the local median) over the right half of the TOTAL cell, the column resolves into 27 FIGURES and four further marks of 14 to 63 px. Count the four marks as entries and the total is 31, which is how the contact sheet reached its number; read the two tallest groups (y1688-1774 and y2178-2319) as one glyph each rather than two and the total is 25. So 31 is the ceiling of the range and not a reading, and no number between is committed. What IS settled is where the enumeration stops: the last ink in the column is at y2914 and the foot rule is at y3186, so 272 px \u2014 three and a half line pitches \u2014 of ruled body stand empty beneath the last household. This leaf is not filled to its rule.",
+ "grid_note": "The column grid is measured off the leaf, not assumed. A column-darkness profile taken in a 300 px band at three heights \u2014 y742 at the head of the body, y1900 at its middle and y3034 at its foot \u2014 puts the nine printed rules of the TOTAL-and-industry run at 1163, 1356, 1423, 1486, 1552, 1633, 1713, 1792, 1859 at the head and at 1161, 1359, 1425, 1488, 1553, 1634, 1714, 1795, 1861 at the foot. That is two to three pixels of lean over the whole leaf against column widths of 63 to 82 \u2014 this leaf's rules stand square, unlike 33S7-9YYJ-VJ, whose same run leans eight to eleven pixels and defeats a single profile. The grid is then CHECKED against the printed heading before any cell is cut: the column bounded by 1357 and 1424 is the one under the printed word Mining, 1487-1552 the one under Commerce, 1714-1794 the one under Navigation of canals, lakes, and rivers. All seven agree.",
+ "column_bounds_px": {
+  "total": [
+   1163,
+   1357
+  ],
+  "mining": [
+   1357,
+   1424
+  ],
+  "agriculture": [
+   1424,
+   1487
+  ],
+  "commerce": [
+   1487,
+   1552
+  ],
+  "manufactures_and_trades": [
+   1552,
+   1634
+  ],
+  "navigation_ocean": [
+   1634,
+   1714
+  ],
+  "navigation_canals_lakes_rivers": [
+   1714,
+   1794
+  ],
+  "learned_professions_and_engineers": [
+   1794,
+   1860
+  ]
+ },
+ "body_between_rules_px": [
+  602,
+  3176
+ ],
+ "footer_row_between_rules_px": [
+  3214,
+  3276
+ ],
+ "footer_as_read": {
+  "total": 115,
+  "mining": null,
+  "agriculture": 1,
+  "commerce": 3,
+  "manufactures_and_trades": 7,
+  "navigation_ocean": null,
+  "navigation_canals_lakes_rivers": 1,
+  "learned_professions_and_engineers": 2,
+  "footer_note": "SIX figures stand in the footer row and no others; mining and navigation of the ocean are blank. Each is attributed by the measured grid above and not by eye: the three glyphs 1-1-5 stand wholly inside the TOTAL cell, the single slant at x1440 inside Agriculture, the 3 at x1500 inside Commerce, the 7 at x1590 inside Manufactures and trades, the slant at x1740 inside Navigation of canals lakes and rivers, and the 2 at x1820 inside the Learned professions.",
+  "total_footing_note": "115, and this is a SECOND and independent reading of the figure T-0656 read as 1-1-5 off the same leaf. The 5 is this hand's: a bowl under a long horizontal top stroke that runs to the cell's right rule."
+ },
+ "the_two_stroke_glyph": {
+  "what": "Seven figures in the TOTAL column are two parallel slants side by side \u2014 figures 1, 4, 9, 12, 16, 17 and 18.",
+  "why_it_matters": "Read as two 1s they would carry 77 of a footed 115 across at most 27 households, which the rest of the column cannot absorb. Read as one glyph they cost 7 lines whatever the digit is.",
+  "the_measurement": "The footer row settles it, because it carries two 1s written side by side in the same hand, in the same column, on the same leaf: the two strokes of the footing's '11' stand 45.4 px apart and their centroids are level, 1.1 px of vertical offset. The seven body glyphs stand 17 to 29 px apart \u2014 a mean of 22, half the footing's separation \u2014 and their right stroke is RAISED, by 1 to 19 px. Two digits in this hand sit 45 px apart on one baseline. These do not, so they are ONE figure and not two.",
+  "what_is_not_settled": "Which digit it is. A two-stroke numeral whose right stroke is raised is the open-top 4, and 4 is also the digit that makes the column arithmetically possible against a footing of 115. Neither is evidence of the letters, so no value is written: the seven figures are recorded unread. The leaf that would settle it is a leaf of this same hand with committed line values, the way 33S7-9YYN-3CF6 settled 33S7-9YYJ-VJ's alphabet, and this leaf is unpaired so no such leaf is identified yet. Filed as its own ticket."
+ },
+ "cells_state": "total_column_located_and_measured_eight_figures_read_not_reconciled",
+ "column_closure": {
+  "total": {
+   "read": 35,
+   "printed": 115,
+   "closes": false,
+   "residual": -80,
+   "committed": false,
+   "why": "Nine of the column's 27 figures are read and they come to 35 against a footing of 115. That is not a closure test and it is not offered as one \u2014 eighteen figures are unread, seven of them the two-stroke glyph above. The column is NOT committed and every figure it does carry is kept in cells_first_pass where nothing downstream can consume it."
+  }
+ },
+ "marks_that_are_not_numerals": [
+  {
+   "where": "the TOTAL column, y1506-1515",
+   "what": "a mark of 48 px",
+   "refused_because": "no numeral shape; counted in the line-count range above rather than read"
+  },
+  {
+   "where": "the TOTAL column, y1800-1811",
+   "what": "a mark of 14 px",
+   "refused_because": "same"
+  },
+  {
+   "where": "the TOTAL column, y2158-2170",
+   "what": "a mark of 56 px",
+   "refused_because": "same"
+  },
+  {
+   "where": "the TOTAL column, y2463-2481",
+   "what": "a mark of 21 px",
+   "refused_because": "same"
+  },
+  {
+   "where": "the left half of the TOTAL cell, x1175-1258 over the whole body",
+   "what": "684 px of speckle in 27 scattered groups, none larger than 58 px",
+   "refused_because": "It is the tens-digit test and it comes back negative: there is no figure in the left half of the cell on any line of the body, so no unread tens digit stands behind any entry. Every figure in this column is a single digit."
+  }
+ ],
+ "what_the_sheet_says": "A leaf that stops short. The enumeration ends three and a half ruled lines above the foot rule, so this is a part-filled continuation and not a full one \u2014 which is itself a pairing fact, because the left sheet it continues must be part-filled too. The footer row is the readable half of the leaf and it is now read whole: 115 people, of whom seven work in manufactures and trades, three in commerce, two in the learned professions, one in agriculture and one on the canals, lakes and rivers. Nobody at all in mining or on the ocean. Fourteen of the 115 are returned as employed \u2014 a town's page, and one leaning to the trades rather than to commerce, which is the other way round from 33S7-9YYJ-VJ.",
+ "records": [
+  {
+   "figure": 1,
+   "reading": "scan_verified",
+   "ink_top_px": 640,
+   "ink_bottom_px": 714,
+   "as_read": "two parallel slants, the right one raised 0.7 px and 27 px to the right of the left; one glyph by the separation test below",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 2,
+   "reading": "scan_verified",
+   "ink_top_px": 718,
+   "ink_bottom_px": 775,
+   "as_read": "a long horizontal stroke running right to the cell rule with a bowl beneath it \u2014 this hand's 5, the form T-0656 read in the footing",
+   "figure_confidence": "medium",
+   "cells_first_pass": {
+    "total": 5
+   }
+  },
+  {
+   "figure": 3,
+   "reading": "scan_verified",
+   "ink_top_px": 798,
+   "ink_bottom_px": 841,
+   "as_read": "the same 5, the clearest on the leaf",
+   "figure_confidence": "high",
+   "cells_first_pass": {
+    "total": 5
+   }
+  },
+  {
+   "figure": 4,
+   "reading": "scan_verified",
+   "ink_top_px": 851,
+   "ink_bottom_px": 919,
+   "as_read": "two parallel slants, dx 17, right stroke raised 19 px",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 5,
+   "reading": "scan_verified",
+   "ink_top_px": 943,
+   "ink_bottom_px": 991,
+   "as_read": "a 5: horizontal top stroke and bowl",
+   "figure_confidence": "high",
+   "cells_first_pass": {
+    "total": 5
+   }
+  },
+  {
+   "figure": 6,
+   "reading": "scan_verified",
+   "ink_top_px": 1014,
+   "ink_bottom_px": 1071,
+   "as_read": "a blob over an arc sweeping down and to the left; no base stroke resolves",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 7,
+   "reading": "scan_verified",
+   "ink_top_px": 1104,
+   "ink_bottom_px": 1147,
+   "as_read": "a short slant with a small mark to its right",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 8,
+   "reading": "scan_verified",
+   "ink_top_px": 1178,
+   "ink_bottom_px": 1230,
+   "as_read": "a short stroke over a long arc sweeping down-left",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 9,
+   "reading": "scan_verified",
+   "ink_top_px": 1258,
+   "ink_bottom_px": 1316,
+   "as_read": "two parallel slants, dx 22, right stroke raised 11 px",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 10,
+   "reading": "scan_verified",
+   "ink_top_px": 1333,
+   "ink_bottom_px": 1351,
+   "as_read": "a single short slant, 63 px of ink \u2014 the smallest figure on the leaf",
+   "figure_confidence": "low",
+   "cells_first_pass": {
+    "total": 1
+   }
+  },
+  {
+   "figure": 11,
+   "reading": "scan_verified",
+   "ink_top_px": 1380,
+   "ink_bottom_px": 1409,
+   "as_read": "a faint broken slant",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 12,
+   "reading": "scan_verified",
+   "ink_top_px": 1420,
+   "ink_bottom_px": 1457,
+   "as_read": "two parallel slants, dx 29",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 13,
+   "reading": "scan_verified",
+   "ink_top_px": 1548,
+   "ink_bottom_px": 1581,
+   "as_read": "a small hooked blob",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 14,
+   "reading": "scan_verified",
+   "ink_top_px": 1600,
+   "ink_bottom_px": 1653,
+   "as_read": "an arc opening upward under a short hook",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 15,
+   "reading": "scan_verified",
+   "ink_top_px": 1688,
+   "ink_bottom_px": 1774,
+   "as_read": "the boldest figure on the leaf: a loop over a long sweeping stroke, 1,483 px of ink",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 16,
+   "reading": "scan_verified",
+   "ink_top_px": 1826,
+   "ink_bottom_px": 1917,
+   "as_read": "two parallel slants, dx 24, right stroke raised 14 px",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 17,
+   "reading": "scan_verified",
+   "ink_top_px": 1978,
+   "ink_bottom_px": 2067,
+   "as_read": "two parallel slants, dx 17, right stroke raised 16 px",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 18,
+   "reading": "scan_verified",
+   "ink_top_px": 2095,
+   "ink_bottom_px": 2149,
+   "as_read": "two parallel slants, dx 19, right stroke raised 9 px",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 19,
+   "reading": "scan_verified",
+   "ink_top_px": 2179,
+   "ink_bottom_px": 2277,
+   "as_read": "a 5: horizontal top stroke carried right to the rule, bowl beneath",
+   "figure_confidence": "medium",
+   "cells_first_pass": {
+    "total": 5
+   }
+  },
+  {
+   "figure": 20,
+   "reading": "scan_verified",
+   "ink_top_px": 2279,
+   "ink_bottom_px": 2319,
+   "as_read": "an arc below the 5 above it, on its own line",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 21,
+   "reading": "scan_verified",
+   "ink_top_px": 2331,
+   "ink_bottom_px": 2388,
+   "as_read": "an arc with a hook at its left foot",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 22,
+   "reading": "scan_verified",
+   "ink_top_px": 2400,
+   "ink_bottom_px": 2456,
+   "as_read": "a 5, the top stroke crossing the cell rule",
+   "figure_confidence": "medium",
+   "cells_first_pass": {
+    "total": 5
+   }
+  },
+  {
+   "figure": 23,
+   "reading": "scan_verified",
+   "ink_top_px": 2490,
+   "ink_bottom_px": 2530,
+   "as_read": "a single thick slant, the form of the footing's 1 and of the footed 1 under Agriculture",
+   "figure_confidence": "medium",
+   "cells_first_pass": {
+    "total": 1
+   }
+  },
+  {
+   "figure": 24,
+   "reading": "scan_verified",
+   "ink_top_px": 2566,
+   "ink_bottom_px": 2614,
+   "as_read": "a slant over a curve",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 25,
+   "reading": "scan_verified",
+   "ink_top_px": 2634,
+   "ink_bottom_px": 2678,
+   "as_read": "an arc with a blob at its head",
+   "figure_confidence": "unread",
+   "cells_first_pass": {
+    "total": null
+   }
+  },
+  {
+   "figure": 26,
+   "reading": "scan_verified",
+   "ink_top_px": 2713,
+   "ink_bottom_px": 2832,
+   "as_read": "a top bar with a hook and a long stroke descending to the left \u2014 the form of the footed 7 under Manufactures and trades",
+   "figure_confidence": "medium",
+   "cells_first_pass": {
+    "total": 7
+   }
+  },
+  {
+   "figure": 27,
+   "reading": "scan_verified",
+   "ink_top_px": 2857,
+   "ink_bottom_px": 2914,
+   "as_read": "a single long slant descending to the left",
+   "figure_confidence": "low",
+   "cells_first_pass": {
+    "total": 1
+   }
+  }
+ ],
+ "pairing": {
+  "paired_to_printed_page": null,
+  "paired_to_familysearch_id": null,
+  "state": "unpaired",
+  "page_population_key": 115,
+  "page_population_key_state": "confirmed_by_a_second_reading",
+  "line_count_key": null,
+  "line_count_key_state": "not_settled_range_25_to_31",
+  "tested_by": "T-0656",
+  "result": "Refused by T-0656 on the population key: no left sheet read anywhere in the deposit foots 115, and the nearest is 33S7-9YYJ-PC at 113, two short.",
+  "what_this_reading_changes": "The POPULATION key is strengthened: 115 is now read twice, independently, off the measured grid, so the refusal at 113 rests on a figure that has been checked. The LINE-COUNT key is weakened and should not be used: coverage's 31 is the ceiling of a 25-to-31 range and not a reading. And a new key is available that costs nothing to apply \u2014 the leaf is PART-FILLED, ending three and a half lines above its own foot rule, so its left sheet is part-filled by the same amount."
+ }
+}

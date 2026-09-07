@@ -565,8 +565,10 @@
      "lines_with_an_entry": 31,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "total_column_and_footer_row_read_total_not_reconciled",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-L3.json",
+     "lines_with_an_entry_note": "The 31 carried here is the contact-sheet pass's count and T-0744 could not confirm it. Measured at one ink threshold the TOTAL column resolves into 27 figures plus four marks of 14 to 63 px; counting the marks gives 31 and reading the two tallest groups as one glyph each gives 25. The number is left standing as the ceiling of that range rather than replaced by a second guess.",
+     "read_note": "Read by T-0744: the printed column grid measured at three heights and checked against the printed headings (this leaf's rules stand square \u2014 two to three pixels of lean over the whole leaf, unlike 33S7-9YYJ-VJ); the enumerator's footer row read WHOLE and committed \u2014 115 under TOTAL, 1 agriculture, 3 commerce, 7 manufactures and trades, 1 navigation of canals lakes and rivers, 2 learned professions, mining and navigation of the ocean blank; and the TOTAL column of the body located figure by figure, 27 of them, of which NINE are read and the column is NOT committed. Seven figures are a two-stroke glyph that is proved to be ONE figure and not the digits 11 \u2014 the footing's own '11' sets its two strokes 45 px apart and level, and these stand a mean 22 px apart with the right stroke raised \u2014 but whose value this leaf carries no alphabet for. The enumeration STOPS 272 px, three and a half line pitches, above the foot rule, so this is a part-filled leaf. NOT read here: the slaves, pensioners and deaf/dumb/blind/insane blocks, the SCHOOLS block (which carries ink on this leaf), and the industry columns line by line."
     },
     {
      "index": 31,
