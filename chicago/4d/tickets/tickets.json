@@ -1,6 +1,6 @@
 {
   "project": "chicago-4d",
-  "generated_ct": "Sep 6, 2026, 8:50 PM",
+  "generated_ct": "Sep 6, 2026, 8:56 PM",
   "tickets": [
     {
       "id": "T-0001",
@@ -15624,6 +15624,26 @@
       "closed_at": null,
       "claimed_run": null,
       "queue_rank": 174
+    },
+    {
+      "id": "T-0925",
+      "title": "Three runs read 33S7-9YYJ-L3 on the same morning and their line counts disagree: reconcile PRs #1013, #1014 and #1015 into one reading of the leaf",
+      "state": "open",
+      "epic": "META",
+      "requested_by": "loop",
+      "seen": false,
+      "effort": "M",
+      "legacy_id": null,
+      "parent": null,
+      "opened": "2026-09-06",
+      "closed": null,
+      "pr": null,
+      "claimed_by": null,
+      "blocked_on": null,
+      "needs_bake": false,
+      "closed_at": null,
+      "claimed_run": null,
+      "queue_rank": 177
     }
   ]
 }

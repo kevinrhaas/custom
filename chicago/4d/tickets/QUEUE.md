@@ -381,3 +381,4 @@ T-0921 — publish.sh minifies four site mirror files the resident synthesizer w
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
 T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
+T-0925 — Three runs read 33S7-9YYJ-L3 on the same morning and their line counts disagree: reconcile PRs #1013, #1014 and #1015 into one reading of the leaf
