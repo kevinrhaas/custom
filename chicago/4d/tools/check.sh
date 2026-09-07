@@ -25,6 +25,27 @@ step() {
   fi
 }
 
+# THE MIRROR IS BUILT FIRST, BECAUSE IT IS NOT IN THE REPOSITORY ANY MORE (T-0938).
+#
+# `site/chicago/4d/` used to be committed, so every step below could assume it was
+# simply there — and `check_published.mjs` ran under an `if [ -d ]` guard that made a
+# fresh checkout skip the gate silently. It is untracked and .gitignored now (see
+# /.gitignore for the measurement), which turns that assumption into an absence: a
+# clone has no mirror at all until something publishes one.
+#
+# So the gate publishes one, here, before anything reads it. That is not a workaround;
+# it is the honest reading of what check_published.mjs asserts. The claim was never
+# "the mirror somebody committed matches its source" — it was "what publish.sh produces
+# matches its source", and with the mirror off the PR surface that is the only reading
+# left. Everything downstream now measures a mirror this run made, so a stale one is
+# not a state that can exist.
+#
+# It costs about a second (measured: 1.0 s on a warm tree), and it is a REAL publish
+# rather than a `--dry-run`, so publish.sh's own refusals — a derivative that no longer
+# answers for its master — fail the gate here rather than at deploy time.
+step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-0938)" \
+  bash tools/publish.sh
+
 step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
   python3 tools/validate.py --all $STRICT
 
@@ -1166,17 +1187,23 @@ step "…and its own assertions still fire when broken" \
 # unchecked files on its first run, one of them a build.json two days stale.
 # Skipped rather than failed when the mirror is absent, so a fresh checkout that
 # has not published yet still gates cleanly.
-if [ -d ../../site/chicago/4d ]; then
-  step "published mirror matches its source" \
-    node tools/check_published.mjs
+# NO LONGER GUARDED BY `[ -d ]` (T-0938). The guard existed because a fresh checkout
+# might not have published yet, and it meant exactly that checkout skipped this gate
+# without saying so. The mirror is untracked now and the step at the top of this file
+# publishes it, so the mirror always exists here and the question is always asked.
+step "publish.sh produces a mirror that matches its source" \
+  node tools/check_published.mjs
 
-  # …and the one layer in it publish.sh transforms rather than copies. The residents
-  # records ship minified for the size budget, so the byte comparison above cannot see
-  # them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
-  # files, nothing dropped.
-  step "the published residents layer carries its source's value" \
-    node tools/check_published_residents.mjs
-fi
+# …and the one layer in it publish.sh transforms rather than copies. The residents
+# records ship minified for the size budget, so the byte comparison above cannot see
+# them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
+# files, nothing dropped. It is also the ONLY owner of that claim now: until T-0938 the
+# two writers of the residents layer each wrote the mirror themselves and
+# `apply_census_1840_bridges.py --check` asserted its own copy was fresh, which is how
+# two owners came to disagree about whitespace and turn this gate red on any run that
+# published (T-0933).
+step "the published residents layer carries its source's value" \
+  node tools/check_published_residents.mjs
 
 # …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
 # already run. `ticket.mjs done` needs the PR number that only exists once the PR
