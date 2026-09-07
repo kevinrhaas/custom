@@ -460,18 +460,45 @@ def build(entries, sidecars):
             [(lid, ground[lid][0], ground[lid][1]) for lid in sorted(set(lot_ids))],
             path, links)
 
+    def side_of(lot_ids, a, b) -> str:
+        """WHICH SIDE of the first-named lot this line is on — `e`, `w`, `n` or `s`.
+
+        A run id has to name the thing it identifies, and `side_<lot>` named the LOT: a
+        lot has two side lines, so the two of them came out with one id between them
+        (T-0828). The discriminator is the geometry that already distinguishes them —
+        the side line's midpoint lies to one side of the lot's centre, and the two sides
+        of a lot lie on opposite sides of it, so the token always tells them apart.
+
+        The lot it is measured from is the FIRST one named in the id, which is the id's
+        own sorted order, so a party line between two lots reads as the side of the
+        earlier-named one. That is a statement about a real line and not a tie-break:
+        the east side of lot 1 IS the west side of lot 2, and the id names both lots.
+        """
+        poly = ground[sorted(set(lot_ids))[0]][0]
+        cx = sum(v[0] for v in poly) / len(poly)
+        cy = sum(v[1] for v in poly) / len(poly)
+        dx, dy = (a[0] + b[0]) / 2 - cx, (a[1] + b[1]) / 2 - cy
+        if abs(dx) >= abs(dy):
+            return "e" if dx >= 0 else "w"
+        return "n" if dy >= 0 else "s"
+
     for k in sorted(sides.keys()):
         rec = sides[k]
+        # The side token comes off the WHOLE line, not the piece, so trimming a run around
+        # a building that stands on it cannot rename the side the run is on.
+        side = side_of(rec["lots"], rec["a"], rec["b"])
         for n, (p, q) in enumerate(pieces(rec["a"], rec["b"], [(rec["lo"], rec["hi"])])):
             runs[rec["kind"]].append({
-                "id": f"side_{'_'.join(sorted(set(rec['lots'])))}"
+                "id": f"side_{'_'.join(sorted(set(rec['lots'])))}_{side}"
                       + (f"_{n}" if n else ""),
                 "path_local_enu_m": [[round(p[0], 2), round(p[1], 2)],
                                      [round(q[0], 2), round(q[1], 2)]],
                 "belongs_to": belongs(rec["lots"], [p, q]),
                 "note": (
-                    f"A SIDE LOT LINE, and the fence on it is built ONCE: "
-                    f"{' and '.join(sorted(set(rec['lots'])))} "
+                    f"A SIDE LOT LINE — the "
+                    f"{ {'e': 'east', 'w': 'west', 'n': 'north', 's': 'south'}[side] } "
+                    f"side of {sorted(set(rec['lots']))[0]} — and the fence on it is "
+                    f"built ONCE: {' and '.join(sorted(set(rec['lots'])))} "
                     f"{'both claim' if len(set(rec['lots'])) > 1 else 'claims'} this line "
                     f"and a party fence between two yards is one fence. THE LINE IS THE "
                     f"COMMITTED PLAT'S, corner to corner out of "

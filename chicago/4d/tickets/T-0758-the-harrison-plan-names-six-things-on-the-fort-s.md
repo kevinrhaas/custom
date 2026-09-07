@@ -1,7 +1,7 @@
 ---
 id: T-0758
 title: The Harrison plan names six things on the fort's ground that this model has never drawn: Well, Wash house, Big Barn with Cupola, Shop, Out Buildings and the Fort Cemetery
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-06
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-06T10:33:23.841Z
 claimed_run: null
 ---
 

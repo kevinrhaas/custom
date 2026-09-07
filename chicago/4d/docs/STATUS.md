@@ -1,5 +1,68 @@
 # STATUS
 
+## Shipped 2026-09-06 — T-0828: a fence run id names the side of the lot, not just the lot
+
+**What shipped.** `tools/generate_lot_line_fences.py` mints `side_<lot>_<e|w|n|s>`
+where it minted `side_<lot>`, and the three lot-line fence records rebuilt from it.
+Seventeen ids that were each carried twice are now thirty-four ids carried once:
+
+| file | runs | ids carried twice, before | after |
+|---|---|---|---|
+| `data/enclosures/town_lot_line_pickets.json` | 61 | 4 | 0 |
+| `data/enclosures/town_lot_line_rails.json` | 147 | 8 | 0 |
+| `data/enclosures/town_lot_line_boards.json` | 83 | 5 | 0 |
+
+**No fence moved.** The diff over the three records is 336 lines, and every one of
+them is an `id` or the `note` that now says which side the run is on. Not one
+`path_local_enu_m`, `belongs_to`, kind, opening or count changed — the collision was
+never in the geometry, and the geometry is the same geometry it was.
+
+### Why the id collided, and why both entries were always real
+
+A run was named after the LOT it belongs to, and a lot has two side lines. The two
+runs called `side_blk_lake_dearborn_lot1` in the rails file sit at easting 709.8 and
+735.7 — one lot's width apart, the east and the west line of that lot, each with its
+own path. Both are real fence. The name identified the lot and then stopped, which is
+under-specification rather than duplication, and it is why the check could not simply
+assert there: asserting would have refused correct data.
+
+### The discriminator is the geometry that already told them apart
+
+The side line's midpoint lies to one side of the lot's centre, and the two sides of a
+lot lie on opposite sides of it, so the dominant component of that offset — east,
+west, north or south — always separates them. It is measured off the WHOLE committed
+line rather than off the piece, so trimming a run around a building that stands on it
+cannot rename the side the run is on; and it is measured from the FIRST lot named in
+the id, which is the id's own sorted order, so a party line between two lots reads as
+the side of the earlier-named one. That is a statement about a real line and not a
+tie-break: the east side of lot 1 IS the west side of lot 2, and the id names both.
+The note on every side run now says the side in words as well.
+
+### The exception came out of `check_unique_ids.py`, which is the point of it
+
+`EXCEPTIONS` held these three entries and nothing else. It is now empty, and the
+check covers `runs[]` like every other keyed list — 67 of 68 kinds of list before,
+68 of 68 today. The table stays, empty, with the story of the entry that left it:
+an exception here is a named, ticketed gap and never a silent skip, and the check
+refuses one the day it stops being needed, which is exactly how this one came out —
+it reported the entries as unnecessary and asked for the deletion.
+
+Three self-test cases had to move with it. They asserted the machinery — an
+exception honoured, an exception reported when its list comes good, an exception
+whose file is simply absent — by pinning to the real `town_lot_line_rails.json`
+entry, so the day the entry went it took its own proof with it and they failed. They
+now install a synthetic exception for their own duration, which keeps the machinery
+proven for whoever needs the next one; and a new case asserts the three fence files
+are held by the rule like any other list.
+
+### Visible-progress rule
+
+**Not visible**, and it is not pretended to be. Nothing on the walk changed: the
+fences stand where they stood, and a run id is not drawn. What changed is that
+anything indexing these runs by id — a scene compile keying a mesh, an audit joining
+a run to its lot, a diff asking whether a run moved — can no longer silently keep one
+side of a lot and lose the other.
+
 ## Shipped 2026-09-06 — T-0860: the three kin ties #947 read and the survey could not see
 
 **What shipped.** Kin rows on both people for three ties `dev` did not hold, each
@@ -408,15 +471,17 @@ route nobody predicted.** Three duplicates from merges, and the fourth from a
 single-branch sweep that read the value and added it again. A check written to catch
 merges would have missed it; a check written against the shape caught it.
 
-### The one exception, named rather than skipped — T-0828
+### The one exception, named rather than skipped — T-0828, and since closed
 
-`runs[]` in the three `data/enclosures/town_lot_line_*.json` files repeats ids, and
-those are NOT duplicates. Two runs called `side_blk_lake_dearborn_lot1` sit at easting
+`runs[]` in the three `data/enclosures/town_lot_line_*.json` files repeated ids, and
+those were NOT duplicates. Two runs called `side_blk_lake_dearborn_lot1` sat at easting
 709.8 and 735.7 — one lot's width apart, the east and the west line of that lot. Both
-are real fence; the generator names a run after the LOT and a lot has two sides, so the
-id under-specifies. Asserting there would refuse correct data. **T-0828** fixes the
-generator; the check refuses the exception the day it stops being needed, so it cannot
-outlive its ticket.
+are real fence; the generator named a run after the LOT and a lot has two sides, so the
+id under-specified. Asserting there would have refused correct data. **T-0828 fixed the
+generator** (see the entry at the head of this file, 2026-09-06): the id now names the
+side, all three files rebuilt clean, and `EXCEPTIONS` is empty. The check refuses an
+exception the day it stops being needed, so it cannot outlive its ticket — and that is
+how this one came out, on its own report rather than because somebody remembered.
 
 ### Not covered, and measured rather than assumed — T-0829
 

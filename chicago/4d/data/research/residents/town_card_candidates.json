@@ -340,7 +340,8 @@
      "name": "John K Clark",
      "anchor": false,
      "sources": [
-      "chicago_american_1835"
+      "chicago_american_1835",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "distinct",
      "ruled_in": "clark-john"
@@ -396,6 +397,7 @@
      "sources": [
       "chicago_voter_lists_1833_1835_irad",
       "fergus_chicago_directory_1843",
+      "isa_public_domain_land_tract_sales",
       "norris_directory_1844"
      ],
      "ruling": "distinct",
@@ -448,7 +450,8 @@
      "anchor": false,
      "sources": [
       "chicago_democrat_1833_1835",
-      "fergus_1843_old_settler_death_notices"
+      "fergus_1843_old_settler_death_notices",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "undecided",
      "ruled_in": "handy"
@@ -771,7 +774,8 @@
      "name": "L W Smith",
      "anchor": false,
      "sources": [
-      "chicago_voter_lists_1833_1835_irad"
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "undecided",
      "ruled_in": "smith-lawrence"
@@ -898,7 +902,8 @@
       "andreas_1884_v1",
       "baptisthistoryhomepage",
       "chicago_democrat_1833_1835",
-      "chicago_voter_lists_1833_1835_irad"
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "merge",
      "ruled_in": "temple"
@@ -1021,7 +1026,8 @@
      "anchor": false,
      "sources": [
       "chicago_democrat_1833_1835",
-      "fergus_1843_old_settler_death_notices"
+      "fergus_1843_old_settler_death_notices",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "undecided",
      "ruled_in": "thompson"

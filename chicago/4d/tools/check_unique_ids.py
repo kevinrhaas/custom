@@ -29,9 +29,12 @@ or more objects, every one of which carries an `id`. Measured over the tree on
 the day it was written — 2,835 committed JSON files — that shape appears in 68
 kinds of list and 67 of them were already clean. So the rule is not a new
 constraint on anybody: it is what the data already obeys, written down, and the
-single kind that does not obey it is named below with the ticket that fixes it.
+single kind that did not obey it has since been fixed at the generator that
+minted it (T-0828), so the rule now applies everywhere with no exception.
 
-THE ONE EXCEPTION IS NAMED HERE RATHER THAN SKIPPED SILENTLY (see EXCEPTIONS).
+THE EXCEPTION MACHINERY STAYS (see EXCEPTIONS), empty. An exception here is a
+named, ticketed gap and never a silent skip, and the check refuses one the day
+it stops being needed — which is how the last one came out.
 """
 from __future__ import annotations
 
@@ -53,21 +56,21 @@ SIZE_CAP = 12_000_000
 
 # ── the exceptions, each with its reason and its ticket ────────────────────
 #
-# `runs` in the three lot-line fence files repeats an id because the id
-# UNDER-SPECIFIES rather than because a run was committed twice: a run is
-# named `side_<block>_lot<n>`, and a lot has more than one side, so two runs
-# that share an id are two different sides of one lot, each with its own
-# `path_local_enu_m`. In the rails file the two runs called
-# `side_blk_lake_dearborn_lot1` sit at easting 709.8 and 735.7 — one lot's width
-# apart, the east and the west line of that lot. Both are real fence. Asserting
-# uniqueness here would refuse correct data; the fix is in the generator that
-# mints the name, which is what T-0828 asks for. Recorded rather than skipped,
-# so the gap is visible and gets closed instead of becoming permanent.
-EXCEPTIONS = {
-    ("data/enclosures/town_lot_line_pickets.json", "runs"): "T-0828",
-    ("data/enclosures/town_lot_line_rails.json", "runs"): "T-0828",
-    ("data/enclosures/town_lot_line_boards.json", "runs"): "T-0828",
-}
+# EMPTY, and it is worth saying how it got that way rather than deleting the
+# table. It held one entry, three times over: `runs` in the three lot-line fence
+# files repeated an id because the id UNDER-SPECIFIED rather than because a run
+# was committed twice — a run was named `side_<block>_lot<n>`, and a lot has two
+# sides, so the two side lines of one lot came out with one id between them.
+# Asserting uniqueness there would have refused correct data, so the gap was
+# named here instead of skipped, with the ticket that closes it.
+#
+# T-0828 closed it at the generator (`tools/generate_lot_line_fences.py`), which
+# now mints `side_<lot>_<e|w|n|s>` — the id names the side, the two runs are two
+# ids, and all three files rebuilt clean. So the rule below has no exception, and
+# the exception the table was built for came out the way the design intended:
+# the check reported it as unnecessary the moment it was, and asked for the
+# deletion. Keep the table for the next one.
+EXCEPTIONS: dict[tuple[str, str], str] = {}
 
 # ── append-only ledgers, which have no `id` and a different rule ───────────
 #
@@ -179,6 +182,22 @@ def self_test() -> int:
         os.makedirs(os.path.dirname(p), exist_ok=True)
         io.open(p, "w", encoding="utf-8").write(json.dumps(doc))
 
+    def excepted(name: str, build, should_fire: bool):
+        """A case run against a SYNTHETIC exception, installed for its duration.
+
+        EXCEPTIONS is empty (T-0828), and these three assertions are about the
+        machinery rather than about any entry in it. Pinning them to a real entry
+        is what made them fail the day the last one came out — the entry went and
+        took its own proof with it. So the exception under test is invented here,
+        which keeps the machinery proven for whoever needs the next one.
+        """
+        entry = ("data/enclosures/fictitious_fence.json", "runs")
+        EXCEPTIONS[entry] = "T-0000 (self-test only)"
+        try:
+            case(name, build, should_fire)
+        finally:
+            del EXCEPTIONS[entry]
+
     case("a list with two identical entries under one id is caught",
          lambda td: write(td, "data/streets/1835.json",
                           {"streets": [{"id": "west_water", "w": 1},
@@ -200,17 +219,20 @@ def self_test() -> int:
          lambda td: write(td, "data/x.json", {"rows": [{"n": 1}, {"n": 1}]}), False)
     case("a one-row list cannot duplicate anything",
          lambda td: write(td, "data/x.json", {"rows": [{"id": "a"}]}), False)
-    case("the named exception is honoured, not re-reported",
-         lambda td: write(td, "data/enclosures/town_lot_line_rails.json",
-                          {"runs": [{"id": "side_lot1"}, {"id": "side_lot1"}]}), False)
-    case("an exception whose list came good is reported, so it cannot outlive its ticket",
-         lambda td: write(td, "data/enclosures/town_lot_line_rails.json",
-                          {"runs": [{"id": "side_lot1_e"}, {"id": "side_lot1_w"}]}), True)
-    case("…and an exception whose file is simply absent is not mistaken for that",
-         lambda td: write(td, "data/streets/1835.json",
-                          {"streets": [{"id": "a"}, {"id": "b"}]}), False)
+    excepted("a named exception is honoured, not re-reported",
+             lambda td: write(td, "data/enclosures/fictitious_fence.json",
+                              {"runs": [{"id": "side_lot1"}, {"id": "side_lot1"}]}), False)
+    excepted("an exception whose list came good is reported, so it cannot outlive its ticket",
+             lambda td: write(td, "data/enclosures/fictitious_fence.json",
+                              {"runs": [{"id": "side_lot1_e"}, {"id": "side_lot1_w"}]}), True)
+    excepted("…and an exception whose file is simply absent is not mistaken for that",
+             lambda td: write(td, "data/streets/1835.json",
+                              {"streets": [{"id": "a"}, {"id": "b"}]}), False)
     case("…but the same shape elsewhere is still caught",
          lambda td: write(td, "data/enclosures/other_fence.json",
+                          {"runs": [{"id": "side_lot1"}, {"id": "side_lot1"}]}), True)
+    case("the three lot-line fence files are now held by the rule like any other",
+         lambda td: write(td, "data/enclosures/town_lot_line_rails.json",
                           {"runs": [{"id": "side_lot1"}, {"id": "side_lot1"}]}), True)
     case("two IDENTICAL raised[] entries are a merge artefact and are caught",
          lambda td: write(td, "tools/research_spend_baseline.json",
@@ -244,8 +266,9 @@ def main() -> int:
               "a duplicate that reaches dev turns the gate red for every open PR, and\n"
               "dev's ruleset now refuses merges while it is.", file=sys.stderr)
         return 1
-    print("unique ids: every committed list carries each id once "
-          "(%d exception(s), each ticketed)" % len(EXCEPTIONS))
+    print("unique ids: every committed list carries each id once"
+          + (" (%d exception(s), each ticketed)" % len(EXCEPTIONS)
+             if EXCEPTIONS else ", with no exception"))
     return 0
 
 

@@ -578,6 +578,72 @@ def person_key(name):
     return slug(name)
 
 
+# --------------------------------------------------------------------------
+# T-0694: an out-of-town house, and the men who keep it
+
+# The roles that make an entity the HOUSE rather than somebody standing beside it.
+# A proprietor or a partner IS the firm; an assignee, an agent, a passenger or a
+# name in a letter list is not, and must not inherit the firm's city.
+HOUSE_ROLES = ("proprietor", "partner")
+
+
+def place_tail(trade):
+    """The place a printed trade line ends with, or None.
+
+    The papers set an out-of-town house's own city at the END of its trade line —
+    "hat manufacturers and wholesale dealers, Detroit", "steam saw mill and lumber,
+    St. Joseph". Everything before the last comma is the trade; the tail is where
+    the house stands.
+    """
+    m = re.search(r",\s*([^,]+?)\s*$", trade or "")
+    return m.group(1) if m else None
+
+
+def house_place_problems(houses, vocabulary):
+    """T-0694. A house's city must be on the men who keep it, not only on the firm.
+
+    M'Cormick & Moon advertised to Chicago out of No. 109 Jefferson Avenue, Detroit.
+    The BUSINESS record carried "Detroit" inside its trade line and the PERSON record
+    carried nothing at all, so every pass that reads a person — and the mints read
+    `associated_places` to refuse a man this project cannot put in the town — saw a
+    hatter with no address and a printed trade. Nothing had gone wrong yet; the
+    register's action was `new_resident` either way, because ruling 1 turns on the
+    town not holding the name. But nothing stopped a later pass raising a hatter's
+    shop on the plat for a house in Michigan, and nothing looked.
+
+    The test is DERIVED, not a list of cities: a trade tail counts as a place only
+    where the corpus itself already names it as one on some entity's
+    `associated_places`. That is what holds "agents, Merchants Line" — a shipping
+    line, not a town — out of it, without anybody hand-typing which words are cities.
+    Its one blind spot is stated rather than papered over: a city this corpus names
+    ONCE, on the very claim that omits it, is invisible here.
+    """
+    out = []
+    for label, trade, tail, entities in houses:
+        key = norm_place(tail)
+        if key not in vocabulary:
+            continue
+        for ent in entities:
+            if ent.get("role") not in HOUSE_ROLES:
+                continue
+            held = {norm_place(p) for p in (ent.get("associated_places") or [])}
+            if key in held:
+                continue
+            out.append(
+                "%s: the trade line puts this house at %r and %r keeps it as a %s, "
+                "but the entity carries no such place — an out-of-town house whose "
+                "proprietors read as placeless is one a later pass can raise on the "
+                "plat (T-0694). Put the place on the entity, or give the entity a "
+                "role that is not the house."
+                % (label, tail, ent.get("normalized") or ent.get("as_printed"),
+                   ent.get("role")))
+    return out
+
+
+def norm_place(name):
+    return re.sub(r"\s+", " ", (name or "").strip()).casefold()
+
+
 def compile_gazetteer(files, identity, corpus, quiet=True):
     """Compile extracted/* into the gazetteer. Returns (doc, problems).
 
@@ -589,6 +655,12 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
     persons = {}
     businesses = {}
     claim_count = 0
+    # T-0694. Both halves are whole-corpus facts, so they are gathered here and ruled
+    # on after every file has been read: `place_vocabulary` is every place name the
+    # corpus itself puts on an entity, and `houses` is every business claim whose
+    # trade line ends in something that might be one.
+    place_vocabulary = set()
+    houses = []
 
     for path in sorted(files, key=lambda p: Path(p).name):
         doc = load_json(path)
@@ -625,9 +697,14 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 for place in ent.get("associated_places", []):
                     if place not in p["associated_places"]:
                         p["associated_places"].append(place)
+                    place_vocabulary.add(norm_place(place))
 
             biz = claim.get("business")
             if biz:
+                tail = place_tail(biz.get("trade"))
+                if tail:
+                    houses.append((key, biz.get("trade"), tail,
+                                   claim.get("entities") or []))
                 bk = slug(biz.get("name"))
                 # T-0412. The address in a vendor's for-sale notice is the house he is
                 # selling, not the ground his own firm stands on, so it places nothing
@@ -696,6 +773,10 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                         {"claim": key, "issue": issue_date, "dating": op.get("dating"),
                          "iso": op.get("iso"), "verbatim": op.get("verbatim"),
                          "note": op.get("note")})
+
+    # T-0694, ruled on now that the whole corpus has been read: the city a printed
+    # trade line gives a house has to be on the men who keep it too.
+    problems.extend(house_place_problems(houses, place_vocabulary))
 
     # THE PLACES, and they are DECLARED, exactly the way a merge is (T-0359). The table
     # above is keyed on a name and knows nothing about what kind of thing a name is, so a
@@ -3287,6 +3368,60 @@ def self_test():
                             "`building` claim signed by its vendor" % why)
         elif kept.get("vendor_placements"):
             failures.append("%s was recorded as a vendor notice" % why)
+
+    # AN OUT-OF-TOWN HOUSE PUTS ITS CITY ON THE MEN WHO KEEP IT (T-0694), and the
+    # three controls beside it are the whole of the rule: the place is required only
+    # of a HOUSE role, only where the corpus itself already names the tail as a place,
+    # and not at all once the entity carries it.
+    def out_of_town(trade, role, places, elsewhere="Detroit", claim_id="zt1"):
+        d = copy.deepcopy(base)
+        c = copy.deepcopy(d["claims"][0])
+        c["id"] = claim_id
+        c["kind"] = "business"
+        c["entities"] = [{"as_printed": "A HOUSE & CO.", "normalized": "A House & Co.",
+                          "role": role, "occupations": [],
+                          "associated_places": list(places)}]
+        # The corpus's own place vocabulary, which is what the rule is derived from:
+        # one OTHER entity, in a role that is not the house, naming the town.
+        other = copy.deepcopy(d["claims"][0])
+        other["id"] = claim_id + "v"
+        other["entities"] = [{"as_printed": "A CORRESPONDENT", "role": "mentioned",
+                              "normalized": "A Correspondent", "occupations": [],
+                              "associated_places": [elsewhere]}]
+        c["business"] = {"name": "Out Of Town House", "proprietors": ["A House & Co."],
+                         "trade": trade, "goods": [], "street": None,
+                         "placement": {"class": "none", "street": None}}
+        d["claims"] = [c, other]
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            _, probs = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                         corpus_doc)
+        return [b for b in probs if "T-0694" in b]
+
+    cases.append("an out-of-town house whose proprietor carries no place")
+    if not out_of_town("hat manufacturers and wholesale dealers, Detroit",
+                       "proprietor", []):
+        failures.append("a house printed at Detroit kept a placeless proprietor and "
+                        "nothing said so")
+
+    cases.append("the same house once the proprietor carries the city")
+    if out_of_town("hat manufacturers and wholesale dealers, Detroit",
+                   "proprietor", ["Detroit"]):
+        failures.append("a proprietor who DOES carry his house's city was still refused")
+
+    cases.append("a trade tail the corpus does not name as a place")
+    if out_of_town("storage, forwarding and commission merchants; agents, Merchants Line",
+                   "proprietor", []):
+        failures.append("'Merchants Line' was read as a town — the rule is derived from "
+                        "the places the corpus itself names, not from a word list")
+
+    cases.append("somebody standing beside the house, not keeping it")
+    if out_of_town("steam saw mill and lumber, Detroit", "assignee", []):
+        failures.append("an assignee inherited the house's city — only a proprietor or "
+                        "a partner IS the firm")
 
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:

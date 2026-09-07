@@ -1,7 +1,7 @@
 ---
 id: T-0748
 title: The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0659
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 1017
+claimed_by: run 9/6/2026, 8:57:45 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-07T02:39:56.608Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34074463758
 ---
 
 The 1840 census continuation sheet 33SQ-GYYJ-5H read line by line, off a pale exposure that hides entries at the standard ink threshold.

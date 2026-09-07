@@ -189,6 +189,15 @@
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_barracks"
     },
+    "fort_dearborn_big_barn__barn_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 120808,
+      "inputs_sha256": "32b31f758f4077b1ac75835a2a557f5851e13fd9794cf22f41816d0d6a0ca59a",
+      "kind": "generated",
+      "phase_id": "barn_1830",
+      "structure_id": "fort_dearborn_big_barn"
+    },
     "fort_dearborn_blockhouse__log_1816.glb": {
       "archetype": "fort_structure",
       "baked_ao": false,
@@ -252,6 +261,24 @@
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_officers_quarters"
     },
+    "fort_dearborn_out_building_a__out_building_a_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 75760,
+      "inputs_sha256": "ec7eecc4ca3156d976c9a7812d59d070a1362f0322e6ee00f0fe11a38d9053d3",
+      "kind": "generated",
+      "phase_id": "out_building_a_1830",
+      "structure_id": "fort_dearborn_out_building_a"
+    },
+    "fort_dearborn_out_building_b__out_building_b_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 46816,
+      "inputs_sha256": "0e24f6288eb8db3036109e7e4b22a4fb0ce7a48234d75c5bfa3676d905e8b4c3",
+      "kind": "generated",
+      "phase_id": "out_building_b_1830",
+      "structure_id": "fort_dearborn_out_building_b"
+    },
     "fort_dearborn_palisade__picket_1816.glb": {
       "archetype": "palisade",
       "baked_ao": false,
@@ -279,6 +306,15 @@
       "phase_id": "cellar_1816",
       "structure_id": "fort_dearborn_root_house"
     },
+    "fort_dearborn_shop__shop_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 93488,
+      "inputs_sha256": "a5ba59cd0f3b1ab75645428c996424f3a1ff761542bd3ce4f193f3be415c4685",
+      "kind": "generated",
+      "phase_id": "shop_1830",
+      "structure_id": "fort_dearborn_shop"
+    },
     "fort_dearborn_store_house__log_1816.glb": {
       "archetype": "fort_structure",
       "baked_ao": false,
@@ -296,6 +332,15 @@
       "kind": "generated",
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_sutlers_store"
+    },
+    "fort_dearborn_wash_house__wash_house_1830.glb": {
+      "archetype": "outbuilding",
+      "baked_ao": false,
+      "bytes": 94420,
+      "inputs_sha256": "28f09c9166be4cd627e6cc5fe91ba826b1e1b9c31d39236548e7eaf42d5dc3e4",
+      "kind": "generated",
+      "phase_id": "wash_house_1830",
+      "structure_id": "fort_dearborn_wash_house"
     },
     "frederick_thomas_shop__frame_1835.glb": {
       "archetype": "frame_storefront",
@@ -692,6 +737,15 @@
       "kind": "generated",
       "phase_id": "shell_1835",
       "structure_id": "lake_house_construction"
+    },
+    "lasalle_lake_house__documented_1834.glb": {
+      "archetype": "frame_dwelling",
+      "baked_ao": false,
+      "bytes": 35404,
+      "inputs_sha256": "9edabac4323a3a02a230460c70fb56ec64ed1e22dff650761f540f04d0d28775",
+      "kind": "generated",
+      "phase_id": "documented_1834",
+      "structure_id": "lasalle_lake_house"
     },
     "lasalle_slough_crossing__crossing_1835.glb": {
       "archetype": "bridge_timber",
@@ -3234,8 +3288,8 @@
     "steamboat_hotel__frame_1835.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
-      "bytes": 24132,
-      "inputs_sha256": "76bad7755d2b174597ece5f09e9301922f63eb890cafe39d93e50b01d8a2b2c3",
+      "bytes": 20696,
+      "inputs_sha256": "13c58874432f8414a3f86d513061a6b93a0b13ec3fdb51efab46941e4b30e05d",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "steamboat_hotel"
@@ -3277,8 +3331,8 @@
     "thomas_church_store__frame_1834.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 69684,
-      "inputs_sha256": "b52189f8eacce5bfecfacb91b722e60c87adccdceab1342d715aade8d53caa65",
+      "bytes": 66252,
+      "inputs_sha256": "505ba406252e1d82f1d90abcb1ca3ae9f4fa8eaf1af8707aca02ee41a219fe0f",
       "kind": "generated",
       "phase_id": "frame_1834",
       "structure_id": "thomas_church_store"

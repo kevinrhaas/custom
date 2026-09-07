@@ -1233,8 +1233,21 @@ def compile_streets(scene_id: str, target_date: str,
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} needs two or more finite [e,n] points")
         corridor = raw.get("corridor_width_m", default_corridor)
         track = raw.get("track_width_m")
-        if not isinstance(corridor, (int, float)) or not isinstance(track, (int, float)) \
-                or not 0 < track < corridor:
+        # A PLATTED BUT UNOPENED STREET HAS NO TRACK, and until T-0797 this layer had no
+        # way to say so: every record was required to draw a worn strip inside its
+        # corridor. Wright rules twelve east-west lines across the School Section that
+        # nobody had yet driven — the owner read the sheet on 2026-09-05 as "no alleys and
+        # no street names but still a grid" — so `opened: false` and a zero track are a
+        # legal pair, and they must travel together. A zero track with no such declaration
+        # is still the old error, because it would silently erase a street that existed.
+        opened = raw.get("opened", True)
+        if not isinstance(corridor, (int, float)) or not isinstance(track, (int, float)):
+            raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
+        if opened is False:
+            if track != 0:
+                raise SystemExit(f"{path.relative_to(ROOT)}: {sid} is declared unopened and "
+                                 "still draws a track — an unopened street has no worn strip")
+        elif not 0 < track < corridor:
             raise SystemExit(f"{path.relative_to(ROOT)}: {sid} track width must be inside its corridor")
         drawn = raw.get("drawn_track_local_enu_m")
         if drawn is not None:
@@ -1282,6 +1295,11 @@ def compile_streets(scene_id: str, target_date: str,
                 "drawn_track_note": raw["drawn_track_note"]} if drawn is not None else {}),
             "corridor_width_m": corridor,
             "track_width_m": track,
+            # Only on the records that declare it, so every street compiled before
+            # T-0797 compiles to exactly the entry it always did.
+            **({"opened": False,
+                "status_1835": raw.get("status_1835", "platted, unopened, unworn"),
+                "alleys": bool(raw.get("alleys", False))} if opened is False else {}),
             "surface": raw["surface"],
             "traffic": raw["traffic"],
             "geometry_confidence": raw.get("geometry_confidence", "reconstructed"),

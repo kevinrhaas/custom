@@ -31,7 +31,7 @@ a queue with nobody in it.
 | file | job |
 |---|---|
 | `.github/workflows/chicago-4d-pipeline-setup.yml` | one-button: creates `dev` from `main` if absent, then dispatches a deploy. Idempotent. |
-| `.github/workflows/deploy.yml` | the single deploy authority. Assembles ONE Pages artifact: `main` at the root, plus the `dev` branch's `site/chicago/4d/` folded in at `site/chicago/4d/dev/`. |
+| `.github/workflows/deploy.yml` | the single deploy authority. Assembles ONE Pages artifact: `main` at the root, plus the `dev` branch's `site/chicago/4d/` folded in at `site/chicago/4d/dev/`. Since T-0938 it PUBLISHES both trees first — `site/chicago/4d/` is generated, not committed — and it triggers on `chicago/4d/**` rather than only `site/**`, because a 4D change no longer touches `site/`. |
 | `.github/chicago-4d-dev-preview.mjs` | assembles that preview — copy, `noindex`, banner, dev build stamp, `build.json`, robots disallow. |
 | `.github/workflows/chicago-4d-check.yml` | **the dev gate.** Runs on PRs into `dev` and pushes to `dev` (no branch filter, deliberately). |
 | `.github/workflows/chicago-4d-promote-to-prod.yml` | **dispatch-only.** Back-merges `main`→`dev`, merges `dev`→`main` `--no-ff`, tags `release-vNNN`, then dispatches the deploy. |
