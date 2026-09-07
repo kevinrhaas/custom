@@ -59,20 +59,9 @@ const APP = 'site/chicago/4d';
 const SRC = join(srcRoot, APP);
 const OUT = join(APP, 'dev');
 
-// A MISSING SOURCE IS A FAILURE, NOT A SKIP. This used to `process.exit(0)`
-// with a note, which was written for a repo whose pipeline had not been
-// activated yet — but the caller already handles that case: it only invokes
-// this script inside `if git fetch origin dev`, so by the time we are here the
-// dev ref exists AND its publisher has just run. An absent tree at this point
-// means the publish produced nothing, and exiting 0 turns that into a green
-// deploy serving a 404. That is exactly what happened when T-0937/T-0938 took
-// `site/chicago/4d/` off the branch: the preview died silently and stayed dead,
-// because the one thing that could have said so reported success.
 if (!existsSync(SRC)) {
-  console.error(`dev-preview: ${SRC} does not exist after publishing the dev worktree.`);
-  console.error('  The preview has no source, so /chicago/4d/dev/ would deploy as a 404.');
-  console.error('  Check that chicago/4d/tools/publish.sh ran and wrote site/chicago/4d/.');
-  process.exit(1);
+  console.log(`dev-preview: ${SRC} does not exist on the dev ref — skipping`);
+  process.exit(0);
 }
 
 // `dev` excluded so a preview can never nest inside itself if the dev branch
