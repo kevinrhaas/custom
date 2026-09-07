@@ -128,7 +128,7 @@
  "what_the_sheet_says": "A leaf that stops short. The enumeration ends three and a half ruled lines above the foot rule, so this is a part-filled continuation and not a full one \u2014 which is itself a pairing fact, because the left sheet it continues must be part-filled too. The footer row is the readable half of the leaf and it is now read whole: 115 people, of whom seven work in manufactures and trades, three in commerce, two in the learned professions, one in agriculture and one on the canals, lakes and rivers. Nobody at all in mining or on the ocean. Fourteen of the 115 are returned as employed \u2014 a town's page, and one leaning to the trades rather than to commerce, which is the other way round from 33S7-9YYJ-VJ.",
  "records": [
   {
-   "figure": 1,
+   "line": 1,
    "reading": "scan_verified",
    "ink_top_px": 640,
    "ink_bottom_px": 714,
@@ -139,7 +139,7 @@
    }
   },
   {
-   "figure": 2,
+   "line": 2,
    "reading": "scan_verified",
    "ink_top_px": 718,
    "ink_bottom_px": 775,
@@ -150,7 +150,7 @@
    }
   },
   {
-   "figure": 3,
+   "line": 3,
    "reading": "scan_verified",
    "ink_top_px": 798,
    "ink_bottom_px": 841,
@@ -161,7 +161,7 @@
    }
   },
   {
-   "figure": 4,
+   "line": 4,
    "reading": "scan_verified",
    "ink_top_px": 851,
    "ink_bottom_px": 919,
@@ -172,7 +172,7 @@
    }
   },
   {
-   "figure": 5,
+   "line": 5,
    "reading": "scan_verified",
    "ink_top_px": 943,
    "ink_bottom_px": 991,
@@ -183,7 +183,7 @@
    }
   },
   {
-   "figure": 6,
+   "line": 6,
    "reading": "scan_verified",
    "ink_top_px": 1014,
    "ink_bottom_px": 1071,
@@ -194,7 +194,7 @@
    }
   },
   {
-   "figure": 7,
+   "line": 7,
    "reading": "scan_verified",
    "ink_top_px": 1104,
    "ink_bottom_px": 1147,
@@ -205,7 +205,7 @@
    }
   },
   {
-   "figure": 8,
+   "line": 8,
    "reading": "scan_verified",
    "ink_top_px": 1178,
    "ink_bottom_px": 1230,
@@ -216,7 +216,7 @@
    }
   },
   {
-   "figure": 9,
+   "line": 9,
    "reading": "scan_verified",
    "ink_top_px": 1258,
    "ink_bottom_px": 1316,
@@ -227,7 +227,7 @@
    }
   },
   {
-   "figure": 10,
+   "line": 10,
    "reading": "scan_verified",
    "ink_top_px": 1333,
    "ink_bottom_px": 1351,
@@ -238,7 +238,7 @@
    }
   },
   {
-   "figure": 11,
+   "line": 11,
    "reading": "scan_verified",
    "ink_top_px": 1380,
    "ink_bottom_px": 1409,
@@ -249,7 +249,7 @@
    }
   },
   {
-   "figure": 12,
+   "line": 12,
    "reading": "scan_verified",
    "ink_top_px": 1420,
    "ink_bottom_px": 1457,
@@ -260,7 +260,7 @@
    }
   },
   {
-   "figure": 13,
+   "line": 13,
    "reading": "scan_verified",
    "ink_top_px": 1548,
    "ink_bottom_px": 1581,
@@ -271,7 +271,7 @@
    }
   },
   {
-   "figure": 14,
+   "line": 14,
    "reading": "scan_verified",
    "ink_top_px": 1600,
    "ink_bottom_px": 1653,
@@ -282,7 +282,7 @@
    }
   },
   {
-   "figure": 15,
+   "line": 15,
    "reading": "scan_verified",
    "ink_top_px": 1688,
    "ink_bottom_px": 1774,
@@ -293,7 +293,7 @@
    }
   },
   {
-   "figure": 16,
+   "line": 16,
    "reading": "scan_verified",
    "ink_top_px": 1826,
    "ink_bottom_px": 1917,
@@ -304,7 +304,7 @@
    }
   },
   {
-   "figure": 17,
+   "line": 17,
    "reading": "scan_verified",
    "ink_top_px": 1978,
    "ink_bottom_px": 2067,
@@ -315,7 +315,7 @@
    }
   },
   {
-   "figure": 18,
+   "line": 18,
    "reading": "scan_verified",
    "ink_top_px": 2095,
    "ink_bottom_px": 2149,
@@ -326,7 +326,7 @@
    }
   },
   {
-   "figure": 19,
+   "line": 19,
    "reading": "scan_verified",
    "ink_top_px": 2179,
    "ink_bottom_px": 2277,
@@ -337,7 +337,7 @@
    }
   },
   {
-   "figure": 20,
+   "line": 20,
    "reading": "scan_verified",
    "ink_top_px": 2279,
    "ink_bottom_px": 2319,
@@ -348,7 +348,7 @@
    }
   },
   {
-   "figure": 21,
+   "line": 21,
    "reading": "scan_verified",
    "ink_top_px": 2331,
    "ink_bottom_px": 2388,
@@ -359,7 +359,7 @@
    }
   },
   {
-   "figure": 22,
+   "line": 22,
    "reading": "scan_verified",
    "ink_top_px": 2400,
    "ink_bottom_px": 2456,
@@ -370,7 +370,7 @@
    }
   },
   {
-   "figure": 23,
+   "line": 23,
    "reading": "scan_verified",
    "ink_top_px": 2490,
    "ink_bottom_px": 2530,
@@ -381,7 +381,7 @@
    }
   },
   {
-   "figure": 24,
+   "line": 24,
    "reading": "scan_verified",
    "ink_top_px": 2566,
    "ink_bottom_px": 2614,
@@ -392,7 +392,7 @@
    }
   },
   {
-   "figure": 25,
+   "line": 25,
    "reading": "scan_verified",
    "ink_top_px": 2634,
    "ink_bottom_px": 2678,
@@ -403,7 +403,7 @@
    }
   },
   {
-   "figure": 26,
+   "line": 26,
    "reading": "scan_verified",
    "ink_top_px": 2713,
    "ink_bottom_px": 2832,
@@ -414,7 +414,7 @@
    }
   },
   {
-   "figure": 27,
+   "line": 27,
    "reading": "scan_verified",
    "ink_top_px": 2857,
    "ink_bottom_px": 2914,
@@ -436,5 +436,6 @@
   "tested_by": "T-0656",
   "result": "Refused by T-0656 on the population key: no left sheet read anywhere in the deposit foots 115, and the nearest is 33S7-9YYJ-PC at 113, two short.",
   "what_this_reading_changes": "The POPULATION key is strengthened: 115 is now read twice, independently, off the measured grid, so the refusal at 113 rests on a figure that has been checked. The LINE-COUNT key is weakened and should not be used: coverage's 31 is the ceiling of a 25-to-31 range and not a reading. And a new key is available that costs nothing to apply \u2014 the leaf is PART-FILLED, ending three and a half lines above its own foot rule, so its left sheet is part-filled by the same amount."
- }
+ },
+ "line_index_note": "`line` in records[] is the figure's ORDER in the TOTAL column, one per household, which is the order the enumerator wrote them in and the order every other page file in this domain uses. It is NOT a ruled-line index: how many blank ruled lines interleave is exactly what line_count_note above leaves unsettled."
 }

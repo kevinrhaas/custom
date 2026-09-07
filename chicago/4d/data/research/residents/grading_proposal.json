@@ -59,20 +59,20 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6691,
+  "identities": 6694,
   "by_grade": {
    "None": 37,
-   "not_1835_resident": 4265,
+   "not_1835_resident": 4268,
    "inferred": 1939,
    "attested": 450
   },
   "by_subtype": {
-   "None": 4985,
+   "None": 4988,
    "projected_resident": 1706
   },
   "by_rule": {
    "G5": 37,
-   "G0": 4265,
+   "G0": 4268,
    "G3": 1705,
    "G1b": 379,
    "G2b": 39,
@@ -631,6 +631,7 @@
   {"identity":"id_bliss_charles_frederick","name":"Charles Frederick Bliss","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0369","directories:f1843_e0370","directories:n1844_e0152"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_bliss_john","name":"John Bliss","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-38:24"],"evidence_classes":["census_1840"]},
   {"identity":"id_bliss_seneca_carpenter","name":"Seneca Carpenter Bliss","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0371","directories:n1844_e0153"],"evidence_classes":["directory_1843","directory_1844"]},
+  {"identity":"id_blob_a_small_hooked","name":"A Small Hooked Blob","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-L3:13"],"evidence_classes":["census_1840"]},
   {"identity":"id_blodget_e_b","name":"E B Blodget","canonical_person_id":"blodget_e_b","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1834_014"],"evidence_classes":["poll_1834","town_layer"]},
   {"identity":"id_blodgett_henry_williams","name":"Henry Williams Blodgett","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0372"],"evidence_classes":["directory_1843"]},
   {"identity":"id_blodgett_i_k","name":"I K Blodgett","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_i_k_blodgett"],"evidence_classes":["newspaper_letter_list"]},
@@ -1558,6 +1559,7 @@
   {"identity":"id_curtis_scely_h","name":"Scely H Curtis","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_curtis_scely_h"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_curtiss_james_states","name":"James States Curtiss","canonical_person_id":"curtiss_j","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e0751","directories:f1843_e0005","directories:n1844_e0449","directories:f1843_e0752","directories:n1844_e0450","newspapers:person_curtiss_j","newspapers:person_j_curtiss"],"evidence_classes":["directory_1843","directory_1844","newspaper_1833_1835","town_layer"]},
   {"identity":"id_curtiss_l_g","name":"L G Curtiss","canonical_person_id":"curtiss_l_g","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_curtiss_l_g","newspapers:person_l_curtiss","newspapers:person_l_g_curtiss"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
+  {"identity":"id_curve_a_slant_over_a","name":"A Slant Over A Curve","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-L3:24"],"evidence_classes":["census_1840"]},
   {"identity":"id_cushing_nathaniel_sawyer","name":"Nathaniel Sawyer Cushing","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0753"],"evidence_classes":["directory_1843"]},
   {"identity":"id_cusick_theodore","name":"Theodore Cusick","canonical_person_id":"cusick_theodore","rule":"G2a","grade":"inferred","resident_subtype":null,"evidence":["civic:poll_1835_019"],"evidence_classes":["poll_1835","town_layer"]},
   {"identity":"id_cutler_morris","name":"Morris Cutler","canonical_person_id":"cutler_morris","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_morris_cutler"],"evidence_classes":["newspaper_letter_list","town_layer"]},
@@ -5615,6 +5617,7 @@
   {"identity":"id_skinner_mark","name":"Mark Skinner","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2272","directories:n1844_e1628"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_skinner_willia_h","name":"Willia H Skinner","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_skinner_willia_m_h"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_skuk_saus_bock","name":"Saus Bock Skuk","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:blackhawk_1832_094"],"evidence_classes":["muster_1832"]},
+  {"identity":"id_slant_a_faint_broken","name":"A Faint Broken Slant","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-L3:11"],"evidence_classes":["census_1840"]},
   {"identity":"id_slater_j_e","name":"J E Slater","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2274"],"evidence_classes":["directory_1843"]},
   {"identity":"id_slater_richard","name":"Richard Slater","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0605"],"evidence_classes":["death_notice"]},
   {"identity":"id_slato_walt_n","name":"Walt N Slato","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_walt_o_n_slato"],"evidence_classes":["newspaper_letter_list"]},

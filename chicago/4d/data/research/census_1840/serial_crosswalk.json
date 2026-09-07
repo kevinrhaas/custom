@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 47,
+    "pages_held": 48,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 246,
@@ -26366,6 +26366,16 @@
       "printed_page": null,
       "sheet_side": "right",
       "read_pass": "The row index committed at 31 lines from the sequence of the TOTAL column's own groups, corroborated by the fifteen lines the written industry columns anchor independently; then the TOTAL column read line by line at magnification against a glyph key taken off this leaf's own footing and its own unambiguous industry entries; then the industry columns read. 26 of the 31 lines carry a committed figure and five are recorded unread.",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
+      "lines": []
+    },
+    {
+      "familysearch_id": "33S7-9YYJ-L3",
+      "image": "chicago/reference/census1840/33S7-9YYJ-L3.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "the TOTAL column and the footer row",
       "fingerprintable": false,
       "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
       "lines": []
