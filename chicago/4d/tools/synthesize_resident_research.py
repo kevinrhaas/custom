@@ -40,7 +40,6 @@ RESEARCH = DATA / "research" / "residents"
 REFERENCE = CHICAGO / "reference" / "resident-research"
 CENSUS_DIR = CHICAGO / "reference" / "census1840" / "validation"
 CENSUS_CSV = CENSUS_DIR / "H_1840_chicago_with_names_partial.csv"
-SITE = REPO / "site" / "chicago" / "4d"
 PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
@@ -606,7 +605,18 @@ def summary(before,after,ledger,stats):
 # written down file by file, a file that drifts and is not on that list fails, and a file
 # on the list that stops drifting fails too, so the list can only shrink and a spend has
 # to shrink it in its own commit.  New invisible drift is what this makes impossible.
-DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH", "site/chicago/4d/data")
+#
+# `site/chicago/4d/data` WAS A THIRD ROOT AND IS NOT ONE ANY MORE (T-0938, and it is
+# the fix for T-0933).  The published mirror is untracked and generated now, so it is
+# not part of "the committed tree" this ratchet compares a fresh writer run against —
+# and the copytree below would raise on a clone that has not published.  It was also
+# actively wrong while it worked: this writer emitted the mirror minified and
+# `apply_census_1840_bridges.py` emitted four of the same paths pretty-printed, so
+# `bash tools/publish.sh` on an untouched `dev` turned this gate red on four files whose
+# parsed values were identical.  The mirror has ONE writer now — `tools/publish.sh` —
+# and one gate, `tools/check_published_residents.mjs`, which asserts the shipped form
+# carries the source's value.
+DRIFT_ROOTS = ("chicago/4d/data", "chicago/4d/docs/RESEARCH")
 
 
 def _scratch(tmp: Path) -> Path:
@@ -875,20 +885,16 @@ def main():
         if path not in docs: path.unlink()
     after=snapshot(index); ledger["before"]=before; ledger["after"]=after; ledger["retirement"]=stats; dump(LEDGER,ledger,2); SUMMARY.write_text(summary(before,after,ledger,stats),encoding="utf-8")
     programme=load(PROGRAMME); programme["resident_population_active"]=False; programme["resident_population_status"]="Retired from resident list by owner ruling 2026-09-02; building stock may remain anonymous until a later explicit reconstructed-population pass."; dump(PROGRAMME,programme,2)
-    sitehh=SITE/"data"/"residents"/"households"; sitehh.mkdir(parents=True,exist_ok=True); names={p.name for p in docs}
-    for p in sitehh.glob("*.json"):
-        if p.name not in names: p.unlink()
-    # Minified, matching tools/publish.sh: the published residents layer is under a
-    # size budget the authored tree is not (see the comment there).
-    for p,d in docs.items():
-        (sitehh/p.name).write_text(json.dumps(d,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-    (SITE/"data"/"residents"/"index.json").write_text(
-        json.dumps(load(INDEX),ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-    sitestruct=SITE/"data"/"structures"
-    if sitestruct.exists():
-        for p in changed:
-            q=sitestruct/p.name
-            if q.exists(): q.write_text(p.read_text(encoding="utf-8"),encoding="utf-8")
+    # THIS WRITER DOES NOT WRITE THE PUBLISHED MIRROR (T-0938).  It used to keep
+    # `site/chicago/4d/data/residents/` and the changed structure records in step
+    # itself, back when the mirror was committed and a stale one was a red gate on the
+    # branch that made it stale.  The mirror is untracked and generated now: it has one
+    # writer, `tools/publish.sh`, which `tools/check.sh` runs before it asks
+    # `check_published.mjs` and `check_published_residents.mjs` whether what it produced
+    # matches this tree.  Two writers of one file is how T-0933 happened — this one
+    # emitted the residents layer minified, `apply_census_1840_bridges.py` emitted four
+    # of the same paths pretty-printed, and whichever ran last decided whether the gate
+    # was green.  One owner, stated here and in publish.sh, is the whole of the fix.
     # T-0491. `attach_census` above is the 2 September partial name matcher, and the
     # adjudicated v4 identity bridges outrank it — `apply_census_1840_bridges.py` owns
     # them and keeps this file's result underneath as `legacy_partial_matcher`. The two

@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 663, title: 'The copy of this site that lived inside the repository is gone', kind: 'change', ts: '2026-09-07T04:30:30.649Z', date: 'Sep 6, 2026, 11:30 PM CT',
+    items: [
+      'Nothing you can see in the town changed today, and this is the second half of the piece that shipped yesterday — the one that ended by saying the larger half was written down as next rather than smuggled in beside it.',
+      'The site you are reading has always existed twice: once as the working files the project is built from, and once as a finished copy of the published site, stored alongside them. The finished copy is made by a single command from the working files. It was stored anyway.',
+      'Storing it meant every piece of work rewrote it, because the last thing that command does is stamp the copy with which build it is. Two runs on completely unrelated jobs therefore always clashed — over a stamp, not over anything either of them had written — and GitHub then refused to let either land until somebody redid the merge by hand. It was also why a small change was often tested as though it had touched the entire site: the tools that decide how much testing a change needs saw the whole published copy move.',
+      'So the finished copy is no longer stored. It is built at the moment it is needed and thrown away after: by the checks before every commit, which now build it and then ask whether it matches what it was built from — a stronger question than the old one, and one that a fresh copy of the project used to skip in silence; and by the deploy, which builds it for the live site and for the preview tier before uploading either.',
+      'Everything served from here is unchanged — the walkthrough, this What\u2019s-new list, and the queue file the fleet\u2019s manager reads. What changed is that they are no longer claimed twice by a project that could only ever have meant one of them.',
+      'A related fault fell out with it. Three separate parts of the toolchain each wrote their own version of a handful of published files, and they disagreed about spacing, so simply publishing turned the checks red on files whose contents were identical. One writer now owns that copy, and the disagreement has nowhere left to live.',
+    ] },
   { v: 662, title: 'The three files every branch fought over are not files any more', kind: 'change', ts: '2026-09-07T04:07:46.763Z', date: 'Sep 6, 2026, 11:07 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is about why work on the town kept arriving late, and it is the plainest fault this project has had in weeks.',

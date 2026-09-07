@@ -70,3 +70,24 @@ built to catch.
 
 **Found by:** setting up the drain band above — the first `publish.sh` of the session went
 red on a tree whose only change was five ticket files.
+
+**NOTE FROM T-0938, 2026-09-07 — the reproduction above no longer reproduces. Verify and
+close rather than re-fixing.** T-0938 took `site/chicago/4d/` off the PR surface and this
+fell out with it: the mirror has ONE writer now, `tools/publish.sh`.
+`synthesize_resident_research.py` and `apply_census_1840_bridges.py` both stopped writing
+it and say so in their docstrings (acceptance 1 — the publisher won, and the reason is
+that a generated tree should not have three authors); `site/chicago/4d/data` came off
+`DRIFT_ROOTS`, because a tree that is not committed is not what the T-0838 ratchet
+compares a fresh writer run against — and `_scratch`'s `copytree` would have raised on a
+clone that has not published; and `apply_census_1840_bridges.py --check` stopped asserting
+a mirror it no longer writes, since `check_published_residents.mjs` makes that claim over
+the whole layer instead of over the rows one bridge file names.
+
+Measured on the T-0938 branch: `bash tools/publish.sh` followed by
+`python3 tools/synthesize_resident_research.py --drift` exits 0 with the baseline still
+empty, and `bash tools/check.sh` is green twice in a row — and `check.sh` now runs
+publish.sh itself, so every gate run IS that round trip (acceptance 2 and 3). Nothing was
+added to `synthesis_drift_baseline.json` (4) and no resident record's content changed (5).
+
+Left open because the ticket is the owner's and confirming an acceptance list belongs to
+the run that takes it deliberately.

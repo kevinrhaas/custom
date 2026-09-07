@@ -90,14 +90,19 @@ chicago/4d/tickets/QUEUE.md merge=queue
 # It REFUSES — leaving ordinary conflict markers — if both sides edited the same
 # shipped entry differently, or if a title would appear twice. That is precisely
 # the case union got silently wrong, and it is rare enough not to automate.
-chicago/4d/renderers/web/js/changelog.js merge=changelog
-site/chicago/4d/js/changelog.js merge=changelog
-site/chicago/4d/walk/js/changelog.js merge=changelog
-
-# THE BUILD PRODUCTS, AND THE ONE FILE IN THIS SET THAT IS NOT ONE (T-0831).
 #
-# THE MEASUREMENT. PR #906 was open about seventy minutes. `dev` moved FIVE times
-# under it — #904, #907, #908, #905, #858 — and every one of the five merges
+# ONE PATH, NOT THREE (T-0938). The two published mirrors of this file used to be
+# listed here too. `site/chicago/4d/` is untracked now — it is a build product that
+# `tools/publish.sh` writes and `tools/check.sh` re-derives and checks — so there is
+# no mirror in the index for a driver to reconcile. The authored file is the only
+# tracked changelog, which is also the only one anybody edits.
+chicago/4d/renderers/web/js/changelog.js merge=changelog
+
+# THE BUILD PRODUCTS ARE GONE FROM THIS FILE, AND THAT IS THE ANSWER, NOT A REGRESSION
+# (T-0831 -> T-0937 -> T-0938, all under T-0857).
+#
+# THE MEASUREMENT THAT STARTED IT. PR #906 was open about seventy minutes. `dev` moved
+# FIVE times under it — #904, #907, #908, #905, #858 — and every one of the five merges
 # conflicted, always in generated files and never once in the substantive diff:
 #
 #   lap 1  #904   BOARD.md, tickets.json x2, build.json, walk/index.html
@@ -107,56 +112,37 @@ site/chicago/4d/walk/js/changelog.js merge=changelog
 #   lap 5  #858   BOARD.md, tickets.json x2
 #
 # Two other PRs report it independently. #894: "each one collides on the same four
-# generated files" — four rebases paid, and the fifth is where that run's clock ran
-# out. #850: "Every conflict so far has been in a generated file... The substantive
-# diff has merged cleanly every time" — rebased twice, the gate run three times on
-# three bases, then parked on `hold` with finished, green work. #850 prices the lap
-# at ~19 minutes of honest verification, during which dev took three more merges.
+# generated files" — four rebases paid, and the fifth is where that run's clock ran out.
+# #850: "Every conflict so far has been in a generated file... The substantive diff has
+# merged cleanly every time" — rebased twice, gated three times on three bases, then
+# parked on `hold` with finished, green work.
 #
-# WHY KEEPING OURS IS SAFE HERE, WHICH IS THE WHOLE ARGUMENT. Each of these five is
-# ALREADY REFUSED BY THE GATE WHEN STALE — checked by reading check.sh, not assumed:
-# BOARD.md and tickets.json by `ticket.mjs check`; the site tickets.json by
-# `test_ticket_mirror.mjs`, which asserts that a mirror somebody else made stale
-# still fails; build.json and walk/index.html by `check_published.mjs`, which holds
-# that every published file is byte-identical to its source or is a declared
-# transform. So the conflict was never what protected these files — the gate was,
-# and the conflict is pure cost. That is the same reasoning chicago/4d/.gitattributes
-# already sets out for the liberty register: a conflict is safe because it stops
-# you, and where a check already stands in for it, the conflict buys nothing.
-#
-# The driver KEEPS OURS AND PRINTS the rebuild command, because a driver that
-# silently keeps ours also silently removes the merge's own reminder that the file
-# needs rebuilding. merge-changelog.mjs prints its follow-up for the same reason.
-#
-# It is NOT `merge=union`, which is banned above on measured grounds and must not
-# come back here: union is a LINE union and it turned five loud changelog conflicts
-# into five silent corruptions in one day. This driver merges no content at all.
-#
-# Register once per clone:  bash chicago/4d/tools/setup-merge-drivers.sh
-# Not registered? git falls back to the ordinary text merge and you get conflict
-# markers — the old behaviour, never something worse.
-# THREE OF THE FIVE ARE GONE FROM THIS FILE, AND THAT IS THE ANSWER, NOT A REGRESSION
-# (T-0937, under T-0857). The driver above only ever protected a LOCAL `git merge`.
-# GitHub's server-side merge runs no custom driver, so the platform still called every
-# one of these branches conflicting, auto-merge could never fire, and the lap had to be
-# paid by hand anyway — measured on PR #940: zero conflicts in a clone with the drivers
+# T-0831 answered it with a `merge=generated` driver that kept OURS and printed the
+# rebuild command. That driver only ever protected a LOCAL `git merge`. GitHub's
+# server-side merge runs no custom driver, so the platform still called every one of
+# these branches conflicting, auto-merge could never fire, and the lap had to be paid by
+# hand anyway — measured on PR #940: zero conflicts in a clone with the drivers
 # registered, "merge conflict" on the identical merge in GitHub's UI.
 #
-# So the ticket artifacts were taken off the PR surface instead. `tickets/BOARD.md`,
-# `tickets/tickets.json` and `site/chicago/4d/tickets.json` are now UNTRACKED and
-# .gitignored — the reasoning is in /.gitignore beside the rules. A file that is not
-# tracked cannot conflict, in a clone or on the server, so no driver is needed for
-# them and none is named here. They are still written: `ticket.mjs check` and `board`
-# regenerate them, `publish.sh` regenerates before its copy, and `deploy.yml`
-# regenerates before the Pages upload, so /chicago/4d/tickets.json still ships.
+# So the build products were taken off the PR surface instead. `tickets/BOARD.md` and
+# `tickets/tickets.json` first (T-0937), then the whole published mirror
+# `site/chicago/4d/**` (T-0938) — which is where `build.json` and `walk/index.html`,
+# the two the driver was still holding, went. All of it is UNTRACKED and .gitignored;
+# the reasoning is in /.gitignore beside the rules. A file that is not tracked cannot
+# conflict, in a clone or on the server, so no driver is needed for any of them and
+# none is named here.
 #
-# THE TWO THAT REMAIN ARE THE PUBLISH STAMP, and they are still tracked, so they still
-# want the driver — every publishing PR rewrites both. They come off the surface with
-# the rest of the mirror under T-0938, which is where `site/chicago/4d/**` is untracked
-# and deploy.yml is made to publish; until that lands, this pair keeps the old rule and
-# the old caveat, that it holds locally and not on the server.
-site/chicago/4d/build.json       merge=generated
-site/chicago/4d/walk/index.html  merge=generated
+# They are still written, and every consumer writes them before it reads them:
+# `ticket.mjs check` and `board` regenerate the board, `tools/publish.sh` regenerates
+# the whole mirror, `tools/check.sh` runs publish.sh and then gates what it produced,
+# `deploy.yml` publishes both the production tree and the dev-preview worktree before
+# the Pages upload, and `chicago-4d-bake.yml` publishes before it uploads the mirror the
+# smoke runs against. So /chicago/4d/walk/, /chicago/4d/js/changelog.js and
+# /chicago/4d/tickets.json still ship.
+#
+# `merge=generated` therefore names no path any more. The driver and its self-test stay
+# in the tree: they are the record of what was tried, and `tools/merge-generated-
+# selftest.mjs` still holds the behaviour if anything ever needs it again.
 
 # …AND THE FILE THAT LOOKS LIKE ONE OF THEM AND IS NOT.
 #

@@ -286,7 +286,10 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add -A chicago/4d site/chicago/4d
+          # `chicago/4d` alone: site/chicago/4d is untracked and generated (T-0938),
+          # so there is nothing there to add and the bake's diff is the geometry and
+          # the records it rebuilt rather than 30 MB of mirror beside them.
+          git add -A chicago/4d
           git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
           git push -u origin "$BRANCH"
           echo "changed=1" >> "$GITHUB_OUTPUT"
@@ -413,12 +416,13 @@ jobs:
           set -e
           npm install -g playwright@1.56.1
           node "$(npm root -g)/playwright/cli.js" install --with-deps chromium
-      # Emptied first, deliberately. `checkout` restores the mirror as COMMITTED,
-      # and download-artifact overlays rather than replaces — so a file the bake
-      # deleted would survive from the checkout and the smoke would test a tree
-      # that never existed. Clearing it means what runs below is exactly the bytes
-      # the bake published, which is the whole point of the artifact.
-      - name: Clear the committed mirror
+      # Emptied first, deliberately, and still worth doing after T-0938. The checkout
+      # no longer restores the mirror — it is untracked and generated now — but
+      # download-artifact OVERLAYS rather than replaces, so anything left in the
+      # directory by an earlier step would survive and the smoke would test a tree that
+      # never existed. Clearing it means what runs below is exactly the bytes the bake
+      # published, which is the whole point of the artifact.
+      - name: Clear the mirror directory
         run: rm -rf site/chicago/4d && mkdir -p site/chicago/4d
       - name: Take the mirror the bake published
         uses: actions/download-artifact@v4
