@@ -82,7 +82,6 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0927 — Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
 T-0928 — Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
 T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
 T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
@@ -451,3 +450,12 @@ T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 1
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
 T-0935 — S. W. Sherman never wrote a nought at the foot of 6H or 5V, so the only footing nought in the deposit is on a leaf whose hand is unestablished: settle whether 33S7-9YYJ-8D is his
+T-0941 — 33S7-9YYJ-L3's TOTAL column turns on a two-stroke glyph three readings name three ways: 4 on dev, 11 on #1015, unread on #1013
+T-0942 — The SCHOOLS block of 33S7-9YYJ-L3 carries ink and is unread: the landed reading took the TOTAL column and the footer row and swept nothing to their right
+T-0943 — Test 33S7-9YYJ-L3 against printed 218 (33S7-9YYJ-PC) line by line: T-0744 moved both pairing keys onto PC and a sequence test is what would close it
+T-0944 — Printed 232's continuation foots 198 against a column that reads 193: T-0642's footing key no longer closes on the one pairing made outside the deposit
+T-0945 — Two open readings of NARA M704 roll 57 leaf n167 disagree on manufactures_and_trades and write the leaf to two different filenames
+T-0946 — The placement derivation module cannot express a frontage on a street that is not axis-aligned, so the north bank's houses all read not_derivable
+T-0947 — Two reconciliations of the same T-0812 ruling put the Steamboat Hotel 36 m apart: dev carries one and PR #975 the other, with no test that would have caught it
+T-0948 — A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
+T-0949 — The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
