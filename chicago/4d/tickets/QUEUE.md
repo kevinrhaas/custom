@@ -128,7 +128,8 @@
 # --- census 1.0%, church and Newberry 0.0%.
 T-0964 — The 1840 census printed 214 and 220 read to the name and the cell: 33SQ-GYYJ-BP and 33SQ-GYYJ-P5
 T-0966 — The recapitulation leaf 33SQ-GYYJ-PW read in full: thirty page totals braced into six wards, and the grand total that closes them
-T-0973 — The remaining thirteen filled continuations of images 51-74 read line by line and paired, one leaf to a run, and the blank leaf 33SQ-GYYJ-BH recorded swept-and-empty
+T-0974 — The continuation sheet 33SQ-GYYJ-9J5 read line by line and tested against its left-sheet pairing keys
+T-0975 — The remaining twelve filled continuations of images 51-74 read one leaf per run, and blank 33SQ-GYYJ-BH recorded swept-and-empty
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 
 # --- ==========================================================================

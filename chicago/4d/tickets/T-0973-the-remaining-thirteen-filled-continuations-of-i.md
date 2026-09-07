@@ -1,7 +1,7 @@
 ---
 id: T-0973
 title: The remaining thirteen filled continuations of images 51-74 read line by line and paired, one leaf to a run, and the blank leaf 33SQ-GYYJ-BH recorded swept-and-empty
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0967
 opened: 2026-09-07
-closed: null
+closed: 2026-09-07
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T22:33:32.073Z
 claimed_run: null
 ---
 
