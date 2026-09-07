@@ -464,3 +464,8 @@ T-0950 — Dr Henry Van der Bogart stands on two town cards: the death notice's 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0952 — Re-lay #1009 on today's dev: printed 212 and 213 are a real reading on a 29-commit-old tree, and the mirror came off the PR surface underneath it
+T-0953 — Re-lay #992 on today's dev: the 1840 head crosswalk, whose T-0896 collides with a different T-0896 that landed while it waited
