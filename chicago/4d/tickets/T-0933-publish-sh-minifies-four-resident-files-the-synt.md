@@ -1,7 +1,7 @@
 ---
 id: T-0933
 title: publish.sh minifies four resident files the synthesizer writer pretty-prints, so tools/check.sh goes red on any run that publishes
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/6/2026, 11:54:16 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34084632313
 ---
 
 `bash tools/publish.sh` on an **untouched `dev`** turns `bash tools/check.sh` red. No branch
