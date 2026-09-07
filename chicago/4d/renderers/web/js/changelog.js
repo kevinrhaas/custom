@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A census page that is either fours or elevens, settled', kind: 'change', ts: '',
+  { v: 658, title: 'A census page that is either fours or elevens, settled', kind: 'change', ts: '2026-09-07T01:50:23.729Z', date: 'Sep 6, 2026, 8:50 PM CT',
     items: [
       'Nothing you can see in the town changed today. This is one leaf of the 1840 census of Chicago \u2014 a right-hand page that carries the numbers and no names \u2014 read line by line for the first time.',
       'Two earlier passes had counted its lines and disagreed: thirty-one from a glance at the contact sheet, twenty-nine from a measurement. Both were wrong, and the second for a reason worth naming \u2014 the window it measured over missed the printed rules of the very column it was counting, on both sides. Counted over the rules themselves the page carries twenty-seven households.',
