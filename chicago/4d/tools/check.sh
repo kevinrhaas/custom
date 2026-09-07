@@ -25,6 +25,27 @@ step() {
   fi
 }
 
+# THE MIRROR IS BUILT FIRST, BECAUSE IT IS NOT IN THE REPOSITORY ANY MORE (T-0938).
+#
+# `site/chicago/4d/` used to be committed, so every step below could assume it was
+# simply there — and `check_published.mjs` ran under an `if [ -d ]` guard that made a
+# fresh checkout skip the gate silently. It is untracked and .gitignored now (see
+# /.gitignore for the measurement), which turns that assumption into an absence: a
+# clone has no mirror at all until something publishes one.
+#
+# So the gate publishes one, here, before anything reads it. That is not a workaround;
+# it is the honest reading of what check_published.mjs asserts. The claim was never
+# "the mirror somebody committed matches its source" — it was "what publish.sh produces
+# matches its source", and with the mirror off the PR surface that is the only reading
+# left. Everything downstream now measures a mirror this run made, so a stale one is
+# not a state that can exist.
+#
+# It costs about a second (measured: 1.0 s on a warm tree), and it is a REAL publish
+# rather than a `--dry-run`, so publish.sh's own refusals — a derivative that no longer
+# answers for its master — fail the gate here rather than at deploy time.
+step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-0938)" \
+  bash tools/publish.sh
+
 step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
   python3 tools/validate.py --all $STRICT
 
@@ -249,6 +270,21 @@ step "the platted block and lot grid re-derives from the module" \
 # 4,411 m2 bowtie with a plausible depth rather than refusing.
 step "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
+
+# T-0875. The School Section's 142 block numerals, read off the 600-dpi NA sheet.
+# It sits beside the Thompson grid because it is the same question answered the
+# other way round: there, two legible numerals could not say how a run passes from
+# one tier to the next and the numbering is refused past one tier; here the whole
+# grid is legible and the boustrophedon is observed, not argued. The trace is
+# GENERATED from the reading table and the committed registration, so `--check` is
+# what keeps a hand-edited numeral out — and the assertion that earns its keep is
+# the one that re-derives 120 of the 142 from the scheme alone, written
+# independently of the table it checks.
+step "the School Section's block numerals re-derive from the reading and the scheme" \
+  python3 tools/read_school_section_numerals.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_school_section_numerals.py --self-test
 
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
@@ -1151,17 +1187,23 @@ step "…and its own assertions still fire when broken" \
 # unchecked files on its first run, one of them a build.json two days stale.
 # Skipped rather than failed when the mirror is absent, so a fresh checkout that
 # has not published yet still gates cleanly.
-if [ -d ../../site/chicago/4d ]; then
-  step "published mirror matches its source" \
-    node tools/check_published.mjs
+# NO LONGER GUARDED BY `[ -d ]` (T-0938). The guard existed because a fresh checkout
+# might not have published yet, and it meant exactly that checkout skipped this gate
+# without saying so. The mirror is untracked now and the step at the top of this file
+# publishes it, so the mirror always exists here and the question is always asked.
+step "publish.sh produces a mirror that matches its source" \
+  node tools/check_published.mjs
 
-  # …and the one layer in it publish.sh transforms rather than copies. The residents
-  # records ship minified for the size budget, so the byte comparison above cannot see
-  # them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
-  # files, nothing dropped.
-  step "the published residents layer carries its source's value" \
-    node tools/check_published_residents.mjs
-fi
+# …and the one layer in it publish.sh transforms rather than copies. The residents
+# records ship minified for the size budget, so the byte comparison above cannot see
+# them; this asserts the stronger-reading claim on the SHIPPED form — same value, same
+# files, nothing dropped. It is also the ONLY owner of that claim now: until T-0938 the
+# two writers of the residents layer each wrote the mirror themselves and
+# `apply_census_1840_bridges.py --check` asserted its own copy was fresh, which is how
+# two owners came to disagree about whitespace and turn this gate red on any run that
+# published (T-0933).
+step "the published residents layer carries its source's value" \
+  node tools/check_published_residents.mjs
 
 # …and the one file in that mirror whose SOURCE is rewritten after publish.sh has
 # already run. `ticket.mjs done` needs the PR number that only exists once the PR
@@ -1349,6 +1391,28 @@ step "the minted letter-list residents re-derive from the register" \
 # synthesis it shares the ledger with.
 step "the 1840 identity bridges re-derive and back-project nothing" \
   python3 tools/apply_census_1840_bridges.py --check
+
+# T-0714, and the owner asked for it directly. The bridges gate above proves the eleven
+# links this project HAS made. The crosswalk below is the adjudication those links come
+# out of — every named 1840 head given an outcome against the 1835 pools — and it was the
+# one crosswalk in this repo that nothing gated. `crosswalk_norris_1844`,
+# `crosswalk_fergus_1843`, the three Fergus 1839 crosswalks and the death notices all fail
+# the moment their committed file stops re-deriving; this one drifted 290 heads without a
+# red build, because the sheets kept being read and the adjudication was never re-run.
+# Gated here in the same commit that re-derived it, so it never lands red.
+step "every named 1840 head still adjudicates as the pages and the pools say" \
+  python3 tools/crosswalk_census_1840_heads.py --check
+
+# …and the class of fault, not just this instance of it. An ungated derivation is a
+# research output that can silently stop existing, and until T-0714 nothing could answer
+# "which tools can re-derive themselves and are never asked to?" without a hand audit.
+# This is a RATCHET: the ungated set may shrink, and may not grow. A new tool arrives
+# gated, or with a deliberate line in data/research/check_gate_baseline.json.
+step "no new tool carries a --check mode the gate never runs" \
+  python3 tools/audit_check_gates.py --gate --quiet
+
+step "…and the audit's own assertions still fire when broken" \
+  python3 tools/audit_check_gates.py --self-test
 
 # THE OTHER HALF OF THE SAME QUESTION, and the owner asked it on 2026-09-03: "i see
 # lots of research being done ... but there are not outputs or updates to the household
@@ -1619,6 +1683,14 @@ step "…and the tie discriminator's do too" \
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
 
+# T-0695. The eleven forenames archive.org's OCR set in characters no compositor had are
+# repaired in the READING against Kim Torp's independent transcription, and the quote
+# keeps the damage. The table that does it is the thing that rots: an entry re-read, a
+# leaf re-committed, and a row stops matching — or a new garble arrives with no row. The
+# self-test fails on either, and on a repair that tidied a quote.
+step "…and every garbled forename in them is repaired, cited, and none is left unnamed" \
+  python3 tools/read_norris_1844.py --self-test
+
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
@@ -1760,6 +1832,14 @@ step "…and its own assertions still fire when broken" \
 # database truncated at its own 150-row ceiling must never appear in the coverage
 # declaration — a ceiling recorded as a completed read is the one error here nothing
 # downstream could catch.
+# T-0697. THE RULE THE RESIDENT CROSSWALK IMPORTS RATHER THAN RESTATES, gated for the
+# same reason T-0696 gated the directories' two: the crosswalk below is re-derived here
+# and the rule it is re-derived BY was not, so a loosened namesake rule — one more name
+# folded onto another, M3's guard dropped, a suffix read as decoration — would re-derive
+# the crosswalk quietly and pass every check after it.
+step "the namesake rule's own assertions still fire when broken" \
+  python3 tools/namesake.py --self-test
+
 step "the land tract sales re-derive from their committed deposit" \
   python3 tools/read_land_sales.py --check
 

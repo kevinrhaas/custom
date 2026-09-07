@@ -38,7 +38,6 @@ CENSUS_INDEX = CENSUS_DIR / "index.json"
 CENSUS_ROWS = CENSUS_DIR / "household_heads.csv.gz"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
-SITE = ROOT.parent.parent / "site" / "chicago" / "4d"
 SOURCE_ID = "census_1840_chicago_v4_research"
 ALLOWED_STATUS = {"validated", "provisional"}
 
@@ -326,12 +325,14 @@ def apply():
     for path, doc in docs.items(): dump(path, doc, 1)
     index = rebuild_index(load(INDEX), docs); dump(INDEX, index, 1)
     update_ledger(rows, all_rows); update_summary(rows, all_rows)
-    site_hh = SITE / "data" / "residents" / "households"; site_hh.mkdir(parents=True, exist_ok=True)
-    for row in rows:
-        _person, path, doc = people[row["person_id"].strip()]
-        dump(site_hh / path.name, doc, 1)
-    site_index = SITE / "data" / "residents" / "index.json"; site_index.parent.mkdir(parents=True, exist_ok=True)
-    site_index.write_text(INDEX.read_text(encoding="utf-8"), encoding="utf-8")
+    # THIS WRITER DOES NOT WRITE THE PUBLISHED MIRROR (T-0938, fixing T-0933).  It used
+    # to carry the four paths it touches into `site/chicago/4d/data/residents/`
+    # PRETTY-PRINTED, while `synthesize_resident_research.py` and `tools/publish.sh`
+    # both wrote the same paths MINIFIED — so `bash tools/publish.sh` on an untouched
+    # `dev` turned `tools/check.sh` red on four files whose parsed values were identical,
+    # and whichever writer ran last decided whether the gate was green.  The mirror is
+    # untracked and generated now and has exactly one writer, `tools/publish.sh`, which
+    # `tools/check.sh` runs before it gates what that produced.
     return check()
 
 
@@ -372,20 +373,14 @@ def check():
     if int(census.get("provisional_identity_bridges") or 0) != provisional: problems.append("ledger provisional bridge count disagrees")
     summary=SUMMARY.read_text(encoding="utf-8")
     if "**210 named 1840 household-head rows" not in summary: problems.append("summary census coverage is stale")
-    # The residents layer ships MINIFIED (tools/publish.sh, declared in
-    # check_published.mjs § TRANSFORMED), so a byte comparison here reported every
-    # published household as stale.  The claim was never about bytes: it is that the
-    # mirror carries the same record, so compare the parsed VALUE.
-    def mirror_carries(src: Path, dst: Path) -> bool:
-        if not dst.exists(): return False
-        try: return json.loads(dst.read_text(encoding="utf-8")) == json.loads(src.read_text(encoding="utf-8"))
-        except Exception: return False
-    site_index=SITE/"data"/"residents"/"index.json"
-    if not mirror_carries(INDEX, site_index): problems.append("published resident index mirror is stale")
-    for pid,row in expected.items():
-        if pid not in people: continue
-        _p,path,_doc=people[pid]; site_path=SITE/"data"/"residents"/"households"/path.name
-        if not mirror_carries(path, site_path): problems.append(f"published household mirror stale: {path.name}")
+    # THE MIRROR IS NOT THIS TOOL'S TO ASSERT ANY MORE (T-0938).  These four lines used
+    # to check that `site/chicago/4d/data/residents/` carried the same parsed value as
+    # the cards — a real claim, but one this tool could only make because it was also a
+    # writer of the mirror, and being both is what made T-0933 possible.  The mirror is
+    # untracked and generated now; `tools/check.sh` publishes it and then asks
+    # `tools/check_published_residents.mjs`, which makes the identical claim over the
+    # WHOLE layer (same value, file for file, none missing and none extra) rather than
+    # over the handful of rows this bridge file happens to name.
     adams=people.get("adams_william_h")
     if adams and len(adams[2].get("persons") or []) != 1: problems.append("Adams 1840 second person was incorrectly back-projected into 1835")
     if problems:

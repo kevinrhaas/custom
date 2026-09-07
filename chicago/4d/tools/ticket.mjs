@@ -16,8 +16,12 @@
  *  - State lives ONLY in front matter. No state directories: a file's location
  *    and its `state:` field would be two copies of one fact, and this project's
  *    recurring fault is exactly two copies of one fact disagreeing.
- *  - BOARD.md and tickets.json are GENERATED. `check` refuses a stale board the
- *    same way check_published refuses a stale mirror (build.json, 2026-08-15).
+ *  - BOARD.md and tickets.json are GENERATED, and since T-0937 they are also
+ *    UNTRACKED (.gitignore). `check` and `board` WRITE them rather than refusing a
+ *    stale one: a build product that no commit carries cannot be stale, and it
+ *    cannot conflict either, which is the whole point — a run's first act is
+ *    `claim`, so these three files were rewritten by every branch before it had
+ *    done any work, and GitHub's merge runs no driver to reconcile them (T-0857).
  *  - IDs are assigned here, not guessed by authors — two branches that each
  *    guess "top + 1" both get it wrong (the v93/v98 collisions). `nextIdNum`
  *    counts merged tickets AND every branch still in flight on the remote, over
@@ -62,10 +66,14 @@ const JSON_OUT = path.join(DIR, 'tickets.json');
  * and did on T-0153/PR #318.
  *
  * So the writer of the file maintains its mirror. Deliberately narrow:
- *  - it copies ONLY when this tool actually rewrote tickets.json. A mirror that
- *    somebody else made stale must still fail the gate — the acceptance clause
- *    says so in as many words — and a blanket refresh on every invocation would
- *    quietly launder exactly that.
+ *  - it copies when this tool actually rewrote tickets.json, OR when the mirror is
+ *    ABSENT. Not on every invocation: a mirror that somebody else made stale must
+ *    still fail the gate — the acceptance clause says so in as many words — and a
+ *    blanket refresh would quietly launder exactly that. The absent case is T-0937
+ *    and it does not weaken anything, because an absent file is not a stale one:
+ *    both this file and its mirror are untracked now, so a fresh clone starts with
+ *    NEITHER, and "only on a rewrite" would leave the mirror missing on any clone
+ *    that happened to rebuild the source first.
  *  - it never creates the mirror directory. An unpublished checkout stays
  *    unpublished; `publish.sh` is what decides the mirror exists.
  *  - `check` pins the copy line in publish.sh, below, so the destination cannot
@@ -496,7 +504,9 @@ function generateBoard(tickets) {
   // T-0154: this tool is the WRITER of tickets.json, so it carries the file to
   // the one published path publish.sh copies it to. Only on a real rewrite —
   // see MIRROR's note on why a blanket refresh would weaken check_published.
-  if (wrote) mirrorTickets();
+  // `wrote` OR absent — see MIRROR's note. Untracked means a clone can hold a
+  // freshly generated source beside no mirror at all, which is not staleness.
+  if (wrote || !existsSync(MIRROR)) mirrorTickets();
 }
 
 /**
@@ -615,15 +625,20 @@ function check(tickets) {
     }
   });
 
-  // The generated pair must be fresh — a stale board is the stale-build.json
-  // fault (found on check_published's first run) wearing a new file name.
-  const beforeB = existsSync(BOARD) ? readFileSync(BOARD, 'utf8') : '';
-  const beforeJ = existsSync(JSON_OUT) ? readFileSync(JSON_OUT, 'utf8') : '';
+  // MATERIALISE THE PAIR — this is no longer a staleness complaint (T-0937).
+  //
+  // It used to be one, on the reasoning that a stale board is the stale-build.json
+  // fault wearing a new file name. That reasoning only held while the pair was
+  // COMMITTED: the thing that could be stale was the copy in the tree, and the
+  // remedy was to run `board` and commit it. Both files are untracked now, so there
+  // is no second copy to disagree with the tickets — regenerating IS the answer, and
+  // reporting it as a problem would fail the gate on a fresh clone that had simply
+  // never built them.
+  //
+  // The write stays inside `check` deliberately, rather than moving to a caller: the
+  // gate is the one thing guaranteed to run on every branch and in CI, so putting the
+  // materialisation here is what makes the board exist wherever anything reads it.
   generateBoard(tickets);
-  if (readFileSync(BOARD, 'utf8') !== beforeB || readFileSync(JSON_OUT, 'utf8') !== beforeJ) {
-    problems.push('BOARD.md / tickets.json were stale — regenerated now; commit them '
-      + '(run `node tools/ticket.mjs board` before every merge, like the changelog stamp)');
-  }
 
   // THE MIRROR PIN (T-0154). `mirrorTickets` above hard-codes where publish.sh
   // puts this file, which is a second copy of one fact — the failure mode this

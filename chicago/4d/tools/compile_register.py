@@ -570,7 +570,14 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     # re-anchored 90 fields of the register onto the wrong side of the water.
     for s in sorted(load_json(streets_file).get("streets", []),
                     key=lambda r: min(p[1] for p in r["path_local_enu_m"])):
-        town["streets"].setdefault(street_key(s["name_1835"]), s["id"])
+        # A street with no name — the eight unnamed tiers Wright rules across the School
+        # Section carry `name_1835: null` — has no key for a printed name to match, and
+        # `street_key(None)` is the EMPTY string. Seated, it made "" a live key and every
+        # notice this town could not place resolved onto it: 62 businesses moved from
+        # `unplaceable` to `street_only` on a street no paper names (T-0797).
+        key = street_key(s["name_1835"])
+        if key:
+            town["streets"].setdefault(key, s["id"])
         town["streets"][s["id"]] = s["id"]
         # The committed centreline, kept so `streets_cross` can ask the plat whether a
         # named corner exists rather than assume it (T-0771).

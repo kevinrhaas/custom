@@ -177,7 +177,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_02.json",
-      "sha256": "9be52382c5529a52170706b5bd956e39f39a3ceb98993c0ddeb70093cd3ad590"
+      "sha256": "b1ae4305156426b0f32d39eb8c738fd0eef2e65747fba77e571878e2915de152"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_09.json",
@@ -189,7 +189,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_23.json",
-      "sha256": "aeac1473ed3160db1abd46fef56955545a918a9e7c61527064298784ff9c0f43"
+      "sha256": "ebaea8a35231185193c75be309832c140695f12e526aba209479575be5cc8c03"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_30.json",
@@ -33769,7 +33769,9 @@
       "occupations": [
         "hatter"
       ],
-      "associated_places": []
+      "associated_places": [
+        "Detroit"
+      ]
     },
     {
       "id": "person_m_d_harmon",
@@ -52475,7 +52477,9 @@
       "last_seen": "1834-07-23",
       "letter_list_only": false,
       "occupations": [],
-      "associated_places": []
+      "associated_places": [
+        "St. Joseph"
+      ]
     },
     {
       "id": "person_uncertain_wm_mckaleb",

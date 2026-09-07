@@ -69,18 +69,26 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0442",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "A DuPage County history describes a David Brookins who sold carriages in Chicago before moving his family west. It is a useful regional candidate, not proof that the letter-list name is the same man.",
     "evidence_against": "The county history does not identify the 1835 post-office return.",
     "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
      "dupage_history_david_brookins"
     ],
     "candidate_ids": [
      "cand_david_brookins_carriage_seller__brookins_david"
+    ],
+    "summary": "The Du Page County history reports that David Brookins sold carriages in Chicago before the family moved west. The source record was written for an earlier pass and says plainly that it does not tie him to the post-office return, so it supplies a candidate identity and nothing more.",
+    "candidates": [
+     {
+      "id": "cand_david_brookins_dupage",
+      "asserted": false
+     }
     ]
    }
   }

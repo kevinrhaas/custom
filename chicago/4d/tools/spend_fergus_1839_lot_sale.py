@@ -331,8 +331,24 @@ def apply_to_person(person: dict, row: dict) -> bool:
         person["sources"] = sorted(grown) if existing == sorted(existing) else grown
         changed = True
     note = (person.get("note") or "").strip()
+    fresh = paragraph(row)
     if MARKER not in note:
-        person["note"] = (note + " " + paragraph(row)).strip()
+        person["note"] = (note + " " + fresh).strip()
+        changed = True
+    elif fresh not in note:
+        # THE PARAGRAPH IS REFRESHED, NOT LEFT (T-0779). This used to append or do
+        # nothing, and doing nothing was wrong the moment the reading under it moved:
+        # T-0779 corrected `O. II. Thompson` to O. H. Thompson off the page image and
+        # hh_thompson_o_i went on printing the mangle, because its card already carried a
+        # paragraph and this pass only ever looked for the marker. A card that quotes a
+        # reading must quote the reading it has. The extent replaced is MARKER to the end
+        # of this paragraph's own closing sentence: both are fixed strings, the paragraph
+        # is contiguous because every pass appends at the end of the note, and the closing
+        # sentence is taken at its FIRST occurrence at or after the marker so that a later
+        # pass ending the same way cannot be swallowed.
+        start = note.index(MARKER)
+        tail = note.index(LADDER_LIMIT, start) + len(LADDER_LIMIT)
+        person["note"] = (note[:start] + fresh + note[tail:]).strip()
         changed = True
     return changed
 

@@ -1,7 +1,7 @@
 ---
 id: T-0744
 title: 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0657
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 1014
+claimed_by: run 9/6/2026, 8:17:46 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-07T01:49:47.041Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34071225906
 ---
 
 33S7-9YYJ-L3 read line by line: the TOTAL column, and the line count the contact sheet and the strip disagree on.

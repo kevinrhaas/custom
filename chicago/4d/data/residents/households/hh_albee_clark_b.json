@@ -78,18 +78,27 @@
    "resident_subtype": "projected_resident",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0463",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
+    "ticket": "T-0509",
+    "outcome": "candidate_identity",
+    "reviewed_on": "2026-09-05",
     "asserted_identity": false,
     "evidence_for": "Grand Haven history identifies exact-name Clark B. Albee in early commerce with Chicago-linked David Carver. The network is suggestive, but Michigan geography and no direct letter evidence keep the candidate unmerged.",
     "evidence_against": "Documented Michigan setting and no direct letter link.",
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839",
      "migenweb_clark_albee_grand_haven"
     ],
     "candidate_ids": [
      "cand_clark_b_albee_of_grand_haven__albee_clark_b"
+    ],
+    "summary": "The Fergus 1839 crosswalk matched on surname plus the initial C., but the entry prints 'Albee, Cyrus P., butcher' — a forename and middle initial that both conflict with Clark B. Albee. The match is refused here. What remains is pass 3's Grand Haven reading, which puts an exact-name Clark B. Albee in Michigan commerce beside the Chicago-linked David Carver: suggestive, unbridged.",
+    "candidates": [
+     {
+      "id": "cand_clark_b_albee_grand_haven",
+      "asserted": false
+     }
     ]
    }
   }

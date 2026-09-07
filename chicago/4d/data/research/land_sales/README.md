@@ -73,17 +73,96 @@ not land.
 
 **Nine more purchaser spellings meet a person the town already holds** — William Spencer,
 Walter L. Newberry, James Whitlock, James B. Campbell, A. Garrett, John L. Wilson,
-H. Pearsons, David P. Frame and Frank Dill — which is 35 matched spellings against 396
-refused across the whole domain. Two of them are the interesting ones: **Hiram Pearsons
-enters seventeen ring tracts** and **Walter Newberry six**, both while the town's own
-lots were being traded. None carries a stated residence, so all nine are `inferred`, and
-nothing here mints or regrades a resident.
+H. Pearsons, David P. Frame and Frank Dill. Two of them are the interesting ones: **Hiram
+Pearsons enters seventeen ring tracts** and **Walter Newberry six**, both while the town's
+own lots were being traded. **All nine have now been RULED ON** — six upheld, three refused
+— which is the section below. T-0697 has since re-run the mechanical rule that made the
+domain's counts, so the totals those nine sit inside are 136 matched spellings against 295
+refused, not the 35 against 396 they were read under.
+
+## The ruling layer (T-0700)
+
+`build_resident_crosswalk()` PROPOSES; it does not decide. `tools/spend_land_sales.py`'s
+own rule 1 — *"ONLY WHAT THE CROSSWALK ALREADY DECLARED. This pass re-adjudicates
+nothing"* — means that between the mechanical rule and the card there was **nobody**, and
+the ring's nine spellings reached thirty-one town cards that way. `resident_rulings.json`
+is where a judgement is written instead. It is **hand-authored** — the one file under this
+domain that is not derived from the deposit, because a judgement is not a derivation —
+and `--build` folds it onto the crosswalk while `--check` validates it: a ruling must name
+a spelling the register holds, rule on a proposal the mechanical rule actually made, agree
+with that proposal about who is being ruled on, and state its ticket, its date, what it was
+checked against, and its reasoning.
+
+**The ruling rule.** A proposal is upheld only where the town's own record of the person
+carries something the register's row can be checked against BEYOND a bare name — a middle
+initial the register repeats, a trade the purchase is consistent with, a second document,
+or the register's own Residence column. Where the town holds nothing but a name read once
+off a post-office letter list, the proposal rests on the residents layer being THIN rather
+than on the two records agreeing, and it is refused.
+
+| spelling | ruling | what carried it |
+|---|---|---|
+| PEARSONS H | upheld | the same register spells him HIRAM on 28 other rows; 16 of the 17 H rows fall on one day in one township |
+| NEWBERRY WALTER L | upheld | the middle initial agrees with Walter **Loomis** Newberry, attested in the American and both Fergus directories |
+| WHITLOCK JAMES | upheld | the town's James Whitlock is **register of the land office** — the purchase is what his trade would predict |
+| CAMPBELL JAMES B | upheld | the middle initial agrees, and nine sources hold him |
+| FRAME DAVID P | upheld | the letter list printed "David P.Frame"; all three tokens agree |
+| DILL FRANK | upheld | ls0912 states **COOK**, and the 1835 poll list has a Frank Dill at Chicago |
+| SPENCER WILLIAM G | refused | one letter-list line, and a middle initial the town has never seen |
+| WILSON JOHN L | refused | the same, on the commonest name in the corpus, and the entries are 1836 |
+| GARRETT A ET CO | refused | the purchaser is a **firm**; this crosswalk proposes people (T-0851) |
+
+Refusing the firm spelling left `GARRETT AUGUSTUS` standing alone on A. Garrett's card, where
+the two spellings had both been written onto it. That second spelling is a reading in its own
+name and is NOT ruled on here — it is one of T-0850's twenty-six.
+
+A refusal is not free: it moves the proposal into `refusals[]`, and
+`spend_land_sales.py --build` **retracts** the paragraph the earlier pass had written onto
+the card. That retraction is the write made reversible, and it is held by a round-trip
+assertion in `--self-test`.
+
+**What ruling on them found.** The crosswalk read each purchaser's residence off the FIRST
+row of that spelling. Frank Dill enters the same quarter-section twice on 10 April 1835 and
+only the second row states COOK, so he was graded `inferred` against a source that places
+him in Cook County; Hiram Pearsons was the same. The reading now takes every row of a
+spelling, both grade `documented` — for Cook County on the date of sale and nothing more —
+and a card whose paragraph no longer says what the crosswalk says is a gate failure, where
+`gaps()` had only ever asked whether a paragraph was PRESENT.
+
+**Still unruled:** the twenty-six spellings the first deposit matched (**T-0850**).
+
+**THE SURNAME GATHERS THE RIVALS AND THE FORENAME DECIDES BETWEEN THEM (T-0697).** Until
+that ticket the rule needed EXACTLY ONE person of the surname in the residents layer, and
+a count of namesakes says nothing about the reading in hand: it made the crosswalk fire
+LESS as the town grew truer, so seating 531 people (T-0514) COST this register three
+rulings with nothing new read. The reading is now put to every person of the surname and
+named onto the one it agrees with, on the merge rules this project already ratified —
+`tools/namesake.py`, which restates identity master's M1/M2/M3 and R3/R4 and imports the
+directories' own forename rule. **139 purchaser spellings now meet 124 people the town
+holds, against 38 spellings and 35 people before**, and consolidation pass 3 carries 421
+entries onto 124 cards where it carried 180 onto 34. Nothing new was read to get there.
+
+The refusals it keeps are the ones the forename makes, and three kinds are new: a middle
+initial that disagrees (`KING JOHN R` is not John Lyle King), M3's guard (`WRIGHT JOHN F`
+is not John Wright while John S. Wright stands beside him), and a suffix (`CHURCH THOS JR`
+names the son, and the town's one Thomas Church is not said to be either man). Two
+readings the rule named onto ONE person are put back to each other and refused where they
+are not the same man — `BOND HARVEY` and `BOND HEMAN` both meet an `H Bond`, and the
+initial cannot say which. **T-0697 also asked whether a purchase date, a trade or a lot
+could break what the forename leaves standing, and all three are refused**, with the
+reasons in `tools/namesake.py`'s `REFUSED_DISCRIMINATORS` rather than in prose: the
+register prints no trade at all, a man may enter ground in a county he has not moved to,
+and preferring the rival the town has already placed on the ground is how a reconstruction
+invents a fact (the ruling T-0696 made for the directories, which allowed a trade to
+NARROW a tie and had one to narrow with).
 
 **Every ruling now names the records it was made from.** `record_ids` on each match and
 each refusal in both crosswalks says which sales the ruling was made from — the spend
 meter asked for it in as many words, and it is provenance regardless: a refusal a reader
 cannot trace back to its rows is a refusal nobody can check. 480 rulings in this domain
-anchored to nothing before; none does now, and the domain reads 953 against 511 ruled on.
+anchored to nothing before; none does now, and every one of the 953 records carries a
+ruling — the same 953 before T-0697 and after it, which is the thing that did NOT move
+when a hundred spellings crossed from refused to matched.
 
 **Twenty-four people the town already holds meet a purchaser** — Arthur Bronson, David
 Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel
@@ -101,11 +180,11 @@ section query, the deposit line, the purchase number and the register's own volu
 page. `data/research/domains.json` states it; `tools/research_domains.py --check` holds
 the shape and `tools/read_land_sales.py --check` holds the reading.
 
-**Hand-authored:** this README, and nothing else. Every judgement in the crosswalks was
+**Hand-authored:** this README and `resident_rulings.json`, and nothing else. Every judgement in the crosswalks was
 made by a rule that is written out beside it.
 
 **Generated, and re-derived by the gate:** `entries.json`, one `records/entries_*.json`
-per deposit, `coverage.json`, `crosswalk.json` and `resident_crosswalk.json` — all
+per deposit, `coverage.json`, `crosswalk.json` and `resident_crosswalk.json` (which folds the hand-authored rulings) — all
 written by `tools/read_land_sales.py --build` from the committed deposits in `text/`,
 and all re-derived by `--check`, which refuses a committed file that has drifted. The
 deposits themselves are written by `tools/harvest_land_sales.py --sweep`, which reaches
@@ -167,9 +246,11 @@ the resolved tracts reach. See the next section.
 ## The join to the ground, and the four tracts the town stands on
 
 `tools/resolve_land_tracts.py --build` derives `ground.json`: one row per sale, carrying
-either the polygon it lands on or the reason it does not. **10 of the 375 rows land on
-the ground and reach 63 of the 372 structures; the other 365 rows each say why they do
-not.** The
+either the polygon it lands on or the reason it does not. **346 of the 953 rows land on
+the ground; the other 607 each say why they do not.** Ten of them are country tracts and
+reach 63 of the 375 structures; the other 336 are school-section rows seated on the block
+polygons of T-0797, and they reach no structure at all, for the reason the next section
+gives. The
 section grid is CONSTRUCTED from the one PLSS corner this project holds — State &
 Madison, `G1` — on the plat's own bearing, in nominal one-mile squares, and is carried
 only across the four sections that meet at it. That is liberty **L219**, and the module
@@ -189,11 +270,57 @@ derives rather than a second construction of the same tract. **Whether the entry
 not read here** — it was litigated for years, and this domain records the transaction the
 register prints and nothing about its outcome.
 
-**The two silences, and both are the source's rather than the tool's.** 254 of the
-structures stand in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get
-nothing, because the canal commissioners sold those lots and this database does not hold
-them. And **337 rows — every one of them in section 16, the school section**, sold at the
-October 1833 auction, are refused: 336 because that subdivision's plat is not traced by
-this project, so a block and lot number in it names ground this repo cannot point at, and
-one because the register prints its lot as `06126` and the parser will not guess. That refusal costs the scene exactly one roof, `heacock_house_monroe`, which is
-the only committed structure standing in section 16.
+## The school section, spent (T-0798)
+
+**337 rows of this register — every one of them in section 16, the school section — were
+read at the October 1833 auction and, until T-0797 traced the plat, not put on the
+ground.** 336 of them now are: each is seated on the block polygon its own number names
+in `data/traces/vectors/school_section_blocks_1834.json`, the 142 blocks measured off
+J. S. Wright's 1834 survey. The one that is not is the row whose lot the register prints
+as `06126`, refused because the parser will not guess at it.
+
+**The block, and not the lot.** The sheet's ruled LOT lines are not traced, so a row that
+buys lot 6 of block 48 is placed on block 48 with its lot carried as read and unplaced. A
+block is about a hectare and the auction sold most of them to several men apiece, so
+**no school-section row reaches a roof**, by rule rather than by geometry — a purchaser of
+some lot in a block did not thereby buy the ground under a particular house. The one
+committed structure standing in section 16, `heacock_house_monroe`, therefore still
+carries no `land_owner`, and that is the honest answer rather than a missing one.
+
+**What the 336 rows say about who owned the south.** The sale ran 22–25 October 1833 and
+**105 purchasers as the register spelled them took ground in 136 of the 142 blocks**. 218
+rows name a lot inside their block and 118 name the block alone. The busiest blocks are
+95 (12 rows), 26 (11), and 48, 81, 82 and 120 (10 apiece) — the northern tiers, nearest
+the town. The keenest buyers are Ebenezer and John Hale on fourteen blocks each, Arthur
+Bronson on thirteen (with eight more under the register's spelling `Broson`), and Hiram
+Pearsons on twelve, who is also the man who enters seventeen ring tracts above.
+
+**And the rows are not parcels (T-0885).** Every count above is a count of REGISTER
+ROWS, which is what the source offers. The ground is smaller: 335 live rows name only
+**297 distinct block-and-lot parcels**, because **38 parcels are entered twice**, under
+two names, on the same day and the same page of volume 818, each row with its own
+purchase number. Six of the 38 carry the register's `AS` suffix on one of the two rows —
+an assignment, the one shape of duplicate this source explains itself. **Twenty-six are a
+single pair of names: every parcel Ebenezer Hale enters, John Hale enters as well**,
+which is why the keenest-purchaser table reads two Hales at its head. One of the 38 is a
+price disagreement rather than a name pair — block 72 lot 2, entered at **$8.00** and at
+**$80.00**, same day, same page — and both figures are carried as read. Nothing here
+merges a name or drops a row: whether a pair is one transaction or two is an identity
+ruling, `resident_crosswalk.json` is where this domain makes those, and T-0885 leaves the
+Hales an open question with the evidence beside it.
+
+**Six blocks changed no hands at all: 1, 41, 87, 88, 126 and 142.** Four of those are
+exactly the four Wright writes `Reserved` across and draws no numeral on. **Neither
+reading was made from the other** — one is a plat traced off a sheet in 2026, the other an
+auction list kept in 1833 — and they agree, which is the strongest corroboration the
+block numbering has. `--self-test` holds it. The ticket that asked for this spend expected
+the sheet and the sale to disagree somewhere near the tear at 87/88; they do not, because
+neither block was ever offered.
+
+**A block number the sheet does not carry is refused by name and never nudged onto a
+neighbour.** No row needs that refusal today; the reason is written into `ground.json` and
+the counter is printed at zero, so it is a standing check rather than a dead branch.
+
+**The other silence is the source's rather than the tool's.** 254 of the structures stand
+in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get nothing, because the
+canal commissioners sold those lots and this database does not hold them.

@@ -71,12 +71,18 @@
    "note": "A DOCUMENTED PERSON, AND NOTHING ELSE IS CLAIMED. The papers name 'HENRY MOORE' and 'HUNKY MOOR)' and 'Hees Moone' and 'Hiway Meoue' and 'Y MOORE' and give the trade; they do not say where this household lived, who else was in it, or when it came. So the record around this person carries nothing but the person: no dwelling, no division, no family, each written as unattested in its own block rather than filled in from the shape of the rest of the town. Cited at the American of 4 July 1835, column 1; the American of 11 July 1835, column 1; the American of 22 August 1835, column 5; the Democrat of 4 June 1835, column 5; the Democrat of 24 June 1835, column 10. The corpus associates the name with Chicago; that is where the paper does business with this person and not a statement about where they slept, and the storefront tickets are the ones that may stand a shop there. THE TOWN NEVER INVENTED A ROOF FOR THIS TRADE. The occupation census raised reconstructed households for the trades a town of 3,265 people needed and could not document; `attorney` was not one of them, which is why this person could only ever be ADDED and never seated on an existing record — data/research/newspapers/register_1835.json calls it `new_resident` for exactly that reason. No figure is drawn (docs/LIBERTIES.md L1). READ THROUGH A TRANSCRIPTION, not a scan: the owner's ruling of 2026-08-28 grades a transcription-mediated reading as documented, and the source record for the run states that standard and its limits. A scan read that confirms or corrects the name upgrades this entry.",
    "resident_research": {
     "programme": "resident-research-2026",
-    "ticket": "T-0442",
-    "outcome": "no_corroboration_yet",
-    "reviewed_on": "",
-    "asserted_identity": false,
+    "ticket": "T-0509",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
     "evidence_for": "No reliable record found in the reviewed web, institutional-history, digitized-book, newspaper-index and genealogy-finding-aid searches could be tied to this 1835 Chicago person without relying on the name alone.",
-    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity."
+    "notes": "No candidate fact is asserted unless a source bridges the candidate to the 1835 Chicago record by more than name similarity.",
+    "summary": "Fergus 1839 prints 'Moore, Henry, attorney and counseller at law, 9 Clark st' and the old-settler notice 'Moore, Henry, died, Concord, Mass., after 1841'. Whole forename, whole surname, and the trade the 1835 papers already print for him between 4 June and 22 August. The 1839 door is 1839's, not 1835's.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "chicago_tribune_1882_04_25_old_settler_deaths",
+     "fergus_chicago_directory_1839"
+    ]
    }
   }
  ],
