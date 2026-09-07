@@ -74,15 +74,14 @@
 # --- at a time and merge the moment its gate is green — do not lap three branches in parallel
 # --- and watch each landing invalidate the other two.
 # ---
-# --- T-0933 IS THE OTHER BLOCKER, AND IT IS NEW: publish.sh on an untouched dev turns check.sh
-# --- red on four resident files, over whitespace alone. Every lap below publishes, so every lap
-# --- below meets it. Do NOT baseline it and do NOT regenerate around it — fix the owner of the
-# --- byte form, or the T-0838 ratchet gets spent on a non-fault.
+# --- T-0933 WAS THE OTHER BLOCKER AND IS CLOSED (PR #1024, 2026-09-07): publish.sh on an
+# --- untouched dev turned check.sh red on four resident files over whitespace alone, and every
+# --- lap below publishes. The mirror has one writer now (T-0938) and --drift-self-test holds
+# --- that, so a lap below no longer meets four red lines that are not its own.
 # ---
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0933 — publish.sh minifies four resident files the synthesizer writer pretty-prints, so tools/check.sh goes red on any run that publishes
 T-0927 — Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
 T-0928 — Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
 T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
