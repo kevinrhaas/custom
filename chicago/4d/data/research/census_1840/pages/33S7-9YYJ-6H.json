@@ -1455,7 +1455,9 @@
  "tickets": [
   "T-0627",
   "T-0628",
-  "T-0645"
+  "T-0629",
+  "T-0645",
+  "T-0754"
  ],
  "line_index": {
   "lines": 31,
@@ -1758,9 +1760,80 @@
    "primary_and_common_schools": 1,
    "primary_and_common_schools_note": "x3493-3523 y2972-3008, 30x36 — a single bold slanted slash of exactly the body figure's form and 20 per cent larger. Read 1. THE COLUMN CLOSES: one entry of 1 in the body, 1 at the foot. It is the first column on this leaf outside the industry run to close on its own footing.",
    "no_of_scholars_primary": null,
-   "no_of_scholars_primary_note": "WRITTEN AND NOT READ. Three components at x3550-3588 y2967-3009 — a long diagonal, a second below and parallel to it, and a shorter hooked stroke to their right — spanning 38 px against the body 40's 48. It is a two-glyph figure by extent and it is where a 40 would stand, but it does NOT read: the bowl test returns 0 px enclosed against the body 40's 25, so the second glyph does not close, and the first does not repeat the body 4's near-horizontal crossbar. The ink is about half the body figure's depth (mask 582 px against 979) — a drier pen at the foot of the leaf, where the paper is also curling into the gutter. It is NOT assumed to be 40 to make the column close, and the column therefore does not close. That is T-0754.",
+   "no_of_scholars_primary_note": "WRITTEN AND STILL NOT READ AS A NUMBER, but no longer unread as a FIGURE. T-0629 found three components at x3550-3588 y2967-3009 and could say only that they stood where a 40 would stand. T-0754 put the repository's own calibrated instrument on them and settled how they group and what the left group is: the figure is TWO DIGITS, and the left digit is this hand's two-stroke 4. The right digit is unread and is NOT a closed bowl, so the figure is not read 40 and this column still does not close. See no_of_scholars_primary_T0754.",
    "the_other_five_schools_columns": "no footing ink, consistent with their being empty in the body.",
-   "slaves_pensioners_ddbi": "no footing ink either — measured this pass, and it extends footer_blank_columns_note, which had not covered the slaves block."
+   "slaves_pensioners_ddbi": "no footing ink either — measured this pass, and it extends footer_blank_columns_note, which had not covered the slaves block.",
+   "no_of_scholars_primary_T0754": {
+    "ticket": "T-0754",
+    "cell_state": "null — the number is not committed. What IS committed is the figure's grouping and its left digit.",
+    "the_three_components": [
+     {
+      "label": "S1",
+      "box": [
+       3555,
+       2967,
+       3573,
+       2985
+      ],
+      "size": "18x18",
+      "area_px": 49,
+      "solid": 0.04,
+      "reads": "a slanted stroke, parallel to S2 and standing over it in x"
+     },
+     {
+      "label": "S2",
+      "box": [
+       3550,
+       2978,
+       3573,
+       3010
+      ],
+      "size": "23x32",
+      "area_px": 108,
+      "solid": 0.11,
+      "reads": "the bold long stroke of the figure, axis -52 deg"
+     },
+     {
+      "label": "S3",
+      "box": [
+       3575,
+       2982,
+       3588,
+       3006
+      ],
+      "size": "13x24",
+      "area_px": 66,
+      "solid": 0.14,
+      "reads": "a single stroke that descends steeply and turns left at the foot, blunt-ended, with no return up a right side — an open hook"
+     }
+    ],
+    "instrument": "tools/read_census_lower_blocks.py 33S7-9YYJ-6H --footer --inset 2 for the components, and tools/census_pair_geometry.py for the x-overlap. Both import read_census_continuation's ink mask and component finder; no second instrument was written for this reading.",
+    "the_grouping_is_settled": {
+     "by": "the X OVERLAP test — 33S7-9YYJ-5V total_column.stroke_overlap_test (T-0647), calibrated on nine figures whose value is fixed by a column or a footing that closes: one numeral +10 to +19, two digits -13 to +5.",
+     "S1_against_S2": "+22 px — ONE NUMERAL. Three px past the top of the calibrated one-numeral range, which is further FROM the two-digit class and not toward it, the same margin 5V accepted on its lines 9 and 24.",
+     "S2_against_S3": "-3 px — TWO DIGITS. Inside the calibrated two-digit range and 13 px from the nearest one-numeral value.",
+     "therefore": "S1 and S2 are the two strokes of one digit, and S3 is a second digit standing to its right. The figure is a two-digit number, not three glyphs and not one.",
+     "checked_against_this_leaf": "the same tool on this leaf's own controls: the MANUFACTURES footing, an 11 beyond argument, measures 0 px; the 4 on TOTAL line 20 measures +18 px. Both fall in their own class."
+    },
+    "the_left_digit": {
+     "reads": 4,
+     "confidence": "inferred",
+     "why": "two parallel slanted strokes, no bar and no bowl, classing as one numeral. T-0645 settled on THIS leaf, from its own TOTAL footing, that in this hand that form is a single numeral and is a 4 — '1 4 11' and '1 11 4' are not numbers — and 33S7-9YYJ-24's digit key, labelled by a TOTAL column that closes at 201, gives the same form as its 4. No other numeral this hand writes is built from two slashes alone.",
+     "what_weakens_it": "S1 is the faintest ink in the cell: 27 per cent of its pixels stand 120 or more grey levels below background, against 67-75 per cent for S2, S3 and the confirmed 1 in the column beside it. It is a clean 18x19 diagonal parallel to S2 and 21 px off the nearest printed rule, which is not what this leaf's show-through looks like, but the reading of the left digit rests on it: without S1 the left digit is a single slash and reads 1."
+    },
+    "the_right_digit_is_refused": {
+     "reads": null,
+     "the_test": "enclosed paper, found by flooding the background from the border after a 5 px closing, run down the ink threshold instead of at the sweep's 45 alone.",
+     "S3": "encloses 0 px at thresholds 45, 35, 28, 22, 16 and 12.",
+     "the_leaf_s_own_0": "the 0 of the body's 40, at x3559-3583 — the SAME x band of the SAME leaf — encloses 34 px at 45 and 25 px at 35.",
+     "the_leaf_s_own_5": "the bowl of the 5 on TOTAL line 30 encloses 113 px by threshold 16.",
+     "therefore": "the failure to close is not the pale exposure and not the binding gutter, because the leaf's own bowl in the same band closes on the same instrument. S3 is 13 px wide against that 0's 25 and against the confirmed 1's 30. It is pen ink — the highest solid fraction of the three — and it is not a closed bowl.",
+     "what_it_could_be": "an 0 whose bowl the dry pen never shut, or a shortened 1. Neither can be shown on this exposure, and 40 is not written in because it would make the column close."
+    },
+    "the_curvature_test_does_not_separate": "A sagitta test — the bow of each stroke against its own long axis — was run and is recorded as NOT a discriminator on this leaf, so that the next pass does not spend a run on it. Under the repository's own ink mask and component finder the strokes of the TOTAL column's 4s bow by 14 to 26 per cent of their length, which is as much as the bowls of the leaf's 0 and 5. The measure is also unstable to the 5 px closing: the same strokes measured without it bow by under 6 per cent. It says nothing about S3 either way.",
+    "what_the_column_now_stands_at": "The body carries one entry, 40, on line 1. The footing is a two-digit figure whose first digit is a 4, so it lies between 40 and 49 if both glyphs are digits. That does not contradict the body and it does not close it: the second digit is unread, and a column is not closed against a range.",
+    "what_would_settle_it": "a second exposure of this leaf. The reading is limited by ink depth at the foot of a pale capture, not by magnification — S3 was read at 26x and the components are stable from threshold 45 down to 12. A different film capture of M704 roll 57 at this leaf, or the same leaf's other-side show-through used as a mirror, is what would add information."
+   }
   },
   "what_this_does_not_close": "the sheet. The TOTAL column still stands 7 short of its 144 footing and two of its glyphs are unread; nothing in these four blocks bears on that."
  }
