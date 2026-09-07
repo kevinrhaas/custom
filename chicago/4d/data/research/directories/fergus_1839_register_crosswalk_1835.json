@@ -146,7 +146,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 894
+   "n": 834
   }
  ],
  "counts": {
@@ -165,9 +165,9 @@
   "letter_list_matched_one_entry": 32,
   "letter_list_ambiguous": 18,
   "letter_list_surname_only_refused": 152,
-  "heads_1840_matched_one_entry": 21,
+  "heads_1840_matched_one_entry": 18,
   "heads_1840_ambiguous": 9,
-  "heads_1840_surname_only_refused": 66
+  "heads_1840_surname_only_refused": 60
  },
  "residents": {
   "matches": [
@@ -4704,31 +4704,6 @@
     "reaches_scene": []
    },
    {
-    "name": "Alex[r]. Loyd",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Loyd' folds to the same string as the register entry's, and the given name of both begins A.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0058",
-      "as_printed": "Alexander Loyd",
-      "printed_page": 39,
-      "role": "mayor_of_chicago",
-      "office": "mayor_of_chicago",
-      "body": "city_of_chicago",
-      "ward_1839": null,
-      "year": 1840,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "mayor_of_chicago"
-    ],
-    "reaches_scene": []
-   },
-   {
     "name": "Geo Davis",
     "same_man_reprinted": false,
     "rule": "Surname 'Davis' folds to the same string as the register entry's, and the given name of both begins G.",
@@ -4904,31 +4879,6 @@
     "reaches_scene": []
    },
    {
-    "name": "James Scott",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Scott' folds to the same string as the register entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0038",
-      "as_printed": "John Scott",
-      "printed_page": 38,
-      "role": "school_inspector",
-      "office": "school_inspector",
-      "body": "city_of_chicago",
-      "ward_1839": null,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": true,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "school_inspector"
-    ],
-    "reaches_scene": []
-   },
-   {
     "name": "Jeremiah Price",
     "same_man_reprinted": false,
     "rule": "Surname 'Price' folds to the same string as the register entry's, and the given name of both begins J.",
@@ -4950,31 +4900,6 @@
     ],
     "offices": [
      "fire_warden"
-    ],
-    "reaches_scene": []
-   },
-   {
-    "name": "Jno. Beach",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Beach' folds to the same string as the register entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0110",
-      "as_printed": "James S. Beach",
-      "printed_page": 39,
-      "role": "sheriff_of_cook_county",
-      "office": "coroner",
-      "body": "cook_county",
-      "ward_1839": null,
-      "year": 1855,
-      "ex_officio": true,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     }
-    ],
-    "offices": [
-     "coroner"
     ],
     "reaches_scene": []
    },
@@ -5608,11 +5533,6 @@
     "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'A' of 'Amy Brown'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Andrew Duffy",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Duffy' stands on printed pages 38-39 and no man under it carries the initial 'A' of 'Andrew Duffy'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "B. S. Sherman",
     "candidates_under_that_surname": 6,
     "rule": "The surname 'Sherman' stands on printed pages 38-39 and no man under it carries the initial 'B' of 'B. S. Sherman'. A surname-only agreement is a refusal."
@@ -5793,11 +5713,6 @@
     "rule": "The surname 'Morris' stands on printed pages 38-39 and no man under it carries the initial 'M' of 'Mrs Mary Morris'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Mrs. Mary Brown",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'M' of 'Mrs. Mary Brown'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Orson Smith",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial 'O' of 'Orson Smith'. A surname-only agreement is a refusal."
@@ -5821,16 +5736,6 @@
     "name": "Robert Smith",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial 'R' of 'Robert Smith'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Sam[ue]l Cook",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Cook' stands on printed pages 38-39 and no man under it carries the initial 'S' of 'Sam[ue]l Cook'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Samuel Cha[p]in",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Cha[p]in' stands on printed pages 38-39 and no man under it carries the initial 'S' of 'Samuel Cha[p]in'. A surname-only agreement is a refusal."
    },
    {
     "name": "Thomas Brown",
@@ -5916,16 +5821,6 @@
     "name": "[?]hadwick Miller",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Miller' stands on printed pages 38-39 and no man under it carries the initial 'H' of '[?]hadwick Miller'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[Sam]l. J. Brown",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'S' of '[Sam]l. J. Brown'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[W]m. Smith",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial 'W' of '[W]m. Smith'. A surname-only agreement is a refusal."
    }
   ]
  }

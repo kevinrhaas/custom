@@ -34,7 +34,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 894
+   "n": 834
   }
  ],
  "counts": {
@@ -50,9 +50,9 @@
   "letter_list_matched_one_bidder": 54,
   "letter_list_ambiguous": 0,
   "letter_list_surname_only_refused": 188,
-  "heads_1840_matched_one_bidder": 27,
+  "heads_1840_matched_one_bidder": 26,
   "heads_1840_ambiguous": 1,
-  "heads_1840_surname_only_refused": 66
+  "heads_1840_surname_only_refused": 62
  },
  "residents": {
   "matches": [
@@ -8212,125 +8212,6 @@
       ]
      }
     ]
-   },
-   {
-    "name": "[J]. [H]. Collins",
-    "rule": "Surname 'Collins' folds to the same string as the bidder's, and the given name of both begins J.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. H. Collins",
-      "lots_bid": 7,
-      "amount_read_usd": 1755,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0069",
-        "block": 5,
-        "block_carried": true,
-        "lot": 6,
-        "amount_usd": 211,
-        "as_printed": {
-         "block": null,
-         "lot": "6",
-         "bidder": "J. H. Collins,",
-         "amount": "21 1"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0070",
-        "block": 5,
-        "block_carried": true,
-        "lot": 7,
-        "amount_usd": 211,
-        "as_printed": {
-         "block": null,
-         "lot": "7",
-         "bidder": "II",
-         "amount": "21 1"
-        },
-        "printed_page": 48,
-        "bidder_ditto": true
-       },
-       {
-        "claim": "f1839_lot0071",
-        "block": 5,
-        "block_carried": true,
-        "lot": 8,
-        "amount_usd": 210,
-        "as_printed": {
-         "block": null,
-         "lot": "8",
-         "bidder": "II",
-         "amount": "210"
-        },
-        "printed_page": 48,
-        "bidder_ditto": true
-       },
-       {
-        "claim": "f1839_lot0072",
-        "block": 5,
-        "block_carried": true,
-        "lot": 9,
-        "amount_usd": 209,
-        "as_printed": {
-         "block": null,
-         "lot": "9",
-         "bidder": "II",
-         "amount": "209"
-        },
-        "printed_page": 48,
-        "bidder_ditto": true
-       },
-       {
-        "claim": "f1839_lot0073",
-        "block": 5,
-        "block_carried": true,
-        "lot": 10,
-        "amount_usd": 208,
-        "as_printed": {
-         "block": null,
-         "lot": "IO",
-         "bidder": "II",
-         "amount": "208"
-        },
-        "printed_page": 48,
-        "bidder_ditto": true
-       },
-       {
-        "claim": "f1839_lot0180",
-        "block": 10,
-        "block_carried": true,
-        "lot": 7,
-        "amount_usd": 353,
-        "as_printed": {
-         "block": null,
-         "lot": "00^1",
-         "bidder": "J. H. Collins,",
-         "amount": "353"
-        },
-        "printed_page": 49,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0181",
-        "block": 10,
-        "block_carried": true,
-        "lot": 8,
-        "amount_usd": 353,
-        "as_printed": {
-         "block": null,
-         "lot": null,
-         "bidder": "»",
-         "amount": "353"
-        },
-        "printed_page": 49,
-        "bidder_ditto": true
-       }
-      ]
-     }
-    ]
    }
   ],
   "ambiguous": [
@@ -8584,11 +8465,6 @@
     "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'R' of 'Robert Smith'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Samuel Cha[p]in",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Cha[p]in' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'S' of 'Samuel Cha[p]in'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Stephen Taylor",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Taylor' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'S' of 'Stephen Taylor'. A surname-only agreement is a refusal."
@@ -8702,21 +8578,6 @@
     "name": "[?]enny Campbell",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Campbell' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'E' of '[?]enny Campbell'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[?]m. Morrison",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Morrison' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'M' of '[?]m. Morrison'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[H]enry Morrison",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Morrison' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'H' of '[H]enry Morrison'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[W]m. Smith",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of '[W]m. Smith'. A surname-only agreement is a refusal."
    }
   ]
  }
