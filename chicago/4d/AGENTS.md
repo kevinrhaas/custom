@@ -233,6 +233,16 @@ is the contract. The short form:
   carries `tickets.json` to the published mirror itself, so the order below — publish,
   push, PR, close with the number the PR just got — ends green with no second publish
   (T-0154; before it, that order left the mirror gate red every time).
+- **The board is GENERATED AND UNTRACKED, so there is nothing to stage** (T-0937).
+  `tickets/BOARD.md`, `tickets/tickets.json` and `site/chicago/4d/tickets.json` are
+  .gitignored. They used to be the repository's worst conflict source, and for a reason
+  worth knowing: `claim` is a run's FIRST act and rewrites all three, so two branches
+  conflicted before either had done any work — and GitHub's server-side merge runs none of
+  this repo's merge drivers, so `merge=generated` never reached the merge that decides
+  mergeability (T-0857). Untracked files cannot conflict. Everything that needs one builds
+  it: `ticket.mjs check`/`board`, `publish.sh` before its copy, `deploy.yml` before the
+  Pages upload. **Never `git add -f` them**; if one shows in `git status`, the ignore rule
+  is the fault.
 - **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
   "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
   rule is what makes his priorities durable across runs.
