@@ -1,7 +1,7 @@
 ---
 id: T-0932
 title: Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
-state: open
+state: split
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0929
 opened: 2026-09-06
-closed: null
+closed: 2026-09-07
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T09:03:57.789Z
 claimed_run: null
 ---
 

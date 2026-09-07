@@ -82,7 +82,8 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
+T-0955 — Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now
+T-0956 — Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames
 T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
 
 # --- ==========================================================================
