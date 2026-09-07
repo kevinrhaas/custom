@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 54,
+    "pages_held": 55,
     "pages_fingerprintable": 25,
     "lines_read_on_fingerprintable_pages": 752,
     "unique": 294,
@@ -54729,9 +54729,19 @@
       "image": "chicago/reference/census1840/33SQ-GYYJ-ZQ.jpg",
       "printed_page": 235,
       "sheet_side": "left",
-      "read_pass": "names (T-0496)",
+      "read_pass": "names (T-0496); the printed footing row (T-0972)",
       "fingerprintable": false,
       "why_not": "names read, cells not: this page has no committed per-line age-band cells (cells_state: 'not_read').",
+      "lines": []
+    },
+    {
+      "familysearch_id": "33SQ-GYYN-385R",
+      "image": "chicago/reference/census1840/33SQ-GYYN-385R.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "The leaf's own rules located first, in four y-bands rather than one profile, because this leaf's printed rules LEAN: the rule that stands at x 1426 in the top quarter of the body stands at x 1443 in the bottom quarter, and read_census_continuation.py's single whole-body profile refuses the sheet outright ('too few vertical rules to name the middle columns'). That is T-0761's finding met in the field. The TOTAL column's ink was then grouped inside the banded rules through census_total_column.py on an explicitly stated window, and the seven industry columns measured the same way and READ FIRST, because their printed footings are the only arithmetic on the leaf independent of the figure the pairing turns on.",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
       "lines": []
     },
     {
