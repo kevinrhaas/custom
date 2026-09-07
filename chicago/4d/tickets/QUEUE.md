@@ -76,7 +76,8 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0857 — GitHub's merge never runs this repo's merge drivers, so every PR reads as conflicting and auto-merge can never fire
+T-0937 — The ticket build products come off the PR surface: BOARD.md and both tickets.json are generated on demand, never committed
+T-0938 — The published mirror comes off the PR surface: untrack site/chicago/4d/ and have deploy.yml publish it
 T-0933 — publish.sh minifies four resident files the synthesizer writer pretty-prints, so tools/check.sh goes red on any run that publishes
 T-0927 — Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
 T-0928 — Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
