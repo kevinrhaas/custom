@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 48,
+    "pages_held": 49,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 246,
@@ -45543,6 +45543,16 @@
       "read_pass": "names (T-0496)",
       "fingerprintable": false,
       "why_not": "names read, cells not: this page has no committed per-line age-band cells (cells_state: 'not_read').",
+      "lines": []
+    },
+    {
+      "familysearch_id": null,
+      "image": "https://archive.org/download/populationsc18400057unit/page/n167_w2400.jpg",
+      "printed_page": 232,
+      "sheet_side": "right",
+      "read_pass": "The leaf fetched from the Internet Archive and checked against the sha256 the source record carries, then the form's geometry measured off it - the two horizontal rules that bound the body, and the printed vertical rules of the TOTAL column and of the seven industry columns - and every column then read by eye off magnified, contrast-stretched crops of the measured cells. The TOTAL column was read first and alone, band by band, before any comparison with the left sheet was made. The industry columns were read second, each one swept over the WHOLE body at magnification rather than only where an entry was expected, which is what found the blank ones. The pensioners block, the deaf/dumb/blind/insane block and the schools and illiteracy block were swept the same way and carry no ink.",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
       "lines": []
     }
   ],

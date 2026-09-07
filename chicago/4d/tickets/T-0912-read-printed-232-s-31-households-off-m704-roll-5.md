@@ -1,7 +1,7 @@
 ---
 id: T-0912
 title: Read printed 232's 31 households off M704 roll 57 leaf n167: the family TOTAL, the seven industry columns, the pensioners block and the schools and illiteracy cells
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0736
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-06
+pr: 1012
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T00:31:05.522Z
 claimed_run: null
 ---
 
