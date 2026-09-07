@@ -153,7 +153,7 @@
     "ceiling_note": "531 of 964 households can EVER be resolved by fingerprint alone. The other 433 share their pattern with at least one other household and no reading of the age bands, however perfect, will separate them."
   },
   "counts": {
-    "pages_held": 48,
+    "pages_held": 49,
     "pages_fingerprintable": 21,
     "lines_read_on_fingerprintable_pages": 636,
     "unique": 246,
@@ -26376,6 +26376,16 @@
       "printed_page": null,
       "sheet_side": "right",
       "read_pass": "The row index committed at 31 lines from the sequence of the TOTAL column's own groups, corroborated by the fifteen lines the written industry columns anchor independently; then the TOTAL column read line by line at magnification against a glyph key taken off this leaf's own footing and its own unambiguous industry entries; then the industry columns read. 26 of the 31 lines carry a committed figure and five are recorded unread.",
+      "fingerprintable": false,
+      "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
+      "lines": []
+    },
+    {
+      "familysearch_id": "33S7-9YYJ-L3",
+      "image": "chicago/reference/census1840/33S7-9YYJ-L3.jpg",
+      "printed_page": null,
+      "sheet_side": "right",
+      "read_pass": "read_census_continuation.py ACCEPTS this leaf - unlike 33S7-9YYJ-FJ, whose rules it refused - and named the eight middle columns off the leaf's own printed rules at a 68 px pitch. So the column geometry here is measured by the module rather than located by hand, and every window below is the module's. The seven industry columns were READ FIRST, because their five printed footings are the only arithmetic on the leaf that can be closed independently of the TOTAL column: all five close exactly and the glyph key is taken off those closures. The TOTAL column was then read against that key off shear-corrected crops - this hand leans about 39 degrees off upright and a shear of 0.80 in x per unit y stands it up without the rotation a per-glyph montage applies. 21 of the 27 enumerated lines carry a figure this pass commits; 6 do not. Five of the six two-stroke figures are settled with T-0652's established discriminator rather than by eye (total_matched_pair).",
       "fingerprintable": false,
       "why_not": "a right (continuation) sheet: it carries the slave, industry and total columns and no name and no free-white age bands, so there is nothing here to fingerprint. Its pairing to a left sheet is a separate reading (T-0528, T-0539).",
       "lines": []
