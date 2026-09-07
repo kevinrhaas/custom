@@ -15,6 +15,19 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-07  THE SAND BAR, over three walkthrough screenshots. First instruction "place that
+#               ticket at top of queue"; then his own correction, "that land is showing when it's
+#               reconstructed, the tip of the stretch is still off, not as big a deal ... file
+#               this ticket in the appropriate place" — so it sits with T-0799/T-0800 instead.
+#               Filed as T-0939 and T-0940 after a THIRD id collision: the numbers first used
+#               were taken on dev by other runs while this was being written.
+#   2026-09-07  "put several tickets at the top of the queue ... whatever is needed so they fire
+#               first to merge and close the open PRs ... We want to close as many as you can" —
+#               the owner. 22 PRs stood open. A new band LEADS the file: T-0857 first because it
+#               is why each of the others costs a lap, then the closures in order of how many PRs
+#               a run can retire. The lane went to ONE slice in the same instruction ("1
+#               continuous lane"), which is the other half of the fix — two slices meant every
+#               landing invalidated the other in-flight branch. Nothing below this band moved.
 #   2026-09-05  "Pull 802 up" — the owner, after T-0802's fault was caught live: T-0722 sat
 #               `claimed` on a queue a run reads top-down for hours after PR #836 landed its
 #               work. Moved into the blocking band beside T-0819.
@@ -41,32 +54,8 @@
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
 
 # --- ==========================================================================
-# --- THE CORE DATASET — OWNER INSTRUCTION, 2026-09-04, RE-ISSUED 2026-09-05
-
-# --- G1 — THE CARD MUST BE ABLE TO HOLD IT. Small repairs the spend below writes THROUGH: a card
-# --- that drifts silently, or one identity split across two cards, makes every figure under it
-# --- unarguable. Nothing here reads a source.
-
-
-
-
-
-
-#   2026-09-07  THE SAND BAR, over three walkthrough screenshots. First instruction "place that
-#               ticket at top of queue"; then his own correction, "that land is showing when it's
-#               reconstructed, the tip of the stretch is still off, not as big a deal ... file
-#               this ticket in the appropriate place" — so it sits with T-0799/T-0800 instead.
-#               Filed as T-0939 and T-0940 after a THIRD id collision: the numbers first used
-#               were taken on dev by other runs while this was being written.
-#   2026-09-07  "put several tickets at the top of the queue ... whatever is needed so they fire
-#               first to merge and close the open PRs ... We want to close as many as you can" —
-#               the owner. 22 PRs stood open. A new band LEADS the file: T-0857 first because it
-#               is why each of the others costs a lap, then the closures in order of how many PRs
-#               a run can retire. The lane went to ONE slice in the same instruction ("1
-#               continuous lane"), which is the other half of the fix — two slices meant every
-#               landing invalidated the other in-flight branch. Nothing below this band moved.
-
 # --- DRAIN THE OPEN PRs — OWNER INSTRUCTION, 2026-09-07. THIS BAND RUNS FIRST.
+# --- ==========================================================================
 # --- "put several tickets at the top of the queue and push that to dev, whatever is needed so
 # --- they fire first to merge and close the open PRs ... We want to close as many as you can."
 # ---
@@ -97,6 +86,19 @@ T-0928 — Land the finished PRs that need only a dev lap: gated units sitting o
 T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
 T-0932 — Land or close the stale readings, part two: the map and book PRs — #955, #953, #841
 T-0930 — Empty the hold label: rule on every PR parked for the owner, closing what is superseded and putting the genuine questions in one place
+
+# --- ==========================================================================
+# --- THE CORE DATASET — OWNER INSTRUCTION, 2026-09-04, RE-ISSUED 2026-09-05
+
+# --- G1 — THE CARD MUST BE ABLE TO HOLD IT. Small repairs the spend below writes THROUGH: a card
+# --- that drifts silently, or one identity split across two cards, makes every figure under it
+# --- unarguable. Nothing here reads a source.
+
+
+
+
+
+
 T-0723 — One identity, two town cards: Mrs Rufus Brown is folded onto her husband by the honorific strip, and N. R. Norton is Nelson R. Norton carried twice
 T-0843 — Stop the cause: a minting pass must consult the identity master before it writes a card, and --check must fail when a new card's identity already has a canonical one
 
@@ -220,6 +222,7 @@ T-0800 — The mouth as built: the piers as phased structures at their 1835 leng
 # --- its surface sand. T-0799 runs first if any two are picked up. Owner-reported from the
 # --- walkthrough over three screenshots, 2026-09-07, and filed HERE rather than at the top on
 # --- his own instruction once he saw the land was present: "not as big a deal".
+# ---
 # --- T-0939 CORRECTS A WRONG FIRST DIAGNOSIS OF MINE. I said the box ends at n=-400 so the hook
 # --- has no ground at all. It has too much: terrain.js carries a 1.55 km SKIRT outside the box
 # --- under the generator's rule "carry each boundary vertex outward, keeping its own height", so
@@ -387,28 +390,34 @@ T-0866 — The card rename of T-0721 broke the register's link to two townspeopl
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0868 — Norris 1844 normalizes 'Jones, B. & Co. dry goods and groceries' as a person, not a firm, so the firm filter never sees it
+T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
-T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
-T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
 T-0873 — publish.sh minifies the four resident cards the synthesizer writes pretty, so the first republish after a synthesis spend turns the drift ratchet red
-T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
 T-0877 — The School Section's twelve north-south lines are read and not committed: Des Plaines, Jefferson, Clinton, Canal, Market, Wells and Clark run south of Madison and five more tiers carry no name
 T-0878 — Wright's 1834 registration is three per cent long in y: the School Section's mile measures 1658.65 m north-south and 1603.04 m east-west on the same fit
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0874 — publish.sh minifies four resident mirror files that the T-0838 synthesizer ratchet expects verbatim, so every publishing PR is one revert away from red
 T-0880 — publish.sh minifies four resident mirror files the synthesizer writes pretty, and the drift ratchet fails on the reformat
 T-0884 — The register sells Russel Heacock lot 7 of block 117 and his committed house stands 7 m outside block 118: one of the two is out by more than the construction admits
-T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0890 — tools/web_derivatives.sh compresses with an unpinned `npx --yes @gltf-transform/cli`, so a runner with a newer CLI rewrites the generator string in all 380 web assets
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
 T-0892 — The synthesizer drift ratchet turns red the moment anybody publishes: its T-0838 baseline names the data/ paths and not their site/ mirrors
 T-0893 — The Beaubien homestead's phase id and start date still say 1817, and Andreas's own pages say the factory building reached Beaubien in 1822
@@ -421,10 +430,24 @@ T-0900 — Couch, Iia — the Tremont House entry both readings of Norris 1844 f
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
 T-0902 — publish.sh and the resident synthesizer write four mirror files in two different shapes, so whichever ran last decides whether check.sh is green
 T-0905 — publish.sh minifies four resident mirror files that synthesize_resident_research.py writes expanded, so whichever ran last decides whether check.sh is green
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0921 — publish.sh minifies four site mirror files the resident synthesizer writes pretty, so whichever ran last flips the T-0838 drift ratchet
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
+T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
 T-0925 — Three runs read 33S7-9YYJ-L3 on the same morning and their line counts disagree: reconcile PRs #1013, #1014 and #1015 into one reading of the leaf
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
 T-0935 — S. W. Sherman never wrote a nought at the foot of 6H or 5V, so the only footing nought in the deposit is on a leaf whose hand is unestablished: settle whether 33S7-9YYJ-8D is his
 T-0941 — 33S7-9YYJ-L3's TOTAL column turns on a two-stroke glyph three readings name three ways: 4 on dev, 11 on #1015, unread on #1013
@@ -436,3 +459,4 @@ T-0946 — The placement derivation module cannot express a frontage on a street
 T-0947 — Two reconciliations of the same T-0812 ruling put the Steamboat Hotel 36 m apart: dev carries one and PR #975 the other, with no test that would have caught it
 T-0948 — A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
 T-0949 — The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
+T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
