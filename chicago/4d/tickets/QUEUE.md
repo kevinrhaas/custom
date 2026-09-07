@@ -463,5 +463,4 @@ T-0950 — Dr Henry Van der Bogart stands on two town cards: the death notice's 
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-0903 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
-T-0904 — Two writers own the same four mirror files: publish.sh compacts what synthesize_resident_research.py pretty-prints, and whichever runs last decides whether the drift gate is green
+T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings

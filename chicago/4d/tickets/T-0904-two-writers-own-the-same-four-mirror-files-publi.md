@@ -1,7 +1,7 @@
 ---
 id: T-0904
 title: Two writers own the same four mirror files: publish.sh compacts what synthesize_resident_research.py pretty-prints, and whichever runs last decides whether the drift gate is green
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-07
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Superseded: the same fault was already filed as T-0874, T-0880 and T-0905, and T-0933 CLOSED it — T-0938 took the published mirror off the PR surface entirely, so publish.sh and synthesize_resident_research.py no longer contend over four committed mirror files. Filed on this branch on 2026-09-06, before that landed.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T07:33:22.681Z
 claimed_run: null
 ---
 

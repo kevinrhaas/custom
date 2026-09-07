@@ -45,18 +45,18 @@
   }
  ],
  "counts": {
-  "people_shown": 294,
+  "people_shown": 293,
   "people_met_by_more_than_one_volume": 170,
   "carrying_an_occupation": 98,
-  "carrying_an_address": 150,
+  "carrying_an_address": 151,
   "line_held_but_parse_refused": 21,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 237,
-    "single_entry": 157,
+    "people": 236,
+    "single_entry": 158,
     "ambiguous": 46,
-    "contested": 34
+    "contested": 32
    },
    "fergus_1843": {
     "people": 177,
@@ -16115,44 +16115,6 @@
    ]
   },
   {
-   "person_id": "norton_n_r",
-   "household_id": "hh_norton_n_r",
-   "resident": "N. R. Norton",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "contested",
-     "match_rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins N. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e1107",
-       "printed_page": 26,
-       "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    }
-   ],
-   "occupation_later": null,
-   "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ]
-  },
-  {
    "person_id": "norton_nelson_r",
    "household_id": "hh_norton_nelson_r",
    "resident": "Nelson R. Norton",
@@ -16166,8 +16128,8 @@
      "title": "Fergus's Chicago directory of 1839",
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
-     "match_status": "contested",
-     "match_rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins N. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Norton' folds to the same string as the 1839 entry's, and the given name of both begins N.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -16176,7 +16138,9 @@
        "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address"
+     ],
      "parse_carries": true,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -16184,7 +16148,19 @@
     }
    ],
    "occupation_later": null,
-   "address_later": null,
+   "address_later": {
+    "value": "and Indiana sts",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e1107",
+    "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts",
+    "printed_fields": "f1839_e1107 | Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts | bridge-builder, n.-w. cor. N. State | and Indiana sts",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839"

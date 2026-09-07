@@ -1,5 +1,5 @@
 ---
-id: T-0903
+id: T-0951
 title: Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
 state: open
 epic: META

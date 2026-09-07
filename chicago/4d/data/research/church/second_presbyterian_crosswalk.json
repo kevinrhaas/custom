@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 938,
-    "residents_considered": 1360,
+    "residents_considered": 1359,
     "residents_matched_one_line": 82,
     "residents_ambiguous": 37,
-    "residents_surname_only_refused": 331
+    "residents_surname_only_refused": 330
   },
   "matched": [
     {
@@ -4881,15 +4881,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Northrop' stands on the Second Presbyterian roll and no line under it carries the initial 'F' of 'Francis B. Northrop'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "N. R. Norton",
-      "person_id": "norton_n_r",
-      "household_id": "hh_norton_n_r",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 4,
-      "rule": "The surname 'Norton' stands on the Second Presbyterian roll and no line under it carries the initial 'N' of 'N. R. Norton'. A surname-only agreement is a refusal."
     },
     {
       "name": "Nelson R. Norton",

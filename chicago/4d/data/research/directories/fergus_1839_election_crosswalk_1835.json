@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1360
+   "n": 1359
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -38,7 +38,7 @@
  ],
  "counts": {
   "residents_matched_one_entry": 92,
-  "residents_ambiguous": 33,
+  "residents_ambiguous": 32,
   "residents_contested": 23,
   "residents_surname_only_refused": 223,
   "voters_matched_one_entry": 82,
@@ -3657,39 +3657,6 @@
     "person_id": "kinzie_juliette",
     "household_id": "hh_kinzie_john_h",
     "grade_1835": "attested"
-   },
-   {
-    "name": "N. R. Norton",
-    "rule": "Surname 'Norton' folds to the same string as the 1837 entry's, and the given name of both begins N.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0674",
-      "as_printed": "N. R. Norton",
-      "printed_page": 46,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0716",
-      "as_printed": "Nelson R. Norton",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": 6,
-      "voted_for": null,
-      "party": "Whig",
-      "office": "alderman",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "norton_n_r",
-    "household_id": "hh_norton_n_r",
-    "grade_1835": "inferred"
    },
    {
     "name": "Nelson R. Norton",
