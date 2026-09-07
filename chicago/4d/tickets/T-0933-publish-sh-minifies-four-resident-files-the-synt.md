@@ -1,7 +1,7 @@
 ---
 id: T-0933
 title: publish.sh minifies four resident files the synthesizer writer pretty-prints, so tools/check.sh goes red on any run that publishes
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-07
+pr: 1024
 claimed_by: run 9/6/2026, 11:54:16 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-07T05:10:05.486Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34084632313
 ---
 
