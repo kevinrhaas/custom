@@ -78,6 +78,7 @@
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
 T-0857 — GitHub's merge never runs this repo's merge drivers, so every PR reads as conflicting and auto-merge can never fire
 T-0933 — publish.sh minifies four resident files the synthesizer writer pretty-prints, so tools/check.sh goes red on any run that publishes
+T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
 T-0927 — Close the superseded rivals: six open PRs whose work already landed under another number, read and closed with anything they hold salvaged first
 T-0928 — Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
 T-0931 — Land or close the stale readings, part one: the census and directory PRs — #1009, #992, #991, #998
@@ -427,4 +428,3 @@ T-0925 — Three runs read 33S7-9YYJ-L3 on the same morning and their line count
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
-
