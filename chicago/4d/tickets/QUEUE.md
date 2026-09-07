@@ -82,7 +82,6 @@
 # --- READ BEFORE YOU CLOSE. Six of six parked rivals in the 2026-09-06 drain held something the
 # --- winner did not, including a family that was nearly deleted as invented when a verified
 # --- source states it. A duplicate label is a reason to look, never a reason to close.
-T-0955 — Re-lay #955 on today's dev: Wright's numerals read block by block, against the committed plat grid as it stands now
 T-0956 — Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest base in the drain — 137k lines of extracted text and forty-nine lead surnames
 
 # --- ==========================================================================
@@ -114,10 +113,10 @@ T-0956 — Re-lay #841 on today's dev: Moses and Kirkland vol. 1, the oldest bas
 # --- G4 — BUSINESS, OCCUPATION, AND WHERE THEY STOOD. The owner: "locations matter so capture
 # --- those too ... there are business references that have addresses later and while we don't have
 # --- that in 1835, you might use a documented address from later to position the business".
-# --- T-0788 LEADS BECAUSE IT IS THE ENABLER — Wright numbers all 58 blocks of the Original Town,
-# --- so a lot-and-block address can finally land on ground. T-0773 is the later-printing rule the
+# --- T-0788 WAS THE ENABLER AND LANDED 2026-09-07 (#955): twenty-two of Wright's numerals read off
+# --- the georeferenced sheet, so a lot-and-block address rests on ground. The 34 blocks it could
+# --- not reach are T-0858, appended at the foot of this file. T-0773 is the later-printing rule the
 # --- ask names directly; T-0771 and T-0696 are the readers that spend it.
-T-0788 — Wright numbers all 58 blocks of the Original Town and this project has read six: read the rest — the Public Square is block 39 — so a lot-and-block address can finally land
 
 # --- CONSOLIDATION — second pass, same rule.
 
@@ -475,3 +474,7 @@ T-0957 — Two readings of 33S7-9YYJ-L3 disagree on the line count and on the pr
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0959 — The School Section's tier lines are level and 4th on dev and skewed and 5th on the rival reading: settle the ordinal and the skew against Wright's sheet
 T-0960 — Mrs C. Taylor keeps a house on Water Street in the Democrat of 19 August 1835 and the town has no card for her
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
