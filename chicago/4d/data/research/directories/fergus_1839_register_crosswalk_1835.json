@@ -146,7 +146,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 834
+   "n": 889
   }
  ],
  "counts": {
@@ -167,7 +167,7 @@
   "letter_list_surname_only_refused": 152,
   "heads_1840_matched_one_entry": 18,
   "heads_1840_ambiguous": 9,
-  "heads_1840_surname_only_refused": 60
+  "heads_1840_surname_only_refused": 61
  },
  "residents": {
   "matches": [
@@ -5781,6 +5781,11 @@
     "name": "William Raymond",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Raymond' stands on printed pages 38-39 and no man under it carries the initial 'W' of 'William Raymond'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William Wilson",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Wilson' stands on printed pages 38-39 and no man under it carries the initial 'W' of 'William Wilson'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?] Allen",

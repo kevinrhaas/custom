@@ -34,7 +34,7 @@
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 834
+   "n": 889
   }
  ],
  "counts": {
@@ -52,7 +52,7 @@
   "letter_list_surname_only_refused": 188,
   "heads_1840_matched_one_bidder": 26,
   "heads_1840_ambiguous": 1,
-  "heads_1840_surname_only_refused": 62
+  "heads_1840_surname_only_refused": 63
  },
  "residents": {
   "matches": [
@@ -8523,6 +8523,11 @@
     "name": "William Peck",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Peck' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'William Peck'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William Wilson",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Wilson' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'William Wilson'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?] B. H. Russell",
