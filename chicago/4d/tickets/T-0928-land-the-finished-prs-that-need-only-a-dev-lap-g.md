@@ -1,7 +1,7 @@
 ---
 id: T-0928
 title: Land the finished PRs that need only a dev lap: gated units sitting open because dev moved under them
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/7/2026, 1:02:39 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34088902007
 ---
 
 These PRs are finished units. They are gated green and they are open only because `dev`
