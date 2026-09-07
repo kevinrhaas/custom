@@ -124,6 +124,40 @@ here mints an 1835 resident.
 Each leaf now carries a derived **page population key** — 107 for printed 212, 116 for printed
 213 — which is what T-0967 will pair the group's fifteen continuation sheets against.
 
+### The first continuation of this group read, and the pairing it refuses
+
+T-0967 was split by leaf, one to a run, and **T-0972 read `33SQ-GYYN-385R`** — 24 lines, every
+one of them, against a row grid measured on the leaf's own ink because
+`read_census_continuation.py` refuses this sheet outright: its printed rules **lean 17 px** across
+the body, and one darkness profile over the whole of it finds too few to name a column. That is
+T-0761's finding met in the field, and the way round it is banded profiles.
+
+**The column closes on the nose.** The 24 TOTAL figures sum to 123 against a printed footing of
+123, residual zero — the second continuation sheet in the deposit to do that, after
+`33S7-9YYJ-B2`. Two of the three other written columns close exactly as well (agriculture 1,
+learned professions 3); manufactures and trades commits 1 + 4 = 5 against a printed 6 and **that
+residual of 1 is left unspent**.
+
+**The footing is a correction.** The inventory recorded this leaf as *foots 125*. It foots **123**.
+The leaf writes a 3 and a 5 and they are not alike — its 5 has a separate horizontal cap over a
+bowl that opens right, its 3 is one stroke from a top-right flag into a bowl that sweeps left — and
+the footing's third glyph is the 3. What holds that is not opinion: the learned professions and
+engineers column carries 1 and 2 and nothing else, and it foots in the same form. 1 + 2 = 3.
+
+| key | `33SQ-GYYN-385R` | printed 235 (`33SQ-GYYJ-ZQ`) |
+|---|---|---|
+| lines with an entry | 24 | 24 — the **only** left sheet in the deposit with 24 |
+| page population | 123, printed footing of the TOTAL column | 106 committed, **2 of 38 footings unread** |
+
+So the pairing coverage.json called *a pairing hint and not a pairing* is **refused**, on T-0642's
+rule that a pair must match on both keys. The two unread cells of printed 235's footing row would
+have to carry 17 between them against a largest-figure-on-that-row of 14. Printed 235's **footing
+row was read this pass** for exactly this test — its cells are still unread and nothing here reads
+them. `33SQ-GYYN-385R` is recorded **unpaired**: its partner is one of the group's three unread
+left sheets (printed 214, 220, 233, whose line counts are 30, 31 and 31 and so do not match), or a
+leaf that is not in this deposit at all. The recapitulation counts thirty city pages; the deposit
+holds 74 images of both sides.
+
 ## Three pages in this deposit are not household pages
 
 `33S7-9YYJ-95F`, printed page **206**, is a printed left sheet used as the enumeration's
