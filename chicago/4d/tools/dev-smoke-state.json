@@ -2034,6 +2034,102 @@
         ]
       },
       "source": "/tmp/smoke_d1b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 190,
+      "takenAt": "2026-09-07T01:52:13.578Z",
+      "ref": "steward/t-0723-honorific-split-norton-dedupe",
+      "commit": "47fe70766f0f",
+      "devCommit": "6aba9d39cf0d",
+      "treeHash": "sha256:2d1931ad427e1f18",
+      "treeDirty": false,
+      "changelogHash": "sha256:055e83aafd8dcae9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          4,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 212,
+      "takenAt": "2026-09-07T01:48:59.957Z",
+      "ref": "steward/t-0723-honorific-split-norton-dedupe",
+      "commit": "47fe70766f0f",
+      "devCommit": "6aba9d39cf0d",
+      "treeHash": "sha256:2d1931ad427e1f18",
+      "treeDirty": false,
+      "changelogHash": "sha256:055e83aafd8dcae9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.3,
+          3.4,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 155,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 274,
+      "takenAt": "2026-09-07T01:48:59.877Z",
+      "ref": "steward/t-0723-honorific-split-norton-dedupe",
+      "commit": "47fe70766f0f",
+      "devCommit": "6aba9d39cf0d",
+      "treeHash": "sha256:2d1931ad427e1f18",
+      "treeDirty": false,
+      "changelogHash": "sha256:055e83aafd8dcae9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.3,
+          3.4,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
     }
   ]
 }
