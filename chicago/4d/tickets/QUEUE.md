@@ -378,4 +378,4 @@ T-0905 — publish.sh minifies four resident mirror files that synthesize_reside
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0921 — publish.sh minifies four site mirror files the resident synthesizer writes pretty, so whichever ran last flips the T-0838 drift ratchet
-
+T-0923 — Test 33S7-9YYJ-L3 against printed 218 (33S7-9YYJ-PC) line by line: T-0744 moved both pairing keys onto PC and a sequence test is what would close it

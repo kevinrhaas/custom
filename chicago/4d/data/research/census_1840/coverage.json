@@ -569,11 +569,13 @@
      "file": "chicago/reference/census1840/33S7-9YYJ-L3.jpg",
      "sheet_side": "right",
      "printed_page": null,
-     "lines_with_an_entry": 31,
+     "lines_with_an_entry": 28,
      "what_it_is": "continuation sheet, filled",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null
+     "read_state": "industry_columns_read_and_closed; line_index_committed; total_column_read_on_19_of_26_lines_and_does_not_close; schools_block_read; footing_read_113_against_115_on_record",
+     "page_file": "data/research/census_1840/pages/33S7-9YYJ-L3.json",
+     "lines_note": "measured, not counted by eye: the leaf's ink fits a 30-position grid at 76.92 px pitch and 28 of those positions carry an entry. The 31 this file held came from the contact-sheet pass; 26 lines carry a figure in the TOTAL cell and two more carry only a learned-professions entry. T-0744.",
+     "note": "read line by line by T-0744, piece 3 of the split of T-0657. All five written industry columns close exactly on their printed footings; the TOTAL column does not close on its own footing and the overshoot is recorded rather than absorbed."
     },
     {
      "index": 31,

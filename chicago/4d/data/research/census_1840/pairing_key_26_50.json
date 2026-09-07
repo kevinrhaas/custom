@@ -407,15 +407,15 @@
   },
   {
    "familysearch_id": "33S7-9YYJ-L3",
-   "page_population_key": 115,
-   "page_population_key_state": "read_this_pass",
-   "page_population_key_note": "1-1-5, the 5 with the long horizontal top stroke that runs to the cell's right rule.",
-   "line_count_key": null,
-   "line_count_key_state": "not_counted_this_pass",
-   "line_count_key_note": "coverage.json carries 31 from the contact-sheet pass. tools/census_total_column.py --x0 0.300 --x1 0.360 --y0 0.175 --y1 0.918 measures 29 groups at dy 45 and 55. The two are not reconciled here and the count is left to T-0657, which reads this sheet line by line - the pairing does not turn on it, because no left sheet in the deposit comes within 2 of 115 on the population key.",
+   "page_population_key": 113,
+   "page_population_key_state": "disputed_by_a_line_by_line_reading",
+   "page_population_key_note": "This pass reads 113 where this file read 115. The cell's last glyph is a hook and flag over a descender ending in a bottom-left bowl; the COMMERCE column's printed footing on the same leaf is the same character, and that column's own entries are 1 + 0 + 1 + 1 = 3, so the leaf writes that character for 3. Nothing on the leaf calibrates a 5 at all - the only digits its arithmetic fixes are 0, 1, 2, 3 and 7. The two instances differ in the length of the top flag, which could be character or pen speed, so 115 is named and kept rather than deleted. The leaf's own TOTAL column refuses neither figure: it overshoots both. See pages/33S7-9YYJ-L3.json, footing_disputed and closure. T-0744.",
+   "line_count_key": 30,
+   "line_count_key_state": "measured_this_pass",
+   "line_count_key_note": "30 line positions, 28 of them carrying an entry, fitted at 76.92 px pitch to the 56 ink components of the TOTAL column and the five written industry columns together (rms 14.97 px). The 29 groups this file measured came from a window - x 0.300-0.360, y 0.175-0.918 - that runs 50 px past the TOTAL cell's right rule into the mining column and stops 11 px short of the body's lower rule; inside the leaf's own rules the same grouping rule reports 30 groups at dy 45 and dy 55. coverage.json's 31 was the contact-sheet pass. T-0744.",
    "state": "unpaired",
    "paired_to_printed_page": null,
-   "evidence": "No left sheet read anywhere in the deposit carries a page population of 115. The nearest is 33S7-9YYJ-PC (printed 218) at 113, two short, and PC holds 30 lines against a count this pass would not commit. Two persons is inside the width of a bad footing glyph and outside what an exact-match rule allows, so it is recorded as a refusal rather than a pair.",
+   "evidence": "The refusal this file recorded rested on a population key of 115 and an uncommitted line count. Both have moved: the key reads 113 on a calibrated glyph and the line count is measured at 30. 33S7-9YYJ-PC (printed 218) carries a page population of 113 and 30 lines, so it now agrees on both keys where it was two short on one and untested on the other. That is NOT a pairing: two keys agreeing is not a sequence test, and the footing this pass reads is inferred while the leaf's own TOTAL column overshoots it by 5 to 7. Printed 218 is promoted from REFUSED to UNTESTED and the leaf stays unpaired until a line-by-line sequence test against PC is run.",
    "candidates_considered": [
     {
      "printed_page": 216,
@@ -495,7 +495,9 @@
      "rule": "population 2 short, line count not established",
      "why": "PC foots 113 by all 38 of its columns and its own cells hold 113 too, so its key is not soft. This sheet's 115 would have to be a misreading of 113 for the pair to stand, and the footing's final glyph is this hand's unambiguous 5."
     }
-   ]
+   ],
+   "page_population_key_prior_reading": 115,
+   "tested_by_a_committed_reading": "T-0744 read this leaf line by line: pages/33S7-9YYJ-L3.json. All five written industry columns close exactly on their printed footings over sixteen entries. The TOTAL column does not close on its own footing and the reading says so."
   },
   {
    "familysearch_id": "33S7-9YYJ-V2",

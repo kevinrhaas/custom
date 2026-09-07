@@ -1,0 +1,736 @@
+{
+ "schema": 1,
+ "familysearch_id": "33S7-9YYJ-L3",
+ "image": "chicago/reference/census1840/33S7-9YYJ-L3.jpg",
+ "printed_page": null,
+ "printed_page_note": "no printed page number is legible on this exposure - a continuation sheet carries its number in the corner the binding takes. The sheet is NOT placed: pairing_key_26_50.json refused every candidate on a page population of 115 and this pass does not overturn that refusal by itself. It does move the key it rested on. See footing_disputed and pairing_consequence.",
+ "sheet_side": "right",
+ "division": null,
+ "division_note": "the printed heading reads '... by the Marshal of the [___] District (or Territory) of Illinois' and the district name is written in as 'Illinois'. The division number is not on this exposure and is recorded unread rather than inferred from the sheets around it.",
+ "state": "Illinois",
+ "county": "Cook",
+ "reading": "scan_verified",
+ "ticket": "T-0744 (piece 3 of the split of T-0657); the ask is T-0528 and before it T-0495",
+ "read_pass": "The leaf's own printed rules first: read_census_continuation.py names this form without complaint - the body between the horizontal rules at y 602 and y 3176, the TOTAL cell between the vertical rules at x 1164 and x 1358, and the seven industry columns off a 68 px rule pitch. Then the SEVEN INDUSTRY COLUMNS WERE READ FIRST, because their five printed footings are the only arithmetic on the leaf that can be closed independently of the two figures this ticket asks about. All five close exactly. The glyph key is taken off those closures, and the TOTAL column is read against it: 19 of the 26 lines that carry a figure are committed and 7 are recorded unread. The line grid is fitted last, to the TOTAL column's components and the industry columns' entries together.",
+ "lines_ruled_with_an_entry": 28,
+ "lines_note": "The grid spans 30 line positions from the first ink to the last. 28 of them carry ink; lines 16 and 18 carry none anywhere across the leaf. 26 carry a figure in the TOTAL cell - lines 10 and 12 carry a learned-professions entry and no TOTAL figure at all, which is how this pass knows the TOTAL column has holes rather than a line count of its own. Neither figure on record is what the leaf carries: coverage.json held 31 'to the nearest line' from the contact-sheet pass, and pairing_key_26_50.json held 29 groups from census_total_column.py run over x 0.300-0.360 and y 0.175-0.918 of the image. That window is x 1173-1408 and y 603-3165 - it runs 50 px past the cell's RIGHT rule into the mining column and stops 11 px short of the body's lower rule. Inside the leaf's own rules the same grouping rule reports 30 groups at dy 45 and dy 55, and the grid those groups fit reports 30 line positions and 28 lines with an entry.",
+ "line_index": {
+  "committed": "a uniform 30-line grid, first line at y 658.0 and pitch 76.92 px, fitted to the 56 ink components of the TOTAL column and of the five written industry columns together.",
+  "how_fitted": "pitch scanned over 70.0-86.0 px at 0.02 px and first-line offset over y 620-700 at 0.25 px, minimising the summed square distance of every component centre to its nearest line. The five components the industry closures reject as not-entries (see rejected_components) are excluded from the fit; nothing else is.",
+  "residual_rms_px": 14.97,
+  "independent_check": "the 16 entries of the five written industry columns anchor 14 distinct lines with no reference to the TOTAL column's grouping at all, and every one of those 14 falls on a line the TOTAL column also anchors or on a line where the TOTAL cell is empty. Two of them - lines 10 and 12 - carry an industry figure and no TOTAL figure.",
+  "what_it_does_not_carry": "the grid does not say the leaf was ruled at 76.92 px. These sheets are not ruled across (read_census_continuation.py measured that on 33S7-9YYJ-5V); the pitch is the enumerator's own writing pitch, and lines 16 and 18 are line positions the fit interpolates through empty paper, not printed rules that were seen."
+ },
+ "form_note": "The right (continuation) sheet of the 1840 population schedule. The twelve SLAVES columns, the PENSIONERS block and the ten DEAF AND DUMB, BLIND, AND INSANE columns carry no ink and no figure at the foot, and this pass reads them as not written rather than as zeros. TOTAL is written throughout. Of the seven industry columns five are written - agriculture, commerce, manufactures and trades, navigation of canals lakes and rivers, and learned professions and engineers; mining and navigation of the ocean are blank in the body and at the foot. The SCHOOLS block IS written on this leaf, on line 1 only, and is read below.",
+ "column_geometry": {
+  "how": "read_census_continuation.py located these without a hand correction - unlike 33S7-9YYJ-FJ, whose left-half rules stand at 0.35 of the body's rows and which that module refuses. Every window below is what the module printed and is re-measurable from the committed image.",
+  "horizontal_rules_px": [
+   602,
+   3176
+  ],
+  "column_pitch_px": 68,
+  "total_cell_rules_px": [
+   1164,
+   1358
+  ],
+  "industry_rules_px": [
+   1358,
+   1426,
+   1489,
+   1554,
+   1635,
+   1714,
+   1796,
+   1861
+  ],
+  "industry_columns_in_order": [
+   "mining",
+   "agriculture",
+   "commerce",
+   "manufactures_and_trades",
+   "navigation_ocean",
+   "navigation_canals_lakes_rivers",
+   "learned_professions_and_engineers"
+  ]
+ },
+ "method": "read_census_continuation.py's ink mask, component filter and grouping rule, on the columns that module itself named; the digits read by a human off magnified, autocontrasted crops of those component boxes. No digit is read by a tool.",
+ "method_calibration": {
+  "what": "the leaf calibrates itself. The five written industry columns were read before the TOTAL column and each was summed against its own printed footing, with no figure adjusted to make a column come out.",
+  "result": "all five close exactly: agriculture 1 = 1; commerce 1 + 0 + 1 + 1 = 3; manufactures and trades 1 + 1 + 2 + 0 + 1 + 1 + 1 = 7; navigation of canals, lakes and rivers 1 + 0 = 1; learned professions and engineers 1 + 1 = 2. Sixteen entries, five footings.",
+  "what_it_holds": "the row grid, the 1, the 2, the 3 and - this leaf's own contribution - the 0. This enumerator WRITES ZEROS in the industry columns rather than leaving the cell blank, and the closure of commerce, manufactures and canals is what proves it: each of those three columns holds a slanted closed oval that must be worth nothing for the column to foot.",
+  "what_it_also_holds": "the rejection rule. Five ink components inside the industry columns are NOT entries, and the closures are what say so: commerce foots 3 with four entries and would foot 4 or more with five; manufactures foots 7 with seven entries and would foot 8 with eight; learned professions foots 2 with two entries and would foot 3 with three. See rejected_components.",
+  "what_it_does_not_hold": "the 7. It appears once, at the foot of the manufactures column, and is carried by that column's arithmetic alone. It is nonetheless the reason the TOTAL footing is not read 7-anything: the 7 has a long straight descender and no bottom bowl, and the TOTAL footing's last glyph has a bowl."
+ },
+ "rejected_components": [
+  {
+   "column": "commerce",
+   "box": [
+    1521,
+    862,
+    1535,
+    882
+   ],
+   "why": "a faint mark at a third of the ink weight of the column's four entries. Committing it would make commerce foot 4 or more against a printed 3."
+  },
+  {
+   "column": "manufactures_and_trades",
+   "box": [
+    1594,
+    679,
+    1605,
+    691
+   ],
+   "why": "an 11 x 12 px speck, a quarter of the height of every figure the leaf writes. Committing it would make manufactures foot 8 against a printed 7."
+  },
+  {
+   "column": "learned_professions_and_engineers",
+   "box": [
+    1805,
+    637,
+    1827,
+    659
+   ],
+   "why": "a dashed diagonal of small dots, unlike the two solid strokes the column's entries are. Committing it would make learned professions foot 3 against a printed 2."
+  },
+  {
+   "column": "navigation_ocean",
+   "box": [
+    1693,
+    1752,
+    1702,
+    1774
+   ],
+   "why": "a 9 px wide vertical crease. The column is blank in the body and at the foot."
+  },
+  {
+   "column": "navigation_ocean",
+   "box": [
+    1663,
+    2856,
+    1672,
+    2889
+   ],
+   "why": "a 9 px wide vertical crease. The column is blank in the body and at the foot."
+  }
+ ],
+ "glyph_key": {
+  "what": "the forms this reading leans on. Four of the five are held by the industry columns' arithmetic rather than by opinion.",
+  "0": "a slanted closed oval, no tail and no crossing. Held by three closures: commerce, manufactures and canals each carry one and each foots as if it were nothing.",
+  "1": "a plain slant, no bowl and no loop. Eleven of the sixteen industry entries are this form, and the leaf's own footings write it twice in the TOTAL cell and once each under agriculture and canals.",
+  "2": "a loop at the head over a base that sweeps up to the right. Held by the manufactures closure, which foots 7 only if its line-11 entry is 2, and written again at the foot of learned professions.",
+  "3": "a hook and flag at the head, a descending stroke, and a bowl at the bottom-left. Held by the commerce closure: that column's four entries are 1, 0, 1 and 1, so its printed footing glyph - which is this form - is a 3.",
+  "7": "a small loop at the head with a long straight descender and NO bottom bowl. Written once, at the foot of manufactures, where the column's seven entries sum to 7.",
+  "11": "two of the 1 above, side by side with paper between them, their y ranges overlapping because the hand leans. The leaf's own TOTAL footing writes its first two places exactly this way. Eight body lines carry it and none of them carries a crossbar, so none of them is a two-stroke 4."
+ },
+ "schools_block_as_read": {
+  "what": "the SCHOOLS block is written on this leaf and had not been read. It is written on line 1 only and repeated at the foot.",
+  "line_1": {
+   "number_of_schools": 1,
+   "number_of_scholars": 20,
+   "confidence": "medium"
+  },
+  "footing": {
+   "number_of_schools": 1,
+   "number_of_scholars": 20,
+   "confidence": "medium"
+  },
+  "note": "body and footing carry the same two figures, which is the whole of the check available here. The scholars figure is the leaf's 2 over its 0; it is recorded medium rather than high because 30 is within reach of the same two strokes and no arithmetic on the leaf separates them. The seventh SCHOOLS column, No. of Scholars at public charge, carries no ink."
+ },
+ "footer_as_read": {
+  "total": 113,
+  "total_confidence": "inferred",
+  "total_glyphs_as_read": "three glyphs: a plain slant, a second plain slant, and then a hook-and-flag over a descender ending in a bottom-left bowl - the form the commerce column's printed footing carries, where that column's own entries fix it at 3.",
+  "total_note": "READ 113, NOT THE 115 ON RECORD. pairing_key_26_50.json read this cell 115 and described the last glyph as 'the 5 with the long horizontal top stroke that runs to the cell's right rule'. The stroke is there and this pass sees it; what this pass adds is a calibrated instance of the same character elsewhere on the same leaf. See footing_disputed.",
+  "mining": null,
+  "agriculture": 1,
+  "commerce": 3,
+  "manufactures_and_trades": 7,
+  "navigation_ocean": null,
+  "navigation_canals_lakes_rivers": 1,
+  "learned_professions_and_engineers": 2,
+  "footer_blank_columns_note": "mining and navigation of the ocean carry no figure at the foot, and neither carries ink in the body. The SLAVES, PENSIONERS and DEAF AND DUMB blocks carry no footing figure either."
+ },
+ "footing_disputed": {
+  "the_question": "T-0744, from T-0657: read the TOTAL column and the line count the contact sheet and the strip disagree on. Reading the column line by line put a third figure in dispute that nobody had raised - the footing itself.",
+  "answer": "113 on the glyph, and the leaf's own body sum refuses neither 113 nor 115.",
+  "why_113": "the last glyph of the footing is a hook and flag over a descender that ends in a bowl at the bottom-left. The commerce column's printed footing is the same character, drawn a little tighter, and the commerce column's four entries are 1 + 0 + 1 + 1 = 3. So the leaf writes that character for 3. Nothing on this leaf calibrates a 5 at all: the only digits its arithmetic fixes are 0, 1, 2, 3 and 7.",
+  "why_115_is_not_refused_outright": "the difference between the two instances is the length of the top flag - short on the commerce footing, running to the cell rule on the TOTAL footing and at body lines 3, 5, 21 and 24. That could be a difference of character or a difference of pen speed, and this exposure does not decide it. The prior reading is named and kept in view rather than deleted.",
+  "what_would_settle_it": "a calibrated 5 anywhere in this enumerator's hand - a written column whose printed footing is 5 - or a left sheet paired to this leaf by sequence, which would give the population independently."
+ },
+ "closure": {
+  "lines_with_a_total_figure": 26,
+  "lines_committed": 19,
+  "lines_unread": 7,
+  "committed_sum": 111,
+  "printed_footing_as_read": 113,
+  "printed_footing_on_record": 115,
+  "result": "THE COLUMN DOES NOT CLOSE, EITHER WAY, AND NOTHING HERE IS ADJUSTED TO MAKE IT.",
+  "residual_note": "The 19 committed lines sum to 111. Seven lines carry a TOTAL figure this pass will not name, and each of them carries ink, so each is worth at least 1: the column's true sum is therefore at least 118. That is 5 over the footing on record and 7 over the footing this pass reads. The overshoot is stated rather than absorbed.",
+  "where_the_overshoot_most_likely_lies": "in the eight lines read 11. They carry 88 of the 111, and one of them being a single figure rather than a pair would drop the committed sum to 101 or 102 and leave 11 or 12 for the seven unread lines - a mean of about 1.6, which is what the rest of the leaf looks like. This pass does not pick one: all eight show two separate strokes with paper between them at 10x, none shows a crossbar or a loop, and the leaf's own footing writes its first two places the same way. Naming which is a better exposure's work, not a better reader's.",
+  "what_it_does_not_mean": "it does not mean the leaf's population is unknown. It means the enumerator's footing and this reading of his column disagree by 5 to 7 in about 118, and that the disagreement is recorded rather than resolved by moving a figure."
+ },
+ "pairing_consequence": {
+  "what_changed": "pairing_key_26_50.json recorded this leaf as unpaired on a page population key of 115, and named the refusal in terms: 'No left sheet read anywhere in the deposit carries a page population of 115. The nearest is 33S7-9YYJ-PC (printed 218) at 113, two short, and PC holds 30 lines against a count this pass would not commit.'",
+  "what_this_pass_says": "both halves of that refusal move. The population key reads 113 on the calibrated glyph, which is exactly PC's, and the line count is now measured at 30 line positions - which is PC's count - rather than left uncommitted.",
+  "what_this_pass_does_NOT_do": "it does not pair the leaf. A pairing is a sequence test against PC's own lines, not two keys agreeing, and the footing this pass reads is inferred rather than documented while the body sum overshoots it. Recorded as a candidate for a line-by-line pairing test and nothing more.",
+  "state": "unpaired; printed 218 (33S7-9YYJ-PC) promoted from refused to untested"
+ },
+ "records": [
+  {
+   "line": 1,
+   "total_group_box": [
+    1276,
+    640,
+    1319,
+    695
+   ],
+   "total_group_components": 1,
+   "total": 11,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "two separate parallel slants with clear paper between them - the same pairing the footing writes for its first two places. No crossbar and no loop: it is 11, not a two-stroke 4."
+  },
+  {
+   "line": 2,
+   "total_group_box": [
+    1283,
+    699,
+    1333,
+    768
+   ],
+   "total_group_components": 3,
+   "total": 3,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "the leaf's 3, broken into two components by the scan: the top hook and flag, then the descender into a bottom-left bowl."
+  },
+  {
+   "line": 3,
+   "total_group_box": [
+    1274,
+    799,
+    1342,
+    842
+   ],
+   "total_group_components": 1,
+   "total": 3,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "the leaf's clearest 3 - a top flag running right, a descending stroke, and a bowl at the bottom-left. The same character the commerce column's printed footing carries, where the arithmetic fixes it at 3."
+  },
+  {
+   "line": 4,
+   "total_group_box": [
+    1271,
+    860,
+    1312,
+    918
+   ],
+   "total_group_components": 1,
+   "total": 11,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "two slants that touch at the head. Neither carries a bowl or a crossbar and both run the full height of a figure, so they are read 11; the contact is ink, not a join."
+  },
+  {
+   "line": 5,
+   "total_group_box": [
+    1276,
+    954,
+    1304,
+    988
+   ],
+   "total_group_components": 1,
+   "total": 3,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "the leaf's 3 with a blob of ink standing in the bowl. The flag and the descender are the 3's and the blob has no outline of its own.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1580,
+      945,
+      1611,
+      984
+     ]
+    }
+   }
+  },
+  {
+   "line": 6,
+   "total_group_box": [
+    1263,
+    1014,
+    1310,
+    1064
+   ],
+   "total_group_components": 1,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "a curve sweeping up to the right under a heavy head. It is close to the leaf's 2 and close to its 3 and this exposure does not separate them.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1586,
+      1022,
+      1618,
+      1060
+     ]
+    }
+   }
+  },
+  {
+   "line": 7,
+   "total_group_box": [
+    1273,
+    1118,
+    1302,
+    1141
+   ],
+   "total_group_components": 1,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "a pale stroke with a dot beside it, at half the ink weight of every committed figure on the leaf."
+  },
+  {
+   "line": 8,
+   "total_group_box": [
+    1274,
+    1180,
+    1313,
+    1218
+   ],
+   "total_group_components": 2,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "two pale components on one line, no form this pass will name.",
+   "industry": {
+    "commerce": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1505,
+      1182,
+      1540,
+      1222
+     ]
+    }
+   }
+  },
+  {
+   "line": 9,
+   "total_group_box": [
+    1265,
+    1258,
+    1321,
+    1307
+   ],
+   "total_group_components": 2,
+   "total": 11,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "two heavy parallel slants, well separated."
+  },
+  {
+   "line": 10,
+   "total_group_box": null,
+   "total_group_components": 0,
+   "total": null,
+   "total_confidence": "no_figure",
+   "total_glyphs_as_read": "no ink in the TOTAL cell on this line. The line is an entry: it carries a learned-professions figure.",
+   "industry": {
+    "learned_professions_and_engineers": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1813,
+      1344,
+      1845,
+      1380
+     ]
+    }
+   }
+  },
+  {
+   "line": 11,
+   "total_group_box": [
+    1259,
+    1380,
+    1316,
+    1455
+   ],
+   "total_group_components": 3,
+   "total": 11,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "two heavy parallel slants. A third, fainter stroke stands above and left of them, nearer this line than line 10 but 32 px off both centres; it is not committed to either.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 2,
+     "confidence": "high",
+     "box": [
+      1581,
+      1414,
+      1616,
+      1466
+     ]
+    },
+    "navigation_canals_lakes_rivers": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1750,
+      1416,
+      1777,
+      1459
+     ]
+    }
+   }
+  },
+  {
+   "line": 12,
+   "total_group_box": null,
+   "total_group_components": 0,
+   "total": null,
+   "total_confidence": "no_figure",
+   "total_glyphs_as_read": "no ink in the TOTAL cell on this line. The line is an entry: it carries a learned-professions figure.",
+   "industry": {
+    "learned_professions_and_engineers": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1805,
+      1507,
+      1841,
+      1548
+     ]
+    }
+   }
+  },
+  {
+   "line": 13,
+   "total_group_box": [
+    1281,
+    1548,
+    1326,
+    1614
+   ],
+   "total_group_components": 2,
+   "total": 1,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "one slant, with a small mark below it that is under half a figure's height."
+  },
+  {
+   "line": 14,
+   "total_group_box": [
+    1283,
+    1628,
+    1314,
+    1654
+   ],
+   "total_group_components": 1,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "a bowl under a hook. The same ambiguity as line 6.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 0,
+     "confidence": "high",
+     "box": [
+      1565,
+      1604,
+      1601,
+      1663
+     ]
+    },
+    "navigation_canals_lakes_rivers": {
+     "value": 0,
+     "confidence": "high",
+     "box": [
+      1731,
+      1610,
+      1769,
+      1658
+     ]
+    }
+   }
+  },
+  {
+   "line": 15,
+   "total_group_box": [
+    1290,
+    1688,
+    1349,
+    1768
+   ],
+   "total_group_components": 2,
+   "total": 2,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "the leaf's 2, written heavily - a loop at the head over a base that sweeps up to the right. The same form the manufactures column writes at line 11, where the column's footing of 7 closes only if it is read 2."
+  },
+  {
+   "line": 16,
+   "total_group_box": null,
+   "total_group_components": 0,
+   "total": null,
+   "total_confidence": "no_ink",
+   "total_glyphs_as_read": "no ink anywhere across the leaf on this line."
+  },
+  {
+   "line": 17,
+   "total_group_box": [
+    1285,
+    1826,
+    1340,
+    1898
+   ],
+   "total_group_components": 2,
+   "total": 11,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "two heavy parallel slants.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1579,
+      1821,
+      1618,
+      1911
+     ]
+    }
+   }
+  },
+  {
+   "line": 18,
+   "total_group_box": null,
+   "total_group_components": 0,
+   "total": null,
+   "total_confidence": "no_ink",
+   "total_glyphs_as_read": "no ink anywhere across the leaf on this line."
+  },
+  {
+   "line": 19,
+   "total_group_box": [
+    1293,
+    1978,
+    1338,
+    2063
+   ],
+   "total_group_components": 2,
+   "total": 11,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "two heavy parallel slants."
+  },
+  {
+   "line": 20,
+   "total_group_box": [
+    1297,
+    2095,
+    1340,
+    2144
+   ],
+   "total_group_components": 2,
+   "total": 11,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "two heavy parallel slants."
+  },
+  {
+   "line": 21,
+   "total_group_box": [
+    1285,
+    2179,
+    1349,
+    2230
+   ],
+   "total_group_components": 1,
+   "total": 3,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "the leaf's 3, written large and heavily, with the flag running right to the cell rule."
+  },
+  {
+   "line": 22,
+   "total_group_box": [
+    1283,
+    2221,
+    1349,
+    2295
+   ],
+   "total_group_components": 2,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "the tail of line 21's figure runs into this line's cell and a small mark stands below it. Nothing here is separable at this exposure.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1586,
+      2264,
+      1619,
+      2306
+     ]
+    }
+   }
+  },
+  {
+   "line": 23,
+   "total_group_box": [
+    1278,
+    2339,
+    1331,
+    2377
+   ],
+   "total_group_components": 1,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "a slanted oval with a hook off its head. The oval alone is the leaf's 0 and the hook is not accounted for.",
+   "industry": {
+    "manufactures_and_trades": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1592,
+      2343,
+      1623,
+      2382
+     ]
+    }
+   }
+  },
+  {
+   "line": 24,
+   "total_group_box": [
+    1283,
+    2406,
+    1349,
+    2443
+   ],
+   "total_group_components": 1,
+   "total": 3,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "the leaf's 3 - bowl at the bottom-left, flag running right to the rule.",
+   "industry": {
+    "agriculture": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1448,
+      2410,
+      1480,
+      2451
+     ]
+    },
+    "commerce": {
+     "value": 0,
+     "confidence": "high",
+     "box": [
+      1511,
+      2408,
+      1545,
+      2451
+     ]
+    }
+   }
+  },
+  {
+   "line": 25,
+   "total_group_box": [
+    1287,
+    2490,
+    1327,
+    2531
+   ],
+   "total_group_components": 1,
+   "total": 1,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "one heavy slant, alone in the cell.",
+   "industry": {
+    "commerce": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1513,
+      2492,
+      1543,
+      2530
+     ]
+    }
+   }
+  },
+  {
+   "line": 26,
+   "total_group_box": [
+    1285,
+    2566,
+    1329,
+    2602
+   ],
+   "total_group_components": 2,
+   "total": null,
+   "total_confidence": "unread",
+   "total_glyphs_as_read": "a slant over a lighter curve. Two components, one form this pass will not name.",
+   "industry": {
+    "commerce": {
+     "value": 1,
+     "confidence": "high",
+     "box": [
+      1501,
+      2562,
+      1543,
+      2613
+     ]
+    }
+   }
+  },
+  {
+   "line": 27,
+   "total_group_box": [
+    1285,
+    2635,
+    1330,
+    2679
+   ],
+   "total_group_components": 1,
+   "total": 2,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "the leaf's 2 - a heavy head over a base sweeping right."
+  },
+  {
+   "line": 28,
+   "total_group_box": [
+    1265,
+    2738,
+    1313,
+    2781
+   ],
+   "total_group_components": 1,
+   "total": 1,
+   "total_confidence": "medium",
+   "total_glyphs_as_read": "one heavy slant. It stands 25 px below this line's centre, which is a third of the pitch, and the line below it carries two slants of its own."
+  },
+  {
+   "line": 29,
+   "total_group_box": [
+    1266,
+    2783,
+    1325,
+    2832
+   ],
+   "total_group_components": 2,
+   "total": 11,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "two heavy parallel slants."
+  },
+  {
+   "line": 30,
+   "total_group_box": [
+    1294,
+    2857,
+    1333,
+    2905
+   ],
+   "total_group_components": 1,
+   "total": 1,
+   "total_confidence": "high",
+   "total_glyphs_as_read": "one heavy slant, the last figure on the leaf."
+  }
+ ]
+}
