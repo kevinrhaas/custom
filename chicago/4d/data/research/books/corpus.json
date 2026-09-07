@@ -138,6 +138,35 @@
    "claims": "chicago/4d/data/research/books/claims/porter_hh_short_autobiography_1915.json — 8 claims, T-0502",
    "read": "ALL SEVENTY LEAVES, declared as one `list` item in coverage.json. The whole volume was swept and read closely where it answered; nothing is undeclared, because the ticket's question was about the whole book and the answer had to be about the whole book.",
    "note": "THE BOOK CARRIES NO DOCUMENT OF CHICAGO 1830-1836 AND THAT IS ITS ENTRY HERE. Its earliest Chicago is September 1853, the author's own arrival; its author was born at Machias, Maine, on 7 December 1835, five months after the scene date; and his parents lived and died in Maine, so the family memory the ticket allowed for does not exist. Two 1853 statements are recorded as town findings — the Fort Dearborn blockhouse still standing, and the street grade five to twelve feet below 1904's — and neither is used. Text is committed for a book with eight claims on it because the verbatim gate checks quotes against a committed file, and a carries-no-document finding that cannot be re-checked is an assertion rather than a reading."
+  },
+  {
+   "id": "moses_kirkland_history_of_chicago_v1",
+   "title": "History of Chicago, Illinois, vol. 1",
+   "imprint": "Chicago and New York: Munsell & Co., 1895 - edited by Hon. John Moses and Maj. Joseph Kirkland",
+   "source_id": "moses_kirkland_history_of_chicago_v1",
+   "archive_item": "historyofchicago01mose",
+   "deposit": {
+    "path": "chicago/reference/moses-kirkland-history-of-chicago-v1.yaml",
+    "path_kind": "record_only",
+    "note": "THERE IS NO DEPOSITED SCAN IN THIS REPOSITORY AND THIS ENTRY SAYS SO RATHER THAN LEAVING THE FIELD OUT. The owner uploaded a 72 MB PDF of volume 1 to the project's own Internet Archive account in September 2026 as historyofchicago01mose_202609 and recorded it in the YAML named above; that item is a DIFFERENT deposit from the one this text comes from, and at the time of this reading it carried no djvu text derivative. Nothing here was read from it. Its epub is named historyofchicago01andr.epub - 'andr', not 'mose' - which the YAML already flags as worth the owner checking, and this reading does not depend on the answer."
+   },
+   "text": {
+    "path": "chicago/4d/data/research/books/text/moses_kirkland_history_of_chicago_v1.txt",
+    "path_kind": "derived",
+    "sha256": "12c57267ab097590c1a8dceb15983edbdfb026b7755d047f0dca0210f77ba96c",
+    "bytes": 3965997,
+    "lines": 137410,
+    "how": "curl -L https://archive.org/download/historyofchicago01mose/historyofchicago01mose_djvu.txt on 2026-09-05, committed byte for byte. WITHOUT -L THE FETCH RETURNS AN EMPTY FILE: archive.org redirects the download path to a node host, and the first attempt in this run wrote zero bytes and a sha256 of the empty string. The identifier was confirmed against archive.org's metadata API first, which returns the Moses and Kirkland title and both authors.",
+    "corroborated_by": "NOTHING, AND THAT IS THE DIFFERENCE FROM THE HUBBARD ENTRY ABOVE. Hubbard's committed text is checked against an independent pdftotext extraction of a deposited PDF; this project holds no scan of this volume, so there is no second extraction to compare and the committed text rests on the Internet Archive's OCR alone. Whoever deposits the 72 MB PDF into this repository can run that comparison and should."
+   },
+   "page_index": {
+    "path": null,
+    "path_kind": "none",
+    "why": "NOT BUILT, AND NOT NEEDED. tools/build_book_page_index.py exists because Hubbard's djvu text carries no page breaks at all and its folios had to be transferred from a deposited PDF. THIS VOLUME PRINTS ITS OWN FOLIOS INTO THE OCR: the page number stands alone on a line at the head of every verso, above 'HISTORY OF CHICAGO', and after the chapter title at the head of every recto. The folio of every claim here is therefore READ off the nearest preceding running head rather than derived, and each locator names the line that head stands on. VERSO HEADS ARE EVEN AND RECTO HEADS ARE ODD, which is a parity check the OCR cannot pass by accident: it is what refuses the '93' the OCR prints above a verso head at line 13147, which the surrounding run 96, 97, 99 fixes as 98. Where a head's numeral did not survive at all the page is carried between two read folios and the locator says so on itself. Building a full index for a 700-page volume of which fourteen pages are read would be derived machinery nothing uses."
+   },
+   "claims": "chicago/4d/data/research/books/claims/moses_kirkland_history_of_chicago_v1.json - 20 claims, T-0581",
+   "read": "Twenty passages on printed pages 35, 78, 79, 89, 90, 95, 98, 207-208, 389, 541, 542, 570, 571, 573-574, 577 and 584, declared as one list item in coverage.json. THE OTHER ~690 PAGES ARE NOT READ. The volume was searched exhaustively for the forty-nine lead surnames the Newberry index flagged against it and read only where that search led; the row-by-row result of that search, including every negative, is at chicago/4d/data/research/books/moses_kirkland_v1_lead_surnames.json.",
+   "note": "VOLUME 2 IS NOT HELD AND NOT READ. The Newberry cards that cite this work do not say which volume they cite, so every ABSENT verdict in the lookup file is an absence from volume 1 only and says so. The pre-existing Internet Archive item historyofchicagov2mose is its locator; reading it is a filed ticket, not a gap left silent."
   }
  ]
 }
