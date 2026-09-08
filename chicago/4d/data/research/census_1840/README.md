@@ -1516,3 +1516,25 @@ lines with unresolved cells; it is not a claim that every glyph was deciphered.
 ### T-0976 — open PR reconciliation (PR #1040)
 
 Integrated T-0964 (BP/P5) and T-0966 (PW) without replacing later dev work. The four earlier competing page readings are retained verbatim under `data/research/census_1840/second_readings/`, with original commits, content hashes and name comparisons. The PW page numbers are excluded from both head and identity readers. T-0969 and T-0970 repair courtesy-title parsing and the Loyd identity split. See `docs/RESEARCH/open-pr-reconciliation-2026-09-08.md` for each old PR’s disposition and the unresolved research disagreements.
+
+## T-0977 — continuation 9SQ: thirty entries, four unresolved totals
+
+Image 52 is read in `pages/33SQ-GYYJ-9SQ.json`: 30 occupied TOTAL entries,
+all seven industry columns, and the other visible blocks. Four totals remain null
+(lines 5, 7, 13, 16), with visual alternatives. The 26 readable totals sum to 149.
+Only one combination of those alternatives reaches the written 175, but arithmetic
+is not a reading; none is filled. Agriculture 1, commerce 4, inland navigation 1
+and professions 6 close independently. Four clear manufacturing entries also sum
+to its footing 4, but a fifth short upright mark stays unresolved. A small loop
+beside a slave-column rule is unresolved; the obscured school/literacy edge is unread.
+
+Printed 224 (JM) shares 30 households and 175 people, but only 2 of the 26
+readable right-hand totals match its independently committed household sequence.
+That coincidental two-key match is refused. Printed 216 (DD) has 175 people but
+31 households and fails the count. The sheet stays unpaired and assigns no names
+or occupations to 1835 residents. Measured column bands, crop boxes and the
+instrument's truncated-body limitation are recorded on the page.
+
+Group 3 now has three continuations read line by line and twelve inventoried-only
+images. T-0975 was split in place: T-0977 owns this leaf; T-0978 retains eleven
+filled leaves and blank BH, one leaf per run. PR #1041 carries this completion.

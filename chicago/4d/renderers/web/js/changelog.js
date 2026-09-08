@@ -1,4 +1,9 @@
 export const CHANGELOG = [ // newest first
+  { v: 678, title: 'Thirty census entries with uncertain readings left open', kind: 'change', ts: '2026-09-08T17:32:47.472Z', date: 'Sep 8, 2026, 12:32 PM CT',
+    items: [
+      'Another 1840 census continuation sheet has been inspected line by line. Four household totals and two small ink marks remain explicitly unresolved in the research record.',
+      'Four occupation columns agree with the written footings. A possible match to a named sheet fails the household sequence check, so these counts remain unassigned. The 1835 town and resident cards are unchanged.'
+    ] },
   { v: 677, title: 'Census readings reunited, with disagreements kept in the record', kind: 'fix', ts: '2026-09-08T04:26:55.709Z', date: 'Sep 7, 2026, 11:26 PM CT',
     items: [
       'Two more named sheets and the ward recapitulation are integrated into the 1840 census research. Competing readings from older work remain available with their original references and explicit disagreements.',
