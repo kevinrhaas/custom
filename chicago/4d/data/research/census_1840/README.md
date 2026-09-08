@@ -1485,3 +1485,29 @@ above them, and both are short by exactly five: the TOTAL column reads **193** a
 of **198**, and manufactures and trades reads **10** against **15**. Commerce (4), navigation of
 canals, lakes and rivers (18) and learned professions (8) close exactly. Nothing was re-read to
 make the other two come out, and no cause is proposed for the repeated 5.
+
+## T-0974 — continuation 33SQ-GYYJ-9J5 (2026-09-07)
+
+All 31 entries on image 51 are recorded in `pages/33SQ-GYYJ-9J5.json`, including
+six unresolved family totals. The 25 readable totals sum to 150; that is a partial
+sum, not the sheet population. The enumerator writes **179** at the foot. Four
+assignments of the recorded alternatives would reach 179, so arithmetic alone
+cannot settle which separated-stroke cell is 11 rather than 4. No assignment is
+selected. Three occupation columns close independently: commerce **6**,
+manufactures and trades **8**, learned professions and engineers **2**. The other
+four industry columns have no written entries.
+
+The slave and pensioner blocks are blank. The disability block has one unresolved
+short vertical mark in the white-blind column on line 30; its 8 by 28 px box and
+reason for withholding a value are recorded. The seven school columns are blank;
+the narrow illiteracy column is obscured at the binding and remains unread.
+
+The page stays **unpaired**: no available printed population key for a 31-entry
+left sheet equals 179. Sixteen equal-line-count candidates are listed, with
+unread population keys distinguished from mismatches. No name, serial, 1835
+resident, occupation or grade is derived from the unpaired continuation.
+
+T-0973 was split under the queue's one-leaf-per-run rule. T-0974 owns this reading;
+T-0975 preserves the remaining twelve filled continuations and the blank leaf in
+the parent's queue position. The continuation coverage count includes inspected
+lines with unresolved cells; it is not a claim that every glyph was deciphered.
