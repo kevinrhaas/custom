@@ -128,7 +128,7 @@
 # --- census 1.0%, church and Newberry 0.0%.
 T-0964 — The 1840 census printed 214 and 220 read to the name and the cell: 33SQ-GYYJ-BP and 33SQ-GYYJ-P5
 T-0966 — The recapitulation leaf 33SQ-GYYJ-PW read in full: thirty page totals braced into six wards, and the grand total that closes them
-T-0973 — The remaining thirteen filled continuations of images 51-74 read line by line and paired, one leaf to a run, and the blank leaf 33SQ-GYYJ-BH recorded swept-and-empty
+T-0975 — The remaining twelve filled continuations of images 51-74 read one leaf per run, and blank 33SQ-GYYJ-BH recorded swept-and-empty
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 
 # --- ==========================================================================
@@ -480,3 +480,4 @@ T-0961 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICA
 T-0962 — measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told
 T-0968 — A green deploy is not proof the site is reachable: /chicago/4d/dev/ served a 404 for hours while every deploy reported success, and nothing checks a URL after publishing
 T-0971 — The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
+T-0976 — Finish the open Chicago 4D PRs: preserve unique work, resolve blockers, and merge or close each

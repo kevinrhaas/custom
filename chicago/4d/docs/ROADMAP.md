@@ -13332,3 +13332,13 @@ a Manager row with the changelog cadence running.
 - Writing subagents each get their own git worktree.
 - Update `STATUS.md` in the same commit as the work, and keep it unflattering.
 - No model identifiers in repo artifacts.
+
+
+### T-0974 — image 51 continuation read (2026-09-07)
+
+T-0973 split in place: T-0974 reads `33SQ-GYYJ-9J5`; T-0975 keeps the twelve
+remaining filled leaves and blank BH. All 31 lines are recorded, six totals remain
+explicitly unresolved, and the three occupation footings close at 6, 8 and 2.
+No available left-sheet population key supports a pairing. The page file and
+census domain README preserve the crop geometry, alternatives and full candidate
+list; no 1835 resident or grade changes.

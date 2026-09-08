@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 676, title: 'Thirty-one census lines, with the uncertain figures kept open', kind: 'change', ts: '2026-09-07T22:46:18.452Z', date: 'Sep 7, 2026, 5:46 PM CT',
+    items: [
+      'Nothing in the 1835 town moved. Another continuation sheet of the 1840 census has been inspected line by line: 31 household entries, including six family totals whose handwriting remains unresolved.',
+      'Three occupation columns agree exactly with the enumerator’s own totals: six in commerce, eight in manufacturing and trades, and two in learned professions. Those are later census counts, not occupations assigned to people in the 1835 town.',
+      'The page remains unpaired with a named household sheet. Uncertain totals, one small mark in the disability columns, and the obscured literacy column stay explicitly unresolved in the research record.'
+    ] },
   { v: 675, title: 'A column lost to a binding was lost to a threshold', kind: 'fix', ts: '2026-09-07T19:42:49.975Z', date: 'Sep 7, 2026, 2:42 PM CT',
     items: [
       'Nothing in the town moved today. A census column this project had written off as lost to a book\u2019s binding has been found, read, and closed.',

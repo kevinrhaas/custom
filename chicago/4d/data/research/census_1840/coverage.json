@@ -902,11 +902,12 @@
      "sheet_side": "right",
      "printed_page": null,
      "lines_with_an_entry": 31,
-     "what_it_is": "continuation sheet: slaves, family TOTAL, the six industry columns, pensioners, deaf/dumb/blind and schools - filled. The TOTAL column carries a figure on every one of its 31 lines and the sheet foots 179.",
+     "what_it_is": "Continuation with 31 household entries; TOTAL foots 179. Seven industry columns inspected, three written columns close at 6, 8 and 2.",
      "in_pr_670_calibration_set": false,
-     "read_state": "inventoried_only",
-     "page_file": null,
-     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets."
+     "read_state": "cells_read_line_by_line_with_unresolved_cells",
+     "page_file": "data/research/census_1840/pages/33SQ-GYYJ-9J5.json",
+     "printed_page_note": "continuation sheets carry no printed page number of their own. A mirrored number shows through at the top left of most of them - it is the number printed on the other side of the leaf, read backwards, and it is not this sheet's. It is not recorded as a reading here; T-0746 pairs these sheets to their left sheets.",
+     "note": "T-0974: all 31 lines inspected and recorded. 25 household totals read, six recorded unresolved with alternatives; the total is not declared reconciled. Commerce, manufactures/trades and learned professions close exactly. One short mark in white-blind line 30 is unresolved; the illiteracy column is obscured. Pairing remains unproved. No 1835 identity changes."
     },
     {
      "index": 52,
@@ -1231,11 +1232,11 @@
     "names_transcribed_lines": 116,
     "cells_transcribed_pages": 2,
     "cells_transcribed_lines": 61,
-    "inventoried_only": 18,
+    "inventoried_only": 16,
     "lines_with_an_entry_total": 655,
-    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72. Two of the 24 have since been read to the NAME - printed 233 and 235, the group's two PR #670 calibration pages - so names_transcribed_pages is 2 and inventoried_only is 22. T-0963 then read printed 212 (33SQ-GYYJ-RY, 31 lines) and printed 213 (33SQ-GYYJ-RK, 30 lines) to the NAME AND THE CELL - the first cells read anywhere in this group - so names_transcribed_pages is 4, cells_transcribed_pages is 2 and inventoried_only is 20. Both line counts confirm the 820 px inventory exactly, which is the first test of that pass in this group and the first time in three groups it has not read long.",
-    "continuation_sheets_read_line_by_line": 1,
-    "continuation_sheets_read_line_by_line_note": "33SQ-GYYN-385R, by T-0972. The other thirteen filled continuations of this group are unread and one more, 33SQ-GYYJ-BH, is blank; T-0973 holds them, one leaf to a run.",
+    "counts_note": "computed from the images array above rather than incremented, on the rule group 2's counts block states. The eight printed page numbers read are 212, 213, 214, 220, 223, 233, 235 and 240 - a set that does NOT run consecutively, so the deposit is not a contiguous gathering and the images' filename order is not the printed order. The corrected deposit note expected printed 233 and 235 - the last two of PR #670's seven calibration pages - in this group, and both are here: 233 on image 68 and 235 on image 72. Two of the 24 have since been read to the NAME - printed 233 and 235, the group's two PR #670 calibration pages - so names_transcribed_pages is 2 and inventoried_only is 22. T-0963 then read printed 212 (33SQ-GYYJ-RY, 31 lines) and printed 213 (33SQ-GYYJ-RK, 30 lines) to the NAME AND THE CELL - the first cells read anywhere in this group - so names_transcribed_pages is 4, cells_transcribed_pages is 2 and inventoried_only is 20. Both line counts confirm the 820 px inventory exactly, which is the first test of that pass in this group and the first time in three groups it has not read long. T-0974 recomputed inventoried_only from the current image states: 17 before this leaf and 16 after it. The previously stored 18 was already stale by one; the two-count change does not claim two new readings.",
+    "continuation_sheets_read_line_by_line": 2,
+    "continuation_sheets_read_line_by_line_note": "33SQ-GYYN-385R (T-0972) and 33SQ-GYYJ-9J5 (T-0974). Line-by-line coverage includes explicitly unresolved cells; it does not mean every glyph is settled. T-0975 holds twelve further filled continuations and blank 33SQ-GYYJ-BH, one leaf per run.",
     "left_sheet_footing_rows_read": 1,
     "left_sheet_footing_rows_read_note": "printed 235 (33SQ-GYYJ-ZQ), by T-0972, for the pairing test and for nothing else. Its cells remain unread.",
     "footing_corrections": "T-0972 CORRECTED ONE INVENTORY FOOTING by reading it: 33SQ-GYYN-385R foots 123, not the 125 this file carried from the contact-sheet pass. The leaf's 3 and its 5 are different forms and the learned-professions column, which closes 1 + 2 = 3, fixes which one the footing carries. The line count of 24 is confirmed exactly."
