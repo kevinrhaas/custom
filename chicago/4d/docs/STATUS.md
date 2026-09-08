@@ -1,5 +1,28 @@
 # STATUS
 
+## T-0979 — continuation 9ZK: twenty-three households, unpaired
+
+Image 53 is recorded in `pages/33SQ-GYYJ-9ZK.json`, with all 23 occupied TOTAL
+entries and seven industry columns inspected. Nineteen totals are read and sum
+to 95; lines 3, 4, 18 and 21 remain null with alternatives. Their one conditional
+completion to the written footing 119 is recorded without filling any cell.
+The inventory's old strip sum of 118 is not promoted to a reading.
+
+Agriculture closes at 2 + 1 + 1 = 4. Eleven manufacturing entries close at 21,
+including the independently read 7 on line 20. Inland navigation has one body
+entry and no written footing. A horizontal professions mark, a crossed mark
+beside a disability-column rule, and an upright mark near the school binding
+remain unresolved. The literacy column is unread. Geometry records the measured
+bands, individual crop boxes and the instrument's spurious component groups.
+
+The sole committed left sheet with 23 households is printed 225 (9HY), whose
+115-person footing agrees with its own cells. It fails this sheet's 119-person
+key. No household identity or 1835 occupation is assigned. Group 3 now has four
+continuations read line by line and eleven images still inventoried only.
+T-0978 split in place: T-0979 owns this leaf, T-0980 retains ten filled leaves
+and blank BH. PR #1042 carries this completion.
+
+
 ## T-0977 — continuation 9SQ: thirty entries, four unresolved totals
 
 Image 52 is read in `pages/33SQ-GYYJ-9SQ.json`: 30 occupied TOTAL entries,
