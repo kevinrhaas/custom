@@ -1,7 +1,7 @@
 ---
 id: T-0977
 title: The continuation sheet 33SQ-GYYJ-9SQ read line by line and tested against its left-sheet pairing keys
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0975
 opened: 2026-09-08
-closed: null
-pr: null
+closed: 2026-09-08
+pr: 1041
 claimed_by: run 9/8/2026, 7:23:45 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-08T17:33:02.818Z
 claimed_run: null
 ---
 
