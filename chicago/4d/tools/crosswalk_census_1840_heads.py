@@ -123,6 +123,7 @@ ABBREV = {
     "isc": "isaac", "sml": "samuel", "wilm": "william",
 }
 SUFFIXES = {"jr", "sr", "jun", "sen", "2d", "3d", "ii", "iii", "esq"}
+TITLES = {"mrs", "mr", "miss", "ms", "capt", "dr", "rev", "col", "gen", "major", "maj", "hon"}
 FIRM_TAIL = re.compile(r"\s*&\s*(co|son|sons|bro|bros|brother|brothers)\.?\s*$", re.I)
 
 
@@ -142,6 +143,11 @@ def parse_name(raw: str) -> dict:
     text = text.replace(",", " ").replace(".", " ")
     tokens = [t for t in text.split() if t]
     tokens = [t for t in tokens if t.lower().strip("'-") not in SUFFIXES]
+    # T-0969: a courtesy title is not a forename. Retain the female style as
+    # an identity distinction: Mrs Rufus Brown must not become Rufus Brown.
+    female_style = False
+    while tokens and tokens[0].lower().strip("'-") in TITLES:
+        female_style |= tokens.pop(0).lower().strip("'-") in {"mrs", "miss", "ms"}
     parts = []
     for t in tokens:
         low = re.sub(r"[^a-z]", "", t.lower())
@@ -160,7 +166,7 @@ def parse_name(raw: str) -> dict:
         "forename": forename,
         "uncertain": uncertain,
         "firm": firm,
-        "key": (forename + "|" + surname) if forename else "",
+        "key": (("female|" if female_style else "") + forename + "|" + surname) if forename else "",
     }
 
 
@@ -174,7 +180,7 @@ def read_heads() -> list:
     heads = []
     for path in sorted((CENSUS / "pages").glob("*.json")):
         page = load(path)
-        if page.get("sheet_side") != "left":
+        if page.get("sheet_side") != "left" or page.get("page_kind") == "recapitulation":
             continue
         sheet_grade = page.get("name_confidence")
         printed = page.get("printed_page")
@@ -1026,8 +1032,17 @@ def self_test() -> int:
     expect("initials only have no forename", parse_name("W. J. H. Eldridge")["forename"], "")
     expect("firm tail", parse_name("Ch. Ke[?]ch & Co.")["firm"], True)
     expect("Jno folds to John", parse_name("Jno Miller")["key"], "john|miller")
+    expect("Mrs is not Mary's forename", parse_name("Mrs. Mary Brown")["forename"], "mary")
+    expect("two married styles do not agree on title alone",
+           parse_name("Mrs. Mary Brown")["key"] == parse_name("Mrs Rufus Brown")["key"], False)
+    expect("a married style does not become the husband's identity",
+           parse_name("Mrs Rufus Brown")["key"] == parse_name("Rufus Brown")["key"], False)
+    for title in ("Mr", "Capt", "Dr", "Rev", "Col"):
+        expect(title + " is not a forename", parse_name(title + ". John Smith")["key"], "john|smith")
 
     doc = build()
+    expect("the recapitulation's page numbers are never household heads",
+           any(h.get("familysearch_id") == "33SQ-GYYJ-PW" for h in doc["heads"]), False)
     expect("no merge in the domain crosswalk lacks a person id",
            all(m.get("person_id") for m in domain_crosswalk(doc)["merges"]), True)
     expect("every domain refusal names both spellings in its rule",

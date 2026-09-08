@@ -52,6 +52,9 @@ step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
 step "validator self-tests" \
   python3 tools/test_validate.py
 
+step "reconciled PRs preserve resident identities and refuse back-projected trades" \
+  python3 tools/test_pr_reconciliation.py
+
 # A book's page numbers are its locators, and for Hubbard's autobiography they are DERIVED:
 # the committed text is the Internet Archive's djvu OCR, which carries no page breaks at all,
 # so the leaf boundaries are carried onto it from the deposited scan. A derivation that is not

@@ -189,7 +189,7 @@ FEMALE_HONORIFICS = {"mrs", "miss", "madame", "mme", "widow"}
 ABBREVIATED = {"jno": "john", "jas": "james", "wm": "william", "geo": "george",
                "chas": "charles", "thos": "thomas", "robt": "robert", "jos": "joseph",
                "saml": "samuel", "danl": "daniel", "benj": "benjamin", "edw": "edward",
-               "richd": "richard", "alexr": "alexander", "hy": "henry", "nathl": "nathaniel"}
+               "richd": "richard", "alexr": "alexander", "alex": "alexander", "hy": "henry", "nathl": "nathaniel"}
 
 # A COMPOUND SURNAME IS ONE SURNAME (T-0724). This corpus prints the particle with a
 # space — `Rev. John Mary Irenaeus St Cyr`, `Cornelius C. Van Horn`, `H. Van Den Bogart`,
@@ -423,6 +423,9 @@ def read_census_1840():
     out = []
     for path in sorted((RESEARCH / "census_1840" / "pages").glob("*.json")):
         doc = load(path) or {}
+        # T-0966: recapitulation rows are page numbers, never household names.
+        if doc.get("page_kind") == "recapitulation":
+            continue
         for record in doc.get("records", []):
             if not (record.get("normalized") or record.get("as_read")):
                 continue

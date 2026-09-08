@@ -1,7 +1,7 @@
 ---
 id: T-0976
 title: Finish the open Chicago 4D PRs: preserve unique work, resolve blockers, and merge or close each
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-07
+pr: 1040
+claimed_by: run 9/7/2026, 11:18:35 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-08T04:25:36.307Z
 claimed_run: null
 ---
 

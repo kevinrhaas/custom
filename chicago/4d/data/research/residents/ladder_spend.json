@@ -3756,7 +3756,7 @@
    "person_id": "kent_alex_m",
    "household_id": "hh_kent_alex_m",
    "name": "Alex. M. Kent",
-   "identity": "id_kent_alex_m",
+   "identity": "id_kent_alexander_m",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5880,7 +5880,7 @@
    "person_id": "sherman_h",
    "household_id": "hh_sherman_h",
    "name": "Mrs. H. Sherman",
-   "identity": "id_sherman_h",
+   "identity": "id_sherman_ho_r",
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null

@@ -483,10 +483,16 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
     return doc
 
 
-def record(row: dict, appearances: list, docs: dict, taken_ids: set) -> dict:
-    name = display(row.get("name") or "")
-    hid = household_id(name, PREFIX, PASS_NAME, docs, taken_ids)
-    pid = plain_fragment(name)
+def record(row: dict, appearances: list, docs: dict, taken_ids: set,
+           established: dict | None = None) -> dict:
+    # T-0970: a newly matched spelling adds evidence to an existing person. It
+    # cannot rename the card and thereby evade carry_over's exact household lookup.
+    # Only this mint's own card, explicitly named by canonical_person_id, qualifies.
+    previous = next((p for p in (established or {}).get("persons", [])
+                     if p.get("id") == row.get("canonical_person_id")), None)
+    name = previous["name"] if previous else display(row.get("name") or "")
+    hid = established["id"] if previous else household_id(name, PREFIX, PASS_NAME, docs, taken_ids)
+    pid = previous["id"] if previous else plain_fragment(name)
     n = 2
     while pid in taken_ids:
         pid, n = f"{plain_fragment(name)}_{n}", n + 1
@@ -671,12 +677,15 @@ def build(preload: dict | None = None):
     others = {p: d for p, d in docs.items() if p not in mine_paths}
     own = {person.get("id") for path in mine_paths
            for person in docs[path].get("persons") or []}
+    established = {person.get("id"): docs[path] for path in mine_paths
+                   for person in docs[path].get("persons") or []}
     accepted, refusals = pool(others, proposal, master, index, own)
 
     files = {}
     taken: set = set()
     for row, appearances in accepted:
-        doc = record(row, appearances, others, taken)
+        doc = record(row, appearances, others, taken,
+                     established.get(row.get("canonical_person_id")))
         doc = carry_over(doc, docs.get(HOUSEHOLDS / f"{doc['id']}.json"))
         if doc["id"] in taken:
             raise SystemExit(f"two identities mint the same household id {doc['id']}")

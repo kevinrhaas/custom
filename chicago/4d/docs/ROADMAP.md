@@ -13342,3 +13342,8 @@ explicitly unresolved, and the three occupation footings close at 6, 8 and 2.
 No available left-sheet population key supports a pairing. The page file and
 census domain README preserve the crop geometry, alternatives and full candidate
 list; no 1835 resident or grade changes.
+
+
+### T-0976 — open PR reconciliation (PR #1040)
+
+Integrated T-0964 (BP/P5) and T-0966 (PW) without replacing later dev work. The four earlier competing page readings are retained verbatim under `data/research/census_1840/second_readings/`, with original commits, content hashes and name comparisons. The PW page numbers are excluded from both head and identity readers. T-0969 and T-0970 repair courtesy-title parsing and the Loyd identity split. See `docs/RESEARCH/open-pr-reconciliation-2026-09-08.md` for each old PR’s disposition and the unresolved research disagreements.

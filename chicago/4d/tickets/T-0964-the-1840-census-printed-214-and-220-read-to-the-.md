@@ -1,7 +1,7 @@
 ---
 id: T-0964
 title: The 1840 census printed 214 and 220 read to the name and the cell: 33SQ-GYYJ-BP and 33SQ-GYYJ-P5
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0746
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-07
+pr: 1040
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-08T04:25:35.176Z
 claimed_run: null
 ---
 

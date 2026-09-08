@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 677, title: 'Census readings reunited, with disagreements kept in the record', kind: 'fix', ts: '2026-09-08T04:26:55.709Z', date: 'Sep 7, 2026, 11:26 PM CT',
+    items: [
+      'Two more named sheets and the ward recapitulation are integrated into the 1840 census research. Competing readings from older work remain available with their original references and explicit disagreements.',
+      'An abbreviated census name now adds evidence to Alexander Loyd without renaming his existing card or losing his directory evidence. Courtesy titles no longer masquerade as matching forenames.',
+      'The garden comparison remains a research question: the current rule draws one garden, while a rule based on houses would draw twenty-nine. The comparison changes no gardens in the town.'
+    ] },
   { v: 676, title: 'Thirty-one census lines, with the uncertain figures kept open', kind: 'change', ts: '2026-09-07T22:46:18.452Z', date: 'Sep 7, 2026, 5:46 PM CT',
     items: [
       'Nothing in the 1835 town moved. Another continuation sheet of the 1840 census has been inspected line by line: 31 household entries, including six family totals whose handwriting remains unresolved.',
