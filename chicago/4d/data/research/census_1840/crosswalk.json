@@ -7,15 +7,15 @@
   "passes": [
     {
       "ticket": "T-0505",
-      "what": "every named head on the 31 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
-      "heads_adjudicated": 904,
+      "what": "every named head on the 33 left sheets read in this repo, adjudicated against the residents layer, the voter lists, the letter-list names and the recovered v1 bridge rows",
+      "heads_adjudicated": 965,
       "outcomes": {
-        "named_heads": 904,
-        "matched": 12,
-        "candidate": 16,
-        "refused": 876
+        "named_heads": 965,
+        "matched": 13,
+        "candidate": 17,
+        "refused": 935
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 17 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -139,6 +139,19 @@
         "norris_directory_1844"
       ],
       "person_id": "couch_ira",
+      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
+    },
+    {
+      "from": "Alex[r]. Loyd",
+      "into": "Alexander Loyd",
+      "rule": "The 1840 head written 'Alex[r]. Loyd' at printed page 220 line 12 (33SQ-GYYJ-P5) and the 1835 person 'Alexander Loyd' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "data/research/census_1840/resident_crosswalk.json",
+        "fergus_chicago_directory_1843"
+      ],
+      "person_id": "loyd_alexander",
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     },
     {
@@ -268,7 +281,7 @@
     {
       "a": "Mrs Anna M. Young",
       "b": "Gideon Young",
-      "rule": "'Mrs Anna M. Young' at printed page 221 line 6 (33S7-9YYJ-2T) is NOT 'Gideon Young': The surname 'young' is carried by 2 person(s) of 1835 (Gideon Young, Richard M Young) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Anna M. Young' at printed page 221 line 6 (33S7-9YYJ-2T) is NOT 'Gideon Young': The surname 'young' is carried by 2 person(s) of 1835 (Gideon Young, Richard M Young) and none of their given names is 'anna'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -278,7 +291,7 @@
     {
       "a": "Mrs Anna M. Young",
       "b": "Richard M Young",
-      "rule": "'Mrs Anna M. Young' at printed page 221 line 6 (33S7-9YYJ-2T) is NOT 'Richard M Young': The surname 'young' is carried by 2 person(s) of 1835 (Gideon Young, Richard M Young) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Anna M. Young' at printed page 221 line 6 (33S7-9YYJ-2T) is NOT 'Richard M Young': The surname 'young' is carried by 2 person(s) of 1835 (Gideon Young, Richard M Young) and none of their given names is 'anna'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -298,7 +311,7 @@
     {
       "a": "Mrs Ann Crane",
       "b": "H. Y. Crane",
-      "rule": "'Mrs Ann Crane' at printed page 221 line 11 (33S7-9YYJ-2T) is NOT 'H. Y. Crane': The surname 'crane' is carried by 1 person(s) of 1835 (H. Y. Crane) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Ann Crane' at printed page 221 line 11 (33S7-9YYJ-2T) is NOT 'H. Y. Crane': The surname 'crane' is carried by 1 person(s) of 1835 (H. Y. Crane) and none of their given names is 'ann'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -688,7 +701,7 @@
     {
       "a": "Dr Lewis Peck",
       "b": "Philip F. W. Peck",
-      "rule": "'Dr Lewis Peck' at printed page 231 line 18 (33S7-9YYJ-38) is NOT 'Philip F. W. Peck': The surname 'peck' is carried by 1 person(s) of 1835 (Philip F. W. Peck) and none of their given names is 'dr'.",
+      "rule": "'Dr Lewis Peck' at printed page 231 line 18 (33S7-9YYJ-38) is NOT 'Philip F. W. Peck': The surname 'peck' is carried by 1 person(s) of 1835 (Philip F. W. Peck) and none of their given names is 'lewis'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -1518,7 +1531,7 @@
     {
       "a": "Mrs Muriel Adams",
       "b": "Elizabeth Adams",
-      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'Elizabeth Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'Elizabeth Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'muriel'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1528,7 +1541,7 @@
     {
       "a": "Mrs Muriel Adams",
       "b": "Hiram A Adams",
-      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'Hiram A Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'Hiram A Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'muriel'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1538,7 +1551,7 @@
     {
       "a": "Mrs Muriel Adams",
       "b": "James Adams",
-      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'James Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'James Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'muriel'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1548,7 +1561,7 @@
     {
       "a": "Mrs Muriel Adams",
       "b": "William Hanford Adams",
-      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'William Hanford Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Muriel Adams' at printed page 229 line 9 (33S7-9YYJ-9M5) is NOT 'William Hanford Adams': The surname 'adams' is carried by 4 person(s) of 1835 (Elizabeth Adams, Hiram A Adams, James Adams, William Hanford Adams) and none of their given names is 'muriel'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1558,7 +1571,7 @@
     {
       "a": "Mrs Catharine Dalton",
       "b": "Edward Dalton",
-      "rule": "'Mrs Catharine Dalton' at printed page 229 line 11 (33S7-9YYJ-9M5) is NOT 'Edward Dalton': The surname 'dalton' is carried by 1 person(s) of 1835 (Edward Dalton) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Catharine Dalton' at printed page 229 line 11 (33S7-9YYJ-9M5) is NOT 'Edward Dalton': The surname 'dalton' is carried by 1 person(s) of 1835 (Edward Dalton) and none of their given names is 'catharine'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1708,7 +1721,7 @@
     {
       "a": "Mrs Mary Morris",
       "b": "B. S. Morris",
-      "rule": "'Mrs Mary Morris' at printed page 229 line 30 (33S7-9YYJ-9M5) is NOT 'B. S. Morris': The surname 'morris' is carried by 2 person(s) of 1835 (B. S. Morris, Potily Morris) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Mary Morris' at printed page 229 line 30 (33S7-9YYJ-9M5) is NOT 'B. S. Morris': The surname 'morris' is carried by 2 person(s) of 1835 (B. S. Morris, Potily Morris) and none of their given names is 'mary'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1718,7 +1731,7 @@
     {
       "a": "Mrs Mary Morris",
       "b": "Potily Morris",
-      "rule": "'Mrs Mary Morris' at printed page 229 line 30 (33S7-9YYJ-9M5) is NOT 'Potily Morris': The surname 'morris' is carried by 2 person(s) of 1835 (B. S. Morris, Potily Morris) and none of their given names is 'mrs'.",
+      "rule": "'Mrs Mary Morris' at printed page 229 line 30 (33S7-9YYJ-9M5) is NOT 'Potily Morris': The surname 'morris' is carried by 2 person(s) of 1835 (B. S. Morris, Potily Morris) and none of their given names is 'mary'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -2778,61 +2791,61 @@
     {
       "a": "Col. Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'col'.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Anson H. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Col. Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'col'.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Charles H. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Col. Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'col'.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Augustine Deodat Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Col. Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'col'.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Edmund D Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Col. Taylor",
       "b": "William Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'col'.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Col. Taylor",
       "b": "William H Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William H Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'col'.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William H Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
@@ -3688,31 +3701,31 @@
     {
       "a": "Mrs. E. Hamilton",
       "b": "Amos C Hamilton",
-      "rule": "'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Amos C Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'mrs'.",
+      "rule": "'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Amos C Hamilton': The head is written 'Mrs. E. Hamilton' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'hamilton'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Mrs. E. Hamilton",
       "b": "Diana Hamilton",
-      "rule": "'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Diana Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'mrs'.",
+      "rule": "'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Diana Hamilton': The head is written 'Mrs. E. Hamilton' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'hamilton'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
       "a": "Mrs. E. Hamilton",
       "b": "Richard Jones Hamilton",
-      "rule": "'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Richard Jones Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'mrs'.",
+      "rule": "'Mrs. E. Hamilton' at printed page 217 line 14 (33S7-9YYJ-RC) is NOT 'Richard Jones Hamilton': The head is written 'Mrs. E. Hamilton' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'hamilton'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
-        "L3 given_name_conflict"
+        "L4 initial_only"
       ]
     },
     {
@@ -5286,6 +5299,226 @@
       ]
     },
     {
+      "a": "E. C. Stowell",
+      "b": "Ralph Stowell",
+      "rule": "'E. C. Stowell' at printed page 214 line 1 (33SQ-GYYJ-BP) is NOT 'Ralph Stowell': The head is written 'E. C. Stowell' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'stowell'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[Sam]l. J. Brown",
+      "b": "Hanna E Brown",
+      "rule": "'[Sam]l. J. Brown' at printed page 214 line 10 (33SQ-GYYJ-BP) is NOT 'Hanna E Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[Sam]l. J. Brown",
+      "b": "Jesse B Brown",
+      "rule": "'[Sam]l. J. Brown' at printed page 214 line 10 (33SQ-GYYJ-BP) is NOT 'Jesse B Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[Sam]l. J. Brown",
+      "b": "Lemuel Brown",
+      "rule": "'[Sam]l. J. Brown' at printed page 214 line 10 (33SQ-GYYJ-BP) is NOT 'Lemuel Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[Sam]l. J. Brown",
+      "b": "Rufus Brown",
+      "rule": "'[Sam]l. J. Brown' at printed page 214 line 10 (33SQ-GYYJ-BP) is NOT 'Rufus Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[Sam]l. J. Brown",
+      "b": "Mrs Rufus Brown",
+      "rule": "'[Sam]l. J. Brown' at printed page 214 line 10 (33SQ-GYYJ-BP) is NOT 'Mrs Rufus Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[Sam]l. J. Brown",
+      "b": "William H Brown",
+      "rule": "'[Sam]l. J. Brown' at printed page 214 line 10 (33SQ-GYYJ-BP) is NOT 'William H Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[H]enry Morrison",
+      "b": "Amanda Morrison",
+      "rule": "'[H]enry Morrison' at printed page 214 line 11 (33SQ-GYYJ-BP) is NOT 'Amanda Morrison': The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'enry'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[H]enry Morrison",
+      "b": "James M Morrison",
+      "rule": "'[H]enry Morrison' at printed page 214 line 11 (33SQ-GYYJ-BP) is NOT 'James M Morrison': The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'enry'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[H]enry Morrison",
+      "b": "Ordemus Morrison",
+      "rule": "'[H]enry Morrison' at printed page 214 line 11 (33SQ-GYYJ-BP) is NOT 'Ordemus Morrison': The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'enry'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[H]enry Morrison",
+      "b": "Orsemus Morrison",
+      "rule": "'[H]enry Morrison' at printed page 214 line 11 (33SQ-GYYJ-BP) is NOT 'Orsemus Morrison': The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'enry'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[H]enry Morrison",
+      "b": "T. M. Morrison",
+      "rule": "'[H]enry Morrison' at printed page 214 line 11 (33SQ-GYYJ-BP) is NOT 'T. M. Morrison': The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'enry'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Jno. B. Mitchell",
+      "b": "Henry Mitchell",
+      "rule": "'Jno. B. Mitchell' at printed page 214 line 14 (33SQ-GYYJ-BP) is NOT 'Henry Mitchell': The surname 'mitchell' is carried by 1 person(s) of 1835 (Henry Mitchell) and none of their given names is 'john'.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[J]. [H]. Collins",
+      "b": "J. H. Collins",
+      "rule": "'[J]. [H]. Collins' at printed page 214 line 22 (33SQ-GYYJ-BP) is NOT 'J. H. Collins': The head is written '[J]. [H]. Collins' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'collins'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "D A Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'D A Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "E Kirby Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'E Kirby Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "Elded Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Elded Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "George Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'George Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "James Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'James Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "Jeremiah Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Jeremiah Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "L W Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'L W Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "Lawrence Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Lawrence Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
       "a": "Robert Hamilton",
       "b": "Amos C Hamilton",
       "rule": "'Robert Hamilton' at printed page 223 line 2 (33SQ-GYYJ-LV) is NOT 'Amos C Hamilton': The surname 'hamilton' is carried by 3 person(s) of 1835 (Amos C Hamilton, Diana Hamilton, Richard Jones Hamilton) and none of their given names is 'robert'.",
@@ -5403,6 +5636,196 @@
         "33SQ-GYYJ-LV",
         "T-0505",
         "L4 initial_only"
+      ]
+    },
+    {
+      "a": "Jno. Beach",
+      "b": "William H. Beach",
+      "rule": "'Jno. Beach' at printed page 220 line 1 (33SQ-GYYJ-P5) is NOT 'William H. Beach': The surname 'beach' is carried by 1 person(s) of 1835 (William H. Beach) and none of their given names is 'john'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Phill[i]p Dean",
+      "b": "James L.. Dean",
+      "rule": "'Phill[i]p Dean' at printed page 220 line 2 (33SQ-GYYJ-P5) is NOT 'James L.. Dean': The surname 'dean' is carried by 1 person(s) of 1835 (James L.. Dean) and none of their given names is 'phill'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Salman Hyde",
+      "b": "Thomas S. Hyde",
+      "rule": "'Salman Hyde' at printed page 220 line 4 (33SQ-GYYJ-P5) is NOT 'Thomas S. Hyde': The surname 'hyde' is carried by 1 person(s) of 1835 (Thomas S. Hyde) and none of their given names is 'salman'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Mrs. Mary Brown",
+      "b": "Hanna E Brown",
+      "rule": "'Mrs. Mary Brown' at printed page 220 line 5 (33SQ-GYYJ-P5) is NOT 'Hanna E Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'mary'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Mrs. Mary Brown",
+      "b": "Jesse B Brown",
+      "rule": "'Mrs. Mary Brown' at printed page 220 line 5 (33SQ-GYYJ-P5) is NOT 'Jesse B Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'mary'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Mrs. Mary Brown",
+      "b": "Lemuel Brown",
+      "rule": "'Mrs. Mary Brown' at printed page 220 line 5 (33SQ-GYYJ-P5) is NOT 'Lemuel Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'mary'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Mrs. Mary Brown",
+      "b": "Rufus Brown",
+      "rule": "'Mrs. Mary Brown' at printed page 220 line 5 (33SQ-GYYJ-P5) is NOT 'Rufus Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'mary'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Mrs. Mary Brown",
+      "b": "Mrs Rufus Brown",
+      "rule": "'Mrs. Mary Brown' at printed page 220 line 5 (33SQ-GYYJ-P5) is NOT 'Mrs Rufus Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'mary'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Mrs. Mary Brown",
+      "b": "William H Brown",
+      "rule": "'Mrs. Mary Brown' at printed page 220 line 5 (33SQ-GYYJ-P5) is NOT 'William H Brown': The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'mary'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sam[l]. J. W. Gilbert",
+      "b": "James Gilbert",
+      "rule": "'Sam[l]. J. W. Gilbert' at printed page 220 line 10 (33SQ-GYYJ-P5) is NOT 'James Gilbert': The surname 'gilbert' is carried by 1 person(s) of 1835 (James Gilbert) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James Scott",
+      "b": "John Scott",
+      "rule": "'James Scott' at printed page 220 line 13 (33SQ-GYYJ-P5) is NOT 'John Scott': The surname 'scott' is carried by 1 person(s) of 1835 (John Scott) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Peter Case",
+      "b": "Nehemiah Case",
+      "rule": "'Peter Case' at printed page 220 line 17 (33SQ-GYYJ-P5) is NOT 'Nehemiah Case': The surname 'case' is carried by 1 person(s) of 1835 (Nehemiah Case) and none of their given names is 'peter'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[J]ohn Case",
+      "b": "Nehemiah Case",
+      "rule": "'[J]ohn Case' at printed page 220 line 19 (33SQ-GYYJ-P5) is NOT 'Nehemiah Case': The surname 'case' is carried by 1 person(s) of 1835 (Nehemiah Case) and none of their given names is 'ohn'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sam[ue]l Cook",
+      "b": "J. B. Cook",
+      "rule": "'Sam[ue]l Cook' at printed page 220 line 25 (33SQ-GYYJ-P5) is NOT 'J. B. Cook': The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sam[ue]l Cook",
+      "b": "John Cook",
+      "rule": "'Sam[ue]l Cook' at printed page 220 line 25 (33SQ-GYYJ-P5) is NOT 'John Cook': The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sam[ue]l Cook",
+      "b": "Josiah P Cook",
+      "rule": "'Sam[ue]l Cook' at printed page 220 line 25 (33SQ-GYYJ-P5) is NOT 'Josiah P Cook': The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sam[ue]l Cook",
+      "b": "Rowland I!. Cook",
+      "rule": "'Sam[ue]l Cook' at printed page 220 line 25 (33SQ-GYYJ-P5) is NOT 'Rowland I!. Cook': The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Sam[ue]l Cook",
+      "b": "Thomas Cook",
+      "rule": "'Sam[ue]l Cook' at printed page 220 line 25 (33SQ-GYYJ-P5) is NOT 'Thomas Cook': The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'sam'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "[J]ohn Ellis",
+      "b": "J Ellis",
+      "rule": "'[J]ohn Ellis' at printed page 220 line 31 (33SQ-GYYJ-P5) is NOT 'J Ellis': The surname 'ellis' is carried by 1 person(s) of 1835 (J Ellis) and none of their given names is 'ohn'.",
+      "evidence": [
+        "33SQ-GYYJ-P5",
+        "T-0505",
+        "L3 given_name_conflict"
       ]
     },
     {

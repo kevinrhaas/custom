@@ -236,12 +236,24 @@ def apply_to_person(person: dict, row: dict) -> bool:
     return changed
 
 
+def _span(note: str) -> tuple[int, int]:
+    # T-0976: another evidence writer may append after this paragraph. Owning
+    # everything from MARKER to end-of-note silently deleted Fergus's later lists.
+    start = note.index(MARKER)
+    end = note.find(LADDER_LIMIT, start)
+    if end < 0:
+        raise ValueError("census paragraph has no known closing boundary; refusing to discard other evidence")
+    return start, end + len(LADDER_LIMIT)
+
+
 def _mine(note: str) -> str:
-    return note[note.index(MARKER):].strip()
+    start, end = _span(note)
+    return note[start:end].strip()
 
 
 def _without_mine(note: str) -> str:
-    return note[:note.index(MARKER)].strip()
+    start, end = _span(note)
+    return " ".join(part.strip() for part in (note[:start], note[end:]) if part.strip())
 
 
 def retract_from_person(person: dict) -> bool:
@@ -458,6 +470,16 @@ def self_test() -> int:
     fires("re-running writes nothing", apply_to_person(again, row) is False)
     fires("…and leaves exactly one paragraph", again["note"].count(MARKER) == 1)
     fires("a clean record has no gap", _gaps_over(row, again) == [])
+    sibling = "FERGUS: independently written later evidence survives."
+    following = json.loads(json.dumps(after))
+    following["note"] += " " + sibling
+    fires("another writer's following paragraph is not census drift",
+          apply_to_person(following, row) is False)
+    following["note"] = following["note"].replace("The 1840 federal census", "The 1841 census")
+    fires("refresh preserves the following writer's evidence",
+          apply_to_person(following, row) and sibling in following["note"])
+    fires("withdrawal preserves the following writer's evidence",
+          retract_from_person(following) and following["note"] == before["note"] + " " + sibling)
 
     stale = json.loads(json.dumps(after))
     stale["note"] = stale["note"].replace("The 1840 federal census", "The 1841 census")

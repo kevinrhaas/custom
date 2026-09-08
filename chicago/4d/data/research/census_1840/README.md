@@ -1511,3 +1511,8 @@ T-0973 was split under the queue's one-leaf-per-run rule. T-0974 owns this readi
 T-0975 preserves the remaining twelve filled continuations and the blank leaf in
 the parent's queue position. The continuation coverage count includes inspected
 lines with unresolved cells; it is not a claim that every glyph was deciphered.
+
+
+### T-0976 — open PR reconciliation (PR #1040)
+
+Integrated T-0964 (BP/P5) and T-0966 (PW) without replacing later dev work. The four earlier competing page readings are retained verbatim under `data/research/census_1840/second_readings/`, with original commits, content hashes and name comparisons. The PW page numbers are excluded from both head and identity readers. T-0969 and T-0970 repair courtesy-title parsing and the Loyd identity split. See `docs/RESEARCH/open-pr-reconciliation-2026-09-08.md` for each old PR’s disposition and the unresolved research disagreements.

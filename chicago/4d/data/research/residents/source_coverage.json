@@ -4,10 +4,10 @@
  "generated_by": "tools/consolidate_resident_evidence.py --build",
  "domains": {
   "census_1840": {
-   "names_read": 815,
-   "identities": 802,
-   "appearances_on_an_identity_the_town_already_carries": 45,
-   "unmatched": 770
+   "names_read": 870,
+   "identities": 856,
+   "appearances_on_an_identity_the_town_already_carries": 49,
+   "unmatched": 821
   },
   "church": {
    "names_read": 520,
@@ -17,13 +17,13 @@
   },
   "civic": {
    "names_read": 460,
-   "identities": 378,
-   "appearances_on_an_identity_the_town_already_carries": 345,
-   "unmatched": 115
+   "identities": 377,
+   "appearances_on_an_identity_the_town_already_carries": 346,
+   "unmatched": 114
   },
   "directories": {
    "names_read": 4346,
-   "identities": 2915,
+   "identities": 2913,
    "appearances_on_an_identity_the_town_already_carries": 298,
    "unmatched": 4048
   },
@@ -36,8 +36,8 @@
   "old_settlers": {
    "names_read": 744,
    "identities": 736,
-   "appearances_on_an_identity_the_town_already_carries": 53,
-   "unmatched": 691
+   "appearances_on_an_identity_the_town_already_carries": 54,
+   "unmatched": 690
   },
   "residents": {
    "names_read": 1359,
@@ -79,33 +79,33 @@
   }
  },
  "overlap": {
-  "census_1840|census_1840": 802,
+  "census_1840|census_1840": 856,
   "census_1840|church": 25,
-  "census_1840|civic": 24,
-  "census_1840|directories": 145,
-  "census_1840|newspapers": 49,
+  "census_1840|civic": 26,
+  "census_1840|directories": 151,
+  "census_1840|newspapers": 51,
   "census_1840|old_settlers": 14,
-  "census_1840|residents": 41,
+  "census_1840|residents": 44,
   "church|church": 480,
   "church|civic": 3,
   "church|directories": 44,
   "church|newspapers": 9,
   "church|old_settlers": 6,
   "church|residents": 40,
-  "civic|civic": 378,
+  "civic|civic": 377,
   "civic|directories": 83,
   "civic|newspapers": 104,
   "civic|old_settlers": 30,
   "civic|residents": 265,
-  "directories|directories": 2915,
+  "directories|directories": 2913,
   "directories|newspapers": 167,
-  "directories|old_settlers": 32,
+  "directories|old_settlers": 33,
   "directories|residents": 173,
   "newspapers|newspapers": 2081,
-  "newspapers|old_settlers": 49,
+  "newspapers|old_settlers": 50,
   "newspapers|residents": 1121,
   "old_settlers|old_settlers": 736,
-  "old_settlers|residents": 51,
+  "old_settlers|residents": 52,
   "residents|residents": 1358
  },
  "town_rows_this_tool_could_not_parse": {
@@ -115,13 +115,13 @@
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 393,
-   "R5": 266,
-   "R2": 981,
-   "R3": 129,
-   "R4": 76,
+   "R1": 395,
+   "R5": 270,
+   "R2": 986,
+   "R3": 132,
+   "R4": 75,
    "R6": 5
   },
-  "declared_refusals": 2047
+  "declared_refusals": 2100
  }
 }

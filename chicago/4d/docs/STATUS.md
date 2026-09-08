@@ -1,5 +1,9 @@
 # STATUS
 
+## T-0976 — seven open PRs reconciled
+
+PR #1040 integrates the PW recapitulation and BP/P5 named census sheets, preserves four competing page readings with their original commit hashes, and repairs the Loyd abbreviation and courtesy-title identity defects. The garden comparison is available without changing its rule. The full disposition and validation requirement are in [the reconciliation record](RESEARCH/open-pr-reconciliation-2026-09-08.md).
+
 ## Completed reading — T-0974: 31 census lines, three occupation footings closed
 
 All 31 entries on image 51 are recorded in `pages/33SQ-GYYJ-9J5.json`, including

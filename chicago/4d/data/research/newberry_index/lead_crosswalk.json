@@ -44,17 +44,17 @@
   }
  ],
  "counts": {
-  "leads_ruled": 995,
-  "cards_ruled": 1414,
+  "leads_ruled": 1020,
+  "cards_ruled": 1426,
   "by_outcome": {
-   "refused": 732,
-   "candidate": 263
+   "refused": 756,
+   "candidate": 264
   },
   "by_class": {
-   "ocr_variant_only": 349,
-   "testable_in_a_held_work": 263,
-   "locality_absent": 286,
-   "surname_only_chicago": 97
+   "ocr_variant_only": 361,
+   "testable_in_a_held_work": 264,
+   "locality_absent": 294,
+   "surname_only_chicago": 101
   },
   "matched": 0,
   "discriminators_found": 0
@@ -2469,6 +2469,31 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_beach_census_1840",
+   "surname_key": "beach",
+   "spellings_as_printed": [
+    "Beach"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "reason": "Refused. 1 of the 1 card(s) heading 'Beach' do name Chicago or Cook County and the heading is the surname of Jno. Beach exactly, but the index files every family of a surname under one heading and gives no forename, so 'Beach' against Jno. Beach is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
+   "record_ids": [
+    "nbi_v01_0394"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l1",
+     "name": "Jno. Beach",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_beach_residents",
    "surname_key": "beach",
    "spellings_as_printed": [
@@ -2519,6 +2544,31 @@
    "works_cited": [
     "la_salle_book_co_cook_county"
    ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v01_beell_census_1840",
+   "surname_key": "beell",
+   "spellings_as_printed": [
+    "Beell"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Beell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Beell' at all. And if it were, a heading against William Bell would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v01_0401"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l8",
+     "name": "William Bell",
+     "rule": "OCR variant (0.89 similarity to 'bell')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
    "held_works": [],
    "discriminators": []
   },
@@ -2630,6 +2680,37 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_bell_census_1840",
+   "surname_key": "bell",
+   "spellings_as_printed": [
+    "Bell"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v01_0464",
+    "nbi_v01_0466",
+    "nbi_v01_0467",
+    "nbi_v01_0468"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l8",
+     "name": "William Bell",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "la_salle_book_co_cook_county",
+    "moses_kirkland_history_of_chicago"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_bell_residents",
    "surname_key": "bell",
    "spellings_as_printed": [
@@ -2694,6 +2775,31 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_belli_census_1840",
+   "surname_key": "belli",
+   "spellings_as_printed": [
+    "Belli"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Belli' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Belli' at all. And if it were, a heading against William Bell would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v01_0459"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l8",
+     "name": "William Bell",
+     "rule": "OCR variant (0.89 similarity to 'bell')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_belli_residents",
    "surname_key": "belli",
    "spellings_as_printed": [
@@ -2742,6 +2848,33 @@
    ],
    "person_ids": [],
    "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v01_benjamin_census_1840",
+   "surname_key": "benjamin",
+   "spellings_as_printed": [
+    "Benjamin"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading 'Benjamin' name Illinois and neither Chicago nor Cook County, so the lead against Chs. B. Benjamin stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v01_0478"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l6",
+     "name": "Chs. B. Benjamin",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "sons_of_the_american_revolution_illinois_1896"
+   ],
    "held_works": [],
    "discriminators": []
   },
@@ -4402,7 +4535,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0744"
    ],
@@ -4450,6 +4583,16 @@
     {
      "id": "33SQ-GYYJ-992:l24",
      "name": "William Brown",
+     "rule": "OCR variant (0.89 similarity to 'brown')"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l10",
+     "name": "[Sam]l. J. Brown",
+     "rule": "OCR variant (0.89 similarity to 'brown')"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l5",
+     "name": "Mrs. Mary Brown",
      "rule": "OCR variant (0.89 similarity to 'brown')"
     },
     {
@@ -5519,7 +5662,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_0918",
     "nbi_v01_0920",
@@ -5568,6 +5711,16 @@
     {
      "id": "33SQ-GYYJ-992:l24",
      "name": "William Brown",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l10",
+     "name": "[Sam]l. J. Brown",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l5",
+     "name": "Mrs. Mary Brown",
      "rule": "exact surname"
     },
     {
@@ -5733,7 +5886,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Browne f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Browne f' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Browne f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Browne f' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0928",
     "nbi_v01_0929"
@@ -5777,6 +5930,16 @@
     {
      "id": "33SQ-GYYJ-992:l24",
      "name": "William Brown",
+     "rule": "OCR variant (0.91 similarity to 'brown')"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l10",
+     "name": "[Sam]l. J. Brown",
+     "rule": "OCR variant (0.91 similarity to 'brown')"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l5",
+     "name": "Mrs. Mary Brown",
      "rule": "OCR variant (0.91 similarity to 'brown')"
     },
     {
@@ -6227,7 +6390,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 1 card(s) heading 'Butler ra-iily llneel-' do name Chicago or Cook County and the heading is the surname of John H. Butler exactly, but the index files every family of a surname under one heading and gives no forename, so 'Butler ra-iily llneel-' against John H. Butler is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
+   "reason": "Refused. 1 of the 1 card(s) heading 'Butler ra-iily llneel-' do name Chicago or Cook County and the heading is the surname of John H. Butler; Ethan Bu[t]ler exactly, but the index files every family of a surname under one heading and gives no forename, so 'Butler ra-iily llneel-' against John H. Butler; Ethan Bu[t]ler is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
    "record_ids": [
     "nbi_v01_1065"
    ],
@@ -6235,6 +6398,11 @@
     {
      "id": "33S7-9YYJ-DD:l17",
      "name": "John H. Butler",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l23",
+     "name": "Ethan Bu[t]ler",
      "rule": "exact surname"
     }
    ],
@@ -6359,6 +6527,31 @@
     "moses_illinois_historical_and_statistical",
     "moses_kirkland_history_of_chicago"
    ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v01_cady_census_1840",
+   "surname_key": "cady",
+   "spellings_as_printed": [
+    "Cady"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "reason": "Refused. 1 of the 1 card(s) heading 'Cady' do name Chicago or Cook County and the heading is the surname of [J]no. Mars[h] W. Cad[y] exactly, but the index files every family of a surname under one heading and gives no forename, so 'Cady' against [J]no. Mars[h] W. Cad[y] is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
+   "record_ids": [
+    "nbi_v01_1086"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l18",
+     "name": "[J]no. Mars[h] W. Cad[y]",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
    "held_works": [],
    "discriminators": []
   },
@@ -7719,6 +7912,60 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_chapin_census_1840",
+   "surname_key": "chapin",
+   "spellings_as_printed": [
+    "Chapin"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "reason": "Refused. 1 of the 3 card(s) heading 'Chapin' do name Chicago or Cook County and the heading is the surname of Samuel Cha[p]in exactly, but the index files every family of a surname under one heading and gives no forename, so 'Chapin' against Samuel Cha[p]in is a surname against a person. It waits on moses_kirkland_history_of_chicago, which this project does not hold.",
+   "record_ids": [
+    "nbi_v01_1276",
+    "nbi_v01_1277",
+    "nbi_v01_1278"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l3",
+     "name": "Samuel Cha[p]in",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "moses_kirkland_history_of_chicago"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v01_chaplin_census_1840",
+   "surname_key": "chaplin",
+   "spellings_as_printed": [
+    "Chaplin"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Chaplin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Chaplin' at all. And if it were, a heading against Samuel Cha[p]in would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v01_1279"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l3",
+     "name": "Samuel Cha[p]in",
+     "rule": "OCR variant (0.92 similarity to 'chapin')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_chapman_census_1840",
    "surname_key": "chapman",
    "spellings_as_printed": [
@@ -7898,13 +8145,23 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Peter Case; [J]ohn Case; C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_1297",
     "nbi_v01_1298",
     "nbi_v01_1299"
    ],
    "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l17",
+     "name": "Peter Case",
+     "rule": "OCR variant (0.89 similarity to 'case')"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l19",
+     "name": "[J]ohn Case",
+     "rule": "OCR variant (0.89 similarity to 'case')"
+    },
     {
      "id": "33SQ-GYYJ-RJ:l22",
      "name": "C. Ann Chase",
@@ -9488,7 +9745,7 @@
    "layer": "census_1840",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins; [J]. [H]. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v01_1477",
     "nbi_v01_1478",
@@ -9503,6 +9760,11 @@
     {
      "id": "33S7-9YYJ-9WF:l18",
      "name": "S. B. Collins",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l22",
+     "name": "[J]. [H]. Collins",
      "rule": "exact surname"
     }
    ],
@@ -9907,7 +10169,7 @@
    "layer": "census_1840",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v01_1533",
     "nbi_v01_1534",
@@ -9932,6 +10194,11 @@
     {
      "id": "33S7-9YYJ-JM:l26",
      "name": "Thomas Cook",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l25",
+     "name": "Sam[ue]l Cook",
      "rule": "exact surname"
     }
    ],
@@ -10064,7 +10331,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Cooko' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Cooko' at all. And if it were, a heading against Martin Cook; G. W. Cook; Thomas Cook would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Cooko' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Cooko' at all. And if it were, a heading against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_1541",
     "nbi_v01_1542"
@@ -10083,6 +10350,11 @@
     {
      "id": "33S7-9YYJ-JM:l26",
      "name": "Thomas Cook",
+     "rule": "OCR variant (0.89 similarity to 'cook')"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l25",
+     "name": "Sam[ue]l Cook",
      "rule": "OCR variant (0.89 similarity to 'cook')"
     }
    ],
@@ -11832,6 +12104,35 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_deano_census_1840",
+   "surname_key": "deano",
+   "spellings_as_printed": [
+    "Deano"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Deano' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Deano' at all. And if it were, a heading against Phill[i]p Dean would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v01_1844"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l2",
+     "name": "Phill[i]p Dean",
+     "rule": "OCR variant (0.89 similarity to 'dean')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "andreas_history_of_chicago"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_deano_residents",
    "surname_key": "deano",
    "spellings_as_printed": [
@@ -13134,7 +13435,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Duff' name Illinois and neither Chicago nor Cook County, so the lead against John Duff; Michael Duffy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Duff' name Illinois and neither Chicago nor Cook County, so the lead against John Duff; Michael Duffy; Andrew Duffy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_2066"
    ],
@@ -13147,6 +13448,11 @@
     {
      "id": "33S7-9YYJ-38:l13",
      "name": "Michael Duffy",
+     "rule": "OCR variant (0.89 similarity to 'duffy')"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l28",
+     "name": "Andrew Duffy",
      "rule": "OCR variant (0.89 similarity to 'duffy')"
     }
    ],
@@ -13164,7 +13470,7 @@
    "layer": "census_1840",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy; Andrew Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v01_2068",
     "nbi_v01_2069",
@@ -13180,6 +13486,11 @@
      "id": "33S7-9YYJ-38:l13",
      "name": "Michael Duffy",
      "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l28",
+     "name": "Andrew Duffy",
+     "rule": "exact surname"
     }
    ],
    "person_ids": [],
@@ -13189,6 +13500,32 @@
    "held_works": [
     "andreas_history_of_chicago"
    ],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v01_duncan_census_1840",
+   "surname_key": "duncan",
+   "spellings_as_printed": [
+    "Duncan"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Duncan' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Duncan' at all. And if it were, a heading against Jno. C. Dunican would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v01_2081",
+    "nbi_v01_2083"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l7",
+     "name": "Jno. C. Dunican",
+     "rule": "OCR variant (0.92 similarity to 'dunican')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
    "discriminators": []
   },
   {
@@ -13747,6 +14084,32 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_ellis_census_1840",
+   "surname_key": "ellis",
+   "spellings_as_printed": [
+    "Ellis"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 2 card(s) heading 'Ellis' name Illinois and neither Chicago nor Cook County, so the lead against [J]ohn Ellis stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v01_2213",
+    "nbi_v01_2214"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l31",
+     "name": "[J]ohn Ellis",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_ellis_residents",
    "surname_key": "ellis",
    "spellings_as_printed": [
@@ -13975,6 +14338,31 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v02_field_census_1840",
+   "surname_key": "field",
+   "spellings_as_printed": [
+    "Field"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading 'Field' name Illinois and neither Chicago nor Cook County, so the lead against [P]. [R]. F[ie]ld stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v02_0005"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l30",
+     "name": "[P]. [R]. F[ie]ld",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v02_field_residents",
    "surname_key": "field",
    "spellings_as_printed": [
@@ -14009,6 +14397,31 @@
     "field_j_e",
     "field_secretary"
    ],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_fielde_census_1840",
+   "surname_key": "fielde",
+   "spellings_as_printed": [
+    "Fielde family , I"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Fielde family , I' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Fielde family , I' at all. And if it were, a heading against [P]. [R]. F[ie]ld would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v02_0008"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l30",
+     "name": "[P]. [R]. F[ie]ld",
+     "rule": "OCR variant (0.91 similarity to 'field')"
+    }
+   ],
+   "person_ids": [],
    "works_cited": [],
    "held_works": [],
    "discriminators": []
@@ -15647,7 +16060,7 @@
    "layer": "census_1840",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert; Sam[l]. J. W. Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v02_0324",
     "nbi_v02_0325",
@@ -15658,6 +16071,11 @@
     {
      "id": "33S7-9YYJ-9MX:l13",
      "name": "Sherrod Gilbert",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l10",
+     "name": "Sam[l]. J. W. Gilbert",
      "rule": "exact surname"
     }
    ],
@@ -18686,6 +19104,31 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v02_horer_census_1840",
+   "surname_key": "horer",
+   "spellings_as_printed": [
+    "Pnb Horer"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Pnb Horer' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Pnb Horer' at all. And if it were, a heading against Sherman Ho[e]r would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v02_0839"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l22",
+     "name": "Sherman Ho[e]r",
+     "rule": "OCR variant (0.89 similarity to 'hoer')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v02_horer_residents",
    "surname_key": "horer",
    "spellings_as_printed": [
@@ -18914,6 +19357,31 @@
    "person_ids": [
     "howell_thomas_m"
    ],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_hower_census_1840",
+   "surname_key": "hower",
+   "spellings_as_printed": [
+    "i Hower"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'i Hower' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'i Hower' at all. And if it were, a heading against Sherman Ho[e]r would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v02_1151"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l22",
+     "name": "Sherman Ho[e]r",
+     "rule": "OCR variant (0.89 similarity to 'hoer')"
+    }
+   ],
+   "person_ids": [],
    "works_cited": [],
    "held_works": [],
    "discriminators": []
@@ -19721,6 +20189,41 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v02_hyde_census_1840",
+   "surname_key": "hyde",
+   "spellings_as_printed": [
+    "Hyde",
+    "Hyde f"
+   ],
+   "layer": "census_1840",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Salman Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "record_ids": [
+    "nbi_v02_1284",
+    "nbi_v02_1285",
+    "nbi_v02_1286",
+    "nbi_v02_1287"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l4",
+     "name": "Salman Hyde",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "andreas_history_of_chicago",
+    "moses_illinois_historical_and_statistical",
+    "moses_kirkland_history_of_chicago"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v02_hyde_residents",
    "surname_key": "hyde",
    "spellings_as_printed": [
@@ -19951,6 +20454,37 @@
    "works_cited": [
     "andreas_history_of_chicago",
     "moses_kirkland_history_of_chicago"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_jacobs_census_1840",
+   "surname_key": "jacobs",
+   "spellings_as_printed": [
+    "Jacobs"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 2 card(s) heading 'Jacobs' name Illinois and neither Chicago nor Cook County, so the lead against Benj[n]. Jacobs stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v02_1343",
+    "nbi_v02_1344"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l9",
+     "name": "Benj[n]. Jacobs",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "andreas_history_of_chicago",
+    "county_histories_kett_and_co"
    ],
    "held_works": [
     "andreas_history_of_chicago"
@@ -22724,6 +23258,32 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v03_lloyd_census_1840",
+   "surname_key": "lloyd",
+   "spellings_as_printed": [
+    "Lloyd"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Lloyd' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Lloyd' at all. And if it were, a heading against Alex[r]. Loyd would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v03_0063",
+    "nbi_v03_0064"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l12",
+     "name": "Alex[r]. Loyd",
+     "rule": "OCR variant (0.89 similarity to 'loyd')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v03_lloyd_residents",
    "surname_key": "lloyd",
    "spellings_as_printed": [
@@ -22884,6 +23444,31 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v01_loyd_census_1840",
+   "surname_key": "loyd",
+   "spellings_as_printed": [
+    "'loyd f"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading \"'loyd f\" name Illinois and neither Chicago nor Cook County, so the lead against Alex[r]. Loyd stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v01_1420"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l12",
+     "name": "Alex[r]. Loyd",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v01_loyd_residents",
    "surname_key": "loyd",
    "spellings_as_printed": [
@@ -22913,6 +23498,33 @@
     "loyd_alexander"
    ],
    "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v03_lyman_census_1840",
+   "surname_key": "lyman",
+   "spellings_as_printed": [
+    "an family, Lyman"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 1 card(s) heading 'an family, Lyman' name Illinois and neither Chicago nor Cook County, so the lead against Cale[b] Lyman stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v03_0173"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l23",
+     "name": "Cale[b] Lyman",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
    "held_works": [],
    "discriminators": []
   },
@@ -24158,7 +24770,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Michael' name Illinois and neither Chicago nor Cook County, so the lead against Michael [?] stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Michael' name Illinois and neither Chicago nor Cook County, so the lead against Michael [?]; Adolp[h] Micha[e]l stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v03_0620"
    ],
@@ -24166,6 +24778,11 @@
     {
      "id": "33SQ-GYYJ-992:l18",
      "name": "Michael [?]",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l16",
+     "name": "Adolp[h] Micha[e]l",
      "rule": "exact surname"
     }
    ],
@@ -24632,7 +25249,7 @@
    "layer": "census_1840",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v03_0686",
     "nbi_v03_0687",
@@ -24657,6 +25274,11 @@
     {
      "id": "33S7-9YYJ-RC:l24",
      "name": "John Mitchell",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l14",
+     "name": "Jno. B. Mitchell",
      "rule": "exact surname"
     }
    ],
@@ -24712,7 +25334,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v03_0681",
     "nbi_v03_0682",
@@ -24737,6 +25359,11 @@
     {
      "id": "33S7-9YYJ-RC:l24",
      "name": "John Mitchell",
+     "rule": "OCR variant (0.88 similarity to 'mitchell')"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l14",
+     "name": "Jno. B. Mitchell",
      "rule": "OCR variant (0.88 similarity to 'mitchell')"
     }
    ],
@@ -24797,7 +25424,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Mitohell r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitohell r' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Mitohell r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitohell r' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v03_0684",
     "nbi_v03_0685"
@@ -24821,6 +25448,11 @@
     {
      "id": "33S7-9YYJ-RC:l24",
      "name": "John Mitchell",
+     "rule": "OCR variant (0.88 similarity to 'mitchell')"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l14",
+     "name": "Jno. B. Mitchell",
      "rule": "OCR variant (0.88 similarity to 'mitchell')"
     }
    ],
@@ -25440,7 +26072,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold.",
+   "reason": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold.",
    "record_ids": [
     "nbi_v03_0779",
     "nbi_v03_0780",
@@ -25450,6 +26082,16 @@
     {
      "id": "33S7-9YYJ-9HY:l4",
      "name": "Robert Morrison",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l9",
+     "name": "[?]m. Morrison",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l11",
+     "name": "[H]enry Morrison",
      "rule": "exact surname"
     },
     {
@@ -25718,6 +26360,34 @@
    ],
    "person_ids": [],
    "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v03_munn_census_1840",
+   "surname_key": "munn",
+   "spellings_as_printed": [
+    "Munn"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 2 card(s) heading 'Munn' name Illinois and neither Chicago nor Cook County, so the lead against Ge[o]. M[u]nn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v03_0839",
+    "nbi_v03_0840"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l13",
+     "name": "Ge[o]. M[u]nn",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
    "held_works": [],
    "discriminators": []
   },
@@ -27323,6 +27993,60 @@
      "id": "33S7-9YYN-3CDH:l15",
      "name": "Sherman W. Parr",
      "rule": "OCR variant (0.89 similarity to 'parr')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v03_patteraon_census_1840",
+   "surname_key": "patteraon",
+   "spellings_as_printed": [
+    "Patteraon"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Patteraon' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Patteraon' at all. And if it were, a heading against R. W. Patterson would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v03_1170"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l21",
+     "name": "R. W. Patterson",
+     "rule": "OCR variant (0.89 similarity to 'patterson')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v03_patteroon_census_1840",
+   "surname_key": "patteroon",
+   "spellings_as_printed": [
+    "Patteroon"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Patteroon' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Patteroon' at all. And if it were, a heading against R. W. Patterson would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v03_1171",
+    "nbi_v03_1172",
+    "nbi_v03_1173"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l21",
+     "name": "R. W. Patterson",
+     "rule": "OCR variant (0.89 similarity to 'patterson')"
     }
    ],
    "person_ids": [],
@@ -29301,6 +30025,34 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v03_reynolds_census_1840",
+   "surname_key": "reynolds",
+   "spellings_as_printed": [
+    "Reynolds"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Reynolds' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Reynolds' at all. And if it were, a heading against Levi Reynalds would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v03_1717",
+    "nbi_v03_1718"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-P5:l7",
+     "name": "Levi Reynalds",
+     "rule": "OCR variant (0.88 similarity to 'reynalds')"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [
+    "reynolds_pioneer_history_of_illinois"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v03_reynolds_residents",
    "surname_key": "reynolds",
    "spellings_as_printed": [
@@ -30621,7 +31373,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Scott' name Illinois and neither Chicago nor Cook County, so the lead against James N. Scott stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Scott' name Illinois and neither Chicago nor Cook County, so the lead against James N. Scott; James Scott stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v04_0031"
    ],
@@ -30629,6 +31381,11 @@
     {
      "id": "33S7-9YYJ-JM:l6",
      "name": "James N. Scott",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-P5:l13",
+     "name": "James Scott",
      "rule": "exact surname"
     }
    ],
@@ -31222,7 +31979,7 @@
    "layer": "census_1840",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'Smith/al Smith' name Illinois and neither Chicago nor Cook County, so the lead against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'Smith/al Smith' name Illinois and neither Chicago nor Cook County, so the lead against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v04_0101",
     "nbi_v04_0102"
@@ -31276,6 +32033,11 @@
     {
      "id": "33SQ-GYYJ-97P:l22",
      "name": "P. P. Smith",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l27",
+     "name": "[W]m. Smith",
      "rule": "exact surname"
     },
     {
@@ -32206,6 +32968,31 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v04_stowell_census_1840",
+   "surname_key": "stowell",
+   "spellings_as_printed": [
+    "Stowell"
+   ],
+   "layer": "census_1840",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "reason": "Refused. 1 of the 1 card(s) heading 'Stowell' do name Chicago or Cook County and the heading is the surname of E. C. Stowell exactly, but the index files every family of a surname under one heading and gives no forename, so 'Stowell' against E. C. Stowell is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
+   "record_ids": [
+    "nbi_v04_0178"
+   ],
+   "candidates": [
+    {
+     "id": "33SQ-GYYJ-BP:l1",
+     "name": "E. C. Stowell",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v04_stowell_residents",
    "surname_key": "stowell",
    "spellings_as_printed": [
@@ -32293,7 +33080,7 @@
    "layer": "census_1840",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 2 card(s) heading 'Stuart' name Chicago or Cook County, the heading is the surname of R. S. Stuart exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 2 card(s) heading 'Stuart' name Chicago or Cook County, the heading is the surname of R. S. Stuart; [I]saac Stua[r]t exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v04_0189",
     "nbi_v04_0190"
@@ -32302,6 +33089,11 @@
     {
      "id": "33S7-9YYJ-W6:l28",
      "name": "R. S. Stuart",
+     "rule": "exact surname"
+    },
+    {
+     "id": "33SQ-GYYJ-BP:l19",
+     "name": "[I]saac Stua[r]t",
      "rule": "exact surname"
     }
    ],
@@ -41125,10 +41917,10 @@
   {
    "record_id": "nbi_v01_1477",
    "a": "Collins | -—Illinois. (Moses, J.) J888-92. 2v. See Inde«",
-   "b": "Charles Collins; S. B. Collins; J. H. Collins",
+   "b": "Charles Collins; S. B. Collins; [J]. [H]. Collins; J. H. Collins",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Collins | -—Illinois. (Moses, J.) J888-92. 2v. See Inde«' against Charles Collins; S. B. Collins; J. H. Collins.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins; [J]. [H]. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Collins | -—Illinois. (Moses, J.) J888-92. 2v. See Inde«' against Charles Collins; S. B. Collins; [J]. [H]. Collins; J. H. Collins.",
    "layers": [
     "census_1840",
     "residents"
@@ -41160,10 +41952,10 @@
   {
    "record_id": "nbi_v01_1478",
    "a": "Collins | .-—Chicago, 1,1. (Anoreas, I . / iviiKl —",
-   "b": "Charles Collins; S. B. Collins; J. H. Collins",
+   "b": "Charles Collins; S. B. Collins; [J]. [H]. Collins; J. H. Collins",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Collins | .-—Chicago, 1,1. (Anoreas, I . / iviiKl —' against Charles Collins; S. B. Collins; J. H. Collins.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins; [J]. [H]. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Collins | .-—Chicago, 1,1. (Anoreas, I . / iviiKl —' against Charles Collins; S. B. Collins; [J]. [H]. Collins; J. H. Collins.",
    "layers": [
     "census_1840",
     "residents"
@@ -41195,10 +41987,10 @@
   {
    "record_id": "nbi_v01_1481",
    "a": "Collins | „._J, tttper nd Richland Co'l., III. (Bitlej. r. A.",
-   "b": "Charles Collins; S. B. Collins; J. H. Collins",
+   "b": "Charles Collins; S. B. Collins; [J]. [H]. Collins; J. H. Collins",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Collins | „._J, tttper nd Richland Co'l., III. (Bitlej. r. A.\" against Charles Collins; S. B. Collins; J. H. Collins.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Collins' name Chicago or Cook County, the heading is the surname of Charles Collins; S. B. Collins; [J]. [H]. Collins exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Collins | „._J, tttper nd Richland Co'l., III. (Bitlej. r. A.\" against Charles Collins; S. B. Collins; [J]. [H]. Collins; J. H. Collins.",
    "layers": [
     "census_1840",
     "residents"
@@ -41390,10 +42182,10 @@
   {
    "record_id": "nbi_v01_1533",
    "a": "Cook | Chicago, li!. (Andreas, A. T.) :C04-Ci _ > •",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | Chicago, li!. (Andreas, A. T.) :C04-Ci _ > •' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | Chicago, li!. (Andreas, A. T.) :C04-Ci _ > •' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41431,10 +42223,10 @@
   {
    "record_id": "nbi_v01_1534",
    "a": "Cook | Ck«r,p.lrn Ce, III. (JWr* EcJ.-.jagl S Co.. _ ) I8TB1",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | Ck«r,p.lrn Ce, III. (JWr* EcJ.-.jagl S Co.. _ ) I8TB1' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | Ck«r,p.lrn Ce, III. (JWr* EcJ.-.jagl S Co.. _ ) I8TB1' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41472,10 +42264,10 @@
   {
    "record_id": "nbi_v01_1535",
    "a": "Cook | Chicago, III. Causes, J. acil",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | Chicago, III. Causes, J. acil' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | Chicago, III. Causes, J. acil' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41513,10 +42305,10 @@
   {
    "record_id": "nbi_v01_1536",
    "a": "Cook | III, Second Presb, Ch , 1847-92, (Grant",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | III, Second Presb, Ch , 1847-92, (Grant' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | III, Second Presb, Ch , 1847-92, (Grant' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41554,10 +42346,10 @@
   {
    "record_id": "nbi_v01_1537",
    "a": "Cook | l l - ^ & ' C o . ' , III. (Andrea:, A. u) 1884",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Cook | l l - ^ & ' C o . ' , III. (Andrea:, A. u) 1884\" against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Cook | l l - ^ & ' C o . ' , III. (Andrea:, A. u) 1884\" against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41595,10 +42387,10 @@
   {
    "record_id": "nbi_v01_1538",
    "a": "Cook | »re«|.,, III.",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | »re«|.,, III.' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | »re«|.,, III.' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41636,10 +42428,10 @@
   {
    "record_id": "nbi_v01_1539",
    "a": "Cook | LaSalle Co., III. (Baldwin, E.l 1877: . i 4 f",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | LaSalle Co., III. (Baldwin, E.l 1877: . i 4 f' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | LaSalle Co., III. (Baldwin, E.l 1877: . i 4 f' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -41677,10 +42469,10 @@
   {
    "record_id": "nbi_v01_1540",
    "a": "Cook | _Bledlsoa Co.,, 111. (Brink, W. R. dt Co,, Pabt.l",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | _Bledlsoa Co.,, 111. (Brink, W. R. dt Co,, Pabt.l' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 8 card(s) heading 'Cook' name Chicago or Cook County, the heading is the surname of Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Cook | _Bledlsoa Co.,, 111. (Brink, W. R. dt Co,, Pabt.l' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -43808,10 +44600,10 @@
   {
    "record_id": "nbi_v01_2068",
    "a": "Duffy | Chicago, II!. (Andreas, A. T.) 1884-6) _ . See",
-   "b": "John Duff; Michael Duffy",
+   "b": "John Duff; Michael Duffy; Andrew Duffy",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Duffy | Chicago, II!. (Andreas, A. T.) 1884-6) _ . See' against John Duff; Michael Duffy.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy; Andrew Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Duffy | Chicago, II!. (Andreas, A. T.) 1884-6) _ . See' against John Duff; Michael Duffy; Andrew Duffy.",
    "layers": [
     "census_1840"
    ],
@@ -43839,10 +44631,10 @@
   {
    "record_id": "nbi_v01_2069",
    "a": "Duffy | Cook Co., III. (Andreas, A, T.) 1884 i5R7.",
-   "b": "John Duff; Michael Duffy",
+   "b": "John Duff; Michael Duffy; Andrew Duffy",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Duffy | Cook Co., III. (Andreas, A, T.) 1884 i5R7.' against John Duff; Michael Duffy.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy; Andrew Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Duffy | Cook Co., III. (Andreas, A, T.) 1884 i5R7.' against John Duff; Michael Duffy; Andrew Duffy.",
    "layers": [
     "census_1840"
    ],
@@ -43870,10 +44662,10 @@
   {
    "record_id": "nbi_v01_2070",
    "a": "Duffy | _J%dam« Co., III. (Hurray, SrwbawM 4 Phelp.. Pate.118Í9:",
-   "b": "John Duff; Michael Duffy",
+   "b": "John Duff; Michael Duffy; Andrew Duffy",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Duffy | _J%dam« Co., III. (Hurray, SrwbawM 4 Phelp.. Pate.118Í9:' against John Duff; Michael Duffy.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Duffy' name Chicago or Cook County, the heading is the surname of Michael Duffy; Andrew Duffy exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Duffy | _J%dam« Co., III. (Hurray, SrwbawM 4 Phelp.. Pate.118Í9:' against John Duff; Michael Duffy; Andrew Duffy.",
    "layers": [
     "census_1840"
    ],
@@ -45401,10 +46193,10 @@
   {
    "record_id": "nbi_v02_0324",
    "a": "Gilbert r | 1 i > Chicago, lil. (Andrtat, A. T4 l'\"4-8i 1-3. 1",
-   "b": "Sherrod Gilbert; James Gilbert; James Gilbert",
+   "b": "Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gilbert r | 1 i > Chicago, lil. (Andrtat, A. T4 l\\'\"4-8i 1-3. 1' against Sherrod Gilbert; James Gilbert; James Gilbert.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert; Sam[l]. J. W. Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gilbert r | 1 i > Chicago, lil. (Andrtat, A. T4 l\\'\"4-8i 1-3. 1' against Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert.",
    "layers": [
     "census_1840",
     "residents",
@@ -45438,10 +46230,10 @@
   {
    "record_id": "nbi_v02_0325",
    "a": "Gilbert r | 9 ^Winie^aga'Ca, 111. (Kelt. H. F„ & Co.. Pub..) .",
-   "b": "Sherrod Gilbert; James Gilbert; James Gilbert",
+   "b": "Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Gilbert r | 9 ^Winie^aga'Ca, 111. (Kelt. H. F„ & Co.. Pub..) .\" against Sherrod Gilbert; James Gilbert; James Gilbert.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert; Sam[l]. J. W. Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Gilbert r | 9 ^Winie^aga'Ca, 111. (Kelt. H. F„ & Co.. Pub..) .\" against Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert.",
    "layers": [
     "census_1840",
     "residents",
@@ -45475,10 +46267,10 @@
   {
    "record_id": "nbi_v02_0326",
    "a": "Gilbert r | Illinois, (Motet, J.) 1888-92. 2V. See MM f",
-   "b": "Sherrod Gilbert; James Gilbert; James Gilbert",
+   "b": "Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gilbert r | Illinois, (Motet, J.) 1888-92. 2V. See MM f' against Sherrod Gilbert; James Gilbert; James Gilbert.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert; Sam[l]. J. W. Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gilbert r | Illinois, (Motet, J.) 1888-92. 2V. See MM f' against Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert.",
    "layers": [
     "census_1840",
     "residents",
@@ -45512,10 +46304,10 @@
   {
    "record_id": "nbi_v02_0327",
    "a": "Gilbert r | Illinois. Soc. Sons Am, Be*. 1896: 134.",
-   "b": "Sherrod Gilbert; James Gilbert; James Gilbert",
+   "b": "Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gilbert r | Illinois. Soc. Sons Am, Be*. 1896: 134.' against Sherrod Gilbert; James Gilbert; James Gilbert.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gilbert r' name Chicago or Cook County, the heading is the surname of Sherrod Gilbert; Sam[l]. J. W. Gilbert exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gilbert r | Illinois. Soc. Sons Am, Be*. 1896: 134.' against Sherrod Gilbert; Sam[l]. J. W. Gilbert; James Gilbert; James Gilbert.",
    "layers": [
     "census_1840",
     "residents",
@@ -49790,14 +50582,16 @@
   {
    "record_id": "nbi_v02_1284",
    "a": "Hyde f | . 1. Chioago, 111. (Androae.A.T.) 18B4-6:",
-   "b": "Thomas S. Hyde",
+   "b": "Salman Hyde; Thomas S. Hyde",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Thomas S. Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde f | . 1. Chioago, 111. (Androae.A.T.) 18B4-6:' against Thomas S. Hyde.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Salman Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde f | . 1. Chioago, 111. (Androae.A.T.) 18B4-6:' against Salman Hyde; Thomas S. Hyde.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_hyde_census_1840",
     "lead_v02_hyde_residents"
    ],
    "person_ids": [
@@ -49823,14 +50617,16 @@
   {
    "record_id": "nbi_v02_1285",
    "a": "Hyde f | Chicago, III. (Motes, 1, and Klrkland, 1.) 1805-",
-   "b": "Thomas S. Hyde",
+   "b": "Salman Hyde; Thomas S. Hyde",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Thomas S. Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde f | Chicago, III. (Motes, 1, and Klrkland, 1.) 1805-' against Thomas S. Hyde.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Salman Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde f | Chicago, III. (Motes, 1, and Klrkland, 1.) 1805-' against Salman Hyde; Thomas S. Hyde.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_hyde_census_1840",
     "lead_v02_hyde_residents"
    ],
    "person_ids": [
@@ -49856,14 +50652,16 @@
   {
    "record_id": "nbi_v02_1286",
    "a": "Hyde f | DelVitt Co,, III, (Brink, V/. R, L C:„ Puh.) 1882:",
-   "b": "Thomas S. Hyde",
+   "b": "Salman Hyde; Thomas S. Hyde",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Thomas S. Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde f | DelVitt Co,, III, (Brink, V/. R, L C:„ Puh.) 1882:' against Thomas S. Hyde.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Salman Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde f | DelVitt Co,, III, (Brink, V/. R, L C:„ Puh.) 1882:' against Salman Hyde; Thomas S. Hyde.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_hyde_census_1840",
     "lead_v02_hyde_residents"
    ],
    "person_ids": [
@@ -49889,14 +50687,16 @@
   {
    "record_id": "nbi_v02_1287",
    "a": "Hyde | - f i l e Co., III. (Chapman, C. C. A Co., Poba.) IB80:",
-   "b": "Thomas S. Hyde",
+   "b": "Salman Hyde; Thomas S. Hyde",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Thomas S. Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde | - f i l e Co., III. (Chapman, C. C. A Co., Poba.) IB80:' against Thomas S. Hyde.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Hyde/Hyde f' name Chicago or Cook County, the heading is the surname of Salman Hyde exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hyde | - f i l e Co., III. (Chapman, C. C. A Co., Poba.) IB80:' against Salman Hyde; Thomas S. Hyde.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_hyde_census_1840",
     "lead_v02_hyde_residents"
    ],
    "person_ids": [
@@ -51840,10 +52640,10 @@
   {
    "record_id": "nbi_v03_0686",
    "a": "Mitchell | Cook Co., III. (A.ulrca:, A. T.) 1884 :589.'",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Mitchell | Cook Co., III. (A.ulrca:, A. T.) 1884 :589.'\" against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Mitchell | Cook Co., III. (A.ulrca:, A. T.) 1884 :589.'\" against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -51875,10 +52675,10 @@
   {
    "record_id": "nbi_v03_0687",
    "a": "Mitchell | —Co-beriand, Umtt and Rkhbmd Co',., III. 'B.ney, F. A. Bu",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Mitchell | —Co-beriand, Umtt and Rkhbmd Co',., III. 'B.ney, F. A. Bu\" against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Mitchell | —Co-beriand, Umtt and Rkhbmd Co',., III. 'B.ney, F. A. Bu\" against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -51910,10 +52710,10 @@
   {
    "record_id": "nbi_v03_0691",
    "a": "Mitchell,-or Miclell | 3,7,111,12. Soo indox o a . v .",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Mitchell,-or Miclell | 3,7,111,12. Soo indox o a . v .' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'Mitchell/Mitchell,-or Miclell' name Chicago or Cook County, the heading is the surname of Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Mitchell,-or Miclell | 3,7,111,12. Soo indox o a . v .' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -56199,10 +56999,10 @@
   {
    "record_id": "nbi_v04_0189",
    "a": "Stuart | — Chleago, Ml, (Andrea, ArT) 12061 2-3.",
-   "b": "R. S. Stuart; Samuel Stuart",
+   "b": "R. S. Stuart; [I]saac Stua[r]t; Samuel Stuart",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 2 card(s) heading 'Stuart' name Chicago or Cook County, the heading is the surname of R. S. Stuart exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Stuart | — Chleago, Ml, (Andrea, ArT) 12061 2-3.' against R. S. Stuart; Samuel Stuart.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 2 card(s) heading 'Stuart' name Chicago or Cook County, the heading is the surname of R. S. Stuart; [I]saac Stua[r]t exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Stuart | — Chleago, Ml, (Andrea, ArT) 12061 2-3.' against R. S. Stuart; [I]saac Stua[r]t; Samuel Stuart.",
    "layers": [
     "census_1840",
     "residents"
@@ -56234,10 +57034,10 @@
   {
    "record_id": "nbi_v04_0190",
    "a": "Stuart | —— Chicago, Ili. (Moxos, J, ond Kirkland, 4) Me",
-   "b": "R. S. Stuart; Samuel Stuart",
+   "b": "R. S. Stuart; [I]saac Stua[r]t; Samuel Stuart",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 2 card(s) heading 'Stuart' name Chicago or Cook County, the heading is the surname of R. S. Stuart exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Stuart | —— Chicago, Ili. (Moxos, J, ond Kirkland, 4) Me' against R. S. Stuart; Samuel Stuart.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 2 card(s) heading 'Stuart' name Chicago or Cook County, the heading is the surname of R. S. Stuart; [I]saac Stua[r]t exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Stuart | —— Chicago, Ili. (Moxos, J, ond Kirkland, 4) Me' against R. S. Stuart; [I]saac Stua[r]t; Samuel Stuart.",
    "layers": [
     "census_1840",
     "residents"
@@ -59005,14 +59805,16 @@
   {
    "record_id": "nbi_v01_0394",
    "a": "Beach | Chicago,lit Second rrtsb. Ch, 184202. (Qriat,",
-   "b": "William H. Beach",
+   "b": "Jno. Beach; William H. Beach",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'Beach' do name Chicago or Cook County and the heading is the surname of William H. Beach exactly, but the index files every family of a surname under one heading and gives no forename, so 'Beach' against William H. Beach is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Beach | Chicago,lit Second rrtsb. Ch, 184202. (Qriat,' against William H. Beach.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'Beach' do name Chicago or Cook County and the heading is the surname of Jno. Beach exactly, but the index files every family of a surname under one heading and gives no forename, so 'Beach' against Jno. Beach is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Beach | Chicago,lit Second rrtsb. Ch, 184202. (Qriat,' against Jno. Beach; William H. Beach.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_beach_census_1840",
     "lead_v01_beach_residents"
    ],
    "person_ids": [
@@ -59038,15 +59840,17 @@
   {
    "record_id": "nbi_v01_0401",
    "a": "Beell | Cook Co., III. (/.rir:«, K T,) 1884 .SW.,",
-   "b": "William A Bell; William A. Bell",
+   "b": "William Bell; William A Bell; William A. Bell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Beell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Beell' at all. And if it were, a heading against William A Bell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Beell | Cook Co., III. (/.rir:«, K T,) 1884 .SW.,' against William A Bell; William A. Bell.",
+   "rule": "Refused twice over. No candidate reaches 'Beell' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Beell' at all. And if it were, a heading against William Bell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Beell | Cook Co., III. (/.rir:«, K T,) 1884 .SW.,' against William Bell; William A Bell; William A. Bell.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v01_beell_census_1840",
     "lead_v01_beell_residents",
     "lead_v01_beell_voters"
    ],
@@ -59137,15 +59941,17 @@
   {
    "record_id": "nbi_v01_0459",
    "a": "Belli | Ce, III. (Murray. Will:,. iPh-'p,. Puba,11879,",
-   "b": "William A Bell; William A. Bell",
+   "b": "William Bell; William A Bell; William A. Bell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Belli' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Belli' at all. And if it were, a heading against William A Bell would still be a surname against a person, which is always a refusal here. Ruled on the card \"Belli | Ce, III. (Murray. Will:,. iPh-'p,. Puba,11879,\" against William A Bell; William A. Bell.",
+   "rule": "Refused twice over. No candidate reaches 'Belli' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Belli' at all. And if it were, a heading against William Bell would still be a surname against a person, which is always a refusal here. Ruled on the card \"Belli | Ce, III. (Murray. Will:,. iPh-'p,. Puba,11879,\" against William Bell; William A Bell; William A. Bell.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v01_belli_census_1840",
     "lead_v01_belli_residents",
     "lead_v01_belli_voters"
    ],
@@ -59172,15 +59978,17 @@
   {
    "record_id": "nbi_v01_0464",
    "a": "Bell | Adjm.Co., Ill, (tlurrty, Willi.mlcn & Chile,, Puht,I1879;",
-   "b": "William A Bell; William A. Bell",
+   "b": "William Bell; William A Bell; William A. Bell",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William A Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bell | Adjm.Co., Ill, (tlurrty, Willi.mlcn & Chile,, Puht,I1879;' against William A Bell; William A. Bell.",
+   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bell | Adjm.Co., Ill, (tlurrty, Willi.mlcn & Chile,, Puht,I1879;' against William Bell; William A Bell; William A. Bell.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v01_bell_census_1840",
     "lead_v01_bell_residents",
     "lead_v01_bell_voters"
    ],
@@ -59207,15 +60015,17 @@
   {
    "record_id": "nbi_v01_0466",
    "a": "Bell | —Cumtwland, l.jner »nd Richland Ca'., 111. (Balley. r. A.",
-   "b": "William A Bell; William A. Bell",
+   "b": "William Bell; William A Bell; William A. Bell",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William A Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Bell | —Cumtwland, l.jner »nd Richland Ca'., 111. (Balley. r. A.\" against William A Bell; William A. Bell.",
+   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Bell | —Cumtwland, l.jner »nd Richland Ca'., 111. (Balley. r. A.\" against William Bell; William A Bell; William A. Bell.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v01_bell_census_1840",
     "lead_v01_bell_residents",
     "lead_v01_bell_voters"
    ],
@@ -59242,15 +60052,17 @@
   {
    "record_id": "nbi_v01_0467",
    "a": "Bell | LaSalle Co., III. (Saldwin, E.) 1877: 254.",
-   "b": "William A Bell; William A. Bell",
+   "b": "William Bell; William A Bell; William A. Bell",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William A Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bell | LaSalle Co., III. (Saldwin, E.) 1877: 254.' against William A Bell; William A. Bell.",
+   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bell | LaSalle Co., III. (Saldwin, E.) 1877: 254.' against William Bell; William A Bell; William A. Bell.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v01_bell_census_1840",
     "lead_v01_bell_residents",
     "lead_v01_bell_voters"
    ],
@@ -59277,15 +60089,17 @@
   {
    "record_id": "nbi_v01_0468",
    "a": "Bell | Sangamon Co, III. (Power, J, C.) 1878.",
-   "b": "William A Bell; William A. Bell",
+   "b": "William Bell; William A Bell; William A. Bell",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William A Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bell | Sangamon Co, III. (Power, J, C.) 1878.' against William A Bell; William A. Bell.",
+   "rule": "Refused. All 4 card(s) heading 'Bell' name Illinois and neither Chicago nor Cook County, so the lead against William Bell stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bell | Sangamon Co, III. (Power, J, C.) 1878.' against William Bell; William A Bell; William A. Bell.",
    "layers": [
+    "census_1840",
     "residents",
     "voters"
    ],
    "leads": [
+    "lead_v01_bell_census_1840",
     "lead_v01_bell_residents",
     "lead_v01_bell_voters"
    ],
@@ -59306,6 +60120,37 @@
     ],
     "index_page": 163,
     "column": 0
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v01_0478",
+   "a": "Benjamin | —^Illinois. Soc. Sons Am. Rev, 1896: 26B.",
+   "b": "Chs. B. Benjamin",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "rule": "Refused. All 1 card(s) heading 'Benjamin' name Illinois and neither Chicago nor Cook County, so the lead against Chs. B. Benjamin stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Benjamin | —^Illinois. Soc. Sons Am. Rev, 1896: 26B.' against Chs. B. Benjamin.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v01_benjamin_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v01_0478",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_01",
+    "text_file": "vol_01_locality_cards.txt",
+    "lines": [
+     961,
+     962
+    ],
+    "index_page": 168,
+    "column": 2
    },
    "ticket": "T-0590"
   },
@@ -60460,10 +61305,10 @@
   {
    "record_id": "nbi_v01_0744",
    "a": "Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"'* . _",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"\\'* . _' against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen.",
+   "rule": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"\\'* . _' against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -61341,10 +62186,10 @@
   {
    "record_id": "nbi_v01_0918",
    "a": "Brown | 1 Illinois. (Moses, ).) 1880.92. 2v. See Inde»",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | 1 Illinois. (Moses, ).) 1880.92. 2v. See Inde»' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | 1 Illinois. (Moses, ).) 1880.92. 2v. See Inde»' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61385,10 +62230,10 @@
   {
    "record_id": "nbi_v01_0920",
    "a": "WUi g Brown | 98I4.BT I Cr.icago, III. (Wood, U. lY.I (811. d t \" .",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'WUi g Brown | 98I4.BT I Cr.icago, III. (Wood, U. lY.I (811. d t \" .' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'WUi g Brown | 98I4.BT I Cr.icago, III. (Wood, U. lY.I (811. d t \" .' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61429,10 +62274,10 @@
   {
    "record_id": "nbi_v01_0921",
    "a": "Brown | alao DuPags Co., III. (Bbticlard, R.i 1882: P'.S'",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Brown | alao DuPags Co., III. (Bbticlard, R.i 1882: P'.S'\" against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Brown | alao DuPags Co., III. (Bbticlard, R.i 1882: P'.S'\" against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61473,10 +62318,10 @@
   {
    "record_id": "nbi_v01_0922",
    "a": "' Brown | r a p . Co., III. (Ie8tmn, W., a-., 4 Co.,_P«bj.) 1879;",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"' Brown | r a p . Co., III. (Ie8tmn, W., a-., 4 Co.,_P«bj.) 1879;\" against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"' Brown | r a p . Co., III. (Ie8tmn, W., a-., 4 Co.,_P«bj.) 1879;\" against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61517,10 +62362,10 @@
   {
    "record_id": "nbi_v01_0923",
    "a": "Brown | 66 I • ^ L a S a j i e Co, III. (Baldwin, E.) 1877: 2 \" .335.",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | 66 I • ^ L a S a j i e Co, III. (Baldwin, E.) 1877: 2 \" .335.' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | 66 I • ^ L a S a j i e Co, III. (Baldwin, E.) 1877: 2 \" .335.' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61561,10 +62406,10 @@
   {
    "record_id": "nbi_v01_0924",
    "a": "Brown | F 8469.2 J l I — Uadlaon Co., 111. (Brink, W. R. tt Co.,",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | F 8469.2 J l I — Uadlaon Co., 111. (Brink, W. R. tt Co.,' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | F 8469.2 J l I — Uadlaon Co., 111. (Brink, W. R. tt Co.,' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61605,10 +62450,10 @@
   {
    "record_id": "nbi_v01_0925",
    "a": "Brown | SI. Clair Co., 111. (Brink, ntcOoorxntti 4 Co.. Put,.) I88lr 278.",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | SI. Clair Co., 111. (Brink, ntcOoorxntti 4 Co.. Put,.) I88lr 278.' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused. All 7 card(s) heading \"' Brown/Brown/WUi g Brown\" name Illinois and neither Chicago nor Cook County, so the lead against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Brown | SI. Clair Co., 111. (Brink, ntcOoorxntti 4 Co.. Put,.) I88lr 278.' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61649,10 +62494,10 @@
   {
    "record_id": "nbi_v01_0928",
    "a": "Browne f | Chicago, III. (Andreas, A. T.) 18644(1 :.. Soe Ne",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Browne f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Browne f' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Browne f | Chicago, III. (Andreas, A. T.) 18644(1 :.. Soe Ne' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused twice over. No candidate reaches 'Browne f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Browne f' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Browne f | Chicago, III. (Andreas, A. T.) 18644(1 :.. Soe Ne' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -61693,10 +62538,10 @@
   {
    "record_id": "nbi_v01_0929",
    "a": "Browne f | Illinois. (Moses, V 1C 1-92. 2v. See Index Browno",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Browne f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Browne f' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Browne f | Illinois. (Moses, V 1C 1-92. 2v. See Index Browno' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
+   "rule": "Refused twice over. No candidate reaches 'Browne f' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Browne f' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Browne f | Illinois. (Moses, V 1C 1-92. 2v. See Index Browno' against Charles Brown; Michael Brown; Thomas Brown; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Lemuel Brown.",
    "layers": [
     "census_1840",
     "residents",
@@ -62035,10 +62880,10 @@
   {
    "record_id": "nbi_v01_1065",
    "a": "Butler ra-iily llneel- | — Chicago, HI. Second Presb. Ch., 1842-92. (Grant, fB9\\ n",
-   "b": "John H. Butler",
+   "b": "John H. Butler; Ethan Bu[t]ler",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'Butler ra-iily llneel-' do name Chicago or Cook County and the heading is the surname of John H. Butler exactly, but the index files every family of a surname under one heading and gives no forename, so 'Butler ra-iily llneel-' against John H. Butler is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Butler ra-iily llneel- | — Chicago, HI. Second Presb. Ch., 1842-92. (Grant, fB9\\\\ n' against John H. Butler.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'Butler ra-iily llneel-' do name Chicago or Cook County and the heading is the surname of John H. Butler; Ethan Bu[t]ler exactly, but the index files every family of a surname under one heading and gives no forename, so 'Butler ra-iily llneel-' against John H. Butler; Ethan Bu[t]ler is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Butler ra-iily llneel- | — Chicago, HI. Second Presb. Ch., 1842-92. (Grant, fB9\\\\ n' against John H. Butler; Ethan Bu[t]ler.",
    "layers": [
     "census_1840"
    ],
@@ -62097,14 +62942,16 @@
   {
    "record_id": "nbi_v01_1086",
    "a": "Cady | 749. F90I780. f ^ t t t O t . Chicago",
-   "b": "Levi Cady",
+   "b": "[J]no. Mars[h] W. Cad[y]; Levi Cady",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'Cady' do name Chicago or Cook County and the heading is the surname of Levi Cady exactly, but the index files every family of a surname under one heading and gives no forename, so 'Cady' against Levi Cady is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Cady | 749. F90I780. f ^ t t t O t . Chicago' against Levi Cady.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'Cady' do name Chicago or Cook County and the heading is the surname of [J]no. Mars[h] W. Cad[y] exactly, but the index files every family of a surname under one heading and gives no forename, so 'Cady' against [J]no. Mars[h] W. Cad[y] is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Cady | 749. F90I780. f ^ t t t O t . Chicago' against [J]no. Mars[h] W. Cad[y]; Levi Cady.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_cady_census_1840",
     "lead_v01_cady_residents"
    ],
    "person_ids": [
@@ -63040,6 +63887,130 @@
    "ticket": "T-0590"
   },
   {
+   "record_id": "nbi_v01_1276",
+   "a": "Chapin | . i,.ii:ago, ill, Socand",
+   "b": "Samuel Cha[p]in",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "rule": "Refused. 1 of the 3 card(s) heading 'Chapin' do name Chicago or Cook County and the heading is the surname of Samuel Cha[p]in exactly, but the index files every family of a surname under one heading and gives no forename, so 'Chapin' against Samuel Cha[p]in is a surname against a person. It waits on moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Chapin | . i,.ii:ago, ill, Socand' against Samuel Cha[p]in.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v01_chapin_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v01_1276",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_01",
+    "text_file": "vol_01_locality_cards.txt",
+    "lines": [
+     2557,
+     2558
+    ],
+    "index_page": 410,
+    "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v01_1277",
+   "a": "Chapin | Chicago, III. (5r1cs?s, !,>__• Kiklar l, J.) Ii\"15l",
+   "b": "Samuel Cha[p]in",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "rule": "Refused. 1 of the 3 card(s) heading 'Chapin' do name Chicago or Cook County and the heading is the surname of Samuel Cha[p]in exactly, but the index files every family of a surname under one heading and gives no forename, so 'Chapin' against Samuel Cha[p]in is a surname against a person. It waits on moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Chapin | Chicago, III. (5r1cs?s, !,>__• Kiklar l, J.) Ii\"15l' against Samuel Cha[p]in.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v01_chapin_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v01_1277",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_01",
+    "text_file": "vol_01_locality_cards.txt",
+    "lines": [
+     2559,
+     2560
+    ],
+    "index_page": 410,
+    "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v01_1278",
+   "a": "Chapin | Fulton Co , III. (Cl r; C. C. f » I879i",
+   "b": "Samuel Cha[p]in",
+   "outcome": "refused",
+   "class": "surname_only_chicago",
+   "rule": "Refused. 1 of the 3 card(s) heading 'Chapin' do name Chicago or Cook County and the heading is the surname of Samuel Cha[p]in exactly, but the index files every family of a surname under one heading and gives no forename, so 'Chapin' against Samuel Cha[p]in is a surname against a person. It waits on moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Chapin | Fulton Co , III. (Cl r; C. C. f » I879i' against Samuel Cha[p]in.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v01_chapin_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v01_1278",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_01",
+    "text_file": "vol_01_locality_cards.txt",
+    "lines": [
+     2561,
+     2562
+    ],
+    "index_page": 410,
+    "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v01_1279",
+   "a": "Chaplin | de, 111. T 6.482.1 Chapman f",
+   "b": "Samuel Cha[p]in",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Chaplin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Chaplin' at all. And if it were, a heading against Samuel Cha[p]in would still be a surname against a person, which is always a refusal here. Ruled on the card 'Chaplin | de, 111. T 6.482.1 Chapman f' against Samuel Cha[p]in.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v01_chaplin_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v01_1279",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_01",
+    "text_file": "vol_01_locality_cards.txt",
+    "lines": [
+     2563,
+     2564
+    ],
+    "index_page": 411,
+    "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
    "record_id": "nbi_v01_1280",
    "a": "Chapman | Illinois. (Moses, I.) 1988-92. Tv. See Index. Cha",
    "b": "John M. Chapman; [?]n[?] Chapman; Chas. H. Chapman; George Chapman; George Chapman; Charles H. Chapman",
@@ -63229,10 +64200,10 @@
   {
    "record_id": "nbi_v01_1297",
    "a": "Chase | Bureau Co., III. (Kett It Co., Pub.) I877i igo,",
-   "b": "C. Ann Chase; Nehemiah Case; Peter Chase",
+   "b": "Peter Case; [J]ohn Case; C. Ann Chase; Nehemiah Case; Peter Chase",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | Bureau Co., III. (Kett It Co., Pub.) I877i igo,' against C. Ann Chase; Nehemiah Case; Peter Chase.",
+   "rule": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Peter Case; [J]ohn Case; C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | Bureau Co., III. (Kett It Co., Pub.) I877i igo,' against Peter Case; [J]ohn Case; C. Ann Chase; Nehemiah Case; Peter Chase.",
    "layers": [
     "census_1840",
     "residents"
@@ -63265,10 +64236,10 @@
   {
    "record_id": "nbi_v01_1298",
    "a": "Chase | ^ — Chlcage, III. (Andreas, A. T.) 1SS4-6. J t i -",
-   "b": "C. Ann Chase; Nehemiah Case; Peter Chase",
+   "b": "Peter Case; [J]ohn Case; C. Ann Chase; Nehemiah Case; Peter Chase",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | ^ — Chlcage, III. (Andreas, A. T.) 1SS4-6. J t i -' against C. Ann Chase; Nehemiah Case; Peter Chase.",
+   "rule": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Peter Case; [J]ohn Case; C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | ^ — Chlcage, III. (Andreas, A. T.) 1SS4-6. J t i -' against Peter Case; [J]ohn Case; C. Ann Chase; Nehemiah Case; Peter Chase.",
    "layers": [
     "census_1840",
     "residents"
@@ -63301,10 +64272,10 @@
   {
    "record_id": "nbi_v01_1299",
    "a": "Chase | « — C h i c a g o , 1 1 1 . , C r e e t * and c o n t e o f",
-   "b": "C. Ann Chase; Nehemiah Case; Peter Chase",
+   "b": "Peter Case; [J]ohn Case; C. Ann Chase; Nehemiah Case; Peter Chase",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | « — C h i c a g o , 1 1 1 . , C r e e t * and c o n t e o f' against C. Ann Chase; Nehemiah Case; Peter Chase.",
+   "rule": "Refused. All 3 card(s) heading 'Chase' name Illinois and neither Chicago nor Cook County, so the lead against Peter Case; [J]ohn Case; C. Ann Chase stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Chase | « — C h i c a g o , 1 1 1 . , C r e e t * and c o n t e o f' against Peter Case; [J]ohn Case; C. Ann Chase; Nehemiah Case; Peter Chase.",
    "layers": [
     "census_1840",
     "residents"
@@ -63816,14 +64787,16 @@
   {
    "record_id": "nbi_v01_1420",
    "a": "'loyd f | i Sangamon Co,, III, (Power, J, C.) 1876,",
-   "b": "Alexander Lloyd; Alexander Loyd",
+   "b": "Alex[r]. Loyd; Alexander Lloyd; Alexander Loyd",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading \"'loyd f\" name Illinois and neither Chicago nor Cook County, so the lead against Alexander Lloyd; Alexander Loyd stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"'loyd f | i Sangamon Co,, III, (Power, J, C.) 1876,\" against Alexander Lloyd; Alexander Loyd.",
+   "rule": "Refused. All 1 card(s) heading \"'loyd f\" name Illinois and neither Chicago nor Cook County, so the lead against Alex[r]. Loyd stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"'loyd f | i Sangamon Co,, III, (Power, J, C.) 1876,\" against Alex[r]. Loyd; Alexander Lloyd; Alexander Loyd.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_loyd_census_1840",
     "lead_v01_loyd_residents"
    ],
    "person_ids": [
@@ -64469,10 +65442,10 @@
   {
    "record_id": "nbi_v01_1541",
    "a": "Cooko | —-Chicsga, III, (Andreas, A. T.) I3S44| 2-3.",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Cooko' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Cooko' at all. And if it were, a heading against Martin Cook; G. W. Cook; Thomas Cook would still be a surname against a person, which is always a refusal here. Ruled on the card 'Cooko | —-Chicsga, III, (Andreas, A. T.) I3S44| 2-3.' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Refused twice over. No candidate reaches 'Cooko' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Cooko' at all. And if it were, a heading against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook would still be a surname against a person, which is always a refusal here. Ruled on the card 'Cooko | —-Chicsga, III, (Andreas, A. T.) I3S44| 2-3.' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -64510,10 +65483,10 @@
   {
    "record_id": "nbi_v01_1542",
    "a": "Cooko | n.) Chicago, III. (Dieses, J, and Klfklíltttj I.) IC95l",
-   "b": "Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
+   "b": "Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Cooko' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Cooko' at all. And if it were, a heading against Martin Cook; G. W. Cook; Thomas Cook would still be a surname against a person, which is always a refusal here. Ruled on the card 'Cooko | n.) Chicago, III. (Dieses, J, and Klfklíltttj I.) IC95l' against Martin Cook; G. W. Cook; Thomas Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
+   "rule": "Refused twice over. No candidate reaches 'Cooko' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Cooko' at all. And if it were, a heading against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook would still be a surname against a person, which is always a refusal here. Ruled on the card 'Cooko | n.) Chicago, III. (Dieses, J, and Klfklíltttj I.) IC95l' against Martin Cook; G. W. Cook; Thomas Cook; Sam[ue]l Cook; J. B. Cook; John Cook; Josiah P Cook; Rowland I!. Cook; Thomas Cook; J. P. Cook; Thomas Cook; J. Cook.",
    "layers": [
     "census_1840",
     "residents",
@@ -66175,14 +67148,16 @@
   {
    "record_id": "nbi_v01_1844",
    "a": "Deano | Chicago, III (Andreas, A. T.) 1884-61 3. Soo",
-   "b": "James L.. Dean; Loring Delano",
+   "b": "Phill[i]p Dean; James L.. Dean; Loring Delano",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Deano' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Deano' at all. And if it were, a heading against James L.. Dean; Loring Delano would still be a surname against a person, which is always a refusal here. Ruled on the card 'Deano | Chicago, III (Andreas, A. T.) 1884-61 3. Soo' against James L.. Dean; Loring Delano.",
+   "rule": "Refused twice over. No candidate reaches 'Deano' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Deano' at all. And if it were, a heading against Phill[i]p Dean would still be a surname against a person, which is always a refusal here. Ruled on the card 'Deano | Chicago, III (Andreas, A. T.) 1884-61 3. Soo' against Phill[i]p Dean; James L.. Dean; Loring Delano.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_deano_census_1840",
     "lead_v01_deano_residents"
    ],
    "person_ids": [
@@ -67076,10 +68051,10 @@
   {
    "record_id": "nbi_v01_2066",
    "a": "Duff | _ Sangamon Co., III. (Power, J. C.) 1876,",
-   "b": "John Duff; Michael Duffy",
+   "b": "John Duff; Michael Duffy; Andrew Duffy",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Duff' name Illinois and neither Chicago nor Cook County, so the lead against John Duff; Michael Duffy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Duff | _ Sangamon Co., III. (Power, J. C.) 1876,' against John Duff; Michael Duffy.",
+   "rule": "Refused. All 1 card(s) heading 'Duff' name Illinois and neither Chicago nor Cook County, so the lead against John Duff; Michael Duffy; Andrew Duffy stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Duff | _ Sangamon Co., III. (Power, J. C.) 1876,' against John Duff; Michael Duffy; Andrew Duffy.",
    "layers": [
     "census_1840"
    ],
@@ -67107,14 +68082,16 @@
   {
    "record_id": "nbi_v01_2081",
    "a": "Duncan | i Chicago, l;i. (Ar.i'rejr '., T l id !44i",
-   "b": "Joseph Duncan",
+   "b": "Jno. C. Dunican; Joseph Duncan",
    "outcome": "refused",
-   "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 2 card(s) heading 'Duncan' do name Chicago or Cook County and the heading is the surname of Joseph Duncan exactly, but the index files every family of a surname under one heading and gives no forename, so 'Duncan' against Joseph Duncan is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card \"Duncan | i Chicago, l;i. (Ar.i'rejr '., T l id !44i\" against Joseph Duncan.",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Duncan' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Duncan' at all. And if it were, a heading against Jno. C. Dunican would still be a surname against a person, which is always a refusal here. Ruled on the card \"Duncan | i Chicago, l;i. (Ar.i'rejr '., T l id !44i\" against Jno. C. Dunican; Joseph Duncan.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_duncan_census_1840",
     "lead_v01_duncan_residents"
    ],
    "person_ids": [
@@ -67140,14 +68117,16 @@
   {
    "record_id": "nbi_v01_2083",
    "a": "Duncan | Ssngamon Co., III. (Power, J. C.I 1876.",
-   "b": "Joseph Duncan",
+   "b": "Jno. C. Dunican; Joseph Duncan",
    "outcome": "refused",
-   "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 2 card(s) heading 'Duncan' do name Chicago or Cook County and the heading is the surname of Joseph Duncan exactly, but the index files every family of a surname under one heading and gives no forename, so 'Duncan' against Joseph Duncan is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Duncan | Ssngamon Co., III. (Power, J. C.I 1876.' against Joseph Duncan.",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Duncan' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Duncan' at all. And if it were, a heading against Jno. C. Dunican would still be a surname against a person, which is always a refusal here. Ruled on the card 'Duncan | Ssngamon Co., III. (Power, J. C.I 1876.' against Jno. C. Dunican; Joseph Duncan.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_duncan_census_1840",
     "lead_v01_duncan_residents"
    ],
    "person_ids": [
@@ -67833,14 +68812,16 @@
   {
    "record_id": "nbi_v01_2213",
    "a": "Ellis | ' — — F u l t o n C o , III. (Chapjnae, C. C. S Co.) ISTSt",
-   "b": "J Ellis",
+   "b": "[J]ohn Ellis; J Ellis",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Ellis' name Illinois and neither Chicago nor Cook County, so the lead against J Ellis stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Ellis | ' — — F u l t o n C o , III. (Chapjnae, C. C. S Co.) ISTSt\" against J Ellis.",
+   "rule": "Refused. All 2 card(s) heading 'Ellis' name Illinois and neither Chicago nor Cook County, so the lead against [J]ohn Ellis stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Ellis | ' — — F u l t o n C o , III. (Chapjnae, C. C. S Co.) ISTSt\" against [J]ohn Ellis; J Ellis.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_ellis_census_1840",
     "lead_v01_ellis_residents"
    ],
    "person_ids": [
@@ -67866,14 +68847,16 @@
   {
    "record_id": "nbi_v01_2214",
    "a": "Ellis | Sangamon Co., Ill, (Power, J. C.) 1876",
-   "b": "J Ellis",
+   "b": "[J]ohn Ellis; J Ellis",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Ellis' name Illinois and neither Chicago nor Cook County, so the lead against J Ellis stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Ellis | Sangamon Co., Ill, (Power, J. C.) 1876' against J Ellis.",
+   "rule": "Refused. All 2 card(s) heading 'Ellis' name Illinois and neither Chicago nor Cook County, so the lead against [J]ohn Ellis stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Ellis | Sangamon Co., Ill, (Power, J. C.) 1876' against [J]ohn Ellis; J Ellis.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v01_ellis_census_1840",
     "lead_v01_ellis_residents"
    ],
    "person_ids": [
@@ -68159,14 +69142,16 @@
   {
    "record_id": "nbi_v02_0005",
    "a": "Field | • Chicnr.o, 111. ,Crer-t p and coate of i",
-   "b": "A B Field; J. E. Field; Secretary Field",
+   "b": "[P]. [R]. F[ie]ld; A B Field; J. E. Field; Secretary Field",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Field' name Illinois and neither Chicago nor Cook County, so the lead against A B Field; J. E. Field; Secretary Field stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Field | • Chicnr.o, 111. ,Crer-t p and coate of i' against A B Field; J. E. Field; Secretary Field.",
+   "rule": "Refused. All 1 card(s) heading 'Field' name Illinois and neither Chicago nor Cook County, so the lead against [P]. [R]. F[ie]ld stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Field | • Chicnr.o, 111. ,Crer-t p and coate of i' against [P]. [R]. F[ie]ld; A B Field; J. E. Field; Secretary Field.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_field_census_1840",
     "lead_v02_field_residents"
    ],
    "person_ids": [
@@ -68194,14 +69179,16 @@
   {
    "record_id": "nbi_v02_0008",
    "a": "Fielde family , I | iii. New York geneal. blog. rec. ^22.. ,",
-   "b": "A B Field; J. E. Field; Secretary Field",
+   "b": "[P]. [R]. F[ie]ld; A B Field; J. E. Field; Secretary Field",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Fielde family , I' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Fielde family , I' at all. And if it were, a heading against A B Field; J. E. Field; Secretary Field would still be a surname against a person, which is always a refusal here. Ruled on the card 'Fielde family , I | iii. New York geneal. blog. rec. ^22.. ,' against A B Field; J. E. Field; Secretary Field.",
+   "rule": "Refused twice over. No candidate reaches 'Fielde family , I' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Fielde family , I' at all. And if it were, a heading against [P]. [R]. F[ie]ld would still be a surname against a person, which is always a refusal here. Ruled on the card 'Fielde family , I | iii. New York geneal. blog. rec. ^22.. ,' against [P]. [R]. F[ie]ld; A B Field; J. E. Field; Secretary Field.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_fielde_census_1840",
     "lead_v02_fielde_residents"
    ],
    "person_ids": [
@@ -71576,14 +72563,16 @@
   {
    "record_id": "nbi_v02_0839",
    "a": "Pnb Horer | 851 66 — Christian Co,, III. lOriuk, Kcfla: tig| _ c . .",
-   "b": "Raiph C. Horr",
+   "b": "Sherman Ho[e]r; Raiph C. Horr",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Pnb Horer' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Pnb Horer' at all. And if it were, a heading against Raiph C. Horr would still be a surname against a person, which is always a refusal here. Ruled on the card 'Pnb Horer | 851 66 — Christian Co,, III. lOriuk, Kcfla: tig| _ c . .' against Raiph C. Horr.",
+   "rule": "Refused twice over. No candidate reaches 'Pnb Horer' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Pnb Horer' at all. And if it were, a heading against Sherman Ho[e]r would still be a surname against a person, which is always a refusal here. Ruled on the card 'Pnb Horer | 851 66 — Christian Co,, III. lOriuk, Kcfla: tig| _ c . .' against Sherman Ho[e]r; Raiph C. Horr.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_horer_census_1840",
     "lead_v02_horer_residents"
    ],
    "person_ids": [
@@ -71975,14 +72964,16 @@
   {
    "record_id": "nbi_v02_1151",
    "a": "i Hower | Cara* Co., III. (Ked, H. F. 8 Co., JTubaJ |S78i 455.",
-   "b": "Sarah D Howe",
+   "b": "Sherman Ho[e]r; Sarah D Howe",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'i Hower' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'i Hower' at all. And if it were, a heading against Sarah D Howe would still be a surname against a person, which is always a refusal here. Ruled on the card 'i Hower | Cara* Co., III. (Ked, H. F. 8 Co., JTubaJ |S78i 455.' against Sarah D Howe.",
+   "rule": "Refused twice over. No candidate reaches 'i Hower' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'i Hower' at all. And if it were, a heading against Sherman Ho[e]r would still be a surname against a person, which is always a refusal here. Ruled on the card 'i Hower | Cara* Co., III. (Ked, H. F. 8 Co., JTubaJ |S78i 455.' against Sherman Ho[e]r; Sarah D Howe.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_hower_census_1840",
     "lead_v02_hower_residents"
    ],
    "person_ids": [
@@ -72706,14 +73697,16 @@
   {
    "record_id": "nbi_v02_1343",
    "a": "Jacobs | Adams Co., i l l . (Hurray, Wllllomeon Jacob",
-   "b": "Richard Jacob",
+   "b": "Benj[n]. Jacobs; Richard Jacob",
    "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Jacobs' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Jacobs' at all. And if it were, a heading against Richard Jacob would still be a surname against a person, which is always a refusal here. Ruled on the card 'Jacobs | Adams Co., i l l . (Hurray, Wllllomeon Jacob' against Richard Jacob.",
+   "class": "locality_absent",
+   "rule": "Refused. All 2 card(s) heading 'Jacobs' name Illinois and neither Chicago nor Cook County, so the lead against Benj[n]. Jacobs stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Jacobs | Adams Co., i l l . (Hurray, Wllllomeon Jacob' against Benj[n]. Jacobs; Richard Jacob.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_jacobs_census_1840",
     "lead_v02_jacobs_residents"
    ],
    "person_ids": [
@@ -72739,14 +73732,16 @@
   {
    "record_id": "nbi_v02_1344",
    "a": "Jacobs | — Bureau Co., III. (Kett St Co., Pub.) 1877: 215, Jaoob",
-   "b": "Richard Jacob",
+   "b": "Benj[n]. Jacobs; Richard Jacob",
    "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Jacobs' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Jacobs' at all. And if it were, a heading against Richard Jacob would still be a surname against a person, which is always a refusal here. Ruled on the card 'Jacobs | — Bureau Co., III. (Kett St Co., Pub.) 1877: 215, Jaoob' against Richard Jacob.",
+   "class": "locality_absent",
+   "rule": "Refused. All 2 card(s) heading 'Jacobs' name Illinois and neither Chicago nor Cook County, so the lead against Benj[n]. Jacobs stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Jacobs | — Bureau Co., III. (Kett St Co., Pub.) 1877: 215, Jaoob' against Benj[n]. Jacobs; Richard Jacob.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v02_jacobs_census_1840",
     "lead_v02_jacobs_residents"
    ],
    "person_ids": [
@@ -74906,14 +75901,16 @@
   {
    "record_id": "nbi_v03_0063",
    "a": "Lloyd | aheeSj and Moullrit Co , III. [Brink, ll.rjeno.gb A Ce.. f_*_",
-   "b": "Alexander Lloyd; Alexander Loyd",
+   "b": "Alex[r]. Loyd; Alexander Lloyd; Alexander Loyd",
    "outcome": "refused",
-   "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 2 card(s) heading 'Lloyd' do name Chicago or Cook County and the heading is the surname of Alexander Lloyd exactly, but the index files every family of a surname under one heading and gives no forename, so 'Lloyd' against Alexander Lloyd; Alexander Loyd is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Lloyd | aheeSj and Moullrit Co , III. [Brink, ll.rjeno.gb A Ce.. f_*_' against Alexander Lloyd; Alexander Loyd.",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Lloyd' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Lloyd' at all. And if it were, a heading against Alex[r]. Loyd would still be a surname against a person, which is always a refusal here. Ruled on the card 'Lloyd | aheeSj and Moullrit Co , III. [Brink, ll.rjeno.gb A Ce.. f_*_' against Alex[r]. Loyd; Alexander Lloyd; Alexander Loyd.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v03_lloyd_census_1840",
     "lead_v03_lloyd_residents"
    ],
    "person_ids": [
@@ -74940,14 +75937,16 @@
   {
    "record_id": "nbi_v03_0064",
    "a": "Lloyd | mm_ Chicago, 111. Second Proib. Ch„ 1847^2. (Granf",
-   "b": "Alexander Lloyd; Alexander Loyd",
+   "b": "Alex[r]. Loyd; Alexander Lloyd; Alexander Loyd",
    "outcome": "refused",
-   "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 2 card(s) heading 'Lloyd' do name Chicago or Cook County and the heading is the surname of Alexander Lloyd exactly, but the index files every family of a surname under one heading and gives no forename, so 'Lloyd' against Alexander Lloyd; Alexander Loyd is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Lloyd | mm_ Chicago, 111. Second Proib. Ch„ 1847^2. (Granf' against Alexander Lloyd; Alexander Loyd.",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Lloyd' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Lloyd' at all. And if it were, a heading against Alex[r]. Loyd would still be a surname against a person, which is always a refusal here. Ruled on the card 'Lloyd | mm_ Chicago, 111. Second Proib. Ch„ 1847^2. (Granf' against Alex[r]. Loyd; Alexander Lloyd; Alexander Loyd.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v03_lloyd_census_1840",
     "lead_v03_lloyd_residents"
    ],
    "person_ids": [
@@ -75275,6 +76274,37 @@
     "lines": [
      349,
      350
+    ],
+    "index_page": 82,
+    "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_0173",
+   "a": "an family, Lyman | Ogle Co., III. (Kelt, H. F., tt Co.) I878t 648. Estex Inst. H",
+   "b": "Cale[b] Lyman",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "rule": "Refused. All 1 card(s) heading 'an family, Lyman' name Illinois and neither Chicago nor Cook County, so the lead against Cale[b] Lyman stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'an family, Lyman | Ogle Co., III. (Kelt, H. F., tt Co.) I878t 648. Estex Inst. H' against Cale[b] Lyman.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_lyman_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0173",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     351,
+     352
     ],
     "index_page": 82,
     "column": 2
@@ -76787,10 +77817,10 @@
   {
    "record_id": "nbi_v03_0620",
    "a": "Michael | Carroll Co., 111. (Kelt, H. F. it Co.. PüM.l 1B7Bl 499,",
-   "b": "Michael [?]; James Michel",
+   "b": "Michael [?]; Adolp[h] Micha[e]l; James Michel",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Michael' name Illinois and neither Chicago nor Cook County, so the lead against Michael [?] stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Michael | Carroll Co., 111. (Kelt, H. F. it Co.. PüM.l 1B7Bl 499,' against Michael [?]; James Michel.",
+   "rule": "Refused. All 1 card(s) heading 'Michael' name Illinois and neither Chicago nor Cook County, so the lead against Michael [?]; Adolp[h] Micha[e]l stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Michael | Carroll Co., 111. (Kelt, H. F. it Co.. PüM.l 1B7Bl 499,' against Michael [?]; Adolp[h] Micha[e]l; James Michel.",
    "layers": [
     "census_1840",
     "residents"
@@ -77138,10 +78168,10 @@
   {
    "record_id": "nbi_v03_0681",
    "a": "Mitcholl | Chicago, III, «ndreat, A, T.) I884-61 1.3. Mitch",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitcholl | Chicago, III, «ndreat, A, T.) I884-61 1.3. Mitch' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitcholl | Chicago, III, «ndreat, A, T.) I884-61 1.3. Mitch' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -77173,10 +78203,10 @@
   {
    "record_id": "nbi_v03_0682",
    "a": "Mitcholl | Illinois, Pioneer hist. of. (Reynolds, J.) 1887.",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitcholl | Illinois, Pioneer hist. of. (Reynolds, J.) 1887.' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitcholl | Illinois, Pioneer hist. of. (Reynolds, J.) 1887.' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -77208,10 +78238,10 @@
   {
    "record_id": "nbi_v03_0683",
    "a": "Mitcholl | c Chicago, III., Directory, 1939. (Fergus Met, ser",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitcholl | c Chicago, III., Directory, 1939. (Fergus Met, ser' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Refused twice over. No candidate reaches 'Mitcholl' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitcholl' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitcholl | c Chicago, III., Directory, 1939. (Fergus Met, ser' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -77243,10 +78273,10 @@
   {
    "record_id": "nbi_v03_0684",
    "a": "Mitohell r | - - II (.'tir\" Icago, III, Second Pretb. Ch., I04Í-92. (Grant, Mitch",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Mitohell r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitohell r' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitohell r | - - II (.\\'tir\" Icago, III, Second Pretb. Ch., I04Í-92. (Grant, Mitch' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Refused twice over. No candidate reaches 'Mitohell r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitohell r' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitohell r | - - II (.\\'tir\" Icago, III, Second Pretb. Ch., I04Í-92. (Grant, Mitch' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -77278,10 +78308,10 @@
   {
    "record_id": "nbi_v03_0685",
    "a": "Mitohell r | — CMeago, III. ildos,,!, J, nad Klrtlund, I.) i i t f å Mitoh",
-   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell",
+   "b": "Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Mitohell r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitohell r' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitohell r | — CMeago, III. ildos,,!, J, nad Klrtlund, I.) i i t f å Mitoh' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Henry Mitchell.",
+   "rule": "Refused twice over. No candidate reaches 'Mitohell r' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mitohell r' at all. And if it were, a heading against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mitohell r | — CMeago, III. ildos,,!, J, nad Klrtlund, I.) i i t f å Mitoh' against Campbell Mitchell; Mark Mitchell; Wm Mitchell; John Mitchell; Jno. B. Mitchell; Henry Mitchell.",
    "layers": [
     "census_1840",
     "residents"
@@ -77586,10 +78616,10 @@
   {
    "record_id": "nbi_v03_0779",
    "a": "Morrison | Illinois, Pioneer hist, or, (Reynolds, J.) 1887. -",
-   "b": "Robert Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison",
+   "b": "Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold. Ruled on the card 'Morrison | Illinois, Pioneer hist, or, (Reynolds, J.) 1887. -' against Robert Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison.",
+   "rule": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold. Ruled on the card 'Morrison | Illinois, Pioneer hist, or, (Reynolds, J.) 1887. -' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison.",
    "layers": [
     "census_1840",
     "residents",
@@ -77627,10 +78657,10 @@
   {
    "record_id": "nbi_v03_0780",
    "a": "Morrison | Chicago, III, (ni,., c l , hi t.i lao-r-vll 1—3.",
-   "b": "Robert Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison",
+   "b": "Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold. Ruled on the card 'Morrison | Chicago, III, (ni,., c l , hi t.i lao-r-vll 1—3.' against Robert Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison.",
+   "rule": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold. Ruled on the card 'Morrison | Chicago, III, (ni,., c l , hi t.i lao-r-vll 1—3.' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison.",
    "layers": [
     "census_1840",
     "residents",
@@ -77668,10 +78698,10 @@
   {
    "record_id": "nbi_v03_0786",
    "a": "Morrison | • Ogle Co,, III. (Keü, H, F„ & Co,) 1878! 666.",
-   "b": "Robert Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison",
+   "b": "Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold. Ruled on the card 'Morrison | • Ogle Co,, III. (Keü, H, F„ & Co,) 1878! 666.' against Robert Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison.",
+   "rule": "Refused. 1 of the 3 card(s) heading 'Morrison' do name Chicago or Cook County and the heading is the surname of Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison exactly, but the index files every family of a surname under one heading and gives no forename, so 'Morrison' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison is a surname against a person. It waits on county_histories_kett_and_co, reynolds_pioneer_history_of_illinois, which this project does not hold. Ruled on the card 'Morrison | • Ogle Co,, III. (Keü, H, F„ & Co,) 1878! 666.' against Robert Morrison; [?]m. Morrison; [H]enry Morrison; James Morrison; Amanda Morrison; James M Morrison; Ordemus Morrison; Orsemus Morrison; T. M. Morrison; Orsemus Morrison; J. M. Morrison; Ordemus Morrison.",
    "layers": [
     "census_1840",
     "residents",
@@ -77844,6 +78874,68 @@
     ],
     "index_page": 395,
     "column": 0
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_0839",
+   "a": "Munn | Por-:.. Co , III, (Kett 4 Co., Pub.) 1877; 396. Munn f a m i l y",
+   "b": "Ge[o]. M[u]nn",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "rule": "Refused. All 2 card(s) heading 'Munn' name Illinois and neither Chicago nor Cook County, so the lead against Ge[o]. M[u]nn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Munn | Por-:.. Co , III, (Kett 4 Co., Pub.) 1877; 396. Munn f a m i l y' against Ge[o]. M[u]nn.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_munn_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0839",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1683,
+     1684
+    ],
+    "index_page": 399,
+    "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_0840",
+   "a": "Munn | — Ogie Co., III. (K»f, H n !57*ii « 3 2 . ' Crlepe",
+   "b": "Ge[o]. M[u]nn",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "rule": "Refused. All 2 card(s) heading 'Munn' name Illinois and neither Chicago nor Cook County, so the lead against Ge[o]. M[u]nn stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Munn | — Ogie Co., III. (K»f, H n !57*ii « 3 2 . ' Crlepe\" against Ge[o]. M[u]nn.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_munn_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_0840",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     1685,
+     1686
+    ],
+    "index_page": 399,
+    "column": 2
    },
    "ticket": "T-0590"
   },
@@ -78666,6 +79758,130 @@
      2326
     ],
     "index_page": 570,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_1170",
+   "a": "Patteraon | — Ogle Co., III. (Kell, H. F, 4 Co.) 1B78i r, 7. 6 Patte",
+   "b": "R. W. Patterson",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Patteraon' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Patteraon' at all. And if it were, a heading against R. W. Patterson would still be a surname against a person, which is always a refusal here. Ruled on the card 'Patteraon | — Ogle Co., III. (Kell, H. F, 4 Co.) 1B78i r, 7. 6 Patte' against R. W. Patterson.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_patteraon_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_1170",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2345,
+     2346
+    ],
+    "index_page": 583,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_1171",
+   "a": "Patteroon | Pike Co, III. (Chipman, C. C. 4 Co., Poba.) 1880,",
+   "b": "R. W. Patterson",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Patteroon' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Patteroon' at all. And if it were, a heading against R. W. Patterson would still be a surname against a person, which is always a refusal here. Ruled on the card 'Patteroon | Pike Co, III. (Chipman, C. C. 4 Co., Poba.) 1880,' against R. W. Patterson.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_patteroon_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_1171",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2347,
+     2348
+    ],
+    "index_page": 583,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_1172",
+   "a": "Patteroon | Shelby and Mtolbh fj,,, III. (Brink, MeOoaough t Ce, __ ^ ^",
+   "b": "R. W. Patterson",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Patteroon' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Patteroon' at all. And if it were, a heading against R. W. Patterson would still be a surname against a person, which is always a refusal here. Ruled on the card 'Patteroon | Shelby and Mtolbh fj,,, III. (Brink, MeOoaough t Ce, __ ^ ^' against R. W. Patterson.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_patteroon_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_1172",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2349,
+     2350
+    ],
+    "index_page": 583,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v03_1173",
+   "a": "Patteroon | _ S I . Oak Co, ill, (Bdnk, MtOorTjrh & Co., Putt.) 1981, 2 2 9 .",
+   "b": "R. W. Patterson",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Patteroon' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Patteroon' at all. And if it were, a heading against R. W. Patterson would still be a surname against a person, which is always a refusal here. Ruled on the card 'Patteroon | _ S I . Oak Co, ill, (Bdnk, MtOorTjrh & Co., Putt.) 1981, 2 2 9 .' against R. W. Patterson.",
+   "layers": [
+    "census_1840"
+   ],
+   "leads": [
+    "lead_v03_patteroon_census_1840"
+   ],
+   "person_ids": [],
+   "person_id": null,
+   "evidence": [
+    "nbi_v03_1173",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_03",
+    "text_file": "vol_03_locality_cards.txt",
+    "lines": [
+     2351,
+     2352
+    ],
+    "index_page": 583,
     "column": 1
    },
    "ticket": "T-0590"
@@ -80106,14 +81322,16 @@
   {
    "record_id": "nbi_v03_1717",
    "a": "Reynolds | I l l , a l a o lnd.x. F i; GII8.05 R",
-   "b": "Joseph Reynolds",
+   "b": "Levi Reynalds; Joseph Reynolds",
    "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Reynolds' name Illinois and neither Chicago nor Cook County, so the lead against Joseph Reynolds stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Reynolds | I l l , a l a o lnd.x. F i; GII8.05 R' against Joseph Reynolds.",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Reynolds' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Reynolds' at all. And if it were, a heading against Levi Reynalds would still be a surname against a person, which is always a refusal here. Ruled on the card 'Reynolds | I l l , a l a o lnd.x. F i; GII8.05 R' against Levi Reynalds; Joseph Reynolds.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v03_reynolds_census_1840",
     "lead_v03_reynolds_residents"
    ],
    "person_ids": [
@@ -80139,14 +81357,16 @@
   {
    "record_id": "nbi_v03_1718",
    "a": "Reynolds | ' Illinois, Pioneer hist. of. (Reynolds, J.) 1887. Ro",
-   "b": "Joseph Reynolds",
+   "b": "Levi Reynalds; Joseph Reynolds",
    "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Reynolds' name Illinois and neither Chicago nor Cook County, so the lead against Joseph Reynolds stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Reynolds | ' Illinois, Pioneer hist. of. (Reynolds, J.) 1887. Ro\" against Joseph Reynolds.",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Reynolds' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Reynolds' at all. And if it were, a heading against Levi Reynalds would still be a surname against a person, which is always a refusal here. Ruled on the card \"Reynolds | ' Illinois, Pioneer hist. of. (Reynolds, J.) 1887. Ro\" against Levi Reynalds; Joseph Reynolds.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v03_reynolds_census_1840",
     "lead_v03_reynolds_residents"
    ],
    "person_ids": [
@@ -81435,10 +82655,10 @@
   {
    "record_id": "nbi_v04_0031",
    "a": "Scott | —— Illinois, Encyelo. of biog./Gentury Co,, Pub,) ——=",
-   "b": "James N. Scott; John Scott",
+   "b": "James N. Scott; James Scott; John Scott",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Scott' name Illinois and neither Chicago nor Cook County, so the lead against James N. Scott stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Scott | —— Illinois, Encyelo. of biog./Gentury Co,, Pub,) ——=' against James N. Scott; John Scott.",
+   "rule": "Refused. All 1 card(s) heading 'Scott' name Illinois and neither Chicago nor Cook County, so the lead against James N. Scott; James Scott stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Scott | —— Illinois, Encyelo. of biog./Gentury Co,, Pub,) ——=' against James N. Scott; James Scott; John Scott.",
    "layers": [
     "census_1840",
     "residents"
@@ -81673,10 +82893,10 @@
   {
    "record_id": "nbi_v04_0101",
    "a": "Smith | ais wom Luicazo, lil, Second Prost, Ch ,1842-92, (Grant, ff.",
-   "b": "Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith",
+   "b": "Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Smith/al Smith' name Illinois and neither Chicago nor Cook County, so the lead against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Smith | ais wom Luicazo, lil, Second Prost, Ch ,1842-92, (Grant, ff.' against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith.",
+   "rule": "Refused. All 2 card(s) heading 'Smith/al Smith' name Illinois and neither Chicago nor Cook County, so the lead against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Smith | ais wom Luicazo, lil, Second Prost, Ch ,1842-92, (Grant, ff.' against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith.",
    "layers": [
     "census_1840",
     "residents",
@@ -81720,10 +82940,10 @@
   {
    "record_id": "nbi_v04_0102",
    "a": "al Smith | N —— Sangamon Go,, ill, (Power, ds G.) d/de 22, yo4-",
-   "b": "Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith",
+   "b": "Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Smith/al Smith' name Illinois and neither Chicago nor Cook County, so the lead against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'al Smith | N —— Sangamon Go,, ill, (Power, ds G.) d/de 22, yo4-' against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith.",
+   "rule": "Refused. All 2 card(s) heading 'Smith/al Smith' name Illinois and neither Chicago nor Cook County, so the lead against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'al Smith | N —— Sangamon Go,, ill, (Power, ds G.) d/de 22, yo4-' against Thomas E. Smith; Joseph H. Smith; Orson Smith; [?]. Mark Smith; Samuel Smith; [?] W. Smith; Barney Smith; Christopher Smith; James A. Smith; P. P. Smith; [W]m. Smith; Henry Smith; Robert Smith; D A Smith; E Kirby Smith; Elded Smith; George Smith; James Smith; Jeremiah Smith; L W Smith; Lawrence Smith; Matthias Smith; William Smith; William V Smith; Matthias Smith; L. W. Smith; William Smith; William V. Smith.",
    "layers": [
     "census_1840",
     "residents",
@@ -82418,14 +83638,16 @@
   {
    "record_id": "nbi_v04_0178",
    "a": "Stowell | Son — Chleago, Ill, (Ande 1, a",
-   "b": "Ralph Stowell",
+   "b": "E. C. Stowell; Ralph Stowell",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'Stowell' do name Chicago or Cook County and the heading is the surname of Ralph Stowell exactly, but the index files every family of a surname under one heading and gives no forename, so 'Stowell' against Ralph Stowell is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Stowell | Son — Chleago, Ill, (Ande 1, a' against Ralph Stowell.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'Stowell' do name Chicago or Cook County and the heading is the surname of E. C. Stowell exactly, but the index files every family of a surname under one heading and gives no forename, so 'Stowell' against E. C. Stowell is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card 'Stowell | Son — Chleago, Ill, (Ande 1, a' against E. C. Stowell; Ralph Stowell.",
    "layers": [
+    "census_1840",
     "residents"
    ],
    "leads": [
+    "lead_v04_stowell_census_1840",
     "lead_v04_stowell_residents"
    ],
    "person_ids": [

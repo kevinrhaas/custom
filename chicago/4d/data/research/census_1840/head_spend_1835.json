@@ -10,12 +10,12 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene.",
  "counts": {
-  "heads_adjudicated": 904,
-  "rulings_that_reach_a_person": 28,
-  "people_written": 28,
-  "matched": 12,
-  "candidate": 16,
-  "households_touched": 28,
+  "heads_adjudicated": 965,
+  "rulings_that_reach_a_person": 30,
+  "people_written": 30,
+  "matched": 13,
+  "candidate": 17,
+  "households_touched": 30,
   "grades_changed": 0
  },
  "people": [
@@ -50,6 +50,22 @@
     "John Bates"
    ],
    "told": "THE 1840 FEDERAL CENSUS — A HEAD FIVE YEARS AFTER THE SCENE, AND NEVER AN 1835 FACT. The 1840 federal census of Chicago, read line by line off the left sheets in this repository, carries 1 head of this name — “John Bates” (33S7-9YYJ-JM, printed page 224, line 20). This project has ruled the head a CANDIDATE and no more: the name agrees and is unique on both sides, but nothing independent of the name was found. A candidate is not an identity — nothing is asserted from it, no household of 1840 is carried back, and the ruling is recorded so that a reader can see it was made rather than missed. Under the rule that decided it (L7 candidate), by the crosswalk's own ladder (data/research/census_1840/resident_crosswalk.json). LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and an 1840 head is a second source about CONTINUED RESIDENCE rather than about who was living at Chicago on 1 July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "person_id": "bell_william_a",
+   "household_id": "hh_bell_william_a",
+   "resident_name": "William A Bell",
+   "outcome": "candidate",
+   "rules": [
+    "L7 candidate"
+   ],
+   "sheets": [
+    "33SQ-GYYJ-P5, printed page 220, line 8"
+   ],
+   "as_read": [
+    "William Bell"
+   ],
+   "told": "THE 1840 FEDERAL CENSUS — A HEAD FIVE YEARS AFTER THE SCENE, AND NEVER AN 1835 FACT. The 1840 federal census of Chicago, read line by line off the left sheets in this repository, carries 1 head of this name — “William Bell” (33SQ-GYYJ-P5, printed page 220, line 8). This project has ruled the head a CANDIDATE and no more: the name agrees and is unique on both sides, but nothing independent of the name was found. A candidate is not an identity — nothing is asserted from it, no household of 1840 is carried back, and the ruling is recorded so that a reader can see it was made rather than missed. Under the rule that decided it (L7 candidate), by the crosswalk's own ladder (data/research/census_1840/resident_crosswalk.json). LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and an 1840 head is a second source about CONTINUED RESIDENCE rather than about who was living at Chicago on 1 July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "person_id": "brown_william_h",
@@ -274,6 +290,22 @@
     "John Knight"
    ],
    "told": "THE 1840 FEDERAL CENSUS — A HEAD FIVE YEARS AFTER THE SCENE, AND NEVER AN 1835 FACT. The 1840 federal census of Chicago, read line by line off the left sheets in this repository, carries 1 head of this name — “John Knight” (33SQ-GYYJ-93G, printed page 207, line 21). This project has ruled the head a CANDIDATE and no more: the name agrees and is unique on both sides, but nothing independent of the name was found. A candidate is not an identity — nothing is asserted from it, no household of 1840 is carried back, and the ruling is recorded so that a reader can see it was made rather than missed. Under the rule that decided it (L7 candidate), by the crosswalk's own ladder (data/research/census_1840/resident_crosswalk.json). LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and an 1840 head is a second source about CONTINUED RESIDENCE rather than about who was living at Chicago on 1 July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "person_id": "loyd_alexander",
+   "household_id": "hh_loyd_alexander",
+   "resident_name": "Alexander Loyd",
+   "outcome": "matched",
+   "rules": [
+    "L6 matched"
+   ],
+   "sheets": [
+    "33SQ-GYYJ-P5, printed page 220, line 12"
+   ],
+   "as_read": [
+    "Alex[r]. Loyd"
+   ],
+   "told": "THE 1840 FEDERAL CENSUS — A HEAD FIVE YEARS AFTER THE SCENE, AND NEVER AN 1835 FACT. The 1840 federal census of Chicago, read line by line off the left sheets in this repository, carries 1 head of this name — “Alex[r]. Loyd” (33SQ-GYYJ-P5, printed page 220, line 12). This project has ruled the head a MATCH for this person: the full name agrees, it is unique on both sides, and a discriminator independent of the name — directory persistence — separately places the same person in Chicago after the 1840 book was taken. Under the rule that decided it (L6 matched), by the crosswalk's own ladder (data/research/census_1840/resident_crosswalk.json). LATER EVIDENCE ONLY. The ratified grading ladder binds: an 1839 or 1840 appearance alone is never an 1835 resident, and 1840 household composition is never back-projected to the 1835-07-01 scene. This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and an 1840 head is a second source about CONTINUED RESIDENCE rather than about who was living at Chicago on 1 July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "person_id": "merrill_george_w",

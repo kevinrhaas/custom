@@ -730,7 +730,7 @@
       "sheets": [
         {
           "sheet": "serial_crosswalk",
-          "rows": 753,
+          "rows": 814,
           "columns": 15,
           "probable_header_row": 1,
           "probable_headers": [
@@ -995,7 +995,7 @@
     "inferred": 868,
     "reconstructed": 0,
     "letter_list_only": 726,
-    "projected_residents": 712,
+    "projected_residents": 711,
     "census_1840_linked": 3
   },
   "retirement": {
