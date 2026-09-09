@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 681, title: 'A census footing corrected, and every row closes it', kind: 'change', ts: '2026-09-09T09:49:50.989Z', date: 'Sep 9, 2026, 4:49 AM CT',
+    items: [
+      'Another 1840 continuation sheet is now recorded line by line. Twenty-seven household totals add exactly to 125; three occupation footings also agree with their rows.',
+      'A coarse inventory had transposed the footing as 152 and counted its footer as another household. Both readings are corrected from the full-resolution sheet.',
+      'No named sheet passes both pairing tests, so these later counts remain unassigned and the 1835 town and resident cards are unchanged.'
+    ] },
   { v: 680, title: 'Twenty-nine more census households, with three totals unresolved', kind: 'change', ts: '2026-09-09T04:12:25.633Z', date: 'Sep 8, 2026, 11:12 PM CT',
     items: [
       'Another 1840 continuation sheet is now recorded line by line. Its occupation and school columns close exactly, while three faint family totals and the mismatch with the written population total remain explicit.',

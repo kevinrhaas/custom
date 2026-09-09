@@ -1583,3 +1583,27 @@ evidence is not used. No household identity, resident, occupation, or school fac
 is projected into 1835. Group 3 now has five continuations read line by line and
 ten images still inventoried only. T-0982 retains the remaining nine filled leaves
 and blank BH, one leaf per run. PR #1043 carries this completion.
+
+## T-0983 — continuation FS: twenty-seven households close at 125
+
+Image 58 is recorded in `pages/33SQ-GYYJ-FS.json`. Native-resolution row crops
+correct two contact-sheet inventory readings: 27 occupied TOTAL entries, not 28,
+and a written footing of 125, not 152. Three ruled positions inside the run are
+blank; the apparent twenty-eighth group was the footing below the closing rule.
+The footer's middle glyph matches the 2 repeated in the body and its last glyph
+matches the barred 5 repeated there.
+
+The 27 totals were read independently and sum to 125. Nine entries in
+manufactures and trades sum to its footing 12; inland navigation 1 and learned
+professions 1 also close. Mining, agriculture, commerce and ocean navigation are
+blank in both body and footing. Slaves, pensioners and disability are blank. A
+horizontal mark straddling a school-column rule is preserved unresolved rather
+than counted, its school footings are blank, and the bound-edge literacy column
+remains unread.
+
+The two pairing keys contain no left sheet with either 27 committed household
+lines or population 125. Printed page 240 has 27 names, but four unread age-band
+cells leave its population key unset. No candidate passes both keys, no sequence
+screen is licensed, and the continuation stays unnamed. No 1840 count is assigned
+to an 1835 resident. Six group-3 continuations are now read line by line and nine
+images remain inventoried only; T-0984 retains eight filled leaves and blank BH.
