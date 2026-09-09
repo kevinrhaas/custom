@@ -1,7 +1,7 @@
 ---
 id: T-0984
 title: The remaining eight filled continuations of images 51-74 read one leaf per run, and blank 33SQ-GYYJ-BH recorded swept-and-empty
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0982
 opened: 2026-09-08
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-09T10:23:12.056Z
 claimed_run: null
 ---
 
