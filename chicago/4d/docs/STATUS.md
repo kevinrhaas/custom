@@ -1,5 +1,28 @@
 # STATUS
 
+## T-0981 — continuation BS: twenty-nine households, unpaired
+
+Image 56 is recorded in `pages/33SQ-GYYJ-BS.json`, with all 29 occupied TOTAL
+entries and every continuation block inspected. Twenty-six family totals are
+readable and sum to 102. Lines 4, 10 and 12 remain null with alternatives 4 or
+11; the resulting conditional totals are 114, 121, 128 and 135, none equal to
+the written footing 131. The discrepancy stays recorded and no glyph is chosen
+from the arithmetic.
+
+All seven written occupation and school footings close independently: agriculture
+2, commerce 7, manufactures and trades 5, inland navigation 1, learned professions
+1, one primary/common school and 115 scholars. Mining and ocean navigation are
+blank in the body and footing. The slave, pensioner, and disability blocks are
+blank; the literacy column at the bound edge remains unread.
+
+The only available left-sheet key with 29 occupied households is printed 226,
+with population 184. The only population key of 131 is printed 208, with 30
+households. Neither passes both keys, so the sheet remains unpaired and sequence
+evidence is not used. No household identity, resident, occupation, or school fact
+is projected into 1835. Group 3 now has five continuations read line by line and
+ten images still inventoried only. T-0982 retains the remaining nine filled leaves
+and blank BH, one leaf per run. PR #1043 carries this completion.
+
 ## T-0979 — continuation 9ZK: twenty-three households, unpaired
 
 Image 53 is recorded in `pages/33SQ-GYYJ-9ZK.json`, with all 23 occupied TOTAL
