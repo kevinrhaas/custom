@@ -1,5 +1,27 @@
 # STATUS
 
+## T-0983 — continuation FS closes at 125 over twenty-seven households
+
+Image 58 is now recorded in `pages/33SQ-GYYJ-FS.json`, with every visible
+continuation block inspected. The contact-sheet inventory had counted 28 occupied
+rows and read the family footing as 152. Native-resolution row crops show 27
+occupied rows and three blank ruled positions; the apparent last row was the
+footing below the closing rule. Its glyphs read 1, 2, 5, not 1, 5, 2.
+
+The 27 family totals were read before addition and sum independently to 125.
+Manufactures and trades closes at 12, inland navigation at 1, and learned
+professions at 1. The other four industry columns, slaves, pensioners, and
+disability columns are blank in body and footing. A horizontal mark straddling a
+school-column rule remains unresolved, its school footings are blank, and the
+literacy column at the bound edge remains unread.
+
+Neither published pairing key contains a 27-household or 125-person left sheet.
+Printed 240 does have 27 names, but four unread cells leave it without a population
+key, so it cannot pass both tests. FS remains unpaired and contributes no name,
+occupation, resident, or 1835 placement. Group 3 now has six continuations read
+line by line and nine images inventoried only. T-0984 retains the remaining eight
+filled leaves and blank BH, one leaf per run. PR #1044 carries this completion.
+
 ## T-0981 — continuation BS: twenty-nine households, unpaired
 
 Image 56 is recorded in `pages/33SQ-GYYJ-BS.json`, with all 29 occupied TOTAL

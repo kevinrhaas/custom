@@ -13414,3 +13414,14 @@ evidence is not used. No household identity, resident, occupation, or school fac
 is projected into 1835. Group 3 now has five continuations read line by line and
 ten images still inventoried only. T-0982 retains the remaining nine filled leaves
 and blank BH, one leaf per run. PR #1043 carries this completion.
+
+## T-0983 — continuation FS closes and stays unpaired
+
+`33SQ-GYYJ-FS` is read line by line: 27 occupied family totals sum exactly to
+the corrected native-resolution footing 125, while manufactures 12, inland
+navigation 1 and learned professions 1 also close. The contact-sheet inventory's
+28 lines / 152 footing is corrected in place. No available left sheet passes both
+the household-count and population keys, so no sequence or identity is inferred.
+Group 3 stands at six read continuations and nine inventoried-only images. T-0984
+retains the remaining eight filled leaves and blank BH under the one-leaf-per-run
+rule; PR #1044 carries this leaf.
