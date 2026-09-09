@@ -1,4 +1,9 @@
 export const CHANGELOG = [ // newest first
+  { v: 680, title: 'Twenty-nine more census households, with three totals unresolved', kind: 'change', ts: '2026-09-09T04:12:25.633Z', date: 'Sep 8, 2026, 11:12 PM CT',
+    items: [
+      'Another 1840 continuation sheet is now recorded line by line. Its occupation and school columns close exactly, while three faint family totals and the mismatch with the written population total remain explicit.',
+      'The sheet fails the two required pairing keys, so its households stay unnamed. The 1835 town and resident cards are unchanged.'
+    ] },
   { v: 679, title: 'Another census sheet read with its gaps preserved', kind: 'change', ts: '2026-09-08T22:34:58.878Z', date: 'Sep 8, 2026, 5:34 PM CT',
     items: [
       'Twenty-three household entries on another 1840 census sheet are now recorded. Agriculture and manufacturing counts agree with the written column totals; four family totals remain explicitly unresolved.',
