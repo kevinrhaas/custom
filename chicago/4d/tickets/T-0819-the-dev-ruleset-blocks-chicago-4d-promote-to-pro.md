@@ -1,7 +1,7 @@
 ---
 id: T-0819
 title: The dev ruleset blocks chicago-4d-promote-to-prod's back-merge: it pushes to dev as github-actions[bot] and the bypass list is empty, so production cannot be promoted
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: #903 opens the back-merge PR and main carries "Promote chicago/4d dev→prod: 476 commit(s)" — production promotes
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:10.585Z
 claimed_run: null
 ---
 

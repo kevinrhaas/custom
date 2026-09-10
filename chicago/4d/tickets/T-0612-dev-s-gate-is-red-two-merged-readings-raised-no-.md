@@ -1,7 +1,7 @@
 ---
 id: T-0612
 title: dev's gate is red: two merged readings raised no ceiling, and every branch after them inherits the failure
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: measure_research_spend.py --gate exits 0 on dev
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:09.742Z
 claimed_run: null
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: T-0854
 title: The card John S. Kinzie is named from a digit: the Democrat prints 'JOHN 8. KINZIE' beside John Harris Kinzie's own trade, and the owner's R3 referral was argued on an initial the source never printed
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0844: the Kinzie digit is the premise inside T-0844's John S. Kinzie row and must be ruled before or with it
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:05.919Z
 claimed_run: null
 ---
 

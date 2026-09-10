@@ -1,18 +1,21 @@
 ---
 id: T-0037
 title: The liberties gate reads the whole Evidence panel, so a liberty saying 'Three of these' fails it
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
 effort: M
 legacy_id: null
+parent: null
 opened: 2026-08-17
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the smoke scans uncertainBlockText (smoke_renderer.mjs L12313), which is the open-questions node
 needs_bake: false
+closed_at: 2026-09-10T04:20:11.924Z
+claimed_run: null
 ---
 
 `tools/smoke_renderer.mjs` § `the panel states that once too — and counts nothing by

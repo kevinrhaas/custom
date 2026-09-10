@@ -1,7 +1,7 @@
 ---
 id: T-0952
 title: Re-lay #1009 on today's dev: printed 212 and 213 are a real reading on a 29-commit-old tree, and the mirror came off the PR surface underneath it
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: superseded: printed 212 and 213's page files (RY/RK) landed via T-0963; the 61 heads are on dev
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:12.257Z
 claimed_run: null
 ---
 

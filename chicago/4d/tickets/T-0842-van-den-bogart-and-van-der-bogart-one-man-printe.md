@@ -45,3 +45,11 @@ right answer is to use it or to decide the two are genuinely distinct.
 declared merge or a declared refusal with its reason, `--build` is re-run, and either
 `hh_vandenbogart_h` is withdrawn onto `hh_vanderbogart_henry` or it stays with a note saying
 what was read and why the two stand apart.
+
+## Folded in from T-0950 (2026-09-10) — the same Van der Bogart fold seen from the letter-list card; one ruling on three cards
+
+*T-0950: Dr Henry Van der Bogart stands on two town cards: the death notice's Henry and the letter list's H., newly visible since T-0724 taught the splitter the compound surname*
+
+Dr Henry Van der Bogart stands on two town cards: the death notice's Henry and the letter list's H., newly visible since T-0724 taught the splitter the compound surname.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)

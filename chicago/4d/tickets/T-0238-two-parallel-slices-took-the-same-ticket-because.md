@@ -1,7 +1,7 @@
 ---
 id: T-0238
 title: Two parallel slices took the same ticket, because the rule that ranks them is evaluated per-slice
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the lane runs one slice (focus.json custom slices: 1), so the per-slice ranking fault cannot occur
 needs_bake: false
+closed_at: 2026-09-10T04:20:11.248Z
+claimed_run: null
 ---
 
 Two parallel slices took the same ticket, because the rule that ranks them is evaluated

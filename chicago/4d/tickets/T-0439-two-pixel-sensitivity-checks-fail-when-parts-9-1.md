@@ -1,7 +1,7 @@
 ---
 id: T-0439
 title: Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-30
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0848: the same parts-9-12 sensitivity collapse; T-0848 carries the per-stage isolation and the filed reading
 needs_bake: false
+closed_at: 2026-09-10T04:20:05.218Z
+claimed_run: null
 ---
 
 Two pixel-sensitivity checks fail when parts 9-12 run together and pass when part 9 runs alone.

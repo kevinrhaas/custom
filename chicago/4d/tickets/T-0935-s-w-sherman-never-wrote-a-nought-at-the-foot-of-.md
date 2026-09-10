@@ -1,7 +1,7 @@
 ---
 id: T-0935
 title: S. W. Sherman never wrote a nought at the foot of 6H or 5V, so the only footing nought in the deposit is on a leaf whose hand is unestablished: settle whether 33S7-9YYJ-8D is his
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0934: both serve the one 6H schools footing
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:06.266Z
 claimed_run: null
 ---
 

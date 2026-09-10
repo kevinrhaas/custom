@@ -1,7 +1,7 @@
 ---
 id: T-0729
 title: dev's gate is red on an untouched dev again: 0 platted cross-street faces, blk_washington_clark off the ground, the southern coverage claim and the far-timber census
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the four lines are check.sh's own negative-control self-tests, which T-0763 is about; the real gates (frontage faces 34, southern --gate PASS, far-timber --gate PASS) are green
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:08.663Z
 claimed_run: null
 ---
 

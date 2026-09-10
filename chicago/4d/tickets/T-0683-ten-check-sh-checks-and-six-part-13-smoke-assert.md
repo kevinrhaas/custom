@@ -1,7 +1,7 @@
 ---
 id: T-0683
 title: Ten check.sh checks and six part-13 smoke assertions are red on dev after PR #670, on five independent causes
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: all five causes verified green on dev and part 13 smoke PASS 2026-09-09; twin of T-0522
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:09.544Z
 claimed_run: null
 ---
 

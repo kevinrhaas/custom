@@ -1,7 +1,7 @@
 ---
 id: T-0804
 title: Minifying the published mirror's JSON is a measured 1.99 MB: decide whether the record must stay readable at its own URL
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the decision was made — publish.sh minifies the residents layer (L183) and the mirror is untracked
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:11.756Z
 claimed_run: null
 ---
 

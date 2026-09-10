@@ -1,7 +1,7 @@
 ---
 id: T-0808
 title: The owner's three rulings — the site budget, kinship, and the planform of record at the forks — carried into the tickets that asked
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: #836 and #839 merged, T-0685 done, the plat corrected — the three rulings reached their tickets
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:10.919Z
 claimed_run: null
 ---
 
