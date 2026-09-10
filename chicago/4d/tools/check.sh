@@ -1269,6 +1269,24 @@ step "restamp moves the queue line it was handed, not the other one" \
 step "new --after places directly under the named ticket and moves nothing else" \
   node tools/test_ticket_after.mjs
 
+# And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
+# every origin ref before it mints, so a duplicate id is not a missing guard but
+# the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each
+# filed T-0988 ten minutes apart. The merge is clean and this gate then goes red
+# twice: on the duplicate, and on the survivor's queue line, which merge-queue.mjs
+# ate because it reconciles QUEUE.md by id. pr-lap.sh heals both, so what it heals
+# with has to be held: the side on the base never moves, references follow only
+# when they were written where the moving ticket already existed, and both sides
+# already on the base is a refusal rather than a coin toss.
+step "…and a duplicate id renumbers the branch's side, carrying only its own references" \
+  node tools/resolve_id_collisions.mjs --self-test
+
+# And the tool asked of THIS tree, not only of its fixture. Green whenever every id
+# is unique, which needs no base ref at all — the base is only consulted once there
+# is a collision to attribute, so this cannot go red for want of a fetch.
+step "no two tickets in this tree carry the same id" \
+  node tools/resolve_id_collisions.mjs --check
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
@@ -1438,8 +1456,17 @@ step "every named 1840 head still adjudicates as the pages and the pools say" \
 # `matched` or `candidate`, and 12 of the 27 cards carried the source at all — Philo
 # Carpenter, John Calhoun, Ira Couch and George W. Dole among the twelve MATCHES whose
 # cards had never been told. `measure_research_spend.py` read census_1840 as fully spent
-# throughout, because its second hop reads crosswalk.json's spelling rulings and never
-# looked at resident_crosswalk.json's heads. A meter that cannot see a hop reports it green.
+# throughout — 27 reached, 27 written — while that was true of twelve of them.
+#
+# WHY it read green is corrected here (T-0962), because the reason recorded above it was
+# wrong and a wrong reason is worse than none: it retires the question. The hop did NOT
+# fail to look at resident_crosswalk.json — `is_crosswalk()` is a substring test and that
+# file has always satisfied it, and re-running 577c2f6f5's tool over 577c2f6f5's tree
+# reproduces the 27 out of its `heads`, 12 matched + 15 candidate. What passed them is the
+# FILE-LEVEL SOURCE FALLBACK: a head stating no discriminators of its own is judged against
+# the one source id at the top of the file, and the cards already cited it from the earlier
+# bridge pass. T-0989 holds that fault, with the 817 rulings across the town it still
+# covers. A meter that cannot see a hop reports it green; so does one that asks too little.
 #
 # T-0670 met the same wall from the other side, hit the ceiling on ONE ruling and reverted
 # rather than rule. `spend_census_1840_heads.py` is that ruling taken generally: whatever
@@ -1477,6 +1504,16 @@ step "…and the audit's own assertions still fire when broken" \
 # makes an unread image fail rather than pass quietly; this makes an unruled NAME do
 # the same. It is a ratchet, not a target: reading ahead of the bridge is the method,
 # so the gap may sit where it sits and may not silently widen.
+#
+# T-0962 widened the second hop by one word. `MATCH_CONTAINERS` was written from the
+# containers dev happened to hold, so the hop read `matches` and not `matched` — and
+# church/second_presbyterian_crosswalk.json files its 82 adjudicated roll members under
+# `matched`, every one naming a household this town holds a card for. The hop did not call
+# them unwritten; it left church out of the table altogether, and a domain that is absent
+# reads as a domain with nothing to answer for. With the container read, church arrives at
+# 82 reached and 0 on a card — confirmed independently, no resident record in the town
+# cites `second_presbyterian_chicago_1892` at all. The ceiling below records that true 82
+# rather than hiding it; T-0992 pays it down.
 step "no research domain reads further ahead of the town than its baseline" \
   python3 tools/measure_research_spend.py --gate --quiet
 

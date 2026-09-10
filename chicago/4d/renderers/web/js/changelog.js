@@ -1,9 +1,38 @@
 export const CHANGELOG = [ // newest first
-  { v: 682, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T06:24:52.554Z', date: 'Sep 10, 2026, 1:24 AM CT',
+  { v: 686, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T09:08:54.299Z', date: 'Sep 10, 2026, 4:08 AM CT',
     items: [
       'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',
       'A new check reads every resident card and refuses any 1835 trade whose only cited volume is about another year. Nine cards were standing on one; eight remain, each with its reasoning written down, and the count can now only fall.',
       'The eight are all trades printed BEFORE the scene rather than after it, which the existing later-trade pointer cannot hold. They are filed as an open question rather than quietly changed.'
+    ] },
+  { v: 685, title: 'Six townspeople who were two records each, decided', kind: 'change', ts: '2026-09-10T08:40:24.222Z', date: 'Sep 10, 2026, 3:40 AM CT',
+    items: [
+      'Six pairs of resident cards that might have been one person apiece had been left undecided since the town\u2019s big consolidation. All six are now ruled in writing, and four of them fold: the town\u2019s cards fall from 1,363 people to 1,359.',
+      'Two of the four turned out not to be judgement calls at all. The \u201cmiddle initial\u201d that argued against folding Charles Hunt was the tail of the abbreviation \u201cChas.\u201d read as a second initial \u2014 and the two cards are the same advertisement for the same girls\u2019 school, printed in both town papers a fortnight apart. The one that argued against John H. Kinzie was a digit, a scanner\u2019s 8 standing where a letter was, on an advertisement for the forwarding trade that was his own.',
+      'The town\u2019s dentist is one man again: a poll-list line reading \u201cW. L. Kennicott\u201d joins the Wm. H. Kennicott who advertised from an office opposite the Exchange on Lake Street. And a Temple who let a three-storey warehouse with a wharf is Dr John Taylor Temple, on a signature line the transcription itself could not read.',
+      'Two pairs stay two, and the reason is written on both cards rather than left open. Each of the two George Walkers has his middle initial printed twice by independent hands, which is exactly what a copyist\u2019s slip cannot survive; and the William Saunders the court records is called \u201cformerly of Cook county\u201d a year before the other card\u2019s only date.',
+      'Nothing was deleted. Every folded card is kept whole and every reference to it still resolves.'
+    ] },
+  { v: 684, title: 'A directory reading checked by a second pair of eyes', kind: 'change', ts: '2026-09-10T08:02:02.498Z', date: 'Sep 10, 2026, 3:02 AM CT',
+    items: [
+      'Four forenames in the 1844 city directory are damaged in the scanner\u2019s text and were read off the photographs of the printed page instead \u2014 among them the proprietor of the Tremont House, set by the scanner as \u201cIia\u201d and read as Ira Couch. All four have now been read a second time, independently, off the same photographs. All four stand.',
+      'Each reading now records the exact box on the page it was cropped from, so anyone can go back to the line and look rather than take the reading on trust. The check that guards these readings refuses one that cites no box, or that was read by a single pair of eyes.',
+      'The citation had quoted one page size for the whole book. The scanned pages are not all the same size, and a reader following that figure would have cropped the wrong part of the page and concluded the reading was invented. Every reading now names the size of its own page.',
+      'Nothing in the 1835 town moved. The names, the matches to townspeople and the cards they sit on are unchanged.'
+    ] },
+  { v: 683, title: 'Twenty-six land purchases judged, and nine taken back off the cards', kind: 'change', ts: '2026-09-10T06:57:44.506Z', date: 'Sep 10, 2026, 1:57 AM CT',
+    items: [
+      'The federal land register names 431 purchasers around Chicago before 1837, and a mechanical rule had proposed which of them are people the town already holds. A proposal is not a judgement. The twenty-six the first reading matched have now been ruled on one by one: sixteen upheld, ten refused.',
+      'What upholds one is a token the two records SHARE \u2014 a middle initial the land office and the town clerk both print, a trade the purchase is what you would expect from, or the register\u2019s own residence column, which reads COOK on three of John Ludby\u2019s four rows.',
+      'What refuses one is a bare name on each side. Nine cards therefore LOST a paragraph they had been given: among them John Hale, whose twenty-six school-section parcels are each entered by an Ebenezer Hale as well \u2014 an open question this refuses to settle by default \u2014 and A. Garrett the auctioneer, of whose forename the town has never read a single printing.',
+      'The nearest miss is recorded rather than rounded up: a letter waited at the post office for Ira Minard on 20 May 1835, and an Ira Minard entered 161 acres north of the town five weeks later. Striking, and still two bare names.',
+    ] },
+  { v: 682, title: 'A woman who kept a house on Water Street gets a card', kind: 'change', ts: '2026-09-10T05:10:41.390Z', date: 'Sep 10, 2026, 12:10 AM CT',
+    items: [
+      'The Chicago Democrat of 19 August 1835 invites the town to a charity sale \u201cat the house of Mrs. C. Taylor, Water-st.\u201d \u2014 one of the very few private dwellings the papers ever name. The town held no card for her; it does now.',
+      'She had not been missed so much as absorbed: the name-matching that builds the research index strips the \u201cMrs.\u201d, is left with an initial, and attaches it to the one Charles Taylor the papers print. The rule written to stop a wife being folded onto her husband only catches a full forename, so an initial slipped past it. Her card records that, and the finding is filed with the two similar cases already open.',
+      'Her house is placed no further than the notice allows. The street is documented, the building is not, and the town has three streets called Water \u2014 so no division, no lot, and the reasoning is written on the card rather than guessed at.',
+      'Her arrival is bounded by the notice\u2019s own copy date of 10 August 1835, six weeks after the day this scene models, so she is recorded as of uncertain presence rather than quietly counted in. Nothing in the town moved.'
     ] },
   { v: 681, title: 'A census footing corrected, and every row closes it', kind: 'change', ts: '2026-09-09T09:49:50.989Z', date: 'Sep 9, 2026, 4:49 AM CT',
     items: [

@@ -41,12 +41,12 @@
   },
   {
    "group": "ambiguous",
-   "rulings": 19,
+   "rulings": 18,
    "why": "one 1835 person meets more than one entry, so the list names a death and cannot say which one is this person's"
   },
   {
    "group": "refusals",
-   "rulings": 259,
+   "rulings": 257,
    "why": "the surname agrees and the given initial does not, or is absent — a surname-only agreement is a refusal however good it looks"
   },
   {
@@ -341,6 +341,15 @@
    "matched_on_initial_only": false
   },
   {
+   "household_id": "hh_hunt_charles_cotesworth_pinckney",
+   "person_id": "hunt_charles_cotesworth_pinckney",
+   "record_id": "fdn0316",
+   "death_date": "1892-04-21",
+   "birth_year_earliest": 1801,
+   "birth_year_latest": 1802,
+   "matched_on_initial_only": false
+  },
+  {
    "household_id": "hh_hunter_david",
    "person_id": "hunter_david",
    "record_id": "fdn0319",
@@ -536,15 +545,6 @@
    "death_date": null,
    "birth_year_earliest": null,
    "birth_year_latest": null,
-   "matched_on_initial_only": false
-  },
-  {
-   "household_id": "hh_taylor_anson",
-   "person_id": "taylor_charles",
-   "record_id": "fdn0658",
-   "death_date": "1892-08-03",
-   "birth_year_earliest": 1835,
-   "birth_year_latest": 1836,
    "matched_on_initial_only": false
   },
   {

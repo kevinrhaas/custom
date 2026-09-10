@@ -20,7 +20,7 @@ claimed_run: null
 
 T-0872's title reads "a later trade", and the population it names no longer is one. Five of
 its eight — the Fergus 1839 cards — were repaired by other work between 2026-09-06 and
-2026-09-10, and the audit T-0990 landed
+2026-09-10, and the audit T-0994 landed
 (`python3 tools/audit_scene_window_trades.py --report`) shows what is actually left. Every
 remaining row fails T-0837's rule from the OTHER side: the cited volume is about a year
 BEFORE the scene, not after it.
@@ -74,8 +74,8 @@ card asserting that trade at `attested` for July 1835 is contradicted by the cor
 than merely unsupported by it, and that is a repair rather than a grading question.
 
 **Acceptance:** the owner's rule is recorded, and all eight rows leave
-`tools/audit_scene_window_trades.py --report` under it. The gate T-0990 wired into
+`tools/audit_scene_window_trades.py --report` under it. The gate T-0994 wired into
 `check.sh` is what proves it: the ledger may only fall.
 
-**Links:** [[T-0872]] (the parent) · [[T-0990]] (the audit and the one row the corpus
+**Links:** [[T-0872]] (the parent) · [[T-0994]] (the audit and the one row the corpus
 decided) · [[T-0837]] (the write gate) · [[T-0693]] (the later-trade pointer).

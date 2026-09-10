@@ -10,11 +10,11 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1360,
-  "matched_one_1843_entry": 119,
+  "residents_considered": 1357,
+  "matched_one_1843_entry": 120,
   "matched_more_than_one_ambiguous": 41,
-  "one_1843_entry_contested_by_two_residents": 17,
-  "surname_present_initial_absent_refused": 349,
+  "one_1843_entry_contested_by_two_residents": 15,
+  "surname_present_initial_absent_refused": 347,
   "initial_agreed_forenames_disagreed_refused": 94,
   "of_those_a_garbled_printed_forename": 1,
   "residents_left_with_no_1843_entry_by_that_refusal": 44,
@@ -22,8 +22,8 @@
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
   "could_carry_occupation": 0,
-  "could_carry_address": 83,
-  "could_carry_death_note": 81
+  "could_carry_address": 84,
+  "could_carry_death_note": 82
  },
  "matches": [
   {
@@ -3250,6 +3250,35 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "William H Kennicott",
+   "person_id": "kennicott_william_h",
+   "household_id": "hh_kennicott_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1467",
+     "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "dentist, 133 Lake",
+     "address_1843": "res same",
+     "death_note_1843": "died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6."
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "William H. Stow",
    "person_id": "stow_william_h",
    "household_id": "hh_stow_william_h",
@@ -4041,104 +4070,6 @@
      },
      {
       "key": "morrison_orsemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "W L Kennicott",
-   "person_id": "kennicott_w_l",
-   "household_id": "hh_kennicott_w_l",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1467",
-     "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "dentist, 133 Lake",
-     "address_1843": "res same",
-     "death_note_1843": "died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "William H Kennicott"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "kennicott_w_l",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "kennicott_william_h",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William H Kennicott",
-   "person_id": "kennicott_william_h",
-   "household_id": "hh_kennicott_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1467",
-     "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "dentist, 133 Lake",
-     "address_1843": "res same",
-     "death_note_1843": "died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6."
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "W L Kennicott"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "kennicott_w_l",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "kennicott_william_h",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -5980,62 +5911,6 @@
    }
   },
   {
-   "resident": "John S Kinzie",
-   "person_id": "kinzie_john_s",
-   "household_id": "hh_kinzie_john_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1500",
-     "as_printed": "Kinzie, John Harris, register U.S. land office, 82 Lake, res 243 Michigan [died, on cars near Pittsburg, Pa., June 19, 1865, aged 62.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "register U.S. land office, 82 Lake",
-     "address_1843": "res 243 Michigan",
-     "death_note_1843": "died, on cars near Pittsburg, Pa., June 19, 1865, aged 62."
-    },
-    {
-     "claim": "f1843_e1501",
-     "as_printed": "Kinzie, John Harris, jr., killed, Ft. St.Charles, Ark., June 18, 1862, a. 33",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "killed, Ft. St.Charles, Ark., June 18, 1862, a. 33",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1500",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1501",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "John Wilson",
    "person_id": "wilson_john",
    "household_id": "hh_wilson_john",
@@ -6142,6 +6017,76 @@
       "key": "f1843_e0459",
       "agrees": false,
       "why": "two trades that do not agree"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0152",
+     "as_printed": "CHAS. TAYLOR, fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly.",
+     "page": "fergus_1843_page_001",
+     "section": "business directory",
+     "trade_heading": "TAILORS AND DRAPERS",
+     "occupation_1843": "fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly",
+     "address_1843": null,
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e2411",
+     "as_printed": "Taylor, Charles, merchant tailor, 42 Clark, res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "merchant tailor, 42 Clark",
+     "address_1843": "res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e2412",
+     "as_printed": "Taylor, Charles H., currier, Johonnett, Wells & Co.",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "currier, Johonnett, Wells & Co",
+     "address_1843": null,
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "f1843_e0152",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "f1843_e2411",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "f1843_e2412",
+      "agrees": false,
+      "why": "no trade on one side"
      }
     ]
    }
@@ -7179,13 +7124,6 @@
    "surname_in_1843": "Harrington",
    "candidates": 3,
    "rule": "The surname 'Harrington' is in Fergus 1843 and no entry under it carries the initial 'C' of 'C Harrington'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "C S Hunt",
-   "person_id": "hunt_c_s",
-   "surname_in_1843": "Hunt",
-   "candidates": 1,
-   "rule": "The surname 'Hunt' is in Fergus 1843 and no entry under it carries the initial 'C' of 'C S Hunt'. A surname-only agreement is a refusal."
   },
   {
    "resident": "C. E. Townsend",
@@ -9006,13 +8944,6 @@
    "surname_in_1843": "Mack",
    "candidates": 1,
    "rule": "The surname 'Mack' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Stephen Mack'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "T Temple",
-   "person_id": "temple_t",
-   "surname_in_1843": "Temple",
-   "candidates": 1,
-   "rule": "The surname 'Temple' is in Fergus 1843 and no entry under it carries the initial 'T' of 'T Temple'. A surname-only agreement is a refusal."
   },
   {
    "resident": "T. Johnston",

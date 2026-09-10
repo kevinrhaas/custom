@@ -49,3 +49,21 @@ reach, the rule is widened with the evidence in hand, not on the strength of the
 
 **Links:** T-0723 · `tools/consolidate_resident_evidence.py` rule R6 ·
 `data/residents/card_merge_rulings.json` rule D3
+
+**A THIRD SHAPE, FOUND BY T-0960, 2026-09-10 — and it is not the same fault.** The two rows
+above are printings R6 LOOKS AT and stands down from for want of a page. `Taylor, Mrs. C.`
+(the Chicago Democrat of 19 August 1835, c007) is one R6 never looks at at all: the printed
+forename is an INITIAL, so the honorific strip leaves `Taylor, C.`, which is not the bare
+reading `Taylor, Charles` letter for letter, and R6's exact-match test — the test that is
+correct for `Mrs. Rufus B. Brown` — simply does not fire. M2 takes her instead, because an
+initial-only forename attaches to the one full forename of that surname carrying it, and
+Charles is the only C-Taylor in the corpus. So a woman printed under a female honorific was
+folded onto a man by the ordinary initial rule, with no refusal recorded anywhere.
+
+T-0960 gave her her own card by hand (`hh_taylor_c`, G1b off the Democrat) and left the
+consolidation untouched, so `identity_master.json` still spends `person_taylor_mrs_c` on
+`id_taylor_charles`. That is the third shape this ticket's last paragraph asks about, held
+here with the evidence in hand rather than widened on the strength of one row: any widening
+has to say what stops `Mrs. C. Taylor` splitting off a `Charles Taylor` the corpus prints
+without an honorific WHEN THEY REALLY ARE ONE HOUSEHOLD'S TWO READINGS — the same question
+the Haight case asks of the exact-match rule, one initial further down.

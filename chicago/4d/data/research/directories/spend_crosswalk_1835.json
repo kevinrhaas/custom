@@ -10,11 +10,11 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 587,
-  "carried": 196,
-  "matched": 391,
-  "refused": 196,
-  "distinct_people": 293,
+  "rulings": 585,
+  "carried": 197,
+  "matched": 394,
+  "refused": 191,
+  "distinct_people": 292,
   "distinct_claims": 639
  },
  "rulings": [
@@ -6957,67 +6957,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
-   "person_id": "kennicott_w_l",
-   "household_id": "hh_kennicott_w_l",
-   "resident": "W L Kennicott",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0835",
-   "claim_ids": [
-    "f1839_e0835"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "kennicott_w_l",
-   "household_id": "hh_kennicott_w_l",
-   "resident": "W L Kennicott",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1467",
-   "claim_ids": [
-    "f1843_e1467"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "kennicott_w_l",
-   "household_id": "hh_kennicott_w_l",
-   "resident": "W L Kennicott",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1006",
-   "claim_ids": [
-    "n1844_e1006"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
    "resident": "William H Kennicott",
@@ -7030,14 +6970,17 @@
    "claim_ids": [
     "f1839_e0835"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
+   "match_status": "single_entry",
+   "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
    "resident": "William H Kennicott",
@@ -7050,14 +6993,16 @@
    "claim_ids": [
     "f1843_e1467"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "match_status": "single_entry",
+   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "address"
+   ],
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
    "resident": "William H Kennicott",
@@ -7070,11 +7015,14 @@
    "claim_ids": [
     "n1844_e1006"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "match_status": "single_entry",
+   "rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W.",
    "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
+   "refused_to_carry": [
+    "address",
+    "occupation"
+   ],
+   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
    "outcome": "matched",
@@ -7438,7 +7386,7 @@
     "f1839_e0861"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -7458,7 +7406,7 @@
     "f1839_e0861"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -7468,47 +7416,6 @@
    "person_id": "kinzie_john_h",
    "household_id": "hh_kinzie_john_h",
    "resident": "John Harris Kinzie",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1843_e1500",
-    "f1843_e1501"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "kinzie_john_s",
-   "household_id": "hh_kinzie_john_s",
-   "resident": "John S Kinzie",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0861",
-   "claim_ids": [
-    "f1839_e0861"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "kinzie_john_s",
-   "household_id": "hh_kinzie_john_s",
-   "resident": "John S Kinzie",
    "volume": "fergus_1843",
    "source_id": "fergus_chicago_directory_1843",
    "source_ids": [
@@ -7540,7 +7447,7 @@
     "f1839_e0861"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -11625,6 +11532,70 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "volume": "fergus_1839",
+   "source_id": "fergus_chicago_directory_1839",
+   "source_ids": [
+    "fergus_chicago_directory_1839"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "f1839_e1464",
+    "f1839_e1465"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "volume": "fergus_1843",
+   "source_id": "fergus_chicago_directory_1843",
+   "source_ids": [
+    "fergus_chicago_directory_1843"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "f1843_e0152",
+    "f1843_e2411",
+    "f1843_e2412"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_e1747",
+    "n1844_e1748"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins C.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null

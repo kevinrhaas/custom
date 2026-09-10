@@ -12,10 +12,10 @@
       "outcomes": {
         "named_heads": 965,
         "matched": 13,
-        "candidate": 17,
-        "refused": 935
+        "candidate": 18,
+        "refused": 934
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 17 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 18 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -641,7 +641,7 @@
     {
       "a": "Ezra Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -651,7 +651,7 @@
     {
       "a": "Ezra Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -661,7 +661,17 @@
     {
       "a": "Ezra Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
+      "evidence": [
+        "33S7-9YYJ-38",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Ezra Taylor",
+      "b": "Mrs. C. Taylor",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Mrs. C. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -671,7 +681,7 @@
     {
       "a": "Ezra Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -681,7 +691,7 @@
     {
       "a": "Ezra Taylor",
       "b": "William Taylor",
-      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'William Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'William Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -691,7 +701,7 @@
     {
       "a": "Ezra Taylor",
       "b": "William H Taylor",
-      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'William H Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "rule": "'Ezra Taylor' at printed page 231 line 17 (33S7-9YYJ-38) is NOT 'William H Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -1231,7 +1241,7 @@
     {
       "a": "Dennis H. Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1241,7 +1251,7 @@
     {
       "a": "Dennis H. Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1251,7 +1261,17 @@
     {
       "a": "Dennis H. Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
+      "evidence": [
+        "33S7-9YYJ-9HY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Dennis H. Taylor",
+      "b": "Mrs. C. Taylor",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Mrs. C. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1261,7 +1281,7 @@
     {
       "a": "Dennis H. Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1271,7 +1291,7 @@
     {
       "a": "Dennis H. Taylor",
       "b": "William Taylor",
-      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'William Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'William Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1281,7 +1301,7 @@
     {
       "a": "Dennis H. Taylor",
       "b": "William H Taylor",
-      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'William H Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "rule": "'Dennis H. Taylor' at printed page 225 line 23 (33S7-9YYJ-9HY) is NOT 'William H Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -2791,7 +2811,7 @@
     {
       "a": "Col. Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Anson H. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Anson H. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2801,7 +2821,7 @@
     {
       "a": "Col. Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Charles H. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Charles H. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2811,7 +2831,17 @@
     {
       "a": "Col. Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Augustine Deodat Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Augustine Deodat Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33S7-9YYJ-JM",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "Col. Taylor",
+      "b": "Mrs. C. Taylor",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Mrs. C. Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2821,7 +2851,7 @@
     {
       "a": "Col. Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Edmund D Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'Edmund D Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2831,7 +2861,7 @@
     {
       "a": "Col. Taylor",
       "b": "William Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2841,7 +2871,7 @@
     {
       "a": "Col. Taylor",
       "b": "William H Taylor",
-      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William H Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'Col. Taylor' at printed page 224 line 5 (33S7-9YYJ-JM) is NOT 'William H Taylor': The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2891,7 +2921,7 @@
     {
       "a": "Stephen Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Anson H. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2901,7 +2931,7 @@
     {
       "a": "Stephen Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Charles H. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2911,7 +2941,17 @@
     {
       "a": "Stephen Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Augustine Deodat Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
+      "evidence": [
+        "33S7-9YYJ-JM",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Stephen Taylor",
+      "b": "Mrs. C. Taylor",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Mrs. C. Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2921,7 +2961,7 @@
     {
       "a": "Stephen Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'Edmund D Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2931,7 +2971,7 @@
     {
       "a": "Stephen Taylor",
       "b": "William Taylor",
-      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'William Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'William Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2941,7 +2981,7 @@
     {
       "a": "Stephen Taylor",
       "b": "William H Taylor",
-      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'William H Taylor': The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "rule": "'Stephen Taylor' at printed page 224 line 14 (33S7-9YYJ-JM) is NOT 'William H Taylor': The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -3141,7 +3181,7 @@
     {
       "a": "W. W. Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Anson H. Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Anson H. Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3151,7 +3191,7 @@
     {
       "a": "W. W. Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Charles H. Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Charles H. Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3161,7 +3201,17 @@
     {
       "a": "W. W. Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Augustine Deodat Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Augustine Deodat Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33S7-9YYJ-PC",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "W. W. Taylor",
+      "b": "Mrs. C. Taylor",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Mrs. C. Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3171,7 +3221,7 @@
     {
       "a": "W. W. Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Edmund D Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'Edmund D Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3181,7 +3231,7 @@
     {
       "a": "W. W. Taylor",
       "b": "William Taylor",
-      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'William Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'William Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3191,7 +3241,7 @@
     {
       "a": "W. W. Taylor",
       "b": "William H Taylor",
-      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'William H Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'W. W. Taylor' at printed page 218 line 3 (33S7-9YYJ-PC) is NOT 'William H Taylor': The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -4066,26 +4116,6 @@
         "33S7-9YYJ-W6",
         "T-0505",
         "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "John H. Kinzie",
-      "b": "John Harris Kinzie",
-      "rule": "'John H. Kinzie' at printed page 232 line 25 (33S7-9YYJ-W6) is NOT 'John Harris Kinzie': The name 'John H. Kinzie' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
-      "evidence": [
-        "33S7-9YYJ-W6",
-        "T-0505",
-        "L5 name_is_not_unique"
-      ]
-    },
-    {
-      "a": "John H. Kinzie",
-      "b": "John S Kinzie",
-      "rule": "'John H. Kinzie' at printed page 232 line 25 (33S7-9YYJ-W6) is NOT 'John S Kinzie': The name 'John H. Kinzie' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
-      "evidence": [
-        "33S7-9YYJ-W6",
-        "T-0505",
-        "L5 name_is_not_unique"
       ]
     },
     {
@@ -4991,7 +5021,7 @@
     {
       "a": "E. Taylor",
       "b": "Anson H. Taylor",
-      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Anson H. Taylor': The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Anson H. Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5001,7 +5031,7 @@
     {
       "a": "E. Taylor",
       "b": "Charles H. Taylor",
-      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Charles H. Taylor': The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Charles H. Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5011,7 +5041,17 @@
     {
       "a": "E. Taylor",
       "b": "Augustine Deodat Taylor",
-      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Augustine Deodat Taylor': The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Augustine Deodat Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-97P",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "E. Taylor",
+      "b": "Mrs. C. Taylor",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Mrs. C. Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5021,7 +5061,7 @@
     {
       "a": "E. Taylor",
       "b": "Edmund D Taylor",
-      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Edmund D Taylor': The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'Edmund D Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5031,7 +5071,7 @@
     {
       "a": "E. Taylor",
       "b": "William Taylor",
-      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'William Taylor': The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'William Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5041,7 +5081,7 @@
     {
       "a": "E. Taylor",
       "b": "William H Taylor",
-      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'William H Taylor': The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "rule": "'E. Taylor' at printed page 211 line 14 (33SQ-GYYJ-97P) is NOT 'William H Taylor': The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",

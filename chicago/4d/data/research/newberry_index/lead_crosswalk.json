@@ -19932,7 +19932,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Charles Cotesworth Pinckney Hunt; Henry N. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v02_1228",
     "nbi_v02_1229",
@@ -19946,11 +19946,6 @@
    ],
    "candidates": [
     {
-     "id": "hunt_c_s",
-     "name": "C S Hunt",
-     "rule": "exact surname"
-    },
-    {
      "id": "hunt_charles_cotesworth_pinckney",
      "name": "Charles Cotesworth Pinckney Hunt",
      "rule": "exact surname"
@@ -19962,7 +19957,6 @@
     }
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -21498,7 +21492,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; W L Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; W L Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
+   "reason": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
    "record_ids": [
     "nbi_v02_1520"
    ],
@@ -21509,11 +21503,6 @@
      "rule": "exact surname"
     },
     {
-     "id": "kennicott_w_l",
-     "name": "W L Kennicott",
-     "rule": "exact surname"
-    },
-    {
      "id": "kennicott_william_h",
      "name": "William H Kennicott",
      "rule": "exact surname"
@@ -21521,7 +21510,6 @@
    ],
    "person_ids": [
     "kennicott_m_h",
-    "kennicott_w_l",
     "kennicott_william_h"
    ],
    "works_cited": [],
@@ -33242,7 +33230,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold.",
+   "reason": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs. C. Taylor; Edmund D Taylor; William Taylor; William H Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs. C. Taylor; Edmund D Taylor; William Taylor; William H Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold.",
    "record_ids": [
     "nbi_v04_0214"
    ],
@@ -33260,6 +33248,11 @@
     {
      "id": "taylor_augustine",
      "name": "Augustine Deodat Taylor",
+     "rule": "exact surname"
+    },
+    {
+     "id": "taylor_c",
+     "name": "Mrs. C. Taylor",
      "rule": "exact surname"
     },
     {
@@ -33282,6 +33275,7 @@
     "taylor_anson_h",
     "taylor_charles",
     "taylor_augustine",
+    "taylor_c",
     "taylor_edmund_d",
     "taylor_william",
     "taylor_william_h"
@@ -49921,10 +49915,10 @@
   {
    "record_id": "nbi_v02_1228",
    "a": "Hunt | I I 1.846.1997",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | I I 1.846.1997' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | I I 1.846.1997' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -49934,7 +49928,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -49958,10 +49951,10 @@
   {
    "record_id": "nbi_v02_1229",
    "a": "Hunt | Bureau Co., Ill, « . « k C „ put.) 9 I 8 7 7 | 192,;",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | Bureau Co., Ill, « . « k C „ put.) 9 I 8 7 7 | 192,;' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | Bureau Co., Ill, « . « k C „ put.) 9 I 8 7 7 | 192,;' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -49971,7 +49964,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -49995,10 +49987,10 @@
   {
    "record_id": "nbi_v02_1230",
    "a": "Hunt | Chicego, lil. (Anl-eas, A. T.) 1334-61 ______",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | Chicego, lil. (Anl-eas, A. T.) 1334-61 ______' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | Chicego, lil. (Anl-eas, A. T.) 1334-61 ______' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50008,7 +50000,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -50032,10 +50023,10 @@
   {
    "record_id": "nbi_v02_1231",
    "a": "Hunt | Cook Co., III. tied--.--. A, T.) '384",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Hunt | Cook Co., III. tied--.--. A, T.) '384\" against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Hunt | Cook Co., III. tied--.--. A, T.) '384\" against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50045,7 +50036,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -50069,10 +50059,10 @@
   {
    "record_id": "nbi_v02_1232",
    "a": "Hunt | _tatgo, III. (Moses, J, end Kirkland, J.) IP93:",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | _tatgo, III. (Moses, J, end Kirkland, J.) IP93:' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | _tatgo, III. (Moses, J, end Kirkland, J.) IP93:' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50082,7 +50072,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -50106,10 +50095,10 @@
   {
    "record_id": "nbi_v02_1233",
    "a": "Hunt | — t.,tca;o, ill, Second Presh. Co., 1842-92 (5 „, ra",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | — t.,tca;o, ill, Second Presh. Co., 1842-92 (5 „, ra' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | — t.,tca;o, ill, Second Presh. Co., 1842-92 (5 „, ra' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50119,7 +50108,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -50143,10 +50131,10 @@
   {
    "record_id": "nbi_v02_1234",
    "a": "Hunt | DuPage Co., Ill, (BlancFard, R.) 1882i Pt.ti",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | DuPage Co., Ill, (BlancFard, R.) 1882i Pt.ti' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | DuPage Co., Ill, (BlancFard, R.) 1882i Pt.ti' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50156,7 +50144,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -50180,10 +50167,10 @@
   {
    "record_id": "nbi_v02_1235",
    "a": "Hunt | _ . tHageW Co., III. (LrBaron. W., jr., 4 Co., Porn.l IBID:",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | _ . tHageW Co., III. (LrBaron. W., jr., 4 Co., Porn.l IBID:' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunt | _ . tHageW Co., III. (LrBaron. W., jr., 4 Co., Porn.l IBID:' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50193,7 +50180,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -50217,10 +50203,10 @@
   {
    "record_id": "nbi_v02_1236",
    "a": "III Hunt | III, i Heleey Thorn.,: ( H a l , . , , j . _ , ^ . ., , j",
-   "b": "Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
+   "b": "Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'III Hunt | III, i Heleey Thorn.,: ( H a l , . , , j . _ , ^ . ., , j' against Cha[?]. Hunt; C S Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 9 card(s) heading 'Hunt/III Hunt' name Chicago or Cook County, the heading is the surname of Cha[?]. Hunt exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'III Hunt | III, i Heleey Thorn.,: ( H a l , . , , j . _ , ^ . ., , j' against Cha[?]. Hunt; Charles Cotesworth Pinckney Hunt; Henry N. Hunt.",
    "layers": [
     "census_1840",
     "residents"
@@ -50230,7 +50216,6 @@
     "lead_v02_hunt_residents"
    ],
    "person_ids": [
-    "hunt_c_s",
     "hunt_charles_cotesworth_pinckney",
     "hunt_henry_n"
    ],
@@ -74748,10 +74733,10 @@
   {
    "record_id": "nbi_v02_1520",
    "a": "Kennicott | Cook Co., Ill, (Andfrru, A..T.' 1384 , . „",
-   "b": "M H Kennicott; W L Kennicott; William H Kennicott; W. L. Kennicott",
+   "b": "M H Kennicott; William H Kennicott; W. L. Kennicott",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; W L Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; W L Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card \"Kennicott | Cook Co., Ill, (Andfrru, A..T.' 1384 , . „\" against M H Kennicott; W L Kennicott; William H Kennicott; W. L. Kennicott.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card \"Kennicott | Cook Co., Ill, (Andfrru, A..T.' 1384 , . „\" against M H Kennicott; William H Kennicott; W. L. Kennicott.",
    "layers": [
     "residents",
     "voters"
@@ -74762,7 +74747,6 @@
    ],
    "person_ids": [
     "kennicott_m_h",
-    "kennicott_w_l",
     "kennicott_william_h"
    ],
    "person_id": null,
@@ -83739,10 +83723,10 @@
   {
    "record_id": "nbi_v04_0214",
    "a": "taylor | — Chicago antiquities, (Hurlbut 4.1.) ti]",
-   "b": "Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor",
+   "b": "Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs. C. Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold. Ruled on the card 'taylor | — Chicago antiquities, (Hurlbut 4.1.) ti]' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold. Ruled on the card 'taylor | — Chicago antiquities, (Hurlbut 4.1.) ti]' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs. C. Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor.",
    "layers": [
     "census_1840",
     "residents",
@@ -83756,6 +83740,7 @@
    "person_ids": [
     "taylor_anson_h",
     "taylor_augustine",
+    "taylor_c",
     "taylor_charles",
     "taylor_edmund_d",
     "taylor_william",

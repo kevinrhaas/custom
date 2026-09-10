@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1359
+   "n": 1356
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -40,7 +40,7 @@
   "residents_matched_one_entry": 92,
   "residents_ambiguous": 32,
   "residents_contested": 23,
-  "residents_surname_only_refused": 223,
+  "residents_surname_only_refused": 222,
   "voters_matched_one_entry": 82,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 85,
@@ -3536,51 +3536,6 @@
     "grade_1835": "attested"
    },
    {
-    "name": "John S Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the 1837 entry's, and the given name of both begins J.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0498",
-      "as_printed": "James Kinzie",
-      "printed_page": 44,
-      "role": "voter",
-      "ward_1837": 4,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": true,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0707",
-      "as_printed": "JOHN H. KINZIE",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": null,
-      "voted_for": null,
-      "party": "Whig",
-      "office": "mayor",
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0749",
-      "as_printed": "J. H. Kinzie",
-      "printed_page": 40,
-      "role": "judge_of_election",
-      "ward_1837": 6,
-      "voted_for": null,
-      "party": null,
-      "office": "judge_of_election",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "kinzie_john_s",
-    "household_id": "hh_kinzie_john_s",
-    "grade_1835": "attested"
-   },
-   {
     "name": "John Wilson",
     "rule": "Surname 'Wilson' folds to the same string as the 1837 entry's, and the given name of both begins J.",
     "entries_1837": [
@@ -3656,6 +3611,39 @@
     ],
     "person_id": "kinzie_juliette",
     "household_id": "hh_kinzie_john_h",
+    "grade_1835": "attested"
+   },
+   {
+    "name": "Mrs. C. Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins C.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0415",
+      "as_printed": "Charles Taylor",
+      "printed_page": 44,
+      "role": "voter",
+      "ward_1837": 3,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     },
+     {
+      "claim": "f1839_v0740",
+      "as_printed": "Charles Taylor",
+      "printed_page": 40,
+      "role": "judge_of_election",
+      "ward_1837": 3,
+      "voted_for": null,
+      "party": null,
+      "office": "judge_of_election",
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "taylor_c",
+    "household_id": "hh_taylor_c",
     "grade_1835": "attested"
    },
    {
@@ -3921,11 +3909,6 @@
     "name": "C Harrington",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Harrington' stands in the 1837 poll and no man under it carries the initial 'C' of 'C Harrington'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "C S Hunt",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Hunt' stands in the 1837 poll and no man under it carries the initial 'C' of 'C S Hunt'. A surname-only agreement is a refusal."
    },
    {
     "name": "C. George",

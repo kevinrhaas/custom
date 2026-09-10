@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 938,
-    "residents_considered": 1359,
-    "residents_matched_one_line": 82,
-    "residents_ambiguous": 37,
-    "residents_surname_only_refused": 330
+    "residents_considered": 1356,
+    "residents_matched_one_line": 83,
+    "residents_ambiguous": 36,
+    "residents_surname_only_refused": 329
   },
   "matched": [
     {
@@ -1407,6 +1407,24 @@
       ]
     },
     {
+      "name": "Mrs. C. Taylor",
+      "person_id": "taylor_c",
+      "household_id": "hh_taylor_c",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C.",
+      "roll_lines": [
+        {
+          "record": "second_presb_0870",
+          "as_read": "Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.",
+          "admitted": "1843",
+          "how_admitted": "letter",
+          "printed_page": 203,
+          "a_married_womans_entry": true
+        }
+      ]
+    },
+    {
       "name": "Ailen D. Thacker",
       "person_id": "thacker_ailen_d",
       "household_id": "hh_thacker_ailen_d",
@@ -1879,48 +1897,6 @@
           "how_admitted": "letter",
           "printed_page": 190,
           "a_married_womans_entry": true
-        }
-      ]
-    },
-    {
-      "name": "C S Hunt",
-      "person_id": "hunt_c_s",
-      "household_id": "hh_hunt_c_s",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Hunt' folds to the same string as the roll line's, and the given name of both begins C.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0180",
-          "as_read": "Hunt, Miss Clara | Profession. | June 29, 1855.",
-          "admitted": "1855-06-29",
-          "how_admitted": "profession",
-          "printed_page": 165,
-          "a_married_womans_entry": false
-        },
-        {
-          "record": "second_presb_0181",
-          "as_read": "Hunt, Clement M. | Profession. | June 28, 1865.",
-          "admitted": "1865-06-28",
-          "how_admitted": "profession",
-          "printed_page": 165,
-          "a_married_womans_entry": false
-        },
-        {
-          "record": "second_presb_0622",
-          "as_read": "Hunt, Mrs. Caroline T. | Letter. | May 3, 1876. | Dism ssed.",
-          "admitted": "1876-05-03",
-          "how_admitted": "letter",
-          "printed_page": 190,
-          "a_married_womans_entry": true
-        },
-        {
-          "record": "second_presb_0623",
-          "as_read": "Hunt, Charles H. | Profession. | May 3, 1865. | Deceased.",
-          "admitted": "1865-05-03",
-          "how_admitted": "profession",
-          "printed_page": 190,
-          "a_married_womans_entry": false
         }
       ]
     },
@@ -5484,15 +5460,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Temple' stands on the Second Presbyterian roll and no line under it carries the initial 'P' of 'Dr Peter Temple'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "T Temple",
-      "person_id": "temple_t",
-      "household_id": "hh_temple_t",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Temple' stands on the Second Presbyterian roll and no line under it carries the initial 'T' of 'T Temple'. A surname-only agreement is a refusal."
     },
     {
       "name": "O I Thompson",

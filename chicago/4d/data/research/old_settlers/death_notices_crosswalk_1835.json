@@ -8,11 +8,11 @@
  "what_a_match_here_does_not_mean": "It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload.",
  "rule": "SURNAME must match after both are folded (case, punctuation and the transcriber's usual confusions removed), AND the first initial of the given name must match. A surname-only agreement is a REFUSAL, however good it looks. Where one 1835 person meets more than one entry the match is AMBIGUOUS and is filed as such; where two 1835 people meet one entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1360,
+  "residents_considered": 1357,
   "matched_one_entry": 62,
-  "matched_more_than_one_ambiguous": 19,
+  "matched_more_than_one_ambiguous": 18,
   "one_entry_contested_by_two_residents": 23,
-  "surname_present_initial_absent_refused": 259,
+  "surname_present_initial_absent_refused": 257,
   "matches_carrying_a_birth_year": 41,
   "matches_carrying_a_date_of_death": 56
  },
@@ -240,6 +240,34 @@
    "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
   },
   {
+   "resident": "Charles Cotesworth Pinckney Hunt",
+   "person_id": "hunt_charles_cotesworth_pinckney",
+   "household_id": "hh_hunt_charles_cotesworth_pinckney",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Hunt' folds to the same string as the entry's, and the given name of both begins C.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0316",
+     "as_read": "Hunt, Chas. Cotesworth Pinckney, died April 21, 1892, aged 90.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1892-04-21",
+     "age_as_printed": "aged 90",
+     "birth_year_earliest": 1801,
+     "birth_year_latest": 1802,
+     "birth_year_arithmetic": "The page prints the death as 'April 21, 1892' and the age as 'aged 90'. An age of 90 completed years means at least 90 and less than 91, so the birth falls between 1801-04-22 and 1802-04-21: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
    "resident": "Charles H Beaubien",
    "person_id": "beaubien_charles_h",
    "household_id": "hh_beaubien_charles_h",
@@ -259,34 +287,6 @@
      "birth_year_earliest": 1806,
      "birth_year_latest": 1807,
      "birth_year_arithmetic": "The page prints the death as '1858' and the age as 'aged 51'. An age of 51 completed years means at least 51 and less than 52, so the birth falls between 1806-01-02 and 1807-12-31: the birth year is 1806 or 1807. The subtraction is this project's; the page states no year of birth."
-    }
-   ],
-   "could_carry": [
-    "birth_year",
-    "date_of_death"
-   ],
-   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
-  },
-  {
-   "resident": "Charles H. Taylor",
-   "person_id": "taylor_charles",
-   "household_id": "hh_taylor_anson",
-   "grade_1835": "attested",
-   "occupation_1835": "carpenter",
-   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C.",
-   "resident_given_is_initial_only": false,
-   "entries": [
-    {
-     "record": "fdn0658",
-     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
-     "trade_or_office": "trunks",
-     "manner_of_death": "died",
-     "place_of_death": null,
-     "death_date": "1892-08-03",
-     "age_as_printed": "aged 56",
-     "birth_year_earliest": 1835,
-     "birth_year_latest": 1836,
-     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
     }
    ],
    "could_carry": [
@@ -1870,56 +1870,25 @@
    ]
   },
   {
-   "resident": "C S Hunt",
-   "person_id": "hunt_c_s",
-   "household_id": "hh_hunt_c_s",
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
    "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "rule": "Surname 'Hunt' folds to the same string as the entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "resident_given_is_initial_only": true,
-   "entries": [
-    {
-     "record": "fdn0316",
-     "as_read": "Hunt, Chas. Cotesworth Pinckney, died April 21, 1892, aged 90.",
-     "trade_or_office": null,
-     "manner_of_death": "died",
-     "place_of_death": null,
-     "death_date": "1892-04-21",
-     "age_as_printed": "aged 90",
-     "birth_year_earliest": 1801,
-     "birth_year_latest": 1802,
-     "birth_year_arithmetic": "The page prints the death as 'April 21, 1892' and the age as 'aged 90'. An age of 90 completed years means at least 90 and less than 91, so the birth falls between 1801-04-22 and 1802-04-21: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth."
-    }
-   ],
-   "could_carry": [
-    "birth_year",
-    "date_of_death"
-   ],
-   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
-   "contested_with": [
-    "Charles Cotesworth Pinckney Hunt"
-   ]
-  },
-  {
-   "resident": "Charles Cotesworth Pinckney Hunt",
-   "person_id": "hunt_charles_cotesworth_pinckney",
-   "household_id": "hh_hunt_charles_cotesworth_pinckney",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "rule": "Surname 'Hunt' folds to the same string as the entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "occupation_1835": "carpenter",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
    "resident_given_is_initial_only": false,
    "entries": [
     {
-     "record": "fdn0316",
-     "as_read": "Hunt, Chas. Cotesworth Pinckney, died April 21, 1892, aged 90.",
-     "trade_or_office": null,
+     "record": "fdn0658",
+     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
+     "trade_or_office": "trunks",
      "manner_of_death": "died",
      "place_of_death": null,
-     "death_date": "1892-04-21",
-     "age_as_printed": "aged 90",
-     "birth_year_earliest": 1801,
-     "birth_year_latest": 1802,
-     "birth_year_arithmetic": "The page prints the death as 'April 21, 1892' and the age as 'aged 90'. An age of 90 completed years means at least 90 and less than 91, so the birth falls between 1801-04-22 and 1802-04-21: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth."
+     "death_date": "1892-08-03",
+     "age_as_printed": "aged 56",
+     "birth_year_earliest": 1835,
+     "birth_year_latest": 1836,
+     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
     }
    ],
    "could_carry": [
@@ -1928,7 +1897,7 @@
    ],
    "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
    "contested_with": [
-    "C S Hunt"
+    "Mrs. C. Taylor"
    ]
   },
   {
@@ -2369,6 +2338,37 @@
     "Madore Benjamin Beaubien",
     "Mark Beaubien",
     "Medard Beaubien"
+   ]
+  },
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0658",
+     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
+     "trade_or_office": "trunks",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1892-08-03",
+     "age_as_printed": "aged 56",
+     "birth_year_earliest": 1835,
+     "birth_year_latest": 1836,
+     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Charles H. Taylor"
    ]
   },
   {
@@ -2903,58 +2903,6 @@
      "birth_year_earliest": 1809,
      "birth_year_latest": 1809,
      "birth_year_arithmetic": "The page prints the death as 'Nov. 18, 1874' and the age as 'aged 65½'. An age of 65 years and 6 months means at least that and less than 65 years and 7 months, so the birth falls between 1809-04-19 and 1809-05-18: the birth year is 1809. The subtraction is this project's; the page states no year of birth."
-    }
-   ],
-   "could_carry": [
-    "birth_year",
-    "date_of_death"
-   ],
-   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
-  },
-  {
-   "resident": "John S Kinzie",
-   "person_id": "kinzie_john_s",
-   "household_id": "hh_kinzie_john_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "rule": "Surname 'Kinzie' folds to the same string as the entry's, and the given name of both begins J.",
-   "resident_given_is_initial_only": false,
-   "entries": [
-    {
-     "record": "fdn0367",
-     "as_read": "Kinzie, James, died, Clyde, Iowa Co., Wis., Jan. 13, 1866, a. 62¾",
-     "trade_or_office": null,
-     "manner_of_death": "died",
-     "place_of_death": "Clyde, Iowa Co., Wis.",
-     "death_date": "1866-01-13",
-     "age_as_printed": "a. 62¾",
-     "birth_year_earliest": 1803,
-     "birth_year_latest": 1803,
-     "birth_year_arithmetic": "The page prints the death as 'Jan. 13, 1866' and the age as 'a. 62¾'. An age of 62 years and 9 months means at least that and less than 62 years and 10 months, so the birth falls between 1803-03-14 and 1803-04-13: the birth year is 1803. The subtraction is this project's; the page states no year of birth."
-    },
-    {
-     "record": "fdn0368",
-     "as_read": "Kinzie, john (Sha-ne-au-ke) Indian agent and trader, first white American settler at Chicago, 1803; died Jan. 6, 1828, a. 65-0-14",
-     "trade_or_office": "first white American settler at Chicago, 1803",
-     "manner_of_death": "died",
-     "place_of_death": null,
-     "death_date": "1828-01-06",
-     "age_as_printed": "a. 65-0-14",
-     "birth_year_earliest": 1762,
-     "birth_year_latest": 1762,
-     "birth_year_arithmetic": "The page prints the death as 'Jan. 6, 1828' and the age as 'a. 65-0-14'. An age printed to the day is exact: 65 years, 0 months and 14 days back from the death, so the birth falls between 1762-12-23 and 1762-12-23: the birth year is 1762. The subtraction is this project's; the page states no year of birth."
-    },
-    {
-     "record": "fdn0369",
-     "as_read": "Kinzie, John Harris, jr., died, Ft. St. Charles, Ark., June 17, 1863, aged 24 2/3",
-     "trade_or_office": "jr",
-     "manner_of_death": "died",
-     "place_of_death": "Ft. St. Charles, Ark.",
-     "death_date": "1863-06-17",
-     "age_as_printed": "aged 24 2/3",
-     "birth_year_earliest": 1838,
-     "birth_year_latest": 1838,
-     "birth_year_arithmetic": "The page prints the death as 'June 17, 1863' and the age as 'aged 24 2/3'. An age of 24 years and 8 months means at least that and less than 24 years and 9 months, so the birth falls between 1838-09-18 and 1838-10-17: the birth year is 1838. The subtraction is this project's; the page states no year of birth."
     }
    ],
    "could_carry": [
@@ -4859,13 +4807,6 @@
    "rule": "The surname 'Mack' is in Fergus's death notices and no entry under it carries the initial 'S' of 'Stephen Mack'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
-   "resident": "T Temple",
-   "person_id": "temple_t",
-   "surname_in_the_list": "Temple",
-   "candidates": 1,
-   "rule": "The surname 'Temple' is in Fergus's death notices and no entry under it carries the initial 'T' of 'T Temple'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
-  },
-  {
    "resident": "T. M. Morrison",
    "person_id": "morrison_t_m",
    "surname_in_the_list": "Morrison",
@@ -4955,13 +4896,6 @@
    "surname_in_the_list": "Clarke",
    "candidates": 5,
    "rule": "The surname 'Clarke' is in Fergus's death notices and no entry under it carries the initial 'W' of 'W B Clarke'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
-  },
-  {
-   "resident": "W L Kennicott",
-   "person_id": "kennicott_w_l",
-   "surname_in_the_list": "Kennicott",
-   "candidates": 3,
-   "rule": "The surname 'Kennicott' is in Fergus's death notices and no entry under it carries the initial 'W' of 'W L Kennicott'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "W. Kimball",

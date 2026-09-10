@@ -445,6 +445,40 @@
   },
   {
    "outcome": "merged",
+   "person_id": "hunt_charles_cotesworth_pinckney",
+   "folded_person_id": "hunt_c_s",
+   "rule": "C5",
+   "cluster": "hunt-c",
+   "record_ids": [
+    "person_hunt_c_harle_s"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0844: 'hunt_c_s' and 'hunt_charles_cotesworth_pinckney' are one person under rule C5; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'hunt-c'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "kennicott_william_h",
+   "folded_person_id": "kennicott_w_l",
+   "rule": "C4",
+   "cluster": "kennicott",
+   "record_ids": [
+    "poll_1835_038"
+   ],
+   "domains": [
+    "civic"
+   ],
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence": "T-0844: 'kennicott_w_l' and 'kennicott_william_h' are one person under rule C4; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'kennicott'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "kimberly_edmund_s",
    "folded_person_id": "kimberly_e_s",
    "rule": "C0",
@@ -511,6 +545,23 @@
     "chicago_american_1835"
    ],
    "evidence": "T-0839: 'kinzie_j_h' and 'kinzie_john_h' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'kinzie-john'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "kinzie_john_h",
+   "folded_person_id": "kinzie_john_s",
+   "rule": "C3",
+   "cluster": "kinzie-john",
+   "record_ids": [
+    "person_john_s_kinzie"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0844: 'kinzie_john_s' and 'kinzie_john_h' are one person under rule C3; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'kinzie-john'."
   },
   {
    "outcome": "merged",
@@ -778,6 +829,23 @@
     "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'temple_j_t' and 'temple_john_t' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'temple'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "temple_john_t",
+   "folded_person_id": "temple_t",
+   "rule": "C6",
+   "cluster": "temple",
+   "record_ids": [
+    "person_t_temple"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0844: 'temple_t' and 'temple_john_t' are one person under rule C6; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'temple'."
   }
  ]
 }

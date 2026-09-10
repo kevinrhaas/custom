@@ -110,3 +110,53 @@ which are structures rather than trades and belong with the roof programme. Not 
 figure: 3,297 is already in the repository from the Democrat of 1835-07-01 and the American of
 1835-06-08 and 06-27, and `docs/LIBERTIES.md` L1 carries ~3,265 from Andreas's November count —
 **those two numbers being different is worth one sentence in this ticket's PR, not a ticket.**
+
+## 2026-09-10 — THE OWNER RULES ON THE DATE, so this ticket SPENDS as well as measures
+
+> "I think we are ok to populate some of those and create them even though the scene date is
+> not perfect … We are making a reconstruction and it won't be perfect but we have good
+> inferences like this."
+
+The measurement below stands; what changes is that the shortfall is now **workable** rather
+than a number to hand to somebody else. The liberty it rests on is **T-0404**, ruled the same
+day. Three things follow, and the third is the surprise.
+
+**1. The count-shortfall is the backdating class, and it is real work.** 44 stores against 38,
+22 lawyers against 19, 14 physicians against 8. T-0356 already retired the
+`first_evidence_after_scene_date` exclusion, and 33 businesses stand in the July town on that
+assumption today. Bringing a business documented in the autumn into the July town is the SAME
+liberty, now written down. Do it where a source **names** the business.
+
+**2. Where the census counts more than the sources name, the ceiling is anonymous stock, not a
+new named business.** The owner's own 2026-09-02 ruling governs this and it is not overturned:
+he retired the reconstructed resident population — *"remove any pre-existing reconstructed
+people from the resident list and household"* — and, asked what to do with the roofs raised for
+them, ruled *"Keep as anonymous stock"*. `1835_inferred_household_programme.json` is the worked
+precedent, including its own rule: **"Never infer a person where a documented one is
+available."** A gap of six stores is six anonymous store-units at most; it is never six invented
+storekeepers.
+
+**3. THE THREE CLASSES THE TOWN HOLDS NOTHING FOR ALL RESOLVE AGAINST A NEW BUILDING**, and the
+evidence for that is better than the census. Checked before spending anything:
+
+| class | what the corpus says | what to do |
+|---|---|---|
+| **bank** | `chicago_american_1835_06_27` c001, five days BEFORE the scene: the State Bank has *determined* on a Chicago branch and "the officers … have not been made known"; Hubbard's branch takes a corner of his warehouse in **1836** | **do not create.** A date liberty cannot outrank a notice of absence |
+| **lyceum** | instituted 2 December 1834, meeting in the town, "the oldest literary society in the place" — **no venue recorded** (`n1844_tf_054`, `bk_fer_050`) | an institution, not a roof: record it and link it |
+| **reading room** | directors met at the **Tremont House, 6 July 1835**, to raise $2,500-3,000 for a building; seven weeks later the books are still "deposited at [?] House" (`..._07_11` c001, `..._08_22` c005) | an institution **without premises, documented and negative**: record it, link it to the Tremont House and to Henry Moore, its secretary |
+| **lottery office** | the census line and nothing else | leave as a documented absence |
+
+That is the owner's *"help associate link these with the residents"* arriving in a better form
+than a building: **two societies of the scene year, their meeting place, and a named officer.**
+
+**Acceptance, added to the six above:**
+
+7. The count-shortfall classes are spent where a source names the business, on T-0404's
+   liberty, each record saying it stands on it.
+8. The Lyceum and the Reading Room are recorded as **institutions**, with the Reading Room
+   linked to the Tremont House and to Henry Moore, and **neither is given a building.**
+9. The bank and the lottery office are recorded as **documented absences** citing the notices
+   above. Nothing invents either.
+10. **No named person or named business is created that no source names.** A gap the sources do
+    not fill is anonymous stock under the 2026-09-02 ruling, or it is left as a measured gap.
+
