@@ -363,6 +363,68 @@ def resident_names() -> list:
     return out
 
 
+def merged_card_surnames() -> list:
+    """(surname a town card printed, the person that card was RULED to be), for every
+    ratified card merge that folded a DIFFERENTLY SPELLED surname (T-1001).
+
+    The register spells a purchaser the way its clerk heard him, and so did every list
+    the town's cards were minted from. Where two of those spellings turned out to be one
+    man, `data/residents/card_merge_rulings.json` says so and
+    `tools/consolidate_town_cards.py --apply` lands it: the folded card leaves
+    `households/`, its record is kept whole under `merged/`, and `index.json`'s `merged`
+    table redirects the id. That table remembers the NAME the folded card carried, which
+    is the thing this function needs — because after a merge the surname the register
+    printed can vanish from the residents layer entirely, and a purchaser the town has
+    already adjudicated then reaches nobody.
+
+    KIMBERLEY EDMUND S is the case it was written for. `kimberley_ed` folded onto
+    `kimberly_edmund_s` under C9, and with it went the only Kimberley the layer held; the
+    register still prints KIMBERLEY, and without this the entry would be lost to a letter.
+
+    THIS IS NOT A FOLD AND MUST NEVER BECOME ONE. Nothing here compares two spellings or
+    measures a distance between them: it reads a WRITTEN RULING that a specific card of
+    that specific spelling names a specific person. T-1001 measured what a mechanical
+    one-letter fold would do to this domain instead — a new rival for 200 of the 427
+    named purchaser spellings, 42 proposals changing shape, 18 hand rulings undercut —
+    and `tools/measure_surname_fold.py` prints the table. Ruled, one card at a time, on a
+    page: never inferred from a resemblance.
+    """
+    index = load(RESIDENTS / "index.json")
+    table = index.get("merged") or []
+    forward = {e["person"]: e.get("merged_into_person") for e in table}
+
+    def survivor_of(pid, seen=None):
+        seen = seen or set()
+        while pid in forward and pid not in seen:
+            seen.add(pid)
+            pid = forward[pid]
+        return pid
+
+    live = {}
+    for entry in index.get("households") or []:
+        path = RESIDENTS / entry["file"]
+        if not path.exists():
+            continue
+        for person in load(path).get("persons") or []:
+            if person.get("id") and (person.get("name") or "").split():
+                live[person["id"]] = person["name"].split()[-1].upper()
+    out = []
+    for entry in table:
+        name = entry.get("name") or ""
+        if not name.split():
+            continue
+        surname = name.split()[-1].upper()
+        survivor = survivor_of(entry.get("merged_into_person"))
+        # The survivor must still be a person the layer holds — a merge onto a card that
+        # was itself later folded is followed above, and a dangling one is simply skipped.
+        # And the spelling must actually DIFFER: forty-eight of the forty-nine merges the
+        # town has landed fold a card of the same surname, and those add nothing at all.
+        if survivor not in live or live[survivor] == surname:
+            continue
+        out.append((surname, survivor, entry.get("person")))
+    return out
+
+
 def load_rulings(domain: Path) -> dict:
     """The hand-authored rulings, keyed by the purchaser spelling they rule on.
 
@@ -504,6 +566,24 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
     by_surname = {}
     for pid, name, hh in people:
         by_surname.setdefault(name.split()[-1].upper(), []).append((pid, name, hh))
+    # T-1001. A SURNAME THE TOWN'S OWN CARD PRINTED STILL GATHERS THE MAN IT WAS RULED TO
+    # BE. A landed card merge can take the register's spelling out of the residents layer
+    # altogether — `kimberley_ed` folded onto `kimberly_edmund_s` and the layer's only
+    # Kimberley went with it — and a purchaser this project has already adjudicated would
+    # then be refused against nobody. The person is gathered under the folded card's
+    # surname and weighed by the ordinary forename rule, with his LIVE card's name, so
+    # nothing about the decision is special-cased: only which bucket he stands in. See
+    # `merged_card_surnames` for why this is a ruling and not a fold.
+    by_person = {pid: (pid, name, hh) for pid, name, hh in people}
+    via_merge = {}
+    for surname, survivor, folded in merged_card_surnames():
+        row = by_person.get(survivor)
+        if not row:
+            continue
+        bucket = by_surname.setdefault(surname, [])
+        if all(c[0] != survivor for c in bucket):
+            bucket.append(row)
+            via_merge[(surname, survivor)] = folded
     matches, refusals, firms = [], [], []
     sales_of = {}
     for row in rows:
@@ -637,6 +717,16 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
         why = "in full" if grade == "forename_agrees" else "as an initial only"
         proposed = "%s matches %s: %s, and the forename agrees %s." % (
             as_read, name, ruling["why"], why)
+        # T-1001. Say so where the surname reached this person through a RULED card merge
+        # rather than off his live card, because the sentence above would otherwise read
+        # as if the layer still spelled him the register's way, and it does not.
+        folded_card = via_merge.get((surname, pid))
+        if folded_card:
+            proposed += (" The surname reaches him through a ruled card merge and not off "
+                         "his card: the town held %s until data/residents/"
+                         "card_merge_rulings.json folded it onto this person, and the "
+                         "register's spelling is the one that card carried."
+                         % folded_card)
         # THE RULING, if one has been made — and it is a SECOND decision, not this one.
         # `namesake.choose` above says which person of the surname a reading names; it
         # PROPOSES, and tools/spend_land_sales.py re-adjudicates nothing by its own rule
@@ -666,6 +756,7 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
             "household_id": hh,
             "match": grade,
             "rule": proposed,
+            "via_card_merge": folded_card,
             "rivals": ruling["rivals"] if len(candidates) > 1 else [],
             # EVERY row of the spelling, not the first (T-0700). The register states
             # residence per row, and Frank Dill's second row is the one that says COOK.
@@ -1236,6 +1327,56 @@ def self_test() -> int:
         if not check(d, quiet=True):
             print("SELF-TEST: a changed deposit did not fail the gate"); return 1
         fired.append("a changed deposit fails the gate")
+
+    # T-1001 — THE SURNAME A RULED CARD MERGE TOOK OUT OF THE LAYER. These run on a
+    # synthetic residents layer rather than the committed one, because the committed one
+    # is what the assertion is meant to survive the editing of.
+    with tempfile.TemporaryDirectory() as td:
+        fake = Path(td) / "residents"
+        (fake / "households").mkdir(parents=True)
+        (fake / "households" / "hh_one.json").write_text(json.dumps({
+            "id": "hh_one",
+            "persons": [{"id": "kimberly_edmund_s", "name": "Dr Edmund Stoughton Kimberly"},
+                        {"id": "allen_lieut_james", "name": "Lieut. James Allen"}]}),
+            encoding="utf-8")
+        (fake / "index.json").write_text(json.dumps({
+            "households": [{"file": "households/hh_one.json"}],
+            "merged": [
+                # the case: a DIFFERENT spelling, folded onto a person the layer holds
+                {"person": "kimberley_ed", "name": "Ed Kimberley",
+                 "merged_into_person": "kimberly_edmund_s"},
+                # the same surname, folded — adds nothing and must not be carried
+                {"person": "allen_james", "name": "James Allen",
+                 "merged_into_person": "allen_lieut_james"},
+                # a chain: the middle card was folded onward, and the end of it is what counts
+                {"person": "kimberlie_e", "name": "E Kimberlie",
+                 "merged_into_person": "kimberley_ed"},
+                # a card folded onto somebody the layer no longer holds at all
+                {"person": "ghost_a", "name": "A Ghost",
+                 "merged_into_person": "nobody_at_all"},
+            ]}), encoding="utf-8")
+        real, globals()["RESIDENTS"] = RESIDENTS, fake
+        try:
+            got = merged_card_surnames()
+        finally:
+            globals()["RESIDENTS"] = real
+        by_surname = {row[0]: row[1] for row in got}
+        if by_surname.get("KIMBERLEY") != "kimberly_edmund_s":
+            print("SELF-TEST: a ruled card merge must leave its own surname gathering the "
+                  "person it was ruled to be"); return 1
+        fired.append("a folded card's surname still gathers the person it was ruled to be")
+        if "ALLEN" in by_surname:
+            print("SELF-TEST: a merge of the same surname adds nothing and must not be "
+                  "carried — it would put one man in his own bucket twice"); return 1
+        fired.append("a merge that does not change the spelling is not carried")
+        if by_surname.get("KIMBERLIE") != "kimberly_edmund_s":
+            print("SELF-TEST: a card folded onto a card that was itself folded must "
+                  "follow the chain to the person the layer actually holds"); return 1
+        fired.append("a chain of merges resolves to the surviving person")
+        if "GHOST" in by_surname:
+            print("SELF-TEST: a merge onto somebody the layer does not hold must be "
+                  "skipped, not proposed"); return 1
+        fired.append("a merge onto a person the layer has lost is skipped")
 
     print("read_land_sales --self-test: %d assertions fire when broken" % len(fired))
     for f in fired:

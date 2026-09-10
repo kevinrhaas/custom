@@ -59,22 +59,22 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6830,
+  "identities": 6829,
   "by_grade": {
    "None": 38,
    "not_1835_resident": 4409,
    "inferred": 1935,
-   "attested": 448
+   "attested": 447
   },
   "by_subtype": {
-   "None": 5126,
+   "None": 5125,
    "projected_resident": 1704
   },
   "by_rule": {
    "G5": 38,
    "G0": 4409,
    "G3": 1703,
-   "G1b": 376,
+   "G1b": 375,
    "G2b": 39,
    "G1a": 51,
    "G1c": 21,
@@ -3557,9 +3557,8 @@
   {"identity":"id_kimball_sheridan","name":"Sheridan Kimball","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_kimball_sheridan"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_kimball_walter","name":"Walter Kimball","canonical_person_id":"kimball_walter","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e1486","census_1840:33S7-9YYJ-RC:2","newspapers:person_kimball_w","newspapers:person_w_kimball"],"evidence_classes":["census_1840","directory_1843","newspaper_1833_1835","town_layer"]},
   {"identity":"id_kimbell_martin_nelson","name":"Martin Nelson Kimbell","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1487"],"evidence_classes":["directory_1843"]},
-  {"identity":"id_kimberley_ed","name":"Ed Kimberley","canonical_person_id":"kimberley_ed","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-99F:3","newspapers:person_e_s_kimberley"],"evidence_classes":["census_1840","newspaper_1833_1835","town_layer"]},
   {"identity":"id_kimberly_edmund_s","name":"Edmund S Kimberly","canonical_person_id":null,"rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_edmund_s_kimberly"],"evidence_classes":["newspaper_1833_1835"]},
-  {"identity":"id_kimberly_edmund_stoughton","name":"Edmund Stoughton Kimberly","canonical_person_id":"kimberly_edmund_s","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_063","newspapers:person_e_s_kimberly","civic:poll_1833_016","civic:poll_1834_064","civic:poll_1835_039","civic:tax_1833_057","directories:f1843_e1488"],"evidence_classes":["directory_1843","newspaper_1833_1835","poll_1833","poll_1834","poll_1835","tax_1833","town_layer"]},
+  {"identity":"id_kimberly_edmund_stoughton","name":"Edmund Stoughton Kimberly","canonical_person_id":"kimberly_edmund_s","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-99F:3","newspapers:person_e_s_kimberley","civic:poll_1834_063","newspapers:person_e_s_kimberly","civic:poll_1833_016","civic:poll_1834_064","civic:poll_1835_039","civic:tax_1833_057","directories:f1843_e1488"],"evidence_classes":["census_1840","directory_1843","newspaper_1833_1835","poll_1833","poll_1834","poll_1835","tax_1833","town_layer"]},
   {"identity":"id_kimberly_ira","name":"Ira Kimberly","canonical_person_id":"kimberly_ira","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["civic:tax_1833_058","civic:poll_1835_040"],"evidence_classes":["poll_1835","tax_1833","town_layer"]},
   {"identity":"id_kimberly_john_ellis","name":"John Ellis Kimberly","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0360"],"evidence_classes":["death_notice"]},
   {"identity":"id_kimberly_osa","name":"Osa Kimberly","canonical_person_id":"kimberly_osa","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1834_065"],"evidence_classes":["poll_1834","town_layer"]},

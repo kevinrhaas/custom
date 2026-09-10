@@ -1,7 +1,7 @@
 ---
 id: T-1001
 title: Two cards for one physician, and the fold that hid it: KIMBERLEY EDMUND S is upheld against 'Ed Kimberley' while the layer also holds Dr Edmund Stoughton Kimberly, whom namesake.py's exact surname fold never gathers
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-10
+pr: 1079
+claimed_by: run 9/10/2026, 1:33:32 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-10T19:02:37.172Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34509743375
 ---
 
 Two cards for one physician, and the fold that hid it: KIMBERLEY EDMUND S is upheld against 'Ed Kimberley' while the layer also holds Dr Edmund Stoughton Kimberly, whom namesake.py's exact surname fold never gathers.

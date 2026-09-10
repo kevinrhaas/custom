@@ -1973,6 +1973,15 @@ step "the land tract sales re-derive from their committed deposit" \
 step "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
 
+# T-1001. The surname fold is EXACT, and the measurement that says it should stay exact
+# is the only thing standing between this domain and a fold that looks kinder and costs
+# 24 correct matches. The counts move whenever the residents layer grows, so they are not
+# gated for equality — what is gated is the distance function they rest on and the fact
+# that the measurement still runs at all. A one_letter_apart() that quietly stopped
+# firing would report "no cost" and read as a licence.
+step "the surname-fold measurement still measures something, on a distance that holds" \
+  python3 tools/measure_surname_fold.py --self-test
+
 # T-0609. The register describes a tract; the structures carry a footprint; the join
 # between them is a CONSTRUCTION, not a trace — the PLSS grid is carried from the single
 # committed corner at State & Madison on the plat's own bearing (L219). Two things can go

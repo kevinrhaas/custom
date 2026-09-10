@@ -109,7 +109,6 @@
 
 T-0991 — Eight cards assert an 1835 trade out of a PRE-scene printing, and T-0693's later_occupation pointer cannot hold one: blank the field, or regrade it reconstructed?
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
-T-1001 — Two cards for one physician, and the fold that hid it: KIMBERLEY EDMUND S is upheld against 'Ed Kimberley' while the layer also holds Dr Edmund Stoughton Kimberly, whom namesake.py's exact surname fold never gathers
 T-0993 — Francis Gurtrey Blanchard has two cards: Fergus 1843 prints the man T-0990 ruled on, and 'Gantry Blanchard' is very likely the same person
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-0988 — The December 1835 State census counted the town's trades and this project has never held a denominator: 44 stores, 8 taverns, 22 lawyers, 14 physicians and eleven more classes, against a business layer whose trade field is free prose
@@ -335,3 +334,4 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
 T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
 T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
+T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
