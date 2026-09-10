@@ -17,7 +17,9 @@
     "D2": "A DATE CONTRADICTION. One card's person is dead, or absent, on a day the other's is documented alive in the town.",
     "C5": "THE TRANSCRIBER NAMED HIM, IN BRACKETS. A reading that carries a bracketed forename — 'Hubbard, [Henry] G.' — is an editorial expansion by whoever transcribed the source: somebody looked at the page and said who this is. That names the person directly, so it outranks any inference drawn from the initials, and in particular it settles a cluster C2 would REFUSE for having two rivals. The bracket is evidence about identity; the initial is only evidence about spelling. Applied no further than a forename the transcription itself supplies.",
     "U1": "UNDECIDED, AND THE QUESTION IS FILED. Two cards a candidate test joins where the answer needs a reading of the page rather than a rule — both readings are stated, neither is taken, and a ticket owns it. An undecided cluster still satisfies the gate, because the gate asks that a cluster be WEIGHED, not that it be merged.",
-    "D3": "A FEMALE HONORIFIC ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not Rufus Brown. The honorific is stripped before two names are compared, which leaves the husband's forename tokens standing on both readings and makes the pair identical; a woman whose only printed name is her husband's is a real and common shape in this corpus and she is never her husband. The refusal is the card-side statement of R6 in tools/consolidate_resident_evidence.py, which holds the two identities apart in the derivation, and it fires on the same evidence: a SOURCE that prints both readings as separate entries (T-0723)."
+    "D3": "A FEMALE HONORIFIC ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not Rufus Brown. The honorific is stripped before two names are compared, which leaves the husband's forename tokens standing on both readings and makes the pair identical; a woman whose only printed name is her husband's is a real and common shape in this corpus and she is never her husband. The refusal is the card-side statement of R6 in tools/consolidate_resident_evidence.py, which holds the two identities apart in the derivation, and it fires on the same evidence: a SOURCE that prints both readings as separate entries (T-0723).",
+    "D4": "THE CARDS STAY TWO BECAUSE NOTHING JOINS THEM. Two printings of one surname whose middle initials disagree, where C4 cannot fire — either no anchor exists, or the anchor's own record cannot reach the other card's date. This is NOT a claim that the town held two men of the name: it is the ruling that nothing reached folds them, and the record is carried as it is printed, which is the state the cards are already in. `for_merge` is kept verbatim so the argument survives its refusal and a later anchor can reopen it. R3 named this shape and referred it to the owner; T-0844 rules it instead, because a ballot between two guesses on no evidence is not a decision the owner is better placed to make than the rule is, and tickets/README.md holds `blocked-owner` to rights, licensing, money and what the project is.",
+    "C6": "A MIDDLE INITIAL STANDING ALONE, OVER AN ANCHOR THE SAME SOURCE PRINTS WITH BOTH INITIALS. All four of: the lone token is a forename initial for NO bearer in the cluster; exactly one documented bearer of the surname carries it as a middle initial; the same source prints that man with both initials, so the loss the fold supposes is one the source itself demonstrates; and the printing the folded card was minted from is flagged uncertain by its own extraction. Written for T-0844's Temple row and deliberately too narrow to reach a stray middle initial anywhere else — drop any one of the four conditions and the card stays where it is. This is the rule T-0839 declined to invent, written with the guard it wanted."
   },
   "deferred": [
     {
@@ -162,15 +164,16 @@
           "for_merge": "The surname, and the letter J."
         },
         {
-          "state": "undecided",
-          "referred_to": "owner",
-          "rule": "R3",
-          "members": [
-            "kinzie_john_s",
-            "kinzie_john_h"
+          "state": "merge",
+          "rule": "C3",
+          "ticket": "T-0844",
+          "survivor": "kinzie_john_h",
+          "folded": [
+            "kinzie_john_s"
           ],
-          "for_merge": "'John S. Kinzie', printed once by the Democrat on 10 December 1833, is the forename of the documented John Harris Kinzie and the town holds no other John Kinzie in 1835.",
-          "against_merge": "The middle initial S contradicts H, and the Kinzie surname is precisely the one T-0839 warns about: four Kinzie men stand on the town's cards and this project has already mis-folded a Kinzie once (T-0732). C4 would fire here on a surname with one documented bearer of the forename; it is withheld because the owner named this family as the trap. His call."
+          "for": "THE CONTRADICTING MIDDLE INITIAL WAS NEVER PRINTED — IT IS A DIGIT. (T-0854, folded into T-0844 and ruled here.) chicago_democrat_1833_12_10#c012 transcribes the advertisement as 'TO LOAN, / JOHN 8. KINZIE, / [F]orwarding & Commission [MERCHANT] / CHICAGO—ILLINOIS', and the `as_printed` string the extraction records is 'JOHN 8. KINZIE'. `8` is a digit, and no compositor set a digit inside a personal name; the lines around it come off the same scan as 'WIBRORA TT' and '[uncertain: orwarding & Commission | Fi]', so the reading at this spot is demonstrably wrecked. 'John S. Kinzie' is the extractor's NORMALISATION of that digit and no witness supplies the S. This is the fourth instance of the digit-for-letter fault T-0721 holds — '8. G. Abbot', 'A. 8. Perry', 'James I1. Gabbs' — and the first that reached a card. WHAT IS LEFT ONCE THE S GOES is a card minted from one printing of 'John [unread]. Kinzie, forwarding and commission merchant, Chicago—Illinois'. Four Kinzie men stand on the town's cards — James, John H., Robert A. and this one — and John Harris Kinzie is the only bearer of the forename John. His own card's `works_at` is `jh_kinzie_forwarding_store`, from his own 1834 advertisement in the same paper: the trade printed beside the unread initial is his trade. That is C3, a bare forename onto an anchor, corroborated by the trade INDEPENDENTLY of the initials — the same corroboration T-0732 required, and cited, for the R. A. Kinzie merge in this cluster.",
+          "against": "The Kinzie surname is the one T-0839 named as this project's trap, and T-0732 records a Kinzie mis-fold. The guard against repeating it is that nothing here rests on the surname: data/research/books/crosswalk.json's rule — nothing merged, linked or graded on a shared surname — governs, and this fold is made on the forename and the trade. The elder John Kinzie, dead in 1828, is held by no record in this project and is not a rival. T-0854 said the merge stayed the owner's call; T-0844 is the ticket that makes it, and tickets/README.md holds `blocked-owner` to rights, licensing, real money and what the project is — an initial nobody printed is not one of them.",
+          "survivor_note": "The survivor is the anchor: the north-division household with the forwarding store, Andreas, Wau-Bun and the voter rolls. T-0732 §Q1 predicted this line — 'Four Kinzie household cards now stand where the ticket counted six. The count could yet fall to three' — and it is three."
         }
       ]
     },
@@ -220,15 +223,16 @@
           "for_merge": "The surname, and the household."
         },
         {
-          "state": "undecided",
-          "referred_to": "owner",
-          "rule": "R2",
-          "members": [
-            "temple_t",
-            "temple_john_t"
+          "state": "merge",
+          "rule": "C6",
+          "ticket": "T-0844",
+          "survivor": "temple_john_t",
+          "folded": [
+            "temple_t"
           ],
-          "for_merge": "'T. Temple' in the Democrat of 3 December 1834 is most probably Dr John Taylor Temple with the first initial dropped — the paper prints him as J. T. Temple the year before.",
-          "against_merge": "T matches neither Temple's forename initial: the town's two documented Temples are John and Peter. A card whose only forename token is a MIDDLE initial has no rule in this project that attaches it, and inventing one here would attach every stray middle initial in the corpus. His call."
+          "for": "C6, ON A SIGNATURE LINE THE EXTRACTION ITSELF COULD NOT READ. `temple_t` is minted from one claim, chicago_democrat_1834_12_03#c022, whose quote runs '[uncertain: inieied Store, on SouhOBN T: TEMPLI]' and whose normalisation reads 'Also, a large and beautifully [fi]nished Store, on South [Water street.] T. TEMPLE. Chicago, Sept. 20, 1834.' What is advertised is a three-storey store house sixty feet in one dimension with a wharf attached, a small dwelling house of two rooms, and a finished store on South Water Street — river-frontage property, let by whoever owned it. The four conditions: (1) 'T.' is a forename initial for no Temple this town holds — the cards carry Dr John Taylor Temple and his brother Dr Peter Temple, and the press corpus's only other Temple is a '[Lew]is Temple' conjectured out of a letter list and minted onto no card; (2) exactly one documented Temple carries T as a middle initial, John Taylor Temple; (3) the same paper sets that man with both initials — 'J. T. Temple' eight times in this corpus and 'Dr. J. T. Temple' beside it — so 'J. T. TEMPLE' losing its first initial is a loss the source demonstrates rather than one this ruling supposes; (4) the printing is flagged uncertain by its own extraction. He is also the Temple the property records reach: he stands in the public-domain land tract sales, and three separate advertisements give his premises as the town's landmark at the corner of Lake and Franklin, one block off South Water.",
+          "against": "A card whose only forename token is a MIDDLE initial has no rule in this project, and T-0839 refused to invent one because a loose rule would attach every stray middle initial in the corpus. C6 is written for that objection and states where it does not fire: drop any one of its four conditions and the card stays where it is. Dr Peter Temple is on the survivor's own household record and his initial is P, so he is not a rival for the T.",
+          "survivor_note": "The survivor is the anchor: physician, arrived early July 1833 with a wife and four children, Andreas and the Baptist history and the voter rolls and the land tract sales. `temple_t` carries one advertisement."
         }
       ]
     },
@@ -583,15 +587,17 @@
       "surname": "hunt",
       "rulings": [
         {
-          "state": "undecided",
-          "referred_to": "owner",
-          "rule": "R3",
-          "members": [
-            "hunt_c_s",
-            "hunt_charles_cotesworth_pinckney"
+          "state": "merge",
+          "rule": "C5",
+          "ticket": "T-0844",
+          "survivor": "hunt_charles_cotesworth_pinckney",
+          "folded": [
+            "hunt_c_s"
           ],
-          "for_merge": "Both are printed in Chicago papers within seventeen days of each other in August 1835 — the Democrat on the 12th, the American on the 29th — and Charles Cotesworth Pinckney Hunt is the only Hunt forename in the town's cards beginning with C.",
-          "against_merge": "The middle initial S contradicts C, and neither card is an anchor: neither carries a trade, a dwelling or a source beyond a list and a death notice. C4 needs a documented bearer and there is none. His call."
+          "for": "ONE ADVERTISEMENT, PRINTED IN BOTH PAPERS. `hunt_c_s` was minted from chicago_democrat_1835_08_12#c007 and `hunt_charles_cotesworth_pinckney` carries chicago_american_1835_08_29#c002, and the two claims are the SAME advertisement: a High School for Young Ladies proposed on a permanent foundation at Chicago, the first term commencing Monday 17 August, names to be left before that day at the office of Henry Moore, Esq. The Democrat sets the proprietor's name as 'Canes HUNT' and its extraction reads it 'Hunt, C[harle]s'; the American sets '[ARLES HUNT' and its extraction reads it 'Charles Hunt'. Rule C5: a bracketed forename is the transcriber naming the man, and it outranks any inference drawn from initials. Two hands, two copies, one schoolmaster called Charles Hunt.",
+          "and_the_s_is_not_a_middle_initial": "`hunt_c_s` is named 'C S Hunt' because the mint split 'C[harle]s' into two tokens and took the trailing s of the abbreviation Chas. for a second initial. There is no S in the printing for anything to contradict, so T-0839's ground against this merge — 'the middle initial S contradicts C' — was argued on a token the source does not set. The same fault as the Kinzie row below, arrived at by a different route: a parse, not an OCR digit.",
+          "against": "The full name Charles Cotesworth Pinckney Hunt is printed only by Fergus's old-settler death notice of 21 April 1892, forty-seven years after the scene year; the fold of that notice onto the American's 'Charles Hunt' was made before this pass and is not re-litigated here. The town's other Hunt card is Henry N. Hunt, whose forename is not Charles.",
+          "survivor_note": "The survivor is the card the town already reads — the American's printing and the death notice — and the folded card brings the Democrat's printing of the same advertisement. Both extractions record the occupation 'schoolmaster' and the survivor's occupation field still reads none_recorded; that is a spend for the pass that owns the occupation field, not a hand-edit here."
         }
       ]
     },
@@ -600,15 +606,16 @@
       "surname": "kennicott",
       "rulings": [
         {
-          "state": "undecided",
-          "referred_to": "owner",
-          "rule": "R3",
-          "members": [
-            "kennicott_w_l",
-            "kennicott_william_h"
+          "state": "merge",
+          "rule": "C4",
+          "ticket": "T-0844",
+          "survivor": "kennicott_william_h",
+          "folded": [
+            "kennicott_w_l"
           ],
-          "for_merge": "Kennicott is an uncommon surname and the town holds no third bearer.",
-          "against_merge": "The middle initials L and H disagree, and neither card documents the man — one is a poll-list line graded G2a, the other is the Democrat and Norris 1844. No anchor, so C4 does not fire. His call."
+          "for": "C4 FIRES, OVER AN ANCHOR T-0839 SAID WAS NOT THERE. William H. Kennicott is a surgeon dentist with his own advertisements in the Democrat — 'DENTISTRY. D[O]CT. W[m]. H. K[e]n[n]icott, Surgeon Dentist … [Of]fice at the Tavern', 4 June 1834 (c006), and again on 5 August 1835 (c021), 'OFFICE OPPOSITE THE EXCH[A]NGE, LAK[E]-STR[EET] … who has practic[ed] in the above profession in this town for the past year' — and Norris 1844 prints him 'Kennicott, Wm. H. dentist, 133 Lake st. house same'. A trade, a premises, a street and a tenancy dated back to the summer of 1834: that is an anchor on this file's own definition, and T-0839's `against_merge` — 'neither card documents the man' — is wrong on the evidence its own card carries. `kennicott_w_l` is one line of the 1835 poll list, 'Kennicott, W. L.', and nothing else. The cluster holds exactly one documented bearer of the forename William, one card carries his full name, and the variation is confined to the middle initial on a manuscript list a copyist set — C4's shape exactly, the shape the owner ratified on Haddock.",
+          "against": "L and H disagree, and a poll list is the town's own register rather than a stray printing. The town holds a third Kennicott card, `kennicott_m_h` (M. H. Kennicott, the Democrat of 24 June 1835), which the candidate test does not join to either of these because its forename initial is M. The poll list's 'W. L.' stands one letter from Wm. H. and two from M. H., so the nearer reading is taken; the further one is recorded here rather than folded, because C4 attaches an initial to ONE documented bearer of the forename and M is not a bearer of William.",
+          "survivor_note": "The survivor is the card that carries the trade and the address."
         }
       ]
     },
@@ -651,15 +658,16 @@
       "surname": "saunders",
       "rulings": [
         {
-          "state": "undecided",
-          "referred_to": "owner",
-          "rule": "R3",
+          "state": "distinct",
+          "rule": "D4",
+          "ticket": "T-0844",
           "members": [
             "saunders_william_s",
             "saunders_william_w"
           ],
-          "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town.",
-          "against_merge": "The middle initials S and W disagree. One card is letter-list only, the other a press mention; neither documents the man. No anchor. His call."
+          "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town. Kept verbatim from T-0839 so the argument survives its refusal.",
+          "against_merge": "THE ANCHOR EXISTS AND CANNOT REACH THE OTHER CARD'S DATE. William W. Saunders is documented: the Democrat of 18 March 1834 (c002) prints a Cook Circuit Court attachment notice naming him, 'William W. Saunders, formerly of Cook co. Ill.', over a dwelling house and tenement of his the sheriff had attached — a court record with a dwelling in it, so C4's anchor is present where T-0839 said no anchor was. But that same record calls him FORMERLY of the county in March 1834, and the only date `saunders_william_s` carries is a letter uncalled-for at the Chicago post office on 1 July 1835. Firing C4 would have the anchor absorb a line dated after the anchor's own record says he had gone. The middle initials S and W disagree, nothing else touches either man, and the cards stay two.",
+          "not_a_claim_that": "This does not assert that the town held two Saunderses. It rules that nothing reached folds them. A source that puts one William Saunders at Chicago on both sides of March 1834 would reopen it."
         }
       ]
     },
@@ -804,15 +812,16 @@
       "surname": "walker",
       "rulings": [
         {
-          "state": "undecided",
-          "referred_to": "owner",
-          "rule": "R3",
+          "state": "distinct",
+          "rule": "D4",
+          "ticket": "T-0844",
           "members": [
             "walker_george_e",
             "walker_george_h"
           ],
-          "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker.",
-          "against_merge": "The middle initials E and H disagree and neither card documents the man — one is letter-list only, the other a Black Hawk enrollment with a press mention. No anchor, so C4 does not fire. His call."
+          "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker of that forename. Kept verbatim from T-0839 so the argument survives its refusal.",
+          "against_merge": "EACH MIDDLE INITIAL IS PRINTED TWICE, BY INDEPENDENT HANDS. George E. Walker is 'George E. Walker' in the Democrat's letter list of 2 July 1834 and 'Walker, George E.' in Fergus's old-settler death notice of 9 November 1874. George H. Walker is 'WALKER, GEORGE H' on the 1832 Black Hawk enrollment roll and 'G. H. Walker' in the Democrat's letter list of 1 April 1834. A copyist's mis-set is the WHOLE ground for folding a contradicted middle initial, and it does not survive two independent attestations on each side: four printings, two sources apiece, E twice and H twice. The town's other Walker cards are James and Jeremiah. T-0480's research adds, without asserting it, a George E. Walker in an 1835 Illinois land record near Utica — competing geography, recorded and not leaned on.",
+          "not_a_claim_that": "This does not assert that the town held two George Walkers. It rules that the printings do not fold: the mis-set the merge would need is contradicted by the second attestation on each side."
         }
       ]
     },
@@ -832,6 +841,13 @@
           "note": "UNDECIDED on purpose, and T-0842 owns the question. T-0724's own PR says it: 'It is very likely the same man, and that is a reading somebody owes the page rather than an assumption the splitter makes silently.' Merging them here to satisfy this gate would be the splitter's old guess wearing a ruling's clothes. The cost of leaving it open is recorded in L220: the town reads 490 rather than 489 until somebody reads the page."
         }
       ]
+    }
+  ],
+  "also_ruled_on": [
+    {
+      "ticket": "T-0844",
+      "on": "2026-09-10",
+      "what": "The six clusters T-0839 referred to the owner, ruled. Four fold and two stand: Hunt and Kinzie because the contradicting middle initial turned out not to be printed at all, Kennicott because the anchor T-0839 said was missing is on its own card, Temple under the narrow C6; Saunders and Walker stand under D4. The town's cards fall by four. T-0854 is folded in here: the Kinzie reading is the first half of that cluster's ruling."
     }
   ]
 }

@@ -60,7 +60,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1362
+      "n": 1359
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -102,18 +102,18 @@
   "counts": {
     "named_heads": 965,
     "matched": 13,
-    "candidate": 17,
-    "refused": 935
+    "candidate": 18,
+    "refused": 934
   },
   "counts_by_rule": {
     "L1 unreadable_name": 249,
     "L2 no_surname_in_the_1835_pools": 411,
     "L3 given_name_conflict": 193,
     "L4 initial_only": 73,
-    "L5 name_is_not_unique": 9,
+    "L5 name_is_not_unique": 8,
     "L6 matched": 13,
     "L6a low_confidence_caps_at_candidate": 5,
-    "L7 candidate": 12
+    "L7 candidate": 13
   },
   "printed_pages_read_here": [
     207,
@@ -1349,11 +1349,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'ezra'.",
+      "reason": "The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'ezra'.",
       "surname_bearers_1835": [
         "taylor_anson_h",
         "taylor_charles",
         "taylor_augustine",
+        "taylor_c",
         "taylor_edmund_d",
         "taylor_william",
         "taylor_william_h"
@@ -3217,11 +3218,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'dennis'.",
+      "reason": "The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'dennis'.",
       "surname_bearers_1835": [
         "taylor_anson_h",
         "taylor_charles",
         "taylor_augustine",
+        "taylor_c",
         "taylor_edmund_d",
         "taylor_william",
         "taylor_william_h"
@@ -6765,11 +6767,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'Col. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'Col. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "taylor_anson_h",
         "taylor_charles",
         "taylor_augustine",
+        "taylor_c",
         "taylor_edmund_d",
         "taylor_william",
         "taylor_william_h"
@@ -6956,11 +6959,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'taylor' is carried by 6 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Edmund D Taylor) and none of their given names is 'stephen'.",
+      "reason": "The surname 'taylor' is carried by 7 person(s) of 1835 (Anson H. Taylor, Charles H. Taylor, Augustine Deodat Taylor, Mrs. C. Taylor) and none of their given names is 'stephen'.",
       "surname_bearers_1835": [
         "taylor_anson_h",
         "taylor_charles",
         "taylor_augustine",
+        "taylor_c",
         "taylor_edmund_d",
         "taylor_william",
         "taylor_william_h"
@@ -7872,11 +7876,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'W. W. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'W. W. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "taylor_anson_h",
         "taylor_charles",
         "taylor_augustine",
+        "taylor_c",
         "taylor_edmund_d",
         "taylor_william",
         "taylor_william_h"
@@ -9960,14 +9965,14 @@
           "source_id": "resident_research_v4_1835_census_bridge"
         }
       ],
-      "outcome": "refused",
-      "rule": "L5 name_is_not_unique",
-      "reason": "The name 'John H. Kinzie' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
-      "candidates_1835": [
-        "kinzie_john_h",
-        "kinzie_john_s"
-      ],
-      "other_1840_lines_with_this_name": []
+      "person_id": "kinzie_john_h",
+      "household_id": "hh_kinzie_john_h",
+      "resident_name": "John Harris Kinzie",
+      "resident_grade_1835": "attested",
+      "discriminators": [],
+      "outcome": "candidate",
+      "rule": "L7 candidate",
+      "reason": "Full forename and surname agree (John H. Kinzie = John Harris Kinzie) and the name is unique on both sides, but nothing independent of the name was found: kinzie_john_h carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 6 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33S7-9YYJ-W6",
@@ -12507,11 +12512,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'E. Taylor' — a surname and initials only — and 6 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'E. Taylor' — a surname and initials only — and 7 person(s) of 1835 carry the surname 'taylor'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "taylor_anson_h",
         "taylor_charles",
         "taylor_augustine",
+        "taylor_c",
         "taylor_edmund_d",
         "taylor_william",
         "taylor_william_h"

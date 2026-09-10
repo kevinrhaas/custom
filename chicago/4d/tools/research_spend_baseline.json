@@ -6,12 +6,12 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 489,
+  "church": 490,
   "books": 195,
-  "directories": 7229,
+  "directories": 7232,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 438
+  "old_settlers": 441
  },
  "witness": {
   "civic": {
@@ -28,15 +28,15 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1256
+   "spent": 1254
   },
   "books": {
    "read": 246,
    "spent": 51
   },
   "directories": {
-   "read": 8257,
-   "spent": 1028
+   "read": 8258,
+   "spent": 1026
   },
   "newberry_index": {
    "read": 7005,
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 656
+   "spent": 653
   }
  },
  "raised": [
@@ -384,6 +384,30 @@
    "to": 83,
    "date": "2026-09-10",
    "why": "Mrs C. Taylor arrived in the town while this branch was open. dev minted hh_taylor_c (T-0960, PR #1050/#1051) and the Second Presbyterian crosswalk re-derived onto her: roll line second_presb_0870, \"Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.\", printed page 203, matched on the same surname-plus-initial rule as the other 82. So the crosswalk's matched rows went 82 to 83 and church's write debt with them. The ceiling is NOT growing because church read further ahead — the reading is unchanged since T-0962 measured it this morning — but because the TOWN gained a card underneath it, which is the ladder working and not a hole opening. T-0992 pays the whole 83 down to 0 and this may not grow for any other reason."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 489,
+   "to": 490,
+   "date": "2026-09-10",
+   "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7229,
+   "to": 7232,
+   "date": "2026-09-10",
+   "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 438,
+   "to": 441,
+   "date": "2026-09-10",
+   "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
   }
  ],
  "lowered": [
