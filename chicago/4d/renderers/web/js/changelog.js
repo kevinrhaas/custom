@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 682, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T06:24:52.554Z', date: 'Sep 10, 2026, 1:24 AM CT',
+    items: [
+      'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',
+      'A new check reads every resident card and refuses any 1835 trade whose only cited volume is about another year. Nine cards were standing on one; eight remain, each with its reasoning written down, and the count can now only fall.',
+      'The eight are all trades printed BEFORE the scene rather than after it, which the existing later-trade pointer cannot hold. They are filed as an open question rather than quietly changed.'
+    ] },
   { v: 681, title: 'A census footing corrected, and every row closes it', kind: 'change', ts: '2026-09-09T09:49:50.989Z', date: 'Sep 9, 2026, 4:49 AM CT',
     items: [
       'Another 1840 continuation sheet is now recorded line by line. Twenty-seven household totals add exactly to 125; three occupation footings also agree with their rows.',

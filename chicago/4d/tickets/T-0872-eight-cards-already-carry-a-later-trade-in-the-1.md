@@ -1,7 +1,7 @@
 ---
 id: T-0872
 title: Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-10
 pr: null
 claimed_by: run 9/10/2026, 1:16:05 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T06:23:55.791Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34444266608
 ---
 
