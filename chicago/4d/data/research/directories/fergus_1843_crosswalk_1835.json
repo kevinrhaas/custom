@@ -10,9 +10,9 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1360,
+  "residents_considered": 1361,
   "matched_one_1843_entry": 119,
-  "matched_more_than_one_ambiguous": 41,
+  "matched_more_than_one_ambiguous": 42,
   "one_1843_entry_contested_by_two_residents": 17,
   "surname_present_initial_absent_refused": 349,
   "initial_agreed_forenames_disagreed_refused": 94,
@@ -6142,6 +6142,76 @@
       "key": "f1843_e0459",
       "agrees": false,
       "why": "two trades that do not agree"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0152",
+     "as_printed": "CHAS. TAYLOR, fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly.",
+     "page": "fergus_1843_page_001",
+     "section": "business directory",
+     "trade_heading": "TAILORS AND DRAPERS",
+     "occupation_1843": "fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly",
+     "address_1843": null,
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e2411",
+     "as_printed": "Taylor, Charles, merchant tailor, 42 Clark, res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "merchant tailor, 42 Clark",
+     "address_1843": "res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e2412",
+     "as_printed": "Taylor, Charles H., currier, Johonnett, Wells & Co.",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "currier, Johonnett, Wells & Co",
+     "address_1843": null,
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "f1843_e0152",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "f1843_e2411",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "f1843_e2412",
+      "agrees": false,
+      "why": "no trade on one side"
      }
     ]
    }
