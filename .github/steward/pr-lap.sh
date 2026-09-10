@@ -168,8 +168,36 @@ while IFS=$'\t' read -r N BR; do
   fi
   if [ -n "$U" ]; then
     REAL=$(comm -23 <(echo "$U" | sort -u) <(echo "$GENERATED" | sed '/^$/d' | sort -u))
+
+    # ...AND THE DERIVED RESEARCH LAYER, WHICH IS THE SAME KIND OF THING AS THE
+    # GENERATED FIVE and was left out only because nobody had enumerated it.
+    # Measured 2026-09-10, on the first laps that could merge at all (#1058):
+    # every one of the three surviving PRs was left alone for a REAL CONFLICT,
+    # and every conflicting file was a tool output two runs had each re-derived —
+    # seven directory crosswalks on #1051, the land-sale crosswalk and spend and
+    # identity_master on #1055, the scene sidecar and the audit workbook on
+    # #1053. Not one was a disagreement about the town.
+    #
+    # `rederive.mjs --resolvable` answers from tools/derived_manifest.json, which
+    # ENUMERATES rather than pattern-matches, so what is in scope can be read.
+    # It refuses the set as a whole if any member is unlisted or declares
+    # hand_authored — half a merge is not a merge. check.sh still runs after
+    # this and is what PROVES the rebuild; a wrong manifest entry makes the gate
+    # red and the branch is not pushed, so the worst case is the PR staying open.
+    if [ -n "$REAL" ] && [ -f chicago/4d/tools/rederive.mjs ] \
+       && node chicago/4d/tools/rederive.mjs --resolvable $REAL >/tmp/lap-rederive.log 2>&1; then
+      say "  $(echo "$REAL" | grep -c .) conflict(s) in the derived research layer — rebuilding from source"
+      git checkout --ours $REAL >/dev/null 2>&1; git add $REAL
+      if ! ( cd chicago/4d && node tools/rederive.mjs --run ) >>/tmp/lap-rederive.log 2>&1; then
+        say "  the rebuild itself failed — left alone:"; tail -6 /tmp/lap-rederive.log | sed 's/^/    /'
+        git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue
+      fi
+      REAL=
+    fi
+
     if [ -n "$REAL" ]; then
       say "  REAL CONFLICT — left alone:"; echo "$REAL" | sed 's/^/    /'
+      [ -s /tmp/lap-rederive.log ] && sed 's/^/      /' /tmp/lap-rederive.log | head -8
       git merge --abort 2>/dev/null
       MARK="PR lap: this branch disagrees with \`$BASE\` about content"
       if ! gh pr view "$N" --repo "$REPO" --json comments --jq '.comments[].body' | grep -qF "$MARK"; then
