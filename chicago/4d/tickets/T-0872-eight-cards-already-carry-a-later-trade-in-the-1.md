@@ -1,7 +1,7 @@
 ---
 id: T-0872
 title: Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 1:16:05 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34444266608
 ---
 
 T-0837 gated the synthesizer so a trade may only enter the 1835 `occupation` field out of a
