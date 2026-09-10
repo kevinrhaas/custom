@@ -105,6 +105,8 @@
 # --- see a resident_crosswalk in every domain, so "1,282 of 1,282" may be an undercount of what
 # --- is still unwritten. Run it, then spend whatever it exposes, here.
 T-0962 — measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told
+T-0989 — The second hop's file-level source fallback passes 817 of 1,364 rulings on a card that cites the file's one source id for any reason at all — which is how census_1840 read 27 of 27 written with 15 cards untold
+T-0988 — Second Presbyterian's 82 adjudicated roll members reach 82 cards and not one card cites the roll: spend them, and drop church's write ceiling back to zero
 T-0960 — Mrs C. Taylor keeps a house on Water Street in the Democrat of 19 August 1835 and the town has no card for her
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
 T-0899 — Ira Couch's card has not learned the 1840 candidate ruled onto him: spend it, and drop the write-hop ceiling back to zero
