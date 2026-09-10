@@ -317,7 +317,16 @@ def people_named(ruling: dict) -> list:
 # its own vocabulary for the project's. `refusals`, `ambiguous`, `contested`, `probable`
 # and `passes` are NOT here and must never be: a rival still standing is not a ruling to
 # spend, which is the same line tools/spend_civic_voter_lists.py draws at its rule 1.
-MATCH_CONTAINERS = ("matches", "merges")
+#
+# `matched` IS here since T-0962, and the singular cost the town a whole domain. The list
+# was written from the containers dev happened to hold, so the second hop read `matches`
+# and never `matched` — and church/second_presbyterian_crosswalk.json files its 82
+# adjudicated roll members under `matched`, every one naming a household this town holds a
+# card for. The hop did not report them unwritten; it did not report church AT ALL, and a
+# domain missing from the table reads as a domain with nothing to answer for. Which
+# grammatical number a generator reached for is not a fact about the research, so the
+# instrument may not make it one.
+MATCH_CONTAINERS = ("matches", "merges", "matched")
 
 # WHERE A RULING MAY LIVE IN A CROSSWALK (T-0635, consolidation pass 2). The second hop
 # used to read only lists that were DIRECT values of the document, and two of this
@@ -376,7 +385,18 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
             for ruling in rulings:
                 if not isinstance(ruling, dict):
                     continue
-                if ruling.get(OUTCOME_KEY) not in WRITTEN_OUTCOMES and not declared:
+                # A RULING'S OWN VERDICT OUTRANKS THE LIST IT IS FILED IN (T-0962). The
+                # container is how a ruling that states no `outcome` spells its verdict,
+                # and that is the whole of its authority: where the entry DOES state one,
+                # that is the adjudication and the heading is filing. Widening
+                # MATCH_CONTAINERS without this would have counted census_1830's sixteen
+                # `matched` rows — every one an explicit `earlier_evidence`, which is not
+                # a match — as matches, and bought the coverage with a false reading.
+                outcome = ruling.get(OUTCOME_KEY)
+                if outcome is None:
+                    if not declared:
+                        continue
+                elif outcome not in WRITTEN_OUTCOMES:
                     continue
                 named = [p for p in people_named(ruling) if p in records]
                 if not named:
@@ -1066,6 +1086,35 @@ def self_test() -> int:
               rests_on({"same_name_support": [{"source_id": "s1"}]}) == {"s1"})
         fires("a bare source_id counts too", rests_on({"source_id": "s2"}) == {"s2"})
         fires("a ruling resting on nothing states nothing", rests_on({}) == set())
+
+    # --- T-0962. The same fault as T-0635's second half, one grammatical number over:
+    # a container the list had not heard of hides its rulings, and a domain with nothing
+    # visible is a domain that never appears in the report at all. Found on dev with the
+    # hop showing 1,282 of 1,282 written and church absent from the table while
+    # second_presbyterian_crosswalk.json's 82 `matched` roll members named 82 cards, none
+    # of which cited the roll. The second assertion is the price of the first: widening
+    # the list may not let a container OVERRULE a ruling that stated its own verdict.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["second_presb"]}]},
+                 "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        (d / "roll_crosswalk.json").write_text(json.dumps({
+            "source_id": "second_presb",
+            "matched": [{"household_id": "hh_a"}, {"household_id": "hh_b"}],
+            "refused": [{"household_id": "hh_a"}],
+        }))
+        reached, judgeable, wrote = count_written(d, cards)
+        fires("a ruling filed under `matched` is reached, not invisible", reached == 2)
+        fires("…and `refused` beside it is still not a ruling to spend", reached == 2)
+        fires("…and only the card citing the roll has learned it", wrote == 1)
+
+        (d / "roll_crosswalk.json").write_text(json.dumps({
+            "source_id": "census_1830",
+            "matched": [{"household_id": "hh_a", "outcome": "earlier_evidence"},
+                        {"household_id": "hh_b", "outcome": "matched"}],
+        }))
+        fires("a ruling stating its own verdict is judged on that, not on its heading",
+              count_written(d, cards)[0] == 1)
 
     # --- T-0598: THE THIRD HOP. A crosswalk that states no source at all is a
     # FAULT, not merely a blind spot in the instrument, and a file-level statement
