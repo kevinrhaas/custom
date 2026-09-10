@@ -227,3 +227,32 @@ the data: a disputed attribute is `reconstructed` or `inferred`, never `attested
 
 A dispute that cannot be resolved is not a failure. It is the honest state of the evidence, and
 the confidence view is built to show it.
+
+## A fact the dataset has no field for goes in a prose note, not a new shape
+
+Sources hand this project facts it has no field to hold. The rule is that such a fact is written
+into the **prose note of a field the record already has**, at that field's grade and under that
+field's citation — not into a new field, and not into an existing structure with its checked
+parts blanked out.
+
+The idiom is older than the ruling. No person record has a birthplace field, so every birthplace
+here rides in the `birth_year` note: `hh_harmon_elijah_d` reads "20 August 1782 at Bennington,
+Vermont", `hh_porter_jeremiah` "5 November 1807 at Geneseo, New York". The fact is on the card,
+it is graded, and it cites the page it came from — which is everything a field would have bought
+except a query.
+
+**T-0849 is the ruling that made this general** (2026-09-10). Hurlbut names Gurdon Hubbard's
+parents, Elizur and Abigail (Sage) Hubbard, and they were living in Montreal, were never in this
+scene, and have no household here. The proposal was an external `kin[]` row — `household: null`,
+the source's own string in its place. It was refused, because every rule `kin[]` enforces is a
+rule about the **far end**: the inverse must be legal, and the mirror row must exist. A row with
+no far end is not a weaker kin row; it is a kin row with the entire checked part removed, and
+what is left is a graded name — which is a note. It would also make every genealogical name in
+the corpus eligible for the residents layer, and this dataset reconstructs a town on one day: a
+person who was never in it is not a resident of it.
+
+So kin stays inside the town, a relative outside it is evidence rather than structure, and
+Hubbard's parents are named in his `origin` note at `inferred` on Hurlbut's rung-4 prose — the
+same footing a kin row could have claimed and no more. `tools/validate.py` refuses a
+null-household kin row **in the ruling's own words**, so a run that meets it is told where the
+name belongs instead of being sent off to mint a Montreal household.

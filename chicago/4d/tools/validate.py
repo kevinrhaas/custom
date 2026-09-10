@@ -4940,7 +4940,22 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                     rep.error(kwhere, f"person '{k.get('person')}' is not a person in this "
                                       f"household; a kin row says who in HERE the relative "
                                       f"belongs to")
-                if k.get("household") == hid:
+                other_hid = k.get("household")
+                if not (isinstance(other_hid, str) and other_hid.strip()):
+                    rep.error(kwhere, "a kin row's 'household' must name a household id in "
+                                      "this dataset. KIN IS INSIDE THE TOWN (T-0849): both "
+                                      "rules this block enforces are rules about the far end "
+                                      "- the inverse has to be legal and the mirror has to "
+                                      "exist - so a row with no far end is not a weaker kin "
+                                      "row, it is one with the whole checked part removed. A "
+                                      "relative who was never in this scene (a parent in "
+                                      "Montreal, a brother left in Vermont) is EVIDENCE, not "
+                                      "structure: write the name in the prose note of a field "
+                                      "the record already has, at that field's grade and under "
+                                      "that field's citation, the way every birthplace here is "
+                                      "written")
+                    continue
+                if other_hid == hid:
                     rep.error(kwhere, "a kin row links two households; a relationship inside "
                                       "one household is persons[].relationship")
                 kin_rows.append((hid, k, kwhere))

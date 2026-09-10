@@ -3030,6 +3030,23 @@ def test_the_residents_manifest_cannot_drift_from_its_records() -> None:
     check("a kin row pointing at a household that does not resolve is an error",
           any("does not resolve" in e for e in rep.errors), rep.errors)
 
+    # T-0849 ruled that kin stays INSIDE the town: a relative with no household
+    # here is evidence, written in a field's prose note, and not a kin row with
+    # the far end blanked. The refusal has to be the ruling's own words rather
+    # than the "does not resolve" above, because a run reading THAT message
+    # concludes it should go and mint the household - which for Gurdon
+    # Hubbard's parents in Montreal is the wrong answer twice over.
+    for blank in (None, "", "   "):
+        rep = _run_residents(_kin_pair(**{"household": blank}))
+        check(f"a kin row whose household is {blank!r} is refused as an outside-the-town "
+              f"relative, in the ruling's own terms",
+              any("KIN IS INSIDE THE TOWN" in e for e in rep.errors), rep.errors)
+
+    rep = _run_residents(_kin_pair(**{"household": None}))
+    check("that refusal is the ONLY thing said about the row - it does not also report a "
+          "household that failed to resolve, which would send a run off to mint one",
+          not any("does not resolve" in e for e in rep.errors), rep.errors)
+
     inside = _resident_household(kin=[{
         "person": "p1", "relation": "brother", "household": "hh_a", "value": "p1",
         "confidence": "inferred", "note": "a household cannot be its own kin"}])
