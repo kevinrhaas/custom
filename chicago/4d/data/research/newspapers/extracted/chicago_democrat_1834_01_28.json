@@ -40,487 +40,1186 @@
         {
           "as_printed": "Hiram Bennett",
           "normalized": "Hiram Bennett",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 11,
+            "tied_by": "text",
+            "crop_normalized": "Hiram Bennett",
+            "at_image": "Hiram Bennett",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Lewis Kerchevel",
           "normalized": "Lewis Kercheval",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 96,
+            "tied_by": "text",
+            "crop_normalized": "Lewis Kercheval",
+            "at_image": "Lewis Kerchevel",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Anthony Heere",
           "normalized": "Anthony Heere",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 12,
+            "tied_by": "text",
+            "crop_normalized": "Anthony Heere",
+            "at_image": "Anthony Beers",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Lewis Lafton",
           "normalized": "Lewis Lafton",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 97,
+            "tied_by": "text",
+            "crop_normalized": "Lewis Lafton",
+            "at_image": "Lewis Lafton",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Thomas Bennett,",
           "normalized": "Thomas Bennett",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 13,
+            "tied_by": "text",
+            "crop_normalized": "Thomas Bennett",
+            "at_image": "Thomas Bennett",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Lewis Lake",
           "normalized": "Lewis Lake",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 98,
+            "tied_by": "text",
+            "crop_normalized": "Lewis Lake",
+            "at_image": "Lewis Lake",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "IK. Blodgett",
           "normalized": "I. K. Blodgett",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 14,
+            "tied_by": "text",
+            "crop_normalized": "I. K. Blodgett",
+            "at_image": "J. K. Blodgett",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "J. Wi Lewis 2",
           "normalized": "J. W. Lewis",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 99,
+            "tied_by": "text",
+            "crop_normalized": "J. W. Lewis",
+            "at_image": "J. W. Lewis 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Jos. Britton",
           "normalized": "Jos. Britton",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 15,
+            "tied_by": "text",
+            "crop_normalized": "Jos. Britton",
+            "at_image": "Jos. Britton",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Mary Barrows",
           "normalized": "Mary Barrows",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 16,
+            "tied_by": "text",
+            "crop_normalized": "Mary Barrows",
+            "at_image": "Mary Barrows",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Reka Basten",
           "normalized": "[uncertain: Reka Basten]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 17,
+            "tied_by": "position",
+            "crop_normalized": "[uncertain: Reka Basten]",
+            "at_image": "A. P. Benton",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Blodget",
           "normalized": "[?] Blodget",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 18,
+            "tied_by": "text",
+            "crop_normalized": "[?] Blodget",
+            "at_image": "Avice Blodget",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "HLS. Bennett 2",
           "normalized": "H. S. Bennett",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 19,
+            "tied_by": "text",
+            "crop_normalized": "H. S. Bennett",
+            "at_image": "H. S. Bennett 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Astist Bradford",
           "normalized": "[uncertain: Astist] Bradford",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 20,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Astist] Bradford",
+            "at_image": "Aarri[?]t Bradford",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "‘Russell Baldwin",
           "normalized": "Russell Baldwin",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 21,
+            "tied_by": "text",
+            "crop_normalized": "Russell Baldwin",
+            "at_image": "Russell Baldwin",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Hiram Bowen",
           "normalized": "Hiram Bowen",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 22,
+            "tied_by": "text",
+            "crop_normalized": "Hiram Bowen",
+            "at_image": "Hiram Bowen",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "4.0.7: Breed",
           "normalized": "[?] Breed",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 26,
+            "tied_by": "text",
+            "crop_normalized": "[?] Breed",
+            "at_image": "A. O. T. Breed",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "John Monreou",
           "normalized": "[uncertain: John Monroe]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 111,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: John Monroe]",
+            "at_image": "John Monreou",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "james Burk",
           "normalized": "James Burk",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 27,
+            "tied_by": "text",
+            "crop_normalized": "James Burk",
+            "at_image": "James Burk",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": ".T. Miner",
           "normalized": "[?] T. Miner",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 112,
+            "tied_by": "text",
+            "crop_normalized": "[?] T. Miner",
+            "at_image": "F. T. Miner",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "T, R. Covell 2",
           "normalized": "T. R. Covell",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 28,
+            "tied_by": "text",
+            "crop_normalized": "T. R. Covell",
+            "at_image": "T. R. Covell 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "¥..B Northrop",
           "normalized": "[?] B. Northrop",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 113,
+            "tied_by": "text",
+            "crop_normalized": "[?] B. Northrop",
+            "at_image": "F. B. Northrop",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Wm. P. Cloaveland",
           "normalized": "Wm. P. Cleaveland",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 29,
+            "tied_by": "text",
+            "crop_normalized": "Wm. P. Cleaveland",
+            "at_image": "Wm. P. Cleaveland",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "D. P. Cleviny",
           "normalized": "[uncertain: D. P. Cleviny]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 32,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: D. P. Cleviny]",
+            "at_image": "D. P. Clevinger",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "alias Perrin",
           "normalized": "[uncertain: Elias] Perrin",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 117,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Elias] Perrin",
+            "at_image": "Julius Perrin 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "EW. Conte",
           "normalized": "E. W. Conte",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 33,
+            "tied_by": "text",
+            "crop_normalized": "E. W. Conte",
+            "at_image": "E. W. Center",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Joshua Provis",
           "normalized": "Joshua Provis",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 118,
+            "tied_by": "text",
+            "crop_normalized": "Joshua Provis",
+            "at_image": "Joshua Pruvis",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Geo. H. Clark",
           "normalized": "Geo. H. Clark",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 34,
+            "tied_by": "text",
+            "crop_normalized": "Geo. H. Clark",
+            "at_image": "Geo. H. Clark",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "8. F. Plumer",
           "normalized": "S. F. Plumer",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 119,
+            "tied_by": "text",
+            "crop_normalized": "S. F. Plumer",
+            "at_image": "S. F. Plumer",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "J.P. Converse",
           "normalized": "J. P. Converse",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 37,
+            "tied_by": "text",
+            "crop_normalized": "J. P. Converse",
+            "at_image": "J. P. Converse",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Childreso",
           "normalized": "[uncertain: Childress]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 41,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Childress]",
+            "at_image": "James Childress",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Salmon Rutherford",
           "normalized": "Salmon Rutherford",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 126,
+            "tied_by": "text",
+            "crop_normalized": "Salmon Rutherford",
+            "at_image": "Salmon Rutherford 3",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "William Cr",
           "normalized": "William Cr[…]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 42,
+            "tied_by": "text",
+            "crop_normalized": "William Cr[…]",
+            "at_image": "William Crissy",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "James H. Rinhart",
           "normalized": "James H. Rinhart",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 127,
+            "tied_by": "text",
+            "crop_normalized": "James H. Rinhart",
+            "at_image": "James H. Rinhart",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Gustavus C!",
           "normalized": "Gustavus C[…]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 43,
+            "tied_by": "text",
+            "crop_normalized": "Gustavus C[…]",
+            "at_image": "Gustavus Clark",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "8.W. Smith",
           "normalized": "S. W. Smith",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 128,
+            "tied_by": "text",
+            "crop_normalized": "S. W. Smith",
+            "at_image": "S. W. Smith",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Benj. Cl",
           "normalized": "Benj. Cl[…]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 44,
+            "tied_by": "text",
+            "crop_normalized": "Benj. Cl[…]",
+            "at_image": "Benj. Chapman",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Teanc Scarritt",
           "normalized": "Isaac Scarritt",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 129,
+            "tied_by": "text",
+            "crop_normalized": "Isaac Scarritt",
+            "at_image": "Isaac Scarritt",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "§. Scott",
           "normalized": "S. Scott",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 130,
+            "tied_by": "text",
+            "crop_normalized": "S. Scott",
+            "at_image": "S. Scott",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Devoe",
           "normalized": "[?] Devoe",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 46,
+            "tied_by": "text",
+            "crop_normalized": "[?] Devoe",
+            "at_image": "Samuel Devoe",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "& Steele",
           "normalized": "[?] Steele",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 131,
+            "tied_by": "text",
+            "crop_normalized": "[?] Steele",
+            "at_image": "Axtel & Steele",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "foal Dagenet",
           "normalized": "[uncertain: Dagenet]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 47,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Dagenet]",
+            "at_image": "Noel Dagenet",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "iprague",
           "normalized": "[?] Sprague",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 132,
+            "tied_by": "text",
+            "crop_normalized": "[?] Sprague",
+            "at_image": "D. Sprague",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "E. Dimmick",
           "normalized": "E. Dimmick",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 48,
+            "tied_by": "text",
+            "crop_normalized": "E. Dimmick",
+            "at_image": "E. Dimmick",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "BP. ‘Biatord",
           "normalized": "B. P. [uncertain: Bickford]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 133,
+            "tied_by": "text",
+            "crop_normalized": "B. P. [uncertain: Bickford]",
+            "at_image": "B. P. Stafford",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "David Dickson.",
           "normalized": "David Dickson",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 49,
+            "tied_by": "text",
+            "crop_normalized": "David Dickson",
+            "at_image": "David Dickson",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Chester Smith",
           "normalized": "Chester Smith",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 134,
+            "tied_by": "text",
+            "crop_normalized": "Chester Smith",
+            "at_image": "Chester Smith",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘William Elliot 3",
           "normalized": "William Elliot",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 50,
+            "tied_by": "text",
+            "crop_normalized": "William Elliot",
+            "at_image": "William Elliot 3",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "H.C. Sith",
           "normalized": "H. C. Smith",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 135,
+            "tied_by": "text",
+            "crop_normalized": "H. C. Smith",
+            "at_image": "H. C. Smith",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "G.W. Ewin",
           "normalized": "G. W. Ewin[g]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 51,
+            "tied_by": "text",
+            "crop_normalized": "G. W. Ewin[g]",
+            "at_image": "G. W. Ewing",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "H, B..Steole 2",
           "normalized": "H. B. Steele",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 136,
+            "tied_by": "text",
+            "crop_normalized": "H. B. Steele",
+            "at_image": "H. S. Steele 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Jowes Steward",
           "normalized": "[uncertain: James] Steward",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 137,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: James] Steward",
+            "at_image": "James Steward",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Dean Farren",
           "normalized": "Dean Farren",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 53,
+            "tied_by": "text",
+            "crop_normalized": "Dean Farren",
+            "at_image": "Dean Farren",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "8. C. Stimaon 2",
           "normalized": "S. C. Stimson",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 138,
+            "tied_by": "text",
+            "crop_normalized": "S. C. Stimson",
+            "at_image": "S. C. Stimson 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘A. W. Flint",
           "normalized": "A. W. Flint",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 54,
+            "tied_by": "text",
+            "crop_normalized": "A. W. Flint",
+            "at_image": "A. W. Flint 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Palmer. Stearns",
           "normalized": "Palmer Stearns",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 139,
+            "tied_by": "text",
+            "crop_normalized": "Palmer Stearns",
+            "at_image": "Palmer Stearns 2",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Wm. H. Fraser",
           "normalized": "Wm. H. Fraser",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 55,
+            "tied_by": "text",
+            "crop_normalized": "Wm. H. Fraser",
+            "at_image": "Wm. H. Frazer",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "David Sprague",
           "normalized": "David Sprague",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 140,
+            "tied_by": "text",
+            "crop_normalized": "David Sprague",
+            "at_image": "David Sprague",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "David P.Frame",
           "normalized": "David P. Frame",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 58,
+            "tied_by": "text",
+            "crop_normalized": "David P. Frame",
+            "at_image": "David P. Frame",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Banus! Stout",
           "normalized": "[uncertain: Samuel] Stout",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 143,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Samuel] Stout",
+            "at_image": "Samuel Stout",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Jane Forster",
           "normalized": "Jane Forster",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 59,
+            "tied_by": "text",
+            "crop_normalized": "Jane Forster",
+            "at_image": "Jane Forrister",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Caleb Foster",
           "normalized": "Caleb Foster",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 60,
+            "tied_by": "text",
+            "crop_normalized": "Caleb Foster",
+            "at_image": "Caleb Foster",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Wm. Shier",
           "normalized": "Wm. Shier",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 145,
+            "tied_by": "text",
+            "crop_normalized": "Wm. Shier",
+            "at_image": "Wm. Shier",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Rob't. Fisber",
           "normalized": "Rob't. Fisher",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 61,
+            "tied_by": "text",
+            "crop_normalized": "Rob't. Fisher",
+            "at_image": "Rob't. Fisher",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "John Sewell",
           "normalized": "John Sewell",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 146,
+            "tied_by": "text",
+            "crop_normalized": "John Sewell",
+            "at_image": "John Sewell",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Btephen Sherwood",
           "normalized": "Stephen Sherwood",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 147,
+            "tied_by": "text",
+            "crop_normalized": "Stephen Sherwood",
+            "at_image": "Stephen Sherwood",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Alva Fowler",
           "normalized": "Alva Fowler",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 63,
+            "tied_by": "text",
+            "crop_normalized": "Alva Fowler",
+            "at_image": "Alva Fowler",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "H.C. Shearman",
           "normalized": "H. C. Shearman",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 148,
+            "tied_by": "text",
+            "crop_normalized": "H. C. Shearman",
+            "at_image": "H. C. Shearman",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Alburn Foster",
           "normalized": "Alburn Foster",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 64,
+            "tied_by": "text",
+            "crop_normalized": "Alburn Foster",
+            "at_image": "Alburn Foster",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Alden Taller",
           "normalized": "Alden Tuller",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 149,
+            "tied_by": "text",
+            "crop_normalized": "Alden Tuller",
+            "at_image": "Alden Tuller",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Jacob Fake.",
           "normalized": "Jacob Fake",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 65,
+            "tied_by": "text",
+            "crop_normalized": "Jacob Fake",
+            "at_image": "Jacob Fake",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Elam Tuller",
           "normalized": "Elam Tuller",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 150,
+            "tied_by": "text",
+            "crop_normalized": "Elam Tuller",
+            "at_image": "Elam Tuller",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Orinds Guryl",
           "normalized": "[uncertain: Orinda Guryl]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 67,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Orinda Guryl]",
+            "at_image": "Orinda Garyl",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "ds Gay”",
           "normalized": "[?] Gay",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 68,
+            "tied_by": "text",
+            "crop_normalized": "[?] Gay",
+            "at_image": "dane Gray",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Wiliam Teal",
           "normalized": "William Teal",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 153,
+            "tied_by": "text",
+            "crop_normalized": "William Teal",
+            "at_image": "William Teal",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Gooding",
           "normalized": "[?] Gooding",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 70,
+            "tied_by": "text",
+            "crop_normalized": "[?] Gooding",
+            "at_image": "Jos. A. Gooding",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Tertple 3",
           "normalized": "[?] Temple",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 155,
+            "tied_by": "text",
+            "crop_normalized": "[?] Temple",
+            "at_image": "Peter Temple 3",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "David Groover",
           "normalized": "David Groover",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 71,
+            "tied_by": "text",
+            "crop_normalized": "David Groover",
+            "at_image": "David Groover",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Lewis Tem",
           "normalized": "Lewis Tem[…]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 156,
+            "tied_by": "text",
+            "crop_normalized": "Lewis Tem[…]",
+            "at_image": "Lewis Temple",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Eben Griswold",
           "normalized": "Eben Griswold",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 72,
+            "tied_by": "text",
+            "crop_normalized": "Eben Griswold",
+            "at_image": "Eben Griswold",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Win. B. Green.",
           "normalized": "Wm. B. Green",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 73,
+            "tied_by": "text",
+            "crop_normalized": "Wm. B. Green",
+            "at_image": "Wm. B. Green",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "John Vandino",
           "normalized": "John Vandino",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 158,
+            "tied_by": "text",
+            "crop_normalized": "John Vandino",
+            "at_image": "John Vandine",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "‘Adam Vandorwerk",
           "normalized": "Adam Vandorwerk",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 159,
+            "tied_by": "text",
+            "crop_normalized": "Adam Vandorwerk",
+            "at_image": "Adam Vanderwerker",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "J. P. Gobb.",
           "normalized": "J. P. [uncertain: Cobb]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 75,
+            "tied_by": "text",
+            "crop_normalized": "J. P. [uncertain: Cobb]",
+            "at_image": "J. P. Gobb",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "John Wilson",
           "normalized": "John Wilson",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 160,
+            "tied_by": "text",
+            "crop_normalized": "John Wilson",
+            "at_image": "John Wilson 4",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "4 Goodrich",
           "normalized": "[?] Goodrich",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 76,
+            "tied_by": "text",
+            "crop_normalized": "[?] Goodrich",
+            "at_image": "Pomeroy Goodrich",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Wm. Winson",
           "normalized": "Wm. Winson",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 161,
+            "tied_by": "text",
+            "crop_normalized": "Wm. Winson",
+            "at_image": "Wm. Winson",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Nathan Hopkine",
           "normalized": "Nathan Hopkins",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 78,
+            "tied_by": "text",
+            "crop_normalized": "Nathan Hopkins",
+            "at_image": "Nathan Hopkins",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Jesse B. Winn",
           "normalized": "Jesse B. Winn",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 163,
+            "tied_by": "text",
+            "crop_normalized": "Jesse B. Winn",
+            "at_image": "Jesse B. Winn & Co.",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "‘Warren",
           "normalized": "[?] Warren",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 164,
+            "tied_by": "text",
+            "crop_normalized": "[?] Warren",
+            "at_image": "Daniel Warren",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Nathan Huchins",
           "normalized": "Nathan Hutchins",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 80,
+            "tied_by": "text",
+            "crop_normalized": "Nathan Hutchins",
+            "at_image": "Nathan Huchins",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Bally Weed",
           "normalized": "[uncertain: Sally] Weed",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 165,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Sally] Weed",
+            "at_image": "Sally Weed",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Warren Hanke",
           "normalized": "[uncertain: Warren Hanke]",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 81,
+            "tied_by": "text",
+            "crop_normalized": "[uncertain: Warren Hanke]",
+            "at_image": "Warren Hanks",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "page_contradicts_crop": true
+          }
         },
         {
           "as_printed": "Aaron Whitcomb",
           "normalized": "Aaron Whitcomb",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 166,
+            "tied_by": "text",
+            "crop_normalized": "Aaron Whitcomb",
+            "at_image": "Aaron Whitcomb",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Philip Howard",
           "normalized": "Philip Howard",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 82,
+            "tied_by": "text",
+            "crop_normalized": "Philip Howard",
+            "at_image": "Philip Howard",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Delaney Wells",
           "normalized": "Delaney Wells",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 167,
+            "tied_by": "text",
+            "crop_normalized": "Delaney Wells",
+            "at_image": "Delaney Wells",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "Samuel Wright",
           "normalized": "Samuel Wright",
-          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834"
+          "role": "named in the list of letters remaining in the Post Office at Chicago, 1 January 1834",
+          "read_at_image": {
+            "printed_line": 170,
+            "tied_by": "text",
+            "crop_normalized": "Samuel Wright",
+            "at_image": "Samuel Wright",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         },
         {
           "as_printed": "JOHN 8. C. HOGAN, P. ",
@@ -532,10 +1231,17 @@
           ],
           "associated_places": [
             "the Post Office at Chicago"
-          ]
+          ],
+          "read_at_image": {
+            "printed_line": "signature",
+            "tied_by": "text",
+            "crop_normalized": "John S. C. Hogan",
+            "at_image": "John S. C. Hogan",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+          }
         }
       ],
-      "notes": "THE PEOPLE OF CHICAGO ON 1 JANUARY 1834, AS THE POST OFFICE HAD THEM. Ninety-seven listed names and the postmaster, in a town of a few hundred — the single densest record of who was here that this corpus holds for the year before the scene date, and RULING 1 APPLIES IN FULL: this is Chicago's own post office, so every listed name mints a resident candidate, flagged `letter_list_only`. (Contrast the August 1834 'List of Letters', which is Hennepin's reprinted and mints nobody.)\n\nTHE HAND COUNT, which the ticket requires stated. Counted by eye off the printed list as the transcription preserves it: line 1113 carries 16 names, 1115 six, 1117 one, 1119 six, 1121 one, 1123 six, 1125 sixty, 1127 one — **97 personal names, plus John S. C. Hogan's signature as postmaster**, which is the 98 entities this claim carries. THAT IS THE COUNT THE TRANSCRIPTION SUPPORTS AND NOT NECESSARILY THE COUNT THAT WAS PRINTED. The .docx extraction has crushed the printed list's two alphabetical columns into eight paragraph lines, interleaving them, and it has left orphan debris where names were — 'Me print ofl Coram amor Hei otinan Wor in vard' at 1111, 'pe see' at 1117, 'onger areita' and 'Thomas OF ae 3' at 1119, 'if 1 LabiteLase Cemier Go Bene' at 1121, 'ef' at 1123 — every one of which stood where a name or part of one stood. So 97 is a FLOOR, the loss is visible rather than estimated, and closing the gap needs the page images. Filed as a ticket.\n\nWHAT WAS NOT DONE. Fragments are minted as fragments: 'William Cr[…]', 'Gustavus C[…]', 'Benj. Cl[…]', 'Lewis Tem[…]' keep their cut surnames rather than being completed into likely Chicago names, and bare surnames with no initial ('[?] Gay', '[?] Warren', '[?] Gooding') are minted with the marker rather than joined to anybody already in the gazetteer. The trailing digits in the print ('J. W. Lewis 2', 'H. S. Bennett 2', 'William Elliot 3') are the count of letters waiting and are read as such, not as part of a name. NO MERGES ARE DECLARED out of this list, including the several names that resemble 1835 residents — an initial is often the only thing separating two members of one family, which is the rule identity.json states."
+      "notes": "THE PEOPLE OF CHICAGO ON 1 JANUARY 1834, AS THE POST OFFICE HAD THEM. Ninety-seven listed names and the postmaster, in a town of a few hundred — the single densest record of who was here that this corpus holds for the year before the scene date, and RULING 1 APPLIES IN FULL: this is Chicago's own post office, so every listed name mints a resident candidate, flagged `letter_list_only`. (Contrast the August 1834 'List of Letters', which is Hennepin's reprinted and mints nobody.)\n\nTHE HAND COUNT, which the ticket requires stated. Counted by eye off the printed list as the transcription preserves it: line 1113 carries 16 names, 1115 six, 1117 one, 1119 six, 1121 one, 1123 six, 1125 sixty, 1127 one — **97 personal names, plus John S. C. Hogan's signature as postmaster**, which is the 98 entities this claim carries. THAT IS THE COUNT THE TRANSCRIPTION SUPPORTS AND NOT NECESSARILY THE COUNT THAT WAS PRINTED. The .docx extraction has crushed the printed list's two alphabetical columns into eight paragraph lines, interleaving them, and it has left orphan debris where names were — 'Me print ofl Coram amor Hei otinan Wor in vard' at 1111, 'pe see' at 1117, 'onger areita' and 'Thomas OF ae 3' at 1119, 'if 1 LabiteLase Cemier Go Bene' at 1121, 'ef' at 1123 — every one of which stood where a name or part of one stood. So 97 is a FLOOR, the loss is visible rather than estimated, and closing the gap needs the page images. Filed as a ticket.\n\nWHAT WAS NOT DONE. Fragments are minted as fragments: 'William Cr[…]', 'Gustavus C[…]', 'Benj. Cl[…]', 'Lewis Tem[…]' keep their cut surnames rather than being completed into likely Chicago names, and bare surnames with no initial ('[?] Gay', '[?] Warren', '[?] Gooding') are minted with the marker rather than joined to anybody already in the gazetteer. The trailing digits in the print ('J. W. Lewis 2', 'H. S. Bennett 2', 'William Elliot 3') are the count of letters waiting and are read as such, not as part of a name. NO MERGES ARE DECLARED out of this list, including the several names that resemble 1835 residents — an initial is often the only thing separating two members of one family, which is the rule identity.json states. EVERY ENTITY BELOW IS NOW TIED TO ITS PRINTED LINE (T-1008), in `read_at_image`. This crop is the FOURTH of nine impressions of one return; T-0424 read the page image of the NINTH and tied claims c026 and c027 to it, and the roster it produced -- `data/research/newspapers/letter_list_1834_01_01_printed.json`, 170 lines in two sub-columns of eighty-five -- is the same list this crop cuts. The tie is by the interleaved reading order the transcription follows, L1, R86, L2, R87 and so on down the page, and ninety-seven of the ninety-eight entities also carry enough letters to recognise their own line; the ninety-eighth, `Reka Basten`, is line 17, `A. P. Benton`, by position alone, and the other crop reads that same line `.E. Bonton`. `John S. C. Hogan` is the postmaster's signature and is tied `signature`, not a line. NOTHING IS RENAMED HERE. T-0424's pass wrote the printed line into `normalized`, and the three cards that renamed under it lost a ladder rung; this crop is the one the cohort's ninety-seven residents were minted FROM, so `normalized` keeps the crop's own reading and `read_at_image.at_image` carries the page's beside it. Where the two differ the difference is RECORDED, and `tools/tie_letter_list_1834_crop.py --report` lists them. WHAT THE TIE MEASURES: the two crops between them carry 131 of the 170 printed lines, so fifty-five of the ninety-two T-0424 could not see are carried after all -- and THIRTY-NINE lines are carried by neither crop, which is the real shortfall and the pool T-1008 mints."
     },
     {
       "id": "c002",
