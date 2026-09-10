@@ -115,6 +115,7 @@ T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kenni
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
 T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
 T-0961 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
+T-0988 — The December 1835 State census counted the town's trades and this project has never held a denominator: 44 stores, 8 taverns, 22 lawyers, 14 physicians and eleven more classes, against a business layer whose trade field is free prose
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
 T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none
