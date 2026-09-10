@@ -1,7 +1,7 @@
 ---
 id: T-0900
 title: Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-10
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Superseded: T-0903 (PR #997, merged 2026-09-06) read this exact token off the page image. tools/read_norris_1844.py IMAGE_REPAIRS carries the row — leaf 40, printed page 30, 'Iia' reads Ira, cited to https://archive.org/download/generaldirectory19norr/page/leaf40.jpg, with Kim Torp's '(can't read)' recorded as the reason the image was the only witness; the quote and normalized.as_printed keep the damage; the Norris crosswalk was re-derived in the same PR and now matches Ira Couch of the Tremont House. Every clause of this ticket's acceptance is already met. Filed the same day as T-0903 and never noticed to be its duplicate.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T06:56:27.837Z
 claimed_run: null
 ---
 
