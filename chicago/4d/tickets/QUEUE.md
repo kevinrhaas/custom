@@ -109,6 +109,7 @@ T-0872 — Eight cards already carry a later trade in the 1835 occupation field,
 T-0899 — Ira Couch's card has not learned the 1840 candidate ruled onto him: spend it, and drop the write-hop ceiling back to zero
 T-0900 — Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image
 T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
+T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
 T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
