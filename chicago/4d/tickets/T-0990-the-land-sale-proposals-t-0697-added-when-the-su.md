@@ -171,19 +171,66 @@ needs. It is the weakest uphold in C1 and is marked so here.
 Filed on the way past: **T-1004**, Erastus Bowen's card gathering two men (the 1843 veterinary
 surgeon was sixteen in 1835); **T-1005**, the seven stale `letter_list_only` flags.
 
-1. **Cohort C2 — the twenty-one `forename_agrees` proposals with namesakes, surnames D-J.**
-   DAVIS GEORGE, DAVIS JOHN, EGAN WILLIAM B, FOOT JOHN, GOODRICH EBENEZER, HADDOCK EDWARD H,
-   HALL GEORGE, HAMILTON RICHARD J, HANDY HENRY S, HARMON CHARLES L, HARMON CHAS L, HARMON
-   ELIJAH D, HARMON ISAAC, HARMON ISAAC D, HUBBARD ELIJAH K, HUBBARD GURDON S, HUNTER EDWARD E,
-   JACKSON SAMUEL, JONES BENJAMIN, JONES WILLARD, JONES WILLIAM. **Rule the paired spellings
-   TOGETHER and expect them to disagree** — HARMON CHARLES L against HARMON CHAS L, HARMON ISAAC
-   against HARMON ISAAC D, HUBBARD ELIJAH K against HUBBARD GURDON S — because BROWN WM is what
-   happens when the fuller spelling is allowed to carry the barer one. JONES WILLIAM and DAVIS
-   JOHN are the block's BROWN WM.
+---
 
-2. **Cohort C3 — the twenty-eight remaining, surnames K-Z.** Read T-1001 before starting it: an
+**Cohort C2 — the twenty-one `forename_agrees` proposals with namesakes, surnames D-J.** Ruled
+2026-09-10. **Sixteen upheld, five refused** — matched 106 → 101, ruled 89 → 110, unruled 49 →
+28; four cards retracted and one rewritten, fourteen register rows, 476.52 acres and $1,525.75
+taken back off them, against 57 rows, 4,086.77 acres and $7,855.29 that stand.
+
+| upheld | refused |
+|---|---|
+| DAVIS GEORGE, EGAN WILLIAM B, FOOT JOHN, GOODRICH EBENEZER, HADDOCK EDWARD H, HAMILTON RICHARD J, HANDY HENRY S, HARMON CHARLES L, HARMON CHAS L, HARMON ELIJAH D, HARMON ISAAC D, HUBBARD ELIJAH K, HUBBARD GURDON S, HUNTER EDWARD E, JONES BENJAMIN, JONES WILLARD | DAVIS JOHN, HALL GEORGE, HARMON ISAAC, JACKSON SAMUEL, JONES WILLIAM |
+
+**What the cohort taught, and cohort C3 should use it.**
+
+*C1's BROWN WM rule did the most work of any lesson carried forward, and it fired TWICE.* HARMON
+ISAAC D upheld and HARMON ISAAC refused, two days apart on the same card; JONES WILLARD upheld
+and JONES WILLIAM refused, on the same two afternoons of October 1833. Both times the barer
+spelling failed for the reason Brown's did — the town's own PRINTED record holds a second man of
+the name (*Harmon, Isaac Newton, with C. L. Harmon* in Fergus 1843; three William Joneses in the
+same volume) and the layer holds one because the layer is thin. **HARMON CHAS L is the control
+that keeps the rule from becoming "refuse every short spelling":** it is a CONTRACTION, not a
+barer spelling, it carries the middle initial L, and it is upheld beside HARMON CHARLES L. C3
+should ask whether the token that discriminates is missing, not whether the string is shorter.
+
+*The trade arm is the cheapest uphold when the directory names a trade about LAND.* Fergus 1839
+calls William B. Egan a *real estate dealer* and Elijah K. Hubbard a *banker*; the register
+enters the first for 720 acres over four months and the second for 2,428 acres in two afternoons
+of the June 1835 ring. That is the PEARSONS reasoning and it decided the cohort's two largest
+carries in one reading each. **Read the 1839 trade before anything else** — it is four years
+after the scene and still the closest printed trade this corpus holds.
+
+*A refusal can come off the card's own note, free.* DAVIS JOHN needed no outside argument: the
+card already says *"a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is
+this man is unknown … if it is not, there is a second Davis in the town."* Read the note for a
+sentence like that BEFORE building a case; two of the five refusals were half-written already.
+
+*`letter_list_only` told the truth this time.* JACKSON SAMUEL is the cohort's only flagged card,
+C1's test was applied — read `press_evidence[].list`, not the flag — and the flag was right. Its
+`corroborated_enrichment` row has real content, unlike C1's ANDREWS DAVID, and it still refuses:
+a county history's harbour foreman arriving from Buffalo predicts no purchase. **An enrichment
+that does not PREDICT the row is not a check on it.**
+
+*Four derived files move behind a refusal and check.sh will not tell you all four at once.* A
+retraction changes a card's `sources`, so `tools/export_resident_audit.py --build`,
+`tools/compile_scene.py --all` and `tools/consolidate_resident_evidence.py --build` all have to
+re-run, and the gate reports them one failing step at a time over three passes. Run all three
+after `spend_land_sales.py` and save two laps.
+
+Filed on the way past: nothing. Every card the cohort touched was already carrying a ticket or
+was clean.
+
+---
+
+### NEXT
+
+1. **Cohort C3 — the twenty-eight remaining, surnames K-Z.** Read T-1001 before starting it: an
    empty `rivals[]` means "no namesake OF THAT SPELLING", so a surname block should be gathered by
    eye as well as by `namesake.py`, and KIMBERLY EDMUND S is in this block and is T-1001's man.
+   The paired spellings to rule TOGETHER, and to expect to disagree, are the ones C2's rule names:
+   look for a spelling that drops a middle initial a fuller one carries, and check Fergus 1843 for
+   a second man of that forename before upholding it.
 
-**Remaining after cohort C1: 49 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
+**Remaining after cohort C2: 28 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
 closes when that number is zero, and says so with the number.
