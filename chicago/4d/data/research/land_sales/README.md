@@ -313,9 +313,10 @@ Four assertions in `--self-test` hold all of it.
 refused), and $547.00 of town ground reached the card it belongs on — $373.00 → **$920.00**
 across ten rows.
 
-**Still unruled: 90.** Cohort B is the twenty-four with no namesake at all (`rivals[]` empty),
-cohort C the sixty-six remaining `forename_agrees` proposals that have one; the log on T-0990
-carries them. The live count is on the crosswalk's `ruled` block and not repeated here.
+**Still unruled: 90 at the time this paragraph was written.** Cohort B is the twenty-four with
+no namesake at all (`rivals[]` empty), cohort C the sixty-six remaining `forename_agrees`
+proposals that have one, taken by surname block — C1, the A–C block, is ruled below; the log on
+T-0990 carries the rest. The live count is on the crosswalk's `ruled` block and not repeated here.
 
 ## Cohort B: the twenty-four with no namesake at all (T-0990)
 
@@ -394,6 +395,100 @@ no namesake OF THAT SPELLING, and this cohort is defined by that field.** Filed 
 
 **Still unruled: 66** — cohort C, the `forename_agrees` proposals that have a namesake, to be
 taken in two or three runs by surname block. The log on T-0990 carries them.
+
+## Cohort C1: the A–C surname block of the sixty-six (T-0990)
+
+Cohort C is what is left of what T-0697 added: the `forename_agrees` proposals whose surname
+DOES gather a namesake. The forename agrees IN FULL here, so — unlike cohort A, where an
+initial chose — the forename itself supplies no discriminator at all; it is simply that the
+layer holds a William Allen and the register sold to an ALLEN WILLIAM. Sixty-six of them
+stood, and the ticket asks for them by surname block. This is the first block: **the
+seventeen proposals whose purchaser spelling begins A, B or C.**
+
+**Nine upheld, eight refused.** What moved: matched spellings 112 → **104**, ruled 71 → **89**,
+unruled 66 → **49**; seven cards cleared entirely and an eighth reduced, and with them fifteen
+register rows — **1,520.00 acres and $1,984.00** taken back off the cards.
+
+| upheld | refused |
+|---|---|
+| ANDREWS DAVID, ARCHER WILLIAM B, BEAUBIEN MARK, BOWEN ERASTUS, BROWN WILLIAM H, CARPENTER PHILO, CHAPMAN CHARLES H, COOK JOSIAH P, COOK THOMAS | ALLEN WILLIAM, ANDREWS WILLIAM, BALLARD THOMAS, BENNETT WILLIAM, BLAKE LEVI, BROWN WM, BURDICK PAUL, CLARK JOHN K |
+
+**THE LINE, WITH THE FORENAME TAKEN AWAY.** Cohort B decided on whether the town holds the man
+more than once. That still holds, but it is not enough here, because a full forename agreeing
+in full is exactly what a crowded surname produces by accident. What decided all seventeen is
+whether one of the town's documents carries a token the REGISTER'S ROW ALSO CARRIES — a middle
+initial, a trade the purchase is what you would predict from, or a date and place that bracket
+the entry. Eight of the nine upholds have one; every refusal has none.
+
+**The school-section sale is that bracket, four times over.** Five of the nine upholds are
+purchases of section 16 in October 1833 — the canal commissioners' sale of the town's own
+ground — by men the town's own records place in the town in that same year:
+
+| the register | the town, in 1833 | ruling |
+|---|---|---|
+| BOWEN ERASTUS · BL65, 23 Oct 1833, $602 | the 1833 tax list, and the poll of 1834 | upheld |
+| CHAPMAN CHARLES H · three lots, 22–25 Oct 1833, $249 | the 1833 tax list; the Democrat of 26 Nov 1833 | upheld |
+| CARPENTER PHILO · BL27 + BL128, 22–23 Oct 1833, $307 | elector of 10 Aug 1833; first elder, 26 Jun 1833 | upheld |
+| COOK JOSIAH P · lot 7 blk 120, 25 Oct 1833, $45 | the 1833 tax list, as *Cook, J. P.* | upheld |
+| COOK THOMAS · lot 2 blk 47, 24 Oct 1833, $29 | the 1833 tax list, as *Cook, Thomas* | upheld |
+| BEAUBIEN MARK · lots 7–8 blk 81, 25 Oct 1833, $171 | the house the incorporation election was held in | upheld |
+
+A tract entry in a ring township says a name entered ground and nothing more. A TOWN LOT bought
+at the school-section sale, by a man the town assessed or polled or elected in the same season,
+is the two records meeting at one place on one date — which is what the ruling rule asks for and
+what the ring townships almost never give. The sums are worth reading too: $29 for Thomas Cook's
+lot and $45 for Josiah P. Cook's are a teamster's and a baker's purchases, not a speculator's,
+and Fergus 1839, Fergus 1843 and Norris 1844 print exactly those two trades.
+
+**THE REGISTER REFUSED ONE OF THESE ITSELF, TWICE.** Two refusals turn on the register's own
+hand rather than on the town's thinness, and both are new to this cohort.
+
+*BROWN WM.* The same register writes BROWN WILLIAM H when it has the initial, and BROWN WM when
+it does not. A clerk who records the middle initial elsewhere and omits it here is saying the
+initial was not on the paper — so folding WM into William H would read in the one token that
+discriminates, on a surname where the register also sells to BROWN JEREMIAH and BROWN RUFUS and
+the directories keep a grocer, a Sauganash boarder and an attorney apart on three lines. The
+initial's owner keeps his own two rows; the 480 acres of March 1836 leave the card.
+
+*CLARK JOHN K.* Here the register contradicts itself outright. `ls0897` (volume 236, page 042)
+and `ls0898` (volume 687, page 193) are ONE entry — the same SW sec 11 T40N R13E, the same 80
+acres and $100 on the same 4 November 1834 — read from two volumes, and one volume calls the
+purchaser **CLARK JOHN K** where the other calls him **CLARK JOHN R**. The town's whole record
+of the man is one line in the Chicago American of 11 July 1835, so the initial K is both the
+only thing beyond the name AND a thing the source disagrees with itself about. The Residence
+column's COOK cannot rescue it: cohort B settled that COOK needs a town-side partner, and one
+press line dated after the purchase is not one.
+
+**A FOLD THAT GATHERS TWO MEN LOOKS LIKE CORROBORATION.** ALLEN WILLIAM is refused although the
+card carries a 1843 directory line and an 1840 census tick besides its letter list, because those
+rows are gathered by the same undiscriminating fold and they disagree with each other: Fergus
+1839 has a William Allen keeping a SALOON on North Canal, Fergus 1843 a Wm. Allen SHIPCARPENTER
+on Wolcott, Norris 1844 the shipwright of that same Wolcott address. Two trades in two
+neighbourhoods is more than one man, and a count of readings is not a weight of evidence.
+ANDREWS WILLIAM fails the mirror of it — Fergus 1839 prints *Andrews, William, tailor, north
+side* one line from *Andrews, David, tailor, north side* — while COOK THOMAS passes it, because
+his three directories print one trade at one street across eleven years. **That is the test to
+carry into the next block: not how many rows a card holds, but whether they are consistent
+enough to be one man.**
+
+**Two documents can make an initial safe.** ARCHER WILLIAM B is upheld where ROWLEY HEMAN A was
+refused, on a difference worth stating exactly: the Chicago American of 4 July 1835 and Fergus's
+old-settler death notices BOTH print the middle initial, in documents of two different kinds, so
+the B is a token two records agree on rather than one record repeated. BROWN WILLIAM H is the
+same shape at greater strength — *W. H. Brown* and *Wm. H. Brown* in the Democrat eight days
+apart in 1834, then the initial again in Fergus 1839 and Norris 1844. Both are the JAMISON
+LOUIS T pattern of cohort B, not the ROWLEY one.
+
+**What these rulings do not say.** Every uphold here adjudicates a PURCHASER and nothing else.
+The register places nobody: William H Brown's two upheld entries are of 1831, four years before
+the scene and two before the town was incorporated; Archer's card keeps its bound after 1 July
+1835 and its `present_on_scene_date` uncertain; the Andrews research row says in its own words
+that its evidence establishes no roof on the scene date. No grade moved and no residence was
+asserted.
+
+**Still unruled: 49** — the rest of cohort C, D through W. The log on T-0990 carries the block
+after this one.
+
 
 ## Forty rulings were reverted, and restored (#1073, T-1000)
 

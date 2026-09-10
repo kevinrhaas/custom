@@ -128,12 +128,58 @@ have caught #1055 is their **T-0999**.
 Filed on the way past: **T-1001**, two cards for one physician and the exact surname fold that
 hid the namesake.
 
+---
+
+**Cohort C1 — the A–C surname block of the sixty-six** (`forename_agrees`, `rivals[]` non-empty,
+purchaser spelling beginning A, B or C). Ruled 2026-09-10. **Nine upheld, eight refused** —
+matched 112 → 104, ruled 71 → 89, unruled 66 → 49; seven cards cleared and an eighth reduced,
+fifteen register rows, 1,520.00 acres and $1,984.00 taken back off them.
+
+| upheld | refused |
+|---|---|
+| ANDREWS DAVID, ARCHER WILLIAM B, BEAUBIEN MARK, BOWEN ERASTUS, BROWN WILLIAM H, CARPENTER PHILO, CHAPMAN CHARLES H, COOK JOSIAH P, COOK THOMAS | ALLEN WILLIAM, ANDREWS WILLIAM, BALLARD THOMAS, BENNETT WILLIAM, BLAKE LEVI, BROWN WM, BURDICK PAUL, CLARK JOHN K |
+
+**What the cohort taught, and the next block should use it.** *Cohort B's line — does the town
+hold the man more than once — survives, but it is no longer sufficient.* A forename agreeing IN
+FULL is what a crowded surname produces by accident, so what decided all seventeen is whether one
+of the town's documents carries a token THE REGISTER'S ROW ALSO CARRIES. Eight of the nine
+upholds have one; every refusal has none.
+
+*The strongest such token in this block was the SCHOOL-SECTION SALE.* Six of the nine upholds
+buy town lots or blocks in section 16 in October 1833, and the town's own 1833 tax list, poll
+book or election record holds the same man in the same season. **Check the sale date against the
+tax list of 1833 first** — it is faster than the directories and it is decisive when it fires.
+
+*A count of readings is not a weight of evidence.* ALLEN WILLIAM is refused with three rows on
+his card, because Fergus 1839 (saloon, North Canal), Fergus 1843 (shipcarpenter, Wolcott) and
+Norris 1844 (shipwright, Wolcott) cannot all be one man; COOK THOMAS is upheld on three rows
+because they are one trade at one street across eleven years. Ask whether the rows are
+CONSISTENT, not how many there are.
+
+*The register refuses its own proposals twice in this block, and that is new.* BROWN WM is
+refused because the same register writes BROWN WILLIAM H when it has the initial — omission is
+the source speaking. CLARK JOHN K is refused because `ls0897` and `ls0898` are the SAME entry
+read from two volumes and the two volumes spell the purchaser JOHN K and JOHN R. **Look for
+one-entry-two-volumes pairs before ruling on a middle initial**: `volume`/`page`/`purchase_no`
+disagreeing on an identical tract and date is the signature.
+
+*Two independent printings make an initial safe; one does not.* ARCHER WILLIAM B upheld (paper
+and death notice both print the B), BROWN WILLIAM H upheld (two Democrat readings eight days
+apart), against cohort B's ROWLEY/HURD refusals where the initial pair was the whole record.
+
 ### NEXT
 
-1. **Cohort C — the sixty-six remaining `forename_agrees` proposals with namesakes.** Take them
-   in two or three runs by surname block, not all at once. Read T-1001 before starting: an empty
-   `rivals[]` means "no namesake OF THAT SPELLING", so a cohort-C surname block should be gathered
-   by eye as well as by `namesake.py`.
+1. **Cohort C2 — the D–H surname block.** DAVIS GEORGE, DAVIS JOHN, EGAN WILLIAM B, FOOT JOHN,
+   GOODRICH EBENEZER, HADDOCK EDWARD H, HALL GEORGE, HAMILTON RICHARD J, HANDY HENRY S, HARMON
+   CHARLES L, HARMON CHAS L, HARMON ELIJAH D, HARMON ISAAC, HARMON ISAAC D, HUBBARD ELIJAH K,
+   HUBBARD GURDON S, HUNTER EDWARD E — seventeen, the same size as C1. Two things to carry in:
+   the four HARMON spellings and the two HUBBARDs are where the one-entry-two-volumes check of
+   C1 will earn its keep, and HUNTER EDWARD E is the fuller reading of a spelling cohort A
+   already upheld, so read that ruling before re-deciding it.
+2. **Cohort C3 — the J–Z remainder**, thirty-two spellings.
 
-**Remaining after cohort B: 66 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
+Read T-1001 before either: an empty `rivals[]` means "no namesake OF THAT SPELLING", so a
+cohort-C surname block should be gathered by eye as well as by `namesake.py`.
+
+**Remaining after cohort C1: 49 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
 closes when that number is zero, and says so with the number.
