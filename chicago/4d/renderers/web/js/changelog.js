@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 686, title: 'Fourteen more land purchases judged, and the directories settle eleven', kind: 'change', ts: '2026-09-10T09:06:43.574Z', date: 'Sep 10, 2026, 4:06 AM CT',
+    items: [
+      'The judging of the federal land register continues, one bounded group at a time. This one is the hardest fourteen: the purchases where the town holds MORE THAN ONE person of the surname and only a forename initial chose between them. Eleven upheld, three refused.',
+      'What decided them was not the initial but the town\u2019s own later directories, which very often print the whole forename the 1835 card only holds a letter of. The land office wrote MONTGOMERY LOTON W; Fergus\u2019s directory of 1843 prints \u201cMontgomery, Loton W., shoemaker\u201d. It wrote FOOT STAN; the same shelf prints Star, and then Starr, a teamster at Clark and Monroe.',
+      'Sometimes the register settles it against itself. HUNTER E E and HUNTER EDWARD E are the same eighty acres, the same day and the same hundred dollars entered twice \u2014 and the fuller reading is the one that fills in the residence column.',
+      'The three refusals are the three with no directory line at all: a Goodrich known from one line of an 1833 tax list, a Smith from one line of an 1834 poll, a Morrison from one letter that waited uncalled-for at the post office. Their cards give back six purchases and 231 acres. A name read once, and a name entered on ground, still do not make one man.',
+      'Nothing in the town moved: no grade was raised, no resident minted, and no purchase became a place anyone lived.',
+    ] },
   { v: 685, title: 'Six townspeople who were two records each, decided', kind: 'change', ts: '2026-09-10T08:40:24.222Z', date: 'Sep 10, 2026, 3:40 AM CT',
     items: [
       'Six pairs of resident cards that might have been one person apiece had been left undecided since the town\u2019s big consolidation. All six are now ruled in writing, and four of them fold: the town\u2019s cards fall from 1,363 people to 1,359.',
