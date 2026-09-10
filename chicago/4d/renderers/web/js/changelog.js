@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '',
+  { v: 692, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '2026-09-10T15:57:36.611Z', date: 'Sep 10, 2026, 10:57 AM CT',
     items: [
       'Francis Gurtrey Blanchard \u2014 a capitalist of 45 Wells Street, by the town\u2019s own directory of 1843 \u2014 stood on two resident cards. The tax list of 1833 printed him \u201cBlanchard, Gantry\u201d, by his middle name alone; the poll list of 1834 printed him \u201cBlanchard, F. Gantry\u201d. He is one card now, and nothing was lost: the folded record is kept whole and every reference to it still resolves.',
       'The check that finds duplicate cards could never have found this one. It compares the FIRST forename of two names, so \u201cGantry\u201d and \u201cF Gantry\u201d were two different men to it and always would have been. This pair was found by hand, reading the land register, and it is the first fold of a resident card that the machine did not raise.',
