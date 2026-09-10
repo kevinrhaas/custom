@@ -28,9 +28,9 @@
   ],
   "merges": [
     {
-      "into": "William Crisey",
+      "into": "William Crissy",
       "from": "William Cr[…]",
-      "merge_rule": "The 1 January 1834 Chicago letter list is printed three times, and its THIRD printing — chicago_democrat_1834_02_04 c016, the ruled-dialect impression that sets one name per line — reads at full length the name the 1834-01-28 impression cut to 'William Cr[…]': it is William Criss, standing between James Childress and Benj. Chapman in the first alphabetical column of both impressions. Exactly one person in the whole gazetteer carries that forename with a surname beginning 'Cri' — William Crisey, from the Chicago list of the following return, chicago_democrat_1834_03_04 c026 — and a letter remaining uncalled for across two consecutive returns of the same post office is what these lists are for. The two impressions disagree on the surname's tail, 'Criss' against 'Crisey'; the page images would settle which the printer set, and they do not bear on whether it is one man. T-0323.",
+      "merge_rule": "The 1 January 1834 Chicago letter list is printed three times, and its THIRD printing — chicago_democrat_1834_02_04 c016, the ruled-dialect impression that sets one name per line — reads at full length the name the 1834-01-28 impression cut to 'William Cr[…]': it is William Criss, standing between James Childress and Benj. Chapman in the first alphabetical column of both impressions. Exactly one person in the whole gazetteer carries that forename with a surname beginning 'Cri' — William Crisey, from the Chicago list of the following return, chicago_democrat_1834_03_04 c026 — and a letter remaining uncalled for across two consecutive returns of the same post office is what these lists are for. The two impressions disagree on the surname's tail, 'Criss' against 'Crisey'; the page images would settle which the printer set, and they do not bear on whether it is one man. T-0323. CORRECTED AT THE PAGE IMAGE (T-0424, 2026-09-10): the surname is printed **Crissy**, not Crisey. The 1834-03-04 impression was read at the deposit's own scan (Vol. I No. 15, page 4 column 2) and the 1834-01-28 impression with it, and both set `William Crissy` in the same standing type. The transcription's `Crisey` was a scan reading, and this merge now points at what the page prints.",
       "ticket": "T-0323"
     },
     {

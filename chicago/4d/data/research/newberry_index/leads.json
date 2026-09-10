@@ -9,7 +9,7 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "22a9e70b5ac69c83a22355a5a07929489bef0dbfa1e865f67be53b006f1866f3",
+    "fingerprint": "1959af07dd54028c06c6e1dd98222cd27a29df89cc4a86ab9027413469bf325e",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
@@ -22490,7 +22490,7 @@
       "candidates": [
         {
           "id": "pease_h",
-          "name": "H. Pease",
+          "name": "C. H. Pease",
           "rule": "exact surname"
         }
       ],

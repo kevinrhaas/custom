@@ -341,6 +341,20 @@ scan was read and outranks it); and `built_at_scene_date` / `survival_liberty_re
 computed on a business — documented businesses stand in the 1835 town unless a claim
 contradicts them, and one last seen before 1835 stands on a stated liberty.
 
+**A `reading` can be per-entity, and on the letter list it is.** `scan_verified` on a
+claim says the page image was read; it does not promise the image settled every name in
+it. Claims c026 and c027 of `chicago_democrat_1834_03_04` carry `scan_verified` at the
+claim and a `reading` on each entity beside it, because three of their seventy-eight
+readings survive the images: the crop lost the printed lines either side of each, and a
+window of three candidates is three candidates. Each of those keeps
+`transcription_mediated` and names its window. Where the image DID settle a reading, the
+entity keeps `crop_reading` — what the crop said before the page corrected it — so the
+repair stays legible as a repair and the instruments have something stable to match on.
+See `tools/letter_list_printings.py --scan` and
+`data/research/newspapers/letter_list_1834_01_01_scan.json`, the 1 January 1834 Chicago
+return read at the deposit's page scans: 170 printed lines, 169 personal names, the same
+standing type in four impressions (T-0424).
+
 **Identity never coalesces by accident.** The gazetteer is keyed on the whole normalized
 name, so `Cohen, P.` and `Cohen, J.` are two people. A merge is declared in
 `identity.json` with a `merge_rule` naming both spellings; same surname with different

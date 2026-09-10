@@ -29,7 +29,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2559
+   "n": 2549
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -49,7 +49,7 @@
   "voters_surname_only_refused": 43,
   "letter_list_matched_one_bidder": 54,
   "letter_list_ambiguous": 0,
-  "letter_list_surname_only_refused": 188,
+  "letter_list_surname_only_refused": 186,
   "heads_1840_matched_one_bidder": 27,
   "heads_1840_ambiguous": 1,
   "heads_1840_surname_only_refused": 67
@@ -6196,6 +6196,11 @@
     "rule": "The surname 'Bristol' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'C' of 'Chas. L. Bristol'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Chester Marshall",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Marshall' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'C' of 'Chester Marshall'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Chester Smith",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'C' of 'Chester Smith'. A surname-only agreement is a refusal."
@@ -6561,6 +6566,11 @@
     "rule": "The surname 'Sherman' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Noah Phelps",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Phelps' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'N' of 'Noah Phelps'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "P. T. Russell",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Russell' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'P' of 'P. T. Russell'. A surname-only agreement is a refusal."
@@ -6911,21 +6921,6 @@
     "rule": "The surname 'Butterfield' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'Z' of 'Zimry Butterfield'. A surname-only agreement is a refusal."
    },
    {
-    "name": "[?] Kercheval",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Kercheval' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?] Kercheval'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[?] Kinzie",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Kinzie' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?] Kinzie'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[?] Phelps",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Phelps' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?] Phelps'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "[?]. Smith",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?]. Smith'. A surname-only agreement is a refusal."
@@ -6939,11 +6934,6 @@
     "name": "[M]. B. Beaubien",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Beaubien' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'M' of '[M]. B. Beaubien'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "[Ne]stor Marshall",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Marshall' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'N' of '[Ne]stor Marshall'. A surname-only agreement is a refusal."
    },
    {
     "name": "[S]m[it]h, Freeman",

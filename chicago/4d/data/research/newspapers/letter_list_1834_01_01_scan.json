@@ -1,0 +1,943 @@
+{
+ "schema": 1,
+ "id": "letter_list_1834_01_01_scan",
+ "title": "The Chicago post office's 1 January 1834 letter list, read at the page images",
+ "return_date": "1834-01-01",
+ "post_office": "Chicago, Illinois",
+ "postmaster": "John S. C. Hogan, P. M.",
+ "reading": "scan_verified",
+ "read_on": "2026-09-10",
+ "read_by": "T-0424",
+ "ticket": "T-0424",
+ "heading_as_printed": "List of Letters REMAINING in the Post-Office at Chicago, Ill. January 1, 1834.",
+ "foot_as_printed": "JOHN S. C. HOGAN, P. M.  *.*Persons calling for any of the above letters will please say they are advertised.",
+ "setting": {
+  "columns": 2,
+  "lines_per_column": 85,
+  "printed_lines": 170,
+  "note": "The list occupies the whole upper half of column 2 of page 4 and is set in TWO alphabetical sub-columns of equal length, read DOWN the left sub-column (Atkins to Harkness) and then DOWN the right (Hays to Wright). Both sub-columns begin on the line under the date line and end on the same line, over the postmaster's signature, in every impression read. `line` below is the line's position within its own sub-column."
+ },
+ "counts": {
+  "printed_lines": 170,
+  "firm_lines": 2,
+  "lines_naming_one_person": 167,
+  "lines_naming_two_people": 1,
+  "personal_names": 169,
+  "how": "170 printed lines. Two name a firm rather than a person (right 46 `Axtel & Steele`, right 78 `Jesse B. Winn & Co.`). One names two people on one line (left 36 `Lamira & Laura Carrier`). 170 - 2 = 168 lines naming individuals, of which one carries two, so 169 personal names. A trailing numeral (`2`, `3`, `4`, `5`) is a count of LETTERS held for that addressee, not of people, and is kept in `as_printed` and counted nowhere."
+ },
+ "impressions_read": [
+  {
+   "issue": "chicago_democrat_1834_01_28",
+   "volume": "Vol. I No. 10",
+   "masthead": "CHICAGO, ILL. TUESDAY JAN. 28, 1834.",
+   "issue_page": 4,
+   "column": 2,
+   "archive_item": "chicago1835-newspaper-chicago-democrat-1833",
+   "archive_file": "Dec1833-Jan1834.pdf",
+   "scan_page": 22,
+   "note": "Read in full, both sub-columns. Line for line identical to 1834-03-04, including the battered sort in `Aarri[?]t Bradford` and the `d`-shaped forename sort of `dane Gray`: the type stood between the two impressions."
+  },
+  {
+   "issue": "chicago_democrat_1834_03_04",
+   "volume": "Vol. I No. 15",
+   "masthead": "CHICAGO, ILL. TUESDAY MARCH, 4, 1834.",
+   "issue_page": 4,
+   "column": 2,
+   "archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+   "archive_file": "Jan1834-Mar1834.pdf",
+   "scan_page": 20,
+   "note": "THE SUBJECT OF T-0312's claims c026 and c027. Read in full, both sub-columns; the readings below are taken from this impression where the two differ in inking."
+  },
+  {
+   "issue": "chicago_democrat_1834_02_04",
+   "volume": "Vol. I No. 11",
+   "masthead": "CHICAGO, ILL. TUESDAY FEB. 4, 1834.",
+   "issue_page": 4,
+   "column": 2,
+   "archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+   "archive_file": "Jan1834-Mar1834.pdf",
+   "scan_page": 4,
+   "note": "Checked for length and setting, not re-read name by name: same 85 lines a sub-column, same order, same signature."
+  },
+  {
+   "issue": "chicago_democrat_1834_02_11",
+   "volume": "Vol. I No. 12",
+   "masthead": "CHICAGO, ILL. TUESDAY FEB. 11, 1834.",
+   "issue_page": 4,
+   "column": 2,
+   "archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+   "archive_file": "Jan1834-Mar1834.pdf",
+   "scan_page": 8,
+   "note": "Checked for length and setting, and consulted at name level for `Aarri[?]t Bradford`, `Orinda Garyl` and `dane Gray`, which it sets identically."
+  }
+ ],
+ "deposit": {
+  "note": "The page images are the project owner's own deposit, registered in chicago/reference/newspapers/ChicagoDemocrat/1833.yaml and 1834.yaml with a sha256 for every file, and mirrored to the Internet Archive items named in `impressions_read`. This reading was taken from the archive.org copies of those two PDFs, rendered at the scan's native 300 dpi with pdftoppm. No image is committed here: the deposit's `asset_use` is text_only.",
+  "sha256": {
+   "Dec1833-Jan1834.pdf": "dcb1474a492ea950a0cb540b10a03d56d0dad68546af0cf8eeecd2e69e603e22",
+   "Jan1834-Mar1834.pdf": "9fdfe5762de29a2581dcffb0a2b2140a15eb04b1811747aa37d78bbda92022d3"
+  }
+ },
+ "how": "Rendered page 4 of each issue at 300 dpi, cropped column 2 from the heading to the postmaster's signature, and read the two sub-columns down. Names are recorded AS PRINTED and are not amended to agree with any transcription, any other printing, or any resident card (T-0299). A reading the page cannot settle is left cut with `[?]` and said so in its `note`.",
+ "lines": [
+  {
+   "line": 1,
+   "column": "left",
+   "as_printed": "Eliphalet Atkins 2"
+  },
+  {
+   "line": 2,
+   "column": "left",
+   "as_printed": "J. W. Anderson"
+  },
+  {
+   "line": 3,
+   "column": "left",
+   "as_printed": "Constant Abbott"
+  },
+  {
+   "line": 4,
+   "column": "left",
+   "as_printed": "Wm. G. Austin"
+  },
+  {
+   "line": 5,
+   "column": "left",
+   "as_printed": "Almond Axtell 2"
+  },
+  {
+   "line": 6,
+   "column": "left",
+   "as_printed": "Myron K. Brownson"
+  },
+  {
+   "line": 7,
+   "column": "left",
+   "as_printed": "Timothy Burnett"
+  },
+  {
+   "line": 8,
+   "column": "left",
+   "as_printed": "B. H. Bertrand"
+  },
+  {
+   "line": 9,
+   "column": "left",
+   "as_printed": "Cyntha Burbee"
+  },
+  {
+   "line": 10,
+   "column": "left",
+   "as_printed": "Joseph Babeu"
+  },
+  {
+   "line": 11,
+   "column": "left",
+   "as_printed": "Hiram Bennett"
+  },
+  {
+   "line": 12,
+   "column": "left",
+   "as_printed": "Anthony Beers"
+  },
+  {
+   "line": 13,
+   "column": "left",
+   "as_printed": "Thomas Bennett"
+  },
+  {
+   "line": 14,
+   "column": "left",
+   "as_printed": "J. K. Blodgett"
+  },
+  {
+   "line": 15,
+   "column": "left",
+   "as_printed": "Jos. Britton"
+  },
+  {
+   "line": 16,
+   "column": "left",
+   "as_printed": "Mary Barrows"
+  },
+  {
+   "line": 17,
+   "column": "left",
+   "as_printed": "A. P. Benton"
+  },
+  {
+   "line": 18,
+   "column": "left",
+   "as_printed": "Avice Blodget"
+  },
+  {
+   "line": 19,
+   "column": "left",
+   "as_printed": "H. S. Bennett 2"
+  },
+  {
+   "line": 20,
+   "column": "left",
+   "as_printed": "Aarri[?]t Bradford",
+   "note": "The sixth sort is battered in every impression read; the name is set `Aarri`, a broken letter, then `t Bradford`. Most likely a worn `e` for Aarriet/Harriet, but the page does not say so and the reading is left cut at the image."
+  },
+  {
+   "line": 21,
+   "column": "left",
+   "as_printed": "Russell Baldwin"
+  },
+  {
+   "line": 22,
+   "column": "left",
+   "as_printed": "Hiram Bowen"
+  },
+  {
+   "line": 23,
+   "column": "left",
+   "as_printed": "Erastus Bowen"
+  },
+  {
+   "line": 24,
+   "column": "left",
+   "as_printed": "Chas. Babcock"
+  },
+  {
+   "line": 25,
+   "column": "left",
+   "as_printed": "Aaron Bemis"
+  },
+  {
+   "line": 26,
+   "column": "left",
+   "as_printed": "A.O.T. Breed"
+  },
+  {
+   "line": 27,
+   "column": "left",
+   "as_printed": "James Burk"
+  },
+  {
+   "line": 28,
+   "column": "left",
+   "as_printed": "T. R. Covell 2"
+  },
+  {
+   "line": 29,
+   "column": "left",
+   "as_printed": "Wm. P. Cleaveland"
+  },
+  {
+   "line": 30,
+   "column": "left",
+   "as_printed": "Thomas Conger"
+  },
+  {
+   "line": 31,
+   "column": "left",
+   "as_printed": "O. P. Catran"
+  },
+  {
+   "line": 32,
+   "column": "left",
+   "as_printed": "D. P. Clevinger"
+  },
+  {
+   "line": 33,
+   "column": "left",
+   "as_printed": "E. W. Center"
+  },
+  {
+   "line": 34,
+   "column": "left",
+   "as_printed": "Geo. H. Clark"
+  },
+  {
+   "line": 35,
+   "column": "left",
+   "as_printed": "Alfred Clarke"
+  },
+  {
+   "line": 36,
+   "column": "left",
+   "as_printed": "Lamira & Laura Carrier",
+   "note": "ONE LINE, TWO PEOPLE. The page sets an ampersand, not `or`: `Lamira & Laura Carrier`. The March crop's `Lamira. Laura Carrier C.` had left it open whether the printing offered a choice of readings; it does not."
+  },
+  {
+   "line": 37,
+   "column": "left",
+   "as_printed": "J. P. Converse"
+  },
+  {
+   "line": 38,
+   "column": "left",
+   "as_printed": "Daniel B. Clevinger 4"
+  },
+  {
+   "line": 39,
+   "column": "left",
+   "as_printed": "Henry B. Clarke 2"
+  },
+  {
+   "line": 40,
+   "column": "left",
+   "as_printed": "Alfred Churchill"
+  },
+  {
+   "line": 41,
+   "column": "left",
+   "as_printed": "James Childress"
+  },
+  {
+   "line": 42,
+   "column": "left",
+   "as_printed": "William Crissy"
+  },
+  {
+   "line": 43,
+   "column": "left",
+   "as_printed": "Gustavus Clark"
+  },
+  {
+   "line": 44,
+   "column": "left",
+   "as_printed": "Benj. Chapman"
+  },
+  {
+   "line": 45,
+   "column": "left",
+   "as_printed": "Loring Delano"
+  },
+  {
+   "line": 46,
+   "column": "left",
+   "as_printed": "Samuel Devoe"
+  },
+  {
+   "line": 47,
+   "column": "left",
+   "as_printed": "Noel Dagenet"
+  },
+  {
+   "line": 48,
+   "column": "left",
+   "as_printed": "E. Dimmick"
+  },
+  {
+   "line": 49,
+   "column": "left",
+   "as_printed": "David Dickson"
+  },
+  {
+   "line": 50,
+   "column": "left",
+   "as_printed": "William Elliot 3"
+  },
+  {
+   "line": 51,
+   "column": "left",
+   "as_printed": "G. W. Ewing"
+  },
+  {
+   "line": 52,
+   "column": "left",
+   "as_printed": "Samuel Eberiden"
+  },
+  {
+   "line": 53,
+   "column": "left",
+   "as_printed": "Dean Farren"
+  },
+  {
+   "line": 54,
+   "column": "left",
+   "as_printed": "A. W. Flint 2"
+  },
+  {
+   "line": 55,
+   "column": "left",
+   "as_printed": "Wm. H. Frazer"
+  },
+  {
+   "line": 56,
+   "column": "left",
+   "as_printed": "H. K. Fay"
+  },
+  {
+   "line": 57,
+   "column": "left",
+   "as_printed": "Aaron Friend"
+  },
+  {
+   "line": 58,
+   "column": "left",
+   "as_printed": "David P. Frame"
+  },
+  {
+   "line": 59,
+   "column": "left",
+   "as_printed": "Jane Forrister"
+  },
+  {
+   "line": 60,
+   "column": "left",
+   "as_printed": "Caleb Foster"
+  },
+  {
+   "line": 61,
+   "column": "left",
+   "as_printed": "Rob't. Fisher"
+  },
+  {
+   "line": 62,
+   "column": "left",
+   "as_printed": "P. Field"
+  },
+  {
+   "line": 63,
+   "column": "left",
+   "as_printed": "Alva Fowler"
+  },
+  {
+   "line": 64,
+   "column": "left",
+   "as_printed": "Alburn Foster"
+  },
+  {
+   "line": 65,
+   "column": "left",
+   "as_printed": "Jacob Fake"
+  },
+  {
+   "line": 66,
+   "column": "left",
+   "as_printed": "Ebenezer Goodrich"
+  },
+  {
+   "line": 67,
+   "column": "left",
+   "as_printed": "Orinda Garyl",
+   "note": "Set `Garyl`. Not `Gary`, not `Guryl`."
+  },
+  {
+   "line": 68,
+   "column": "left",
+   "as_printed": "dane Gray",
+   "note": "The forename's first sort prints as a `d` with a full bowl in all four impressions read. A turned or battered `J` (Jane Gray) is the obvious explanation and the page does not carry it; recorded as printed."
+  },
+  {
+   "line": 69,
+   "column": "left",
+   "as_printed": "William Gooding 2"
+  },
+  {
+   "line": 70,
+   "column": "left",
+   "as_printed": "Jos. A. Gooding"
+  },
+  {
+   "line": 71,
+   "column": "left",
+   "as_printed": "David Groover"
+  },
+  {
+   "line": 72,
+   "column": "left",
+   "as_printed": "Eben Griswold"
+  },
+  {
+   "line": 73,
+   "column": "left",
+   "as_printed": "Wm. B. Green"
+  },
+  {
+   "line": 74,
+   "column": "left",
+   "as_printed": "O. Grant"
+  },
+  {
+   "line": 75,
+   "column": "left",
+   "as_printed": "J. P. Gobb"
+  },
+  {
+   "line": 76,
+   "column": "left",
+   "as_printed": "Pomeroy Goodrich"
+  },
+  {
+   "line": 77,
+   "column": "left",
+   "as_printed": "Luther Hatch"
+  },
+  {
+   "line": 78,
+   "column": "left",
+   "as_printed": "Nathan Hopkins"
+  },
+  {
+   "line": 79,
+   "column": "left",
+   "as_printed": "Reuben Hart"
+  },
+  {
+   "line": 80,
+   "column": "left",
+   "as_printed": "Nathan Huchins"
+  },
+  {
+   "line": 81,
+   "column": "left",
+   "as_printed": "Warren Hanks"
+  },
+  {
+   "line": 82,
+   "column": "left",
+   "as_printed": "Philip Howard",
+   "note": "Two Harrisons stand in the list, Wooster and Benj., on consecutive lines."
+  },
+  {
+   "line": 83,
+   "column": "left",
+   "as_printed": "Wooster Harrison 5",
+   "note": "The trailing numeral is inked heavy on 1834-03-04 and legible as `5` on 1834-01-28."
+  },
+  {
+   "line": 84,
+   "column": "left",
+   "as_printed": "Benj. Harrison"
+  },
+  {
+   "line": 85,
+   "column": "left",
+   "as_printed": "J. P. Harkness"
+  },
+  {
+   "line": 1,
+   "column": "right",
+   "as_printed": "Isaac Hays"
+  },
+  {
+   "line": 2,
+   "column": "right",
+   "as_printed": "Levi Hills 2"
+  },
+  {
+   "line": 3,
+   "column": "right",
+   "as_printed": "H. B. Hoffman"
+  },
+  {
+   "line": 4,
+   "column": "right",
+   "as_printed": "A. H. Howard"
+  },
+  {
+   "line": 5,
+   "column": "right",
+   "as_printed": "D. S. Haight"
+  },
+  {
+   "line": 6,
+   "column": "right",
+   "as_printed": "Edward Hill"
+  },
+  {
+   "line": 7,
+   "column": "right",
+   "as_printed": "Geo. Johnson"
+  },
+  {
+   "line": 8,
+   "column": "right",
+   "as_printed": "Isaac Killigoss"
+  },
+  {
+   "line": 9,
+   "column": "right",
+   "as_printed": "Ira O. Knapp"
+  },
+  {
+   "line": 10,
+   "column": "right",
+   "as_printed": "J. H. Kinzie"
+  },
+  {
+   "line": 11,
+   "column": "right",
+   "as_printed": "Lewis Kerchevel"
+  },
+  {
+   "line": 12,
+   "column": "right",
+   "as_printed": "Lewis Lafton"
+  },
+  {
+   "line": 13,
+   "column": "right",
+   "as_printed": "Lewis Lake"
+  },
+  {
+   "line": 14,
+   "column": "right",
+   "as_printed": "J. W. Lewis 2"
+  },
+  {
+   "line": 15,
+   "column": "right",
+   "as_printed": "J. S. Lacey"
+  },
+  {
+   "line": 16,
+   "column": "right",
+   "as_printed": "Jacob Loose"
+  },
+  {
+   "line": 17,
+   "column": "right",
+   "as_printed": "Miranda Miner 2"
+  },
+  {
+   "line": 18,
+   "column": "right",
+   "as_printed": "A. M'Daniel"
+  },
+  {
+   "line": 19,
+   "column": "right",
+   "as_printed": "Chas. Miller"
+  },
+  {
+   "line": 20,
+   "column": "right",
+   "as_printed": "Mary Meriams"
+  },
+  {
+   "line": 21,
+   "column": "right",
+   "as_printed": "James Mackel"
+  },
+  {
+   "line": 22,
+   "column": "right",
+   "as_printed": "Joseph Meeker"
+  },
+  {
+   "line": 23,
+   "column": "right",
+   "as_printed": "James Makie"
+  },
+  {
+   "line": 24,
+   "column": "right",
+   "as_printed": "N. M'Carty"
+  },
+  {
+   "line": 25,
+   "column": "right",
+   "as_printed": "Chester Marshall 2"
+  },
+  {
+   "line": 26,
+   "column": "right",
+   "as_printed": "John Monreou"
+  },
+  {
+   "line": 27,
+   "column": "right",
+   "as_printed": "F. T. Miner"
+  },
+  {
+   "line": 28,
+   "column": "right",
+   "as_printed": "F. B. Northrop"
+  },
+  {
+   "line": 29,
+   "column": "right",
+   "as_printed": "J. V. Natta"
+  },
+  {
+   "line": 30,
+   "column": "right",
+   "as_printed": "Lauretta Plympton 2"
+  },
+  {
+   "line": 31,
+   "column": "right",
+   "as_printed": "T. E. Parsons 2"
+  },
+  {
+   "line": 32,
+   "column": "right",
+   "as_printed": "Julius Perrin 2"
+  },
+  {
+   "line": 33,
+   "column": "right",
+   "as_printed": "Joshua Pruvis"
+  },
+  {
+   "line": 34,
+   "column": "right",
+   "as_printed": "S. F. Plumer"
+  },
+  {
+   "line": 35,
+   "column": "right",
+   "as_printed": "Green Poel"
+  },
+  {
+   "line": 36,
+   "column": "right",
+   "as_printed": "C. H. Pease"
+  },
+  {
+   "line": 37,
+   "column": "right",
+   "as_printed": "Noah Phelps"
+  },
+  {
+   "line": 38,
+   "column": "right",
+   "as_printed": "Rob't. Robinson"
+  },
+  {
+   "line": 39,
+   "column": "right",
+   "as_printed": "Thos. H. Richey"
+  },
+  {
+   "line": 40,
+   "column": "right",
+   "as_printed": "Mr. Roult 2"
+  },
+  {
+   "line": 41,
+   "column": "right",
+   "as_printed": "Salmon Rutherford 3"
+  },
+  {
+   "line": 42,
+   "column": "right",
+   "as_printed": "James H. Rinhart"
+  },
+  {
+   "line": 43,
+   "column": "right",
+   "as_printed": "S. W. Smith"
+  },
+  {
+   "line": 44,
+   "column": "right",
+   "as_printed": "Isaac Scarritt"
+  },
+  {
+   "line": 45,
+   "column": "right",
+   "as_printed": "S. Scott"
+  },
+  {
+   "line": 46,
+   "column": "right",
+   "as_printed": "Axtel & Steele",
+   "note": "A FIRM, not a person: `Axtel & Steele`. Distinct from `H. S. Steele 2` eight lines below and from `Almond Axtell 2` in the left column."
+  },
+  {
+   "line": 47,
+   "column": "right",
+   "as_printed": "D. Sprague"
+  },
+  {
+   "line": 48,
+   "column": "right",
+   "as_printed": "B. P. Stafford"
+  },
+  {
+   "line": 49,
+   "column": "right",
+   "as_printed": "Chester Smith"
+  },
+  {
+   "line": 50,
+   "column": "right",
+   "as_printed": "H. C. Smith"
+  },
+  {
+   "line": 51,
+   "column": "right",
+   "as_printed": "H. S. Steele 2"
+  },
+  {
+   "line": 52,
+   "column": "right",
+   "as_printed": "James Steward"
+  },
+  {
+   "line": 53,
+   "column": "right",
+   "as_printed": "S. C. Stimson 2"
+  },
+  {
+   "line": 54,
+   "column": "right",
+   "as_printed": "Palmer Stearns 2"
+  },
+  {
+   "line": 55,
+   "column": "right",
+   "as_printed": "David Sprague"
+  },
+  {
+   "line": 56,
+   "column": "right",
+   "as_printed": "S. I. Scott"
+  },
+  {
+   "line": 57,
+   "column": "right",
+   "as_printed": "Ralph Stowell"
+  },
+  {
+   "line": 58,
+   "column": "right",
+   "as_printed": "Samuel Stout"
+  },
+  {
+   "line": 59,
+   "column": "right",
+   "as_printed": "J. F. Schermerhorn"
+  },
+  {
+   "line": 60,
+   "column": "right",
+   "as_printed": "Wm. Shier"
+  },
+  {
+   "line": 61,
+   "column": "right",
+   "as_printed": "John Sewell"
+  },
+  {
+   "line": 62,
+   "column": "right",
+   "as_printed": "Stephen Sherwood"
+  },
+  {
+   "line": 63,
+   "column": "right",
+   "as_printed": "H. C. Shearman"
+  },
+  {
+   "line": 64,
+   "column": "right",
+   "as_printed": "Alden Tuller"
+  },
+  {
+   "line": 65,
+   "column": "right",
+   "as_printed": "Elam Tuller"
+  },
+  {
+   "line": 66,
+   "column": "right",
+   "as_printed": "A. H. Taylor"
+  },
+  {
+   "line": 67,
+   "column": "right",
+   "as_printed": "John Thompson"
+  },
+  {
+   "line": 68,
+   "column": "right",
+   "as_printed": "William Teal"
+  },
+  {
+   "line": 69,
+   "column": "right",
+   "as_printed": "Platt Thorn"
+  },
+  {
+   "line": 70,
+   "column": "right",
+   "as_printed": "Peter Temple 3"
+  },
+  {
+   "line": 71,
+   "column": "right",
+   "as_printed": "Lewis Temple"
+  },
+  {
+   "line": 72,
+   "column": "right",
+   "as_printed": "W. Vanzandt 2"
+  },
+  {
+   "line": 73,
+   "column": "right",
+   "as_printed": "John Vandine"
+  },
+  {
+   "line": 74,
+   "column": "right",
+   "as_printed": "Adam Vanderwerker"
+  },
+  {
+   "line": 75,
+   "column": "right",
+   "as_printed": "John Wilson 4"
+  },
+  {
+   "line": 76,
+   "column": "right",
+   "as_printed": "Wm. Winson"
+  },
+  {
+   "line": 77,
+   "column": "right",
+   "as_printed": "Philip Willsee",
+   "note": "Set `Willsee`; the March crop's `p Willece` is that read badly."
+  },
+  {
+   "line": 78,
+   "column": "right",
+   "as_printed": "Jesse B. Winn & Co.",
+   "note": "A FIRM, not a person: `Jesse B. Winn & Co.`"
+  },
+  {
+   "line": 79,
+   "column": "right",
+   "as_printed": "Daniel Warren"
+  },
+  {
+   "line": 80,
+   "column": "right",
+   "as_printed": "Sally Weed"
+  },
+  {
+   "line": 81,
+   "column": "right",
+   "as_printed": "Aaron Whitcomb"
+  },
+  {
+   "line": 82,
+   "column": "right",
+   "as_printed": "Delaney Wells"
+  },
+  {
+   "line": 83,
+   "column": "right",
+   "as_printed": "Thomas H. Wrickey"
+  },
+  {
+   "line": 84,
+   "column": "right",
+   "as_printed": "Loiza Webb"
+  },
+  {
+   "line": 85,
+   "column": "right",
+   "as_printed": "Samuel Wright"
+  }
+ ]
+}

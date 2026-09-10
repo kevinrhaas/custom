@@ -4,6 +4,8 @@
     tools/letter_list_printings.py            the tally and the concordance
     tools/letter_list_printings.py --json     the same, machine-readable
     tools/letter_list_printings.py --apply    write the completions into the claims
+    tools/letter_list_printings.py --scan     the printed list, read at the page images
+    tools/letter_list_printings.py --apply-scan  write the IMAGE readings into the claims
     tools/letter_list_printings.py --self-test  the assertions still fire
 
 WHY THIS EXISTS. T-0312 found a letter list on page 4 of the Democrat of 1834-03-04
@@ -23,11 +25,34 @@ separate impression, separately scanned, separately damaged. Eight other impress
 of this same list stand in the deposit, and between them they carry the heading, the
 date line, and the forenames the March crop lost.
 
-WHAT IT DOES NOT DO. It reads no page image, so nothing here is `scan_verified`; the
-witnesses are other transcriptions and the readings stay `transcription_mediated`.
-It amends nothing to agree with anything: every printing keeps its own verbatim
-setting, and a completion is reported with the printings that carry it, so a reader
-can weigh the tally rather than take the result.
+WHAT THE CONCORDANCE DOES NOT DO. It reads no page image, so nothing it proposes is
+`scan_verified`; its witnesses are other transcriptions and its readings stay
+`transcription_mediated`. It amends nothing to agree with anything: every printing
+keeps its own verbatim setting, and a completion is reported with the printings that
+carry it, so a reader can weigh the tally rather than take the result.
+
+THE PAGE IMAGES, AND WHY THEY OUTRANK ALL OF IT (T-0424, 2026-09-10). The cheap
+instrument was always a stand-in for the expensive one, and the expensive one has now
+been run: `data/research/newspapers/letter_list_1834_01_01_scan.json` is the printed
+list read off the deposit's own page scans, at 300 dpi, in two impressions in full
+(1834-01-28 Vol. I No. 10 and 1834-03-04 Vol. I No. 15) and two more checked for
+length. It settles the three questions T-0331 assigned to the images:
+
+  * WHICH RETURN. `List of Letters REMAINING in the Post-Office at Chicago, Ill.
+    January 1, 1834.`, over `JOHN S. C. HOGAN, P. M.` -- the heading whole, where the
+    March crop kept `34.` and nothing else.
+  * HOW LONG. **170 printed lines**, two alphabetical sub-columns of 85, the same in
+    every impression: this is standing type and it did not move between January and
+    March. 79 names were minted off the March crops and 97 off the January
+    transcription, so both are FLOORS, short by 91 and 73 lines respectively.
+  * THE FORENAMES the crop took off the left edge. `--scan` walks the crops' minted
+    readings down the printed sub-column they came from and reports what stands at
+    each position -- or, where the crop lost lines either side of a reading, the
+    WINDOW of printed lines it must be one of, and no name at all.
+
+Ruling 2 of `data/research/newspapers/README.md`: a scan_verified reading outranks a
+transcription. So `--apply-scan` overwrites what `--apply` proposed, and `--apply`
+refuses to touch an entity the image has already settled.
 
 THE FINGERPRINT. Every impression of this list opens on the same name, which the
 eight scans set eight ways -- `Eliphalet Atkins 2`, `ejiphalet Atkina 2`, `Jiphalet
@@ -50,6 +75,17 @@ DEPOSIT = ROOT.parent / "reference" / "newspapers" / "Transcriptions" / \
     "Chicago_Democrat_1833-11_to_1835-08"
 EXTRACTED = ROOT / "data" / "research" / "newspapers" / "extracted" / \
     "chicago_democrat_1834_03_04.json"
+SCAN = ROOT / "data" / "research" / "newspapers" / "letter_list_1834_01_01_scan.json"
+# The March crops are two, and each is one of the printed sub-columns: c026 took the
+# left (Atkins to Harkness) and c027 the right (Hays to Wright). That is what makes a
+# positional walk possible at all -- a crop's readings are in printed order within one
+# sub-column, whatever it lost between them.
+CLAIM_COLUMN = {"c026": "left", "c027": "right"}
+# How far ahead of the cursor a surname may match before the match is refused. The
+# crops lose runs of lines -- c027 loses ten between `Salmon Rutherford 3` and `James
+# Steward` -- so the window cannot be tight; but an unbounded one would let a late
+# surname collide with an early one and read the list out of order.
+SCAN_REACH = 15
 
 # The eight printings, each located by hand in the deposit and stated with the line
 # the list's first name stands on, so every row here is checkable in one `sed -n`.
@@ -174,15 +210,26 @@ def load_printings():
 
 
 def subject_names():
-    """The names T-0312 minted off the 1834-03-04 crops, in printed order."""
+    """The names T-0312 minted off the 1834-03-04 crops, in printed order.
+
+    ALWAYS THE CROP'S OWN READING. Once `--apply-scan` has run, `normalized` holds
+    what the page images print; `crop_reading` holds what the crop said, and that is
+    what every instrument here is about. The concordance exists to weigh
+    transcriptions against each other, and it would be measuring the page's answer
+    against itself if it read the repaired field; the scan alignment would be reading
+    its own output back in. So the crop's reading is what this returns, and the page
+    reading is offered beside it under its own name."""
     doc = json.loads(EXTRACTED.read_text(encoding="utf8"))
     out = []
     for claim in doc["claims"]:
         if claim["id"] not in ("c026", "c027"):
             continue
         for ent in claim.get("entities", []):
+            crop = ent.get("crop_reading")
             out.append({"claim": claim["id"], "as_printed": ent["as_printed"],
-                        "normalized": ent["normalized"]})
+                        "normalized": crop or ent["normalized"],
+                        "crop_reading": crop,
+                        "page_reading": ent["normalized"] if crop else None})
     return out
 
 
@@ -324,6 +371,296 @@ def concordance():
             "other_office": OTHER_OFFICE, "rows": rows}
 
 
+
+# ---------------------------------------------------------------------------
+# THE PAGE IMAGES (T-0424)
+# ---------------------------------------------------------------------------
+
+TRAILING_COUNT = re.compile(r"\s+[2-9]\s*$")
+
+
+def printed_surname(as_printed):
+    """The surname a printed line carries.
+
+    The line is set `forename surname [count]`, and three shapes need saying so:
+    the count of letters waiting is not part of the name; `& Co.` is not a surname;
+    and `Lamira & Laura Carrier` is two people sharing one surname, so the LAST word
+    is the surname in every case, including that one."""
+    text = TRAILING_COUNT.sub("", as_printed)
+    text = re.sub(r"\s*&\s*Co\.?\s*$", "", text)
+    words = [w.strip(".,;") for w in re.split(r"[\s]+", text) if w.strip(".,;")]
+    return words[-1] if words else ""
+
+
+def scan_candidates(name):
+    """Every surname a minted reading could be offering, folded.
+
+    A minted reading states its surname three ways and no one of them is reliable
+    on its own: `[uncertain: John Monroe]` hides its surname INSIDE the bracket, so
+    `surname_of` -- which strips brackets, and must, for `[…]ell Baldwin` -- returns
+    nothing; `[uncertain: … Foster]` hides it the same way; and `| Monreou` keeps the
+    page's own spelling in `as_printed` where the normalisation guessed another. All
+    three are offered, and a match on any of them is a match."""
+    # IDEMPOTENCE, AND WHY `crop_reading` EXISTS. Once `--apply-scan` has run,
+    # `normalized` holds what the PAGE prints, so an alignment that read `normalized`
+    # would be reading its own output back in -- and it measurably was: the second
+    # run of an earlier draft settled three fewer readings than the first. The crop's
+    # own reading is therefore KEPT, in `crop_reading`, and that is what is matched
+    # on. It is worth keeping for its own sake as well: it is what T-0312 could see,
+    # and overwriting it would have thrown the damage away with the repair.
+    crop = name.get("crop_reading") or name["normalized"]
+    out = set()
+    for text in (re.sub(r"\[[^\]]*\]", " ", crop),
+                 crop.replace("[", " ").replace("]", " "),
+                 name["as_printed"]):
+        text = TRAILING_COUNT.sub("", re.sub(r"[^\w'&.\s]+", " ", text))
+        text = re.sub(r"\s*&\s*Co\.?\s*$", "", text.strip())
+        words = [w.strip(".,;'") for w in text.split() if w.strip(".,;'")]
+        words = [w for w in words if not re.fullmatch(r"[A-Za-z]\.?|\d+|uncertain|or", w)]
+        # The floor is on the word, not on its fold. `Webb` folds to `web` and `Nats`
+        # to `nats`, and a floor on the fold silently threw the four-letter surnames
+        # away -- which is how `[?] Webb` came back unplaced beside a printed `Loiza
+        # Webb` two lines from the cursor.
+        if words and len(words[-1]) >= 4:
+            out.add(fold(words[-1]))
+    return out
+
+
+def suffix_match(name, printed):
+    """True when the crop's fragment is the tail of this printed line.
+
+    The March segmenter cut the column's LEFT edge, so what a damaged reading keeps
+    is the END of the line. `[…]as Bennett` is therefore not merely a Bennett: it is
+    the Bennett whose forename ends in `as`, and the printed list holds three."""
+    a, b = fold(name["as_printed"]), fold(printed)
+    return bool(a) and len(a) >= 4 and b.endswith(a)
+
+
+def load_scan():
+    doc = json.loads(SCAN.read_text(encoding="utf8"))
+    columns = {"left": [], "right": []}
+    for line in doc["lines"]:
+        columns[line["column"]].append(line)
+    return doc, columns
+
+
+NOT_A_LIST_LINE = ("occupations", "associated_places")
+
+
+def is_list_line(entity):
+    """A letter-list line yields a name and nothing else.
+
+    c027's last entity is not a line of the list at all: it is the postmaster's
+    signature, `JOHN S. C. HOGAN, P. M.`, and it carries an occupation and a place
+    because T-0312 read him as a person of the town. Walking it down the column
+    would hand it the last printed line -- the window either side of it is one wide,
+    so the positional pass would place it on `Samuel Wright` with no surname evidence
+    at all, which is exactly the confident wrong answer this instrument must not
+    give."""
+    return not any(k in entity for k in NOT_A_LIST_LINE)
+
+
+def scan_alignment():
+    """Each of the March crops' minted readings, against the printed line it stands on.
+
+    TWO PASSES, and the second is the one that earns the tool. The first walks each
+    crop's readings DOWN its own printed sub-column with a cursor that never goes
+    back, matching on surname, so a reading is placed only at or after the line the
+    reading before it was placed on. The second pass takes what the first could not
+    match -- a reading whose surname the scan destroyed, `[…]ward`, `[?] Leena` --
+    and looks at the GAP its neighbours leave. Where the gap is one line, the reading
+    is that line and nothing else it could be: `[…]ward` sits between `D. S. Haight`
+    and `Geo. Johnson`, and the printed list has exactly one line there, `Edward
+    Hill`. Where the gap is wider the window is reported and NO NAME IS PROPOSED,
+    because three candidate lines are three candidates."""
+    doc, columns = load_scan()
+    extracted = json.loads(EXTRACTED.read_text(encoding="utf8"))
+    signatures = {(c["id"], e["as_printed"])
+                  for c in extracted["claims"] if c["id"] in CLAIM_COLUMN
+                  for e in c.get("entities", []) if not is_list_line(e)}
+    minted = [n for n in subject_names()
+              if (n["claim"], n["as_printed"]) not in signatures]
+    rows = [{"claim": n["claim"], "as_printed": n["as_printed"],
+             "normalized": n["normalized"], "column": CLAIM_COLUMN.get(n["claim"]),
+             "cut": bool(CUT.search(n["normalized"])),
+             "line": None, "printed": None, "by": None, "window": None,
+             "shared_line": False}
+            for n in minted]
+    cursor = {"left": 0, "right": 0}
+    for row, name in zip(rows, minted):
+        col = row["column"]
+        if col is None:
+            continue
+        keys = scan_candidates(name)
+        lines = columns[col]
+        window = range(cursor[col], min(len(lines), cursor[col] + SCAN_REACH))
+        hits = [j for j in window
+                if any(k == fold(printed_surname(lines[j]["as_printed"]))
+                       or within_one(k, fold(printed_surname(lines[j]["as_printed"])))
+                       for k in keys)]
+        if hits:
+            # Where the surname alone offers more than one line, the fragment's own
+            # tail decides -- and only when it decides ALONE. Two candidates that both
+            # end in the fragment are still two candidates.
+            tails = [j for j in hits if suffix_match(name, lines[j]["as_printed"])]
+            j = tails[0] if len(tails) == 1 else hits[0]
+            row["line"] = lines[j]["line"]
+            row["printed"] = lines[j]["as_printed"]
+            row["by"] = "surname"
+            cursor[col] = j + 1
+    # Pass two: the gaps.
+    for col in ("left", "right"):
+        placed = [r for r in rows if r["column"] == col]
+        for i, row in enumerate(placed):
+            if row["line"] is not None:
+                continue
+            lo = next((placed[k]["line"] for k in range(i - 1, -1, -1)
+                       if placed[k]["line"] is not None), 0) + 1
+            hi = next((placed[k]["line"] for k in range(i + 1, len(placed))
+                       if placed[k]["line"] is not None), len(columns[col]) + 1) - 1
+            if hi < lo:
+                # The readings either side of this one were placed on adjacent
+                # printed lines, so the gap between them is empty and there is no
+                # window to report. That happens when a crop sets ONE printed line as
+                # TWO readings and the neighbour takes the placement. No reading in
+                # c026 or c027 is in this state today; the branch is here so that one
+                # arriving is reported as itself rather than as a lost line.
+                row["shared_line"] = True
+                continue
+            row["window"] = [lo, hi]
+            if lo == hi:
+                row["line"] = lo
+                row["printed"] = columns[col][lo - 1]["as_printed"]
+                row["by"] = "position"
+    return {"scan": doc, "columns": columns, "rows": rows}
+
+
+def scan_report(res):
+    doc, rows = res["scan"], res["rows"]
+    c = doc["counts"]
+    print("THE PRINTED LIST, READ AT THE PAGE IMAGES -- %s\n" % doc["title"])
+    print("  %s" % doc["heading_as_printed"])
+    print("  %s\n" % doc["foot_as_printed"].split("*")[0].strip())
+    for imp in doc["impressions_read"]:
+        print("  %-32s %-14s page %d col %d   scan page %-3d %s"
+              % (imp["issue"], imp["volume"], imp["issue_page"], imp["column"],
+                 imp["scan_page"], imp["archive_file"]))
+    print("\n  PRINTED LENGTH  %d lines -- two sub-columns of %d, the same in every"
+          % (c["printed_lines"], doc["setting"]["lines_per_column"]))
+    print("                  impression read. %d personal names: %d lines name one"
+          % (c["personal_names"], c["lines_naming_one_person"]))
+    print("                  person, %d names two, %d name a firm."
+          % (c["lines_naming_two_people"], c["firm_lines"]))
+    minted = len([r for r in rows if r["column"]])
+    print("\n  AGAINST IT: %d names were minted off the 1834-03-04 crops (T-0312) and"
+          % minted)
+    print("  97 off the 1834-01-28 transcription (T-0310). Both are floors: the")
+    print("  crops are short by %d printed lines, the transcription by %d."
+          % (c["printed_lines"] - minted, c["printed_lines"] - 97))
+    cut = [r for r in rows if r["cut"] and r["column"]]
+    settled = [r for r in cut if r["line"] is not None]
+    print("\n  THE %d CUT READINGS, at the image:" % len(cut))
+    print("    %3d settled -- %d on the surname the crop kept, %d on position alone"
+          % (len(settled), len([r for r in settled if r["by"] == "surname"]),
+             len([r for r in settled if r["by"] == "position"])))
+    print("    %3d not settled: the crop lost lines either side and the window "
+          "holds more than one\n" % (len(cut) - len(settled)))
+    for r in cut:
+        where = "%s %-2s" % (r["column"][0].upper(), r["line"] or "?")
+        if r["line"] is not None:
+            print("  -> %-26s %s  %s%s"
+                  % (r["normalized"][:26], where, r["printed"],
+                     "   (by position)" if r["by"] == "position" else ""))
+        elif r["shared_line"]:
+            print("  ~  %-26s %s  the crop set one printed line as two readings; "
+                  "the neighbouring one holds it" % (r["normalized"][:26], where))
+        else:
+            lo, hi = r["window"] or (0, 0)
+            print("  ?  %-26s %s  one of printed lines %d-%d, and the page cannot "
+                  "say which" % (r["normalized"][:26], where, lo, hi))
+
+
+def apply_scan(res):
+    """Write the IMAGE readings into claims c026 and c027.
+
+    `as_printed` never moves: it is the March crop's own damaged setting and it is
+    the evidence that the repair was needed. `crop_reading` keeps what T-0312 made
+    of it, so the repair is legible as a repair and the alignment has something
+    stable to match on. `normalized` becomes what the page prints, `read_at_image` names the impressions it was read in, `printed_line`
+    says where in the printed column it stands, and any `completed_from` the
+    concordance had written is REMOVED -- a completion proposed from other
+    transcriptions is superseded by the page, not corroborated by it.
+
+    THE `reading` FIELD GOES BOTH WAYS AT ONCE, because that is the truth of it.
+    The CLAIM was read at the page image, so the claim is `scan_verified`. Three of
+    its seventy-eight readings the image still cannot settle -- the crop lost the
+    printed lines either side of each, and the window left holds three candidates --
+    and those keep `transcription_mediated` on their own entity, naming the window.
+    Re-running is a no-op.
+    """
+    doc = json.loads(EXTRACTED.read_text(encoding="utf8"))
+    by_printed = {(r["claim"], r["as_printed"]): r for r in res["rows"]}
+    impressions = [i["issue"] for i in res["scan"]["impressions_read"][:2]]
+    changed = 0
+    for claim in doc["claims"]:
+        if claim["id"] not in CLAIM_COLUMN:
+            continue
+        unsettled = []
+        for ent in claim.get("entities", []):
+            row = by_printed.get((claim["id"], ent["as_printed"]))
+            if row is None:
+                continue                      # the postmaster's signature
+            ent.setdefault("crop_reading", ent["normalized"])  # once, and never again
+            if row["line"] is None:
+                ent["reading"] = "transcription_mediated"
+                ent["reading_note"] = (
+                    "The crop set one printed line as two readings and the reading "
+                    "beside this one holds that line."
+                    if row["shared_line"] else
+                    "The image places this reading no closer than printed lines "
+                    "%d-%d of the %s column: the crop lost the lines either side "
+                    "of it and the page cannot say which is this one."
+                    % (row["window"][0], row["window"][1], row["column"]))
+                unsettled.append(ent["as_printed"])
+                continue
+            # THE TRAILING NUMERAL IS NOT PART OF THE NAME. `Eliphalet Atkins 2`
+            # means two letters were waiting for him, and the gazetteer keys people
+            # on the whole normalized name -- so carrying it through would have put
+            # `William Elliot` and `William Elliot 3` in this town as two men, which
+            # it measurably did: four people stood twice before this line was here.
+            # The count is kept, under its own name, because it is evidence about
+            # correspondence and it is the page's own reading.
+            printed = TRAILING_COUNT.sub("", row["printed"])
+            waiting = row["printed"][len(printed):].strip()
+            if ent.get("normalized") != printed:
+                changed += 1
+            ent["normalized"] = printed
+            if waiting:
+                ent["letters_waiting"] = int(waiting)
+            else:
+                ent.pop("letters_waiting", None)
+            ent.pop("completed_from", None)
+            ent["reading"] = "scan_verified"
+            ent["read_at_image"] = impressions
+            ent["printed_line"] = "%s %d" % (row["column"], row["line"])
+        claim["reading"] = "scan_verified"
+        claim["reading_note"] = (
+            "READ AT THE PAGE IMAGES (T-0424): %s page 4 column 2, and the same "
+            "standing type at %s. The printed list is 170 lines in two alphabetical "
+            "sub-columns of 85, and every entity below carries the line it stands "
+            "on. %s"
+            % (impressions[1], impressions[0],
+               "Every reading in this claim is settled at the image."
+               if not unsettled else
+               "%d of this claim's readings are NOT settled at the image and keep "
+               "`transcription_mediated` on their own entity, with the reason: %s."
+               % (len(unsettled), "; ".join("`%s`" % u for u in unsettled))))
+    EXTRACTED.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n",
+                         encoding="utf8")
+    print("%d readings settled at the image; %d rewritten this run"
+          % (len([r for r in res["rows"] if r["line"] is not None]), changed))
+
+
 def report(res):
     print("THE PRINTINGS -- the Chicago post office's 1 January 1834 return,")
     print("counted by its own body text, in the Chicago Democrat:\n")
@@ -430,6 +767,48 @@ def self_test():
     check("no completion is handed to two lines of the same surname",
           len([r["proposal"] for r in res["rows"] if r["proposal"]])
           == len({r["proposal"] for r in res["rows"] if r["proposal"]}))
+    scan = scan_alignment()
+    doc = scan["scan"]
+    check("the page images carry the whole printed list, 170 lines in two columns of 85",
+          doc["counts"]["printed_lines"] == 170
+          and len(scan["columns"]["left"]) == len(scan["columns"]["right"]) == 85)
+    check("the printed length is a count and not a floor: it exceeds every minting",
+          doc["counts"]["printed_lines"] > 97
+          and doc["counts"]["printed_lines"] > len(subject_names()))
+    check("a letters-waiting count never reaches a person's name",
+          not [e for c in json.loads(EXTRACTED.read_text(encoding="utf8"))["claims"]
+               if c["id"] in CLAIM_COLUMN for e in c.get("entities", [])
+               if re.search(r"\s[2-9]$", e["normalized"])])
+    check("a printed surname is read off the line, past the count and past `& Co.`",
+          printed_surname("Eliphalet Atkins 2") == "Atkins"
+          and printed_surname("Jesse B. Winn & Co.") == "Winn"
+          and printed_surname("Lamira & Laura Carrier") == "Carrier")
+    aligned = [r for r in scan["rows"] if r["column"]]
+    check("every minted reading is walked against the sub-column its crop came from",
+          len(aligned) == len(subject_names()) - 1 and len(aligned) == 78)
+    check("the walk never goes backwards inside a sub-column",
+          all(all(a < b for a, b in zip(
+              [r["line"] for r in aligned if r["column"] == col and r["line"]],
+              [r["line"] for r in aligned if r["column"] == col and r["line"]][1:]))
+              for col in ("left", "right")))
+    check("the image settles the readings the concordance had to leave alone",
+          len([r for r in aligned if r["cut"] and r["line"]]) >= 25)
+    check("a reading whose neighbours leave a window of one is placed, and a wider "
+          "window is refused",
+          any(r["by"] == "position" for r in aligned)
+          and all(r["window"] and r["window"][0] != r["window"][1]
+                  for r in aligned if r["cut"] and r["line"] is None))
+    check("a crop keeps the tail of its line, so `[…]as Bennett` is the Bennett "
+          "whose forename ends in `as`",
+          any(r["printed"] == "Thomas Bennett" and "as Bennett" in r["normalized"]
+              for r in aligned))
+    check("the image contradicts the concordance where the concordance guessed",
+          any(r["printed"] == "Miranda Miner 2" for r in aligned)
+          and any(r["printed"] == "Chester Marshall 2" for r in aligned))
+    check("the two Temples, two Miners and two Bennetts are separated by position",
+          {r["printed"] for r in aligned if r["printed"]
+           and r["printed"].endswith(("Temple", "Temple 3"))}
+          == {"Peter Temple 3", "Lewis Temple"})
     check("edit distance one joins two scans of one setting and not two names",
           within_one(fold("Wim."), fold("Wm."))
           and within_one(fold("Russell"), fold("Russel"))
@@ -457,6 +836,11 @@ def apply(res):
             row = by_printed.get((claim["id"], ent["as_printed"]))
             if not row or not row["cut"] or not row["proposal"]:
                 continue
+            # RULING 2: a scan_verified reading outranks a transcription, so a
+            # reading the page images already settled is never rewritten from the
+            # concordance -- not even when the concordance agrees with it.
+            if ent.get("read_at_image"):
+                continue
             dates = row["printings_agreeing"]
             if ent["normalized"] != row["proposal"]:
                 changed += 1
@@ -472,6 +856,12 @@ def main():
     args = sys.argv[1:]
     if "--self-test" in args:
         sys.exit(0 if self_test() else 1)
+    if "--scan" in args:
+        scan_report(scan_alignment())
+        return
+    if "--apply-scan" in args:
+        apply_scan(scan_alignment())
+        return
     res = concordance()
     if "--apply" in args:
         if res["missing"]:

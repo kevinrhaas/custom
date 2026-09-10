@@ -1748,8 +1748,8 @@
   {
    "person_id": "crisey_william",
    "household_id": "hh_crisey_william",
-   "name": "William Crisey",
-   "identity": "id_crisey_william",
+   "name": "William Crissy",
+   "identity": "id_crissy_william",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5141,8 +5141,8 @@
   {
    "person_id": "pease_h",
    "household_id": "hh_pease_h",
-   "name": "H. Pease",
-   "identity": "id_pease_h",
+   "name": "C. H. Pease",
+   "identity": "id_pease_c_h",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5267,8 +5267,8 @@
   {
    "person_id": "plumer_f",
    "household_id": "hh_plumer_f",
-   "name": "F. Plumer",
-   "identity": "id_plumer_f",
+   "name": "S. F. Plumer",
+   "identity": "id_plumer_s_f",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
