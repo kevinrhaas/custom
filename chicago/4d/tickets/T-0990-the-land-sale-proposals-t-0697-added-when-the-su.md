@@ -89,14 +89,51 @@ being one entry read twice with the Residence column on the fuller reading).
 
 Filed on the way past: **T-0993**, Francis Gurtrey Blanchard's two cards.
 
+---
+
+**Cohort B — the twenty-four with NO namesake at all** (`rivals[]` empty). Ruled 2026-09-10.
+**Twelve upheld, twelve refused** — matched 123 → 111, ruled 49 → 71, unruled 90 → 66; twelve
+cards retracted, sixteen register rows, 1,549.24 acres and $2,084.04 taken back off them.
+
+| upheld | refused |
+|---|---|
+| BOTSFORD JABEZ K, BOYER JOHN K, DOLE GEORGE W, FULLERTON ALEXANDER, GOODHUE JOSIAH C, KIMBALL WALTER, KIMBERLEY EDMUND S, KNICKERBACKER ABRM V, PECK P F W, SHRIGLEY JOHN, MARSH SYLVESTER, JAMISON LOUIS T | CHIPMAN ANSEL, ROBERTS EDMOND, STANLEY JOSEPH, ROWLEY HEMAN A, HURD NIRAM F, ALLISON THOMAS, SACKETT JOSHUA, OSTRANDER CATHRINE, BLAISDELL BENJAMIN, SHEPHERD ALBERT, WILCOX DE LA FAYETTE, CHURCH THOS JR |
+
+**What the cohort taught.** *An empty `rivals[]` is not safety* — it says the layer holds the
+surname once, and the register itself sells to a second Hurd and to three Robertses. The line
+that decided all twenty-four is **whether the town holds the man MORE THAN ONCE**: every uphold
+has a second document on the town's side, and eleven of the twelve refusals have one name-only
+reading and nothing else. Six refused cards are marked `letter_list_only` in the residents layer,
+which turns out to be the SPENCER WILLIAM G test written as a field — look for it first.
+
+*A middle initial discriminates; it does not corroborate.* Three proposals agreed on a middle
+initial and did not go the same way: JAMISON LOUIS T upheld because the town prints *L. T.
+Jamison* twice independently, ROWLEY HEMAN A and HURD NIRAM F refused because the initial pair IS
+the town's whole record. Cohort C will meet this constantly.
+
+*The Residence column needs a town-side partner.* COOK carried DILL FRANK and LUDBY JOHN against
+a poll list and a newspaper; against an uncalled-for letter (CHIPMAN ANSEL, ALLISON THOMAS) it
+carries nothing.
+
+**Before it could add, it had to restore.** PR #1055 had deleted 546 lines of
+`resident_rulings.json` — T-0850's twenty-six rulings and cohort A's fourteen, forty judgements —
+and every gate stayed green. Twelve cards were re-carrying retracted claims. Restored as the
+union of both histories, with T-0851's firm rule intact and its absorbed PRUYNE P AND CO ruling
+retired rather than deleted; the restored file rebuilds to 90 unruled, cohort A's own number,
+which is the proof nothing else was lost. **A sibling slice reached the same finding in the same
+hour** and shipped it as #1073/#1075 while this branch was rebasing onto it; the restoration
+below is theirs, this branch's contribution is cohort B on top of it, and the gate that would
+have caught #1055 is their **T-0999**.
+
+Filed on the way past: **T-1001**, two cards for one physician and the exact surname fold that
+hid the namesake.
+
 ### NEXT
 
-1. **Cohort B — the twenty-four with NO namesake at all** (`rivals[]` empty). The mechanical
-   rule fired on a surname the layer holds exactly once, which is T-0700's and T-0850's
-   original shape; the SPENCER WILLIAM G refusal is the precedent that governs most of them.
-2. **Cohort C — the sixty-six remaining `forename_agrees` proposals with namesakes.** Take
-   them in two or three runs by surname block, not all at once.
+1. **Cohort C — the sixty-six remaining `forename_agrees` proposals with namesakes.** Take them
+   in two or three runs by surname block, not all at once. Read T-1001 before starting: an empty
+   `rivals[]` means "no namesake OF THAT SPELLING", so a cohort-C surname block should be gathered
+   by eye as well as by `namesake.py`.
 
-**Remaining after cohort A: 90 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
+**Remaining after cohort B: 66 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
 closes when that number is zero, and says so with the number.
-

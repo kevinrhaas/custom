@@ -317,70 +317,83 @@ across ten rows.
 cohort C the sixty-six remaining `forename_agrees` proposals that have one; the log on T-0990
 carries them. The live count is on the crosswalk's `ruled` block and not repeated here.
 
-**THE SURNAME GATHERS THE RIVALS AND THE FORENAME DECIDES BETWEEN THEM (T-0697).** Until
-that ticket the rule needed EXACTLY ONE person of the surname in the residents layer, and
-a count of namesakes says nothing about the reading in hand: it made the crosswalk fire
-LESS as the town grew truer, so seating 531 people (T-0514) COST this register three
-rulings with nothing new read. The reading is now put to every person of the surname and
-named onto the one it agrees with, on the merge rules this project already ratified —
-`tools/namesake.py`, which restates identity master's M1/M2/M3 and R3/R4 and imports the
-directories' own forename rule. **139 purchaser spellings now meet 124 people the town
-holds, against 38 spellings and 35 people before**, and consolidation pass 3 carries 421
-entries onto 124 cards where it carried 180 onto 34. Nothing new was read to get there.
+## Cohort B: the twenty-four with no namesake at all (T-0990)
 
-The refusals it keeps are the ones the forename makes, and three kinds are new: a middle
-initial that disagrees (`KING JOHN R` is not John Lyle King), M3's guard (`WRIGHT JOHN F`
-is not John Wright while John S. Wright stands beside him), and a suffix (`CHURCH THOS JR`
-names the son, and the town's one Thomas Church is not said to be either man). Two
-readings the rule named onto ONE person are put back to each other and refused where they
-are not the same man — `BOND HARVEY` and `BOND HEMAN` both meet an `H Bond`, and the
-initial cannot say which. **T-0697 also asked whether a purchase date, a trade or a lot
-could break what the forename leaves standing, and all three are refused**, with the
-reasons in `tools/namesake.py`'s `REFUSED_DISCRIMINATORS` rather than in prose: the
-register prints no trade at all, a man may enter ground in a county he has not moved to,
-and preferring the rival the town has already placed on the ground is how a reconstruction
-invents a fact (the ruling T-0696 made for the directories, which allowed a trade to
-NARROW a tie and had one to narrow with).
+The mechanical rule fired on a surname the residents layer holds EXACTLY ONCE, which is
+T-0700's and T-0850's original shape — `rivals[]` empty, no namesake for a forename to choose
+among. That makes the proposals look safer than they are: holding one bearer of a surname is a
+fact about how thin the layer is, and the register itself sells to a second Hurd and to three
+Robertses while the town holds one of each.
 
-**Every ruling now names the records it was made from.** `record_ids` on each match and
-each refusal in both crosswalks says which sales the ruling was made from — the spend
-meter asked for it in as many words, and it is provenance regardless: a refusal a reader
-cannot trace back to its rows is a refusal nobody can check. 480 rulings in this domain
-anchored to nothing before; none does now, and every one of the 953 records carries a
-ruling — the same 953 before T-0697 and after it, which is the thing that did NOT move
-when a hundred spellings crossed from refused to matched.
+**Twelve upheld, twelve refused** — the cohort splits exactly in half, and it splits along one
+line. What moved: matched spellings 123 → **111**, ruled 49 → **71**, unruled 90 → **66**;
+twelve cards retracted, and with them sixteen register rows — **1,549.24 acres and $2,084.04**
+of ground taken back off them. Nothing was written on: upholding a proposal confirms what the
+spend pass had already put there.
 
-**Twenty-four people the town already holds meet a purchaser** — every one of them ruled on by T-0850, above — Arthur Bronson, David
-Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel
-Elston, John Hale, Thomas Hartzell, Chester Ingersoll, Paul Kingston, Alexander Lloyd,
-Ira Minard, Walter Loomis Newberry, Hiram Pearsons, Jeremiah Price, Peter Pruyne (on
-three rows, one of them `PRUYNE P AND CO`), James C Spence, Ashbel Steele, Henry
-Vanderbogert, Charles Wessencraft, Henry C. West, Alexander Wolcott, John Ludby — 26
-matched purchaser spellings against 234 refused. **That sentence used to end "none carries
-a stated residence"; ruling on them found otherwise** — John Ludby's rows state COOK on three
-of four, and Hiram Pearsons, Thomas Hartzell and Alexander Wolcott each carry a COOK or an
-ILLINOIS somewhere in theirs. The claim was made off the FIRST row of each spelling, which is
-the same reading fault T-0700 found in Frank Dill's grade. It is corrected here: the residence
-column speaks for four of these twenty-six, and it carried the Ludby ruling.
+**THE LINE IS WHETHER THE TOWN HOLDS THE MAN MORE THAN ONCE.** Every one of the twelve upholds
+has a second document on the town's side, and eleven of the twelve refusals have exactly one
+name-only reading and nothing else. Cohort A's discriminator held again — nine of the twelve
+upholds are decided by a directory printing the forename whole where the card carries an
+initial:
 
-**Shape: `records`.** A sale is a row on a page, so it takes the records shape — the
-purchaser `as_read` exactly as the register spelled him, `normalized` only far enough
-to read `DEVINPORT WILLIAM` back as `William Devinport`, one `locator` carrying the
-section query, the deposit line, the purchase number and the register's own volume and
-page. `data/research/domains.json` states it; `tools/research_domains.py --check` holds
-the shape and `tools/read_land_sales.py --check` holds the reading.
+| the register | the town's own printing | ruling |
+|---|---|---|
+| BOTSFORD JABEZ K | Fergus 1839: *Botsford, Jabez K., Botsford & Beers* | upheld |
+| BOYER JOHN K | Fergus 1839: *Boyer, John K., coroner* | upheld |
+| GOODHUE JOSIAH C | Fergus 1839: *Goodhue, Dr. Josiah C.* | upheld |
+| KIMBALL WALTER | Fergus 1839: *Kimball, Walter, probate judge* | upheld |
+| KNICKERBACKER ABRM V | Norris 1844: *Knickerbacker, A. V., grocery and provisions* | upheld |
+| PECK P F W | Fergus 1843: *Peck, Philip Ferdinand Wheeler* | upheld |
+| SHRIGLEY JOHN | Fergus 1839: *Shrigley, John, tavern keeper* | upheld |
+| MARSH SYLVESTER | Fergus 1843: *Marsh, Sylvester, packing-house* | upheld |
+| DOLE GEORGE W | Fergus 1843: *Dole, George Washington* | upheld |
+| STANLEY JOSEPH | *nothing* — one line of the 1833 tax list | **refused** |
+| BLAISDELL BENJAMIN | *nothing* — one line of the poll of 1835 | **refused** |
+| SHEPHERD ALBERT · SACKETT JOSHUA · CHIPMAN ANSEL · ALLISON THOMAS · OSTRANDER CATHRINE · ROWLEY HEMAN A | *nothing* — one uncalled-for letter apiece | **refused** |
 
-**Hand-authored:** this README and `resident_rulings.json`, and nothing else. Every judgement in the crosswalks was
-made by a rule that is written out beside it.
+Six of the twelve refusals are cards the residents layer itself marks `letter_list_only`, which
+turns out to be the SPENCER WILLIAM G test written as a field: the household around such a
+person was minted to claim nothing, and an uncalled-for letter plus a tract entry is two
+name-only readings.
 
-**Generated, and re-derived by the gate:** `entries.json`, one `records/entries_*.json`
-per deposit, `coverage.json`, `crosswalk.json` and `resident_crosswalk.json` (which folds the hand-authored rulings) — all
-written by `tools/read_land_sales.py --build` from the committed deposits in `text/`,
-and all re-derived by `--check`, which refuses a committed file that has drifted. The
-deposits themselves are written by `tools/harvest_land_sales.py --sweep`, which reaches
-the network and is therefore run deliberately by a research pass and never by the gate.
-A township is a township AND a range there: `--tr 38:15` asks for T38N R15E, and each
-set of pairs writes the deposit its own name spells out.
+**A MIDDLE INITIAL DISCRIMINATES; IT DOES NOT CORROBORATE — and this cohort is where that had
+to be said.** Three proposals agree on a middle initial the register repeats, which the ruling
+rule names as its first limb, and they do not all go the same way. **JAMISON LOUIS T** is
+upheld: the town prints *L. T. Jamison* twice and independently, in the Democrat of 4 June 1834
+and on the poll of 1835, so the initial pair decides among readings the town already holds.
+**ROWLEY HEMAN A** and **HURD NIRAM F** are refused: there the initial pair IS the town's whole
+record — one uncalled-for letter, one press line — and a fuller reading of one name beside a
+shorter reading of the same name is still one name on each side. That is the NEWBERRY WALTER L
+check of T-0700 read carefully: the L decided there because the American of 1835 and both Fergus
+directories had already put the man in the town.
+
+**The Residence column was weighed twice and carried neither.** CHIPMAN ANSEL and ALLISON
+THOMAS both have **COOK** on the register's side, the strongest thing this source ever offers
+and what upheld DILL FRANK and LUDBY JOHN. In those two the town's side was a poll list and a
+newspaper naming the man in the town between his entries; here it is a letter nobody called
+for. A COOK row and an uncalled-for letter agree about a county, not about a man.
+
+**Two refusals turn on a token the register adds and the town cannot answer.** WILCOX DE LA
+FAYETTE reduces as distinctive a forename as the cohort contains to the initial D — the town's
+whole record is *Capt. D. Wilcox*, one press line, and the register's social-status column is
+blank, so the captaincy checks against nothing. And **CHURCH THOS JR**: the JR is the page
+saying there was another Thomas Church of the same county. The town holds one, its card is
+written — in its own words — almost entirely to keep a building from being anonymous, and its
+`present_on_scene_date` says nothing places him in the town on any particular date. That the
+identification is probably right is not what is refused.
+
+**A duplicate card found on the way past, and the reason the crosswalk could not see it.**
+KIMBERLEY EDMUND S is upheld against `kimberley_ed` — the card's own press reading is *E. S.
+Kimberley*, the Democrat of 1 July 1835, and the 1840 census reads *Ed. Kimberley*, so the S is
+on the town's side and two documents bracket the scene date. But the layer ALSO holds
+`kimberly_edmund_s`, **Dr Edmund Stoughton Kimberly**, printed *Kimberly, Dr. Edmund S.* in
+Fergus 1839 — the same forename and the same middle initial, spelled with one letter fewer.
+`tools/namesake.py` folds surnames exactly, so it never gathered him: **`rivals[] empty` means
+no namesake OF THAT SPELLING, and this cohort is defined by that field.** Filed as **T-1001**.
+
+**Still unruled: 66** — cohort C, the `forename_agrees` proposals that have a namesake, to be
+taken in two or three runs by surname block. The log on T-0990 carries them.
 
 ## Forty rulings were reverted, and restored (#1073, T-1000)
 
