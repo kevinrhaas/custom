@@ -1,7 +1,7 @@
 ---
 id: T-1000
 title: The restoration of the forty land-sale rulings landed with no changelog entry and no README itemisation: twelve visitor-facing cards changed and nothing says so
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1075
 claimed_by: run 9/10/2026, 10:13:15 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T15:33:32.994Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34488504741
 ---
 
