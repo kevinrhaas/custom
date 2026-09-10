@@ -64,6 +64,30 @@
       "verify": ["python3", "tools/spend_land_sales.py", "--check"]
     },
     {
+      "why": "The obituary crosswalk: the old-settlers death notices adjudicated against the residents layer, on the same footing as the directory crosswalks above.",
+      "command": ["python3", "tools/read_fergus_obits.py", "--build"],
+      "resolves": ["chicago/4d/data/research/old_settlers/death_notices_crosswalk_1835.json"],
+      "verify": ["python3", "tools/read_fergus_obits.py", "--check"]
+    },
+    {
+      "why": "The Newberry genealogical index and the leads it proposes.",
+      "command": ["python3", "tools/read_newberry_index.py"],
+      "resolves": ["chicago/4d/data/research/newberry_index/leads.json"],
+      "verify": ["python3", "tools/read_newberry_index.py", "--check"]
+    },
+    {
+      "why": "The 1835 business register, compiled from the newspaper corpus.",
+      "command": ["python3", "tools/compile_register.py", "--build"],
+      "resolves": ["chicago/4d/data/research/newspapers/register_1835.json"],
+      "verify": ["python3", "tools/compile_register.py", "--check"]
+    },
+    {
+      "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
+      "command": ["python3", "tools/synthesize_resident_research.py"],
+      "resolves": ["chicago/4d/data/research/residents/synthesis_2026_09_02.json"],
+      "verify": ["python3", "tools/synthesize_resident_research.py", "--check"]
+    },
+    {
       "why": "The cross-domain consolidation reads every crosswalk above, so it runs after all of them.",
       "command": ["python3", "tools/consolidate_resident_evidence.py", "--build"],
       "resolves": [
@@ -85,6 +109,18 @@
       "command": ["python3", "tools/consolidate_town_cards.py", "--candidates"],
       "resolves": ["chicago/4d/data/research/residents/town_card_candidates.json"],
       "verify": ["python3", "tools/consolidate_town_cards.py", "--check"]
+    },
+    {
+      "why": "The ladder's spend, which reads the consolidated evidence above it.",
+      "command": ["python3", "tools/spend_ladder_rungs.py", "--build"],
+      "resolves": ["chicago/4d/data/research/residents/ladder_spend.json"],
+      "verify": ["python3", "tools/spend_ladder_rungs.py", "--check"]
+    },
+    {
+      "why": "The liberties register, compiled from the sidecars and the town — every liberty the reconstruction takes, with its reason.",
+      "command": ["python3", "tools/compile_liberties.py"],
+      "resolves": ["chicago/4d/data/liberties.json"],
+      "verify": ["python3", "tools/compile_liberties.py", "--check"]
     },
     {
       "why": "The scene compiles from the residents layer, so it runs last but one.",
