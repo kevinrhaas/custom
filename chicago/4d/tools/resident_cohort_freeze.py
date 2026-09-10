@@ -84,7 +84,9 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+RESIDENTS = ROOT / "data" / "residents"
+HOUSEHOLDS = RESIDENTS / "households"
+MERGED = RESIDENTS / "merged"
 
 # The document keys that record the tree as it stood at the freeze rather than the
 # reservation itself. Everything else is compared exactly.
@@ -102,9 +104,69 @@ def is_snapshot_key(key: str) -> bool:
     return key.startswith("starting_") or key in SNAPSHOT_ROW_KEYS
 
 
-def live_people() -> dict:
-    """Every person in the residents layer, by id, as (household, person)."""
+def folded_people(root: Path | None = None) -> dict:
+    """Every person a landed merge ruling folded, by id, READ FROM THE STUB.
+
+    A COHORT MEMBER RULED A DUPLICATE HAS NOT LEFT THE TOWN (T-0842). The town-card
+    consolidation promises that "every `person_id` any file cites — the crosswalks,
+    identity_master.json, the smoke cohorts, the placed-resident parcels — still
+    resolves to a person": the record is copied whole to `data/residents/merged/` and
+    `data/residents/index.json` grows a redirect. Every cohort gate was nevertheless
+    reading the fold as an absence and refusing outright — "frozen cohort member
+    vanderbogart_h is no longer in the town" — and the cohort gates were the one
+    reader that promise did not reach. It surfaced the first time a ruling reached a
+    frozen cohort, which is the day T-0842 folded `vanderbogart_h` onto
+    `vanderbogart_henry`; before that no folded card had ever been in one.
+
+    THE STUB IS READ, NOT THE SURVIVOR, and that is the whole point. The stub is the
+    record exactly as it stood when the merge landed, so a frozen snapshot stays
+    frozen: a ruling may decide that two cards are one man, and it may not thereby
+    rewrite what a past research pass recorded itself as having studied. The gate
+    that matters — a cohort member who is in no household and no stub either — still
+    fires, because a deletion is not a redirect.
+    """
+    merged = (root / "merged") if root is not None else MERGED
     out = {}
+    if not merged.is_dir():
+        return out
+    for path in sorted(merged.glob("*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        record = doc.get("superseded_record") or {}
+        for person in record.get("persons") or []:
+            if person.get("id"):
+                out[person["id"]] = (record, person)
+    return out
+
+
+def folded_into(root: Path | None = None) -> dict:
+    """person_id -> the person id a landed ruling folded it onto, from the redirect table."""
+    index = (root or RESIDENTS) / "index.json"
+    if not index.is_file():
+        return {}
+    doc = json.loads(index.read_text(encoding="utf-8"))
+    return {row["person"]: row["merged_into_person"]
+            for row in doc.get("merged") or []
+            if row.get("person") and row.get("merged_into_person")}
+
+
+def redirected(ids) -> list:
+    """The members of `ids` a landed ruling folded, each named with its survivor.
+
+    One line a cohort gate can print, so a manifest that studies a person the town has
+    since ruled a duplicate SAYS so instead of quietly still counting them.
+    """
+    into = folded_into()
+    return ["%s (now carried by %s)" % (pid, into[pid]) for pid in ids if pid in into]
+
+
+def live_people() -> dict:
+    """Every person the cohorts may claim, by id, as (household, person).
+
+    The layer, plus the people a landed merge ruling folded out of it — see
+    `folded_people()` for why a fold is a redirect and not a disappearance. A live
+    record always wins over a stub of the same id.
+    """
+    out = folded_people()
     for path in sorted(HOUSEHOLDS.glob("*.json")):
         hh = json.loads(path.read_text(encoding="utf-8"))
         for person in hh.get("persons", []):
@@ -352,6 +414,39 @@ def self_test() -> int:
     fails, _ = check(kept, today, people)
     wcase("what a regeneration writes still passes the gate against today's derivation",
           not fails, fails[0] if fails else "no failure")
+
+    # ---- a fold is a redirect, not a disappearance (T-0842)
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        (root / "merged").mkdir()
+        (root / "merged" / "hh_folded.json").write_text(json.dumps({
+            "id": "hh_folded",
+            "merged_into": {"person": "b_two", "household": "hh_b"},
+            "superseded_record": {"id": "hh_folded",
+                                  "persons": [{"id": "c_folded", "name": "C Folded"}]},
+        }), encoding="utf-8")
+        (root / "index.json").write_text(json.dumps({
+            "households": [],
+            "merged": [{"person": "c_folded", "household": "hh_folded",
+                        "merged_into_person": "b_two"}],
+        }), encoding="utf-8")
+        found = folded_people(root)
+        wcase("a person a landed ruling folded is still resolvable, out of its stub",
+              "c_folded" in found and found["c_folded"][1]["name"] == "C Folded",
+              "resolved %s" % sorted(found))
+        wcase("…and the stub is what is read, so a frozen snapshot cannot be rewritten "
+              "by a later ruling",
+              found["c_folded"][0]["id"] == "hh_folded",
+              "read from %r" % found["c_folded"][0]["id"])
+        wcase("…and the redirect table names the survivor, so a gate can say who carries them",
+              folded_into(root).get("c_folded") == "b_two",
+              "folded onto %r" % folded_into(root).get("c_folded"))
+        (root / "merged" / "hh_folded.json").unlink()
+        wcase("a person in no household AND no stub is still a failure — a deletion is "
+              "not a redirect",
+              "c_folded" not in folded_people(root), "gone is still gone")
 
     for mark, label, detail in cases:
         print("  %s %s → %s" % (mark, label, detail[:110]))

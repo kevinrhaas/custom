@@ -180,6 +180,11 @@
         "name": "Regera John V."
       },
       {
+        "person_id": "vanderbogart_h",
+        "outcome": "corroborated_enrichment",
+        "name": "H. Vanderbogart"
+      },
+      {
         "person_id": "wm_nelts",
         "outcome": "no_corroboration_yet",
         "name": "Nelts Wm."
@@ -989,12 +994,12 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1335,
-    "persons": 1359,
-    "attested": 492,
-    "inferred": 867,
+    "households": 1333,
+    "persons": 1357,
+    "attested": 491,
+    "inferred": 866,
     "reconstructed": 0,
-    "letter_list_only": 726,
+    "letter_list_only": 725,
     "projected_residents": 711,
     "census_1840_linked": 3
   },

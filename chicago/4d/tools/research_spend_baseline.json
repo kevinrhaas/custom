@@ -11,7 +11,7 @@
   "directories": 7232,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 441
+  "old_settlers": 442
  },
  "witness": {
   "civic": {
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 653
+   "spent": 652
   }
  },
  "raised": [
@@ -408,6 +408,14 @@
    "to": 441,
    "date": "2026-09-10",
    "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 441,
+   "to": 442,
+   "date": "2026-09-10",
+   "why": "T-0842 folded vanderbogart_h and vandenbogart_h onto vanderbogart_henry, so the town carries one card where it carried three. The old-settlers reading that had reached the folded letter-list card is not newly unread — it is on the survivor, at the same locator — but the ceiling counts CARDS the domain has reached, and the town now has two fewer of them. The +1 is the arithmetic of a merge, not research getting ahead of the spend."
   }
  ],
  "lowered": [

@@ -1,7 +1,7 @@
 ---
 id: T-0842
 title: Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-10
+pr: 1068
+claimed_by: run 9/10/2026, 6:32:49 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-10T12:31:58.032Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34471585760
 ---
 
 Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second.
