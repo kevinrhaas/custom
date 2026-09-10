@@ -1,7 +1,7 @@
 ---
 id: T-0960
 title: Mrs C. Taylor keeps a house on Water Street in the Democrat of 19 August 1835 and the town has no card for her
-state: claimed
+state: done
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1051
 claimed_by: run 9/10/2026, 12:25:40 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T06:13:29.728Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34440744404
 ---
 
