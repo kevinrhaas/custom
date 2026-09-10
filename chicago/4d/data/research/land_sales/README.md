@@ -348,6 +348,56 @@ the network and is therefore run deliberately by a research pass and never by th
 A township is a township AND a range there: `--tr 38:15` asks for T38N R15E, and each
 set of pairs writes the deposit its own name spells out.
 
+## Forty rulings were reverted, and restored (#1073, T-1000)
+
+**For part of 10 September 2026 this file's rulings block held eight entries and its own
+prose described forty-eight.** The merge lap pushed onto #1055 — T-0851, the firm rule —
+and `resident_rulings.json` conflicted there. It is hand-authored, and the lap's regex
+resolution took the branch's whole block for the second conflict; that branch had been
+cut before T-0850 and T-0990 cohort A ruled, so all twenty-six of T-0850's rulings and
+all fourteen of cohort A's left the file on one line. #1055's own prose survived, and
+went on describing the cohort A rulings the same commit had removed. **A file that
+describes forty judgements it does not contain** is what the next run noticed, reading
+T-0990's cohort log for the remaining count and finding the crosswalk disagreed with it.
+
+| | before | reverted | restored |
+|---|---|---|---|
+| entries in `resident_rulings.json` | 49 | 8 + 1 retired | **47** + 2 retired |
+| crosswalk `ruled.upheld` | 33 | 6 | **33** |
+| crosswalk `ruled.refused` | 16 | 2 | **14** |
+| crosswalk `ruled.unruled` | 90 | 129 | **90** |
+| matched spellings | 123 | 135 | **123** |
+
+**The loss was not inert, which is the thing to take from this.** A refusal RETRACTS the
+paragraph `spend_land_sales.py` wrote, so refusals going missing put the purchases back
+onto the cards that had adjudicated them away — Thomas Hartzell, Henry Vanderbogert,
+Charles Wessencraft, John Hale, James Spence, Joseph Chandler, Paul Kingston, Ira Minard,
+Augustus Garrett, Chauncey Goodrich, Liman Smith and Thos M. Morrison — twelve cards,
+each carrying a federal land entry and an `isa_public_domain_land_tract_sales` source
+line it had been ruled it could not have. Restoring the rulings and re-running the spend
+takes them back off: **twelve records retracted, nothing written on**, and matched
+spellings back down 135 → 123, a refusal being what removes a match.
+
+**Every entry is restored as its own ticket wrote it** — the same `ruled_on`, `ticket`,
+`checked_against` and reasoning — because a judgement re-argued is a different judgement.
+**One is retired rather than kept.** `PRUYNE P AND CO` was T-0850's, refused for being a
+partnership; T-0851 then made that a DERIVATION — `namesake.py`'s `firm_style()` refuses
+every firm against every person before a surname is gathered — so the crosswalk proposes
+nothing for the spelling and `--check` rightly calls a hand ruling on it a ruling on
+nothing. #1055 retired its twin `GARRETT A ET CO` in exactly this way, and that
+retirement note **names this spelling** as the second firm the rule caught; it could not
+retire the entry because its base did not hold it. So the retirement is finished under
+T-0851's date and ticket, with the argument kept rather than deleted: it is half of what
+the rule was written from.
+
+**Nothing in the gate could see it, and that is still true.** `read_land_sales.py
+--check` asserts a ruling is WELL FORMED — that it names a spelling the register holds
+and a person the proposal named. It has no opinion about a ruling that is simply GONE,
+because a smaller rulings file is a legal rulings file, and the eight-ruling file
+re-derived perfectly into a crosswalk perfectly consistent with it. `check.sh` was green
+on #1055 and on every commit after it. The count is the only thing that can be watched
+here and nothing watches it; T-0999 is that gate.
+
 ## Two things about the source, both learned the hard way
 
 **The search shows at most 150 rows at a time — and it pages.** A whole-township query

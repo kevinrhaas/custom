@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 691, title: 'Forty judgements about the land register, put back', kind: 'fix', ts: '2026-09-10T15:12:13.106Z', date: 'Sep 10, 2026, 10:12 AM CT',
+    items: [
+      'Twelve resident cards had quietly got back a federal land purchase that had already been judged not to be theirs. The judgements were made; they stopped being applied.',
+      'The town keeps a written ruling on every proposed match between a name in the land register and a person it holds a card for \u2014 upheld or refused, each with what it was checked against, and a refusal takes the purchase back off the card. Forty-eight such rulings had been written. Only eight were still on file, and the file\u2019s own summary went on describing all forty-eight.',
+      'The forty are back, each as the pass that made it wrote it \u2014 its date, its reasoning, and the sources it was checked against. A judgement re-argued would be a different judgement, so none of them was re-argued.',
+      'Applying them again takes the purchases back off those twelve cards: Thomas Hartzell, Henry Vanderbogert, Charles Wessencraft, John Hale, James Spence, Joseph Chandler, Paul Kingston, Ira Minard, Augustus Garrett, Chauncey Goodrich, Liman Smith and Thos M. Morrison \u2014 each of which had been carrying an entry, and a source line, it had been ruled it could not have.',
+      'One of the forty is retired rather than kept: \u201cPruyne P and co\u201d was refused by hand for being a partnership, and reading firms as firms has since become a rule the register is read by, so the hand ruling now decides nothing. Its argument is kept where it can still be read, because the rule was written from it.',
+      'Nothing was upgraded, nobody was minted, and no purchase became a place anyone lived. The town holds what it had judged it holds.'
+    ] },
   { v: 690, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T13:43:17.384Z', date: 'Sep 10, 2026, 8:43 AM CT',
     items: [
       'The federal land register sells ground to partnerships as well as to people, and twice on its 953 rows it says so \u2014 \u201cGarrett A et co\u201d and \u201cPruyne P and co\u201d. Both were being read as men.',
