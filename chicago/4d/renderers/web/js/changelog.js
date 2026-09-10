@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 693, title: 'Four tradeswomen the directories printed and the town had lost', kind: 'fix', ts: '2026-09-10T16:26:59.151Z', date: 'Sep 10, 2026, 11:26 AM CT',
+    items: [
+      'A married woman was often printed under her husband’s name — “Hadley, Mrs. T. G.” — and the rule that decides who is who strips the “Mrs.” before it compares. It already refused to fold a wife onto her husband where a directory prints the pair letter for letter. It missed the commonest setting of all: the wife on his initials, the husband under his whole name, three entries down the same column.',
+      'So four women were being carried as their husbands. Mrs T. G. Hadley, dress and cloak maker at 147½ Lake, was Timothy Gibson Hadley of the Howard & Hadley livery stable. Mrs S. R. Kernikerbacker, dressmaker, was Samuel R. Kernikerbacker, shoemaker, at the same address. Mrs G. Anderson, milliner and straw hat maker, was George Anderson the wigmaker, third door north of the post office. Each has her own entry, her own trade and her own place of business, printed on the same page as his.',
+      'A fifth was not a wife at all: “Smith, Miss M., teacher public school 3” had been folded onto Matthias Smith, the one M-forename among twenty-nine Smiths in the 1843 directory.',
+      'And Mrs C. Taylor, whom a reading last week gave a card of her own, is now held apart by the rule as well, so the card and the machinery finally agree about her.',
+      'The guard that keeps this honest is unchanged: one source has to print both readings. That is what stops the rule inventing a woman wherever a name happens to carry a title — Mrs Eliza Haight and the census’s Eliza Haight are still one person, because no page sets them side by side.',
+      'The other name the question was raised about is settled the other way. The letter waiting at the post office for “Mrs. Wm. B. Egan” in April 1834 is hers and not the doctor’s — and the town already holds her, under her own forename, as Emeline Egan.'
+    ] },
   { v: 692, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '2026-09-10T15:57:36.611Z', date: 'Sep 10, 2026, 10:57 AM CT',
     items: [
       'Francis Gurtrey Blanchard \u2014 a capitalist of 45 Wells Street, by the town\u2019s own directory of 1843 \u2014 stood on two resident cards. The tax list of 1833 printed him \u201cBlanchard, Gantry\u201d, by his middle name alone; the poll list of 1834 printed him \u201cBlanchard, F. Gantry\u201d. He is one card now, and nothing was lost: the folded record is kept whole and every reference to it still resolves.',
