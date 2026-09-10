@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 690, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T13:43:17.384Z', date: 'Sep 10, 2026, 8:43 AM CT',
+    items: [
+      'The federal land register sells ground to partnerships as well as to people, and twice on its 953 rows it says so \u2014 \u201cGarrett A et co\u201d and \u201cPruyne P and co\u201d. Both were being read as men.',
+      'Peter Pruyne\u2019s card said the register entered him six times and counted the firm\u2019s three acres and $310 among his own purchases. It now says five, and the firm\u2019s entry stands under the firm.',
+      'A. Garrett & Co. entered eighty acres south of the town on 1 December 1835 and no reading of the register carried it. There is now a record of what the house bought, where, when and for how much, naming the one partner the page names \u2014 as a partner, not as the buyer.',
+      'The identification of the house with the town\u2019s A. Garrett, the auctioneer, is probably right and is not what changed. What changed is that a partnership\u2019s purchase is no longer written onto a man as his own.'
+    ] },
   { v: 689, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T12:45:14.185Z', date: 'Sep 10, 2026, 7:45 AM CT',
     items: [
       'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',

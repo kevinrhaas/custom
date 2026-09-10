@@ -30,17 +30,17 @@ Each line is *how many of the 1357 people carry at least one record of that kind
 | household membership | **44** | 3.2% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.6% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **309** | 22.8% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **313** | 23.1% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **49** | 3.6% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 473 | 34.9% |
-| `two_or_more_sources_one_category` | 20 | 1.5% |
-| `one_source` | 318 | 23.4% |
-| `the_letter_lists_alone` | 543 | 40.0% |
+| `corroborated_across_categories` | 474 | 34.9% |
+| `two_or_more_sources_one_category` | 24 | 1.8% |
+| `one_source` | 314 | 23.1% |
+| `the_letter_lists_alone` | 542 | 39.9% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -52,7 +52,7 @@ record agree; two newspaper notices of the same name are
 | category | people citing at least one |
 | --- | ---: |
 | newspaper | 1128 |
-| civic | 309 |
+| civic | 313 |
 | census | 49 |
 | church | 46 |
 | book | 259 |
@@ -323,8 +323,8 @@ defect in this export.
 | no census linkage | 1308 | no 1840 census row is bridged to this person |
 | no address | 1281 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1261 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 861 | one source id on the card and no second category to check it against |
-| rests on the letter lists alone | 543 | known only from the post office's uncalled-for lists |
+| rests on one source | 856 | one source id on the card and no second category to check it against |
+| rests on the letter lists alone | 542 | known only from the post office's uncalled-for lists |
 | no research row | 517 | no cohort ticket has reviewed this person; the programme reached 840 of 1357 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |

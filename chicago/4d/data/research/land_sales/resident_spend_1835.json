@@ -12,20 +12,20 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 123,
-  "people_written": 110,
-  "households_touched": 107,
+  "matched_rulings": 135,
+  "people_written": 122,
+  "households_touched": 119,
   "grades_changed": 0,
-  "entries_carried": 356,
-  "acres_carried": 18962.15,
-  "school_section_parcels_carried": 156,
+  "entries_carried": 414,
+  "acres_carried": 20610.34,
+  "school_section_parcels_carried": 201,
   "matched_more_than_once": 12
  },
  "not_written": [
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 308
+   "rulings": 296
   },
   {
    "rule": "L2",
@@ -1261,6 +1261,51 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “ELSTON DANIEL”, 1836-06-18: 1 federal land entry — NE sec 08 T39N R14E, 160.00 acres stated in all, for $200.00 (ls0047). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: ELSTON DANIEL matches Daniel Elston: the forename names Daniel Elston of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
+   "household_id": "hh_hartzell_thomas",
+   "person_id": "hartzell_thomas",
+   "name": "Thomas Hartzell",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "HARTZELL THOMAS"
+   ],
+   "rules": [
+    "HARTZELL THOMAS matches Thomas Hartzell: the forename names Thomas Hartzell of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 80.0,
+    "dollars": 124.0,
+    "first_purchase": "1830-09-29",
+    "last_purchase": "1830-09-29",
+    "tracts": [
+     "W2NEVO sec 09 T39N R14E"
+    ],
+    "school_section": [],
+    "residence_as_read": [
+     "ILLINOIS"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0051",
+     "as_read": "HARTZELL THOMAS",
+     "date_purchased": "1830-09-29",
+     "acres": "80.00",
+     "total_price": "124.00",
+     "type_of_sale": "canal land sale",
+     "residence_as_read": "ILLINOIS",
+     "county": "COOK",
+     "tract": "W2NEVO sec 09 T39N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0085167",
+     "volume": "R13",
+     "page": "005"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “HARTZELL THOMAS”, 1830-09-29: 1 federal land entry — W2NEVO sec 09 T39N R14E, 80.00 acres stated in all, for $124.00 (ls0051). THE REGISTER'S OWN RESIDENCE COLUMN READS ILLINOIS on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HARTZELL THOMAS matches Thomas Hartzell: the forename names Thomas Hartzell of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
    "household_id": "hh_kinzie_james",
    "person_id": "kinzie_james",
    "name": "James Kinzie",
@@ -2319,6 +2364,51 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “CASEY EDWARD W”, 1833-10-24: 2 parcels of the school section — lot 5 of block 82 of the school section (sec 16 T39N R14E); lot 6 of block 82 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $116.00 (ls0130, ls0131). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: CASEY EDWARD W matches Edward W. Casey: the forename names Edward W. Casey of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
+   "household_id": "hh_chandler_joseph",
+   "person_id": "chandler_joseph",
+   "name": "Joseph Chandler",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "CHANDLER JOSEPH"
+   ],
+   "rules": [
+    "CHANDLER JOSEPH matches Joseph Chandler: the forename names Joseph Chandler of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 3.69,
+    "dollars": 55.0,
+    "first_purchase": "1833-10-24",
+    "last_purchase": "1833-10-24",
+    "tracts": [],
+    "school_section": [
+     "BL11 of the school section (sec 16 T39N R14E), as read"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0132",
+     "as_read": "CHANDLER JOSEPH",
+     "date_purchased": "1833-10-24",
+     "acres": "3.69",
+     "total_price": "55.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL11 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0368164",
+     "volume": "817",
+     "page": "029"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “CHANDLER JOSEPH”, 1833-10-24: 1 parcel of the school section — BL11 of the school section (sec 16 T39N R14E), as read, 3.69 acres stated in all, for $55.00 (ls0132). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: CHANDLER JOSEPH matches Joseph Chandler: the forename names Joseph Chandler of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
    "household_id": "hh_chapman_chas_h",
    "person_id": "chapman_chas_h",
    "name": "Chas. H. Chapman",
@@ -3105,6 +3195,102 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “GOODHUE JOSIAH C”, 1833-10-25: 1 parcel of the school section — lot 4 of block 119 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $253.00 (ls0163). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: GOODHUE JOSIAH C matches Dr. Josiah C. Goodhue: the forename names Dr. Josiah C. Goodhue of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
+   "household_id": "hh_goodrich_c",
+   "person_id": "goodrich_c",
+   "name": "C Goodrich",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "GOODRICH CHAUNCEY"
+   ],
+   "rules": [
+    "GOODRICH CHAUNCEY matches C Goodrich: the forename names C Goodrich of the 3 people of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 4,
+    "acres": 11.66,
+    "dollars": 489.0,
+    "first_purchase": "1833-10-22",
+    "last_purchase": "1833-10-24",
+    "tracts": [],
+    "school_section": [
+     "BL130 of the school section (sec 16 T39N R14E), as read",
+     "BL131 of the school section (sec 16 T39N R14E), as read",
+     "BL132 of the school section (sec 16 T39N R14E), as read",
+     "lot 4 of block 48 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0164",
+     "as_read": "GOODRICH CHAUNCEY",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "45.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 4 of block 48 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369495",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0165",
+     "as_read": "GOODRICH CHAUNCEY",
+     "date_purchased": "1833-10-23",
+     "acres": "3.52",
+     "total_price": "151.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL132 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369496",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0166",
+     "as_read": "GOODRICH CHAUNCEY",
+     "date_purchased": "1833-10-23",
+     "acres": "4.03",
+     "total_price": "157.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL130 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369497",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0167",
+     "as_read": "GOODRICH CHAUNCEY",
+     "date_purchased": "1833-10-24",
+     "acres": "4.11",
+     "total_price": "136.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL131 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369498",
+     "volume": "818",
+     "page": "009"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “GOODRICH CHAUNCEY”, 1833-10-22 to 1833-10-24: 4 parcels of the school section — BL130 of the school section (sec 16 T39N R14E), as read; BL131 of the school section (sec 16 T39N R14E), as read; BL132 of the school section (sec 16 T39N R14E), as read; lot 4 of block 48 of the school section (sec 16 T39N R14E), 11.66 acres stated in all, for $489.00 (ls0164, ls0165, ls0166, ls0167). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: GOODRICH CHAUNCEY matches C Goodrich: the forename names C Goodrich of the 3 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
    "household_id": "hh_goodrich_ebenezer",
    "person_id": "goodrich_ebenezer",
    "name": "Ebenezer Goodrich",
@@ -3264,6 +3450,476 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 5 times, as “HADDOCK E H”, “HADDOCK EDWARD H”, 1833-10-22 to 1835-06-27: 1 federal land entry — E2NE sec 27 T38N R14E and 4 parcels of the school section — BL134 of the school section (sec 16 T39N R14E), as read; lot 1 of block 94 of the school section (sec 16 T39N R14E); lot 7 of block 120 of the school section (sec 16 T39N R14E); lot 8 of block 94 of the school section (sec 16 T39N R14E), 80.00 acres stated in all, for $550.00 (ls0169, ls0170, ls0171, ls0172, ls0669). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HADDOCK E H matches Edward H. Haddock: the forename names Edward H. Haddock of the 2 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_hale_john",
+   "person_id": "hale_john",
+   "name": "John Hale",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "HALE JOHN"
+   ],
+   "rules": [
+    "HALE JOHN matches John Hale: the forename names John Hale of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 26,
+    "acres": 4.98,
+    "dollars": 2360.0,
+    "first_purchase": "1833-10-22",
+    "last_purchase": "1833-10-25",
+    "tracts": [],
+    "school_section": [
+     "BL124 of the school section (sec 16 T39N R14E), as read",
+     "BL67 of the school section (sec 16 T39N R14E), as read",
+     "lot 1 of block 26 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 48 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 71 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 79 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 80 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 81 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 82 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 95 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 96 of the school section (sec 16 T39N R14E)",
+     "lot 2 of block 72 of the school section (sec 16 T39N R14E)",
+     "lot 2 of block 79 of the school section (sec 16 T39N R14E)",
+     "lot 2 of block 80 of the school section (sec 16 T39N R14E)",
+     "lot 2 of block 95 of the school section (sec 16 T39N R14E)",
+     "lot 3 of block 79 of the school section (sec 16 T39N R14E)",
+     "lot 3 of block 80 of the school section (sec 16 T39N R14E)",
+     "lot 3 of block 81 of the school section (sec 16 T39N R14E)",
+     "lot 4 of block 50 of the school section (sec 16 T39N R14E)",
+     "lot 4 of block 71 of the school section (sec 16 T39N R14E)",
+     "lot 4 of block 79 of the school section (sec 16 T39N R14E)",
+     "lot 5 of block 48 of the school section (sec 16 T39N R14E)",
+     "lot 7 of block 119 of the school section (sec 16 T39N R14E)",
+     "lot 7 of block 95 of the school section (sec 16 T39N R14E)",
+     "lot 8 of block 82 of the school section (sec 16 T39N R14E)",
+     "lot 8 of block 95 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0199",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "20.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 26 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369731",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0200",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "108.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 79 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369732",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0201",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "52.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 82 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369733",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0202",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "46.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 96 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369734",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0203",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "120.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 71 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369735",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0204",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "40.75",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 7 of block 95 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369736",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0205",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "16.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 48 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369737",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0206",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "18.75",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 5 of block 48 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369738",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0207",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "125.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 4 of block 71 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369739",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0208",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "37.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 3 of block 81 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369740",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0209",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "213.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 3 of block 80 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369741",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0210",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "55.75",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 81 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369742",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0211",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "56.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 7 of block 119 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369743",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0212",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "88.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 2 of block 79 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369744",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0213",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "52.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 4 of block 50 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369745",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0214",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "90.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 3 of block 79 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369746",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0215",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "66.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 8 of block 95 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369747",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0216",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "80.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 2 of block 72 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369748",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0217",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-24",
+     "acres": "3.02",
+     "total_price": "250.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL67 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369749",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0218",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "56.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 2 of block 95 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369750",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0219",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "75.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 95 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369751",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0220",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-24",
+     "acres": "1.63",
+     "total_price": "101.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL124 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369752",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0221",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "202.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 2 of block 80 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369753",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0222",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "238.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 80 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369754",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0223",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "42.75",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 8 of block 82 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369755",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0224",
+     "as_read": "HALE JOHN",
+     "date_purchased": "1833-10-22",
+     "acres": ".33",
+     "total_price": "105.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 4 of block 79 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0507609",
+     "volume": "818",
+     "page": "009"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 26 times, as “HALE JOHN”, 1833-10-22 to 1833-10-25: 26 parcels of the school section — BL124 of the school section (sec 16 T39N R14E), as read; BL67 of the school section (sec 16 T39N R14E), as read; lot 1 of block 26 of the school section (sec 16 T39N R14E); lot 1 of block 48 of the school section (sec 16 T39N R14E); lot 1 of block 71 of the school section (sec 16 T39N R14E); lot 1 of block 79 of the school section (sec 16 T39N R14E); lot 1 of block 80 of the school section (sec 16 T39N R14E); lot 1 of block 81 of the school section (sec 16 T39N R14E); lot 1 of block 82 of the school section (sec 16 T39N R14E); lot 1 of block 95 of the school section (sec 16 T39N R14E); lot 1 of block 96 of the school section (sec 16 T39N R14E); lot 2 of block 72 of the school section (sec 16 T39N R14E); lot 2 of block 79 of the school section (sec 16 T39N R14E); lot 2 of block 80 of the school section (sec 16 T39N R14E); lot 2 of block 95 of the school section (sec 16 T39N R14E); lot 3 of block 79 of the school section (sec 16 T39N R14E); lot 3 of block 80 of the school section (sec 16 T39N R14E); lot 3 of block 81 of the school section (sec 16 T39N R14E); lot 4 of block 50 of the school section (sec 16 T39N R14E); lot 4 of block 71 of the school section (sec 16 T39N R14E); lot 4 of block 79 of the school section (sec 16 T39N R14E); lot 5 of block 48 of the school section (sec 16 T39N R14E); lot 7 of block 119 of the school section (sec 16 T39N R14E); lot 7 of block 95 of the school section (sec 16 T39N R14E); lot 8 of block 82 of the school section (sec 16 T39N R14E); lot 8 of block 95 of the school section (sec 16 T39N R14E), 4.98 acres stated in all, for $2360.00 (ls0199, ls0200, ls0201, ls0202, ls0203, ls0204, ls0205, ls0206, ls0207, ls0208, ls0209, ls0210, ls0211, ls0212, ls0213, ls0214, ls0215, ls0216, ls0217, ls0218, ls0219, ls0220, ls0221, ls0222, ls0223, ls0224). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HALE JOHN matches John Hale: the forename names John Hale of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_hamilton_richard_j",
@@ -4005,6 +4661,119 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “KIMBERLEY EDMUND S”, 1833-10-25: 1 parcel of the school section — lot 6 of block 119 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $102.00 (ls0263). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KIMBERLEY EDMUND S matches Ed Kimberley: the forename names Ed Kimberley of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_kingston_paul",
+   "person_id": "kingston_paul",
+   "name": "Paul Kingston",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "KINGSTON PAUL"
+   ],
+   "rules": [
+    "KINGSTON PAUL matches Paul Kingston: the forename names Paul Kingston of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 5,
+    "acres": 16.08,
+    "dollars": 663.0,
+    "first_purchase": "1833-10-23",
+    "last_purchase": "1833-10-25",
+    "tracts": [],
+    "school_section": [
+     "BL12 of the school section (sec 16 T39N R14E), as read",
+     "BL13 of the school section (sec 16 T39N R14E), as read",
+     "BL36 of the school section (sec 16 T39N R14E), as read",
+     "BL78 of the school section (sec 16 T39N R14E), as read",
+     "lot 5 of block 119 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0267",
+     "as_read": "KINGSTON PAUL",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "190.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 5 of block 119 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0370844",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0268",
+     "as_read": "KINGSTON PAUL",
+     "date_purchased": "1833-10-24",
+     "acres": "4.30",
+     "total_price": "60.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL13 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0370845",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0269",
+     "as_read": "KINGSTON PAUL",
+     "date_purchased": "1833-10-23",
+     "acres": "3.79",
+     "total_price": "56.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL36 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0370846",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0270",
+     "as_read": "KINGSTON PAUL",
+     "date_purchased": "1833-10-23",
+     "acres": "4.30",
+     "total_price": "56.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL12 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0370847",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0271",
+     "as_read": "KINGSTON PAUL",
+     "date_purchased": "1833-10-23",
+     "acres": "3.69",
+     "total_price": "301.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL78 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0370848",
+     "volume": "818",
+     "page": "008"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 5 times, as “KINGSTON PAUL”, 1833-10-23 to 1833-10-25: 5 parcels of the school section — BL12 of the school section (sec 16 T39N R14E), as read; BL13 of the school section (sec 16 T39N R14E), as read; BL36 of the school section (sec 16 T39N R14E), as read; BL78 of the school section (sec 16 T39N R14E), as read; lot 5 of block 119 of the school section (sec 16 T39N R14E), 16.08 acres stated in all, for $663.00 (ls0267, ls0268, ls0269, ls0270, ls0271). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KINGSTON PAUL matches Paul Kingston: the forename names Paul Kingston of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_knickerbacker_a_v",
@@ -4874,6 +5643,103 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “SNOW GEORGE W”, 1833-10-24: 2 parcels of the school section — BL46 of the school section (sec 16 T39N R14E), as read; BL55 of the school section (sec 16 T39N R14E), as read, 5.51 acres stated in all, for $249.00 (ls0334, ls0335). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SNOW GEORGE W matches George W. Snow: the forename names George W. Snow of the 2 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
+   "household_id": "hh_spence_james_c",
+   "person_id": "spence_james_c",
+   "name": "James C Spence",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "SPENCE JAMES"
+   ],
+   "rules": [
+    "SPENCE JAMES matches James C Spence: the forename names James C Spence of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 4,
+    "acres": 160.0,
+    "dollars": 548.0,
+    "first_purchase": "1833-10-22",
+    "last_purchase": "1835-06-27",
+    "tracts": [
+     "SW sec 23 T38N R14E"
+    ],
+    "school_section": [
+     "lot 3 of block 94 of the school section (sec 16 T39N R14E)",
+     "lot 5 of block 94 of the school section (sec 16 T39N R14E)",
+     "lot 6 of block 94 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0336",
+     "as_read": "SPENCE JAMES",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "82.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 6 of block 94 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373137",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0337",
+     "as_read": "SPENCE JAMES",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "112.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 3 of block 94 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373138",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0338",
+     "as_read": "SPENCE JAMES",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "154.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 5 of block 94 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373139",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0649",
+     "as_read": "SPENCE JAMES",
+     "date_purchased": "1835-06-27",
+     "acres": "160.00",
+     "total_price": "200.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "SW sec 23 T38N R14E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0020783",
+     "volume": "687",
+     "page": "263"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “SPENCE JAMES”, 1833-10-22 to 1835-06-27: 1 federal land entry — SW sec 23 T38N R14E and 3 parcels of the school section — lot 3 of block 94 of the school section (sec 16 T39N R14E); lot 5 of block 94 of the school section (sec 16 T39N R14E); lot 6 of block 94 of the school section (sec 16 T39N R14E), 160.00 acres stated in all, for $548.00 (ls0336, ls0337, ls0338, ls0649). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SPENCE JAMES matches James C Spence: the forename names James C Spence of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
    "household_id": "hh_stanley_j",
    "person_id": "stanley_j",
    "name": "J Stanley",
@@ -5308,6 +6174,164 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 8 times, as “TEMPLE JOHN T”, 1833-10-22 to 1833-10-24: 8 parcels of the school section — BL103 of the school section (sec 16 T39N R14E), as read; BL110 of the school section (sec 16 T39N R14E), as read; BL111 of the school section (sec 16 T39N R14E), as read; BL112 of the school section (sec 16 T39N R14E), as read; BL17 of the school section (sec 16 T39N R14E), as read; BL76 of the school section (sec 16 T39N R14E), as read; BL77 of the school section (sec 16 T39N R14E), as read; BL99 of the school section (sec 16 T39N R14E), as read, 30.31 acres stated in all, for $1107.00 (ls0353, ls0354, ls0355, ls0356, ls0357, ls0358, ls0359, ls0360). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: TEMPLE JOHN T matches Dr John Taylor Temple: the forename names Dr John Taylor Temple of the 3 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_vanderbogert_henry",
+   "person_id": "vanderbogert_henry",
+   "name": "Henry Vanderbogert",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "VANDERBOGERT HENRY"
+   ],
+   "rules": [
+    "VANDERBOGERT HENRY matches Henry Vanderbogert: the forename names Henry Vanderbogert of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 0.0,
+    "dollars": 102.0,
+    "first_purchase": "1833-10-25",
+    "last_purchase": "1833-10-25",
+    "tracts": [],
+    "school_section": [
+     "lot 2 of block 120 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0361",
+     "as_read": "VANDERBOGERT HENRY",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "102.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 2 of block 120 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373633",
+     "volume": "818",
+     "page": "009"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “VANDERBOGERT HENRY”, 1833-10-25: 1 parcel of the school section — lot 2 of block 120 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $102.00 (ls0361). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: VANDERBOGERT HENRY matches Henry Vanderbogert: the forename names Henry Vanderbogert of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_wessencraft_charles",
+   "person_id": "wessencraft_charles",
+   "name": "Charles Wessencraft",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "WESSENCRAFT CHARLES"
+   ],
+   "rules": [
+    "WESSENCRAFT CHARLES matches Charles Wessencraft: the forename names Charles Wessencraft of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 5,
+    "acres": 3.69,
+    "dollars": 242.5,
+    "first_purchase": "1833-10-24",
+    "last_purchase": "1833-10-24",
+    "tracts": [],
+    "school_section": [
+     "BL8 of the school section (sec 16 T39N R14E), as read",
+     "lot 3 of block 47 of the school section (sec 16 T39N R14E)",
+     "lot 4 of block 47 of the school section (sec 16 T39N R14E)",
+     "lot 5 of block 47 of the school section (sec 16 T39N R14E)",
+     "lot 6 of block 47 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0365",
+     "as_read": "WESSENCRAFT CHARLES",
+     "date_purchased": "1833-10-24",
+     "acres": "3.69",
+     "total_price": "54.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL8 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0373844",
+     "volume": "818",
+     "page": "010"
+    },
+    {
+     "record_id": "ls0366",
+     "as_read": "WESSENCRAFT CHARLES",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "36.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 3 of block 47 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373845",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0367",
+     "as_read": "WESSENCRAFT CHARLES",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "51.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 5 of block 47 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373846",
+     "volume": "818",
+     "page": "010"
+    },
+    {
+     "record_id": "ls0368",
+     "as_read": "WESSENCRAFT CHARLES",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "59.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 4 of block 47 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373847",
+     "volume": "818",
+     "page": "010"
+    },
+    {
+     "record_id": "ls0369",
+     "as_read": "WESSENCRAFT CHARLES",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "42.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 6 of block 47 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0373848",
+     "volume": "818",
+     "page": "010"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 5 times, as “WESSENCRAFT CHARLES”, 1833-10-24: 5 parcels of the school section — BL8 of the school section (sec 16 T39N R14E), as read; lot 3 of block 47 of the school section (sec 16 T39N R14E); lot 4 of block 47 of the school section (sec 16 T39N R14E); lot 5 of block 47 of the school section (sec 16 T39N R14E); lot 6 of block 47 of the school section (sec 16 T39N R14E), 3.69 acres stated in all, for $242.50 (ls0365, ls0366, ls0367, ls0368, ls0369). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: WESSENCRAFT CHARLES matches Charles Wessencraft: the forename names Charles Wessencraft of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_west_henry_c",
@@ -6163,6 +7187,68 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “SMITH JEREMIAH”, 1834-10-02 to 1835-06-27: 3 federal land entries — SE sec 34 T39N R14E; SW sec 14 T38N R14E; W2NW sec 11 T40N R13E, 400.00 acres stated in all, for $500.00 (ls0488, ls0614, ls0909, ls0910). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: SMITH JEREMIAH matches Jeremiah Smith: the forename names Jeremiah Smith of the 11 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_minard_ira",
+   "person_id": "minard_ira",
+   "name": "Ira Minard",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "MINARD IRA"
+   ],
+   "rules": [
+    "MINARD IRA matches Ira Minard: the forename names Ira Minard of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 2,
+    "acres": 161.21,
+    "dollars": 362.71,
+    "first_purchase": "1835-06-27",
+    "last_purchase": "1835-06-27",
+    "tracts": [
+     "E2NW sec 06 T40N R14E",
+     "W2NW sec 06 T40N R14E"
+    ],
+    "school_section": [],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0497",
+     "as_read": "MINARD IRA",
+     "date_purchased": "1835-06-27",
+     "acres": "80.60",
+     "total_price": "221.65",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2NW sec 06 T40N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0002314",
+     "volume": "687",
+     "page": "270"
+    },
+    {
+     "record_id": "ls0498",
+     "as_read": "MINARD IRA",
+     "date_purchased": "1835-06-27",
+     "acres": "80.61",
+     "total_price": "141.06",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "W2NW sec 06 T40N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0027704",
+     "volume": "687",
+     "page": "270"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “MINARD IRA”, 1835-06-27: 2 federal land entries — E2NW sec 06 T40N R14E; W2NW sec 06 T40N R14E, 161.21 acres stated in all, for $362.71 (ls0497, ls0498). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: MINARD IRA matches Ira Minard: the forename names Ira Minard of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_rowley_herman_a",
@@ -7100,6 +8186,51 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “HUNTER EDWARD E”, “HUNTER E E”, 1834-11-15: 2 federal land entries — E2SW sec 02 T38N R14E; NE sec 13 T40N R13E, 320.00 acres stated in all, for $400.00 (ls0567, ls0568, ls0920, ls0919). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HUNTER EDWARD E matches Edward E Hunter: the forename names Edward E Hunter of the 5 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_smith_l_w",
+   "person_id": "smith_l_w",
+   "name": "L W Smith",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "SMITH LIMAN"
+   ],
+   "rules": [
+    "SMITH LIMAN matches L W Smith: the forename names L W Smith of the 11 people of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 140.18,
+    "dollars": 175.22,
+    "first_purchase": "1834-11-04",
+    "last_purchase": "1834-11-04",
+    "tracts": [
+     "NWFR sec 02 T38N R14E"
+    ],
+    "school_section": [],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0572",
+     "as_read": "SMITH LIMAN",
+     "date_purchased": "1834-11-04",
+     "acres": "140.18",
+     "total_price": "175.22",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "NWFR sec 02 T38N R14E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0011336",
+     "volume": "687",
+     "page": "260"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “SMITH LIMAN”, 1834-11-04: 1 federal land entry — NWFR sec 02 T38N R14E, 140.18 acres stated in all, for $175.22 (ls0572). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SMITH LIMAN matches L W Smith: the forename names L W Smith of the 11 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_wentworth_elijah",
@@ -8912,6 +10043,198 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “JAMISON LOUIS T”, 1835-12-17 to 1836-01-09: 2 federal land entries — E2NW sec 31 T38N R15E; W2NE sec 05 T39N R13E, 158.66 acres stated in all, for $198.32 (ls0733, ls0757). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: JAMISON LOUIS T matches L T Jamison: the forename names L T Jamison of the 1 person of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_morrison_t_m",
+   "person_id": "morrison_t_m",
+   "name": "T. M. Morrison",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "MORRISON THOS M"
+   ],
+   "rules": [
+    "MORRISON THOS M matches T. M. Morrison: the forename names T. M. Morrison of the 5 people of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 78.94,
+    "dollars": 98.67,
+    "first_purchase": "1835-06-27",
+    "last_purchase": "1835-06-27",
+    "tracts": [
+     "NWFR sec 32 T38N R15E"
+    ],
+    "school_section": [],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0736",
+     "as_read": "MORRISON THOS M",
+     "date_purchased": "1835-06-27",
+     "acres": "78.94",
+     "total_price": "98.67",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "NWFR sec 32 T38N R15E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0011309",
+     "volume": "687",
+     "page": "299"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “MORRISON THOS M”, 1835-06-27: 1 federal land entry — NWFR sec 32 T38N R15E, 78.94 acres stated in all, for $98.67 (ls0736). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: MORRISON THOS M matches T. M. Morrison: the forename names T. M. Morrison of the 5 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_garrett_a",
+   "person_id": "garrett_a",
+   "name": "A. Garrett",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "GARRETT AUGUSTUS"
+   ],
+   "rules": [
+    "GARRETT AUGUSTUS matches A. Garrett: the forename names A. Garrett of the 1 person of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 7,
+    "acres": 987.76,
+    "dollars": 1299.5,
+    "first_purchase": "1835-11-28",
+    "last_purchase": "1835-11-28",
+    "tracts": [
+     "E2SE sec 30 T39N R13E",
+     "E2SW sec 18 T39N R13E",
+     "E2SW sec 20 T39N R13E",
+     "N2 sec 18 T39N R13E",
+     "SE sec 18 T39N R13E",
+     "SW sec 07 T39N R13E",
+     "W2SE sec 20 T39N R13E"
+    ],
+    "school_section": [],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0766",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "171.52",
+     "total_price": "214.40",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "SW sec 07 T39N R13E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0020330",
+     "volume": "687",
+     "page": "187"
+    },
+    {
+     "record_id": "ls0808",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "82.32",
+     "total_price": "102.90",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2SW sec 18 T39N R13E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0004275",
+     "volume": "687",
+     "page": "187"
+    },
+    {
+     "record_id": "ls0809",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "329.28",
+     "total_price": "411.60",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "N2 sec 18 T39N R13E",
+     "resolves": "unparsed",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0014603",
+     "volume": "687",
+     "page": "187"
+    },
+    {
+     "record_id": "ls0810",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "164.64",
+     "total_price": "205.80",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "SE sec 18 T39N R13E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0016129",
+     "volume": "687",
+     "page": "187"
+    },
+    {
+     "record_id": "ls0816",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2SW sec 20 T39N R13E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0004276",
+     "volume": "687",
+     "page": "188"
+    },
+    {
+     "record_id": "ls0817",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "W2SE sec 20 T39N R13E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0028518",
+     "volume": "687",
+     "page": "188"
+    },
+    {
+     "record_id": "ls0855",
+     "as_read": "GARRETT AUGUSTUS",
+     "date_purchased": "1835-11-28",
+     "acres": "80.00",
+     "total_price": "164.80",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2SE sec 30 T39N R13E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0003139",
+     "volume": "687",
+     "page": "189"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 7 times, as “GARRETT AUGUSTUS”, 1835-11-28: 7 federal land entries — E2SE sec 30 T39N R13E; E2SW sec 18 T39N R13E; E2SW sec 20 T39N R13E; N2 sec 18 T39N R13E; SE sec 18 T39N R13E; SW sec 07 T39N R13E; W2SE sec 20 T39N R13E, 987.76 acres stated in all, for $1299.50 (ls0766, ls0808, ls0809, ls0810, ls0816, ls0817, ls0855). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: GARRETT AUGUSTUS matches A. Garrett: the forename names A. Garrett of the 1 person of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_archer_william_b",

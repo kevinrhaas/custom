@@ -37,7 +37,11 @@ THE TERMS, written out so they read back without the code:
   1. A SUFFIX IS NOT A NAME. `JR`, `SR`, `ESQ` are dropped from both sides before
      anything is compared, and so are the firm words the register sets after a
      name — `ET CO`, `AND CO`, `AS` — which are not forenames and must never be
-     read as a middle initial.
+     read as a middle initial. DROPPING THEM ANSWERS ONE QUESTION AND NOT ANOTHER
+     (T-0851): it decides which man of a surname a reading points at, and it does
+     not decide that the buyer was a man. `firm_style` is the second question, and
+     `GARRETT A ET CO` — eighty acres entered by a house — is why it is asked
+     first, before this file is consulted at all.
   2. A MIDDLE INITIAL IS THE FIRST LETTER OF THE SECOND GIVEN WORD, whether that
      word is an initial or a name in full: `Walter Loomis` carries L. Two middle
      initials that disagree REFUSE the pair (R4's reasoning at one letter's
@@ -87,6 +91,17 @@ SUFFIXES = ("JR", "SR", "JUN", "SEN", "ESQ", "2D", "II", "III")
 # agent. None is a forename and none may be read as a middle initial.
 FIRM_WORDS = ("ET", "CO", "AND", "COMPANY", "AS", "AGENT", "TRUSTEE", "HEIRS", "OF", "&")
 
+# THE PARTNERSHIP STYLES, and they are a SMALLER list than FIRM_WORDS on purpose
+# (T-0851). Dropping a firm word lets the rest of this file ask which man of a
+# surname a reading points at; it must not be read as an answer to a different
+# question — whether the buyer was a man at all. `GARRETT A ET CO` drops to `A`
+# and would then name A. Garrett, and the eighty acres it entered were entered by
+# the HOUSE. So the styles below say the purchaser is a partnership, and the
+# capacity words — `AS`, `AGENT`, `TRUSTEE`, `HEIRS`, `OF` — deliberately do not:
+# a man buying as an agent or an heir is still a man, and the register names him.
+PARTNERSHIP_CONJUNCTIONS = ("ET", "AND", "&")
+PARTNERSHIP_HEADS = ("CO", "COMPANY")
+
 # The three discriminators T-0697 asked about, all refused, each with the reason
 # kept beside the refusal rather than in a paragraph somewhere.
 REFUSED_DISCRIMINATORS = {
@@ -128,6 +143,24 @@ def _words(given):
             continue
         out.append(w)
     return out
+
+
+def firm_style(given):
+    """The partnership style the register printed, or None if the buyer is a person.
+
+    A conjunction the register sets before its abbreviation for company — `ET CO`,
+    `AND CO`, `& CO` — is the page saying the purchaser was a HOUSE and not a man.
+    The style is returned as the register printed it, so a refusal can quote the
+    words that made it rather than assert a category. A capacity word is not a
+    style: see PARTNERSHIP_CONJUNCTIONS above.
+    """
+    words = [raw.strip(",.").upper()
+             for raw in str(given or "").replace(".", " ").split()]
+    words = [w for w in words if w]
+    for i, w in enumerate(words[:-1]):
+        if w in PARTNERSHIP_CONJUNCTIONS and words[i + 1] in PARTNERSHIP_HEADS:
+            return "%s %s" % (w, words[i + 1])
+    return None
 
 
 def female_title(given):
@@ -279,10 +312,17 @@ def collide(readings):
     refused with the rivals named — never the first one kept and the rest thrown
     away, which would be the count of namesakes again, wearing a hat.
 
-    `PRUYNE P`, `PRUYNE P AND CO` and `PRUYNE PETER` are one man. `BOND HARVEY`
-    and `BOND HEMAN` both meet an `H Bond` and are two. `WENTWORTH ELIJAH` and
-    `WENTWORTH ELIJAH SEN` are the Wolf Point father and son, and the town holds
-    one card: two, until a source says which.
+    `PRUYNE P` and `PRUYNE PETER` are one man. `BOND HARVEY` and `BOND HEMAN`
+    both meet an `H Bond` and are two. `WENTWORTH ELIJAH` and `WENTWORTH ELIJAH
+    SEN` are the Wolf Point father and son, and the town holds one card: two,
+    until a source says which.
+
+    `PRUYNE P AND CO` STOOD IN THAT FIRST GROUP UNTIL T-0851 and does not reach
+    this function any more: it is a firm, `firm_style` catches it before `choose`
+    is asked, and the group it used to join was the crosswalk reading a house as
+    its named partner. The words still fold away here — see FIRM_WORDS — because
+    folding them is how this file compares two readings of one man, and that is a
+    different question from whether the buyer was a man.
     """
     conflicts = []
     for i, a in enumerate(readings):
@@ -374,11 +414,20 @@ def self_test():
     if r["named"] is not None or len(r["rivals"]) != 2:
         fired.append("a refusal must name every rival it was put to")
 
+    # The firm rule (T-0851). It is asked BEFORE `choose`, and a capacity is not a firm.
+    for reading, style in (("A ET CO", "ET CO"), ("P AND CO", "AND CO"),
+                           ("J & CO", "& CO"), ("P. AND CO.", "AND CO")):
+        if firm_style(reading) != style:
+            fired.append("%r is a partnership and its style is %r" % (reading, style))
+    for person in ("A", "PETER", "F G AS", "JOHN AS", "GILES AS", "THOS JR",
+                   "AND", "CO", "ANDREW", "COOPER"):
+        if firm_style(person) is not None:
+            fired.append("%r is a person and firm_style must stand down" % person)
+
     # The collision rule.
-    same = collide([{"key": "a", "given": "P"}, {"key": "b", "given": "PETER"},
-                    {"key": "c", "given": "P AND CO"}])
+    same = collide([{"key": "a", "given": "P"}, {"key": "b", "given": "PETER"}])
     if not same["same_man"]:
-        fired.append("the three Pruyne spellings are one man")
+        fired.append("the two Pruyne spellings are one man")
     two = collide([{"key": "a", "given": "HARVEY"}, {"key": "b", "given": "HEMAN"}])
     if two["same_man"]:
         fired.append("Harvey and Heman Bond are two men, not one H Bond")

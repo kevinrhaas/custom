@@ -14097,7 +14097,7 @@
     {
       "record_id": "ls0322",
       "purchaser_as_read": "PRUYNE P AND CO",
-      "purchaser_normalized": "P And Co Pruyne",
+      "purchaser_normalized": "P Pruyne & Co.",
       "date_purchased": "1833-10-22",
       "type_of_sale": "SC",
       "acres_as_read": "3.27",
@@ -22931,7 +22931,7 @@
     {
       "record_id": "ls0693",
       "purchaser_as_read": "GARRETT A ET CO",
-      "purchaser_normalized": "A Et Co Garrett",
+      "purchaser_normalized": "A Garrett & Co.",
       "date_purchased": "1835-12-01",
       "type_of_sale": "FD",
       "acres_as_read": "80.00",

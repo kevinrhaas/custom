@@ -110,11 +110,50 @@ than on the two records agreeing, and it is refused.
 | DILL FRANK | upheld | ls0912 states **COOK**, and the 1835 poll list has a Frank Dill at Chicago |
 | SPENCER WILLIAM G | refused | one letter-list line, and a middle initial the town has never seen |
 | WILSON JOHN L | refused | the same, on the commonest name in the corpus, and the entries are 1836 |
-| GARRETT A ET CO | refused | the purchaser is a **firm**; this crosswalk proposes people (T-0851) |
+| GARRETT A ET CO | *retired* | refused by hand as a **firm**, and the refusal is now a derivation — see below |
 
 Refusing the firm spelling left `GARRETT AUGUSTUS` standing alone on A. Garrett's card, where
 the two spellings had both been written onto it. That second spelling is a reading in its own
 name and is NOT ruled on here — it is one of T-0850's twenty-six, which the next section rules on (refused: the town has never read the forename).
+
+## The register sells ground to FIRMS (T-0851)
+
+A purchaser is not always a man. Twice on these 953 rows the register sets a partnership
+style after the name — `GARRETT A ET CO`, eighty acres of section 33 in T38N R14E entered on
+1 December 1835, and `PRUYNE P AND CO`, block 97 of the school section on 22 October 1833 —
+and both of them were being read as people:
+
+* `tools/namesake.py` drops the firm words so it can ask which man of a surname a reading
+  points at. That is the right thing for that question and the wrong answer to a different
+  one: `GARRETT A ET CO` folded to `A`, `A` named the town's A. Garrett, and a **house's**
+  purchase was proposed as a **man's**.
+* `PRUYNE P AND CO` was never refused at all. Peter Pruyne's card said the register enters
+  *this person* six times, one of them as the firm, and counted the firm's 3.27 acres and
+  $310 among his own. It now says five, 167.83 acres and $403.79.
+* `normalize_name` read the firm words as forenames and title-cased them, so the deposit's
+  own `normalized` field said **`A Et Co Garrett`** — a name of nothing.
+
+**The rule, and it reads the page rather than a list.** `namesake.firm_style()` recognises a
+partnership by the conjunction the register prints before its abbreviation for company —
+`ET CO`, `AND CO`, `& CO`. The capacity words deliberately are NOT styles: `AS`, `AGENT`,
+`TRUSTEE`, `HEIRS`, `OF`. A man buying as an agent or an heir is still a man and the register
+names him; `BLANCHARD F G AS`, `VANDERBOGERT JOHN AS` and `WILLIAMS GILES AS` are people.
+
+**Where the ground goes.** Every firm is refused against every person in `refusals[]` — the
+count of adjudicated spellings stays whole — and the reading of it is carried in a new
+`firm_purchasers[]` block of `resident_crosswalk.json`: what the house bought, when, where,
+for how much, the register's Residence column, and the **one partner the page names**, put to
+the same forename rule and carried at the same grade it would have earned. That proposal is
+about the PARTNER'S NAME and not about a purchase by him. Who else stood in the house is not
+on the page and nothing here proposes them.
+
+The identification of `A. Garrett & Co.` with the town's A. Garrett — an auctioneer in four
+numbers of the *American* and the *Democrat* — is probably right and is not what is refused.
+What is refused is spending a partnership's entry as a person's.
+
+`KNOWN_FIRMS` in `tools/read_land_sales.py` declares the two spellings, and `--check` **fails
+on a firm the reading finds that is not declared**: a new deposit carrying one is meant to
+stop the build, so somebody reads the rows before a purchaser goes onto no card at all.
 
 A refusal is not free: it moves the proposal into `refusals[]`, and
 `spend_land_sales.py --build` **retracts** the paragraph the earlier pass had written onto
