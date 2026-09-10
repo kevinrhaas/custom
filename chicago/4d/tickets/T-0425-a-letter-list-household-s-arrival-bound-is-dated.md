@@ -1,7 +1,7 @@
 ---
 id: T-0425
 title: A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 3:38:02 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34527098866
 ---
 
 `tools/mint_letter_list_residents.py` dates a minted household's `arrival` from the
