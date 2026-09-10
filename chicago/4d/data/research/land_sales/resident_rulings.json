@@ -5,8 +5,8 @@
   "_doc": "RULINGS on the crosswalk's proposals. tools/read_land_sales.py --build folds this file onto resident_crosswalk.json; --check refuses a ruling that names a spelling the register does not hold, or a person the proposal did not name. This file is HAND-AUTHORED and is the one file under data/research/land_sales/ that is not derived from the deposit — a judgement is not a derivation, and the project does not pretend otherwise.",
   "why_this_exists": "build_resident_crosswalk() applies ONE mechanical rule: the surname agrees, the residents layer holds exactly one person of that surname, and the first forename agrees in full or as an initial. That rule proposes; it does not decide. tools/spend_land_sales.py's own rule 1 says so in as many words — 'ONLY WHAT THE CROSSWALK ALREADY DECLARED. This pass re-adjudicates nothing.' — so between the proposal and the card there was nobody. T-0700 is the ticket that noticed it, against the nine spellings the ring townships added (T-0676).",
   "the_ruling_rule": "A proposal is UPHELD only where the town's own record of the person carries something the register's row can be checked against BEYOND a bare name — a middle initial the register repeats, a trade the purchase is consistent with, a second document, or the register's own Residence column. Where the town holds nothing but a name read once off a post-office letter list, the proposal rests on the residents layer being THIN rather than on the two records agreeing: an uncalled-for letter says a correspondent thought the name reachable at Chicago, and a tract entry says a name entered ground, and two name-only readings do not make an identity. Such a proposal is REFUSED. A ruling never raises a grade, never mints a resident, and never asserts a residence; a refusal retracts what a pass had already written.",
-  "scope": "The nine purchaser spellings the ring deposit (T-0676) added, ruled under T-0700; the twenty-six the first deposit matched, ruled under T-0850 — sixteen upheld, ten refused; and, under T-0990, COHORT A — the fourteen proposals whose crosswalk match is `initial_agrees` AND whose `rivals[]` is non-empty, which is where the mechanical rule is weakest: the layer holds a namesake of the surname and a forename INITIAL alone chose between them. Eleven upheld, three refused. What is left unruled is the rest of what T-0697 ADDED when the mechanical rule stopped requiring exactly one person of the surname; the count is on the crosswalk's own `ruled` block rather than in this sentence, and the next cohort is its own ticket.",
-  "ruled_by": "the steward loop, under T-0700, T-0850 and T-0990",
+  "scope": "The nine purchaser spellings the ring deposit (T-0676) added, ruled under T-0700; the twenty-six the first deposit matched, ruled under T-0850 — sixteen upheld, ten refused; and, under T-0990, COHORT A — the fourteen proposals whose crosswalk match is `initial_agrees` AND whose `rivals[]` is non-empty, which is where the mechanical rule is weakest: the layer holds a namesake of the surname and a forename INITIAL alone chose between them. Eleven upheld, three refused. What is left unruled is the rest of what T-0697 ADDED when the mechanical rule stopped requiring exactly one person of the surname; the count is on the crosswalk's own `ruled` block rather than in this sentence, and the next cohort is its own ticket. T-0993 rules the six BLANCHARD GURTREY rows, and its ruling is in `referred_the_gate_cannot_hold` below rather than in `ruled[]`, for a reason stated there.",
+  "ruled_by": "the steward loop, under T-0700, T-0850, T-0990 and T-0993",
   "ruled": [
     {
       "purchaser_as_read": "PEARSONS H",
@@ -667,5 +667,34 @@
       ],
       "reasoning": "UPHELD, and the register proves it against itself. ls0919 — HUNTER E E, the north-east quarter of section 13, T40N R13E, 80 acres, $100, 15 November 1834 — and ls0920 — HUNTER EDWARD E, the same quarter of the same section on the same day at the same price — are one entry read twice, and the fuller reading states COOK in the Residence column where the abbreviated one leaves it UNKNOWN. So the expansion of E E to EDWARD E is the deposit's, not this ruling's, and it comes with the one column that speaks to residence. The middle initial E is on the town's side as well: the card is attested at G1b off the Democrat, the poll of 1834 and the old-settler death notices, and Fergus 1839 prints him as deputy-sheriff and ex-justice of the peace on Wells street. The layer's four other Hunters are refused on the forename. COOK is a county and not a town, and this ruling reads it as the register's word for the county, exactly as the domain's grading rule does."
     }
-  ]
+  ],
+  "referred_the_gate_cannot_hold": {
+    "_doc": "RULINGS THE GATE CANNOT HOLD IN `ruled[]`, AND WHY. `check_rulings()` in tools/read_land_sales.py admits a ruling only on a purchaser spelling the MECHANICAL rule already proposed a match for — 'a ruling on nothing' is its phrase for anything else — and it agrees, deliberately, that a hand ruling may not invent a correspondence the crosswalk never made. That is the right gate: it is what keeps this file a ruling ON a proposal rather than a second, unwritten crosswalk. It also means a spelling the mechanical rule REFUSES can never be ruled on at all, however well the evidence reads. Where a run has done the reading and cannot file it, the ruling is written here, in full, with the reason it is not a row above. Nothing here is spent onto a card: a ruling in this block changes no crosswalk, no grade and no record. It is a reading somebody made, kept where the next run will find it.",
+    "rulings": [
+      {
+        "purchaser_as_read": "BLANCHARD GURTREY",
+        "record_ids": [
+          "ls0076",
+          "ls0077",
+          "ls0078",
+          "ls0079",
+          "ls0080",
+          "ls0081"
+        ],
+        "would_be_ruled": "upheld",
+        "resident_id": "blanchard_f_gantry",
+        "ruled_on": "2026-09-10",
+        "ticket": "T-0993",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "why_it_is_not_in_ruled": "The crosswalk REFUSES this spelling — 'the forename names 0 of the 3 people of this surname' — because `namesake.forenames_agree` compares FIRST given words and this row prints only the man's SECOND. It is not a near miss a narrower rule would catch: the register's word is GURTREY and the card's is Gantry, two spellings of one name that `name_agreement.agrees` rightly calls two different words, so no middle-name rule reaches it either. What joins them is a SOURCE — Fergus 1843 prints 'Blanchard, Francis Gurtrey' — and a source reading is not something the mechanical rule can see, because it is put the card's display NAME and never the spellings the card's own evidence carries. That is the gap, and it is filed as its own ticket. Until it closes, `check_rulings` would reject this ruling as 'a ruling on nothing', and writing it into `ruled[]` anyway would mean editing the gate to admit a judgement it exists to refuse.",
+        "reasoning": "UPHELD ON THE READING, and it is the same sale. All six rows are school-section town lots — section 16, T39N R14E — entered on 22 and 24 October 1833 at the sale that platted and sold off that section by lot and by block, which is why the register states 0000.00 acres against every one of them: lot 1 of block 2, block 21, lot 8 and lot 1 of block 141, block 3, lot 7 of block 82, $547.00 in all, volume 817 page 027. The three rows T-0990 upheld as BLANCHARD F G and BLANCHARD F G AS are the SAME section on the SAME day, 22 October 1833, entered a volume over at 818 page 010 — lot 7 and lot 2 of block 26 and block 4, $173.00. So this is one buyer at one sale written into two clerks' books under two readings of one name, not two Blanchards who each happened to buy school-section lots that morning. The name settles the rest. Fergus 1843 prints the man whole — 'Blanchard, Francis Gurtrey, capitalist, res 45 Wells' — so GURTREY is his middle name AS THE TOWN'S OWN DIRECTORY SPELLS IT, and the card's Gantry is the poll and tax clerks' spelling of the same word. Nine school-section lots bought in one week is also what 'Francis G. Blanchard, real estate dealer, Lake street' of 1839 and 'capitalist' of 1843 are the later end of, and that is a consistency rather than a proof. WHAT THIS DOES NOT CLAIM: a purchase places nobody. The Residence column reads UNKNOWN on all six, the register names a purchaser and never an occupant, and under the ratified ladder a land entry corroborates rather than mints. Read with T-0993's card-merge ruling, which folds 'Blanchard, Gantry' of the 1833 tax list onto this same man: the town holds ONE Francis Gurtrey Blanchard, and the register holds ten of his rows."
+      }
+    ]
+  }
 }

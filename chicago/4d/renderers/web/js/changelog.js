@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 687, title: 'Two Blanchard cards are one man again', kind: 'change', ts: '2026-09-10T10:30:15.668Z', date: 'Sep 10, 2026, 5:30 AM CT',
+    items: [
+      'The town held two Blanchards that its own records make one: a \u201cBlanchard, Gantry\u201d on the tax list of 1833, and an \u201cF. Gantry Blanchard\u201d on the poll list filed the following August. They are now one card. The town\u2019s people fall from 1,359 to 1,358.',
+      'What names him is the town\u2019s own directory of 1843, which prints him whole where the clerks did not: \u201cBlanchard, Francis Gurtrey, capitalist, res 45 Wells\u201d. Gurtrey is a middle name, and Gantry is how two town clerks spelled it \u2014 so the lone \u201cGantry\u201d on the tax roll is nobody\u2019s forename and exactly one man\u2019s second name. The 1833 list is also the careless one of the four: it prints no forename at all for eleven of its hundred and fifteen entries.',
+      'The consolidation had never even asked the question. Its test for two cards being one man compares FIRST forenames, and this man\u2019s only printed token on that list is his second \u2014 so the pair fell into different buckets and no rule ever met them. The rule written for it is deliberately narrow enough to reach nothing else.',
+      'He gains a year. His earliest bound moves from the last day of 1834 back to the last day of 1833, on a reading the town already held and had filed under a second name.',
+      'The federal land register turns out to hold ten of his rows, not four. Six more, spelled BLANCHARD GURTREY, are nine school-section town lots bought at the sale of 22 October 1833 for $547 \u2014 the same section, the same morning and the same auction as the three already on his card, written into a different clerk\u2019s volume. That reading is recorded in full; it is not yet on the card, because the matching rule is put a card\u2019s name and never the spellings its own sources carry, and that gap is now its own open question.',
+      'A purchase still places nobody. The register names a buyer and never an occupant, no grade was raised, and nothing in the town moved on the ground.'
+    ] },
   { v: 686, title: 'Fourteen more land purchases judged, and the directories settle eleven', kind: 'change', ts: '2026-09-10T09:06:43.574Z', date: 'Sep 10, 2026, 4:06 AM CT',
     items: [
       'The judging of the federal land register continues, one bounded group at a time. This one is the hardest fourteen: the purchases where the town holds MORE THAN ONE person of the surname and only a forename initial chose between them. Eleven upheld, three refused.',
