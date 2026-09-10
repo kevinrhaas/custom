@@ -16,7 +16,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1352
+   "n": 1372
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -26,7 +26,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2554
+   "n": 2591
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -38,13 +38,13 @@
   "residents_matched_one_entry": 159,
   "residents_ambiguous": 47,
   "residents_contested": 29,
-  "residents_surname_only_refused": 273,
+  "residents_surname_only_refused": 277,
   "voters_matched_one_entry": 123,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 74,
-  "letter_list_matched_one_entry": 334,
-  "letter_list_ambiguous": 89,
-  "letter_list_surname_only_refused": 646,
+  "letter_list_matched_one_entry": 338,
+  "letter_list_ambiguous": 90,
+  "letter_list_surname_only_refused": 654,
   "heads_1840_matched_one_entry": 169,
   "heads_1840_ambiguous": 56,
   "heads_1840_surname_only_refused": 220,
@@ -1291,7 +1291,7 @@
     ],
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null,
     "could_carry": [
@@ -7167,6 +7167,11 @@
     "rule": "The surname 'Doty' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. D. Doty'. A surname-only agreement is a refusal."
    },
    {
+    "name": "J. P. Harkness",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Harkness' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. P. Harkness'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "J. W. Reed",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Reed' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. W. Reed'. A surname-only agreement is a refusal."
@@ -7357,6 +7362,11 @@
     "rule": "The surname 'Arnold' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Levi F. Arnold'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Levi Hills",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Hills' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Levi Hills'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Lieut J L Thompson",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Thompson' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
@@ -7370,6 +7380,11 @@
     "name": "Lorenzo Downing",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Downing' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Lorenzo Downing'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Luther Hatch",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Hatch' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Luther Hatch'. A surname-only agreement is a refusal."
    },
    {
     "name": "M D Harmon",
@@ -7765,6 +7780,11 @@
     "name": "Thomas Ryan",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Ryan' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas Ryan'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Timothy Burnett",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Burnett' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Timothy Burnett'. A surname-only agreement is a refusal."
    },
    {
     "name": "Titus H Abbott",
@@ -11562,6 +11582,21 @@
     ]
    },
    {
+    "name": "Alfred Clarke",
+    "rule": "Surname 'Clarke' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0279",
+      "as_printed": "Clarke, Abram F., druggist, W. li. & A. F. Clarke",
+      "printed_page": 10,
+      "occupation_1839": "druggist, W. li. & A. F. Clarke",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Allen, William",
     "rule": "Surname 'Allen' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
@@ -11651,6 +11686,21 @@
       "as_printed": "Avery, Charles E., lumber dealer, cor. LaSalle and So. Water",
       "printed_page": 5,
       "occupation_1839": "lumber dealer, cor. LaSalle and So. Water",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Axtel & Steele",
+    "rule": "Surname 'Steele' folds to the same string as the 1839 entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1405",
+      "as_printed": "Steele, Ashbel, mason builder, 3d ward",
+      "printed_page": 31,
+      "occupation_1839": "mason builder, 3d ward",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -13023,6 +13073,24 @@
       "occupation_1839": "merchant tailor, 48 Clark sti'eet",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Erastus Bowen",
+    "rule": "Surname 'Bowen' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0144",
+      "as_printed": "Bowen, Erastus, city collector, So. Water st, cor. Michigan ave.",
+      "printed_page": 7,
+      "occupation_1839": "city collector",
+      "address_1839": "So. Water st, cor. Michigan ave",
+      "streets_1839": [
+       "So. Water st",
+       "Michigan ave"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -16525,6 +16593,23 @@
     ]
    },
    {
+    "name": "Wm. G. Austin",
+    "rule": "Surname 'Austin' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0034",
+      "as_printed": "Austin, Dr. Wm..H., Dodge & Austin, Lake street",
+      "printed_page": 5,
+      "occupation_1839": "& Austin",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Wm. H. Brown",
     "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
@@ -17420,6 +17505,32 @@
       "as_printed": "Heacock, Russell E., att’y, justice of peace, Adams cur. Clark",
       "printed_page": 18,
       "occupation_1839": "att’y, justice of peace, Adams cur. Clark",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Henry B. Clarke",
+    "rule": "Surname 'Clarke' folds to the same string as the 1839 entry's, and the given name of both begins H.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0281",
+      "as_printed": "Clarke, Dr. Henry, 159 Lake street",
+      "printed_page": 10,
+      "occupation_1839": null,
+      "address_1839": "159 Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0284",
+      "as_printed": "Clarke, Henry B., Michigan ave, cor. 1 6th street",
+      "printed_page": 10,
+      "occupation_1839": "ave, cor. 1 6th street",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -19739,6 +19850,11 @@
     "rule": "The surname 'Beaubien' is in Fergus 1839 and no entry under it carries the initial 'G' of 'Beaubien, Ghurles'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Benj. Harrison",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Harrison' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Benj. Harrison'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Benjamin Church",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Church' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Benjamin Church'. A surname-only agreement is a refusal."
@@ -20789,6 +20905,11 @@
     "rule": "The surname 'Warren' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. L. Warren'. A surname-only agreement is a refusal."
    },
    {
+    "name": "J. P. Harkness",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Harkness' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. P. Harkness'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "J. P. [uncertain: Cobb]",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Cobb]' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. P. [uncertain: Cobb]'. A surname-only agreement is a refusal."
@@ -20797,6 +20918,11 @@
     "name": "J. R. Westcott",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Westcott' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. R. Westcott'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "J. W. Anderson",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Anderson' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J. W. Anderson'. A surname-only agreement is a refusal."
    },
    {
     "name": "J. W. Lewis",
@@ -21224,6 +21350,11 @@
     "rule": "The surname 'Arnold' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Levi F. Arnold'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Levi Hills",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Hills' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Levi Hills'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Lewis T. White",
     "candidates_under_that_surname": 5,
     "rule": "The surname 'White' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Lewis T. White'. A surname-only agreement is a refusal."
@@ -21282,6 +21413,11 @@
     "name": "Lowe, Willan",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Lowe' is in Fergus 1839 and no entry under it carries the initial 'W' of 'Lowe, Willan'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Luther Hatch",
+    "candidates_under_that_surname": 4,
+    "rule": "The surname 'Hatch' is in Fergus 1839 and no entry under it carries the initial 'L' of 'Luther Hatch'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lyman Smith",
@@ -21477,6 +21613,11 @@
     "name": "Nottage Henry",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Henry' is in Fergus 1839 and no entry under it carries the initial 'N' of 'Nottage Henry'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "O. Grant",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Grant' is in Fergus 1839 and no entry under it carries the initial 'O' of 'O. Grant'. A surname-only agreement is a refusal."
    },
    {
     "name": "Oliveann Sheldon",
@@ -21692,6 +21833,11 @@
     "name": "Riley Bush",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Bush' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Riley Bush'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Rob't. Robinson",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Robinson' is in Fergus 1839 and no entry under it carries the initial 'R' of \"Rob't. Robinson\". A surname-only agreement is a refusal."
    },
    {
     "name": "Rob[e]rt [H]ill",
@@ -22084,6 +22230,11 @@
     "rule": "The surname 'Sweet' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Sweet, Rubert'. A surname-only agreement is a refusal."
    },
    {
+    "name": "T. E. Parsons",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Parsons' is in Fergus 1839 and no entry under it carries the initial 'T' of 'T. E. Parsons'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "T. Johnston",
     "candidates_under_that_surname": 11,
     "rule": "The surname 'Johnston' is in Fergus 1839 and no entry under it carries the initial 'T' of 'T. Johnston'. A surname-only agreement is a refusal."
@@ -22147,6 +22298,11 @@
     "name": "Thomas, David",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Thomas' is in Fergus 1839 and no entry under it carries the initial 'D' of 'Thomas, David'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Timothy Burnett",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Burnett' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Timothy Burnett'. A surname-only agreement is a refusal."
    },
    {
     "name": "Timothy E. Parson[s]",
@@ -22342,11 +22498,6 @@
     "name": "Woodworth, James H.",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Woodworth' is in Fergus 1839 and no entry under it carries the initial 'J' of 'Woodworth, James H.'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Wooster Harrison",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Harrison' is in Fergus 1839 and no entry under it carries the initial 'W' of 'Wooster Harrison'. A surname-only agreement is a refusal."
    },
    {
     "name": "Wright, Samuel L.",

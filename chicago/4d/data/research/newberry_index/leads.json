@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "22a9e70b5ac69c83a22355a5a07929489bef0dbfa1e865f67be53b006f1866f3",
+    "fingerprint": "865de1dfd03e02c359210d64948ed56c5d042617b3aea24a3d5bcc6bc1323f0e",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1355,
+      "residents": 1375,
       "structures": 380,
       "voters": 345
     }
@@ -21,10 +21,10 @@
   "counts": {
     "cards": 6635,
     "distinct_surname_keys": 4530,
-    "leads": 1020,
+    "leads": 1022,
     "leads_by_layer": {
       "census_1840": 355,
-      "residents": 478,
+      "residents": 480,
       "structures": 36,
       "voters": 151
     }
@@ -14627,6 +14627,29 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v02_hatch_residents",
+      "surname_key": "hatch",
+      "spellings_as_printed": [
+        "Hatch"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "hatch_luther",
+          "name": "Luther Hatch",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v02_0751",
+        "nbi_v02_0752"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v02_hathaway_residents",
       "surname_key": "hathaway",
       "spellings_as_printed": [
@@ -14950,6 +14973,11 @@
           "id": "hill_isaac_l",
           "name": "Isaac L. Hill",
           "rule": "exact surname"
+        },
+        {
+          "id": "hills_levi",
+          "name": "Levi Hills",
+          "rule": "OCR variant (0.89 similarity to 'hills')"
         }
       ],
       "entries": [
@@ -15010,6 +15038,36 @@
       ],
       "works_cited": [
         "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v02_hoffman_residents",
+      "surname_key": "hoffman",
+      "spellings_as_printed": [
+        "Hoffman",
+        "ndex Hoffman"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "hoffman_h_b",
+          "name": "H. B. Hoffman",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v02_1018",
+        "nbi_v02_1019",
+        "nbi_v02_1020",
+        "nbi_v02_1021",
+        "nbi_v02_1022"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "la_salle_book_co_cook_county",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
       ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },

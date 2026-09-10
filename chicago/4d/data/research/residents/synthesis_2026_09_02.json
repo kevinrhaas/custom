@@ -190,7 +190,28 @@
         "name": "Nelts Wm."
       }
     ],
-    "letter_list_missing_research_row": [],
+    "letter_list_missing_research_row": [
+      "axtell_almond",
+      "babcock_chas",
+      "babeu_joseph",
+      "bertrand_b_h",
+      "brownson_myron_k",
+      "burnett_timothy",
+      "carrier_lamira",
+      "catran_o_p",
+      "clevinger_daniel_b",
+      "eberiden_samuel",
+      "fay_h_k",
+      "harkness_j_p",
+      "hatch_luther",
+      "hays_isaac",
+      "hills_levi",
+      "hoffman_h_b",
+      "lacey_j_s",
+      "loose_jacob",
+      "makio_james",
+      "plympton_lauretta"
+    ],
     "letter_list_deferred_to_ladder": [
       "albert_shepherd",
       "allen_william",
@@ -994,13 +1015,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1331,
-    "persons": 1355,
+    "households": 1351,
+    "persons": 1375,
     "attested": 490,
-    "inferred": 865,
+    "inferred": 885,
     "reconstructed": 0,
-    "letter_list_only": 725,
-    "projected_residents": 710,
+    "letter_list_only": 745,
+    "projected_residents": 730,
     "census_1840_linked": 3
   },
   "retirement": {

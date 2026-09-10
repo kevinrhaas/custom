@@ -1625,6 +1625,25 @@ step "the 1834 letter list's crop entities still point at the printed lines the 
 step "…and its own assertions still fire when broken" \
   python3 tools/read_letter_list_1834_image.py --self-test
 
+# T-1008. The tie above is over the NINTH impression of the 1 January 1834 return; the
+# cohort was minted from the FOURTH, and its crop had never been tied to the roster at all,
+# so "the lines the crops never carried" was arithmetic over one crop. These two hold the
+# other half: the 1834-01-28 tie is monotone in the page's interleaved reading order and
+# renames nothing, and the claim that carries the thirty-nine lines NO crop holds re-derives
+# from the roster. Both must be gated, because both are measurements a later pass will
+# otherwise quietly disagree with.
+step "the 1834-01-28 crop still points at the printed lines it was tied to" \
+  python3 tools/tie_letter_list_1834_crop.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/tie_letter_list_1834_crop.py --self-test
+
+step "the lines of that list no crop carries are still the claim's own" \
+  python3 tools/claim_letter_list_1834_unread.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/claim_letter_list_1834_unread.py --self-test
+
 step "the letter-list cohort is what the owner's ruling permits" \
   python3 tools/mint_letter_list_residents.py --gate
 

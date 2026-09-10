@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 72,
+    "upheld": 56,
     "named": 1,
-    "refused": 37,
-    "unruled": 28
+    "refused": 32,
+    "unruled": 50
   },
   "counts": {
     "purchasers": 431,
-    "matched": 101,
-    "refused": 330,
+    "matched": 107,
+    "refused": 324,
     "firms": 2
   },
   "matches": [
@@ -1224,6 +1224,63 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
+      "purchaser_as_read": "DAVIS JOHN",
+      "record_ids": [
+        "ls0142",
+        "ls0143",
+        "ls0144",
+        "ls0145"
+      ],
+      "resident_id": "davis_john",
+      "resident_name": "John Davis",
+      "household_id": "hh_davis_john",
+      "match": "forename_agrees",
+      "rule": "DAVIS JOHN matches John Davis: the forename names John Davis of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "davis_abissinia",
+          "name": "Abissinia Davis",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "davis_george",
+          "name": "George Davis",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "davis_john",
+          "name": "John Davis",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "davis_t_o",
+          "name": "T. O. Davis",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "O",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
       "purchaser_as_read": "DOLE GEORGE W",
       "record_ids": [
         "ls0147",
@@ -1292,17 +1349,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1839"
-        ],
-        "reasoning": "Upheld on the second-document arm, with the register's own family shape agreeing. The town holds John Foot on two contemporary civic rolls that BRACKET the entry — the tax list of 1833, the same year as the two school-section rows of 22 October 1833, and the poll of 1835 after it — and Fergus 1839 prints 'Foot, John I[.], blacksmith, Randolph street, near State', which supplies a trade and a street the register never had. What makes the pair worth more than two bare names is the ANDREWS WILLIAM test: the register sells to a FOOT JOHN and, separately, to a FOOT STAN, and the layer holds a John Foot and an S. Foot — the two records agree on the shape of the surname, and cohort A upheld FOOT STAN as Starr Foot on the same page of reasoning. A blacksmith taking two town lots at the school-section sale for $190 is consistent with everything the town holds of him."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1462,17 +1509,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "chicago_democrat_1833_1835"
-        ],
-        "reasoning": "The town elected this man to office ten months after the entry, and the entry is ground inside the town. The Chicago Democrat of 13 August 1834 reports that 'Messrs. John H. Kinzie, G[ordon S. Hub]bard, J. K. Boyer, Ebenezer G[oodrich and J.] S. C. Hogan, were elected Trustees of this Town, for the term of one year' — a named Chicago TOWN TRUSTEE, not a name in a list — and the poll of 1834 holds him independently. The register's single row is lot 1 of block 93 of the school section, bought at the town's own sale of 22 October 1833 for $100: a trustee-to-be buying a town lot at the town's sale. The forename is uncommon and printed in full on both sides, and the layer holds exactly one Ebenezer Goodrich where the register holds three Goodriches it discriminates by forename. Cohort A refused GOODRICH CHAUNCEY, which is a different question: there the town held no Chauncey at all and an initial chose."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1560,19 +1597,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "census_1840_chicago_familysearch_images",
-          "chicago_democrat_1833_1835",
-          "fergus_chicago_directory_1839"
-        ],
-        "reasoning": "The full spelling of a purchaser cohort A already upheld abbreviated, and the PEARSONS reasoning applies unchanged: upholding HADDOCK E H and refusing HADDOCK EDWARD H would be incoherent, since the abbreviated spelling was upheld precisely because the town prints the forename whole. The MIDDLE INITIAL H is on both sides and Fergus 1839 prints it out — 'Haddock, Edward H., commission merchant, South Water st'. The town holds him five times besides: the tax list of 1833, the poll of 1834 ('Haddock, Edward E.', the same man's forename whole), the poll of 1835, three printings in the Democrat of 1834, and the 1840 census. The tax list of 1833 and the poll of 1835 bracket both rows, 25 October 1833 and 27 June 1835. A commission merchant taking eighty acres at the ring is consistent with the trade the card holds."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1618,21 +1643,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "census_1840_chicago_familysearch_images",
-          "chicago_democrat_1833_1835",
-          "fergus_chicago_directory_1839",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "The MIDDLE INITIAL is on both sides, the town prints the middle name in full, and the man was the county's own recorder. The register holds exactly one Hamilton, spelled RICHARD J; the town holds Richard Jones Hamilton on the poll of 1833 ('Hamilton, R. J.'), the tax list of 1833 and the poll of 1834 ('Hamilton, Richard J.'), all three of them contemporary with the two school-section rows of 22 and 25 October 1833, and the printed record carries him forward without a break — three Democrat notices of 1834 ('Hon.', 'Col.'), Fergus 1839 'Hamilton, Rich'd J., clerk circuit court, Clark st cor. Randolph', Fergus 1843 'Hamilton, Richard Jones', Norris 1844, the 1840 census. He was clerk and recorder of Cook County from its organisation in 1831, which is to say the officer through whose hands land records passed. Upheld on the middle initial and the bracket together."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1695,18 +1706,70 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "MIDDLE INITIAL on both sides, and the register's two spellings of this man mirror the town's own two habits. The town prints 'Harmon, C. L.' on the poll of 1834 and 'Chas. L. Harmon' on the 1837 election return; Fergus 1843 prints both a business card, 'C L. HARMON, commission merchant and wholesale grocer', and the roll entry 'Harmon, Charles Loomis, dry goods and groceries, 145 South Water'; Norris 1844's advertiser pages print 'C. L. Harmon'. The poll of 1834 falls between the two register rows. A wholesale grocer and dry-goods merchant taking a town lot at the school-section sale of 22 October 1833 for $130 is the trade the card already asserts doing what the card says it did. The register holds five Harmon spellings and the layer three Harmons, and the L is what separates this one from both Deweys."
-      },
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "HARMON ISAAC",
+      "record_ids": [
+        "ls0228"
+      ],
+      "resident_id": "harmon_isaac_d",
+      "resident_name": "Isaac Dewey Harmon",
+      "household_id": "hh_harmon_brothers",
+      "match": "forename_agrees",
+      "rule": "HARMON ISAAC matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "harmon_charles_l",
+          "name": "Charles Loomis Harmon",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "L",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_isaac_d",
+          "name": "Isaac Dewey Harmon",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "harmon_d",
+          "name": "D Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_elijah_d",
+          "name": "Dr Elijah Dewey Harmon",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_m_d",
+          "name": "M D Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1769,18 +1832,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_democrat_1833_1835",
-          "fergus_chicago_directory_1839",
-          "blackhawk_war_chicago_enrollments_isa"
-        ],
-        "reasoning": "Cohort A's lesson run backwards and it holds: where the town's card carries only bare forenames, the DIRECTORY supplies the initial, and it is that printing which upholds. The card's own readings are all bare — 'HARMON, ISAAC' on the muster roll of 1832, 'Isaac Harmon' in the Democrat of 17 December 1833, 'Harmon, Isaac' in the Democrat of 5 August 1835 — and Fergus 1839 prints 'Harmon, Isaac D., dry goods merchant, 8 Clark street', which is the only place on the town's side the D appears. The register writes ISAAC D. The two Democrat printings bracket the row of 22 October 1833 on both sides, ten months before and twenty-one months after. A dry-goods merchant taking a town lot at the school-section sale for $130 is consistent with the trade. Upheld on the middle initial; the bare spelling two days later is refused above."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1852,20 +1904,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "chicago_democrat_1833_1835",
-          "census_1840_chicago_familysearch_images",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "MIDDLE INITIAL on both sides, and no man of 1835 Chicago is held by more documents. The register writes GURDON S; the town prints 'G. S. Hubbard' in the Democrat of 1 April 1834, 'Gordon S. Hubbard' in the same paper of 13 August 1834 electing him a TOWN TRUSTEE, 'Col. G. S. Hubbard' in June 1835, 'Gurdon S. Hubbard' in the American of 4 July 1835, the poll of 1835, the 1840 census head 'Gurdon S. Hubbard', two Fergus 1843 business cards and the roll entry 'Hubbard, Gurdon Saltonstall, forwarding and commission, South Water', and Norris 1844. The single row of 22 October 1833 is 2.90 acres of the school section for $160 — ground inside the town, taken at the town's own sale by a packer and forwarding merchant whose premises were on South Water. The trustee notice of August 1834 is the same column that carries Ebenezer Goodrich, upheld above."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1894,6 +1933,45 @@
         ],
         "reasoning": "A documented tavern keeper at Wolf Point, printed by name in the Chicago Democrat of 26 November 1833 and keeping the house that was the district polling place on 9 December 1833 — the town has him in residence in the weeks around the 24 October 1833 school-section parcel, and again in June 1835 for the federal entry in T39N R13E. One Ingersoll in the register, one in the layer, and the forename agrees in full."
       },
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "JACKSON SAMUEL",
+      "record_ids": [
+        "ls0247",
+        "ls0248",
+        "ls0249",
+        "ls0941"
+      ],
+      "resident_id": "jackson_samuel",
+      "resident_name": "Samuel Jackson",
+      "household_id": "hh_jackson_samuel",
+      "match": "forename_agrees",
+      "rule": "JACKSON SAMUEL matches Samuel Jackson: the forename names Samuel Jackson of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "jackson_j_y",
+          "name": "J Y Jackson",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "Y",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jackson_samuel",
+          "name": "Samuel Jackson",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -1959,21 +2037,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "andreas_1884_v1",
-          "chicago_democrat_1833_11_26",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1839",
-          "norris_directory_1844",
-          "chicago_tribune_1882_04_25_old_settler_deaths"
-        ],
-        "reasoning": "The town gave this man an OFFICE two weeks after the entries and he was advertising in its paper a month after them. Andreas: 'It was during these days that Benjamin Jones was appointed Street Commissioner' — 7 November 1833, the town's first — and the Chicago Democrat of 26 November 1833 carries him as a paying advertiser, which the card calls strong evidence of existence and address in November 1833. The register's four rows are 22 and 24 October 1833, $1,133 of school-section town lots, a fortnight before the appointment. Fergus 1839 prints 'Jones, Benjamin, GROCER, South Water street' and Norris 1844 'Jones, Benjamin, of B. J. & Co.' with the firm's own card: a South Water grocer buying South Water ground at the town's own sale. The forename is printed in full on both sides, the layer holds one Benjamin Jones and the register discriminates its three Joneses by forename. Upheld on the bracket and the trade together."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -2038,16 +2102,72 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad"
-        ],
-        "reasoning": "Upheld on THREE contemporary civic rolls and an uncommon forename printed whole on both sides, and on nothing else — which is stated plainly because the directory evidence here is worthless. The town holds 'Jones, Willard' on the tax list of 1833, the poll of 1834 and the poll of 1835; the tax list is the same year as the two school-section rows of 22 and 25 October 1833 and the polls hold him after, so the rolls bracket the entries on both sides. The layer holds exactly one Willard Jones and the register exactly one JONES WILLARD, where both records hold several plain Williams. The one directory line the crosswalk offers, Fergus 1839's 'Jones, Wm., justice of the peace', is matched `contested` between this man and William Jones and is not used: it cannot corroborate one of two claimants. Upheld on the second-document arm."
-      },
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "JONES WILLIAM",
+      "record_ids": [
+        "ls0261",
+        "ls0864",
+        "ls0870"
+      ],
+      "resident_id": "jones_william",
+      "resident_name": "William Jones",
+      "household_id": "hh_jones_william",
+      "match": "forename_agrees",
+      "rule": "JONES WILLIAM matches William Jones: the forename names William Jones of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "jones_benjamin",
+          "name": "Benjamin Jones",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jones_d_e",
+          "name": "D E Jones",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "E",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jones_m",
+          "name": "M Jones",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jones_willard",
+          "name": "Willard Jones",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jones_william",
+          "name": "William Jones",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -3132,18 +3252,7 @@
       ],
       "residence_column": "UNKNOWN, COOK",
       "evidence_grade": "documented",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "fergus_chicago_directory_1839",
-          "fergus_chicago_directory_1843",
-          "andreas_1884_v1"
-        ],
-        "reasoning": "The MIDDLE INITIAL on both sides with the middle name printed in full behind it, and the Residence column reading COOK with a town-side partner to check it against. Fergus 1839 prints 'Harmon, Dr. Elijah D.' and Fergus 1843 'Harmon, Elijah Dewey, physician, bds C. L. Harmon [died January 3, 1869, aged 80]' — the whole middle name, the trade the card holds, and an age that puts birth about 1788, which agrees with Andreas's Bennington, Vermont, 20 August 1782 to within a printer's rounding of a death notice. The layer holds no second Elijah Harmon and the register no second Elijah. One of the two rows of 2 October 1834 states COOK, and cohort B's rule for that column — it needs a town-side partner — is met by the directories' printing of the same initial. Andreas has him pre-empting one hundred and forty acres with a northern boundary near Sixteenth Street, which is the same physician buying ground south of the town that the register's SWFR of section 22 is."
-      },
+      "ruling": null,
       "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
@@ -3991,20 +4100,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "census_1840_chicago_familysearch_images",
-          "fergus_chicago_directory_1839",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "The COOK THOMAS pattern on the commonest surname in the block: a common name carried by an uncommonly stable record. The register itself sells to six Davises and discriminates them by forename, and the town holds George Davis five times over a decade with the forename printed WHOLE every time — the poll of 1834, the 1840 census head 'Geo Davis', and three directories that agree with one another on the office and the street: 'Davis, George, county clerk, 109 Lake st' in 1839, 'clerk, county commiss'rs' court … 107 Lake, res Canal near W. Washington' in 1843, the same office and the same house in Norris 1844. That is one man in one post for ten years, not a name recurring, and the poll of 1834 stands between the two register rows of 27 June 1835 and 8 January 1836. Upheld on the rule's second-document arm; the eighteen acres are carried as an entry, the Residence column reads UNKNOWN and this ruling does not lean on it, and a county clerk is not a trade the purchase would have predicted."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -4150,19 +4246,7 @@
       ],
       "residence_column": "UNKNOWN, COOK",
       "evidence_grade": "documented",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "chicago_democrat_1833_1835",
-          "fergus_chicago_directory_1839",
-          "fergus_1843_old_settler_death_notices"
-        ],
-        "reasoning": "The fuller of a pair cohort A already read as one entry twice — it upheld HUNTER E E and named EDWARD E as the same row read with the Residence column on the fuller reading, so this is the reading that carries the column. MIDDLE INITIAL E on both sides; the town prints the forename whole on the poll of 1834 ('Hunter, Edward E.'), in the Democrat of 6 August 1834 ('Edward E. Hunter') and in Fergus's death notices ('Hunter, Edward E.'), and Fergus 1839 prints a trade and a street, 'Hunter, Edward [E.], deputy-sheriff, ex-justice of peace, Wells st'. One of the three rows of 15 November 1834 states COOK, and cohort B's requirement of a town-side partner for that column is met by the poll of 1834 three months earlier. Upheld."
-      },
+      "ruling": null,
       "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
@@ -4481,17 +4565,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_democrat_1833_1835",
-          "fergus_1843_old_settler_death_notices"
-        ],
-        "reasoning": "The KIMBALL WALTER shape: the man signs his own name, with the initial the register writes, in the town's own paper. The Chicago Democrat of 18 March 1834 carries a signed dissolution notice — 'The Co-partnership of Taylor & Handy was this day dissolved by mutual consent … H. S. HANDY, CHARLES TAYLOR. Chicago, Feb. 1, 1834' — which is a Chicago firm, a partner and a dated Chicago address over his signature, sixteen months before the register enters HANDY HENRY S for 240 acres on 27 June and 10 September 1835. Fergus's old-settler death notices hold him after, as 'Handy, Maj. Henry S.', printing the same middle initial a third time. Two independent town-side documents and the middle initial on both sides. It is the weakest uphold in the cohort and is marked so: there is no directory line, no civic roll and no Residence column, and the ruling rests on the signature and the death notice alone."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -4586,20 +4660,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "chicago_democrat_1833_1835",
-          "chicago_american_1835",
-          "fergus_chicago_directory_1839",
-          "fergus_1843_old_settler_death_notices"
-        ],
-        "reasoning": "The PEARSONS pattern, and the largest carry in the cohort. The MIDDLE INITIAL K is on both sides and the town prints the name whole twice — Fergus 1839 'Hubbard, Elijah K., BANKER, 47-51 Dearborn st', and Fergus's death notices 'Hubbard, Elijah Kent', died 26 May 1839. The poll of 1835 holds him at Chicago in the same season as the entries, and the Democrat of 5 August 1835 and the American of 1835 print 'E. K. Hubbard' beside them. The twenty-four rows are one hand at work: twenty-three of them fall on 26 and 27 June 1835 and the last on 25 August, 2,428 acres for $3,509.82 — a banker buying at the ring in two afternoons is the trade the card holds doing what the card says it did, not a second Elijah K. Hubbard who happens to share the county and the week. The register's other Hubbards are GURDON S and THOMAS R, both discriminated by initial."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -4640,20 +4701,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1839",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844",
-          "andreas_1884_v1"
-        ],
-        "reasoning": "The strongest proposal in the cohort, and it satisfies three of the rule's four arms at once. The MIDDLE INITIAL is on both sides and the town prints the middle name in full besides: the tax list of 1833 and the poll of 1834 print 'Egan, William Bradshaw', Fergus 1843 'Egan, Wm. Bradshaw', Norris 1844 'Egan, Wm. B.' The TRADE is what the purchase would predict — Fergus 1839 prints 'Egan, Dr. William B., REAL ESTATE DEALER, bds. City Hotel', and Andreas has him buying the Tremont House block from General Beaubien and building the five houses known as Egan's Row, which is why a physician is also one of the town's builders. The register enters him six times between 3 September 1835 and 1 January 1836 for 720 acres at $900, which is that dealer at work. He is the ONLY Egan the register holds and the only adult Egan of the surname the layer holds. Upheld."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -4837,6 +4885,43 @@
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
           "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "HALL GEORGE",
+      "record_ids": [
+        "ls0694",
+        "ls0695"
+      ],
+      "resident_id": "hall_george",
+      "resident_name": "George Hall",
+      "household_id": "hh_hall_george",
+      "match": "forename_agrees",
+      "rule": "HALL GEORGE matches George Hall: the forename names George Hall of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "hall_george",
+          "name": "George Hall",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "hall_benjamin",
+          "name": "Benjamin Hall",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
       ],
@@ -5060,18 +5145,7 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "Ruled with HARMON CHARLES L and it goes the same way, which is not the default — cohort C1's BROWN WM is what happens when a barer spelling is allowed to ride on a fuller one. It does not apply here because THIS SPELLING IS NOT BARER: CHAS L carries the middle initial, and the contraction 'Chas.' is precisely the form the 1837 election return and Norris 1844's advertiser card print for this man. The single row of 8 August 1835, 80.45 acres for $100.55, is upheld on the same middle initial and the same trade as the fuller spelling. Cohort A's abbreviated-and-full habit (HADDOCK E H / HADDOCK EDWARD H) is doing real work here rather than being assumed: the two spellings agree on the token that discriminates."
-      },
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5181,6 +5255,23 @@
       "evidence_grade": "inferred",
       "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "FAY HARRISON K",
+      "record_ids": [
+        "ls0902"
+      ],
+      "resident_id": "fay_h_k",
+      "resident_name": "H. K. Fay",
+      "household_id": "hh_fay_h_k",
+      "match": "initial_agrees",
+      "rule": "FAY HARRISON K matches H. K. Fay: the forename names H. K. Fay of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
+      "rivals": [],
+      "residence_column": "COOK",
+      "evidence_grade": "documented",
+      "ruling": null,
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
       "purchaser_as_read": "DILL FRANK",
@@ -6372,23 +6463,6 @@
       ]
     },
     {
-      "a": "DAVIS JOHN",
-      "b": "John Davis",
-      "rule": "The block's BROWN WM, and the card says so itself before any ruling does. John Davis is one of the commonest names the register holds; the four rows of 22 and 24 October 1833 print it bare, with no middle initial and UNKNOWN in the Residence column. The town's card is a HOTEL KEEPER attested in the American of 1835, and all three directories print a different trade at a fixed address — 'Davis, John, tailor, North Water street, near Kinzie' in 1839, 'tailor' again in 1843, 'sailor, North Water st.' in Norris 1844 — so the printed record of a John Davis at Chicago is not the man the card asserts. The card's own note already refuses to resolve the coincidence: 'a ‘Mr. Davis’ also took over the Sauganash Hotel in 1835, and whether that is this man is unknown … if it is not, there is a second Davis in the town.' A bare forename on a surname the town's own record doubles cannot be assigned to either of them. Refused, and what the spend pass carried from these four rows comes back off the card.",
-      "record_ids": [
-        "ls0142",
-        "ls0143",
-        "ls0144",
-        "ls0145"
-      ],
-      "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "DAVIS JOHN matches John Davis: the forename names John Davis of the 4 people of this surname, and the forename agrees in full."
-    },
-    {
       "a": "DOLE",
       "b": "(the residents layer)",
       "rule": "'DOLE' is a surname with no forename, and a surname-only purchaser is always a refusal against (the residents layer) however well the tract agrees.",
@@ -6571,20 +6645,6 @@
       "was_proposed_as": "HALE JOHN matches John Hale: the forename names John Hale of the 1 person of this surname, and the forename agrees in full."
     },
     {
-      "a": "HARMON ISAAC",
-      "b": "Isaac Dewey Harmon",
-      "rule": "Ruled beside HARMON ISAAC D and it goes the OTHER way, which is the point of ruling paired spellings together. This row of 24 October 1833 prints the forename bare, with no middle initial, and the town's own printed record holds TWO Isaac Harmons: Fergus 1839's 'Harmon, Isaac D., dry goods merchant, 8 Clark street' and Fergus 1843's 'Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]'. The card's own crosswalk already records the collision — its evidence_against reads 'CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed'. The layer holds one Isaac Harmon because the layer is THIN, not because the town had one, which is BROWN WM exactly. The argument that would have upheld it — that a man 'with C. L. Harmon' in 1843 was likely too young to buy a $163 town lot in 1833 — is not taken, because Fergus prints his death and no age, and an unprinted age is a guess. Refused; the fuller spelling stands.",
-      "record_ids": [
-        "ls0228"
-      ],
-      "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "HARMON ISAAC matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full."
-    },
-    {
       "a": "HEACOCK RUSSEL E",
       "b": "2 residents named Heacock",
       "rule": "HEACOCK RUSSEL E is refused against Russel E. Heacock and Russell E Heacock: the forename names 2 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
@@ -6663,23 +6723,6 @@
       ]
     },
     {
-      "a": "JACKSON SAMUEL",
-      "b": "Samuel Jackson",
-      "rule": "`letter_list_only` at its plainest, and the directories make it worse rather than better. The card's own note: 'KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN — the Democrat of 22 October 1834 … a correspondent believed a person of this name reachable at Chicago on that date, and nothing further.' Cohort C1's warning was to read press_evidence[].list rather than the flag; read here, the flag is right and there is nothing else. Against that, the register prints SAMUEL bare on four rows of September and October 1833, and the printed record holds TWO Samuel Jacksons with middle names the register does not have — Fergus 1839 'Jackson, Samuel T., Government works, near Garrison', Fergus 1843 'Jackson, Samuel Thomas, overseer Chicago harbor' AND 'Jackson, Samuel Ezra, bds Samuel Jackson', both matched to this card as `ambiguous`. The county history's harbour foreman arriving from Buffalo in June 1833 is an enrichment of a name, not a check on a row: it predicts no purchase, and $328 of town lots that autumn is not what it predicts. Refused.",
-      "record_ids": [
-        "ls0247",
-        "ls0248",
-        "ls0249",
-        "ls0941"
-      ],
-      "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "JACKSON SAMUEL matches Samuel Jackson: the forename names Samuel Jackson of the 2 people of this surname, and the forename agrees in full."
-    },
-    {
       "a": "JAMIESON STLOUIS T",
       "b": "0 residents named Jamieson",
       "rule": "JAMIESON STLOUIS T is refused against 0 residents named Jamieson: the residents layer holds nobody of the surname.",
@@ -6713,22 +6756,6 @@
       "evidence": [
         "data/residents/index.json"
       ]
-    },
-    {
-      "a": "JONES WILLIAM",
-      "b": "William Jones",
-      "rule": "The block's BROWN WM, named as such by the ticket before the cohort was read, and the printed record is worse than Brown's. Fergus 1843 prints THREE distinct William Joneses — 'Jones, William [Golden]. (B. J. & Co.)', 'Jones, William Edwin (Ogden & J.)' and 'Jones, William Harrison, clerk, H. W. Bigelow' — and the 1839 line 'Jones, Wm., justice of the peace' is matched `contested` between this man and Willard Jones, who is upheld above. The register's three rows of 24 October 1833 and 5 August 1835 print WILLIAM bare, with no middle initial and UNKNOWN in the Residence column, and the four Democrat printings on the town's side are bare too ('Wm. Jones', 'Jones, Wm.'). The layer holds one William Jones on the commonest surname in the town because the layer is thin. A bare Wm. Jones on a tract row could be any of the three the directory prints or a fourth. Refused; 243.52 acres come back off the card.",
-      "record_ids": [
-        "ls0261",
-        "ls0864",
-        "ls0870"
-      ],
-      "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "JONES WILLIAM matches William Jones: the forename names William Jones of the 5 people of this surname, and the forename agrees in full."
     },
     {
       "a": "KIMBERLEY IRA",
@@ -10973,8 +11000,19 @@
     },
     {
       "a": "HATCH JUNIUS H",
-      "b": "0 residents named Hatch",
-      "rule": "HATCH JUNIUS H is refused against 0 residents named Hatch: the residents layer holds nobody of the surname.",
+      "b": "Luther Hatch",
+      "rule": "HATCH JUNIUS H is refused against Luther Hatch: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "hatch_luther",
+          "name": "Luther Hatch",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "H",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls0679"
       ],
@@ -11193,21 +11231,6 @@
       "firm": true,
       "firm_style": "ET CO",
       "carried_by": "firm_purchasers[]"
-    },
-    {
-      "a": "HALL GEORGE",
-      "b": "George Hall",
-      "rule": "The town's whole record of George Hall is that somebody else repudiated a note owed to him. The Chicago Democrat of 29 July 1835 prints a caution 'against purchasing a Note, given by me to George Hall, dated June 24. 1835, for fifty dollars' — and the advertiser's own name is sheared off at the crop edge, so even the other party to it is not named. That is ONE reading, it is the ONLY thing in the corpus that names him, there is no directory line in any of the three volumes, no civic roll, no census, no trade and no street. The card's own present_on_scene_date reads `uncertain` for exactly this reason: the earliest source that names him is later than 1 July 1835. Two register rows of 27 June 1835, 160 acres, Residence UNKNOWN, against one press mention: a bare name on each side, which the rule refuses however close the dates fall. Refused, and the 160 acres come back off the card.",
-      "record_ids": [
-        "ls0694",
-        "ls0695"
-      ],
-      "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "HALL GEORGE matches George Hall: the forename names George Hall of the 2 people of this surname, and the forename agrees in full."
     },
     {
       "a": "LATTERLEE RICHARD L",
@@ -12632,21 +12655,21 @@
     },
     {
       "a": "FAY H R",
-      "b": "0 residents named Fay",
-      "rule": "FAY H R is refused against 0 residents named Fay: the residents layer holds nobody of the surname.",
+      "b": "H. K. Fay",
+      "rule": "FAY H R is refused against H. K. Fay: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "fay_h_k",
+          "name": "H. K. Fay",
+          "forename_agrees": true,
+          "why": "the forenames agree and the middle initials do not — R against K (rule 2)",
+          "middle_initial": "K",
+          "reading_middle_initial": "R",
+          "outcome": "refused_on_the_middle_initial"
+        }
+      ],
       "record_ids": [
         "ls0901"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "FAY HARRISON K",
-      "b": "0 residents named Fay",
-      "rule": "FAY HARRISON K is refused against 0 residents named Fay: the residents layer holds nobody of the surname.",
-      "record_ids": [
-        "ls0902"
       ],
       "evidence": [
         "data/residents/index.json"

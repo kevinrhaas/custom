@@ -2016,6 +2016,7 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
 
     seen_claims = set()
     unresolved = 0
+    image_read = 0
     checked_quotes = 0
     for path in files:
         at = path.name
@@ -2142,6 +2143,43 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             if not loc:
                 continue
             role = loc.get("artifact_role")
+
+            # A CLAIM READ AT THE PAGE IMAGE RATHER THAN AT THE TRANSCRIPTION (T-1008).
+            # Everything below this block checks a quote by reassembling it from the
+            # deposit's transcription, which is the right check for every claim that has
+            # one. The 1 January 1834 letter list is the case that does not: the
+            # transcription of that page is an OCR of a segmenter's crop, the crop lost
+            # thirty-nine of the list's 170 printed lines, and those lines exist in the
+            # SOURCE and in no transcription of it -- `grep` the deposit for `Babcock` or
+            # `Harkness` and the page does not hold them. A claim for such a line cannot
+            # cite transcription lines, because there are none to cite, and admitting it
+            # is the difference between the source's own names reaching the town and
+            # being lost to the segmenter forever. So the image locator carries what a
+            # transcription locator cannot: the deposited scan it was read at, by
+            # Internet Archive item, file, FILE SHA256, jp2 page and the IIIF regions,
+            # every one of them required here. The quote is not reassembled -- there is
+            # nothing to reassemble it from -- and `--build` counts these separately so
+            # the number of claims resting on an unreassembled quote is always visible.
+            at_image = loc.get("read_at_image")
+            if at_image is not None:
+                if loc.get("lines") is not None:
+                    bad.append("%s %s: a locator read at the page image cites no "
+                               "transcription lines -- it carries `read_at_image` "
+                               "INSTEAD of `lines`, and this one carries both" % (at, key))
+                for field in ("internet_archive_item", "file", "file_sha256",
+                              "jp2_page", "iiif_base", "regions_read"):
+                    if not at_image.get(field):
+                        bad.append("%s %s: locator.read_at_image carries no %r. A claim "
+                                   "whose quote cannot be reassembled from a "
+                                   "transcription is held to the scan it WAS read at"
+                                   % (at, key, field))
+                if claim.get("reading") != "scan_verified":
+                    bad.append("%s %s: a claim read at the page image reads "
+                               "`scan_verified`, and this one reads %r"
+                               % (at, key, claim.get("reading")))
+                image_read += 1
+                continue
+
             art = artifact_of(issue, role)
             if art is None:
                 bad.append("%s %s: locator names artifact role %r, which this issue does "
@@ -2298,6 +2336,10 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               % (covered, len(coverage_doc.get("ranges", []))))
         print("  ok    %d transcription(s) resolve their columns, %d unreadable here, "
               "%d unsegmented by nature" % (resolved, unreadable, len(UNSEGMENTED)))
+        if image_read:
+            print("  ok    %d claim(s) read at a deposited page image rather than a "
+                  "transcription, each naming the scan's sha256 and IIIF regions "
+                  "(T-1008)" % image_read)
         if unresolved:
             print("  note  %d claim(s) cite deposit-held text not readable here — it is on "
                   "`main` (T-0275), so their quotes are checked there" % unresolved)

@@ -10,11 +10,11 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1353,
-  "matched_one_1843_entry": 120,
+  "residents_considered": 1373,
+  "matched_one_1843_entry": 121,
   "matched_more_than_one_ambiguous": 41,
   "one_1843_entry_contested_by_two_residents": 15,
-  "surname_present_initial_absent_refused": 346,
+  "surname_present_initial_absent_refused": 349,
   "initial_agreed_forenames_disagreed_refused": 94,
   "of_those_a_garbled_printed_forename": 1,
   "residents_left_with_no_1843_entry_by_that_refusal": 44,
@@ -22,7 +22,7 @@
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
   "could_carry_occupation": 0,
-  "could_carry_address": 84,
+  "could_carry_address": 85,
   "could_carry_death_note": 82
  },
  "matches": [
@@ -1639,6 +1639,34 @@
    "could_carry": [
     "address",
     "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true
+  },
+  {
+   "resident": "J. S. Lacey",
+   "person_id": "lacey_j_s",
+   "household_id": "hh_lacey_j_s",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Lacey' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1527",
+     "as_printed": "Lacey, John, baker, res North Water, bet Dearborn and Wolcott",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "baker",
+     "address_1843": "res North Water, bet Dearborn and Wolcott",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": true
@@ -4818,7 +4846,7 @@
    "resident": "Erastus Selden Bowen",
    "person_id": "bowen_erastus_selden",
    "household_id": "hh_bowen_erastus_selden",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
@@ -7763,6 +7791,13 @@
    "rule": "The surname 'Wentworth' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H E Wentworth'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "H. B. Hoffman",
+   "person_id": "hoffman_h_b",
+   "surname_in_1843": "Hoffman",
+   "candidates": 2,
+   "rule": "The surname 'Hoffman' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H. B. Hoffman'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "H. Crocker",
    "person_id": "crocker_h",
    "surname_in_1843": "Crocker",
@@ -8337,6 +8372,13 @@
    "rule": "The surname 'Arnold' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Levi F. Arnold'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Levi Hills",
+   "person_id": "hills_levi",
+   "surname_in_1843": "Hills",
+   "candidates": 1,
+   "rule": "The surname 'Hills' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Levi Hills'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Lewis Sperry",
    "person_id": "sperry_lewis",
    "surname_in_1843": "Sperry",
@@ -8363,6 +8405,13 @@
    "surname_in_1843": "Downing",
    "candidates": 1,
    "rule": "The surname 'Downing' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lorenzo Downing'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Luther Hatch",
+   "person_id": "hatch_luther",
+   "surname_in_1843": "Hatch",
+   "candidates": 3,
+   "rule": "The surname 'Hatch' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Luther Hatch'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lyman B. Lovell",

@@ -22,9 +22,9 @@ one family name.
 
 ## The two readings, over the same pool
 
-* the pool the register offers this pass: **1837** candidates
-* accepted under the pre-T-0638 reading: **674**
-* accepted under the corrected reading: **682**
+* the pool the register offers this pass: **1869** candidates
+* accepted under the pre-T-0638 reading: **694**
+* accepted under the corrected reading: **702**
 * candidates the correction REFUSES that the old reading accepted: **9**
 * candidates the correction ADMITS that the old reading refused: **17**
 
@@ -61,8 +61,8 @@ rules for. `carries` is what a retirement would strand.
 
 ## The committed cohort against its own derivation
 
-The tree holds **725** letter-list households. The pass, run today
-against that same tree, derives **682**. `check.sh` runs this pass's
+The tree holds **745** letter-list households. The pass, run today
+against that same tree, derives **702**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 
 | households | cause |
