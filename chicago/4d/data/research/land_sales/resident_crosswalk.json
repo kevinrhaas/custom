@@ -7,12 +7,12 @@
   "ruled": {
     "upheld": 6,
     "refused": 3,
-    "unruled": 130
+    "unruled": 131
   },
   "counts": {
     "purchasers": 431,
-    "matched": 136,
-    "refused": 295
+    "matched": 137,
+    "refused": 294
   },
   "matches": [
     {
@@ -88,7 +88,7 @@
       "resident_name": "Charles H. Taylor",
       "household_id": "hh_taylor_anson",
       "match": "forename_agrees",
-      "rule": "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 7 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -116,6 +116,15 @@
           "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs C Taylor",
+          "forename_agrees": true,
+          "why": "a female title stands on one side of this pair and not the other, so the forenames agree only because the title was stripped off one of them (rule 5)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_female_title"
         },
         {
           "key": "taylor_edmund_d",
@@ -774,6 +783,78 @@
       "match": "forename_agrees",
       "rule": "BRONSON ARTHUR matches Arthur Bronson: the forename names Arthur Bronson of the 1 person of this surname, and the forename agrees in full.",
       "rivals": [],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "BROWN RUFUS",
+      "record_ids": [
+        "ls0124",
+        "ls0125"
+      ],
+      "resident_id": "brown_rufus",
+      "resident_name": "Rufus Brown",
+      "household_id": "hh_brown_rufus",
+      "match": "forename_agrees",
+      "rule": "BROWN RUFUS matches Rufus Brown: the forename names Rufus Brown of the 6 people of this surname, and the forename agrees in full.",
+      "rivals": [
+        {
+          "key": "brown_hanna_e",
+          "name": "Hanna E Brown",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "E",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "brown_jesse_b",
+          "name": "Jesse B Brown",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "B",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "brown_lemuel",
+          "name": "Lemuel Brown",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "brown_rufus",
+          "name": "Rufus Brown",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "brown_mrs_rufus",
+          "name": "Mrs Rufus Brown",
+          "forename_agrees": true,
+          "why": "a female title stands on one side of this pair and not the other, so the forenames agree only because the title was stripped off one of them (rule 5)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_female_title"
+        },
+        {
+          "key": "brown_william_h",
+          "name": "William H Brown",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "H",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "ruling": null,
@@ -3682,7 +3763,7 @@
       "resident_name": "Edmund D Taylor",
       "household_id": "hh_taylor_edmund_d",
       "match": "forename_agrees",
-      "rule": "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 7 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -3708,6 +3789,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": "D",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs C Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": "D",
           "outcome": "refused_on_the_forename"
         },
@@ -3859,7 +3949,7 @@
       "resident_name": "Anson H. Taylor",
       "household_id": "hh_taylor_anson",
       "match": "forename_agrees",
-      "rule": "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 7 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -3885,6 +3975,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": "H",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs C Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": "H",
           "outcome": "refused_on_the_forename"
         },
@@ -6529,74 +6628,6 @@
       ]
     },
     {
-      "a": "BROWN RUFUS",
-      "b": "6 residents named Brown",
-      "rule": "BROWN RUFUS is refused against 6 residents named Brown: the forename names 2 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "brown_hanna_e",
-          "name": "Hanna E Brown",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "E",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "brown_jesse_b",
-          "name": "Jesse B Brown",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "B",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "brown_lemuel",
-          "name": "Lemuel Brown",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "brown_rufus",
-          "name": "Rufus Brown",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "brown_mrs_rufus",
-          "name": "Mrs Rufus Brown",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "brown_william_h",
-          "name": "William H Brown",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "H",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0124",
-        "ls0125"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "CAMPEAU DANIEL J",
       "b": "0 residents named Campeau",
       "rule": "CAMPEAU DANIEL J is refused against 0 residents named Campeau: the residents layer holds nobody of the surname.",
@@ -8048,8 +8079,8 @@
     },
     {
       "a": "TAYLOR WILLIAM",
-      "b": "6 residents named Taylor",
-      "rule": "TAYLOR WILLIAM is refused against 6 residents named Taylor: the forename names 2 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named Taylor",
+      "rule": "TAYLOR WILLIAM is refused against 7 residents named Taylor: the forename names 2 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -8075,6 +8106,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs C Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -9100,8 +9140,8 @@
     },
     {
       "a": "TAYLOR SOLOMON",
-      "b": "6 residents named Taylor",
-      "rule": "TAYLOR SOLOMON is refused against 6 residents named Taylor: the forename names 0 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named Taylor",
+      "rule": "TAYLOR SOLOMON is refused against 7 residents named Taylor: the forename names 0 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -9127,6 +9167,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs C Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },

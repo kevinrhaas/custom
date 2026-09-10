@@ -115,6 +115,35 @@ def _words(given):
     return out
 
 
+FEMALE_TITLES = ("mrs", "miss", "madam", "madame")
+
+
+def female_title(given):
+    """The female title LEADING a printed name — `Mrs C Taylor` — or None (T-0960).
+
+    `_words` drops every title, and for a male one that is right: `Capt. James
+    Sanderson` and `James Sanderson` are one man and the rank is an annotation. For a
+    female one it throws away the only thing on the page saying she is not the man whose
+    name she is printed under, which is the fault R6 exists to catch in the derivation
+    and D3 on the cards. It reached the matcher too: `Mrs C Taylor` strips to `C`, an
+    initial, and M2 then offers her as a rival to every purchaser printed `TAYLOR
+    CHARLES` — which is how one woman's card refused five land sales that had been on
+    Charles Taylor's for weeks.
+
+    THE TITLE HAS TO LEAD, which is the same test `female_honorific` makes in
+    tools/consolidate_resident_evidence.py: the husband-name form prints it directly in
+    front of the name it qualifies. A title trailing a forename is an annotation on a
+    woman's own name — the letter lists set `Gooding, Caroline Miss` — and reading that
+    as a husband would split one woman into two.
+    """
+    for raw in str(given or "").replace(".", " ").split():
+        w = raw.strip(",").lower()
+        if not w:
+            continue
+        return w if w in FEMALE_TITLES else None
+    return None
+
+
 def suffix_of(given):
     """`JR`, `SEN` — the word that says WHICH man of the name, or None."""
     for raw in str(given or "").replace(".", " ").split():
@@ -166,13 +195,26 @@ def choose(reading, candidates):
     """
     mine = middle_initial(reading)
     rivals, agreeing = [], []
+    hers = female_title(reading)
     for c in candidates:
         ok, grade, why = forenames_agree(reading, c["given"])
         theirs = middle_initial(c["given"])
         row = {"key": c["key"], "name": c.get("name") or c["given"],
                "forename_agrees": ok, "why": why,
                "middle_initial": theirs, "reading_middle_initial": mine}
-        if ok and mine and theirs and mine[0] != theirs[0]:
+        # RULE 5 — A FEMALE TITLE ON ONE SIDE ONLY (T-0960, and it is D3 in the matcher).
+        # A card printed `Mrs C Taylor` and a reading printed `TAYLOR CHARLES` are not the
+        # same person on any reading of that C: either the C is her husband's, and a wife
+        # is never her husband, or it is her own, and she is a different person still. The
+        # title is dropped by `_words` before the forenames are compared, so without this
+        # she survives as a rival and refuses him on rule 3's count. It is symmetric —
+        # a reading that PRINTS the title does not name a card that carries none.
+        if ok and bool(female_title(c["given"])) != bool(hers):
+            row["outcome"] = "refused_on_the_female_title"
+            row["why"] = ("a female title stands on one side of this pair and not the "
+                          "other, so the forenames agree only because the title was "
+                          "stripped off one of them (rule 5)")
+        elif ok and mine and theirs and mine[0] != theirs[0]:
             row["outcome"] = "refused_on_the_middle_initial"
             row["why"] = ("the forenames agree and the middle initials do not — %s against "
                           "%s (rule 2)" % (mine[0], theirs[0]))
@@ -316,6 +358,20 @@ def self_test():
     if r["named"] is not None:
         fired.append("a reading must not be named onto a person who prints no forename")
 
+    # Rule 5: a female title on one side only. `Mrs C Taylor` is not TAYLOR CHARLES,
+    # and she must not refuse him on rule 3 by standing as his rival either (T-0960).
+    r = named("CHARLES", [("c", "Mrs C"), ("charles", "Charles H")])
+    if r["named"] != "charles":
+        fired.append("a card carrying a female title must not rival a reading that "
+                     "prints a man's forename")
+    if not any(row["outcome"] == "refused_on_the_female_title" for row in r["rivals"]):
+        fired.append("the female-title refusal must be stated on the rival it refused")
+    # …and symmetrically, the reading's own title is not thrown away either.
+    r = named("MRS C", [("charles", "Charles H")])
+    if r["named"] is not None:
+        fired.append("a reading printing a female title must not be named onto a card "
+                     "that carries none")
+
     # A refusal names the rivals it was refused against.
     r = named("JOHN", [("a", "William"), ("b", "Mary")])
     if r["named"] is not None or len(r["rivals"]) != 2:
@@ -346,7 +402,7 @@ def self_test():
             print("  " + line, file=sys.stderr)
         print("namesake --self-test: %d case(s) failed" % len(fired), file=sys.stderr)
         return 1
-    print("namesake --self-test: 9 naming cases and 4 collision cases hold")
+    print("namesake --self-test: 11 naming cases and 4 collision cases hold")
     return 0
 
 

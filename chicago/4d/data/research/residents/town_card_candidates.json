@@ -4,11 +4,11 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1362,
-  "open_clusters": 18,
-  "cards_in_open_clusters": 40,
+  "town_people": 1363,
+  "open_clusters": 19,
+  "cards_in_open_clusters": 42,
   "rulings": {
-   "distinct": 9,
+   "distinct": 10,
    "merge": 25,
    "undecided_owner": 7,
    "undecided_rule": 8
@@ -307,7 +307,8 @@
      "name": "Rufus Brown",
      "anchor": true,
      "sources": [
-      "andreas_1884_v1"
+      "andreas_1884_v1",
+      "isa_public_domain_land_tract_sales"
      ],
      "ruling": "distinct",
      "ruled_in": "brown-rufus"
@@ -819,6 +820,47 @@
      "against": [
       "neither card is an anchor: nothing here documents the person beyond a list"
      ]
+    }
+   ]
+  },
+  {
+   "surname": "taylor",
+   "cards": [
+    {
+     "person": "taylor_c",
+     "household": "hh_taylor_c",
+     "name": "Mrs C Taylor",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "taylor-mrs-c"
+    },
+    {
+     "person": "taylor_charles",
+     "household": "hh_taylor_anson",
+     "name": "Charles H. Taylor",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "census_1840_chicago_familysearch_images",
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ],
+     "ruling": "distinct",
+     "ruled_in": "taylor-mrs-c"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "taylor_c",
+     "b": "taylor_charles",
+     "for": [
+      "an initial against its forename, 'c' and 'charles'",
+      "taylor_charles is an anchor — the town documents this person"
+     ],
+     "against": []
     }
    ]
   },

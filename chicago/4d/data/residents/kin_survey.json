@@ -16,8 +16,8 @@
   "statements_read": 258,
   "both_ends_in_town": 31,
   "landable": 18,
-  "same_household": 3,
-  "ambiguous": 0,
+  "same_household": 2,
+  "ambiguous": 1,
   "identity_not_asserted": 10,
   "other_not_in_town": 10,
   "subject_unresolved": 217,
@@ -220,9 +220,13 @@
     {
      "household": "hh_taylor_anson",
      "person": "taylor_charles"
+    },
+    {
+     "household": "hh_taylor_c",
+     "person": "taylor_c"
     }
    ],
-   "outcome": "same_household"
+   "outcome": "ambiguous"
   },
   {
    "id": "read_harmon_charles_l__son__harmon_elijah_d",

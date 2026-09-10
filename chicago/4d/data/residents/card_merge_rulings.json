@@ -17,7 +17,7 @@
     "D2": "A DATE CONTRADICTION. One card's person is dead, or absent, on a day the other's is documented alive in the town.",
     "C5": "THE TRANSCRIBER NAMED HIM, IN BRACKETS. A reading that carries a bracketed forename — 'Hubbard, [Henry] G.' — is an editorial expansion by whoever transcribed the source: somebody looked at the page and said who this is. That names the person directly, so it outranks any inference drawn from the initials, and in particular it settles a cluster C2 would REFUSE for having two rivals. The bracket is evidence about identity; the initial is only evidence about spelling. Applied no further than a forename the transcription itself supplies.",
     "U1": "UNDECIDED, AND THE QUESTION IS FILED. Two cards a candidate test joins where the answer needs a reading of the page rather than a rule — both readings are stated, neither is taken, and a ticket owns it. An undecided cluster still satisfies the gate, because the gate asks that a cluster be WEIGHED, not that it be merged.",
-    "D3": "A FEMALE HONORIFIC ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not Rufus Brown. The honorific is stripped before two names are compared, which leaves the husband's forename tokens standing on both readings and makes the pair identical; a woman whose only printed name is her husband's is a real and common shape in this corpus and she is never her husband. The refusal is the card-side statement of R6 in tools/consolidate_resident_evidence.py, which holds the two identities apart in the derivation, and it fires on the same evidence: a SOURCE that prints both readings as separate entries (T-0723)."
+    "D3": "A FEMALE HONORIFIC ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not Rufus Brown. The honorific is stripped before two names are compared, which leaves the husband's forename tokens standing on both readings and makes the pair identical; a woman whose only printed name is her husband's is a real and common shape in this corpus and she is never her husband. The refusal is the card-side statement of R6 in tools/consolidate_resident_evidence.py, which holds the two identities apart in the derivation, and it fires on the same evidence: a SOURCE that prints both readings as separate entries (T-0723). IT HAS A SECOND SHAPE, AND ITS EVIDENCE IS DIFFERENT (T-0960): the honorific standing on an INITIAL — `Mrs. C. Taylor` against Charles Taylor. No page will ever print the bare counterpart of that, because a directory sets `Taylor, Charles` and never `Taylor, C.`, so the two-entry proof above cannot be asked for. What fires instead is the failure of the merge's own warrant: the initial is read as an abbreviation of the one full forename carrying it, and a female honorific says it may be her husband's and abbreviate nothing of hers. A doubtful initial is refused with the doubt named, never resolved by guessing."
   },
   "deferred": [
     {
@@ -762,6 +762,22 @@
           ],
           "for_merge": "Both are in chicago_democrat_1833_1835 and the middle initial H is printed on only one of them, so nothing contradicts.",
           "against_merge": "Neither card documents the man. Taylor is a common surname in this town — it already holds Anson, Charles H. and Edmund D. — and a bare forename with no anchor is refused by R4. T-0696."
+        }
+      ]
+    },
+    {
+      "id": "taylor-mrs-c",
+      "surname": "taylor",
+      "rulings": [
+        {
+          "state": "distinct",
+          "rule": "D3",
+          "members": [
+            "taylor_c",
+            "taylor_charles"
+          ],
+          "for_merge": "The initial, and only the initial. The Chicago Democrat of 19 August 1835 prints 'Mrs. C. Taylor, Water-st.' and the town holds a Charles Taylor whose forename begins with that letter, so the derivation's M2 — an initial attaches to the one full forename of that surname carrying it — reached for him. Nothing else joins them: no source names her as his wife, and no source prints her forename at all.",
+          "against_merge": "SHE IS NOT HIM, ON EITHER READING OF HER NAME, AND THAT IS THE WHOLE OF IT. If 'Mrs. C.' is the husband-name form the corpus prints constantly, the C is Charles's and she is his wife — a wife is never her husband (R6/D3). If it is her own initial, she is a woman whose forename happens to begin with C and Charles is a different person still. There is no third reading in which the notice and the tailor are one human being, so the merge is refused whichever way the initial is read. AND THE CORPUS ANSWERS THE WIFE QUESTION SEPARATELY, WITHOUT DECIDING IT. data/structures/wolf_point_tavern.json has 'Charles and Mary Taylor' keeping that house from 1831 to 1833 — a Charles Taylor of this town with a wife named MARY, which is not a C. That does not settle it either: hh_taylor_anson's own note declines to identify its Charles H. Taylor with the tavern keeper, because the Taylor surname is carried by at least four distinct men in these sources. So the finding stands as a finding — 'Mrs. C. Taylor' cannot be tied to any of the five Taylor heads the town holds (Anson H., Charles H., Augustine, Edmund D., William), and the one wife the corpus does name for a Chicago Charles Taylor is a Mary."
         }
       ]
     },

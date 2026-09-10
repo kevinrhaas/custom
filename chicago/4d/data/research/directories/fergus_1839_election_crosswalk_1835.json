@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1359
+   "n": 1360
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -38,7 +38,7 @@
  ],
  "counts": {
   "residents_matched_one_entry": 92,
-  "residents_ambiguous": 32,
+  "residents_ambiguous": 33,
   "residents_contested": 23,
   "residents_surname_only_refused": 223,
   "voters_matched_one_entry": 82,
@@ -3656,6 +3656,39 @@
     ],
     "person_id": "kinzie_juliette",
     "household_id": "hh_kinzie_john_h",
+    "grade_1835": "attested"
+   },
+   {
+    "name": "Mrs C Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins C.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0415",
+      "as_printed": "Charles Taylor",
+      "printed_page": 44,
+      "role": "voter",
+      "ward_1837": 3,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     },
+     {
+      "claim": "f1839_v0740",
+      "as_printed": "Charles Taylor",
+      "printed_page": 40,
+      "role": "judge_of_election",
+      "ward_1837": 3,
+      "voted_for": null,
+      "party": null,
+      "office": "judge_of_election",
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "taylor_c",
+    "household_id": "hh_taylor_c",
     "grade_1835": "attested"
    },
    {

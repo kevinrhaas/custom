@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 682, title: 'Mrs C. Taylor keeps her own house, and her own card', kind: 'fix', ts: '2026-09-10T05:50:24.232Z', date: 'Sep 10, 2026, 12:50 AM CT',
+    items: [
+      'The Chicago Democrat of 19 August 1835 invites the town to a charity sale "at the house of Mrs. C. Taylor, Water-st." — a dwelling named for the woman who keeps it, which is rare in this corpus, where nearly every address the papers give is a store or an inn. She had no card. Her one printed appearance had been folded onto Charles Taylor, the merchant tailor of Clark Street, and the town simply did not hold her.',
+      'The rule that folded her reads an initial as an abbreviation of the one full forename carrying it — C for Charles. A courtesy title denies exactly that assumption, because the initial may be her husband\u2019s and abbreviate nothing of hers. The project already refused this merge where a page printed both readings side by side; for an initial no page ever will, since a directory sets "Taylor, Charles" and never "Taylor, C.". The refusal now rests on the failed assumption instead, and a doubtful initial is left standing rather than guessed at.',
+      'Whether she is the wife of one of the five Taylor heads the town holds is asked on her card and answered as a finding: it cannot be decided. The one wife the corpus names for a Chicago Charles Taylor is a Mary, keeping the Wolf Point tavern from 1831 to 1833 — and this project already declines to identify that tavern keeper with its own Charles H. Taylor. Her address is recorded as Water Street with no number, which is a street and not a lot, so no building is claimed for her.',
+      'The same courtesy-title blindness was in the name matcher that reads purchasers and directory entries onto residents. It now refuses a pairing where a title stands on one side only — which restored five land sales to Charles Taylor and matched two more purchasers than before.'
+    ] },
   { v: 681, title: 'A census footing corrected, and every row closes it', kind: 'change', ts: '2026-09-09T09:49:50.989Z', date: 'Sep 9, 2026, 4:49 AM CT',
     items: [
       'Another 1840 continuation sheet is now recorded line by line. Twenty-seven household totals add exactly to 125; three occupation footings also agree with their rows.',

@@ -33242,7 +33242,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold.",
+   "reason": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs C Taylor; Edmund D Taylor; William Taylor; William H Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs C Taylor; Edmund D Taylor; William Taylor; William H Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold.",
    "record_ids": [
     "nbi_v04_0214"
    ],
@@ -33260,6 +33260,11 @@
     {
      "id": "taylor_augustine",
      "name": "Augustine Deodat Taylor",
+     "rule": "exact surname"
+    },
+    {
+     "id": "taylor_c",
+     "name": "Mrs C Taylor",
      "rule": "exact surname"
     },
     {
@@ -33282,6 +33287,7 @@
     "taylor_anson_h",
     "taylor_charles",
     "taylor_augustine",
+    "taylor_c",
     "taylor_edmund_d",
     "taylor_william",
     "taylor_william_h"
@@ -83739,10 +83745,10 @@
   {
    "record_id": "nbi_v04_0214",
    "a": "taylor | — Chicago antiquities, (Hurlbut 4.1.) ti]",
-   "b": "Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor",
+   "b": "Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs C Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold. Ruled on the card 'taylor | — Chicago antiquities, (Hurlbut 4.1.) ti]' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'taylor' do name Chicago or Cook County and the heading is the surname of Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor exactly, but the index files every family of a surname under one heading and gives no forename, so 'taylor' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor is a surname against a person. It waits on hurlbut_chicago_antiquities, which this project does not hold. Ruled on the card 'taylor | — Chicago antiquities, (Hurlbut 4.1.) ti]' against Ezra Taylor; Dennis H. Taylor; Col. Taylor; Chas Taylor; Stephen Taylor; W. W. Taylor; E. Taylor; [?] D. Taylor; Anson H. Taylor; Charles H. Taylor; Augustine Deodat Taylor; Mrs C Taylor; Edmund D Taylor; William Taylor; William H Taylor; Charles Taylor; Anson N. Taylor; Charles Taylor; Charles Taylor.",
    "layers": [
     "census_1840",
     "residents",
@@ -83756,6 +83762,7 @@
    "person_ids": [
     "taylor_anson_h",
     "taylor_augustine",
+    "taylor_c",
     "taylor_charles",
     "taylor_edmund_d",
     "taylor_william",

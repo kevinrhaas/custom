@@ -12,20 +12,20 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 136,
-  "people_written": 122,
-  "households_touched": 119,
+  "matched_rulings": 137,
+  "people_written": 123,
+  "households_touched": 120,
   "grades_changed": 0,
-  "entries_carried": 415,
+  "entries_carried": 417,
   "acres_carried": 20613.61,
-  "school_section_parcels_carried": 202,
+  "school_section_parcels_carried": 204,
   "matched_more_than_once": 12
  },
  "not_written": [
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 295
+   "rulings": 294
   },
   {
    "rule": "L2",
@@ -906,7 +906,7 @@
     "TAYLOR CHARLES"
    ],
    "rules": [
-    "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 6 people of this surname, and the forename agrees in full."
+    "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 7 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 5,
@@ -1009,7 +1009,7 @@
      "page": "187"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 5 times, as “TAYLOR CHARLES”, 1832-10-04 to 1835-06-27: 3 federal land entries — E2NW sec 05 T40N R14E; W2NW sec 14 T39N R13E; W2SW sec 04 T39N R14E and 1 parcel of the school section — BL68 of the school section (sec 16 T39N R14E), as read, 323.87 acres stated in all, for $993.60 (ls0014, ls0015, ls0352, ls0495, ls0806). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 6 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 5 times, as “TAYLOR CHARLES”, 1832-10-04 to 1835-06-27: 3 federal land entries — E2NW sec 05 T40N R14E; W2NW sec 14 T39N R13E; W2SW sec 04 T39N R14E and 1 parcel of the school section — BL68 of the school section (sec 16 T39N R14E), as read, 323.87 acres stated in all, for $993.60 (ls0014, ls0015, ls0352, ls0495, ls0806). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 7 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_kercheval_benjamin",
@@ -2255,6 +2255,68 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 13 times, as “BRONSON ARTHUR”, 1833-10-22 to 1833-10-24: 13 parcels of the school section — BL14 of the school section (sec 16 T39N R14E), as read; BL15 of the school section (sec 16 T39N R14E), as read; BL16 of the school section (sec 16 T39N R14E), as read; BL28 of the school section (sec 16 T39N R14E), as read; BL33 of the school section (sec 16 T39N R14E), as read; BL34 of the school section (sec 16 T39N R14E), as read; BL39 of the school section (sec 16 T39N R14E), as read; BL40 of the school section (sec 16 T39N R14E), as read; BL57 of the school section (sec 16 T39N R14E), as read; BL58 of the school section (sec 16 T39N R14E), as read; BL63 of the school section (sec 16 T39N R14E), as read; BL64 of the school section (sec 16 T39N R14E), as read; BL74 of the school section (sec 16 T39N R14E), as read, 0.00 acres stated in all, for $1309.00 (ls0099, ls0100, ls0101, ls0102, ls0103, ls0104, ls0105, ls0106, ls0107, ls0108, ls0109, ls0110, ls0111). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BRONSON ARTHUR matches Arthur Bronson: the forename names Arthur Bronson of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_brown_rufus",
+   "person_id": "brown_rufus",
+   "name": "Rufus Brown",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "BROWN RUFUS"
+   ],
+   "rules": [
+    "BROWN RUFUS matches Rufus Brown: the forename names Rufus Brown of the 6 people of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 2,
+    "acres": 0.0,
+    "dollars": 169.5,
+    "first_purchase": "1833-10-25",
+    "last_purchase": "1833-10-25",
+    "tracts": [],
+    "school_section": [
+     "lot 4 of block 81 of the school section (sec 16 T39N R14E)",
+     "lot 5 of block 120 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0124",
+     "as_read": "BROWN RUFUS",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "77.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 4 of block 81 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0367810",
+     "volume": "818",
+     "page": "009"
+    },
+    {
+     "record_id": "ls0125",
+     "as_read": "BROWN RUFUS",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "92.50",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 5 of block 120 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0367811",
+     "volume": "818",
+     "page": "009"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “BROWN RUFUS”, 1833-10-25: 2 parcels of the school section — lot 4 of block 81 of the school section (sec 16 T39N R14E); lot 5 of block 120 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $169.50 (ls0124, ls0125). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BROWN RUFUS matches Rufus Brown: the forename names Rufus Brown of the 6 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_carver_david",
@@ -7763,7 +7825,7 @@
     "TAYLOR EDMUND D"
    ],
    "rules": [
-    "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 6 people of this surname, and the forename agrees in full."
+    "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 7 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 4,
@@ -7848,7 +7910,7 @@
      "page": "299"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “TAYLOR EDMUND D”, 1835-06-27: 4 federal land entries — E2SW sec 30 T38N R15E; SEFR sec 30 T38N R15E; W2NE sec 20 T40N R14E; W2SE sec 21 T38N R14E, 368.22 acres stated in all, for $612.33 (ls0538, ls0634, ls0726, ls0727). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 6 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “TAYLOR EDMUND D”, 1835-06-27: 4 federal land entries — E2SW sec 30 T38N R15E; SEFR sec 30 T38N R15E; W2NE sec 20 T40N R14E; W2SE sec 21 T38N R14E, 368.22 acres stated in all, for $612.33 (ls0538, ls0634, ls0726, ls0727). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 7 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_burdick_paul",
@@ -8028,7 +8090,7 @@
     "TAYLOR ANSON H"
    ],
    "rules": [
-    "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 6 people of this surname, and the forename agrees in full."
+    "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 7 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 1,
@@ -8062,7 +8124,7 @@
      "page": "272"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “TAYLOR ANSON H”, 1835-06-08: 1 federal land entry — SW sec 30 T40N R14E, 160.00 acres stated in all, for $200.00 (ls0552). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 6 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “TAYLOR ANSON H”, 1835-06-08: 1 federal land entry — SW sec 30 T40N R14E, 160.00 acres stated in all, for $200.00 (ls0552). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 7 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_sackett_j_l",

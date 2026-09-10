@@ -789,23 +789,78 @@ def cluster(appearances):
             if printed_together:
                 wives = [e for e in rows if e.get("_female")
                          and forename_signature(e["_given"]) in husbands]
+
+            # R6's SECOND SHAPE — THE HONORIFIC STANDING ON AN INITIAL (T-0960).
+            #
+            # The clause above guards M1, whose merge is letter-for-letter identity, and
+            # it demands a page printing both readings because nothing about the tokens
+            # can tell `Mrs. Eliza Haight` from `Mrs. Rufus Brown`. An INITIAL is a
+            # different case and the proof it would need cannot exist: a directory sets
+            # `Taylor, Charles`, never `Taylor, C.`, so no page will ever print the bare
+            # counterpart of `Taylor, Mrs. C.` beside her. Left to itself M2 then folds
+            # her onto him anyway — the Chicago Democrat of 19 August 1835 names Mrs. C.
+            # Taylor keeping a house on Water street, and she arrived here as an
+            # appearance of `id_taylor_charles`, the merchant tailor of Clark street.
+            #
+            # THE REFUSAL IS M2'S OWN WARRANT FAILING. M2 reads an initial as the
+            # ABBREVIATION of the one full forename of that surname carrying it. A
+            # female honorific denies exactly that: the printed initial may be the
+            # husband's, in which case it abbreviates nothing of hers. With the
+            # assumption in doubt the rule has no warrant left, and this project's answer
+            # to a doubtful initial is R3's — name the doubt, do not resolve it by
+            # guessing. A refusal leaves her standing as her own identity, which a later
+            # reading can still merge; a wrong merge writes a woman out of the town and
+            # nothing downstream can see that it happened.
+            #
+            # It is DELIBERATELY narrower than "every honorific reading". It fires only
+            # where the honorific reading is initial-only AND some full forename of that
+            # surname carries that initial — that is, only where M2 was about to fire.
+            # A `Mrs. E. Hamilton` with no Edward Hamilton to be folded onto is not
+            # touched, because nothing was going to merge her.
+            full_initials = {forename_signature(e["_given"])[0][0]
+                             for e in rows if not e.get("_female")
+                             and not is_initial(e["_given"][0])}
+            on_initial = [e for e in rows if e.get("_female") and e not in wives
+                          and is_initial(e["_given"][0])
+                          and e["_given"][0][0] in full_initials]
+            if on_initial:
+                refusals.append({
+                    "rule": "R6",
+                    "shape": "honorific_on_initial",
+                    "why": ("a female honorific standing on an INITIAL a man's forename "
+                            "of the same surname carries. M2 would read the initial as "
+                            "the abbreviation of that forename; the honorific says it "
+                            "may be her husband's and abbreviate nothing of hers, so the "
+                            "merge has no warrant and she stands on her own"),
+                    "surname": surname,
+                    "honorifics": sorted({e["_female"] for e in on_initial}),
+                    "held_apart": sorted(
+                        {" ".join(forename_signature(e["_given"])).title() + " "
+                         + surname.title() for e in on_initial}),
+                    "records": sorted({e["record_id"] for e in on_initial}),
+                    "rival_initials": sorted(full_initials),
+                })
+                wives = wives + on_initial
         if wives:
             proof = sorted({e["source_id"] for e in wives if e.get("source_id")
                             and forename_signature(e["_given"]) in printed_together})
-            refusals.append({
-                "rule": "R6",
-                "why": ("a female honorific standing on a man's own name: these readings "
-                        "carry the husband's forename tokens and nothing else, so the "
-                        "honorific strip makes them identical to his. A wife is not her "
-                        "husband and never merges onto him"),
-                "surname": surname,
-                "honorifics": sorted({e["_female"] for e in wives}),
-                "held_apart": sorted(
-                    {" ".join(forename_signature(e["_given"])).title() + " "
-                     + surname.title() for e in wives}),
-                "records": sorted({e["record_id"] for e in wives}),
-                "printed_together_in": proof,
-            })
+            held_by_m1 = [e for e in wives
+                          if forename_signature(e["_given"]) in printed_together]
+            if held_by_m1:
+                refusals.append({
+                    "rule": "R6",
+                    "why": ("a female honorific standing on a man's own name: these "
+                            "readings carry the husband's forename tokens and nothing "
+                            "else, so the honorific strip makes them identical to his. "
+                            "A wife is not her husband and never merges onto him"),
+                    "surname": surname,
+                    "honorifics": sorted({e["_female"] for e in held_by_m1}),
+                    "held_apart": sorted(
+                        {" ".join(forename_signature(e["_given"])).title() + " "
+                         + surname.title() for e in held_by_m1}),
+                    "records": sorted({e["record_id"] for e in held_by_m1}),
+                    "printed_together_in": proof,
+                })
             rows = [e for e in rows if e not in wives]
         anchors = anchor(rows, surname, refusals)
         # R2/R4 ARE STATED ONCE PER SURNAME, NOT ONCE PER PAIR, and the difference is
@@ -1236,9 +1291,21 @@ def build():
         rule, proposed, subtype = grade({"members": row["appearances"]})
         tally[proposed] += 1
         subtally[subtype] += 1
+        # THE HONORIFIC IS PART OF THE NAME ON A HELD-APART IDENTITY (T-0960). R6 exists
+        # because the strip that makes `Mrs Rufus Brown` identical to `Rufus Brown` throws
+        # away the only thing on the page saying she is not him — and putting the stripped
+        # name back on the proposal throws it away a second time, one step later. D3 says
+        # so in its own words: `a card that reads Rufus B Brown twice with nothing to tell
+        # the two apart is exactly the confusion this rule exists to end`. It cost nothing
+        # while none of these identities was mintable; the moment one was — Mrs. C. Taylor,
+        # of the Democrat of 19 August 1835 — it minted a card called `C Taylor`, which the
+        # land-sales matcher then read as a rival initial for Charles Taylor and refused a
+        # match it had been making for weeks.
+        display = " ".join(t for t in (row.get("honorific"), row["forename"],
+                                       row["surname"]) if t)
         entry = {
             "identity": row["id"],
-            "name": (row["forename"] + " " + row["surname"]).title().strip(),
+            "name": display.title().strip(),
             "canonical_person_id": row.get("canonical_person_id"),
             "rule": rule,
             "grade": proposed,
