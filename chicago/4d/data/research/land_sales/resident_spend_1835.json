@@ -12,20 +12,20 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 123,
+  "matched_rulings": 124,
   "people_written": 110,
   "households_touched": 107,
   "grades_changed": 0,
-  "entries_carried": 356,
+  "entries_carried": 362,
   "acres_carried": 18962.15,
-  "school_section_parcels_carried": 156,
+  "school_section_parcels_carried": 162,
   "matched_more_than_once": 12
  },
  "not_written": [
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 308
+   "rulings": 307
   },
   {
    "rule": "L2",
@@ -1546,26 +1546,34 @@
    "purchaser_spellings": [
     "BLANCHARD F G",
     "BLANCHARD F G AS",
+    "BLANCHARD GURTREY",
     "BLANCHARD FRANCIS G"
    ],
    "rules": [
-    "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
-    "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
-    "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only."
+    "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
+    "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
+    "NAMED, NOT UPHELD — the mechanical rule never proposed this one and could not. `namesake.choose` weighs the FIRST forename token, and the register prints this man's MIDDLE name in the forename's place, so GURTREY was put to all the Blanchards the town holds and named none of them. What names him is the town's own directory: Fergus 1843 prints 'Blanchard, Francis Gurtrey, capitalist, res 45 Wells [died, Brooklyn, N.Y., 1872.]' — forename Francis, middle name Gurtrey — and Fergus 1839 and Norris 1844 print the same man 'Francis G.' GURTREY is that middle name, and the card carries it as Gantry because the poll of 1834 prints him 'Blanchard, F. Gantry'. THE REGISTER PROVES ITS OWN HABIT HERE, AT ONE SALE. The six GURTREY rows (purchase nos 0367525-0367530, volume 817 page 027) and the three F G rows (0376893-0376895, volume 818 page 010) are the SAME school section — section 16, T39N R14E, type SC — entered on 22 and 24 October 1833, the days the school section was sold off by lot and by block. One buyer, one auction, two volumes of the register, two renderings of one name; the domain's README already records this habit under T-0990, where HUNTER E E and HUNTER EDWARD E are the same 80 acres of section 13 on the same day at the same price. WHAT IS NOT NAMED BY IT. The town's other documented Blanchard is W. G. Blanchard, the house-and-land agent of the Democrat of 9 July 1834, and his forename initial is W: he is refused on the same ground the crosswalk refuses him against every other Blanchard reading. Joseph Blanchard the blacksmith is a man of the directories and not an 1835 resident. Nothing reached prints a second Gurtrey Blanchard anywhere. AND IT IS STILL A PURCHASE. The Residence column reads UNKNOWN on all six rows, so this names a buyer and never an occupant, and it places nobody on that ground. The six rows are lot 1 of block 2, block 21, lot 8 of block 141, block 3, lot 7 of block 82 and lot 1 of block 141 of the school section, $547.00 in all (ls0076-ls0081). Two of them state a price per acre of 3.69 against 0000.00 acres, which is the acreage of the F G row ls0074 standing in the wrong column of the deposit; it is carried as the register has it and read as no acreage at all.",
+    "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only."
    ],
    "totals": {
-    "entries": 4,
+    "entries": 10,
     "acres": 163.69,
-    "dollars": 373.0,
+    "dollars": 920.0,
     "first_purchase": "1833-10-22",
     "last_purchase": "1835-12-15",
     "tracts": [
      "NW sec 36 T38N R14E"
     ],
     "school_section": [
+     "BL21 of the school section (sec 16 T39N R14E), as read",
+     "BL3 of the school section (sec 16 T39N R14E), as read",
      "BL4 of the school section (sec 16 T39N R14E), as read",
+     "lot 1 of block 141 of the school section (sec 16 T39N R14E)",
+     "lot 1 of block 2 of the school section (sec 16 T39N R14E)",
      "lot 2 of block 26 of the school section (sec 16 T39N R14E)",
-     "lot 7 of block 26 of the school section (sec 16 T39N R14E)"
+     "lot 7 of block 26 of the school section (sec 16 T39N R14E)",
+     "lot 7 of block 82 of the school section (sec 16 T39N R14E)",
+     "lot 8 of block 141 of the school section (sec 16 T39N R14E)"
     ],
     "residence_as_read": [
      "UNKNOWN"
@@ -1621,6 +1629,102 @@
      "page": "010"
     },
     {
+     "record_id": "ls0076",
+     "as_read": "BLANCHARD GURTREY",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "32.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 2 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0367525",
+     "volume": "817",
+     "page": "027"
+    },
+    {
+     "record_id": "ls0077",
+     "as_read": "BLANCHARD GURTREY",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "111.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL21 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0367526",
+     "volume": "817",
+     "page": "027"
+    },
+    {
+     "record_id": "ls0078",
+     "as_read": "BLANCHARD GURTREY",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "106.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 8 of block 141 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0367527",
+     "volume": "817",
+     "page": "027"
+    },
+    {
+     "record_id": "ls0079",
+     "as_read": "BLANCHARD GURTREY",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "130.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL3 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0367528",
+     "volume": "817",
+     "page": "027"
+    },
+    {
+     "record_id": "ls0080",
+     "as_read": "BLANCHARD GURTREY",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "55.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 7 of block 82 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0367529",
+     "volume": "817",
+     "page": "027"
+    },
+    {
+     "record_id": "ls0081",
+     "as_read": "BLANCHARD GURTREY",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "113.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 1 of block 141 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0367530",
+     "volume": "817",
+     "page": "027"
+    },
+    {
      "record_id": "ls0715",
      "as_read": "BLANCHARD FRANCIS G",
      "date_purchased": "1835-12-15",
@@ -1637,7 +1741,7 @@
      "page": "266"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “BLANCHARD F G”, “BLANCHARD F G AS”, “BLANCHARD FRANCIS G”, 1833-10-22 to 1835-12-15: 1 federal land entry — NW sec 36 T38N R14E and 3 parcels of the school section — BL4 of the school section (sec 16 T39N R14E), as read; lot 2 of block 26 of the school section (sec 16 T39N R14E); lot 7 of block 26 of the school section (sec 16 T39N R14E), 163.69 acres stated in all, for $373.00 (ls0073, ls0074, ls0075, ls0715). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 10 times, as “BLANCHARD F G”, “BLANCHARD F G AS”, “BLANCHARD GURTREY”, “BLANCHARD FRANCIS G”, 1833-10-22 to 1835-12-15: 1 federal land entry — NW sec 36 T38N R14E and 9 parcels of the school section — BL21 of the school section (sec 16 T39N R14E), as read; BL3 of the school section (sec 16 T39N R14E), as read; BL4 of the school section (sec 16 T39N R14E), as read; lot 1 of block 141 of the school section (sec 16 T39N R14E); lot 1 of block 2 of the school section (sec 16 T39N R14E); lot 2 of block 26 of the school section (sec 16 T39N R14E); lot 7 of block 26 of the school section (sec 16 T39N R14E); lot 7 of block 82 of the school section (sec 16 T39N R14E); lot 8 of block 141 of the school section (sec 16 T39N R14E), 163.69 acres stated in all, for $920.00 (ls0073, ls0074, ls0075, ls0076, ls0077, ls0078, ls0079, ls0080, ls0081, ls0715). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_botsford_j_k",

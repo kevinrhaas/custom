@@ -235,10 +235,44 @@ the abbreviated one. SMITH LIMAN and SMITH SIMAN (ls0572, ls0573) are the same d
 working against the proposal: the deposit itself cannot decide whether the man was a Lyman or
 a Simon, so the token the rule matched on is not stable in the source that supplies it.
 
-**A duplicate card found on the way past.** Fergus 1843's *Francis Gurtrey* is one man, and
-the layer holds both `blanchard_f_gantry` and `blanchard_gantry` — filed as **T-0993**, beside
-T-0844's six clusters. This cohort's rulings do not decide it, and the six `BLANCHARD GURTREY`
-rows are left unruled for that ticket.
+**A duplicate card found on the way past — and ruled (T-0993).** Fergus 1843's *Francis
+Gurtrey* is one man, and the layer held both `blanchard_f_gantry` and `blanchard_gantry`.
+T-0993 folded them, under a card-merge rule written for the shape, and named the six
+`BLANCHARD GURTREY` rows onto the survivor. The section below is that ruling.
+
+## The ruling the layer could not make: `named` (T-0993)
+
+`upheld` and `refused` can only ADJUDICATE a proposal the mechanical rule made — confirm it,
+or take it away. So a reading the rule structurally cannot reach had no way to be ruled on at
+all, and `check_rulings` called a ruling on it *"a ruling on nothing"*.
+
+**BLANCHARD GURTREY is that reading.** `namesake.choose` weighs the FIRST forename token, and
+the register printed Francis Gurtrey Blanchard's MIDDLE name in the forename's place. Six
+school-section rows — ls0076-ls0081, $547.00 of town lots on blocks 2, 3, 21, 82 and 141 —
+were refused against every Blanchard the town holds, and no reading of any page could have
+changed that.
+
+**What names him.** Fergus 1843 prints *"Blanchard, Francis Gurtrey, capitalist, res 45
+Wells"*, so GURTREY is his middle name and the card carries it as *Gantry* from the poll of
+1834. And the register proves its own habit at ONE sale: the same school section — sec 16
+T39N R14E, type SC, 22 and 24 October 1833 — is entered *BLANCHARD F G* in volume 818 page
+010 (0376893-0376895) and *BLANCHARD GURTREY* in volume 817 page 027 (0367525-0367530). That
+is the HUNTER E E / HUNTER EDWARD E habit above, one column further along the name.
+
+**The kind, and its guards.** `ruling: "named"` GIVES a match instead of taking one away, and
+`read_land_sales.py` holds it to the mirror of the same rules: only where the surname gathered
+rivals and the forename failed to choose among them; only onto one of those rivals; never onto
+a surname-only purchaser, which this domain refuses however well the tract agrees; and the
+same reasoning, ticket and `checked_against` every other ruling owes. A `named_by_ruling`
+match carries the refusal it overturned in `was_refused_as`, and it is the one match kept out
+of the `namesake.collide` group — that rule asks whether several readings the MECHANICAL rule
+named onto one person are one man, with the same forename test a `named` ruling exists because
+it failed, and letting it run would have taken the three upheld F G rows down with the sixth.
+Four assertions in `--self-test` hold all of it.
+
+**What moved:** matched spellings 123 → **124**, ruled 49 → **50** (33 upheld, 1 named, 16
+refused), and $547.00 of town ground reached the card it belongs on — $373.00 → **$920.00**
+across ten rows.
 
 **Still unruled: 90.** Cohort B is the twenty-four with no namesake at all (`rivals[]` empty),
 cohort C the sixty-six remaining `forename_agrees` proposals that have one; the log on T-0990

@@ -134,6 +134,23 @@
   },
   {
    "outcome": "merged",
+   "person_id": "blanchard_f_gantry",
+   "folded_person_id": "blanchard_gantry",
+   "rule": "C7",
+   "cluster": "blanchard",
+   "record_ids": [
+    "tax_1833_005"
+   ],
+   "domains": [
+    "civic"
+   ],
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence": "T-0993: 'blanchard_gantry' and 'blanchard_f_gantry' are one person under rule C7; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'blanchard'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "brown_william_h",
    "folded_person_id": "brown_w_h",
    "rule": "C2",

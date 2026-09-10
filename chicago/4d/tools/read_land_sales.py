@@ -48,7 +48,17 @@ SOURCE_ID = "isa_public_domain_land_tract_sales"
 # crosswalk's proposals (T-0700). A judgement is not a derivation, so it is hand-authored,
 # it is not in GENERATED, and --check validates it instead of re-deriving it.
 RULINGS_NAME = "resident_rulings.json"
-RULING_KINDS = ("upheld", "refused")
+# `named` is T-0993's addition, and it is the ruling layer's missing direction.
+# `upheld` and `refused` can only ADJUDICATE a proposal the mechanical rule made:
+# they confirm it or take it away. But `namesake.choose` weighs the FIRST forename
+# token and nothing else, so a register that prints a man's MIDDLE name in the
+# forename's place — BLANCHARD GURTREY, for Francis Gurtrey Blanchard — is a
+# refusal no reading of any page can ever overturn, because the rulings file was
+# only allowed to subtract. `named` lets a hand ruling GIVE a match the rule could
+# not reach, under the guards in check_rulings(): only where the surname gathered
+# rivals and the forename failed to choose among them, never onto a surname-only
+# purchaser, and never onto somebody the residents layer does not hold.
+RULING_KINDS = ("upheld", "refused", "named")
 # THE DEPOSITS, IN THE ORDER THEY WERE ADDED, and that order is load-bearing. Record
 # ids are positional — `ls0001` upward across the whole reading — and data/structures/
 # *.json cite them by id, so a new deposit APPENDS and never renumbers what is already
@@ -414,6 +424,46 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
             for pid, name, hh in candidates])
         if not ruling["named"]:
             rival_names = [r["name"] for r in ruling["rivals"]]
+            # A HAND RULING MAY NAME WHAT THE RULE COULD NOT (T-0993). The forename test
+            # reads the first token, so a purchaser the register printed by his middle
+            # name alone is refused here for ever — and the man may be the best-attested
+            # bearer of the surname the town holds. `named` is the ruling that says so,
+            # and it may only be made HERE: the surname gathered candidates, and the
+            # ruling must name one of them.
+            named = rulings.get(as_read)
+            if (named and named.get("ruling") == "named"
+                    and any(c[0] == named.get("resident_id") for c in candidates)):
+                pid, name, hh = [c for c in candidates if c[0] == named["resident_id"]][0]
+                matches.append({
+                    "purchaser_as_read": as_read,
+                    "record_ids": sorted(by_name[as_read]),
+                    "resident_id": pid,
+                    "resident_name": name,
+                    "household_id": hh,
+                    "match": "named_by_ruling",
+                    "rule": named["reasoning"],
+                    "rivals": ruling["rivals"],
+                    "residence_column": ", ".join(residences[as_read]),
+                    "evidence_grade": "documented" if cook else "inferred",
+                    "ruling": {"ruling": "named", "ruled_on": named.get("ruled_on"),
+                               "ticket": named.get("ticket"),
+                               "checked_against": named.get("checked_against") or [],
+                               "reasoning": named["reasoning"]},
+                    "was_refused_as": "%s is refused against %s: %s."
+                        % (as_read, " and ".join(rival_names) if len(rival_names) <= 3
+                           else "%d residents named %s" % (len(candidates), surname.title()),
+                           ruling["why"]),
+                    "what_it_evidences": (
+                        "The register states this purchaser's residence as COOK, so the "
+                        "sale is contemporary evidence that a man of this name lived in "
+                        "Cook County on the date of sale. It is not evidence that he "
+                        "lived in the town."
+                        if cook else
+                        "A purchase and nothing more. It dates and places a transaction; "
+                        "it proposes no residence, and under the ratified ladder it "
+                        "corroborates rather than mints."),
+                })
+                continue
             refusals.append({
                 "a": as_read,
                 "b": rival_names[0] if len(rival_names) == 1
@@ -486,11 +536,25 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
     # `WENTWORTH ELIJAH` against a town holding one card. Both groups are refused
     # whole, with the rival readings named: keeping the first and dropping the rest
     # would be the count of namesakes again, wearing a hat.
+    #
+    # A HAND-NAMED READING IS NOT PUT TO THIS RULE (T-0993). `collide` asks whether
+    # several readings THE MECHANICAL RULE named onto one person are one man, and it
+    # asks it with the same forename test that made them — which is exactly the test a
+    # `named` ruling exists because it failed. BLANCHARD GURTREY against BLANCHARD F G
+    # is "the forenames do not agree", and letting that stand would refuse the whole
+    # group: a hand ruling would take three upheld matches down with it. So a
+    # `named_by_ruling` match is kept whole and is not a member of any group; the
+    # question it would be asked has already been answered, in writing, with sources.
     by_person = {}
     for mt in matches:
+        if mt["match"] == "named_by_ruling":
+            continue
         by_person.setdefault(mt["resident_id"], []).append(mt)
     kept = []
     for mt in matches:
+        if mt["match"] == "named_by_ruling":
+            kept.append(mt)
+            continue
         group = by_person[mt["resident_id"]]
         if len(group) == 1:
             kept.append(mt)
@@ -530,6 +594,7 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                 "the mechanical rule proposed, and a refused proposal is in refusals[] "
                 "with the ruling as its rule.",
         "ruled": {"upheld": sum(1 for m in matches if (m.get("ruling") or {}).get("ruling") == "upheld"),
+                  "named": sum(1 for m in matches if (m.get("ruling") or {}).get("ruling") == "named"),
                   "refused": sum(1 for r in refusals if r.get("ruled_under")),
                   "unruled": sum(1 for m in matches if not m.get("ruling"))},
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),
@@ -674,6 +739,13 @@ def check_rulings(domain: Path, rows: list, ids: dict) -> list:
     proposal the mechanical rule actually made, it agrees with that proposal about WHO is
     being ruled on, and it says on the record what kind of ruling it is and why. A ruling
     that fails any of those rules on nothing at all.
+
+    A `named` ruling is the one that does NOT rule on a proposal, because there is none —
+    it gives a match the mechanical rule refused (T-0993). Its guards are the mirror of
+    the others and are no looser: the spelling must be one the rule refused AFTER the
+    surname gathered rivals, so a surname-only purchaser stays the refusal this domain's
+    README says it always is; and the person named must be one of those rivals, so a
+    ruling cannot reach outside the surname to somebody nobody weighed.
     """
     path = domain / RULINGS_NAME
     if not path.exists():
@@ -682,19 +754,38 @@ def check_rulings(domain: Path, rows: list, ids: dict) -> list:
     bad = []
     if doc.get("schema") != 1:
         bad.append("land_sales: %s: schema must be 1" % RULINGS_NAME)
-    proposed = {m["purchaser_as_read"]: m["resident_id"]
-                for m in build_resident_crosswalk(rows, ids, domain, rulings={})["matches"]}
+    mechanical = build_resident_crosswalk(rows, ids, domain, rulings={})
+    proposed = {m["purchaser_as_read"]: m["resident_id"] for m in mechanical["matches"]}
+    # The refusals a `named` ruling may overturn: the ones the FORENAME made, which are
+    # the only ones carrying `rivals`. A surname-only refusal and a surname the layer
+    # holds nobody of both land here without one, and neither is reachable.
+    nameable = {r["a"]: [v["key"] for v in r["rivals"]]
+                for r in mechanical["refusals"] if r.get("rivals")}
     seen = set()
     for r in doc.get("ruled") or []:
         who = r.get("purchaser_as_read")
         if who in seen:
             bad.append("land_sales: %s: %r is ruled on twice" % (RULINGS_NAME, who))
         seen.add(who)
-        if who not in proposed:
+        if r.get("ruling") == "named":
+            if who in proposed:
+                bad.append("land_sales: %s: %r is NAMED by hand and the mechanical rule "
+                           "already proposes %r — uphold or refuse it, do not name it"
+                           % (RULINGS_NAME, who, proposed[who]))
+            elif who not in nameable:
+                bad.append("land_sales: %s: %r cannot be named: the rule refused it "
+                           "before any person of the surname was weighed, and a ruling "
+                           "may only choose among the rivals it names"
+                           % (RULINGS_NAME, who))
+            elif r.get("resident_id") not in nameable[who]:
+                bad.append("land_sales: %s: %r is named onto %r, who is not among the "
+                           "%d resident(s) of the surname the rule weighed"
+                           % (RULINGS_NAME, who, r.get("resident_id"), len(nameable[who])))
+        elif who not in proposed:
             bad.append("land_sales: %s: %r is not a purchaser the crosswalk proposed a "
                        "match for — a ruling on nothing" % (RULINGS_NAME, who))
             continue
-        if r.get("resident_id") != proposed[who]:
+        elif r.get("resident_id") != proposed[who]:
             bad.append("land_sales: %s: %r is ruled against %r and the crosswalk proposed "
                        "%r" % (RULINGS_NAME, who, r.get("resident_id"), proposed[who]))
         if r.get("ruling") not in RULING_KINDS:
@@ -760,7 +851,16 @@ def _fixture(tmp: Path) -> Path:
         # while the register said COOK on the page. Frank Dill is the real case.
         + "\t".join(["0000005", "HALE JOHN", "COOK", "", "LOT3BL79", "16", "39N",
                      "14E", "3", "COOK", "0000.00", "000.00", "60.00", "SC",
-                     "10/22/1833", "817", "101"]) + "\n", encoding="utf-8")
+                     "10/22/1833", "817", "101"]) + "\n"
+        # THE READING NO FORENAME RULE CAN REACH (T-0993). The register prints Francis
+        # Gurtrey Blanchard's MIDDLE name in the forename's place, so `namesake.choose`
+        # weighs GURTREY against every Blanchard the town holds and names none of them.
+        # It is here so the `named` ruling has something to name, and so the guard that
+        # a `named` ruling may only choose among the rivals the rule weighed has a real
+        # cluster to be held against. LAST, so the ids above it do not move.
+        + "\t".join(["0000006", "BLANCHARD GURTREY", "UNKNOWN", "", "LOT1BL2", "16",
+                     "39N", "14E", "3", "COOK", "0000.00", "000.00", "32.00", "SC",
+                     "10/22/1833", "817", "027"]) + "\n", encoding="utf-8")
     # The second deposit — the ring townships (T-0676). It is in the fixture because a
     # reading spread over two files is exactly what can go wrong quietly: ids that
     # restart, a coverage block that declares one file's sections against the other's
@@ -840,12 +940,54 @@ def self_test() -> int:
         if not check(d, quiet=True):
             print("SELF-TEST: a ruling with no reasoning did not fail the gate"); return 1
         fired.append("a ruling that states no reasoning fails the gate")
+
+        # THE `named` RULING (T-0993). The other direction of the same layer: a hand
+        # ruling GIVES a match the forename rule refused, and the gate holds it to the
+        # mirror of the guards `upheld` and `refused` are held to.
+        gurtrey = [r for r in cross["refusals"] if r["a"] == "BLANCHARD GURTREY"]
+        if not gurtrey or not gurtrey[0].get("rivals"):
+            print("SELF-TEST: a middle name in the forename's place must be refused "
+                  "with the rivals named"); return 1
+        fired.append("a reading the forename rule cannot place is refused with rivals")
+        dump(rulings, {"schema": 1, "ruled": [{
+            "purchaser_as_read": "BLANCHARD GURTREY",
+            "resident_id": gurtrey[0]["rivals"][0]["key"],
+            "ruling": "named", "ruled_on": "2026-09-10", "ticket": "T-0993",
+            "checked_against": ["the fixture"], "reasoning": "the fixture names it"}]})
+        build(d, quiet=True)
+        if check(d, quiet=True):
+            print("SELF-TEST: a named ruling on a reading the rule weighed rivals for "
+                  "must pass the gate"); return 1
+        named = [m for m in load(d / "resident_crosswalk.json")["matches"]
+                 if m["purchaser_as_read"] == "BLANCHARD GURTREY"]
+        if not named or named[0]["match"] != "named_by_ruling":
+            print("SELF-TEST: a named ruling must move the refusal into matches[]")
+            return 1
+        if not named[0].get("was_refused_as"):
+            print("SELF-TEST: a named match must carry the refusal it overturned")
+            return 1
+        fired.append("a named ruling moves a refusal into matches[] under its ticket")
+
+        doc = load(rulings)
+        doc["ruled"][0]["purchaser_as_read"] = "BRIGGS"
+        dump(rulings, doc)
+        if not check(d, quiet=True):
+            print("SELF-TEST: a named ruling on a surname-only purchaser did not fail "
+                  "the gate"); return 1
+        fired.append("a named ruling cannot reach a surname-only purchaser")
+        doc["ruled"][0].update({"purchaser_as_read": "BLANCHARD GURTREY",
+                                "resident_id": "nobody_at_all"})
+        dump(rulings, doc)
+        if not check(d, quiet=True):
+            print("SELF-TEST: a named ruling onto somebody outside the rivals did not "
+                  "fail the gate"); return 1
+        fired.append("a named ruling cannot reach outside the rivals the rule weighed")
         rulings.unlink()
         build(d, quiet=True)
         cross = load(d / "resident_crosswalk.json")
 
         ring = load(d / records_name(DEPOSITS[1]["tsv"]))
-        if [r["id"] for r in ring["records"]] != ["ls0005"]:
+        if [r["id"] for r in ring["records"]] != ["ls0006"]:
             print("SELF-TEST: the second deposit's ids must continue the first's"); return 1
         if ring["records"][0]["locator"]["text_file"] != DEPOSITS[1]["tsv"]:
             print("SELF-TEST: a record must cite the deposit it is on"); return 1
