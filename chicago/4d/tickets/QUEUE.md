@@ -26,6 +26,11 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-10  "move the south through time section below section 5 and above section 6" — the
+#               owner, hours after the reorganisation below. It is a PROMOTION as well as a move:
+#               under EPICS the loop does not work a programme until he promotes it, and it now
+#               stands as band 6, workable in rank order. Its fourteen tickets keep his 09-01
+#               order. Nothing else moved; the loop band renumbered 6 to 7.
 #   2026-09-10  THE WHOLE FILE, ON THE OWNER'S INSTRUCTION: "reorganize the queue to finish up
 #               any research items first so we can get our best and final list of residents and
 #               their best and complete profile and businesses and their structures and
@@ -234,7 +239,30 @@ T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at pa
 T-0055 — Hold the Kinzie-view plate as a source record
 
 # --- ==========================================================================
-# --- 6. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
+# --- 6. SOUTH THROUGH TIME — owner epic, 2026-09-01, PROMOTED OUT OF EPICS 2026-09-10
+# --- ==========================================================================
+# --- Owner, 2026-09-10: "move the south through time section below section 5 and above section
+# --- 6". It was under EPICS, which the loop does not work until the owner promotes one — this
+# --- is that promotion, so these fourteen are workable in rank order like any other band.
+# --- One ticket per epoch, in his own order: the shared south terrain first, then 1812, then
+# --- the 1880s. Nothing here touches the 1835 town; it stands below every band that does.
+T-0464 — Extend the shared south terrain from Madison through Cermak
+T-0465 — Trace the South Branch and early lakefront through the expanded field
+T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
+T-0467 — Add south-scene camera anchors, navigation and map extents
+T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
+T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
+T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
+T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
+T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
+T-0473 — Create an 1880s South Side terrain and urban-ground epoch
+T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
+T-0475 — Build the Prairie Avenue landmark mansion core
+T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
+T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
+
+# --- ==========================================================================
+# --- 7. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
 # --- ==========================================================================
 # --- Ordering rule 4 in the other direction: nothing here outranks the bands above. The
 # --- triangle-and-draw-call tickets are here now rather than gating the roofs, because every
@@ -281,8 +309,9 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 # --- ==========================================================================
 # --- Owner, 2026-09-10: "if you come across any epic tickets to create like you need to create
 # --- more than 5 to complete a ticket then add those to an epic at the bottom of the queue for
-# --- future improvements." Three stand here. Each is a coherent programme whose tickets belong
-# --- together, and none of them adds a resident, a trade or a roof to the 1835 town.
+# --- future improvements." TWO stand here — South Through Time was the third and the owner
+# --- promoted it to band 6 on 2026-09-10. Each is a coherent programme whose tickets belong
+# --- together, and neither adds a resident, a trade or a roof to the 1835 town.
 
 # --- EPIC: THE 1840 CENSUS DEPOSIT, READ TO COMPLETENESS — 0 residents. 965 named heads are
 # --- adjudicated: 13 matched, 17 candidates, 935 refused (249 unreadable, 411 surnames absent
@@ -302,19 +331,3 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 # --- EPIC: THE NEWBERRY INDEX — 4,199 of 6,658 cards unread at a measured 0.0% match rate.
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
-
-# --- EPIC: SOUTH THROUGH TIME — owner epic, 2026-09-01. One ticket per epoch, in order.
-T-0464 — Extend the shared south terrain from Madison through Cermak
-T-0465 — Trace the South Branch and early lakefront through the expanded field
-T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
-T-0467 — Add south-scene camera anchors, navigation and map extents
-T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
-T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
-T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
-T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
-T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
-T-0473 — Create an 1880s South Side terrain and urban-ground epoch
-T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
-T-0475 — Build the Prairie Avenue landmark mansion core
-T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
-T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
