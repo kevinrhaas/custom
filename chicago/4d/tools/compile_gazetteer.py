@@ -134,6 +134,7 @@ EXTRACTED = RESEARCH / "extracted"
 IDENTITY = RESEARCH / "identity.json"
 GAZETTEER = RESEARCH / "gazetteer.json"
 COVERAGE = RESEARCH / "coverage.json"
+TRADE_CLASSES = RESEARCH / "trade_class_rulings.json"
 
 SCHEMA_VERSION = 1
 SCENE_DATE = date(1835, 7, 1)
@@ -643,6 +644,31 @@ def house_place_problems(houses, vocabulary):
 def norm_place(name):
     return re.sub(r"\s+", " ", (name or "").strip()).casefold()
 
+
+
+
+def load_trade_classes() -> tuple:
+    """The census class of each printed trade, and of the notices that print none (T-1006).
+
+    Read here rather than computed here: a class is an adjudication, and it lives in
+    data/research/newspapers/trade_class_rulings.json with the boundary it was ruled
+    under. Missing or unruled reads as no class, because THIS compiler is not the gate
+    for it — tools/trade_census_1835.py --check refuses an unruled business, and the
+    self-tests below compile registers that carry no rulings at all.
+    """
+    if not TRADE_CLASSES.exists():
+        return {}, {}
+    doc = json.loads(TRADE_CLASSES.read_text(encoding="utf-8"))
+    classes, scopes = {}, {}
+    for row in doc.get("trade_rulings", []):
+        classes[("trade", row["trade"])] = row["classes"]
+        if row.get("scope"):
+            scopes[("trade", row["trade"])] = row["scope"]
+    for row in doc.get("business_overrides", []):
+        classes[row["business_id"]] = row["classes"]
+        if row.get("scope"):
+            scopes[row["business_id"]] = row["scope"]
+    return classes, scopes
 
 def compile_gazetteer(files, identity, corpus, quiet=True):
     """Compile extracted/* into the gazetteer. Returns (doc, problems).
@@ -1522,11 +1548,21 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 "declaration that has outlived its pair is a judgement nobody can check."
                 % (biz["id"], sorted(pair)))
 
+    trade_classes, trade_scopes = load_trade_classes()
     for b in businesses.values():
         # Ruling 3, computed and never asserted: a documented business stands in the
         # 1835 town unless a claim contradicts it, and one whose last issue predates
         # 1835 stands on a survival liberty that has to be written down.
         b["built_at_scene_date"] = not b["contradicted_by"]
+        # T-1006: the census class, carried BESIDE the printed trade and never over it.
+        # The December 1835 State census counted the town by class and this field is what
+        # can be counted; `trade` stays the prose the notice printed. The join is a lookup
+        # and nothing more — the judgement is in trade_class_rulings.json, and
+        # tools/trade_census_1835.py --check is what refuses a business no ruling covers.
+        b["trade_classes"] = sorted(
+            trade_classes.get(b["id"]) or trade_classes.get(("trade", b.get("trade"))) or [])
+        b["trade_class_scope"] = (
+            trade_scopes.get(b["id"]) or trade_scopes.get(("trade", b.get("trade"))) or "in_town")
         last = date.fromisoformat(b["evidence"]["last_issue"])
         b["survival_liberty_required"] = b["built_at_scene_date"] and last.year < SCENE_DATE.year
         b["goods"].sort()
