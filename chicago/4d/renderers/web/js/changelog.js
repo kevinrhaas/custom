@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Gurdon Hubbard\u2019s parents, and where a fact with no field goes', kind: 'change', ts: '',
+  { v: 703, title: 'Gurdon Hubbard\u2019s parents, and where a fact with no field goes', kind: 'change', ts: '2026-09-10T22:45:16.205Z', date: 'Sep 10, 2026, 5:45 PM CT',
     items: [
       'Henry Hurlbut, compiling in 1881, writes one sentence about the boy who would become this town\u2019s oldest resident: \u201CHe was born in Windsor, Vt., in 1802 and parents were Elizur and Abigail (Sage) Hubbard.\u201D The birthplace and the year were spent onto Gurdon Hubbard\u2019s card weeks ago. The parents were not, and the reason was that this reconstruction had nowhere to put them.',
       'It records who is related to whom with a link between two HOUSEHOLDS, and every rule that makes the link trustworthy is a rule about the other end of it \u2014 the far household has to carry the matching row, and it has to agree about the degree, so that a half brother cannot quietly become a brother. Elizur and Abigail Hubbard were living in Montreal, were never in this town, and have no household here. The question was whether to invent a second shape for them: a relative row with the far end left blank.',
