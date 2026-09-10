@@ -110,7 +110,6 @@ T-0990 — The land-sale proposals T-0697 added when the surname rule widened ar
 T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
 T-0998 — The land-sale crosswalk keys the purchaser on an exact surname, so T-0842's ruled merge made VANDERBOGERT invisible to it and orphaned a written ruling
 T-0993 — Francis Gurtrey Blanchard has two cards: Fergus 1843 prints the man T-0990 ruled on, and 'Gantry Blanchard' is very likely the same person
-T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
 T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
 T-0961 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
 T-0988 — The December 1835 State census counted the town's trades and this project has never held a denominator: 44 stores, 8 taverns, 22 lawyers, 14 physicians and eleven more classes, against a business layer whose trade field is free prose
