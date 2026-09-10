@@ -12,7 +12,7 @@
     "structures": 380,
     "structures_sharing_a_name": 37,
     "streets": 40,
-    "resident_persons": 1363
+    "resident_persons": 1359
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2630,
       "by_action": {
-        "enrich": 1367,
-        "new_resident": 1239,
+        "enrich": 1365,
+        "new_resident": 1241,
         "replace_invented": 24
       },
       "letter_list_only": 1936
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 859,
+        "none_recorded": 858,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 865,
+      "households_total": 864,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -32369,9 +32369,9 @@
       "letter_list_only": false,
       "first_seen": "1834-12-03",
       "last_seen": "1834-12-03",
-      "action": "enrich",
-      "action_target": "temple_t",
-      "action_note": "data/residents/ already holds this person as temple_t (hh_temple_t, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_ta_y_lor_charles",
@@ -34393,9 +34393,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
-      "action": "enrich",
-      "action_target": "temple_t",
-      "action_note": "data/residents/ already holds this person as temple_t (hh_temple_t, attested). The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_uncertain_thomas_eisdell",

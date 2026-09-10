@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 685, title: 'Six townspeople who were two records each, decided', kind: 'change', ts: '2026-09-10T08:40:24.222Z', date: 'Sep 10, 2026, 3:40 AM CT',
+    items: [
+      'Six pairs of resident cards that might have been one person apiece had been left undecided since the town\u2019s big consolidation. All six are now ruled in writing, and four of them fold: the town\u2019s cards fall from 1,363 people to 1,359.',
+      'Two of the four turned out not to be judgement calls at all. The \u201cmiddle initial\u201d that argued against folding Charles Hunt was the tail of the abbreviation \u201cChas.\u201d read as a second initial \u2014 and the two cards are the same advertisement for the same girls\u2019 school, printed in both town papers a fortnight apart. The one that argued against John H. Kinzie was a digit, a scanner\u2019s 8 standing where a letter was, on an advertisement for the forwarding trade that was his own.',
+      'The town\u2019s dentist is one man again: a poll-list line reading \u201cW. L. Kennicott\u201d joins the Wm. H. Kennicott who advertised from an office opposite the Exchange on Lake Street. And a Temple who let a three-storey warehouse with a wharf is Dr John Taylor Temple, on a signature line the transcription itself could not read.',
+      'Two pairs stay two, and the reason is written on both cards rather than left open. Each of the two George Walkers has his middle initial printed twice by independent hands, which is exactly what a copyist\u2019s slip cannot survive; and the William Saunders the court records is called \u201cformerly of Cook county\u201d a year before the other card\u2019s only date.',
+      'Nothing was deleted. Every folded card is kept whole and every reference to it still resolves.'
+    ] },
   { v: 684, title: 'A directory reading checked by a second pair of eyes', kind: 'change', ts: '2026-09-10T08:02:02.498Z', date: 'Sep 10, 2026, 3:02 AM CT',
     items: [
       'Four forenames in the 1844 city directory are damaged in the scanner\u2019s text and were read off the photographs of the printed page instead \u2014 among them the proprietor of the Tremont House, set by the scanner as \u201cIia\u201d and read as Ira Couch. All four have now been read a second time, independently, off the same photographs. All four stand.',

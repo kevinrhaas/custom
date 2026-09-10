@@ -76,6 +76,7 @@ CROSSWALK = ROOT / "data" / "research" / "residents" / "card_merge_crosswalk.jso
 
 GENERATED_BY = "tools/consolidate_town_cards.py --apply"
 TICKET = "T-0839"
+RULED_ON = "2026-09-05"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from consolidate_resident_evidence import split_name_or_reason  # noqa: E402
@@ -262,7 +263,26 @@ def pair_evidence(a: dict, b: dict) -> dict:
 # the rulings
 
 def load_rulings() -> dict:
-    return json.loads(RULINGS.read_text(encoding="utf-8"))
+    """The rulings, each stamped with the ticket that MADE it and the day it was made.
+
+    T-0839 wrote this file and is the default, but a ruling a later ticket rewrote is
+    that ticket's claim and not T-0839's — T-0844 re-ruled the six clusters T-0839
+    referred to the owner. Stamping here means the stub, the redirect table, the
+    crosswalk and the on-card block all name the pass to argue with, without every
+    writer below having to know about the ledger. In memory only: nothing writes this
+    file back.
+    """
+    doc = json.loads(RULINGS.read_text(encoding="utf-8"))
+    when = {row.get("ticket"): row.get("on")
+            for row in doc.get("also_ruled_on") or [] if row.get("ticket")}
+    for cluster in doc.get("clusters", []):
+        for ruling in cluster.get("rulings", []):
+            ticket = ruling.get("ticket") or TICKET
+            ruling["ticket"] = ticket
+            ruling["on"] = (ruling.get("on")
+                            or (doc.get("ruled_on") if ticket == TICKET else None)
+                            or when.get(ticket) or RULED_ON)
+    return doc
 
 
 def ruled_cards(rulings: dict) -> dict:
@@ -415,7 +435,8 @@ def crosswalk_doc(rulings: dict) -> dict:
                 "record_ids": sorted({r["record_id"] for r in record_ids}),
                 "domains": sorted({r["domain"] for r in record_ids}),
                 "sources": sorted(sources),
-                "evidence": f"{TICKET}: '{folded}' and '{ruling['survivor']}' are one "
+                "evidence": f"{ruling.get('ticket') or TICKET}: '{folded}' and "
+                            f"'{ruling['survivor']}' are one "
                             f"person under rule {ruling['rule']}; the ruling and its "
                             f"reasoning are in data/residents/card_merge_rulings.json "
                             f"under cluster '{ruling['cluster']}'.",
@@ -458,8 +479,8 @@ def stub_doc(doc: dict, person_id: str, ruling: dict, survivor_household: str) -
             "person_merged": person_id,
             "rule": ruling["rule"],
             "cluster": ruling["cluster"],
-            "ticket": TICKET,
-            "on": "2026-09-05",
+            "ticket": ruling.get("ticket") or TICKET,
+            "on": ruling.get("on") or RULED_ON,
             "note": "THIS RECORD IS NOT DELETED AND NOTHING ON IT IS LOST. The card below "
                     "is the record exactly as it stood when the merge landed; the person "
                     "it names is now carried by the household above, and "
@@ -474,7 +495,7 @@ def stub_doc(doc: dict, person_id: str, ruling: dict, survivor_household: str) -
 def merge_ruling_block(ruling: dict, this: str, others: list) -> dict:
     state = ruling["state"]
     block = {
-        "ticket": TICKET,
+        "ticket": ruling.get("ticket") or TICKET,
         # `verdict`, not `state`: tools/measure_layer_reads.py matches a figure's leaf
         # name against the renderer's property accesses, and `.state` is a word the
         # walk uses everywhere, so a key called `state` reads as shipped-and-drawn
@@ -544,7 +565,7 @@ def apply(write: bool = True) -> dict:
                                                household=survivor_home,
                                                rule=ruling["rule"],
                                                cluster=ruling["cluster"],
-                                               ticket=TICKET,
+                                               ticket=ruling.get("ticket") or TICKET,
                                                repointed_from=landed.get("person"))
                     files[MERGED / f"{hid}.json"] = dump(stub)
                     redirects.append({
@@ -554,7 +575,7 @@ def apply(write: bool = True) -> dict:
                         "merged_into_household": survivor_home,
                         "record_file": f"merged/{hid}.json",
                         "rule": ruling["rule"], "cluster": ruling["cluster"],
-                        "ticket": TICKET,
+                        "ticket": ruling.get("ticket") or TICKET,
                     })
             else:
                 doc = docs[hid]
@@ -568,7 +589,7 @@ def apply(write: bool = True) -> dict:
                     "merged_into_household": survivor_home,
                     "record_file": f"merged/{hid}.json",
                     "rule": ruling["rule"], "cluster": ruling["cluster"],
-                    "ticket": TICKET,
+                    "ticket": ruling.get("ticket") or TICKET,
                 })
                 folded_households.add(hid)
             gained_sources |= set(person.get("sources") or [])
@@ -597,7 +618,7 @@ def apply(write: bool = True) -> dict:
                     add, key=lambda e: (str(e.get("describes_date") or ""),
                                         str(e.get("record_id") or "")))
             survivor["merged_from"] = {
-                "ticket": TICKET,
+                "ticket": ruling.get("ticket") or TICKET,
                 "rule": ruling["rule"],
                 "cluster": ruling["cluster"],
                 "cards": sorted(ruling["folded"]),

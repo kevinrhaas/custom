@@ -4,17 +4,17 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1363,
-  "open_clusters": 19,
-  "cards_in_open_clusters": 42,
+  "town_people": 1359,
+  "open_clusters": 16,
+  "cards_in_open_clusters": 35,
   "rulings": {
-   "distinct": 10,
-   "merge": 25,
-   "undecided_owner": 7,
+   "distinct": 12,
+   "merge": 29,
+   "undecided_owner": 1,
    "undecided_rule": 8
   },
-  "landed_merges": 25,
-  "cards_folded": 43
+  "landed_merges": 29,
+  "cards_folded": 47
  },
  "landed": [
   {
@@ -168,6 +168,26 @@
    "rule": "C5"
   },
   {
+   "cluster": "hunt-c",
+   "survivor": "hunt_charles_cotesworth_pinckney",
+   "survivor_household": "hh_hunt_charles_cotesworth_pinckney",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "hunt_c_s"
+   ],
+   "rule": "C5"
+  },
+  {
+   "cluster": "kennicott",
+   "survivor": "kennicott_william_h",
+   "survivor_household": "hh_kennicott_william_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kennicott_w_l"
+   ],
+   "rule": "C4"
+  },
+  {
    "cluster": "kimberly",
    "survivor": "kimberly_edmund_s",
    "survivor_household": "hh_pruyne_kimberly",
@@ -188,6 +208,16 @@
     "kinzie_j_h"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "kinzie-john",
+   "survivor": "kinzie_john_h",
+   "survivor_household": "hh_kinzie_john_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kinzie_john_s"
+   ],
+   "rule": "C3"
   },
   {
    "cluster": "kinzie-robert",
@@ -284,6 +314,16 @@
     "temple_j_t"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "temple",
+   "survivor": "temple_john_t",
+   "survivor_household": "hh_temple_john_t",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "temple_t"
+   ],
+   "rule": "C6"
   }
  ],
  "clusters": [
@@ -532,129 +572,6 @@
    ]
   },
   {
-   "surname": "hunt",
-   "cards": [
-    {
-     "person": "hunt_c_s",
-     "household": "hh_hunt_c_s",
-     "name": "C S Hunt",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "ruling": "undecided",
-     "ruled_in": "hunt-c"
-    },
-    {
-     "person": "hunt_charles_cotesworth_pinckney",
-     "household": "hh_hunt_charles_cotesworth_pinckney",
-     "name": "Charles Cotesworth Pinckney Hunt",
-     "anchor": false,
-     "sources": [
-      "chicago_american_1835",
-      "fergus_1843_old_settler_death_notices"
-     ],
-     "ruling": "undecided",
-     "ruled_in": "hunt-c"
-    }
-   ],
-   "pairs": [
-    {
-     "a": "hunt_c_s",
-     "b": "hunt_charles_cotesworth_pinckney",
-     "for": [
-      "an initial against its forename, 'c' and 'charles'"
-     ],
-     "against": [
-      "neither card is an anchor: nothing here documents the person beyond a list"
-     ]
-    }
-   ]
-  },
-  {
-   "surname": "kennicott",
-   "cards": [
-    {
-     "person": "kennicott_w_l",
-     "household": "hh_kennicott_w_l",
-     "name": "W L Kennicott",
-     "anchor": false,
-     "sources": [
-      "chicago_voter_lists_1833_1835_irad"
-     ],
-     "ruling": "undecided",
-     "ruled_in": "kennicott"
-    },
-    {
-     "person": "kennicott_william_h",
-     "household": "hh_kennicott_william_h",
-     "name": "William H Kennicott",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835",
-      "norris_directory_1844"
-     ],
-     "ruling": "undecided",
-     "ruled_in": "kennicott"
-    }
-   ],
-   "pairs": [
-    {
-     "a": "kennicott_w_l",
-     "b": "kennicott_william_h",
-     "for": [
-      "an initial against its forename, 'w' and 'william'"
-     ],
-     "against": [
-      "the middle initial contradicts: 'l' against 'h'",
-      "neither card is an anchor: nothing here documents the person beyond a list"
-     ]
-    }
-   ]
-  },
-  {
-   "surname": "kinzie",
-   "cards": [
-    {
-     "person": "kinzie_john_h",
-     "household": "hh_kinzie_john_h",
-     "name": "John Harris Kinzie",
-     "anchor": true,
-     "sources": [
-      "andreas_1884_v1",
-      "chicago_american_1835",
-      "chicago_antiquities_american_fur_co",
-      "chicago_voter_lists_1833_1835_irad",
-      "kinzie_waubun_1856"
-     ],
-     "ruling": "merge",
-     "ruled_in": "kinzie-john"
-    },
-    {
-     "person": "kinzie_john_s",
-     "household": "hh_kinzie_john_s",
-     "name": "John S Kinzie",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "ruling": "undecided",
-     "ruled_in": "kinzie-john"
-    }
-   ],
-   "pairs": [
-    {
-     "a": "kinzie_john_h",
-     "b": "kinzie_john_s",
-     "for": [
-      "the same forename, 'john'",
-      "kinzie_john_h is an anchor — the town documents this person"
-     ],
-     "against": []
-    }
-   ]
-  },
-  {
    "surname": "saunders",
    "cards": [
     {
@@ -665,7 +582,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "ruling": "undecided",
+     "ruling": "distinct",
      "ruled_in": "saunders"
     },
     {
@@ -676,7 +593,7 @@
      "sources": [
       "chicago_democrat_1833_1835"
      ],
-     "ruling": "undecided",
+     "ruling": "distinct",
      "ruled_in": "saunders"
     }
    ],
@@ -944,17 +861,6 @@
      ],
      "ruling": "distinct",
      "ruled_in": "temple"
-    },
-    {
-     "person": "temple_t",
-     "household": "hh_temple_t",
-     "name": "T Temple",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "ruling": "undecided",
-     "ruled_in": "temple"
     }
    ],
    "pairs": [
@@ -986,16 +892,6 @@
      ]
     },
     {
-     "a": "temple_john_t",
-     "b": "temple_t",
-     "for": [
-      "share 1 source(s): chicago_democrat_1833_1835",
-      "an initial against its forename, 'john' and 't'",
-      "temple_john_t is an anchor — the town documents this person"
-     ],
-     "against": []
-    },
-    {
      "a": "temple_mrs_john_t",
      "b": "temple_peter",
      "for": [
@@ -1007,25 +903,6 @@
      "against": [
       "both stand on one household record, hh_temple_john_t — the sources name them together, not twice"
      ]
-    },
-    {
-     "a": "temple_mrs_john_t",
-     "b": "temple_t",
-     "for": [
-      "one card prints a title and no forename at all",
-      "temple_mrs_john_t is an anchor — the town documents this person"
-     ],
-     "against": []
-    },
-    {
-     "a": "temple_peter",
-     "b": "temple_t",
-     "for": [
-      "share 1 source(s): chicago_democrat_1833_1835",
-      "an initial against its forename, 'peter' and 't'",
-      "temple_peter is an anchor — the town documents this person"
-     ],
-     "against": []
     }
    ]
   },
@@ -1126,7 +1003,7 @@
       "chicago_democrat_1833_1835",
       "fergus_1843_old_settler_death_notices"
      ],
-     "ruling": "undecided",
+     "ruling": "distinct",
      "ruled_in": "walker-george"
     },
     {
@@ -1138,7 +1015,7 @@
       "blackhawk_war_chicago_enrollments_isa",
       "chicago_democrat_1833_1835"
      ],
-     "ruling": "undecided",
+     "ruling": "distinct",
      "ruled_in": "walker-george"
     }
    ],

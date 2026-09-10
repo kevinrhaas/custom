@@ -45,30 +45,30 @@
   }
  ],
  "counts": {
-  "people_shown": 294,
-  "people_met_by_more_than_one_volume": 171,
-  "carrying_an_occupation": 98,
-  "carrying_an_address": 151,
+  "people_shown": 292,
+  "people_met_by_more_than_one_volume": 169,
+  "carrying_an_occupation": 99,
+  "carrying_an_address": 152,
   "line_held_but_parse_refused": 21,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 237,
-    "single_entry": 158,
+    "people": 235,
+    "single_entry": 159,
     "ambiguous": 47,
-    "contested": 32
+    "contested": 29
    },
    "fergus_1843": {
-    "people": 178,
-    "single_entry": 119,
-    "ambiguous": 42,
-    "contested": 17
+    "people": 176,
+    "single_entry": 120,
+    "ambiguous": 41,
+    "contested": 15
    },
    "norris_1844": {
-    "people": 138,
-    "single_entry": 98,
+    "people": 137,
+    "single_entry": 99,
     "ambiguous": 24,
-    "contested": 16
+    "contested": 14
    },
    "norris_1844_advertiser": {
     "people": 37,
@@ -12247,88 +12247,6 @@
    ]
   },
   {
-   "person_id": "kennicott_w_l",
-   "household_id": "hh_kennicott_w_l",
-   "resident": "W L Kennicott",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e0835",
-       "printed_page": 21,
-       "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    },
-    {
-     "volume": "fergus_1843",
-     "title": "Fergus's Chicago directory of 1843",
-     "year": 1843,
-     "source_id": "fergus_chicago_directory_1843",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1843_e1467",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ]
-    },
-    {
-     "volume": "norris_1844",
-     "title": "Norris's Chicago directory of 1844",
-     "year": 1844,
-     "source_id": "norris_directory_1844",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "n1844_e1006",
-       "printed_page": 43,
-       "as_printed": "Kennicott, Wm. H. dentist, 133 Lake st. house same"
-      }
-     ],
-     "holds": [],
-     "parse_carries": false,
-     "sources": [
-      "norris_directory_1844"
-     ]
-    }
-   ],
-   "occupation_later": null,
-   "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843",
-    "norris_directory_1844"
-   ]
-  },
-  {
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
    "resident": "William H Kennicott",
@@ -12342,8 +12260,8 @@
      "title": "Fergus's Chicago directory of 1839",
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -12352,7 +12270,10 @@
        "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "parse_carries": true,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -12363,8 +12284,8 @@
      "title": "Fergus's Chicago directory of 1843",
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -12373,7 +12294,9 @@
        "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address"
+     ],
      "parse_carries": true,
      "sources": [
       "fergus_chicago_directory_1843"
@@ -12384,8 +12307,8 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -12394,15 +12317,42 @@
        "as_printed": "Kennicott, Wm. H. dentist, 133 Lake st. house same"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "parse_carries": false,
      "sources": [
       "norris_directory_1844"
      ]
     }
    ],
-   "occupation_later": null,
-   "address_later": null,
+   "occupation_later": {
+    "value": "dentist",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0835",
+    "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
+    "printed_fields": "f1839_e0835 | Kennicott, Dr. Wm. H., dentist, Lake street | dentist | Lake street",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Kennicott, Dr. Wm. H., dentist, Lake street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
+   "address_later": {
+    "value": "Lake street",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0835",
+    "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
+    "printed_fields": "f1839_e0835 | Kennicott, Dr. Wm. H., dentist, Lake street | dentist | Lake street",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Kennicott, Dr. Wm. H., dentist, Lake street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
@@ -13072,7 +13022,7 @@
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
      "match_status": "contested",
-     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -13110,72 +13060,7 @@
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
      "match_status": "contested",
-     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e0861",
-       "printed_page": 21,
-       "as_printed": "Kinzie, James, real estate agent, North Canal street"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    },
-    {
-     "volume": "fergus_1843",
-     "title": "Fergus's Chicago directory of 1843",
-     "year": 1843,
-     "source_id": "fergus_chicago_directory_1843",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Kinzie' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1843_e1500",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Kinzie, John Harris, register U.S. land office, 82 Lake, res 243 Michigan [died, on cars near Pittsburg, Pa., June 19, 1865, aged 62.]"
-      },
-      {
-       "claim_id": "f1843_e1501",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Kinzie, John Harris, jr., killed, Ft. St.Charles, Ark., June 18, 1862, a. 33"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ]
-    }
-   ],
-   "occupation_later": null,
-   "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
-   ]
-  },
-  {
-   "person_id": "kinzie_john_s",
-   "household_id": "hh_kinzie_john_s",
-   "resident": "John S Kinzie",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "contested",
-     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -13240,7 +13125,7 @@
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
      "match_status": "contested",
-     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
