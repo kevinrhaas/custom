@@ -1365,6 +1365,23 @@ step "no person asserts a bare 'none_recorded' while the same record dates a tra
 step "the later-trade pointer obeys its own four rules" \
   python3 tools/qualify_later_trades.py --self-test
 
+# THE OTHER HALF OF T-0837's RULE, AND THE HALF ITS OWN TOOL CANNOT SEE (T-0872).
+# T-0837 gated the SYNTHESIZER: a trade only enters the 1835 `occupation` field out of a
+# source whose `describes_date` covers 1835. That stops the next promotion. It says
+# nothing about what earlier passes already committed — and worse, its refusal is
+# SUPPRESSED on exactly those cards, because the synthesizer declines to overwrite a
+# filled field before it ever reaches the date test. So the population the rule forbids
+# was invisible from inside the tool that owns the rule, and sat a month unmeasured: the
+# eight in T-0872's table were already nine four days after it was written.
+#
+# This is the read side. It measures what is STANDING, and its ledger may only fall: a
+# row that disappears is a repair, a row that appears is a regression this refuses.
+step "no standing 1835 trade is cited only to a volume about another year" \
+  python3 tools/audit_scene_window_trades.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/audit_scene_window_trades.py --self-test
+
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
 # new household rewrote up to 73 of the 113 invented names — a diff in which the

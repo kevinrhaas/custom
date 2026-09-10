@@ -1,0 +1,131 @@
+{
+ "schema": "scene_window_trade_audit/1",
+ "generated_by": "tools/audit_scene_window_trades.py",
+ "ticket": "T-0872",
+ "scene_date": "1835-07-01",
+ "_doc": "THE STANDING POPULATION T-0837's WRITE GATE CANNOT SEE. Each row is a person whose 1835 `occupation` carries a trade at a claiming grade while no source cited on that block has a `describes_date` covering 1835. Derived by `tools/audit_scene_window_trades.py`; do not hand-edit anything but the verdicts, which live in the generator beside the rule they adjudicate. A row leaving this file is a repair. A row arriving is a regression, and `--check` refuses it.",
+ "rule": "persons[].occupation.value at a grade in attested/documented/inferred requires at least one cited source whose describes_date spans 1835",
+ "count": 8,
+ "rows": [
+  {
+   "household": "hh_elston_daniel",
+   "person_id": "elston_daniel",
+   "name": "Daniel Elston",
+   "trade": "soap_and_candle_maker",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "pre_scene_printing",
+   "note": "Soap and candle manufactory, Chicago Democrat, 26 November 1833. The corpus last prints the manufactory at the issue of 2 July 1834 (business_daniel_elston_co, business_chicago_soap_and_candle_manufactory); nothing inside the scene window prints the trade."
+  },
+  {
+   "household": "hh_goss_cobb",
+   "person_id": "goss_o",
+   "name": "O. Goss",
+   "trade": "saddler",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "dissolved_before_the_scene",
+   "note": "'Goss & Cobb, saddle and harness makers', Chicago Democrat, 26 November 1833 — and the Chicago American of 8 June 1835 prints the firm's DISSOLUTION, over copy dated 18 February 1835, four months before the scene date. The newspaper register reads business_goss_cobb as `present_at_scene_date: false` on that notice while the card goes on asserting the trade at `attested`. The sharpest row in the population."
+  },
+  {
+   "household": "hh_harmon_brothers",
+   "person_id": "harmon_charles_l",
+   "name": "Charles Loomis Harmon",
+   "trade": "dry_goods_merchant",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "firm_in_window_trade_not_printed",
+   "note": "'C. & I. HARMON', dry goods, crockery, hardware and groceries, Chicago Democrat, 26 November 1833. A Harmon dry-goods firm does stand inside the window — the Democrat of 17 June 1835 prints 'Messrs. Harmon, Loomis & Co.' — but that notice prints no trade, and tying the 1833 brothers to the 1835 firm is reasoning rather than a printing. Both halves would have to be written down before the citation could move."
+  },
+  {
+   "household": "hh_harmon_brothers",
+   "person_id": "harmon_isaac_d",
+   "name": "Isaac Dewey Harmon",
+   "trade": "dry_goods_merchant",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "firm_in_window_trade_not_printed",
+   "note": "The other half of C. & I. Harmon, and the same reading. The Democrat of 5 August 1835 prints 'Isaac Harmon, esq.' winding up Bristol, Vale & Hogue — the man inside the window, without his trade."
+  },
+  {
+   "household": "hh_hathaway_joshua",
+   "person_id": "hathaway_joshua",
+   "name": "Joshua Hathaway jr.",
+   "trade": "forwarding_and_commission",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "hathaway_1834",
+     "describes_date": "1834"
+    }
+   ],
+   "verdict": "trade_read_from_a_map",
+   "note": "Cited to `hathaway_1834`, which is a MAP of 1834 — the extent envelope Kinzie commissioned — carrying his authorship. A surveyor's name in a cartouche is evidence that he drew the map; `forwarding_and_commission` is not read off it at all. The one row in this population whose defect is the READING and not the date."
+  },
+  {
+   "household": "hh_jones_benjamin",
+   "person_id": "jones_benjamin",
+   "name": "Benjamin Jones",
+   "trade": "grocer",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "pre_scene_printing",
+   "note": "A grocery and provision store, Chicago Democrat, 26 November 1833. The register's later readings of this man print `forwarding_and_commission` (21 January to 16 July 1834), not `grocer`, and neither reaches the scene window."
+  },
+  {
+   "household": "hh_kimball_walter",
+   "person_id": "kimball_walter",
+   "name": "W. Kimball",
+   "trade": "dry_goods_merchant",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "pre_scene_printing",
+   "note": "His own signed 'New Store' advertisement, Chicago Democrat, 26 November 1833. The corpus last prints the store at the issue of 4 June 1834 (business_w_kimball); the paper's later readings of the man give `grocer`, to 3 December 1834. Nothing inside the window."
+  },
+  {
+   "household": "hh_mason_matthias",
+   "person_id": "mason_matthias",
+   "name": "Matthias Mason",
+   "trade": "blacksmith",
+   "confidence": "attested",
+   "cited": [
+    {
+     "source_id": "chicago_democrat_1833_11_26",
+     "describes_date": "1833-11"
+    }
+   ],
+   "verdict": "pre_scene_printing",
+   "note": "'Matthias Mason & Co., blacksmiths', Chicago Democrat, 26 November 1833. The MAN is printed in the paper to 20 May 1835, inside the window; the FIRM is last printed 10 December 1834, outside it. A card may not read the second off the first."
+  }
+ ]
+}

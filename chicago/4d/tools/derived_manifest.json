@@ -81,6 +81,12 @@
       "verify": ["python3", "tools/mint_civic_residents.py", "--check"]
     },
     {
+      "why": "The duplicate-cluster ledger, rebuilt from the town and the merge rulings — it runs after mint because it reads the cards mint writes. `--candidates` and NOT `--apply`: --apply performs the card merges and rewrites resident cards (tested on a clean dev, it modified hh_kinzie_john_h.json), which is a judgement being carried out and never something a merge resolution may do on its own. --candidates writes this one ledger and nothing else. Added after the first real use of this manifest left check.sh red on `town_card_candidates.json does not re-derive`.",
+      "command": ["python3", "tools/consolidate_town_cards.py", "--candidates"],
+      "resolves": ["chicago/4d/data/research/residents/town_card_candidates.json"],
+      "verify": ["python3", "tools/consolidate_town_cards.py", "--check"]
+    },
+    {
       "why": "The scene compiles from the residents layer, so it runs last but one.",
       "command": ["python3", "tools/compile_scene.py", "--all"],
       "resolves": [
