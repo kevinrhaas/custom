@@ -1,7 +1,7 @@
 ---
 id: T-0841
 title: The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 5:38:27 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34538051192
 ---
 
 The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?.
