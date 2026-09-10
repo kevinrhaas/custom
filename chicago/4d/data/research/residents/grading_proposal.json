@@ -59,15 +59,15 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6829,
+  "identities": 6828,
   "by_grade": {
    "None": 38,
    "not_1835_resident": 4407,
-   "inferred": 1937,
+   "inferred": 1936,
    "attested": 447
   },
   "by_subtype": {
-   "None": 5124,
+   "None": 5123,
    "projected_resident": 1705
   },
   "by_rule": {
@@ -78,7 +78,7 @@
    "G2b": 39,
    "G1a": 51,
    "G1c": 21,
-   "G2e": 126,
+   "G2e": 125,
    "G2c": 34,
    "G2a": 33,
    "G4": 1
@@ -6370,8 +6370,7 @@
   {"identity":"id_vanburen_judge_evert","name":"Judge Evert Vanburen","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0682"],"evidence_classes":["death_notice"]},
   {"identity":"id_vancleve_h_p","name":"H P Vancleve","canonical_person_id":"vancleve_h_p","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_h_p_van_cleve"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_vancortlandt_pierre","name":"Pierre Vancortlandt","canonical_person_id":"vancortlandt_pierre","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_pierre_van_cortlandt"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
-  {"identity":"id_vandenbogart_h","name":"H Vandenbogart","canonical_person_id":"vandenbogart_h","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_h_van_den_bogart"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
-  {"identity":"id_vanderbogart_henry","name":"Henry Vanderbogart","canonical_person_id":"vanderbogart_henry","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["old_settlers:fdn0049","old_settlers:fdn0683","newspapers:person_h_vanderbogart"],"evidence_classes":["death_notice","newspaper_letter_list","town_layer"]},
+  {"identity":"id_vanderbogart_henry","name":"Henry Vanderbogart","canonical_person_id":"vanderbogart_henry","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0049","old_settlers:fdn0683","newspapers:person_h_vanderbogart","newspapers:person_h_van_den_bogart"],"evidence_classes":["death_notice","newspaper_1833_1835","newspaper_letter_list","town_layer"]},
   {"identity":"id_vanderbogert_henry","name":"Henry Vanderbogert","canonical_person_id":"vanderbogert_henry","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:tax_1833_103"],"evidence_classes":["tax_1833","town_layer"]},
   {"identity":"id_vandercook_charles_raney","name":"Charles Raney Vandercook","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2488","directories:n1844_e1802"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_vanderick_christopher_hh","name":"Christopher Hh Vanderick","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_vanderick_christopher_hh"],"evidence_classes":["newspaper_letter_list"]},

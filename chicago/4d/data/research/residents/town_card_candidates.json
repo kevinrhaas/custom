@@ -4,17 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1359,
-  "open_clusters": 16,
-  "cards_in_open_clusters": 35,
+  "town_people": 1357,
+  "open_clusters": 15,
+  "cards_in_open_clusters": 33,
   "rulings": {
    "distinct": 12,
-   "merge": 29,
-   "undecided_owner": 1,
+   "merge": 30,
    "undecided_rule": 8
   },
-  "landed_merges": 29,
-  "cards_folded": 47
+  "landed_merges": 30,
+  "cards_folded": 49
  },
  "landed": [
   {
@@ -324,6 +323,17 @@
     "temple_t"
    ],
    "rule": "C6"
+  },
+  {
+   "cluster": "vanderbogart",
+   "survivor": "vanderbogart_henry",
+   "survivor_household": "hh_vanderbogart_henry",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "vanderbogart_h",
+    "vandenbogart_h"
+   ],
+   "rule": "C7"
   }
  ],
  "clusters": [
@@ -952,48 +962,6 @@
      "for": [
       "share 1 source(s): chicago_democrat_1833_1835",
       "an initial against its forename, 'john' and 'j'"
-     ],
-     "against": [
-      "neither card is an anchor: nothing here documents the person beyond a list"
-     ]
-    }
-   ]
-  },
-  {
-   "surname": "vanderbogart",
-   "cards": [
-    {
-     "person": "vanderbogart_h",
-     "household": "hh_vanderbogart_h",
-     "name": "H. Vanderbogart",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835",
-      "fergus_1843_old_settler_death_notices"
-     ],
-     "ruling": "deferred",
-     "ruled_in": "vanderbogart-henry"
-    },
-    {
-     "person": "vanderbogart_henry",
-     "household": "hh_vanderbogart_henry",
-     "name": "Henry Vanderbogart",
-     "anchor": false,
-     "sources": [
-      "chicago_democrat_1833_1835",
-      "fergus_1843_old_settler_death_notices"
-     ],
-     "ruling": "deferred",
-     "ruled_in": "vanderbogart-henry"
-    }
-   ],
-   "pairs": [
-    {
-     "a": "vanderbogart_h",
-     "b": "vanderbogart_henry",
-     "for": [
-      "share 2 source(s): chicago_democrat_1833_1835, fergus_1843_old_settler_death_notices",
-      "an initial against its forename, 'h' and 'henry'"
      ],
      "against": [
       "neither card is an anchor: nothing here documents the person beyond a list"
