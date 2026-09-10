@@ -181,6 +181,61 @@
    "refusals": 5,
    "detail": "In this file. Twenty claims is small enough that a separate detail file would only hide the reasoning.",
    "does_not_follow": "THAT A NAME IN THIS VOLUME IS THE PERSON THIS PROJECT HOLDS. The claims name Philo Carpenter, P. F. W. Peck, John Dean Caton, Gurdon S. Hubbard, John S. C. Hogan, Augustus Garrett and twenty-two signatures on a fire company roll, and this project holds people under most of those surnames. Deciding they are the same people is a residents-layer judgement made under the ratified ladder in that layer's own PR, which is what T-0581's third acceptance clause requires; it is not made here and no merge here may be read as making it."
+  },
+  {
+   "pass": "T-0961",
+   "what": "Every row of the LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830, at Moses and Kirkland vol. 1, printed pages 78-79, ruled one by one against data/residents/. Thirty-six rows, thirty-six verdicts, and no row left silent.",
+   "readings_examined": 36,
+   "residents_examined": 36,
+   "merges": 12,
+   "refusals": 16,
+   "absent": 8,
+   "detail": "In this file, and the absences with it. Thirty-six rows is small enough that a separate detail file would only hide the reasoning.",
+   "the_rule_this_pass_worked_to": "A merge is upheld only where the town's own record carries something the ROW can be checked against BEYOND a bare name: a middle initial both records print, a year of arrival the card states in its own words, a date of death, a nativity the card's origin agrees with, or a civic act the card holds out of another document. A bare name on each side is refused however unlikely the coincidence looks. That is data/research/land_sales/resident_rulings.json's `the_ruling_rule`, borrowed intact rather than reinvented, and it is why Samuel Miller and Michael Welch are refused while Barney H. Laughton — a forename in two forms plus a middle initial — is upheld and graded the weakest merge in the pass.",
+   "what_the_remarks_column_licenses": "NOTHING ABOUT 1835-07-01, AND THIS IS THE PASS'S FIRST FINDING. The remarks cells say `Paid taxes in 1825`, `voted in 1826`, `voted in 1830`. Paying a Peoria County tax is a civic act at a date; standing on a poll is a civic act at a date; neither is a residence, and both are five to ten years before the scene. Under the ladder ratified 2026-09-03 a pre-scene civic act CORROBORATES an identity and DATES it and never PLACES a person. So twelve merges moved twelve identities and moved no grade, no arrival and no dwelling. The table's own preamble draws the same line from the other side: it excludes Gurdon S. Hubbard by name because he 'did not take up a permanent residence until 1832', a compiler of 1895 refusing to count a man who was merely often here.",
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ WAS EDITED BY THIS PASS. Two consequences are visible and deliberately not drawn, each named on its own ruling: hh_clark_john_k.json's bound would move from 11 July 1835 to 1817, and the layer holds THREE PAIRS OF CARDS this pass found to be one man each — Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock. All three pairs differ by one letter, which is exactly what the candidate test behind data/residents/card_merge_rulings.json cannot see, and folding cards is a card-merge ruling and not a reading pass's to make in passing. Filed as T-1002.",
+   "absences": [
+    {
+     "record_id": "bk_mose1_as_001",
+     "printed": "Ament, Edward G",
+     "why": "No Ament of any forename in data/residents/."
+    },
+    {
+     "record_id": "bk_mose1_as_013",
+     "printed": "Galloway, James",
+     "why": "No Galloway in data/residents/."
+    },
+    {
+     "record_id": "bk_mose1_as_015",
+     "printed": "Jouett, Charles",
+     "why": "No Jouett in data/residents/. THE FIRST INDIAN AGENT AT CHICAGO, 1805-1811, and the absence is correct: he left twenty-four years before the scene."
+    },
+    {
+     "record_id": "bk_mose1_as_019",
+     "printed": "Kelly, Henry",
+     "why": "No Kelly in data/residents/. The layer holds `mkelly_wilham`, 'Wilham MKelly', which is a DIFFERENT SURNAME (M'Kelly) as well as a different forename, and is named here only so the next pass does not weigh it again."
+    },
+    {
+     "record_id": "bk_mose1_as_012",
+     "printed": "Crafts, John",
+     "why": "No Crafts in data/residents/. The three Wesencraft cards are a different surname. John Crafts was the American Fur Company's man at Chicago and died in 1825; data/research/books/claims/american_fur_company_hurlbut.json reads him at bk_afc_001 as one of 'Hubbard, Beaubien, Crafts and the Kinzies', and the town holds no card because he was ten years dead by 1835."
+    },
+    {
+     "record_id": "bk_mose1_as_027",
+     "printed": "Ouilmette, Antoine",
+     "why": "No Ouilmette in data/residents/ under any of its spellings. He removed to the reservation at Grosse Pointe under the 1829 treaty, which is a documented reason for the absence."
+    },
+    {
+     "record_id": "bk_mose1_as_028",
+     "printed": "Pothier, Joseph",
+     "why": "No Pothier in data/residents/. AND THIS ONE IS A HOLE RATHER THAN AN EXPECTED ABSENCE: hh_mckee_david.json quotes Andreas naming 'Joseph Porthier as striker' at the Indian agency in the same sentence as McKee and Caldwell, both of whom this pass merges. One letter separates Porthier from Pothier and the project holds a card for neither."
+    },
+    {
+     "record_id": "bk_mose1_as_033",
+     "printed": "See, William",
+     "why": "No See in data/residents/, of any forename."
+    }
+   ]
   }
  ],
  "merges": [
@@ -464,6 +519,163 @@
    "does_not_follow": "His record is not edited. Its arrival is already graded attested at year precision off Andreas, and a 1921 digest agreeing with Andreas does not sharpen a year into a month. His departure — 17 April 1837, which this article gives to the day — is after the scene window and belongs to no field this project keeps.",
    "pass": "T-0650",
    "claim_id": "bk_ichr4_005"
+  },
+  {
+   "into": "Col. Jean Baptiste Beaubien",
+   "from": "Beanbien, Jean Baptist",
+   "rule": "The table's row reads 'Beanbien, Jean Baptist', nativity Michigan, YEAR 1812, and the remarks 'Paid taxes in 1825, voted in 1826 and 1830'. This project's resident record is Col. Jean Baptiste Beaubien, graded attested. THE SPELLING FIRST: 'Beanbien, Jean Baptist' is 'Beaubien' with a u read as an n, in a table whose next two rows print Beaubien correctly, so the variation is the scanner's and not the compiler's. THREE THINGS AGREE BEYOND THE NAME. The YEAR cell, 1812, is the year hh_beaubien_jean_baptiste.json's own note gives for his arrival — 'HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812' — and 1812 is a specific year in a column whose other cells run from 1804 to 1829. The nativity cell, Michigan, agrees with the same record's origin 'Detroit and the Milwaukee trade', attested out of Andreas. And the remarks cell's two votes, 1826 and 1830, agree with the same record's roll evidence. A year, an origin and two polls is not a common-name coincidence.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_003",
+    "data/residents/households/hh_beaubien_jean_baptiste.json — persons[0] (beaubien_jean_baptiste, Col. Jean Baptiste Beaubien, trader, attested)",
+    "data/residents/households/hh_beaubien_jean_baptiste.json — the note dating his purchase of the cabin south of the old fort to 1812, and the origin 'Detroit and the Milwaukee trade'"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_003"
+  },
+  {
+   "into": "Mark Beaubien",
+   "from": "Beaubien, Mark",
+   "rule": "The row reads 'Beaubien, Mark', nativity ditto (Michigan), year 1826, remarks 'Voted in 1830, died April 11, 1881'. This project's resident record is Mark Beaubien, the tavern keeper of the Sauganash, graded attested. THE DISCRIMINATOR IS THE DEATH DATE AND IT IS EXACT TO THE DAY: hh_beaubien_mark.json already carries John Wentworth's roll of old settlers who had died since 1 January 1881, printed in the Chicago Tribune of 25 April 1882, reading 'Mark Beaubien, April 11, 1881.' — and Fergus 1843's bracketed note on the same card, '[died, Kankakee, Ill., April 11, 1881, aged 81]'. Moses and Kirkland is a third printing of that day. Two men of one name do not die on one day.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_004",
+    "data/residents/households/hh_beaubien_mark.json — persons[0] (beaubien_mark, Mark Beaubien, tavern_keeper, attested)",
+    "data/residents/households/hh_beaubien_mark.json — the Wentworth old-settler death roll, 'Mark Beaubien, April 11, 1881.'"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_004"
+  },
+  {
+   "into": "Madore Benjamin Beaubien",
+   "from": "Beaubien, Medore Benj",
+   "rule": "The row reads 'Beaubien, Medore Benj' — the scan prints 'Ben]', a j set as a bracket — nativity Chicago, no year, remarks 'Voted in 1830'. This project's resident record is Madore Benjamin Beaubien, graded attested, elected one of the town's five first trustees on 10 August 1833. THE MIDDLE NAME IS PRINTED WHOLE ON BOTH SIDES, which is the discriminator: Benj. is Benjamin, and a middle name is worth more than the forename here because Medore and Madore are the same name spelled two ways by every source that prints it. The nativity cell agrees independently — Chicago, where hh_beaubien_madore.json has him the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, born at the settlement — and the EMPTY YEAR CELL agrees with it in the way only a native's row can: a man born here has no year of arrival to print, and his is the only blank year cell in the table that is not a ditto.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_005",
+    "data/residents/households/hh_beaubien_madore.json — persons[0] (beaubien_madore, Madore Benjamin Beaubien, merchant, attested)",
+    "data/residents/households/hh_beaubien_madore.json — the note making him Jean Baptiste's son, born at the settlement, and one of the five first trustees"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it. AND ONE THING IS DELIBERATELY LEFT UNDONE. The residents layer also holds `beaubien_medore_b`, 'Medore B Beaubien', a thin civic-mint card whose forename is the table's spelling and whose middle initial is this man's. On the evidence they are very probably one card, but folding two CARDS is a card-merge ruling under data/residents/card_merge_rulings.json and its rules, not a reading pass's to make in passing — and the candidate test that built that file cannot see this pair, because Madore and Medore are not the same string. Filed as T-1002 rather than smuggled in here.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_005"
+  },
+  {
+   "into": "Billy Caldwell (Sauganash)",
+   "from": "Caldwell, Billy",
+   "rule": "The row reads 'Caldwell, Billy', nativity Michigan, year 1820, remarks 'Paid taxes in 1825, voted in 1826'. This project's resident record is Billy Caldwell (Sauganash), interpreter to the United States Indian agency at Chicago, graded attested. BILLY IS NOT AN ABBREVIATION HERE AND IS NOT EXPANDED INTO ONE — it is what every Chicago source calls him, this table included, and the card carries it as his name. TWO THINGS AGREE BEYOND THE NAME. The remarks cell's 1826 vote agrees with hh_caldwell_billy.json's own note that he 'appears on the poll lists of 1826 and 1830, usually officiating as one of the clerks of the election' — the card even explains why he is on them. And the nativity cell, Michigan, agrees with the same card's account of a man born about 1780 to an Irish officer of the British army at Detroit and a Potawatomi mother, educated at the Jesuit schools of Detroit.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_006",
+    "data/residents/households/hh_caldwell_billy.json — persons[0] (caldwell_billy, Billy Caldwell (Sauganash), interpreter, attested)",
+    "data/residents/households/hh_caldwell_billy.json — the note placing his birth and schooling at Detroit and naming him on the poll lists of 1826 and 1830"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_006"
+  },
+  {
+   "into": "Archibald Clybourne",
+   "from": "Clybourn, Archibald",
+   "rule": "The row reads 'Clybourn, Archibald', nativity Va, YEAR 1823, remarks ditto ('Paid taxes in 1825, voted in 1826'). This project's resident record is Archibald Clybourne, butcher, graded attested, and the two spellings differ by the final e alone. THE YEAR IS THE DISCRIMINATOR AND IT IS EXACT: hh_clybourne_archibald.json quotes Andreas in the same clause that gives the trade — 'Archibald Clybourne, butcher, CAME IN 1823, then living north of the town limits, and not a voter in the new village' — and this table's YEAR cell reads 1823 in a column running from 1804 to 1829. The card's own note adds that 'the Clybourne family had been at Chicago since the 1820s and its assessment appears in the Peoria County taxpayer lists of 1825', which is the remarks ditto, from the other side and out of another record.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_009",
+    "data/residents/households/hh_clybourne_archibald.json — persons[0] (clybourne_archibald, Archibald Clybourne, butcher, attested)",
+    "data/residents/households/hh_clybourne_archibald.json — Andreas's 'came in 1823' and the Peoria County taxpayer lists of 1825"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it. AND THE LAYER'S SECOND ARCHIBALD IS NAMED, NOT RULED. `clybourn_archibald`, 'Archibald Clybourn', is a thin civic-mint card spelling the surname exactly as this table does. It is very probably the same card as the survivor here, and it is not folded by a reading pass: see the note on the Beaubien merge above and T-1002.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_009"
+  },
+  {
+   "into": "Russel E. Heacock",
+   "from": "Heacock, Russel E",
+   "rule": "The row reads 'Heacock, Russel E', nativity ditto, YEAR 1827, remarks 'Voted in 1830, died at Summit, 1849'. This project's resident record is Russel E. Heacock, attorney, graded attested, and the spellings agree letter for letter — one l in Russel, the middle initial E. THE YEAR IS EXACT AND THE CARD PRINTS IT IN A QUOTATION: hh_heacock_russel_e.json opens with Andreas's 'Russel E. Heacock, who had come in 1827'. The card adds that he lived beyond the southern border of the proposed town in 1833, which is a place, and the remarks cell says he died at Summit — the same direction out of town along the South Branch, where he was licensed to keep a tavern at Heacock's Point in April 1831. THE NATIVITY DITTO IS NOT PART OF THIS MERGE and is not believed: it repeats Ohio from the Galloway row above and nothing on the card supports it.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_014",
+    "data/residents/households/hh_heacock_russel_e.json — persons[0] (heacock_russel_e, Russel E. Heacock, attorney, attested)",
+    "data/residents/households/hh_heacock_russel_e.json — Andreas's 'Russel E. Heacock, who had come in 1827', the tavern licence at Heacock's Point and the residence beyond the southern border"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it. AND THE LAYER'S SECOND RUSSELL IS NAMED, NOT RULED: `heacock_russell_e`, 'Russell E Heacock', two l's, a thin civic-mint card off the Chicago Democrat. The third pair of this shape found in one pass, and all three go to T-1002.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_014"
+  },
+  {
+   "into": "John Harris Kinzie",
+   "from": "Kinzie, John H",
+   "rule": "The row reads 'Kinzie, John H', nativity Canada, year 1804, remarks 'Born July 7, 1803, died Jan. 21, 1865'. This project's resident record is John Harris Kinzie, forwarding and commission merchant, president of the board of trustees for the year before the scene date, graded attested. THE TABLE ITSELF DISTINGUISHES HIM, which is what makes this merge safe where the surname alone would not: the row immediately above is 'Kinzie, John', Quebec, 1804, 'died 1828' — the elder — and the row below is 'Kinzie, James', Detroit, 1824. A compiler who separates three Kinzies by hand is choosing among them, and the middle initial H is his choice. The birth and death dates are John Harris Kinzie's and not his father's, and the YEAR cell 1804 against a birth in July 1803 reads as an arrival in his father's household at ten months old, which is the received account.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_017",
+    "data/residents/households/hh_kinzie_john_h.json — persons[0] (kinzie_john_h, John Harris Kinzie, forwarding_and_commission, attested)",
+    "data/research/books/claims/american_fur_company_hurlbut.json bk_afc_011 — the ratified refusal of the ELDER John Kinzie onto this same card, which is the row above this one"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_017"
+  },
+  {
+   "into": "James Kinzie",
+   "from": "Kinzie, James",
+   "rule": "The row reads 'Kinzie, James', nativity Detroit, year 1824, remarks 'Voted in 1830, born April 21, 1793, died Jan. 3, 1868'. This project's resident record is James Kinzie, merchant and builder of the Green Tree Tavern, graded attested. As with the row above, THE TABLE SEPARATES THE THREE KINZIES ITSELF and this one carries a full forename, not an initial. hh_kinzie_james.json holds him half-brother to John Harris Kinzie on Hurlbut's bracketed note of 1881, which is the same family the table's three rows describe, and the nativity cell Detroit agrees with a half-brother born to the elder Kinzie's Detroit years rather than at Chicago.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_018",
+    "data/residents/households/hh_kinzie_james.json — persons[0] (kinzie_james, James Kinzie, merchant, attested)",
+    "data/residents/households/hh_kinzie_james.json — the graded, reciprocal kin row making him half-brother to John H. Kinzie, on bk_afc_015"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_018"
+  },
+  {
+   "into": "Barnardus H Laughton",
+   "from": "Laughton, Barney H",
+   "rule": "The row reads 'Laughton, Barney H', nativity New England, year 1827, no remarks. This project's resident record is Barnardus H Laughton. THE MIDDLE INITIAL IS THE HINGE AND THE FORENAME IS ITS EVERYDAY FORM: Barney is what Barnardus is called, in the same way the table calls Billy Caldwell Billy, and the initial H agrees on both sides with nothing contradicting it. The layer holds one other adult male Laughton, David — his brother, and the table prints no David — so there is no rival for the forename in this project at all. THIS IS THE WEAKEST MERGE IN THE PASS and is graded as such: the agreement is a forename in two forms plus an initial, and no third attribute is in hand, because hh_laughton_barnardus_h.json is a thin civic-mint card carrying no origin and no arrival. A page image printing Bernardus, or an origin on the card, would settle it; a printing of a second Barney H. Laughton would overturn it.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_024",
+    "data/residents/households/hh_laughton_barnardus_h.json — persons[0] (laughton_barnardus_h, Barnardus H Laughton), bound at Chicago by 7 May 1834",
+    "data/residents/households/hh_laughton_david.json — the only other adult male Laughton the layer holds, and no rival for the forename"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_024"
+  },
+  {
+   "into": "David McKee",
+   "from": "McKee, David",
+   "rule": "The row reads 'McKee, David', nativity Va, year 1823, remarks 'Paid taxes in 1825, voted in 1826'. This project's resident record is David McKee, government blacksmith to the Indian agency at Chicago, graded attested. WHAT CARRIES IT IS THAT BOTH RECORDS PUT A DAVID McKEE AT CHICAGO IN THE 1820s, IN A SETTLEMENT THIS TABLE SIZES AT THIRTY-SIX HOUSEHOLDS. hh_mckee_david.json quotes Andreas's roster of the agency establishment — 'Billy Caldwell (Sauganash) as interpreter; David McKee as blacksmith, and Joseph Porthier as striker' — and Billy Caldwell and Joseph Pothier are the two rows of this same table at bk_mose1_as_006 and bk_mose1_as_028. Three men named together in one sentence of Andreas stand within thirty rows of one another here, and two of the three are already merged in this pass. A common-name coincidence would have to be three deep.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_025",
+    "data/residents/households/hh_mckee_david.json — persons[0] (mckee_david, David McKee, blacksmith, attested)",
+    "data/residents/households/hh_mckee_david.json — Andreas's agency roster naming McKee with Caldwell and Porthier, and the 1832 militia agreement he signed",
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_006 and bk_mose1_as_028 — Caldwell and Pothier, the other two men of that sentence, on this same table"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_025"
+  },
+  {
+   "into": "Alexander Robinson (Che-che-pin-qua)",
+   "from": "Robinson, Alex",
+   "rule": "The row reads 'Robinson, Alex', nativity 'Indian Chief', year 1814, remarks 'Paid taxes in 1825, voted in 1826 and 1830'. This project's resident record is Alexander Robinson (Che-che-pin-qua), trader and a chief of the united Potawatomi, Chippewa and Ottawa band, graded attested. THIS IS THE STRONGEST MERGE IN THE PASS: the row agrees with the card on THREE SEPARATE CIVIC ACTS AT THREE DATES, and hh_robinson_alexander.json states them out of Andreas independently — 'His personal property was assessed at $200 by the Peoria County assessor in 1825 and he is recorded as a voter in 1825, 1826 and 1830.' The nativity cell is not a nativity at all but the office, and the office agrees too: this compiler prints 'Indian Chief' where a birthplace belongs, and the card's own note is that he is a chief of that band. Alex is Alexander with nothing else in the layer bearing it in the town of 1830.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_029",
+    "data/residents/households/hh_robinson_alexander.json — persons[0] (robinson_alexander, Alexander Robinson (Che-che-pin-qua), trader, attested)",
+    "data/residents/households/hh_robinson_alexander.json — the 1825 Peoria County assessment of $200 and the votes of 1825, 1826 and 1830, and the chieftaincy in the person note"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_029"
+  },
+  {
+   "into": "John K Clark",
+   "from": "Clark, John K",
+   "rule": "The row reads 'Clark, John K' — the scan closes the spaces to 'Clark.JohnK' — nativity illegible, year 1817, remarks 'Paid taxes in 1825, voted in 1826'. This project's resident record is John K Clark, and the two agree on forename AND MIDDLE INITIAL. THE INITIAL IS WHAT CARRIES IT, because Clark is one of the commonest surnames in this layer — ten cards — and K is the rarest of the middle initials among them: the layer's other Clarks are Erastus, John A, Timothy J, H. B. and W B, so John K has exactly one rival on the forename and that rival's middle initial is A, which contradicts. This is the C2 shape the card-merge rules already ratify, applied across records rather than across cards. WHAT THIS MERGE DOES NOT DO IS MOVE THE CARD'S BOUND: hh_clark_john_k.json says its earliest source names him at Chicago on 11 July 1835, ten days AFTER the scene date, and this row would put him here from 1817. That is a proposal about an arrival and not a finding of this pass — see does_not_follow.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_008",
+    "data/residents/households/hh_clark_john_k.json — persons[0] (clark_john_k, John K Clark), bound at Chicago by 11 July 1835",
+    "data/residents/card_merge_rulings.json rule C2 — an initial onto its one full forename, two rivals being a refusal; here the rival's initial contradicts"
+   ],
+   "does_not_follow": "NOTHING IN data/residents/, data/structures/ OR data/assets/ IS EDITED BY THIS MERGE. It is an identity statement inside the research layer, and the row it rests on describes a civic act between 1825 and 1830 — five to ten years before the scene date. Under the ladder ratified 2026-09-03 a pre-scene act corroborates and dates and never places: no grade moves, no arrival is written, no dwelling is sought on the strength of it. AND ONE CONSEQUENCE IS DELIBERATELY NOT DRAWN. hh_clark_john_k.json's bound falls AFTER the scene date and this row is evidence he was at Chicago from 1817 — which would move that card from 'named after the scene' to 'named before it'. Moving a bound is a resident-record edit and a second demonstration, and a tier-3 compilation of 1895 is the weakest evidence in the building for doing it. Proposed in T-0961 and not made.",
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_008"
   }
  ],
  "refusals": [
@@ -940,6 +1152,186 @@
     "data/research/books/moses_kirkland_v1_lead_surnames.json — the `mattoson` row, occurrences 0, edit_distance_1_in_the_volume {matteson: 8, mattoon: 3}"
    ],
    "pass": "T-0581"
+  },
+  {
+   "a": "Kinzie, John",
+   "b": "John Harris Kinzie",
+   "rule": "The row 'Kinzie, John', nativity Quebec, year 1804, remarks 'Paid taxes in 1825, voted in 1826, died 1828', is JOHN KINZIE THE ELDER, and the remarks cell says so in its own last word. John Harris Kinzie is his son, a different man, merged in this same pass from the row immediately below this one. The two share a surname and a forename across a generation, which is the standard way early-Chicago sources are misread; this refusal is the one data/research/books/claims/american_fur_company_hurlbut.json already ratified at bk_afc_011, restated because a second source has now printed the trap. Refused, and refused loudly: a man dead in 1828 belongs in no 1835 record at all, and the layer holds no card for him.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_016",
+    "data/research/books/crosswalk.json — the T-0575 refusal of 'Mr. John Kinzie' against John Harris Kinzie, on bk_afc_011",
+    "data/residents/households/hh_kinzie_john_h.json — persons[0], the son, whose own row is bk_mose1_as_017"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_016"
+  },
+  {
+   "a": "Wolcott, Alex",
+   "b": "Alexander Wolcott",
+   "rule": "The row 'Wolcott, Alex', nativity Pa, year 1820, remarks 'Paid taxes in 1825, voted in 1826 and 1830', is Dr Alexander Wolcott the Indian agent, who came to the Chicago agency in 1820 and died on 25 October 1830. The layer's card of that name is refused NOT because the identification is doubtful but because the card called Alexander Wolcott IS ALREADY A CONFLATION AND SAYS SO ITSELF. hh_wolcott_alexander.json carries, on one person: a death notice reading 'Wolcott, Dr. Alexander, Indian agent, died Oct. 25, 1830, aged 40'; an 1833 tax-list entry; Fergus 1839's 'Wolcott, Alex., clerk Steamer Geo. W. Dole, for St. Joseph'; Fergus 1843's 'Wolcott, Alex., surveyor, bds H. Wolcott [died Aug. 11, 1884, a. 69]'; and the Calumet Club's 1882 reception. The card's own text says 'AND THIS CARD CONTRADICTS ITSELF ON THE POINT ... A man dead by then did not sign it'. A steamboat clerk of 1839, a surveyor who died in 1884 aged 69, and an agent who died in 1830 aged 40 are at least two men. Adding a fourth reading of the elder to that card would DEEPEN the conflation while looking like evidence, so this row is refused onto it and left standing as a row.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_034",
+    "data/residents/households/hh_wolcott_alexander.json — the death notice fdn0742, 'Wolcott, Dr. Alexander, Indian agent, died Oct. 25, 1830, aged 40'",
+    "data/residents/households/hh_wolcott_alexander.json — the 1839 and 1843 directory entries, and the card's own statement that it contradicts itself"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_034"
+  },
+  {
+   "a": "Miller, Samuel",
+   "b": "Samuel Miller",
+   "rule": "The row 'Miller, Samuel' carries NO nativity cell, a year of 1827 and one civic act, 'Voted in 1830'. This project's Samuel Miller is a civic-mint card whose earliest bound is the muster of 1832 and which records no trade, no origin and no dwelling. So both sides are a bare name, and Miller is the fourth commonest surname in this layer — the town holds Fred, George, John and Samuel. A bare name on each side is refused however unlikely the coincidence looks, which is the rule data/research/land_sales/resident_rulings.json ratified and applied twice. WHAT WOULD OVERTURN IT: the Samuel Miller of the Wolf Point tavern is well attested elsewhere, and a trade, an origin or a pre-1832 bound reaching this card would make the year cell mean something.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_026",
+    "data/residents/households/hh_miller_samuel.json — persons[0] (miller_samuel), occupation none_recorded, no origin, bound at Chicago by 31 December 1832 off the 1832 muster",
+    "data/residents/ — the layer holds four Millers (Fred, George, John, Samuel)"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_026"
+  },
+  {
+   "a": "Welch, Michael",
+   "b": "Michael P Welch",
+   "rule": "The row 'Welch, Michael', nativity Ire, year 1829, no remarks, against this project's Michael P Welch, a civic-mint card with no trade, no origin and a bound of 24 December 1834. The card carries a MIDDLE INITIAL the row does not print and the row carries a NATIVITY the card does not hold, so there is nothing on either side that the other can be checked against: what agrees is the forename and the surname, and that is the bare name the rule refuses. WHAT WOULD OVERTURN IT is unusually concrete here — the card cites census_1840_chicago_familysearch_images, and an origin column reading Ireland on that sheet would meet the row's one distinguishing cell.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_036",
+    "data/residents/households/hh_welch_michael_p.json — persons[0] (welch_michael_p), occupation none_recorded, no origin, bound at Chicago by 24 December 1834"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_036"
+  },
+  {
+   "a": "Anderson, Joseph",
+   "b": "Eli F Anderson",
+   "rule": "The row 'Anderson, Joseph' against Eli F Anderson, the only Anderson this project holds. The forenames are different words. A surname-only merge is always a refusal here however good the rule, and there is no rule: nothing proposes that Joseph and Eli F are one man.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_002",
+    "data/residents/households/hh_anderson_eli_f.json — the layer's one Anderson"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_002"
+  },
+  {
+   "a": "Caldwell, Archibald",
+   "b": "Billy Caldwell (Sauganash)",
+   "rule": "The row 'Caldwell, Archibald', Va, 1827, '1st tavern 1829' against Billy Caldwell (Sauganash), the only Caldwell this project holds and a man merged in this same pass from a different row of this same table. Two rows of one table are two men by the table's own reckoning, and the forenames are different words besides. THE ROW IS A REAL ABSENCE: a Virginian who kept the settlement's first tavern in 1829 has no card at all here, and the structures layer has no building from him.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_007",
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_006 — Billy Caldwell's own row, two lines above it",
+    "data/residents/households/hh_caldwell_billy.json — the layer's one Caldwell"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_007"
+  },
+  {
+   "a": "Clybourn, Henley",
+   "b": "S Clybourn",
+   "rule": "The row 'Clybourn, Henley' against S Clybourn, the layer's only Clybourn card besides Archibald's two. An initial S does not expand to Henley. Refused on the initial, and refused a second time on the rule that an initial with no rival to decide it is still not a name.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_010",
+    "data/residents/households/hh_clybourn_s.json — the layer's S Clybourn"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_010"
+  },
+  {
+   "a": "Clybourn, Jonas",
+   "b": "S Clybourn",
+   "rule": "The row 'Clybourn, Jonas' against S Clybourn, on the same reasoning as the Henley row above: an initial S does not expand to Jonas, and the layer holds no other candidate. The two refusals are stated separately because two rows are two men and a shared rule is not a shared verdict.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_011",
+    "data/residents/households/hh_clybourn_s.json — the layer's S Clybourn"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_011"
+  },
+  {
+   "a": "Walker, Rev. Jessa",
+   "b": "Jeremiah Walker",
+   "rule": "The row 'Walker, Rev. Jessa' — Rev. Jesse Walker, the Methodist itinerant of the Illinois circuit — against Jeremiah Walker, the nearest of the four Walkers this project holds (the others are George E., George H. and James). Jesse and Jeremiah share three letters and are different names, and the row's TITLE is the argument against the merge rather than for it: a clergyman is the one trade this table prints, and none of the four Walker cards carries it. Refused, and the near-miss is named so the next pass does not have to rediscover it.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_035",
+    "data/residents/households/hh_walker_jeremiah.json — the nearest forename among the layer's four Walkers"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_035"
+  },
+  {
+   "a": "Scott, Stephen",
+   "b": "John Scott",
+   "rule": "The row 'Scott, Stephen', Conn, 1828, against John Scott, the only Scott this project holds. Different forenames, both printed whole. Refused.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_030",
+    "data/residents/households/hh_scott_john.json — the layer's one Scott"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_030"
+  },
+  {
+   "a": "Scott, Williard",
+   "b": "John Scott",
+   "rule": "The row 'Scott, Williard' — Willard, the scan doubling an i — against John Scott, the only Scott this project holds. Different forenames, both printed whole. Refused.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_031",
+    "data/residents/households/hh_scott_john.json — the layer's one Scott"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_031"
+  },
+  {
+   "a": "Scott, Willis",
+   "b": "John Scott",
+   "rule": "The row 'Scott, Willis' against John Scott, the only Scott this project holds. Different forenames, both printed whole. THE THREE SCOTT ROWS ARE REFUSED ONE BY ONE and not as a block: Stephen, Willard and Willis are three men on the table's own reckoning, and a block refusal would read as one verdict where three were owed.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_030, bk_mose1_as_031 and bk_mose1_as_032 — the three Scott rows",
+    "data/residents/households/hh_scott_john.json — the layer's one Scott"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_032"
+  },
+  {
+   "a": "Laframboise, Henry, Sr",
+   "b": "Josette LaFramboise Beaubien",
+   "rule": "The row 'Laframboise, Henry, Sr' against Josette LaFramboise Beaubien, the ONLY bearer of this surname the residents layer holds — and she is a woman, already written into Col. Jean Baptiste Beaubien's household as his wife, and the daughter of Francois LaFramboise. What the row and the card share is the surname and nothing else; a surname-only merge is always a refusal here. FOUR LAFRAMBOISE ROWS RUN TOGETHER ON THIS TABLE — Henry Sr, Henry Jr, Claude and Joseph — and this project holds a card for none of them, which makes them the largest single family absence the table exposes.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_020",
+    "data/residents/households/hh_beaubien_jean_baptiste.json — persons (beaubien_josette, Josette LaFramboise Beaubien), the layer's only LaFramboise"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_020"
+  },
+  {
+   "a": "Laframboise, Henry, Jr",
+   "b": "Josette LaFramboise Beaubien",
+   "rule": "The row 'Laframboise, Henry, Jr' against Josette LaFramboise Beaubien, the ONLY bearer of this surname the residents layer holds — and she is a woman, already written into Col. Jean Baptiste Beaubien's household as his wife, and the daughter of Francois LaFramboise. What the row and the card share is the surname and nothing else; a surname-only merge is always a refusal here. FOUR LAFRAMBOISE ROWS RUN TOGETHER ON THIS TABLE — Henry Sr, Henry Jr, Claude and Joseph — and this project holds a card for none of them, which makes them the largest single family absence the table exposes.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_021",
+    "data/residents/households/hh_beaubien_jean_baptiste.json — persons (beaubien_josette, Josette LaFramboise Beaubien), the layer's only LaFramboise"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_021"
+  },
+  {
+   "a": "Laframboise Claude",
+   "b": "Josette LaFramboise Beaubien",
+   "rule": "The row 'Laframboise Claude' against Josette LaFramboise Beaubien, the ONLY bearer of this surname the residents layer holds — and she is a woman, already written into Col. Jean Baptiste Beaubien's household as his wife, and the daughter of Francois LaFramboise. What the row and the card share is the surname and nothing else; a surname-only merge is always a refusal here. FOUR LAFRAMBOISE ROWS RUN TOGETHER ON THIS TABLE — Henry Sr, Henry Jr, Claude and Joseph — and this project holds a card for none of them, which makes them the largest single family absence the table exposes.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_022",
+    "data/residents/households/hh_beaubien_jean_baptiste.json — persons (beaubien_josette, Josette LaFramboise Beaubien), the layer's only LaFramboise"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_022"
+  },
+  {
+   "a": "Laframboise, Joseph",
+   "b": "Josette LaFramboise Beaubien",
+   "rule": "The row 'Laframboise, Joseph' against Josette LaFramboise Beaubien, the ONLY bearer of this surname the residents layer holds — and she is a woman, already written into Col. Jean Baptiste Beaubien's household as his wife, and the daughter of Francois LaFramboise. What the row and the card share is the surname and nothing else; a surname-only merge is always a refusal here. FOUR LAFRAMBOISE ROWS RUN TOGETHER ON THIS TABLE — Henry Sr, Henry Jr, Claude and Joseph — and this project holds a card for none of them, which makes them the largest single family absence the table exposes.",
+   "evidence": [
+    "data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json bk_mose1_as_023",
+    "data/residents/households/hh_beaubien_jean_baptiste.json — persons (beaubien_josette, Josette LaFramboise Beaubien), the layer's only LaFramboise"
+   ],
+   "pass": "T-0961",
+   "record_id": "bk_mose1_as_023"
   }
  ]
 }

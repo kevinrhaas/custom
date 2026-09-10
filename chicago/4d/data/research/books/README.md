@@ -31,7 +31,7 @@ after 1835. The date a passage DESCRIBES is the one the reconstruction cares
 about, and a memoir's own distance from it is a reason to grade carefully, not a
 reason to skip the field.
 
-**Hand-authored:** `claims/`, `text/`, `coverage.json`, `crosswalk.json`, `corpus.json`.
+**Hand-authored:** `claims/`, `records/`, `text/`, `coverage.json`, `crosswalk.json`, `corpus.json`.
 **Generated:** `page_index/` (`tools/build_book_page_index.py --build`, gated by its own
 `--check` in `tools/check.sh`); `data/research/domains.json`.
 
@@ -46,6 +46,103 @@ and in a 226-page scan, a hole is the difference between "read" and "opened".
 
 **This is research, not payload.** Nothing under `data/research/` reaches
 `site/chicago/4d/`.
+
+---
+
+## What has been read (T-0961, 2026-09-10) — the one TABLE in a domain of prose
+
+**Moses and Kirkland vol. 1, printed pages 78-79: LIST OF ACTUAL SETTLERS AT CHICAGO,
+PRIOR TO 1830** — thirty-six rows at
+`records/moses_kirkland_v1_actual_settlers_pre_1830.json`, with the NAME, NATIVITY, YEAR
+and REMARKS cells as separate fields and the scan's own printed line beside them.
+
+**Why this domain now has a `records/` file at all.** The shape is decided by the SOURCE
+and not by the domain — `tools/research_domains.py` says so at the top of itself — and
+these two pages are not prose. They are a four-column table, and the unit is a row read as
+it stands. Every other reading in this domain is a paragraph and sits under `claims/` for
+the same reason in reverse. **T-0581 found this table and deliberately did not transcribe
+it**, recording only its existence and the rule it was built on, as claim `bk_mose1_014`;
+that was a scope decision and this is the demonstration it deferred.
+
+**The verbatim gate now reaches a row, when the row asks it to.** A claim's `quote` has
+always been rebuilt out of the committed text and failed on a one-character difference. A
+record's `as_read` cannot be — it is a *cell*, lifted out of one column, and no line of text
+contains it alone. So each of these rows carries a `verbatim` of the whole printed line
+beside its cells, and `research_domains.py --check` rebuilds THAT at the row's own locator.
+The field is **opt-in and stays opt-in**: the domains whose rows come off a scan — a census
+sheet, a parish register — have no committed text to rebuild from and never will, and
+requiring the field would either fail them or teach them to fake it. A row that offers it is
+asking to be checked.
+
+**What the REMARKS column licenses, which is the reading's first finding.** The cells say
+*Paid taxes in 1825*, *voted in 1826*, *voted in 1830*. Those are **civic acts at dates**,
+every one of them five to ten years before the scene. Paying a Peoria County tax in 1825
+says a man was assessed in 1825; standing on the 1830 poll says he was on that poll.
+**Neither is a residence on 1835-07-01**, singly or together. Under the ladder ratified
+2026-09-03 a pre-scene civic act corroborates an identity and dates it and never places a
+person, so the twelve merges below moved twelve identities and moved **no grade, no arrival
+and no dwelling**. The table's own preamble draws the same line from the other side: it
+names those "known to have had a residence at the settlement" *before* 1830 and excludes
+Gurdon S. Hubbard by name because he "did not take up a permanent residence until 1832" — a
+compiler of 1895 refusing to count a man who was merely often here.
+
+**Thirty-six rows, thirty-six verdicts, none left silent** (`crosswalk.json`, pass T-0961):
+
+| verdict | n | |
+|---|---|---|
+| **merged** onto a card | 12 | Jean Baptiste, Mark and Madore Benjamin Beaubien; Billy Caldwell; John K. Clark; Archibald Clybourne; Russel E. Heacock; John Harris and James Kinzie; Barnardus H. Laughton; David McKee; Alexander Robinson |
+| **refused** | 16 | John Kinzie the elder; Dr Alexander Wolcott; Samuel Miller; Michael Welch; three Scotts; four Laframboises; two Clybourns; Joseph Anderson; Archibald Caldwell; Rev. Jesse Walker |
+| **absent** — the layer holds no card of the surname | 8 | Ament, Galloway, Jouett, Crafts, Kelly, Ouilmette, Pothier, See |
+
+**The rule was borrowed intact and not reinvented.** A merge is upheld only where the town's
+own card carries something the ROW can be checked against **beyond a bare name** — a middle
+initial both records print, an arrival year the card states in its own words, a date of
+death, a nativity the card's origin agrees with, or a civic act the card holds out of
+another document. That is `data/research/land_sales/resident_rulings.json`'s
+`the_ruling_rule`. It is why **Samuel Miller and Michael Welch are refused** — a common name
+against a thin card, with nothing on either side to check — while **Barney H. Laughton is
+upheld and graded the weakest merge in the pass**, the agreement being a forename in two
+forms plus a middle initial.
+
+**The three strongest merges are strong for three different reasons**, and they are worth
+naming because they are the shapes the next pass should look for. *Mark Beaubien*: the
+remarks cell reads "died April 11, 1881" and his card already carries Wentworth's
+old-settler roll reading "Mark Beaubien, April 11, 1881" — **two men of one name do not die
+on one day**. *Alexander Robinson*: the row and the card agree on **three separate civic acts
+at three dates**, stated independently out of Andreas. *Archibald Clybourne* and *Russel E.
+Heacock*: the YEAR cell — 1823 and 1827 — is **exactly the year each card quotes Andreas
+for**, in a column running from 1804 to 1829.
+
+**The refusal worth reading is Dr Alexander Wolcott's,** and it is refused for a reason that
+is not doubt. The row is plainly the Indian agent who came in 1820 and died 25 October 1830.
+The layer's card of that name is **already a conflation and says so in its own text**: it
+carries that death notice, an 1839 directory entry making him clerk of the Steamer Geo. W.
+Dole, an 1843 entry making him a surveyor who died in 1884 aged 69, and an 1882 reception.
+A fourth reading of the elder would have **deepened the conflation while looking like
+evidence**. The elder Kinzie is refused on the same generational ground the American Fur
+Company pass already ratified at `bk_afc_011` — restated here because a second source has
+now printed the same trap.
+
+**Two things this pass found and deliberately did not do**, both named on their own rulings.
+`hh_clark_john_k.json`'s bound would move from 11 July 1835 (ten days *after* the scene) back
+to 1817 — a resident-record edit, on the weakest evidence in the building for making one. And
+the layer holds **three pairs of cards this pass found to be one man each**: Madore/Medore
+Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock. All three differ by **one
+letter**, which is precisely what the candidate test behind
+`data/residents/card_merge_rulings.json` cannot see — it compares strings. Folding cards is a
+card-merge ruling; it is filed as **T-1002** rather than smuggled into a reading pass.
+
+**Hurlbut pages 37-8 were not fetched, and the reason is provenance and not effort.** The
+table credits *Hurlbut's Chicago Antiquities, pp. 37-8* three lines above itself, and this
+project holds Hurlbut at `text/hurlbut_chicago_antiquities_28_36.txt` — pages 28 to 36,
+stopping one page short. Extending it is not a download: `corpus.json` is the register, and
+an entry there owes a deposit, a sha256, and a statement of how the derived text was
+produced, because a quote is checked against a committed file and a file that cannot be
+traced back to an artifact makes the check circular. The existing Hurlbut text is a
+Genealogy Trails transcription with no page breaks marked anywhere in it, so pages 37-8
+cannot simply be appended to it either — they would need their own deposit and their own
+provenance. That is its own demonstration, and this run did not spend a transcription's
+budget on half of one.
 
 ---
 
