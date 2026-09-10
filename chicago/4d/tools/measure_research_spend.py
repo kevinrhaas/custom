@@ -110,6 +110,7 @@ invent a plausible-looking citation, which would take this gate green on a lie.
     tools/measure_research_spend.py --raise newberry_index --why "T-0578 read vol 2"
     tools/measure_research_spend.py --raise <domain> --hop write|source --why "..."
     tools/measure_research_spend.py --tighten    reclaim slack after spending
+    tools/measure_research_spend.py --tighten <domain> --hop write --why "..."
     tools/measure_research_spend.py --rebaseline first write only
     tools/measure_research_spend.py --self-test
 """
@@ -917,38 +918,63 @@ def raise_ceiling(domain: str, why: str, hop: str = "read") -> int:
     return 0
 
 
-def tighten() -> int:
+def tighten(domain: str | None = None, hop: str = "read", why: str = "") -> int:
     """Lower every ceiling that sits above what the domain now reads. Always safe:
-    it can only make the gate stricter, so it needs no reason and asks for none."""
+    it can only make the gate stricter, so it needs no reason and asks for none.
+
+    NAMING A DOMAIN NARROWS IT TO ONE CEILING, and T-0992 is why. A pass that spends one
+    domain reclaims that domain's slack, and a bare `--tighten` reclaims everybody's at the
+    same time — pinning six other domains to the exact figure they happened to read that
+    morning, so the next run to read ahead of its own adjudication goes red on a ceiling no
+    ticket touched. The ratified ladder REQUIRES reading ahead, so that slack is not waste.
+    A scoped tightening takes back only what the unit earned, and because it is a deliberate
+    move rather than a sweep it records itself in `lowered[]` and asks for the reason.
+    """
     baseline = read_json(BASELINE)
     if not isinstance(baseline, dict):
         print(f"   no baseline at {BASELINE.name} — run --rebaseline")
         return 1
+    if domain and not why.strip():
+        print("   a scoped tightening records itself, so it needs --why")
+        return 1
     ceilings = baseline.setdefault("unspent_ceiling", {})
     written = baseline.setdefault("unwritten_ceiling", {})
     unsourced = baseline.setdefault("unsourced_ceiling", {})
+    rows = [r for r in measure() if domain is None or r["domain"] == domain]
+    if domain and not rows:
+        print(f"   {domain} is not a registered domain")
+        return 1
+    wants = {"read", "write", "source"} if domain is None else {hop}
     moved = []
-    for row in measure():
+    for row in rows:
         was = ceilings.get(row["domain"])
-        if was is not None and row["unspent"] < was:
+        if "read" in wants and was is not None and row["unspent"] < was:
             ceilings[row["domain"]] = row["unspent"]
             baseline.setdefault("witness", {})[row["domain"]] = {
                 "read": row["read"], "spent": row["spent"]}
-            moved.append((row["domain"], was, row["unspent"]))
+            moved.append((row["domain"], "read", was, row["unspent"]))
         was_w = written.get(row["domain"])
-        if was_w is not None and row["unwritten"] < was_w:
+        if "write" in wants and was_w is not None and row["unwritten"] < was_w:
             written[row["domain"]] = row["unwritten"]
-            moved.append((f"{row['domain']} (unwritten)", was_w, row["unwritten"]))
+            moved.append((row["domain"], "write", was_w, row["unwritten"]))
         was_s = unsourced.get(row["domain"])
-        if was_s is not None and row["unsourced"] < was_s:
+        if "source" in wants and was_s is not None and row["unsourced"] < was_s:
             unsourced[row["domain"]] = row["unsourced"]
-            moved.append((f"{row['domain']} (unsourced)", was_s, row["unsourced"]))
+            moved.append((row["domain"], "source", was_s, row["unsourced"]))
     if not moved:
         print("every ceiling already sits at what its domain reads — nothing to reclaim")
         return 0
+    if domain:
+        # A sweep is bookkeeping and says so by leaving no entry; a scoped move is a
+        # decision about one domain, and `lowered[]` is where this file keeps those.
+        for name, which, was, now in moved:
+            baseline.setdefault("lowered", []).append(
+                {"domain": name, "hop": which, "from": was, "to": now,
+                 "date": date.today().isoformat(), "why": why.strip()})
     write_baseline(baseline)
-    for domain, was, now in moved:
-        print(f"tightened {domain}: {was} -> {now} (reclaimed {was - now})")
+    for name, which, was, now in moved:
+        label = name if which == "read" else f"{name} ({which})"
+        print(f"tightened {label}: {was} -> {now} (reclaimed {was - now})")
     return 0
 
 
@@ -1415,6 +1441,47 @@ def self_test() -> int:
             fires("…and never RAISES a ceiling that is already tight",
                   json.loads(BASELINE.read_text())["unspent_ceiling"] == live)
 
+            # T-0992: the SCOPED tightening. A bare --tighten pins every domain to the
+            # figure it happened to read that morning, and reading ahead of an
+            # adjudication is what the ratified ladder requires — so a pass that spends
+            # ONE domain must be able to reclaim only its own slack.
+            slacked = json.loads(BASELINE.read_text())
+            others = [d for d in live if d != some]
+            slacked["unspent_ceiling"] = {d: live[d] + 50 for d in live}
+            BASELINE.write_text(json.dumps(slacked))
+            fires("a scoped tightening with no reason is refused",
+                  tighten(some, "read", "") == 1
+                  and json.loads(BASELINE.read_text())["unspent_ceiling"][some]
+                  == live[some] + 50)
+            fires("a scoped tightening reclaims the domain it names",
+                  tighten(some, "read", "T-0992 self-test") == 0
+                  and json.loads(BASELINE.read_text())["unspent_ceiling"][some] == live[some])
+            fires("…and leaves every other domain's slack alone",
+                  all(json.loads(BASELINE.read_text())["unspent_ceiling"][d] == live[d] + 50
+                      for d in others))
+            fires("…and records itself in lowered[], with the reason it was given",
+                  json.loads(BASELINE.read_text())["lowered"][-1]
+                  == {"domain": some, "hop": "read", "from": live[some] + 50,
+                      "to": live[some], "date": date.today().isoformat(),
+                      "why": "T-0992 self-test"})
+            fires("a domain nobody registered is refused rather than silently ignored",
+                  tighten("no_such_domain", "read", "why") == 1)
+            scoped = json.loads(BASELINE.read_text())
+            scoped["unspent_ceiling"] = dict(live)
+            scoped["unwritten_ceiling"] = {d: 5 for d in scoped.get("unwritten_ceiling", {})}
+            BASELINE.write_text(json.dumps(scoped))
+            hopped = next((d for d in scoped["unwritten_ceiling"]), None)
+            if hopped:
+                fires("--hop write tightens the write ceiling and not the read one",
+                      tighten(hopped, "write", "T-0992 self-test") == 0
+                      and json.loads(BASELINE.read_text())["unwritten_ceiling"][hopped] == 0
+                      and json.loads(BASELINE.read_text())["unspent_ceiling"] == live)
+            # …and hand the cases below the fully-tight baseline they were written against.
+            BASELINE.write_text(json.dumps(after))
+            fires("the scoped cases leave a baseline a bare --tighten still closes",
+                  tighten() == 0
+                  and json.loads(BASELINE.read_text())["unspent_ceiling"] == live)
+
             # T-0598: the unsourced ratchet, which defaults to zero and so needs no
             # entry in the baseline to bite. Proved against the live tree, which
             # states a source for every ruling that reaches a town person.
@@ -1456,8 +1523,10 @@ def main() -> int:
     parser.add_argument("--hop", default="read", choices=("read", "write", "source"),
                         help="which ceiling to raise: read (read vs ruled), write "
                              "(ruled vs on a card) or source (reaches a person, states nothing)")
-    parser.add_argument("--tighten", action="store_true",
-                        help="lower every ceiling to what its domain now reads (always safe)")
+    parser.add_argument("--tighten", nargs="?", const="*", metavar="DOMAIN",
+                        help="lower every ceiling to what its domain now reads (always safe); "
+                             "name ONE domain to reclaim only that domain's slack on --hop, "
+                             "which records itself in lowered[] and needs --why")
     parser.add_argument("--self-test", action="store_true", dest="self_test")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
@@ -1466,7 +1535,8 @@ def main() -> int:
     if args.raise_domain:
         return raise_ceiling(args.raise_domain, args.why, args.hop)
     if args.tighten:
-        return tighten()
+        one = None if args.tighten == "*" else args.tighten
+        return tighten(one, args.hop, args.why)
     if args.rebaseline:
         return rebaseline()
     if args.gate:

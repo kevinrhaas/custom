@@ -104,7 +104,6 @@
 # --- T-0962 LEADS because it is the honesty check on the sentence above: the spend meter cannot
 # --- see a resident_crosswalk in every domain, so "1,282 of 1,282" may be an undercount of what
 # --- is still unwritten. Run it, then spend whatever it exposes, here.
-T-0992 — Second Presbyterian's 82 adjudicated roll members reach 82 cards and not one card cites the roll: spend them, and drop church's write ceiling back to zero
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
@@ -329,3 +328,4 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 # --- EPIC: THE NEWBERRY INDEX — 4,199 of 6,658 cards unread at a measured 0.0% match rate.
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
+

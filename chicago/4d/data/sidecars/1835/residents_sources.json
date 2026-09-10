@@ -1507,6 +1507,26 @@
       "tier": 3,
       "tier_label": "compiled secondary (Andreas)"
     },
+    "second_presbyterian_chicago_1892": {
+      "source_id": "second_presbyterian_chicago_1892",
+      "citation": "The Second Presbyterian Church of Chicago, June 1st, 1842, to June 1st, 1892 (Chicago: Knight, Leonard & Co., 1892), John C. Grant, editor — the semi-centennial volume of the congregation, read from the Princeton Theological Seminary copy digitised by the Internet Archive as item secondpresbyterian00chic",
+      "url": "https://archive.org/details/secondpresbyterian00chic",
+      "archived_url": "https://archive.org/details/secondpresbyterian00chic",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "what_it_supplies": [
+        "2,255 lines of a Chicago church roll running from 1 June 1842 to 1892 — a name, how the member was admitted (profession or letter), the date, and for the closed roll a remark (dismissed, deceased, ordained).",
+        "962 distinct surnames, of which 938 lines carry a surname this project already holds from the town of 1835.",
+        "The founding cohort of 1 June 1842, which is where the overlap with the 1835 town is thickest: W. H. Brown, George W. Dole and Mrs A. N. Fullerton are all on the first day's roll.",
+        "A dated Chicago appearance for a surname, which is exactly the kind of second source the resident sweep files as a lead."
+      ],
+      "what_it_does_not_supply": [
+        "An 1835 residency, or any part of one. The earliest line on the roll is seven years after the scene date and the ratified ladder never makes an 1835 resident from a later appearance alone.",
+        "A woman's own name, much of the time. The roll sets a wife as `Mrs.` followed by her HUSBAND'S name — `Fullerton, Mrs. A. N.` — so a line that meets a man in the 1835 layer has met his name and not him, and the crosswalk flags every such line.",
+        "A death or a departure that can be dated. `Deceased` and `Dismissed` are the state of the roll at its closing on 1 June 1892, not events with dates of their own.",
+        "An address, a trade or a household. The roll carries none of the three."
+      ]
+    },
     "st_cyr_register_ichr_v4": {
       "source_id": "st_cyr_register_ichr_v4",
       "citation": "The first Chicago Catholic church register — Father John Mary Irenaeus St. Cyr's marriage register and his death and burial page — as printed and annotated in the *Illinois Catholic Historical Review*, vol. 4 (July 1921 - April 1922), and republished in two pages by the Genealogy Trails Transcription Team. 128 dated marriages of 1834-1839, each naming groom, bride, witnesses and officiating priest, and 11 deaths and burials of June 1834 to March 1837.",
