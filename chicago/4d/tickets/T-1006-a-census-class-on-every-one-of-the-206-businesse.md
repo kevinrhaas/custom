@@ -1,7 +1,7 @@
 ---
 id: T-1006
 title: A census class on every one of the 206 businesses, and the December 1835 trade count set against the town class by class
-state: claimed
+state: done
 epic: TOWN
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0988
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1083
 claimed_by: run 9/10/2026, 3:08:08 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T20:32:46.555Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34523691461
 ---
 
