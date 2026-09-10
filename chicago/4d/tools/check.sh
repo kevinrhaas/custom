@@ -1287,6 +1287,20 @@ step "…and a duplicate id renumbers the branch's side, carrying only its own r
 step "no two tickets in this tree carry the same id" \
   node tools/resolve_id_collisions.mjs --check
 
+# THE MANIFEST THE PR LAP RESOLVES RESEARCH CONFLICTS BY. It names, file by file,
+# which parts of the derived research layer a tool rewrites from source — so a
+# merge conflict in one of them is cleared by taking either side and rebuilding,
+# the same rule pr-lap.sh has always applied to the five generated files. Held
+# here because the manifest is the safety property: a path that drifts out of the
+# tree, a file claimed by two steps, or a hand_authored file listed as derivable
+# would each let the lap overwrite something nobody derives. The REBUILD itself is
+# proved by the ordinary --check steps throughout this file; this holds the list.
+step "the derived-layer manifest names real files, one owner each, none hand-authored" \
+  node tools/rederive.mjs --check
+
+step "…and its own assertions fire when the manifest is made unsafe" \
+  node tools/rederive.mjs --self-test
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
@@ -1910,6 +1924,19 @@ step "Fergus's death notices are on the cards the crosswalk names" \
 
 step "…and that pass writes one block, moves no grade and repeats without drift" \
   python3 tools/spend_old_settlers.py --self-test
+
+# T-0992. T-0962 widened the second hop to read the `matched` container and church entered
+# that report for the first time: 83 rulings reached a person this town holds a card for and
+# NOT ONE card cited the roll. The pass that closes that gap is checked the way every other
+# spend is — the ledger and every card re-derive from the crosswalk, no card carries the
+# paragraph without a matched ruling behind it — plus the line this source needs most: the
+# 37 ambiguous and 330 refused rows are rivals still standing, and a card one of them names
+# may never carry this pass's words.
+step "the Second Presbyterian roll is on the cards its crosswalk matches" \
+  python3 tools/spend_second_presbyterian_roll.py --check
+
+step "…and that pass spends no refusal, moves no grade and repeats without drift" \
+  python3 tools/spend_second_presbyterian_roll.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test

@@ -1,9 +1,25 @@
 export const CHANGELOG = [ // newest first
-  { v: 686, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T09:08:54.299Z', date: 'Sep 10, 2026, 4:08 AM CT',
+  { v: 688, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T12:38:35.251Z', date: 'Sep 10, 2026, 7:38 AM CT',
     items: [
       'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',
       'A new check reads every resident card and refuses any 1835 trade whose only cited volume is about another year. Nine cards were standing on one; eight remain, each with its reasoning written down, and the count can now only fall.',
       'The eight are all trades printed BEFORE the scene rather than after it, which the existing later-trade pointer cannot hold. They are filed as an open question rather than quietly changed.'
+    ] },
+  { v: 687, title: 'A church roll that had never reached a single card', kind: 'change', ts: '2026-09-10T09:47:20.015Z', date: 'Sep 10, 2026, 4:47 AM CT',
+    items: [
+      'The 1892 membership roll of the Second Presbyterian Church of Chicago had been read and adjudicated against the townspeople months ago \u2014 83 of its lines matched somebody the town holds a card for \u2014 and not one of those 83 cards said so. The judgement lived in a research file and nowhere a visitor could see it. All 83 cards now carry it.',
+      'Each card is told exactly one thing: the printed line as it stands on the page, its page number, when and how that member was admitted, and the rule that matched it. Nothing else on the card moved \u2014 no grade, no arrival date, no address.',
+      'The church was organised in June 1842 and its roll runs to 1892; one of these members was admitted in 1888. So every card says, in the roll\u2019s own reading, that a name on this list cannot put anybody in the town of July 1835. It is a lead, not a residency.',
+      'The roll prints married women under their husbands\u2019 names \u2014 \u201cBarry, Mrs. William Taylor\u201d \u2014 and 34 of the 83 are such lines. Those cards say so plainly: the line met a man\u2019s NAME, not the man. The 37 matches the evidence could not decide and the 330 it refused were written nowhere, because a rival still standing is not a finding.',
+      'With that done, every research source this project has adjudicated is now written onto the cards it names: no judgement is left sitting in a file.'
+    ] },
+  { v: 686, title: 'Fourteen more land purchases judged, and the directories settle eleven', kind: 'change', ts: '2026-09-10T09:06:43.574Z', date: 'Sep 10, 2026, 4:06 AM CT',
+    items: [
+      'The judging of the federal land register continues, one bounded group at a time. This one is the hardest fourteen: the purchases where the town holds MORE THAN ONE person of the surname and only a forename initial chose between them. Eleven upheld, three refused.',
+      'What decided them was not the initial but the town\u2019s own later directories, which very often print the whole forename the 1835 card only holds a letter of. The land office wrote MONTGOMERY LOTON W; Fergus\u2019s directory of 1843 prints \u201cMontgomery, Loton W., shoemaker\u201d. It wrote FOOT STAN; the same shelf prints Star, and then Starr, a teamster at Clark and Monroe.',
+      'Sometimes the register settles it against itself. HUNTER E E and HUNTER EDWARD E are the same eighty acres, the same day and the same hundred dollars entered twice \u2014 and the fuller reading is the one that fills in the residence column.',
+      'The three refusals are the three with no directory line at all: a Goodrich known from one line of an 1833 tax list, a Smith from one line of an 1834 poll, a Morrison from one letter that waited uncalled-for at the post office. Their cards give back six purchases and 231 acres. A name read once, and a name entered on ground, still do not make one man.',
+      'Nothing in the town moved: no grade was raised, no resident minted, and no purchase became a place anyone lived.',
     ] },
   { v: 685, title: 'Six townspeople who were two records each, decided', kind: 'change', ts: '2026-09-10T08:40:24.222Z', date: 'Sep 10, 2026, 3:40 AM CT',
     items: [

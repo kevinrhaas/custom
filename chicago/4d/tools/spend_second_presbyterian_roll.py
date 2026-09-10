@@ -1,0 +1,565 @@
+#!/usr/bin/env python3
+"""The Second Presbyterian roll, spent on the people it names (T-0992).
+
+    python3 tools/spend_second_presbyterian_roll.py             write the ledger and the cards
+    python3 tools/spend_second_presbyterian_roll.py --check     everything re-derives; nothing drifted
+    python3 tools/spend_second_presbyterian_roll.py --report    person by person, what the roll says
+    python3 tools/spend_second_presbyterian_roll.py --self-test the rules below, held over what it derives
+
+WHY THIS EXISTS. T-0962 widened the second hop of `tools/measure_research_spend.py` to read
+the `matched` container, and the church domain entered that report for the first time: 83
+rulings reached a person this town holds a card for, 83 were judgeable, and NOT ONE card
+cited the roll. `grep -r second_presbyterian_chicago_1892 data/residents/` returned nothing.
+The adjudication had been made — `data/research/church/second_presbyterian_crosswalk.json`
+files 83 lines as `matched`, 37 as `ambiguous` and 330 as `refused` — and it had never
+crossed into the town. This pass is that crossing, and nothing else.
+
+WHAT THIS SOURCE IS, AND THE LIMIT THAT TRAVELS WITH IT. The roll is the 1892 printing of the
+membership of the Second Presbyterian Church of Chicago, a church ORGANISED IN JUNE 1842 —
+seven years after the scene this project reconstructs. Its admission dates run from
+1842-06-01 to 1892-02-29; `second_presb_0371` is admitted 27 April 1859. An 1859 admission is
+not 1835 evidence, and the crosswalk says so itself, in the file, in the sentence this pass
+quotes onto every card rather than paraphrasing:
+
+    "NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of
+     July 1835, and this file makes no proposal that it does."
+
+The ladder T-0505 ratified binds here exactly as it binds an 1840 head: the evidence is
+handed to the card, the verdict is not.
+
+WHAT IS AND IS NOT WRITTEN, in five rules — the first four are the rules
+tools/spend_census_1840_heads.py and tools/spend_land_sales.py hold, unchanged, because the
+defect they guard against is the same one. The fifth is this roll's own.
+
+  1. ONLY WHAT THE CROSSWALK ALREADY DECLARED, and only `matched`. This pass re-adjudicates
+     nothing. The 37 `ambiguous` and the 330 `refused` write NOTHING: a rival still standing
+     is not a ruling to spend, and that is the line MATCH_CONTAINERS draws.
+
+  2. TWO FIELDS AND NO OTHERS. A person gains the source id in `sources` and a paragraph in
+     `note`. Nothing else is touched — not a grade, not an arrival, not a claim block, not a
+     placement, and above all not `present_on_scene_date`. `--self-test` holds that by
+     diffing a record through the applier and asserting the changed key set.
+
+  3. NO GRADE MOVES. The crosswalk mints and regrades nothing and neither does its spend.
+
+  4. ONE PARAGRAPH PER PERSON. The crosswalk matches a person to exactly ONE roll line —
+     `residents_matched_one_line` is the count's own name for it — so a person is told once,
+     and the paragraph names the line, its printed page and its record id.
+
+  5. A WIFE'S LINE IS HER HUSBAND'S NAME, AND THE CARD IS TOLD SO. 34 of the 83 matched
+     lines are flagged `a_married_womans_entry` — the roll prints `Cook, Mrs. J. L.`
+     throughout — and the crosswalk's own Mrs rule says what such a line has met: "a line
+     flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not
+     him". Suppressing those matches would make them invisible; writing them without the
+     caution would make them look like a person on a roll. So the flag travels onto the card
+     in the crosswalk's own words, and a reader can argue with it.
+
+THE LEDGER IS NOT A CROSSWALK, deliberately, and for the reason the earlier passes gave:
+`data/research/church/second_presbyterian_roll_spend_1835.json` carries no "crosswalk" in its
+name so that `measure_research_spend.py` does not read a record of WRITES as a second
+adjudication and report the pass grading its own homework.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+CHURCH = ROOT / "data" / "research" / "church"
+CROSSWALK = CHURCH / "second_presbyterian_crosswalk.json"
+LEDGER = CHURCH / "second_presbyterian_roll_spend_1835.json"
+HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+
+SCHEMA = 1
+
+# The only id written onto a card. The crosswalk states it at the top of the file and every
+# matched line repeats it; this pass asserts they agree rather than assuming it.
+SOURCE_ID = "second_presbyterian_chicago_1892"
+
+# The sentence that says a paragraph is this pass's, so re-running it is idempotent and
+# `--check` can find its own work without guessing.
+MARKER = ("THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, "
+          "AND NEVER AN 1835 FACT.")
+
+# What the crosswalk carries as its container and this pass will write. `ambiguous` and
+# `refused` are not here and must never be: a rival still standing is not a ruling to spend.
+WRITTEN_CONTAINERS = ("matched",)
+
+# The closing sentence of every paragraph — and, because another evidence writer may append
+# after it, the boundary that tells this pass where its own words stop (T-0976).
+LADDER_LIMIT = (
+    "This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the "
+    "roll is handed to the card as a thing a reader may weigh, and the verdict stays with "
+    "T-0515, which applies the ladder against every source at once.")
+
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def dump(path: Path, doc) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def rulings() -> list:
+    """One row per PERSON the crosswalk matches, in the file's own order by person id."""
+    doc = load(CROSSWALK)
+    rows = []
+    for key in WRITTEN_CONTAINERS:
+        for row in doc.get(key) or []:
+            if not row.get("person_id") or not row.get("household_id"):
+                continue
+            rows.append(row)
+    rows.sort(key=lambda r: r["person_id"])
+    return rows
+
+
+def where(row: dict) -> list:
+    """Where each line of this ruling sits, as a reader would go back to it."""
+    return ["%s, printed page %s" % (line["record"], line["printed_page"])
+            for line in row["roll_lines"]]
+
+
+def _admission(line: dict) -> str:
+    """The one clause the roll's four printed columns come to, said plainly."""
+    when, how = line.get("admitted"), line.get("how_admitted")
+    if when and how:
+        return "admitted %s by %s" % (when, how)
+    if when:
+        return "admitted %s, the roll not printing how" % when
+    if how:
+        return "admitted by %s, the roll not printing when" % how
+    return "the roll printing neither when nor how the member was admitted"
+
+
+def paragraph(row: dict) -> str:
+    """What one person's card is told, and the whole of it."""
+    doc = load(CROSSWALK)
+    lines = row["roll_lines"]
+    as_read = ", ".join("“%s”" % line["as_read"] for line in lines)
+    admissions = "; ".join(_admission(line) for line in lines)
+    mrs = ""
+    if any(line.get("a_married_womans_entry") for line in lines):
+        mrs = (" THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs "
+               "what it can have met: “a line flagged a_married_womans_entry that meets a MAN "
+               "in the 1835 layer has met his name, not him: it corroborates that the name was "
+               "a Chicago name in the 1840s and it does not put that man on this roll.” The "
+               "match is filed rather than suppressed, because a suppressed match is invisible "
+               "and a flagged one can be argued with.")
+    return (
+        "%s The 1892 printed membership roll of the Second Presbyterian Church of Chicago, "
+        "read line by line into this repository, carries %d line%s whose surname and given "
+        "initial agree with this person's — %s (%s), %s. Under the rule that decided it: %s "
+        "WHAT THE MATCH MINTS OR REGRADES: “%s”%s %s"
+        % (MARKER, len(lines), "" if len(lines) == 1 else "s", as_read,
+           "; ".join(where(row)), admissions, row["rule"].rstrip(".") + ".",
+           (doc.get("mints_or_regrades") or "").strip(), mrs, LADDER_LIMIT))
+
+
+# --- the ledger ------------------------------------------------------------------------
+
+def ledger_doc() -> dict:
+    rows = rulings()
+    xw = load(CROSSWALK)
+    return {
+        "schema": SCHEMA,
+        "_doc": (
+            "GENERATED by tools/spend_second_presbyterian_roll.py (T-0992). Which of the "
+            "Second Presbyterian roll crosswalk's `matched` rulings were written onto the "
+            "card they name, and what each card was told. It is a record of WRITES, not of "
+            "adjudications — the adjudication is second_presbyterian_crosswalk.json — and it "
+            "deliberately carries no 'crosswalk' in its name so that "
+            "measure_research_spend.py does not count a write as a second ruling."),
+        "generated_by": "tools/spend_second_presbyterian_roll.py",
+        "ticket": "T-0992",
+        "source_id": SOURCE_ID,
+        "reads": ["data/research/church/second_presbyterian_crosswalk.json"],
+        "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
+        "carry_rule": xw.get("mints_or_regrades"),
+        "counts": {
+            "roll_records": (xw.get("counts") or {}).get("roll_records"),
+            "matched": len(xw.get("matched") or []),
+            "ambiguous_not_spent": len(xw.get("ambiguous") or []),
+            "refused_not_spent": len(xw.get("refused") or []),
+            "people_written": len(rows),
+            "households_touched": len({r["household_id"] for r in rows}),
+            "married_womens_entries": sum(
+                1 for r in rows if any(l.get("a_married_womans_entry") for l in r["roll_lines"])),
+            "grades_changed": 0,
+        },
+        "people": [
+            {"person_id": r["person_id"], "household_id": r["household_id"],
+             "resident_name": r.get("name"), "grade_left_alone": r.get("grade"),
+             "rule": r["rule"], "roll_lines": where(r),
+             "as_read": [l["as_read"] for l in r["roll_lines"]],
+             "told": paragraph(r)}
+            for r in rows
+        ],
+    }
+
+
+# --- the write -------------------------------------------------------------------------
+
+def apply_to_person(person: dict, row: dict) -> bool:
+    """The ONLY mutation this tool performs. Two keys, and rule 2 is held here."""
+    changed = False
+    if SOURCE_ID not in (person.get("sources") or []):
+        person["sources"] = (person.get("sources") or []) + [SOURCE_ID]
+        changed = True
+    note = (person.get("note") or "").strip()
+    want = paragraph(row)
+    if MARKER not in note:
+        person["note"] = (note + " " + want).strip()
+        changed = True
+    elif _mine(note) != want:
+        # A paragraph that no longer says what the crosswalk says is worse than none: it is
+        # this pass's own words, stale, over a ruling that has since moved (T-0700).
+        person["note"] = (_without_mine(note) + " " + want).strip()
+        changed = True
+    return changed
+
+
+def _span(note: str) -> tuple[int, int]:
+    # T-0976: another evidence writer may append after this paragraph. Owning everything from
+    # MARKER to end-of-note silently deleted Fergus's later lists on the census pass.
+    start = note.index(MARKER)
+    end = note.find(LADDER_LIMIT, start)
+    if end < 0:
+        raise ValueError("the roll paragraph has no known closing boundary; "
+                         "refusing to discard other evidence")
+    return start, end + len(LADDER_LIMIT)
+
+
+def _mine(note: str) -> str:
+    start, end = _span(note)
+    return note[start:end].strip()
+
+
+def _without_mine(note: str) -> str:
+    start, end = _span(note)
+    return " ".join(part.strip() for part in (note[:start], note[end:]) if part.strip())
+
+
+def retract_from_person(person: dict) -> bool:
+    """The exact inverse of `apply_to_person`, for a card no ruling reaches any more.
+
+    The roll re-derives whenever the town gains a card — T-0960's Mrs C. Taylor took the
+    matched rows from 82 to 83 — and the same re-derivation can take a match away again when
+    a second person of the same surname and initial arrives and the pair stops being unique.
+    A withdrawn ruling must take its paragraph AND its citation off, or `strays` sees a
+    sentence nothing on the card can account for and only a hand can clear it."""
+    changed = False
+    note = (person.get("note") or "").strip()
+    if MARKER in note:
+        person["note"] = _without_mine(note)
+        changed = True
+        # Only when this pass's own paragraph came off: the citation is what `apply` adds
+        # beside it, and stripping one without the other leaves a source behind a card that
+        # nothing on the card can account for.
+        sources = person.get("sources") or []
+        if SOURCE_ID in sources:
+            person["sources"] = [s for s in sources if s != SOURCE_ID]
+    return changed
+
+
+def retract(quiet: bool = False) -> int:
+    ruled = {r["person_id"] for r in rulings()}
+    dropped = 0
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        hh = load(path)
+        moved = False
+        for person in hh.get("persons") or []:
+            if person.get("id") in ruled:
+                continue
+            if retract_from_person(person):
+                dropped += 1
+                moved = True
+        if moved:
+            dump(path, hh)
+    if not quiet and dropped:
+        print("Second Presbyterian roll: withdrawn from %d resident record(s)" % dropped)
+    return dropped
+
+
+def apply(quiet: bool = False) -> int:
+    touched = 0
+    for row in rulings():
+        path = HOUSEHOLDS / ("%s.json" % row["household_id"])
+        if not path.exists():
+            continue
+        hh = load(path)
+        for person in hh.get("persons") or []:
+            if person.get("id") != row["person_id"]:
+                continue
+            if apply_to_person(person, row):
+                touched += 1
+                dump(path, hh)
+    if not quiet:
+        print("Second Presbyterian roll: written onto %d resident record(s)" % touched)
+    return touched
+
+
+def build(quiet: bool = False) -> int:
+    dump(LEDGER, ledger_doc())
+    retract(quiet=quiet)
+    apply(quiet=quiet)
+    if not quiet:
+        print("wrote %s" % LEDGER.relative_to(ROOT))
+    return 0
+
+
+# --- the gate --------------------------------------------------------------------------
+
+def _person(row: dict):
+    path = HOUSEHOLDS / ("%s.json" % row["household_id"])
+    if not path.exists():
+        return None
+    for person in load(path).get("persons") or []:
+        if person.get("id") == row["person_id"]:
+            return person
+    return None
+
+
+def _gaps_over(row: dict, person: dict) -> list:
+    """gaps() for one already-loaded person — what the self-test needs and the gate reuses."""
+    out = []
+    who = "%s/%s" % (row["household_id"], row["person_id"])
+    if SOURCE_ID not in (person.get("sources") or []):
+        out.append("%s — matched by the crosswalk and the card does not cite %s"
+                   % (who, SOURCE_ID))
+    note = person.get("note") or ""
+    if MARKER not in note:
+        out.append("%s — matched by the crosswalk and the card carries no paragraph" % who)
+    elif _mine(note) != paragraph(row):
+        # T-0700's lesson, which T-0698 learned the same way: `gaps` asked whether a
+        # paragraph was PRESENT and never whether it was RIGHT, so a card kept saying a
+        # thing its ruling had stopped saying. A stale paragraph is a gate failure here.
+        out.append("%s — the paragraph on the card no longer says what the crosswalk says"
+                   % who)
+    return out
+
+
+def gaps(rows: list) -> list:
+    """Every ruling has to be ON the record it names, or the ruling is only a file."""
+    bad = []
+    for row in rows:
+        person = _person(row)
+        if person is None:
+            bad.append("%s/%s — the record the ruling names does not exist"
+                       % (row["household_id"], row["person_id"]))
+            continue
+        bad.extend(_gaps_over(row, person))
+    return bad
+
+
+def strays(rows: list) -> list:
+    """A card carrying this pass's paragraph that no ruling reaches. The mirror of gaps:
+    without it a ruling could be withdrawn and its paragraph would stand for ever."""
+    ruled = {r["person_id"] for r in rows}
+    bad = []
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        for person in load(path).get("persons") or []:
+            if MARKER in (person.get("note") or "") and person.get("id") not in ruled:
+                bad.append("%s/%s — carries this pass's paragraph and no ruling reaches it"
+                           % (path.stem, person.get("id")))
+    return bad
+
+
+def doubles() -> list:
+    """One paragraph per person, once. A tool re-run must never leave two."""
+    bad = []
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        for person in load(path).get("persons") or []:
+            note = person.get("note") or ""
+            if note.count(MARKER) > 1:
+                bad.append("%s/%s — carries this pass's paragraph %d times"
+                           % (path.stem, person.get("id"), note.count(MARKER)))
+    return bad
+
+
+def unspendable() -> list:
+    """The line rule 1 exists to hold: nothing outside `matched` may reach a card.
+
+    A card cited by an `ambiguous` or `refused` row and carrying this pass's paragraph would
+    mean a rival still standing had been spent — the one thing the crosswalk's ladder is for.
+    Checked rather than trusted, because `rulings()` is the only thing between them."""
+    doc = load(CROSSWALK)
+    matched = {r.get("person_id") for r in doc.get("matched") or []}
+    bad = []
+    for key in ("ambiguous", "refused"):
+        for row in doc.get(key) or []:
+            pid, hh = row.get("person_id"), row.get("household_id")
+            if not pid or pid in matched or not hh:
+                continue
+            path = HOUSEHOLDS / ("%s.json" % hh)
+            if not path.exists():
+                continue
+            for person in load(path).get("persons") or []:
+                if person.get("id") == pid and MARKER in (person.get("note") or ""):
+                    bad.append("%s/%s — %s by the crosswalk and carries this pass's paragraph"
+                               % (hh, pid, key))
+    return bad
+
+
+def check(quiet: bool = False) -> int:
+    rows = rulings()
+    if not LEDGER.exists():
+        print("   the ledger is missing: %s" % LEDGER.relative_to(ROOT))
+        return 1
+    if load(LEDGER) != ledger_doc():
+        print("   %s no longer re-derives from the crosswalk — re-run the tool"
+              % LEDGER.relative_to(ROOT))
+        return 1
+    bad = gaps(rows) + strays(rows) + doubles() + unspendable()
+    if bad:
+        for line in bad[:20]:
+            print("   %s" % line)
+        if len(bad) > 20:
+            print("   …and %d more" % (len(bad) - 20))
+        return 1
+    if not quiet:
+        print("Second Presbyterian roll: %d matched ruling(s) on %d card(s), no strays, "
+              "none written twice, no refusal spent" % (len(rows), len(rows)))
+    return 0
+
+
+def report() -> int:
+    rows = rulings()
+    print("%-30s %-26s %-9s %-6s %s"
+          % ("household", "person", "grade", "Mrs?", "roll line"))
+    print("-" * 130)
+    for r in rows:
+        mrs = "yes" if any(l.get("a_married_womans_entry") for l in r["roll_lines"]) else ""
+        print("%-30s %-26s %-9s %-6s %s"
+              % (r["household_id"], r["person_id"], r.get("grade"), mrs,
+                 "; ".join(where(r))))
+    print("-" * 130)
+    print("%d people, %d household(s), %d married-woman entr(ies); nothing minted, no grade moved"
+          % (len(rows), len({r["household_id"] for r in rows}),
+             sum(1 for r in rows
+                 if any(l.get("a_married_womans_entry") for l in r["roll_lines"]))))
+    return 0
+
+
+def self_test() -> int:
+    fails = []
+
+    def fires(label, ok):
+        if not ok:
+            fails.append(label)
+
+    doc = load(CROSSWALK)
+    rows = rulings()
+    fires("the crosswalk reaches at least one person", bool(rows))
+    fires("rule 1: only `matched` is read",
+          {r["person_id"] for r in rows} <= {r.get("person_id") for r in doc["matched"]})
+    fires("rule 1: no ambiguous row is spent",
+          not ({r.get("person_id") for r in doc.get("ambiguous") or []}
+               & {r["person_id"] for r in rows}
+               - {r.get("person_id") for r in doc["matched"]}))
+    fires("rule 4: one row per person",
+          len({r["person_id"] for r in rows}) == len(rows))
+    fires("every matched row states the one source id this pass writes",
+          all(r.get("source_id") == SOURCE_ID for r in doc["matched"]))
+
+    # Rule 2, held by diffing a record through the applier.
+    row = rows[0]
+    before = {"id": row["person_id"], "name": "X", "grade": "attested",
+              "sources": ["andreas_1884_v1"], "note": "Something already said.",
+              "present_on_scene_date": {"value": "present"}}
+    after = json.loads(json.dumps(before))
+    apply_to_person(after, row)
+    changed = {k for k in after if json.dumps(after[k]) != json.dumps(before.get(k))}
+    fires("rule 2: exactly `sources` and `note` move", changed == {"sources", "note"})
+    fires("rule 2: the earlier note is kept", "Something already said." in after["note"])
+    fires("rule 3: the grade does not move", after["grade"] == "attested")
+    fires("rule 2: present_on_scene_date does not move",
+          after["present_on_scene_date"] == {"value": "present"})
+
+    # Idempotence, and the stale-paragraph rule.
+    again = json.loads(json.dumps(after))
+    fires("re-running writes nothing", apply_to_person(again, row) is False)
+    fires("…and leaves exactly one paragraph", again["note"].count(MARKER) == 1)
+    fires("a clean record has no gap", _gaps_over(row, again) == [])
+
+    sibling = "CENSUS: independently written later evidence survives."
+    following = json.loads(json.dumps(after))
+    following["note"] += " " + sibling
+    fires("another writer's following paragraph is not roll drift",
+          apply_to_person(following, row) is False)
+    following["note"] = following["note"].replace("The 1892 printed membership roll",
+                                                  "The 1893 printed membership roll")
+    fires("refresh preserves the following writer's evidence",
+          apply_to_person(following, row) and sibling in following["note"])
+    fires("withdrawal preserves the following writer's evidence",
+          retract_from_person(following) and following["note"] == before["note"] + " " + sibling)
+
+    stale = json.loads(json.dumps(after))
+    stale["note"] = stale["note"].replace("The 1892 printed membership roll",
+                                          "The 1893 printed membership roll")
+    fires("a stale paragraph is a gap", len(_gaps_over(row, stale)) == 1)
+    fires("…and is rewritten rather than doubled",
+          apply_to_person(stale, row) and stale["note"].count(MARKER) == 1)
+    fires("…to what the crosswalk now says", _gaps_over(row, stale) == [])
+
+    missing = json.loads(json.dumps(before))
+    fires("a card citing nothing is a gap", len(_gaps_over(row, missing)) == 2)
+
+    withdrawn = json.loads(json.dumps(after))
+    fires("a withdrawn ruling takes its paragraph off", retract_from_person(withdrawn)
+          and MARKER not in (withdrawn.get("note") or ""))
+    fires("…and its citation with it", SOURCE_ID not in (withdrawn.get("sources") or []))
+    fires("…and leaves the record otherwise exactly as it was found", withdrawn == before)
+    fires("withdrawing twice writes nothing", retract_from_person(withdrawn) is False)
+    untouched = json.loads(json.dumps(before))
+    fires("a card this pass never wrote is left alone",
+          retract_from_person(untouched) is False and untouched == before)
+
+    # Rule 5, and the two things every paragraph must carry.
+    mrs_seen = plain_seen = False
+    for r in rows:
+        text = paragraph(r)
+        fires("every paragraph quotes the crosswalk's own mints-or-regrades sentence",
+              "cannot place a person in the town of July 1835" in text)
+        fires("every paragraph carries the ladder limit", LADDER_LIMIT in text)
+        fires("every paragraph names its roll line", all(w in text for w in where(r)))
+        fires("no paragraph claims an 1835 residency",
+              "1835 resident" not in text and "resident in 1835" not in text)
+        if any(l.get("a_married_womans_entry") for l in r["roll_lines"]):
+            mrs_seen = True
+            fires("rule 5: a married woman's entry says whose name it met",
+                  "MARRIED WOMAN'S ENTRY" in text and "has met his name, not him" in text)
+        else:
+            plain_seen = True
+            fires("rule 5: a plain line does not carry the Mrs caution",
+                  "MARRIED WOMAN'S ENTRY" not in text)
+    fires("rule 5 is exercised on both kinds of line", mrs_seen and plain_seen)
+
+    for line in fails:
+        print("   FAIL: %s" % line)
+    print("Second Presbyterian roll self-test: %d assertion group(s), %d failure(s)"
+          % (23 + 5 * len(rows), len(fails)))
+    return 1 if fails else 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--report", action="store_true")
+    parser.add_argument("--self-test", action="store_true", dest="self_test")
+    parser.add_argument("--quiet", action="store_true")
+    args = parser.parse_args()
+    if args.self_test:
+        return self_test()
+    if args.check:
+        return check(quiet=args.quiet)
+    if args.report:
+        return report()
+    return build(quiet=args.quiet)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
