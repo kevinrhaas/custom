@@ -181,6 +181,7 @@ git switch dev && git pull
 git switch -c steward/<topic>
 #   … one coherent unit of work …
 ./tools/check.sh && node tools/smoke_renderer.mjs      # both, foreground
+./tools/preflight.sh                                   # the questions CI asks only on the PR
 gh pr create --base dev
 #   merge when the dev gate is green → /chicago/4d/dev/ updates
 

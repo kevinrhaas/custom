@@ -76,16 +76,15 @@
    ],
    "merge_ruling": [
     {
-     "ticket": "T-0839",
-     "verdict": "undecided",
-     "rule": "R3",
+     "ticket": "T-0844",
+     "verdict": "distinct",
+     "rule": "D4",
      "cluster": "saunders",
      "weighed_against": [
       "saunders_william_s"
      ],
-     "referred_to": "owner",
-     "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town.",
-     "against_merge": "The middle initials S and W disagree. One card is letter-list only, the other a press mention; neither documents the man. No anchor. His call."
+     "for_merge": "Both are in the same paper, chicago_democrat_1833_1835, and Saunders is not a common surname in this town. Kept verbatim from T-0839 so the argument survives its refusal.",
+     "against_merge": "THE ANCHOR EXISTS AND CANNOT REACH THE OTHER CARD'S DATE. William W. Saunders is documented: the Democrat of 18 March 1834 (c002) prints a Cook Circuit Court attachment notice naming him, 'William W. Saunders, formerly of Cook co. Ill.', over a dwelling house and tenement of his the sheriff had attached — a court record with a dwelling in it, so C4's anchor is present where T-0839 said no anchor was. But that same record calls him FORMERLY of the county in March 1834, and the only date `saunders_william_s` carries is a letter uncalled-for at the Chicago post office on 1 July 1835. Firing C4 would have the anchor absorb a line dated after the anchor's own record says he had gone. The middle initials S and W disagree, nothing else touches either man, and the cards stay two."
     }
    ]
   }

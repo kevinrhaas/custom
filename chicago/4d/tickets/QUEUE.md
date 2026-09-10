@@ -104,10 +104,11 @@
 # --- T-0962 LEADS because it is the honesty check on the sentence above: the spend meter cannot
 # --- see a resident_crosswalk in every domain, so "1,282 of 1,282" may be an undercount of what
 # --- is still unwritten. Run it, then spend whatever it exposes, here.
-T-0962 — measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told
+
+T-0989 — The second hop's file-level source fallback passes 817 of 1,364 rulings on a card that cites the file's one source id for any reason at all — which is how census_1840 read 27 of 27 written with 15 cards untold
+T-0992 — Second Presbyterian's 82 adjudicated roll members reach 82 cards and not one card cites the roll: spend them, and drop church's write ceiling back to zero
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
-T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
-T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie
+T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-0842 — Van Den Bogart and Van der Bogart: one man printed two ways, or two men? A card was minted for the second
 T-0951 — Two husband-name printings R6 cannot reach: Mrs. T. G. Hadley and Mrs. Wm. B. Egan are merged onto their husbands because no single source prints both readings
 T-0961 — Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
@@ -328,3 +329,4 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 # --- EPIC: THE NEWBERRY INDEX — 4,199 of 6,658 cards unread at a measured 0.0% match rate.
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
+

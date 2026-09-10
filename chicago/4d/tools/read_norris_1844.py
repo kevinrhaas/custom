@@ -197,32 +197,72 @@ IMAGE_SOURCE = (
     "the archive.org scan the OCR is itself made from, item generaldirectory19norr. "
     "Each line was located by its own word coordinates in "
     "generaldirectory19norr_djvu.xml, cropped from the page image on that bounding "
-    "box, enlarged three times and read by eye. The page images are at "
-    "https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, "
-    "which is the coordinate space that XML is written in.")
+    "box, enlarged and read by eye. The page images are at "
+    "https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.")
+
+# THE COORDINATE SPACE IS PER LEAF, NOT PER BOOK (T-0900).
+#
+# The djvu XML writes each leaf's word boxes in that leaf's OWN pixel space, and this
+# scan's leaves are not one size: leaf 31 is 1592 x 2860 and leaves 40, 42 and 49 are
+# 1564 x 2912. The first version of this block quoted a single "1592 x 2860" for the
+# whole book, which is the size of the first leaf T-0903 happened to read; a reader who
+# took it for the coordinate space and cropped leaf 40 by it would land off the line and
+# conclude the citation was invented. So every row below carries its OWN leaf size and
+# the word box it was cropped on, and a reader reproduces the crop with:
+#
+#   leaf N's OBJECT in generaldirectory19norr_djvu.xml (index N-1) — its width/height
+#   are `leaf_px`, and `word_box` is that WORD element's coords, left,bottom,right,top.
+COORDINATE_SPACE = (
+    "The word box is this leaf's own OBJECT coordinates in "
+    "generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel "
+    "size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all "
+    "one size — do not carry one leaf's dimensions to another.")
 
 IMAGE_REPAIRS = [
     {"surname": "Couch", "as_read": "Iia", "reading": "Ira", "leaf": 40,
+     "leaf_px": [1564, 2912], "word_box": "271,2163,358,2125",
      "reads": "Couch, Ira, proprietor of the Tremont House, corner of Lake and Dearborn sts",
      "why": "the r of Ira read as an i. UNREPAIRED asked for this line by name: Kim "
             "Torp reads the same token '(can't read)', so the page image is the only "
             "witness there is, and it prints Ira.",
+     "reread": "Ira — the second stroke is an r, with the shoulder and no dot",
      "second_reading": None},
     {"surname": "Abbott", "as_read": "VV", "reading": "W", "leaf": 31,
+     "leaf_px": [1592, 2860], "word_box": "248,1776,328,1742",
      "reads": "Abbott, W. clerk at Ward Rathbone's, residence same",
      "why": "the compositor's W set by the scanner as two V's",
+     "reread": "W. — one sort, and the Ward two words along is set from the same one",
      "second_reading": "Abbott, W., clerk at Ward Rathbone's, residence same"},
     {"surname": "Day", "as_read": "VVm. Lasalle House", "reading": "Wm. Lasalle House",
-     "leaf": 42, "reads": "Day, Wm. Lasalle House, corner of Lasalle and Randolph sts",
+     "leaf": 42, "leaf_px": [1564, 2912], "word_box": "199,617,319,582",
+     "reads": "Day, Wm. Lasalle House, corner of Lasalle and Randolph sts",
      "why": "the same W. Only the damaged token is repaired: the splitter reads "
             "'Lasalle House' as part of the given name because the line prints no "
             "comma after the forename, and that is a parse, not a transcription defect",
+     "reread": "Wm. — and the line prints no comma after it, as the why says",
      "second_reading": "Day, Wm., Lasalle House, corner of Lasalle & Randolph sts"},
     {"surname": "Hequenbourg", "as_read": "G. VV", "reading": "G. W", "leaf": 49,
+     "leaf_px": [1564, 2912], "word_box": "495,1758,574,1725",
      "reads": "Hequenbourg, G. W. clerk, at B. F. Sherman's, res same",
      "why": "the same W, on the second of two initials",
+     "reread": "G. W. — the second initial is one sort, spaced as an initial",
      "second_reading": "Hequenbourg, G.W., clerk, at B.F. Sherman's, res same"},
 ]
+
+# T-0900 RE-READ ALL FOUR, off the same leaf images and off nobody's notes.
+#
+# T-0900 was filed by T-0695 for the Couch line alone and T-0903 answered it the same
+# day, so the ticket outlived its work. Closing it on T-0903's say-so would have been
+# the cheap move and the wrong one: an image repair is a single hand on a token, and
+# this project's whole case for `documented` is that a reading can be gone back to. So
+# each row's box was re-cropped from the leaf image and read again, cold, by a second
+# hand — the `reread` field above is what that hand saw. All four stand.
+#
+# It is also what found the coordinate-space defect: the crop only lands on the line
+# when the leaf's own dimensions are used, which is how a reader learns that the one
+# size quoted for the whole book was wrong.
+REREAD_BY = ("T-0900, an independent second reading off the same leaf image, cropped "
+             "on the word box recorded with the row.")
 
 # The scanner's W. Letters only, so `name_agreement.garbled()` is blind to it and the
 # self-test has to look for it by hand.
@@ -262,7 +302,11 @@ def apply_repair(norm):
                 "source": IMAGE_SOURCE,
                 "image": "https://archive.org/download/generaldirectory19norr/page/"
                          "leaf%d.jpg" % row["leaf"],
+                "leaf_px": row["leaf_px"],
+                "word_box": row["word_box"],
+                "coordinate_space": COORDINATE_SPACE,
                 "reads": row["reads"],
+                "read_a_second_time": {"by": REREAD_BY, "reads": row["reread"]},
             }
             if row["second_reading"]:
                 evidence["and_the_second_hand_agrees"] = row["second_reading"]
@@ -420,9 +464,31 @@ def self_test():
         if row["as_read"] not in norm["as_printed"] or row["as_read"] not in hits[0]["quote"]:
             fired.append("image repair %s/%r tidied the quote — the damage must stand there"
                          % (row["surname"], row["as_read"]))
-        if not norm["given_repair"]["evidence"].get("image"):
+        ev = norm["given_repair"]["evidence"]
+        if not ev.get("image"):
             fired.append("image repair %s/%r cites no page image, which is the only "
                          "thing that makes it checkable" % (row["surname"], row["as_read"]))
+        # T-0900. A page image is only checkable if the reader can find the LINE on it.
+        # The word box and the leaf's own pixel size are what make the crop reproducible,
+        # and quoting one leaf's size for another is exactly the mistake this catches.
+        if not re.fullmatch(r"\d+,\d+,\d+,\d+", row.get("word_box") or ""):
+            fired.append("image repair %s/%r cites no word box, so the crop it was read "
+                         "from cannot be reproduced" % (row["surname"], row["as_read"]))
+        px = row.get("leaf_px") or []
+        if len(px) != 2 or not all(isinstance(v, int) and 500 < v < 6000 for v in px):
+            fired.append("image repair %s/%r states no plausible leaf size, which is the "
+                         "coordinate space its word box is in"
+                         % (row["surname"], row["as_read"]))
+        elif row["word_box"]:
+            l, b, r_, t = (int(v) for v in row["word_box"].split(","))
+            if not (0 <= l < r_ <= px[0] and 0 <= t < b <= px[1]):
+                fired.append("image repair %s/%r has a word box outside its own leaf: "
+                             "%s is not inside %dx%d"
+                             % (row["surname"], row["as_read"], row["word_box"], *px))
+        if not (row.get("reread") or "").strip():
+            fired.append("image repair %s/%r was read by one hand only — T-0900 requires "
+                         "a second reading off the image"
+                         % (row["surname"], row["as_read"]))
 
     # The scanner's W is letters only, so na.garbled() is blind to it: nothing above
     # would ever name this class. Assert it by hand instead of trusting the sweep.
@@ -453,7 +519,8 @@ def self_test():
         print("norris 1844 --self-test: %d case(s) failed" % len(fired), file=sys.stderr)
         return 1
     print("norris 1844 --self-test: %d forename repairs hold against the second hand "
-          "and %d against the page image, %d left damaged on purpose"
+          "and %d against the page image (each read twice, on a reproducible crop), "
+          "%d left damaged on purpose"
           % (len(REPAIRS), len(IMAGE_REPAIRS), len(UNREPAIRED)))
     return 0
 

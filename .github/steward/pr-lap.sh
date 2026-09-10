@@ -29,6 +29,23 @@ ONLY="${LAP_ONLY:-}"
 DRIVERS="$(mktemp -d)"
 WORK="$(git rev-parse --show-toplevel)"
 
+# THE IDENTITY THIS SCRIPT COMMITS UNDER, SET ONCE — and this one line is why the
+# lap has never lapped anything. `git merge` writes a COMMIT, so it needs an
+# author, and actions/checkout sets none: the runner has no user.name and its
+# user.email is a machine hostname git will not accept. The identity was passed
+# with `-c` on the `git commit` below and nowhere else, so every merge in every
+# lap died with
+#
+#   fatal: empty ident name (for <runner@runnervm….internal.cloudapp.net>)
+#       not allowed
+#
+# leaving no conflict, no commit and — until the exit status above started being
+# read — no complaint. Measured on run 82, 2026-09-10 08:15: FOUR open PRs, four
+# identical failures, and the old code would have reported `pushed=4`. It reported
+# `left-alone=4` instead, which is how this was finally visible.
+git config user.name  "polecat-steward"
+git config user.email "steward@polecat.live"
+
 # Files a TOOL owns. A conflict here is never resolved by hand: the merge takes
 # either side to clear the marker and the tool then rewrites the file from source.
 GENERATED='
@@ -89,6 +106,26 @@ git show "origin/$BASE:.gitattributes" \
   > "$(git rev-parse --git-dir)/info/attributes"
 say "  attributes <- $BASE ($(wc -l < "$(git rev-parse --git-dir)/info/attributes") rules)"
 
+# EVERY DRIVER THE ATTRIBUTES ROUTE TO HAS TO BE REGISTERED, and nothing checked.
+# `reg` skips SILENTLY when dev's copy of a driver cannot be read — a renamed or
+# moved tool, a path that drifted — while the attributes above still route files
+# to it. The first merge then dies with `fatal: custom merge driver <name> lacks
+# command line`: no conflict to find, no commit made, and before this script
+# learned to read `git merge`'s exit status, no complaint either. Reproduced
+# 2026-09-10 against PR #1049's branch. It is armed by absence, so absence is
+# what this looks for, and it stops the whole lap rather than lapping nothing.
+MISSING=
+for D in $(grep -v '^[[:space:]]*#' "$(git rev-parse --git-dir)/info/attributes" \
+             | grep -oE 'merge=[a-z]+' | sed 's/merge=//' | grep -v '^union$' | sort -u); do
+  git config --get "merge.$D.driver" >/dev/null 2>&1 || MISSING="$MISSING $D"
+done
+if [ -n "$MISSING" ]; then
+  echo "::error::.gitattributes routes files to unregistered merge driver(s):$MISSING"
+  echo "::error::Every merge would die with 'lacks command line' and lap nothing."
+  echo "::error::Check that $BASE still carries chicago/4d/tools/merge-*.mjs under those names."
+  exit 1
+fi
+
 PRS=$(gh pr list --repo "$REPO" --base "$BASE" --state open --limit 100 \
         --json number,headRefName,isDraft,labels \
         --jq '.[] | select(.isDraft==false)
@@ -107,8 +144,28 @@ while IFS=$'\t' read -r N BR; do
     say "  already current — nothing to lap"; NOOP=$((NOOP+1)); continue
   fi
 
-  git merge "origin/$BASE" --no-edit >/dev/null 2>&1
+  BEFORE=$(git rev-parse HEAD)
+  git merge "origin/$BASE" --no-edit >/tmp/lap-merge.log 2>&1
+  MERGED=$?
   U=$(git diff --name-only --diff-filter=U)
+
+  # A MERGE CAN FAIL WITHOUT LEAVING A CONFLICT, and this used to read as success.
+  # The exit status was discarded and only `--diff-filter=U` was consulted, so a
+  # merge that died before it began — `fatal: custom merge driver queue lacks
+  # command line` is the one that bit, when .gitattributes routes a file to a
+  # driver this shell did not register — left no conflicts, and the lap sailed on
+  # to gate an UNMERGED tree (green, of course: it is the branch as it already
+  # was), push nothing, and report "pushed — auto-merge can fire". Measured
+  # 2026-09-10: PRs #1049 and #1051 were both reported pushed by run 79 and
+  # neither branch moved; #1049 sat at the same head for over two hours while the
+  # lane looked healthy. A lap that cannot tell you it did nothing is worse than
+  # no lap, because the pile it leaves looks like somebody else's problem.
+  if [ "$MERGED" -ne 0 ] && [ -z "$U" ]; then
+    say "  MERGE FAILED with no conflict to resolve — this is a broken merge, not a disagreement:"
+    tail -5 /tmp/lap-merge.log | sed 's/^/    /'
+    git merge --abort 2>/dev/null
+    SKIPPED=$((SKIPPED+1)); continue
+  fi
   if [ -n "$U" ]; then
     REAL=$(comm -23 <(echo "$U" | sort -u) <(echo "$GENERATED" | sed '/^$/d' | sort -u))
     if [ -n "$REAL" ]; then
@@ -143,6 +200,28 @@ while IFS=$'\t' read -r N BR; do
     fi
   fi
 
+  # TWO BRANCHES MINTED THE SAME TICKET ID — bookkeeping, so the lap heals it.
+  # `ticket.mjs nextIdNum` scans every origin ref before it mints, so this is not
+  # a missing guard but the window between minting an id and pushing the branch
+  # that carries it; no scan can close it. Measured 2026-09-10: PRs #1048 and
+  # #1049 each filed T-0988 ten minutes apart. The merge is CLEAN — git has no
+  # opinion about two files with the same front-matter id — and then check.sh
+  # fails on the duplicate AND on the survivor's queue line, which merge-queue.mjs
+  # ate because it reconciles QUEUE.md by id. Neither branch is wrong about
+  # anything. Same line this script already draws for the files a tool owns: a
+  # number nobody chose on purpose is not a disagreement about the town.
+  # It REFUSES rather than guess when it cannot tell which side is the branch's,
+  # and a refusal is a non-zero exit that stops this PR here.
+  if [ -f chicago/4d/tools/resolve_id_collisions.mjs ]; then
+    if ! ( cd chicago/4d && node tools/resolve_id_collisions.mjs --base "origin/$BASE" ) \
+         >/tmp/lap-ids.log 2>&1; then
+      say "  TICKET ID COLLISION it would not resolve — left alone:"
+      tail -6 /tmp/lap-ids.log | sed 's/^/    /'
+      git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue
+    fi
+    grep -E '^ticket ids: T-' /tmp/lap-ids.log | sed 's/^/  /' || true
+  fi
+
   ( cd chicago/4d \
     && node tools/stamp-changelog.mjs \
     && node tools/ticket.mjs board \
@@ -167,8 +246,18 @@ before T-0831 resolves the same way one cut after it does (T-0857)." 2>/dev/null
     RED=$((RED+1)); continue
   fi
 
-  if git push origin "HEAD:$BR" >/dev/null 2>&1; then
-    say "  pushed — gate will re-run and auto-merge can fire"; PUSHED=$((PUSHED+1))
+  # SAY WHAT ACTUALLY HAPPENED. `git push` to a ref that is already at HEAD is
+  # "Everything up-to-date" and exits 0, so the old form printed "pushed — gate
+  # will re-run and auto-merge can fire" for a push that moved nothing and a gate
+  # that will not re-run. That sentence is the one a person reads to decide the
+  # lane is healthy, so it has to be earned: compare HEAD against the head this
+  # PR started the lap on, and only claim a push when the branch really moved.
+  if [ "$(git rev-parse HEAD)" = "$BEFORE" ]; then
+    say "  the lap produced no new commit — nothing to push, and this PR is unchanged"
+    NOOP=$((NOOP+1))
+  elif git push origin "HEAD:$BR" >/dev/null 2>&1; then
+    say "  pushed $(git rev-parse --short "$BEFORE") → $(git rev-parse --short HEAD)"
+    say "  — gate will re-run and auto-merge can fire"; PUSHED=$((PUSHED+1))
   else
     say "  push rejected (branch moved under the lap?)"; SKIPPED=$((SKIPPED+1))
   fi

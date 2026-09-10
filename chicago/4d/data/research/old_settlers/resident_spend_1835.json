@@ -13,12 +13,12 @@
  "the_header_admission": "Names, places * , dates, and ages at death\nof some of Chicago's Old Settlers, prior to 1843, and other well - known citizens who arrived after 1843, together\nwith others prominently connected with Illinois history:",
  "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
  "counts": {
-  "matched_rulings": 61,
-  "people_written": 61,
-  "households_touched": 61,
+  "matched_rulings": 62,
+  "people_written": 62,
+  "households_touched": 62,
   "grades_changed": 0,
-  "carrying_a_date_of_death": 55,
-  "carrying_a_birth_interval": 40,
+  "carrying_a_date_of_death": 56,
+  "carrying_a_birth_interval": 41,
   "matched_on_initial_only": 9,
   "the_1835_card_gives_no_forename": 8,
   "the_list_prints_no_forename": 2,
@@ -36,17 +36,17 @@
  "not_written": [
   {
    "group": "contested",
-   "rulings": 25,
+   "rulings": 23,
    "why": "two 1835 people meet one entry and the crosswalk chose neither; a card citing the entry anyway would print an undecided identity as a decided one"
   },
   {
    "group": "ambiguous",
-   "rulings": 19,
+   "rulings": 18,
    "why": "one 1835 person meets more than one entry, so the list names a death and cannot say which one is this person's"
   },
   {
    "group": "refusals",
-   "rulings": 259,
+   "rulings": 257,
    "why": "the surname agrees and the given initial does not, or is absent — a surname-only agreement is a refusal however good it looks"
   },
   {
@@ -338,6 +338,15 @@
    "death_date": "1866-12-12",
    "birth_year_earliest": 1797,
    "birth_year_latest": 1798,
+   "matched_on_initial_only": false
+  },
+  {
+   "household_id": "hh_hunt_charles_cotesworth_pinckney",
+   "person_id": "hunt_charles_cotesworth_pinckney",
+   "record_id": "fdn0316",
+   "death_date": "1892-04-21",
+   "birth_year_earliest": 1801,
+   "birth_year_latest": 1802,
    "matched_on_initial_only": false
   },
   {

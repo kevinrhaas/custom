@@ -1,10 +1,32 @@
 export const CHANGELOG = [ // newest first
-  { v: 683, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T07:03:59.400Z', date: 'Sep 10, 2026, 2:03 AM CT',
+  { v: 686, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T09:16:36.605Z', date: 'Sep 10, 2026, 4:16 AM CT',
     items: [
       'The federal land register sells ground to partnerships as well as to people, and twice on its 953 rows it says so \u2014 \u201cGarrett A et co\u201d and \u201cPruyne P and co\u201d. Both were being read as men.',
       'Peter Pruyne\u2019s card said the register entered him six times and counted the firm\u2019s three acres and $310 among his own purchases. It now says five, and the firm\u2019s entry stands under the firm.',
       'A. Garrett & Co. entered eighty acres south of the town on 1 December 1835 and no reading of the register carried it. There is now a record of what the house bought, where, when and for how much, naming the one partner the page names \u2014 as a partner, not as the buyer.',
       'The identification of the house with the town\u2019s A. Garrett, the auctioneer, is probably right and is not what changed. What changed is that a partnership\u2019s purchase is no longer written onto a man as his own.'
+    ] },
+  { v: 685, title: 'Six townspeople who were two records each, decided', kind: 'change', ts: '2026-09-10T08:40:24.222Z', date: 'Sep 10, 2026, 3:40 AM CT',
+    items: [
+      'Six pairs of resident cards that might have been one person apiece had been left undecided since the town\u2019s big consolidation. All six are now ruled in writing, and four of them fold: the town\u2019s cards fall from 1,363 people to 1,359.',
+      'Two of the four turned out not to be judgement calls at all. The \u201cmiddle initial\u201d that argued against folding Charles Hunt was the tail of the abbreviation \u201cChas.\u201d read as a second initial \u2014 and the two cards are the same advertisement for the same girls\u2019 school, printed in both town papers a fortnight apart. The one that argued against John H. Kinzie was a digit, a scanner\u2019s 8 standing where a letter was, on an advertisement for the forwarding trade that was his own.',
+      'The town\u2019s dentist is one man again: a poll-list line reading \u201cW. L. Kennicott\u201d joins the Wm. H. Kennicott who advertised from an office opposite the Exchange on Lake Street. And a Temple who let a three-storey warehouse with a wharf is Dr John Taylor Temple, on a signature line the transcription itself could not read.',
+      'Two pairs stay two, and the reason is written on both cards rather than left open. Each of the two George Walkers has his middle initial printed twice by independent hands, which is exactly what a copyist\u2019s slip cannot survive; and the William Saunders the court records is called \u201cformerly of Cook county\u201d a year before the other card\u2019s only date.',
+      'Nothing was deleted. Every folded card is kept whole and every reference to it still resolves.'
+    ] },
+  { v: 684, title: 'A directory reading checked by a second pair of eyes', kind: 'change', ts: '2026-09-10T08:02:02.498Z', date: 'Sep 10, 2026, 3:02 AM CT',
+    items: [
+      'Four forenames in the 1844 city directory are damaged in the scanner\u2019s text and were read off the photographs of the printed page instead \u2014 among them the proprietor of the Tremont House, set by the scanner as \u201cIia\u201d and read as Ira Couch. All four have now been read a second time, independently, off the same photographs. All four stand.',
+      'Each reading now records the exact box on the page it was cropped from, so anyone can go back to the line and look rather than take the reading on trust. The check that guards these readings refuses one that cites no box, or that was read by a single pair of eyes.',
+      'The citation had quoted one page size for the whole book. The scanned pages are not all the same size, and a reader following that figure would have cropped the wrong part of the page and concluded the reading was invented. Every reading now names the size of its own page.',
+      'Nothing in the 1835 town moved. The names, the matches to townspeople and the cards they sit on are unchanged.'
+    ] },
+  { v: 683, title: 'Twenty-six land purchases judged, and nine taken back off the cards', kind: 'change', ts: '2026-09-10T06:57:44.506Z', date: 'Sep 10, 2026, 1:57 AM CT',
+    items: [
+      'The federal land register names 431 purchasers around Chicago before 1837, and a mechanical rule had proposed which of them are people the town already holds. A proposal is not a judgement. The twenty-six the first reading matched have now been ruled on one by one: sixteen upheld, ten refused.',
+      'What upholds one is a token the two records SHARE \u2014 a middle initial the land office and the town clerk both print, a trade the purchase is what you would expect from, or the register\u2019s own residence column, which reads COOK on three of John Ludby\u2019s four rows.',
+      'What refuses one is a bare name on each side. Nine cards therefore LOST a paragraph they had been given: among them John Hale, whose twenty-six school-section parcels are each entered by an Ebenezer Hale as well \u2014 an open question this refuses to settle by default \u2014 and A. Garrett the auctioneer, of whose forename the town has never read a single printing.',
+      'The nearest miss is recorded rather than rounded up: a letter waited at the post office for Ira Minard on 20 May 1835, and an Ira Minard entered 161 acres north of the town five weeks later. Striking, and still two bare names.',
     ] },
   { v: 682, title: 'A woman who kept a house on Water Street gets a card', kind: 'change', ts: '2026-09-10T05:10:41.390Z', date: 'Sep 10, 2026, 12:10 AM CT',
     items: [

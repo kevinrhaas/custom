@@ -338,7 +338,7 @@
       "resident_name": "James Kinzie",
       "household_id": "hh_kinzie_james",
       "match": "forename_agrees",
-      "rule": "KINZIE JAMES matches James Kinzie: the forename names James Kinzie of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "KINZIE JAMES matches James Kinzie: the forename names James Kinzie of the 4 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "kinzie_james",
@@ -364,15 +364,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "kinzie_john_s",
-          "name": "John S Kinzie",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "S",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -433,7 +424,7 @@
       "resident_name": "Robert Allen Kinzie",
       "household_id": "hh_kinzie_robert_a",
       "match": "forename_agrees",
-      "rule": "KINZIE ROBERT A matches Robert Allen Kinzie: the forename names Robert Allen Kinzie of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "KINZIE ROBERT A matches Robert Allen Kinzie: the forename names Robert Allen Kinzie of the 4 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "kinzie_james",
@@ -459,15 +450,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "A",
-          "reading_middle_initial": "A",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "kinzie_john_s",
-          "name": "John S Kinzie",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "S",
           "reading_middle_initial": "A",
           "outcome": "refused_on_the_forename"
         },
@@ -2602,7 +2584,7 @@
       "resident_name": "Dr John Taylor Temple",
       "household_id": "hh_temple_john_t",
       "match": "forename_agrees",
-      "rule": "TEMPLE JOHN T matches Dr John Taylor Temple: the forename names Dr John Taylor Temple of the 4 people of this surname, and the forename agrees in full.",
+      "rule": "TEMPLE JOHN T matches Dr John Taylor Temple: the forename names Dr John Taylor Temple of the 3 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "temple_john_t",
@@ -2627,15 +2609,6 @@
           "name": "Dr Peter Temple",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "T",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "temple_t",
-          "name": "T Temple",
-          "forename_agrees": false,
-          "why": "the initials differ",
           "middle_initial": null,
           "reading_middle_initial": "T",
           "outcome": "refused_on_the_forename"

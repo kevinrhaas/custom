@@ -114,7 +114,7 @@ than on the two records agreeing, and it is refused.
 
 Refusing the firm spelling left `GARRETT AUGUSTUS` standing alone on A. Garrett's card, where
 the two spellings had both been written onto it. That second spelling is a reading in its own
-name and is NOT ruled on here — it is one of T-0850's twenty-six.
+name and is NOT ruled on here — it is one of T-0850's twenty-six, which the next section rules on (refused: the town has never read the forename).
 
 ## The register sells ground to FIRMS (T-0851)
 
@@ -168,7 +168,69 @@ spelling, both grade `documented` — for Cook County on the date of sale and no
 and a card whose paragraph no longer says what the crosswalk says is a gate failure, where
 `gaps()` had only ever asked whether a paragraph was PRESENT.
 
-**Still unruled:** the twenty-six spellings the first deposit matched (**T-0850**).
+## The first deposit's twenty-six, ruled (T-0850)
+
+**Sixteen upheld, ten refused.** These are the purchaser spellings the town-and-north-side
+reading (T-0557, T-0675) matched, ruled on the same rule and by the same file as the ring's
+nine. What upholds one is a token the two records SHARE — a middle initial both print, a
+trade the purchase is what you would predict from, the register's own Residence column, or
+the town holding the man in two documents that bracket the entry date. What refuses one is
+a bare name on each side, however unlikely the coincidence looks.
+
+| spelling | ruling | what carried it, or did not |
+|---|---|---|
+| PEARSONS HIRAM | upheld | 28 rows, 1,157 acres, one stating COOK; the card's own trade is `speculator` |
+| PRICE JEREMIAH | upheld | four documents beyond the register bracket the eleven entries of 1835 |
+| ELSTON DANIEL | upheld | the Democrat of 1833 and Fergus 1839 hold him on both sides of the 1836 entry |
+| WOLCOTT ALEXANDER | upheld | a canal entry of 29 Sept 1830, inside the town's own bound for the man, beside James Kinzie's of the day before |
+| BRONSON ARTHUR | upheld | the town's 1833 tax list, the same year as the auction; FREDERIC(K) Bronson stands beside him, so the forename is doing the work |
+| CARVER DAVID | upheld | the poll of 10 Aug 1833 and the tax list of 1833, two months before he buys |
+| CASEY EDWARD W | upheld | the middle initial, printed by the register AND by the town's own rolls |
+| CLYBOURNE ARCHIBALD | upheld | one Clybourne on either side; Andreas's trade and the town's rolls |
+| COLE PARKER M | upheld | all three tokens agree — the letter list prints 'Parker M. Cole' |
+| INGERSOLL CHESTER | upheld | the tavern at Wolf Point, in the paper weeks either side of the parcel |
+| LLOYD ALEXANDER | upheld | two documents around the entry, and one Lloyd on either side |
+| PRUYNE PETER | upheld | the forename in full, the trade attested, one Pruyne in the layer |
+| PRUYNE P | upheld | the same register writes him PETER on four other rows — the PEARSONS H argument |
+| STEELE ASHBEL | upheld | the polls of 1834 and 1835 print the same unusual forename |
+| LUDBY JOHN | upheld | **the Residence column reads COOK** on three of four rows — the DILL FRANK carrier |
+| WEST HENRY C | upheld | the letter list prints 'Henry c. West' — the middle initial is on both sides |
+| HARTZELL THOMAS | refused | one tax line in 1833 against a canal entry of 1830; ILLINOIS is a state |
+| VANDERBOGERT HENRY | refused | one tax line; the register holds a second Vanderbogert, and **T-0842** is asking whether the town's own two spellings are one man |
+| WESSENCRAFT CHARLES | refused | one tax line; a unique surname makes coincidence unlikely, and unlikely is not checked |
+| HALE JOHN | refused | **T-0885**: Ebenezer Hale enters every one of the same 26 parcels, and upholding would decide that open question by default |
+| SPENCE JAMES | refused | the middle initial is on the town's side only, which tests nothing — the SPENCER WILLIAM G shape |
+| CHANDLER JOSEPH | refused | one garbled letter-list return, six months after the entry |
+| KINGSTON PAUL | refused | one letter-list return; the register also holds KINGSTON J T and JOHN T |
+| MINARD IRA | refused | the closest call: a letter on 20 May 1835 and 161 acres on 27 June 1835, and a coincidence of date says when somebody bought, not who |
+| PRUYNE P AND CO | refused | a FIRM, as GARRETT A ET CO was (T-0851) |
+| GARRETT AUGUSTUS | refused | the town has never read this man's forename — the corpus prints 'A. Garrett', and an initial is less than the bare name the clause was written for. An auctioneer's trade is consistent with any land transaction, which is what makes it useless as a discriminator |
+
+**What ruling on them moved.** The crosswalk goes from 136 matched spellings to **126**, and
+from 295 refusals to **305**. Nine cards had a paragraph RETRACTED — Chandler, Garrett,
+Hale, Hartzell, Kingston, Minard, Spence, Vanderbogert and Wessencraft — and Peter Pruyne's
+now names two readings instead of three. The spend falls from 122 people to **113**, from
+415 register entries carried to **362**, from 20,613.61 acres to **19,192.93**, and from
+202 school-section parcels to **160**. No grade moved, here or anywhere: a ruling never
+raises one and a refusal never lowers one.
+
+**A. Garrett's card now carries no land purchase at all.** T-0700 refused the firm spelling
+expecting `GARRETT AUGUSTUS` to stand alone on it; ruling on that spelling in turn finds
+nothing to check it against, so both are refused and the honest state of the card is empty.
+One printing of the forename in full would overturn it.
+
+**The retraction learned to cut from the middle of a note (T-0850).** T-0700 built it to cut
+the paragraph off the TAIL, which is where this pass appends. Joseph Chandler's card had the
+1840 census written under his purchase, so the tail was somebody else's and the tool refused
+the cut and said so. It now excises the span between the two literals that bound the
+paragraph — the marker that opens it and the ladder sentence that closes it — and still
+refuses where the closing literal is gone, because then where the paragraph ends is genuinely
+unknown. `--self-test` holds both.
+
+**Still unruled:** the hundred-odd proposals **T-0697** added when the mechanical rule stopped
+requiring exactly one person of the surname. Neither T-0700 nor T-0850 was written against
+them — both were written against a crosswalk of 35 matches — and they are **T-0990**, one
+cohort per run. The count is on the crosswalk's `ruled` block and not repeated here.
 
 **THE SURNAME GATHERS THE RIVALS AND THE FORENAME DECIDES BETWEEN THEM (T-0697).** Until
 that ticket the rule needed EXACTLY ONE person of the surname in the residents layer, and
@@ -203,14 +265,18 @@ anchored to nothing before; none does now, and every one of the 953 records carr
 ruling — the same 953 before T-0697 and after it, which is the thing that did NOT move
 when a hundred spellings crossed from refused to matched.
 
-**Twenty-four people the town already holds meet a purchaser** — Arthur Bronson, David
+**Twenty-four people the town already holds meet a purchaser** — every one of them ruled on by T-0850, above — Arthur Bronson, David
 Carver, Edward W. Casey, Joseph Chandler, Archibald Clybourne, Parker M. Cole, Daniel
 Elston, John Hale, Thomas Hartzell, Chester Ingersoll, Paul Kingston, Alexander Lloyd,
 Ira Minard, Walter Loomis Newberry, Hiram Pearsons, Jeremiah Price, Peter Pruyne (on
 three rows, one of them `PRUYNE P AND CO`), James C Spence, Ashbel Steele, Henry
 Vanderbogert, Charles Wessencraft, Henry C. West, Alexander Wolcott, John Ludby — 26
-matched purchaser spellings against 234 refused. None carries a stated residence: the
-thirty-six COOK rows are other names, and matching them is work this pass did not do.
+matched purchaser spellings against 234 refused. **That sentence used to end "none carries
+a stated residence"; ruling on them found otherwise** — John Ludby's rows state COOK on three
+of four, and Hiram Pearsons, Thomas Hartzell and Alexander Wolcott each carry a COOK or an
+ILLINOIS somewhere in theirs. The claim was made off the FIRST row of each spelling, which is
+the same reading fault T-0700 found in Frank Dill's grade. It is corrected here: the residence
+column speaks for four of these twenty-six, and it carried the Ludby ruling.
 
 **Shape: `records`.** A sale is a row on a page, so it takes the records shape — the
 purchaser `as_read` exactly as the register spelled him, `normalized` only far enough

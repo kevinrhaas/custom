@@ -6,12 +6,12 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 489,
+  "church": 490,
   "books": 195,
-  "directories": 7229,
+  "directories": 7232,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 438
+  "old_settlers": 441
  },
  "witness": {
   "civic": {
@@ -28,15 +28,15 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1255
+   "spent": 1254
   },
   "books": {
    "read": 246,
    "spent": 51
   },
   "directories": {
-   "read": 8257,
-   "spent": 1028
+   "read": 8258,
+   "spent": 1026
   },
   "newberry_index": {
    "read": 7005,
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 656
+   "spent": 653
   }
  },
  "raised": [
@@ -368,6 +368,46 @@
    "to": 195,
    "date": "2026-09-07",
    "why": "T-0581 read Moses and Kirkland's History of Chicago, Illinois, vol. 1 (1895) — the largest Chicago work the Newberry genealogical index points at that this project did not hold — as twenty claims, and its crosswalk pass rules zero merges ON PURPOSE. The volume is a compilation of 1895 that cites Andreas, Bross and Blanchard on the very pages read here, and it names men this project already carries from period sources: merging a compiler's spelling onto a witness's person would add nothing to the town and would make the identity layer's judgement off an 1895 secondary. Five refusals are written and only one of them can anchor to a claim (Spring / Giles Spring, a surname with a trade and no given name); the other four are index-card-versus-volume spelling pairs — blodget/Blodgett, caapbell/Campbell, gardiner/Gardner, mattoson/Matteson — which this instrument counts as id pairs and never as spend, correctly, because they adjudicate the sources' vocabulary and not the town. Of the twenty claims, six name nobody rulable at all (the State census trade counts, the open winter of 1834-5, Hogan's storehouse, Peck's store, the school-section purchase and the Pioneer Hook and Ladder roll of October 1835, which postdates the scene date by three months); the rest name people whose identification is a residents-layer judgement made under the ratified ladder in that layer's own PR, which is exactly what T-0581's third acceptance clause requires and forbids doing here. +19, deliberately, and the bridge work is filed rather than promised: T-0961 transcribes the volume's LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 and T-0826 reads volume 2, against which every ABSENT verdict this pass recorded is an absence from volume 1 only."
+  },
+  {
+   "domain": "church",
+   "hop": "write",
+   "from": null,
+   "to": 82,
+   "date": "2026-09-10",
+   "why": "T-0962 widened the second hop to read the container spelling `matched`, and church walked into the report for the first time carrying 82 rulings and not one card told. The debt is not new — second_presbyterian_crosswalk.json has adjudicated 82 roll members onto households since it was generated, and no resident record in the town cites second_presbyterian_chicago_1892 at all. The ceiling records that true figure rather than hiding it behind an instrument that could not see the container; it is a debt to pay down, and T-0992 is the ticket that pays it. It may not grow."
+  },
+  {
+   "domain": "church",
+   "hop": "write",
+   "from": 82,
+   "to": 83,
+   "date": "2026-09-10",
+   "why": "Mrs C. Taylor arrived in the town while this branch was open. dev minted hh_taylor_c (T-0960, PR #1050/#1051) and the Second Presbyterian crosswalk re-derived onto her: roll line second_presb_0870, \"Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.\", printed page 203, matched on the same surname-plus-initial rule as the other 82. So the crosswalk's matched rows went 82 to 83 and church's write debt with them. The ceiling is NOT growing because church read further ahead — the reading is unchanged since T-0962 measured it this morning — but because the TOWN gained a card underneath it, which is the ladder working and not a hole opening. T-0992 pays the whole 83 down to 0 and this may not grow for any other reason."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 489,
+   "to": 490,
+   "date": "2026-09-10",
+   "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7229,
+   "to": 7232,
+   "date": "2026-09-10",
+   "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 438,
+   "to": 441,
+   "date": "2026-09-10",
+   "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
   }
  ],
  "lowered": [
@@ -400,7 +440,8 @@
   "civic": 0,
   "directories": 0,
   "land_sales": 0,
-  "old_settlers": 0
+  "old_settlers": 0,
+  "church": 83
  },
  "unsourced_ceiling": {
   "old_settlers": 0
