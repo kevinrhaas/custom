@@ -1496,7 +1496,7 @@ step "…and the audit's own assertions still fire when broken" \
 # reads as a domain with nothing to answer for. With the container read, church arrives at
 # 82 reached and 0 on a card — confirmed independently, no resident record in the town
 # cites `second_presbyterian_chicago_1892` at all. The ceiling below records that true 82
-# rather than hiding it; T-0988 pays it down.
+# rather than hiding it; T-0992 pays it down.
 step "no research domain reads further ahead of the town than its baseline" \
   python3 tools/measure_research_spend.py --gate --quiet
 

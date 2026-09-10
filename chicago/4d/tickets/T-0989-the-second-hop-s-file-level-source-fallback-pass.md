@@ -72,5 +72,5 @@ source id at all.
 
 **Links:** T-0962 (found the symptom, misdiagnosed the cause; corrected here) · T-0598 (made
 the unsourced hop a ratchet at 0, which is what this change collides with) · T-0698 /
-`tools/spend_census_1840_heads.py` (spent the 27 by hand) · T-0988 (church's 82, the debt the
+`tools/spend_census_1840_heads.py` (spent the 27 by hand) · T-0992 (church's 82, the debt the
 container fix uncovered) · `tools/measure_research_spend.py` § `count_written`, `doc_rests_on`.

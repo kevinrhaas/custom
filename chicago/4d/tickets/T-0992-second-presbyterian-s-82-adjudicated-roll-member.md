@@ -1,5 +1,5 @@
 ---
-id: T-0988
+id: T-0992
 title: Second Presbyterian's 82 adjudicated roll members reach 82 cards and not one card cites the roll: spend them, and drop church's write ceiling back to zero
 state: open
 epic: META
