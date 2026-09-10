@@ -49,6 +49,13 @@ SOURCE_ID = "isa_public_domain_land_tract_sales"
 # it is not in GENERATED, and --check validates it instead of re-deriving it.
 RULINGS_NAME = "resident_rulings.json"
 RULING_KINDS = ("upheld", "refused")
+# THE FIRMS THE REGISTER SELLS TO, DECLARED (T-0851). `namesake.firm_style` reads the
+# page rather than this list — a partnership is recognised by the words the register
+# printed, not by being named here — but a firm the reading finds and nobody has looked
+# at is a purchaser going onto no card and into no business, silently. So `check` fails
+# on a derived firm that is not declared here. Adding a deposit that carries a new one
+# is meant to stop the build: read the rows, then add the spelling.
+KNOWN_FIRMS = ("GARRETT A ET CO", "PRUYNE P AND CO")
 # THE DEPOSITS, IN THE ORDER THEY WERE ADDED, and that order is load-bearing. Record
 # ids are positional — `ls0001` upward across the whole reading — and data/structures/
 # *.json cite them by id, so a new deposit APPENDS and never renumbers what is already
@@ -173,10 +180,27 @@ def iso_date(us: str) -> str:
 
 def normalize_name(as_read: str) -> str:
     """`DEVINPORT WILLIAM` reads back as `William Devinport`. The register's spelling is
-    NEVER corrected here — that is what `resident_crosswalk.json` is for."""
+    NEVER corrected here — that is what `resident_crosswalk.json` is for.
+
+    A FIRM READS BACK AS A FIRM (T-0851). `GARRETT A ET CO` used to come back as
+    `A Et Co Garrett`, which is not a name of anything: the words the register sets
+    to say the buyer was a house were being read as forenames and then title-cased.
+    A partnership style is EXPANDED and nothing else is touched — `ET CO` and `AND
+    CO` are the register's abbreviation for `& Co.`, and expanding an abbreviation
+    is not correcting a spelling. What stands before the conjunction is the one
+    partner the register names; who else stood in the house is not on the page.
+    """
     parts = [p for p in as_read.split() if p]
     if not parts:
         return as_read
+    style = namesake.firm_style(" ".join(parts[1:]))
+    if style:
+        head = [w for w in parts[1:]]
+        cut = next(i for i, w in enumerate(head)
+                   if w.strip(",.").upper() in namesake.PARTNERSHIP_CONJUNCTIONS
+                   and head[i + 1].strip(",.").upper() in namesake.PARTNERSHIP_HEADS)
+        partner = " ".join(g.title() if len(g) > 1 else g.upper() for g in head[:cut])
+        return (partner + " " + parts[0].title() + " & Co.").strip()
     surname, given = parts[0], parts[1:]
     suffix = ""
     if given and given[-1].upper() in SUFFIXES:
@@ -342,6 +366,96 @@ def load_rulings(domain: Path) -> dict:
     return {r["purchaser_as_read"]: r for r in doc.get("ruled") or []}
 
 
+def firm_purchaser(as_read: str, style: str, sales: list, record_ids: list,
+                   candidates: list, residences: list) -> dict:
+    """A partnership that entered ground, recorded as the entity that entered it (T-0851).
+
+    Until this ticket the register's two firms had nowhere to go. One was written onto
+    a man's card — Peter Pruyne's paragraph said the register entered HIM as `PRUYNE P
+    AND CO` — and the other was refused by hand in `resident_rulings.json`, which left
+    A. Garrett & Co.'s eighty acres in the deposit and in no reading of it. This block
+    is the reading: what the house bought, when, where, for how much, and the one
+    partner the page names.
+
+    WHAT IT DOES NOT SAY. It does not identify the firm with the town's business layer,
+    it does not place anybody on the ground, and it does not name a partner the register
+    left silent. `names_one_partner` is a PROPOSAL about the partner's name and carries
+    the same grade the person rule would have given it — `forename_agrees` or the weaker
+    `initial_agrees` — because that is all the page supports. The purchase stays the
+    firm's on either verdict.
+    """
+    def num(v):
+        try:
+            return float(v)
+        except ValueError:
+            return 0.0
+    partner_as_read = as_read.split()[0] + " " + " ".join(
+        w for w in givens_of(as_read)[:_style_cut(as_read)])
+    partner_as_read = partner_as_read.strip()
+    named = {"as_read": partner_as_read, "resident_id": None, "resident_name": None,
+             "household_id": None, "match": None, "rule": None, "rivals": []}
+    givens = givens_of(as_read)[:_style_cut(as_read)]
+    if candidates and givens:
+        ruling = namesake.choose(" ".join(givens), [
+            {"key": pid, "name": name, "given": " ".join(name.split()[:-1])}
+            for pid, name, hh in candidates])
+        if ruling["named"]:
+            pid, name, hh = [c for c in candidates if c[0] == ruling["named"]][0]
+            named.update({
+                "resident_id": pid, "resident_name": name, "household_id": hh,
+                "match": ruling["grade"],
+                "rule": "%s, the partner %s names, matches %s: %s, and the forename "
+                        "agrees %s. THIS IS A PROPOSAL ABOUT THE PARTNER'S NAME AND NOT "
+                        "A PURCHASE BY HIM." % (partner_as_read, as_read, name,
+                                                ruling["why"],
+                                                "in full" if ruling["grade"] == "forename_agrees"
+                                                else "as an initial only"),
+                "rivals": ruling["rivals"],
+            })
+        else:
+            named["rule"] = "%s, the partner %s names, is refused against every person " \
+                            "of the surname: %s." % (partner_as_read, as_read, ruling["why"])
+            named["rivals"] = ruling["rivals"]
+    elif not candidates:
+        named["rule"] = "The residents layer holds nobody of the surname %s." % as_read.split()[0].title()
+    return {
+        "firm_as_read": as_read,
+        "firm_style": style,
+        "firm_expanded": normalize_name(as_read),
+        "record_ids": record_ids,
+        "sales": len(sales),
+        "acres_stated": "%.2f" % sum(num(r["acres"]) for r in sales),
+        "total_price": "%.2f" % sum(num(r["total_price"]) for r in sales),
+        "first_sale": min(iso_date(r["date_purchased"]) for r in sales),
+        "last_sale": max(iso_date(r["date_purchased"]) for r in sales),
+        "tracts": [dict(tract(r), date_purchased=iso_date(r["date_purchased"]),
+                        acres=r["acres"], total_price=r["total_price"]) for r in sales],
+        "residence_column": ", ".join(residences),
+        "names_one_partner": named,
+        "silent_partners": "The register names one partner and abbreviates the rest. Who "
+                           "else stood in this house is not on this page, and nothing "
+                           "here proposes them.",
+        "what_it_evidences": "A partnership of this name entered this ground on this "
+                             "date. It is not evidence that the firm kept a house in the "
+                             "town, that it stood on the tract, or that the partner the "
+                             "register names bought anything himself.",
+        "why_it_is_not_a_match": "This crosswalk proposes correspondences between a "
+                                 "purchaser and a PERSON, and the purchaser here is not "
+                                 "one. The refusal is in refusals[] with this block named "
+                                 "as what carries the sale instead.",
+    }
+
+
+def _style_cut(as_read: str) -> int:
+    """How many given words stand BEFORE the partnership conjunction."""
+    head = givens_of(as_read)
+    for i, w in enumerate(head[:-1]):
+        if w.strip(",.").upper() in namesake.PARTNERSHIP_CONJUNCTIONS \
+                and head[i + 1].strip(",.").upper() in namesake.PARTNERSHIP_HEADS:
+            return i
+    return len(head)
+
+
 def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                             rulings: dict | None = None) -> dict:
     """Propose a correspondence between a purchaser and a person the town already holds.
@@ -380,7 +494,10 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
     by_surname = {}
     for pid, name, hh in people:
         by_surname.setdefault(name.split()[-1].upper(), []).append((pid, name, hh))
-    matches, refusals = [], []
+    matches, refusals, firms = [], [], []
+    sales_of = {}
+    for row in rows:
+        sales_of.setdefault(row["purchaser"], []).append(row)
     seen = set()
     for row in rows:
         as_read = row["purchaser"]
@@ -390,6 +507,44 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
         surname, givens = surname_of(as_read), givens_of(as_read)
         cook = any(r.upper() == "COOK" for r in residences[as_read])
         candidates = by_surname.get(surname, [])
+        # THE BUYER WAS A HOUSE (T-0851), and this is asked before the surname gathers
+        # anybody. `GARRETT A ET CO` entered eighty acres in T38N R14E on 1 December
+        # 1835; `tools/namesake.py` drops the firm words to compare two readings of one
+        # man, so what reached the forename rule was `A`, and `A` names the town's A.
+        # Garrett — a house's purchase written onto a man's card. The identification of
+        # the firm with him is probably right and is NOT what is refused here; what is
+        # refused is spending a partnership's entry as a person's.
+        style = namesake.firm_style(" ".join(givens))
+        if style:
+            firms.append(firm_purchaser(as_read, style, sales_of[as_read],
+                                        sorted(by_name[as_read]), candidates,
+                                        residences[as_read]))
+            named = firms[-1]["names_one_partner"]
+            refusals.append({
+                "a": as_read,
+                "b": (named["resident_name"] if named.get("resident_name")
+                      else "(the residents layer)"),
+                "rule": "%s is refused against %s: the register sets %r after the name, "
+                        "which is the page saying the purchaser was a PARTNERSHIP, and "
+                        "this crosswalk proposes correspondences between a purchaser and "
+                        "a PERSON. %s"
+                        % (as_read,
+                           named["resident_name"] if named.get("resident_name")
+                           else "every person of the surname",
+                           style,
+                           ("The identification of the firm with %s is probably right "
+                            "and is not what is refused; what is refused is writing the "
+                            "house's entry onto his card as his own."
+                            % named["resident_name"]) if named.get("resident_name") else
+                           "The residents layer holds nobody the firm's named partner "
+                           "could be, so there is not even a card to refuse it against."),
+                "record_ids": sorted(by_name[as_read]),
+                "evidence": ["data/research/land_sales/text/" + row["_file"]],
+                "firm": True,
+                "firm_style": style,
+                "carried_by": "firm_purchasers[]",
+            })
+            continue
         if not givens:
             refusals.append({
                 "a": as_read, "b": "(the residents layer)",
@@ -533,9 +688,15 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                   "refused": sum(1 for r in refusals if r.get("ruled_under")),
                   "unruled": sum(1 for m in matches if not m.get("ruling"))},
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),
-                   "matched": len(matches), "refused": len(refusals)},
+                   "matched": len(matches), "refused": len(refusals),
+                   "firms": len(firms)},
         "matches": matches,
         "refusals": refusals,
+        # T-0851. The purchasers this crosswalk CANNOT propose, because they are not
+        # people — and the block that carries their ground so the reading is not lost
+        # with the proposal. Every firm is also in refusals[], so the count of
+        # adjudicated spellings stays whole.
+        "firm_purchasers": firms,
     }
 
 
@@ -658,6 +819,14 @@ def derive(domain: Path) -> dict:
 
 def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
     out = derive(domain)
+    # T-0851. A firm the reading found and nobody declared is a purchaser that reaches
+    # no card, no business and no eye. It stops the build rather than passing quietly.
+    undeclared = [f["firm_as_read"] for f in out["resident_crosswalk.json"]["firm_purchasers"]
+                  if f["firm_as_read"] not in KNOWN_FIRMS]
+    for spelling in undeclared:
+        bad.append("land_sales: %r is a partnership the register sells to and it is not in "
+                   "KNOWN_FIRMS — read the rows it entered, then declare the spelling "
+                   "(tools/read_land_sales.py, T-0851)" % spelling)
     for rel, doc in out.items():
         dump(domain / rel, doc)
     if not quiet:
@@ -723,6 +892,14 @@ def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
     bad += check_rulings(domain, rows,
                          {row["purchase_no"]: rec["id"] for row, rec in zip(rows, ordered)})
     out = derive(domain)
+    # T-0851. A firm the reading found and nobody declared is a purchaser that reaches
+    # no card, no business and no eye. It stops the build rather than passing quietly.
+    undeclared = [f["firm_as_read"] for f in out["resident_crosswalk.json"]["firm_purchasers"]
+                  if f["firm_as_read"] not in KNOWN_FIRMS]
+    for spelling in undeclared:
+        bad.append("land_sales: %r is a partnership the register sells to and it is not in "
+                   "KNOWN_FIRMS — read the rows it entered, then declare the spelling "
+                   "(tools/read_land_sales.py, T-0851)" % spelling)
     for rel, doc in out.items():
         path = domain / rel
         if not path.exists():
@@ -769,7 +946,14 @@ def _fixture(tmp: Path) -> Path:
         "\t".join(COLS) + "\n"
         + "\t".join(["0000004", "HUNTER EDWARD E", "UNKNOWN", "", "E2SW", "02", "38N",
                       "14E", "3", "COOK", "80.00", "1.25", "100.00", "FD", "11/15/1834",
-                      "687", "260"]) + "\n", encoding="utf-8")
+                      "687", "260"]) + "\n"
+        # A FIRM (T-0851), on the tract and the day the register really records it. The
+        # page sets `ET CO` after the name; those words used to fold away before the
+        # forename rule was asked, so `A` named the town's A. Garrett and a house's
+        # eighty acres were proposed as a man's purchase.
+        + "\t".join(["0000006", "GARRETT A ET CO", "UNKNOWN", "", "W2SW", "33", "38N",
+                      "14E", "3", "COOK", "80.00", "1.25", "100.00", "FD", "12/01/1835",
+                      "687", "300"]) + "\n", encoding="utf-8")
     build(d, quiet=True)
     return d
 
@@ -790,6 +974,23 @@ def self_test() -> int:
         fired.append("a purchase with no stated residence grades inferred")
 
         cross = load(d / "resident_crosswalk.json")
+        # T-0851. A firm is not a person, and the reading of it is not lost with the
+        # proposal: it is refused against every person AND carried in its own block.
+        firm = [f for f in cross["firm_purchasers"] if f["firm_as_read"] == "GARRETT A ET CO"]
+        if len(firm) != 1:
+            print("SELF-TEST: a partnership must reach firm_purchasers[]"); return 1
+        if any(m["purchaser_as_read"] == "GARRETT A ET CO" for m in cross["matches"]):
+            print("SELF-TEST: a partnership must never be proposed as a person"); return 1
+        if firm[0]["firm_expanded"] != "A Garrett & Co.":
+            print("SELF-TEST: a firm must read back as a firm, not as 'A Et Co Garrett'"); return 1
+        if firm[0]["names_one_partner"]["resident_id"] != "garrett_a":
+            print("SELF-TEST: the partner the register names is still proposed, as a partner"); return 1
+        if firm[0]["acres_stated"] != "80.00":
+            print("SELF-TEST: the firm's block must carry the ground it entered"); return 1
+        gref = [r for r in cross["refusals"] if r["a"] == "GARRETT A ET CO"]
+        if not gref or gref[0].get("carried_by") != "firm_purchasers[]":
+            print("SELF-TEST: a firm's refusal must say what carries the sale instead"); return 1
+        fired.append("a partnership is refused as a person and carried as a firm")
         briggs = [r for r in cross["refusals"] if r["a"] == "BRIGGS"]
         if not briggs:
             print("SELF-TEST: a surname-only purchaser must be refused"); return 1
@@ -845,7 +1046,7 @@ def self_test() -> int:
         cross = load(d / "resident_crosswalk.json")
 
         ring = load(d / records_name(DEPOSITS[1]["tsv"]))
-        if [r["id"] for r in ring["records"]] != ["ls0005"]:
+        if [r["id"] for r in ring["records"]] != ["ls0005", "ls0006"]:
             print("SELF-TEST: the second deposit's ids must continue the first's"); return 1
         if ring["records"][0]["locator"]["text_file"] != DEPOSITS[1]["tsv"]:
             print("SELF-TEST: a record must cite the deposit it is on"); return 1
@@ -863,7 +1064,7 @@ def self_test() -> int:
         # The ring's own declaration, under its own ticket: a second deposit that read
         # nothing would look exactly like one whose sections all came back empty.
         ringdec = [x for x in cov["declarations"] if x["ticket"] == DEPOSITS[1]["ticket"]]
-        if [x["items"] for x in ringdec] != [["T38N R14E sec 02"]]:
+        if [x["items"] for x in ringdec] != [["T38N R14E sec 02", "T38N R14E sec 33"]]:
             print("SELF-TEST: the ring deposit must declare the sections it reached"); return 1
         if "T38N R14E sec 01" not in cov["queried_no_sales_through_1836"][1]["items"]:
             print("SELF-TEST: a ring section walked and empty must be recorded as read"); return 1

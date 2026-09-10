@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 683, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T07:03:59.400Z', date: 'Sep 10, 2026, 2:03 AM CT',
+    items: [
+      'The federal land register sells ground to partnerships as well as to people, and twice on its 953 rows it says so \u2014 \u201cGarrett A et co\u201d and \u201cPruyne P and co\u201d. Both were being read as men.',
+      'Peter Pruyne\u2019s card said the register entered him six times and counted the firm\u2019s three acres and $310 among his own purchases. It now says five, and the firm\u2019s entry stands under the firm.',
+      'A. Garrett & Co. entered eighty acres south of the town on 1 December 1835 and no reading of the register carried it. There is now a record of what the house bought, where, when and for how much, naming the one partner the page names \u2014 as a partner, not as the buyer.',
+      'The identification of the house with the town\u2019s A. Garrett, the auctioneer, is probably right and is not what changed. What changed is that a partnership\u2019s purchase is no longer written onto a man as his own.'
+    ] },
   { v: 682, title: 'A woman who kept a house on Water Street gets a card', kind: 'change', ts: '2026-09-10T05:10:41.390Z', date: 'Sep 10, 2026, 12:10 AM CT',
     items: [
       'The Chicago Democrat of 19 August 1835 invites the town to a charity sale \u201cat the house of Mrs. C. Taylor, Water-st.\u201d \u2014 one of the very few private dwellings the papers ever name. The town held no card for her; it does now.',
