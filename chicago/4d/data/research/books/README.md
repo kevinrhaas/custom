@@ -31,9 +31,22 @@ after 1835. The date a passage DESCRIBES is the one the reconstruction cares
 about, and a memoir's own distance from it is a reason to grade carefully, not a
 reason to skip the field.
 
-**Hand-authored:** `claims/`, `records/`, `text/`, `coverage.json`, `crosswalk.json`, `corpus.json`.
+**Hand-authored:** `claims/`, `records/`, `text/`, `coverage.json`, `crosswalk.json`,
+`corpus.json`, `trade_class_rulings.json`'s twin `trade_census_1835_spend_rulings.json`.
 **Generated:** `page_index/` (`tools/build_book_page_index.py --build`, gated by its own
-`--check` in `tools/check.sh`); `data/research/domains.json`.
+`--check` in `tools/check.sh`); `trade_census_1835_crosswalk.json`
+(`tools/trade_census_1835.py`); `trade_census_1835_spend.json`
+(`tools/trade_census_spend_1835.py`); `data/research/domains.json`.
+
+**The two trade-census files are a measurement and a spend, and they are separate on
+purpose.** `trade_census_1835_crosswalk.json` (T-1006) sets the town's 206 businesses against
+`bk_mose1_006` class by class and creates nothing. `trade_census_1835_spend.json` (T-1007)
+answers the gaps it found from layers this project already holds — chiefly the residents
+layer, because the business register is compiled from printed NOTICES and five of the town's
+physicians never advertised. Neither may invent a person, a business or a building, and both
+`--check` in the gate. The census's lawyer and physician lines count PEOPLE, its store and
+brewery lines count PREMISES, and the register counts NOTICES: the spend record states the
+unit of every comparison it makes, because nineteen lawyer records are fourteen men.
 
 **`corpus.json` is the register.** One entry per book whose text this project commits: what
 the book is, which source record grades it, the deposit copy and its sha256, the derived text

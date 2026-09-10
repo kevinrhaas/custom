@@ -2263,6 +2263,21 @@ step "every business carries a census class, and the December 1835 count re-deri
 step "…and its own assertions still fire when broken" \
   python3 tools/trade_census_1835.py --self-test
 
+# T-1007 (of T-0988). The other half: SPENDING the gap T-1006 measured. The business
+# register is compiled from printed NOTICES, so its four physician records were four
+# physician advertisements — and five more doctors sat on resident cards off Andreas and
+# the Democrat with no business record at all, because a physician need not advertise.
+# This joins the two layers, records the Lyceum and the Reading Room as institutions with
+# no building, and holds the bank and the lottery office as documented absences. It fails
+# on the two omissions that would quietly shrink the town: a register record on a spent
+# class that no ruling claims, and a resident card whose trade the count cannot see. It
+# also refuses a roof for the Lyceum, which is the one thing T-1007 forbids outright.
+step "the trade-census gap is spent from the layers that hold it, and nobody is invented" \
+  python3 tools/trade_census_spend_1835.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/trade_census_spend_1835.py --self-test
+
 # T-0440. A house is minted from whichever printing the corpus carries first, and it took
 # `placement` and `street` from it — so a standing advertisement that ran without an
 # address in its first week and with one afterwards stood at `{"class": "none"}` for good
