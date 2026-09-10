@@ -1,7 +1,7 @@
 ---
 id: T-0990
 title: The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
-state: claimed
+state: open
 epic: META
 requested_by: steward
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: run 9/10/2026, 1:01:00 PM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34511427139
+claimed_run: null
 ---
 
 The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next.
