@@ -8,12 +8,12 @@
     "upheld": 45,
     "named": 1,
     "refused": 26,
-    "unruled": 66
+    "unruled": 68
   },
   "counts": {
     "purchasers": 431,
-    "matched": 112,
-    "refused": 319,
+    "matched": 114,
+    "refused": 317,
     "firms": 2
   },
   "matches": [
@@ -462,7 +462,7 @@
       "resident_name": "Mark Beaubien",
       "household_id": "hh_beaubien_mark",
       "match": "forename_agrees",
-      "rule": "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 10 people of this surname, and the forename agrees in full.",
+      "rule": "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 9 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "beaubien_alexandre",
@@ -542,15 +542,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "beaubien_medore_b",
-          "name": "Medore B Beaubien",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "B",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
@@ -1713,6 +1704,31 @@
           "outcome": "refused_on_the_forename"
         }
       ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "HEACOCK RUSSEL E",
+      "record_ids": [
+        "ls0230",
+        "ls0231",
+        "ls0232",
+        "ls0233",
+        "ls0234",
+        "ls0235",
+        "ls0236",
+        "ls0237",
+        "ls0475",
+        "ls0476"
+      ],
+      "resident_id": "heacock_russel_e",
+      "resident_name": "Russel E. Heacock",
+      "household_id": "hh_heacock_russel_e",
+      "match": "forename_agrees",
+      "rule": "HEACOCK RUSSEL E matches Russel E. Heacock: the forename names Russel E. Heacock of the 1 person of this surname, and the forename agrees in full.",
+      "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "ruling": null,
@@ -3099,7 +3115,7 @@
       "resident_name": "Col. Jean Baptiste Beaubien",
       "household_id": "hh_beaubien_jean_baptiste",
       "match": "initial_agrees",
-      "rule": "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 10 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 9 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "beaubien_alexandre",
@@ -3181,15 +3197,6 @@
           "middle_initial": null,
           "reading_middle_initial": "B",
           "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "beaubien_medore_b",
-          "name": "Medore B Beaubien",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "B",
-          "reading_middle_initial": "B",
-          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "ILLINOIS, UNKNOWN",
@@ -3208,6 +3215,24 @@
         "reasoning": "UPHELD on the initials as the town itself prints them, and on a date only one Beaubien can reach. The town's record of this man does not hold a forename it has to have expanded for it: Andreas's 1833 roster prints 'J. B. Beaubien, merchant' and Fergus 1839 prints 'Beaubien, John B., Michigan ave., bet. Lake and So. Water sts' — J. B. is the form the town used, and the register's BEAUBIEN J B is that form. The layer holds ten Beaubiens and the sale is dated 29 September 1830: this card's arrival is attested at 1812 from Andreas — 'he came to Chicago and bought the cabin and cultivated field south of the old fort in 1812' — and it is the only Beaubien in the layer the record puts at Chicago that early. Four canal rows in section 29 of T39N R14E, two of them the register's own voided duplicates of the other two, carried at 212.61 acres and $1,063.20 net. TWO THINGS THIS DOES NOT DO: it does not touch the Fort Dearborn reservation claim, which this project holds no record of and makes no finding on, and it does not make the 1830 purchase evidence of residence — the Residence column reads ILLINOIS on the voided pair and UNKNOWN on the pair that stood, and neither names a town."
       },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "HEACOCK RUSSELL E",
+      "record_ids": [
+        "ls0477",
+        "ls0478",
+        "ls0869"
+      ],
+      "resident_id": "heacock_russel_e",
+      "resident_name": "Russel E. Heacock",
+      "household_id": "hh_heacock_russel_e",
+      "match": "forename_agrees",
+      "rule": "HEACOCK RUSSELL E matches Russel E. Heacock: the forename names Russel E. Heacock of the 1 person of this surname, and the forename agrees in full.",
+      "rivals": [],
+      "residence_column": "COOK, UNKNOWN",
+      "evidence_grade": "documented",
+      "ruling": null,
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
       "purchaser_as_read": "KIMBERLY EDMUND S",
@@ -6677,46 +6702,6 @@
       "was_proposed_as": "HALE JOHN matches John Hale: the forename names John Hale of the 1 person of this surname, and the forename agrees in full."
     },
     {
-      "a": "HEACOCK RUSSEL E",
-      "b": "2 residents named Heacock",
-      "rule": "HEACOCK RUSSEL E is refused against Russel E. Heacock and Russell E Heacock: the forename names 2 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "heacock_russel_e",
-          "name": "Russel E. Heacock",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": "E",
-          "reading_middle_initial": "E",
-          "outcome": "survives"
-        },
-        {
-          "key": "heacock_russell_e",
-          "name": "Russell E Heacock",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — contraction (prefix) (M1)",
-          "middle_initial": "E",
-          "reading_middle_initial": "E",
-          "outcome": "survives"
-        }
-      ],
-      "record_ids": [
-        "ls0230",
-        "ls0231",
-        "ls0232",
-        "ls0233",
-        "ls0234",
-        "ls0235",
-        "ls0236",
-        "ls0237",
-        "ls0475",
-        "ls0476"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "HILL IRAD",
       "b": "Isaac L. Hill",
       "rule": "HILL IRAD is refused against Isaac L. Hill: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
@@ -8428,39 +8413,6 @@
       ],
       "record_ids": [
         "ls0474"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "HEACOCK RUSSELL E",
-      "b": "2 residents named Heacock",
-      "rule": "HEACOCK RUSSELL E is refused against Russel E. Heacock and Russell E Heacock: the forename names 2 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "heacock_russel_e",
-          "name": "Russel E. Heacock",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — contraction (prefix) (M1)",
-          "middle_initial": "E",
-          "reading_middle_initial": "E",
-          "outcome": "survives"
-        },
-        {
-          "key": "heacock_russell_e",
-          "name": "Russell E Heacock",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": "E",
-          "reading_middle_initial": "E",
-          "outcome": "survives"
-        }
-      ],
-      "record_ids": [
-        "ls0477",
-        "ls0478",
-        "ls0869"
       ],
       "evidence": [
         "data/residents/index.json"

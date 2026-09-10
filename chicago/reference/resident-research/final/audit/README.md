@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1356 rows and 45 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1353 rows and 45 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -21,26 +21,26 @@ no grade moves. Every cell is copied or counted from a committed record.
 
 ## Coverage
 
-Each line is *how many of the 1356 people carry at least one record of that kind*.
+Each line is *how many of the 1353 people carry at least one record of that kind*.
 
-| coverage | of 1356 | % | what counts |
+| coverage | of 1353 | % | what counts |
 | --- | ---: | ---: | --- |
-| identities | **1353** | 99.8% | a name with at least one source id anywhere on the card |
+| identities | **1350** | 99.8% | a name with at least one source id anywhere on the card |
 | occupations | **135** | 10.0% | an occupation that is not `none_recorded` |
-| household membership | **44** | 3.2% | recorded inside a household of two or more people |
+| household membership | **44** | 3.3% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.6% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **299** | 22.1% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **300** | 22.2% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **49** | 3.6% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 466 | 34.4% |
-| `two_or_more_sources_one_category` | 18 | 1.3% |
-| `one_source` | 321 | 23.7% |
-| `the_letter_lists_alone` | 548 | 40.4% |
+| `corroborated_across_categories` | 465 | 34.4% |
+| `two_or_more_sources_one_category` | 17 | 1.3% |
+| `one_source` | 320 | 23.7% |
+| `the_letter_lists_alone` | 548 | 40.5% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -51,8 +51,8 @@ record agree; two newspaper notices of the same name are
 
 | category | people citing at least one |
 | --- | ---: |
-| newspaper | 1128 |
-| civic | 299 |
+| newspaper | 1127 |
+| civic | 300 |
 | census | 49 |
 | church | 46 |
 | book | 259 |
@@ -236,7 +236,7 @@ secondary). A source id no rule reaches stops the build.
 | T-0509 | 76 |
 | T-0510 | 75 |
 | **reviewed** | **840** |
-| **not yet reviewed** | **516** |
+| **not yet reviewed** | **513** |
 
 | research outcome | people |
 | --- | ---: |
@@ -250,7 +250,7 @@ secondary). A source id no rule reaches stops the build.
 ## The conflicts, and what was ruled on them
 
 Under **T-0733**. The ledgers record a conflict against a candidate for **96**
-of the 1356 people. Before T-0733 nothing ruled on any of them, and a conflict
+of the 1353 people. Before T-0733 nothing ruled on any of them, and a conflict
 that is recorded and never adjudicated reads, to anybody downstream, exactly like
 a conflict nobody found. `data/research/residents/conflict_rulings.json` is the
 adjudication: a verdict, the conflict text it was made against, and the record
@@ -320,12 +320,12 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1307 | no 1840 census row is bridged to this person |
-| no address | 1280 | neither `lives_at` nor `works_at` resolves |
-| unplaced | 1260 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 869 | one source id on the card and no second category to check it against |
+| no census linkage | 1304 | no 1840 census row is bridged to this person |
+| no address | 1277 | neither `lives_at` nor `works_at` resolves |
+| unplaced | 1257 | the household carries division `unplaced`: in the town, on no lot |
+| rests on one source | 868 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 548 | known only from the post office's uncalled-for lists |
-| no research row | 516 | no cohort ticket has reviewed this person; the programme reached 840 of 1356 |
+| no research row | 513 | no cohort ticket has reviewed this person; the programme reached 840 of 1353 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
 | standing constraint | 13 | the household carries `review_required` with `touches_removal`: the final removal of the Potawatomi reaches it, no scene holding it may be `released`, and no research retires the flag |

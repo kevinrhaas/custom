@@ -59,22 +59,22 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6830,
+  "identities": 6827,
   "by_grade": {
    "None": 38,
    "not_1835_resident": 4409,
-   "inferred": 1935,
-   "attested": 448
+   "inferred": 1933,
+   "attested": 447
   },
   "by_subtype": {
-   "None": 5126,
-   "projected_resident": 1704
+   "None": 5125,
+   "projected_resident": 1702
   },
   "by_rule": {
    "G5": 38,
    "G0": 4409,
-   "G3": 1703,
-   "G1b": 376,
+   "G3": 1701,
+   "G1b": 375,
    "G2b": 39,
    "G1a": 51,
    "G1c": 21,
@@ -83,8 +83,8 @@
    "G2a": 33,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 75,
-  "conflicts": 74
+  "proposed_changes_to_existing_people": 73,
+  "conflicts": 72
  },
  "proposals": [
   {"identity":"id_abbot_g","name":"G Abbot","canonical_person_id":"abbot_8_g","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
@@ -463,10 +463,9 @@
   {"identity":"id_beaubien_jerome","name":"Jerome Beaubien","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_death_11_1"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_beaubien_john_s","name":"John S Beaubien","canonical_person_id":"beaubien_john_s","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:tax_1833_002"],"evidence_classes":["tax_1833","town_layer"]},
   {"identity":"id_beaubien_josette_laframboise","name":"Josette Laframboise Beaubien","canonical_person_id":"beaubien_josette","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
-  {"identity":"id_beaubien_madore_benjamin","name":"Madore Benjamin Beaubien","canonical_person_id":"beaubien_madore","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1834_010"],"evidence_classes":["poll_1834","town_layer"]},
+  {"identity":"id_beaubien_madore_benjamin","name":"Madore Benjamin Beaubien","canonical_person_id":"beaubien_madore","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_010","newspapers:person_medore_b_beaubien"],"evidence_classes":["newspaper_1833_1835","poll_1834","town_layer"]},
   {"identity":"id_beaubien_mark_u_s","name":"Mark U S Beaubien","canonical_person_id":"beaubien_mark","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e0310","civic:poll_1833_004","civic:tax_1833_003","civic:poll_1834_011","newspapers:person_mark_b_beaubien"],"evidence_classes":["directory_1843","newspaper_1833_1835","poll_1833","poll_1834","tax_1833","town_layer"]},
   {"identity":"id_beaubien_medard","name":"Medard Beaubien","canonical_person_id":"beaubien_medard","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1833_005"],"evidence_classes":["poll_1833","town_layer"]},
-  {"identity":"id_beaubien_medore_b","name":"Medore B Beaubien","canonical_person_id":"beaubien_medore_b","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_medore_b_beaubien"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_beaubien_medore_benjamin","name":"Medore Benjamin Beaubien","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0030"],"evidence_classes":["death_notice"]},
   {"identity":"id_beaubien_william","name":"William Beaubien","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0312"],"evidence_classes":["directory_1843"]},
   {"identity":"id_beaumont_c_a_o","name":"C A O Beaumont","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-38:28"],"evidence_classes":["census_1840"]},
@@ -1341,12 +1340,11 @@
   {"identity":"id_cloud_joseph","name":"Joseph Cloud","canonical_person_id":"cloud_joseph","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_joseph_cloud","newspapers:person_j_cloud"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_cloutier_bapti","name":"Bapti Cloutier","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_bapti_s_cloutier"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_clure_isaa_w_m","name":"Isaa W M Clure","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_isaa_c_w_m_c_clure"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_clybourn_archibald","name":"Archibald Clybourn","canonical_person_id":"clybourn_archibald","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e0653","newspapers:person_a_clybourn"],"evidence_classes":["directory_1843","newspaper_1833_1835","town_layer"]},
   {"identity":"id_clybourn_henley","name":"Henley Clybourn","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0109"],"evidence_classes":["death_notice"]},
   {"identity":"id_clybourn_john_henry","name":"John Henry Clybourn","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0110"],"evidence_classes":["death_notice"]},
   {"identity":"id_clybourn_jonas","name":"Jonas Clybourn","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0111"],"evidence_classes":["death_notice"]},
   {"identity":"id_clybourn_s","name":"S Clybourn","canonical_person_id":"clybourn_s","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_s_clybourn"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
-  {"identity":"id_clybourne_archibald","name":"Archibald Clybourne","canonical_person_id":"clybourne_archibald","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:tax_1833_019"],"evidence_classes":["tax_1833","town_layer"]},
+  {"identity":"id_clybourne_archibald","name":"Archibald Clybourne","canonical_person_id":"clybourne_archibald","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:tax_1833_019","directories:f1843_e0653","newspapers:person_a_clybourn"],"evidence_classes":["directory_1843","newspaper_1833_1835","tax_1833","town_layer"]},
   {"identity":"id_clyburn_archibald","name":"Archibald Clyburn","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0374"],"evidence_classes":["directory_1844"]},
   {"identity":"id_clyburn_henry","name":"Henry Clyburn","canonical_person_id":"clyburn_henry","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_henry_clyburn"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_coales_catherine","name":"Catherine Coales","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_026_4"],"evidence_classes":["church_after_1835"]},
@@ -2877,9 +2875,8 @@
   {"identity":"id_hazzard_elisha_h","name":"Elisha H Hazzard","canonical_person_id":"hazzard_elisha_h","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_elisha_h_hazzard"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_heacock_r_e","name":"R E Heacock","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-DD:13","directories:f1843_e1243","directories:n1844_e0828","directories:n1844_e0829","directories:n1844_e0830","newspapers:person_heacock_r_e"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_letter_list"]},
   {"identity":"id_heacock_reuben_b","name":"Reuben B Heacock","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1240","directories:n1844_e0827"],"evidence_classes":["directory_1843","directory_1844"]},
-  {"identity":"id_heacock_russel_e","name":"Russel E Heacock","canonical_person_id":"heacock_russel_e","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e1242","newspapers:person_russel_e_heacock"],"evidence_classes":["directory_1843","newspaper_1833_1835","town_layer"]},
+  {"identity":"id_heacock_russel_e","name":"Russel E Heacock","canonical_person_id":"heacock_russel_e","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e1242","newspapers:person_russel_e_heacock","newspapers:person_russell_e_heacock"],"evidence_classes":["directory_1843","newspaper_1833_1835","town_layer"]},
   {"identity":"id_heacock_russel_easton","name":"Russel Easton Heacock","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1241"],"evidence_classes":["directory_1843"]},
-  {"identity":"id_heacock_russell_e","name":"Russell E Heacock","canonical_person_id":"heacock_russell_e","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_russell_e_heacock"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_heacock_william_osburn","name":"William Osburn Heacock","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1244"],"evidence_classes":["directory_1843"]},
   {"identity":"id_heakl_hamilton_a","name":"Hamilton A Heakl","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0832"],"evidence_classes":["directory_1844"]},
   {"identity":"id_heald_daniel","name":"Daniel Heald","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-RC:10","directories:n1844_e0831"],"evidence_classes":["census_1840","directory_1844"]},
@@ -6925,7 +6922,6 @@
   {"identity":"id_bailey_bennet","person_id":"bailey_bennet","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"down"},
   {"identity":"id_barrows_mary","person_id":"barrows_mary","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_beaubien_josette_laframboise","person_id":"beaubien_josette","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
-  {"identity":"id_beaubien_madore_benjamin","person_id":"beaubien_madore","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_blakesley_harvey_a","person_id":"blakesley_harvey_a","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"down"},
   {"identity":"id_blodgett_tyler_k","person_id":"blodgett_tyler_k","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_bobinson_george_is","person_id":"bobinson_george_is","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
@@ -6938,7 +6934,6 @@
   {"identity":"id_christy_nathan","person_id":"christy_nathan","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"down"},
   {"identity":"id_church_thomas","person_id":"church_thomas","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_cleland_martin","person_id":"cleland_martin","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
-  {"identity":"id_clybourne_archibald","person_id":"clybourne_archibald","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_couch_ira_howes","person_id":"couch_ira","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_couch_james","person_id":"couch_james","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_davis_t_o","person_id":"davis_t_o","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
@@ -7002,7 +6997,6 @@
   {"identity":"id_bailey_bennet","kind":"downgrade","rule":"G2e","person_id":"bailey_bennet","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_barrows_mary","kind":"downgrade","rule":"G3","person_id":"barrows_mary","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_beaubien_josette_laframboise","kind":"abstention","rule":"G5","person_id":"beaubien_josette","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
-  {"identity":"id_beaubien_madore_benjamin","kind":"downgrade","rule":"G3","person_id":"beaubien_madore","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_blakesley_harvey_a","kind":"downgrade","rule":"G2e","person_id":"blakesley_harvey_a","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_blodgett_tyler_k","kind":"downgrade","rule":"G3","person_id":"blodgett_tyler_k","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_bobinson_george_is","kind":"abstention","rule":"G5","person_id":"bobinson_george_is","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
@@ -7015,7 +7009,6 @@
   {"identity":"id_christy_nathan","kind":"downgrade","rule":"G2e","person_id":"christy_nathan","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
   {"identity":"id_church_thomas","kind":"abstention","rule":"G5","person_id":"church_thomas","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["directory_1843","directory_1844","town_layer"]},
   {"identity":"id_cleland_martin","kind":"downgrade","rule":"G3","person_id":"cleland_martin","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
-  {"identity":"id_clybourne_archibald","kind":"downgrade","rule":"G3","person_id":"clybourne_archibald","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_couch_ira_howes","kind":"abstention","rule":"G5","person_id":"couch_ira","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["census_1840","directory_1843","directory_1844","town_layer"]},
   {"identity":"id_couch_james","kind":"abstention","rule":"G5","person_id":"couch_james","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["directory_1843","directory_1844","town_layer"]},
   {"identity":"id_davis_t_o","kind":"abstention","rule":"G5","person_id":"davis_t_o","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},

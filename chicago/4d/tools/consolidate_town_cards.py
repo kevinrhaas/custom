@@ -52,6 +52,7 @@ WHAT THIS TOOL DOES.
 
     tools/consolidate_town_cards.py --report       the clusters and their rulings
     tools/consolidate_town_cards.py --candidates   write the ledger only
+    tools/consolidate_town_cards.py --fuzzy        the pairs one letter apart (T-1002)
     tools/consolidate_town_cards.py --apply        land the rulings
     tools/consolidate_town_cards.py --check        the gate
     tools/consolidate_town_cards.py --self-test    the assertions still fire when broken
@@ -73,6 +74,7 @@ INDEX = RESIDENTS / "index.json"
 RULINGS = RESIDENTS / "card_merge_rulings.json"
 LEDGER = ROOT / "data" / "research" / "residents" / "town_card_candidates.json"
 CROSSWALK = ROOT / "data" / "research" / "residents" / "card_merge_crosswalk.json"
+FUZZY_LEDGER = ROOT / "data" / "research" / "residents" / "town_card_fuzzy_candidates.json"
 
 GENERATED_BY = "tools/consolidate_town_cards.py --apply"
 TICKET = "T-0839"
@@ -261,6 +263,160 @@ def pair_evidence(a: dict, b: dict) -> dict:
 
 # ---------------------------------------------------------------------------
 # the rulings
+
+
+# ---------------------------------------------------------------------------
+# the FUZZY candidate test — T-1002
+
+def edit_distance_1(a: str, b: str) -> bool:
+    """Exactly one letter apart: one substitution, one insertion or one deletion.
+
+    T-1002. The candidate test above groups on the surname AS A STRING, so a pair
+    whose two cards spell one name two ways never reaches it — not refused, not
+    deferred, NEVER PROPOSED. Three such pairs were found by hand in one afternoon's
+    reading of one table (Madore/Medore Beaubien, Clybourn/Clybourne Archibald,
+    Russel/Russell E. Heacock) and nothing said three was all there were.
+    """
+    if a == b:
+        return False
+    if abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) == len(b):
+        return sum(1 for x, y in zip(a, b) if x != y) == 1
+    if len(a) > len(b):
+        a, b = b, a
+    i = 0
+    while i < len(a) and a[i] == b[i]:
+        i += 1
+    return a[i:] == b[i + 1:]
+
+
+# A one-letter word cannot be SHOWN to be mis-spelled by a one-letter test: any two
+# initials are one substitution apart, so `C H Bennett` and `H. C. Bennett` would be
+# proposed on nothing at all. The forename leg therefore asks for a word — three
+# letters is the shortest forename this layer's cards carry (`Eli`) — and the pairs
+# it drops are pairs the test never had evidence about. The surname leg needs no such
+# floor: this town holds no surname shorter than four letters.
+FUZZY_FORENAME_FLOOR = 3
+
+
+def fuzzy_pairs(rows: list) -> list:
+    """Every pair of cards ONE LETTER apart that the exact candidate test cannot see.
+
+    Two legs, and both are named in T-1002's acceptance:
+      * the SURNAME is one letter out and the forenames are compatible on the exact
+        test — `Clybourn`/`Clybourne`, both Archibald;
+      * the surname FOLDS exactly and the first forename is one letter out —
+        `Madore`/`Medore` Beaubien, `Russel`/`Russell` E. Heacock.
+    A pair the exact test already proposes is not a finding and is left out.
+
+    THIS IS A WORKLIST AND NOT A GATE. `--check` does not read it, deliberately: the
+    exact test's clusters are few enough to rule exhaustively and this one's are not,
+    so gating on it would turn the merge gate red on the day it shipped and it would
+    be switched off. What it produces is a list somebody reads.
+    """
+    parsed = []
+    for row in rows:
+        got = forename_tokens(row["name"])
+        if got:
+            row = dict(row, parsed=got)
+            parsed.append(row)
+    already = set()
+    for cluster in clusters([dict(r) for r in rows]):
+        ids = sorted(c["person"] for c in cluster["cards"])
+        for i in range(len(ids)):
+            for j in range(i + 1, len(ids)):
+                already.add((ids[i], ids[j]))
+    out = []
+    for i in range(len(parsed)):
+        left = parsed[i]
+        surname_a, given_a = left["parsed"]
+        for j in range(i + 1, len(parsed)):
+            right = parsed[j]
+            surname_b, given_b = right["parsed"]
+            pair = tuple(sorted((left["person"], right["person"])))
+            if pair in already:
+                continue
+            if surname_a == surname_b:
+                if not given_a or not given_b:
+                    continue
+                if compatible(left["parsed"], right["parsed"]):
+                    continue
+                if min(len(given_a[0]), len(given_b[0])) < FUZZY_FORENAME_FLOOR:
+                    continue
+                if not edit_distance_1(given_a[0], given_b[0]):
+                    continue
+                leg = "forename"
+            elif edit_distance_1(surname_a, surname_b):
+                if not compatible(left["parsed"], right["parsed"]):
+                    continue
+                leg = "surname"
+            else:
+                continue
+            first, second = (left, right) if left["person"] == pair[0] else (right, left)
+            out.append({
+                "leg": leg,
+                "cards": [{"person": c["person"], "household": c["household"],
+                           "name": c["name"],
+                           "anchor": anchored(c["record"], c["doc"]),
+                           "sources": sorted(c["record"].get("sources") or [])}
+                          for c in (first, second)],
+                "one_anchor": sorted(anchored(c["record"], c["doc"])
+                                     for c in (first, second)) == [False, True],
+            })
+    return sorted(out, key=lambda r: (r["cards"][0]["person"], r["cards"][1]["person"]))
+
+
+def ruled_pair(rulings: dict, a: str, b: str) -> str | None:
+    """The state a written ruling gives this pair, if one covers both cards."""
+    known = ruled_cards(rulings)
+    left, right = known.get(a), known.get(b)
+    if left and right and left.get("cluster") == right.get("cluster"):
+        return left.get("state")
+    return None
+
+
+def fuzzy_doc(town: list, rulings: dict) -> dict:
+    rows = fuzzy_pairs(town)
+    for row in rows:
+        row["ruling"] = ruled_pair(rulings, row["cards"][0]["person"],
+                                   row["cards"][1]["person"])
+    unruled = [r for r in rows if not r["ruling"]]
+    return {
+        "schema": "town-card-fuzzy-candidates/1",
+        "_doc": "T-1002. THE PAIRS THE EXACT CANDIDATE TEST CANNOT SEE, because each "
+                "spells one name two ways. Derived — regenerate with "
+                "tools/consolidate_town_cards.py --fuzzy. A ROW HERE IS A QUESTION AND "
+                "NOT A DUPLICATE: two men of a town can be one letter apart in print "
+                "and two people in fact, and this test cannot tell the difference. "
+                "`one_anchor` marks the shape all three of T-1002's own pairs had — one "
+                "hand-authored card that documents the person, one thin mint carrying a "
+                "name and none_recorded — which is the shape the rulings are written "
+                "for; it is a sort order and not a verdict. A PAIR THAT FOLDS LEAVES "
+                "THIS LIST, because one of its two cards leaves the town: the three "
+                "T-1002 ruled are gone from it and the count fell from seventy to "
+                "sixty-seven by their going. NOT A GATE: `--check` does "
+                "not read this file, because a worklist this long would put the merge "
+                "gate red on the day it shipped and it would then be switched off.",
+        "generated_by": "tools/consolidate_town_cards.py --fuzzy",
+        "ticket": "T-1002",
+        "keys": {
+            "surname": "the surname one letter out, forenames compatible on the exact "
+                       "test",
+            "forename": "the surname folding exactly, the first forename one letter out "
+                        f"and at least {FUZZY_FORENAME_FLOOR} letters long",
+        },
+        "counts": {
+            "town_people": len(town),
+            "pairs": len(rows),
+            "unruled": len(unruled),
+            "one_anchor": sum(1 for r in rows if r["one_anchor"]),
+            "by_leg": {leg: sum(1 for r in rows if r["leg"] == leg)
+                       for leg in ("surname", "forename")},
+        },
+        "pairs": rows,
+    }
+
 
 def load_rulings() -> dict:
     """The rulings, each stamped with the ticket that MADE it and the day it was made.
@@ -892,6 +1048,51 @@ def self_test() -> int:
     ok(any("share 1 source" in f for f in pair["for"]),
        "a shared source must be read as evidence FOR")
 
+    # T-1002 — the fuzzy key. These are the three pairs an afternoon's reading found
+    # by hand, and the guard that keeps the test from proposing every initial against
+    # every other.
+    ok(edit_distance_1("clybourn", "clybourne") and edit_distance_1("russel", "russell"),
+       "one inserted letter must be one letter apart")
+    ok(edit_distance_1("madore", "medore"),
+       "one substituted letter must be one letter apart")
+    ok(not edit_distance_1("heacock", "heacock"),
+       "a name against itself is not a finding")
+    ok(not edit_distance_1("clybourn", "clybournes"),
+       "two letters apart is not one letter apart")
+
+    fuzzy_rows = [
+        {"household": "hh_1", "person": "clybourn_archibald", "name": "Archibald Clybourn",
+         "doc": {"id": "hh_1"}, "record": {"id": "clybourn_archibald"}},
+        {"household": "hh_2", "person": "clybourne_archibald",
+         "name": "Archibald Clybourne", "doc": {"id": "hh_2"},
+         "record": {"id": "clybourne_archibald", "occupation": {"value": "butcher"}}},
+        {"household": "hh_3", "person": "beaubien_madore",
+         "name": "Madore Benjamin Beaubien", "doc": {"id": "hh_3"},
+         "record": {"id": "beaubien_madore"}},
+        {"household": "hh_4", "person": "beaubien_medore_b", "name": "Medore B Beaubien",
+         "doc": {"id": "hh_4"}, "record": {"id": "beaubien_medore_b"}},
+        {"household": "hh_5", "person": "bennett_c_h", "name": "C H Bennett",
+         "doc": {"id": "hh_5"}, "record": {"id": "bennett_c_h"}},
+        {"household": "hh_6", "person": "bennett_h_c", "name": "H. C. Bennett",
+         "doc": {"id": "hh_6"}, "record": {"id": "bennett_h_c"}},
+        {"household": "hh_7", "person": "allen_james", "name": "James Allen",
+         "doc": {"id": "hh_7"}, "record": {"id": "allen_james"}},
+        {"household": "hh_8", "person": "allen_j", "name": "J Allen",
+         "doc": {"id": "hh_8"}, "record": {"id": "allen_j"}},
+    ]
+    found_pairs = {tuple(c["person"] for c in row["cards"])
+                   for row in fuzzy_pairs(fuzzy_rows)}
+    ok(("clybourn_archibald", "clybourne_archibald") in found_pairs,
+       "the fuzzy key must join the two Archibalds — one letter in the surname")
+    ok(("beaubien_madore", "beaubien_medore_b") in found_pairs,
+       "the fuzzy key must join Madore and Medore — one letter in the forename")
+    ok(("bennett_c_h", "bennett_h_c") not in found_pairs,
+       "two bare initials are ALWAYS one letter apart, so the test has no evidence "
+       "about them and must not propose them — this is the guard, and without it the "
+       "worklist grows by a fifth on nothing")
+    ok(("allen_j", "allen_james") not in found_pairs,
+       "a pair the exact candidate test already proposes is not a finding here")
+
     # T-0855 — the transcriber's bracket. This is the rule that would have caught
     # hubbard_g being folded onto Gurdon, so it is the one that must not rot.
     ok(bracket_conflict("Hubbard, [Henry] G.", "hubbard_gurdon") == "Henry",
@@ -920,6 +1121,7 @@ def main() -> int:
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--candidates", action="store_true")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--fuzzy", action="store_true")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -930,6 +1132,14 @@ def main() -> int:
         return 0
     if args.check:
         return check()
+    if args.fuzzy:
+        doc = fuzzy_doc(read_town(), load_rulings())
+        FUZZY_LEDGER.parent.mkdir(parents=True, exist_ok=True)
+        FUZZY_LEDGER.write_text(dump(doc), encoding="utf-8")
+        print(f"wrote {FUZZY_LEDGER.relative_to(ROOT)}: "
+              f"{doc['counts']['pairs']} pair(s) one letter apart that the exact "
+              f"candidate test cannot see, {doc['counts']['unruled']} unruled")
+        return 0
     if args.candidates:
         LEDGER.parent.mkdir(parents=True, exist_ok=True)
         LEDGER.write_text(dump(ledger_doc(read_town(), load_rulings())), encoding="utf-8")

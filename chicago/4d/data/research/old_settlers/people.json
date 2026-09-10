@@ -36,15 +36,15 @@
   "deaths": 40,
   "dated_by_the_1879_registry": 159,
   "arrival_at_or_before_1835": 70,
-  "OS1": 40,
+  "OS1": 39,
   "OS2A": 7,
   "OS2": 2,
   "OS3": 106,
-  "OS4": 9,
+  "OS4": 10,
   "OS5": 163,
-  "merged": 47,
+  "merged": 46,
   "probable": 2,
-  "candidate": 9,
+  "candidate": 10,
   "refused": 106,
   "unmatched": 163
  },
@@ -5669,17 +5669,19 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS1",
-    "outcome": "merged",
-    "person_id": "beaubien_medore_b",
-    "household_id": "hh_beaubien_medore_b",
-    "resident_name": "Medore B Beaubien",
-    "resident_grade": "attested",
-    "why": "surname and spelled-out forename agree, one bearer"
+    "rule": "OS4",
+    "outcome": "candidate",
+    "person_id": null,
+    "candidates": [
+     "beaubien_madore",
+     "beaubien_mark",
+     "beaubien_medard"
+    ],
+    "why": "3 bearers of 'beaubien' share the forename initial 'm'; the roster does not discriminate between them"
    },
    "proposed": {
-    "rung": "no_change",
-    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source."
+    "rung": "not_a_resident_on_this_evidence",
+    "reason": "the club's criterion is residence in Chicago prior to 1 January 1840 and majority by then — which does not place the person in the town on 1 July 1835. '1839/1840 alone is never a 1835 resident (later evidence only)'; a reception roster of 1882 is weaker still. Minting waits on a contemporary source (T-0514)."
    }
   },
   {

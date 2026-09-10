@@ -16,7 +16,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1353
+   "n": 1350
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -35,8 +35,8 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 159,
-  "residents_ambiguous": 47,
+  "residents_matched_one_entry": 158,
+  "residents_ambiguous": 45,
   "residents_contested": 29,
   "residents_surname_only_refused": 273,
   "voters_matched_one_entry": 123,
@@ -48,8 +48,8 @@
   "heads_1840_matched_one_entry": 169,
   "heads_1840_ambiguous": 56,
   "heads_1840_surname_only_refused": 220,
-  "residents_could_carry_occupation": 99,
-  "residents_could_carry_street": 97
+  "residents_could_carry_occupation": 98,
+  "residents_could_carry_street": 96
  },
  "residents": {
   "matches": [
@@ -326,33 +326,6 @@
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "Archibald Clybourn",
-    "rule": "Surname 'Clybourn' folds to the same string as the 1839 entry's, and the given name of both begins A.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0298",
-      "as_printed": "Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave",
-      "printed_page": 11,
-      "occupation_1839": "farmer and cattle-dealer",
-      "address_1839": "512 Elston ave",
-      "streets_1839": [
-       "Elston ave"
-      ],
-      "address_is_street_only": true
-     }
-    ],
-    "person_id": "clybourn_archibald",
-    "household_id": "hh_clybourn_archibald",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
@@ -6134,39 +6107,6 @@
     "lives_at_1835": null
    },
    {
-    "name": "Medore B Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0083",
-      "as_printed": "Beaubien, Mark, hotel-keeper, Lake st",
-      "printed_page": 6,
-      "occupation_1839": "hotel-keeper",
-      "address_1839": "Lake st",
-      "streets_1839": [
-       "Lake st"
-      ],
-      "address_is_street_only": false
-     },
-     {
-      "claim": "f1839_e0084",
-      "as_printed": "Beaubien, Medard B. , merchant, South Water street",
-      "printed_page": 6,
-      "occupation_1839": "merchant",
-      "address_1839": "South Water street",
-      "streets_1839": [
-       "South Water street"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "beaubien_medore_b",
-    "household_id": "hh_beaubien_medore_b",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "lives_at_1835": null
-   },
-   {
     "name": "Mrs. C. Taylor",
     "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins C.",
     "entries_1839": [
@@ -6259,35 +6199,6 @@
     "grade_1835": "attested",
     "occupation_1835": "attorney",
     "lives_at_1835": "heacock_house_monroe"
-   },
-   {
-    "name": "Russell E Heacock",
-    "rule": "Surname 'Heacock' folds to the same string as the 1839 entry's, and the given name of both begins R.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0667",
-      "as_printed": "Heacock, Reuben B., medical student, Dr. C. V. Dyer",
-      "printed_page": 17,
-      "occupation_1839": "medical student, Dr. C. V. Dyer",
-      "address_1839": null,
-      "streets_1839": [],
-      "address_is_street_only": false
-     },
-     {
-      "claim": "f1839_e0668",
-      "as_printed": "Heacock, Russell E., att’y, justice of peace, Adams cur. Clark",
-      "printed_page": 18,
-      "occupation_1839": "att’y, justice of peace, Adams cur. Clark",
-      "address_1839": null,
-      "streets_1839": [],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "heacock_russell_e",
-    "household_id": "hh_heacock_russell_e",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "lives_at_1835": null
    },
    {
     "name": "Samuel Brookes",

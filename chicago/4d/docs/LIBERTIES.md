@@ -10385,9 +10385,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 484 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 481 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 484 people
+**Scope:** `residents.persons[civic_mint]` — 481 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10398,8 +10398,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **484
-today**, and the figure has moved five times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **481
+today**, and the figure has moved six times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10424,7 +10424,17 @@ the scanner's digit in `JOHN 8. KINZIE`. T-0993 took it to 484 on the same day, 
 `blanchard_gantry` onto `blanchard_f_gantry`: the tax list of 1833 prints Francis Gurtrey
 Blanchard by his middle name alone, and the candidate test — which weighs the FIRST forename
 token — could not see the pair at all. That one was found by hand, reading the land register,
-and it is the first fold this file records that the derivation did not raise. The number this
+and it is the first fold this file records that the derivation did not raise. T-1002 took it to
+481 on the same day, folding three more the derivation could not raise for the same reason in a
+different place: `beaubien_medore_b`, `clybourn_archibald` and `heacock_russell_e` each spell one
+name one letter away from the card the town already documented — Madore against Medore, the
+trailing e of Clybourne, the doubled l of Russell — and the candidate test groups on the surname
+AS A STRING, so none of the three was ever proposed. They fold under C9, which asks that the thin
+card's own printing carry a second datum the survivor's record documents: the Board of Trustees'
+bridge committee, a butchering advertisement two miles from Chicago, a counsellor-at-law's card.
+AND THE CLASS IS NOW COUNTED RATHER THAN GUESSED AT: `tools/consolidate_town_cards.py --fuzzy`
+runs the same test with a one-letter key and proposes 67 further pairs, which is an epic's work
+and not a run's. The number this
 liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 

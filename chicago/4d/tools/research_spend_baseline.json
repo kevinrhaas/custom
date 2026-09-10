@@ -8,10 +8,10 @@
   "census_1840": 284,
   "church": 491,
   "books": 203,
-  "directories": 7233,
+  "directories": 7237,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 442
+  "old_settlers": 443
  },
  "witness": {
   "civic": {
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1025
+   "spent": 1021
   },
   "newberry_index": {
    "read": 7005,
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 652
+   "spent": 651
   }
  },
  "raised": [
@@ -448,6 +448,22 @@
    "to": 203,
    "date": "2026-09-10",
    "why": "T-0961 transcribed all 36 rows of Moses and Kirkland's LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (vol. 1, printed pages 78-79) and adjudicated every one of them against data/residents/ in the same pass: 12 merges, 16 refusals and 8 ABSENCES. The +8 is the absences, and they are the one shape this hop cannot count. An absence is a completed verdict — the residents layer holds no card of that surname at all, so there is no second spelling to put in a merge or a refusal, and books/crosswalk.json files them under the pass's own absences[] with a record_id and a reason apiece. They are not a bridge unbuilt; they are eight men the reconstruction does not have and now knows it does not have: Edward G. Ament, James Galloway, Charles Jouett, John Crafts, Henry Kelly, Antoine Ouilmette, Joseph Pothier and William See. Two of them are holes worth a later pass — Pothier stands one letter from the 'Joseph Porthier' Andreas names as striker beside David McKee, whom this pass merged; the four Laframboise rows beside them were refusable only because the layer holds Josette."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7233,
+   "to": 7237,
+   "date": "2026-09-10",
+   "why": "T-1002 folded three duplicate town cards (beaubien_medore_b, clybourn_archibald, heacock_russell_e) onto the documented cards they duplicate. A directory ruling is deduped by the person it anchors to, so four rulings that named two cards now name one and the domain's ruled-on count falls by four with no research lost. The gap widened by arithmetic, not by reading ahead."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 442,
+   "to": 443,
+   "date": "2026-09-10",
+   "why": "T-1002 folded three duplicate town cards onto the documented cards they duplicate. An old-settlers roster ruling is deduped by the person it anchors to, so one ruling that named two cards now names one and the domain's ruled-on count falls by one with no research lost. The gap widened by arithmetic, not by reading ahead."
   }
  ],
  "lowered": [

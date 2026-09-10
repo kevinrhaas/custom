@@ -7,14 +7,14 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 152,
+  "addresses_adjudicated": 151,
   "placed": 15,
   "placed_as_a_face": 13,
   "placed_as_a_corner": 0,
   "placed_anchored_on_a_crossing": 2,
   "already_better_placed": 23,
-  "refused": 114,
-  "refused_clause_1_no_1835_business": 102,
+  "refused": 113,
+  "refused_clause_1_no_1835_business": 101,
   "refused_clause_2_a_residence_not_a_shop": 6,
   "refused_clause_3_not_on_the_1835_grid": 6,
   "faces_reached": [
@@ -772,27 +772,6 @@
    "person_id": "clarke_w_b",
    "person": "W B Clarke",
    "address_as_printed": "128 Lake street cor. Clark",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_clybourn_archibald",
-   "person_id": "clybourn_archibald",
-   "person": "Archibald Clybourn",
-   "address_as_printed": "Elston ave",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [

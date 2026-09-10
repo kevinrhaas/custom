@@ -1,0 +1,1788 @@
+{
+ "schema": "town-card-fuzzy-candidates/1",
+ "_doc": "T-1002. THE PAIRS THE EXACT CANDIDATE TEST CANNOT SEE, because each spells one name two ways. Derived — regenerate with tools/consolidate_town_cards.py --fuzzy. A ROW HERE IS A QUESTION AND NOT A DUPLICATE: two men of a town can be one letter apart in print and two people in fact, and this test cannot tell the difference. `one_anchor` marks the shape all three of T-1002's own pairs had — one hand-authored card that documents the person, one thin mint carrying a name and none_recorded — which is the shape the rulings are written for; it is a sort order and not a verdict. A PAIR THAT FOLDS LEAVES THIS LIST, because one of its two cards leaves the town: the three T-1002 ruled are gone from it and the count fell from seventy to sixty-seven by their going. NOT A GATE: `--check` does not read this file, because a worklist this long would put the merge gate red on the day it shipped and it would then be switched off.",
+ "generated_by": "tools/consolidate_town_cards.py --fuzzy",
+ "ticket": "T-1002",
+ "keys": {
+  "surname": "the surname one letter out, forenames compatible on the exact test",
+  "forename": "the surname folding exactly, the first forename one letter out and at least 3 letters long"
+ },
+ "counts": {
+  "town_people": 1353,
+  "pairs": 67,
+  "unruled": 67,
+  "one_anchor": 13,
+  "by_leg": {
+   "surname": 61,
+   "forename": 6
+  }
+ },
+ "pairs": [
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "allan_richard_b",
+     "household": "hh_allan_richard_b",
+     "name": "Richard B. Allan",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "allin_richard",
+     "household": "hh_allin_richard",
+     "name": "Richard Allin",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "anight_clark",
+     "household": "hh_anight_clark",
+     "name": "Clark Anight",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "knight_clark",
+     "household": "hh_knight_clark",
+     "name": "Clark Knight",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "barre_john_s",
+     "household": "hh_barre_john_s",
+     "name": "John S. Barre",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "barry_john_s",
+     "household": "hh_barry_john_s",
+     "name": "John S. Barry",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "beech_reuben",
+     "household": "hh_beech_reuben",
+     "name": "Reuben Beech",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "bench_reuben",
+     "household": "hh_bench_reuben",
+     "name": "Reuben Bench",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "blanchard_f_gantry",
+     "household": "hh_blanchard_f_gantry",
+     "name": "F Gantry Blanchard",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1839",
+      "fergus_chicago_directory_1843",
+      "isa_public_domain_land_tract_sales",
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "person": "blanshard_f_g",
+     "household": "hh_blanshard_f_g",
+     "name": "F G Blanshard",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "bread_a_o_t",
+     "household": "hh_bread_a_o_t",
+     "name": "A O T Bread",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "breed_a_o_t",
+     "household": "hh_breed_a_o_t",
+     "name": "A O T Breed",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "second_presbyterian_chicago_1892"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "burk_james",
+     "household": "hh_burk_james",
+     "name": "James Burk",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "burke_james",
+     "household": "hh_burke_james",
+     "name": "James Burke",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "camp_g_t",
+     "household": "hh_camp_g_t",
+     "name": "G T Camp",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ]
+    },
+    {
+     "person": "canp_george_s",
+     "household": "hh_canp_george_s",
+     "name": "George S. Canp",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "cary_john_marshall",
+     "household": "hh_cary_john_marshall",
+     "name": "John Marshall Cary",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835",
+      "fergus_chicago_directory_1843"
+     ]
+    },
+    {
+     "person": "cory_john_l",
+     "household": "hh_cory_john_l",
+     "name": "John L Cory",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "chark_john_a",
+     "household": "hh_chark_john_a",
+     "name": "John A. Chark",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "clark_john_a",
+     "household": "hh_clark_john_a",
+     "name": "John A Clark",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "chark_john_a",
+     "household": "hh_chark_john_a",
+     "name": "John A. Chark",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "clark_john_k",
+     "household": "hh_clark_john_k",
+     "name": "John K Clark",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "collins_j_h",
+     "household": "hh_collins_j_h",
+     "name": "J. H. Collins",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1839"
+     ]
+    },
+    {
+     "person": "rollins_john",
+     "household": "hh_rollins_john",
+     "name": "John Rollins",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "curtin_l_g",
+     "household": "hh_curtin_l_g",
+     "name": "L. G. Curtin",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "curtis_liman",
+     "household": "hh_curtis_liman",
+     "name": "Liman Curtis",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "curtis_jacob_s",
+     "household": "hh_curtis_jacob_s",
+     "name": "Jacob S Curtis",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844",
+      "second_presbyterian_chicago_1892"
+     ]
+    },
+    {
+     "person": "curtiss_j",
+     "household": "hh_curtiss_j",
+     "name": "J. Curtiss",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "curtis_liman",
+     "household": "hh_curtis_liman",
+     "name": "Liman Curtis",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "curtiss_l_g",
+     "household": "hh_curtiss_l_g",
+     "name": "L G Curtiss",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "david_john",
+     "household": "hh_david_john",
+     "name": "John David",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "davis_john",
+     "household": "hh_davis_john",
+     "name": "John Davis",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_voter_lists_1833_1835_irad",
+      "drloih_hotels",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "dell_frank",
+     "household": "hh_dell_frank",
+     "name": "Frank Dell",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "dill_frank",
+     "household": "hh_dill_frank",
+     "name": "Frank Dill",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "eldredge_john_w",
+     "household": "hh_eldredge_john_w",
+     "name": "John W Eldredge",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "person": "eldridge_john_w",
+     "household": "hh_eldridge_john_w",
+     "name": "John W Eldridge",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1839",
+      "fergus_chicago_directory_1843"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "falker_j_b",
+     "household": "hh_falker_j_b",
+     "name": "J. B. Falker",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "walker_james",
+     "household": "hh_walker_james",
+     "name": "James Walker",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "falker_j_b",
+     "household": "hh_falker_j_b",
+     "name": "J. B. Falker",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "walker_jeremiah",
+     "household": "hh_walker_jeremiah",
+     "name": "Jeremiah Walker",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "foot_john",
+     "household": "hh_foot_john",
+     "name": "John Foot",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1839",
+      "isa_public_domain_land_tract_sales"
+     ]
+    },
+    {
+     "person": "foote_john",
+     "household": "hh_foote_john",
+     "name": "John Foote",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "foot_s",
+     "household": "hh_foot_s",
+     "name": "S. Foot",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1839",
+      "isa_public_domain_land_tract_sales"
+     ]
+    },
+    {
+     "person": "foote_star",
+     "household": "hh_foote_star",
+     "name": "Star Foote",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "second_presbyterian_chicago_1892"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "forsyth_william",
+     "household": "hh_forsyth_william",
+     "name": "William Forsyth",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "forsythe_william",
+     "household": "hh_forsythe_william",
+     "name": "William Forsythe",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "fraser_wm_h",
+     "household": "hh_fraser_wm_h",
+     "name": "Wm. H. Fraser",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "frazer_wm_h",
+     "household": "hh_frazer_wm_h",
+     "name": "Wm. H. Frazer",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "gabbs_james_i1",
+     "household": "hh_gabbs_james_i1",
+     "name": "James [?] Gabbs",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "gibbs_james_h",
+     "household": "hh_gibbs_james_h",
+     "name": "James H. Gibbs",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "green_j",
+     "household": "hh_green_j",
+     "name": "J Green",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "greene_john",
+     "household": "hh_greene_john",
+     "name": "Major John Greene",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "drloih_fort_dearborn"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "hale_john",
+     "household": "hh_hale_john",
+     "name": "John Hale",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "person": "vale_john",
+     "household": "hh_vale_john",
+     "name": "John Vale",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "hands_george_e",
+     "household": "hh_hands_george_e",
+     "name": "George E Hands",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ]
+    },
+    {
+     "person": "handy_major",
+     "household": "hh_handy_major",
+     "name": "Major Handy",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "harman_isaac",
+     "household": "hh_harman_isaac",
+     "name": "Isaac Harman",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "harmon_isaac_d",
+     "household": "hh_harmon_brothers",
+     "name": "Isaac Dewey Harmon",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "blackhawk_war_chicago_enrollments_isa",
+      "chicago_democrat_1833_11_26",
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1839",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "hoit_thomas",
+     "household": "hh_hoit_thomas",
+     "name": "Thomas Hoit",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "hoyt_thomas",
+     "household": "hh_hoyt_thomas",
+     "name": "Thomas Hoyt",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "hussey_robert",
+     "household": "hh_hussey_robert",
+     "name": "Robert Hussey",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "hussy_robert",
+     "household": "hh_hussy_robert",
+     "name": "Robert Hussy",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "inf_joiner_north_02",
+     "household": "hh_inf_joiner_north_02",
+     "name": "J. W. Reed",
+     "anchor": true,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ]
+    },
+    {
+     "person": "reid_j_chester",
+     "household": "hh_reid_j_chester",
+     "name": "J. Chester Reid",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "kimbal_wm",
+     "household": "hh_kimbal_wm",
+     "name": "Wm. Kimbal",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "kimball_walter",
+     "household": "hh_kimball_walter",
+     "name": "W. Kimball",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "calumet_club_early_chicago_1879",
+      "chicago_democrat_1833_11_26",
+      "chicago_tribune_1882_05_19_fourth_reception",
+      "fergus_chicago_directory_1839",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "forename",
+   "cards": [
+    {
+     "person": "king_byra",
+     "household": "hh_king_byra",
+     "name": "Byra King",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "king_byram",
+     "household": "hh_king_byram",
+     "name": "Byram King",
+     "anchor": false,
+     "sources": [
+      "census_1840_chicago_familysearch_images",
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "forename",
+   "cards": [
+    {
+     "person": "king_byram",
+     "household": "hh_king_byram",
+     "name": "Byram King",
+     "anchor": false,
+     "sources": [
+      "census_1840_chicago_familysearch_images",
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "king_hyram",
+     "household": "hh_king_hyram",
+     "name": "Hyram King",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835",
+      "fergus_chicago_directory_1839"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "kingston_paul",
+     "household": "hh_kingston_paul",
+     "name": "Paul Kingston",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "isa_public_domain_land_tract_sales",
+      "rr_andreas_chicago_1884_pass11",
+      "rr_racine_old_settlers_1871"
+     ]
+    },
+    {
+     "person": "kingstone_paul",
+     "household": "hh_kingstone_paul",
+     "name": "Paul Kingstone",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "lewie_wm",
+     "household": "hh_lewie_wm",
+     "name": "Wm. Lewie",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "lewin_w_y",
+     "household": "hh_lewin_w_y",
+     "name": "W. Y. Lewin",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "lloyd_alexander",
+     "household": "hh_lloyd_alexander",
+     "name": "Alexander Lloyd",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "isa_public_domain_land_tract_sales",
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "person": "loyd_alexander",
+     "household": "hh_loyd_alexander",
+     "name": "Alexander Loyd",
+     "anchor": false,
+     "sources": [
+      "census_1840_chicago_familysearch_images",
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1839",
+      "fergus_chicago_directory_1843"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "ludb_john",
+     "household": "hh_ludb_john",
+     "name": "John Ludb",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "ludby_john",
+     "household": "hh_ludby_john",
+     "name": "John Ludby",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1839",
+      "fergus_chicago_directory_1843",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "mcgregor_ashor",
+     "household": "hh_mcgregor_ashor",
+     "name": "Ashor Mcgregor",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "mgregor_a",
+     "household": "hh_mgregor_a",
+     "name": "A Mgregor",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "forename",
+   "cards": [
+    {
+     "person": "morrison_ordemus",
+     "household": "hh_morrison_ordemus",
+     "name": "Ordemus Morrison",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "morrison_orsemus",
+     "household": "hh_morrison_orsemus",
+     "name": "Orsemus Morrison",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "murray_alonzo",
+     "household": "hh_murray_alonzo",
+     "name": "Alonzo Murray",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "murry_alonzo",
+     "household": "hh_murry_alonzo",
+     "name": "Alonzo Murry",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "forename",
+   "cards": [
+    {
+     "person": "noble_mark",
+     "household": "hh_noble_mark",
+     "name": "Esq. Mark Noble",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "noble_mary",
+     "household": "hh_noble_mary",
+     "name": "Mary Noble",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "paine_william",
+     "household": "hh_paine_william",
+     "name": "William Paine",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "payne_william",
+     "household": "hh_payne_william",
+     "name": "William Payne",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "pearson_hiram",
+     "household": "hh_pearson_hiram",
+     "name": "Hiram Pearson",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "pearsons_hiram",
+     "household": "hh_pearsons_hiram",
+     "name": "Hiram Pearsons",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "pruyne_peter",
+     "household": "hh_pruyne_kimberly",
+     "name": "Peter Pruyne",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "fergus_chicago_directory_1839",
+      "history_medicine_chicago_kimberly_maxwell",
+      "isa_public_domain_land_tract_sales"
+     ]
+    },
+    {
+     "person": "pryne_peter",
+     "household": "hh_pryne_peter",
+     "name": "Peter Pryne",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "forename",
+   "cards": [
+    {
+     "person": "rider_eli_a",
+     "household": "hh_rider_eli_a",
+     "name": "Eli A Rider",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "person": "rider_elia",
+     "household": "hh_rider_elia",
+     "name": "Elia Rider",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "rose_niles",
+     "household": "hh_rose_niles",
+     "name": "Niles Rose",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "ross_niles",
+     "household": "hh_ross_niles",
+     "name": "Niles Ross",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "salisbury_stephen_m",
+     "household": "hh_salisbury_stephen_m",
+     "name": "Stephen M. Salisbury",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "salsbury_stephen_m",
+     "household": "hh_salsbury_stephen_m",
+     "name": "Stephen M Salsbury",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "scarrett_isaac",
+     "household": "hh_scarrett_isaac",
+     "name": "Isaac Scarrett",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "scarritt_isaac",
+     "household": "hh_scarritt_isaac",
+     "name": "Isaac Scarritt",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "shearman_h_c",
+     "household": "hh_shearman_h_c",
+     "name": "H. C. Shearman",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "sherman_h",
+     "household": "hh_sherman_h",
+     "name": "Mrs. H. Sherman",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "second_presbyterian_chicago_1892"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "sheldon_james",
+     "household": "hh_sheldon_james",
+     "name": "James Sheldon",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ]
+    },
+    {
+     "person": "wheldon_james",
+     "household": "hh_wheldon_james",
+     "name": "James Wheldon",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "smow_george_w",
+     "household": "hh_smow_george_w",
+     "name": "George W Smow",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    },
+    {
+     "person": "snow_george_w",
+     "household": "hh_snow_george_w",
+     "name": "George W. Snow",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1839",
+      "isa_public_domain_land_tract_sales",
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "square_geo",
+     "household": "hh_square_geo",
+     "name": "Geo. Square",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "squire_george",
+     "household": "hh_squire_george",
+     "name": "George Squire",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "stoel_c_ii",
+     "household": "hh_stoel_c_ii",
+     "name": "C. II. Stoel",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "stoer_clement",
+     "household": "hh_stoer_clement",
+     "name": "Clement Stoer",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "teal_william",
+     "household": "hh_teal_william",
+     "name": "William Teal",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "teall_wm",
+     "household": "hh_teall_wm",
+     "name": "Wm. Teall",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "temple_john_t",
+     "household": "hh_temple_john_t",
+     "name": "Dr John Taylor Temple",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "baptisthistoryhomepage",
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ]
+    },
+    {
+     "person": "tmple_john_t",
+     "household": "hh_tmple_john_t",
+     "name": "John T Tmple",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "temple_mrs_john_t",
+     "household": "hh_temple_john_t",
+     "name": "Mrs Temple",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ]
+    },
+    {
+     "person": "tmple_john_t",
+     "household": "hh_tmple_john_t",
+     "name": "John T Tmple",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "thrall_e_l",
+     "household": "hh_thrall_e_l",
+     "name": "E. L. Thrall",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1839"
+     ]
+    },
+    {
+     "person": "trall_e_l",
+     "household": "hh_trall_e_l",
+     "name": "E L Trall",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "vanderbogart_henry",
+     "household": "hh_vanderbogart_henry",
+     "name": "Henry Vanderbogart",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_1843_old_settler_death_notices"
+     ]
+    },
+    {
+     "person": "vanderbogert_henry",
+     "household": "hh_vanderbogert_henry",
+     "name": "Henry Vanderbogert",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "vandine_john",
+     "household": "hh_vandine_john",
+     "name": "John Vandine",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "vandino_john",
+     "household": "hh_vandino_john",
+     "name": "John Vandino",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "wesencraft_charles",
+     "household": "hh_wesencraft_charles",
+     "name": "Charles Wesencraft",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ]
+    },
+    {
+     "person": "wessencraft_charles",
+     "household": "hh_wessencraft_charles",
+     "name": "Charles Wessencraft",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "wight_j_ambrose",
+     "household": "hh_wight_j_ambrose",
+     "name": "J Ambrose Wight",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "norris_directory_1844",
+      "second_presbyterian_chicago_1892"
+     ]
+    },
+    {
+     "person": "wright_j",
+     "household": "hh_wright_j",
+     "name": "J Wright",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "wight_j_ambrose",
+     "household": "hh_wight_j_ambrose",
+     "name": "J Ambrose Wight",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "norris_directory_1844",
+      "second_presbyterian_chicago_1892"
+     ]
+    },
+    {
+     "person": "wright_john",
+     "household": "hh_wright_john",
+     "name": "John Wright",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "wight_j_ambrose",
+     "household": "hh_wight_j_ambrose",
+     "name": "J Ambrose Wight",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "norris_directory_1844",
+      "second_presbyterian_chicago_1892"
+     ]
+    },
+    {
+     "person": "wright_john_s",
+     "household": "hh_wright_john",
+     "name": "John S. Wright",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1"
+     ]
+    }
+   ],
+   "one_anchor": true,
+   "ruling": null
+  },
+  {
+   "leg": "surname",
+   "cards": [
+    {
+     "person": "wilson_john",
+     "household": "hh_wilson_john",
+     "name": "John Wilson",
+     "anchor": false,
+     "sources": [
+      "calumet_club_early_chicago_1879",
+      "census_1840_chicago_familysearch_images",
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "wilton_john_l",
+     "household": "hh_wilton_john_l",
+     "name": "John L Wilton",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  },
+  {
+   "leg": "forename",
+   "cards": [
+    {
+     "person": "wooley_jeddiah",
+     "household": "hh_wooley_jeddiah",
+     "name": "Jeddiah Wooley",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ]
+    },
+    {
+     "person": "wooley_jedidiah",
+     "household": "hh_wooley_jedidiah",
+     "name": "Jedidiah Wooley",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ]
+    }
+   ],
+   "one_anchor": false,
+   "ruling": null
+  }
+ ]
+}

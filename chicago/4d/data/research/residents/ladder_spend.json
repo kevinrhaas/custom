@@ -11,20 +11,20 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1356,
-  "carried_by_the_civic_mint": 484,
-  "rungs_spent": 794,
-  "conflicts_for_the_owner": 75,
+  "person_records": 1353,
+  "carried_by_the_civic_mint": 481,
+  "rungs_spent": 796,
+  "conflicts_for_the_owner": 73,
   "spent_by_rule": {
    "G1a": 22,
-   "G1b": 89,
+   "G1b": 91,
    "G1c": 10,
    "G2e": 47,
    "G3": 626
   },
   "conflicts_by_kind": {
    "abstention": 38,
-   "downgrade": 36,
+   "downgrade": 34,
    "subtype": 1
   }
  },
@@ -554,6 +554,15 @@
    "name": "Col. Jean Baptiste Beaubien",
    "identity": "id_beaubien_jean_baptiste",
    "rule": "G1a",
+   "grade": "attested",
+   "resident_subtype": null
+  },
+  {
+   "person_id": "beaubien_madore",
+   "household_id": "hh_beaubien_madore",
+   "name": "Madore Benjamin Beaubien",
+   "identity": "id_beaubien_madore_benjamin",
+   "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
   },
@@ -1537,6 +1546,15 @@
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "clybourne_archibald",
+   "household_id": "hh_clybourne_archibald",
+   "name": "Archibald Clybourne",
+   "identity": "id_clybourne_archibald",
+   "rule": "G1b",
+   "grade": "attested",
+   "resident_subtype": null
   },
   {
    "person_id": "cobb_silas_b",
@@ -7289,21 +7307,6 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
-   "person_id": "beaubien_madore",
-   "household_id": "hh_beaubien_madore",
-   "name": "Madore Benjamin Beaubien",
-   "identity": "id_beaubien_madore_benjamin",
-   "rule": "G3",
-   "grade": "attested",
-   "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "beaubien_mark_household",
    "household_id": "hh_beaubien_mark",
    "name": "Mark Beaubien's family, unnamed",
@@ -7473,21 +7476,6 @@
    "household_id": "hh_cleland_martin",
    "name": "Martin Cleland",
    "identity": "id_cleland_martin",
-   "rule": "G3",
-   "grade": "attested",
-   "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "clybourne_archibald",
-   "household_id": "hh_clybourne_archibald",
-   "name": "Archibald Clybourne",
-   "identity": "id_clybourne_archibald",
    "rule": "G3",
    "grade": "attested",
    "resident_subtype": null,

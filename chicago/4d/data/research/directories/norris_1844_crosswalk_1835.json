@@ -10,9 +10,9 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1354,
+  "residents_considered": 1351,
   "matched_one_1844_entry": 99,
-  "matched_more_than_one_ambiguous": 24,
+  "matched_more_than_one_ambiguous": 23,
   "one_1844_entry_contested_by_two_residents": 14,
   "surname_present_initial_absent_refused": 333,
   "initial_agreed_forenames_disagreed_refused": 48,
@@ -4240,80 +4240,6 @@
       "why": "two trades that do not agree",
       "outcome": "refused_by_discriminator",
       "refusal": "The trade printed against this name agrees with 'n1844_e0828' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Russell E Heacock",
-   "person_id": "heacock_russell_e",
-   "household_id": "hh_heacock_russell_e",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Heacock' folds to the same string as the 1844 entry's, and the given name of both begins R.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0827",
-     "as_printed": "Heacock, R. B. res R. E. Heacock's",
-     "printed_page": 39,
-     "occupation_1844": null,
-     "address_1844": "res R. E. Heacock's"
-    },
-    {
-     "claim": "n1844_e0828",
-     "as_printed": "Heacock, R. E. attorney at law, ho Adams st. b Clinton & Lasalle",
-     "printed_page": 39,
-     "occupation_1844": "attorney at law, ho Adams st",
-     "address_1844": "b Clinton & Lasalle"
-    },
-    {
-     "claim": "n1844_e0829",
-     "as_printed": "Heacock, R. E. jr. clerk, at C.Walker & Co.'s, res R. E. Heacock's",
-     "printed_page": 39,
-     "occupation_1844": "clerk, at C.Walker & Co.'s",
-     "address_1844": "res R. E. Heacock's"
-    },
-    {
-     "claim": "n1844_e0830",
-     "as_printed": "Heacock, R. E- mason, at A. S. Sherman's",
-     "printed_page": 39,
-     "occupation_1844": "mason, at A. S. Sherman's",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 4 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e0827",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0828",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0829",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0830",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }

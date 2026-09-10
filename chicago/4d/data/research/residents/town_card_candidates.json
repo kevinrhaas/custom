@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1356,
+  "town_people": 1353,
   "open_clusters": 15,
   "cards_in_open_clusters": 33,
   "rulings": {
    "distinct": 13,
-   "merge": 31,
+   "merge": 34,
    "undecided_rule": 8
   },
-  "landed_merges": 31,
-  "cards_folded": 50
+  "landed_merges": 34,
+  "cards_folded": 53
  },
  "landed": [
   {
@@ -60,6 +60,16 @@
    "rule": "C2"
   },
   {
+   "cluster": "beaubien_madore_medore",
+   "survivor": "beaubien_madore",
+   "survivor_household": "hh_beaubien_madore",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "beaubien_medore_b"
+   ],
+   "rule": "C9"
+  },
+  {
    "cluster": "blanchard",
    "survivor": "blanchard_f_gantry",
    "survivor_household": "hh_blanchard_f_gantry",
@@ -78,6 +88,16 @@
     "brown_w_h"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "clybourn_clybourne",
+   "survivor": "clybourne_archibald",
+   "survivor_household": "hh_clybourne_archibald",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "clybourn_archibald"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "cobb",
@@ -142,6 +162,16 @@
     "harmon_isaac"
    ],
    "rule": "C3"
+  },
+  {
+   "cluster": "heacock_russel_russell",
+   "survivor": "heacock_russel_e",
+   "survivor_household": "hh_heacock_russel_e",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "heacock_russell_e"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "hogan",
