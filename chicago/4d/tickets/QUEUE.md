@@ -111,7 +111,8 @@ T-0991 — Eight cards assert an 1835 trade out of a PRE-scene printing, and T-0
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-0993 — Francis Gurtrey Blanchard has two cards: Fergus 1843 prints the man T-0990 ruled on, and 'Gantry Blanchard' is very likely the same person
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
-T-0988 — The December 1835 State census counted the town's trades and this project has never held a denominator: 44 stores, 8 taverns, 22 lawyers, 14 physicians and eleven more classes, against a business layer whose trade field is free prose
+T-1006 — A census class on every one of the 206 businesses, and the December 1835 trade count set against the town class by class
+T-1007 — Spend the trade-census gap: the Lyceum and the Reading Room recorded as institutions, the bank and lottery office as documented absences, and the count-shortfall classes filled where a source names the business
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
 T-0425 — A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
 T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none
