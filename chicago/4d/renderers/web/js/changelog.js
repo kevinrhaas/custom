@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two trades the town was showing that its own sources never printed', kind: 'fix', ts: '',
+  { v: 700, title: 'Two trades the town was showing that its own sources never printed', kind: 'fix', ts: '2026-09-10T21:28:43.924Z', date: 'Sep 10, 2026, 4:28 PM CT',
     items: [
       'A new check landed yesterday found eight resident cards claiming a trade for July 1835 whose only cited volume is about another year. Two of the eight were never a question of how confidently to say it — they were wrong — and both are now repaired. Six remain and are a single question, put to the owner rather than quietly answered.',
       'O. Goss was shown as a saddler on the strength of an advertisement from November 1833. The Chicago American of 8 June 1835 prints the dissolution of Goss & Cobb, over copy the partners dated 18 February 1835, and the issue of 13 June reprints it with Goss’s own signature legible. The firm had been gone four and a half months when the scene opens; his surviving partner carried the shop on alone. His card no longer records a trade for 1835, and the 1833 saddlery keeps its place in the town’s buildings and in the newspaper register, dated to the years that print it.',
