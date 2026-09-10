@@ -128,12 +128,62 @@ have caught #1055 is their **T-0999**.
 Filed on the way past: **T-1001**, two cards for one physician and the exact surname fold that
 hid the namesake.
 
-### NEXT
+---
 
-1. **Cohort C — the sixty-six remaining `forename_agrees` proposals with namesakes.** Take them
-   in two or three runs by surname block, not all at once. Read T-1001 before starting: an empty
-   `rivals[]` means "no namesake OF THAT SPELLING", so a cohort-C surname block should be gathered
-   by eye as well as by `namesake.py`.
+**Cohort C1 — the seventeen `forename_agrees` proposals with namesakes whose surname falls in
+A-C.** Ruled 2026-09-10. **Eleven upheld, six refused** — matched 112 → 106, ruled 71 → 88,
+unruled 66 → 49; five cards retracted, nine register rows, 1,040.00 acres and $1,608.00 taken
+back off them, against 23 rows, 1,125.71 acres and $2,943.00 that stand.
 
-**Remaining after cohort B: 66 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
+| upheld | refused |
+|---|---|
+| ANDREWS WILLIAM, ARCHER WILLIAM B, BEAUBIEN MARK, BENNETT WILLIAM, BOWEN ERASTUS, BROWN WILLIAM H, CARPENTER PHILO, CHAPMAN CHARLES H, CLARK JOHN K, COOK JOSIAH P, COOK THOMAS | ALLEN WILLIAM, ANDREWS DAVID, BALLARD THOMAS, BLAKE LEVI, BROWN WM, BURDICK PAUL |
+
+**What the cohort taught, and cohort C2 should use it.**
+
+*The `letter_list_only` field decided five of the six refusals, and it lied on one of the
+upholds.* ALLEN WILLIAM, ANDREWS DAVID, BLAKE LEVI and BURDICK PAUL are each one return of
+uncalled-for letters and nothing else, and they went the way cohort B's six went. CHAPMAN
+CHARLES H carries the same flag and should not: three of its four `press_evidence` rows are
+ordinary printings with their own locators and only one is a letter list. **Read
+`press_evidence[].list`, not the flag** — filed as T-1005, which found seven cards flagged
+that way.
+
+*The register printing a purchaser twice does NOT always mean one man.* Cohort A found the
+abbreviated-and-full habit (HADDOCK E H / HADDOCK EDWARD H) and it is real; C1 found where it
+breaks. BROWN WILLIAM H is upheld on its middle initial, its bank and an ILLINOIS in the
+Residence column; BROWN WM is REFUSED, because Fergus 1843 prints three distinct William
+Browns and the layer holds one only because the layer is thin. **A spelling with no middle
+initial is its own proposal and gets its own ruling**, even when a fuller spelling of the same
+surname was just upheld.
+
+*The sibling test is the cheapest one in the cohort.* ANDREWS WILLIAM upheld and ANDREWS DAVID
+refused, off the same surname on the same day: one has a newspaper printing and a directory
+trade, the other has a letter and a research row whose `evidence_for` is EMPTY. A
+`corroborated_enrichment` outcome with nothing written in it corroborates nothing — check the
+field, not the grade.
+
+*The Residence column carried one uphold on its own back.* BENNETT WILLIAM is a G3 projected
+resident — poll list of 1834, and nothing else on the card — and it is upheld because one of
+its four rows states COOK and the poll list is the town-side partner cohort B said that column
+needs. It is the weakest uphold in C1 and is marked so here.
+
+Filed on the way past: **T-1004**, Erastus Bowen's card gathering two men (the 1843 veterinary
+surgeon was sixteen in 1835); **T-1005**, the seven stale `letter_list_only` flags.
+
+1. **Cohort C2 — the twenty-one `forename_agrees` proposals with namesakes, surnames D-J.**
+   DAVIS GEORGE, DAVIS JOHN, EGAN WILLIAM B, FOOT JOHN, GOODRICH EBENEZER, HADDOCK EDWARD H,
+   HALL GEORGE, HAMILTON RICHARD J, HANDY HENRY S, HARMON CHARLES L, HARMON CHAS L, HARMON
+   ELIJAH D, HARMON ISAAC, HARMON ISAAC D, HUBBARD ELIJAH K, HUBBARD GURDON S, HUNTER EDWARD E,
+   JACKSON SAMUEL, JONES BENJAMIN, JONES WILLARD, JONES WILLIAM. **Rule the paired spellings
+   TOGETHER and expect them to disagree** — HARMON CHARLES L against HARMON CHAS L, HARMON ISAAC
+   against HARMON ISAAC D, HUBBARD ELIJAH K against HUBBARD GURDON S — because BROWN WM is what
+   happens when the fuller spelling is allowed to carry the barer one. JONES WILLIAM and DAVIS
+   JOHN are the block's BROWN WM.
+
+2. **Cohort C3 — the twenty-eight remaining, surnames K-Z.** Read T-1001 before starting it: an
+   empty `rivals[]` means "no namesake OF THAT SPELLING", so a surname block should be gathered by
+   eye as well as by `namesake.py`, and KIMBERLY EDMUND S is in this block and is T-1001's man.
+
+**Remaining after cohort C1: 49 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
 closes when that number is zero, and says so with the number.
