@@ -1,7 +1,7 @@
 ---
 id: T-0424
 title: The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1089
 claimed_by: run 9/10/2026, 4:36:39 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T22:39:30.770Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34532032273
 ---
 
@@ -168,3 +168,27 @@ printed length of the 1 April 1834 list, resolves or writes off each of the thre
 above by name, and the coverage note stops calling the cohort a floor or says why it still
 is. **Sibling to T-0316 and T-0318**, which ask the same of the 1 January 1834 list; if the
 images are fetched once, all of them should be read in the same pass.
+
+## What the image said (2026-09-10, PR #1089)
+
+The scan was fetched and read: Internet Archive `chicago1835-newspaper-chicago-democrat-1834`,
+`Jan1834-Mar1834.pdf`, jp2 page 0019 — page 4 of Vol. I No. 15, the same impression the crops
+were cut from. All 170 printed lines are committed in
+`data/research/newspapers/letter_list_1834_01_01_printed.json`, with the IIIF regions read.
+
+- **THE PRINTED LENGTH IS 170**, eighty-five per sub-column. The extracted 78 is 46 per cent
+  of it; the shortfall is 92 lines and is the segmenter's, not the paper's.
+- **31 of the 32 still-cut readings are completed at the image**, including all four the
+  doubled-surname guard blocked — position settles them on one impression. The list holds
+  THREE Bennetts, not two.
+- **12 readings are overturned**, three of them concordance completions: `[Ori]nda Miner` is
+  Miranda (Orinda is Orinda Garyl, a different line on the same page), `[Ne]stor Marshall` is
+  Chester, `John Monroe` is John Monreou.
+- **One fragment stays unplaced**: no line reads `Leena`, and its three candidates are named.
+  It keeps `transcription_mediated` while every other entity takes `scan_verified`.
+- The two Bennetts, Miners, Temples and Tullers are each resolved to their own line.
+
+Not done here, and filed as **T-1008**: the 92 lines are read but unminted, the 97 residents
+minted from the 1834-01-28 printing are a floor of the same return, and three cards
+(`hh_crisey_william`, `hh_pease_h`, `hh_plumer_f`) lost a ladder rung when their names stopped
+agreeing with the corrected evidence.
