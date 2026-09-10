@@ -2263,6 +2263,21 @@ step "every business carries a census class, and the December 1835 count re-deri
 step "…and its own assertions still fire when broken" \
   python3 tools/trade_census_1835.py --self-test
 
+# T-1007 (of T-0988). The measurement above leaves a shortfall, and this is the ruling that
+# SPENDS it. Almost all of it turned out to be a counting error rather than a hole: the
+# census counts PRACTITIONERS and the register counts NOTICES, so nineteen lawyer records
+# are fourteen named men, and five physicians the papers never carried sit on resident cards
+# where a register compiled from advertisements could not see them. The gate holds the one
+# thing that must never pass quietly here: A NAME THIS FILE INVENTED. Guard G9 refuses a
+# counted row that resolves to neither a business the register holds nor a person the town
+# cards hold, G5 refuses an institution that has been given a building, and G6 refuses a
+# shortfall the crosswalk can see and this ruling passes over in silence.
+step "the trade-census shortfall is ruled, and no name in the ruling was invented" \
+  python3 tools/trade_census_spend_1835.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/trade_census_spend_1835.py --self-test
+
 # T-0440. A house is minted from whichever printing the corpus carries first, and it took
 # `placement` and `street` from it — so a standing advertisement that ran without an
 # address in its first week and with one afterwards stood at `{"class": "none"}` for good

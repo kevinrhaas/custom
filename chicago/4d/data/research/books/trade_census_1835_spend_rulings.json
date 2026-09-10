@@ -1,0 +1,246 @@
+{
+  "schema": 1,
+  "domain": "books",
+  "ticket": "T-1007",
+  "source_id": "moses_kirkland_history_of_chicago_v1",
+  "claim_id": "bk_mose1_006",
+  "not_a_reading": "an adjudication of claims this repository has already read, spending the gap T-1006 measured — no page of any source is read here",
+  "_doc": "THE WRITTEN RULINGS BEHIND THE TRADE-CENSUS SPEND.\n\nT-1006 set the December 1835 State count against the town's business register and\nleft a shortfall: four druggists against two, two silversmiths against one, two\nbreweries against one, twenty-two lawyers against nineteen records, fourteen\nphysicians against four, and three lines — lottery office, bank, lyceum and\nreading room — the town held NOTHING for.  This file rules on that shortfall.\n\nIt is a ruling file and not a generator: tools/trade_census_spend_1835.py joins it\nto the register, the resident cards, the structures and the crosswalk, and refuses\nany row whose ids do not resolve.  The single guard that matters is G9 — every\nname here already stood in the repository before this ruling was written.  This\nfile may not mint a person, a business or a roof, and its tool fails if it tries.",
+  "liberty": {
+    "id": "T-0404",
+    "note": "The count was taken between 1 September and December 1835 and the scene is 1 July 1835. Bringing a house documented in the autumn into the July town is the backdating liberty T-0404 rules on, and any row that needs it says so in `stands_on_liberty`. NOT ONE ROW HERE NEEDS IT: every person and every house counted below is already printed or already carded on or before the scene date, which is itself the finding — the shortfall was never a dating problem."
+  },
+  "boundaries": {
+    "S1": "A PERSON IS COUNTED ONCE. The census counts practitioners — twenty-two lawyers, fourteen physicians — and the register counts NOTICES. Nineteen lawyer records are fourteen named men, because a man who printed two advertisements is two records. Where a census line names a person-trade the unit here is the NAMED PERSON; where it names a premises-trade (stores, taverns, breweries, foundries) the unit stays the business record, as in T-1006.",
+    "S2": "A PRACTITIONER NEED NOT ADVERTISE, and this is the whole of what T-1007 spends. A man the town already holds on a resident card, with an attested occupation in a shortfall class, is counted for that class even though he never printed a notice. It moves the physician line from four to eight without creating anybody.",
+    "S3": "NOTHING IS CREATED. Every name below already stood in data/research/newspapers/register_1835.json or data/residents/households/ before this ruling. A class the sources do not fill stays a MEASURED GAP; the ceiling on such a gap is anonymous stock under the owner's ruling of 2026-09-02, and never an invented person.",
+    "S4": "THE DATE IS STILL THE CAUTION. A residual gap is never evidence of a hole to fill: some of those forty-four stores opened in September. The residual on every row below is reported as a gap and spent on nothing.",
+    "S5": "A CENSUS LINE MAY BE MET BY A HOUSE ANOTHER LINE ALREADY COUNTED. P. Pruyne & Co prints 'groceries, hardware, crockery and drugs' and T-1006's boundary B5 puts it under `store`; Andreas and the history of medicine call it the town's second drug store. This file does NOT overturn B5. It records that the census's druggist line is met by premises the store line already counted, and says so on the row, so that a reader can see one house answering two lines instead of finding the drug store missing.",
+    "S6": "AN INSTITUTION IS NOT A BUILDING. The Lyceum and the Reading Room are recorded as associations — instituted, officered, meeting somewhere — and NEITHER IS GIVEN PREMISES. The corpus's own sequence is a documented negative and the tool's guard G5 refuses an institution that carries a structure."
+  },
+  "institutions": [
+    {
+      "id": "institution_chicago_lyceum",
+      "name": "Chicago Lyceum",
+      "kind": "literary_society",
+      "instituted": {
+        "value": "1834-12-02",
+        "confidence": "documented",
+        "sources": ["bk_fer_050", "n1844_tf_054"],
+        "note": "Both the 1843 Fergus reading and the 1844 Norris reading print the same institution date to the day, seven months before the scene. Norris calls it 'the oldest literary society in the place'."
+      },
+      "premises": {
+        "value": null,
+        "confidence": "documented",
+        "sources": ["n1844_tf_054", "f1839_t032"],
+        "note": "A DOCUMENTED NEGATIVE, not a gap in the reading. Norris gives the Lyceum no building; the earliest address the corpus holds for it is Fergus's 1839 directory, 'Chicago Lyceum, Grant Goodrich, Pres't, Saloon Buildings' — a door of 1839 and not of 1835, and the Saloon Building itself was not raised until 1836. NO ROOF IS PLACED FOR THIS BODY."
+      },
+      "links": [
+        {
+          "kind": "book_deposit",
+          "business_id": "business_jones_king",
+          "person_id": null,
+          "structure_id": null,
+          "sources": ["chicago_democrat_1834_12_24#c002"],
+          "note": "'CITIZENS intending to make donations of books to the Lyceum, are requested to leave them at the office of Messrs. Jones & King, south water street.' The Lyceum's committee on the Library used a merchant's counting-room as its drop-off, which is what a society with members and no room does. The office is the register's own house business_jones_king; nothing here places the Lyceum in it."
+        }
+      ],
+      "open_question": {
+        "question": "Is the Lyceum's library the same body as the Chicago Reading Room?",
+        "note": "UNDECIDED, AND DELIBERATELY LEFT SO. The Democrat of 1834-11-26 (c001) calls a meeting of citizens 'favourable to the establishment of a Library and Reading Room' at the Presbyterian church; four weeks later (1834-12-24 c002) books are being collected for THE LYCEUM by a committee on the Library; seven months later the CHICAGO READING ROOM has a board of directors of its own and is raising joint stock for premises. The corpus never says whether the November meeting founded one body or two, and the census counts the pair on ONE line — 'a lyceum and reading room' — which does not settle it either. Two records are kept because two names are printed; a source that joins them would fold them, and nothing reached does."
+      }
+    },
+    {
+      "id": "institution_chicago_reading_room",
+      "name": "Chicago Reading Room",
+      "kind": "reading_room_association",
+      "instituted": {
+        "value": null,
+        "confidence": "inferred",
+        "sources": ["chicago_democrat_1834_11_26#c001"],
+        "note": "NOT DATED BY ANY SOURCE REACHED. The town met at the Presbyterian church on Thursday 27 November 1834 'favourable to the establishment of a Library and Reading Room', and by 6 July 1835 the association has a board of directors and a secretary — so it was constituted between those two dates and no printing reached says when."
+      },
+      "premises": {
+        "value": null,
+        "confidence": "documented",
+        "sources": [
+          "chicago_american_1835_07_11#c001",
+          "chicago_american_1835_07_18#c001",
+          "chicago_american_1835_08_22#c005"
+        ],
+        "note": "THE STRONGEST DOCUMENTED NEGATIVE IN THIS FILE, and it runs the whole summer of the scene. On 6 July 1835 — five days after the scene date — the directors meet AT THE TREMONT HOUSE 'for the purpose of consulting upon means for obtaining a building suitable for the Reading Room', costed at $2,500 to $3,000 by joint stock. Three weeks later they resolve that such a building might go ON THE PUBLIC SQUARE under a rent-free lease. Seven weeks after that the books are still 'for the present deposited at [?] House'. So on 1 July 1835 this association has directors, members and books, and nowhere of its own — and anything the reconstruction puts on the Public Square for a reading room at the scene date is wrong."
+      },
+      "links": [
+        {
+          "kind": "meeting_place",
+          "business_id": null,
+          "person_id": null,
+          "structure_id": "tremont_house_1",
+          "sources": ["chicago_american_1835_07_11#c001"],
+          "note": "The board met at the Tremont House on Monday evening, 6 July 1835. This is a MEETING, not a tenancy: the association is not seated in the hotel and the hotel gains nothing but the evening. It also corroborates the Tremont House a second time and independently of Tuthill King's placement — a hotel with a room the town's directors sit in."
+        },
+        {
+          "kind": "officer",
+          "role": "secretary",
+          "business_id": null,
+          "person_id": "moore_henry",
+          "structure_id": null,
+          "sources": ["chicago_american_1835_07_11#c001", "chicago_american_1835_08_22#c005"],
+          "note": "'Henry Moore, Secretary' signs the July resolutions and the August book notice alike — the attorney the register already holds twice over, whose office the corpus places in J. H. Kinzie's new store. THE OWNER'S 'help associate link these with the residents' ARRIVES HERE: a census line that the town held nothing for now carries a named townsman with a card of his own."
+        }
+      ],
+      "corroboration": [
+        {
+          "claim": "chicago_democrat_1835_07_15#c001",
+          "note": "The Democrat prints the same directors' meeting with a different date (13th rather than 6th) and a different figure ($2,000 rather than $2,500-3,000). IT IS THE WEAKEST TEXT IN THE CORPUS — the `-2` OCR rebuild whose own transcribers recorded four per cent median cross-pass agreement — so it is filed as corroboration of the MEETING and of nothing numeric. The American's figures stand."
+        }
+      ]
+    }
+  ],
+  "documented_absences": [
+    {
+      "class": "bank",
+      "census_count": 1,
+      "verdict": "documented_absence",
+      "sources": ["chicago_american_1835_06_27#c001", "bk_hub_021", "n1844_tf_030"],
+      "note": "A NOTICE OF ABSENCE FIVE DAYS BEFORE THE SCENE, and a date liberty may not outrank it. The American of 27 June 1835 reprints from the Sangamon Journal that the directors of the State Bank of Illinois 'have determined to establish branches at … and Chicago, but the officers of those institutions have not been made known' — so the Chicago branch is a DECISION, not a building, an officer or a counter. THE TRAP IN THE SAME PARAGRAPH: the brick building 'on the square, near the court house' that the bank has taken is SPRINGFIELD'S square and Springfield's court house. Chicago in June 1835 has neither a brick bank nor a court house.",
+      "and_the_census_line_itself": "TWO INDEPENDENT LATER SOURCES CONTRADICT THE COUNT. Hubbard's autobiography (bk_hub_021) has the first bank in Chicago, a branch of the Illinois State Bank, occupying one corner of his warehouse IN 1836; Norris's 1844 statistics (n1844_tf_030) put the branch here in 1836 beside the second canal-lot sale. So the census's single bank is dated a year later by the corpus, and this project holds no bank for July 1835 and none for December 1835 either.",
+      "what_would_overturn_it": "A printing dated on or before the scene that names the branch's premises, its officers, or a banking hour kept in Chicago."
+    },
+    {
+      "class": "lottery_office",
+      "census_count": 1,
+      "verdict": "documented_absence",
+      "sources": ["bk_mose1_006"],
+      "note": "THE CENSUS LINE IS THE ONLY WITNESS IN THE WHOLE REPOSITORY. No newspaper notice, directory entry, book claim or civic record reached names a lottery office, a lottery agent or a lottery keeper at Chicago. One counted office, no name, no street, nothing to place — so it is recorded as a documented absence and nothing is built. Under S3 an unfilled line is a measured gap and never an invented house.",
+      "what_would_overturn_it": "Any printing that names a lottery office, its keeper or its street."
+    }
+  ],
+  "shortfall_rulings": [
+    {
+      "class": "physician",
+      "unit": "named_person",
+      "census_count": 14,
+      "register_records_at_scene_date": 4,
+      "named_by_register": [
+        {"person_id": null, "business_id": "business_dr_j_b_barnard", "name": "Dr. J. B. Barnard"},
+        {"person_id": null, "business_id": "business_dr_j_h_barnard", "name": "Dr. J. H. Barnard"},
+        {"person_id": null, "business_id": "business_dr_w_g_austin", "name": "Dr. W. G. Austin"}
+      ],
+      "named_by_card": [
+        {"person_id": "egan_william_b", "business_id": null, "name": "Dr William Bradshaw Egan"},
+        {"person_id": "harmon_elijah_d", "business_id": null, "name": "Dr Elijah Dewey Harmon"},
+        {"person_id": "inf_physician_south_01", "business_id": null, "name": "Dr. Josiah C. Goodhue"},
+        {"person_id": "kimberly_edmund_s", "business_id": null, "name": "Dr Edmund Stoughton Kimberly"},
+        {"person_id": "temple_john_t", "business_id": null, "name": "Dr John Taylor Temple"}
+      ],
+      "documented_but_unnamed": [
+        {"business_id": "business_uncertain_the_physician_lodging_at_the_mansion_house_july_1834", "note": "A practising physician the paper places at the Mansion House and does not name. Counted as a documented practitioner and never as a name."}
+      ],
+      "counted_beside_and_not_within": [
+        {"person_id": "maxwell_philip", "name": "Dr Philip Maxwell", "note": "Assistant Surgeon, United States Army, on duty at Fort Dearborn from 3 February 1833. A post surgeon is army establishment and not the town's civil practice; whether the State enumerator counted him among his fourteen is unknown, so he is named here and left OUT of the count rather than added to it. Adding him would close the gap by one on an assumption."}
+      ],
+      "spend": "EIGHT NAMED PHYSICIANS, NOT FOUR. The register's four records are three names and one anonymous practitioner; the resident cards carry five more physicians the papers never advertised, every one of them attested and every one of them already present at the scene date. Under S2 the town's physician line reads eight named men plus one unnamed practitioner, against the census's fourteen.",
+      "corroboration": "ANDREAS'S OWN DENOMINATOR AGREES. Two of these cards — Egan and Temple — cite Andreas counting EIGHT physicians in the town at the close of 1833. Eight named at 1 July 1835 against fourteen counted in December 1835 is the growth curve the year is famous for, and it is the first time this repository has been able to show it.",
+      "residual": 6,
+      "residual_verdict": "measured_gap",
+      "residual_note": "Six of the fourteen are unaccounted for by name, and NOTHING IS CREATED for them. Under S3 and S4 the ceiling on that gap is anonymous stock and the gap may simply be the four autumn months: a physician who came in September is in the December count and was never in the July town.",
+      "handed_on": {
+        "to": "T-1002",
+        "finding": "Dr. J. B. Barnard and Dr. J. H. Barnard are one letter apart, print one notice each nine days apart (1835-06-04 and 1835-06-13), and BOTH anchor to the same committed structure new_york_house. That is the exact shape T-1002 is open on — a duplicate pair the candidate test cannot see because it differs by one letter. This file does NOT rule on it: if they fold, the named count is seven and the residual seven. The count above is therefore a CEILING of eight and a floor of seven, and it is stated that way rather than picked."
+      }
+    },
+    {
+      "class": "lawyer",
+      "unit": "named_person",
+      "census_count": 22,
+      "register_records_at_scene_date": 19,
+      "named_by_register": [
+        {"person_id": "collins_j_h", "business_id": "business_collins_caton", "name": "J. H. Collins"},
+        {"person_id": "caton_john_dean", "business_id": "business_john_dean_caton", "name": "John Dean Caton"},
+        {"person_id": null, "business_id": "business_ebenezer_s_more_attorney_at_law", "name": "Ebenezer S. More"},
+        {"person_id": "casey_edward_w", "business_id": "business_edward_w_casey", "name": "Edward W. Casey"},
+        {"person_id": "fullerton_alexander", "business_id": "business_fullerton_g_attorneys_and_counsellors", "name": "Alexander N. Fullerton"},
+        {"person_id": "spring_giles", "business_id": "business_g_spring", "name": "Giles Spring"},
+        {"person_id": "bennett_h_c", "business_id": "business_h_c_bennett", "name": "H. C. Bennett"},
+        {"person_id": "moore_henry", "business_id": "business_henry_moore", "name": "Henry Moore"},
+        {"person_id": "curtiss_j", "business_id": "business_j_curtiss", "name": "J. Curtiss"},
+        {"person_id": null, "business_id": "business_l_curtiss_attorney_and_counsellor_at_law", "name": "L. Curtiss"},
+        {"person_id": "grant_james", "business_id": "business_james_grant", "name": "James Grant"},
+        {"person_id": "stewart_r", "business_id": "business_r_stewart_attorney", "name": "R. Stewart"},
+        {"person_id": "heacock_russel_e", "business_id": "business_russell_e_heacock", "name": "Russell E. Heacock"},
+        {"person_id": null, "business_id": "business_s_abell_attorney_and_counsellor", "name": "S. Abell"}
+      ],
+      "named_by_card": [],
+      "documented_but_unnamed": [],
+      "counted_beside_and_not_within": [],
+      "spend": "THE SHORTFALL IS BIGGER THAN THE CROSSWALK COULD SEE, AND THAT IS THE FINDING. T-1006 read nineteen lawyer records against twenty-two counted and called it a shortfall of three. Nineteen records are FOURTEEN MEN: Henry Moore prints twice, J. Curtiss twice, John Dean Caton three times, S. Abell twice, and one partnership notice (Collins & Caton) names two men the register also holds singly. Under S1 the census counts practitioners, so the town's lawyer line reads fourteen against twenty-two — a shortfall of eight. NO NAME IS ADDED HERE: the resident cards' eleven attorneys are all eleven already in this list, which is itself worth stating, because it means the bar of this town advertised and the physicians did not.",
+      "residual": 8,
+      "residual_verdict": "measured_gap",
+      "residual_note": "Eight of the twenty-two are unaccounted for by name and nothing is created for them. A lawyer needs no premises the model can raise, so this gap costs the town no building either way.",
+      "handed_on": {
+        "to": "T-1002",
+        "finding": "J. Curtiss and L. Curtiss are one letter apart in the same trade with the same printed formula ('attorney and counsellor at law, solicitor in chancery'), and the town holds a card for J. Curtiss only. A third Curtiss — L. G. Curtiss, deputy surveyor of Cook County — is a different trade and is NOT part of this question. If J. and L. fold, the named count is thirteen and the residual nine. Stated as a ceiling of fourteen and a floor of thirteen rather than picked."
+      }
+    },
+    {
+      "class": "druggist",
+      "unit": "business_record",
+      "census_count": 4,
+      "register_records_at_scene_date": 2,
+      "named_by_register": [
+        {"person_id": "carpenter_philo", "business_id": "business_philo_carpenter", "name": "Philo Carpenter"},
+        {"person_id": "thomas_frederick", "business_id": "business_frederick_thomas_drugs_and_paints", "name": "Frederick Thomas"}
+      ],
+      "named_by_card": [
+        {"person_id": "pruyne_peter", "business_id": "business_p_pruyne_co", "name": "Peter Pruyne", "class_boundary": "S5"}
+      ],
+      "documented_but_unnamed": [],
+      "counted_beside_and_not_within": [
+        {"person_id": "kimberly_edmund_s", "name": "Dr Edmund Stoughton Kimberly", "note": "The other half of Pruyne's drug store, and already counted once as a physician. Counting him again here would count one man twice against two different census lines; under S1 he is named and not re-counted."}
+      ],
+      "spend": "THREE DRUG HOUSES, NOT TWO. Philo Carpenter — 'the earliest pharmaceutist of Chicago', arrived July 1832 — and Frederick Thomas's Chicago New Drug, Medical and Paint Store are the two the register already had. The third is P. Pruyne & Co: its own printed trade ends 'groceries, hardware, crockery AND DRUGS', and Andreas with the history of medicine has Peter Pruyne and Edmund Kimberly opening CHICAGO'S SECOND DRUG STORE early in 1833. T-1006's boundary B5 rules that house a store off the majority of its goods and this file does not overturn it (S5): one premises answers two census lines, and the druggist line is short by one rather than by two.",
+      "residual": 1,
+      "residual_verdict": "measured_gap",
+      "residual_note": "One of the four is unaccounted for. Nothing is created for it."
+    },
+    {
+      "class": "silversmith_jeweller",
+      "unit": "business_record",
+      "census_count": 2,
+      "register_records_at_scene_date": 1,
+      "named_by_register": [
+        {"person_id": null, "business_id": "business_j_h_mulford", "name": "J. H. Mulford"}
+      ],
+      "named_by_card": [],
+      "documented_but_unnamed": [],
+      "counted_beside_and_not_within": [
+        {"person_id": "mulford_e_h", "name": "E. H. Mulford", "note": "Andreas prints 'E. H. Mulford, watch-maker, came in 1833' and the town carries a card for him. He is NOT counted as the second silversmith, because the register's own jeweller is a Mulford too — 'J. H. Mulford, watches, jewelry, engravings and fancy goods' — and one initial apart in one trade in one town is more likely one man than two. Counting him would close the census line by inventing a brother. He is named here so that the question is visible, and handed to T-1002 with the other one-letter pairs."}
+      ],
+      "spend": "NO SPEND, AND THE REASON IS WORTH MORE THAN THE COUNT. The only second candidate the repository holds is a Mulford one initial away from the first, so filling this line would mean asserting that two Mulfords kept watches in a town of 3,297. The line stays short by one.",
+      "residual": 1,
+      "residual_verdict": "measured_gap",
+      "residual_note": "One of the two is unaccounted for, unless E. H. and J. H. Mulford are two men, in which case the line is met exactly. Undecided, and the census cannot decide it.",
+      "handed_on": {
+        "to": "T-1002",
+        "finding": "J. H. Mulford (register) and E. H. Mulford (resident card) are one letter apart in adjacent trades — watches and jewelry against watch-making — and the town holds them as two. Same shape as the Beaubien and Clybourn pairs T-1002 is open on."
+      }
+    },
+    {
+      "class": "brewery",
+      "unit": "business_record",
+      "census_count": 2,
+      "register_records_at_scene_date": 1,
+      "named_by_register": [
+        {"person_id": null, "business_id": "business_the_chicago_brewery", "name": "the Chicago Brewery (Crawford)"}
+      ],
+      "named_by_card": [],
+      "documented_but_unnamed": [],
+      "counted_beside_and_not_within": [],
+      "spend": "NO SPEND. Every claim in the newspaper corpus that touches brewing was re-read for this ruling and there are two: the Chicago Brewery's own advertisement of 20 June 1835 wanting four thousand bushels of barley, signed CRAWFORD, and a wholesale grocer's notice that mentions manufacturers and no brewer. One brewery is named at the scene date and a second is not, so a second is not built.",
+      "residual": 1,
+      "residual_verdict": "measured_gap",
+      "residual_note": "One of the two is unaccounted for. A brewery is a building this model would have to raise, which makes this the residual most worth a later reading — and it is left as a gap rather than raised on a count."
+    }
+  ]
+}
