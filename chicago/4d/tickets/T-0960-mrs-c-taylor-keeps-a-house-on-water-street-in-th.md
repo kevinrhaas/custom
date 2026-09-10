@@ -1,7 +1,7 @@
 ---
 id: T-0960
 title: Mrs C. Taylor keeps a house on Water Street in the Democrat of 19 August 1835 and the town has no card for her
-state: open
+state: claimed
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-07
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 12:08:13 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34439481923
 ---
 
 The Chicago Democrat of **19 August 1835** prints, over the Juvenile Society's notice:
