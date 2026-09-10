@@ -1,7 +1,7 @@
 ---
 id: T-0990
 title: Peter Cohen's clothier trade is printed inside the scene window at the Democrat of 8 July 1835: recite it, and gate the standing population T-0837's write gate cannot see
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0872
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1053
 claimed_by: run 9/10/2026, 1:24:00 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T06:48:19.040Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34444266608
 ---
 
