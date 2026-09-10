@@ -40,9 +40,10 @@
  *   node tools/rederive.mjs --check                 the manifest is well-formed
  *   node tools/rederive.mjs --resolvable <paths…>   may these conflicts be cleared?
  *   node tools/rederive.mjs --run                   run the sequence, in order
+ *   node tools/rederive.mjs --prove                 does every step write what it claims?
  *   node tools/rederive.mjs --self-test
  */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
@@ -184,6 +185,64 @@ function run(m = load()) {
   return 0;
 }
 
+/* ------------------------------------------------------------------ prove */
+
+/**
+ * DOES EACH STEP ACTUALLY WRITE WHAT IT CLAIMS? The one thing `--check` cannot
+ * see by reading the manifest, and the one that bit.
+ *
+ * read_newberry_index.py was listed here as the rebuild for leads.json. Invoked
+ * bare it PRINTS ITS USAGE AND EXITS 0 — it writes nothing at all, because
+ * rebuilding that file needs `--parse` over OCR shards kept outside the repo.
+ * The entry passed `--check` (the tool is gated), passed an idempotency test
+ * (nothing changed, because nothing ran) and passed a full-sequence run. It
+ * failed only when a real merge needed it, hours later, as `leads.json does not
+ * re-derive from its inputs`.
+ *
+ * The idempotency test that missed it ran the tool under `timeout 400` with its
+ * output suppressed, so a tool killed at 400 seconds and a tool that did nothing
+ * looked exactly alike. This asks the question that separates them: run the
+ * command, and require every file it claims to resolve to have been WRITTEN.
+ * mtime rather than content, because a correct rebuild of an unchanged tree
+ * produces identical bytes — "the file did not change" is the expected result
+ * and proves nothing either way.
+ */
+function prove(m = load()) {
+  const stamp = (rel) => { try { return statSync(path.join(REPO, rel)).mtimeMs; } catch { return null; } };
+  let bad = 0;
+  for (const [i, s] of m.steps.entries()) {
+    const label = s.command.join(' ');
+    const before = new Map((s.resolves ?? []).map((r) => [r, stamp(r)]));
+    try {
+      execFileSync(s.command[0], s.command.slice(1), { cwd: APP, stdio: ['ignore', 'pipe', 'pipe'] });
+    } catch (e) {
+      console.error(`  [${i + 1}] FAILED to run: ${label}`);
+      bad += 1;
+      continue;
+    }
+    const untouched = [...before.keys()].filter((r) => stamp(r) === before.get(r));
+    if (untouched.length) {
+      console.error(`  [${i + 1}] ${label}`);
+      console.error('        claims to rebuild file(s) it did not write:');
+      for (const u of untouched) console.error(`          ${u}`);
+      bad += 1;
+    } else if ((s.resolves ?? []).length) {
+      console.log(`  [${i + 1}] ok — ${label} wrote all ${s.resolves.length} of its file(s)`);
+    } else {
+      console.log(`  [${i + 1}] ok — ${label} (rebuild only, resolves nothing)`);
+    }
+  }
+  if (bad) {
+    console.error(`\nderived manifest: ${bad} step(s) do not write what they claim.`);
+    console.error('A command that writes nothing leaves the lap taking `--ours` on a file it');
+    console.error('then cannot rebuild, and the gate goes red where a plain refusal would');
+    console.error('have been clearer. Remove the step, or give it the arguments that write.');
+    return 1;
+  }
+  console.log(`\nderived manifest: all ${m.steps.length} step(s) write what they claim`);
+  return 0;
+}
+
 /* -------------------------------------------------------------- self-test */
 
 async function selfTest() {
@@ -253,5 +312,6 @@ async function selfTest() {
 
 if (has('self-test')) process.exit(await selfTest());
 else if (has('resolvable')) process.exit(resolvable(rest()));
+else if (has('prove')) process.exit(prove());
 else if (has('run')) process.exit(run());
 else process.exit(check());
