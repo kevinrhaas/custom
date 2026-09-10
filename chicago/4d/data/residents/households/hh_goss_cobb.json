@@ -60,12 +60,13 @@
    "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
-    "value": "saddler",
-    "confidence": "attested",
+    "value": "none_recorded",
+    "confidence": "reconstructed",
     "sources": [
-     "chicago_democrat_1833_11_26"
+     "chicago_democrat_1833_11_26",
+     "chicago_american_1835"
     ],
-    "note": "The firm 'Goss & Cobb, saddle and harness makers' advertises in the Chicago Democrat of 26 November 1833, self-reported on the corner of Lake and Canal streets."
+    "note": "NO TRADE STANDS FOR THIS MAN IN JULY 1835, AND THE CORPUS IS WHY (T-0991). The firm 'Goss & Cobb, saddle and harness makers' advertises in the Chicago Democrat of 26 November 1833, self-reported on the corner of Lake and Canal streets — and that printing is the ONLY one this card ever had. The Chicago American of 8 June 1835 prints the partnership's DISSOLUTION over copy dated 'Chicago, Feb. 18, 1835' (chicago_american_1835_06_08#c006), and the issue of 13 June reprints it with this man's own signature now readable — 'OL[IVE]R GOS[S]' (#c015). The newspaper register reads business_goss_cobb as `present_at_scene_date: false` on those two notices, with exclusion `contradicted_before_scene_date`. So the trade held here at `attested` for 1 July 1835 was not merely undated by the corpus: it was CONTRADICTED by it, four and a half months before the scene date. The surviving partner carried the shop on alone — the American of 13 June prints 'S. B. COBB will continue the above business' — and nothing in the corpus prints a trade for Oliver Goss after the dissolution. The 1835 field is therefore `none_recorded` at `reconstructed`, this dataset's reading for a figure the reconstruction supplies rather than a source. THE 1833 SADDLERY IS NOT LOST: it stands in the structures layer at goss_cobb_saddlery and in the newspaper register's own compilation, dated to the years that print it. This is the one row of T-0991's eight the corpus decided by itself; the other rows are a grading question and are the owner's."
    },
    "sources": [
     "andreas_1884_v1",

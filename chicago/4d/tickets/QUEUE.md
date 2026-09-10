@@ -107,7 +107,6 @@
 
 
 
-T-0991 — Eight cards assert an 1835 trade out of a PRE-scene printing, and T-0693's later_occupation pointer cannot hold one: blank the field, or regrade it reconstructed?
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
@@ -334,3 +333,4 @@ T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller r
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
 T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
+
