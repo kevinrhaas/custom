@@ -29,6 +29,23 @@ ONLY="${LAP_ONLY:-}"
 DRIVERS="$(mktemp -d)"
 WORK="$(git rev-parse --show-toplevel)"
 
+# THE IDENTITY THIS SCRIPT COMMITS UNDER, SET ONCE — and this one line is why the
+# lap has never lapped anything. `git merge` writes a COMMIT, so it needs an
+# author, and actions/checkout sets none: the runner has no user.name and its
+# user.email is a machine hostname git will not accept. The identity was passed
+# with `-c` on the `git commit` below and nowhere else, so every merge in every
+# lap died with
+#
+#   fatal: empty ident name (for <runner@runnervm….internal.cloudapp.net>)
+#       not allowed
+#
+# leaving no conflict, no commit and — until the exit status above started being
+# read — no complaint. Measured on run 82, 2026-09-10 08:15: FOUR open PRs, four
+# identical failures, and the old code would have reported `pushed=4`. It reported
+# `left-alone=4` instead, which is how this was finally visible.
+git config user.name  "polecat-steward"
+git config user.email "steward@polecat.live"
+
 # Files a TOOL owns. A conflict here is never resolved by hand: the merge takes
 # either side to clear the marker and the tool then rewrites the file from source.
 GENERATED='
