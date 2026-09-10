@@ -1,11 +1,20 @@
 export const CHANGELOG = [ // newest first
-  { v: 691, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '2026-09-10T14:29:18.816Z', date: 'Sep 10, 2026, 9:29 AM CT',
+  { v: null, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '',
     items: [
       'Francis Gurtrey Blanchard \u2014 a capitalist of 45 Wells Street, by the town\u2019s own directory of 1843 \u2014 stood on two resident cards. The tax list of 1833 printed him \u201cBlanchard, Gantry\u201d, by his middle name alone; the poll list of 1834 printed him \u201cBlanchard, F. Gantry\u201d. He is one card now, and nothing was lost: the folded record is kept whole and every reference to it still resolves.',
       'The check that finds duplicate cards could never have found this one. It compares the FIRST forename of two names, so \u201cGantry\u201d and \u201cF Gantry\u201d were two different men to it and always would have been. This pair was found by hand, reading the land register, and it is the first fold of a resident card that the machine did not raise.',
       'The rule written for it is deliberately narrow, and it asks for a page rather than a hunch: the lone name must be a distinctive word no one else in the cluster carries as a forename; exactly one documented man of the surname must carry it as a middle name printed in full; and some source must be caught printing that man BOTH ways. Here the land office is: at one auction of the school section in October 1833 it entered him as BLANCHARD F G in one volume and BLANCHARD GURTREY in another.',
       'Those six GURTREY rows are now his. They are six more town lots \u2014 on blocks 2, 3, 21, 82 and 141 \u2014 and they take what the register sold him from $373 to $920. His arrival bound moves back a year, to the tax list of 1833, and he stops being counted among the townspeople known from a single line.',
       'A purchase is still only a purchase. The register\u2019s residence column says UNKNOWN on all six, so none of this puts him on that ground, and no grade was raised on the strength of it.'
+    ] },
+  { v: 691, title: 'Forty judgements about the land register, put back', kind: 'fix', ts: '2026-09-10T15:12:13.106Z', date: 'Sep 10, 2026, 10:12 AM CT',
+    items: [
+      'Twelve resident cards had quietly got back a federal land purchase that had already been judged not to be theirs. The judgements were made; they stopped being applied.',
+      'The town keeps a written ruling on every proposed match between a name in the land register and a person it holds a card for \u2014 upheld or refused, each with what it was checked against, and a refusal takes the purchase back off the card. Forty-eight such rulings had been written. Only eight were still on file, and the file\u2019s own summary went on describing all forty-eight.',
+      'The forty are back, each as the pass that made it wrote it \u2014 its date, its reasoning, and the sources it was checked against. A judgement re-argued would be a different judgement, so none of them was re-argued.',
+      'Applying them again takes the purchases back off those twelve cards: Thomas Hartzell, Henry Vanderbogert, Charles Wessencraft, John Hale, James Spence, Joseph Chandler, Paul Kingston, Ira Minard, Augustus Garrett, Chauncey Goodrich, Liman Smith and Thos M. Morrison \u2014 each of which had been carrying an entry, and a source line, it had been ruled it could not have.',
+      'One of the forty is retired rather than kept: \u201cPruyne P and co\u201d was refused by hand for being a partnership, and reading firms as firms has since become a rule the register is read by, so the hand ruling now decides nothing. Its argument is kept where it can still be read, because the rule was written from it.',
+      'Nothing was upgraded, nobody was minted, and no purchase became a place anyone lived. The town holds what it had judged it holds.'
     ] },
   { v: 690, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T13:43:17.384Z', date: 'Sep 10, 2026, 8:43 AM CT',
     items: [
