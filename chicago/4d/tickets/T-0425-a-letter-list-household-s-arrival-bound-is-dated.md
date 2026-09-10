@@ -1,7 +1,7 @@
 ---
 id: T-0425
 title: A letter-list household's arrival bound is dated by the printing it was extracted from, not by the return, so nine printings of one list give nine different bounds
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1085
 claimed_by: run 9/10/2026, 3:38:02 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T21:13:25.759Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34527098866
 ---
 
