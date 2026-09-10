@@ -295,8 +295,68 @@ def doc_rests_on(doc: dict) -> set:
     names what the whole file adjudicated FROM. The per-entry form is still the
     better one wherever a ruling rests on something specific, and it WINS: a
     ruling that names its own sources is not diluted by the file's.
+
+    IT MAKES A RULING JUDGEABLE. IT DOES NOT MAKE ONE WRITTEN — see `subject_of`.
     """
     return stated_sources(doc)
+
+
+def all_strings(node) -> list:
+    """Every string anywhere under a node, in no particular order."""
+    out = []
+    if isinstance(node, dict):
+        for value in node.values():
+            out.extend(all_strings(value))
+    elif isinstance(node, list):
+        for item in node:
+            out.extend(all_strings(item))
+    elif isinstance(node, str):
+        out.append(node)
+    return out
+
+
+def subject_of(ruling: dict, ids: set) -> set:
+    """What this ruling adjudicated, as strings the CARD would have to name (T-0989).
+
+    THE FAULT THIS EXISTS TO CLOSE. `doc_rests_on` lets a generated crosswalk state
+    its basis once at the top, and 811 of the 1,359 person-reaching rulings in this
+    repo state nothing else — 60% of the second hop. For every one of those the
+    written test collapsed to *does this card cite this source id anywhere, for any
+    reason at all?*, and a card citing it from a DIFFERENT pass satisfied every
+    ruling in the file at once. That is not a hypothetical: hh_garrett_a cites
+    `fergus_chicago_directory_1839` because a later resident-research pass wrote a
+    generic `directories` block on it, and on the strength of that citation this
+    measure called Fergus 1839's ruling for Garrett — entry f1839_e0527, "Garrett,
+    Augustus, auctioneer, real estate, bds. Sauganash Hotel", printed page 15 —
+    WRITTEN. Nothing of that entry is on the card.
+
+    So a file-level statement makes a ruling judgeable and no more. To count written
+    the card must name what the ruling was about:
+
+      * a READ UNIT the ruling names — `f1839_e0527`, `ls0001`, `poll_1833_001` —
+        resolved against what this domain has actually read, exactly as T-0602
+        resolves an evidence string, so a string naming a file, a source id or
+        another domain's card resolves to nothing and buys nothing; and
+      * the SHEET a sheet-and-line ruling sits on. The 1840 heads carry no unit id
+        — the census names none — and `familysearch_id` is where a reader goes back
+        to the line. It is what `spend_census_1840_heads.py` writes onto the card,
+        and it is as real an anchor here as it is in `anchor_of`.
+    """
+    subjects = {s for s in all_strings(ruling) if s in ids}
+    sheet = ruling.get("familysearch_id")
+    if isinstance(sheet, str) and ruling.get("line") is not None:
+        subjects.add(sheet)
+    return subjects
+
+
+def names_subject(record: dict, subjects: set) -> bool:
+    """Does this card name one of the units the ruling adjudicated, anywhere in it?
+
+    Deliberately the whole record and not `note` alone: the 1840 heads reach a card
+    as `census_evidence[].record_id`, the directories reach one as prose, and both
+    are the card having learned the ruling. What is ruled out is the citation on its
+    own, which is what a card carries whether or not anybody read the ruling."""
+    return any(subject in text for text in all_strings(record) for subject in subjects)
 
 
 def people_named(ruling: dict) -> list:
@@ -357,7 +417,7 @@ def ruling_lists(doc, depth: int = RULING_DEPTH):
 
 
 def count_written(domain_dir: Path, records: dict) -> tuple:
-    """(reached, judgeable, wrote) for rulings that name a person in the town.
+    """(reached, judgeable, wrote, on the file's word) for rulings that name a person.
 
     JUDGEABLE IS NOT A TECHNICALITY, it is the difference between a measurement and
     a smear. A ruling that never says what it rests on cannot be checked against a
@@ -372,8 +432,24 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
     fix was to say it once at the top of each generated crosswalk, which is what
     `doc_rests_on` reads, and `--gate` now ratchets the remainder at 0 so it
     cannot regrow. A file-level statement is a FALLBACK, never an override: a
-    ruling naming its own sources is judged against those."""
-    reached = judgeable = wrote = 0
+    ruling naming its own sources is judged against those.
+
+    AND A FALLBACK IS NOT THE SAME TEST (T-0989). Where the ruling names its own
+    sources, a card citing one of them has demonstrably learned something from that
+    ruling. Where it does not, the file's one source id is shared by every ruling in
+    the file, so a single citation put there by any other pass would pass all of
+    them at once — which is how census_1840 read 27 of 27 written with 15 cards
+    carrying no mention of the census. For those the card must ALSO name what the
+    ruling was about (`subject_of`). The fourth return value is how many of the
+    written came through that softer door, because a measurement with two tests in
+    it should say which one it used.
+
+    A fallback ruling that names no subject at all is counted UNWRITTEN, not
+    unsourced: the file did say what it rests on, so the hop knows what to look for
+    and the answer is no. Making it unsourced instead would push it into the T-0598
+    ratchet, where the remedy is to state a source that is already stated."""
+    ids = units_read(domain_dir)
+    reached = judgeable = wrote = on_file_word = 0
     for path in sorted(domain_dir.rglob("*.json")):
         if not is_crosswalk(path):
             continue
@@ -403,13 +479,21 @@ def count_written(domain_dir: Path, records: dict) -> tuple:
                 if not named:
                     continue
                 reached += 1
-                wants = rests_on(ruling) or from_file
+                own = rests_on(ruling)
+                wants = own or from_file
                 if not wants:
                     continue
                 judgeable += 1
-                if any(wants & cited_sources(records[p]) for p in named):
+                if not any(wants & cited_sources(records[p]) for p in named):
+                    continue
+                if own:
                     wrote += 1
-    return reached, judgeable, wrote
+                    continue
+                subjects = subject_of(ruling, ids)
+                if subjects and any(names_subject(records[p], subjects) for p in named):
+                    wrote += 1
+                    on_file_word += 1
+    return reached, judgeable, wrote, on_file_word
 
 
 def anchor_of(ruling: dict) -> str | None:
@@ -573,12 +657,13 @@ def measure() -> list[dict]:
             raise SystemExit(f"registered domain has no directory: {entry['path']}")
         read, declared = count_read(domain_dir)
         spent, pairs, uncounted = count_spent(domain_dir)
-        reached, judgeable, wrote = count_written(domain_dir, records)
+        reached, judgeable, wrote, on_file_word = count_written(domain_dir, records)
         rows.append({"domain": entry["id"], "holds": entry["holds"],
                      "read": read, "spent": spent,
                      "not_a_reading": declared, "uncounted": uncounted,
                      "unspent": read - spent, "id_pairs": pairs,
                      "reached": reached, "judgeable": judgeable, "wrote": wrote,
+                     "on_file_word": on_file_word,
                      "unwritten": judgeable - wrote,
                      "unjudgeable": reached - judgeable,
                      "unsourced": reached - judgeable})
@@ -615,17 +700,28 @@ def report() -> str:
     out.append("")
     out.append("ruled onto a town person, and whether their CARD learned it:")
     if hop:
-        out.append("domain            reached  judgeable  on a card  unwritten  no source stated")
-        out.append("-" * 78)
+        out.append("domain            reached  judgeable  on a card  unwritten  no source stated"
+                   "  on the file's word")
+        out.append("-" * 96)
         for r in hop:
             out.append(f"{r['domain']:<17}{r['reached']:>7}{r['judgeable']:>11}"
-                       f"{r['wrote']:>11}{r['unwritten']:>11}{r['unjudgeable']:>18}")
-        out.append("-" * 78)
+                       f"{r['wrote']:>11}{r['unwritten']:>11}{r['unjudgeable']:>18}"
+                       f"{r['on_file_word']:>20}")
+        out.append("-" * 96)
         out.append(f"{'TOTAL':<17}{sum(r['reached'] for r in hop):>7}"
                    f"{sum(r['judgeable'] for r in hop):>11}"
                    f"{sum(r['wrote'] for r in hop):>11}"
                    f"{sum(r['unwritten'] for r in hop):>11}"
-                   f"{sum(r['unjudgeable'] for r in hop):>18}")
+                   f"{sum(r['unjudgeable'] for r in hop):>18}"
+                   f"{sum(r['on_file_word'] for r in hop):>20}")
+        # WHAT THE LAST COLUMN MEANS, said rather than left to be worked out. A
+        # ruling counted there stated no source of its own: the file's one source id
+        # is all it rests on, and it counts written because the card names the unit
+        # it adjudicated as well as citing that source. It is the weaker of the two
+        # tests this measure runs and it is printed so nobody has to read the code to
+        # find out how much of a green figure came through it (T-0989).
+        out.append("  the last column is the weaker test: no source of the ruling's own, so the")
+        out.append("  card had to NAME the unit adjudicated and not merely cite the file's source")
     else:
         out.append("  no ruling in any domain yet names a person in the residents layer")
     # WHAT THE MEASURE WITHHELD, AND WHAT IT COULD NOT COUNT (T-0602). Both blocks
@@ -1071,7 +1167,7 @@ def self_test() -> int:
              "discriminators": [{"source_id": "fergus_1843"}]},
             {"outcome": "refused", "household_id": "hh_a",
              "discriminators": [{"source_id": "fergus_1843"}]}]}))
-        reached, judgeable, wrote = count_written(d, cards)
+        reached, judgeable, wrote, _ = count_written(d, cards)
         fires("a ruling naming a person in the town is reached", reached == 3)
         fires("…a refusal is not, however well sourced", reached == 3)
         fires("…nor is one naming a person the town does not have", reached == 3)
@@ -1086,25 +1182,36 @@ def self_test() -> int:
     # spells its verdict in the name of the list it is filed in rather than in `outcome`.
     with tempfile.TemporaryDirectory() as tmp:
         d = Path(tmp)
-        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["fergus_1839"]}]},
+        cards = {"hh_a": {"id": "hh_a", "persons": [
+                     {"sources": ["fergus_1839"],
+                      "note": "Fergus 1839 prints this person at entry f1839_e1."}]},
                  "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        # The reading the pool was matched against, so a ruling can name a unit and
+        # the card can be asked whether it names it back (T-0989).
+        (d / "entries.json").write_text(json.dumps({"records": [
+            {"id": "f1839_e1", "normalized": "A. Name"},
+            {"id": "f1839_e2", "normalized": "B. Name"}]}))
         (d / "pooled_crosswalk.json").write_text(json.dumps({
             "source_id": "fergus_1839",
             "residents": {
-                "matches": [{"household_id": "hh_a"}, {"household_id": "hh_b"}],
-                "refusals": [{"household_id": "hh_a"}],
-                "ambiguous": [{"household_id": "hh_b"}],
-                "contested": [{"household_id": "hh_a"}],
+                "matches": [{"household_id": "hh_a", "entry": "f1839_e1"},
+                            {"household_id": "hh_b", "entry": "f1839_e2"}],
+                "refusals": [{"household_id": "hh_a", "entry": "f1839_e1"}],
+                "ambiguous": [{"household_id": "hh_b", "entry": "f1839_e2"}],
+                "contested": [{"household_id": "hh_a", "entry": "f1839_e1"}],
             },
             "voters": {"matches": [{"name": "a name in another reading"}]},
         }))
-        reached, judgeable, wrote = count_written(d, cards)
+        reached, judgeable, wrote, on_file_word = count_written(d, cards)
         fires("a ruling grouped under a pool is reached, not invisible", reached == 2)
         fires("…a refusal in the same pool is still not a ruling to spend", reached == 2)
         fires("…nor is an ambiguous or contested rival still standing", reached == 2)
         fires("…nor a match naming no person this town holds", reached == 2)
         fires("the file's own source makes a pooled ruling judgeable", judgeable == 2)
-        fires("…and only the card citing it has learned it", wrote == 1)
+        fires("…and only the card citing it AND naming the entry has learned it",
+              wrote == 1)
+        fires("…and that one is reported as resting on the file's word",
+              on_file_word == 1)
         fires("a list nested deeper than a pool is still not followed as a matrix",
               [k for k, _ in ruling_lists({"a": {"b": {"c": {"d": [1]}}}})] == [])
 
@@ -1122,22 +1229,30 @@ def self_test() -> int:
     # the list may not let a container OVERRULE a ruling that stated its own verdict.
     with tempfile.TemporaryDirectory() as tmp:
         d = Path(tmp)
-        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["second_presb"]}]},
+        cards = {"hh_a": {"id": "hh_a", "persons": [
+                     {"sources": ["second_presb"],
+                      "note": "The roll carries this person at member sp_1."}]},
                  "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
+        (d / "roll.json").write_text(json.dumps({"records": [
+            {"id": "sp_1", "normalized": "A. Name"},
+            {"id": "sp_2", "normalized": "B. Name"}]}))
         (d / "roll_crosswalk.json").write_text(json.dumps({
             "source_id": "second_presb",
-            "matched": [{"household_id": "hh_a"}, {"household_id": "hh_b"}],
-            "refused": [{"household_id": "hh_a"}],
+            "matched": [{"household_id": "hh_a", "member": "sp_1"},
+                        {"household_id": "hh_b", "member": "sp_2"}],
+            "refused": [{"household_id": "hh_a", "member": "sp_1"}],
         }))
-        reached, judgeable, wrote = count_written(d, cards)
+        reached, judgeable, wrote, _ = count_written(d, cards)
         fires("a ruling filed under `matched` is reached, not invisible", reached == 2)
         fires("…and `refused` beside it is still not a ruling to spend", reached == 2)
         fires("…and only the card citing the roll has learned it", wrote == 1)
 
         (d / "roll_crosswalk.json").write_text(json.dumps({
             "source_id": "census_1830",
-            "matched": [{"household_id": "hh_a", "outcome": "earlier_evidence"},
-                        {"household_id": "hh_b", "outcome": "matched"}],
+            "matched": [{"household_id": "hh_a", "outcome": "earlier_evidence",
+                         "member": "sp_1"},
+                        {"household_id": "hh_b", "outcome": "matched",
+                         "member": "sp_2"}],
         }))
         fires("a ruling stating its own verdict is judged on that, not on its heading",
               count_written(d, cards)[0] == 1)
@@ -1147,34 +1262,42 @@ def self_test() -> int:
     # is how a generated crosswalk answers for all of its rulings at once.
     with tempfile.TemporaryDirectory() as tmp:
         d = Path(tmp)
-        cards = {"hh_a": {"id": "hh_a", "persons": [{"sources": ["voter_lists_irad"]}]},
+        cards = {"hh_a": {"id": "hh_a", "persons": [
+                     {"sources": ["voter_lists_irad"],
+                      "note": "Polled at poll_1833_001."}]},
                  "hh_b": {"id": "hh_b", "persons": [{"sources": ["andreas_1884_v1"]}]}}
-        bare = {"entries": [{"outcome": "matched", "matched_resident": "hh_a"},
-                            {"outcome": "matched", "matched_resident": "hh_b"}]}
+        (d / "polls.json").write_text(json.dumps({"records": [
+            {"id": "poll_1833_001", "normalized": "A. Name"},
+            {"id": "poll_1833_002", "normalized": "B. Name"}]}))
+        bare = {"entries": [{"outcome": "matched", "matched_resident": "hh_a",
+                             "record_id": "poll_1833_001"},
+                            {"outcome": "matched", "matched_resident": "hh_b",
+                             "record_id": "poll_1833_002"}]}
         (d / "voter_crosswalk.json").write_text(json.dumps(bare))
-        reached, judgeable, wrote = count_written(d, cards)
+        reached, judgeable, wrote, _ = count_written(d, cards)
         fires("a crosswalk stating no source anywhere is a FAULT, not a measurement",
               (reached, judgeable, reached - judgeable) == (2, 0, 2))
 
         (d / "voter_crosswalk.json").write_text(json.dumps(
             dict(bare, source_id="voter_lists_irad")))
-        reached, judgeable, wrote = count_written(d, cards)
+        reached, judgeable, wrote, _ = count_written(d, cards)
         fires("…and one source_id at the top of the file answers for every ruling in it",
               (reached, judgeable, reached - judgeable) == (2, 2, 0))
         fires("…which then judges each card on its own merits", wrote == 1)
 
         (d / "voter_crosswalk.json").write_text(json.dumps(
             dict(bare, source_ids=["voter_lists_irad", "tax_1833"])))
-        _, judgeable, _ = count_written(d, cards)
+        _, judgeable, _, _ = count_written(d, cards)
         fires("a file may rest on several sources, stated as source_ids", judgeable == 2)
 
         (d / "voter_crosswalk.json").write_text(json.dumps({
             "source_id": "voter_lists_irad",
             "entries": [{"outcome": "matched", "matched_resident": "hh_b",
                          "discriminators": [{"source_id": "andreas_1884_v1"}]}]}))
-        _, _, wrote = count_written(d, cards)
+        _, _, wrote, on_file_word = count_written(d, cards)
         fires("a ruling naming its own source is judged on that, not the file's",
               wrote == 1)
+        fires("…and it does not rest on the file's word", on_file_word == 0)
 
         fires("evidence rows state a source like any other basis",
               rests_on({"evidence": [{"source_id": "s3", "locator": "poll_1833 line 26"}]})
@@ -1186,6 +1309,74 @@ def self_test() -> int:
               cited_sources({"a": {"b": [{"sources": ["deep"]}]}}) == {"deep"})
         fires("a plural person_ids ruling names every person it reaches",
               people_named({"person_ids": ["p1", "p2"]}) == ["p1", "p2"])
+
+
+    # --- T-0989. THE FALLBACK IS NOT THE SAME TEST AS A STATED SOURCE, and every
+    # assertion here fails on the code as it stood. A file-level source id is shared
+    # by every ruling in its file, so under the old rule ONE citation — put on the
+    # card by any pass, for any reason — counted all of them written at once. That is
+    # how census_1840 read 27 of 27 written while 15 of the 27 cards carried no
+    # mention of the census, and it covered 811 of the 1,359 person-reaching rulings
+    # in this repo. The fixture below is hh_garrett_a's case in miniature: the card
+    # cites the directory because a later pass wrote a generic block on it, and
+    # nothing of the entry the ruling adjudicated is anywhere on it.
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(tmp)
+        (d / "entries.json").write_text(json.dumps({"records": [
+            {"id": "f1839_e0527", "normalized": "Garrett, Augustus"}]}))
+        crosswalk = {"source_id": "fergus_chicago_directory_1839",
+                     "matches": [{"household_id": "hh_g",
+                                  "entries_1839": [{"claim": "f1839_e0527"}]}]}
+        (d / "x_crosswalk.json").write_text(json.dumps(crosswalk))
+
+        cited_only = {"hh_g": {"id": "hh_g", "directories": {
+            "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM.",
+            "sources": ["fergus_chicago_directory_1839"]}}}
+        reached, judgeable, wrote, _ = count_written(d, cited_only)
+        fires("a card citing the file's source for an unrelated reason has NOT "
+              "learned the ruling", (reached, judgeable, wrote) == (1, 1, 0))
+
+        told = {"hh_g": {"id": "hh_g", "directories": {
+            "note": "Fergus 1839 prints this person at f1839_e0527, printed page 15.",
+            "sources": ["fergus_chicago_directory_1839"]}}}
+        _, _, wrote, on_file_word = count_written(d, told)
+        fires("…and a card naming the entry the ruling adjudicated HAS", wrote == 1)
+        fires("…counted, and reported, as resting on the file's word",
+              on_file_word == 1)
+
+        # The citation is still necessary. Naming the unit without citing the source
+        # would mean the card knows the entry and not where it came from.
+        unsourced_card = {"hh_g": {"id": "hh_g", "note": "see f1839_e0527"}}
+        fires("naming the unit without citing the source is not a spend",
+              count_written(d, unsourced_card)[2] == 0)
+
+        # A string that resolves to no unit this domain has read buys nothing —
+        # the rule T-0602 set for the spend half, held on both hops now.
+        fires("a subject is only a unit the domain has actually read",
+              subject_of({"entries_1839": [{"claim": "not_a_unit"}]},
+                         units_read(d)) == set())
+        fires("…and a unit it has read is the ruling's subject",
+              subject_of(crosswalk["matches"][0], units_read(d)) == {"f1839_e0527"})
+
+        # A sheet-and-line ruling names no unit id and is not therefore anonymous:
+        # the sheet is where the reader goes back to the line, and it is what
+        # spend_census_1840_heads.py writes onto the card.
+        fires("a sheet-and-line ruling is subject to its sheet",
+              subject_of({"familysearch_id": "33S7-9YYJ-99F", "line": 3}, set())
+              == {"33S7-9YYJ-99F"})
+        fires("…and a sheet id with no line is not an anchor",
+              subject_of({"familysearch_id": "33S7-9YYJ-99F"}, set()) == set())
+
+        # A fallback ruling that names no subject at all reads UNWRITTEN, not
+        # unsourced: the file did say what it rests on, so the hop knows what to look
+        # for and the answer is no. Calling it unsourced would push it into T-0598's
+        # ratchet, whose remedy is to state a source that is already stated.
+        (d / "x_crosswalk.json").write_text(json.dumps({
+            "source_id": "fergus_chicago_directory_1839",
+            "matches": [{"household_id": "hh_g"}]}))
+        reached, judgeable, wrote, _ = count_written(d, cited_only)
+        fires("a fallback ruling naming no unit is unwritten, not unsourced",
+              (reached, judgeable, wrote) == (1, 1, 0))
 
     # --- the ratchet
     def over(unspent: int, ceiling: int) -> bool:

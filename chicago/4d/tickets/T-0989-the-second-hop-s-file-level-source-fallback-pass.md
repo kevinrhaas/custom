@@ -1,7 +1,7 @@
 ---
 id: T-0989
 title: The second hop's file-level source fallback passes 817 of 1,364 rulings on a card that cites the file's one source id for any reason at all — which is how census_1840 read 27 of 27 written with 15 cards untold
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-10
+pr: 1062
+claimed_by: run 9/10/2026, 4:30:08 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-10T09:39:59.255Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34460366591
 ---
 
 The second hop's file-level source fallback passes 817 of 1,364 rulings on a card that cites the file's one source id for any reason at all — which is how census_1840 read 27 of 27 written with 15 cards untold.
