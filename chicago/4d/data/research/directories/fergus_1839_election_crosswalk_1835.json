@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1356
+   "n": 1353
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -40,7 +40,7 @@
   "residents_matched_one_entry": 92,
   "residents_ambiguous": 32,
   "residents_contested": 23,
-  "residents_surname_only_refused": 222,
+  "residents_surname_only_refused": 221,
   "voters_matched_one_entry": 82,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 85,
@@ -4254,11 +4254,6 @@
     "name": "Henry Tucker",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Tucker' stands in the 1837 poll and no man under it carries the initial 'H' of 'Henry Tucker'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Henry Vanderbogert",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Vanderbogert' stands in the 1837 poll and no man under it carries the initial 'H' of 'Henry Vanderbogert'. A surname-only agreement is a refusal."
    },
    {
     "name": "Hezekiah Gifford",

@@ -365,18 +365,6 @@
       "reasoning": "One canal entry of 29 September 1830, and on the town's side one line of the 1833 tax list and nothing else — a G3 identity, read once and corroborated by nothing. Two bare names three years apart, and no initial, trade, or second document between them. The residence column reads ILLINOIS, which is a state and does not reach the town. The proposal rests on the residents layer holding exactly one Hartzell, which is a fact about the layer and not about these two records agreeing. A second reading naming him — a deed, a directory, a paper — would overturn it."
     },
     {
-      "purchaser_as_read": "VANDERBOGERT HENRY",
-      "resident_id": "vanderbogert_henry",
-      "ruling": "refused",
-      "ruled_on": "2026-09-10",
-      "ticket": "T-0850",
-      "checked_against": [
-        "isa_public_domain_land_tract_sales",
-        "chicago_voter_lists_1833_1835_irad"
-      ],
-      "reasoning": "One school-section parcel; on the town's side one line of the 1833 tax list and nothing else. Two things make the refusal firmer than the thinness alone. The register itself holds a SECOND man of this surname — VANDERBOGERT JOHN AS, an assignment — so the surname does not single anyone out even on the page. And the town's own spelling of this family is under an open question: T-0842 asks whether Van Den Bogart and Van der Bogart are one man printed two ways or two men, with a card minted for the second. Ruling an identity onto a name whose identity is itself the open ticket is the order this project does not work in."
-    },
-    {
       "purchaser_as_read": "WESSENCRAFT CHARLES",
       "resident_id": "wessencraft_charles",
       "ruling": "refused",
@@ -667,5 +655,23 @@
       ],
       "reasoning": "UPHELD, and the register proves it against itself. ls0919 — HUNTER E E, the north-east quarter of section 13, T40N R13E, 80 acres, $100, 15 November 1834 — and ls0920 — HUNTER EDWARD E, the same quarter of the same section on the same day at the same price — are one entry read twice, and the fuller reading states COOK in the Residence column where the abbreviated one leaves it UNKNOWN. So the expansion of E E to EDWARD E is the deposit's, not this ruling's, and it comes with the one column that speaks to residence. The middle initial E is on the town's side as well: the card is attested at G1b off the Democrat, the poll of 1834 and the old-settler death notices, and Fergus 1839 prints him as deputy-sheriff and ex-justice of the peace on Wells street. The layer's four other Hunters are refused on the forename. COOK is a county and not a town, and this ruling reads it as the register's word for the county, exactly as the domain's grading rule does."
     }
-  ]
+  ],
+  "withdrawn": [
+    {
+      "purchaser_as_read": "VANDERBOGERT HENRY",
+      "resident_id": "vanderbogert_henry",
+      "ruling": "refused",
+      "ruled_on": "2026-09-10",
+      "ticket": "T-0850",
+      "checked_against": [
+        "isa_public_domain_land_tract_sales",
+        "chicago_voter_lists_1833_1835_irad"
+      ],
+      "reasoning": "One school-section parcel; on the town's side one line of the 1833 tax list and nothing else. Two things make the refusal firmer than the thinness alone. The register itself holds a SECOND man of this surname — VANDERBOGERT JOHN AS, an assignment — so the surname does not single anyone out even on the page. And the town's own spelling of this family is under an open question: T-0842 asks whether Van Den Bogart and Van der Bogart are one man printed two ways or two men, with a card minted for the second. Ruling an identity onto a name whose identity is itself the open ticket is the order this project does not work in.",
+      "withdrawn_on": "2026-09-10",
+      "withdrawn_by": "T-0842",
+      "withdrawn_why": "NOT REVERSED — LEFT WITHOUT A PROPOSAL TO RULE ON. T-0842 ruled the Van der Bogart cluster on 2026-09-10 and folded the town's card `vanderbogert_henry` (the 1833 tax list's 'Vanderbogert, Henry') onto `vanderbogart_henry`, Dr Henry Van der Bogart. The mechanical rule in build_resident_crosswalk() keys on the surname EXACTLY, so with no `Vanderbogert` left in the residents layer it now refuses both of the register's rows on 'the residents layer holds nobody of the surname' and proposes nothing — and a ruling on a proposal that was never made is what --check calls a ruling on nothing. The reasoning is kept here whole rather than deleted, because it is still the answer if the proposal comes back. WHAT T-0842 CHANGED ABOUT ITS SUBSTANCE, honestly: one of the refusal's two stated grounds is gone — the town's spelling of this family is no longer an open question — and the town's side is no longer 'one line of the 1833 tax list and nothing else' but an attested man with four readings behind him. The other ground stands untouched: the register itself holds VANDERBOGERT JOHN AS as well, so the surname still does not single a purchaser out on the register's own page. This entry does NOT re-rule it either way. The crosswalk's exact-surname key is the thing to fix first, and that is filed as its own ticket."
+    }
+  ],
+  "withdrawn_doc": "Rulings whose proposal the crosswalk no longer makes. --check reads `ruled` only, and refuses a ruling on a proposal that was never made; a judgement is still worth keeping when the proposal under it moves, so it is parked here with the reason and the day. Restore a row to `ruled` if and when the crosswalk proposes it again — and read the withdrawal note first, because what the town holds may have changed under it."
 }

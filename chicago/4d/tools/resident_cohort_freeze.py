@@ -83,6 +83,8 @@ import copy
 import json
 from pathlib import Path
 
+import folded_residents
+
 ROOT = Path(__file__).resolve().parents[1]
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
@@ -103,8 +105,19 @@ def is_snapshot_key(key: str) -> bool:
 
 
 def live_people() -> dict:
-    """Every person in the residents layer, by id, as (household, person)."""
-    out = {}
+    """Every person in the residents layer, by id, as (household, person).
+
+    A CARD A MERGE FOLDED AWAY COUNTS AS STILL IN THE TOWN (T-0842), because it is:
+    tools/consolidate_town_cards.py keeps the whole record under
+    data/residents/merged/ and index.json redirects its id. Reading the superseded
+    record — and not the survivor it folded onto — is what keeps a frozen cohort
+    frozen: the survivor carries different strata and different starting snapshots,
+    and rule 1 above would then say the frame yields a person the manifest does not
+    claim. tools/folded_residents.py carries the reasoning. The standing cards win any
+    collision, and nothing here can put a folded person INTO a cohort: the selectors
+    draw their frames from the households folder.
+    """
+    out = dict(folded_residents.folded_people())
     for path in sorted(HOUSEHOLDS.glob("*.json")):
         hh = json.loads(path.read_text(encoding="utf-8"))
         for person in hh.get("persons", []):

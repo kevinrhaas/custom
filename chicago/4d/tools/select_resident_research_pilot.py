@@ -11,8 +11,10 @@ from __future__ import annotations
 
 import argparse
 import json
+
 from pathlib import Path
 
+import folded_residents
 import resident_cohort_freeze as freeze
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -69,10 +71,16 @@ RICHER_UNPLACED_IDS = (
 
 def load_households() -> dict[str, dict]:
     index = json.loads((RESIDENTS / "index.json").read_text())
-    return {
+    standing = {
         entry["id"]: json.loads((RESIDENTS / entry["file"]).read_text())
         for entry in index["households"]
     }
+    # A CARD A MERGE FOLDED AWAY IS STILL THE CARD THIS COHORT WAS DRAWN ON
+    # (T-0842). tools/folded_residents.py reads the superseded record from
+    # data/residents/merged/, so a frozen id keeps resolving — to the record as it
+    # was frozen, not to the survivor, which would move the cohort's strata under
+    # it. The standing cards win any collision; nothing here selects INTO a cohort.
+    return {**folded_residents.folded_households(), **standing}
 
 
 def member(hh: dict, evidence: str, reason: str) -> dict:

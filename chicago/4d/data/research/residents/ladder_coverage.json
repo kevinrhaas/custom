@@ -5,7 +5,7 @@
  "states": {
   "rule_on_the_card": {
    "says": "The card carries a `ladder_rule`. The ladder has ruled and the ruling is written down where a reader of the card can see it.",
-   "people": 1280
+   "people": 1278
   },
   "proposed_not_written": {
    "says": "The ladder HAS ruled this person — the rung is in grading_proposal.json — and no pass has written it onto the card. A spend, not a reading.",
@@ -17,7 +17,7 @@
   },
   "absorbed_by_another_card": {
    "says": "The person's row stands on an identity the ladder ruled, but that identity names a DIFFERENT town card as its canonical person, so the rung was never offered to this one. Two cards, one identity.",
-   "people": 1
+   "people": 0
   },
   "refused_no_identity": {
    "says": "The consolidation built no identity for this name and said so at the time: the refusal is in identity_master.json with its rule. The ladder abstains, and here is the reason it abstained.",
@@ -25,9 +25,9 @@
   }
  },
  "counts": {
-  "person_records": 1359,
-  "carry_a_rule": 1280,
-  "carry_no_rule": 79,
+  "person_records": 1356,
+  "carry_a_rule": 1278,
+  "carry_no_rule": 78,
   "proposed_not_written_by_rule": {},
   "ruled_but_disputed_by_rule": {
    "G2b": 8,
@@ -39,7 +39,7 @@
    "R1": 2,
    "R5": 1
   },
-  "the_ladder_has_never_looked": 4,
+  "the_ladder_has_never_looked": 3,
   "on_the_owners_conflict_list": 75
  },
  "person_records": [
@@ -117,7 +117,6 @@
   {"person_id":"taylor_augustine","household_id":"hh_taylor_augustine","name":"Augustine Deodat Taylor","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","second_presbyterian_chicago_1892"],"identity":"id_taylor_augustine_deodat","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"temple_mrs_john_t","household_id":"hh_temple_john_t","name":"Mrs Temple","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":null,"state":"refused_no_identity","refusal_rule":"R1","why":"names no forename, so it can never be merged onto a person"},
   {"person_id":"temple_children_four","household_id":"hh_temple_john_t","name":"The four Temple children","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_children_the_four_temple","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"vanderbogart_h","household_id":"hh_vanderbogart_h","name":"H. Vanderbogart","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fergus_1843_old_settler_death_notices"],"identity":"id_vanderbogart_henry","state":"absorbed_by_another_card","proposed_rule":"G2e","proposed_grade":"inferred","absorbed_by":"vanderbogart_henry","why":"identity id_vanderbogart_henry holds this card and vanderbogart_henry, and the proposal names the other one; the rung was ruled for the identity and never offered to this card"},
   {"person_id":"vasseur_noel","household_id":"hh_vasseur_noel","name":"Noel Vasseur","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","fcp_treaty_chicago_1833_payments"],"identity":"id_vasseur_noel","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"walters_william","household_id":"hh_walters_william","name":"William Walters","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1","drloih_hotels"],"identity":"id_walters_william","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"woodworth_james_h","household_id":"hh_woodworth_james_h","name":"James H. Woodworth","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","ushouse_james_h_woodworth"],"identity":"id_woodworth_james_h","proposed_rule":"G2e","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2e disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},

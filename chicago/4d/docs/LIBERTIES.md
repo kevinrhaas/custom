@@ -10087,7 +10087,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 726 people
+**Scope:** `residents.persons[letter_list_only]` — 725 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10095,14 +10095,14 @@ people in 208 households to 956 in 920. `tools/mint_letter_list_residents.py` de
 set and re-derives it on every commit; `--gate` proves what it is not allowed to do.
 
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence
-was upgraded to allow it: every one of the 726 is printed by name in a list headed as letters
+was upgraded to allow it: every one of the 725 is printed by name in a list headed as letters
 remaining in the Post Office at Chicago and uncalled-for, at the issue and column its own record
 cites. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
 known from that and from nothing else — no trade, no street, no household, no arrival — against
 6 per cent the day before. A reader who counts this town's people is counting a post-office list
 with a town attached, and no single record says so, because no single record is wrong.
 
-**What each of the 726 may not have, and a gate proves none of them has it.** A letter waiting at
+**What each of the 725 may not have, and a gate proves none of them has it.** A letter waiting at
 Chicago establishes that a correspondent believed a person of that name reachable here on that
 date. It does not establish that they lived here, kept a trade here, or were here on 1 July 1835.
 So each is a household of ONE, `division: unplaced`, `lives_at` and `works_at` unattested,
@@ -10120,6 +10120,11 @@ he is the one Norton of that initial the town holds. The record is not deleted; 
 onto him, kept whole under `data/residents/merged/`, and its letter becomes a second source for
 a man the town already documents. That is the only way a name leaves this set — a ruling that
 says who it already was, never a quiet withdrawal — and it takes the count from 727 to 726.
+It has now happened a second time. T-0842 read the Chicago Democrat of 4 February 1834 and
+ruled that `Vanderbogart, H.` of the return of 20 May 1835 is Dr Henry Van der Bogart, whom
+the town's own 1833 tax list and Fergus's obituary both name — and this pair was not even two
+readings, since the letter-list card and the civic card rest on the SAME printed entry,
+minted once by each pass. 725.
 
 **What the refusals still take, and they are the only thing between a post-office list and this
 town's population.** 1,181 of the 1,908 names in the pool are refused, in order: 454 garbled by
@@ -10133,7 +10138,7 @@ fire is now worth hundreds of records rather than one.
 office served the country around the town as well as the town, so an uncalled-for letter is
 evidence a writer believed the addressee reachable at Chicago and not proof that anyone slept
 here. Refusal 6 catches the 22 the corpus places elsewhere by name; it cannot catch a settler the
-corpus never places at all. At 15 records that was a caveat on each of them. At 726 it is a
+corpus never places at all. At 15 records that was a caveat on each of them. At 725 it is a
 statement about how this town's population was assembled, and this entry is where it is admitted
 as one.
 
@@ -10382,9 +10387,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 486 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 484 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 486 people
+**Scope:** `residents.persons[civic_mint]` — 484 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10395,13 +10400,14 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **486
-today**, and the figure has moved three times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **484
+today**, and the figure has moved four times, once in the opposite direction. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
-the town gained the card it had been folding away. Whether those two are one man is a reading
-somebody owes the page; it is filed as T-0842 and is not assumed here in either direction. The pass
+the town gained the card it had been folding away. T-0842 paid that page its reading on
+2026-09-10 and took the figure to 484: they are one man, and so is the 1833 tax list's
+`Vanderbogert, Henry`, whom nothing had ever weighed against either of them. The pass
 minted a card for every identity the ladder graded and the town did not already carry, and
 its test for "already carry" was the name as the source printed it — so Gurdon Saltonstall
 Hubbard, who is printed G., G. S., Gurdon S., Gordon S. and G. T., was minted five times
@@ -10411,21 +10417,31 @@ none was deleted, each is kept whole under `data/residents/merged/` and redirect
 `index.json`'s `merged` table, and the sources they carried are on the survivor. T-0844 took
 it to 486 on 2026-09-10, ruling the six clusters T-0839 had referred to the owner: four fold
 — Hunt, Kennicott, Temple and Kinzie — and two stand, Saunders and Walker, each with the
-reason written on both cards. Two of the four folded because the middle initial that had
+reason written on both cards. T-0842 took it to 484 the same day, folding three cards onto
+Dr Henry Van der Bogart under a new and narrow rule C7 — the town's own records set this
+one surname five ways in twenty-six months (`Vanderbogert` on the tax list, `Van Den
+Bogart`, `Ven De Bogart` and `Vanderbogart` in three issues of the Democrat, `Van der
+Bogart` in Fergus), so the one letter the cards were held apart on is the compositor's and
+not the man's. The honorific that had argued against the fold was not printed at all: the
+column is cut down its left edge and `[M]r.` was a letter the transcriber supplied, now
+read back to `[?]r.` Merged, he stops being an `inferred` name on a letter list and
+becomes an `attested` man in the town's own tax list of 1833, eighteen months earlier than
+his card could reach before. Two of T-0844's four folded because the middle initial that had
 argued against them turned out not to be printed at all: `hunt_c_s` was named from the
 trailing s of the abbreviation `Chas.` taken for a second initial, and `kinzie_john_s` from
 the scanner's digit in `JOHN 8. KINZIE`. The number this liberty declares is the number of
 containers standing, and it will fall again as the remaining rulings are made.
 
-**The 532nd, and why every other figure below still says 531.** The 531 were minted in one
+**The 532nd, and why it lasted five days.** The 531 were minted in one
 pass on 2026-09-03 and every count in this entry is a count about that pass, left as it
 stands. On 2026-09-05 T-0724 taught the splitter that a compound surname is one surname,
 which parted `H. Van Den Bogart` from `Dr Henry Van der Bogart` — two printings the
 consolidation had been holding as one man only because both truncated to the surname
 `Bogart`, a merge nobody ever ruled on. The minting pass then wrote a household round the
 one it had never seen standing on its own. Whether the two are the same man is a reading
-somebody owes the page, and it is T-0842's; the liberty here is unchanged in kind and one
-larger in size.
+somebody owes the page, and it was T-0842's: read on 2026-09-10, ruled a merge, and folded
+back onto the man — together with two further cards nobody had weighed. Every other figure in
+this entry is a count about the pass of 2026-09-03 and is left as it stands.
 
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no
 confidence was upgraded to allow it: every one of them is named in a record this project
@@ -10435,7 +10451,7 @@ id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_ev
 L207, L213 and L214 record and it is the only way this dataset can carry a person at all:
 **that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and
 `works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no
-figure drawn (L1). A reader who counts this town's households is counting 490 containers
+figure drawn (L1). A reader who counts this town's households is counting 484 containers
 that were written to hold a name, and no single record says so, because no single record
 is wrong.
 

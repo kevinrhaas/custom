@@ -846,6 +846,54 @@
     "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0844: 'temple_t' and 'temple_john_t' are one person under rule C6; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'temple'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "vanderbogart_henry",
+   "folded_person_id": "vandenbogart_h",
+   "rule": "C7",
+   "cluster": "vanderbogart",
+   "record_ids": [
+    "person_h_van_den_bogart"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0842: 'vandenbogart_h' and 'vanderbogart_henry' are one person under rule C7; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'vanderbogart'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "vanderbogart_henry",
+   "folded_person_id": "vanderbogart_h",
+   "rule": "C7",
+   "cluster": "vanderbogart",
+   "record_ids": [],
+   "domains": [],
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_1843_old_settler_death_notices"
+   ],
+   "evidence": "T-0842: 'vanderbogart_h' and 'vanderbogart_henry' are one person under rule C7; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'vanderbogart'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "vanderbogart_henry",
+   "folded_person_id": "vanderbogert_henry",
+   "rule": "C7",
+   "cluster": "vanderbogart",
+   "record_ids": [
+    "tax_1833_103"
+   ],
+   "domains": [
+    "civic"
+   ],
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence": "T-0842: 'vanderbogert_henry' and 'vanderbogart_henry' are one person under rule C7; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'vanderbogart'."
   }
  ]
 }

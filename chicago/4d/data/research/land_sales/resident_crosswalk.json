@@ -6,7 +6,7 @@
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
     "upheld": 33,
-    "refused": 16,
+    "refused": 15,
     "unruled": 90
   },
   "counts": {
@@ -7190,33 +7190,19 @@
     },
     {
       "a": "VANDERBOGERT HENRY",
-      "b": "Henry Vanderbogert",
-      "rule": "One school-section parcel; on the town's side one line of the 1833 tax list and nothing else. Two things make the refusal firmer than the thinness alone. The register itself holds a SECOND man of this surname — VANDERBOGERT JOHN AS, an assignment — so the surname does not single anyone out even on the page. And the town's own spelling of this family is under an open question: T-0842 asks whether Van Den Bogart and Van der Bogart are one man printed two ways or two men, with a card minted for the second. Ruling an identity onto a name whose identity is itself the open ticket is the order this project does not work in.",
+      "b": "0 residents named Vanderbogert",
+      "rule": "VANDERBOGERT HENRY is refused against 0 residents named Vanderbogert: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0361"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0850",
-      "was_proposed_as": "VANDERBOGERT HENRY matches Henry Vanderbogert: the forename names Henry Vanderbogert of the 1 person of this surname, and the forename agrees in full."
+        "data/residents/index.json"
+      ]
     },
     {
       "a": "VANDERBOGERT JOHN AS",
-      "b": "Henry Vanderbogert",
-      "rule": "VANDERBOGERT JOHN AS is refused against Henry Vanderbogert: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "vanderbogert_henry",
-          "name": "Henry Vanderbogert",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "b": "0 residents named Vanderbogert",
+      "rule": "VANDERBOGERT JOHN AS is refused against 0 residents named Vanderbogert: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0362"
       ],

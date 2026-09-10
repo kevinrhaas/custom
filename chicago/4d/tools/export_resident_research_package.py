@@ -31,10 +31,13 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+
 import re
 import sys
 from collections import Counter
 from pathlib import Path
+
+import folded_residents
 
 ROOT = Path(__file__).resolve().parents[1]
 CHICAGO = ROOT.parent
@@ -135,7 +138,12 @@ def person_index() -> dict:
         household = load(RESIDENTS / entry["file"])
         for person in household.get("persons", []):
             people[person["id"]] = (household, person)
-    return people
+    # A CARD A MERGE FOLDED AWAY IS STILL THE CARD THIS COHORT WAS DRAWN ON
+    # (T-0842). tools/folded_residents.py reads the superseded record from
+    # data/residents/merged/, so a frozen id keeps resolving — to the record as it
+    # was frozen, not to the survivor, which would move the cohort's strata under
+    # it. The standing cards win any collision; nothing here selects INTO a cohort.
+    return {**folded_residents.folded_people(), **people}
 
 
 def dated(value) -> str:
