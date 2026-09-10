@@ -875,7 +875,7 @@
    "resident": "Henry Vanderbogart",
    "person_id": "vanderbogart_henry",
    "household_id": "hh_vanderbogart_henry",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "rule": "Surname 'Vanderbogart' folds to the same string as the entry's, and the given name of both begins H.",
    "resident_given_is_initial_only": false,

@@ -83,7 +83,7 @@
    "G2a": 33,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 76,
+  "proposed_changes_to_existing_people": 75,
   "conflicts": 74
  },
  "proposals": [
@@ -6987,7 +6987,6 @@
   {"identity":"id_taylor_augustine_deodat","person_id":"taylor_augustine","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_therestofthebeaubienhousehold_unnamed","person_id":"beaubien_household_unnamed","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_therestoftherobinsonhousehold_unnamed","person_id":"robinson_household_unnamed","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
-  {"identity":"id_vanderbogart_henry","person_id":"vanderbogart_henry","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":"attested","resident_subtype":null},"rule":"G1b","direction":"up"},
   {"identity":"id_vasseur_noel","person_id":"vasseur_noel","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_walters_william","person_id":"walters_william","from":{"grade":"inferred","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"subtype_only"},
   {"identity":"id_woodworth_james_h","person_id":"woodworth_james_h","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"down"},

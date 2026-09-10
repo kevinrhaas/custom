@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 857,
+        "none_recorded": 856,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 863,
+      "households_total": 862,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -17675,7 +17675,7 @@
       "last_seen": "1835-05-20",
       "action": "enrich",
       "action_target": "vanderbogart_henry",
-      "action_note": "data/residents/ already holds this person as vanderbogart_henry (hh_vanderbogart_henry, inferred). The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as vanderbogart_henry (hh_vanderbogart_henry, attested). The papers add mentions and dates."
     },
     {
       "id": "person_h_walford",
