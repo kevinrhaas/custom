@@ -408,6 +408,14 @@
    "to": 441,
    "date": "2026-09-10",
    "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 0,
+   "to": 255,
+   "date": "2026-09-10",
+   "why": "T-0989 replaced the second hop's file-level source fallback with a test a card can actually fail. A generated crosswalk states its one source id at the top of the file, and until now a ruling that stated nothing of its own was counted WRITTEN whenever the card cited that id anywhere, for any reason at all — so a single citation put there by another pass satisfied every ruling in the file at once. 811 of the 1,359 person-reaching rulings in this repo were judged that way. A fallback ruling must now also NAME what it adjudicated: the read unit it cites, or the sheet a sheet-and-line ruling sits on. Nothing was spent or unspent by this commit; 255 rulings in directories that had been reported as reaching their card are now reported as not reaching it, and this ceiling records that true 255 rather than hiding it. The case, checked by hand: hh_garrett_a cites fergus_chicago_directory_1839 because a later resident-research pass wrote a generic directories block on the card, while Fergus 1839's ruling for Garrett — entry f1839_e0527, 'Garrett, Augustus, auctioneer, real estate, bds. Sauganash Hotel', printed page 15 — has never been written onto it. The number is paid down by spending those rulings onto the cards, not by raising it again."
   }
  ],
  "lowered": [
@@ -438,7 +446,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 0,
+  "directories": 255,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 83

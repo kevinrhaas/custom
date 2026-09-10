@@ -1448,8 +1448,17 @@ step "every named 1840 head still adjudicates as the pages and the pools say" \
 # reproduces the 27 out of its `heads`, 12 matched + 15 candidate. What passed them is the
 # FILE-LEVEL SOURCE FALLBACK: a head stating no discriminators of its own is judged against
 # the one source id at the top of the file, and the cards already cited it from the earlier
-# bridge pass. T-0989 holds that fault, with the 817 rulings across the town it still
-# covers. A meter that cannot see a hop reports it green; so does one that asks too little.
+# bridge pass. A meter that cannot see a hop reports it green; so does one that asks too
+# little.
+#
+# T-0989 closed that fallback rather than merely holding it. A ruling stating no source of
+# its own is still judged against its file's, and that still makes it JUDGEABLE — but to
+# count written the card must now also NAME what the ruling adjudicated: the read unit it
+# cites, or the sheet a sheet-and-line ruling sits on. The old test asked only whether the
+# card cited the file's one source id, which every ruling in the file shares, so a citation
+# put there by any other pass passed all of them at once. Closing it moved one figure and
+# it was not tuned back: directories fell from 914 of 914 written to 659, and the 255 is in
+# the write ceiling with the reason beside it.
 #
 # T-0670 met the same wall from the other side, hit the ceiling on ONE ruling and reverted
 # rather than rule. `spend_census_1840_heads.py` is that ruling taken generally: whatever
