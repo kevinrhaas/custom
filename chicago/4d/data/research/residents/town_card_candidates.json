@@ -380,7 +380,8 @@
      "name": "J. B. Cook",
      "anchor": false,
      "sources": [
-      "chicago_democrat_1833_1835"
+      "chicago_democrat_1833_1835",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "undecided",
      "ruled_in": "cook"
@@ -394,7 +395,8 @@
       "chicago_democrat_1833_1835",
       "chicago_voter_lists_1833_1835_irad",
       "fergus_chicago_directory_1843",
-      "norris_directory_1844"
+      "norris_directory_1844",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "distinct",
      "ruled_in": "cook"
@@ -408,7 +410,8 @@
       "chicago_voter_lists_1833_1835_irad",
       "fergus_chicago_directory_1843",
       "isa_public_domain_land_tract_sales",
-      "norris_directory_1844"
+      "norris_directory_1844",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "distinct",
      "ruled_in": "cook"
@@ -419,7 +422,7 @@
      "a": "cook_j_b",
      "b": "cook_john",
      "for": [
-      "share 1 source(s): chicago_democrat_1833_1835",
+      "share 2 source(s): chicago_democrat_1833_1835, second_presbyterian_chicago_1892",
       "an initial against its forename, 'j' and 'john'"
      ],
      "against": [
@@ -430,6 +433,7 @@
      "a": "cook_j_b",
      "b": "cook_josiah_p",
      "for": [
+      "share 1 source(s): second_presbyterian_chicago_1892",
       "an initial against its forename, 'j' and 'josiah'"
      ],
      "against": [
@@ -441,7 +445,7 @@
      "a": "cook_john",
      "b": "cook_josiah_p",
      "for": [
-      "share 3 source(s): chicago_voter_lists_1833_1835_irad, fergus_chicago_directory_1843, norris_directory_1844"
+      "share 4 source(s): chicago_voter_lists_1833_1835_irad, fergus_chicago_directory_1843, norris_directory_1844, second_presbyterian_chicago_1892"
      ],
      "against": [
       "two full forenames that are different words: 'john' and 'josiah'",
@@ -747,7 +751,8 @@
      "anchor": false,
      "sources": [
       "chicago_voter_lists_1833_1835_irad",
-      "isa_public_domain_land_tract_sales"
+      "isa_public_domain_land_tract_sales",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "undecided",
      "ruled_in": "smith-lawrence"
@@ -758,6 +763,7 @@
      "name": "Lawrence Smith",
      "anchor": false,
      "sources": [
+      "second_presbyterian_chicago_1892",
       "st_cyr_register_ichr_v4"
      ],
      "ruling": "undecided",
@@ -769,6 +775,7 @@
      "a": "smith_l_w",
      "b": "smith_lawrence",
      "for": [
+      "share 1 source(s): second_presbyterian_chicago_1892",
       "an initial against its forename, 'l' and 'lawrence'"
      ],
      "against": [
@@ -831,7 +838,8 @@
      "name": "Mrs. C. Taylor",
      "anchor": false,
      "sources": [
-      "chicago_democrat_1833_1835"
+      "chicago_democrat_1833_1835",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "distinct",
      "ruled_in": "taylor-mrs-c"
@@ -845,7 +853,8 @@
       "andreas_1884_v1",
       "census_1840_chicago_familysearch_images",
       "chicago_voter_lists_1833_1835_irad",
-      "isa_public_domain_land_tract_sales"
+      "isa_public_domain_land_tract_sales",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "distinct",
      "ruled_in": "taylor-mrs-c"
@@ -856,6 +865,7 @@
      "a": "taylor_c",
      "b": "taylor_charles",
      "for": [
+      "share 1 source(s): second_presbyterian_chicago_1892",
       "an initial against its forename, 'c' and 'charles'",
       "taylor_charles is an anchor — the town documents this person"
      ],
@@ -1052,7 +1062,8 @@
      "anchor": false,
      "sources": [
       "chicago_democrat_1833_1835",
-      "fergus_chicago_directory_1843"
+      "fergus_chicago_directory_1843",
+      "second_presbyterian_chicago_1892"
      ],
      "ruling": "undecided",
      "ruled_in": "thompson"

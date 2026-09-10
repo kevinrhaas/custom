@@ -37,10 +37,10 @@ Each line is *how many of the 1363 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 441 | 32.4% |
-| `two_or_more_sources_one_category` | 26 | 1.9% |
-| `one_source` | 339 | 24.9% |
-| `the_letter_lists_alone` | 554 | 40.6% |
+| `corroborated_across_categories` | 475 | 34.8% |
+| `two_or_more_sources_one_category` | 21 | 1.5% |
+| `one_source` | 322 | 23.6% |
+| `the_letter_lists_alone` | 542 | 39.8% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -55,7 +55,7 @@ record agree; two newspaper notices of the same name are
 | civic | 310 |
 | census | 48 |
 | church | 46 |
-| book | 193 |
+| book | 260 |
 | directory | 234 |
 | secondary | 80 |
 
@@ -204,6 +204,7 @@ secondary). A source id no rule reaches stops the build.
 | `rr_porter_ruel_starr_1876` | book | book |
 | `rr_racine_old_settlers_1871` | book | book |
 | `rr_will_county_osborn` | book | book |
+| `second_presbyterian_chicago_1892` | book | book |
 | `st_marys_baptismal_register_1833_1835` | book | manuscript |
 | `talcott_chester_house_1835` | secondary | website |
 | `tsaha_joseph_chadwick` | secondary | website |
@@ -322,8 +323,8 @@ defect in this export.
 | no census linkage | 1315 | no 1840 census row is bridged to this person |
 | no address | 1287 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1267 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 893 | one source id on the card and no second category to check it against |
-| rests on the letter lists alone | 554 | known only from the post office's uncalled-for lists |
+| rests on one source | 864 | one source id on the card and no second category to check it against |
+| rests on the letter lists alone | 542 | known only from the post office's uncalled-for lists |
 | no research row | 522 | no cohort ticket has reviewed this person; the programme reached 841 of 1363 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |

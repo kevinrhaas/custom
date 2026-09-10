@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 685, title: 'A church roll that had never reached a single card', kind: 'change', ts: '2026-09-10T09:04:17.589Z', date: 'Sep 10, 2026, 4:04 AM CT',
+    items: [
+      'The 1892 membership roll of the Second Presbyterian Church of Chicago had been read and adjudicated against the townspeople months ago \u2014 83 of its lines matched somebody the town holds a card for \u2014 and not one of those 83 cards said so. The judgement lived in a research file and nowhere a visitor could see it. All 83 cards now carry it.',
+      'Each card is told exactly one thing: the printed line as it stands on the page, its page number, when and how that member was admitted, and the rule that matched it. Nothing else on the card moved \u2014 no grade, no arrival date, no address.',
+      'The church was organised in June 1842 and its roll runs to 1892; one of these members was admitted in 1888. So every card says, in the roll\u2019s own reading, that a name on this list cannot put anybody in the town of July 1835. It is a lead, not a residency.',
+      'The roll prints married women under their husbands\u2019 names \u2014 \u201cBarry, Mrs. William Taylor\u201d \u2014 and 34 of the 83 are such lines. Those cards say so plainly: the line met a man\u2019s NAME, not the man. The 37 matches the evidence could not decide and the 330 it refused were written nowhere, because a rival still standing is not a finding.',
+      'With that done, every research source this project has adjudicated is now written onto the cards it names: 1,354 judgements, 1,354 on a card, none outstanding.'
+    ] },
   { v: 684, title: 'A directory reading checked by a second pair of eyes', kind: 'change', ts: '2026-09-10T08:02:02.498Z', date: 'Sep 10, 2026, 3:02 AM CT',
     items: [
       'Four forenames in the 1844 city directory are damaged in the scanner\u2019s text and were read off the photographs of the printed page instead \u2014 among them the proprietor of the Tremont House, set by the scanner as \u201cIia\u201d and read as Ira Couch. All four have now been read a second time, independently, off the same photographs. All four stand.',

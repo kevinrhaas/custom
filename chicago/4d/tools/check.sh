@@ -1894,6 +1894,19 @@ step "Fergus's death notices are on the cards the crosswalk names" \
 step "…and that pass writes one block, moves no grade and repeats without drift" \
   python3 tools/spend_old_settlers.py --self-test
 
+# T-0992. T-0962 widened the second hop to read the `matched` container and church entered
+# that report for the first time: 83 rulings reached a person this town holds a card for and
+# NOT ONE card cited the roll. The pass that closes that gap is checked the way every other
+# spend is — the ledger and every card re-derive from the crosswalk, no card carries the
+# paragraph without a matched ruling behind it — plus the line this source needs most: the
+# 37 ambiguous and 330 refused rows are rivals still standing, and a card one of them names
+# may never carry this pass's words.
+step "the Second Presbyterian roll is on the cards its crosswalk matches" \
+  python3 tools/spend_second_presbyterian_roll.py --check
+
+step "…and that pass spends no refusal, moves no grade and repeats without drift" \
+  python3 tools/spend_second_presbyterian_roll.py --self-test
+
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test
 

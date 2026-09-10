@@ -409,6 +409,14 @@
    "to": 2077,
    "date": "2026-09-03",
    "why": "T-0590 ruled on all 319 leads volume 1 offered, anchored to the 542 distinct cards they stand on: 240 refused, 79 candidates in a work this project already holds, 0 merges. Lowering a ceiling is free and is exactly what spending a domain does. The remaining 2,077 are volume 1's cards that stand under no lead at all - a surname nobody in this town carries - and they come down when a later ticket rules the surnames out in bulk or the volumes 2-4 tickets replace the arithmetic."
+  },
+  {
+   "domain": "church",
+   "hop": "write",
+   "from": 83,
+   "to": 0,
+   "date": "2026-09-10",
+   "why": "T-0992 spent the Second Presbyterian roll. T-0962 widened the second hop to read the `matched` container and church entered that report for the first time at 83 reached, 83 judgeable, 0 on a card — not one resident record in the town cited `second_presbyterian_chicago_1892`. tools/spend_second_presbyterian_roll.py writes all 83, two fields on the card and no grade moved: the source id, and a paragraph quoting the crosswalk's own sentence that a roll opening in June 1842 cannot place a person in the town of July 1835. The 37 ambiguous and 330 refused write nothing, and 34 of the 83 are married women's entries printed under a husband's name, so those cards carry the crosswalk's Mrs rule verbatim. With the debt paid the ceiling has no work left to do."
   }
  ],
  "unwritten_ceiling": {
@@ -417,7 +425,7 @@
   "directories": 0,
   "land_sales": 0,
   "old_settlers": 0,
-  "church": 83
+  "church": 0
  },
  "unsourced_ceiling": {
   "old_settlers": 0
