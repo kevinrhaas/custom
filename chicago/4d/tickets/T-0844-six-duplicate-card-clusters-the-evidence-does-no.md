@@ -1,7 +1,7 @@
 ---
 id: T-0844
 title: Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1059
 claimed_by: run 9/10/2026, 2:40:33 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T08:53:09.390Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34450270341
 ---
 
