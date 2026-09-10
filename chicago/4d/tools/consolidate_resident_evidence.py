@@ -409,9 +409,75 @@ def read_civic():
     return out
 
 
+# THE CHURCH RECORD FILES, EVERY ONE OF THEM NAMED (T-0841). `read_church()` used to
+# carry a two-name tuple, and two more readings sat beside them on disk that nothing in
+# this tool read and nothing in this tool said it did not read. That is the defect T-0841
+# found: St Mary's baptismal register — 267 named readings, the only kinship evidence this
+# project holds — was invisible to the ladder, and the only way to notice was to go and
+# look at the directory. A domain missing from `NO_PERSON_ROWS` reads like one nobody
+# looked at; a FILE missing from here read like one that was.
+#
+# So the rule is the same rule NO_PERSON_ROWS keeps at the domain level, one level down:
+# every `*.json` in `data/research/church/records/` is either READ below or DECLARED
+# unread WITH ITS REASON, `invariants()` fails if a file on disk is neither, and a reading
+# that lands tomorrow cannot go quiet — the gate names it the first time it runs.
+CHURCH_RECORDS_READ = ("st_cyr_marriages_1834_1839.json", "st_cyr_deaths_1834_1837.json")
+CHURCH_RECORDS_NOT_READ = {
+    "st_marys_baptisms_1833_1835.json":
+        "St Mary's baptismal register 1833-1835, 267 named readings over 57 entries. Its "
+        "CROSSWALK already reaches this tool — declared_rulings() and person_links() rglob "
+        "every *crosswalk*.json and pick up st_marys_baptisms_crosswalk.json's 8 merges, "
+        "18 refusals and 275 rulings — but its RECORD rows do not, so the register rules "
+        "on who is who here and never testifies to anybody's presence. Reading it is not a "
+        "no-op and it is not the tool's call: G2c accepts `a party to a marriage or "
+        "burial`, a baptism is neither, and reading the rows under that class would widen "
+        "a rung the owner ratified. Measured on this dev: it moves 137 people onto G2c and "
+        "mints 131 identities. T-0841 puts the question to him.",
+    "second_presbyterian_members_1842_1892.json":
+        "The Second Presbyterian roll, June 1842 to June 1892, 938 records. LATER EVIDENCE "
+        "in full — the earliest line on it postdates the scene by seven years and every "
+        "record carries beyond_ticket_window — so every row would land in "
+        "`church_after_1835` and grade G0, which is what the ladder already says about a "
+        "person this roll alone names. It is spent instead by "
+        "tools/spend_second_presbyterian_roll.py against its own crosswalk, where a later "
+        "roll can corroborate a person the town already carries rather than propose one. "
+        "Declared here so the silence is a ruling and not an oversight (T-0841).",
+}
+
+
+def undeclared_church_records() -> list[str]:
+    """Church readings on disk that read_church() neither reads nor declares (T-0841)."""
+    records = RESEARCH / "church" / "records"
+    if not records.is_dir():
+        return []
+    accounted = set(CHURCH_RECORDS_READ) | set(CHURCH_RECORDS_NOT_READ)
+    problems = []
+    for path in sorted(records.glob("*.json")):
+        if path.name not in accounted:
+            problems.append(
+                f"data/research/church/records/{path.name} is a church reading the ladder "
+                "neither reads nor declares: add it to CHURCH_RECORDS_READ, or to "
+                "CHURCH_RECORDS_NOT_READ with the reason it stays out (T-0841)")
+    for name in CHURCH_RECORDS_READ:
+        if not (records / name).exists():
+            problems.append(
+                f"read_church() reads data/research/church/records/{name} and the file is "
+                "not there — the domain is reading less than it says it does (T-0841)")
+    for name, why in CHURCH_RECORDS_NOT_READ.items():
+        if not (records / name).exists():
+            problems.append(
+                f"CHURCH_RECORDS_NOT_READ declares {name} and no such file exists — a "
+                "declaration about nothing (T-0841)")
+        elif not why:
+            problems.append(
+                f"{name} is declared unread with no reason (T-0841: the silence is a "
+                "ruling or it is an oversight, and only a reason tells them apart)")
+    return problems
+
+
 def read_church():
     out = []
-    for name in ("st_cyr_marriages_1834_1839.json", "st_cyr_deaths_1834_1837.json"):
+    for name in CHURCH_RECORDS_READ:
         doc = load(RESEARCH / "church" / "records" / name) or {}
         for record in doc.get("records", []):
             year = year_of(record.get("describes_date"))
@@ -1588,7 +1654,7 @@ def deferred_card_clusters(path: Path = CARD_RULINGS) -> dict:
 
 def invariants(master, proposal, ladder=None, deferred=None) -> list[str]:
     """The assertions the acceptance names. Each returns a sentence, or nothing."""
-    problems = []
+    problems = list(undeclared_church_records())
     seen = {}
     for row in master["identities"]:
         if row["id"] in seen:
@@ -1870,6 +1936,47 @@ def cmd_self_test() -> int:
          rung(("press", "newspaper_letter_list", "1835-05-20", "democrat"),
               ("books", "directory_1843", "1843", "fergus")), "G2e")
 
+
+    # ---- T-0841: a church reading on disk that nothing reads and nothing declares ----
+    #
+    # The defect was silent for as long as the file list lived in a tuple inside
+    # read_church(): St Mary's baptismal register sat in data/research/church/records/
+    # and no output of this tool mentioned it either way. The gate has to fire on the
+    # SHAPE of that — a file accounted for by neither table — not on those two names, so
+    # the case takes the accounting away rather than the file.
+    global CHURCH_RECORDS_READ, CHURCH_RECORDS_NOT_READ
+    kept_read, kept_unread = CHURCH_RECORDS_READ, CHURCH_RECORDS_NOT_READ
+    try:
+        CHURCH_RECORDS_READ, CHURCH_RECORDS_NOT_READ = (), {}
+        undeclared = undeclared_church_records()
+        if not undeclared:
+            print("  FAIL a church reading nothing reads and nothing declares passed the gate")
+            failures += 1
+        else:
+            print(f"  ok    an unaccounted church reading fails the gate → {undeclared[0][:72]}…")
+        CHURCH_RECORDS_READ, CHURCH_RECORDS_NOT_READ = kept_read, dict(
+            kept_unread, **{n: "" for n in kept_unread})
+        silent = undeclared_church_records()
+        if not any("no reason" in problem for problem in silent):
+            print("  FAIL a church reading declared unread with no reason was accepted")
+            failures += 1
+        else:
+            print("  ok    …and declaring one unread without a reason is not a declaration")
+        CHURCH_RECORDS_READ, CHURCH_RECORDS_NOT_READ = kept_read, dict(
+            kept_unread, **{"a_reading_that_is_not_there.json": "a reason for nothing"})
+        phantom = undeclared_church_records()
+        if not any("declaration about nothing" in problem for problem in phantom):
+            print("  FAIL a declaration naming a file that does not exist was accepted")
+            failures += 1
+        else:
+            print("  ok    …and a declaration about a file that is not there fails too")
+    finally:
+        CHURCH_RECORDS_READ, CHURCH_RECORDS_NOT_READ = kept_read, kept_unread
+    if undeclared_church_records():
+        print("  FAIL the church record tables do not account for the readings on disk")
+        failures += 1
+    else:
+        print("  ok    every church reading on disk is read or declared, with its reason")
 
     def assert_fires(what, master, proposal):
         nonlocal failures
@@ -2251,6 +2358,13 @@ def cmd_report(master, coverage, proposal):
         print(f"{domain:18} {row['names_read']:>7} {row['identities']:>7} "
               f"{row['appearances_on_an_identity_the_town_already_carries']:>10} "
               f"{row['unmatched']:>10}")
+    # T-0841. The church domain's row above is two readings of four, and the report used
+    # to say so nowhere. A reader counting `church 520` had no way to learn that the
+    # baptismal register's 267 readings are not in it.
+    print("\nchurch readings on disk the ladder does not read, and why (T-0841)")
+    for name, why in sorted(CHURCH_RECORDS_NOT_READ.items()):
+        print(f"  {name}")
+        print(f"    {' '.join(why.split())[:96]}…")
     print("\nproposed grades against the #668 baseline "
           "(117 attested / 731 inferred / 706 projected / 848 persons)")
     for name, count in sorted(proposal["counts"]["by_grade"].items(),
