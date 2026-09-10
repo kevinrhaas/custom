@@ -28,10 +28,10 @@
    "unmatched": 4044
   },
   "newspapers": {
-   "names_read": 2274,
-   "identities": 2077,
-   "appearances_on_an_identity_the_town_already_carries": 1283,
-   "unmatched": 991
+   "names_read": 2281,
+   "identities": 2080,
+   "appearances_on_an_identity_the_town_already_carries": 1280,
+   "unmatched": 1001
   },
   "old_settlers": {
    "names_read": 744,
@@ -98,12 +98,12 @@
   "civic|old_settlers": 30,
   "civic|residents": 264,
   "directories|directories": 2914,
-  "directories|newspapers": 167,
+  "directories|newspapers": 166,
   "directories|old_settlers": 33,
   "directories|residents": 174,
-  "newspapers|newspapers": 2077,
+  "newspapers|newspapers": 2080,
   "newspapers|old_settlers": 50,
-  "newspapers|residents": 1117,
+  "newspapers|residents": 1114,
   "old_settlers|old_settlers": 736,
   "old_settlers|residents": 52,
   "residents|residents": 1352
@@ -115,11 +115,11 @@
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 395,
-   "R5": 270,
-   "R2": 986,
+   "R1": 370,
+   "R5": 281,
+   "R2": 982,
    "R3": 130,
-   "R4": 75,
+   "R4": 76,
    "R6": 9
   },
   "declared_refusals": 2150

@@ -1611,6 +1611,20 @@ step "…and that gate's own assertions still fire when broken" \
 # failure mode it guards is silent: a later generator that deals roofs by household would
 # put seven hundred invented dwellings in the town off a post-office list, and nothing
 # about any single record would look wrong.
+# T-0424. The 1 January 1834 return was read at the page image, and the roster of all 170
+# printed lines is what the crops' 78 names are now measured against. Two things can rot
+# here and neither is visible in a record: the tie between a crop fragment and its printed
+# line is by ORDER, so a line inserted into or dropped from the roster silently re-points
+# every entity below it at its neighbour; and the twelve readings the image OVERTURNED are
+# the ones a later concordance pass would helpfully "repair" back to the impression they
+# came from. --check holds the order, the count and the overturns; the gate is what makes
+# re-reading the image unnecessary rather than optional.
+step "the 1834 letter list's crop entities still point at the printed lines the image read" \
+  python3 tools/read_letter_list_1834_image.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/read_letter_list_1834_image.py --self-test
+
 step "the letter-list cohort is what the owner's ruling permits" \
   python3 tools/mint_letter_list_residents.py --gate
 

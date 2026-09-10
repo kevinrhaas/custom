@@ -28,9 +28,9 @@
   ],
   "merges": [
     {
-      "into": "William Crisey",
+      "into": "William Crissy",
       "from": "William Cr[…]",
-      "merge_rule": "The 1 January 1834 Chicago letter list is printed three times, and its THIRD printing — chicago_democrat_1834_02_04 c016, the ruled-dialect impression that sets one name per line — reads at full length the name the 1834-01-28 impression cut to 'William Cr[…]': it is William Criss, standing between James Childress and Benj. Chapman in the first alphabetical column of both impressions. Exactly one person in the whole gazetteer carries that forename with a surname beginning 'Cri' — William Crisey, from the Chicago list of the following return, chicago_democrat_1834_03_04 c026 — and a letter remaining uncalled for across two consecutive returns of the same post office is what these lists are for. The two impressions disagree on the surname's tail, 'Criss' against 'Crisey'; the page images would settle which the printer set, and they do not bear on whether it is one man. T-0323.",
+      "merge_rule": "The 1 January 1834 Chicago letter list is printed three times, and its THIRD printing — chicago_democrat_1834_02_04 c016, the ruled-dialect impression that sets one name per line — reads at full length the name the 1834-01-28 impression cut to 'William Cr[…]': it is William Criss, standing between James Childress and Benj. Chapman in the first alphabetical column of both impressions. Exactly one person in the whole gazetteer carries that forename with a surname beginning 'Cri' — William Crisey, from the Chicago list of the following return, chicago_democrat_1834_03_04 c026 — and a letter remaining uncalled for across two consecutive returns of the same post office is what these lists are for. The two impressions disagree on the surname's tail, 'Criss' against 'Crisey'; the page images would settle which the printer set, and they do not bear on whether it is one man. T-0323. THE PAGE IMAGE HAS NOW SETTLED IT (T-0424): the type of the 1834-03-04 impression sets 'William Crissy', two esses and a y, and that is what c026's entity now carries. The 1834-02-04 'Criss' is a printer's or a transcriber's short tail of the same name. The merge is unchanged in substance and its target is spelled as the page spells it.",
       "ticket": "T-0323"
     },
     {

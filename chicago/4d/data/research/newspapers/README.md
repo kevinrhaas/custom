@@ -325,6 +325,38 @@ Three things follow, and each has cost a run already.
   one list is never completed** — two Bennetts, two Miners, two Temples and two Tullers
   stand in this return, and a crop that lost both forenames cannot say which line is which.
 
+**AND THEN THE IMAGE WAS READ, AND IT PRICED BOTH ROUTES (T-0424).** The page images
+the concordance was built to avoid were finally fetched for this one list — the scan
+behind the deposit is the public Internet Archive item
+`chicago1835-newspaper-chicago-democrat-1834`, and the IIIF regions read are recorded in
+`data/research/newspapers/letter_list_1834_01_01_printed.json` beside all 170 printed
+lines. Four things came off it, and three of them could not have come off anything else.
+
+- **THE PRINTED LENGTH IS 170**, in two sub-columns of eighty-five: Eliphalet Atkins to
+  J. P. Harkness, Isaac Hays to Samuel Wright, over John S. C. Hogan's signature. The
+  crops mint 78. **The hand count was a floor at 46 per cent of the list**, and the 92
+  missing lines are the segmenter's loss, not the paper's — which also means the 97 names
+  minted from the 1834-01-28 printing are a floor of the same return, not a census of it.
+- **THIRTY-ONE OF THE THIRTY-TWO READINGS THE CONCORDANCE COULD NOT CLOSE ARE CLOSED**,
+  including all four the doubled-surname guard blocked. Read the SAME impression the crop
+  was cut from and the guard is unnecessary: the crop lines are in printed order, so
+  `as Bennett` is line 13 and `Bennettra` line 19 by position alone. The list holds THREE
+  Bennetts, not the two the concordance could see.
+- **TWELVE READINGS WERE WRONG, and three of them were concordance completions.**
+  `[Ori]nda Miner` is Miranda Miner — Orinda is a different person on the same page,
+  Orinda Garyl; `[Ne]stor Marshall` is Chester Marshall; `John Monroe` is John Monreou.
+  That is the price of completing a name from another impression, and it is worth paying
+  for twenty-five repairs — but a completion is a hypothesis until a scan is read, and
+  `completed_from` is what lets a later pass find every one of them.
+- **ONE FRAGMENT THE IMAGE CANNOT PLACE STAYS UNPLACED.** No line of the printed list
+  reads `Leena` or `Cenige`; each of those crop lines is one of three or five printed
+  lines the crop lost around it, and both are recorded with their candidates and keep
+  `reading: transcription_mediated` while every other entity takes `scan_verified`.
+
+`tools/read_letter_list_1834_image.py` holds the tie from every crop entity to its printed
+line and `check.sh` gates it, because the tie is by ORDER: a line added to or dropped from
+the roster re-points every entity below it at its neighbour, silently.
+
 **A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS.** Hennepin's 1 January 1834 list is
 printed alongside Chicago's at No. 9 line 937 and No. 10 line 957, and a sweep that
 matches on `REMAINING in the Post-Office` alone will fold the two towns together. Resolve
