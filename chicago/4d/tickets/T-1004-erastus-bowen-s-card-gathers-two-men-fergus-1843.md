@@ -1,5 +1,5 @@
 ---
-id: T-1005
+id: T-1004
 title: Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 state: open
 epic: META
