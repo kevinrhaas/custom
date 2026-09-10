@@ -6,9 +6,9 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 490,
+  "church": 491,
   "books": 195,
-  "directories": 7232,
+  "directories": 7233,
   "newberry_index": 4914,
   "land_sales": 456,
   "old_settlers": 441
@@ -28,7 +28,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1254
+   "spent": 1253
   },
   "books": {
    "read": 246,
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1026
+   "spent": 1025
   },
   "newberry_index": {
    "read": 7005,
@@ -408,6 +408,22 @@
    "to": 441,
    "date": "2026-09-10",
    "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 490,
+   "to": 491,
+   "date": "2026-09-10",
+   "why": "T-0993 folded one town card onto the person it names — blanchard_gantry, 'Blanchard, Gantry' of the 1833 tax list, onto blanchard_f_gantry — and one ruling in each of these two domains had already been spent onto the folded card by name. The reading did not move and the adjudication did not lapse: the rulings now name a person data/residents/index.json's merged table resolves, and this measure's second hop reads a card id rather than following that table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +1) rather than the rulings being re-spent onto the survivor, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on. This is the same raise, for the same reason, that T-0844 made on 2026-09-10 for its four folds."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7232,
+   "to": 7233,
+   "date": "2026-09-10",
+   "why": "T-0993 folded one town card onto the person it names — blanchard_gantry, 'Blanchard, Gantry' of the 1833 tax list, onto blanchard_f_gantry — and one ruling in each of these two domains had already been spent onto the folded card by name. The reading did not move and the adjudication did not lapse: the rulings now name a person data/residents/index.json's merged table resolves, and this measure's second hop reads a card id rather than following that table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +1) rather than the rulings being re-spent onto the survivor, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on. This is the same raise, for the same reason, that T-0844 made on 2026-09-10 for its four folds."
   }
  ],
  "lowered": [
