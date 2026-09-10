@@ -16,7 +16,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1359
+   "n": 1360
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -36,7 +36,7 @@
  ],
  "counts": {
   "residents_matched_one_entry": 158,
-  "residents_ambiguous": 46,
+  "residents_ambiguous": 47,
   "residents_contested": 32,
   "residents_surname_only_refused": 276,
   "voters_matched_one_entry": 123,
@@ -6230,6 +6230,37 @@
     ],
     "person_id": "beaubien_medore_b",
     "household_id": "hh_beaubien_medore_b",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "lives_at_1835": null
+   },
+   {
+    "name": "Mrs. C. Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1464",
+      "as_printed": "Taylor, Charles, tailor, Clark street",
+      "printed_page": 33,
+      "occupation_1839": "tailor",
+      "address_1839": "Clark street",
+      "streets_1839": [
+       "Clark street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1465",
+      "as_printed": "Taylor, Charles H., tailor, Francis H. Taylor",
+      "printed_page": 33,
+      "occupation_1839": "tailor, Francis",
+      "address_1839": "H. Taylor",
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "taylor_c",
+    "household_id": "hh_taylor_c",
     "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null

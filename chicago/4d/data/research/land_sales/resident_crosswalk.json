@@ -88,7 +88,7 @@
       "resident_name": "Charles H. Taylor",
       "household_id": "hh_taylor_anson",
       "match": "forename_agrees",
-      "rule": "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 7 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -114,6 +114,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs. C. Taylor",
+          "forename_agrees": false,
+          "why": "a female honorific standing on an initial is not the full forename printed without one (rule 7)",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -3682,7 +3691,7 @@
       "resident_name": "Edmund D Taylor",
       "household_id": "hh_taylor_edmund_d",
       "match": "forename_agrees",
-      "rule": "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 7 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -3708,6 +3717,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": "D",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs. C. Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": "D",
           "outcome": "refused_on_the_forename"
         },
@@ -3859,7 +3877,7 @@
       "resident_name": "Anson H. Taylor",
       "household_id": "hh_taylor_anson",
       "match": "forename_agrees",
-      "rule": "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 7 people of this surname, and the forename agrees in full.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -3885,6 +3903,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": "H",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs. C. Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": "H",
           "outcome": "refused_on_the_forename"
         },
@@ -8048,8 +8075,8 @@
     },
     {
       "a": "TAYLOR WILLIAM",
-      "b": "6 residents named Taylor",
-      "rule": "TAYLOR WILLIAM is refused against 6 residents named Taylor: the forename names 2 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named Taylor",
+      "rule": "TAYLOR WILLIAM is refused against 7 residents named Taylor: the forename names 2 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -8075,6 +8102,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs. C. Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -9100,8 +9136,8 @@
     },
     {
       "a": "TAYLOR SOLOMON",
-      "b": "6 residents named Taylor",
-      "rule": "TAYLOR SOLOMON is refused against 6 residents named Taylor: the forename names 0 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named Taylor",
+      "rule": "TAYLOR SOLOMON is refused against 7 residents named Taylor: the forename names 0 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -9127,6 +9163,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs. C. Taylor",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },

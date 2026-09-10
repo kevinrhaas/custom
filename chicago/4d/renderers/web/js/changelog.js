@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 682, title: 'A woman who kept a house on Water Street gets a card', kind: 'change', ts: '2026-09-10T05:10:41.390Z', date: 'Sep 10, 2026, 12:10 AM CT',
+    items: [
+      'The Chicago Democrat of 19 August 1835 invites the town to a charity sale \u201cat the house of Mrs. C. Taylor, Water-st.\u201d \u2014 one of the very few private dwellings the papers ever name. The town held no card for her; it does now.',
+      'She had not been missed so much as absorbed: the name-matching that builds the research index strips the \u201cMrs.\u201d, is left with an initial, and attaches it to the one Charles Taylor the papers print. The rule written to stop a wife being folded onto her husband only catches a full forename, so an initial slipped past it. Her card records that, and the finding is filed with the two similar cases already open.',
+      'Her house is placed no further than the notice allows. The street is documented, the building is not, and the town has three streets called Water \u2014 so no division, no lot, and the reasoning is written on the card rather than guessed at.',
+      'Her arrival is bounded by the notice\u2019s own copy date of 10 August 1835, six weeks after the day this scene models, so she is recorded as of uncertain presence rather than quietly counted in. Nothing in the town moved.'
+    ] },
   { v: 681, title: 'A census footing corrected, and every row closes it', kind: 'change', ts: '2026-09-09T09:49:50.989Z', date: 'Sep 9, 2026, 4:49 AM CT',
     items: [
       'Another 1840 continuation sheet is now recorded line by line. Twenty-seven household totals add exactly to 125; three occupation footings also agree with their rows.',

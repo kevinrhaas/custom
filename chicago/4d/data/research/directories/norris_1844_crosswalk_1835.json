@@ -10,9 +10,9 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1360,
+  "residents_considered": 1361,
   "matched_one_1844_entry": 98,
-  "matched_more_than_one_ambiguous": 23,
+  "matched_more_than_one_ambiguous": 24,
   "one_1844_entry_contested_by_two_residents": 16,
   "surname_present_initial_absent_refused": 335,
   "initial_agreed_forenames_disagreed_refused": 48,
@@ -4172,6 +4172,56 @@
      },
      {
       "key": "n1844_e1917",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins C.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1747",
+     "as_printed": "Taylor, Charles, merchant tailor, Clark st. house Canal st. b Wash-' ington and Madison sts (Sec card)",
+     "printed_page": 58,
+     "occupation_1844": "merchant tailor, Clark st",
+     "address_1844": "house Canal st. b Wash-' ington and Madison sts (Sec card)"
+    },
+    {
+     "claim": "n1844_e1748",
+     "as_printed": "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s",
+     "printed_page": 58,
+     "occupation_1844": "currier, at Johonnett, Wells, & Co.'s",
+     "address_1844": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false,
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "n1844_e1747",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "n1844_e1748",
       "agrees": false,
       "why": "no trade on one side"
      }

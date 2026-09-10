@@ -45,29 +45,29 @@
   }
  ],
  "counts": {
-  "people_shown": 293,
-  "people_met_by_more_than_one_volume": 170,
+  "people_shown": 294,
+  "people_met_by_more_than_one_volume": 171,
   "carrying_an_occupation": 98,
   "carrying_an_address": 151,
   "line_held_but_parse_refused": 21,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 236,
+    "people": 237,
     "single_entry": 158,
-    "ambiguous": 46,
+    "ambiguous": 47,
     "contested": 32
    },
    "fergus_1843": {
-    "people": 177,
+    "people": 178,
     "single_entry": 119,
-    "ambiguous": 41,
+    "ambiguous": 42,
     "contested": 17
    },
    "norris_1844": {
-    "people": 137,
+    "people": 138,
     "single_entry": 98,
-    "ambiguous": 23,
+    "ambiguous": 24,
     "contested": 16
    },
    "norris_1844_advertiser": {
@@ -20413,6 +20413,108 @@
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Taylor, Augustine Deodat, carpenter and builder, res Michigan ave, bet Lake and Randolph [died March 31, 1891, aged 94-11-3.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1839",
+     "title": "Fergus's Chicago directory of 1839",
+     "year": 1839,
+     "source_id": "fergus_chicago_directory_1839",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1839_e1464",
+       "printed_page": 33,
+       "as_printed": "Taylor, Charles, tailor, Clark street"
+      },
+      {
+       "claim_id": "f1839_e1465",
+       "printed_page": 33,
+       "as_printed": "Taylor, Charles H., tailor, Francis H. Taylor"
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ]
+    },
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e0152",
+       "printed_page": "fergus_1843_page_001",
+       "as_printed": "CHAS. TAYLOR, fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly."
+      },
+      {
+       "claim_id": "f1843_e2411",
+       "printed_page": "fergus_1843_page_004",
+       "as_printed": "Taylor, Charles, merchant tailor, 42 Clark, res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8"
+      },
+      {
+       "claim_id": "f1843_e2412",
+       "printed_page": "fergus_1843_page_004",
+       "as_printed": "Taylor, Charles H., currier, Johonnett, Wells & Co."
+      }
+     ],
+     "holds": [],
+     "parse_carries": true,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins C.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1747",
+       "printed_page": 58,
+       "as_printed": "Taylor, Charles, merchant tailor, Clark st. house Canal st. b Wash-' ington and Madison sts (Sec card)"
+      },
+      {
+       "claim_id": "n1844_e1748",
+       "printed_page": 58,
+       "as_printed": "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s"
+      }
+     ],
+     "holds": [],
+     "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "occupation_later": null,
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
