@@ -8,13 +8,13 @@
  "what_a_match_here_does_not_mean": "It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload.",
  "rule": "SURNAME must match after both are folded (case, punctuation and the transcriber's usual confusions removed), AND the first initial of the given name must match. A surname-only agreement is a REFUSAL, however good it looks. Where one 1835 person meets more than one entry the match is AMBIGUOUS and is filed as such; where two 1835 people meet one entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1360,
-  "matched_one_entry": 62,
+  "residents_considered": 1361,
+  "matched_one_entry": 61,
   "matched_more_than_one_ambiguous": 19,
-  "one_entry_contested_by_two_residents": 23,
+  "one_entry_contested_by_two_residents": 25,
   "surname_present_initial_absent_refused": 259,
-  "matches_carrying_a_birth_year": 41,
-  "matches_carrying_a_date_of_death": 56
+  "matches_carrying_a_birth_year": 40,
+  "matches_carrying_a_date_of_death": 55
  },
  "matches": [
   {
@@ -259,34 +259,6 @@
      "birth_year_earliest": 1806,
      "birth_year_latest": 1807,
      "birth_year_arithmetic": "The page prints the death as '1858' and the age as 'aged 51'. An age of 51 completed years means at least 51 and less than 52, so the birth falls between 1806-01-02 and 1807-12-31: the birth year is 1806 or 1807. The subtraction is this project's; the page states no year of birth."
-    }
-   ],
-   "could_carry": [
-    "birth_year",
-    "date_of_death"
-   ],
-   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
-  },
-  {
-   "resident": "Charles H. Taylor",
-   "person_id": "taylor_charles",
-   "household_id": "hh_taylor_anson",
-   "grade_1835": "attested",
-   "occupation_1835": "carpenter",
-   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C.",
-   "resident_given_is_initial_only": false,
-   "entries": [
-    {
-     "record": "fdn0658",
-     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
-     "trade_or_office": "trunks",
-     "manner_of_death": "died",
-     "place_of_death": null,
-     "death_date": "1892-08-03",
-     "age_as_printed": "aged 56",
-     "birth_year_earliest": 1835,
-     "birth_year_latest": 1836,
-     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
     }
    ],
    "could_carry": [
@@ -1932,6 +1904,37 @@
    ]
   },
   {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0658",
+     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
+     "trade_or_office": "trunks",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1892-08-03",
+     "age_as_printed": "aged 56",
+     "birth_year_earliest": 1835,
+     "birth_year_latest": 1836,
+     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Mrs. C. Taylor"
+   ]
+  },
+  {
    "resident": "E Kirby Smith",
    "person_id": "smith_e_kirby",
    "household_id": "hh_smith_e_kirby",
@@ -2369,6 +2372,37 @@
     "Madore Benjamin Beaubien",
     "Mark Beaubien",
     "Medard Beaubien"
+   ]
+  },
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Taylor' folds to the same string as the entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "resident_given_is_initial_only": false,
+   "entries": [
+    {
+     "record": "fdn0658",
+     "as_read": "Taylor, Charles A., trunks, died August 3, 1892, aged 56.",
+     "trade_or_office": "trunks",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1892-08-03",
+     "age_as_printed": "aged 56",
+     "birth_year_earliest": 1835,
+     "birth_year_latest": 1836,
+     "birth_year_arithmetic": "The page prints the death as 'August 3, 1892' and the age as 'aged 56'. An age of 56 completed years means at least 56 and less than 57, so the birth falls between 1835-08-04 and 1836-08-03: the birth year is 1835 or 1836. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record.",
+   "contested_with": [
+    "Charles H. Taylor"
    ]
   },
   {

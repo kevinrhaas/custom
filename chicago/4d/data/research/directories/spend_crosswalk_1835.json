@@ -10,11 +10,11 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 587,
+  "rulings": 590,
   "carried": 196,
   "matched": 391,
-  "refused": 196,
-  "distinct_people": 293,
+  "refused": 199,
+  "distinct_people": 294,
   "distinct_claims": 639
  },
  "rulings": [
@@ -11625,6 +11625,70 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "volume": "fergus_1839",
+   "source_id": "fergus_chicago_directory_1839",
+   "source_ids": [
+    "fergus_chicago_directory_1839"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "f1839_e1464",
+    "f1839_e1465"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "volume": "fergus_1843",
+   "source_id": "fergus_chicago_directory_1843",
+   "source_ids": [
+    "fergus_chicago_directory_1843"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "f1843_e0152",
+    "f1843_e2411",
+    "f1843_e2412"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+   "carried": [],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "refused",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "resident": "Mrs. C. Taylor",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": null,
+   "claim_ids": [
+    "n1844_e1747",
+    "n1844_e1748"
+   ],
+   "match_status": "ambiguous",
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins C.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null

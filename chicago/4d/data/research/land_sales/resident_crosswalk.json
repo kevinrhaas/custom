@@ -7,12 +7,12 @@
   "ruled": {
     "upheld": 6,
     "refused": 3,
-    "unruled": 129
+    "unruled": 130
   },
   "counts": {
     "purchasers": 431,
-    "matched": 135,
-    "refused": 296
+    "matched": 136,
+    "refused": 295
   },
   "matches": [
     {
@@ -70,6 +70,90 @@
       "match": "forename_agrees",
       "rule": "PEARSONS HIRAM matches Hiram Pearsons: the forename names Hiram Pearsons of the 1 person of this surname, and the forename agrees in full.",
       "rivals": [],
+      "residence_column": "UNKNOWN, COOK",
+      "evidence_grade": "documented",
+      "ruling": null,
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
+    },
+    {
+      "purchaser_as_read": "TAYLOR CHARLES",
+      "record_ids": [
+        "ls0014",
+        "ls0015",
+        "ls0352",
+        "ls0495",
+        "ls0806"
+      ],
+      "resident_id": "taylor_charles",
+      "resident_name": "Charles H. Taylor",
+      "household_id": "hh_taylor_anson",
+      "match": "forename_agrees",
+      "rule": "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 7 people of this surname, and the forename agrees in full.",
+      "rivals": [
+        {
+          "key": "taylor_anson_h",
+          "name": "Anson H. Taylor",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "H",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_charles",
+          "name": "Charles H. Taylor",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": "H",
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "taylor_augustine",
+          "name": "Augustine Deodat Taylor",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_c",
+          "name": "Mrs. C. Taylor",
+          "forename_agrees": false,
+          "why": "a female honorific standing on an initial is not the full forename printed without one (rule 7)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_edmund_d",
+          "name": "Edmund D Taylor",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_william",
+          "name": "William Taylor",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "taylor_william_h",
+          "name": "William H Taylor",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "H",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "residence_column": "UNKNOWN, COOK",
       "evidence_grade": "documented",
       "ruling": null,
@@ -5606,86 +5690,6 @@
       "record_ids": [
         "ls0010",
         "ls0011"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "TAYLOR CHARLES",
-      "b": "7 residents named Taylor",
-      "rule": "TAYLOR CHARLES is refused against 7 residents named Taylor: the forename names 2 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "taylor_anson_h",
-          "name": "Anson H. Taylor",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "H",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "taylor_charles",
-          "name": "Charles H. Taylor",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": "H",
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "taylor_augustine",
-          "name": "Augustine Deodat Taylor",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "taylor_c",
-          "name": "Mrs. C. Taylor",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "taylor_edmund_d",
-          "name": "Edmund D Taylor",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "taylor_william",
-          "name": "William Taylor",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "taylor_william_h",
-          "name": "William H Taylor",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "H",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0014",
-        "ls0015",
-        "ls0352",
-        "ls0495",
-        "ls0806"
       ],
       "evidence": [
         "data/residents/index.json"

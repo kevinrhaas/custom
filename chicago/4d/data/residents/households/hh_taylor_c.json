@@ -90,5 +90,18 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "HAND-AUTHORED, NOT MINTED (T-0960). The three mint tools did not produce this card and could not have: the consolidation that feeds them folds this woman's only printing onto Charles Taylor by M2, so no identity of her own ever reached them — see the head's note. The card is written directly from the transcription in data/research/newspapers/extracted/chicago_democrat_1835_08_19.json, claim c007, which is on `dev` and unspent: no household in data/residents/ cites that locator or that record id. Nothing is taken off `taylor_charles` by writing this, because his card never cited the Democrat — his sources are Andreas, the IRAD poll lists, the land tract register and the 1840 census. THE SALVAGE: #925 wrote a version of this card and was never landed (its branch closed with T-0723 under #998); this one keeps its grade, rung and `uncertain` presence, dates the bound from the notice's own copy date rather than the printing date, and replaces its `lives_at` note — which read \"the lists that name this person give no address\" — with the street the notice actually gives."
+ "research_note": "HAND-AUTHORED, NOT MINTED (T-0960). The three mint tools did not produce this card and could not have: the consolidation that feeds them folds this woman's only printing onto Charles Taylor by M2, so no identity of her own ever reached them — see the head's note. The card is written directly from the transcription in data/research/newspapers/extracted/chicago_democrat_1835_08_19.json, claim c007, which is on `dev` and unspent: no household in data/residents/ cites that locator or that record id. Nothing is taken off `taylor_charles` by writing this, because his card never cited the Democrat — his sources are Andreas, the IRAD poll lists, the land tract register and the 1840 census. THE SALVAGE: #925 wrote a version of this card and was never landed (its branch closed with T-0723 under #998); this one keeps its grade, rung and `uncertain` presence, dates the bound from the notice's own copy date rather than the printing date, and replaces its `lives_at` note — which read \"the lists that name this person give no address\" — with the street the notice actually gives.",
+ "directories": {
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "sources": [
+   "fergus_chicago_directory_1839",
+   "fergus_chicago_directory_1843",
+   "norris_directory_1844"
+  ],
+  "people": [
+   {
+    "person_id": "taylor_c"
+   }
+  ]
+ }
 }
