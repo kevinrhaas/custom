@@ -144,6 +144,168 @@ RETURN_GAP_DAYS = 60
 # threshold for entry any more; see above.
 RANKED_FIRST_RETURNS = 2
 
+# ---------------------------------------------------------------------------
+# THE RETURNS, AND THE PRINTINGS EACH OF THEM RAN OVER (T-0425)
+# ---------------------------------------------------------------------------
+#
+# A letter list is a RETURN — the office's statement of what was still uncalled
+# for on one day — and the Democrat printed one return over as many consecutive
+# issues as it took. So the date on the issue an extraction pass happened to reach
+# is not the date of the evidence. T-0331 counted the 1 January 1834 return over
+# NINE printings; the extraction that produced this project's claims reached the
+# fourth and the ninth of them, and `hh_conger_thomas` was therefore dated
+# 1834-03-04 — nine weeks late, by an accident of which impression was read.
+#
+# Every row below is the DATE LINE the printing itself sets, quoted verbatim, with
+# the deposit issue it stands in. Nothing is amended to agree with anything: where
+# the impressions disagree the tally is stated and the losing setting stays visible.
+#
+# TWO RULES DECIDE WHAT A ROW IS ALLOWED TO CLAIM, and both are here because the
+# bound is `not_later_than` and a `not_later_than` bound may be weak but may never
+# be wrong:
+#
+#   * WHERE THE PRINTED DAY IS NOT READ BUT THE MONTH IS, the row takes the LAST
+#     day of the printed month. The 1835 returns are the case: `on the Stat: day /
+#     ot March, 1895` and `on the 50th ... day of June, 1` each lose the day and
+#     keep the month, and a letter held on any day of March was held by 31 March.
+#     The project declines to read `Stat:` as `31st` when it does not have to.
+#   * THE BOUND IS NEVER LATER THAN THE EARLIEST PRINTING that carries the name —
+#     `bound_for()` takes the minimum — because a return cannot be dated after the
+#     issue that printed it.
+#
+# `date: None` is a return whose date line this project cannot read at all. It is
+# not a hole: the bound falls back to the earliest printing carrying the name,
+# exactly as before T-0425, and the record's own note says which of the two it used.
+RETURNS = (
+    {
+        "date": "1834-01-01",
+        "said": "the return of 1 January 1834",
+        "printings": ("1834-01-07", "1834-01-14", "1834-01-21", "1834-01-28",
+                      "1834-02-04", "1834-02-11", "1834-02-18", "1834-02-25",
+                      "1834-03-04"),
+        "date_lines": (
+            ("1834-01-07", "EMAINING in the Post-Offiee at Chic / go, Ill. "
+                           "January [1,] 1834."),
+            ("1834-01-28", "EMAINING in the Port-Offiee at Ch / go, Ill. "
+                           "Fammuary 1, 1604."),
+            ("1834-02-04", "EMAINING in the Post- / go, Ill, January 3, 1934."),
+            ("1834-02-25", "REMAINISG in the Pest[-Office at Chica]go, Il "
+                           "January 1, 63[4]."),
+            ("1834-03-04", "List of L | etters / ost-Offiee at Chica- / 34."),
+        ),
+        "basis": "three of the four legible date lines set January 1 and the fourth "
+                 "sets January 3, a broken 1 in a setting that also renders the year "
+                 "1934; the ninth printing, which is the one this project extracted "
+                 "its March names from, keeps nothing of the date but `34.` and is "
+                 "placed on this return by T-0331's concordance over the body text "
+                 "(tools/letter_list_printings.py)",
+    },
+    {
+        "date": "1834-04-01",
+        "said": "the return of 1 April 1834",
+        "printings": ("1834-04-01", "1834-04-08", "1834-04-16"),
+        "date_lines": (
+            ("1834-04-01", "of Litera |: / the Post Office a Chi / day of peer mea"),
+            ("1834-04-08", "and the re- EMAINIG in the P / ey. IM. on the first day"),
+            ("1834-04-16", "ef Letters FFIC / the Post Office at Chicego, | Sy' of F "
+                           "/ at day of April, 1834."),
+        ),
+        "basis": "no one impression sets the whole line: the second prints the day "
+                 "(`on the first day`) and the third the month and year (`[fir]st day "
+                 "of April, 1834`), and the first loses both. Two impressions read side "
+                 "by side is the instrument data/research/newspapers/README.md "
+                 "prescribes (T-0328)",
+    },
+    {
+        "date": "1834-07-01",
+        "said": "the return of 1 July 1834",
+        "printings": ("1834-07-02", "1834-07-09", "1834-07-16"),
+        "date_lines": (
+            ("1834-07-02", "MAINING in the Post-Office at Chica- / go, Ill. "
+                           "July 1, 1834."),
+            ("1834-07-09", ", go, Ill. July 1, 1834."),
+            ("1834-07-16", "EMAINING in the Post-Office at Chica- / go, I!. "
+                           "July 1, 1834."),
+        ),
+        "basis": "three impressions, three identical date lines, nothing to weigh",
+    },
+    {
+        "date": "1834-10-01",
+        "said": "the return of 1 October 1834",
+        "printings": ("1834-10-22",),
+        "date_lines": (
+            ("1834-10-22", "EMAINING in the Post Office at Chi / R cago, Hl. "
+                           "Oct. 1, ViS4."),
+            ("1834-10-22", "Chicago, Oct. 1, 1834."),
+        ),
+        "basis": "one impression, but the day and month are clean in the heading and "
+                 "the year, which the heading mangles to `ViS4`, is set again five "
+                 "columns away over the postmaster's signature. No other printing of "
+                 "this return is in the deposit",
+    },
+    {
+        "date": "1835-03-31",
+        "said": "the return of March 1835",
+        "printings": ("1835-05-20",),
+        "date_lines": (
+            ("1835-05-20", "a ago, Cook Go, Mlinvis, om the Stat: day / "
+                           "ot March, 1895,:"),
+        ),
+        "basis": "the month and the year are printed and the day is not: `Stat:` is "
+                 "not read, and no reading of it is supplied. A letter held on any day "
+                 "of March 1835 was held by the 31st, so the month's last day is the "
+                 "bound the printed line actually supports. The Chicago list runs seven "
+                 "weeks behind its own return here, which is why this row matters: the "
+                 "printing is 1835-05-20",
+    },
+    {
+        "date": "1835-06-30",
+        "said": "the return of June 1835",
+        "printings": ("1835-07-01",),
+        "date_lines": (
+            ("1835-07-01", "o: Letters. / G in the Post Office at Chi- / "
+                           "County Illinois, on the 50th"),
+            ("1835-07-01", "EMAINI / cago, Co / day of June, 1"),
+        ),
+        "basis": "the segmenter cut this heading down the middle and the two crops "
+                 "reassemble to `[List] of Letters / [R]EMAINI[NG] in the Post Office "
+                 "at Chi[ca]go, Co[ok] County Illinois, on the [?]0th day of June, "
+                 "1[835]`. `50th` is not a day of any month and is not read; the month "
+                 "is, so the bound is the last day of June",
+    },
+    {
+        "date": None,
+        "said": "the return printed on 19 August 1835, which sets no date line this "
+                "project can read",
+        "printings": ("1835-08-19",),
+        "date_lines": (),
+        "basis": "the deposit holds this issue as a .docx with no transcription text "
+                 "beside it, and the extracted letter-list claims carry names only — no "
+                 "heading, no date line. Whether it is a return of its own or a late "
+                 "printing of the 30 June return is not decided here, and the bound "
+                 "falls back to the printing",
+    },
+)
+
+RETURN_OF_PRINTING = {issue: entry for entry in RETURNS
+                      for issue in entry["printings"]}
+
+
+def bound_for(earliest_printing: str) -> tuple[str, dict | None]:
+    """The arrival bound a name printed in this run owes, and the return behind it.
+
+    `earliest_printing` is the ISO date of the first issue that carries the name —
+    what `return_dates()` reports, and what this pass used to write into `arrival`
+    on its own. Where the run's return is dated, the bound is the return's date;
+    where it is not, it stays the printing. Either way it is never later than the
+    printing, because a return cannot be dated after the issue that printed it.
+    """
+    entry = RETURN_OF_PRINTING.get(earliest_printing)
+    if entry and entry["date"]:
+        return min(entry["date"], earliest_printing), entry
+    return earliest_printing, entry
+
+
 # Everything below is shared with tools/mint_documented_residents.py, which is the
 # pass this one sits beside. Importing it would make one pass's refusals depend on
 # the other's file being loadable; the two are deliberately independent programmes
@@ -633,6 +795,40 @@ def mint(docs: dict, index: dict):
 # the records
 # ---------------------------------------------------------------------------
 
+def arrival_note(bound: str, earliest_printing: str, entry: dict | None) -> str:
+    """Why this household's bound is the date it is, and which of the two rules set it.
+
+    T-0425. The bound is the RETURN's date where the return is dated, and the earliest
+    PRINTING that carries the name where it is not, and a reader may not have to guess
+    which — so the note says so in its first six words either way.
+    """
+    tail = (f"Somebody was writing to this name at Chicago by {bound} and at no stated "
+            f"time before it; nothing says when they came.")
+    if entry and entry["date"]:
+        late = (datetime.date.fromisoformat(earliest_printing)
+                - datetime.date.fromisoformat(bound)).days
+        printed = ("" if not late else
+                   f" The earliest issue this project reads the name in is "
+                   f"{earliest_printing}, {late} day{'' if late == 1 else 's'} later; "
+                   f"that gap is an accident of which impression an extraction pass "
+                   f"reached, and it is not evidence.")
+        return (f"A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters "
+                f"uncalled-for is a RETURN — its statement of what was still unclaimed "
+                f"on ONE day — and the paper reprinted one return over as many "
+                f"consecutive issues as it took, so the bound is dated by "
+                f"{entry['said']} and not by the issue it was read in (T-0425).{printed} "
+                f"{tail} The date lines the printings set, and how they were weighed, "
+                f"stand beside this rule in tools/mint_letter_list_residents.py.")
+    why = (f"{entry['said'].capitalize()} — so the bound falls back to the earliest "
+           f"printing that carries the name"
+           if entry else
+           "This project holds no dated return for the list this name stands in, so the "
+           "bound falls back to the earliest printing that carries the name")
+    return (f"A BOUND FROM THE PAPER, NOT AN ARRIVAL. {why}, {bound}, and not to the "
+            f"return behind it, which stands earlier by an unknown interval (T-0425). "
+            f"{tail}")
+
+
 def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     name = display(cand["name"])
     fam = surname(cand["name"]).title()
@@ -731,14 +927,13 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
         # A genuinely new mint (T-0599): see mint_documented_residents.record()'s
         # matching comment — a household reusing its legacy id is unchanged.
         doc["source_pass"] = "letter_list"
+    bound, entry = bound_for(dates[0])
     doc.update({
         "arrival": {
-            "value": cand["first_seen"],
+            "value": bound,
             "confidence": "inferred",
             "sources": list(sources),
-            "note": (f"A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to "
-                     f"this name at Chicago by {cand['first_seen']} and at no stated time "
-                     f"before it; nothing says when they came."),
+            "note": arrival_note(bound, dates[0], entry),
             "precision": "not_later_than",
         },
         "party_size_on_arrival": {
@@ -930,6 +1125,11 @@ def scale_report() -> None:
 
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
+# The two rules T-0425 allows an arrival note to open on, in the order
+# `bound_for()` chooses between them: the return where the return is dated,
+# the printing where it is not.
+BOUND_MARKERS = ("A BOUND FROM THE RETURN", "A BOUND FROM THE PAPER")
+
 
 def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
     """Every way the minted cohort could stop being what the owner ruled for.
@@ -985,6 +1185,35 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                 problems.append(f"{hid}/{pid}: occupation is {occ.get('value')!r} — a "
                                 f"letter list gives no trade and this pass may not read "
                                 f"one in without independently corroborated resident research")
+        # T-0425. The bound belongs to the RETURN, not to the impression an
+        # extraction pass happened to reach. It is gated rather than merely derived
+        # because the failure is invisible on the card — `1834-03-04` looks like a
+        # date somebody read, and it is nine weeks of a name's residence given away
+        # to whichever printing a crop happened to catch. Only records whose arrival
+        # is still this pass's own are held to it: a later pass that dates somebody
+        # from a source of its own (T-0482 on `hh_orsemus_morrison`, `1833`) writes
+        # its own reasoning into the note and is out of scope by construction.
+        arrival = doc.get("arrival") or {}
+        note = arrival.get("note") or ""
+        returns = sorted({d for person in persons
+                          for d in (person.get("letter_list_returns") or [])})
+        if note.startswith(BOUND_MARKERS) and returns:
+            want, entry = bound_for(returns[0])
+            if arrival.get("value") != want:
+                problems.append(
+                    f"{hid}: arrival is {arrival.get('value')!r} and the earliest return "
+                    f"printing behind this name is {returns[0]} — the bound owed is "
+                    f"{want!r}, from {(entry or {}).get('said', 'the printing itself')} "
+                    f"(T-0425)")
+            elif not note.startswith(BOUND_MARKERS[0 if entry and entry["date"] else 1]):
+                problems.append(
+                    f"{hid}: arrival is {want!r} but its note opens on the wrong rule — "
+                    f"a reader may not have to work out whether a bound came from the "
+                    f"return or from the printing (T-0425)")
+            if arrival.get("precision") != "not_later_than":
+                problems.append(
+                    f"{hid}: arrival precision is {arrival.get('precision')!r} — a "
+                    f"letter-list bound is never anything but not_later_than")
         for key in ("lives_at", "works_at"):
             value = (doc.get(key) or {}).get("value")
             if value is not None:
@@ -1166,9 +1395,63 @@ def name_reading_self_test() -> int:
     return 0
 
 
+def return_bound_self_test() -> int:
+    """T-0425's own assertion: two printings of ONE return give ONE bound.
+
+    Fixtures over the RETURNS table, not over the tree — the tree's answer is gated
+    separately by `--gate`. What is proved here is the rule rather than a row: that
+    every printing of a return agrees, that a bound is never later than the issue
+    that carried it, and that a return this project cannot date falls back to the
+    printing instead of inventing one.
+    """
+    failed = 0
+    for entry in RETURNS:
+        bounds = {bound_for(issue)[0] for issue in entry["printings"]}
+        if entry["date"] and len(bounds) != 1:
+            failed += 1
+            print(f"   FAIL {entry['said']}: its printings give {sorted(bounds)} — one "
+                  f"return owes one bound")
+        for issue in entry["printings"]:
+            got, _ = bound_for(issue)
+            if got > issue:
+                failed += 1
+                print(f"   FAIL {issue}: bound {got} is later than the issue that "
+                      f"printed it")
+            if not entry["date"] and got != issue:
+                failed += 1
+                print(f"   FAIL {issue}: an undated return must fall back to the "
+                      f"printing, not to {got}")
+        if entry["date"] and not entry["date_lines"]:
+            failed += 1
+            print(f"   FAIL {entry['said']}: a dated return owes the date line it is "
+                  f"read off")
+    # The worked case the ticket names: the fourth and the ninth printing of the
+    # 1 January 1834 return, nine weeks apart, are one piece of evidence.
+    for pair in (("1834-01-28", "1834-03-04"), ("1834-07-02", "1834-07-16")):
+        a, b = (bound_for(pair[0])[0], bound_for(pair[1])[0])
+        if a != b:
+            failed += 1
+            print(f"   FAIL {pair[0]} and {pair[1]} print one return and give "
+                  f"{a} and {b}")
+    unknown, entry = bound_for("1899-01-01")
+    if unknown != "1899-01-01" or entry is not None:
+        failed += 1
+        print(f"   FAIL a printing no return row claims must date itself, not "
+              f"{unknown}")
+    if failed:
+        print(f"   {failed} return-bound assertion(s) failed")
+        return 1
+    print(f"   OK: {len(RETURNS)} return(s) over "
+          f"{sum(len(e['printings']) for e in RETURNS)} printing(s), each return one "
+          f"bound")
+    return 0
+
+
 def self_test() -> int:
     """Break each invariant on a copy of the tree and require the gate to name it."""
     if name_reading_self_test():
+        return 1
+    if return_bound_self_test():
         return 1
     docs, index, structures = read_tree()
     if gate_problems(docs, index, structures):
@@ -1209,6 +1492,21 @@ def self_test() -> int:
     def build_them_a_building(d, i, s):
         s["invented.json"] = '{"occupants": ["%s"]}' % d[victim]["persons"][0]["id"]
 
+    # T-0425, and the pair of them is the assertion the ticket asks for: two
+    # printings of ONE return must give ONE bound. `date_the_impression` moves a
+    # bound back onto the issue it was read in — the defect itself — and
+    # `wrong_rule` leaves the value right and the note claiming the other rule.
+    def date_the_impression(d, i, s):
+        for path, doc in sorted(d.items()):
+            dates = (doc.get("persons") or [{}])[0].get("letter_list_returns") or []
+            if dates and bound_for(dates[0])[0] != dates[0]:
+                doc["arrival"]["value"] = dates[0]
+                return
+        raise AssertionError("no letter-list record whose return predates its printing")
+
+    def blur_the_precision(d, i, s):
+        d[victim]["arrival"]["precision"] = "exact"
+
     cases = [
         ("a person loses letter_list_only", drop_flag, "letter_list_only"),
         ("a person loses its returns' dates", drop_dates, "letter_list_returns"),
@@ -1217,6 +1515,9 @@ def self_test() -> int:
         ("a household gains a second member", give_a_household, "persons"),
         ("the manifest row loses its flag", unflag_the_row, "manifest row"),
         ("a structure names one of them", build_them_a_building, "data/structures/"),
+        ("a bound is dated by the impression, not the return", date_the_impression,
+         "T-0425"),
+        ("a bound stops being not_later_than", blur_the_precision, "precision"),
     ]
     failed = 0
     for label, mutate, expect in cases:
