@@ -5,7 +5,7 @@
   "_doc": "RULINGS on the crosswalk's proposals. tools/read_land_sales.py --build folds this file onto resident_crosswalk.json; --check refuses a ruling that names a spelling the register does not hold, or a person the proposal did not name. This file is HAND-AUTHORED and is the one file under data/research/land_sales/ that is not derived from the deposit — a judgement is not a derivation, and the project does not pretend otherwise.",
   "why_this_exists": "build_resident_crosswalk() applies ONE mechanical rule: the surname agrees, the residents layer holds exactly one person of that surname, and the first forename agrees in full or as an initial. That rule proposes; it does not decide. tools/spend_land_sales.py's own rule 1 says so in as many words — 'ONLY WHAT THE CROSSWALK ALREADY DECLARED. This pass re-adjudicates nothing.' — so between the proposal and the card there was nobody. T-0700 is the ticket that noticed it, against the nine spellings the ring townships added (T-0676).",
   "the_ruling_rule": "A proposal is UPHELD only where the town's own record of the person carries something the register's row can be checked against BEYOND a bare name — a middle initial the register repeats, a trade the purchase is consistent with, a second document, or the register's own Residence column. Where the town holds nothing but a name read once off a post-office letter list, the proposal rests on the residents layer being THIN rather than on the two records agreeing: an uncalled-for letter says a correspondent thought the name reachable at Chicago, and a tract entry says a name entered ground, and two name-only readings do not make an identity. Such a proposal is REFUSED. A ruling never raises a grade, never mints a resident, and never asserts a residence; a refusal retracts what a pass had already written. T-0993 adds the ruling that goes the other way. `upheld` and `refused` can only adjudicate a proposal; a reading the forename rule structurally cannot reach — a man's middle name printed where his forename belongs — had no way to be ruled on at all, and the gate called a ruling on it 'a ruling on nothing'. `named` gives the match instead of taking it away, and it is held to the mirror of the same guards: only where the surname gathered rivals and the forename failed to choose among them, only onto one of those rivals, and never onto a surname-only purchaser, which this domain refuses however well the tract agrees.",
-  "scope": "The nine purchaser spellings the ring deposit (T-0676) added, ruled under T-0700; the twenty-six the first deposit matched, ruled under T-0850 — sixteen upheld, ten refused; and, under T-0990, COHORT A — the fourteen proposals whose crosswalk match is `initial_agrees` AND whose `rivals[]` is non-empty, which is where the mechanical rule is weakest: the layer holds a namesake of the surname and a forename INITIAL alone chose between them. Eleven upheld, three refused. What is left unruled is the rest of what T-0697 ADDED when the mechanical rule stopped requiring exactly one person of the surname; the count is on the crosswalk's own `ruled` block rather than in this sentence, and the next cohort is its own ticket. And, under T-0993, the ONE spelling the mechanical rule could never propose: BLANCHARD GURTREY, the six school-section rows ls0076-ls0081, NAMED onto blanchard_f_gantry — the register printing Francis Gurtrey Blanchard's middle name in the forename's place. That is a third ruling kind, `named`, and read_land_sales.py's gate guards it.",
+  "scope": "The nine purchaser spellings the ring deposit (T-0676) added, ruled under T-0700; the twenty-six the first deposit matched, ruled under T-0850 — sixteen upheld, ten refused; and, under T-0990, COHORT A — the fourteen proposals whose crosswalk match is `initial_agrees` AND whose `rivals[]` is non-empty, which is where the mechanical rule is weakest: the layer holds a namesake of the surname and a forename INITIAL alone chose between them. Eleven upheld, three refused. What is left unruled is the rest of what T-0697 ADDED when the mechanical rule stopped requiring exactly one person of the surname; the count is on the crosswalk's own `ruled` block rather than in this sentence, and the next cohort is its own ticket. And, under T-0993, the ONE spelling the mechanical rule could never propose: BLANCHARD GURTREY, the six school-section rows ls0076-ls0081, NAMED onto blanchard_f_gantry — the register printing Francis Gurtrey Blanchard's middle name in the forename's place. That is a third ruling kind, `named`, and read_land_sales.py's gate guards it. A ruling the derivation later absorbs is moved to `retired[]` with the date, the ticket and the reason: retired, not deleted, because the argument is what the rule was written from.",
   "ruled_by": "the steward loop, under T-0700, T-0850, T-0990 and T-0993",
   "ruled": [
     {
@@ -110,19 +110,6 @@
         "isa_public_domain_land_tract_sales"
       ],
       "reasoning": "WILSON JOHN L is refused against John Wilson. The town's John Wilson is known from a single return of uncalled-for letters, the Democrat of 28 January 1834, and nothing else names him; the register adds a middle initial L the town has never seen; and John Wilson is the commonest name in this corpus, so the rule's premise — exactly one of the surname in the residents layer — measures the layer and not the population. The three entries are also of 26 January and 10 March 1836, half a year past the town's last sight of the name. Refused on the ruling rule, and it would be refused on the initial alone."
-    },
-    {
-      "purchaser_as_read": "GARRETT A ET CO",
-      "resident_id": "garrett_a",
-      "ruling": "refused",
-      "ruled_on": "2026-09-05",
-      "ticket": "T-0700",
-      "checked_against": [
-        "chicago_american_1835",
-        "chicago_democrat_1833_1835",
-        "isa_public_domain_land_tract_sales"
-      ],
-      "reasoning": "GARRETT A ET CO is refused against A. Garrett — not because the firm is a stranger, but because the purchaser is a FIRM and this crosswalk proposes correspondences between a purchaser and a PERSON. 'ET CO' is the register saying the buyer was a partnership; the eighty acres in T38N R14E entered on 1 December 1835 were entered by the house, and a card that says this person entered them says something the page does not. The town's A. Garrett is well attested — an auctioneer in four numbers of the American and the Democrat — and the identification of the firm with him is probably right and is not what is refused. Reading firms as entities in their own right, so a partnership's purchase can be recorded against the partnership and its partners named, is T-0851."
     },
     {
       "purchaser_as_read": "PEARSONS HIRAM",
@@ -284,18 +271,6 @@
         "fergus_chicago_directory_1839"
       ],
       "reasoning": "An initial alone would not carry it. What carries it is the PEARSONS H argument: the SAME register spells this purchaser PRUYNE PETER on four other rows, one of them at the same auction two days earlier, and the town holds no second Pruyne for the initial to belong to. The single school-section parcel of 25 October 1833 is the same hand the register writes out in full elsewhere."
-    },
-    {
-      "purchaser_as_read": "PRUYNE P AND CO",
-      "resident_id": "pruyne_peter",
-      "ruling": "refused",
-      "ruled_on": "2026-09-10",
-      "ticket": "T-0850",
-      "checked_against": [
-        "isa_public_domain_land_tract_sales",
-        "andreas_1884_v1"
-      ],
-      "reasoning": "Refused for the reason T-0700 refused GARRETT A ET CO, and the reason is the register's own words: 'AND CO' is the page saying the buyer was a PARTNERSHIP. This crosswalk proposes a correspondence between a purchaser and a PERSON, so a card that says Peter Pruyne entered this parcel says something the page does not — the house entered it. That the house was his is likely and is not what is refused. Reading firms as entities in their own right is T-0851."
     },
     {
       "purchaser_as_read": "PRICE JEREMIAH",
@@ -682,6 +657,39 @@
         "chicago_democrat_1833_1835"
       ],
       "reasoning": "NAMED, NOT UPHELD — the mechanical rule never proposed this one and could not. `namesake.choose` weighs the FIRST forename token, and the register prints this man's MIDDLE name in the forename's place, so GURTREY was put to all the Blanchards the town holds and named none of them. What names him is the town's own directory: Fergus 1843 prints 'Blanchard, Francis Gurtrey, capitalist, res 45 Wells [died, Brooklyn, N.Y., 1872.]' — forename Francis, middle name Gurtrey — and Fergus 1839 and Norris 1844 print the same man 'Francis G.' GURTREY is that middle name, and the card carries it as Gantry because the poll of 1834 prints him 'Blanchard, F. Gantry'. THE REGISTER PROVES ITS OWN HABIT HERE, AT ONE SALE. The six GURTREY rows (purchase nos 0367525-0367530, volume 817 page 027) and the three F G rows (0376893-0376895, volume 818 page 010) are the SAME school section — section 16, T39N R14E, type SC — entered on 22 and 24 October 1833, the days the school section was sold off by lot and by block. One buyer, one auction, two volumes of the register, two renderings of one name; the domain's README already records this habit under T-0990, where HUNTER E E and HUNTER EDWARD E are the same 80 acres of section 13 on the same day at the same price. WHAT IS NOT NAMED BY IT. The town's other documented Blanchard is W. G. Blanchard, the house-and-land agent of the Democrat of 9 July 1834, and his forename initial is W: he is refused on the same ground the crosswalk refuses him against every other Blanchard reading. Joseph Blanchard the blacksmith is a man of the directories and not an 1835 resident. Nothing reached prints a second Gurtrey Blanchard anywhere. AND IT IS STILL A PURCHASE. The Residence column reads UNKNOWN on all six rows, so this names a buyer and never an occupant, and it places nobody on that ground. The six rows are lot 1 of block 2, block 21, lot 8 of block 141, block 3, lot 7 of block 82 and lot 1 of block 141 of the school section, $547.00 in all (ls0076-ls0081). Two of them state a price per acre of 3.69 against 0000.00 acres, which is the acreage of the F G row ls0074 standing in the wrong column of the deposit; it is carried as the register has it and read as no acreage at all."
+    }
+  ],
+  "retired": [
+    {
+      "purchaser_as_read": "GARRETT A ET CO",
+      "resident_id": "garrett_a",
+      "ruling": "refused",
+      "ruled_on": "2026-09-05",
+      "ticket": "T-0700",
+      "checked_against": [
+        "chicago_american_1835",
+        "chicago_democrat_1833_1835",
+        "isa_public_domain_land_tract_sales"
+      ],
+      "reasoning": "GARRETT A ET CO is refused against A. Garrett — not because the firm is a stranger, but because the purchaser is a FIRM and this crosswalk proposes correspondences between a purchaser and a PERSON. 'ET CO' is the register saying the buyer was a partnership; the eighty acres in T38N R14E entered on 1 December 1835 were entered by the house, and a card that says this person entered them says something the page does not. The town's A. Garrett is well attested — an auctioneer in four numbers of the American and the Democrat — and the identification of the firm with him is probably right and is not what is refused. Reading firms as entities in their own right, so a partnership's purchase can be recorded against the partnership and its partners named, is T-0851.",
+      "retired_on": "2026-09-10",
+      "retired_under": "T-0851",
+      "retired_because": "The last sentence of this ruling's own reasoning named T-0851 as the ticket that would read firms as entities in their own right, and T-0851 did it: tools/namesake.py's firm_style() reads the register's own 'ET CO' and 'AND CO' as the page saying the purchaser was a partnership, and build_resident_crosswalk() refuses every one of them against every person BY RULE, before the surname gathers anybody. So this judgement is now a derivation and a hand ruling on it would be a ruling on nothing — which is what --check called it. The reasoning is kept here rather than deleted: it is the argument the rule was written from, and the second firm the rule caught (PRUYNE P AND CO, whose entry had been written onto Peter Pruyne's card as his own) is what a hand ruling on one spelling could never reach."
+    },
+    {
+      "purchaser_as_read": "PRUYNE P AND CO",
+      "resident_id": "pruyne_peter",
+      "ruling": "refused",
+      "ruled_on": "2026-09-10",
+      "ticket": "T-0850",
+      "checked_against": [
+        "isa_public_domain_land_tract_sales",
+        "andreas_1884_v1"
+      ],
+      "reasoning": "Refused for the reason T-0700 refused GARRETT A ET CO, and the reason is the register's own words: 'AND CO' is the page saying the buyer was a PARTNERSHIP. This crosswalk proposes a correspondence between a purchaser and a PERSON, so a card that says Peter Pruyne entered this parcel says something the page does not — the house entered it. That the house was his is likely and is not what is refused. Reading firms as entities in their own right is T-0851.",
+      "retired_on": "2026-09-10",
+      "retired_under": "T-0851",
+      "retired_because": "The same absorption as GARRETT A ET CO above, and this ruling's own reasoning said so before the rule existed: 'Refused for the reason T-0700 refused GARRETT A ET CO … AND CO is the page saying the buyer was a PARTNERSHIP.' T-0851's namesake.firm_style() now reads that partnership style off the register and build_resident_crosswalk() refuses every firm against every person BY RULE, before the surname gathers anybody — so the crosswalk no longer proposes PRUYNE P AND CO at all, and a hand ruling on it is a ruling on nothing, which is what read_land_sales.py --check called it. Retired rather than deleted: the argument is what the rule was written from, and this is the second firm it caught — the one whose entry had been written onto Peter Pruyne's card as his own purchase, which a hand ruling on one spelling could never have reached."
     }
   ]
 }

@@ -36,6 +36,8 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+import resident_cohort_freeze as freeze
+
 ROOT = Path(__file__).resolve().parents[1]
 CHICAGO = ROOT.parent
 RESEARCH = ROOT / "data" / "research" / "residents"
@@ -129,8 +131,17 @@ def candidate_id(person_id: str, candidate: dict) -> str:
 
 
 def person_index() -> dict:
+    """Every person a package may cite: the layer, plus the people a landed merge
+    ruling folded out of it (T-0842).
+
+    A published package is a durable record of what a research pass studied, and a
+    later ruling that two cards are one man does not un-study anybody. The folded
+    record resolves out of `data/residents/merged/` exactly as it stood when the merge
+    landed; `resident_cohort_freeze.folded_people()` carries the reasoning, and the
+    real failure — a member in no household and no stub either — still fires.
+    """
     idx = load(RESIDENTS / "index.json")
-    people = {}
+    people = dict(freeze.folded_people())
     for entry in idx["households"]:
         household = load(RESIDENTS / entry["file"])
         for person in household.get("persons", []):

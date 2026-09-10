@@ -12,7 +12,7 @@
     "structures": 380,
     "structures_sharing_a_name": 37,
     "streets": 40,
-    "resident_persons": 1358
+    "resident_persons": 1356
   },
   "counts": {
     "businesses": {
@@ -17674,8 +17674,8 @@
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
       "action": "enrich",
-      "action_target": "vanderbogart_h",
-      "action_note": "data/residents/ already holds this person as vanderbogart_h (hh_vanderbogart_h, attested). The papers add mentions and dates."
+      "action_target": "vanderbogart_henry",
+      "action_note": "data/residents/ already holds this person as vanderbogart_henry (hh_vanderbogart_henry, inferred). The papers add mentions and dates."
     },
     {
       "id": "person_h_walford",

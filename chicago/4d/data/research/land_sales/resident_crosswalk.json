@@ -7,13 +7,14 @@
   "ruled": {
     "upheld": 33,
     "named": 1,
-    "refused": 16,
+    "refused": 14,
     "unruled": 90
   },
   "counts": {
     "purchasers": 431,
     "matched": 124,
-    "refused": 307
+    "refused": 307,
+    "firms": 2
   },
   "matches": [
     {
@@ -7120,16 +7121,16 @@
     {
       "a": "PRUYNE P AND CO",
       "b": "Peter Pruyne",
-      "rule": "Refused for the reason T-0700 refused GARRETT A ET CO, and the reason is the register's own words: 'AND CO' is the page saying the buyer was a PARTNERSHIP. This crosswalk proposes a correspondence between a purchaser and a PERSON, so a card that says Peter Pruyne entered this parcel says something the page does not — the house entered it. That the house was his is likely and is not what is refused. Reading firms as entities in their own right is T-0851.",
+      "rule": "PRUYNE P AND CO is refused against Peter Pruyne: the register sets 'AND CO' after the name, which is the page saying the purchaser was a PARTNERSHIP, and this crosswalk proposes correspondences between a purchaser and a PERSON. The identification of the firm with Peter Pruyne is probably right and is not what is refused; what is refused is writing the house's entry onto his card as his own.",
       "record_ids": [
         "ls0322"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv"
       ],
-      "ruled_on": "2026-09-10",
-      "ruled_under": "T-0850",
-      "was_proposed_as": "PRUYNE P AND CO matches Peter Pruyne: the forename names Peter Pruyne of the 1 person of this surname, and the forename agrees as an initial only."
+      "firm": true,
+      "firm_style": "AND CO",
+      "carried_by": "firm_purchasers[]"
     },
     {
       "a": "SPENCE JAMES",
@@ -11087,16 +11088,16 @@
     {
       "a": "GARRETT A ET CO",
       "b": "A. Garrett",
-      "rule": "GARRETT A ET CO is refused against A. Garrett — not because the firm is a stranger, but because the purchaser is a FIRM and this crosswalk proposes correspondences between a purchaser and a PERSON. 'ET CO' is the register saying the buyer was a partnership; the eighty acres in T38N R14E entered on 1 December 1835 were entered by the house, and a card that says this person entered them says something the page does not. The town's A. Garrett is well attested — an auctioneer in four numbers of the American and the Democrat — and the identification of the firm with him is probably right and is not what is refused. Reading firms as entities in their own right, so a partnership's purchase can be recorded against the partnership and its partners named, is T-0851.",
+      "rule": "GARRETT A ET CO is refused against A. Garrett: the register sets 'ET CO' after the name, which is the page saying the purchaser was a PARTNERSHIP, and this crosswalk proposes correspondences between a purchaser and a PERSON. The identification of the firm with A. Garrett is probably right and is not what is refused; what is refused is writing the house's entry onto his card as his own.",
       "record_ids": [
         "ls0693"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
+        "data/research/land_sales/text/isa_land_tract_sales_t39n_t40n_r13e_t38n_t41n_r14e_t38n_r15e_through_1836.tsv"
       ],
-      "ruled_on": "2026-09-05",
-      "ruled_under": "T-0700",
-      "was_proposed_as": "GARRETT A ET CO matches A. Garrett: the forename names A. Garrett of the 1 person of this surname, and the forename agrees as an initial only."
+      "firm": true,
+      "firm_style": "ET CO",
+      "carried_by": "firm_purchasers[]"
     },
     {
       "a": "LATTERLEE RICHARD L",
@@ -12892,6 +12893,112 @@
       "evidence": [
         "data/residents/index.json"
       ]
+    }
+  ],
+  "firm_purchasers": [
+    {
+      "firm_as_read": "PRUYNE P AND CO",
+      "firm_style": "AND CO",
+      "firm_expanded": "P Pruyne & Co.",
+      "record_ids": [
+        "ls0322"
+      ],
+      "sales": 1,
+      "acres_stated": "3.27",
+      "total_price": "310.00",
+      "first_sale": "1833-10-22",
+      "last_sale": "1833-10-22",
+      "tracts": [
+        {
+          "section": "16",
+          "township": "39N",
+          "range": "14E",
+          "meridian": "3",
+          "part": "BL97",
+          "resolves": "unparsed",
+          "lot": null,
+          "block": null,
+          "void": false,
+          "date_purchased": "1833-10-22",
+          "acres": "3.27",
+          "total_price": "310.00"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "names_one_partner": {
+        "as_read": "PRUYNE P",
+        "resident_id": "pruyne_peter",
+        "resident_name": "Peter Pruyne",
+        "household_id": "hh_pruyne_kimberly",
+        "match": "initial_agrees",
+        "rule": "PRUYNE P, the partner PRUYNE P AND CO names, matches Peter Pruyne: the forename names Peter Pruyne of the 1 person of this surname, and the forename agrees as an initial only. THIS IS A PROPOSAL ABOUT THE PARTNER'S NAME AND NOT A PURCHASE BY HIM.",
+        "rivals": [
+          {
+            "key": "pruyne_peter",
+            "name": "Peter Pruyne",
+            "forename_agrees": true,
+            "why": "an initial standing for the forename (M2)",
+            "middle_initial": null,
+            "reading_middle_initial": null,
+            "outcome": "survives"
+          }
+        ]
+      },
+      "silent_partners": "The register names one partner and abbreviates the rest. Who else stood in this house is not on this page, and nothing here proposes them.",
+      "what_it_evidences": "A partnership of this name entered this ground on this date. It is not evidence that the firm kept a house in the town, that it stood on the tract, or that the partner the register names bought anything himself.",
+      "why_it_is_not_a_match": "This crosswalk proposes correspondences between a purchaser and a PERSON, and the purchaser here is not one. The refusal is in refusals[] with this block named as what carries the sale instead."
+    },
+    {
+      "firm_as_read": "GARRETT A ET CO",
+      "firm_style": "ET CO",
+      "firm_expanded": "A Garrett & Co.",
+      "record_ids": [
+        "ls0693"
+      ],
+      "sales": 1,
+      "acres_stated": "80.00",
+      "total_price": "100.00",
+      "first_sale": "1835-12-01",
+      "last_sale": "1835-12-01",
+      "tracts": [
+        {
+          "section": "33",
+          "township": "38N",
+          "range": "14E",
+          "meridian": "3",
+          "part": "W2SW",
+          "resolves": "half_quarter_section",
+          "lot": null,
+          "block": null,
+          "void": false,
+          "date_purchased": "1835-12-01",
+          "acres": "80.00",
+          "total_price": "100.00"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "names_one_partner": {
+        "as_read": "GARRETT A",
+        "resident_id": "garrett_a",
+        "resident_name": "A. Garrett",
+        "household_id": "hh_garrett_a",
+        "match": "initial_agrees",
+        "rule": "GARRETT A, the partner GARRETT A ET CO names, matches A. Garrett: the forename names A. Garrett of the 1 person of this surname, and the forename agrees as an initial only. THIS IS A PROPOSAL ABOUT THE PARTNER'S NAME AND NOT A PURCHASE BY HIM.",
+        "rivals": [
+          {
+            "key": "garrett_a",
+            "name": "A. Garrett",
+            "forename_agrees": true,
+            "why": "an initial standing for the forename (M2)",
+            "middle_initial": null,
+            "reading_middle_initial": null,
+            "outcome": "survives"
+          }
+        ]
+      },
+      "silent_partners": "The register names one partner and abbreviates the rest. Who else stood in this house is not on this page, and nothing here proposes them.",
+      "what_it_evidences": "A partnership of this name entered this ground on this date. It is not evidence that the firm kept a house in the town, that it stood on the tract, or that the partner the register names bought anything himself.",
+      "why_it_is_not_a_match": "This crosswalk proposes correspondences between a purchaser and a PERSON, and the purchaser here is not one. The refusal is in refusals[] with this block named as what carries the sale instead."
     }
   ]
 }

@@ -87,3 +87,36 @@ refusal is usually right.
 Not a reading of the 7,229 post-1835 entries (no 1835 person to reach). Not a change to the
 matching rule (T-0670, T-0696 stand). Not lots or roofs (L218, L223: a face). Not the Newberry
 index, which is its own epic at the foot at a measured 0.0% match.
+
+## Added by T-0989, 2026-09-10 — the 255 acceptance clause 3 is now measuring
+
+Clause 3 above asks for `measure_research_spend.py`'s directories `unwritten` column at 0
+after a stretch lands. Until this date that column read 0 for a reason that had nothing to do
+with this programme: the second hop judged a ruling stating no source of its own against the
+ONE source id at the top of its file, and counted the card as having learned it if the card
+cited that id **anywhere, for any reason**. Every ruling in a generated crosswalk shares that
+id, so one citation left by another pass passed all of them at once.
+
+T-0989 closed that. A fallback ruling must now also NAME what it adjudicated — the read unit
+it cites, or the sheet a sheet-and-line ruling sits on — and directories fell from **914 of
+914 written to 659, with 255 unwritten**. That 255 is recorded in the write ceiling with its
+reason; it is this programme's debt, and clause 3 is the thing that pays it down. Where it
+sits, by file:
+
+```
+  159  fergus_1839_crosswalk_1835.json            all 159 — no entry named on the card
+   49  fergus_1843_crosswalk_1835.json            of 120
+   31  norris_1844_crosswalk_1835.json            of 99
+   16  norris_1844_advertiser_crosswalk_1835.json all 16
+```
+
+The four sister files — the 1839 election, lots and register crosswalks, and the 394 rulings
+in `spend_crosswalk_1835.json` that state their own sources — already reach their cards and
+are unmoved. The instance checked by hand: `hh_garrett_a` cites `fergus_chicago_directory_1839`
+because a later resident-research pass wrote a generic `directories` block on the card, while
+Fergus 1839's ruling for Garrett — entry `f1839_e0527`, "Garrett, Augustus, auctioneer, real
+estate, bds. Sauganash Hotel", printed page 15 — has never been written onto it. Nothing was
+lost by the change; what was lost had already been lost, and was being reported as green.
+
+A stretch that lands under clause 3 should quote the 255 before and after, the same way
+clause 4 quotes the pool sizes.

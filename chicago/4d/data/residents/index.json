@@ -245,19 +245,19 @@
   ]
  },
  "counts": {
-  "households": 1334,
-  "persons": 1358,
+  "households": 1332,
+  "persons": 1356,
   "by_grade": {
-   "attested": 492,
-   "inferred": 866,
+   "attested": 491,
+   "inferred": 865,
    "reconstructed": 0
   },
-  "letter_list_only": 726,
+  "letter_list_only": 725,
   "projected_residents": 710,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
-  "civic_mint": 485,
-  "merged_away": 48
+  "civic_mint": 484,
+  "merged_away": 49
  },
  "households": [
   {
@@ -4777,7 +4777,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -19153,36 +19153,6 @@
    "review_required": false
   },
   {
-   "id": "hh_vandenbogart_h",
-   "file": "households/hh_vandenbogart_h.json",
-   "civic_mint": true,
-   "head": "vandenbogart_h",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_vanderbogart_h",
-   "file": "households/hh_vanderbogart_h.json",
-   "letter_list_only": true,
-   "head": "vanderbogart_h",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_vanderbogart_henry",
    "file": "households/hh_vanderbogart_henry.json",
    "civic_mint": true,
@@ -19190,7 +19160,7 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
@@ -21500,6 +21470,17 @@
    "rule": "C6",
    "cluster": "temple",
    "ticket": "T-0844"
+  },
+  {
+   "person": "vandenbogart_h",
+   "household": "hh_vandenbogart_h",
+   "name": "H Vandenbogart",
+   "merged_into_person": "vanderbogart_henry",
+   "merged_into_household": "hh_vanderbogart_henry",
+   "record_file": "merged/hh_vandenbogart_h.json",
+   "rule": "C7",
+   "cluster": "vanderbogart",
+   "ticket": "T-0842"
   }
  ],
  "_merged_doc": "T-0839. THE REDIRECT TABLE. One row per town card folded onto another because the two named one person. The record is not deleted: it is kept whole at the `record` path with a `merged_into` block, and this table is what lets every consumer that cites the folded `person` — the crosswalks, identity_master.json, the smoke cohorts, the placed-resident parcels — still resolve it to somebody. The ruling and its reasoning are in data/residents/card_merge_rulings.json."

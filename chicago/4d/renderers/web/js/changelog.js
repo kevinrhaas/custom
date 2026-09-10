@@ -1,11 +1,33 @@
 export const CHANGELOG = [ // newest first
-  { v: 688, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '2026-09-10T10:47:55.640Z', date: 'Sep 10, 2026, 5:47 AM CT',
+  { v: 691, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '2026-09-10T14:29:18.816Z', date: 'Sep 10, 2026, 9:29 AM CT',
     items: [
       'Francis Gurtrey Blanchard \u2014 a capitalist of 45 Wells Street, by the town\u2019s own directory of 1843 \u2014 stood on two resident cards. The tax list of 1833 printed him \u201cBlanchard, Gantry\u201d, by his middle name alone; the poll list of 1834 printed him \u201cBlanchard, F. Gantry\u201d. He is one card now, and nothing was lost: the folded record is kept whole and every reference to it still resolves.',
       'The check that finds duplicate cards could never have found this one. It compares the FIRST forename of two names, so \u201cGantry\u201d and \u201cF Gantry\u201d were two different men to it and always would have been. This pair was found by hand, reading the land register, and it is the first fold of a resident card that the machine did not raise.',
       'The rule written for it is deliberately narrow, and it asks for a page rather than a hunch: the lone name must be a distinctive word no one else in the cluster carries as a forename; exactly one documented man of the surname must carry it as a middle name printed in full; and some source must be caught printing that man BOTH ways. Here the land office is: at one auction of the school section in October 1833 it entered him as BLANCHARD F G in one volume and BLANCHARD GURTREY in another.',
       'Those six GURTREY rows are now his. They are six more town lots \u2014 on blocks 2, 3, 21, 82 and 141 \u2014 and they take what the register sold him from $373 to $920. His arrival bound moves back a year, to the tax list of 1833, and he stops being counted among the townspeople known from a single line.',
       'A purchase is still only a purchase. The register\u2019s residence column says UNKNOWN on all six, so none of this puts him on that ground, and no grade was raised on the strength of it.'
+    ] },
+  { v: 690, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T13:43:17.384Z', date: 'Sep 10, 2026, 8:43 AM CT',
+    items: [
+      'The federal land register sells ground to partnerships as well as to people, and twice on its 953 rows it says so \u2014 \u201cGarrett A et co\u201d and \u201cPruyne P and co\u201d. Both were being read as men.',
+      'Peter Pruyne\u2019s card said the register entered him six times and counted the firm\u2019s three acres and $310 among his own purchases. It now says five, and the firm\u2019s entry stands under the firm.',
+      'A. Garrett & Co. entered eighty acres south of the town on 1 December 1835 and no reading of the register carried it. There is now a record of what the house bought, where, when and for how much, naming the one partner the page names \u2014 as a partner, not as the buyer.',
+      'The identification of the house with the town\u2019s A. Garrett, the auctioneer, is probably right and is not what changed. What changed is that a partnership\u2019s purchase is no longer written onto a man as his own.'
+    ] },
+  { v: 689, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T12:45:14.185Z', date: 'Sep 10, 2026, 7:45 AM CT',
+    items: [
+      'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',
+      'A new check reads every resident card and refuses any 1835 trade whose only cited volume is about another year. Nine cards were standing on one; eight remain, each with its reasoning written down, and the count can now only fall.',
+      'The eight are all trades printed BEFORE the scene rather than after it, which the existing later-trade pointer cannot hold. They are filed as an open question rather than quietly changed.'
+    ] },
+  { v: 688, title: 'The doctor the town had been carrying as three men', kind: 'change', ts: '2026-09-10T11:58:01.879Z', date: 'Sep 10, 2026, 6:58 AM CT',
+    items: [
+      'Dr Henry Van der Bogart stood on three separate resident cards \u2014 a name from a temperance meeting, a name on a post-office list, and the doctor himself with his death notice. All three are one man, and the town\u2019s cards fall from 1,359 people to 1,357.',
+      'Two of the three were the same printed line read twice: the list of letters waiting uncalled-for at the Chicago post office on 20 May 1835 had a card of its own AND was already cited on the doctor\u2019s card, at the same column of the same issue.',
+      'The third was harder and is what the ruling was owed. The town had been holding \u201cH. Van Den Bogart\u201d and \u201cDr Henry Van der Bogart\u201d apart because DEN and DER are two real Dutch particles and not merely a misprint. Reading the papers settles it: the Chicago Democrat sets this one man\u2019s name three different ways inside sixteen months \u2014 Van Den in February 1834, Ven De in October 1834, Vanderbogart in May 1835 \u2014 so the difference the split rested on is one the printer himself does not keep to.',
+      'Two things came out of the reading that the town did not have. He sat on the executive committee the Chicago Temperance Society elected in the Presbyterian Church on the evening of Thursday 30 January 1834, beside Philo Carpenter and two of the town\u2019s doctors; and he was named again that October to the committee of seventy a town meeting appointed against gambling. The second of those had never been read at all.',
+      'What the page does NOT say is recorded too. The notice\u2019s left edge is cut off by a letter or two on almost every line, and the honorific in front of his name survives only as \u201cr.\u201d \u2014 which fits \u201cDr.\u201d exactly as well as the \u201cMr.\u201d it was transcribed as. So the card does not claim he was called doctor there; it says the printing cannot tell you.',
+      'Nothing was deleted: both folded cards are kept whole, every reference to them still resolves, and the sources they carried are now on the one card.'
     ] },
   { v: 687, title: 'A church roll that had never reached a single card', kind: 'change', ts: '2026-09-10T09:47:20.015Z', date: 'Sep 10, 2026, 4:47 AM CT',
     items: [
