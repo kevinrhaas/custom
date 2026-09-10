@@ -11,13 +11,13 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1362,
+  "person_records": 1363,
   "carried_by_the_civic_mint": 490,
-  "rungs_spent": 793,
+  "rungs_spent": 794,
   "conflicts_for_the_owner": 75,
   "spent_by_rule": {
    "G1a": 22,
-   "G1b": 88,
+   "G1b": 89,
    "G1c": 10,
    "G2e": 47,
    "G3": 626
@@ -6421,6 +6421,15 @@
    "household_id": "hh_taylor_anson",
    "name": "Anson H. Taylor",
    "identity": "id_taylor_anson_h",
+   "rule": "G1b",
+   "grade": "attested",
+   "resident_subtype": null
+  },
+  {
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
+   "name": "Mrs. C. Taylor",
+   "identity": "id_taylor_charles",
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null

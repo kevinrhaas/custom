@@ -380,6 +380,14 @@
  ],
  "lowered": [
   {
+   "domain": "census_1840",
+   "hop": "write",
+   "from": 1,
+   "to": 0,
+   "date": "2026-09-10",
+   "why": "T-0899 pays the debt T-0714 recorded. T-0714 raised this ceiling from 0 to 1 for a single ruling — the 1840 head 'Ira Couch', image 33SQ-GYYJ-97P, printed page 211, line 3 — because crosswalk_census_1840_heads.py proposes and does not write, so the ruling reached a card that cited nothing it rests on. Two things have happened since and this pass verified both against the instrument rather than against the ticket's recollection. T-0698 (PR #992) wrote the crosswalk's rulings onto the cards they name, hh_couch_ira among them, and the card now carries the reading as printed, the locator and the rule that fired. The ruling itself has moved from 'L7 candidate' to 'L6 matched' on a discriminator independent of the 1840 name — the same person separately adjudicated into Norris's 1844 directory at a stated address, which is evidence about the PERSON and not about the spelling — so what T-0899 asked to be written as a candidate is on the card as the match it became. The second hop now reads census_1840 at 30 reached, 30 judgeable, 30 on a card: the ruling rests on norris_directory_1844 and hh_couch_ira cites it. NO GRADE MOVED anywhere in this pass; the person is 'attested' in 1835 as he was before, on the 1834-1836 Tremont House tenure and not on any 1840 line. Lowering a ceiling is free and is exactly what spending a domain does; this one may not drift back up, and a later 1840 ruling that reaches a person and not their card raises it again and the gate says so."
+  },
+  {
    "domain": "directories",
    "hop": "write",
    "from": 3,
@@ -396,7 +404,7 @@
   }
  ],
  "unwritten_ceiling": {
-  "census_1840": 1,
+  "census_1840": 0,
   "civic": 0,
   "directories": 0,
   "land_sales": 0,

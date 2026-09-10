@@ -55,6 +55,21 @@ THE TERMS, written out so they read back without the code:
      full is `forename_agrees`; an initial standing for it is `initial_agrees`,
      the weaker grade, exactly as before. Naming one of several rivals does not
      make a reading stronger, and it does not make it weaker either.
+  7. A FEMALE HONORIFIC STANDING ON AN INITIAL IS NOT A FORENAME TO EXPAND.
+     `Mrs. C. Taylor` prints an initial that is not hers to begin with: the
+     honorific says the name after it is a husband's, and M2 — an initial
+     attaching to the one full forename of the surname — would hand her his
+     record. So where one side carries `Mrs` or `Miss` on an INITIAL and the
+     other prints a full forename with no such title, the two do not name one
+     person. This is rule 4's shape at one word's remove — a title, like a
+     suffix, says WHICH person of the name is meant — and it is deliberately
+     narrower than R6 in `tools/consolidate_resident_evidence.py`: a titled
+     side printing a forename IN FULL is untouched, because `Mrs. Eliza Haight`
+     and the census's `Eliza Haight` are one woman and nothing here may split
+     them (T-0723). Found by T-0960, when `Mrs. C. Taylor` was written onto a
+     card and the register's `TAYLOR CHARLES` — five land entries standing on
+     Charles H. Taylor since T-0670 — turned ambiguous between a man and a
+     woman who prints no forename of her own.
   6. A REFUSAL NAMES THE RIVALS. An absent match reads exactly like a pair
      nobody looked at, and the old rule's "there are 5" said which count refused
      the reading without ever saying which five people.
@@ -115,6 +130,20 @@ def _words(given):
     return out
 
 
+def female_title(given):
+    """`MRS` or `MISS`, the word that says the name printed after it may not be her own.
+
+    Read from `name_agreement.TITLES` for the spellings and narrowed to the two that
+    stand on a husband's name; `Mr`, `Dr`, `Capt` and the rest say a rank and never
+    borrow a forename.
+    """
+    for raw in str(given or "").replace(".", " ").split():
+        w = raw.strip(",").upper()
+        if w.lower() in name_agreement.TITLES and w in ("MRS", "MISS"):
+            return w
+    return None
+
+
 def suffix_of(given):
     """`JR`, `SEN` — the word that says WHICH man of the name, or None."""
     for raw in str(given or "").replace(".", " ").split():
@@ -147,9 +176,17 @@ def forenames_agree(reading, resident):
     if not a or not b:
         return False, None, "one side prints no forename of its own"
     if len(a) == 1 or len(b) == 1:
-        if a[0] == b[0]:
-            return True, "initial_agrees", "an initial standing for the forename (M2)"
-        return False, None, "the initials differ"
+        if a[0] != b[0]:
+            return False, None, "the initials differ"
+        # Rule 7 — the honorific on the initial. Both sides being initials is not this
+        # case: nothing is being expanded, so nobody's record is being handed over.
+        initial_side, full_side = ((reading, resident) if len(a) == 1
+                                   else (resident, reading))
+        if (female_title(initial_side) and not female_title(full_side)
+                and len(_first(full_side)) > 1):
+            return False, None, ("a female honorific standing on an initial is not the "
+                                 "full forename printed without one (rule 7)")
+        return True, "initial_agrees", "an initial standing for the forename (M2)"
     ok, why = name_agreement.agrees(a, b)
     if ok:
         return True, "forename_agrees", "the forenames agree in full — %s (M1)" % why
@@ -311,6 +348,22 @@ def self_test():
     if r["named"] is not None:
         fired.append("CHURCH THOS JR must not be named onto a Thomas Church carrying no suffix")
 
+    # Rule 7: a female honorific on an initial is not the full forename beside it.
+    r = named("CHARLES", [("him", "Charles H"), ("her", "Mrs C")])
+    if r["named"] != "him":
+        fired.append("TAYLOR CHARLES must name Charles H. Taylor over a Mrs C. Taylor")
+    r = named("CHARLES", [("her", "Mrs C")])
+    if r["named"] is not None:
+        fired.append("a full forename must not expand a Mrs's initial even when she stands alone")
+    # ...and it is narrower than R6: a titled side printing a forename IN FULL is one woman.
+    r = named("ELIZA", [("her", "Mrs Eliza")])
+    if r["named"] != "her":
+        fired.append("Mrs Eliza Haight and Eliza Haight are one woman and rule 7 must not split them")
+    # ...and two initials are not an expansion at all.
+    r = named("C", [("her", "Mrs C")])
+    if r["named"] != "her":
+        fired.append("two initials agree; rule 7 has nothing to expand and must stand down")
+
     # A title is not a forename.
     r = named("JEREMIAH", [("mrs", "Mrs Rufus")])
     if r["named"] is not None:
@@ -346,7 +399,7 @@ def self_test():
             print("  " + line, file=sys.stderr)
         print("namesake --self-test: %d case(s) failed" % len(fired), file=sys.stderr)
         return 1
-    print("namesake --self-test: 9 naming cases and 4 collision cases hold")
+    print("namesake --self-test: 13 naming cases and 4 collision cases hold")
     return 0
 
 

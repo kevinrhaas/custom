@@ -340,6 +340,16 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   a smoke to a FILE, never a pipe: node block-buffers stdout to a pipe, so a piped log
   stays at zero bytes until the process exits, and a run once killed a green smoke one
   minute from its finish for want of a byte to look at.
+- **`./tools/preflight.sh` BEFORE you open the PR.** `check.sh` is not the whole gate:
+  two of CI's questions are asked only on the pull_request event, where a base ref
+  exists, so a run cannot rehearse them and finds out after the PR is open — when its
+  turn has ended and nobody comes back. PR #1049 sat red for 2 h 19 m on a one-line
+  commit trailer, with the right sentence written in its PR body where the gate does
+  not look. Preflight asks all three in one command: `check.sh`, then
+  `check-changelog-entry.mjs` against the merge base, then
+  `resolve_id_collisions.mjs --check` (a sibling slice may have taken a ticket id
+  this branch minted while you were working). It writes nothing and names the repair
+  for each red. `BASE=origin/main ./tools/preflight.sh` for the hotfix path.
 - **Both gates, in the foreground, before merging**: `tools/check.sh` (needs `jsonschema` +
   `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
   page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The

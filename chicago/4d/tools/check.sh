@@ -1269,6 +1269,24 @@ step "restamp moves the queue line it was handed, not the other one" \
 step "new --after places directly under the named ticket and moves nothing else" \
   node tools/test_ticket_after.mjs
 
+# And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
+# every origin ref before it mints, so a duplicate id is not a missing guard but
+# the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each
+# filed T-0988 ten minutes apart. The merge is clean and this gate then goes red
+# twice: on the duplicate, and on the survivor's queue line, which merge-queue.mjs
+# ate because it reconciles QUEUE.md by id. pr-lap.sh heals both, so what it heals
+# with has to be held: the side on the base never moves, references follow only
+# when they were written where the moving ticket already existed, and both sides
+# already on the base is a refusal rather than a coin toss.
+step "…and a duplicate id renumbers the branch's side, carrying only its own references" \
+  node tools/resolve_id_collisions.mjs --self-test
+
+# And the tool asked of THIS tree, not only of its fixture. Green whenever every id
+# is unique, which needs no base ref at all — the base is only consulted once there
+# is a collision to attribute, so this cannot go red for want of a fetch.
+step "no two tickets in this tree carry the same id" \
+  node tools/resolve_id_collisions.mjs --check
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
