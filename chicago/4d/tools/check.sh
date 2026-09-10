@@ -1287,6 +1287,20 @@ step "…and a duplicate id renumbers the branch's side, carrying only its own r
 step "no two tickets in this tree carry the same id" \
   node tools/resolve_id_collisions.mjs --check
 
+# THE MANIFEST THE PR LAP RESOLVES RESEARCH CONFLICTS BY. It names, file by file,
+# which parts of the derived research layer a tool rewrites from source — so a
+# merge conflict in one of them is cleared by taking either side and rebuilding,
+# the same rule pr-lap.sh has always applied to the five generated files. Held
+# here because the manifest is the safety property: a path that drifts out of the
+# tree, a file claimed by two steps, or a hand_authored file listed as derivable
+# would each let the lap overwrite something nobody derives. The REBUILD itself is
+# proved by the ordinary --check steps throughout this file; this holds the list.
+step "the derived-layer manifest names real files, one owner each, none hand-authored" \
+  node tools/rederive.mjs --check
+
+step "…and its own assertions fire when the manifest is made unsafe" \
+  node tools/rederive.mjs --self-test
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
