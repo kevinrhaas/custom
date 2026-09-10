@@ -102,6 +102,9 @@ const gitOr = (args, fallback = null, opts = {}) => {
 
 const idOfFile = (f) => /^id:\s*(T-\d{4})\s*$/m.exec(readFileSync(f, 'utf8'))?.[1] ?? null;
 const titleOf = (f) => /^title:\s*(.*)$/m.exec(readFileSync(f, 'utf8'))?.[1]?.trim() ?? '';
+const stateOf = (f) => /^state:\s*(\S+)\s*$/m.exec(readFileSync(f, 'utf8'))?.[1] ?? '';
+/** The states `ticket.mjs check` expects to find in QUEUE.md, and only those. */
+const WORKABLE = ['open', 'claimed', 'blocked'];
 
 /** Every ticket file on disk, as { id, file, base } — base = its path from the repo top. */
 function ticketsOnDisk(cwd = APP) {
@@ -252,6 +255,37 @@ function carryReferences(relPath, oldId, newId, addSha, top) {
   return { moved, kept };
 }
 
+/**
+ * A CLOSED TICKET MAY NOT COME BACK INTO THE QUEUE, and restamp cannot help
+ * here. Found on PR #1053, 2026-09-10, by the gate rather than by reasoning.
+ *
+ * That branch had filed T-0990 AND CLOSED IT in the same PR, so it has no queue
+ * line of its own — a done ticket is not workable and `ticket.mjs check` refuses
+ * to find one in QUEUE.md. dev's T-0990 is open and does have one, and after the
+ * merge that single line was the only T-0990 in the file.
+ *
+ * `restamp` resolves the line to rewrite by id AND title (T-0217), then falls
+ * back to the first line carrying the id when no title matches — which is
+ * exactly this case, and the fallback took DEV'S line and relabelled it with the
+ * branch's closed ticket. It prints a NOTE when it guesses, but only if another
+ * line with the old id survives; here none did, so it was silent. The result
+ * gated red: "QUEUE.md lists T-0993, which is not an open ticket (state done)".
+ *
+ * So the moved ticket's own state decides, after the fact and regardless of what
+ * restamp did: a ticket that is not workable holds no line. The survivor's line
+ * is put back separately, below, which is what repairs the theft.
+ */
+function dropQueueLineIfClosed(id, file, top) {
+  if (WORKABLE.includes(stateOf(file))) return null;
+  const prefix = git(['rev-parse', '--show-prefix'], { cwd: APP }).trim();
+  const abs = path.join(top, `${prefix}tickets/QUEUE.md`);
+  const rows = readFileSync(abs, 'utf8').split('\n');
+  const kept = rows.filter((l) => /^(T-\d{4})\b/.exec(l.trim())?.[1] !== id);
+  if (kept.length === rows.length) return null;
+  writeFileSync(abs, kept.join('\n').replace(/\n+$/, '\n'));
+  return `it is ${stateOf(file)}, not workable, so the line restamp gave it was removed`;
+}
+
 /* --------------------------------------------------- the queue line that dies */
 
 /**
@@ -352,7 +386,14 @@ function run() {
         left += kept;
         if (moved) { carried += moved; touched.push(`${rel} (${moved})`); }
       }
-      console.log(`  ${m.name}\n    → ${newId}, queue place kept`);
+      // BEFORE the survivor's line is restored, because restamp may have handed
+      // this ticket the survivor's own line (see dropQueueLineIfClosed). restamp
+      // renamed the file, so it is found again by the id it now carries rather
+      // than by reconstructing a slug this tool does not own.
+      const moved = ticketsOnDisk().find((t) => t.id === newId);
+      const dropped = moved ? dropQueueLineIfClosed(newId, moved.file, top) : null;
+      console.log(`  ${m.name}\n    → ${newId}${dropped ? '' : ', queue place kept'}`);
+      if (dropped) console.log(`    no queue line — ${dropped}`);
       console.log(`    ${carried} reference line(s) carried with it`
         + (touched.length ? `: ${touched.join(', ')}` : ''));
       if (left) {
@@ -379,10 +420,10 @@ async function selfTest() {
     if (!ok) failures += 1;
   };
 
-  const front = (id, title) => `---
+  const front = (id, title, state = 'open') => `---
 id: ${id}
 title: ${title}
-state: open
+state: ${state}
 epic: META
 requested_by: loop
 seen: false
@@ -513,6 +554,31 @@ ${title}.
     console.log('\n  it is idempotent, and says so');
     out = tool();
     check('a second run finds nothing to do', /no collision/.test(out), out.trim());
+
+    // --- PR #1053's shape, which the gate caught and this had got wrong: the
+    // branch FILED AND CLOSED its ticket in the same PR, so it has no queue line
+    // of its own, and the single surviving line is the SURVIVOR'S. restamp's
+    // resolve-by-id fallback relabels that line with the closed ticket, silently.
+    console.log('\n  the moving ticket was closed in the same branch that filed it');
+    writeFileSync(path.join(T, 'T-0005-base-open.md'), front('T-0005', 'The open one on the base'));
+    writeFileSync(path.join(T, 'QUEUE.md'),
+      readFileSync(path.join(T, 'QUEUE.md'), 'utf8').replace(/\n*$/, '\n')
+      + 'T-0005 — The open one on the base\n');
+    G('add', '-A'); G('commit', '-qm', 'base gains T-0005');
+    G('branch', '-f', 'base-ref', 'HEAD');
+    writeFileSync(path.join(T, 'T-0005-branch-done.md'),
+      front('T-0005', 'The one this branch filed and closed', 'done'));
+    G('add', '-A'); G('commit', '-qm', 'branch files and closes its own T-0005');
+
+    out = tool();
+    const newClosed = /→ (T-\d{4})/.exec(out)?.[1];
+    const q2 = readFileSync(path.join(T, 'QUEUE.md'), 'utf8');
+    check('a ticket that is `done` gets NO queue line, whatever restamp did with one',
+      !q2.includes(newClosed), `${newClosed} in queue: ${q2.includes(newClosed)}`);
+    check('…and the open survivor keeps its line rather than losing it to the closed one',
+      /T-0005 — The open one on the base/.test(q2), q2.trim());
+    check('…and the run says the line was removed, rather than removing it silently',
+      /not workable, so the line restamp gave it was removed/.test(out), out.trim());
 
     console.log('\n  it refuses rather than guess');
     // Both sides on the base: the base is broken and this may not choose.
