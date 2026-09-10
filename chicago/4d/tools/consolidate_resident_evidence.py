@@ -102,9 +102,15 @@ REFUSAL_RULES = {
           "readings, so M1 fires and folds a wife onto her husband. A reading whose "
           "forename tokens are ENTIRELY those of a reading of the same surname printed "
           "WITHOUT a female honorific is a different person and never merges onto it. "
-          "The refusal is exact-match only, because that is the shape the honorific "
-          "strip creates: `Mrs. Sabrina Mason` beside `Mason Sabrina A.` is one woman "
-          "printed twice and M3 must still join her (T-0723).",
+          "The test is the printed page and not the shape of the name: ONE SOURCE has "
+          "to set both readings, which is what keeps `Mrs. Sabrina Mason` on `Mason "
+          "Sabrina A.` and `Mrs. Eliza Haight` on the census's Eliza Haight (T-0723). "
+          "It reaches two printings: the honorific reading whose forename tokens are "
+          "exactly the bare reading's, and (T-0951) the honorific reading printed on "
+          "her husband's INITIALS where his own entry sets the forename in full and "
+          "exactly one full forename of that surname fits — `Hadley, Mrs. T. G.` beside "
+          "`Hadley, Timothy Gibson`, both in Fergus 1843. Two fits is a refusal, not a "
+          "choice.",
     "R5": "A PRINTED NAME THIS SPLITTER CANNOT READ AS (surname, forename) AT ALL — a firm "
           "style, an institution, a digit standing where an initial was misread, a "
           "description rather than a name, or more forename tokens than the cap allows. "
@@ -769,11 +775,30 @@ def cluster(appearances):
         # `Brown, Mrs. Rufus B.` at 459, and a directory does not enter one person twice
         # under two spellings. That is a fact about the page rather than about the name.
         #
-        # WHAT IT DELIBERATELY DOES NOT REACH: a husband-name printing whose bare
-        # counterpart is only in ANOTHER body — `Hadley, Mrs. T. G.` against Norris's
-        # `Hadley, T. G.`, and `Mrs. Wm. B. Egan` against Norris's `Egan, Wm. B.` Both
-        # are almost certainly the same shape and neither has the page to prove it, so
-        # they stay merged and T-0903 owns the reading that would settle them.
+        # THE SECOND TEST, T-0951: THE SAME PAGE, AND THE HUSBAND PRINTED IN FULL.
+        # The letter-for-letter test above is exactly right for `Mrs. Rufus B. Brown`
+        # and it misses the commonest way a directory sets this pair, which is with the
+        # wife on her husband's INITIALS and the husband under his whole name three
+        # entries away. Fergus 1843 prints `Hadley, Mrs. T. G. (Reed), dress and cloak
+        # maker, 147½ Lake` at e1164 and `Hadley, Timothy Gibson (Howard & H.), res
+        # alley bet N. Dearborn and Wolcott` at e1166 — two entries, two trades, two
+        # addresses — and because `T. G.` is not `Timothy Gibson` letter for letter, R6
+        # never looked and M2 folded her onto him by the ordinary initial rule. So the
+        # test is widened to the corpus's OWN initial rule: an initials-only honorific
+        # reading reaches the one full forename of that surname its initials fit,
+        # IN ITS OWN SOURCE, and is refused where more than one fits (R3's discipline).
+        #
+        # THE GUARD THAT MATTERS IS UNCHANGED: one source has to print both. That is
+        # what keeps `Mrs. Eliza Haight` on the census's `Eliza Haight` and `Mrs.
+        # Sabrina Mason` on `Mason Sabrina A.`, and it is why this widening does NOT
+        # reach `Taylor, Mrs. C.` (T-0960) — the papers print her, and every bare
+        # Charles Taylor is in the census or a directory, so no page holds the pair.
+        #
+        # WHAT IT STILL DOES NOT REACH: `Mrs. Wm. B. Egan`, the Democrat's letter list
+        # of 1 April 1834. No body prints a bare `Wm. B. Egan` beside her, and the town
+        # already holds the woman under her own forename — Emeline Egan, off Andreas —
+        # so the reading is hers and the ruling that says so is in
+        # data/residents/card_merge_rulings.json rather than in this rule.
         wives = []
         if any(e.get("_female") for e in rows):
             husbands = defaultdict(set)
@@ -786,9 +811,27 @@ def cluster(appearances):
                 for e in rows if e.get("_female") and e.get("source_id")
                 and e["source_id"]
                 in husbands.get(forename_signature(e["_given"]), ())}
-            if printed_together:
+            by_initials = {}
+            for entry in rows:
+                signature = forename_signature(entry["_given"])
+                source = entry.get("source_id")
+                if not (entry.get("_female") and source and signature
+                        and all(is_initial(t) for t in signature)):
+                    continue
+                if source in husbands.get(signature, ()):
+                    continue
+                fits = [s for s in husbands
+                        if source in husbands[s] and len(s) == len(signature)
+                        and any(not is_initial(t) for t in s)
+                        and all(t[0] == i for t, i in zip(s, signature))]
+                if len(fits) == 1:
+                    by_initials[id(entry)] = fits[0]
+            if printed_together or by_initials:
+                printed_together |= {forename_signature(e["_given"])
+                                     for e in rows if id(e) in by_initials}
                 wives = [e for e in rows if e.get("_female")
-                         and forename_signature(e["_given"]) in husbands]
+                         and (forename_signature(e["_given"]) in husbands
+                              or id(e) in by_initials)]
         if wives:
             proof = sorted({e["source_id"] for e in wives if e.get("source_id")
                             and forename_signature(e["_given"]) in printed_together})
@@ -1965,6 +2008,39 @@ def cmd_self_test() -> int:
     else:
         print("  FAIL  Mrs Eliza Haight was split from the census's Eliza Haight on no "
               "evidence but the shape of the name")
+        failures += 1
+
+    # ---- T-0951: THE SAME PAGE, AND THE HUSBAND PRINTED IN FULL --------------
+    ids, refs = bucket(
+        ("d1", "Hadley, Timothy Gibson", "directories", "fergus_1843"),
+        ("d2", "Hadley, Mrs. T. G.", "directories", "fergus_1843"),
+        ("d3", "Hadley, Elijah W.", "directories", "fergus_1843"))
+    wife = [i for i in ids if i.get("held_apart_by") == "R6"]
+    if (len(wife) == 1 and {m["record_id"] for m in wife[0]["members"]} == {"d2"}
+            and any(r["rule"] == "R6" for r in refs)):
+        print("  ok    an initials-only honorific reaches the full forename it fits (R6)")
+    else:
+        print(f"  FAIL  'Hadley, Mrs. T. G.' stayed on Timothy Gibson Hadley: "
+              f"{[(i['id'], sorted(m['record_id'] for m in i['members'])) for i in ids]}")
+        failures += 1
+
+    ids, _ = bucket(
+        ("d1", "Hadley, Timothy Gibson", "directories", "fergus_1843"),
+        ("d2", "Hadley, Mrs. T. G.", "directories", "fergus_1843"),
+        ("d3", "Hadley, Thomas Gray", "directories", "fergus_1843"))
+    if not any(i.get("held_apart_by") == "R6" for i in ids):
+        print("  ok    …and two full forenames fitting the initials refuse it (R3)")
+    else:
+        print("  FAIL  R6 chose between two husbands the initials both fit")
+        failures += 1
+
+    ids, _ = bucket(
+        ("d1", "Hadley, Timothy Gibson", "directories", "fergus_1843"),
+        ("d2", "Hadley, Mrs. T. G.", "directories", "norris_1844"))
+    if not any(i.get("held_apart_by") == "R6" for i in ids):
+        print("  ok    …and no ONE source printing both still stands the rule down")
+    else:
+        print("  FAIL  R6 fired across two bodies — the same-page guard is gone")
         failures += 1
 
     ids, _ = bucket(
