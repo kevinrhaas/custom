@@ -36,8 +36,9 @@
 #               were one publish.sh fault, eight were "dev is red" reports on a dev whose gate
 #               is green), twelve folded into nine survivors that asked the same question. The
 #               research spend is CAUGHT UP — every ruling that reached a card is on a card,
-#               1,282 of 1,282 — so the research band is what is left to spend and the few reads
-#               with yield. The 1840 census cluster goes to an EPIC: 965 heads adjudicated, 13
+#               1,282 of 1,282 — so the research band is what is left to spend, the few reads
+#               with yield, and T-0987 (the directories, a succession ticket at its foot, filed
+#               the same day on his answer). The 1840 census cluster goes to an EPIC: 965 heads adjudicated, 13
 #               matched, and the remaining leaves carry industry counts and no names. The
 #               triangle ceiling no longer gates roofs (every tier inside, balanced by 81,292),
 #               so the roofs band moves up. The FILING RULE above is the same instruction.
@@ -85,14 +86,15 @@
 # --- "finish up any research items first so we can get our best and final list of residents
 # --- and their best and complete profile and businesses and their structures and locations".
 # ---
-# --- WHAT "FINISH" MEANS HERE, MEASURED. measure_research_spend.py: 1,282 rulings reached a
-# --- town person and 1,282 are on a card — nothing adjudicated is unspent. Of 20,739 units held
-# --- across nine sources, 7,634 are read; the unread pools are the Newberry index (4,199 at
-# --- 0.0% match), the directories (7,229 — the ONE pool with real yield; see the note at the
-# --- foot of this band) and the census (84, all continuation counts). So this band is: the
-# --- spends and identity rulings that still put a person, a trade or a place on a card, ordered
-# --- by what each adds, then the handful of reads that still yield names. When it is empty,
-# --- the research is finished for this pass and the town below is built from it.
+# --- WHAT "FINISH" MEANS HERE, MEASURED. measure_research_spend.py: every unit in all nine
+# --- sources is READ — 20,739 of them — 7,634 are spent onto a person of 1835, and 1,282 rulings
+# --- reached a card with 1,282 written. Nothing adjudicated is unspent. The 13,105 unspent units
+# --- are mostly names with no 1835 person to reach (the Newberry index, 4,199 at 0.0% match;
+# --- the directories, 7,229 post-1835 arrivals) or figures without names (the census, 84). So
+# --- this band is: the spends and identity rulings that still put a person, a trade or a place
+# --- on a card, ordered by what each adds; the handful of reads that still yield names; and
+# --- T-0987 at its foot, the one open-ended programme, worked a stretch at a time. When it is
+# --- empty, the research is finished for this pass and the town below is built from it.
 # ---
 # --- T-0962 LEADS because it is the honesty check on the sentence above: the spend meter cannot
 # --- see a resident_crosswalk in every domain, so "1,282 of 1,282" may be an undercount of what
@@ -119,11 +121,13 @@ T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor 
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
 T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
-# --- NOT FILED, AND ASKED INSTEAD: the 7,229 unread directory entries (Fergus 1839/1843,
-# --- Norris 1844). Directories already put 908 rulings on cards — the most of any source — and
-# --- they are the "documented address from later" the owner named for positioning a business.
-# --- Reading them is more than one run. Whether that is a succession ticket here or an epic at
-# --- the foot is the owner's call, put to him on 2026-09-10 with this re-rank.
+T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
+# --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
+# --- the end of band 1." The three directories are transcribed in full; what remains is not
+# --- reading but adjudication — ~196 ties, ~1,100 initial-absent refusals, ~410 could-carry
+# --- trades and addresses — and it is the "documented address from later" he named for
+# --- positioning a business. One stretch per run; the run that closes a stretch files the
+# --- next one `--after T-0987` before it closes, so this line is the programme's cursor.
 
 # --- ==========================================================================
 # --- 2. WHAT THE VISIBLE BAND WOULD TRIP ON — ordering rule 4, and only these three
