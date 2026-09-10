@@ -2248,6 +2248,21 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
 
+# T-1006 (of T-0988). The December 1835 State census counted the town BY CLASS — forty-four
+# stores, eight taverns, twenty-two lawyers — and the register's `trade` is free prose off
+# the printed notice, 152 distinct strings for 206 businesses. There was no class to count
+# against, so the denominator this project had held since T-0581 read `bk_mose1_006` could
+# not be set against anything. The class is ruled once per printed string in
+# data/research/newspapers/trade_class_rulings.json; this re-derives the comparison from
+# the register and the rulings, and it fails on the one thing that must never pass quietly:
+# A BUSINESS NO RULING COVERS. A new notice extracted next week brings a trade string with
+# it, and an unruled string would leave that house out of the count with nothing said.
+step "every business carries a census class, and the December 1835 count re-derives" \
+  python3 tools/trade_census_1835.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/trade_census_1835.py --self-test
+
 # T-0440. A house is minted from whichever printing the corpus carries first, and it took
 # `placement` and `street` from it — so a standing advertisement that ran without an
 # address in its first week and with one afterwards stood at `{"class": "none"}` for good

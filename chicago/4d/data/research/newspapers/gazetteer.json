@@ -57728,6 +57728,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -57785,6 +57789,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -57835,6 +57843,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -57902,6 +57914,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -57962,6 +57978,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58014,6 +58034,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58109,6 +58133,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58164,6 +58192,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58203,6 +58235,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -58254,6 +58290,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58304,6 +58344,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58359,6 +58403,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58412,6 +58460,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -58474,6 +58526,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -58529,6 +58585,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -58581,6 +58641,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58668,6 +58733,11 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "storage_and_forwarding",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58733,6 +58803,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58824,6 +58898,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -58869,6 +58947,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -58918,6 +59000,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -58968,6 +59054,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59020,6 +59110,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59084,6 +59178,11 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59128,6 +59227,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -59202,6 +59305,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -59285,6 +59392,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "printing_office"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59348,6 +59459,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -59403,6 +59518,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59517,6 +59636,10 @@
         "street_from_reading": "South Water Street"
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -59670,6 +59793,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59722,6 +59849,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59805,6 +59936,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59860,6 +59995,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59911,6 +60050,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -59954,6 +60097,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60044,6 +60191,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60086,6 +60237,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "not_stated"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60166,6 +60321,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60256,6 +60415,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60306,6 +60469,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "iron_foundry"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60425,6 +60592,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60477,6 +60648,11 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "steam_saw_mill",
+        "store"
+      ],
+      "trade_class_scope": "outside_town",
       "survival_liberty_required": false
     },
     {
@@ -60524,6 +60700,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "physician"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60573,6 +60753,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "physician"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60665,6 +60849,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "physician"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60750,6 +60938,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -60803,6 +60995,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60846,6 +61043,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "steam_saw_mill",
+        "store"
+      ],
+      "trade_class_scope": "outside_town",
       "survival_liberty_required": true
     },
     {
@@ -60891,6 +61093,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60938,6 +61144,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -60988,6 +61198,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61034,6 +61248,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61111,6 +61329,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61181,6 +61403,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -61243,6 +61469,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61292,6 +61522,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -61380,6 +61614,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -61435,6 +61673,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61481,6 +61723,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61524,6 +61770,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61655,6 +61905,10 @@
         }
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "druggist"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -61711,6 +61965,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -61760,6 +62018,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -61807,6 +62069,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -62140,6 +62406,10 @@
         ]
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62181,6 +62451,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tin_and_copper_manufactory"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -62233,6 +62507,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62276,6 +62554,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -62330,6 +62612,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62471,6 +62757,10 @@
         "street_from_reading": "Lake Street"
       },
       "built_at_scene_date": false,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62514,6 +62804,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -62622,6 +62916,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -62740,6 +63038,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62833,6 +63135,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62876,6 +63182,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62928,6 +63238,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -62976,6 +63290,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -63138,6 +63456,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -63181,6 +63503,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -63224,6 +63550,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -63283,6 +63613,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -63352,6 +63686,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -63395,6 +63733,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -63456,6 +63798,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -63510,6 +63856,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -63573,6 +63923,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -63648,6 +64002,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -63766,6 +64124,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "silversmith_jeweller"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64018,6 +64380,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store",
+        "tin_and_copper_manufactory"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -64072,6 +64439,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tin_and_copper_manufactory"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -64250,6 +64621,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64419,6 +64794,10 @@
         }
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64494,6 +64873,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "not_stated"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64558,6 +64941,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64605,6 +64992,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64687,6 +65078,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -64734,6 +65129,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "not_stated"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64791,6 +65190,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64834,6 +65237,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -64995,6 +65402,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -65090,6 +65501,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -65168,6 +65583,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65217,6 +65636,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "book_store",
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65338,6 +65762,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65485,6 +65913,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65626,6 +66058,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -65670,6 +66106,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65740,6 +66180,10 @@
         }
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65793,6 +66237,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -65855,6 +66303,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -65927,6 +66379,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -65981,6 +66437,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66093,6 +66553,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66148,6 +66612,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66194,6 +66662,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "outside_town",
       "survival_liberty_required": true
     },
     {
@@ -66237,6 +66710,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66391,6 +66868,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66445,6 +66926,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66756,6 +67241,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -66800,6 +67289,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -66847,6 +67340,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -66898,6 +67395,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -66943,6 +67444,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -66986,6 +67491,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -67099,6 +67608,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -67216,6 +67729,10 @@
         }
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -67263,6 +67780,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "steam_saw_mill"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -67307,6 +67828,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -67421,6 +67946,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -67509,6 +68038,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -67730,6 +68263,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -67781,6 +68318,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store",
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -67926,6 +68468,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -67995,6 +68541,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -68131,6 +68681,10 @@
         }
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "druggist"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68221,6 +68775,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68326,6 +68884,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -68411,6 +68973,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -68458,6 +69024,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68507,6 +69077,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -68548,6 +69122,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -68655,6 +69233,10 @@
         "street_from_reading": "South Water Street"
       },
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68697,6 +69279,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "not_stated"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68827,6 +69413,10 @@
         "bookseller and stationer"
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "book_store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68906,6 +69496,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer",
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -68981,6 +69576,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69026,6 +69625,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "lawyer"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69079,6 +69682,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69122,6 +69729,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69191,6 +69802,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -69236,6 +69851,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -69309,6 +69928,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69395,6 +70019,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69444,6 +70072,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69494,6 +70126,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "not_stated"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69539,6 +70175,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -69603,6 +70243,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "school"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -69651,6 +70295,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "printing_office"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69707,6 +70355,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -69756,6 +70408,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "brewery"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69868,6 +70524,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "printing_office"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69918,6 +70578,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -69966,6 +70630,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70020,6 +70688,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70089,6 +70762,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70157,6 +70835,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70215,6 +70897,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70266,6 +70952,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70325,6 +71015,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tavern"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70393,6 +71087,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70438,6 +71136,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70487,6 +71189,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tin_and_copper_manufactory"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -70555,6 +71261,10 @@
         }
       ],
       "built_at_scene_date": false,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -70599,6 +71309,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70658,6 +71372,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70701,6 +71419,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "steam_saw_mill"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70752,6 +71474,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70797,6 +71523,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70844,6 +71574,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "physician"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70891,6 +71625,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70934,6 +71673,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -70977,6 +71720,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71020,6 +71768,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71078,6 +71830,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -71137,6 +71893,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -71184,6 +71944,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71240,6 +72004,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71288,6 +72056,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71344,6 +72116,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "tin_and_copper_manufactory"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71472,6 +72248,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71560,6 +72340,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71650,6 +72434,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -71718,6 +72506,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -71790,6 +72582,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71833,6 +72629,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71878,6 +72678,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71929,6 +72733,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -71988,6 +72797,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -72035,6 +72848,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -72101,6 +72918,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": true
     },
     {
@@ -72149,6 +72970,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -72221,6 +73046,11 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "other",
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -72283,6 +73113,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -72379,6 +73213,10 @@
         }
       },
       "built_at_scene_date": false,
+      "trade_classes": [
+        "store"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     },
     {
@@ -72447,6 +73285,10 @@
         }
       ],
       "built_at_scene_date": true,
+      "trade_classes": [
+        "storage_and_forwarding"
+      ],
+      "trade_class_scope": "in_town",
       "survival_liberty_required": false
     }
   ]

@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 284,
   "church": 491,
-  "books": 203,
+  "books": 202,
   "directories": 7233,
   "newberry_index": 4914,
   "land_sales": 456,
@@ -32,7 +32,7 @@
   },
   "books": {
    "read": 282,
-   "spent": 79
+   "spent": 80
   },
   "directories": {
    "read": 8258,
@@ -481,6 +481,14 @@
    "to": 0,
    "date": "2026-09-10",
    "why": "T-0992 spent the Second Presbyterian roll. T-0962 widened the second hop to read the `matched` container and church entered that report for the first time at 83 reached, 83 judgeable, 0 on a card — not one resident record in the town cited `second_presbyterian_chicago_1892`. tools/spend_second_presbyterian_roll.py writes all 83, two fields on the card and no grade moved: the source id, and a paragraph quoting the crosswalk's own sentence that a roll opening in June 1842 cannot place a person in the town of July 1835. The 37 ambiguous and 330 refused write nothing, and 34 of the 83 are married women's entries printed under a husband's name, so those cards carry the crosswalk's Mrs rule verbatim. With the debt paid the ceiling has no work left to do."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 203,
+   "to": 202,
+   "date": "2026-09-10",
+   "why": "T-1006 spent bk_mose1_006 — the December 1835 State census trade count, ruled onto the business register class by class"
   }
  ],
  "unwritten_ceiling": {

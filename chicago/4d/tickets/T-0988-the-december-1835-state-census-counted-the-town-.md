@@ -1,7 +1,7 @@
 ---
 id: T-0988
 title: The December 1835 State census counted the town's trades and this project has never held a denominator: 44 stores, 8 taverns, 22 lawyers, 14 physicians and eleven more classes, against a business layer whose trade field is free prose
-state: open
+state: split
 epic: TOWN
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
+closed: 2026-09-10
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T20:08:06.437Z
 claimed_run: null
 ---
 
