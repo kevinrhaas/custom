@@ -66,9 +66,19 @@
      "reading": "W",
      "why": "the compositor's W set by the scanner as two V's",
      "evidence": {
-      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "image": "https://archive.org/download/generaldirectory19norr/page/leaf31.jpg",
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "248,1776,328,1742",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
       "reads": "Abbott, W. clerk at Ward Rathbone's, residence same",
+      "read_a_second_time": {
+       "by": "T-0900, an independent second reading off the same leaf image, cropped on the word box recorded with the row.",
+       "reads": "W. — one sort, and the Ward two words along is set from the same one"
+      },
       "and_the_second_hand_agrees": "Abbott, W., clerk at Ward Rathbone's, residence same"
      },
      "ticket": "T-0903"
@@ -12905,9 +12915,19 @@
      "reading": "Ira",
      "why": "the r of Ira read as an i. UNREPAIRED asked for this line by name: Kim Torp reads the same token '(can't read)', so the page image is the only witness there is, and it prints Ira.",
      "evidence": {
-      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "image": "https://archive.org/download/generaldirectory19norr/page/leaf40.jpg",
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "271,2163,358,2125",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
       "reads": "Couch, Ira, proprietor of the Tremont House, corner of Lake and Dearborn sts",
+      "read_a_second_time": {
+       "by": "T-0900, an independent second reading off the same leaf image, cropped on the word box recorded with the row.",
+       "reads": "Ira — the second stroke is an r, with the shoulder and no dot"
+      },
       "the_second_hand_cannot_help": "Kim Torp reads this token '(can't read)'. The page image is the only witness, which is what UNREPAIRED said it would take."
      },
      "ticket": "T-0903"
@@ -14839,9 +14859,19 @@
      "reading": "Wm. Lasalle House",
      "why": "the same W. Only the damaged token is repaired: the splitter reads 'Lasalle House' as part of the given name because the line prints no comma after the forename, and that is a parse, not a transcription defect",
      "evidence": {
-      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "image": "https://archive.org/download/generaldirectory19norr/page/leaf42.jpg",
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "199,617,319,582",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
       "reads": "Day, Wm. Lasalle House, corner of Lasalle and Randolph sts",
+      "read_a_second_time": {
+       "by": "T-0900, an independent second reading off the same leaf image, cropped on the word box recorded with the row.",
+       "reads": "Wm. — and the line prints no comma after it, as the why says"
+      },
       "and_the_second_hand_agrees": "Day, Wm., Lasalle House, corner of Lasalle & Randolph sts"
      },
      "ticket": "T-0903"
@@ -26035,9 +26065,19 @@
      "reading": "G. W",
      "why": "the same W, on the second of two initials",
      "evidence": {
-      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged three times and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg, 1592 x 2860, which is the coordinate space that XML is written in.",
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "image": "https://archive.org/download/generaldirectory19norr/page/leaf49.jpg",
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "495,1758,574,1725",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
       "reads": "Hequenbourg, G. W. clerk, at B. F. Sherman's, res same",
+      "read_a_second_time": {
+       "by": "T-0900, an independent second reading off the same leaf image, cropped on the word box recorded with the row.",
+       "reads": "G. W. — the second initial is one sort, spaced as an initial"
+      },
       "and_the_second_hand_agrees": "Hequenbourg, G.W., clerk, at B.F. Sherman's, res same"
      },
      "ticket": "T-0903"

@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 683, title: 'A directory reading checked by a second pair of eyes', kind: 'change', ts: '2026-09-10T07:40:13.838Z', date: 'Sep 10, 2026, 2:40 AM CT',
+    items: [
+      'Four forenames in the 1844 city directory are damaged in the scanner\u2019s text and were read off the photographs of the printed page instead \u2014 among them the proprietor of the Tremont House, set by the scanner as \u201cIia\u201d and read as Ira Couch. All four have now been read a second time, independently, off the same photographs. All four stand.',
+      'Each reading now records the exact box on the page it was cropped from, so anyone can go back to the line and look rather than take the reading on trust. The check that guards these readings refuses one that cites no box, or that was read by a single pair of eyes.',
+      'The citation had quoted one page size for the whole book. The scanned pages are not all the same size, and a reader following that figure would have cropped the wrong part of the page and concluded the reading was invented. Every reading now names the size of its own page.',
+      'Nothing in the 1835 town moved. The names, the matches to townspeople and the cards they sit on are unchanged.'
+    ] },
   { v: 682, title: 'A woman who kept a house on Water Street gets a card', kind: 'change', ts: '2026-09-10T05:10:41.390Z', date: 'Sep 10, 2026, 12:10 AM CT',
     items: [
       'The Chicago Democrat of 19 August 1835 invites the town to a charity sale \u201cat the house of Mrs. C. Taylor, Water-st.\u201d \u2014 one of the very few private dwellings the papers ever name. The town held no card for her; it does now.',
