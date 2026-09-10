@@ -26,7 +26,7 @@
   "derived_refusals": 1861,
   "declared_merges": 390,
   "appearances_moved_by_a_landed_adjudication": 160,
-  "declared_refusals": 2117
+  "declared_refusals": 2116
  },
  "identities": [
   {"id":"id_abbot_g","surname":"abbot","forename":"g","canonical_person_id":"abbot_8_g","town_person_ids":["abbot_8_g"],"household_id":"hh_abbot_8_g","merge_rules":["M1"],"appearances":[{"domain":"residents","record_id":"abbot_8_g","source_id":null,"as_read":"[?] G. Abbot","locator":"hh_abbot_8_g","describes_date":null,"evidence_class":"town_layer"}],"domains":["residents"],"sources_cited_on_the_card":["chicago_democrat_1833_1835"],"rulings_reaching_this_person":5,"rulings_that_state_no_source":5},
@@ -10159,7 +10159,6 @@
   {"a":"BATES JOHN JR","b":"Harriet Ellen Bates","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BIAS GARRET","b":"0 residents named Bias","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BIAS GARRETT","b":"0 residents named Bias","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
-  {"a":"BLANCHARD GURTREY","b":"3 residents named Blanchard","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BOND ELI A","b":"H Bond","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BROSON ARTHUR","b":"0 residents named Broson","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BROWN RUFUS","b":"6 residents named Brown","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
@@ -10520,7 +10519,7 @@
   {"a":"Blake | Ogle Co., III. (Kett, H, F., 4 Co.) 1878: 7 6 9 . Blake","b":"John Blakey; Edio L Blake; Levi Blake; Edio L. Blake","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0594","data/research/newberry_index/leads.json"]},
   {"a":"Blake | Pike Co., III. (Oiapman, C. C. A Ce.. Pieaa.) I8BO1 Bla","b":"John Blakey; Edio L Blake; Levi Blake; Edio L. Blake","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0595","data/research/newberry_index/leads.json"]},
   {"a":"Blake r | Winnebago Co., I I I . (Ketl, H. F„ 4 Co., Pnb","b":"John Blakey; Edio L Blake; Levi Blake; Edio L. Blake","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0596","data/research/newberry_index/leads.json"]},
-  {"a":"Blanchard | — Bureau Co., Ill, (Kelt & Ce, Pub.) I877i 38a.","b":"F Gantry Blanchard; Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard; Gantry Blanchard; F. Gantry Blanchard","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0602","data/research/newberry_index/leads.json"]},
+  {"a":"Blanchard | — Bureau Co., Ill, (Kelt & Ce, Pub.) I877i 38a.","b":"F Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard; Gantry Blanchard; F. Gantry Blanchard","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0602","data/research/newberry_index/leads.json"]},
   {"a":"laner | Chicago, III. Wndreas, A. T.) 1654-61 1,3.","b":"James Lane; [?] Langer; Jacob Langer","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0605","data/research/newberry_index/leads.json"]},
   {"a":"alocher fa iilv Blodgett | Chicago, III. Cr.oscs, J, and Kirkland, 1.) 1095t","b":"E B Blodget; Tyler K. Blodgett; Blodgett's Brickyard; E. B. Blodget; Tyler K. Blodgett","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0621","data/research/newberry_index/leads.json"]},
   {"a":"Blodget | Re. indicea. j 1 83Z4.II Chicago,","b":"E B Blodget; Tyler K. Blodgett; Josiah I Bloget; Blodgett's Brickyard; E. B. Blodget; Tyler K. Blodgett","rule":"D2","declared_in":"newberry_index/lead_crosswalk.json#refusals","evidence":["nbi_v01_0622","data/research/newberry_index/leads.json"]},
