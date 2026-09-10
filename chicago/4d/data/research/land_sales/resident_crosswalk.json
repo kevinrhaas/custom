@@ -601,7 +601,7 @@
       "resident_name": "F Gantry Blanchard",
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
-      "rule": "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -611,15 +611,6 @@
           "middle_initial": "G",
           "reading_middle_initial": "G",
           "outcome": "survives"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "blanchard_w_g",
@@ -657,7 +648,7 @@
       "resident_name": "F Gantry Blanchard",
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
-      "rule": "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -667,15 +658,6 @@
           "middle_initial": "G",
           "reading_middle_initial": "G",
           "outcome": "survives"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "blanchard_w_g",
@@ -4940,7 +4922,7 @@
       "resident_name": "F Gantry Blanchard",
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
-      "rule": "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -4950,15 +4932,6 @@
           "middle_initial": "G",
           "reading_middle_initial": "G",
           "outcome": "survives"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "blanchard_w_g",
@@ -6323,8 +6296,8 @@
     },
     {
       "a": "BLANCHARD GURTREY",
-      "b": "3 residents named Blanchard",
-      "rule": "BLANCHARD GURTREY is refused against F Gantry Blanchard and Gantry Blanchard and W. G. Blanchard: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "2 residents named Blanchard",
+      "rule": "BLANCHARD GURTREY is refused against F Gantry Blanchard and W. G. Blanchard: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -6332,15 +6305,6 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "G",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
