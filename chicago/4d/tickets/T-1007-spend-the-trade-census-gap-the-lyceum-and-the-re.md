@@ -1,7 +1,7 @@
 ---
 id: T-1007
 title: Spend the trade-census gap: the Lyceum and the Reading Room recorded as institutions, the bank and lottery office as documented absences, and the count-shortfall classes filled where a source names the business
-state: open
+state: claimed
 epic: TOWN
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0988
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 4:21:34 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34531463261
 ---
 
 Spend the trade-census gap: the Lyceum and the Reading Room recorded as institutions, the bank and lottery office as documented absences, and the count-shortfall classes filled where a source names the business.
