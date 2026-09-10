@@ -6,9 +6,9 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 490,
+  "church": 491,
   "books": 195,
-  "directories": 7232,
+  "directories": 7233,
   "newberry_index": 4914,
   "land_sales": 456,
   "old_settlers": 442
@@ -28,7 +28,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1254
+   "spent": 1253
   },
   "books": {
    "read": 246,
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1026
+   "spent": 1025
   },
   "newberry_index": {
    "read": 7005,
@@ -424,6 +424,22 @@
    "to": 255,
    "date": "2026-09-10",
    "why": "T-0989 replaced the second hop's file-level source fallback with a test a card can actually fail. A generated crosswalk states its one source id at the top of the file, and until now a ruling that stated nothing of its own was counted WRITTEN whenever the card cited that id anywhere, for any reason at all — so a single citation put there by another pass satisfied every ruling in the file at once. 811 of the 1,359 person-reaching rulings in this repo were judged that way. A fallback ruling must now also NAME what it adjudicated: the read unit it cites, or the sheet a sheet-and-line ruling sits on. Nothing was spent or unspent by this commit; 255 rulings in directories that had been reported as reaching their card are now reported as not reaching it, and this ceiling records that true 255 rather than hiding it. The case, checked by hand: hh_garrett_a cites fergus_chicago_directory_1839 because a later resident-research pass wrote a generic directories block on the card, while Fergus 1839's ruling for Garrett — entry f1839_e0527, 'Garrett, Augustus, auctioneer, real estate, bds. Sauganash Hotel', printed page 15 — has never been written onto it. The number is paid down by spending those rulings onto the cards, not by raising it again."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 490,
+   "to": 491,
+   "date": "2026-09-10",
+   "why": "T-0993 folded `blanchard_gantry` onto `blanchard_f_gantry` — one man the town held twice, the tax list of 1833 printing Francis Gurtrey Blanchard by his middle name alone. Nothing was un-read and no reading went unruled: this domain's crosswalk carried a REFUSAL made about the folded card (\"The surname 'Blanchard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gantry Blanchard'\"), and a refusal is counted as a ruling made. Fold the card and the refusal is no longer made — so `spent` falls by one and `unspent` rises by one, on a domain that read nothing new. The ceiling is raised by exactly one to admit that, and it is the arithmetic of a consolidation, not of reading further ahead. Every consolidation that folds a card will do this to every domain whose crosswalk refused it; the number comes back down as the domain is spent."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7232,
+   "to": 7233,
+   "date": "2026-09-10",
+   "why": "T-0993 folded `blanchard_gantry` onto `blanchard_f_gantry` — one man the town held twice, the tax list of 1833 printing Francis Gurtrey Blanchard by his middle name alone. Nothing was un-read and no reading went unruled: this domain's crosswalk carried a REFUSAL made about the folded card (\"The surname 'Blanchard' stands on the Fergus 1839 directory and no line under it carries the initial 'G' of 'Gantry Blanchard'\"), and a refusal is counted as a ruling made. Fold the card and the refusal is no longer made — so `spent` falls by one and `unspent` rises by one, on a domain that read nothing new. The ceiling is raised by exactly one to admit that, and it is the arithmetic of a consolidation, not of reading further ahead. Every consolidation that folds a card will do this to every domain whose crosswalk refused it; the number comes back down as the domain is spent."
   }
  ],
  "lowered": [

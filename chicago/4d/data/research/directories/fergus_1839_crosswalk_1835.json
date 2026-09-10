@@ -16,7 +16,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1354
+   "n": 1353
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -38,7 +38,7 @@
   "residents_matched_one_entry": 159,
   "residents_ambiguous": 47,
   "residents_contested": 29,
-  "residents_surname_only_refused": 274,
+  "residents_surname_only_refused": 273,
   "voters_matched_one_entry": 123,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 74,
@@ -6955,11 +6955,6 @@
     "name": "G G Trowbridge",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Trowbridge' is in Fergus 1839 and no entry under it carries the initial 'G' of 'G G Trowbridge'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Gantry Blanchard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Blanchard' is in Fergus 1839 and no entry under it carries the initial 'G' of 'Gantry Blanchard'. A surname-only agreement is a refusal."
    },
    {
     "name": "Gardner Brooks",

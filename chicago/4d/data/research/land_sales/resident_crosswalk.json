@@ -6,13 +6,14 @@
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
     "upheld": 33,
+    "named": 1,
     "refused": 14,
     "unruled": 90
   },
   "counts": {
     "purchasers": 431,
-    "matched": 123,
-    "refused": 308,
+    "matched": 124,
+    "refused": 307,
     "firms": 2
   },
   "matches": [
@@ -602,7 +603,7 @@
       "resident_name": "F Gantry Blanchard",
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
-      "rule": "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -612,15 +613,6 @@
           "middle_initial": "G",
           "reading_middle_initial": "G",
           "outcome": "survives"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "blanchard_w_g",
@@ -658,7 +650,7 @@
       "resident_name": "F Gantry Blanchard",
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
-      "rule": "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -668,15 +660,6 @@
           "middle_initial": "G",
           "reading_middle_initial": "G",
           "outcome": "survives"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "blanchard_w_g",
@@ -703,6 +686,60 @@
         ],
         "reasoning": "UPHELD on the middle name, which the town prints in full and the register prints three ways. The card reads F Gantry Blanchard because the town's own directories print him so: Fergus 1843 has 'Blanchard, Francis Gurtrey, capitalist, res 45 Wells', Fergus 1839 'Blanchard, Francis G., real estate dealer, Lake street', Norris 1844 'Blanchard, Francis G.' — one man, forename Francis, middle name Gurtrey, which is the token this card carries as Gantry. The register spells the same man BLANCHARD F G, BLANCHARD F G AS, BLANCHARD FRANCIS G and BLANCHARD GURTREY, and every one of those is a reading of Francis Gurtrey. So the initial that fired the mechanical rule is not what carries the ruling: what carries it is a middle name the town prints out loud and the register repeats, on a surname the layer holds three of. The trade agrees too — a real estate dealer of 1839 is what a man who bought school-section town lots in the sale of October 1833 becomes, and that is a consistency rather than a proof. THE THING THIS RULING DOES NOT DECIDE: the residents layer holds a SECOND card, Gantry Blanchard, and on this reading the two are very likely one man. That is a duplicate-card question, filed as T-0993 beside T-0844's cluster of six; this ruling rules only that the register's F G is the card the crosswalk named. This spelling is the same day and the same block as ls0073 — lot 2 of block 26 against lot 7 — and the trailing AS is the register's own token, carried as the clerk wrote it and not read as part of a name."
       },
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "BLANCHARD GURTREY",
+      "record_ids": [
+        "ls0076",
+        "ls0077",
+        "ls0078",
+        "ls0079",
+        "ls0080",
+        "ls0081"
+      ],
+      "resident_id": "blanchard_f_gantry",
+      "resident_name": "F Gantry Blanchard",
+      "household_id": "hh_blanchard_f_gantry",
+      "match": "named_by_ruling",
+      "rule": "NAMED, NOT UPHELD — the mechanical rule never proposed this one and could not. `namesake.choose` weighs the FIRST forename token, and the register prints this man's MIDDLE name in the forename's place, so GURTREY was put to all the Blanchards the town holds and named none of them. What names him is the town's own directory: Fergus 1843 prints 'Blanchard, Francis Gurtrey, capitalist, res 45 Wells [died, Brooklyn, N.Y., 1872.]' — forename Francis, middle name Gurtrey — and Fergus 1839 and Norris 1844 print the same man 'Francis G.' GURTREY is that middle name, and the card carries it as Gantry because the poll of 1834 prints him 'Blanchard, F. Gantry'. THE REGISTER PROVES ITS OWN HABIT HERE, AT ONE SALE. The six GURTREY rows (purchase nos 0367525-0367530, volume 817 page 027) and the three F G rows (0376893-0376895, volume 818 page 010) are the SAME school section — section 16, T39N R14E, type SC — entered on 22 and 24 October 1833, the days the school section was sold off by lot and by block. One buyer, one auction, two volumes of the register, two renderings of one name; the domain's README already records this habit under T-0990, where HUNTER E E and HUNTER EDWARD E are the same 80 acres of section 13 on the same day at the same price. WHAT IS NOT NAMED BY IT. The town's other documented Blanchard is W. G. Blanchard, the house-and-land agent of the Democrat of 9 July 1834, and his forename initial is W: he is refused on the same ground the crosswalk refuses him against every other Blanchard reading. Joseph Blanchard the blacksmith is a man of the directories and not an 1835 resident. Nothing reached prints a second Gurtrey Blanchard anywhere. AND IT IS STILL A PURCHASE. The Residence column reads UNKNOWN on all six rows, so this names a buyer and never an occupant, and it places nobody on that ground. The six rows are lot 1 of block 2, block 21, lot 8 of block 141, block 3, lot 7 of block 82 and lot 1 of block 141 of the school section, $547.00 in all (ls0076-ls0081). Two of them state a price per acre of 3.69 against 0000.00 acres, which is the acreage of the F G row ls0074 standing in the wrong column of the deposit; it is carried as the register has it and read as no acreage at all.",
+      "rivals": [
+        {
+          "key": "blanchard_f_gantry",
+          "name": "F Gantry Blanchard",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "blanchard_w_g",
+          "name": "W. G. Blanchard",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "named",
+        "ruled_on": "2026-09-10",
+        "ticket": "T-0993",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844",
+          "chicago_voter_lists_1833_1835_irad",
+          "chicago_democrat_1833_1835"
+        ],
+        "reasoning": "NAMED, NOT UPHELD — the mechanical rule never proposed this one and could not. `namesake.choose` weighs the FIRST forename token, and the register prints this man's MIDDLE name in the forename's place, so GURTREY was put to all the Blanchards the town holds and named none of them. What names him is the town's own directory: Fergus 1843 prints 'Blanchard, Francis Gurtrey, capitalist, res 45 Wells [died, Brooklyn, N.Y., 1872.]' — forename Francis, middle name Gurtrey — and Fergus 1839 and Norris 1844 print the same man 'Francis G.' GURTREY is that middle name, and the card carries it as Gantry because the poll of 1834 prints him 'Blanchard, F. Gantry'. THE REGISTER PROVES ITS OWN HABIT HERE, AT ONE SALE. The six GURTREY rows (purchase nos 0367525-0367530, volume 817 page 027) and the three F G rows (0376893-0376895, volume 818 page 010) are the SAME school section — section 16, T39N R14E, type SC — entered on 22 and 24 October 1833, the days the school section was sold off by lot and by block. One buyer, one auction, two volumes of the register, two renderings of one name; the domain's README already records this habit under T-0990, where HUNTER E E and HUNTER EDWARD E are the same 80 acres of section 13 on the same day at the same price. WHAT IS NOT NAMED BY IT. The town's other documented Blanchard is W. G. Blanchard, the house-and-land agent of the Democrat of 9 July 1834, and his forename initial is W: he is refused on the same ground the crosswalk refuses him against every other Blanchard reading. Joseph Blanchard the blacksmith is a man of the directories and not an 1835 resident. Nothing reached prints a second Gurtrey Blanchard anywhere. AND IT IS STILL A PURCHASE. The Residence column reads UNKNOWN on all six rows, so this names a buyer and never an occupant, and it places nobody on that ground. The six rows are lot 1 of block 2, block 21, lot 8 of block 141, block 3, lot 7 of block 82 and lot 1 of block 141 of the school section, $547.00 in all (ls0076-ls0081). Two of them state a price per acre of 3.69 against 0000.00 acres, which is the acreage of the F G row ls0074 standing in the wrong column of the deposit; it is carried as the register has it and read as no acreage at all."
+      },
+      "was_refused_as": "BLANCHARD GURTREY is refused against F Gantry Blanchard and W. G. Blanchard: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -4941,7 +4978,7 @@
       "resident_name": "F Gantry Blanchard",
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
-      "rule": "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -4951,15 +4988,6 @@
           "middle_initial": "G",
           "reading_middle_initial": "G",
           "outcome": "survives"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "blanchard_w_g",
@@ -6317,51 +6345,6 @@
       "rule": "BIAS GARRETT is refused against 0 residents named Bias: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0072"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "BLANCHARD GURTREY",
-      "b": "3 residents named Blanchard",
-      "rule": "BLANCHARD GURTREY is refused against F Gantry Blanchard and Gantry Blanchard and W. G. Blanchard: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "blanchard_f_gantry",
-          "name": "F Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "G",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "blanchard_gantry",
-          "name": "Gantry Blanchard",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "blanchard_w_g",
-          "name": "W. G. Blanchard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "G",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0076",
-        "ls0077",
-        "ls0078",
-        "ls0079",
-        "ls0080",
-        "ls0081"
       ],
       "evidence": [
         "data/residents/index.json"

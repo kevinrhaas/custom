@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "48d940fb10c40c2c468ab80d0f37cd962f10a19090cd22fd1fb837dd8b58e863",
+    "fingerprint": "522d8dd769529fb99f247dde71902138e0dd31f1ec114325a467e84cf4d85ccb",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1357,
+      "residents": 1356,
       "structures": 380,
       "voters": 345
     }
@@ -2852,11 +2852,6 @@
         {
           "id": "blanchard_f_gantry",
           "name": "F Gantry Blanchard",
-          "rule": "exact surname"
-        },
-        {
-          "id": "blanchard_gantry",
-          "name": "Gantry Blanchard",
           "rule": "exact surname"
         },
         {

@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1357,
+  "town_people": 1356,
   "open_clusters": 15,
   "cards_in_open_clusters": 33,
   "rulings": {
-   "distinct": 12,
-   "merge": 30,
+   "distinct": 13,
+   "merge": 31,
    "undecided_rule": 8
   },
-  "landed_merges": 30,
-  "cards_folded": 49
+  "landed_merges": 31,
+  "cards_folded": 50
  },
  "landed": [
   {
@@ -58,6 +58,16 @@
     "beaubien_john_b"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "blanchard",
+   "survivor": "blanchard_f_gantry",
+   "survivor_household": "hh_blanchard_f_gantry",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "blanchard_gantry"
+   ],
+   "rule": "C8"
   },
   {
    "cluster": "brown-william-h",

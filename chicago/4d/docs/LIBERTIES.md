@@ -10385,9 +10385,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 486 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 484 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 485 people
+**Scope:** `residents.persons[civic_mint]` — 484 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10398,8 +10398,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **485
-today**, and the figure has moved four times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **484
+today**, and the figure has moved five times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10420,8 +10420,13 @@ it to 486 on 2026-09-10, ruling the six clusters T-0839 had referred to the owne
 reason written on both cards. Two of the four folded because the middle initial that had
 argued against them turned out not to be printed at all: `hunt_c_s` was named from the
 trailing s of the abbreviation `Chas.` taken for a second initial, and `kinzie_john_s` from
-the scanner's digit in `JOHN 8. KINZIE`. The number this liberty declares is the number of
-containers standing, and it will fall again as the remaining rulings are made.
+the scanner's digit in `JOHN 8. KINZIE`. T-0993 took it to 484 on the same day, folding
+`blanchard_gantry` onto `blanchard_f_gantry`: the tax list of 1833 prints Francis Gurtrey
+Blanchard by his middle name alone, and the candidate test — which weighs the FIRST forename
+token — could not see the pair at all. That one was found by hand, reading the land register,
+and it is the first fold this file records that the derivation did not raise. The number this
+liberty declares is the number of containers standing, and it will fall again as the
+remaining rulings are made.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
@@ -10445,7 +10450,7 @@ id, its source and the ladder rule that fired, in `civic_evidence[]`, `church_ev
 L207, L213 and L214 record and it is the only way this dataset can carry a person at all:
 **that each of them is a HOUSEHOLD.** One member, `division: unplaced`, `lives_at` and
 `works_at` unattested, `occupation` recorded as none, no origin, no party, no family, no
-figure drawn (L1). A reader who counts this town's households is counting 485 containers
+figure drawn (L1). A reader who counts this town's households is counting 484 containers
 that were written to hold a name, and no single record says so, because no single record
 is wrong.
 

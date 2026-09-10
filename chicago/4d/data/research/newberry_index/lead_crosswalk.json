@@ -3577,7 +3577,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Blanchard' name Illinois and neither Chicago nor Cook County, so the lead against F Gantry Blanchard; Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Blanchard' name Illinois and neither Chicago nor Cook County, so the lead against F Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_0602"
    ],
@@ -3585,11 +3585,6 @@
     {
      "id": "blanchard_f_gantry",
      "name": "F Gantry Blanchard",
-     "rule": "exact surname"
-    },
-    {
-     "id": "blanchard_gantry",
-     "name": "Gantry Blanchard",
      "rule": "exact surname"
     },
     {
@@ -3610,7 +3605,6 @@
    ],
    "person_ids": [
     "blanchard_f_gantry",
-    "blanchard_gantry",
     "blanchard_w_g",
     "blanshard_f_g",
     "blanshard_g"
@@ -60415,10 +60409,10 @@
   {
    "record_id": "nbi_v01_0602",
    "a": "Blanchard | — Bureau Co., Ill, (Kelt & Ce, Pub.) I877i 38a.",
-   "b": "F Gantry Blanchard; Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard; Gantry Blanchard; F. Gantry Blanchard",
+   "b": "F Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard; Gantry Blanchard; F. Gantry Blanchard",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Blanchard' name Illinois and neither Chicago nor Cook County, so the lead against F Gantry Blanchard; Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Blanchard | — Bureau Co., Ill, (Kelt & Ce, Pub.) I877i 38a.' against F Gantry Blanchard; Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard; Gantry Blanchard; F. Gantry Blanchard.",
+   "rule": "Refused. All 1 card(s) heading 'Blanchard' name Illinois and neither Chicago nor Cook County, so the lead against F Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Blanchard | — Bureau Co., Ill, (Kelt & Ce, Pub.) I877i 38a.' against F Gantry Blanchard; W. G. Blanchard; F G Blanshard; G. Blanshard; Gantry Blanchard; F. Gantry Blanchard.",
    "layers": [
     "residents",
     "voters"
@@ -60429,7 +60423,6 @@
    ],
    "person_ids": [
     "blanchard_f_gantry",
-    "blanchard_gantry",
     "blanchard_w_g",
     "blanshard_f_g",
     "blanshard_g"

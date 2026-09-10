@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 692, title: 'A man the town had twice, under his own middle name', kind: 'change', ts: '2026-09-10T15:57:36.611Z', date: 'Sep 10, 2026, 10:57 AM CT',
+    items: [
+      'Francis Gurtrey Blanchard \u2014 a capitalist of 45 Wells Street, by the town\u2019s own directory of 1843 \u2014 stood on two resident cards. The tax list of 1833 printed him \u201cBlanchard, Gantry\u201d, by his middle name alone; the poll list of 1834 printed him \u201cBlanchard, F. Gantry\u201d. He is one card now, and nothing was lost: the folded record is kept whole and every reference to it still resolves.',
+      'The check that finds duplicate cards could never have found this one. It compares the FIRST forename of two names, so \u201cGantry\u201d and \u201cF Gantry\u201d were two different men to it and always would have been. This pair was found by hand, reading the land register, and it is the first fold of a resident card that the machine did not raise.',
+      'The rule written for it is deliberately narrow, and it asks for a page rather than a hunch: the lone name must be a distinctive word no one else in the cluster carries as a forename; exactly one documented man of the surname must carry it as a middle name printed in full; and some source must be caught printing that man BOTH ways. Here the land office is: at one auction of the school section in October 1833 it entered him as BLANCHARD F G in one volume and BLANCHARD GURTREY in another.',
+      'Those six GURTREY rows are now his. They are six more town lots \u2014 on blocks 2, 3, 21, 82 and 141 \u2014 and they take what the register sold him from $373 to $920. His arrival bound moves back a year, to the tax list of 1833, and he stops being counted among the townspeople known from a single line.',
+      'A purchase is still only a purchase. The register\u2019s residence column says UNKNOWN on all six, so none of this puts him on that ground, and no grade was raised on the strength of it.'
+    ] },
   { v: 691, title: 'Forty judgements about the land register, put back', kind: 'fix', ts: '2026-09-10T15:12:13.106Z', date: 'Sep 10, 2026, 10:12 AM CT',
     items: [
       'Twelve resident cards had quietly got back a federal land purchase that had already been judged not to be theirs. The judgements were made; they stopped being applied.',

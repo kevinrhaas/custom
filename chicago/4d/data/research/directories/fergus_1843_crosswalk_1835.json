@@ -10,11 +10,11 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1355,
+  "residents_considered": 1354,
   "matched_one_1843_entry": 120,
   "matched_more_than_one_ambiguous": 41,
   "one_1843_entry_contested_by_two_residents": 15,
-  "surname_present_initial_absent_refused": 347,
+  "surname_present_initial_absent_refused": 346,
   "initial_agreed_forenames_disagreed_refused": 94,
   "of_those_a_garbled_printed_forename": 1,
   "residents_left_with_no_1843_entry_by_that_refusal": 44,
@@ -7628,13 +7628,6 @@
    "surname_in_1843": "Thomas",
    "candidates": 6,
    "rule": "The surname 'Thomas' is in Fergus 1843 and no entry under it carries the initial 'F' of 'Frederick Thomas'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Gantry Blanchard",
-   "person_id": "blanchard_gantry",
-   "surname_in_1843": "Blanchard",
-   "candidates": 2,
-   "rule": "The surname 'Blanchard' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Gantry Blanchard'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Gardner Brooks",

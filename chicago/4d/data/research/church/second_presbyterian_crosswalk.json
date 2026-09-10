@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 938,
-    "residents_considered": 1354,
+    "residents_considered": 1353,
     "residents_matched_one_line": 83,
     "residents_ambiguous": 36,
-    "residents_surname_only_refused": 329
+    "residents_surname_only_refused": 328
   },
   "matched": [
     {
@@ -3048,15 +3048,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Blanchard' stands on the Second Presbyterian roll and no line under it carries the initial 'F' of 'F Gantry Blanchard'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Gantry Blanchard",
-      "person_id": "blanchard_gantry",
-      "household_id": "hh_blanchard_gantry",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 2,
-      "rule": "The surname 'Blanchard' stands on the Second Presbyterian roll and no line under it carries the initial 'G' of 'Gantry Blanchard'. A surname-only agreement is a refusal."
     },
     {
       "name": "W. G. Blanchard",
