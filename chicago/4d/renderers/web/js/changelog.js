@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 689, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T12:45:14.185Z', date: 'Sep 10, 2026, 7:45 AM CT',
+    items: [
+      'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',
+      'A new check reads every resident card and refuses any 1835 trade whose only cited volume is about another year. Nine cards were standing on one; eight remain, each with its reasoning written down, and the count can now only fall.',
+      'The eight are all trades printed BEFORE the scene rather than after it, which the existing later-trade pointer cannot hold. They are filed as an open question rather than quietly changed.'
+    ] },
   { v: 688, title: 'The doctor the town had been carrying as three men', kind: 'change', ts: '2026-09-10T11:58:01.879Z', date: 'Sep 10, 2026, 6:58 AM CT',
     items: [
       'Dr Henry Van der Bogart stood on three separate resident cards \u2014 a name from a temperance meeting, a name on a post-office list, and the doctor himself with his death notice. All three are one man, and the town\u2019s cards fall from 1,359 people to 1,357.',
