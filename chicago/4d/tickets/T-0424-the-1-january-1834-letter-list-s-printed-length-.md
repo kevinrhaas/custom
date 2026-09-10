@@ -1,7 +1,7 @@
 ---
 id: T-0424
 title: The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 4:55:43 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34534407125
 ---
 
 T-0331 settled which return the 1834-03-04 crop carries — the Chicago post office's
