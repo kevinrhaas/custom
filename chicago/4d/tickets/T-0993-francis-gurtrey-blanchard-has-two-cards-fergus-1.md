@@ -1,7 +1,7 @@
 ---
 id: T-0993
 title: Francis Gurtrey Blanchard has two cards: Fergus 1843 prints the man T-0990 ruled on, and 'Gantry Blanchard' is very likely the same person
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1065
 claimed_by: run 9/10/2026, 5:15:34 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T11:24:16.159Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34464830439
 ---
 
