@@ -110,7 +110,7 @@
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-1007 — Spend the trade-census gap: the Lyceum and the Reading Room recorded as institutions, the bank and lottery office as documented absences, and the count-shortfall classes filled where a source names the business
-T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
+T-1009 — Mint the 73 lines of the 1 January 1834 letter list that no transcription reached — the printed list is read, the names are not on cards
 T-0849 — Hurlbut names Gurdon Hubbard's parents and the dataset has nowhere to put them: kin[] rows point at a household in this town, and Elizur and Abigail Hubbard have none
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0866 — The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
@@ -334,4 +334,3 @@ T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller r
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
 T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-
