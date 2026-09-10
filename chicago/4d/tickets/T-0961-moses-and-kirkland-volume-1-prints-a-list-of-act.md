@@ -1,7 +1,7 @@
 ---
 id: T-0961
 title: Moses and Kirkland volume 1 prints a LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830 with nativity, year and remarks columns, and T-0581 found it without transcribing it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1078
 claimed_by: run 9/10/2026, 11:55:30 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T17:46:25.420Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34504662950
 ---
 
