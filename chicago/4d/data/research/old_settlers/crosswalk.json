@@ -1044,7 +1044,7 @@
    "source_id": "calumet_club_early_chicago_1879",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'kennicott', none with the forename initial 'j'; same surname, different forename initial never merges"
+   "why": "the residents layer has 2 bearer(s) of 'kennicott', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1879r082",

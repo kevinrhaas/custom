@@ -131,7 +131,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1360
+   "n": 1356
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -155,7 +155,7 @@
   "scene_reaching_rows": 4,
   "scene_reaching_residents_matched": 1,
   "residents_matched_one_entry": 17,
-  "residents_ambiguous": 12,
+  "residents_ambiguous": 11,
   "residents_ambiguous_same_man_reprinted": 7,
   "residents_contested": 2,
   "residents_surname_only_refused": 54,
@@ -1074,51 +1074,6 @@
     "reaches_scene": [],
     "person_id": "rice_john",
     "household_id": "hh_rice_john",
-    "grade_1835": "attested"
-   },
-   {
-    "name": "John S Kinzie",
-    "same_man_reprinted": false,
-    "rule": "Surname 'Kinzie' folds to the same string as the register entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_r0021",
-      "as_printed": "John 11. Kinzie",
-      "printed_page": 38,
-      "role": "alderman",
-      "office": "alderman",
-      "body": "city_of_chicago",
-      "ward_1839": 6,
-      "year": null,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": null
-     },
-     {
-      "claim": "f1839_r0087",
-      "as_printed": "James Kinzie",
-      "printed_page": 39,
-      "role": "sheriff_of_cook_county",
-      "office": "sheriff_of_cook_county",
-      "body": "cook_county",
-      "ward_1839": null,
-      "year": 1831,
-      "ex_officio": false,
-      "column_run_on": false,
-      "year_ocr_repaired": false,
-      "reaches_scene": "adjacent"
-     }
-    ],
-    "offices": [
-     "alderman",
-     "sheriff_of_cook_county"
-    ],
-    "reaches_scene": [
-     "adjacent"
-    ],
-    "person_id": "kinzie_john_s",
-    "household_id": "hh_kinzie_john_s",
     "grade_1835": "attested"
    },
    {

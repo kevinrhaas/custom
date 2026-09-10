@@ -90,16 +90,15 @@
    ],
    "merge_ruling": [
     {
-     "ticket": "T-0839",
-     "verdict": "undecided",
-     "rule": "R3",
+     "ticket": "T-0844",
+     "verdict": "distinct",
+     "rule": "D4",
      "cluster": "walker-george",
      "weighed_against": [
       "walker_george_e"
      ],
-     "referred_to": "owner",
-     "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker.",
-     "against_merge": "The middle initials E and H disagree and neither card documents the man — one is letter-list only, the other a Black Hawk enrollment with a press mention. No anchor, so C4 does not fire. His call."
+     "for_merge": "Both are Georges in chicago_democrat_1833_1835 and the town holds no third Walker of that forename. Kept verbatim from T-0839 so the argument survives its refusal.",
+     "against_merge": "EACH MIDDLE INITIAL IS PRINTED TWICE, BY INDEPENDENT HANDS. George E. Walker is 'George E. Walker' in the Democrat's letter list of 2 July 1834 and 'Walker, George E.' in Fergus's old-settler death notice of 9 November 1874. George H. Walker is 'WALKER, GEORGE H' on the 1832 Black Hawk enrollment roll and 'G. H. Walker' in the Democrat's letter list of 1 April 1834. A copyist's mis-set is the WHOLE ground for folding a contradicted middle initial, and it does not survive two independent attestations on each side: four printings, two sources apiece, E twice and H twice. The town's other Walker cards are James and Jeremiah. T-0480's research adds, without asserting it, a George E. Walker in an 1835 Illinois land record near Utica — competing geography, recorded and not leaned on."
     }
    ]
   }

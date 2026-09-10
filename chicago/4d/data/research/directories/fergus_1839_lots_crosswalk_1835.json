@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1360
+   "n": 1356
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -42,7 +42,7 @@
   "bidders_with_a_usable_surname": 96,
   "residents_matched_one_bidder": 17,
   "residents_ambiguous": 1,
-  "residents_contested": 12,
+  "residents_contested": 11,
   "residents_surname_only_refused": 86,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
@@ -1173,7 +1173,7 @@
    },
    {
     "name": "James Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1234,8 +1234,7 @@
     "grade_1835": "attested",
     "contested_with": [
      "John Harris Kinzie",
-     "Juliette Augusta Magill Kinzie",
-     "John S Kinzie"
+     "Juliette Augusta Magill Kinzie"
     ]
    },
    {
@@ -1310,7 +1309,7 @@
    },
    {
     "name": "John Harris Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1371,8 +1370,7 @@
     "grade_1835": "attested",
     "contested_with": [
      "James Kinzie",
-     "Juliette Augusta Magill Kinzie",
-     "John S Kinzie"
+     "Juliette Augusta Magill Kinzie"
     ]
    },
    {
@@ -1409,73 +1407,6 @@
     "contested_with": [
      "Col. Jean Baptiste Beaubien",
      "Josette LaFramboise Beaubien"
-    ]
-   },
-   {
-    "name": "John S Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. H. Kinzie",
-      "lots_bid": 3,
-      "amount_read_usd": 631,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0090",
-        "block": 7,
-        "block_carried": true,
-        "lot": 10,
-        "amount_usd": 273,
-        "as_printed": {
-         "block": null,
-         "lot": "IO",
-         "bidder": "J. H. Kinzie,",
-         "amount": "273"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       },
-       {
-        "claim": "f1839_lot0091",
-        "block": 7,
-        "block_carried": true,
-        "lot": 11,
-        "amount_usd": 207,
-        "as_printed": {
-         "block": null,
-         "lot": "1 1",
-         "bidder": "II",
-         "amount": "207"
-        },
-        "printed_page": 48,
-        "bidder_ditto": true
-       },
-       {
-        "claim": "f1839_lot0100",
-        "block": 7,
-        "block_carried": true,
-        "lot": 20,
-        "amount_usd": 151,
-        "as_printed": {
-         "block": null,
-         "lot": "20",
-         "bidder": "J. H. Kinzie,",
-         "amount": "151"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false
-       }
-      ]
-     }
-    ],
-    "person_id": "kinzie_john_s",
-    "household_id": "hh_kinzie_john_s",
-    "grade_1835": "attested",
-    "contested_with": [
-     "James Kinzie",
-     "John Harris Kinzie",
-     "Juliette Augusta Magill Kinzie"
     ]
    },
    {
@@ -1588,7 +1519,7 @@
    },
    {
     "name": "Juliette Augusta Magill Kinzie",
-    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "J. H. Kinzie",
@@ -1649,8 +1580,7 @@
     "grade_1835": "attested",
     "contested_with": [
      "James Kinzie",
-     "John Harris Kinzie",
-     "John S Kinzie"
+     "John Harris Kinzie"
     ]
    }
   ],

@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "00e6b66ed5e7c6018634a8b9b195f71e62b1f2b9f18560ed9e41f6dfe29e5f3f",
+    "fingerprint": "7e0b26364e6621bbc6c3bc6394fc9148f360d292cadbbc9fbc88503bb2630b76",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1363,
+      "residents": 1359,
       "structures": 380,
       "voters": 345
     }
@@ -15760,11 +15760,6 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "hunt_c_s",
-          "name": "C S Hunt",
-          "rule": "exact surname"
-        },
-        {
           "id": "hunt_charles_cotesworth_pinckney",
           "name": "Charles Cotesworth Pinckney Hunt",
           "rule": "exact surname"
@@ -17016,11 +17011,6 @@
         {
           "id": "kennicott_m_h",
           "name": "M H Kennicott",
-          "rule": "exact surname"
-        },
-        {
-          "id": "kennicott_w_l",
-          "name": "W L Kennicott",
           "rule": "exact surname"
         },
         {
