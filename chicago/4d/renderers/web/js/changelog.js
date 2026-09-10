@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 683, title: 'Twenty-six land purchases judged, and nine taken back off the cards', kind: 'change', ts: '2026-09-10T06:57:44.506Z', date: 'Sep 10, 2026, 1:57 AM CT',
+    items: [
+      'The federal land register names 431 purchasers around Chicago before 1837, and a mechanical rule had proposed which of them are people the town already holds. A proposal is not a judgement. The twenty-six the first reading matched have now been ruled on one by one: sixteen upheld, ten refused.',
+      'What upholds one is a token the two records SHARE \u2014 a middle initial the land office and the town clerk both print, a trade the purchase is what you would expect from, or the register\u2019s own residence column, which reads COOK on three of John Ludby\u2019s four rows.',
+      'What refuses one is a bare name on each side. Nine cards therefore LOST a paragraph they had been given: among them John Hale, whose twenty-six school-section parcels are each entered by an Ebenezer Hale as well \u2014 an open question this refuses to settle by default \u2014 and A. Garrett the auctioneer, of whose forename the town has never read a single printing.',
+      'The nearest miss is recorded rather than rounded up: a letter waited at the post office for Ira Minard on 20 May 1835, and an Ira Minard entered 161 acres north of the town five weeks later. Striking, and still two bare names.',
+    ] },
   { v: 682, title: 'A woman who kept a house on Water Street gets a card', kind: 'change', ts: '2026-09-10T05:10:41.390Z', date: 'Sep 10, 2026, 12:10 AM CT',
     items: [
       'The Chicago Democrat of 19 August 1835 invites the town to a charity sale \u201cat the house of Mrs. C. Taylor, Water-st.\u201d \u2014 one of the very few private dwellings the papers ever name. The town held no card for her; it does now.',

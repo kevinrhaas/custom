@@ -375,20 +375,32 @@ def apply_to_person(person: dict, row: dict) -> bool:
 
 
 def retract_from_person(person: dict, household: dict) -> bool:
-    """The inverse of apply_to_person, and the reason it can exist: the paragraph is the
-    LAST thing appended to the note, so it can be cut back off at its marker.
+    """The inverse of apply_to_person: the paragraph is cut back off between the two
+    literals that bound it, MARKER and LADDER_LIMIT.
 
     T-0700. Before it, a proposal could only ever be written: the crosswalk proposed, this
     pass wrote, and nothing could take it back. A ruling that REFUSES a proposal has to be
     able to, or the ruling is only a file — A. Garrett & Co. is a firm, and the card said
-    the man entered eighty acres. If the paragraph is not the tail of the note the cut is
-    refused rather than guessed at, and the caller says so.
+    the man entered eighty acres.
+
+    T-0850. The cut used to require the paragraph to be the TAIL of the note, because that
+    is where this pass appends it. It is not the tail forever: a LATER pass appends its own
+    paragraph after it, and Joseph Chandler's card carried the 1840 census under this one
+    the day a ruling refused his purchase. The span is still not guessed at — both ends are
+    exact literals this module writes, and an interior cut closes the gap with one space —
+    but a note that carries the marker without the limit after it is refused as before,
+    because then the end of the paragraph is genuinely unknown.
     """
     note = person.get("note") or ""
     if MARKER not in note:
         return False
-    head = note[:note.index(MARKER)].rstrip()
-    person["note"] = head
+    start = note.index(MARKER)
+    end = note.find(LADDER_LIMIT, start)
+    if end < 0:
+        return False
+    head = note[:start].rstrip()
+    tail = note[end + len(LADDER_LIMIT):].lstrip()
+    person["note"] = ("%s %s" % (head, tail)).strip() if tail else head
     if SOURCE_ID in (person.get("sources") or []):
         person["sources"] = [s for s in person["sources"] if s != SOURCE_ID]
     # …and the source id goes only if NOTHING else on the card still rests on it.
@@ -408,11 +420,11 @@ def retract(quiet: bool = False) -> int:
             note = person.get("note") or ""
             if MARKER not in note or (hh.get("id"), person.get("id")) in ruled:
                 continue
-            if not note.rstrip().endswith(LADDER_LIMIT):
+            if LADDER_LIMIT not in note[note.index(MARKER):]:
                 raise SystemExit(
-                    "%s/%s — this pass's paragraph is no longer the tail of the note, so "
-                    "it cannot be cut off at its marker. Retract it by hand and say why."
-                    % (hh.get("id"), person.get("id")))
+                    "%s/%s — this pass's paragraph carries its marker and not the limit "
+                    "that ends it, so where it stops is unknown. Retract it by hand and "
+                    "say why." % (hh.get("id"), person.get("id")))
             if retract_from_person(person, hh):
                 changed = True
                 taken += 1
@@ -632,6 +644,23 @@ def self_test() -> int:
     want("the write must be reversible: apply then retract returns the record",
          retract_from_person(roundtrip, {"id": "hh_x", "persons": [roundtrip]})
          and roundtrip == original)
+    # T-0850: and it is reversible from the MIDDLE of a note as well, which is where a
+    # later pass leaves it. Chandler's card is this shape: land sales, then the 1840 census.
+    buried = json.loads(json.dumps(original))
+    apply_to_person(buried, rows[0])
+    buried["note"] += " A LATER PASS WROTE THIS. And a second sentence of it."
+    want("the write must be reversible when a later pass has appended below it",
+         retract_from_person(buried, {"id": "hh_x", "persons": [buried]})
+         and buried["note"] == "Existing sentence. A LATER PASS WROTE THIS. And a second "
+                               "sentence of it."
+         and buried["sources"] == original["sources"])
+    # A marker with no limit after it is where the paragraph ends unknown, and it refuses.
+    truncated = json.loads(json.dumps(original))
+    apply_to_person(truncated, rows[0])
+    truncated["note"] = truncated["note"].replace(LADDER_LIMIT, "")
+    want("a paragraph whose closing limit is gone must refuse the cut",
+         not retract_from_person(truncated, {"id": "hh_x", "persons": [truncated]}))
+
     # …and the source id STAYS when another block on the card still rests on it.
     kept = json.loads(json.dumps(original))
     apply_to_person(kept, rows[0])
