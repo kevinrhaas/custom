@@ -1260,6 +1260,15 @@ step "the bake builds the ref it was given, and the nightly still builds dev" \
 step "restamp moves the queue line it was handed, not the other one" \
   node tools/test_ticket_restamp.mjs
 
+# `new --after T-NNNN` is how a run files what it finds BESIDE the work it serves
+# instead of at the foot of the queue (owner, 2026-09-10: the file had reached 195
+# lines with the bottom third never worked). A placement flag can fail four quiet
+# ways — land at a fixed index, move a neighbour, fall back without saying so, or
+# leak the anchor id into the title — and this runs the same call against two
+# orderings of one fixture so the line is shown to follow the ANCHOR.
+step "new --after places directly under the named ticket and moves nothing else" \
+  node tools/test_ticket_after.mjs
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to

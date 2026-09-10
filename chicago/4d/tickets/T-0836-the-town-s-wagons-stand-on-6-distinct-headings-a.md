@@ -57,3 +57,31 @@ Not this ticket's call to make quietly: it is a claim about how the town looked.
 **Links:** T-0431 (found it) · `tools/generate_yard_goods.py` ·
 `tools/smoke_renderer.mjs` (the assertion, near the `townWagons` block) ·
 `data/yard/town_trade_goods.json`.
+
+## Folded in from T-0825 (2026-09-10) — the same six-heading wagon red; T-0836 diagnoses why the rule caps at 6
+
+*T-0825: dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings*
+
+dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings.
+
+**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+
+**Measured 2026-09-05, on T-0693's run and NOT caused by it.**
+
+`SMOKE_VIEWPORT=desktop SMOKE_STAGE=2 node tools/smoke_renderer.mjs --published`, run on a
+detached worktree at plain `origin/dev` (2078f85dc) with no branch changes at all, fails with:
+
+```
+FAIL  desktop 1280x800: the town's wagons vary in type and in the way they stand
+      — 23 farm_box, 17 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees
+```
+
+The same assertion fails identically on the T-0693 branch, whose diff touches only resident
+household records, `renderers/web/js/residents.js`, four tools and the changelog — no wagon
+record, no furniture generator, no archetype. So the red is dev's, and it dates from after
+`dev-smoke-state.json`'s last desktop part-2 reading (PASS, 2026-09-04T23:36Z); both readings
+are filed in that record by this PR.
+
+**What to find out:** the check wants more distinct headings than the placement rule is now
+producing. Either the rule's heading spread narrowed under a recent change, or the threshold
+moved; the type mix (23/17/23) looks healthy, so the heading term is the one to read first.

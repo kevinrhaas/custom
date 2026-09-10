@@ -1,7 +1,7 @@
 ---
 id: T-0925
 title: Three runs read 33S7-9YYJ-L3 on the same morning and their line counts disagree: reconcile PRs #1013, #1014 and #1015 into one reading of the leaf
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0957: its two residuals — a second_readings copy of #1015 and the silent claim --force — belong with the dispute they came from
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:05.740Z
 claimed_run: null
 ---
 

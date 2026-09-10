@@ -1,7 +1,7 @@
 ---
 id: T-0945
 title: Two open readings of NARA M704 roll 57 leaf n167 disagree on manufactures_and_trades and write the leaf to two different filenames
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0944: the same leaf n167 and the same 5-residual
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:06.090Z
 claimed_run: null
 ---
 

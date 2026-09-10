@@ -1,7 +1,7 @@
 ---
 id: T-0806
 title: Drain lap 2: the four census and books PRs, whose real tail is their coverage declarations
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the four PRs it names (#841, #856, #858, #850) have all merged
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:10.749Z
 claimed_run: null
 ---
 

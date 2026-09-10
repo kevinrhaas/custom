@@ -1,7 +1,7 @@
 ---
 id: T-0218
 title: The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: superseded by #765, which raised all three scene-detail ceilings on the owner's ruling; every tier is inside its ceiling on dev
 needs_bake: false
+closed_at: 2026-09-10T04:20:10.244Z
+claimed_run: null
 ---
 
 The 'balanced' scene-detail ceiling is breached at Lake and Canal, at both viewports.

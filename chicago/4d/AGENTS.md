@@ -245,9 +245,16 @@ is the contract. The short form:
   it: `ticket.mjs check`/`board`, `publish.sh` before its copy, `deploy.yml` before the
   Pages upload. **Never `git add -f` them**; if one shows in `git status`, the ignore rule
   is the fault.
-- **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
-  "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
-  rule is what makes his priorities durable across runs.
+- **New work found mid-run: extend, place, or make it an epic — in that order** (owner,
+  2026-09-10, after the queue reached 195 lines: *"I don't want you to keep adding a whole
+  bunch of tickets below your current one and working them … I want fewer tickets to
+  work"*). First, **if an open ticket already owns the question, add the finding to it**
+  and file nothing. Second, if it is a real one-run piece of the goal, `ticket.mjs new
+  "title" --after T-NNNN` places it directly under the ticket it serves — beside related
+  work, not at the foot. Third, **if finishing would take more than five tickets, it is an
+  epic**: one ticket under `EPICS` at the foot of QUEUE carrying the list, and no more.
+  The loop does not work an epic until the owner promotes it. **Agents never move an
+  existing line — only the owner re-ranks.** That is what keeps his priorities durable.
 - **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
   starts. This is not optional bookkeeping; an owner request going untracked for days is
   the exact failure this system exists to close.

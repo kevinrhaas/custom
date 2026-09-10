@@ -1,7 +1,7 @@
 ---
 id: T-0943
 title: Test 33S7-9YYJ-L3 against printed 218 (33S7-9YYJ-PC) line by line: T-0744 moved both pairing keys onto PC and a sequence test is what would close it
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0942: the rest of 33S7-9YYJ-L3 once T-0957 settles its footing: the SCHOOLS block and the PC sequence test
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:06.971Z
 claimed_run: null
 ---
 

@@ -53,9 +53,21 @@ merge that decides mergeability (T-0857). Everything that needs one now builds i
    PR is open — and that is fine: the tool carries `tickets.json` to the published
    mirror as it writes it, so no second publish is needed (T-0154). Nothing to stage
    afterwards either — the board and both `tickets.json` are untracked (T-0937).
-6. Found new work along the way? `node tools/ticket.mjs new "title" --by loop` —
-   it lands at the **bottom** of QUEUE. Agents never reorder QUEUE; only the owner
-   does. That one rule is what makes the owner's priorities durable.
+6. Found new work along the way? **Three questions, in this order, before `new`**
+   (owner, 2026-09-10 — the queue had reached 195 lines, most of them filed under the
+   ticket that found them and never worked):
+   1. **Does an open ticket already own this question?** Then add it there — a bullet
+      in its acceptance, the evidence cited — and file nothing. Two tickets for one
+      question is how the pile grew.
+   2. **Is it a real, one-run piece of THIS goal?** Then
+      `node tools/ticket.mjs new "title" --after T-NNNN` puts it directly under the
+      ticket it serves, inside that band. Placing beside related work is not
+      re-ranking; it is the only insertion an agent makes.
+   3. **Would it take more than five tickets to finish?** Then it is an **epic**:
+      file ONE ticket at the foot of QUEUE under `EPICS` carrying the list, and stop.
+      The loop does not work an epic until the owner promotes it out of that band.
+   Only the owner moves an existing line. `new` with no `--after` still appends to
+   the bottom, but that is for the owner's own filings, not for a run's.
 7. **Finish the PR inside the run that opened it.** Merge it when the gate is green,
    or `block` it, or label it `hold` and say why — but never end a run with your own
    PR sitting open. The next section is what that costs.

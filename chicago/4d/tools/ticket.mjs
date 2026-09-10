@@ -365,6 +365,26 @@ function queueAppend(t) {
   writeFileSync(QUEUE, cur + `${t.id} — ${t.title}\n`);
 }
 
+// PLACE BESIDE THE WORK IT SERVES (owner, 2026-09-10). A run that files what it finds
+// at the foot of the queue leaves it there: by 2026-09-10 the file had reached 195
+// lines, and the bottom third was findings filed under the ticket that found them and
+// never worked. `new --after T-NNNN` puts the new line directly under the ticket it
+// grew out of, INSIDE that ticket's band, so the queue's shape survives a run.
+//
+// This is placement, not re-ranking: it inserts one line at a position an existing
+// ticket already defines, and it never moves a line the owner placed. Returns false
+// when the anchor is not in the queue (closed, blocked, or a typo), and the caller
+// then appends and says so — a quiet fallback would put the line somewhere the run
+// did not choose and the owner cannot see.
+function queueInsertAfter(t, afterId) {
+  const lines = queueLines();
+  const at = lines.findIndex((l) => queueId(l) === afterId);
+  if (at < 0) return false;
+  lines.splice(at + 1, 0, `${t.id} — ${t.title}`);
+  writeFileSync(QUEUE, lines.join('\n').replace(/\n+$/, '\n'));
+  return true;
+}
+
 function queueLines() {
   if (!existsSync(QUEUE)) return [];
   return readFileSync(QUEUE, 'utf8').split('\n');
@@ -664,8 +684,11 @@ const tickets = loadAll();
 switch (cmd) {
   case 'new': {
     const title = args.filter((a) => !a.startsWith('--')
-      && a !== flag('epic') && a !== flag('by') && a !== flag('effort') && a !== flag('legacy')).join(' ');
-    if (!title) { console.error('usage: ticket.mjs new "title" [--epic E] [--by owner|loop|steward] [--seen] [--needs-bake] [--effort M] [--legacy OLD-ID]'); process.exit(1); }
+      && a !== flag('epic') && a !== flag('by') && a !== flag('effort') && a !== flag('legacy')
+      && a !== flag('after')).join(' ');
+    if (!title) { console.error('usage: ticket.mjs new "title" [--after T-NNNN] [--epic E] [--by owner|loop|steward] [--seen] [--needs-bake] [--effort M] [--legacy OLD-ID]\n'
+      + '  --after T-NNNN  place the new line directly under that ticket, inside its band (a run\'s\n'
+      + '                  filings go here — beside the work they serve, never at the foot)'); process.exit(1); }
     const id = idOf(nextIdNum(tickets));
     const t = {
       file: path.join(DIR, `${id}-${slugOf(title)}.md`),
@@ -679,8 +702,23 @@ switch (cmd) {
       needs_bake: has('needs-bake'),
       body: `\n${title}.\n\n**Acceptance:** (state it before working — the definition of done, never weakened to pass)\n`,
     };
-    writeTicket(t); queueAppend(t); generateBoard(loadAll());
-    console.log(`${id} created → ${path.relative(ROOT, t.file)} (appended to QUEUE bottom — the owner orders it)`);
+    writeTicket(t);
+    // Where the line goes. `--after` is the run's placement; a bare `new` is the owner's
+    // own filing, or a run that found nothing to stand beside — and the message says
+    // which happened, so a fallback is never mistaken for a choice.
+    const afterRaw = flag('after');
+    const after = afterRaw ? (/^\d+$/.test(afterRaw) ? idOf(+afterRaw) : afterRaw.toUpperCase()) : null;
+    let where;
+    if (after && queueInsertAfter(t, after)) {
+      where = `placed directly under ${after}, inside its band`;
+    } else {
+      queueAppend(t);
+      where = after
+        ? `${after} is not in QUEUE (closed, blocked, or mistyped) — appended to the bottom instead; move it or pick a live anchor`
+        : 'appended to QUEUE bottom — the owner orders it; a run should pass --after T-NNNN';
+    }
+    generateBoard(loadAll());
+    console.log(`${id} created → ${path.relative(ROOT, t.file)} (${where})`);
     break;
   }
   case 'claim': {

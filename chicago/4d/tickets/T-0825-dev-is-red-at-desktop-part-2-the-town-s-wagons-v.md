@@ -1,7 +1,7 @@
 ---
 id: T-0825
 title: dev is red at desktop part 2: the town's wagons vary in type and in the way they stand — 23 farm_box, 17 cart, 23 covered, 6 distinct headings
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0836: the same six-heading wagon red; T-0836 diagnoses why the rule caps at 6
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:05.389Z
 claimed_run: null
 ---
 

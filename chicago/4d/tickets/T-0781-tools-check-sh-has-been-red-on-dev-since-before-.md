@@ -1,7 +1,7 @@
 ---
 id: T-0781
 title: tools/check.sh has been red on dev since before 2026-09-05: four checks fail on an untouched checkout
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: fixed by T-0780 (#889) — yard goods, frontage works, north_water and the west_water duplicate all verified green on dev
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:08.826Z
 claimed_run: null
 ---
 

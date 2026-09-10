@@ -1,7 +1,7 @@
 ---
 id: T-0728
 title: dev's own gate is red before any branch touches it: three research cohorts are stale and seven household records no longer re-derive from the ladder
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: repaired by T-0739 (#863) — pilot --gate 0, mint_civic_residents --check re-derives, compile_scene --check OK on dev
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:08.493Z
 claimed_run: null
 ---
 

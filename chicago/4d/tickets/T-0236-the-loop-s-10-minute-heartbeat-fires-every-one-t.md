@@ -1,7 +1,7 @@
 ---
 id: T-0236
 title: The loop's 10-minute heartbeat fires every one to four hours, and the gaps are widening
-state: open
+state: withdrawn
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: focus.json runs self-dispatch the next slice within a minute and the cron is a backstop; the lane is at one slice
 needs_bake: false
+closed_at: 2026-09-10T04:20:11.084Z
+claimed_run: null
 ---
 
 `polecat-platform/.github/workflows/steward-focus.yml` is the loop's heartbeat.
