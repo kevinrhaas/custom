@@ -1,10 +1,41 @@
 export const CHANGELOG = [ // newest first
-  { v: 686, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T09:16:36.605Z', date: 'Sep 10, 2026, 4:16 AM CT',
+  { v: 690, title: 'A land purchase returned to the firm that made it', kind: 'fix', ts: '2026-09-10T13:43:17.384Z', date: 'Sep 10, 2026, 8:43 AM CT',
     items: [
       'The federal land register sells ground to partnerships as well as to people, and twice on its 953 rows it says so \u2014 \u201cGarrett A et co\u201d and \u201cPruyne P and co\u201d. Both were being read as men.',
       'Peter Pruyne\u2019s card said the register entered him six times and counted the firm\u2019s three acres and $310 among his own purchases. It now says five, and the firm\u2019s entry stands under the firm.',
       'A. Garrett & Co. entered eighty acres south of the town on 1 December 1835 and no reading of the register carried it. There is now a record of what the house bought, where, when and for how much, naming the one partner the page names \u2014 as a partner, not as the buyer.',
       'The identification of the house with the town\u2019s A. Garrett, the auctioneer, is probably right and is not what changed. What changed is that a partnership\u2019s purchase is no longer written onto a man as his own.'
+    ] },
+  { v: 689, title: 'A shopkeeper found in the paper a week after the scene', kind: 'change', ts: '2026-09-10T12:45:14.185Z', date: 'Sep 10, 2026, 7:45 AM CT',
+    items: [
+      'Peter Cohen was recorded as possibly gone by the summer of 1835. The Chicago Democrat of 8 July 1835 prints his own advertisement, at his old stand, so his card now reads present and his trade rests on a printing inside the scene window instead of one from 1833.',
+      'A new check reads every resident card and refuses any 1835 trade whose only cited volume is about another year. Nine cards were standing on one; eight remain, each with its reasoning written down, and the count can now only fall.',
+      'The eight are all trades printed BEFORE the scene rather than after it, which the existing later-trade pointer cannot hold. They are filed as an open question rather than quietly changed.'
+    ] },
+  { v: 688, title: 'The doctor the town had been carrying as three men', kind: 'change', ts: '2026-09-10T11:58:01.879Z', date: 'Sep 10, 2026, 6:58 AM CT',
+    items: [
+      'Dr Henry Van der Bogart stood on three separate resident cards \u2014 a name from a temperance meeting, a name on a post-office list, and the doctor himself with his death notice. All three are one man, and the town\u2019s cards fall from 1,359 people to 1,357.',
+      'Two of the three were the same printed line read twice: the list of letters waiting uncalled-for at the Chicago post office on 20 May 1835 had a card of its own AND was already cited on the doctor\u2019s card, at the same column of the same issue.',
+      'The third was harder and is what the ruling was owed. The town had been holding \u201cH. Van Den Bogart\u201d and \u201cDr Henry Van der Bogart\u201d apart because DEN and DER are two real Dutch particles and not merely a misprint. Reading the papers settles it: the Chicago Democrat sets this one man\u2019s name three different ways inside sixteen months \u2014 Van Den in February 1834, Ven De in October 1834, Vanderbogart in May 1835 \u2014 so the difference the split rested on is one the printer himself does not keep to.',
+      'Two things came out of the reading that the town did not have. He sat on the executive committee the Chicago Temperance Society elected in the Presbyterian Church on the evening of Thursday 30 January 1834, beside Philo Carpenter and two of the town\u2019s doctors; and he was named again that October to the committee of seventy a town meeting appointed against gambling. The second of those had never been read at all.',
+      'What the page does NOT say is recorded too. The notice\u2019s left edge is cut off by a letter or two on almost every line, and the honorific in front of his name survives only as \u201cr.\u201d \u2014 which fits \u201cDr.\u201d exactly as well as the \u201cMr.\u201d it was transcribed as. So the card does not claim he was called doctor there; it says the printing cannot tell you.',
+      'Nothing was deleted: both folded cards are kept whole, every reference to them still resolves, and the sources they carried are now on the one card.'
+    ] },
+  { v: 687, title: 'A church roll that had never reached a single card', kind: 'change', ts: '2026-09-10T09:47:20.015Z', date: 'Sep 10, 2026, 4:47 AM CT',
+    items: [
+      'The 1892 membership roll of the Second Presbyterian Church of Chicago had been read and adjudicated against the townspeople months ago \u2014 83 of its lines matched somebody the town holds a card for \u2014 and not one of those 83 cards said so. The judgement lived in a research file and nowhere a visitor could see it. All 83 cards now carry it.',
+      'Each card is told exactly one thing: the printed line as it stands on the page, its page number, when and how that member was admitted, and the rule that matched it. Nothing else on the card moved \u2014 no grade, no arrival date, no address.',
+      'The church was organised in June 1842 and its roll runs to 1892; one of these members was admitted in 1888. So every card says, in the roll\u2019s own reading, that a name on this list cannot put anybody in the town of July 1835. It is a lead, not a residency.',
+      'The roll prints married women under their husbands\u2019 names \u2014 \u201cBarry, Mrs. William Taylor\u201d \u2014 and 34 of the 83 are such lines. Those cards say so plainly: the line met a man\u2019s NAME, not the man. The 37 matches the evidence could not decide and the 330 it refused were written nowhere, because a rival still standing is not a finding.',
+      'With that done, every research source this project has adjudicated is now written onto the cards it names: no judgement is left sitting in a file.'
+    ] },
+  { v: 686, title: 'Fourteen more land purchases judged, and the directories settle eleven', kind: 'change', ts: '2026-09-10T09:06:43.574Z', date: 'Sep 10, 2026, 4:06 AM CT',
+    items: [
+      'The judging of the federal land register continues, one bounded group at a time. This one is the hardest fourteen: the purchases where the town holds MORE THAN ONE person of the surname and only a forename initial chose between them. Eleven upheld, three refused.',
+      'What decided them was not the initial but the town\u2019s own later directories, which very often print the whole forename the 1835 card only holds a letter of. The land office wrote MONTGOMERY LOTON W; Fergus\u2019s directory of 1843 prints \u201cMontgomery, Loton W., shoemaker\u201d. It wrote FOOT STAN; the same shelf prints Star, and then Starr, a teamster at Clark and Monroe.',
+      'Sometimes the register settles it against itself. HUNTER E E and HUNTER EDWARD E are the same eighty acres, the same day and the same hundred dollars entered twice \u2014 and the fuller reading is the one that fills in the residence column.',
+      'The three refusals are the three with no directory line at all: a Goodrich known from one line of an 1833 tax list, a Smith from one line of an 1834 poll, a Morrison from one letter that waited uncalled-for at the post office. Their cards give back six purchases and 231 acres. A name read once, and a name entered on ground, still do not make one man.',
+      'Nothing in the town moved: no grade was raised, no resident minted, and no purchase became a place anyone lived.',
     ] },
   { v: 685, title: 'Six townspeople who were two records each, decided', kind: 'change', ts: '2026-09-10T08:40:24.222Z', date: 'Sep 10, 2026, 3:40 AM CT',
     items: [

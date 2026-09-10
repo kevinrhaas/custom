@@ -68,11 +68,20 @@ RICHER_UNPLACED_IDS = (
 
 
 def load_households() -> dict[str, dict]:
+    """The layer, plus the households a landed merge ruling folded (T-0842).
+
+    A frozen member the town has since ruled a duplicate is redirected, not deleted,
+    and it resolves out of `data/residents/merged/` exactly as it stood on the day the
+    merge landed. `freeze.folded_people()` carries the reasoning.
+    """
     index = json.loads((RESIDENTS / "index.json").read_text())
-    return {
-        entry["id"]: json.loads((RESIDENTS / entry["file"]).read_text())
-        for entry in index["households"]
-    }
+    out = {}
+    for record, _person in freeze.folded_people().values():
+        if record.get("id"):
+            out[record["id"]] = record
+    for entry in index["households"]:
+        out[entry["id"]] = json.loads((RESIDENTS / entry["file"]).read_text())
+    return out
 
 
 def member(hh: dict, evidence: str, reason: str) -> dict:
@@ -170,6 +179,10 @@ def main() -> int:
     doc = derive()
     # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
     # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
+    # A member the town has since ruled a duplicate is still studied and still counted,
+    # and the gate SAYS so rather than counting them in silence (T-0842).
+    for line in freeze.redirected(row["person_id"] for row in doc["people"]):
+        print("   redirected by a landed merge ruling: %s" % line)
     if args.gate:
         return freeze.gate(OUT, doc, "resident research pilot")
     return freeze.write(OUT, doc, "resident research pilot: wrote 75 people (5 established, 20 richer unplaced, 50 letter-list)")

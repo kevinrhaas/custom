@@ -1287,6 +1287,20 @@ step "…and a duplicate id renumbers the branch's side, carrying only its own r
 step "no two tickets in this tree carry the same id" \
   node tools/resolve_id_collisions.mjs --check
 
+# THE MANIFEST THE PR LAP RESOLVES RESEARCH CONFLICTS BY. It names, file by file,
+# which parts of the derived research layer a tool rewrites from source — so a
+# merge conflict in one of them is cleared by taking either side and rebuilding,
+# the same rule pr-lap.sh has always applied to the five generated files. Held
+# here because the manifest is the safety property: a path that drifts out of the
+# tree, a file claimed by two steps, or a hand_authored file listed as derivable
+# would each let the lap overwrite something nobody derives. The REBUILD itself is
+# proved by the ordinary --check steps throughout this file; this holds the list.
+step "the derived-layer manifest names real files, one owner each, none hand-authored" \
+  node tools/rederive.mjs --check
+
+step "…and its own assertions fire when the manifest is made unsafe" \
+  node tools/rederive.mjs --self-test
+
 # The other restamp, and the more dangerous one: `tools/restamp_inputs.py` rewrites
 # `assets/manifest.json`'s input hashes without a bake, which is the only honest
 # answer to a change in the input-hash RECIPE (T-0164) and would be a silent way to
@@ -1350,6 +1364,23 @@ step "no person asserts a bare 'none_recorded' while the same record dates a tra
 # with the trade. Nothing here is back-projection; T-0633 is where an address is.
 step "the later-trade pointer obeys its own four rules" \
   python3 tools/qualify_later_trades.py --self-test
+
+# THE OTHER HALF OF T-0837's RULE, AND THE HALF ITS OWN TOOL CANNOT SEE (T-0872).
+# T-0837 gated the SYNTHESIZER: a trade only enters the 1835 `occupation` field out of a
+# source whose `describes_date` covers 1835. That stops the next promotion. It says
+# nothing about what earlier passes already committed — and worse, its refusal is
+# SUPPRESSED on exactly those cards, because the synthesizer declines to overwrite a
+# filled field before it ever reaches the date test. So the population the rule forbids
+# was invisible from inside the tool that owns the rule, and sat a month unmeasured: the
+# eight in T-0872's table were already nine four days after it was written.
+#
+# This is the read side. It measures what is STANDING, and its ledger may only fall: a
+# row that disappears is a repair, a row that appears is a regression this refuses.
+step "no standing 1835 trade is cited only to a volume about another year" \
+  python3 tools/audit_scene_window_trades.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/audit_scene_window_trades.py --self-test
 
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
@@ -1448,8 +1479,17 @@ step "every named 1840 head still adjudicates as the pages and the pools say" \
 # reproduces the 27 out of its `heads`, 12 matched + 15 candidate. What passed them is the
 # FILE-LEVEL SOURCE FALLBACK: a head stating no discriminators of its own is judged against
 # the one source id at the top of the file, and the cards already cited it from the earlier
-# bridge pass. T-0989 holds that fault, with the 817 rulings across the town it still
-# covers. A meter that cannot see a hop reports it green; so does one that asks too little.
+# bridge pass. A meter that cannot see a hop reports it green; so does one that asks too
+# little.
+#
+# T-0989 closed that fallback rather than merely holding it. A ruling stating no source of
+# its own is still judged against its file's, and that still makes it JUDGEABLE — but to
+# count written the card must now also NAME what the ruling adjudicated: the read unit it
+# cites, or the sheet a sheet-and-line ruling sits on. The old test asked only whether the
+# card cited the file's one source id, which every ruling in the file shares, so a citation
+# put there by any other pass passed all of them at once. Closing it moved one figure and
+# it was not tuned back: directories fell from 914 of 914 written to 659, and the 255 is in
+# the write ceiling with the reason beside it.
 #
 # T-0670 met the same wall from the other side, hit the ceiling on ONE ruling and reverted
 # rather than rule. `spend_census_1840_heads.py` is that ruling taken generally: whatever
@@ -1893,6 +1933,19 @@ step "Fergus's death notices are on the cards the crosswalk names" \
 
 step "…and that pass writes one block, moves no grade and repeats without drift" \
   python3 tools/spend_old_settlers.py --self-test
+
+# T-0992. T-0962 widened the second hop to read the `matched` container and church entered
+# that report for the first time: 83 rulings reached a person this town holds a card for and
+# NOT ONE card cited the roll. The pass that closes that gap is checked the way every other
+# spend is — the ledger and every card re-derive from the crosswalk, no card carries the
+# paragraph without a matched ruling behind it — plus the line this source needs most: the
+# 37 ambiguous and 330 refused rows are rivals still standing, and a card one of them names
+# may never carry this pass's words.
+step "the Second Presbyterian roll is on the cards its crosswalk matches" \
+  python3 tools/spend_second_presbyterian_roll.py --check
+
+step "…and that pass spends no refusal, moves no grade and repeats without drift" \
+  python3 tools/spend_second_presbyterian_roll.py --self-test
 
 step "…and its own assertions still fire when broken" \
   python3 tools/research_domains.py --self-test

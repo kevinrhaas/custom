@@ -227,10 +227,61 @@ paragraph — the marker that opens it and the ladder sentence that closes it �
 refuses where the closing literal is gone, because then where the paragraph ends is genuinely
 unknown. `--self-test` holds both.
 
-**Still unruled:** the hundred-odd proposals **T-0697** added when the mechanical rule stopped
-requiring exactly one person of the surname. Neither T-0700 nor T-0850 was written against
-them — both were written against a crosswalk of 35 matches — and they are **T-0990**, one
-cohort per run. The count is on the crosswalk's `ruled` block and not repeated here.
+## T-0697's proposals, cohort A: the fourteen an initial decided among namesakes (T-0990)
+
+Neither T-0700 nor T-0850 was written against the hundred-odd proposals **T-0697** added when
+the mechanical rule stopped requiring exactly one person of the surname — both were written
+against a crosswalk of 35 matches. **T-0990** rules them one cohort per run, and this is the
+first: the fourteen whose match is `initial_agrees` AND whose `rivals[]` is not empty, which
+is where the rule is at its weakest. The layer holds a namesake of the surname, and a
+forename INITIAL alone chose between them.
+
+**Eleven upheld, three refused.** What moved: matched spellings 126 → **123**, ruled 35 →
+**49**, unruled 104 → **90**; three cards retracted, and with them six register rows — 230.78 acres and
+$762.89 of ground taken back off them. Nothing was written on — the upheld eleven were already carried, and
+upholding a proposal only confirms what the spend pass had put there.
+
+**The discriminator was in `data/residents/directories.json` nearly every time, and it is
+where the next cohort should look first.** Where the card holds an initial the later
+directories very often print the forename whole, and that printing — not the initial — is
+what decides:
+
+| the register | the town's own printing | ruling |
+|---|---|---|
+| MONTGOMERY LOTON WM · MONTGOMERY LOTON W | Fergus 1843: *Montgomery, Loton W., shoemaker* | upheld |
+| BLANCHARD F G · F G AS · FRANCIS G | Fergus 1843: *Blanchard, Francis Gurtrey, capitalist* | upheld |
+| FOOT STAN | Fergus 1839/1843: *Foot, Star / Starr, teamster* | upheld |
+| WRIGHT T G | Fergus 1839: *Wright, Truman G., speculator* | upheld |
+| HADDOCK E H | Fergus 1839: *Haddock, Edward H., commission merchant* | upheld |
+| BEAUBIEN J B | Andreas's 1833 roster: *J. B. Beaubien, merchant* | upheld |
+| REED JAMES W | the Democrat, 31 Dec 1833: *J. W. REED.*, cabinet maker | upheld |
+| HUNTER E E | the register's own duplicate ls0920, *HUNTER EDWARD E*, Residence COOK | upheld |
+| GOODRICH CHAUNCEY | *nothing* — one line of the 1833 tax list | **refused** |
+| SMITH LIMAN | *nothing* — one line of the poll of 1834 | **refused** |
+| MORRISON THOS M | *nothing* — one uncalled-for letter, the Democrat of 20 May 1835 | **refused** |
+
+Three of the fourteen have no directory line at all, and all three are the refusals. The
+directories are read here **for the name and nothing else**: *teamster* is a trade of 1839
+and *speculator* of 1839, and neither is written onto an 1835 card — T-0633 is the rule for
+back-projecting a trade, and identifying a man is not back-projecting one.
+
+**The register's second habit is worth as much.** It prints the same purchaser twice, once
+abbreviated and once in full, and the fuller reading is sometimes a whole second row:
+HADDOCK E H / HADDOCK EDWARD H, WRIGHT T G / WRIGHT TRUMAN G, and — decisively — HUNTER E E
+(ls0919) and HUNTER EDWARD E (ls0920), the same 80 acres of section 13 T40N R13E on the same
+day at the same price, with **COOK** in the Residence column of the fuller one and UNKNOWN in
+the abbreviated one. SMITH LIMAN and SMITH SIMAN (ls0572, ls0573) are the same duplication
+working against the proposal: the deposit itself cannot decide whether the man was a Lyman or
+a Simon, so the token the rule matched on is not stable in the source that supplies it.
+
+**A duplicate card found on the way past.** Fergus 1843's *Francis Gurtrey* is one man, and
+the layer holds both `blanchard_f_gantry` and `blanchard_gantry` — filed as **T-0993**, beside
+T-0844's six clusters. This cohort's rulings do not decide it, and the six `BLANCHARD GURTREY`
+rows are left unruled for that ticket.
+
+**Still unruled: 90.** Cohort B is the twenty-four with no namesake at all (`rivals[]` empty),
+cohort C the sixty-six remaining `forename_agrees` proposals that have one; the log on T-0990
+carries them. The live count is on the crosswalk's `ruled` block and not repeated here.
 
 **THE SURNAME GATHERS THE RIVALS AND THE FORENAME DECIDES BETWEEN THEM (T-0697).** Until
 that ticket the rule needed EXACTLY ONE person of the surname in the residents layer, and

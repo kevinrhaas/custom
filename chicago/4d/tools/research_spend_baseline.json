@@ -11,7 +11,7 @@
   "directories": 7232,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 441
+  "old_settlers": 442
  },
  "witness": {
   "civic": {
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 653
+   "spent": 652
   }
  },
  "raised": [
@@ -408,6 +408,22 @@
    "to": 441,
    "date": "2026-09-10",
    "why": "T-0844 folded four town cards onto the people they name — hunt_c_s, kennicott_w_l, kinzie_john_s and temple_t — and seven rulings across these three domains had already been spent onto those cards by name. The reading did not move and the adjudication did not lapse: the rulings now name a person the redirect table resolves, and this measure's second hop reads a card id rather than following data/residents/index.json's merged table, which is the defect T-0962 owns. The ceiling is raised by exactly the count the fold moved (church +1, directories +3, old_settlers +3) rather than the rulings being re-spent onto the survivors, because re-spending them here would write the same paragraph onto a card twice — the fault T-0846 is open on."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 441,
+   "to": 442,
+   "date": "2026-09-10",
+   "why": "T-0842 folded vanderbogart_h and vandenbogart_h onto vanderbogart_henry, so the town carries one card where it carried three. The old-settlers reading that had reached the folded letter-list card is not newly unread — it is on the survivor, at the same locator — but the ceiling counts CARDS the domain has reached, and the town now has two fewer of them. The +1 is the arithmetic of a merge, not research getting ahead of the spend."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 0,
+   "to": 255,
+   "date": "2026-09-10",
+   "why": "T-0989 replaced the second hop's file-level source fallback with a test a card can actually fail. A generated crosswalk states its one source id at the top of the file, and until now a ruling that stated nothing of its own was counted WRITTEN whenever the card cited that id anywhere, for any reason at all — so a single citation put there by another pass satisfied every ruling in the file at once. 811 of the 1,359 person-reaching rulings in this repo were judged that way. A fallback ruling must now also NAME what it adjudicated: the read unit it cites, or the sheet a sheet-and-line ruling sits on. Nothing was spent or unspent by this commit; 255 rulings in directories that had been reported as reaching their card are now reported as not reaching it, and this ceiling records that true 255 rather than hiding it. The case, checked by hand: hh_garrett_a cites fergus_chicago_directory_1839 because a later resident-research pass wrote a generic directories block on the card, while Fergus 1839's ruling for Garrett — entry f1839_e0527, 'Garrett, Augustus, auctioneer, real estate, bds. Sauganash Hotel', printed page 15 — has never been written onto it. The number is paid down by spending those rulings onto the cards, not by raising it again."
   }
  ],
  "lowered": [
@@ -433,15 +449,23 @@
    "to": 2077,
    "date": "2026-09-03",
    "why": "T-0590 ruled on all 319 leads volume 1 offered, anchored to the 542 distinct cards they stand on: 240 refused, 79 candidates in a work this project already holds, 0 merges. Lowering a ceiling is free and is exactly what spending a domain does. The remaining 2,077 are volume 1's cards that stand under no lead at all - a surname nobody in this town carries - and they come down when a later ticket rules the surnames out in bulk or the volumes 2-4 tickets replace the arithmetic."
+  },
+  {
+   "domain": "church",
+   "hop": "write",
+   "from": 83,
+   "to": 0,
+   "date": "2026-09-10",
+   "why": "T-0992 spent the Second Presbyterian roll. T-0962 widened the second hop to read the `matched` container and church entered that report for the first time at 83 reached, 83 judgeable, 0 on a card — not one resident record in the town cited `second_presbyterian_chicago_1892`. tools/spend_second_presbyterian_roll.py writes all 83, two fields on the card and no grade moved: the source id, and a paragraph quoting the crosswalk's own sentence that a roll opening in June 1842 cannot place a person in the town of July 1835. The 37 ambiguous and 330 refused write nothing, and 34 of the 83 are married women's entries printed under a husband's name, so those cards carry the crosswalk's Mrs rule verbatim. With the debt paid the ceiling has no work left to do."
   }
  ],
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 0,
+  "directories": 255,
   "land_sales": 0,
   "old_settlers": 0,
-  "church": 83
+  "church": 0
  },
  "unsourced_ceiling": {
   "old_settlers": 0

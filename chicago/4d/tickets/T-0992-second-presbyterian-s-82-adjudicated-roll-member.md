@@ -1,7 +1,7 @@
 ---
 id: T-0992
 title: Second Presbyterian's 82 adjudicated roll members reach 82 cards and not one card cites the roll: spend them, and drop church's write ceiling back to zero
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-10
+pr: 1063
+claimed_by: run 9/10/2026, 3:56:53 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-10T09:45:42.751Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34457683689
 ---
 
 Second Presbyterian's 82 adjudicated roll members reach 82 cards and not one card cites the roll: spend them, and drop church's write ceiling back to zero.

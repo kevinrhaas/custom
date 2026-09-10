@@ -164,12 +164,13 @@ def load_people() -> dict:
     records are the town; the index is a summary of it, and a cohort must not move
     because a summary is behind.
     """
-    people = {}
+    folded = freeze.folded_people()      # a fold is a redirect, not a deletion (T-0842)
+    people = dict(folded)
     for path in sorted((RESIDENTS / "households").glob("*.json")):
         household = json.loads(path.read_text(encoding="utf-8"))
         for person in household.get("persons") or []:
             pid = person.get("id")
-            if pid in people:
+            if pid in people and pid not in folded:
                 raise SystemExit("duplicate person id %s" % pid)
             people[pid] = (household, person)
     return people
@@ -318,6 +319,10 @@ def run(pass_no: int, argv=None) -> int:
     # "came in at `inferred` on one source" reading of a finished pass was lost.
     # tools/resident_cohort_freeze.py holds both halves of the contract.
     doc = derive(pass_no, minting=not args.gate and not path.exists())
+    # A member the town has since ruled a duplicate is still studied and still counted,
+    # and the gate SAYS so rather than counting them in silence (T-0842).
+    for line in freeze.redirected(row["person_id"] for row in doc["people"]):
+        print("   redirected by a landed merge ruling: %s" % line)
     if args.gate:
         return freeze.gate(path, doc, "resident research pass %d" % pass_no)
     return freeze.write(
