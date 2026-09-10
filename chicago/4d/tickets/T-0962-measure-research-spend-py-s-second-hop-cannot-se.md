@@ -1,7 +1,7 @@
 ---
 id: T-0962
 title: measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1049
 claimed_by: run 9/10/2026, 12:07:19 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T05:20:25.818Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34439477799
 ---
 
