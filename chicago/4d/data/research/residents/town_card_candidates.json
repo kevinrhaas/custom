@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1356,
+  "town_people": 1355,
   "open_clusters": 15,
   "cards_in_open_clusters": 33,
   "rulings": {
    "distinct": 13,
-   "merge": 31,
+   "merge": 32,
    "undecided_rule": 8
   },
-  "landed_merges": 31,
-  "cards_folded": 50
+  "landed_merges": 32,
+  "cards_folded": 51
  },
  "landed": [
   {
@@ -207,6 +207,16 @@
     "kimberly_edmund_l"
    ],
    "rule": "C0"
+  },
+  {
+   "cluster": "kimberley",
+   "survivor": "kimberly_edmund_s",
+   "survivor_household": "hh_pruyne_kimberly",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kimberley_ed"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "kinzie-john",

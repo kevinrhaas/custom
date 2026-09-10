@@ -994,9 +994,9 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1332,
-    "persons": 1356,
-    "attested": 491,
+    "households": 1331,
+    "persons": 1355,
+    "attested": 490,
     "inferred": 865,
     "reconstructed": 0,
     "letter_list_only": 725,

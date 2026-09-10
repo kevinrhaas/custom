@@ -155,3 +155,49 @@ The 1840 census households are the densest kinship the corpus holds and are
 deliberately **not** read: the crosswalk is stale against both the pages
 (T-0714) and the town (T-0698), and kin read off it would land on the wrong
 people.
+
+## One person, several cards — and a surname the printer spelled two ways (T-1001)
+
+`card_merge_rulings.json` is the written ruling on every cluster of cards that the
+candidate test joins, and `tools/consolidate_town_cards.py` lands it. That test buckets
+by surname and folds the surname **exactly**, so two spellings of one name never meet in
+it. T-1001 is the first cluster written into the file for a surname rather than a
+forename, and what moved is itemised here because the next pass should not have to
+re-derive it from a diff:
+
+| | |
+|---|---|
+| `data/residents/card_merge_rulings.json` | rule **C9** added — one surname, two spellings of its ending, ruled at the page; cluster `kimberley` (`derived_candidate: false`) added with its merge ruling; T-1001 added to `also_ruled_on`. |
+| `data/residents/households/hh_kimberley_ed.json` | **gone** — the household held one person and that person folded. |
+| `data/residents/merged/hh_kimberley_ed.json` | the record, kept whole, with its `merged_into` block. Nothing is deleted. |
+| `data/residents/households/hh_pruyne_kimberly.json` | `kimberly_edmund_s` gains the folded card's sources (`census_1840_chicago_familysearch_images`, `chicago_democrat_1833_1835`, `isa_public_domain_land_tract_sales` were already his by the register) and a `merged_from` block. **His grade is untouched: attested, G1a, exactly as before.** |
+| `data/residents/index.json` | one more row in the `merged` redirect table; the household count falls by one. |
+| `data/research/residents/card_merge_crosswalk.json` | the landed adjudication the consolidation reads, one merge longer. |
+| `data/research/land_sales/resident_rulings.json` | `KIMBERLEY EDMUND S` re-pointed from `kimberley_ed` to `kimberly_edmund_s`, with an `amended` block naming what changed and what did not. |
+| `tools/read_land_sales.py` | `merged_card_surnames()` — the surname a folded card printed still gathers the person it was ruled to be, so the register's KIMBERLEY reaches Dr Kimberly. Matches that arrive this way carry `via_card_merge`. |
+| `tools/measure_surname_fold.py` | new. The count the ticket asked for. |
+| `data/research/census_1840/resident_crosswalk.json` | the head `Ed. Kimberley` falls from L7 `candidate` to L2 `no_surname_in_the_1835_pools` — **a loss, and the one cost of this merge**. That crosswalk gathers its 1835 bearers by surname and folds the surname exactly, which is the same fault, and it is deliberately not repaired here: teaching it the merge would hand its ladder the independent discriminator L6 wants (Fergus 1843 prints him) and the head would return `matched` rather than the candidate it was. A merge must not promote an identity as a side effect, so that is its own ticket. |
+
+**Why the merge, in one line:** the Chicago Democrat of 1 July 1835 sets both spellings in
+one column of one page — `E. S. Kimberly` in the dinner committee's signature block and
+`E. S. Kimberley` in the next article's committee of fourteen, with `Dr. Kimberly` four
+sentences after it — and T-0839 had already folded the first of those two readings onto
+Dr Edmund Stoughton Kimberly on the owner's own instruction. The full reasoning, and what
+would say two men, is in the ruling.
+
+**Why the fold itself is NOT widened**, which is the other half of the ticket and is
+answered with a count rather than an opinion. `tools/measure_surname_fold.py` puts a
+one-letter fold over the land register's 427 named purchaser spellings:
+
+    gain at least one rival        200 of 427   (47%)
+    proposals that change shape     42          24 named matches LOST, 18 refusals named
+    hand rulings touched            39 of 72    18 of them sitting on a proposal that moves
+
+and the losses are not noise. `PEARSONS HIRAM` is refused against *Hiram Pearson*,
+`CLYBOURNE ARCHIBALD` against *Archibald Clybourn*, `LLOYD ALEXANDER` against *Alexander
+Loyd*, `PRUYNE PETER` against *Peter Pryne* — in each the rival the loose fold gathers is
+the same man under a variant spelling, and a correct match is refused for having made him
+his own rival. T-0993's `BLANCHARD GURTREY` is worse: its hand `named` ruling is
+re-pointed onto the garbled card `blanshard_g`, so a written judgement silently changes
+who it names. So the mechanical fold stays exact, and a surname the sources spell two ways
+is **ruled**, one cluster at a time, on a page that demonstrates the variation.

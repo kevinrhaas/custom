@@ -54,6 +54,7 @@
       "household_id": "hh_pearsons_hiram",
       "match": "forename_agrees",
       "rule": "PEARSONS HIRAM matches Hiram Pearsons: the forename names Hiram Pearsons of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN, COOK",
       "evidence_grade": "documented",
@@ -84,6 +85,7 @@
       "household_id": "hh_taylor_anson",
       "match": "forename_agrees",
       "rule": "TAYLOR CHARLES matches Charles H. Taylor: the forename names Charles H. Taylor of the 7 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -164,6 +166,7 @@
       "household_id": "hh_kercheval_benjamin",
       "match": "forename_agrees",
       "rule": "KERCHEVAL BENJAMIN matches Benjamin Kercheval: the forename names Benjamin Kercheval of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "kercheval_benjamin",
@@ -201,6 +204,7 @@
       "household_id": "hh_clark_john_k",
       "match": "forename_agrees",
       "rule": "CLARK JOHN K matches John K Clark: the forename names John K Clark of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "clark_erastus",
@@ -256,6 +260,7 @@
       "household_id": "hh_carpenter_philo",
       "match": "forename_agrees",
       "rule": "CARPENTER PHILO matches Philo Carpenter: the forename names Philo Carpenter of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "carpenter_abel_b",
@@ -300,6 +305,7 @@
       "household_id": "hh_elston_daniel",
       "match": "forename_agrees",
       "rule": "ELSTON DANIEL matches Daniel Elston: the forename names Daniel Elston of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -328,6 +334,7 @@
       "household_id": "hh_kinzie_james",
       "match": "forename_agrees",
       "rule": "KINZIE JAMES matches James Kinzie: the forename names James Kinzie of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "kinzie_james",
@@ -382,6 +389,7 @@
       "household_id": "hh_wolcott_alexander",
       "match": "forename_agrees",
       "rule": "WOLCOTT ALEXANDER matches Alexander Wolcott: the forename names Alexander Wolcott of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "ILLINOIS, UNKNOWN",
       "evidence_grade": "inferred",
@@ -409,6 +417,7 @@
       "household_id": "hh_kinzie_robert_a",
       "match": "forename_agrees",
       "rule": "KINZIE ROBERT A matches Robert Allen Kinzie: the forename names Robert Allen Kinzie of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "kinzie_james",
@@ -463,6 +472,7 @@
       "household_id": "hh_beaubien_mark",
       "match": "forename_agrees",
       "rule": "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 10 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "beaubien_alexandre",
@@ -571,6 +581,7 @@
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
       "rule": "BLANCHARD F G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -618,6 +629,7 @@
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
       "rule": "BLANCHARD F G AS matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -720,6 +732,7 @@
       "household_id": "hh_botsford_j_k",
       "match": "initial_agrees",
       "rule": "BOTSFORD JABEZ K matches J. K. Botsford: the forename names J. K. Botsford of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -749,6 +762,7 @@
       "household_id": "hh_bowen_erastus_selden",
       "match": "forename_agrees",
       "rule": "BOWEN ERASTUS matches Erastus Selden Bowen: the forename names Erastus Selden Bowen of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "bowen_air",
@@ -794,6 +808,7 @@
       "household_id": "hh_boyer_j_k",
       "match": "initial_agrees",
       "rule": "BOYER JOHN K matches J. K. Boyer: the forename names J. K. Boyer of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -833,6 +848,7 @@
       "household_id": "hh_bronson_arthur",
       "match": "forename_agrees",
       "rule": "BRONSON ARTHUR matches Arthur Bronson: the forename names Arthur Bronson of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -859,6 +875,7 @@
       "household_id": "hh_carver_david",
       "match": "forename_agrees",
       "rule": "CARVER DAVID matches David Carver: the forename names David Carver of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -887,6 +904,7 @@
       "household_id": "hh_casey_edward_w",
       "match": "forename_agrees",
       "rule": "CASEY EDWARD W matches Edward W. Casey: the forename names Edward W. Casey of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -915,6 +933,7 @@
       "household_id": "hh_chapman_chas_h",
       "match": "forename_agrees",
       "rule": "CHAPMAN CHARLES H matches Chas. H. Chapman: the forename names Chas. H. Chapman of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "chapman_chas_h",
@@ -951,6 +970,7 @@
       "household_id": "hh_clybourne_archibald",
       "match": "forename_agrees",
       "rule": "CLYBOURNE ARCHIBALD matches Archibald Clybourne: the forename names Archibald Clybourne of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -977,6 +997,7 @@
       "household_id": "hh_cole_parker_m",
       "match": "forename_agrees",
       "rule": "COLE PARKER M matches Parker M. Cole: the forename names Parker M. Cole of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -1004,6 +1025,7 @@
       "household_id": "hh_cook_josiah_p",
       "match": "forename_agrees",
       "rule": "COOK JOSIAH P matches Josiah P Cook: the forename names Josiah P Cook of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "cook_j_b",
@@ -1067,6 +1089,7 @@
       "household_id": "hh_cook_thomas",
       "match": "forename_agrees",
       "rule": "COOK THOMAS matches Thomas Cook: the forename names Thomas Cook of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "cook_j_b",
@@ -1132,6 +1155,7 @@
       "household_id": "hh_davis_john",
       "match": "forename_agrees",
       "rule": "DAVIS JOHN matches John Davis: the forename names John Davis of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "davis_abissinia",
@@ -1188,6 +1212,7 @@
       "household_id": "hh_dole_george_w",
       "match": "forename_agrees",
       "rule": "DOLE GEORGE W matches George Washington Dole: the forename names George Washington Dole of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -1220,6 +1245,7 @@
       "household_id": "hh_foot_john",
       "match": "forename_agrees",
       "rule": "FOOT JOHN matches John Foot: the forename names John Foot of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "foot_john",
@@ -1256,6 +1282,7 @@
       "household_id": "hh_foot_s",
       "match": "initial_agrees",
       "rule": "FOOT STAN matches S. Foot: the forename names S. Foot of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "foot_john",
@@ -1308,6 +1335,7 @@
       "household_id": "hh_fullerton_alexander",
       "match": "forename_agrees",
       "rule": "FULLERTON ALEXANDER matches Alexander N. Fullerton: the forename names Alexander N. Fullerton of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -1339,6 +1367,7 @@
       "household_id": "hh_inf_physician_south_01",
       "match": "forename_agrees",
       "rule": "GOODHUE JOSIAH C matches Dr. Josiah C. Goodhue: the forename names Dr. Josiah C. Goodhue of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -1367,6 +1396,7 @@
       "household_id": "hh_goodrich_ebenezer",
       "match": "forename_agrees",
       "rule": "GOODRICH EBENEZER matches Ebenezer Goodrich: the forename names Ebenezer Goodrich of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "goodrich_c",
@@ -1413,6 +1443,7 @@
       "household_id": "hh_haddock_edward",
       "match": "initial_agrees",
       "rule": "HADDOCK E H matches Edward H. Haddock: the forename names Edward H. Haddock of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "haddock_edward",
@@ -1462,6 +1493,7 @@
       "household_id": "hh_haddock_edward",
       "match": "forename_agrees",
       "rule": "HADDOCK EDWARD H matches Edward H. Haddock: the forename names Edward H. Haddock of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "haddock_edward",
@@ -1498,6 +1530,7 @@
       "household_id": "hh_hamilton_richard_j",
       "match": "forename_agrees",
       "rule": "HAMILTON RICHARD J matches Richard Jones Hamilton: the forename names Richard Jones Hamilton of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "hamilton_amos_c",
@@ -1542,6 +1575,7 @@
       "household_id": "hh_harmon_brothers",
       "match": "forename_agrees",
       "rule": "HARMON CHARLES L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -1604,6 +1638,7 @@
       "household_id": "hh_harmon_brothers",
       "match": "forename_agrees",
       "rule": "HARMON ISAAC matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -1666,6 +1701,7 @@
       "household_id": "hh_harmon_brothers",
       "match": "forename_agrees",
       "rule": "HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -1728,6 +1764,7 @@
       "household_id": "hh_hubbard_gurdon",
       "match": "forename_agrees",
       "rule": "HUBBARD GURDON S matches Gurdon Saltonstall Hubbard: the forename names Gurdon Saltonstall Hubbard of the 6 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "hubbard_ahira",
@@ -1800,6 +1837,7 @@
       "household_id": "hh_ingersoll_chester",
       "match": "forename_agrees",
       "rule": "INGERSOLL CHESTER matches Chester Ingersoll: the forename names Chester Ingersoll of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -1829,6 +1867,7 @@
       "household_id": "hh_jackson_samuel",
       "match": "forename_agrees",
       "rule": "JACKSON SAMUEL matches Samuel Jackson: the forename names Samuel Jackson of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "jackson_j_y",
@@ -1867,6 +1906,7 @@
       "household_id": "hh_jones_benjamin",
       "match": "forename_agrees",
       "rule": "JONES BENJAMIN matches Benjamin Jones: the forename names Benjamin Jones of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "jones_benjamin",
@@ -1931,6 +1971,7 @@
       "household_id": "hh_jones_willard",
       "match": "forename_agrees",
       "rule": "JONES WILLARD matches Willard Jones: the forename names Willard Jones of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "jones_benjamin",
@@ -1995,6 +2036,7 @@
       "household_id": "hh_jones_william",
       "match": "forename_agrees",
       "rule": "JONES WILLIAM matches William Jones: the forename names William Jones of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "jones_benjamin",
@@ -2057,6 +2099,7 @@
       "household_id": "hh_kimball_walter",
       "match": "initial_agrees",
       "rule": "KIMBALL WALTER matches W. Kimball: the forename names W. Kimball of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2081,18 +2124,19 @@
       "record_ids": [
         "ls0263"
       ],
-      "resident_id": "kimberley_ed",
-      "resident_name": "Ed Kimberley",
-      "household_id": "hh_kimberley_ed",
+      "resident_id": "kimberly_edmund_s",
+      "resident_name": "Dr Edmund Stoughton Kimberly",
+      "household_id": "hh_pruyne_kimberly",
       "match": "forename_agrees",
-      "rule": "KIMBERLEY EDMUND S matches Ed Kimberley: the forename names Ed Kimberley of the 1 person of this surname, and the forename agrees in full.",
+      "rule": "KIMBERLEY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 1 person of this surname, and the forename agrees in full. The surname reaches him through a ruled card merge and not off his card: the town held kimberley_ed until data/residents/card_merge_rulings.json folded it onto this person, and the register's spelling is the one that card carried.",
+      "via_card_merge": "kimberley_ed",
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "ruling": {
         "ruling": "upheld",
         "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
+        "ticket": "T-1001",
         "checked_against": [
           "isa_public_domain_land_tract_sales",
           "chicago_democrat_1833_1835",
@@ -2100,7 +2144,7 @@
           "fergus_chicago_directory_1839",
           "fergus_chicago_directory_1843"
         ],
-        "reasoning": "UPHELD, and the middle initial is on the TOWN's side, not only the register's: the card's press reading is 'E. S. Kimberley' in the Democrat of 1 July 1835, and the 1840 census reads 'Ed. Kimberley' — two independent documents bracketing the scene date, the earlier of them printing the S the register repeats when it writes KIMBERLEY EDMUND S. That is the NEWBERRY WALTER L check of T-0700 and not a bare name. WHAT THE RULING ALSO FOUND, and it is why the crosswalk reported no rival: the layer ALSO holds `kimberly_edmund_s`, Dr Edmund Stoughton Kimberly, attested off Andreas, the poll lists and a medical history, printed 'Kimberly, Dr. Edmund S.' in Fergus 1839 and 'Kimberly, Edmund Stoughten, physician' in Fergus 1843 — the same forename and the same middle initial, spelled Kimberly rather than Kimberley. tools/namesake.py folds surnames exactly, so it never gathered him and `rivals[]` came back empty on a proposal that has a namesake in every sense but the spelling. The two cards are very probably one man, which makes this a card question and not an identity question — the purchaser is that man on either reading — so the entry is upheld here and the duplicate is filed as its own ticket, exactly as cohort A upheld the three Blanchard spellings and filed T-0993."
+        "reasoning": "UPHELD, and the middle initial is on the TOWN's side, not only the register's: the card's press reading is 'E. S. Kimberley' in the Chicago Democrat of 1 July 1835, and the 1840 census reads 'Ed. Kimberley' — two independent documents bracketing the scene date, the earlier of them printing the S the register repeats when it writes KIMBERLEY EDMUND S. That is the NEWBERRY WALTER L check of T-0700 and not a bare name. RE-POINTED UNDER T-1001, AND THE MAN IS THE SAME MAN. T-0990 upheld this onto `kimberley_ed` and said in the same breath what the crosswalk could not see: the layer ALSO held `kimberly_edmund_s`, Dr Edmund Stoughton Kimberly — attested off Andreas, the poll lists and a history of medicine at Chicago, printed 'Kimberly, Dr. Edmund S.' in Fergus 1839 and 'Kimberly, Edmund Stoughten, physician, 101 Lake' in Fergus 1843 — the same forename and the same middle initial, spelled Kimberly rather than Kimberley, and never gathered as a rival because tools/namesake.py folds surnames exactly. T-1001 ruled that card question: the Chicago Democrat of 1 July 1835 sets both spellings in one column of one page, and 'Dr. Kimberly' four sentences after 'E. S. Kimberley' inside one article, so the variation is the compositor's and is demonstrated rather than supposed. `kimberley_ed` is folded onto `kimberly_edmund_s` under C9 in data/residents/card_merge_rulings.json, and this ruling names the survivor. THE ENTRY IS NOT LOST TO A LETTER: with that card folded the residents layer holds no Kimberley at all, so the crosswalk's surname bucket now reaches this man through the landed card-merge adjudication (tools/read_land_sales.py `merged_card_surnames`, and the match carries `via_card_merge`). What is still refused is a mechanical fold of the surnames themselves — measured, and the count is in tools/measure_surname_fold.py. A purchase and nothing more, as before: it dates and places a transaction and proposes no residence."
       },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
@@ -2115,6 +2159,7 @@
       "household_id": "hh_knickerbacker_a_v",
       "match": "initial_agrees",
       "rule": "KNICKERBACKER ABRM V matches A V Knickerbacker: the forename names A V Knickerbacker of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2142,6 +2187,7 @@
       "household_id": "hh_lloyd_alexander",
       "match": "forename_agrees",
       "rule": "LLOYD ALEXANDER matches Alexander Lloyd: the forename names Alexander Lloyd of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2169,6 +2215,7 @@
       "household_id": "hh_mulford_james_h",
       "match": "forename_agrees",
       "rule": "MULFORD JAMES H matches James H Mulford: the forename names James H Mulford of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "mulford_e_h",
@@ -2206,6 +2253,7 @@
       "household_id": "hh_noble_john",
       "match": "forename_agrees",
       "rule": "NOBLE JOHN matches John Noble: the forename names John Noble of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "noble_john",
@@ -2262,6 +2310,7 @@
       "household_id": "hh_owen_thomas_jv",
       "match": "forename_agrees",
       "rule": "OWEN THOMAS J V matches Thomas Jefferson Vance Owen: the forename names Thomas Jefferson Vance Owen of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "owen_j_v",
@@ -2307,6 +2356,7 @@
       "household_id": "hh_peck_philip",
       "match": "initial_agrees",
       "rule": "PECK P F W matches Philip F. W. Peck: the forename names Philip F. W. Peck of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2338,6 +2388,7 @@
       "household_id": "hh_pruyne_kimberly",
       "match": "initial_agrees",
       "rule": "PRUYNE P matches Peter Pruyne: the forename names Peter Pruyne of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2367,6 +2418,7 @@
       "household_id": "hh_pruyne_kimberly",
       "match": "forename_agrees",
       "rule": "PRUYNE PETER matches Peter Pruyne: the forename names Peter Pruyne of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2396,6 +2448,7 @@
       "household_id": "hh_inf_joiner_north_02",
       "match": "initial_agrees",
       "rule": "REED JAMES W matches J. W. Reed: the forename names J. W. Reed of the 5 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "inf_joiner_north_02",
@@ -2470,6 +2523,7 @@
       "household_id": "hh_russell_samuel",
       "match": "forename_agrees",
       "rule": "RUSSELL SAMUEL matches Samuel Russell: the forename names Samuel Russell of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "russell_aaron",
@@ -2514,6 +2568,7 @@
       "household_id": "hh_sherman_silas_w",
       "match": "forename_agrees",
       "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "sherman_h",
@@ -2559,6 +2614,7 @@
       "household_id": "hh_skinner_joseph",
       "match": "forename_agrees",
       "rule": "SKINNER JOSEPH matches Joseph Skinner: the forename names Joseph Skinner of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "skinner_e_f",
@@ -2604,6 +2660,7 @@
       "household_id": "hh_snow_george_w",
       "match": "forename_agrees",
       "rule": "SNOW GEORGE W matches George W. Snow: the forename names George W. Snow of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "snow_george_w",
@@ -2641,6 +2698,7 @@
       "household_id": "hh_steele_ashbel",
       "match": "forename_agrees",
       "rule": "STEELE ASHBEL matches Ashbel Steele: the forename names Ashbel Steele of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2674,6 +2732,7 @@
       "household_id": "hh_sweet_alanson",
       "match": "forename_agrees",
       "rule": "SWEET ALANSON matches Alanson Sweet: the forename names Alanson Sweet of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "sweet_alanson",
@@ -2725,6 +2784,7 @@
       "household_id": "hh_temple_john_t",
       "match": "forename_agrees",
       "rule": "TEMPLE JOHN T matches Dr John Taylor Temple: the forename names Dr John Taylor Temple of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "temple_john_t",
@@ -2772,6 +2832,7 @@
       "household_id": "hh_west_henry_c",
       "match": "forename_agrees",
       "rule": "WEST HENRY C matches Henry C. West: the forename names Henry C. West of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -2802,6 +2863,7 @@
       "household_id": "hh_wright_truman_g",
       "match": "initial_agrees",
       "rule": "WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "wright_amasa",
@@ -2886,6 +2948,7 @@
       "household_id": "hh_brown_william_h",
       "match": "forename_agrees",
       "rule": "BROWN WILLIAM H matches William H Brown: the forename names William H Brown of the 6 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "brown_hanna_e",
@@ -2960,6 +3023,7 @@
       "household_id": "hh_bennett_william",
       "match": "forename_agrees",
       "rule": "BENNETT WILLIAM matches William Bennett: the forename names William Bennett of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "bennett_c_h",
@@ -3007,6 +3071,7 @@
       "household_id": "hh_ludby_john",
       "match": "forename_agrees",
       "rule": "LUDBY JOHN matches John Ludby: the forename names John Ludby of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "COOK, UNKNOWN",
       "evidence_grade": "documented",
@@ -3035,6 +3100,7 @@
       "household_id": "hh_harmon_elijah_d",
       "match": "forename_agrees",
       "rule": "HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -3100,6 +3166,7 @@
       "household_id": "hh_beaubien_jean_baptiste",
       "match": "initial_agrees",
       "rule": "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 10 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "beaubien_alexandre",
@@ -3219,6 +3286,7 @@
       "household_id": "hh_pruyne_kimberly",
       "match": "forename_agrees",
       "rule": "KIMBERLY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "kimberly_ira",
@@ -3266,6 +3334,7 @@
       "household_id": "hh_smith_jeremiah",
       "match": "forename_agrees",
       "rule": "SMITH JEREMIAH matches Jeremiah Smith: the forename names Jeremiah Smith of the 11 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "smith_d_a",
@@ -3382,6 +3451,7 @@
       "household_id": "hh_smith_george",
       "match": "forename_agrees",
       "rule": "SMITH GEORGE matches George Smith: the forename names George Smith of the 11 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "smith_d_a",
@@ -3508,6 +3578,7 @@
       "household_id": "hh_price_jeremiah",
       "match": "forename_agrees",
       "rule": "PRICE JEREMIAH matches Jeremiah Price: the forename names Jeremiah Price of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -3537,6 +3608,7 @@
       "household_id": "hh_wright_truman_g",
       "match": "forename_agrees",
       "rule": "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "wright_amasa",
@@ -3608,6 +3680,7 @@
       "household_id": "hh_andrews_william",
       "match": "forename_agrees",
       "rule": "ANDREWS WILLIAM matches William Andrews: the forename names William Andrews of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "andrews_davi",
@@ -3661,6 +3734,7 @@
       "household_id": "hh_inf_tavern_keeper_north_01",
       "match": "initial_agrees",
       "rule": "SHRIGLEY JOHN matches J. Shrigley: the forename names J. Shrigley of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -3689,6 +3763,7 @@
       "household_id": "hh_reed_thomas",
       "match": "forename_agrees",
       "rule": "REED THOMAS matches Thomas Reed: the forename names Thomas Reed of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "inf_joiner_north_02",
@@ -3751,6 +3826,7 @@
       "household_id": "hh_tucker_alexr_h",
       "match": "forename_agrees",
       "rule": "TUCKER ALEXANDER H matches Alexr. H. Tucker: the forename names Alexr. H. Tucker of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "tucker_alexr_h",
@@ -3789,6 +3865,7 @@
       "household_id": "hh_taylor_edmund_d",
       "match": "forename_agrees",
       "rule": "TAYLOR EDMUND D matches Edmund D Taylor: the forename names Edmund D Taylor of the 7 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -3870,6 +3947,7 @@
       "household_id": "hh_burdick_paul",
       "match": "forename_agrees",
       "rule": "BURDICK PAUL matches Paul Burdick: the forename names Paul Burdick of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "burdick_morgan",
@@ -3906,6 +3984,7 @@
       "household_id": "hh_davis_george",
       "match": "forename_agrees",
       "rule": "DAVIS GEORGE matches George Davis: the forename names George Davis of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "davis_abissinia",
@@ -3959,6 +4038,7 @@
       "household_id": "hh_taylor_anson",
       "match": "forename_agrees",
       "rule": "TAYLOR ANSON H matches Anson H. Taylor: the forename names Anson H. Taylor of the 7 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "taylor_anson_h",
@@ -4041,6 +4121,7 @@
       "household_id": "hh_hunter_edward_e",
       "match": "forename_agrees",
       "rule": "HUNTER EDWARD E matches Edward E Hunter: the forename names Edward E Hunter of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "hunter_david",
@@ -4103,6 +4184,7 @@
       "household_id": "hh_wentworth_elijah",
       "match": "forename_agrees",
       "rule": "WENTWORTH ELIJAH matches Elijah Wentworth: the forename names Elijah Wentworth of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "wentworth_elijah",
@@ -4138,6 +4220,7 @@
       "household_id": "hh_murphy_john",
       "match": "forename_agrees",
       "rule": "MURPHY JOHN matches John Murphy: the forename names John Murphy of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "murphy_john",
@@ -4183,6 +4266,7 @@
       "household_id": "hh_thompson_john",
       "match": "forename_agrees",
       "rule": "THOMPSON JOHN L matches John Thompson: the forename names John Thompson of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "thompson_john",
@@ -4232,6 +4316,7 @@
       "household_id": "hh_newberry_walter_loomis",
       "match": "forename_agrees",
       "rule": "NEWBERRY WALTER L matches Walter Loomis Newberry: the forename names Walter Loomis Newberry of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -4261,6 +4346,7 @@
       "household_id": "hh_marsh_silvester",
       "match": "forename_agrees",
       "rule": "MARSH SYLVESTER matches Silvester Marsh: the forename names Silvester Marsh of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -4290,6 +4376,7 @@
       "household_id": "hh_king_nehemiah",
       "match": "forename_agrees",
       "rule": "KING NEHEMIAH matches Nehemiah King: the forename names Nehemiah King of the 8 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "king_byra",
@@ -4379,6 +4466,7 @@
       "household_id": "hh_allen_william",
       "match": "forename_agrees",
       "rule": "ALLEN WILLIAM matches William Allen: the forename names William Allen of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "allen_edward_richards",
@@ -4424,6 +4512,7 @@
       "household_id": "hh_handy_henry_s",
       "match": "forename_agrees",
       "rule": "HANDY HENRY S matches Henry S Handy: the forename names Henry S Handy of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "handy_henry_s",
@@ -4482,6 +4571,7 @@
       "household_id": "hh_hubbard_elijah_kent",
       "match": "forename_agrees",
       "rule": "HUBBARD ELIJAH K matches Elijah Kent Hubbard: the forename names Elijah Kent Hubbard of the 6 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "hubbard_ahira",
@@ -4558,6 +4648,7 @@
       "household_id": "hh_egan_william_b",
       "match": "forename_agrees",
       "rule": "EGAN WILLIAM B matches Dr William Bradshaw Egan: the forename names Dr William Bradshaw Egan of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "egan_william_b",
@@ -4593,6 +4684,7 @@
       "household_id": "hh_whitlock_james",
       "match": "forename_agrees",
       "rule": "WHITLOCK JAMES matches James Whitlock: the forename names James Whitlock of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -4618,6 +4710,7 @@
       "household_id": "hh_montgomery_l_w",
       "match": "initial_agrees",
       "rule": "MONTGOMERY LOTON WM matches L. W. Montgomery: the forename names L. W. Montgomery of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "montgomery_l_w",
@@ -4665,6 +4758,7 @@
       "household_id": "hh_montgomery_l_w",
       "match": "initial_agrees",
       "rule": "MONTGOMERY LOTON W matches L. W. Montgomery: the forename names L. W. Montgomery of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "montgomery_l_w",
@@ -4713,6 +4807,7 @@
       "household_id": "hh_campbell_james_b",
       "match": "forename_agrees",
       "rule": "CAMPBELL JAMES B matches James B Campbell: the forename names James B Campbell of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -4742,6 +4837,7 @@
       "household_id": "hh_blake_levi",
       "match": "forename_agrees",
       "rule": "BLAKE LEVI matches Levi Blake: the forename names Levi Blake of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "blake_edio_l",
@@ -4778,6 +4874,7 @@
       "household_id": "hh_brown_william_h",
       "match": "forename_agrees",
       "rule": "BROWN WM matches William H Brown: the forename names William H Brown of the 6 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "brown_hanna_e",
@@ -4849,6 +4946,7 @@
       "household_id": "hh_merrill_george_w",
       "match": "forename_agrees",
       "rule": "MERRILL GEO W matches George W Merrill: the forename names George W Merrill of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "merrill_george_w",
@@ -4885,6 +4983,7 @@
       "household_id": "hh_hall_george",
       "match": "forename_agrees",
       "rule": "HALL GEORGE matches George Hall: the forename names George Hall of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "hall_george",
@@ -4920,6 +5019,7 @@
       "household_id": "hh_merrill_george_w",
       "match": "forename_agrees",
       "rule": "MERRILL GEORGE W matches George W Merrill: the forename names George W Merrill of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "merrill_george_w",
@@ -4955,6 +5055,7 @@
       "household_id": "hh_blanchard_f_gantry",
       "match": "initial_agrees",
       "rule": "BLANCHARD FRANCIS G matches F Gantry Blanchard: the forename names F Gantry Blanchard of the 2 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "blanchard_f_gantry",
@@ -5003,6 +5104,7 @@
       "household_id": "hh_jamison_l_t",
       "match": "initial_agrees",
       "rule": "JAMISON LOUIS T matches L T Jamison: the forename names L T Jamison of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -5045,6 +5147,7 @@
       "household_id": "hh_pearsons_hiram",
       "match": "initial_agrees",
       "rule": "PEARSONS H matches Hiram Pearsons: the forename names Hiram Pearsons of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -5071,6 +5174,7 @@
       "household_id": "hh_harmon_brothers",
       "match": "forename_agrees",
       "rule": "HARMON CHAS L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -5133,6 +5237,7 @@
       "household_id": "hh_archer_william_b",
       "match": "forename_agrees",
       "rule": "ARCHER WILLIAM B matches William B Archer: the forename names William B Archer of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "archer_joseph",
@@ -5169,6 +5274,7 @@
       "household_id": "hh_andrews_davi",
       "match": "forename_agrees",
       "rule": "ANDREWS DAVID matches Davi Andrews: the forename names Davi Andrews of the 4 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "andrews_davi",
@@ -5222,6 +5328,7 @@
       "household_id": "hh_frame_david_p",
       "match": "forename_agrees",
       "rule": "FRAME DAVID P matches David P. Frame: the forename names David P. Frame of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
@@ -5247,6 +5354,7 @@
       "household_id": "hh_ballard_thomas",
       "match": "forename_agrees",
       "rule": "BALLARD THOMAS matches Thomas Ballard: the forename names Thomas Ballard of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "ballard_c_a",
@@ -5282,6 +5390,7 @@
       "household_id": "hh_wentworth_elijah",
       "match": "forename_agrees",
       "rule": "WENTWORTH ELIJAH W matches Elijah Wentworth: the forename names Elijah Wentworth of the 2 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "wentworth_elijah",
@@ -5318,6 +5427,7 @@
       "household_id": "hh_dill_frank",
       "match": "forename_agrees",
       "rule": "DILL FRANK matches Frank Dill: the forename names Frank Dill of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
       "rivals": [],
       "residence_column": "UNKNOWN, COOK",
       "evidence_grade": "documented",
@@ -5343,6 +5453,7 @@
       "household_id": "hh_hunter_edward_e",
       "match": "initial_agrees",
       "rule": "HUNTER E E matches Edward E Hunter: the forename names Edward E Hunter of the 5 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
       "rivals": [
         {
           "key": "hunter_david",
@@ -6791,15 +6902,15 @@
     },
     {
       "a": "KIMBERLEY IRA",
-      "b": "Ed Kimberley",
-      "rule": "KIMBERLEY IRA is refused against Ed Kimberley: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "Dr Edmund Stoughton Kimberly",
+      "rule": "KIMBERLEY IRA is refused against Dr Edmund Stoughton Kimberly: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
-          "key": "kimberley_ed",
-          "name": "Ed Kimberley",
+          "key": "kimberly_edmund_s",
+          "name": "Dr Edmund Stoughton Kimberly",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
+          "middle_initial": "S",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }

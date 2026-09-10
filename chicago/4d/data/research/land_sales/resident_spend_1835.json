@@ -13,13 +13,13 @@
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
   "matched_rulings": 112,
-  "people_written": 98,
-  "households_touched": 95,
+  "people_written": 97,
+  "households_touched": 94,
   "grades_changed": 0,
   "entries_carried": 346,
   "acres_carried": 17412.91,
   "school_section_parcels_carried": 161,
-  "matched_more_than_once": 12
+  "matched_more_than_once": 13
  },
  "not_written": [
   {
@@ -3959,23 +3959,27 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “KIMBALL WALTER”, 1833-10-25: 1 parcel of the school section — lot 2 of block 49 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $88.00 (ls0262). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KIMBALL WALTER matches W. Kimball: the forename names W. Kimball of the 1 person of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
-   "household_id": "hh_kimberley_ed",
-   "person_id": "kimberley_ed",
-   "name": "Ed Kimberley",
+   "household_id": "hh_pruyne_kimberly",
+   "person_id": "kimberly_edmund_s",
+   "name": "Dr Edmund Stoughton Kimberly",
    "source_id": "isa_public_domain_land_tract_sales",
    "purchaser_spellings": [
-    "KIMBERLEY EDMUND S"
+    "KIMBERLEY EDMUND S",
+    "KIMBERLY EDMUND S"
    ],
    "rules": [
-    "KIMBERLEY EDMUND S matches Ed Kimberley: the forename names Ed Kimberley of the 1 person of this surname, and the forename agrees in full."
+    "KIMBERLEY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 1 person of this surname, and the forename agrees in full. The surname reaches him through a ruled card merge and not off his card: the town held kimberley_ed until data/residents/card_merge_rulings.json folded it onto this person, and the register's spelling is the one that card carried.",
+    "KIMBERLY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 3 people of this surname, and the forename agrees in full."
    ],
    "totals": {
-    "entries": 1,
-    "acres": 0.0,
-    "dollars": 102.0,
+    "entries": 2,
+    "acres": 80.0,
+    "dollars": 742.0,
     "first_purchase": "1833-10-25",
-    "last_purchase": "1833-10-25",
-    "tracts": [],
+    "last_purchase": "1835-06-27",
+    "tracts": [
+     "E2SE sec 32 T39N R14E"
+    ],
     "school_section": [
      "lot 6 of block 119 of the school section (sec 16 T39N R14E)"
     ],
@@ -3999,9 +4003,25 @@
      "purchase_no": "0370813",
      "volume": "818",
      "page": "008"
+    },
+    {
+     "record_id": "ls0479",
+     "as_read": "KIMBERLY EDMUND S",
+     "date_purchased": "1835-06-27",
+     "acres": "80.00",
+     "total_price": "640.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2SE sec 32 T39N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0003303",
+     "volume": "687",
+     "page": "269"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “KIMBERLEY EDMUND S”, 1833-10-25: 1 parcel of the school section — lot 6 of block 119 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $102.00 (ls0263). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KIMBERLEY EDMUND S matches Ed Kimberley: the forename names Ed Kimberley of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “KIMBERLEY EDMUND S”, “KIMBERLY EDMUND S”, 1833-10-25 to 1835-06-27: 1 federal land entry — E2SE sec 32 T39N R14E and 1 parcel of the school section — lot 6 of block 119 of the school section (sec 16 T39N R14E), 80.00 acres stated in all, for $742.00 (ls0263, ls0479). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KIMBERLEY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 1 person of this surname, and the forename agrees in full. The surname reaches him through a ruled card merge and not off his card: the town held kimberley_ed until data/residents/card_merge_rulings.json folded it onto this person, and the register's spelling is the one that card carried. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_knickerbacker_a_v",
@@ -5974,51 +5994,6 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “BEAUBIEN J B”, 1830-09-29: 4 federal land entries — NFR2NEVO sec 29 T39N R14E; NFRNE sec 29 T39N R14E; NWFRPTNW sec 29 T39N R14E; NWFRPTNWVO sec 29 T39N R14E, 425.22 acres stated in all, for $2126.40 (ls0454, ls0455, ls0456, ls0457). THE REGISTER'S OWN RESIDENCE COLUMN READS ILLINOIS, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 10 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
-  },
-  {
-   "household_id": "hh_pruyne_kimberly",
-   "person_id": "kimberly_edmund_s",
-   "name": "Dr Edmund Stoughton Kimberly",
-   "source_id": "isa_public_domain_land_tract_sales",
-   "purchaser_spellings": [
-    "KIMBERLY EDMUND S"
-   ],
-   "rules": [
-    "KIMBERLY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 3 people of this surname, and the forename agrees in full."
-   ],
-   "totals": {
-    "entries": 1,
-    "acres": 80.0,
-    "dollars": 640.0,
-    "first_purchase": "1835-06-27",
-    "last_purchase": "1835-06-27",
-    "tracts": [
-     "E2SE sec 32 T39N R14E"
-    ],
-    "school_section": [],
-    "residence_as_read": [
-     "UNKNOWN"
-    ]
-   },
-   "entries": [
-    {
-     "record_id": "ls0479",
-     "as_read": "KIMBERLY EDMUND S",
-     "date_purchased": "1835-06-27",
-     "acres": "80.00",
-     "total_price": "640.00",
-     "type_of_sale": "federal land sale (cash entry)",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "E2SE sec 32 T39N R14E",
-     "resolves": "half_quarter_section",
-     "sale_kind": "federal_entry",
-     "purchase_no": "0003303",
-     "volume": "687",
-     "page": "269"
-    }
-   ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “KIMBERLY EDMUND S”, 1835-06-27: 1 federal land entry — E2SE sec 32 T39N R14E, 80.00 acres stated in all, for $640.00 (ls0479). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KIMBERLY EDMUND S matches Dr Edmund Stoughton Kimberly: the forename names Dr Edmund Stoughton Kimberly of the 3 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_smith_jeremiah",

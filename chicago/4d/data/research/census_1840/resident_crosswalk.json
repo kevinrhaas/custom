@@ -60,7 +60,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1359
+      "n": 1355
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -84,7 +84,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 147
+      "n": 148
     },
     {
       "what": "the 1839 Chicago directory",
@@ -102,18 +102,18 @@
   "counts": {
     "named_heads": 965,
     "matched": 13,
-    "candidate": 18,
-    "refused": 934
+    "candidate": 17,
+    "refused": 935
   },
   "counts_by_rule": {
     "L1 unreadable_name": 249,
-    "L2 no_surname_in_the_1835_pools": 411,
+    "L2 no_surname_in_the_1835_pools": 412,
     "L3 given_name_conflict": 193,
     "L4 initial_only": 73,
     "L5 name_is_not_unique": 8,
     "L6 matched": 13,
     "L6a low_confidence_caps_at_candidate": 5,
-    "L7 candidate": 13
+    "L7 candidate": 12
   },
   "printed_pages_read_here": [
     207,
@@ -2362,14 +2362,9 @@
       "surname": "kimberley",
       "forename": "ed",
       "same_name_support": [],
-      "person_id": "kimberley_ed",
-      "household_id": "hh_kimberley_ed",
-      "resident_name": "Ed Kimberley",
-      "resident_grade_1835": "attested",
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Ed. Kimberley = Ed Kimberley) and the name is unique on both sides, but nothing independent of the name was found: kimberley_ed carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The name appears on no 1835 list beyond the residents layer."
+      "outcome": "refused",
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'kimberley'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-99F",
