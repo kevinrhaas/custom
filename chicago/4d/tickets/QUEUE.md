@@ -106,7 +106,6 @@
 # --- is still unwritten. Run it, then spend whatever it exposes, here.
 T-0962 — measure_research_spend.py's second hop cannot see a resident_crosswalk: census_1840 read 27 head rulings as fully spent while 15 of the 27 cards had never been told
 T-0872 — Eight cards already carry a later trade in the 1835 occupation field, landed before T-0837 gated it
-T-0900 — Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image
 T-0850 — The twenty-six land-sale purchaser spellings the first deposit matched are still unruled proposals: rule them as T-0700 ruled the ring's nine
 T-0851 — The register sells ground to FIRMS and the crosswalk can only propose people: A. Garrett & Co. entered eighty acres and no record carries it
 T-0844 — Six duplicate-card clusters the evidence does not decide: Hunt, Kennicott, Saunders, Walker, T. Temple and John S. Kinzie

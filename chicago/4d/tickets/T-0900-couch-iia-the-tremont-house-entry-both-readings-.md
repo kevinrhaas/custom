@@ -1,7 +1,7 @@
 ---
 id: T-0900
 title: Couch, Iia — the Tremont House entry both readings of Norris 1844 fail on: read the printed token off the page image
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1056
 claimed_by: run 9/10/2026, 2:31:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T08:01:21.715Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34450132649
 ---
 
