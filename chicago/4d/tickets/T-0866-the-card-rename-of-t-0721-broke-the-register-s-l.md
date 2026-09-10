@@ -1,7 +1,7 @@
 ---
 id: T-0866
 title: The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1092
 claimed_by: run 9/10/2026, 5:53:24 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T23:38:09.352Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34539411529
 ---
 
