@@ -392,8 +392,67 @@ Fergus 1839 — the same forename and the same middle initial, spelled with one 
 `tools/namesake.py` folds surnames exactly, so it never gathered him: **`rivals[] empty` means
 no namesake OF THAT SPELLING, and this cohort is defined by that field.** Filed as **T-1001**.
 
-**Still unruled: 66** — cohort C, the `forename_agrees` proposals that have a namesake, to be
-taken in two or three runs by surname block. The log on T-0990 carries them.
+**Still unruled after cohort B: 66** — cohort C, the `forename_agrees` proposals that have a
+namesake, taken in three runs by surname block. The log on T-0990 carries them.
+
+## Cohort C1: the seventeen with a namesake, surnames A-C (T-0990)
+
+Cohort C is the other half of what T-0697 added: the mechanical rule fired on a surname the
+layer holds SEVERAL of, and a forename agreeing in full chose among them. C1 is its first
+block, surnames A to C, ruled by eye as well as by `namesake.py`.
+
+**Eleven upheld, six refused.** What moved: matched spellings 112 → **106**, ruled 71 → **88**,
+unruled 66 → **49**; five cards retracted, and with them nine register rows — **1,040.00 acres
+and $1,608.00** of ground taken back off them. What stands: 23 rows, 1,125.71 acres and
+$2,943.00. Nothing was written on; upholding a proposal confirms what the spend pass had
+already put there.
+
+| the register | the town's own record | ruling |
+|---|---|---|
+| ARCHER WILLIAM B | Chicago American, 4 July 1835, *William B. Archer*, + a Fergus death notice | upheld |
+| BEAUBIEN MARK | the election of 1833 held at his house; Fergus 1839 *hotel-keeper, Lake st* | upheld |
+| BROWN WILLIAM H | Democrat, 28 May 1834, *W. H. Brown*; Fergus 1839 *cashier, Branch State Bank*; the register's own **ILLINOIS** | upheld |
+| CARPENTER PHILO | Fergus 1839 *druggist and apothecary*; by 1843 he has **Carpenter's Addition** | upheld |
+| CHAPMAN CHARLES H | three ordinary press printings, 1833-34; Fergus 1839 *real estate dealer* | upheld |
+| CLARK JOHN K | Chicago American, 11 July 1835, *John K. Clark*; the register's own **COOK** | upheld |
+| COOK JOSIAH P | Norris 1844: *Cook, Josiah P. baker, res Michigan avenue* | upheld |
+| COOK THOMAS | *teamster, Desplaines st* in 1839, 1843 AND 1844, + the tax list of 1833 | upheld |
+| ANDREWS WILLIAM | Democrat, 25 June 1834, *Wm. Andrews*; Fergus 1839 *tailor, north side* | upheld |
+| BOWEN ERASTUS | tax 1833, poll 1834, Calumet Club, Fergus 1839 *city collector* | upheld |
+| BENNETT WILLIAM | the poll of 1834, + the register's own **COOK** | upheld |
+| BROWN WM | *nothing the fuller spelling does not already carry* — and Fergus 1843 prints three William Browns | **refused** |
+| ANDREWS DAVID · ALLEN WILLIAM · BLAKE LEVI · BURDICK PAUL | *nothing* — one uncalled-for letter apiece | **refused** |
+| BALLARD THOMAS | *nothing* — one line of the poll of 1835 | **refused** |
+
+**THE HABIT COHORT A FOUND HAS A LIMIT, AND C1 IS WHERE IT SHOWS.** The register does print one
+purchaser twice, abbreviated and in full — HADDOCK E H / HADDOCK EDWARD H was cohort A's. But
+**BROWN WILLIAM H is upheld and BROWN WM is refused**, on the same day and against the same
+card. The fuller spelling carries a middle initial, a bank, two press readings and an ILLINOIS
+in the Residence column; the barer one carries a forename so common that Fergus 1843 prints
+*Brown, William, grocer*, *Brown, Wm., bds Sauganash* and *Brown, William Hubbard, cashier* as
+three men. The layer holding one William Brown is thinness, not a town. **A spelling with no
+middle initial is its own proposal and gets its own ruling.**
+
+**THE SIBLING TEST IS THE CHEAPEST ONE IN THE COHORT.** ANDREWS WILLIAM upheld, ANDREWS DAVID
+refused, same surname and same afternoon: one has a newspaper printing and a directory trade,
+the other has a letter waiting at the post office and a research row whose `evidence_for` is
+EMPTY. A `corroborated_enrichment` outcome with nothing written into it corroborates nothing.
+
+**AND `letter_list_only` LIED ONCE.** Four of the six refusals are cards carrying that flag and
+they went the way cohort B's six went. CHAPMAN CHARLES H carries it too and is UPHELD, because
+three of its four `press_evidence` rows are ordinary printings with their own locators — the
+Democrat of 26 November 1833, the American of 24 December 1833, the Democrat of 13 August 1834 —
+and only one is a letter list. Read `press_evidence[].list`, not the flag. Seven cards are
+flagged that way; filed as **T-1005**.
+
+**A second card found on the way past.** Fergus 1843 prints two Erastus Bowens — the city
+collector of *B. & Cole*, and *Erastus Selden Bowen [veterinary surgeon] [died Oct. 19, 1888,
+a. 69]*, who was born about 1819 and was sixteen on the scene date. The layer's single card is
+keyed `bowen_erastus_selden` and appears to hold the elder man's documents under the younger
+man's name. The ruling is against the elder and says so; the conflation is **T-1004**.
+
+**Still unruled: 49** — cohort C2 (surnames D-J, 21 spellings) and C3 (K-Z, 28). The log on
+T-0990 carries them, and C3 holds KIMBERLY EDMUND S, which is T-1001's man.
 
 ## Forty rulings were reverted, and restored (#1073, T-1000)
 
