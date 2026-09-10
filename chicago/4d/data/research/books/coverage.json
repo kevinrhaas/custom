@@ -222,6 +222,14 @@
    "read": "2026-09-05",
    "text": "data/research/books/text/moses_kirkland_history_of_chicago_v1.txt - the whole of volume 1's Internet Archive djvu OCR, 137,410 lines, sha256 12c57267ab097590c1a8dceb15983edbdfb026b7755d047f0dca0210f77ba96c. Declared as ONE list item and not as fourteen page items, for the reason Hurlbut's chapter was: the passages are scattered across a 700-page volume and were reached by a surname search, not by reading the pages through, so declaring each page 'read' would claim more than was done. Each claim names its own printed page in its locator.",
    "not_read": "EVERYTHING ELSE IN VOLUME 1, which is the honest proportion: about seven hundred printed pages, of which fourteen were reached. The volume was searched exhaustively for forty-nine surnames and read only where that search led, so a fact about 1835 Chicago sitting on an unsearched page under a name not on the lead list is not found by this pass and is not reported as absent. VOLUME 2 IS NOT READ AT ALL and is not in this project's hands; the Newberry cards do not say which volume they cite. The 'LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830' at pages 78-79 was FOUND AND NOT TRANSCRIBED - about thirty rows with nativity, year and remarks columns - and is left to its own ticket rather than half-read here."
+  },
+  {
+   "unit": "list",
+   "items": [
+    "moses_kirkland_v1_actual_settlers_pre_1830"
+   ],
+   "ticket": "T-0961",
+   "what": "Moses and Kirkland, History of Chicago, Illinois, vol. 1 (1895), printed pages 78-79: the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830, read ROW BY ROW — all thirty-six of them, with the nativity, year and remarks cells as separate fields and the printed line beside them. THIS IS A SECOND DECLARATION OVER PAGES T-0581 ALREADY DECLARED, and it is not a duplicate: T-0581's list `moses_kirkland_v1_1832_1835_and_biographical` reached page 78-79 for the PREAMBLE — the rule the table was built on, and the weather record below it — and said in the ticket that the table itself was left. A declaration is of a READING and not of a leaf, and two readings of one page are two declarations. The unit is `list` for this domain's usual reason and one more: the table straddles the 78/79 break mid-alphabet, so neither folio holds it."
   }
  ]
 }

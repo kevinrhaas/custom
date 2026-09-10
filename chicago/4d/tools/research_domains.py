@@ -633,6 +633,24 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
                 bad.append("%s: confidence %r is outside %s"
                            % (where, row.get("confidence"), list(CONFIDENCES)))
             reached.update(locator_reached(row.get("locator") or {}))
+            # THE VERBATIM GATE REACHES A ROW TOO, WHEN THE ROW ASKS FOR IT (T-0961).
+            # `as_read` is a CELL — a name lifted out of one column of a printed table —
+            # so it cannot be rebuilt out of a line of text and is not held to it. But a
+            # row transcribed out of a text this repository COMMITS can carry the whole
+            # printed line beside its cells, and then the same check the claims get is
+            # available for the asking: `verbatim` is rebuilt at the row's own locator and
+            # must match byte for byte. It is opt-in ON PURPOSE and not required, because
+            # the domains whose rows come off a SCAN — a census sheet, a parish register —
+            # have no committed text to rebuild from and never will; requiring the field
+            # would either fail them or teach them to fake it. A row that offers the field
+            # is asking to be checked, and this is the check.
+            if "verbatim" in row:
+                rebuilt, err = rebuild_quote(domain_dir, row.get("locator") or {})
+                if err:
+                    bad.append("%s: carries a verbatim and its locator %s" % (where, err))
+                elif rebuilt != row["verbatim"]:
+                    bad.append("%s: the verbatim is not what the committed text says at "
+                               "that locator" % where)
 
     for path in sorted((domain_dir / "claims").glob("*.json")) if (domain_dir / "claims").exists() else []:
         doc = load(path)
@@ -969,6 +987,46 @@ def self_test() -> int:
     run(lambda r, t: edit(r / "books/claims/fixture.json",
                           lambda d: d["claims"][0]["locator"].update(text_file="nope.txt")),
         "which is not committed", "a quote citing text this repo does not hold")
+
+    # 3b. THE SAME GATE ON A ROW THAT ASKED FOR IT (T-0961). A record carrying a
+    # `verbatim` is held to the committed text exactly as a claim's quote is; a record
+    # without one is not, and the third case is what proves the opt-in is really opt-in
+    # rather than a check that happens to be off.
+    def _row_with_verbatim(research, verbatim=FIXTURE_TEXT.splitlines()[0], **over):
+        row = copy.deepcopy(FIXTURE_RECORD)
+        row.update({
+            "verbatim": verbatim,
+            "locator": {"text_file": "fixture.txt", "lines": [1, 1], "page": 7},
+        })
+        row.update(over)
+        dump(research / "books" / "records" / "fixture_rows.json", {
+            "schema": 1, "domain": "books", "source_id": "fixture_source",
+            "records": [row],
+        })
+
+    run(lambda r, t: _row_with_verbatim(r, verbatim="the town was then a mere hamlets"),
+        "the verbatim is not what the committed text says",
+        "a record verbatim that differs by one character")
+    run(lambda r, t: _row_with_verbatim(
+            r, locator={"text_file": "nope.txt", "lines": [1, 1], "page": 7}),
+        "which is not committed", "a record verbatim citing text this repo does not hold")
+    if True:
+        with tempfile.TemporaryDirectory() as td:
+            tmp = Path(td)
+            research = _fixture(tmp)
+            row = copy.deepcopy(FIXTURE_RECORD)
+            row["locator"] = {"text_file": "fixture.txt", "lines": [1, 1], "page": 7}
+            dump(research / "books" / "records" / "fixture_rows.json", {
+                "schema": 1, "domain": "books", "source_id": "fixture_source",
+                "records": [row],
+            })
+            cases += 1
+            bad = check(research=research, sources=tmp / "sources", quiet=True)
+            if any("verbatim" in b for b in bad):
+                failures.append("a record with NO verbatim was held to the text anyway: %r"
+                                % bad)
+            else:
+                print("  fires: a record with no verbatim is not held to the committed text")
 
     # 4. a coverage hole
     run(lambda r, t: edit(r / "books/coverage.json",
