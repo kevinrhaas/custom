@@ -28,7 +28,7 @@
   },
   "church": {
    "read": 1744,
-   "spent": 1255
+   "spent": 1256
   },
   "books": {
    "read": 246,
@@ -376,6 +376,14 @@
    "to": 82,
    "date": "2026-09-10",
    "why": "T-0962 widened the second hop to read the container spelling `matched`, and church walked into the report for the first time carrying 82 rulings and not one card told. The debt is not new — second_presbyterian_crosswalk.json has adjudicated 82 roll members onto households since it was generated, and no resident record in the town cites second_presbyterian_chicago_1892 at all. The ceiling records that true figure rather than hiding it behind an instrument that could not see the container; it is a debt to pay down, and T-0992 is the ticket that pays it. It may not grow."
+  },
+  {
+   "domain": "church",
+   "hop": "write",
+   "from": 82,
+   "to": 83,
+   "date": "2026-09-10",
+   "why": "Mrs C. Taylor arrived in the town while this branch was open. dev minted hh_taylor_c (T-0960, PR #1050/#1051) and the Second Presbyterian crosswalk re-derived onto her: roll line second_presb_0870, \"Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.\", printed page 203, matched on the same surname-plus-initial rule as the other 82. So the crosswalk's matched rows went 82 to 83 and church's write debt with them. The ceiling is NOT growing because church read further ahead — the reading is unchanged since T-0962 measured it this morning — but because the TOWN gained a card underneath it, which is the ladder working and not a hole opening. T-0992 pays the whole 83 down to 0 and this may not grow for any other reason."
   }
  ],
  "lowered": [
@@ -409,7 +417,7 @@
   "directories": 0,
   "land_sales": 0,
   "old_settlers": 0,
-  "church": 82
+  "church": 83
  },
  "unsourced_ceiling": {
   "old_settlers": 0
