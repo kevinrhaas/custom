@@ -13,17 +13,17 @@
  "counts": {
   "person_records": 1355,
   "carried_by_the_civic_mint": 483,
-  "rungs_spent": 794,
-  "conflicts_for_the_owner": 75,
+  "rungs_spent": 791,
+  "conflicts_for_the_owner": 78,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 89,
    "G1c": 10,
    "G2e": 47,
-   "G3": 626
+   "G3": 623
   },
   "conflicts_by_kind": {
-   "abstention": 38,
+   "abstention": 41,
    "downgrade": 36,
    "subtype": 1
   }
@@ -1744,15 +1744,6 @@
    "rule": "G1a",
    "grade": "attested",
    "resident_subtype": null
-  },
-  {
-   "person_id": "crisey_william",
-   "household_id": "hh_crisey_william",
-   "name": "William Crisey",
-   "identity": "id_crisey_william",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "crocker_h",
@@ -5139,15 +5130,6 @@
    "resident_subtype": null
   },
   {
-   "person_id": "pease_h",
-   "household_id": "hh_pease_h",
-   "name": "H. Pease",
-   "identity": "id_pease_h",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
    "person_id": "peck_philip",
    "household_id": "hh_peck_philip",
    "name": "Philip F. W. Peck",
@@ -5260,15 +5242,6 @@
    "household_id": "hh_plimpton_lauretta",
    "name": "Lauretta Plimpton",
    "identity": "id_plimpton_lauretta",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "plumer_f",
-   "household_id": "hh_plumer_f",
-   "name": "F. Plumer",
-   "identity": "id_plumer_f",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -7529,6 +7502,21 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
+   "person_id": "crisey_william",
+   "household_id": "hh_crisey_william",
+   "name": "William Crisey",
+   "identity": "id_crisey_william",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
    "person_id": "davis_t_o",
    "household_id": "hh_davis_t_o",
    "name": "T. O. Davis",
@@ -8024,10 +8012,40 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
+   "person_id": "pease_h",
+   "household_id": "hh_pease_h",
+   "name": "H. Pease",
+   "identity": "id_pease_h",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
    "person_id": "perry_a_8",
    "household_id": "hh_perry_a_8",
    "name": "A. [?] Perry",
    "identity": "id_perry_abijah_s",
+   "rule": "G5",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
+   "kind": "abstention",
+   "proposed": {
+    "grade": null,
+    "resident_subtype": null
+   },
+   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
+   "person_id": "plumer_f",
+   "household_id": "hh_plumer_f",
+   "name": "F. Plumer",
+   "identity": "id_plumer_f",
    "rule": "G5",
    "grade": "inferred",
    "resident_subtype": "projected_resident",

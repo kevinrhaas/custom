@@ -22,11 +22,11 @@ one family name.
 
 ## The two readings, over the same pool
 
-* the pool the register offers this pass: **1844** candidates
-* accepted under the pre-T-0638 reading: **654**
-* accepted under the corrected reading: **657**
-* candidates the correction REFUSES that the old reading accepted: **8**
-* candidates the correction ADMITS that the old reading refused: **11**
+* the pool the register offers this pass: **1837** candidates
+* accepted under the pre-T-0638 reading: **674**
+* accepted under the corrected reading: **682**
+* candidates the correction REFUSES that the old reading accepted: **9**
+* candidates the correction ADMITS that the old reading refused: **17**
 
 ## The collisions — what the paper printed, and who holds the surname instead
 
@@ -39,6 +39,7 @@ rules for. `carries` is what a retirement would strand.
 | `Es,Jones, High` | Jones, High Es | `es` | `jones` | the town already names a Jones | Benjamin Jones (hh_jones_benjamin); D E Jones (hh_jones_d_e); M Jones (hh_jones_m) … | 1 | research row T-0481 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Esther Preston` | Esther Preston | `preston` | `preston` | surname already minted | Stephen II. Preston | 1 | research row T-0479 (no_corroboration_yet) |
 | `Frederick W. Page` | Frederick W. Page | `page` | `page` | surname already minted | Elisha S. Page | 1 | research row T-0510 (no_corroboration) |
+| `John Wilson 4` | Wilson [?] John | `4` | `john` | the town already names a John | W John (hh_john_w) | 1 | — |
 | `Mason Sabrina A.` | Sabrina A. Mason | `a` | `mason` | the town already names a Mason | Matthias Mason (hh_mason_matthias) | 1 | research row T-0482 (no_corroboration_yet) |
 | `Mills Joel C.` | Joel C. Mills | `c` | `mills` | the town already names a Mills | John A Mills (hh_mills_john_a); Samuel Mills (hh_mills_samuel) | 1 | research row T-0482 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Norton Wm. H.` | Wm. H. Norton | `h` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet) |
@@ -61,14 +62,14 @@ rules for. `carries` is what a retirement would strand.
 ## The committed cohort against its own derivation
 
 The tree holds **725** letter-list households. The pass, run today
-against that same tree, derives **657**. `check.sh` runs this pass's
+against that same tree, derives **682**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 
 | households | cause |
 |---|---|
 | 75 | the town gained this surname from another pass after the mint (the town already names that family) |
 | 8 | THIS FAULT — the corrected reading collides it with another record |
-| 2 | no longer in the pool the register offers |
+| 5 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |
 
 **This is the finding that resizes T-0660.** The ticket was filed believing the
@@ -83,7 +84,11 @@ The other half of the same diff, and none of them is committed today.
 | printed | as a card would show it | old | new | returns |
 |---|---|---|---|---|
 | `Augustus H, Conant` | Conant Augustus H | `h` | `augustus` | 1 |
+| `Eliphalet Atkins 2` | Atkins [?] Eliphalet | `2` | `eliphalet` | 1 |
+| `Julius Perrin 2` | Perrin [?] Julius | `2` | `julius` | 1 |
 | `Loweley. Watere e` | Watere e Loweley | `e` | `loweley` | 1 |
+| `Miranda Miner 2` | Miner [?] Miranda | `2` | `miranda` | 1 |
+| `Mr. Roult 2` | Roult [?] Mr | `2` | `roult` | 1 |
 | `Nett Robert A.` | Robert A. Nett | `a` | `nett` | 1 |
 | `Nicholson Joshua F.` | Joshua F. Nicholson | `f` | `nicholson` | 1 |
 | `Orisbee Edgar I..` | Edgar I.. Orisbee | `i` | `orisbee` | 1 |
@@ -91,8 +96,10 @@ The other half of the same diff, and none of them is committed today.
 | `Osborn B.` | B. Osborn | `b` | `osborn` | 1 |
 | `Pedrick Robert c.` | Robert c. Pedrick | `c` | `pedrick` | 1 |
 | `Root Ez c.` | Ez c. Root | `c` | `root` | 1 |
+| `Salmon Rutherford 3` | Rutherford [?] Salmon | `3` | `salmon` | 1 |
 | `Swanwick F.` | F. Swanwick | `f` | `swanwick` | 1 |
 | `Timothy B.` | B. Timothy | `b` | `timothy` | 1 |
+| `W. Vanzandt 2` | Vanzandt [?] W. | `2` | `vanzandt` | 1 |
 
 ## A residual fault in the corrected reading
 
