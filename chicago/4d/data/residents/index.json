@@ -245,10 +245,10 @@
   ]
  },
  "counts": {
-  "households": 1338,
-  "persons": 1362,
+  "households": 1339,
+  "persons": 1363,
   "by_grade": {
-   "attested": 494,
+   "attested": 495,
    "inferred": 868,
    "reconstructed": 0
   },
@@ -18553,6 +18553,20 @@
    "lives_at": null,
    "works_at": "st_marys_church",
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_taylor_c",
+   "file": "households/hh_taylor_c.json",
+   "head": "taylor_c",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {

@@ -167,7 +167,20 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "distinct",
+     "rule": "D3",
+     "cluster": "taylor-mrs-c",
+     "weighed_against": [
+      "taylor_c"
+     ],
+     "for_merge": "Only the initial. Strip \"Mrs.\" and `C.` expands to exactly one full Taylor forename in this town — Charles — with no rival, which is C2's own test and would ordinarily land the merge. It is also true that this is exactly how the period prints a married woman — the honorific standing on her husband's forename, whoever he was — so the shape itself argues nothing either way. That is an argument for a KINSHIP, not for one card: R6 (#998) settled that a wife is not her husband.",
+     "against_merge": "A WOMAN AND A MAN, AND THE PAGE PRINTS THE HONORIFIC. The Chicago Democrat of 19 August 1835 (c007) invites the town to a sale \"at the hous[e] of Mrs. C. Taylor, Water-st.\" — she keeps a house and hosts the Juvenile Society in it. The rival card is Charles H. Taylor, Anson's brother on hh_taylor_anson: a carpenter on the 1833, 1834 and 1835 poll lists, in the federal land tract register and in the 1840 census, every one of them a man's record. Merging would assert that the notice named him, which no reading of \"Mrs.\" supports. THE PROOF HERE IS NOT BROWN'S PROOF, and the difference is why this ruling is written out rather than cited: R6 and D3 were built on ONE SOURCE PRINTING BOTH READINGS as separate entries, because `Mrs. Rufus B. Brown` and `Brown, Rufus B.` are identical once the honorific is stripped and nothing in the letters tells a Rufus from an Eliza. These two are not identical after the strip — `Taylor, C.` against `Taylor, Charles H.` — so the pair never needed that proof to be held apart; what joins them is the ordinary initial rule (C2 on the card side, M2 in the derivation) reaching across an honorific it cannot see. That is the shape T-0951 now carries."
+    }
+   ]
   }
  ],
  "touches_removal": false,
