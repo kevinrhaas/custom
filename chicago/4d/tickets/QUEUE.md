@@ -109,7 +109,6 @@
 
 T-0991 — Eight cards assert an 1835 trade out of a PRE-scene printing, and T-0693's later_occupation pointer cannot hold one: blank the field, or regrade it reconstructed?
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
-T-0993 — Francis Gurtrey Blanchard has two cards: Fergus 1843 prints the man T-0990 ruled on, and 'Gantry Blanchard' is very likely the same person
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-1007 — Spend the trade-census gap: the Lyceum and the Reading Room recorded as institutions, the bank and lottery office as documented absences, and the count-shortfall classes filled where a source names the business
 T-0424 — The 1 January 1834 letter list's printed length, and the names all nine printings lost, need the page images
