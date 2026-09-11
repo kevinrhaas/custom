@@ -11,18 +11,18 @@
  },
  "counts": {
   "residents_considered": 1375,
-  "matched_one_1844_entry": 100,
-  "matched_more_than_one_ambiguous": 24,
+  "matched_one_1844_entry": 104,
+  "matched_more_than_one_ambiguous": 20,
   "one_1844_entry_contested_by_two_residents": 14,
   "surname_present_initial_absent_refused": 336,
   "initial_agreed_forenames_disagreed_refused": 48,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_1844_entry_by_that_refusal": 24,
-  "ties_narrowed_by_a_trade": 4,
+  "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 0,
-  "of_those_ambiguous": 4,
-  "could_carry_occupation": 65,
-  "could_carry_address": 75
+  "of_those_ambiguous": 3,
+  "could_carry_occupation": 66,
+  "could_carry_address": 79
  },
  "matches": [
   {
@@ -358,6 +358,31 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": true
+  },
+  {
+   "resident": "Benjamin Jones",
+   "person_id": "jones_benjamin",
+   "household_id": "hh_jones_benjamin",
+   "grade_1835": "attested",
+   "occupation_1835": "grocer",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "h_jones_store",
+   "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins B.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0971",
+     "as_printed": "Jones, Benjamin, of B. J. & Co. house Rand, b Clark aud Dearb",
+     "printed_page": 42,
+     "occupation_1844": "of",
+     "address_1844": "B. J. & Co. house Rand, b Clark aud Dearb"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
   },
   {
    "resident": "Bennet Bailey",
@@ -882,6 +907,31 @@
    ],
    "could_carry": [
     "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "George Smith",
+   "person_id": "smith_george",
+   "household_id": "hh_smith_george",
+   "grade_1835": "attested",
+   "occupation_1835": "coffee_house_keeper",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins G.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1646",
+     "as_printed": "Smith, George, of'G. S. & Co. res City Hotel",
+     "printed_page": 56,
+     "occupation_1844": "of'G. S. & Co",
+     "address_1844": "res City Hotel"
+    }
+   ],
+   "could_carry": [
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -2297,6 +2347,31 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Stephen F. Gale",
+   "person_id": "gale_stephen_f",
+   "household_id": "hh_gale_stephen_f",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Gale' folds to the same string as the 1844 entry's, and the given name of both begins S.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0671",
+     "as_printed": "v Gale, Stephen F. of S. F. & Co. h c of Wabash and Dearborn sts",
+     "printed_page": 36,
+     "occupation_1844": "of S. F. & Co",
+     "address_1844": "h c of Wabash and Dearborn sts"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Thomas Church",
    "person_id": "church_thomas",
    "household_id": "hh_church_thomas",
@@ -2503,6 +2578,32 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "William Hanford Adams",
+   "person_id": "adams_william_h",
+   "household_id": "hh_adams_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Adams' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0011",
+     "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison",
+     "printed_page": 21,
+     "occupation_1844": "of W",
+     "address_1844": "H. A. & Co. residence iasalle. street, b Washington and Madison"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "William Jones",
    "person_id": "jones_william",
    "household_id": "hh_jones_william",
@@ -2662,38 +2763,6 @@
       "why": "two trades that do not agree",
       "outcome": "refused_by_discriminator",
       "refusal": "The trade printed against this name agrees with 'n1844_e0828' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     }
-    ]
-   }
-  },
-  {
-   "tie": "ambiguous",
-   "resident": "Benjamin Jones",
-   "person_id": "jones_benjamin",
-   "entries": 2,
-   "named": "Jones, B. & Co. dry goods and groceries, S. Water, b Clark and Dearborn (See card)",
-   "claim": "n1844_e0972",
-   "discriminator": {
-    "kind": "trade",
-    "named": "n1844_e0972",
-    "confidence": "reconstructed",
-    "occupation_1835": "grocer",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "n1844_e0971",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'n1844_e0972' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "n1844_e0972",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
      }
     ]
    }
@@ -3329,62 +3398,6 @@
  ],
  "ambiguous": [
   {
-   "resident": "Benjamin Jones",
-   "person_id": "jones_benjamin",
-   "household_id": "hh_jones_benjamin",
-   "grade_1835": "attested",
-   "occupation_1835": "grocer",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "h_jones_store",
-   "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins B.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0971",
-     "as_printed": "Jones, Benjamin, of B. J. & Co. house Rand, b Clark aud Dearb",
-     "printed_page": 42,
-     "occupation_1844": "of",
-     "address_1844": "B. J. & Co. house Rand, b Clark aud Dearb"
-    },
-    {
-     "claim": "n1844_e0972",
-     "as_printed": "Jones, B. & Co. dry goods and groceries, S. Water, b Clark and Dearborn (See card)",
-     "printed_page": 42,
-     "occupation_1844": "& Co. dry goods and groceries, S. Water",
-     "address_1844": "b Clark and Dearborn (See card)"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": "n1844_e0972",
-    "confidence": "reconstructed",
-    "occupation_1835": "grocer",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "n1844_e0971",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'n1844_e0972' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "n1844_e0972",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
    "resident": "Charles H. Taylor",
    "person_id": "taylor_charles",
    "household_id": "hh_taylor_anson",
@@ -3529,55 +3542,6 @@
       "key": "n1844_e1908",
       "agrees": false,
       "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "George Smith",
-   "person_id": "smith_george",
-   "household_id": "hh_smith_george",
-   "grade_1835": "attested",
-   "occupation_1835": "coffee_house_keeper",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins G.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1646",
-     "as_printed": "Smith, George, of'G. S. & Co. res City Hotel",
-     "printed_page": 56,
-     "occupation_1844": "of'G. S. & Co",
-     "address_1844": "res City Hotel"
-    },
-    {
-     "claim": "n1844_e1647",
-     "as_printed": "Smith, George & Co. private banker* and exchange brokers, Bank Buildings (See card)",
-     "printed_page": 56,
-     "occupation_1844": "& Co. private banker* and exchange brokers, Bank Buildings (See card)",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e1646",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "n1844_e1647",
-      "agrees": false,
-      "why": "two trades that do not agree"
      }
     ]
    }
@@ -4395,55 +4359,6 @@
    }
   },
   {
-   "resident": "Stephen F. Gale",
-   "person_id": "gale_stephen_f",
-   "household_id": "hh_gale_stephen_f",
-   "grade_1835": "attested",
-   "occupation_1835": "merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Gale' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0670",
-     "as_printed": "\" « Gale, Stephen F. & Co. book store, 106 Lake st",
-     "printed_page": 36,
-     "occupation_1844": "& Co. book store, 106 Lake st",
-     "address_1844": null
-    },
-    {
-     "claim": "n1844_e0671",
-     "as_printed": "v Gale, Stephen F. of S. F. & Co. h c of Wabash and Dearborn sts",
-     "printed_page": 36,
-     "occupation_1844": "of S. F. & Co",
-     "address_1844": "h c of Wabash and Dearborn sts"
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e0670",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "n1844_e0671",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
    "resident": "William H Brown",
    "person_id": "brown_william_h",
    "household_id": "hh_brown_william_h",
@@ -4499,56 +4414,6 @@
      },
      {
       "key": "n1844_e0226",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William Hanford Adams",
-   "person_id": "adams_william_h",
-   "household_id": "hh_adams_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the 1844 entry's, and the given name of both begins W.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0010",
-     "as_printed": "Adams, W. H. & Co. boot and shoe dealers, 138 Lake st (See card)",
-     "printed_page": 21,
-     "occupation_1844": "& Co. boot and shoe dealers, 138 Lake st (See card)",
-     "address_1844": null
-    },
-    {
-     "claim": "n1844_e0011",
-     "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison",
-     "printed_page": 21,
-     "occupation_1844": "of W",
-     "address_1844": "H. A. & Co. residence iasalle. street, b Washington and Madison"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e0010",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0011",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -4724,7 +4589,7 @@
    "resident": "Albert F. Dow",
    "person_id": "dow_albert_f",
    "surname_in_1844": "Dow",
-   "candidates": 2,
+   "candidates": 1,
    "rule": "The surname 'Dow' is in Norris 1844 and no entry under it carries the initial 'A' of 'Albert F. Dow'. A surname-only agreement is a refusal."
   },
   {
@@ -5284,7 +5149,7 @@
    "resident": "Edward Richards Allen",
    "person_id": "allen_edward_richards",
    "surname_in_1844": "Allen",
-   "candidates": 5,
+   "candidates": 4,
    "rule": "The surname 'Allen' is in Norris 1844 and no entry under it carries the initial 'E' of 'Edward Richards Allen'. A surname-only agreement is a refusal."
   },
   {
@@ -5382,7 +5247,7 @@
    "resident": "Elizabeth Adams",
    "person_id": "adams_elizabeth",
    "surname_in_1844": "Adams",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Adams' is in Norris 1844 and no entry under it carries the initial 'E' of 'Elizabeth Adams'. A surname-only agreement is a refusal."
   },
   {
@@ -5508,14 +5373,14 @@
    "resident": "George E. Walker",
    "person_id": "walker_george_e",
    "surname_in_1844": "Walker",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Walker' is in Norris 1844 and no entry under it carries the initial 'G' of 'George E. Walker'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George H Walker",
    "person_id": "walker_george_h",
    "surname_in_1844": "Walker",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Walker' is in Norris 1844 and no entry under it carries the initial 'G' of 'George H Walker'. A surname-only agreement is a refusal."
   },
   {
@@ -5725,7 +5590,7 @@
    "resident": "Hiram A Adams",
    "person_id": "adams_hiram_a",
    "surname_in_1844": "Adams",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Adams' is in Norris 1844 and no entry under it carries the initial 'H' of 'Hiram A Adams'. A surname-only agreement is a refusal."
   },
   {
@@ -5844,7 +5709,7 @@
    "resident": "J. Carter",
    "person_id": "carter_j",
    "surname_in_1844": "Carter",
-   "candidates": 2,
+   "candidates": 1,
    "rule": "The surname 'Carter' is in Norris 1844 and no entry under it carries the initial 'J' of 'J. Carter'. A surname-only agreement is a refusal."
   },
   {
@@ -5872,7 +5737,7 @@
    "resident": "James Adams",
    "person_id": "adams_james",
    "surname_in_1844": "Adams",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Adams' is in Norris 1844 and no entry under it carries the initial 'J' of 'James Adams'. A surname-only agreement is a refusal."
   },
   {
@@ -5900,7 +5765,7 @@
    "resident": "James Gilbert",
    "person_id": "gilbert_james",
    "surname_in_1844": "Gilbert",
-   "candidates": 5,
+   "candidates": 4,
    "rule": "The surname 'Gilbert' is in Norris 1844 and no entry under it carries the initial 'J' of 'James Gilbert'. A surname-only agreement is a refusal."
   },
   {
@@ -5942,7 +5807,7 @@
    "resident": "James Walker",
    "person_id": "walker_james",
    "surname_in_1844": "Walker",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Walker' is in Norris 1844 and no entry under it carries the initial 'J' of 'James Walker'. A surname-only agreement is a refusal."
   },
   {
@@ -5956,7 +5821,7 @@
    "resident": "Jeremiah Walker",
    "person_id": "walker_jeremiah",
    "surname_in_1844": "Walker",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Walker' is in Norris 1844 and no entry under it carries the initial 'J' of 'Jeremiah Walker'. A surname-only agreement is a refusal."
   },
   {
@@ -6208,14 +6073,14 @@
    "resident": "L W Smith",
    "person_id": "smith_l_w",
    "surname_in_1844": "Smith",
-   "candidates": 32,
+   "candidates": 31,
    "rule": "The surname 'Smith' is in Norris 1844 and no entry under it carries the initial 'L' of 'L W Smith'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lawrence Smith",
    "person_id": "smith_lawrence",
    "surname_in_1844": "Smith",
-   "candidates": 32,
+   "candidates": 31,
    "rule": "The surname 'Smith' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lawrence Smith'. A surname-only agreement is a refusal."
   },
   {
@@ -6257,7 +6122,7 @@
    "resident": "Lieut. James Allen",
    "person_id": "allen_lieut_james",
    "surname_in_1844": "Allen",
-   "candidates": 5,
+   "candidates": 4,
    "rule": "The surname 'Allen' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
   },
   {
@@ -6306,7 +6171,7 @@
    "resident": "M Jones",
    "person_id": "jones_m",
    "surname_in_1844": "Jones",
-   "candidates": 11,
+   "candidates": 10,
    "rule": "The surname 'Jones' is in Norris 1844 and no entry under it carries the initial 'M' of 'M Jones'. A surname-only agreement is a refusal."
   },
   {
@@ -6320,7 +6185,7 @@
    "resident": "Mary Barrows",
    "person_id": "barrows_mary",
    "surname_in_1844": "Barrows",
-   "candidates": 3,
+   "candidates": 2,
    "rule": "The surname 'Barrows' is in Norris 1844 and no entry under it carries the initial 'M' of 'Mary Barrows'. A surname-only agreement is a refusal."
   },
   {
@@ -6411,7 +6276,7 @@
    "resident": "Nelson R. Norton",
    "person_id": "norton_nelson_r",
    "surname_in_1844": "Norton",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Norton' is in Norris 1844 and no entry under it carries the initial 'N' of 'Nelson R. Norton'. A surname-only agreement is a refusal."
   },
   {
@@ -6439,7 +6304,7 @@
    "resident": "O. Goss",
    "person_id": "goss_o",
    "surname_in_1844": "Goss",
-   "candidates": 3,
+   "candidates": 2,
    "rule": "The surname 'Goss' is in Norris 1844 and no entry under it carries the initial 'O' of 'O. Goss'. A surname-only agreement is a refusal."
   },
   {
@@ -6460,7 +6325,7 @@
    "resident": "Orson Wheeler",
    "person_id": "wheeler_orson",
    "surname_in_1844": "Wheeler",
-   "candidates": 4,
+   "candidates": 3,
    "rule": "The surname 'Wheeler' is in Norris 1844 and no entry under it carries the initial 'O' of 'Orson Wheeler'. A surname-only agreement is a refusal."
   },
   {
@@ -6754,7 +6619,7 @@
    "resident": "Stephen E Dow",
    "person_id": "dow_stephen_e",
    "surname_in_1844": "Dow",
-   "candidates": 2,
+   "candidates": 1,
    "rule": "The surname 'Dow' is in Norris 1844 and no entry under it carries the initial 'S' of 'Stephen E Dow'. A surname-only agreement is a refusal."
   },
   {
@@ -6971,7 +6836,7 @@
    "resident": "Wm. H. Norton",
    "person_id": "norton_wm_h",
    "surname_in_1844": "Norton",
-   "candidates": 6,
+   "candidates": 5,
    "rule": "The surname 'Norton' is in Norris 1844 and no entry under it carries the initial 'W' of 'Wm. H. Norton'. A surname-only agreement is a refusal."
   },
   {

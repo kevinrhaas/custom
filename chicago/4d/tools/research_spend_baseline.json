@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1007
+   "spent": 1017
   },
   "newberry_index": {
    "read": 7005,
@@ -472,6 +472,14 @@
    "to": 497,
    "date": "2026-09-11",
    "why": "T-1011 lifted 54 printed lines of the 1 January 1834 letter list that no transcription carried and the mint took 22 of them into the town. The church reading did not move by one entry; the TOWN did, and six St Cyr readings that previously matched no card now match one of the new ones and stand unspent against it. Raising by exactly the six the growth produced, so the ceiling still measures reading that outruns the town rather than a town that grew under a fixed reading."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 256,
+   "to": 260,
+   "date": "2026-09-11",
+   "why": "T-1013. Thirty inverted firm entries — 'Jones, B. & Co.' — were read as people because the firm test looked only before the first comma, and four residents were therefore contested by their own companies. Removing the firms from the person pool turns those four refusals into matches (Adams, Gale, Jones, Smith), so four rulings now REACH a card that did not before. What they carry is still refused on T-0569's standing ground: Norris sets a partnership where the trade would go, so the parse yields 'of' and no trade, and the card takes the line and not the split. The gap widened by four because four more names are ruled on, not because four more were read."
   }
  ],
  "lowered": [
@@ -518,7 +526,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 256,
+  "directories": 260,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 0
