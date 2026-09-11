@@ -64,7 +64,7 @@
   "of_those_ambiguous": 4,
   "residents_narrowings_withdrawn_as_a_collision": 0,
   "residents_ties_left_standing": 30,
-  "residents_could_carry_occupation": 92,
+  "residents_could_carry_occupation": 90,
   "residents_could_carry_street": 96
  },
  "residents": {
@@ -153,7 +153,7 @@
       "claim": "f1839_e0513",
       "as_printed": "Funk, Absalom, Funk & Doyle, butchers",
       "printed_page": 15,
-      "occupation_1839": "& Doyle, butchers",
+      "occupation_1839": "Funk & Doyle, butchers",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -233,11 +233,9 @@
       "claim": "f1839_e1632",
       "as_printed": "Wolcott, Alex., clerk Steamer Geo. W. Dole, for St. Joseph",
       "printed_page": 36,
-      "occupation_1839": "clerk Steamer Geo. W. Dole",
-      "address_1839": "for St. Joseph",
-      "streets_1839": [
-       "for St"
-      ],
+      "occupation_1839": "clerk Steamer Geo. W. Dole, for St. Joseph",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ],
@@ -248,8 +246,7 @@
     "occupation_1835_confidence": "reconstructed",
     "lives_at_1835": null,
     "could_carry": [
-     "occupation",
-     "street_1839"
+     "occupation"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
@@ -829,9 +826,11 @@
       "claim": "f1839_e0761",
       "as_printed": "Hunter, Capt. David, Illinois street, near Rush",
       "printed_page": 19,
-      "occupation_1839": "street, near Rush",
-      "address_1839": null,
-      "streets_1839": [],
+      "occupation_1839": null,
+      "address_1839": "Illinois street, near Rush",
+      "streets_1839": [
+       "Illinois street"
+      ],
       "address_is_street_only": false
      }
     ],
@@ -842,7 +841,7 @@
     "occupation_1835_confidence": "reconstructed",
     "lives_at_1835": null,
     "could_carry": [
-     "occupation"
+     "street_1839"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
@@ -977,7 +976,7 @@
       "claim": "f1839_e1014",
       "as_printed": "Maxwell, Dr. Philip, Garrison",
       "printed_page": 24,
-      "occupation_1839": null,
+      "occupation_1839": "Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -1027,7 +1026,7 @@
       "address_1839": "Dearborn street north of Lake street",
       "streets_1839": [
        "Dearborn street",
-       "north of Lake street"
+       "Lake street"
       ],
       "address_is_street_only": false
      }
@@ -1234,7 +1233,7 @@
       "claim": "f1839_e1143",
       "as_printed": "Parsons, Edward, Parsons & Holden",
       "printed_page": 27,
-      "occupation_1839": "& Holden",
+      "occupation_1839": "Parsons & Holden",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -1307,12 +1306,12 @@
       "claim": "f1839_e1619",
       "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "printed_page": 36,
-      "occupation_1839": "cor. Clark",
-      "address_1839": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "occupation_1839": "Recorder, cor. Clark and",
+      "address_1839": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "streets_1839": [
-       "and Randolph sts",
+       "Randolph sts",
        "South Water st",
-       "and State sts"
+       "State sts"
       ],
       "address_is_street_only": false
      }
@@ -1788,7 +1787,7 @@
       "claim": "f1839_e1501",
       "as_printed": "Tucker, Henry, Dodge & Tucker",
       "printed_page": 33,
-      "occupation_1839": "& Tucker",
+      "occupation_1839": "Dodge & Tucker",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -1842,7 +1841,7 @@
       "address_1839": "West Water street near Lake st",
       "streets_1839": [
        "West Water street",
-       "near Lake st"
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -2207,7 +2206,7 @@
       "claim": "f1839_e0331",
       "as_printed": "Couch, James, Superintendent Tremont House",
       "printed_page": 11,
-      "occupation_1839": "House",
+      "occupation_1839": "Superintendent Tremont House",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -2421,7 +2420,7 @@
       "address_1839": "North Dearborn st, near North ave",
       "streets_1839": [
        "North Dearborn st",
-       "near North ave"
+       "North ave"
       ],
       "address_is_street_only": false
      }
@@ -2713,7 +2712,7 @@
       "claim": "f1839_e1078",
       "as_printed": "Murphy, John, United States Hotel, West Water cor. Randolph",
       "printed_page": 25,
-      "occupation_1839": "Hotel, West Water cor. Randolph",
+      "occupation_1839": "United States Hotel, West Water cor. Randolph",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -2816,9 +2815,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -2831,7 +2831,6 @@
     "occupation_1835_confidence": "reconstructed",
     "lives_at_1835": null,
     "could_carry": [
-     "occupation",
      "street_1839"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
@@ -3076,10 +3075,10 @@
       "claim": "f1839_e1107",
       "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts",
       "printed_page": 26,
-      "occupation_1839": "bridge-builder, n.-w. cor. N. State",
-      "address_1839": "and Indiana sts",
+      "occupation_1839": "bridge-builder, n.-w. cor. N. State and",
+      "address_1839": "Indiana sts",
       "streets_1839": [
-       "and Indiana sts"
+       "Indiana sts"
       ],
       "address_is_street_only": false
      }
@@ -3319,10 +3318,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -3347,7 +3345,7 @@
       "claim": "f1839_e0863",
       "as_printed": "Kinzie, Robert A., Davis, Kinzie & Hyde, Kinzie street",
       "printed_page": 21,
-      "occupation_1839": "Kinzie & Hyde",
+      "occupation_1839": "Davis, Kinzie & Hyde",
       "address_1839": "Kinzie street",
       "streets_1839": [
        "Kinzie street"
@@ -3480,7 +3478,7 @@
       "claim": "f1839_e0776",
       "as_printed": "Jackson, Samuel T., Government works, near Garrison",
       "printed_page": 20,
-      "occupation_1839": "works, near Garrison",
+      "occupation_1839": "Government works, near Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -3615,10 +3613,10 @@
       "claim": "f1839_e0275",
       "as_printed": "Church, Thomas, grocery and provision store, hi Lake st",
       "printed_page": 10,
-      "occupation_1839": "grocery and provision store",
-      "address_1839": "hi Lake st",
+      "occupation_1839": "grocery and provision store, hi",
+      "address_1839": "Lake st",
       "streets_1839": [
-       "hi Lake st"
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -3698,7 +3696,7 @@
       "claim": "f1839_e0767",
       "as_printed": "Hyde, Thomas, Davis, Kinzie & Hyde",
       "printed_page": 19,
-      "occupation_1839": "& Hyde",
+      "occupation_1839": "Davis, Kinzie & Hyde",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -3748,7 +3746,7 @@
       "claim": "f1839_e0858",
       "as_printed": "King, Tuthill, New York clothing store, 115 Lake st",
       "printed_page": 21,
-      "occupation_1839": "clothing store",
+      "occupation_1839": "New York clothing store",
       "address_1839": "115 Lake st",
       "streets_1839": [
        "Lake st"
@@ -3801,9 +3799,9 @@
     "entries_1839": [
      {
       "claim": "f1839_e0291",
-      "as_printed": "Clarke, Wm. I I. & Abram F. , wholesale druggists and apothe¬ caries, 128 Lake street cor. Clark",
+      "as_printed": "Clarke, Wm. I I. & Abram F. , wholesale druggists and apothecaries, 128 Lake street cor. Clark",
       "printed_page": 10,
-      "occupation_1839": "& Abram F. , wholesale druggists and apothe¬ caries",
+      "occupation_1839": "& Abram F. , wholesale druggists and apothecaries",
       "address_1839": "128 Lake street cor. Clark",
       "streets_1839": [
        "Lake street"
@@ -3859,7 +3857,7 @@
       "claim": "f1839_e0034",
       "as_printed": "Austin, Dr. Wm..H., Dodge & Austin, Lake street",
       "printed_page": 5,
-      "occupation_1839": "& Austin",
+      "occupation_1839": "Dodge & Austin",
       "address_1839": "Lake street",
       "streets_1839": [
        "Lake street"
@@ -4043,12 +4041,12 @@
     "entries_1839": [
      {
       "claim": "f1839_e0192",
-      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water",
       "printed_page": 8,
-      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
-      "address_1839": "Salle st cor. So. Water",
+      "occupation_1839": "cashier, Branch State Bank Illinois",
+      "address_1839": "LaSalle st cor. So. Water",
       "streets_1839": [
-       "Salle st"
+       "LaSalle st"
       ],
       "address_is_street_only": false
      }
@@ -4351,7 +4349,7 @@
       {
        "key": "f1839_e1647",
        "agrees": false,
-       "why": "two trades that do not agree",
+       "why": "no trade on one side",
        "outcome": "refused_by_discriminator",
        "refusal": "The trade printed against this name agrees with 'f1839_e1648' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
       },
@@ -4374,7 +4372,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -4419,7 +4417,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -5128,10 +5126,12 @@
       "claim": "f1839_e0284",
       "as_printed": "Clarke, Henry B., Michigan ave, cor. 1 6th street",
       "printed_page": 10,
-      "occupation_1839": "ave, cor. 1 6th street",
-      "address_1839": null,
-      "streets_1839": [],
-      "address_is_street_only": false
+      "occupation_1839": null,
+      "address_1839": "Michigan ave, cor. 1 6th street",
+      "streets_1839": [
+       "Michigan ave"
+      ],
+      "address_is_street_only": true
      }
     ],
     "person_id": "clarke_h_b",
@@ -5153,7 +5153,7 @@
       {
        "key": "f1839_e0284",
        "agrees": false,
-       "why": "two trades that do not agree"
+       "why": "no trade on one side"
       }
      ]
     }
@@ -5166,10 +5166,10 @@
       "claim": "f1839_e0329",
       "as_printed": "Couch, Ira, hotel-keeper, Tremont House, n.-w. cor. Dearborn and Lake sts",
       "printed_page": 11,
-      "occupation_1839": "hotel-keeper, Tremont House, n.-w. cor. Dearborn",
-      "address_1839": "and Lake sts",
+      "occupation_1839": "hotel-keeper, Tremont House, n.-w. cor. Dearborn and",
+      "address_1839": "Lake sts",
       "streets_1839": [
-       "and Lake sts"
+       "Lake sts"
       ],
       "address_is_street_only": false
      },
@@ -5222,9 +5222,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -5329,11 +5330,9 @@
       "claim": "f1839_e0309",
       "as_printed": "Collins, Jas. PL, attorney and counsellor at law, 46 Deai-born st",
       "printed_page": 11,
-      "occupation_1839": "attorney and counsellor at law, 46 Deai-",
-      "address_1839": "born st",
-      "streets_1839": [
-       "born st"
-      ],
+      "occupation_1839": "attorney and counsellor at law, 46 Deai-born st",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      },
      {
@@ -5534,9 +5533,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -5567,7 +5567,7 @@
       {
        "key": "f1839_e1647",
        "agrees": false,
-       "why": "two trades that do not agree"
+       "why": "no trade on one side"
       },
       {
        "key": "f1839_e1648",
@@ -5636,9 +5636,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -5673,7 +5674,7 @@
       {
        "key": "f1839_e1647",
        "agrees": false,
-       "why": "two trades that do not agree",
+       "why": "no trade on one side",
        "outcome": "refused_by_discriminator",
        "refusal": "The trade printed against this name agrees with 'f1839_e1648' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
       },
@@ -7534,7 +7535,7 @@
      "claim": "f1839_e0851",
      "as_printed": "King, Byram, Jones, King & Co.",
      "printed_page": 21,
-     "occupation_1839": "& Co",
+     "occupation_1839": "Jones, King & Co",
      "address_1839": null,
      "streets_1839": [],
      "address_is_street_only": false,
@@ -7622,9 +7623,10 @@
      "claim": "f1839_e0082",
      "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
      "printed_page": 6,
-     "occupation_1839": "ave., bet. Lake and",
-     "address_1839": "So. Water sts",
+     "occupation_1839": null,
+     "address_1839": "Michigan ave., bet. Lake and So. Water sts",
      "streets_1839": [
+      "Michigan ave",
       "So. Water sts"
      ],
      "address_is_street_only": false,
@@ -7668,7 +7670,7 @@
      "claim": "f1839_e1469",
      "as_printed": "Taylor, Ezra, Henry Wolcott’s boarding-house",
      "printed_page": 33,
-     "occupation_1839": "boarding-house",
+     "occupation_1839": "Henry Wolcott’s boarding-house",
      "address_1839": null,
      "streets_1839": [],
      "address_is_street_only": false,
@@ -7782,10 +7784,9 @@
      "claim": "f1839_e0900",
      "as_printed": "Legg, George, contractor and street maker, Grand ave. 6th ward",
      "printed_page": 22,
-     "occupation_1839": null,
-     "address_1839": "contractor and street maker, Grand ave. 6th ward",
+     "occupation_1839": "contractor and street maker",
+     "address_1839": "Grand ave. 6th ward",
      "streets_1839": [
-      "contractor and street",
       "Grand ave"
      ],
      "address_is_street_only": false,
@@ -8113,7 +8114,7 @@
      "claim": "f1839_e1368",
      "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
      "printed_page": 31,
-     "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+     "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
      "address_1839": null,
      "streets_1839": [],
      "address_is_street_only": false,
@@ -8291,7 +8292,7 @@
      "claim": "f1839_e1368",
      "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
      "printed_page": 31,
-     "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+     "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
      "address_1839": null,
      "streets_1839": [],
      "address_is_street_only": false,
@@ -8651,9 +8652,10 @@
      "claim": "f1839_e0082",
      "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
      "printed_page": 6,
-     "occupation_1839": "ave., bet. Lake and",
-     "address_1839": "So. Water sts",
+     "occupation_1839": null,
+     "address_1839": "Michigan ave., bet. Lake and So. Water sts",
      "streets_1839": [
+      "Michigan ave",
       "So. Water sts"
      ],
      "address_is_street_only": false,
@@ -8743,7 +8745,7 @@
      "claim": "f1839_e0162",
      "as_printed": "Breese, Josiah S., Taylor, Breese & Co.",
      "printed_page": 8,
-     "occupation_1839": "Breese & Co",
+     "occupation_1839": "Taylor, Breese & Co",
      "address_1839": null,
      "streets_1839": [],
      "address_is_street_only": false,
@@ -8837,7 +8839,7 @@
      "claim": "f1839_e1319",
      "as_printed": "Shapley, Morgan L., Government works, near the Garrison",
      "printed_page": 30,
-     "occupation_1839": "works, near the Garrison",
+     "occupation_1839": "Government works, near the Garrison",
      "address_1839": null,
      "streets_1839": [],
      "address_is_street_only": false,
@@ -9065,9 +9067,10 @@
      "claim": "f1839_e1649",
      "as_printed": "Wright, Timothy, Michigan ave. cor. Madison st",
      "printed_page": 36,
-     "occupation_1839": "ave. cor",
-     "address_1839": "Madison st",
+     "occupation_1839": null,
+     "address_1839": "Michigan ave. cor. Madison st",
      "streets_1839": [
+      "Michigan ave",
       "Madison st"
      ],
      "address_is_street_only": false,
@@ -9176,11 +9179,9 @@
       "claim": "f1839_e1632",
       "as_printed": "Wolcott, Alex., clerk Steamer Geo. W. Dole, for St. Joseph",
       "printed_page": 36,
-      "occupation_1839": "clerk Steamer Geo. W. Dole",
-      "address_1839": "for St. Joseph",
-      "streets_1839": [
-       "for St"
-      ],
+      "occupation_1839": "clerk Steamer Geo. W. Dole, for St. Joseph",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -9287,7 +9288,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -9334,9 +9335,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -9413,9 +9415,11 @@
       "claim": "f1839_e0761",
       "as_printed": "Hunter, Capt. David, Illinois street, near Rush",
       "printed_page": 19,
-      "occupation_1839": "street, near Rush",
-      "address_1839": null,
-      "streets_1839": [],
+      "occupation_1839": null,
+      "address_1839": "Illinois street, near Rush",
+      "streets_1839": [
+       "Illinois street"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -9529,12 +9533,12 @@
       "claim": "f1839_e1619",
       "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "printed_page": 36,
-      "occupation_1839": "cor. Clark",
-      "address_1839": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "occupation_1839": "Recorder, cor. Clark and",
+      "address_1839": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "streets_1839": [
-       "and Randolph sts",
+       "Randolph sts",
        "South Water st",
-       "and State sts"
+       "State sts"
       ],
       "address_is_street_only": false
      }
@@ -9710,12 +9714,12 @@
       "claim": "f1839_e1619",
       "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "printed_page": 36,
-      "occupation_1839": "cor. Clark",
-      "address_1839": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "occupation_1839": "Recorder, cor. Clark and",
+      "address_1839": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "streets_1839": [
-       "and Randolph sts",
+       "Randolph sts",
        "South Water st",
-       "and State sts"
+       "State sts"
       ],
       "address_is_street_only": false
      }
@@ -9901,7 +9905,7 @@
       "address_1839": "West Water street near Lake st",
       "streets_1839": [
        "West Water street",
-       "near Lake st"
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -9930,7 +9934,7 @@
       "claim": "f1839_e1501",
       "as_printed": "Tucker, Henry, Dodge & Tucker",
       "printed_page": 33,
-      "occupation_1839": "& Tucker",
+      "occupation_1839": "Dodge & Tucker",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -9994,9 +9998,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -10015,7 +10020,7 @@
       "address_1839": "Dearborn street north of Lake street",
       "streets_1839": [
        "Dearborn street",
-       "north of Lake street"
+       "Lake street"
       ],
       "address_is_street_only": false
      }
@@ -10050,7 +10055,7 @@
       "address_1839": "Dearborn street north of Lake street",
       "streets_1839": [
        "Dearborn street",
-       "north of Lake street"
+       "Lake street"
       ],
       "address_is_street_only": false
      }
@@ -10117,7 +10122,7 @@
       "address_1839": "North Dearborn st, near North ave",
       "streets_1839": [
        "North Dearborn st",
-       "near North ave"
+       "North ave"
       ],
       "address_is_street_only": false
      }
@@ -10482,9 +10487,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -10663,7 +10669,7 @@
       "claim": "f1839_e1319",
       "as_printed": "Shapley, Morgan L., Government works, near the Garrison",
       "printed_page": 30,
-      "occupation_1839": "works, near the Garrison",
+      "occupation_1839": "Government works, near the Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -10876,7 +10882,7 @@
       "claim": "f1839_e0863",
       "as_printed": "Kinzie, Robert A., Davis, Kinzie & Hyde, Kinzie street",
       "printed_page": 21,
-      "occupation_1839": "Kinzie & Hyde",
+      "occupation_1839": "Davis, Kinzie & Hyde",
       "address_1839": "Kinzie street",
       "streets_1839": [
        "Kinzie street"
@@ -10893,7 +10899,7 @@
       "claim": "f1839_e0863",
       "as_printed": "Kinzie, Robert A., Davis, Kinzie & Hyde, Kinzie street",
       "printed_page": 21,
-      "occupation_1839": "Kinzie & Hyde",
+      "occupation_1839": "Davis, Kinzie & Hyde",
       "address_1839": "Kinzie street",
       "streets_1839": [
        "Kinzie street"
@@ -10910,7 +10916,7 @@
       "claim": "f1839_e0776",
       "as_printed": "Jackson, Samuel T., Government works, near Garrison",
       "printed_page": 20,
-      "occupation_1839": "works, near Garrison",
+      "occupation_1839": "Government works, near Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -11732,7 +11738,7 @@
       "claim": "f1839_e1078",
       "as_printed": "Murphy, John, United States Hotel, West Water cor. Randolph",
       "printed_page": 25,
-      "occupation_1839": "Hotel, West Water cor. Randolph",
+      "occupation_1839": "United States Hotel, West Water cor. Randolph",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -11756,7 +11762,7 @@
       "claim": "f1839_e1078",
       "as_printed": "Murphy, John, United States Hotel, West Water cor. Randolph",
       "printed_page": 25,
-      "occupation_1839": "Hotel, West Water cor. Randolph",
+      "occupation_1839": "United States Hotel, West Water cor. Randolph",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -11771,9 +11777,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -11799,9 +11806,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -11991,10 +11999,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -12020,10 +12027,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -12049,10 +12055,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -12078,9 +12083,10 @@
       "claim": "f1839_e1649",
       "as_printed": "Wright, Timothy, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -12104,9 +12110,10 @@
       "claim": "f1839_e1649",
       "as_printed": "Wright, Timothy, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -12751,7 +12758,7 @@
       "claim": "f1839_e0513",
       "as_printed": "Funk, Absalom, Funk & Doyle, butchers",
       "printed_page": 15,
-      "occupation_1839": "& Doyle, butchers",
+      "occupation_1839": "Funk & Doyle, butchers",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -12907,7 +12914,7 @@
       "claim": "f1839_e0034",
       "as_printed": "Austin, Dr. Wm..H., Dodge & Austin, Lake street",
       "printed_page": 5,
-      "occupation_1839": "& Austin",
+      "occupation_1839": "Dodge & Austin",
       "address_1839": "Lake street",
       "streets_1839": [
        "Lake street"
@@ -13048,9 +13055,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -13223,12 +13231,12 @@
     "entries_1839": [
      {
       "claim": "f1839_e0192",
-      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water",
       "printed_page": 8,
-      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
-      "address_1839": "Salle st cor. So. Water",
+      "occupation_1839": "cashier, Branch State Bank Illinois",
+      "address_1839": "LaSalle st cor. So. Water",
       "streets_1839": [
-       "Salle st"
+       "LaSalle st"
       ],
       "address_is_street_only": false
      }
@@ -13242,7 +13250,7 @@
       "claim": "f1839_e0217",
       "as_printed": "Butterfield, Lyman, Columbian House, Wells st cor. S. Water",
       "printed_page": 9,
-      "occupation_1839": null,
+      "occupation_1839": "Columbian House",
       "address_1839": "Wells st cor. S. Water",
       "streets_1839": [
        "Wells st"
@@ -13276,7 +13284,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -13291,7 +13299,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -13404,10 +13412,10 @@
       "claim": "f1839_e0251",
       "as_printed": "Casey, John, bricklayer, cor. Market and Washington streets",
       "printed_page": 10,
-      "occupation_1839": "bricklayer, cor. Market",
-      "address_1839": "and Washington streets",
+      "occupation_1839": "bricklayer, cor. Market and",
+      "address_1839": "Washington streets",
       "streets_1839": [
-       "and Washington streets"
+       "Washington streets"
       ],
       "address_is_street_only": false
      }
@@ -13641,9 +13649,9 @@
     "entries_1839": [
      {
       "claim": "f1839_e0291",
-      "as_printed": "Clarke, Wm. I I. & Abram F. , wholesale druggists and apothe¬ caries, 128 Lake street cor. Clark",
+      "as_printed": "Clarke, Wm. I I. & Abram F. , wholesale druggists and apothecaries, 128 Lake street cor. Clark",
       "printed_page": 10,
-      "occupation_1839": "& Abram F. , wholesale druggists and apothe¬ caries",
+      "occupation_1839": "& Abram F. , wholesale druggists and apothecaries",
       "address_1839": "128 Lake street cor. Clark",
       "streets_1839": [
        "Lake street"
@@ -13943,7 +13951,7 @@
       "address_1839": "Dearborn street north of Lake street",
       "streets_1839": [
        "Dearborn street",
-       "north of Lake street"
+       "Lake street"
       ],
       "address_is_street_only": false
      }
@@ -13972,12 +13980,12 @@
       "claim": "f1839_e1619",
       "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "printed_page": 36,
-      "occupation_1839": "cor. Clark",
-      "address_1839": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "occupation_1839": "Recorder, cor. Clark and",
+      "address_1839": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "streets_1839": [
-       "and Randolph sts",
+       "Randolph sts",
        "South Water st",
-       "and State sts"
+       "State sts"
       ],
       "address_is_street_only": false
      }
@@ -14166,9 +14174,11 @@
       "claim": "f1839_e1646",
       "as_printed": "Wright, Edward, Michigan ave. cor. Madison",
       "printed_page": 36,
-      "occupation_1839": "ave. cor. Madison",
-      "address_1839": null,
-      "streets_1839": [],
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison",
+      "streets_1839": [
+       "Michigan ave"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -14508,7 +14518,7 @@
       "claim": "f1839_e1621",
       "as_printed": "Williams, Giles, Stow & Williams",
       "printed_page": 36,
-      "occupation_1839": "& Williams",
+      "occupation_1839": "Stow & Williams",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -14527,7 +14537,7 @@
       "address_1839": "Dearborn street north of Lake street",
       "streets_1839": [
        "Dearborn street",
-       "north of Lake street"
+       "Lake street"
       ],
       "address_is_street_only": false
      }
@@ -14591,10 +14601,9 @@
       "claim": "f1839_e0900",
       "as_printed": "Legg, George, contractor and street maker, Grand ave. 6th ward",
       "printed_page": 22,
-      "occupation_1839": null,
-      "address_1839": "contractor and street maker, Grand ave. 6th ward",
+      "occupation_1839": "contractor and street maker",
+      "address_1839": "Grand ave. 6th ward",
       "streets_1839": [
-       "contractor and street",
        "Grand ave"
       ],
       "address_is_street_only": false
@@ -14848,11 +14857,9 @@
       "claim": "f1839_e1029",
       "as_printed": "Miller, Capt. Harry, schooner St. Joseph",
       "printed_page": 24,
-      "occupation_1839": null,
-      "address_1839": "schooner St. Joseph",
-      "streets_1839": [
-       "schooner St"
-      ],
+      "occupation_1839": "schooner St. Joseph",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -14967,7 +14974,7 @@
       "address_1839": "Wabash ave. near Randolph st",
       "streets_1839": [
        "Wabash ave",
-       "near Randolph st"
+       "Randolph st"
       ],
       "address_is_street_only": false
      }
@@ -14985,7 +14992,7 @@
       "address_1839": "West Water street near Lake st",
       "streets_1839": [
        "West Water street",
-       "near Lake st"
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -15208,7 +15215,7 @@
       "claim": "f1839_e0767",
       "as_printed": "Hyde, Thomas, Davis, Kinzie & Hyde",
       "printed_page": 19,
-      "occupation_1839": "& Hyde",
+      "occupation_1839": "Davis, Kinzie & Hyde",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -15306,9 +15313,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -15323,9 +15331,10 @@
       "claim": "f1839_e0082",
       "as_printed": "Beaubien, John B., Michigan ave., bet. Lake and So. Water sts",
       "printed_page": 6,
-      "occupation_1839": "ave., bet. Lake and",
-      "address_1839": "So. Water sts",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave., bet. Lake and So. Water sts",
       "streets_1839": [
+       "Michigan ave",
        "So. Water sts"
       ],
       "address_is_street_only": false
@@ -15344,7 +15353,7 @@
       "address_1839": "Dearborn street north of Lake street",
       "streets_1839": [
        "Dearborn street",
-       "north of Lake street"
+       "Lake street"
       ],
       "address_is_street_only": false
      }
@@ -15573,7 +15582,7 @@
       "claim": "f1839_e0776",
       "as_printed": "Jackson, Samuel T., Government works, near Garrison",
       "printed_page": 20,
-      "occupation_1839": "works, near Garrison",
+      "occupation_1839": "Government works, near Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -15588,7 +15597,7 @@
       "claim": "f1839_e0776",
       "as_printed": "Jackson, Samuel T., Government works, near Garrison",
       "printed_page": 20,
-      "occupation_1839": "works, near Garrison",
+      "occupation_1839": "Government works, near Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -16114,7 +16123,7 @@
       "claim": "f1839_e0162",
       "as_printed": "Breese, Josiah S., Taylor, Breese & Co.",
       "printed_page": 8,
-      "occupation_1839": "Breese & Co",
+      "occupation_1839": "Taylor, Breese & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -16178,7 +16187,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -16193,7 +16202,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -16400,7 +16409,7 @@
       "claim": "f1839_e1014",
       "as_printed": "Maxwell, Dr. Philip, Garrison",
       "printed_page": 24,
-      "occupation_1839": null,
+      "occupation_1839": "Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -16697,7 +16706,7 @@
       "claim": "f1839_e1143",
       "as_printed": "Parsons, Edward, Parsons & Holden",
       "printed_page": 27,
-      "occupation_1839": "& Holden",
+      "occupation_1839": "Parsons & Holden",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -16848,7 +16857,7 @@
       "claim": "f1839_e0863",
       "as_printed": "Kinzie, Robert A., Davis, Kinzie & Hyde, Kinzie street",
       "printed_page": 21,
-      "occupation_1839": "Kinzie & Hyde",
+      "occupation_1839": "Davis, Kinzie & Hyde",
       "address_1839": "Kinzie street",
       "streets_1839": [
        "Kinzie street"
@@ -17050,7 +17059,7 @@
       "claim": "f1839_e1374",
       "as_printed": "Smith, S. Lisle, City attorney, 107 Lake st",
       "printed_page": 31,
-      "occupation_1839": "attorney",
+      "occupation_1839": "City attorney",
       "address_1839": "107 Lake st",
       "streets_1839": [
        "Lake st"
@@ -17082,7 +17091,7 @@
       "claim": "f1839_e1375",
       "as_printed": "Smith, Theophilus W., judge Supreme Coui't, bds. City Hotel",
       "printed_page": 31,
-      "occupation_1839": "Supreme Coui't",
+      "occupation_1839": "judge Supreme Coui't",
       "address_1839": "bds. City Hotel",
       "streets_1839": [],
       "address_is_street_only": false
@@ -17114,7 +17123,7 @@
       "claim": "f1839_e0776",
       "as_printed": "Jackson, Samuel T., Government works, near Garrison",
       "printed_page": 20,
-      "occupation_1839": "works, near Garrison",
+      "occupation_1839": "Government works, near Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -17176,7 +17185,7 @@
       "claim": "f1839_e1333",
       "as_printed": "Sherman, Nathaniel, jr., Sherman & Parsons",
       "printed_page": 30,
-      "occupation_1839": "& Parsons",
+      "occupation_1839": "jr., Sherman & Parsons",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -17306,7 +17315,7 @@
       "claim": "f1839_e1374",
       "as_printed": "Smith, S. Lisle, City attorney, 107 Lake st",
       "printed_page": 31,
-      "occupation_1839": "attorney",
+      "occupation_1839": "City attorney",
       "address_1839": "107 Lake st",
       "streets_1839": [
        "Lake st"
@@ -17517,7 +17526,7 @@
       "claim": "f1839_e1375",
       "as_printed": "Smith, Theophilus W., judge Supreme Coui't, bds. City Hotel",
       "printed_page": 31,
-      "occupation_1839": "Supreme Coui't",
+      "occupation_1839": "judge Supreme Coui't",
       "address_1839": "bds. City Hotel",
       "streets_1839": [],
       "address_is_street_only": false
@@ -17566,7 +17575,7 @@
       "claim": "f1839_e0858",
       "as_printed": "King, Tuthill, New York clothing store, 115 Lake st",
       "printed_page": 21,
-      "occupation_1839": "clothing store",
+      "occupation_1839": "New York clothing store",
       "address_1839": "115 Lake st",
       "streets_1839": [
        "Lake st"
@@ -17583,7 +17592,7 @@
       "claim": "f1839_e0858",
       "as_printed": "King, Tuthill, New York clothing store, 115 Lake st",
       "printed_page": 21,
-      "occupation_1839": "clothing store",
+      "occupation_1839": "New York clothing store",
       "address_1839": "115 Lake st",
       "streets_1839": [
        "Lake st"
@@ -17617,7 +17626,7 @@
       "claim": "f1839_e0034",
       "as_printed": "Austin, Dr. Wm..H., Dodge & Austin, Lake street",
       "printed_page": 5,
-      "occupation_1839": "& Austin",
+      "occupation_1839": "Dodge & Austin",
       "address_1839": "Lake street",
       "streets_1839": [
        "Lake street"
@@ -17632,12 +17641,12 @@
     "entries_1839": [
      {
       "claim": "f1839_e0192",
-      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water",
       "printed_page": 8,
-      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
-      "address_1839": "Salle st cor. So. Water",
+      "occupation_1839": "cashier, Branch State Bank Illinois",
+      "address_1839": "LaSalle st cor. So. Water",
       "streets_1839": [
-       "Salle st"
+       "LaSalle st"
       ],
       "address_is_street_only": false
      }
@@ -17839,7 +17848,7 @@
       "claim": "f1839_e0034",
       "as_printed": "Austin, Dr. Wm..H., Dodge & Austin, Lake street",
       "printed_page": 5,
-      "occupation_1839": "& Austin",
+      "occupation_1839": "Dodge & Austin",
       "address_1839": "Lake street",
       "streets_1839": [
        "Lake street"
@@ -17854,12 +17863,12 @@
     "entries_1839": [
      {
       "claim": "f1839_e0192",
-      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water",
       "printed_page": 8,
-      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
-      "address_1839": "Salle st cor. So. Water",
+      "occupation_1839": "cashier, Branch State Bank Illinois",
+      "address_1839": "LaSalle st cor. So. Water",
       "streets_1839": [
-       "Salle st"
+       "LaSalle st"
       ],
       "address_is_street_only": false
      }
@@ -17990,9 +17999,11 @@
       "claim": "f1839_e1646",
       "as_printed": "Wright, Edward, Michigan ave. cor. Madison",
       "printed_page": 36,
-      "occupation_1839": "ave. cor. Madison",
-      "address_1839": null,
-      "streets_1839": [],
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison",
+      "streets_1839": [
+       "Michigan ave"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -18389,10 +18400,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -18418,11 +18428,9 @@
       "claim": "f1839_e0309",
       "as_printed": "Collins, Jas. PL, attorney and counsellor at law, 46 Deai-born st",
       "printed_page": 11,
-      "occupation_1839": "attorney and counsellor at law, 46 Deai-",
-      "address_1839": "born st",
-      "streets_1839": [
-       "born st"
-      ],
+      "occupation_1839": "attorney and counsellor at law, 46 Deai-born st",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      },
      {
@@ -18507,7 +18515,7 @@
       "claim": "f1839_e1469",
       "as_printed": "Taylor, Ezra, Henry Wolcott’s boarding-house",
       "printed_page": 33,
-      "occupation_1839": "boarding-house",
+      "occupation_1839": "Henry Wolcott’s boarding-house",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -18533,7 +18541,7 @@
       "claim": "f1839_e1469",
       "as_printed": "Taylor, Ezra, Henry Wolcott’s boarding-house",
       "printed_page": 33,
-      "occupation_1839": "boarding-house",
+      "occupation_1839": "Henry Wolcott’s boarding-house",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -18611,10 +18619,12 @@
       "claim": "f1839_e0284",
       "as_printed": "Clarke, Henry B., Michigan ave, cor. 1 6th street",
       "printed_page": 10,
-      "occupation_1839": "ave, cor. 1 6th street",
-      "address_1839": null,
-      "streets_1839": [],
-      "address_is_street_only": false
+      "occupation_1839": null,
+      "address_1839": "Michigan ave, cor. 1 6th street",
+      "streets_1839": [
+       "Michigan ave"
+      ],
+      "address_is_street_only": true
      }
     ]
    },
@@ -18650,10 +18660,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -18679,10 +18688,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -18782,10 +18790,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -18926,11 +18933,9 @@
       "claim": "f1839_e0309",
       "as_printed": "Collins, Jas. PL, attorney and counsellor at law, 46 Deai-born st",
       "printed_page": 11,
-      "occupation_1839": "attorney and counsellor at law, 46 Deai-",
-      "address_1839": "born st",
-      "streets_1839": [
-       "born st"
-      ],
+      "occupation_1839": "attorney and counsellor at law, 46 Deai-born st",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      },
      {
@@ -18972,7 +18977,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -19014,9 +19019,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -19157,11 +19163,9 @@
       "claim": "f1839_e0309",
       "as_printed": "Collins, Jas. PL, attorney and counsellor at law, 46 Deai-born st",
       "printed_page": 11,
-      "occupation_1839": "attorney and counsellor at law, 46 Deai-",
-      "address_1839": "born st",
-      "streets_1839": [
-       "born st"
-      ],
+      "occupation_1839": "attorney and counsellor at law, 46 Deai-born st",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      },
      {
@@ -19229,7 +19233,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -19291,7 +19295,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -19474,9 +19478,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -19841,7 +19846,7 @@
       "claim": "f1839_e1065",
       "as_printed": "Morrison, Ephriam, jr., teamster, 111 Madison street",
       "printed_page": 25,
-      "occupation_1839": "teamster",
+      "occupation_1839": "jr., teamster",
       "address_1839": "111 Madison street",
       "streets_1839": [
        "Madison street"
@@ -19869,10 +19874,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -19898,10 +19902,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -19927,10 +19930,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -20091,7 +20093,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -20153,7 +20155,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -20215,7 +20217,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -20277,7 +20279,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -20658,9 +20660,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -20686,9 +20689,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -20714,9 +20718,10 @@
       "claim": "f1839_e1649",
       "as_printed": "Wright, Timothy, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -20740,9 +20745,10 @@
       "claim": "f1839_e1649",
       "as_printed": "Wright, Timothy, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -24305,7 +24311,7 @@
       "claim": "f1839_e0851",
       "as_printed": "King, Byram, Jones, King & Co.",
       "printed_page": 21,
-      "occupation_1839": "& Co",
+      "occupation_1839": "Jones, King & Co",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -24529,12 +24535,12 @@
       "claim": "f1839_e1619",
       "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "printed_page": 36,
-      "occupation_1839": "cor. Clark",
-      "address_1839": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+      "occupation_1839": "Recorder, cor. Clark and",
+      "address_1839": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
       "streets_1839": [
-       "and Randolph sts",
+       "Randolph sts",
        "South Water st",
-       "and State sts"
+       "State sts"
       ],
       "address_is_street_only": false
      }
@@ -24631,10 +24637,10 @@
       "claim": "f1839_e0548",
       "as_printed": "Gill, Edmund, “ Shakspeare”, cor. North Water and Rush sts.",
       "printed_page": 15,
-      "occupation_1839": "“ Shakspeare”, cor. North Water",
-      "address_1839": "and Rush sts",
+      "occupation_1839": "“ Shakspeare”, cor. North Water and",
+      "address_1839": "Rush sts",
       "streets_1839": [
-       "and Rush sts"
+       "Rush sts"
       ],
       "address_is_street_only": false
      }
@@ -24827,10 +24833,10 @@
       "claim": "f1839_e0159",
       "as_printed": "Brady, George, constable, alley bet. North Water and Kinzie st",
       "printed_page": 8,
-      "occupation_1839": "constable, alley bet. North Water",
-      "address_1839": "and Kinzie st",
+      "occupation_1839": "constable, alley bet. North Water and",
+      "address_1839": "Kinzie st",
       "streets_1839": [
-       "and Kinzie st"
+       "Kinzie st"
       ],
       "address_is_street_only": false
      }
@@ -24878,10 +24884,10 @@
       "claim": "f1839_e1323",
       "as_printed": "Shelley, Geo. E., Lake House, cor. North Water and Rush sts",
       "printed_page": 30,
-      "occupation_1839": "House, cor. North Water",
-      "address_1839": "and Rush sts",
+      "occupation_1839": "Lake House, cor. North Water and",
+      "address_1839": "Rush sts",
       "streets_1839": [
-       "and Rush sts"
+       "Rush sts"
       ],
       "address_is_street_only": false
      }
@@ -24933,7 +24939,7 @@
       "address_1839": "Wabash ave. near Randolph st",
       "streets_1839": [
        "Wabash ave",
-       "near Randolph st"
+       "Randolph st"
       ],
       "address_is_street_only": false
      }
@@ -25107,7 +25113,7 @@
       "address_1839": "LaSalle st, near Lake st",
       "streets_1839": [
        "LaSalle st",
-       "near Lake st"
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -25396,10 +25402,10 @@
       "claim": "f1839_e0251",
       "as_printed": "Casey, John, bricklayer, cor. Market and Washington streets",
       "printed_page": 10,
-      "occupation_1839": "bricklayer, cor. Market",
-      "address_1839": "and Washington streets",
+      "occupation_1839": "bricklayer, cor. Market and",
+      "address_1839": "Washington streets",
       "streets_1839": [
-       "and Washington streets"
+       "Washington streets"
       ],
       "address_is_street_only": false
      }
@@ -25549,10 +25555,10 @@
       "claim": "f1839_e1132",
       "as_printed": "O’Neil, John, farmer, cor 22d and Halsted streets",
       "printed_page": 26,
-      "occupation_1839": "farmer, cor 22d",
-      "address_1839": "and Halsted streets",
+      "occupation_1839": "farmer, cor 22d and",
+      "address_1839": "Halsted streets",
       "streets_1839": [
-       "and Halsted streets"
+       "Halsted streets"
       ],
       "address_is_street_only": false
      }
@@ -25566,7 +25572,7 @@
       "claim": "f1839_e1153",
       "as_printed": "Pearson, Hon. John, judge Circuit Court of Cook County",
       "printed_page": 27,
-      "occupation_1839": null,
+      "occupation_1839": "judge",
       "address_1839": "Circuit Court of Cook County",
       "streets_1839": [
        "Circuit Court"
@@ -25764,7 +25770,7 @@
       "claim": "f1839_e0217",
       "as_printed": "Butterfield, Lyman, Columbian House, Wells st cor. S. Water",
       "printed_page": 9,
-      "occupation_1839": null,
+      "occupation_1839": "Columbian House",
       "address_1839": "Wells st cor. S. Water",
       "streets_1839": [
        "Wells st"
@@ -26026,11 +26032,9 @@
       "claim": "f1839_e1194",
       "as_printed": "Price, Robert, tailor and clothier, J53 * ,ake st",
       "printed_page": 28,
-      "occupation_1839": "tailor and clothier, J53 *",
-      "address_1839": "ake st",
-      "streets_1839": [
-       "ake st"
-      ],
+      "occupation_1839": "tailor and clothier, J53 * ,ake st",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -26041,9 +26045,9 @@
     "entries_1839": [
      {
       "claim": "f1839_e1642",
-      "as_printed": "Woodworth, Robert P. & James H., wholesale dry goods mer¬ chants, 103 Lake st",
+      "as_printed": "Woodworth, Robert P. & James H., wholesale dry goods merchants, 103 Lake st",
       "printed_page": 36,
-      "occupation_1839": "& James H., wholesale dry goods mer¬ chants",
+      "occupation_1839": "& James H., wholesale dry goods merchants",
       "address_1839": "103 Lake st",
       "streets_1839": [
        "Lake st"
@@ -26105,7 +26109,7 @@
       "claim": "f1839_e0776",
       "as_printed": "Jackson, Samuel T., Government works, near Garrison",
       "printed_page": 20,
-      "occupation_1839": "works, near Garrison",
+      "occupation_1839": "Government works, near Garrison",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -26120,10 +26124,10 @@
       "claim": "f1839_e0243",
       "as_printed": "Carpenter, Samuel, ferryman at Clark street",
       "printed_page": 9,
-      "occupation_1839": "ferryman",
-      "address_1839": "at Clark street",
+      "occupation_1839": "ferryman at",
+      "address_1839": "Clark street",
       "streets_1839": [
-       "at Clark street"
+       "Clark street"
       ],
       "address_is_street_only": false
      }
@@ -26152,7 +26156,7 @@
       "claim": "f1839_e1374",
       "as_printed": "Smith, S. Lisle, City attorney, 107 Lake st",
       "printed_page": 31,
-      "occupation_1839": "attorney",
+      "occupation_1839": "City attorney",
       "address_1839": "107 Lake st",
       "streets_1839": [
        "Lake st"
@@ -26267,7 +26271,7 @@
       "claim": "f1839_e1375",
       "as_printed": "Smith, Theophilus W., judge Supreme Coui't, bds. City Hotel",
       "printed_page": 31,
-      "occupation_1839": "Supreme Coui't",
+      "occupation_1839": "judge Supreme Coui't",
       "address_1839": "bds. City Hotel",
       "streets_1839": [],
       "address_is_street_only": false
@@ -26440,12 +26444,12 @@
     "entries_1839": [
      {
       "claim": "f1839_e0192",
-      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water",
       "printed_page": 8,
-      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
-      "address_1839": "Salle st cor. So. Water",
+      "occupation_1839": "cashier, Branch State Bank Illinois",
+      "address_1839": "LaSalle st cor. So. Water",
       "streets_1839": [
-       "Salle st"
+       "LaSalle st"
       ],
       "address_is_street_only": false
      }
@@ -26595,7 +26599,7 @@
       "address_1839": "Wabash ave near VanBuren st",
       "streets_1839": [
        "Wabash ave",
-       "near VanBuren st"
+       "VanBuren st"
       ],
       "address_is_street_only": false
      }
@@ -26642,10 +26646,10 @@
       "claim": "f1839_e1206",
       "as_printed": "Rankin, William & John, brassfounders, 55 Clark and Illinois st",
       "printed_page": 28,
-      "occupation_1839": "& John, brassfounders, 55 Clark",
-      "address_1839": "and Illinois st",
+      "occupation_1839": "& John, brassfounders, 55 Clark and",
+      "address_1839": "Illinois st",
       "streets_1839": [
-       "and Illinois st"
+       "Illinois st"
       ],
       "address_is_street_only": false
      }
@@ -26657,9 +26661,9 @@
     "entries_1839": [
      {
       "claim": "f1839_e1603",
-      "as_printed": "Whiting, Wm. L., produce and commission merchant, Hub¬ bard & Co.’s warehouse, North Water st near Rush",
+      "as_printed": "Whiting, Wm. L., produce and commission merchant, Hubbard & Co.’s warehouse, North Water st near Rush",
       "printed_page": 35,
-      "occupation_1839": "produce and commission merchant, Hub¬ bard & Co.’s warehouse",
+      "occupation_1839": "produce and commission merchant, Hubbard & Co.’s warehouse",
       "address_1839": "North Water st near Rush",
       "streets_1839": [
        "North Water st"
@@ -26710,7 +26714,7 @@
       "address_1839": "LaSalle street near Lake st",
       "streets_1839": [
        "LaSalle street",
-       "near Lake st"
+       "Lake st"
       ],
       "address_is_street_only": false
      }
@@ -26739,12 +26743,12 @@
     "entries_1839": [
      {
       "claim": "f1839_e0192",
-      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water",
+      "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water",
       "printed_page": 8,
-      "occupation_1839": "cashier, Branch State Bank Illinois, La¬",
-      "address_1839": "Salle st cor. So. Water",
+      "occupation_1839": "cashier, Branch State Bank Illinois",
+      "address_1839": "LaSalle st cor. So. Water",
       "streets_1839": [
-       "Salle st"
+       "LaSalle st"
       ],
       "address_is_street_only": false
      }
@@ -26805,11 +26809,9 @@
       "claim": "f1839_e1029",
       "as_printed": "Miller, Capt. Harry, schooner St. Joseph",
       "printed_page": 24,
-      "occupation_1839": null,
-      "address_1839": "schooner St. Joseph",
-      "streets_1839": [
-       "schooner St"
-      ],
+      "occupation_1839": "schooner St. Joseph",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      }
     ]
@@ -26822,7 +26824,7 @@
       "claim": "f1839_e1288",
       "as_printed": "Sammons, Joel,acooper, Frederick Sammons",
       "printed_page": 29,
-      "occupation_1839": null,
+      "occupation_1839": "Frederick Sammons",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -26908,7 +26910,7 @@
       "claim": "f1839_e0524",
       "as_printed": "Gale, Mrs. A., New York millinery store, 99 Lake st",
       "printed_page": 15,
-      "occupation_1839": "York millinery store",
+      "occupation_1839": "New York millinery store",
       "address_1839": "99 Lake st",
       "streets_1839": [
        "Lake st"
@@ -27025,10 +27027,10 @@
       "claim": "f1839_e1047",
       "as_printed": "Moore, David, miller, at the wind mill, above North ave",
       "printed_page": 25,
-      "occupation_1839": "miller, at the wind mill",
-      "address_1839": "above North ave",
+      "occupation_1839": "miller, at the wind mill, above",
+      "address_1839": "North ave",
       "streets_1839": [
-       "above North ave"
+       "North ave"
       ],
       "address_is_street_only": false
      }
@@ -27079,7 +27081,7 @@
       "claim": "f1839_e1469",
       "as_printed": "Taylor, Ezra, Henry Wolcott’s boarding-house",
       "printed_page": 33,
-      "occupation_1839": "boarding-house",
+      "occupation_1839": "Henry Wolcott’s boarding-house",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -27105,7 +27107,7 @@
       "claim": "f1839_e1469",
       "as_printed": "Taylor, Ezra, Henry Wolcott’s boarding-house",
       "printed_page": 33,
-      "occupation_1839": "boarding-house",
+      "occupation_1839": "Henry Wolcott’s boarding-house",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -27183,7 +27185,7 @@
       "claim": "f1839_e1599",
       "as_printed": "White, George, City Crier, Market st, or at Stanton X Black’s",
       "printed_page": 35,
-      "occupation_1839": null,
+      "occupation_1839": "City Crier",
       "address_1839": "Market st, or at Stanton X Black’s",
       "streets_1839": [
        "Market st"
@@ -27224,10 +27226,10 @@
       "claim": "f1839_e0329",
       "as_printed": "Couch, Ira, hotel-keeper, Tremont House, n.-w. cor. Dearborn and Lake sts",
       "printed_page": 11,
-      "occupation_1839": "hotel-keeper, Tremont House, n.-w. cor. Dearborn",
-      "address_1839": "and Lake sts",
+      "occupation_1839": "hotel-keeper, Tremont House, n.-w. cor. Dearborn and",
+      "address_1839": "Lake sts",
       "streets_1839": [
-       "and Lake sts"
+       "Lake sts"
       ],
       "address_is_street_only": false
      },
@@ -27250,7 +27252,7 @@
       "claim": "f1839_e1269",
       "as_printed": "Russell, Jacob, City Hotel, Clark st, N.-W. cor. Randolph",
       "printed_page": 29,
-      "occupation_1839": null,
+      "occupation_1839": "City Hotel",
       "address_1839": "Clark st, N.-W. cor. Randolph",
       "streets_1839": [
        "Clark st"
@@ -27342,7 +27344,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -27761,10 +27763,10 @@
       "claim": "f1839_e1505",
       "as_printed": "Turner, John and Leighton, livery stables, cor. North State and Kinzie streets",
       "printed_page": 33,
-      "occupation_1839": "and Leighton, livery stables, cor. North State",
-      "address_1839": "and Kinzie streets",
+      "occupation_1839": "and Leighton, livery stables, cor. North State and",
+      "address_1839": "Kinzie streets",
       "streets_1839": [
-       "and Kinzie streets"
+       "Kinzie streets"
       ],
       "address_is_street_only": false
      },
@@ -27776,7 +27778,7 @@
       "address_1839": "Milwaukee ave near Chicago ave",
       "streets_1839": [
        "Milwaukee ave",
-       "near Chicago ave"
+       "Chicago ave"
       ],
       "address_is_street_only": false
      }
@@ -27825,7 +27827,7 @@
       "claim": "f1839_e1078",
       "as_printed": "Murphy, John, United States Hotel, West Water cor. Randolph",
       "printed_page": 25,
-      "occupation_1839": "Hotel, West Water cor. Randolph",
+      "occupation_1839": "United States Hotel, West Water cor. Randolph",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -27849,7 +27851,7 @@
       "claim": "f1839_e1078",
       "as_printed": "Murphy, John, United States Hotel, West Water cor. Randolph",
       "printed_page": 25,
-      "occupation_1839": "Hotel, West Water cor. Randolph",
+      "occupation_1839": "United States Hotel, West Water cor. Randolph",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -27938,9 +27940,10 @@
       "claim": "f1839_e1647",
       "as_printed": "Wright, John, Michigan ave. cor. Madison st",
       "printed_page": 36,
-      "occupation_1839": "ave. cor",
-      "address_1839": "Madison st",
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
       "streets_1839": [
+       "Michigan ave",
        "Madison st"
       ],
       "address_is_street_only": false
@@ -28012,7 +28015,7 @@
       "claim": "f1839_e1368",
       "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
       "printed_page": 31,
-      "occupation_1839": "Smith & Co., 127 Lake sti'eet",
+      "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
       "address_1839": null,
       "streets_1839": [],
       "address_is_street_only": false
@@ -28145,10 +28148,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -28174,10 +28176,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -28203,10 +28204,9 @@
       "claim": "f1839_e0626",
       "as_printed": "Hamilton, Rich’d J., clerk circuit court, Clark st cor. Randolph",
       "printed_page": 17,
-      "occupation_1839": null,
-      "address_1839": "clerk circuit court, Clark st cor. Randolph",
+      "occupation_1839": "clerk circuit court",
+      "address_1839": "Clark st cor. Randolph",
       "streets_1839": [
-       "clerk circuit court",
        "Clark st"
       ],
       "address_is_street_only": false
@@ -28464,11 +28464,9 @@
       "claim": "f1839_e0309",
       "as_printed": "Collins, Jas. PL, attorney and counsellor at law, 46 Deai-born st",
       "printed_page": 11,
-      "occupation_1839": "attorney and counsellor at law, 46 Deai-",
-      "address_1839": "born st",
-      "streets_1839": [
-       "born st"
-      ],
+      "occupation_1839": "attorney and counsellor at law, 46 Deai-born st",
+      "address_1839": null,
+      "streets_1839": [],
       "address_is_street_only": false
      },
      {

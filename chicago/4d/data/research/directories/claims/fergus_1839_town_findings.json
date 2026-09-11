@@ -171,7 +171,7 @@
     "name": "First Unitarian Church",
     "category": "church",
     "streets": [
-     "and Lake sts"
+     "Lake sts"
     ]
    },
    "locator": {
@@ -200,7 +200,7 @@
     "name": "Chicago Hotel",
     "category": "hotel",
     "streets": [
-     "and Canal sts"
+     "Canal sts"
     ]
    },
    "locator": {
@@ -229,7 +229,7 @@
     "name": "Chicago Temperance House",
     "category": "hotel",
     "streets": [
-     "near Lake street"
+     "Lake street"
     ]
    },
    "locator": {
@@ -258,7 +258,7 @@
     "name": "City Hotel",
     "category": "hotel",
     "streets": [
-     "and Randolph sts"
+     "Randolph sts"
     ]
    },
    "locator": {
@@ -492,7 +492,7 @@
     "name": "Shakespeare",
     "category": "hotel",
     "streets": [
-     "and Rush streets"
+     "Rush streets"
     ]
    },
    "locator": {
@@ -521,7 +521,7 @@
     "name": "Southern Hotel",
     "category": "hotel",
     "streets": [
-     "and Twelfth sts"
+     "Twelfth sts"
     ]
    },
    "locator": {
@@ -550,7 +550,7 @@
     "name": "Tremont House",
     "category": "hotel",
     "streets": [
-     "and Dearborn sts"
+     "Dearborn sts"
     ]
    },
    "locator": {
@@ -608,7 +608,7 @@
     "name": "Western Hotel",
     "category": "hotel",
     "streets": [
-     "and Canal streets"
+     "Canal streets"
     ]
    },
    "locator": {
@@ -637,7 +637,7 @@
     "name": "Circuit Clerk’s office",
     "category": "public_office",
     "streets": [
-     "of Public Square"
+     "Public Square"
     ]
    },
    "locator": {
@@ -666,7 +666,7 @@
     "name": "Recorder’s office",
     "category": "public_office",
     "streets": [
-     "of Public Square"
+     "Public Square"
     ]
    },
    "locator": {
@@ -695,7 +695,7 @@
     "name": "Tail and Sheriff’s office",
     "category": "public_office",
     "streets": [
-     "of Public Square"
+     "Public Square"
     ]
    },
    "locator": {
@@ -753,7 +753,7 @@
     "name": "U.S. Garrison",
     "category": "public_office",
     "streets": [
-     "of Michigan ave"
+     "Michigan ave"
     ]
    },
    "locator": {
@@ -783,7 +783,7 @@
     "category": "public_office",
     "streets": [
      "River st",
-     "at Rush st"
+     "Rush st"
     ]
    },
    "locator": {
@@ -899,7 +899,7 @@
     "name": "Saloon Buildings",
     "category": "public_room",
     "streets": [
-     "and Clark sts"
+     "Clark sts"
     ]
    },
    "locator": {
@@ -955,7 +955,7 @@
     "name": "Tippecanoe Hall",
     "category": "public_room",
     "streets": [
-     "and Kinzie sts"
+     "Kinzie sts"
     ]
    },
    "locator": {
@@ -1014,7 +1014,7 @@
     "category": "row",
     "streets": [
      "Washington st",
-     "and Wells sts"
+     "Wells sts"
     ]
    },
    "locator": {
@@ -1043,8 +1043,8 @@
     "name": "Dutch Settlement",
     "category": "settlement",
     "streets": [
-     "north of Chicago ave",
-     "east of Clark st"
+     "Chicago ave",
+     "Clark st"
     ]
    },
    "locator": {

@@ -90,11 +90,11 @@
    "reading": "transcription_mediated",
    "quote": "Abel,  Sidney,  Postmaster,  office  37  Clark  st",
    "normalized": {
-    "printed_name": "Abel, Sidney, Postmaster",
+    "printed_name": "Abel, Sidney",
     "surname": "Abel",
-    "given": "Sidney, Postmaster",
+    "given": "Sidney",
     "firm": false,
-    "occupation": "office",
+    "occupation": "Postmaster, office",
     "address": "37 Clark st",
     "streets": [
      "Clark st"
@@ -113,7 +113,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Abel, Sidney, Postmaster"
+    "Abel, Sidney"
    ],
    "town_finding": false,
    "notes": null
@@ -852,11 +852,11 @@
    "reading": "transcription_mediated",
    "quote": "Andrus,  Loomis,  Andrus  &  Doyle",
    "normalized": {
-    "printed_name": "Andrus, Loomis, Andrus",
+    "printed_name": "Andrus, Loomis",
     "surname": "Andrus",
-    "given": "Loomis, Andrus",
+    "given": "Loomis",
     "firm": false,
-    "occupation": "& Doyle",
+    "occupation": "Andrus & Doyle",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -873,7 +873,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Andrus, Loomis, Andrus"
+    "Andrus, Loomis"
    ],
    "town_finding": false,
    "notes": null
@@ -1112,11 +1112,11 @@
    "reading": "transcription_mediated",
    "quote": "Austin,  Dr.  Wm..H.,  Dodge  &  Austin,  Lake  street",
    "normalized": {
-    "printed_name": "Austin, Dr. Wm..H., Dodge",
+    "printed_name": "Austin, Dr. Wm..H",
     "surname": "Austin",
-    "given": "Dr. Wm..H., Dodge",
+    "given": "Dr. Wm..H",
     "firm": false,
-    "occupation": "& Austin",
+    "occupation": "Dodge & Austin",
     "address": "Lake street",
     "streets": [
      "Lake street"
@@ -1135,7 +1135,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Austin, Dr. Wm..H., Dodge"
+    "Austin, Dr. Wm..H"
    ],
    "town_finding": false,
    "notes": null
@@ -1414,7 +1414,7 @@
     "address": "Chicago ave. near Cass street",
     "streets": [
      "Chicago ave",
-     "near Cass street"
+     "Cass street"
     ],
     "number_is_1876": false,
     "as_printed": "Baimbridge, George, teamster, Chicago ave. near Cass street"
@@ -2102,13 +2102,13 @@
     "surname": null,
     "given": null,
     "firm": true,
-    "occupation": "cabinet makers and under¬ takers",
+    "occupation": "cabinet makers and undertakers",
     "address": "199 Lake st",
     "streets": [
      "Lake st"
     ],
     "number_is_1876": false,
-    "as_printed": "Bates (A. S.) & Morgan (Caleb), cabinet makers and under¬ takers, 199 Lake st"
+    "as_printed": "Bates (A. S.) & Morgan (Caleb), cabinet makers and undertakers, 199 Lake st"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_018.txt",
@@ -2366,13 +2366,15 @@
    "reading": "transcription_mediated",
    "quote": "Baumgarten,  Morris,  Illinois  street,  near  North  State",
    "normalized": {
-    "printed_name": "Baumgarten, Morris, Illinois",
+    "printed_name": "Baumgarten, Morris",
     "surname": "Baumgarten",
-    "given": "Morris, Illinois",
+    "given": "Morris",
     "firm": false,
-    "occupation": "street, near North State",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "Illinois street, near North State",
+    "streets": [
+     "Illinois street"
+    ],
     "number_is_1876": false,
     "as_printed": "Baumgarten, Morris, Illinois street, near North State"
    },
@@ -2387,7 +2389,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Baumgarten, Morris, Illinois"
+    "Baumgarten, Morris"
    ],
    "town_finding": false,
    "notes": null
@@ -2439,8 +2441,8 @@
     "occupation": "laborer",
     "address": "Randolph st alley, near Fifth ave",
     "streets": [
-     "Randolph st alley",
-     "near Fifth ave"
+     "Randolph st",
+     "Fifth ave"
     ],
     "number_is_1876": false,
     "as_printed": "Bay, Jean Baptiste, laborer, Randolph st alley, near Fifth ave"
@@ -2474,8 +2476,8 @@
     "occupation": "laborer",
     "address": "Randolph street alley, near Fifth ave",
     "streets": [
-     "Randolph street alley",
-     "near Fifth ave"
+     "Randolph street",
+     "Fifth ave"
     ],
     "number_is_1876": false,
     "as_printed": "Bay, Joseph, laborer, Randolph street alley, near Fifth ave"
@@ -2696,13 +2698,14 @@
    "reading": "transcription_mediated",
    "quote": "Beaubien,  John  B.,  Michigan  ave.,  bet.  Lake  and  So.  Water  sts",
    "normalized": {
-    "printed_name": "Beaubien, John B., Michigan",
+    "printed_name": "Beaubien, John B",
     "surname": "Beaubien",
-    "given": "John B., Michigan",
+    "given": "John B",
     "firm": false,
-    "occupation": "ave., bet. Lake and",
-    "address": "So. Water sts",
+    "occupation": null,
+    "address": "Michigan ave., bet. Lake and So. Water sts",
     "streets": [
+     "Michigan ave",
      "So. Water sts"
     ],
     "number_is_1876": false,
@@ -2719,7 +2722,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Beaubien, John B., Michigan"
+    "Beaubien, John B"
    ],
    "town_finding": false,
    "notes": null
@@ -2802,13 +2805,13 @@
     "surname": null,
     "given": null,
     "firm": true,
-    "occupation": "attorneys and coun¬ sellors at law",
+    "occupation": "attorneys and counsellors at law",
     "address": "Clark st cor. Lake",
     "streets": [
      "Clark st"
     ],
     "number_is_1876": false,
-    "as_printed": "Beaumont (Geo. A. O.) & Skinner (Mark), attorneys and coun¬ sellors at law, Clark st cor. Lake"
+    "as_printed": "Beaumont (Geo. A. O.) & Skinner (Mark), attorneys and counsellors at law, Clark st cor. Lake"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_018.txt",
@@ -2898,11 +2901,11 @@
    "reading": "transcription_mediated",
    "quote": "Beers,  Cyrenus,  Botsford  &  Beers",
    "normalized": {
-    "printed_name": "Beers, Cyrenus, Botsford",
+    "printed_name": "Beers, Cyrenus",
     "surname": "Beers",
-    "given": "Cyrenus, Botsford",
+    "given": "Cyrenus",
     "firm": false,
-    "occupation": "& Beers",
+    "occupation": "Botsford & Beers",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -2919,7 +2922,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Beers, Cyrenus, Botsford"
+    "Beers, Cyrenus"
    ],
    "town_finding": false,
    "notes": null
@@ -3124,11 +3127,11 @@
    "reading": "transcription_mediated",
    "quote": "Benthune,  Antoine,  Parisian  dyer,  N.  Water  st.  nr  N.  Dearborn",
    "normalized": {
-    "printed_name": "Benthune, Antoine, Parisian",
+    "printed_name": "Benthune, Antoine",
     "surname": "Benthune",
-    "given": "Antoine, Parisian",
+    "given": "Antoine",
     "firm": false,
-    "occupation": "dyer",
+    "occupation": "Parisian dyer",
     "address": "N. Water st. nr N. Dearborn",
     "streets": [
      "N. Water st"
@@ -3147,7 +3150,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Benthune, Antoine, Parisian"
+    "Benthune, Antoine"
    ],
    "town_finding": false,
    "notes": null
@@ -3586,11 +3589,11 @@
    "reading": "transcription_mediated",
    "quote": "Bingham,  Chas.  Iv.,  Frink,  Bingham  &  Co.,  123  Lake  street",
    "normalized": {
-    "printed_name": "Bingham, Chas. Iv., Frink",
+    "printed_name": "Bingham, Chas. Iv",
     "surname": "Bingham",
-    "given": "Chas. Iv., Frink",
+    "given": "Chas. Iv",
     "firm": false,
-    "occupation": "Bingham & Co",
+    "occupation": "Frink, Bingham & Co",
     "address": "123 Lake street",
     "streets": [
      "Lake street"
@@ -3609,7 +3612,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Bingham, Chas. Iv., Frink"
+    "Bingham, Chas. Iv"
    ],
    "town_finding": false,
    "notes": null
@@ -4080,11 +4083,11 @@
    "reading": "transcription_mediated",
    "quote": "Blatchford,  Rev.  John,  Presbyterian  Church,  Clark  street",
    "normalized": {
-    "printed_name": "Blatchford, Rev. John, Presbyterian",
+    "printed_name": "Blatchford, Rev. John",
     "surname": "Blatchford",
-    "given": "Rev. John, Presbyterian",
+    "given": "Rev. John",
     "firm": false,
-    "occupation": "Church",
+    "occupation": "Presbyterian Church",
     "address": "Clark street",
     "streets": [
      "Clark street"
@@ -4103,7 +4106,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Blatchford, Rev. John, Presbyterian"
+    "Blatchford, Rev. John"
    ],
    "town_finding": false,
    "notes": null
@@ -4581,11 +4584,11 @@
    "reading": "transcription_mediated",
    "quote": "Bosworth,  Increase,  Edwards  &  Bosworth",
    "normalized": {
-    "printed_name": "Bosworth, Increase, Edwards",
+    "printed_name": "Bosworth, Increase",
     "surname": "Bosworth",
-    "given": "Increase, Edwards",
+    "given": "Increase",
     "firm": false,
-    "occupation": "& Bosworth",
+    "occupation": "Edwards & Bosworth",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -4602,7 +4605,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Bosworth, Increase, Edwards"
+    "Bosworth, Increase"
    ],
    "town_finding": false,
    "notes": null
@@ -4786,7 +4789,7 @@
     "address": "Wabash ave. near Randolph st",
     "streets": [
      "Wabash ave",
-     "near Randolph st"
+     "Randolph st"
     ],
     "number_is_1876": false,
     "as_printed": "Bowen, Henry, wagon maker, Wabash ave. near Randolph st"
@@ -5249,10 +5252,10 @@
     "surname": "Brady",
     "given": "George",
     "firm": false,
-    "occupation": "constable, alley bet. North Water",
-    "address": "and Kinzie st",
+    "occupation": "constable, alley bet. North Water and",
+    "address": "Kinzie st",
     "streets": [
-     "and Kinzie st"
+     "Kinzie st"
     ],
     "number_is_1876": false,
     "as_printed": "Brady, George, constable, alley bet. North Water and Kinzie st"
@@ -5345,11 +5348,11 @@
    "reading": "transcription_mediated",
    "quote": "Breese,  Josiah  S.,  Taylor,  Breese  &  Co.",
    "normalized": {
-    "printed_name": "Breese, Josiah S., Taylor",
+    "printed_name": "Breese, Josiah S",
     "surname": "Breese",
-    "given": "Josiah S., Taylor",
+    "given": "Josiah S",
     "firm": false,
-    "occupation": "Breese & Co",
+    "occupation": "Taylor, Breese & Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -5366,7 +5369,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Breese, Josiah S., Taylor"
+    "Breese, Josiah S"
    ],
    "town_finding": false,
    "notes": null
@@ -6331,13 +6334,13 @@
     "surname": "Brown",
     "given": "William II",
     "firm": false,
-    "occupation": "cashier, Branch State Bank Illinois, La¬",
-    "address": "Salle st cor. So. Water",
+    "occupation": "cashier, Branch State Bank Illinois",
+    "address": "LaSalle st cor. So. Water",
     "streets": [
-     "Salle st"
+     "LaSalle st"
     ],
     "number_is_1876": false,
-    "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, La¬ Salle st cor. So. Water"
+    "as_printed": "Brown, William II. , cashier, Branch State Bank Illinois, LaSalle st cor. So. Water"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_020.txt",
@@ -6465,7 +6468,7 @@
     "address": "Michigan ave. near Washington st",
     "streets": [
      "Michigan ave",
-     "near Washington st"
+     "Washington st"
     ],
     "number_is_1876": false,
     "as_printed": "Buck, Henry, boarding-house, Michigan ave. near Washington st"
@@ -6824,7 +6827,7 @@
     "address": "North Dearborn st, near North ave",
     "streets": [
      "North Dearborn st",
-     "near North ave"
+     "North ave"
     ],
     "number_is_1876": false,
     "as_printed": "Burton, John, gardener, North Dearborn st, near North ave"
@@ -6887,10 +6890,10 @@
     "surname": "Burton",
     "given": "Stiles",
     "firm": false,
-    "occupation": "grocer and liquor dealer, cor. Lake",
-    "address": "and State sts",
+    "occupation": "grocer and liquor dealer, cor. Lake and",
+    "address": "State sts",
     "streets": [
-     "and State sts"
+     "State sts"
     ],
     "number_is_1876": false,
     "as_printed": "Burton, Stiles, grocer and liquor dealer, cor. Lake and State sts"
@@ -7147,11 +7150,11 @@
    "reading": "transcription_mediated",
    "quote": "Butterfield,  Lyman,  Columbian  House,  Wells  st  cor.  S.  Water",
    "normalized": {
-    "printed_name": "Butterfield, Lyman, Columbian House",
+    "printed_name": "Butterfield, Lyman",
     "surname": "Butterfield",
-    "given": "Lyman, Columbian House",
+    "given": "Lyman",
     "firm": false,
-    "occupation": null,
+    "occupation": "Columbian House",
     "address": "Wells st cor. S. Water",
     "streets": [
      "Wells st"
@@ -7170,7 +7173,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Butterfield, Lyman, Columbian House"
+    "Butterfield, Lyman"
    ],
    "town_finding": false,
    "notes": null
@@ -7311,11 +7314,11 @@
    "reading": "transcription_mediated",
    "quote": "Caldwell,  Billy,  North  Branch  Chicago  river,  5th  ward",
    "normalized": {
-    "printed_name": "Caldwell, Billy, North Branch",
+    "printed_name": "Caldwell, Billy",
     "surname": "Caldwell",
-    "given": "Billy, North Branch",
+    "given": "Billy",
     "firm": false,
-    "occupation": "Chicago river, 5th ward",
+    "occupation": "North Branch Chicago river, 5th ward",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -7332,7 +7335,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Caldwell, Billy, North Branch"
+    "Caldwell, Billy"
    ],
    "town_finding": false,
    "notes": null
@@ -7475,11 +7478,11 @@
    "reading": "transcription_mediated",
    "quote": "Campbell,  George,  Goodsell  &  Campbell",
    "normalized": {
-    "printed_name": "Campbell, George, Goodsell",
+    "printed_name": "Campbell, George",
     "surname": "Campbell",
-    "given": "George, Goodsell",
+    "given": "George",
     "firm": false,
-    "occupation": "& Campbell",
+    "occupation": "Goodsell & Campbell",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -7496,7 +7499,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Campbell, George, Goodsell"
+    "Campbell, George"
    ],
    "town_finding": false,
    "notes": null
@@ -8009,10 +8012,10 @@
     "surname": "Carpenter",
     "given": "Samuel",
     "firm": false,
-    "occupation": "ferryman",
-    "address": "at Clark street",
+    "occupation": "ferryman at",
+    "address": "Clark street",
     "streets": [
-     "at Clark street"
+     "Clark street"
     ],
     "number_is_1876": false,
     "as_printed": "Carpenter, Samuel, ferryman at Clark street"
@@ -8275,10 +8278,10 @@
     "surname": "Casey",
     "given": "John",
     "firm": false,
-    "occupation": "bricklayer, cor. Market",
-    "address": "and Washington streets",
+    "occupation": "bricklayer, cor. Market and",
+    "address": "Washington streets",
     "streets": [
-     "and Washington streets"
+     "Washington streets"
     ],
     "number_is_1876": false,
     "as_printed": "Casey, John, bricklayer, cor. Market and Washington streets"
@@ -8499,11 +8502,11 @@
    "reading": "transcription_mediated",
    "quote": "Cauker,  Mat.,  Steamboat  Hotel,  North  Water  st.  near  Kinzie",
    "normalized": {
-    "printed_name": "Cauker, Mat., Steamboat Hotel",
+    "printed_name": "Cauker, Mat",
     "surname": "Cauker",
-    "given": "Mat., Steamboat Hotel",
+    "given": "Mat",
     "firm": false,
-    "occupation": null,
+    "occupation": "Steamboat Hotel",
     "address": "North Water st. near Kinzie",
     "streets": [
      "North Water st"
@@ -8522,7 +8525,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Cauker, Mat., Steamboat Hotel"
+    "Cauker, Mat"
    ],
    "town_finding": false,
    "notes": null
@@ -8571,10 +8574,10 @@
     "surname": "Chacksfield",
     "given": "George",
     "firm": false,
-    "occupation": "grocery and provision store, South Water",
-    "address": "near Clark st",
+    "occupation": "grocery and provision store, South Water near",
+    "address": "Clark st",
     "streets": [
-     "near Clark st"
+     "Clark st"
     ],
     "number_is_1876": false,
     "as_printed": "Chacksfield, George, grocery and provision store, South Water near Clark st"
@@ -9069,10 +9072,10 @@
     "surname": "Church",
     "given": "Thomas",
     "firm": false,
-    "occupation": "grocery and provision store",
-    "address": "hi Lake st",
+    "occupation": "grocery and provision store, hi",
+    "address": "Lake st",
     "streets": [
-     "hi Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Church, Thomas, grocery and provision store, hi Lake st"
@@ -9359,14 +9362,16 @@
    "reading": "transcription_mediated",
    "quote": "Clarke,  Henry  B.,  Michigan  ave,  cor.  1 6th  street",
    "normalized": {
-    "printed_name": "Clarke, Henry B., Michigan",
+    "printed_name": "Clarke, Henry B",
     "surname": "Clarke",
-    "given": "Henry B., Michigan",
+    "given": "Henry B",
     "firm": false,
-    "occupation": "ave, cor. 1 6th street",
-    "address": null,
-    "streets": [],
-    "number_is_1876": false,
+    "occupation": null,
+    "address": "Michigan ave, cor. 1 6th street",
+    "streets": [
+     "Michigan ave"
+    ],
+    "number_is_1876": true,
     "as_printed": "Clarke, Henry B., Michigan ave, cor. 1 6th street"
    },
    "locator": {
@@ -9380,7 +9385,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Clarke, Henry B., Michigan"
+    "Clarke, Henry B"
    ],
    "town_finding": false,
    "notes": null
@@ -9593,13 +9598,13 @@
     "surname": "Clarke",
     "given": "Wm. I I",
     "firm": false,
-    "occupation": "& Abram F. , wholesale druggists and apothe¬ caries",
+    "occupation": "& Abram F. , wholesale druggists and apothecaries",
     "address": "128 Lake street cor. Clark",
     "streets": [
      "Lake street"
     ],
     "number_is_1876": false,
-    "as_printed": "Clarke, Wm. I I. & Abram F. , wholesale druggists and apothe¬ caries, 128 Lake street cor. Clark"
+    "as_printed": "Clarke, Wm. I I. & Abram F. , wholesale druggists and apothecaries, 128 Lake street cor. Clark"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_022.txt",
@@ -10191,11 +10196,9 @@
     "surname": "Collins",
     "given": "Jas. PL",
     "firm": false,
-    "occupation": "attorney and counsellor at law, 46 Deai-",
-    "address": "born st",
-    "streets": [
-     "born st"
-    ],
+    "occupation": "attorney and counsellor at law, 46 Deai-born st",
+    "address": null,
+    "streets": [],
     "number_is_1876": false,
     "as_printed": "Collins, Jas. PL, attorney and counsellor at law, 46 Deai-born st"
    },
@@ -10519,11 +10522,11 @@
    "reading": "transcription_mediated",
    "quote": "Cook,  C.  W.,  Illinois  Exchange,  192-6  Lake  st,  cor.  Wells  st",
    "normalized": {
-    "printed_name": "Cook, C. W., Illinois",
+    "printed_name": "Cook, C. W",
     "surname": "Cook",
-    "given": "C. W., Illinois",
+    "given": "C. W",
     "firm": false,
-    "occupation": "Exchange, 192-",
+    "occupation": "Illinois Exchange, 192-",
     "address": "6 Lake st, cor. Wells st",
     "streets": [
      "Lake st",
@@ -10543,7 +10546,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Cook, C. W., Illinois"
+    "Cook, C. W"
    ],
    "town_finding": false,
    "notes": null
@@ -10620,11 +10623,11 @@
    "reading": "transcription_mediated",
    "quote": "Cook,  Isaac,  Eagle  saloon,  10  Deai'born  st",
    "normalized": {
-    "printed_name": "Cook, Isaac, Eagle",
+    "printed_name": "Cook, Isaac",
     "surname": "Cook",
-    "given": "Isaac, Eagle",
+    "given": "Isaac",
     "firm": false,
-    "occupation": "saloon",
+    "occupation": "Eagle saloon",
     "address": "10 Deai'born st",
     "streets": [
      "Deai'born st"
@@ -10643,7 +10646,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Cook, Isaac, Eagle"
+    "Cook, Isaac"
    ],
    "town_finding": false,
    "notes": null
@@ -10858,10 +10861,10 @@
     "surname": "Couch",
     "given": "Ira",
     "firm": false,
-    "occupation": "hotel-keeper, Tremont House, n.-w. cor. Dearborn",
-    "address": "and Lake sts",
+    "occupation": "hotel-keeper, Tremont House, n.-w. cor. Dearborn and",
+    "address": "Lake sts",
     "streets": [
-     "and Lake sts"
+     "Lake sts"
     ],
     "number_is_1876": false,
     "as_printed": "Couch, Ira, hotel-keeper, Tremont House, n.-w. cor. Dearborn and Lake sts"
@@ -10920,11 +10923,11 @@
    "reading": "transcription_mediated",
    "quote": "Couch,  James,  Superintendent  Tremont  House",
    "normalized": {
-    "printed_name": "Couch, James, Superintendent Tremont",
+    "printed_name": "Couch, James",
     "surname": "Couch",
-    "given": "James, Superintendent Tremont",
+    "given": "James",
     "firm": false,
-    "occupation": "House",
+    "occupation": "Superintendent Tremont House",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -10941,7 +10944,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Couch, James, Superintendent Tremont"
+    "Couch, James"
    ],
    "town_finding": false,
    "notes": null
@@ -11088,11 +11091,11 @@
    "reading": "transcription_mediated",
    "quote": "Cram,  'Capt.  T.  J.,  U.  S.  topographical  engineer,  Garrison",
    "normalized": {
-    "printed_name": "Cram, 'Capt. T. J., U. S",
+    "printed_name": "Cram, 'Capt. T. J",
     "surname": "Cram",
-    "given": "'Capt. T. J., U. S",
+    "given": "'Capt. T. J",
     "firm": false,
-    "occupation": "topographical engineer, Garrison",
+    "occupation": "U. S. topographical engineer, Garrison",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -11109,7 +11112,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Cram, 'Capt. T. J., U. S"
+    "Cram, 'Capt. T. J"
    ],
    "town_finding": false,
    "notes": null
@@ -11282,11 +11285,11 @@
    "reading": "transcription_mediated",
    "quote": "Crosman,  Peri*y  L.,  Crosman  &  Mathes",
    "normalized": {
-    "printed_name": "Crosman, Peri*y L., Crosman",
+    "printed_name": "Crosman, Peri*y L",
     "surname": "Crosman",
-    "given": "Peri*y L., Crosman",
+    "given": "Peri*y L",
     "firm": false,
-    "occupation": "& Mathes",
+    "occupation": "Crosman & Mathes",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -11303,7 +11306,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Crosman, Peri*y L., Crosman"
+    "Crosman, Peri*y L"
    ],
    "town_finding": false,
    "notes": null
@@ -11388,7 +11391,7 @@
     "address": "North Union st and Milwaukee av",
     "streets": [
      "North Union st",
-     "and Milwaukee av"
+     "Milwaukee av"
     ],
     "number_is_1876": false,
     "as_printed": "Culver, Charles, cooper, cor. North Union st and Milwaukee av"
@@ -12285,7 +12288,7 @@
     "address": "LaSalle street near Lake st",
     "streets": [
      "LaSalle street",
-     "near Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Day, William, boarding-house, LaSalle street near Lake st"
@@ -12680,11 +12683,11 @@
    "reading": "transcription_mediated",
    "quote": "Dickey,  Hugh,  T. ,  attorney  and  counsellor  at  law,  8  Clark  st",
    "normalized": {
-    "printed_name": "Dickey, Hugh, T",
+    "printed_name": "Dickey, Hugh",
     "surname": "Dickey",
-    "given": "Hugh, T",
+    "given": "Hugh",
     "firm": false,
-    "occupation": "attorney and counsellor at law",
+    "occupation": "T. , attorney and counsellor at law",
     "address": "8 Clark st",
     "streets": [
      "Clark st"
@@ -12703,7 +12706,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Dickey, Hugh, T"
+    "Dickey, Hugh"
    ],
    "town_finding": false,
    "notes": null
@@ -12846,13 +12849,15 @@
    "reading": "transcription_mediated",
    "quote": "Dinmore,  William,  Dunn  street",
    "normalized": {
-    "printed_name": "Dinmore, William, Dunn",
+    "printed_name": "Dinmore, William",
     "surname": "Dinmore",
-    "given": "William, Dunn",
+    "given": "William",
     "firm": false,
-    "occupation": "street",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "Dunn street",
+    "streets": [
+     "Dunn street"
+    ],
     "number_is_1876": false,
     "as_printed": "Dinmore, William, Dunn street"
    },
@@ -12867,7 +12872,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Dinmore, William, Dunn"
+    "Dinmore, William"
    ],
    "town_finding": false,
    "notes": null
@@ -13042,11 +13047,11 @@
    "reading": "transcription_mediated",
    "quote": "Dodge,  John  C.,  Dodge  &  Tucker",
    "normalized": {
-    "printed_name": "Dodge, John C., Dodge",
+    "printed_name": "Dodge, John C",
     "surname": "Dodge",
-    "given": "John C., Dodge",
+    "given": "John C",
     "firm": false,
-    "occupation": "& Tucker",
+    "occupation": "Dodge & Tucker",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -13063,7 +13068,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Dodge, John C., Dodge"
+    "Dodge, John C"
    ],
    "town_finding": false,
    "notes": null
@@ -13768,11 +13773,11 @@
    "reading": "transcription_mediated",
    "quote": "Doyle,  Michael,  Andrus  &  Doyle",
    "normalized": {
-    "printed_name": "Doyle, Michael, Andrus",
+    "printed_name": "Doyle, Michael",
     "surname": "Doyle",
-    "given": "Michael, Andrus",
+    "given": "Michael",
     "firm": false,
-    "occupation": "& Doyle",
+    "occupation": "Andrus & Doyle",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -13789,7 +13794,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Doyle, Michael, Andrus"
+    "Doyle, Michael"
    ],
    "town_finding": false,
    "notes": null
@@ -14566,11 +14571,11 @@
    "reading": "transcription_mediated",
    "quote": "Edwards,  Alfred,  Edwards  &  Bosworth",
    "normalized": {
-    "printed_name": "Edwards, Alfred, Edwards",
+    "printed_name": "Edwards, Alfred",
     "surname": "Edwards",
-    "given": "Alfred, Edwards",
+    "given": "Alfred",
     "firm": false,
-    "occupation": "& Bosworth",
+    "occupation": "Edwards & Bosworth",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -14587,7 +14592,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Edwards, Alfred, Edwards"
+    "Edwards, Alfred"
    ],
    "town_finding": false,
    "notes": null
@@ -15422,11 +15427,11 @@
    "reading": "transcription_mediated",
    "quote": "Ferguson,  James,  Goodsell  &  Campbell",
    "normalized": {
-    "printed_name": "Ferguson, James, Goodsell",
+    "printed_name": "Ferguson, James",
     "surname": "Ferguson",
-    "given": "James, Goodsell",
+    "given": "James",
     "firm": false,
-    "occupation": "& Campbell",
+    "occupation": "Goodsell & Campbell",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -15443,7 +15448,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Ferguson, James, Goodsell"
+    "Ferguson, James"
    ],
    "town_finding": false,
    "notes": null
@@ -15662,7 +15667,7 @@
     "address": "Chicago avenue and Rush street",
     "streets": [
      "Chicago avenue",
-     "and Rush street"
+     "Rush street"
     ],
     "number_is_1876": false,
     "as_printed": "Fitzpatrick, John, laborer, cor. Chicago avenue and Rush street"
@@ -16232,7 +16237,7 @@
     "address": "LaSalle st, near Lake st",
     "streets": [
      "LaSalle st",
-     "near Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Fordham, Jared, boarding-house, LaSalle st, near Lake st"
@@ -16952,11 +16957,11 @@
    "reading": "transcription_mediated",
    "quote": "Funk,  Absalom,  Funk  &  Doyle,  butchers",
    "normalized": {
-    "printed_name": "Funk, Absalom, Funk",
+    "printed_name": "Funk, Absalom",
     "surname": "Funk",
-    "given": "Absalom, Funk",
+    "given": "Absalom",
     "firm": false,
-    "occupation": "& Doyle, butchers",
+    "occupation": "Funk & Doyle, butchers",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -16973,7 +16978,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Funk, Absalom, Funk"
+    "Funk, Absalom"
    ],
    "town_finding": false,
    "notes": null
@@ -17086,10 +17091,10 @@
     "surname": "Gable",
     "given": "Peter",
     "firm": false,
-    "occupation": "laborer, cor. Cass",
-    "address": "and Pearsons streets",
+    "occupation": "laborer, cor. Cass and",
+    "address": "Pearsons streets",
     "streets": [
-     "and Pearsons streets"
+     "Pearsons streets"
     ],
     "number_is_1876": false,
     "as_printed": "Gable, Peter, laborer, cor. Cass and Pearsons streets"
@@ -17316,11 +17321,11 @@
    "reading": "transcription_mediated",
    "quote": "Gale,  Mrs.  A.,  New  York  millinery  store,  99  Lake  st",
    "normalized": {
-    "printed_name": "Gale, Mrs. A., New",
+    "printed_name": "Gale, Mrs. A",
     "surname": "Gale",
-    "given": "Mrs. A., New",
+    "given": "Mrs. A",
     "firm": false,
-    "occupation": "York millinery store",
+    "occupation": "New York millinery store",
     "address": "99 Lake st",
     "streets": [
      "Lake st"
@@ -17339,7 +17344,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Gale, Mrs. A., New"
+    "Gale, Mrs. A"
    ],
    "town_finding": false,
    "notes": null
@@ -17388,10 +17393,10 @@
     "surname": "Gargen",
     "given": "Henry",
     "firm": false,
-    "occupation": "laborer, cor. Rush",
-    "address": "and Pearsons streets",
+    "occupation": "laborer, cor. Rush and",
+    "address": "Pearsons streets",
     "streets": [
-     "and Pearsons streets"
+     "Pearsons streets"
     ],
     "number_is_1876": false,
     "as_printed": "Gargen, Henry, laborer, cor. Rush and Pearsons streets"
@@ -17488,10 +17493,10 @@
     "surname": "Gaugler",
     "given": "Maurice",
     "firm": false,
-    "occupation": "cabinetmaker, cor. Rush",
-    "address": "and Pearsons sts",
+    "occupation": "cabinetmaker, cor. Rush and",
+    "address": "Pearsons sts",
     "streets": [
-     "and Pearsons sts"
+     "Pearsons sts"
     ],
     "number_is_1876": false,
     "as_printed": "Gaugler, Maurice, cabinetmaker, cor. Rush and Pearsons sts"
@@ -17552,11 +17557,11 @@
    "reading": "transcription_mediated",
    "quote": "Gavin,  Isaac  R.,  Sheriff,  Randolph  st,  n.-w.  cor.  Public  Square",
    "normalized": {
-    "printed_name": "Gavin, Isaac R., Sheriff",
+    "printed_name": "Gavin, Isaac R",
     "surname": "Gavin",
-    "given": "Isaac R., Sheriff",
+    "given": "Isaac R",
     "firm": false,
-    "occupation": null,
+    "occupation": "Sheriff",
     "address": "Randolph st, n.-w. cor. Public Square",
     "streets": [
      "Randolph st",
@@ -17576,7 +17581,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Gavin, Isaac R., Sheriff"
+    "Gavin, Isaac R"
    ],
    "town_finding": false,
    "notes": null
@@ -18119,10 +18124,10 @@
     "surname": "Gill",
     "given": "Edmund",
     "firm": false,
-    "occupation": "“ Shakspeare”, cor. North Water",
-    "address": "and Rush sts",
+    "occupation": "“ Shakspeare”, cor. North Water and",
+    "address": "Rush sts",
     "streets": [
-     "and Rush sts"
+     "Rush sts"
     ],
     "number_is_1876": false,
     "as_printed": "Gill, Edmund, “ Shakspeare”, cor. North Water and Rush sts."
@@ -18215,11 +18220,11 @@
    "reading": "transcription_mediated",
    "quote": "Gillespie,  Eugene,  Kinzie  &  Gillespie",
    "normalized": {
-    "printed_name": "Gillespie, Eugene, Kinzie",
+    "printed_name": "Gillespie, Eugene",
     "surname": "Gillespie",
-    "given": "Eugene, Kinzie",
+    "given": "Eugene",
     "firm": false,
-    "occupation": "& Gillespie",
+    "occupation": "Kinzie & Gillespie",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -18236,7 +18241,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Gillespie, Eugene, Kinzie"
+    "Gillespie, Eugene"
    ],
    "town_finding": false,
    "notes": null
@@ -18487,7 +18492,7 @@
     "address": "Dearborn street north of Lake street",
     "streets": [
      "Dearborn street",
-     "north of Lake street"
+     "Lake street"
     ],
     "number_is_1876": false,
     "as_printed": "Goodhue, Dr. Josiah C. , Dearborn street north of Lake street"
@@ -18646,11 +18651,11 @@
    "reading": "transcription_mediated",
    "quote": "Goodsell,  L.  B.,  Goodsell  &  Campbell",
    "normalized": {
-    "printed_name": "Goodsell, L. B., Goodsell",
+    "printed_name": "Goodsell, L. B",
     "surname": "Goodsell",
-    "given": "L. B., Goodsell",
+    "given": "L. B",
     "firm": false,
-    "occupation": "& Campbell",
+    "occupation": "Goodsell & Campbell",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -18667,7 +18672,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Goodsell, L. B., Goodsell"
+    "Goodsell, L. B"
    ],
    "town_finding": false,
    "notes": null
@@ -18746,11 +18751,11 @@
    "reading": "transcription_mediated",
    "quote": "Goss,  John,  Samuel  W.  Goss  ik.  Co.",
    "normalized": {
-    "printed_name": "Goss, John, Samuel W",
+    "printed_name": "Goss, John",
     "surname": "Goss",
-    "given": "John, Samuel W",
+    "given": "John",
     "firm": false,
-    "occupation": "Goss ik. Co",
+    "occupation": "Samuel W. Goss ik. Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -18767,7 +18772,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Goss, John, Samuel W"
+    "Goss, John"
    ],
    "town_finding": false,
    "notes": null
@@ -19153,7 +19158,7 @@
     "address": "State street near Lake st",
     "streets": [
      "State street",
-     "near Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "( Iraves, I lenry, State street near Lake st"
@@ -19180,14 +19185,15 @@
    "reading": "transcription_mediated",
    "quote": "Graves,  Lorin,  State  street  near  Lake  st",
    "normalized": {
-    "printed_name": "Graves, Lorin, State",
+    "printed_name": "Graves, Lorin",
     "surname": "Graves",
-    "given": "Lorin, State",
+    "given": "Lorin",
     "firm": false,
-    "occupation": "street",
-    "address": "near Lake st",
+    "occupation": null,
+    "address": "State street near Lake st",
     "streets": [
-     "near Lake st"
+     "State street",
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Graves, Lorin, State street near Lake st"
@@ -19203,7 +19209,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Graves, Lorin, State"
+    "Graves, Lorin"
    ],
    "town_finding": false,
    "notes": null
@@ -19378,11 +19384,11 @@
    "reading": "transcription_mediated",
    "quote": "Gray,  John,  Chicago  Hotel,  cor.  West  Lake  and  North  Canal  sts",
    "normalized": {
-    "printed_name": "Gray, John, Chicago Hotel",
+    "printed_name": "Gray, John",
     "surname": "Gray",
-    "given": "John, Chicago Hotel",
+    "given": "John",
     "firm": false,
-    "occupation": "cor. West Lake and",
+    "occupation": "Chicago Hotel, cor. West Lake and",
     "address": "North Canal sts",
     "streets": [
      "North Canal sts"
@@ -19401,7 +19407,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Gray, John, Chicago Hotel"
+    "Gray, John"
    ],
    "town_finding": false,
    "notes": null
@@ -20038,10 +20044,10 @@
     "surname": "Gunter",
     "given": "John",
     "firm": false,
-    "occupation": "sailor, cor. Cass",
-    "address": "and Indiana streets",
+    "occupation": "sailor, cor. Cass and",
+    "address": "Indiana streets",
     "streets": [
-     "and Indiana streets"
+     "Indiana streets"
     ],
     "number_is_1876": false,
     "as_printed": "Gunter, John, sailor, cor. Cass and Indiana streets"
@@ -20068,11 +20074,11 @@
    "reading": "transcription_mediated",
    "quote": "Gurnee,  Walter  S.,  Gurnee  &  Matteson",
    "normalized": {
-    "printed_name": "Gurnee, Walter S., Gurnee",
+    "printed_name": "Gurnee, Walter S",
     "surname": "Gurnee",
-    "given": "Walter S., Gurnee",
+    "given": "Walter S",
     "firm": false,
-    "occupation": "& Matteson",
+    "occupation": "Gurnee & Matteson",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -20089,7 +20095,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Gurnee, Walter S., Gurnee"
+    "Gurnee, Walter S"
    ],
    "town_finding": false,
    "notes": null
@@ -20142,7 +20148,7 @@
     "address": "Chicago avenue and Pine street",
     "streets": [
      "Chicago avenue",
-     "and Pine street"
+     "Pine street"
     ],
     "number_is_1876": false,
     "as_printed": "Haas, William, brewer, cor. Chicago avenue and Pine street"
@@ -20301,13 +20307,15 @@
    "reading": "transcription_mediated",
    "quote": "Haight,  Isaac,  North  Canal  street  near  West  Lake",
    "normalized": {
-    "printed_name": "Haight, Isaac, North Canal",
+    "printed_name": "Haight, Isaac",
     "surname": "Haight",
-    "given": "Isaac, North Canal",
+    "given": "Isaac",
     "firm": false,
-    "occupation": "street near West Lake",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "North Canal street near West Lake",
+    "streets": [
+     "North Canal street"
+    ],
     "number_is_1876": false,
     "as_printed": "Haight, Isaac, North Canal street near West Lake"
    },
@@ -20322,7 +20330,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Haight, Isaac, North Canal"
+    "Haight, Isaac"
    ],
    "town_finding": false,
    "notes": null
@@ -20563,11 +20571,11 @@
    "reading": "transcription_mediated",
    "quote": "Hallam,  Edward  S.,  Stearns  &  Hallam",
    "normalized": {
-    "printed_name": "Hallam, Edward S., Stearns",
+    "printed_name": "Hallam, Edward S",
     "surname": "Hallam",
-    "given": "Edward S., Stearns",
+    "given": "Edward S",
     "firm": false,
-    "occupation": "& Hallam",
+    "occupation": "Stearns & Hallam",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -20584,7 +20592,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Hallam, Edward S., Stearns"
+    "Hallam, Edward S"
    ],
    "town_finding": false,
    "notes": null
@@ -20699,10 +20707,9 @@
     "surname": "Hamilton",
     "given": "Rich’d J",
     "firm": false,
-    "occupation": null,
-    "address": "clerk circuit court, Clark st cor. Randolph",
+    "occupation": "clerk circuit court",
+    "address": "Clark st cor. Randolph",
     "streets": [
-     "clerk circuit court",
      "Clark st"
     ],
     "number_is_1876": false,
@@ -21228,13 +21235,13 @@
     "surname": "Harmon",
     "given": null,
     "firm": false,
-    "occupation": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale gro¬ cers, s.-w. cor. Clark and",
+    "occupation": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale grocers, s.-w. cor. Clark and",
     "address": "So. Water sts",
     "streets": [
      "So. Water sts"
     ],
     "number_is_1876": false,
-    "as_printed": "Harmon, (Chas. L. ) Loomis (Horatio G. ) & Co., wholesale gro¬ cers, s.-w. cor. Clark and So. Water sts"
+    "as_printed": "Harmon, (Chas. L. ) Loomis (Horatio G. ) & Co., wholesale grocers, s.-w. cor. Clark and So. Water sts"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_029.txt",
@@ -21356,11 +21363,11 @@
    "reading": "transcription_mediated",
    "quote": "Harrington,  Rev.  Jos.,  First  Unitarian  Church,  bds  Lake  House",
    "normalized": {
-    "printed_name": "Harrington, Rev. Jos., First",
+    "printed_name": "Harrington, Rev. Jos",
     "surname": "Harrington",
-    "given": "Rev. Jos., First",
+    "given": "Rev. Jos",
     "firm": false,
-    "occupation": "Unitarian Church",
+    "occupation": "First Unitarian Church",
     "address": "bds Lake House",
     "streets": [],
     "number_is_1876": false,
@@ -21377,7 +21384,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Harrington, Rev. Jos., First"
+    "Harrington, Rev. Jos"
    ],
    "town_finding": false,
    "notes": null
@@ -22282,7 +22289,7 @@
     "address": "Archer Road near Halsted street",
     "streets": [
      "Archer Road",
-     "near Halsted street"
+     "Halsted street"
     ],
     "number_is_1876": false,
     "as_printed": "Healey, Robert, farmer, Archer Road near Halsted street"
@@ -23930,7 +23937,7 @@
     "occupation": "boarding-",
     "address": "house and saloon, south on Clark street",
     "streets": [
-     "south on Clark street"
+     "Clark street"
     ],
     "number_is_1876": false,
     "as_printed": "Horan, Owen, boarding-house and saloon, south on Clark street"
@@ -24554,10 +24561,10 @@
     "surname": "Howe",
     "given": "Miss",
     "firm": false,
-    "occupation": "milliner and mantua-maker, cor. Lake",
-    "address": "and Wells sts",
+    "occupation": "milliner and mantua-maker, cor. Lake and",
+    "address": "Wells sts",
     "streets": [
-     "and Wells sts"
+     "Wells sts"
     ],
     "number_is_1876": false,
     "as_printed": "Howe, Miss, milliner and mantua-maker, cor. Lake and Wells sts"
@@ -24656,13 +24663,13 @@
     "surname": null,
     "given": null,
     "firm": true,
-    "occupation": "Gurdon S., forwarding, and commission mer¬ chants",
+    "occupation": "Gurdon S., forwarding, and commission merchants",
     "address": "North Water st near Rush",
     "streets": [
      "North Water st"
     ],
     "number_is_1876": false,
-    "as_printed": "Hubbard & Co., Gurdon S., forwarding, and commission mer¬ chants, North Water st near Rush"
+    "as_printed": "Hubbard & Co., Gurdon S., forwarding, and commission merchants, North Water st near Rush"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_031.txt",
@@ -24860,7 +24867,7 @@
     "address": "West Water street near Lake st",
     "streets": [
      "West Water street",
-     "near Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Hugunin, Hiram, merchant, West Water street near Lake st"
@@ -25147,13 +25154,15 @@
    "reading": "transcription_mediated",
    "quote": "Hunter,  Capt.  David,  Illinois  street,  near  Rush",
    "normalized": {
-    "printed_name": "Hunter, Capt. David, Illinois",
+    "printed_name": "Hunter, Capt. David",
     "surname": "Hunter",
-    "given": "Capt. David, Illinois",
+    "given": "Capt. David",
     "firm": false,
-    "occupation": "street, near Rush",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "Illinois street, near Rush",
+    "streets": [
+     "Illinois street"
+    ],
     "number_is_1876": false,
     "as_printed": "Hunter, Capt. David, Illinois street, near Rush"
    },
@@ -25168,7 +25177,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Hunter, Capt. David, Illinois"
+    "Hunter, Capt. David"
    ],
    "town_finding": false,
    "notes": null
@@ -25347,11 +25356,11 @@
    "reading": "transcription_mediated",
    "quote": "Hyde,  Thomas,  Davis,  Kinzie  &  Hyde",
    "normalized": {
-    "printed_name": "Hyde, Thomas, Davis, Kinzie",
+    "printed_name": "Hyde, Thomas",
     "surname": "Hyde",
-    "given": "Thomas, Davis, Kinzie",
+    "given": "Thomas",
     "firm": false,
-    "occupation": "& Hyde",
+    "occupation": "Davis, Kinzie & Hyde",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -25368,7 +25377,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Hyde, Thomas, Davis, Kinzie"
+    "Hyde, Thomas"
    ],
    "town_finding": false,
    "notes": null
@@ -25607,11 +25616,11 @@
    "reading": "transcription_mediated",
    "quote": "Jackson,  Richard,  Southern  Hotel,  State  street  cor.  Twelfth",
    "normalized": {
-    "printed_name": "Jackson, Richard, Southern Hotel",
+    "printed_name": "Jackson, Richard",
     "surname": "Jackson",
-    "given": "Richard, Southern Hotel",
+    "given": "Richard",
     "firm": false,
-    "occupation": null,
+    "occupation": "Southern Hotel",
     "address": "State street cor. Twelfth",
     "streets": [
      "State street"
@@ -25630,7 +25639,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Jackson, Richard, Southern Hotel"
+    "Jackson, Richard"
    ],
    "town_finding": false,
    "notes": null
@@ -25641,11 +25650,11 @@
    "reading": "transcription_mediated",
    "quote": "Jackson,  Samuel  T.,  Government  works,  near  Garrison",
    "normalized": {
-    "printed_name": "Jackson, Samuel T., Government",
+    "printed_name": "Jackson, Samuel T",
     "surname": "Jackson",
-    "given": "Samuel T., Government",
+    "given": "Samuel T",
     "firm": false,
-    "occupation": "works, near Garrison",
+    "occupation": "Government works, near Garrison",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -25662,7 +25671,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Jackson, Samuel T., Government"
+    "Jackson, Samuel T"
    ],
    "town_finding": false,
    "notes": null
@@ -25835,11 +25844,11 @@
    "reading": "transcription_mediated",
    "quote": "Jefferson,  Joseph,  Jefferson  &  McKenzie",
    "normalized": {
-    "printed_name": "Jefferson, Joseph, Jefferson",
+    "printed_name": "Jefferson, Joseph",
     "surname": "Jefferson",
-    "given": "Joseph, Jefferson",
+    "given": "Joseph",
     "firm": false,
-    "occupation": "& McKenzie",
+    "occupation": "Jefferson & McKenzie",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -25856,7 +25865,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Jefferson, Joseph, Jefferson"
+    "Jefferson, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -26205,7 +26214,7 @@
     "address": "Wabash ave. near Adams street",
     "streets": [
      "Wabash ave",
-     "near Adams street"
+     "Adams street"
     ],
     "number_is_1876": false,
     "as_printed": "Johnston, James, drayman, Wabash ave. near Adams street"
@@ -26528,11 +26537,11 @@
    "reading": "transcription_mediated",
    "quote": "Johnston,  Capt.  Seth,  North  Branch,  west  side",
    "normalized": {
-    "printed_name": "Johnston, Capt. Seth, North",
+    "printed_name": "Johnston, Capt. Seth",
     "surname": "Johnston",
-    "given": "Capt. Seth, North",
+    "given": "Capt. Seth",
     "firm": false,
-    "occupation": "Branch, west side",
+    "occupation": "North Branch, west side",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -26549,7 +26558,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Johnston, Capt. Seth, North"
+    "Johnston, Capt. Seth"
    ],
    "town_finding": false,
    "notes": null
@@ -27064,10 +27073,10 @@
     "surname": "Kaphahn",
     "given": "Godfrey",
     "firm": false,
-    "occupation": "laborer, cor. Cass",
-    "address": "and Chestnut streets",
+    "occupation": "laborer, cor. Cass and",
+    "address": "Chestnut streets",
     "streets": [
-     "and Chestnut streets"
+     "Chestnut streets"
     ],
     "number_is_1876": false,
     "as_printed": "Kaphahn, Godfrey, laborer, cor. Cass and Chestnut streets"
@@ -27493,11 +27502,11 @@
    "reading": "transcription_mediated",
    "quote": "Kendall,  Elihu,  Smead,  Kendall  &  Co.",
    "normalized": {
-    "printed_name": "Kendall, Elihu, Smead, Kendall",
+    "printed_name": "Kendall, Elihu",
     "surname": "Kendall",
-    "given": "Elihu, Smead, Kendall",
+    "given": "Elihu",
     "firm": false,
-    "occupation": "& Co",
+    "occupation": "Smead, Kendall & Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -27514,7 +27523,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Kendall, Elihu, Smead, Kendall"
+    "Kendall, Elihu"
    ],
    "town_finding": false,
    "notes": null
@@ -28123,11 +28132,11 @@
    "reading": "transcription_mediated",
    "quote": "King,  Byram,  Jones,  King  &  Co.",
    "normalized": {
-    "printed_name": "King, Byram, Jones, King",
+    "printed_name": "King, Byram",
     "surname": "King",
-    "given": "Byram, Jones, King",
+    "given": "Byram",
     "firm": false,
-    "occupation": "& Co",
+    "occupation": "Jones, King & Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -28144,7 +28153,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "King, Byram, Jones, King"
+    "King, Byram"
    ],
    "town_finding": false,
    "notes": null
@@ -28349,11 +28358,11 @@
    "reading": "transcription_mediated",
    "quote": "King,  Tuthill,  New  York  clothing  store,  115  Lake  st",
    "normalized": {
-    "printed_name": "King, Tuthill, New York",
+    "printed_name": "King, Tuthill",
     "surname": "King",
-    "given": "Tuthill, New York",
+    "given": "Tuthill",
     "firm": false,
-    "occupation": "clothing store",
+    "occupation": "New York clothing store",
     "address": "115 Lake st",
     "streets": [
      "Lake st"
@@ -28372,7 +28381,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "King, Tuthill, New York"
+    "King, Tuthill"
    ],
    "town_finding": false,
    "notes": null
@@ -28425,7 +28434,7 @@
     "address": "Wabash ave near VanBuren st",
     "streets": [
      "Wabash ave",
-     "near VanBuren st"
+     "VanBuren st"
     ],
     "number_is_1876": false,
     "as_printed": "Kingswell, Wm. , millwright, Wabash ave near VanBuren st"
@@ -28520,11 +28529,11 @@
    "reading": "transcription_mediated",
    "quote": "Kinzie,  Robert  A.,  Davis,  Kinzie  &  Hyde,  Kinzie  street",
    "normalized": {
-    "printed_name": "Kinzie, Robert A., Davis",
+    "printed_name": "Kinzie, Robert A",
     "surname": "Kinzie",
-    "given": "Robert A., Davis",
+    "given": "Robert A",
     "firm": false,
-    "occupation": "Kinzie & Hyde",
+    "occupation": "Davis, Kinzie & Hyde",
     "address": "Kinzie street",
     "streets": [
      "Kinzie street"
@@ -28543,7 +28552,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Kinzie, Robert A., Davis"
+    "Kinzie, Robert A"
    ],
    "town_finding": false,
    "notes": null
@@ -28562,7 +28571,7 @@
     "address": "State street near Harmon court",
     "streets": [
      "State street",
-     "near Harmon court"
+     "Harmon court"
     ],
     "number_is_1876": false,
     "as_printed": "Klear, Frank, musician, State street near Harmon court"
@@ -28917,11 +28926,11 @@
    "reading": "transcription_mediated",
    "quote": "LaFromboise,  Eugene,  Indian  chief,  res.  Canal  street",
    "normalized": {
-    "printed_name": "LaFromboise, Eugene, Indian",
+    "printed_name": "LaFromboise, Eugene",
     "surname": "LaFromboise",
-    "given": "Eugene, Indian",
+    "given": "Eugene",
     "firm": false,
-    "occupation": "chief",
+    "occupation": "Indian chief",
     "address": "res. Canal street",
     "streets": [
      "Canal street"
@@ -28940,7 +28949,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "LaFromboise, Eugene, Indian"
+    "LaFromboise, Eugene"
    ],
    "town_finding": false,
    "notes": null
@@ -28951,11 +28960,11 @@
    "reading": "transcription_mediated",
    "quote": "LaFromboise,  Joseph,  Indian  chief",
    "normalized": {
-    "printed_name": "LaFromboise, Joseph, Indian",
+    "printed_name": "LaFromboise, Joseph",
     "surname": "LaFromboise",
-    "given": "Joseph, Indian",
+    "given": "Joseph",
     "firm": false,
-    "occupation": "chief",
+    "occupation": "Indian chief",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -28972,7 +28981,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "LaFromboise, Joseph, Indian"
+    "LaFromboise, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -28991,7 +29000,7 @@
     "address": "Michigan ave. near Lake street",
     "streets": [
      "Michigan ave",
-     "near Lake street"
+     "Lake street"
     ],
     "number_is_1876": false,
     "as_printed": "Lamb, Horace, ship carpenter, Michigan ave. near Lake street"
@@ -29124,7 +29133,7 @@
     "address": "Chicago ave near Sedgwick street",
     "streets": [
      "Chicago ave",
-     "near Sedgwick street"
+     "Sedgwick street"
     ],
     "number_is_1876": false,
     "as_printed": "Landon, George, carpenter, Chicago ave near Sedgwick street"
@@ -29159,7 +29168,7 @@
     "address": "Chicago ave near Townsend street",
     "streets": [
      "Chicago ave",
-     "near Townsend street"
+     "Townsend street"
     ],
     "number_is_1876": false,
     "as_printed": "Landon, Thomas, carpenter, Chicago ave near Townsend street"
@@ -29554,10 +29563,9 @@
     "surname": "Lawson",
     "given": "Canute",
     "firm": false,
-    "occupation": null,
-    "address": "city street carpenter, 240 Superior street",
+    "occupation": "city street carpenter",
+    "address": "240 Superior street",
     "streets": [
-     "city street",
      "Superior street"
     ],
     "number_is_1876": true,
@@ -29755,10 +29763,9 @@
     "surname": "Legg",
     "given": "George",
     "firm": false,
-    "occupation": null,
-    "address": "contractor and street maker, Grand ave. 6th ward",
+    "occupation": "contractor and street maker",
+    "address": "Grand ave. 6th ward",
     "streets": [
-     "contractor and street",
      "Grand ave"
     ],
     "number_is_1876": false,
@@ -29854,10 +29861,10 @@
     "surname": "Legg",
     "given": "Joseph",
     "firm": false,
-    "occupation": "carpenter, west on river bank",
-    "address": "south of Lake st",
+    "occupation": "carpenter, west on river bank, south of",
+    "address": "Lake st",
     "streets": [
-     "south of Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Legg, Joseph, carpenter, west on river bank, south of Lake st"
@@ -29982,11 +29989,11 @@
    "reading": "transcription_mediated",
    "quote": "Lewis,  A.  B.,  Sunday  school  agent,  LaSalle  st",
    "normalized": {
-    "printed_name": "Lewis, A. B., Sunday",
+    "printed_name": "Lewis, A. B",
     "surname": "Lewis",
-    "given": "A. B., Sunday",
+    "given": "A. B",
     "firm": false,
-    "occupation": "school agent",
+    "occupation": "Sunday school agent",
     "address": "LaSalle st",
     "streets": [
      "LaSalle st"
@@ -30005,7 +30012,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Lewis, A. B., Sunday"
+    "Lewis, A. B"
    ],
    "town_finding": false,
    "notes": null
@@ -30757,10 +30764,10 @@
     "surname": "Lozier",
     "given": "Oliver",
     "firm": false,
-    "occupation": "painter and glazier, cor. Canal",
-    "address": "and Jackson sts",
+    "occupation": "painter and glazier, cor. Canal and",
+    "address": "Jackson sts",
     "streets": [
-     "and Jackson sts"
+     "Jackson sts"
     ],
     "number_is_1876": false,
     "as_printed": "Lozier, Oliver, painter and glazier, cor. Canal and Jackson sts."
@@ -30855,10 +30862,10 @@
     "surname": "Ludwig",
     "given": "Simon",
     "firm": false,
-    "occupation": "cooper, cor. Pearsons",
-    "address": "and Cass streets",
+    "occupation": "cooper, cor. Pearsons and",
+    "address": "Cass streets",
     "streets": [
-     "and Cass streets"
+     "Cass streets"
     ],
     "number_is_1876": false,
     "as_printed": "Ludwig, Simon, cooper, cor. Pearsons and Cass streets"
@@ -31177,11 +31184,11 @@
    "reading": "transcription_mediated",
    "quote": "McClure,  Josiah  E.,  McClure  &  Co.",
    "normalized": {
-    "printed_name": "McClure, Josiah E., McClure",
+    "printed_name": "McClure, Josiah E",
     "surname": "McClure",
-    "given": "Josiah E., McClure",
+    "given": "Josiah E",
     "firm": false,
-    "occupation": "& Co",
+    "occupation": "McClure & Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -31198,7 +31205,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "McClure, Josiah E., McClure"
+    "McClure, Josiah E"
    ],
    "town_finding": false,
    "notes": null
@@ -31349,7 +31356,7 @@
     "address": "Lumber st near Canal st",
     "streets": [
      "Lumber st",
-     "near Canal st"
+     "Canal st"
     ],
     "number_is_1876": false,
     "as_printed": "McConnell, Edward, gardener, Lumber st near Canal st"
@@ -31408,11 +31415,11 @@
    "reading": "transcription_mediated",
    "quote": "McCord,  Jason,  Mosely  &  McCord",
    "normalized": {
-    "printed_name": "McCord, Jason, Mosely",
+    "printed_name": "McCord, Jason",
     "surname": "McCord",
-    "given": "Jason, Mosely",
+    "given": "Jason",
     "firm": false,
-    "occupation": "& McCord",
+    "occupation": "Mosely & McCord",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -31429,7 +31436,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "McCord, Jason, Mosely"
+    "McCord, Jason"
    ],
    "town_finding": false,
    "notes": null
@@ -31440,11 +31447,11 @@
    "reading": "transcription_mediated",
    "quote": "McCorrister,  William,  American  Hotel,  North  Water  street",
    "normalized": {
-    "printed_name": "McCorrister, William, American Hotel",
+    "printed_name": "McCorrister, William",
     "surname": "McCorrister",
-    "given": "William, American Hotel",
+    "given": "William",
     "firm": false,
-    "occupation": null,
+    "occupation": "American Hotel",
     "address": "North Water street",
     "streets": [
      "North Water street"
@@ -31463,7 +31470,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "McCorrister, William, American Hotel"
+    "McCorrister, William"
    ],
    "town_finding": false,
    "notes": null
@@ -32012,7 +32019,7 @@
     "address": "West Madison st. near Western ave",
     "streets": [
      "West Madison st",
-     "near Western ave"
+     "Western ave"
     ],
     "number_is_1876": false,
     "as_printed": "McGraw, James, farmer, West Madison st. near Western ave"
@@ -32205,14 +32212,15 @@
    "reading": "transcription_mediated",
    "quote": "McIntosh,  Capt.  David,  Ohio  street  bet.  Pine  and  Sand  sts",
    "normalized": {
-    "printed_name": "McIntosh, Capt. David, Ohio",
+    "printed_name": "McIntosh, Capt. David",
     "surname": "McIntosh",
-    "given": "Capt. David, Ohio",
+    "given": "Capt. David",
     "firm": false,
-    "occupation": "street bet. Pine",
-    "address": "and Sand sts",
+    "occupation": null,
+    "address": "Ohio street bet. Pine and Sand sts",
     "streets": [
-     "and Sand sts"
+     "Ohio street",
+     "Sand sts"
     ],
     "number_is_1876": false,
     "as_printed": "McIntosh, Capt. David, Ohio street bet. Pine and Sand sts"
@@ -32228,7 +32236,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "McIntosh, Capt. David, Ohio"
+    "McIntosh, Capt. David"
    ],
    "town_finding": false,
    "notes": null
@@ -32373,11 +32381,11 @@
    "reading": "transcription_mediated",
    "quote": "McKenzie,  Alexander,  Theatre,  Jefferson  &  McKenzie",
    "normalized": {
-    "printed_name": "McKenzie, Alexander, Theatre, Jefferson",
+    "printed_name": "McKenzie, Alexander",
     "surname": "McKenzie",
-    "given": "Alexander, Theatre, Jefferson",
+    "given": "Alexander",
     "firm": false,
-    "occupation": "& McKenzie",
+    "occupation": "Theatre, Jefferson & McKenzie",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -32394,7 +32402,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "McKenzie, Alexander, Theatre, Jefferson"
+    "McKenzie, Alexander"
    ],
    "town_finding": false,
    "notes": null
@@ -32413,7 +32421,7 @@
     "address": "Chicago avenue and Cass street",
     "streets": [
      "Chicago avenue",
-     "and Cass street"
+     "Cass street"
     ],
     "number_is_1876": false,
     "as_printed": "McLean, Thomas, laborer, cor. Chicago avenue and Cass street"
@@ -32476,10 +32484,10 @@
     "surname": "McMahon",
     "given": "Patrick",
     "firm": false,
-    "occupation": "tailor",
-    "address": "N orth Water street near Dearborn",
+    "occupation": "tailor, N orth",
+    "address": "Water street near Dearborn",
     "streets": [
-     "N orth Water street"
+     "Water street"
     ],
     "number_is_1876": false,
     "as_printed": "McMahon, Patrick, tailor, N orth Water street near Dearborn"
@@ -32542,10 +32550,10 @@
     "surname": "McNeil",
     "given": "Malcolm",
     "firm": false,
-    "occupation": "ship carpenter, North Branch",
-    "address": "nr Chicago av",
+    "occupation": "ship carpenter, North Branch, nr",
+    "address": "Chicago av",
     "streets": [
-     "nr Chicago av"
+     "Chicago av"
     ],
     "number_is_1876": false,
     "as_printed": "McNeil, Malcolm, ship carpenter, North Branch, nr Chicago av"
@@ -33038,7 +33046,7 @@
     "address": "Chicago ave and Rush st",
     "streets": [
      "Chicago ave",
-     "and Rush st"
+     "Rush st"
     ],
     "number_is_1876": false,
     "as_printed": "Marback, Joseph, veg’t gardener, cor. Chicago ave and Rush st"
@@ -33335,11 +33343,11 @@
    "reading": "transcription_mediated",
    "quote": "Mathes,  William  J.,  Crosman  &  Mathes",
    "normalized": {
-    "printed_name": "Mathes, William J., Crosman",
+    "printed_name": "Mathes, William J",
     "surname": "Mathes",
-    "given": "William J., Crosman",
+    "given": "William J",
     "firm": false,
-    "occupation": "& Mathes",
+    "occupation": "Crosman & Mathes",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -33356,7 +33364,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Mathes, William J., Crosman"
+    "Mathes, William J"
    ],
    "town_finding": false,
    "notes": null
@@ -33399,11 +33407,11 @@
    "reading": "transcription_mediated",
    "quote": "Matteson,  Joseph,  Gurnee  &  Matteson",
    "normalized": {
-    "printed_name": "Matteson, Joseph, Gurnee",
+    "printed_name": "Matteson, Joseph",
     "surname": "Matteson",
-    "given": "Joseph, Gurnee",
+    "given": "Joseph",
     "firm": false,
-    "occupation": "& Matteson",
+    "occupation": "Gurnee & Matteson",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -33420,7 +33428,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Matteson, Joseph, Gurnee"
+    "Matteson, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -33529,11 +33537,11 @@
    "reading": "transcription_mediated",
    "quote": "Maxwell,  Dr.  Philip,  Garrison",
    "normalized": {
-    "printed_name": "Maxwell, Dr. Philip, Garrison",
+    "printed_name": "Maxwell, Dr. Philip",
     "surname": "Maxwell",
-    "given": "Dr. Philip, Garrison",
+    "given": "Dr. Philip",
     "firm": false,
-    "occupation": null,
+    "occupation": "Garrison",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -33550,7 +33558,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Maxwell, Dr. Philip, Garrison"
+    "Maxwell, Dr. Philip"
    ],
    "town_finding": false,
    "notes": null
@@ -33671,7 +33679,7 @@
     "address": "Michigan ave. near Lake street",
     "streets": [
      "Michigan ave",
-     "near Lake street"
+     "Lake street"
     ],
     "number_is_1876": false,
     "as_printed": "Mevelle, Peter, carpenter, Michigan ave. near Lake street"
@@ -33739,7 +33747,7 @@
     "occupation": "121 Lake st",
     "address": "house cor. Randolph and State st",
     "streets": [
-     "and State st"
+     "State st"
     ],
     "number_is_1876": false,
     "as_printed": "Merrick, Dr., 121 Lake st., house cor. Randolph and State st"
@@ -33940,7 +33948,7 @@
     "address": "North Clark street nr Fullerton av",
     "streets": [
      "North Clark street",
-     "nr Fullerton av"
+     "Fullerton av"
     ],
     "number_is_1876": false,
     "as_printed": "Milleman, Andrew, laborer, North Clark street nr Fullerton av"
@@ -34039,11 +34047,9 @@
     "surname": "Miller",
     "given": "Capt. Harry",
     "firm": false,
-    "occupation": null,
-    "address": "schooner St. Joseph",
-    "streets": [
-     "schooner St"
-    ],
+    "occupation": "schooner St. Joseph",
+    "address": null,
+    "streets": [],
     "number_is_1876": false,
     "as_printed": "Miller, Capt. Harry, schooner St. Joseph"
    },
@@ -34633,10 +34639,10 @@
     "surname": "Moore",
     "given": "David",
     "firm": false,
-    "occupation": "miller, at the wind mill",
-    "address": "above North ave",
+    "occupation": "miller, at the wind mill, above",
+    "address": "North ave",
     "streets": [
-     "above North ave"
+     "North ave"
     ],
     "number_is_1876": false,
     "as_printed": "Moore, David, miller, at the wind mill, above North ave"
@@ -35227,11 +35233,11 @@
    "reading": "transcription_mediated",
    "quote": "Morrison,  Ephriam,  jr.,  teamster,  111  Madison  street",
    "normalized": {
-    "printed_name": "Morrison, Ephriam, jr",
+    "printed_name": "Morrison, Ephriam",
     "surname": "Morrison",
-    "given": "Ephriam, jr",
+    "given": "Ephriam",
     "firm": false,
-    "occupation": "teamster",
+    "occupation": "jr., teamster",
     "address": "111 Madison street",
     "streets": [
      "Madison street"
@@ -35250,7 +35256,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Morrison, Ephriam, jr"
+    "Morrison, Ephriam"
    ],
    "town_finding": false,
    "notes": null
@@ -35605,7 +35611,7 @@
     "address": "Rush street north of Chicago ave",
     "streets": [
      "Rush street",
-     "north of Chicago ave"
+     "Chicago ave"
     ],
     "number_is_1876": false,
     "as_printed": "Muller, Matthias, laborer, Rush street north of Chicago ave"
@@ -35664,11 +35670,11 @@
    "reading": "transcription_mediated",
    "quote": "Murphy,  John,  United  States  Hotel,  West  Water  cor.  Randolph",
    "normalized": {
-    "printed_name": "Murphy, John, United States",
+    "printed_name": "Murphy, John",
     "surname": "Murphy",
-    "given": "John, United States",
+    "given": "John",
     "firm": false,
-    "occupation": "Hotel, West Water cor. Randolph",
+    "occupation": "United States Hotel, West Water cor. Randolph",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -35685,7 +35691,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Murphy, John, United States"
+    "Murphy, John"
    ],
    "town_finding": false,
    "notes": null
@@ -36035,10 +36041,10 @@
     "surname": "Nelscn",
     "given": "Andrew",
     "firm": false,
-    "occupation": "laborer, cor. Cass",
-    "address": "and Chestnut streets",
+    "occupation": "laborer, cor. Cass and",
+    "address": "Chestnut streets",
     "streets": [
-     "and Chestnut streets"
+     "Chestnut streets"
     ],
     "number_is_1876": false,
     "as_printed": "Nelscn, Andrew, laborer, cor. Cass and Chestnut streets"
@@ -36301,10 +36307,10 @@
     "surname": "Nicholson",
     "given": "Capt. John",
     "firm": false,
-    "occupation": "cor. Cass",
-    "address": "and White streets",
+    "occupation": "cor. Cass and",
+    "address": "White streets",
     "streets": [
-     "and White streets"
+     "White streets"
     ],
     "number_is_1876": false,
     "as_printed": "Nicholson, Capt. John, cor. Cass and White streets"
@@ -36399,11 +36405,11 @@
    "reading": "transcription_mediated",
    "quote": "Nightingale,  Rev.  Crawford,  First  Unitarian  Society,  Saloon",
    "normalized": {
-    "printed_name": "Nightingale, Rev. Crawford, First",
+    "printed_name": "Nightingale, Rev. Crawford",
     "surname": "Nightingale",
-    "given": "Rev. Crawford, First",
+    "given": "Rev. Crawford",
     "firm": false,
-    "occupation": "Unitarian Society, Saloon",
+    "occupation": "First Unitarian Society, Saloon",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -36420,7 +36426,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Nightingale, Rev. Crawford, First"
+    "Nightingale, Rev. Crawford"
    ],
    "town_finding": false,
    "notes": null
@@ -36629,10 +36635,10 @@
     "surname": "Norton",
     "given": "N.R",
     "firm": false,
-    "occupation": "bridge-builder, n.-w. cor. N. State",
-    "address": "and Indiana sts",
+    "occupation": "bridge-builder, n.-w. cor. N. State and",
+    "address": "Indiana sts",
     "streets": [
-     "and Indiana sts"
+     "Indiana sts"
     ],
     "number_is_1876": false,
     "as_printed": "Norton, N.R., bridge-builder, n.-w. cor. N. State and Indiana sts"
@@ -37093,11 +37099,11 @@
    "reading": "transcription_mediated",
    "quote": "Osbourn,  L.  F.,  Osbourn  &  Strail",
    "normalized": {
-    "printed_name": "Osbourn, L. F., Osbourn",
+    "printed_name": "Osbourn, L. F",
     "surname": "Osbourn",
-    "given": "L. F., Osbourn",
+    "given": "L. F",
     "firm": false,
-    "occupation": "& Strail",
+    "occupation": "Osbourn & Strail",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -37114,7 +37120,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Osbourn, L. F., Osbourn"
+    "Osbourn, L. F"
    ],
    "town_finding": false,
    "notes": null
@@ -37125,11 +37131,11 @@
    "reading": "transcription_mediated",
    "quote": "Osterhoudt,  L.  M.,  New  York  House,  180  Lake  st",
    "normalized": {
-    "printed_name": "Osterhoudt, L. M., New",
+    "printed_name": "Osterhoudt, L. M",
     "surname": "Osterhoudt",
-    "given": "L. M., New",
+    "given": "L. M",
     "firm": false,
-    "occupation": "York House",
+    "occupation": "New York House",
     "address": "180 Lake st",
     "streets": [
      "Lake st"
@@ -37148,7 +37154,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Osterhoudt, L. M., New"
+    "Osterhoudt, L. M"
    ],
    "town_finding": false,
    "notes": null
@@ -37427,11 +37433,11 @@
    "reading": "transcription_mediated",
    "quote": "O’Meara,  Timothy,  Rev.,  Catholic  priest,  cor.  State  and  Lake",
    "normalized": {
-    "printed_name": "O’Meara, Timothy, Rev., Catholic",
+    "printed_name": "O’Meara, Timothy",
     "surname": "O’Meara",
-    "given": "Timothy, Rev., Catholic",
+    "given": "Timothy",
     "firm": false,
-    "occupation": "priest, cor. State and Lake",
+    "occupation": "Rev., Catholic priest, cor. State and Lake",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -37448,7 +37454,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "O’Meara, Timothy, Rev., Catholic"
+    "O’Meara, Timothy"
    ],
    "town_finding": false,
    "notes": null
@@ -37463,10 +37469,10 @@
     "surname": "O’Neil",
     "given": "John",
     "firm": false,
-    "occupation": "farmer, cor 22d",
-    "address": "and Halsted streets",
+    "occupation": "farmer, cor 22d and",
+    "address": "Halsted streets",
     "streets": [
-     "and Halsted streets"
+     "Halsted streets"
     ],
     "number_is_1876": false,
     "as_printed": "O’Neil, John, farmer, cor 22d and Halsted streets"
@@ -37659,11 +37665,11 @@
    "reading": "transcription_mediated",
    "quote": "Palmer,  Isaac  K.,  City  wood  inspector",
    "normalized": {
-    "printed_name": "Palmer, Isaac K., City",
+    "printed_name": "Palmer, Isaac K",
     "surname": "Palmer",
-    "given": "Isaac K., City",
+    "given": "Isaac K",
     "firm": false,
-    "occupation": "wood inspector",
+    "occupation": "City wood inspector",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -37680,7 +37686,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Palmer, Isaac K., City"
+    "Palmer, Isaac K"
    ],
    "town_finding": false,
    "notes": null
@@ -37821,11 +37827,11 @@
    "reading": "transcription_mediated",
    "quote": "Parsons,  Edward,  Parsons  &  Holden",
    "normalized": {
-    "printed_name": "Parsons, Edward, Parsons",
+    "printed_name": "Parsons, Edward",
     "surname": "Parsons",
-    "given": "Edward, Parsons",
+    "given": "Edward",
     "firm": false,
-    "occupation": "& Holden",
+    "occupation": "Parsons & Holden",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -37842,7 +37848,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Parsons, Edward, Parsons"
+    "Parsons, Edward"
    ],
    "town_finding": false,
    "notes": null
@@ -38145,11 +38151,11 @@
    "reading": "transcription_mediated",
    "quote": "Pearson,  Hon.  John,  judge  Circuit  Court  of  Cook  County",
    "normalized": {
-    "printed_name": "Pearson, Hon. John, judge",
+    "printed_name": "Pearson, Hon. John",
     "surname": "Pearson",
-    "given": "Hon. John, judge",
+    "given": "Hon. John",
     "firm": false,
-    "occupation": null,
+    "occupation": "judge",
     "address": "Circuit Court of Cook County",
     "streets": [
      "Circuit Court"
@@ -38168,7 +38174,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Pearson, Hon. John, judge"
+    "Pearson, Hon. John"
    ],
    "town_finding": false,
    "notes": null
@@ -38343,11 +38349,11 @@
    "reading": "transcription_mediated",
    "quote": "Peck,  Burr,  Wheeler  &  Peck",
    "normalized": {
-    "printed_name": "Peck, Burr, Wheeler",
+    "printed_name": "Peck, Burr",
     "surname": "Peck",
-    "given": "Burr, Wheeler",
+    "given": "Burr",
     "firm": false,
-    "occupation": "& Peck",
+    "occupation": "Wheeler & Peck",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -38364,7 +38370,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Peck, Burr, Wheeler"
+    "Peck, Burr"
    ],
    "town_finding": false,
    "notes": null
@@ -38737,13 +38743,15 @@
    "reading": "transcription_mediated",
    "quote": "Peterson,  Capt.  George,  Canal  street",
    "normalized": {
-    "printed_name": "Peterson, Capt. George, Canal",
+    "printed_name": "Peterson, Capt. George",
     "surname": "Peterson",
-    "given": "Capt. George, Canal",
+    "given": "Capt. George",
     "firm": false,
-    "occupation": "street",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "Canal street",
+    "streets": [
+     "Canal street"
+    ],
     "number_is_1876": false,
     "as_printed": "Peterson, Capt. George, Canal street"
    },
@@ -38758,7 +38766,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Peterson, Capt. George, Canal"
+    "Peterson, Capt. George"
    ],
    "town_finding": false,
    "notes": null
@@ -38769,11 +38777,11 @@
    "reading": "transcription_mediated",
    "quote": "Pettet,  John,  Garrison",
    "normalized": {
-    "printed_name": "Pettet, John, Garrison",
+    "printed_name": "Pettet, John",
     "surname": "Pettet",
-    "given": "John, Garrison",
+    "given": "John",
     "firm": false,
-    "occupation": null,
+    "occupation": "Garrison",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -38790,7 +38798,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Pettet, John, Garrison"
+    "Pettet, John"
    ],
    "town_finding": false,
    "notes": null
@@ -39242,7 +39250,7 @@
     "occupation": null,
     "address": "residence Lake House, office Dearborn street",
     "streets": [
-     "office Dearborn street"
+     "Dearborn street"
     ],
     "number_is_1876": false,
     "as_printed": "Post, Dr. L. , residence Lake House, office Dearborn street"
@@ -39501,11 +39509,9 @@
     "surname": "Price",
     "given": "Robert",
     "firm": false,
-    "occupation": "tailor and clothier, J53 *",
-    "address": "ake st",
-    "streets": [
-     "ake st"
-    ],
+    "occupation": "tailor and clothier, J53 * ,ake st",
+    "address": null,
+    "streets": [],
     "number_is_1876": false,
     "as_printed": "Price, Robert, tailor and clothier, J53 * ,ake st"
    },
@@ -39629,14 +39635,15 @@
    "reading": "transcription_mediated",
    "quote": "Proctor,  I)r.,  Dearborn  st,  north  of  Lake  st",
    "normalized": {
-    "printed_name": "Proctor, I)r., Dearborn",
+    "printed_name": "Proctor, I)r",
     "surname": "Proctor",
-    "given": "I)r., Dearborn",
+    "given": "I)r",
     "firm": false,
-    "occupation": "st",
-    "address": "north of Lake st",
+    "occupation": null,
+    "address": "Dearborn st, north of Lake st",
     "streets": [
-     "north of Lake st"
+     "Dearborn st",
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Proctor, I)r., Dearborn st, north of Lake st"
@@ -39652,7 +39659,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Proctor, I)r., Dearborn"
+    "Proctor, I)r"
    ],
    "town_finding": false,
    "notes": null
@@ -39901,10 +39908,10 @@
     "surname": "Rankin",
     "given": "William",
     "firm": false,
-    "occupation": "& John, brassfounders, 55 Clark",
-    "address": "and Illinois st",
+    "occupation": "& John, brassfounders, 55 Clark and",
+    "address": "Illinois st",
     "streets": [
-     "and Illinois st"
+     "Illinois st"
     ],
     "number_is_1876": false,
     "as_printed": "Rankin, William & John, brassfounders, 55 Clark and Illinois st"
@@ -41391,11 +41398,11 @@
    "reading": "transcription_mediated",
    "quote": "Rossetter,  Asher,  Mansion  House,  86  Lake  st",
    "normalized": {
-    "printed_name": "Rossetter, Asher, Mansion House",
+    "printed_name": "Rossetter, Asher",
     "surname": "Rossetter",
-    "given": "Asher, Mansion House",
+    "given": "Asher",
     "firm": false,
-    "occupation": null,
+    "occupation": "Mansion House",
     "address": "86 Lake st",
     "streets": [
      "Lake st"
@@ -41414,7 +41421,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Rossetter, Asher, Mansion House"
+    "Rossetter, Asher"
    ],
    "town_finding": false,
    "notes": null
@@ -41493,10 +41500,10 @@
     "surname": "Rouscop",
     "given": "Jacob",
     "firm": false,
-    "occupation": "teamster, cor. Rush",
-    "address": "and Whitney streets",
+    "occupation": "teamster, cor. Rush and",
+    "address": "Whitney streets",
     "streets": [
-     "and Whitney streets"
+     "Whitney streets"
     ],
     "number_is_1876": false,
     "as_printed": "Rouscop, Jacob, teamster, cor. Rush and Whitney streets"
@@ -41527,10 +41534,10 @@
     "surname": "Rowe",
     "given": "Jonathan",
     "firm": false,
-    "occupation": "sawyer",
-    "address": "near Kinzie street bridge, 5th ward",
+    "occupation": "sawyer, near",
+    "address": "Kinzie street bridge, 5th ward",
     "streets": [
-     "near Kinzie street"
+     "Kinzie street"
     ],
     "number_is_1876": false,
     "as_printed": "Rowe, Jonathan, sawyer, near Kinzie street bridge, 5th ward"
@@ -41981,11 +41988,11 @@
    "reading": "transcription_mediated",
    "quote": "Russell,  Jacob,  City  Hotel,  Clark  st,  N.-W.  cor.  Randolph",
    "normalized": {
-    "printed_name": "Russell, Jacob, City Hotel",
+    "printed_name": "Russell, Jacob",
     "surname": "Russell",
-    "given": "Jacob, City Hotel",
+    "given": "Jacob",
     "firm": false,
-    "occupation": null,
+    "occupation": "City Hotel",
     "address": "Clark st, N.-W. cor. Randolph",
     "streets": [
      "Clark st"
@@ -42004,7 +42011,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Russell, Jacob, City Hotel"
+    "Russell, Jacob"
    ],
    "town_finding": false,
    "notes": null
@@ -42281,10 +42288,10 @@
     "surname": "Ryan",
     "given": "John",
     "firm": false,
-    "occupation": "grocery and boarding-house, S. Water",
-    "address": "nr River st",
+    "occupation": "grocery and boarding-house, S. Water, nr",
+    "address": "River st",
     "streets": [
-     "nr River st"
+     "River st"
     ],
     "number_is_1876": false,
     "as_printed": "Ryan, John, grocery and boarding-house, S. Water, nr River st"
@@ -42611,11 +42618,11 @@
    "reading": "transcription_mediated",
    "quote": "Sammons,  Joel,acooper,  Frederick  Sammons",
    "normalized": {
-    "printed_name": "Sammons, Joel,acooper, Frederick Sammons",
+    "printed_name": "Sammons, Joel,acooper",
     "surname": "Sammons",
-    "given": "Joel,acooper, Frederick Sammons",
+    "given": "Joel,acooper",
     "firm": false,
-    "occupation": null,
+    "occupation": "Frederick Sammons",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -42632,7 +42639,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Sammons, Joel,acooper, Frederick Sammons"
+    "Sammons, Joel,acooper"
    ],
    "town_finding": false,
    "notes": null
@@ -43117,7 +43124,7 @@
     "address": "State street near Lake st",
     "streets": [
      "State street",
-     "near Lake st"
+     "Lake st"
     ],
     "number_is_1876": false,
     "as_printed": "Scougale, A., wagon maker, State street near Lake st"
@@ -43446,7 +43453,7 @@
     "address": "Chicago avenue near Pearsons street?",
     "streets": [
      "Chicago avenue",
-     "near Pearsons street"
+     "Pearsons street"
     ],
     "number_is_1876": false,
     "as_printed": "Seger, Joseph, waterman, Chicago avenue near Pearsons street?"
@@ -43571,11 +43578,11 @@
    "reading": "transcription_mediated",
    "quote": "Seymour,  Jesse,  Sauganash  Hotel,  Market  st  cor.  Lake",
    "normalized": {
-    "printed_name": "Seymour, Jesse, Sauganash Hotel",
+    "printed_name": "Seymour, Jesse",
     "surname": "Seymour",
-    "given": "Jesse, Sauganash Hotel",
+    "given": "Jesse",
     "firm": false,
-    "occupation": null,
+    "occupation": "Sauganash Hotel",
     "address": "Market st cor. Lake",
     "streets": [
      "Market st"
@@ -43594,7 +43601,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Seymour, Jesse, Sauganash Hotel"
+    "Seymour, Jesse"
    ],
    "town_finding": false,
    "notes": null
@@ -43639,11 +43646,11 @@
    "reading": "transcription_mediated",
    "quote": "Shapley,  Morgan  L.,  Government  works,  near  the  Garrison",
    "normalized": {
-    "printed_name": "Shapley, Morgan L., Government",
+    "printed_name": "Shapley, Morgan L",
     "surname": "Shapley",
-    "given": "Morgan L., Government",
+    "given": "Morgan L",
     "firm": false,
-    "occupation": "works, near the Garrison",
+    "occupation": "Government works, near the Garrison",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -43660,7 +43667,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Shapley, Morgan L., Government"
+    "Shapley, Morgan L"
    ],
    "town_finding": false,
    "notes": null
@@ -43769,14 +43776,14 @@
    "reading": "transcription_mediated",
    "quote": "Shelley,  Geo.  E.,  Lake  House,  cor.  North  Water  and  Rush  sts",
    "normalized": {
-    "printed_name": "Shelley, Geo. E., Lake",
+    "printed_name": "Shelley, Geo. E",
     "surname": "Shelley",
-    "given": "Geo. E., Lake",
+    "given": "Geo. E",
     "firm": false,
-    "occupation": "House, cor. North Water",
-    "address": "and Rush sts",
+    "occupation": "Lake House, cor. North Water and",
+    "address": "Rush sts",
     "streets": [
-     "and Rush sts"
+     "Rush sts"
     ],
     "number_is_1876": false,
     "as_printed": "Shelley, Geo. E., Lake House, cor. North Water and Rush sts"
@@ -43792,7 +43799,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Shelley, Geo. E., Lake"
+    "Shelley, Geo. E"
    ],
    "town_finding": false,
    "notes": null
@@ -44101,11 +44108,11 @@
    "reading": "transcription_mediated",
    "quote": "Sherman,  Nathaniel,  jr.,  Sherman  &  Parsons",
    "normalized": {
-    "printed_name": "Sherman, Nathaniel, jr., Sherman",
+    "printed_name": "Sherman, Nathaniel",
     "surname": "Sherman",
-    "given": "Nathaniel, jr., Sherman",
+    "given": "Nathaniel",
     "firm": false,
-    "occupation": "& Parsons",
+    "occupation": "jr., Sherman & Parsons",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -44122,7 +44129,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Sherman, Nathaniel, jr., Sherman"
+    "Sherman, Nathaniel"
    ],
    "town_finding": false,
    "notes": null
@@ -44463,11 +44470,11 @@
    "reading": "transcription_mediated",
    "quote": "Sinclair,  Lewis  G.,  Parisian  dyer  and  scourer,  North  Water  st",
    "normalized": {
-    "printed_name": "Sinclair, Lewis G., Parisian",
+    "printed_name": "Sinclair, Lewis G",
     "surname": "Sinclair",
-    "given": "Lewis G., Parisian",
+    "given": "Lewis G",
     "firm": false,
-    "occupation": "dyer and scourer",
+    "occupation": "Parisian dyer and scourer",
     "address": "North Water st",
     "streets": [
      "North Water st"
@@ -44486,7 +44493,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Sinclair, Lewis G., Parisian"
+    "Sinclair, Lewis G"
    ],
    "town_finding": false,
    "notes": null
@@ -44695,11 +44702,11 @@
    "reading": "transcription_mediated",
    "quote": "Smead,  H.  A.,  Smead,  Kendall  &  Co.",
    "normalized": {
-    "printed_name": "Smead, H. A., Smead",
+    "printed_name": "Smead, H. A",
     "surname": "Smead",
-    "given": "H. A., Smead",
+    "given": "H. A",
     "firm": false,
-    "occupation": "Kendall & Co",
+    "occupation": "Smead, Kendall & Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -44716,7 +44723,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Smead, H. A., Smead"
+    "Smead, H. A"
    ],
    "town_finding": false,
    "notes": null
@@ -45257,11 +45264,11 @@
    "reading": "transcription_mediated",
    "quote": "Smith,  John  M.,  James  A.  Smith  &  Co.,  127  Lake  sti'eet",
    "normalized": {
-    "printed_name": "Smith, John M., James A",
+    "printed_name": "Smith, John M",
     "surname": "Smith",
-    "given": "John M., James A",
+    "given": "John M",
     "firm": false,
-    "occupation": "Smith & Co., 127 Lake sti'eet",
+    "occupation": "James A. Smith & Co., 127 Lake sti'eet",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -45278,7 +45285,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Smith, John M., James A"
+    "Smith, John M"
    ],
    "town_finding": false,
    "notes": null
@@ -45449,11 +45456,11 @@
    "reading": "transcription_mediated",
    "quote": "Smith,  S.  Lisle,  City  attorney,  107  Lake  st",
    "normalized": {
-    "printed_name": "Smith, S. Lisle, City",
+    "printed_name": "Smith, S. Lisle",
     "surname": "Smith",
-    "given": "S. Lisle, City",
+    "given": "S. Lisle",
     "firm": false,
-    "occupation": "attorney",
+    "occupation": "City attorney",
     "address": "107 Lake st",
     "streets": [
      "Lake st"
@@ -45472,7 +45479,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Smith, S. Lisle, City"
+    "Smith, S. Lisle"
    ],
    "town_finding": false,
    "notes": null
@@ -45483,11 +45490,11 @@
    "reading": "transcription_mediated",
    "quote": "Smith,  Theophilus  W.,  judge  Supreme  Coui't,  bds.  City  Hotel",
    "normalized": {
-    "printed_name": "Smith, Theophilus W., judge",
+    "printed_name": "Smith, Theophilus W",
     "surname": "Smith",
-    "given": "Theophilus W., judge",
+    "given": "Theophilus W",
     "firm": false,
-    "occupation": "Supreme Coui't",
+    "occupation": "judge Supreme Coui't",
     "address": "bds. City Hotel",
     "streets": [],
     "number_is_1876": false,
@@ -45504,7 +45511,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Smith, Theophilus W., judge"
+    "Smith, Theophilus W"
    ],
    "town_finding": false,
    "notes": null
@@ -45887,7 +45894,7 @@
     "address": "Rush street near Chicago avenue",
     "streets": [
      "Rush street",
-     "near Chicago avenue"
+     "Chicago avenue"
     ],
     "number_is_1876": false,
     "as_printed": "Spar, Andrew, stone mason, Rush street near Chicago avenue"
@@ -46244,11 +46251,11 @@
    "reading": "transcription_mediated",
    "quote": "Stanton,  Daniel  D.,  Giles  Williams  &  Co.",
    "normalized": {
-    "printed_name": "Stanton, Daniel D., Giles",
+    "printed_name": "Stanton, Daniel D",
     "surname": "Stanton",
-    "given": "Daniel D., Giles",
+    "given": "Daniel D",
     "firm": false,
-    "occupation": "Williams & Co",
+    "occupation": "Giles Williams & Co",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -46265,7 +46272,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Stanton, Daniel D., Giles"
+    "Stanton, Daniel D"
    ],
    "town_finding": false,
    "notes": null
@@ -46412,11 +46419,11 @@
    "reading": "transcription_mediated",
    "quote": "Stearns,  Mai'cus  C.,  Stearns  &  Hallam",
    "normalized": {
-    "printed_name": "Stearns, Mai'cus C., Stearns",
+    "printed_name": "Stearns, Mai'cus C",
     "surname": "Stearns",
-    "given": "Mai'cus C., Stearns",
+    "given": "Mai'cus C",
     "firm": false,
-    "occupation": "& Hallam",
+    "occupation": "Stearns & Hallam",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -46433,7 +46440,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Stearns, Mai'cus C., Stearns"
+    "Stearns, Mai'cus C"
    ],
    "town_finding": false,
    "notes": null
@@ -46508,11 +46515,11 @@
    "reading": "transcription_mediated",
    "quote": "Steele,  J.  W.,  City  Refectory,  15  Dearborn  st",
    "normalized": {
-    "printed_name": "Steele, J. W., City",
+    "printed_name": "Steele, J. W",
     "surname": "Steele",
-    "given": "J. W., City",
+    "given": "J. W",
     "firm": false,
-    "occupation": "Refectory",
+    "occupation": "City Refectory",
     "address": "15 Dearborn st",
     "streets": [
      "Dearborn st"
@@ -46531,7 +46538,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Steele, J. W., City"
+    "Steele, J. W"
    ],
    "town_finding": false,
    "notes": null
@@ -47534,10 +47541,10 @@
     "surname": "Stuart",
     "given": "Wm",
     "firm": false,
-    "occupation": "publisher and editor of Chicago Daily American, cor. So. Water",
-    "address": "and Clark sts",
+    "occupation": "publisher and editor of Chicago Daily American, cor. So. Water and",
+    "address": "Clark sts",
     "streets": [
-     "and Clark sts"
+     "Clark sts"
     ],
     "number_is_1876": false,
     "as_printed": "Stuart, Wm., publisher and editor of Chicago Daily American, cor. So. Water and Clark sts"
@@ -47766,7 +47773,7 @@
     "address": "Pine street and Chicago ave",
     "streets": [
      "Pine street",
-     "and Chicago ave"
+     "Chicago ave"
     ],
     "number_is_1876": false,
     "as_printed": "Sulzer, Andrew, brewer, cor. Pine street and Chicago ave"
@@ -48089,11 +48096,11 @@
    "reading": "transcription_mediated",
    "quote": "Talcott,  Edward  B.,  United  States  Marshal",
    "normalized": {
-    "printed_name": "Talcott, Edward B., United",
+    "printed_name": "Talcott, Edward B",
     "surname": "Talcott",
-    "given": "Edward B., United",
+    "given": "Edward B",
     "firm": false,
-    "occupation": "States Marshal",
+    "occupation": "United States Marshal",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -48110,7 +48117,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Talcott, Edward B., United"
+    "Talcott, Edward B"
    ],
    "town_finding": false,
    "notes": null
@@ -48583,11 +48590,11 @@
    "reading": "transcription_mediated",
    "quote": "Taylor,  Ezra,  Henry  Wolcott’s  boarding-house",
    "normalized": {
-    "printed_name": "Taylor, Ezra, Henry Wolcott’s",
+    "printed_name": "Taylor, Ezra",
     "surname": "Taylor",
-    "given": "Ezra, Henry Wolcott’s",
+    "given": "Ezra",
     "firm": false,
-    "occupation": "boarding-house",
+    "occupation": "Henry Wolcott’s boarding-house",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -48604,7 +48611,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Taylor, Ezra, Henry Wolcott’s"
+    "Taylor, Ezra"
    ],
    "town_finding": false,
    "notes": null
@@ -48817,7 +48824,7 @@
     "address": "Monroe street near Market st",
     "streets": [
      "Monroe street",
-     "near Market st"
+     "Market st"
     ],
     "number_is_1876": false,
     "as_printed": "Taylor, Reuben, teamster, Monroe street near Market st"
@@ -49470,10 +49477,10 @@
     "surname": "Trader",
     "given": "Moses",
     "firm": false,
-    "occupation": "tavern-keeper, cor. South Water",
-    "address": "and LaSalle sts",
+    "occupation": "tavern-keeper, cor. South Water and",
+    "address": "LaSalle sts",
     "streets": [
-     "and LaSalle sts"
+     "LaSalle sts"
     ],
     "number_is_1876": false,
     "as_printed": "Trader, Moses, tavern-keeper, cor. South Water and LaSalle sts"
@@ -49634,11 +49641,11 @@
    "reading": "transcription_mediated",
    "quote": "Tucker,  Henry,  Dodge  &  Tucker",
    "normalized": {
-    "printed_name": "Tucker, Henry, Dodge",
+    "printed_name": "Tucker, Henry",
     "surname": "Tucker",
-    "given": "Henry, Dodge",
+    "given": "Henry",
     "firm": false,
-    "occupation": "& Tucker",
+    "occupation": "Dodge & Tucker",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -49655,7 +49662,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Tucker, Henry, Dodge"
+    "Tucker, Henry"
    ],
    "town_finding": false,
    "notes": null
@@ -49770,10 +49777,10 @@
     "surname": "Turner",
     "given": "John",
     "firm": false,
-    "occupation": "and Leighton, livery stables, cor. North State",
-    "address": "and Kinzie streets",
+    "occupation": "and Leighton, livery stables, cor. North State and",
+    "address": "Kinzie streets",
     "streets": [
-     "and Kinzie streets"
+     "Kinzie streets"
     ],
     "number_is_1876": false,
     "as_printed": "Turner, John and Leighton, livery stables, cor. North State and Kinzie streets"
@@ -49808,7 +49815,7 @@
     "address": "Milwaukee ave near Chicago ave",
     "streets": [
      "Milwaukee ave",
-     "near Chicago ave"
+     "Chicago ave"
     ],
     "number_is_1876": false,
     "as_printed": "Turner, Capt. John M., Milwaukee ave near Chicago ave"
@@ -50136,11 +50143,11 @@
    "reading": "transcription_mediated",
    "quote": "Vail,  Walter,  Kendall,  Vail  &  Co.,  1 1 9  Lake  street",
    "normalized": {
-    "printed_name": "Vail, Walter, Kendall, Vail",
+    "printed_name": "Vail, Walter",
     "surname": "Vail",
-    "given": "Walter, Kendall, Vail",
+    "given": "Walter",
     "firm": false,
-    "occupation": "& Co., 1 1",
+    "occupation": "Kendall, Vail & Co., 1 1",
     "address": "9 Lake street",
     "streets": [
      "Lake street"
@@ -50159,7 +50166,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Vail, Walter, Kendall, Vail"
+    "Vail, Walter"
    ],
    "town_finding": false,
    "notes": null
@@ -50177,7 +50184,7 @@
     "occupation": "horse-dealer",
     "address": "bds Randolph st. nr. Dearborn",
     "streets": [
-     "bds Randolph st"
+     "Randolph st"
     ],
     "number_is_1876": false,
     "as_printed": "Vanderburg, D., horse-dealer, bds Randolph st. nr. Dearborn"
@@ -50240,10 +50247,10 @@
     "surname": "VanOsdel",
     "given": "John M",
     "firm": false,
-    "occupation": "contractor and builder, cor. North State",
-    "address": "and Kinzie sts",
+    "occupation": "contractor and builder, cor. North State and",
+    "address": "Kinzie sts",
     "streets": [
-     "and Kinzie sts"
+     "Kinzie sts"
     ],
     "number_is_1876": false,
     "as_printed": "VanOsdel, John M., contractor and builder, cor. North State and Kinzie sts"
@@ -50474,10 +50481,10 @@
     "surname": "Vogt",
     "given": "John",
     "firm": false,
-    "occupation": "bricklayer, cor. Cass",
-    "address": "and Pearsons streets",
+    "occupation": "bricklayer, cor. Cass and",
+    "address": "Pearsons streets",
     "streets": [
-     "and Pearsons streets"
+     "Pearsons streets"
     ],
     "number_is_1876": false,
     "as_printed": "Vogt, John, bricklayer, cor. Cass and Pearsons streets"
@@ -51162,11 +51169,11 @@
    "reading": "transcription_mediated",
    "quote": "Wandall,  John,  Great  Western  (variety  store),  152^  Lake  st",
    "normalized": {
-    "printed_name": "Wandall, John, Great Western",
+    "printed_name": "Wandall, John",
     "surname": "Wandall",
-    "given": "John, Great Western",
+    "given": "John",
     "firm": false,
-    "occupation": "(variety store), 152^",
+    "occupation": "Great Western (variety store), 152^",
     "address": "Lake st",
     "streets": [
      "Lake st"
@@ -51185,7 +51192,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wandall, John, Great Western"
+    "Wandall, John"
    ],
    "town_finding": false,
    "notes": null
@@ -52284,10 +52291,10 @@
     "surname": "Wesencraft",
     "given": "William",
     "firm": false,
-    "occupation": "painter, cor. Clinton",
-    "address": "and Monroe street",
+    "occupation": "painter, cor. Clinton and",
+    "address": "Monroe street",
     "streets": [
-     "and Monroe street"
+     "Monroe street"
     ],
     "number_is_1876": false,
     "as_printed": "Wesencraft, William, painter, cor. Clinton and Monroe street"
@@ -52514,11 +52521,11 @@
    "reading": "transcription_mediated",
    "quote": "Wheeler,  Russell  E.,  Wheeler  k  Peck",
    "normalized": {
-    "printed_name": "Wheeler, Russell E., Wheeler",
+    "printed_name": "Wheeler, Russell E",
     "surname": "Wheeler",
-    "given": "Russell E., Wheeler",
+    "given": "Russell E",
     "firm": false,
-    "occupation": "k Peck",
+    "occupation": "Wheeler k Peck",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -52535,7 +52542,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wheeler, Russell E., Wheeler"
+    "Wheeler, Russell E"
    ],
    "town_finding": false,
    "notes": null
@@ -52876,11 +52883,11 @@
    "reading": "transcription_mediated",
    "quote": "White,  George,  City  Crier,  Market  st,  or  at  Stanton  X  Black’s",
    "normalized": {
-    "printed_name": "White, George, City Crier",
+    "printed_name": "White, George",
     "surname": "White",
-    "given": "George, City Crier",
+    "given": "George",
     "firm": false,
-    "occupation": null,
+    "occupation": "City Crier",
     "address": "Market st, or at Stanton X Black’s",
     "streets": [
      "Market st"
@@ -52899,7 +52906,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "White, George, City Crier"
+    "White, George"
    ],
    "town_finding": false,
    "notes": null
@@ -52946,11 +52953,9 @@
     "surname": "Whiting",
     "given": "Sam",
     "firm": false,
-    "occupation": null,
-    "address": "mate steamer St. Louis",
-    "streets": [
-     "mate steamer St"
-    ],
+    "occupation": "mate steamer St. Louis",
+    "address": null,
+    "streets": [],
     "number_is_1876": false,
     "as_printed": "Whiting, Sam., mate steamer St. Louis"
    },
@@ -53012,13 +53017,13 @@
     "surname": "Whiting",
     "given": "Wm. L",
     "firm": false,
-    "occupation": "produce and commission merchant, Hub¬ bard & Co.’s warehouse",
+    "occupation": "produce and commission merchant, Hubbard & Co.’s warehouse",
     "address": "North Water st near Rush",
     "streets": [
      "North Water st"
     ],
     "number_is_1876": false,
-    "as_printed": "Whiting, Wm. L., produce and commission merchant, Hub¬ bard & Co.’s warehouse, North Water st near Rush"
+    "as_printed": "Whiting, Wm. L., produce and commission merchant, Hubbard & Co.’s warehouse, North Water st near Rush"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_047.txt",
@@ -53438,13 +53443,15 @@
    "reading": "transcription_mediated",
    "quote": "Willard,  Dr.  Simeon,  State  street  cor.  of  Washington",
    "normalized": {
-    "printed_name": "Willard, Dr. Simeon, State",
+    "printed_name": "Willard, Dr. Simeon",
     "surname": "Willard",
-    "given": "Dr. Simeon, State",
+    "given": "Dr. Simeon",
     "firm": false,
-    "occupation": "street cor. of Washington",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "State street cor. of Washington",
+    "streets": [
+     "State street"
+    ],
     "number_is_1876": false,
     "as_printed": "Willard, Dr. Simeon, State street cor. of Washington"
    },
@@ -53459,7 +53466,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Willard, Dr. Simeon, State"
+    "Willard, Dr. Simeon"
    ],
    "town_finding": false,
    "notes": null
@@ -53508,10 +53515,10 @@
     "surname": "Williams",
     "given": "Kiel",
     "firm": false,
-    "occupation": "laborer, cor. Oak",
-    "address": "and Rush street",
+    "occupation": "laborer, cor. Oak and",
+    "address": "Rush street",
     "streets": [
-     "and Rush street"
+     "Rush street"
     ],
     "number_is_1876": false,
     "as_printed": "Williams, Kiel, laborer, cor. Oak and Rush street"
@@ -53538,16 +53545,16 @@
    "reading": "transcription_mediated",
    "quote": "Williams,  Eli  B.,  Recorder,  cor.  Clark  and  Randolph  sts,  and\n  groceries,  etc.,  South  Water  st,  bet  Dearborn  and  State  sts",
    "normalized": {
-    "printed_name": "Williams, Eli B., Recorder",
+    "printed_name": "Williams, Eli B",
     "surname": "Williams",
-    "given": "Eli B., Recorder",
+    "given": "Eli B",
     "firm": false,
-    "occupation": "cor. Clark",
-    "address": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+    "occupation": "Recorder, cor. Clark and",
+    "address": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
     "streets": [
-     "and Randolph sts",
+     "Randolph sts",
      "South Water st",
-     "and State sts"
+     "State sts"
     ],
     "number_is_1876": false,
     "as_printed": "Williams, Eli B., Recorder, cor. Clark and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts"
@@ -53563,7 +53570,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Williams, Eli B., Recorder"
+    "Williams, Eli B"
    ],
    "town_finding": false,
    "notes": null
@@ -53608,11 +53615,11 @@
    "reading": "transcription_mediated",
    "quote": "Williams,  Giles,  Stow  &  Williams",
    "normalized": {
-    "printed_name": "Williams, Giles, Stow",
+    "printed_name": "Williams, Giles",
     "surname": "Williams",
-    "given": "Giles, Stow",
+    "given": "Giles",
     "firm": false,
-    "occupation": "& Williams",
+    "occupation": "Stow & Williams",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -53629,7 +53636,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Williams, Giles, Stow"
+    "Williams, Giles"
    ],
    "town_finding": false,
    "notes": null
@@ -53978,11 +53985,9 @@
     "surname": "Wolcott",
     "given": "Alex",
     "firm": false,
-    "occupation": "clerk Steamer Geo. W. Dole",
-    "address": "for St. Joseph",
-    "streets": [
-     "for St"
-    ],
+    "occupation": "clerk Steamer Geo. W. Dole, for St. Joseph",
+    "address": null,
+    "streets": [],
     "number_is_1876": false,
     "as_printed": "Wolcott, Alex., clerk Steamer Geo. W. Dole, for St. Joseph"
    },
@@ -54076,10 +54081,10 @@
     "surname": "Wolcott",
     "given": "Henry",
     "firm": false,
-    "occupation": "private boarding house, cor. North State",
-    "address": "and Kinzie sts",
+    "occupation": "private boarding house, cor. North State and",
+    "address": "Kinzie sts",
     "streets": [
-     "and Kinzie sts"
+     "Kinzie sts"
     ],
     "number_is_1876": false,
     "as_printed": "Wolcott, Henry, private boarding house, cor. North State and Kinzie sts"
@@ -54306,13 +54311,13 @@
     "surname": "Woodworth",
     "given": "Robert P",
     "firm": false,
-    "occupation": "& James H., wholesale dry goods mer¬ chants",
+    "occupation": "& James H., wholesale dry goods merchants",
     "address": "103 Lake st",
     "streets": [
      "Lake st"
     ],
     "number_is_1876": false,
-    "as_printed": "Woodworth, Robert P. & James H., wholesale dry goods mer¬ chants, 103 Lake st"
+    "as_printed": "Woodworth, Robert P. & James H., wholesale dry goods merchants, 103 Lake st"
    },
    "locator": {
     "text_file": "fergus_1839_leaf_048.txt",
@@ -54436,13 +54441,15 @@
    "reading": "transcription_mediated",
    "quote": "Wright,  Edward,  Michigan  ave.  cor.  Madison",
    "normalized": {
-    "printed_name": "Wright, Edward, Michigan",
+    "printed_name": "Wright, Edward",
     "surname": "Wright",
-    "given": "Edward, Michigan",
+    "given": "Edward",
     "firm": false,
-    "occupation": "ave. cor. Madison",
-    "address": null,
-    "streets": [],
+    "occupation": null,
+    "address": "Michigan ave. cor. Madison",
+    "streets": [
+     "Michigan ave"
+    ],
     "number_is_1876": false,
     "as_printed": "Wright, Edward, Michigan ave. cor. Madison"
    },
@@ -54457,7 +54464,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wright, Edward, Michigan"
+    "Wright, Edward"
    ],
    "town_finding": false,
    "notes": null
@@ -54468,13 +54475,14 @@
    "reading": "transcription_mediated",
    "quote": "Wright,  John,  Michigan  ave.  cor.  Madison  st",
    "normalized": {
-    "printed_name": "Wright, John, Michigan",
+    "printed_name": "Wright, John",
     "surname": "Wright",
-    "given": "John, Michigan",
+    "given": "John",
     "firm": false,
-    "occupation": "ave. cor",
-    "address": "Madison st",
+    "occupation": null,
+    "address": "Michigan ave. cor. Madison st",
     "streets": [
+     "Michigan ave",
      "Madison st"
     ],
     "number_is_1876": false,
@@ -54491,7 +54499,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wright, John, Michigan"
+    "Wright, John"
    ],
    "town_finding": false,
    "notes": null
@@ -54536,13 +54544,14 @@
    "reading": "transcription_mediated",
    "quote": "Wright,  Timothy,  Michigan  ave.  cor.  Madison  st",
    "normalized": {
-    "printed_name": "Wright, Timothy, Michigan",
+    "printed_name": "Wright, Timothy",
     "surname": "Wright",
-    "given": "Timothy, Michigan",
+    "given": "Timothy",
     "firm": false,
-    "occupation": "ave. cor",
-    "address": "Madison st",
+    "occupation": null,
+    "address": "Michigan ave. cor. Madison st",
     "streets": [
+     "Michigan ave",
      "Madison st"
     ],
     "number_is_1876": false,
@@ -54559,7 +54568,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wright, Timothy, Michigan"
+    "Wright, Timothy"
    ],
    "town_finding": false,
    "notes": null
@@ -54602,13 +54611,14 @@
    "reading": "transcription_mediated",
    "quote": "Wright,  W'alter,  Michigan  ave.  cor.  Madison  st",
    "normalized": {
-    "printed_name": "Wright, W'alter, Michigan",
+    "printed_name": "Wright, W'alter",
     "surname": "Wright",
-    "given": "W'alter, Michigan",
+    "given": "W'alter",
     "firm": false,
-    "occupation": "ave. cor",
-    "address": "Madison st",
+    "occupation": null,
+    "address": "Michigan ave. cor. Madison st",
     "streets": [
+     "Michigan ave",
      "Madison st"
     ],
     "number_is_1876": false,
@@ -54625,7 +54635,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wright, W'alter, Michigan"
+    "Wright, W'alter"
    ],
    "town_finding": false,
    "notes": null

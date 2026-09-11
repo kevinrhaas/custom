@@ -60,7 +60,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "clothing store",
+     "value": "New York clothing store",
      "describes_date": 1839,
      "confidence": "attested",
      "sources": [
@@ -116,7 +116,7 @@
    {
     "person_id": "king_tuthill",
     "occupation_later": {
-     "value": "clothing store",
+     "value": "New York clothing store",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [

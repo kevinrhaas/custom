@@ -61,7 +61,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "works, near Garrison",
+     "value": "Government works, near Garrison",
      "describes_date": 1839,
      "confidence": "attested",
      "sources": [
@@ -106,7 +106,7 @@
    {
     "person_id": "jackson_samuel",
     "occupation_later": {
-     "value": "works, near Garrison",
+     "value": "Government works, near Garrison",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [

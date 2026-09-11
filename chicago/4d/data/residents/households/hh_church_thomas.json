@@ -97,7 +97,7 @@
    {
     "person_id": "church_thomas",
     "address_later": {
-     "value": "hi Lake st",
+     "value": "Lake st",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [
