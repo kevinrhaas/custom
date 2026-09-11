@@ -91,6 +91,21 @@ PROBE = {"tsv": "isa_land_tract_sales_cook_county_list_through_1836.tsv",
          "ticket": "T-0830", "county": "COOK", "through_year": 1836}
 PROBE_COLS = ["purchase_no", "purchaser", "legal_description", "section", "township",
               "range", "meridian", "date_purchased", "county"]
+# THE TOWN LOTS, HARVESTED AND NOT YET READ (T-1032). The probe NAMES the 619 rows the
+# register gives no section; this file is their DETAIL pages, one fetch per row
+# (`harvest_land_sales.py --town-lots COOK`), carrying the sweep's own sixteen columns so
+# that reading them later needs no second shape. It is deliberately NOT in DEPOSITS. A
+# deposit mints record ids, proposes a resident crosswalk and puts firms in front of the
+# ruling layer, and none of that can be done honestly while `tract()` has no way to say
+# what ground `L2BL46CHIOT` is — its LOT pattern is the school section's `LOT5BL3` and
+# matches none of these. Reading them is T-1033. Until then the file is held here rather
+# than left stray, and `check_harvested` below re-checks it against the probe it was drawn
+# from every time the gate runs: a harvest that drifted from its own list, or that quietly
+# acquired a section, is a fault and not a silence.
+HARVESTED = {"tsv": "isa_land_tract_sales_cook_town_lots_through_1836.tsv",
+             "ticket": "T-1032", "read_by": "T-1033"}
+
+
 # The seven townships the deposits above declare, as the probe's list page spells them.
 def declared_townships() -> frozenset:
     return frozenset(("%dN" % tw, "%dE" % rg) for dep in DEPOSITS for tw, rg in dep["pairs"])
@@ -166,12 +181,15 @@ def build_probe(rows: list, probe: list) -> dict:
                    "description would go, and %d is a bare lot and block with no code at "
                    "all. Their dates are the register's own and are carried unsmoothed, "
                    "including the four this project does not believe. They are counted "
-                   "here and they are NOT in the deposit; reading them is T-1028."
+                   "here and they are NOT in this deposit. Their detail pages ARE now "
+                   "committed, one per row, as %s (T-1032); reading those into records is "
+                   "T-1033."
                    % (len(inside), PROBE["through_year"], PROBE["through_year"],
                       len(sectionless),
                       sum(n for c, n in codes.items() if c.startswith("CHI")),
                       ", ".join(sorted(c for c in codes if c.startswith("CHI"))),
-                      sum(n for c, n in codes.items() if not c.startswith("CHI"))),
+                      sum(n for c, n in codes.items() if not c.startswith("CHI")),
+                      HARVESTED["tsv"]),
     }
 
 
@@ -1165,11 +1183,68 @@ def check_rulings(domain: Path, rows: list, ids: dict) -> list:
     return bad
 
 
+def check_harvested(domain: Path) -> list:
+    """The town-lot harvest still says what the probe said, row for row (T-1032).
+
+    Not a derivation — nothing downstream is built from this file yet — so the gate can
+    only ask whether the harvest is FAITHFUL: the same 619 purchase numbers the probe
+    found sectionless, no more and no fewer; the purchaser, date and legal description
+    the list page printed, unchanged by the detail page; and Section, Township, Range and
+    Meridian still empty, because a row that arrived with a section was never one of
+    these and its presence would mean the wrong page was read.
+    """
+    probe = read_probe(domain)
+    if not probe:
+        return []      # no list to be faithful to; the self-test's fixture is one
+    path = domain / "text" / HARVESTED["tsv"]
+    if not path.exists():
+        return ["land_sales: %s is declared and not committed (%s)"
+                % (HARVESTED["tsv"], HARVESTED["ticket"])]
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if lines[0].split("\t") != COLS:
+        return ["land_sales: %s: header is not the harvest's header" % HARVESTED["tsv"]]
+    got = {}
+    bad = []
+    for n, line in enumerate(lines[1:], start=2):
+        if not line.strip():
+            continue
+        cells = line.split("\t")
+        if len(cells) != len(COLS):
+            bad.append("land_sales: %s line %d has %d cells, not %d"
+                       % (HARVESTED["tsv"], n, len(cells), len(COLS)))
+            continue
+        got[cells[0]] = dict(zip(COLS, cells))
+    if bad:
+        return bad
+    want = {r["purchase_no"]: r for r in probe if not r["section"].strip()}
+    for pno in sorted(set(want) - set(got)):
+        bad.append("land_sales: %s: the probe lists sectionless sale %s and the harvest "
+                   "has no detail page for it" % (HARVESTED["tsv"], pno))
+    for pno in sorted(set(got) - set(want)):
+        bad.append("land_sales: %s: %s is not one of the probe's sectionless rows"
+                   % (HARVESTED["tsv"], pno))
+    for pno in sorted(set(got) & set(want)):
+        row, listed = got[pno], want[pno]
+        for col, on_list in (("purchaser", "purchaser"),
+                             ("date_purchased", "date_purchased"),
+                             ("aliquot_or_lot", "legal_description")):
+            if row[col] != listed[on_list]:
+                bad.append("land_sales: %s: %s's detail page says %s %r and the list page "
+                           "says %r — the harvest is not the rows it was drawn from"
+                           % (HARVESTED["tsv"], pno, col, row[col], listed[on_list]))
+        for col in ("section", "township", "range", "meridian"):
+            if row[col].strip():
+                bad.append("land_sales: %s: %s carries %s %r and a sectionless row carries "
+                           "none" % (HARVESTED["tsv"], pno, col, row[col]))
+    return bad[:20]
+
+
 def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
     bad = []
     missing = [d["tsv"] for d in DEPOSITS if not (domain / "text" / d["tsv"]).exists()]
     if missing:
         return ["land_sales: the deposit %s is not committed" % m for m in missing]
+    bad += check_harvested(domain)
     rows = read_tsv(domain)
     ordered, n = [], 1
     for dep in DEPOSITS:
@@ -1482,6 +1557,63 @@ def self_test() -> int:
             print("SELF-TEST: a merge onto somebody the layer does not hold must be "
                   "skipped, not proposed"); return 1
         fired.append("a merge onto a person the layer has lost is skipped")
+
+    # T-1032. The town-lot harvest is checked against the probe it was drawn from, and
+    # a fixture is the only way to prove that check still fires: the real pair is green,
+    # and a gate nobody has watched fail is a gate nobody knows works.
+    with tempfile.TemporaryDirectory() as td:
+        d = Path(td)
+        (d / "text").mkdir(parents=True)
+        listed = [("0000001", "BEAUBIEN J B", "L4BL36CHIOT", "", "", "", "", "09/27/1830", "COOK"),
+                  ("0000002", "EGAN WILLIAM B", "L1BL17CHIV", "", "", "", "", "06/20/1836", "COOK"),
+                  ("0000003", "ABELL SIDNEY", "SW", "04", "38N", "12E", "3", "08/08/1835", "COOK")]
+        (d / "text" / PROBE["tsv"]).write_text(
+            "\n".join(["\t".join(PROBE_COLS)] + ["\t".join(r) for r in listed]) + "\n")
+
+        def harvest(rows):
+            (d / "text" / HARVESTED["tsv"]).write_text(
+                "\n".join(["\t".join(COLS)] + ["\t".join(r) for r in rows]) + "\n")
+
+        def row(pno, who, lot, section=""):
+            out = dict.fromkeys(COLS, "")
+            out.update({"purchase_no": pno, "purchaser": who, "aliquot_or_lot": lot,
+                        "county": "COOK", "type_of_sale": "CN", "section": section,
+                        "date_purchased": {"0000001": "09/27/1830",
+                                           "0000002": "06/20/1836"}[pno]})
+            return [out[c] for c in COLS]
+
+        harvest([row("0000001", "BEAUBIEN J B", "L4BL36CHIOT"),
+                 row("0000002", "EGAN WILLIAM B", "L1BL17CHIV")])
+        if check_harvested(d):
+            print("SELF-TEST: a faithful harvest of the probe's sectionless rows must be "
+                  "green:", check_harvested(d)[0]); return 1
+        fired.append("a harvest that matches the probe row for row is green")
+
+        harvest([row("0000001", "BEAUBIEN J B", "L4BL36CHIOT")])
+        if not any("has no detail page" in b for b in check_harvested(d)):
+            print("SELF-TEST: a sectionless row with no detail page must fail"); return 1
+        fired.append("a sectionless row the harvest never fetched fails the gate")
+
+        harvest([row("0000001", "BEAUBIEN J B", "L4BL36CHIOT"),
+                 row("0000002", "EGAN WILLIAM B", "L1BL17CHIV"),
+                 ["0000003"] + [""] * (len(COLS) - 1)])
+        if not any("not one of the probe's sectionless rows" in b for b in check_harvested(d)):
+            print("SELF-TEST: a row the probe never called sectionless must fail"); return 1
+        fired.append("a harvested row the probe does not list as sectionless fails the gate")
+
+        harvest([row("0000001", "BEAUBIEN J B", "L4BL36CHIOT"),
+                 row("0000002", "EGAN WILLIAM B", "L1BL17CHIV", section="17")])
+        if not any("and a sectionless row carries none" in b for b in check_harvested(d)):
+            print("SELF-TEST: a harvested row that arrived with a section must fail"); return 1
+        fired.append("a harvested row that acquired a section fails the gate")
+
+        harvest([row("0000001", "BEAUBIEN J B", "L4BL36CHIOT"),
+                 row("0000002", "SOMEBODY ELSE", "L1BL17CHIV")])
+        if not any("the harvest is not the rows it was drawn from" in b
+                   for b in check_harvested(d)):
+            print("SELF-TEST: a detail page that disagrees with the list page must fail")
+            return 1
+        fired.append("a detail page that disagrees with the list page fails the gate")
 
     print("read_land_sales --self-test: %d assertions fire when broken" % len(fired))
     for f in fired:
