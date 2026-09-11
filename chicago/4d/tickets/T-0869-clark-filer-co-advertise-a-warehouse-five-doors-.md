@@ -1,7 +1,7 @@
 ---
 id: T-0869
 title: Clark, Filer & Co. advertise a warehouse five doors east of a corner the plat does not have: is the Democrat's 'Randolph st.' a mis-set cross street, or a firm naming a corner it did not stand on?
-state: claimed
+state: done
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1154
 claimed_by: run 9/11/2026, 5:31:03 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T23:16:05.276Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34654072147
 ---
 
