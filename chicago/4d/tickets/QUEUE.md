@@ -127,7 +127,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- repair; they are one run. T-0763 is why eight "dev is red" tickets were filed on a green
 # --- dev and withdrawn today: check.sh's negative-control self-tests print FAIL lines that
 # --- look exactly like a failing step.
-T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 
 # --- ==========================================================================
 # --- 3. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
@@ -343,4 +342,3 @@ T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house',
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
-
