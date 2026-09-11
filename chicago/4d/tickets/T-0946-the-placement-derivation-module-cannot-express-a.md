@@ -1,7 +1,7 @@
 ---
 id: T-0946
 title: The placement derivation module cannot express a frontage on a street that is not axis-aligned, so the north bank's houses all read not_derivable
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1148
 claimed_by: run 9/11/2026, 3:10:26 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T21:13:53.090Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34642503655
 ---
 

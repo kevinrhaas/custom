@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import math
 import sys
 import tempfile
 from pathlib import Path
@@ -1993,6 +1994,77 @@ def test_a_placement_is_recomputed_from_its_control() -> None:
           any("declares" in e for e in run(bridge(1100.0, var=0.0))))
     check("a declared variance with nothing explaining it is an error",
           any("explains it nowhere" in e for e in run(bridge(1100.0, var=1.5, note=""))))
+
+    # --- street_frontage (T-0946) ----------------------------------------------
+    #
+    # The method exists for a street with no axis to step a kerb along, so the
+    # fixture street is deliberately skew: a straight run at 045 through the
+    # control. `platted_corner` cannot express anything on it at all, and
+    # `face_of`'s compass extremes are the wrong wall for every building on it —
+    # which is why this check asks a building for its OWN front rather than for
+    # its westmost corner.
+    #
+    # The discriminating case is the second pair: the same house, in the same
+    # place, at the same distance from the same street, turned around. A gate
+    # that only measured the distance would pass a back yard as a frontage, and
+    # "the front is on the street" is the whole content of the claim.
+    (tmp / "datum.json").write_text(
+        _json.dumps({"origin_utm_e": 0.0, "origin_utm_n": 0.0}), encoding="utf-8")
+    (tmp / "streets").mkdir(exist_ok=True)
+    (tmp / "streets" / "1835.json").write_text(_json.dumps({"streets": [
+        {"id": "skew", "name_1835": "Skew Street",
+         "path_local_enu_m": [[900.0, 1900.0], [1100.0, 2100.0]]},
+        {"id": "stub", "name_1835": "Stub Street", "path_local_enu_m": [[0.0, 0.0]]},
+    ]}), encoding="utf-8")
+
+    # A 12 x 8 m house on the south-east side of that street, its anchor stepped
+    # SETBACK metres out along the street's normal. The footprint's max-`v` row is
+    # the anchor row, so the front wall's midpoint IS the recorded coordinate and
+    # the arithmetic under test is visible: at bearing 315 the front faces
+    # north-west, across the roadway; at 135 the same wall faces away.
+    SETBACK = 10.0
+    STEP = SETBACK / math.sqrt(2.0)
+
+    def fronts(bearing: float = 315.0, face: str = "front", street: str = "skew",
+               declared: float = SETBACK) -> dict:
+        return rec({"utm_e": 1000.0 + STEP, "utm_n": 2000.0 - STEP,
+                    "rotation_deg": bearing,
+                    "derivation": {"method": "street_frontage", "frontage": {
+                        "street": street, "face": face, "setback_m": declared}}},
+                   poly=[[-6, -8], [6, -8], [6, 0], [-6, 0]])
+
+    ok_f = fronts()
+    check("a front wall on a skew street's corridor line passes", not run(ok_f), run(ok_f))
+    off_f = fronts(declared=12.0)
+    check("the same wall declaring a setback 2 m off what it measures is an error",
+          any("committed centreline and declares" in e for e in run(off_f)), run(off_f))
+
+    backwards = fronts(bearing=135.0)
+    check("a house at the right distance with its BACK to the street is an error",
+          any("back, not a frontage" in e for e in run(backwards)), run(backwards))
+    # …and the same turned house, declaring the wall that really does face the
+    # street: its back row is 8 m nearer, which is the depth of the footprint.
+    honest = fronts(bearing=135.0, face="back", declared=SETBACK - 8.0)
+    check("…and the same house declaring the wall that does face it passes",
+          not run(honest), run(honest))
+
+    check("a frontage on a street the streets layer does not carry is an error",
+          any("not a record in data/streets" in e for e in run(fronts(street="nope"))))
+    check("a frontage on a street with no path to stand off is an error",
+          any("no path to stand off" in e for e in run(fronts(street="stub"))))
+    noface = rec({"derivation": {"method": "street_frontage", "frontage": {
+        "street": "skew", "face": "north", "setback_m": 10.0}}})
+    check("a compass direction is not one of the building's four walls",
+          any("four walls" in e for e in run(noface)), run(noface))
+    noset = rec({"derivation": {"method": "street_frontage",
+                                "frontage": {"street": "skew", "face": "front"}}})
+    check("a frontage with no setback is an error — the setback is the claim",
+          any("whole of the claim" in e for e in run(noset)), run(noset))
+    check("not_derivable carrying a frontage is an error",
+          any("carries `frontage`" in e for e in run(rec({"derivation": {
+              "method": "not_derivable", "reason": "r",
+              "frontage": {"street": "skew", "face": "front", "setback_m": 1.0}}}))))
+
 
 
 def test_the_module_is_held_to_the_sheets_it_was_measured_off() -> None:
