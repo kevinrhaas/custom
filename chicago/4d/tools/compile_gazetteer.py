@@ -1317,6 +1317,124 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             biz["street"] = street
             biz["placement_from"]["street_from_reading"] = street
 
+    # A STREET NAMED WITHOUT AN ANCHOR DOES NOT OUTRANK THE ANCHOR ON IT (T-0948).
+    #
+    # T-0440 above ruled that SILENCE about an address does not outrank speech about
+    # one, and stopped at `places_nothing` — where the live placement puts a storefront
+    # on no ground whatever. This is that argument one rung up, and the ticket asked for
+    # it to be answered in writing HERE, beside the pass it extends, rather than only in
+    # code.
+    #
+    # THE QUESTION. A house prints "South Water street" one week and "on South Water
+    # street, at the stand formerly occupied by Clark & Co." the next. Is the second a
+    # second ADDRESS, which only an authored `anchor_changes` rule may prefer? Or is it
+    # the same address said more fully?
+    #
+    # THE ANSWER IS THE SECOND, AND ONLY WHERE THE STREET IS THE SAME. A card naming a
+    # street and no landmark has not said where ON that street the shop stands; it said
+    # LESS, not something else. An anchor printed on that same street narrows the coarser
+    # printing without retracting a word of it — which is T-0440's shape exactly: nothing
+    # was withdrawn, something was added. So the narrower reading is taken up, and the
+    # coarse one is kept as a reading with its own dates, as every superseded printing
+    # here is.
+    #
+    # AND THE COUNTER-CASE IS WHY THE STREET BOUND IS THE WHOLE OF THE RULE. A street
+    # named without an anchor IS a positive statement about the frontage — the
+    # street-face adoption policy (T-0354) has already dealt such a house a roof on the
+    # strength of it — so an anchor standing on ANOTHER street is no refinement of that
+    # statement. It is a house in a different part of town: a MOVE, and a move is
+    # `anchor_changes`' to declare with its anchors named verbatim. This pass refuses it,
+    # exactly as T-0385's guard 2 refuses an anchor read on another street. It refuses,
+    # for the same reason, any house whose live placement carries an anchor of its own —
+    # one printed ANCHOR is never preferred to another here — and any anchored reading
+    # that declares itself unread, which is T-0385's to take up and not this one's.
+    #
+    # THE BOUND IS T-0440'S, WITH T-0385'S STANDING-CARD CLAUSE. An anchor whose first
+    # printing falls on or before the scene date places the house on an advertisement the
+    # July town could read, and that is T-0440's bound unchanged. Where the only anchored
+    # impression falls AFTER the scene date, the pass fires only on T-0385's guard 3 —
+    # ONE DATELINE, at or before the scene date, across every printing of the house —
+    # which is the paper's own statement that the impressions are one advertisement and
+    # not two addresses. `placement_from.bound` records which of the two carried it, so
+    # the looser one is never invisible in the record.
+    #
+    # ROCKWELL'S CABINET FURNITURE WAREHOUSE IS THAT CASE, and the only one in the
+    # corpus: one dateline, 8 June 1835; four impressions in the American; no address at
+    # all on 06-13 and 06-20; "[A]pply to […] ROCKWELL, [S]outh Wate[r street]" on 06-27;
+    # and on 07-04 "[F]urniture a[t] the stand on S[outh] Water [s]tre[e]t, formerly
+    # occ[u]p[i]ed by Clark, [Fils?] [C]o." Same street, same card, three days past the
+    # scene date — and a stand the notice describes the house as ALREADY standing in,
+    # under a dateline three weeks before the scene date.
+    #
+    # WHAT IT DOES NOT REACH, stated so the queue can see it. Samuel Lewis prints South
+    # Water Street through three issues and "A. Garrett's Auction Room" on 1835-08-12,
+    # under TWO datelines, and that 08-12 reading names no street at all. Two datelines
+    # are two advertisements, and a reading naming no street cannot be shown to narrow
+    # one that does; he is refused on both counts and stays `street_only`.
+    #
+    # AND THE TWO HOUSES THE TICKET WAS FILED ON ARE NOT HERE, because T-0859 landed
+    # first and settled them. `business_j_s_c_hogan` and `business_newberry_dole` were
+    # each held by a printing that named NO ground at all — `places_nothing`'s business,
+    # not this pass's — and T-0440 above now places both, Hogan from 1834-08-13 and
+    # Newberry & Dole from 1834-05-14. Neither is refused anything by this file, which is
+    # what T-0948's third acceptance asked for. Newberry & Dole is NOT moved to the north
+    # bank by this pass or any other: `docs/RESEARCH/dole_warehouse_south.md` carries
+    # that guard and this rule never reaches across streets in any case.
+    for biz in businesses.values():
+        live = biz.get("placement") or {}
+        if places_nothing(live) or live.get("anchor"):
+            continue
+        live_street = (live.get("street") or "").strip().lower()
+        if not live_street or " and " in live_street or live_street == "unstated":
+            continue
+        # The coarse reading must itself be running by the scene date, so that the
+        # printing being narrowed is one the July town could have walked past.
+        held = [r for r in biz["placement_readings"]
+                if not (r["placement"] or {}).get("anchor")
+                and ((r["placement"] or {}).get("street") or "").strip().lower()
+                == live_street
+                and r["first_issue"] <= scene_iso_placement]
+        if not held:
+            continue
+        anchored = [r for r in biz["placement_readings"]
+                    if (r["placement"] or {}).get("anchor")
+                    and not (r["placement"] or {}).get("anchor_unread")
+                    and not places_nothing(r["placement"])
+                    and placement_rank(r["placement"]) > placement_rank(live)
+                    and ((r["placement"] or {}).get("street") or "").strip().lower()
+                    == live_street]
+        if not anchored:
+            continue
+        in_time = [r for r in anchored if r["first_issue"] <= scene_iso_placement]
+        copy_dates = sorted(set(biz["evidence"]["copy_dates"]))
+        one_card = len(copy_dates) == 1 and copy_dates[0] <= scene_iso_placement
+        if in_time:
+            pool, bound = in_time, "issue"
+        elif one_card:
+            pool, bound = anchored, "dateline"
+        else:
+            continue
+        first = min(pool, key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(live)
+        biz["placement"] = first["placement"]
+        biz["placement_from"] = {
+            "rule": "T-0948: the printing holding this house named a street and no "
+                    "anchor, so it is placed by the earliest printing that named an "
+                    "anchor ON THAT SAME STREET. A printing that names a street and no "
+                    "landmark has said less, not something else, and the narrower "
+                    "reading contradicts none of it. An anchor on another street is a "
+                    "move and `anchor_changes`' alone.",
+            "first_issue": first["first_issue"],
+            "claims": sorted(first["claims"]),
+            "bound": bound,
+            "street": superseded.get("street"),
+            "superseded": {"class": superseded.get("class") or "none",
+                           "anchor": None,
+                           "street": superseded.get("street")},
+        }
+        if bound == "dateline":
+            biz["placement_from"]["copy_date"] = copy_dates[0]
+
     # THE DATED ANCHOR CHANGE (T-0345). A firm merge unions two STYLES of one house.
     # This is the other thing two printings of one advertisement can differ about, and
     # it is not a spelling: Mason & Co.'s blacksmith notice runs under one copy date of
@@ -3254,6 +3372,167 @@ def self_test():
             failures.append("a house whose first printed anchor was READ was re-placed "
                             "by the unread rule: %r" % got["placement"])
 
+    # A STREET NAMED WITHOUT AN ANCHOR DOES NOT OUTRANK THE ANCHOR ON IT (T-0948).
+    # T-0440's shape one rung up, and every guard is asserted here as well as the
+    # firing, because each one is a way this pass could quietly assert a MOVE. The
+    # fixture is Rockwell's card in miniature: a printing naming the street and no
+    # landmark, and a later printing naming a stand ON THAT STREET.
+    COARSE = {"class": "street_only", "street": "Lake Street"}
+    ANCHORED = {"class": "relative", "anchor": "the hotel",
+                "offset_text": "opposite the hotel", "street": "Lake Street"}
+    early_ids = [i for d, i in dates if d <= scene_iso]
+
+    def street_then_anchor(anchored=None, coarse=None, late_id=None,
+                           dateline=None, late_dateline=None):
+        def doc_for(issue_id, placement, ad):
+            claim = {"id": "zt0", "kind": "business", "reading": "transcription_mediated",
+                     "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                  "placement": placement}}
+            if ad:
+                claim["ad_copy_date"] = ad
+            return {"issue_id": issue_id, "claims": [claim]}
+        return [doc_for(early_ids[0], coarse or COARSE, dateline),
+                doc_for(late_id or early_ids[1], anchored or ANCHORED,
+                        late_dateline or dateline)]
+
+    if len(early_ids) > 1:
+        out = run_anchor(street_then_anchor(), {"merges": [], "anchor_changes": []},
+                         None, "a street named without an anchor gives way to the "
+                               "anchor printed on it")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got is None:
+            failures.append("the street-without-an-anchor case lost the house it was "
+                            "declared on")
+        elif (got["placement"] or {}).get("anchor") != "the hotel":
+            failures.append("a house whose live printing named a street and no landmark "
+                            "is left held by it against an anchor on the same street: %r"
+                            % got["placement"])
+        elif not (got.get("placement_from") or {}).get("rule", "").startswith("T-0948"):
+            failures.append("the street-without-an-anchor pass placed a house and left "
+                            "no record of where the placement came from: %r"
+                            % got.get("placement_from"))
+        elif got["placement_from"]["bound"] != "issue":
+            failures.append("an anchor printed before the scene date was taken on the "
+                            "standing-card bound rather than its own issue date: %r"
+                            % got["placement_from"])
+        elif got["placement_from"]["superseded"]["street"] != "Lake Street":
+            failures.append("the coarse printing the house was moved off is not named "
+                            "in the record: %r" % got["placement_from"])
+        elif len(got["placement_readings"]) != 2:
+            failures.append("the coarse printing was dropped rather than kept as a "
+                            "reading: %d reading(s)" % len(got["placement_readings"]))
+
+        # GUARD 1 — THE SAME STREET, and this is the whole of the rule. An anchor on
+        # another street is a house in another part of town, which is a MOVE and
+        # `anchor_changes`' alone to declare.
+        out = run_anchor(
+            street_then_anchor(anchored=dict(ANCHORED, street="South Water Street")),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor on another street is a move and not a narrowing")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the street-without-an-anchor pass moved a house onto a "
+                            "street its own live printing does not name: %r"
+                            % got["placement_from"])
+
+        # …and an anchored reading that names NO street cannot be shown to narrow one
+        # that does. Samuel Lewis is this case on the real corpus.
+        out = run_anchor(
+            street_then_anchor(anchored={"class": "relative", "anchor": "the hotel",
+                                         "offset_text": "opposite the hotel"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor naming no street does not narrow a printing that names one")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a reading that names no street was allowed to narrow one "
+                            "that does: %r" % got["placement_from"])
+
+        # GUARD 2 — ONE PRINTED ANCHOR IS NEVER PREFERRED TO ANOTHER. Where the live
+        # placement already names a landmark, reordering the two is `anchor_changes`'.
+        out = run_anchor(
+            street_then_anchor(coarse={"class": "relative", "anchor": "the tavern",
+                                       "offset_text": "opposite the tavern",
+                                       "street": "Lake Street"},
+                               anchored={"class": "corner",
+                                         "anchor": "the corner of Lake and Clark streets",
+                                         "street": "Lake Street"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "one printed anchor is not preferred to another")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and (got["placement"] or {}).get("anchor") != "the tavern":
+            failures.append("a house whose live printing named an anchor was re-placed "
+                            "by the street-without-an-anchor rule: %r" % got["placement"])
+
+        # GUARD 3 — AN UNREAD ANCHOR IS NOT AN ANCHOR HERE. A reading that declares it
+        # could not read the landmark names none, and T-0385 above owns that case.
+        out = run_anchor(
+            street_then_anchor(anchored=dict(ANCHORED, anchor_unread=True,
+                                             anchor="opposite an unread anchor")),
+            {"merges": [], "anchor_changes": []}, None,
+            "an unread anchor does not narrow a street")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a reading declaring its own anchor unread was taken as a "
+                            "narrowing: %r" % got["placement_from"])
+
+    # THE BOUND. An anchor whose only impression falls after the scene date fires only
+    # on T-0385's standing-card clause — ONE dateline, at or before the scene date —
+    # and Rockwell is the corpus's single case of it.
+    if early_ids and placed_after_id is not None and early_ids[0] < placed_after_id:
+        DL = {"verbatim": "June 8, 1835.", "iso": "1835-06-08"}
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id, dateline=DL),
+            {"merges": [], "anchor_changes": []}, None,
+            "one dateline makes two impressions one card, and the later one narrows it")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got is None or not (got.get("placement_from") or {}).get("rule", "").startswith("T-0948"):
+            failures.append("a card under one dateline before the scene date was not "
+                            "narrowed by its own later impression: %r"
+                            % (got or {}).get("placement_from"))
+        elif got["placement_from"]["bound"] != "dateline":
+            failures.append("the standing-card bound carried a placement and did not "
+                            "say so: %r" % got["placement_from"])
+        elif got["placement_from"]["copy_date"] != DL["iso"]:
+            failures.append("the dateline that makes the impressions one card is not "
+                            "recorded: %r" % got["placement_from"])
+
+        # …two datelines are two advertisements, and the pass may not reach across them.
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id, dateline=DL,
+                               late_dateline={"verbatim": "July 2, 1835.",
+                                              "iso": "1835-07-02"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "two datelines are two advertisements, and the street rule refuses them")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the street-without-an-anchor pass reached across two "
+                            "datelines: %r" % got["placement_from"])
+
+        # …and a card datelined AFTER the scene date is an advertisement the July town
+        # never saw, whatever its impressions say.
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id,
+                               dateline={"verbatim": "August 5, 1835.",
+                                         "iso": "1835-08-05"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "a card datelined after the scene date does not narrow a street")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a card datelined after the scene date placed a house at "
+                            "it: %r" % got["placement_from"])
+
+        # …and with NO dateline at all there is nothing making the impressions one
+        # card, so an anchor printed after the scene date is simply out of time.
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor printed after the scene date under no dateline is out of time")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("an anchor first printed after the scene date placed a "
+                            "house with nothing saying it was one card: %r"
+                            % got["placement_from"])
+
     # …and the flag is the only thing the pass reads, so a reading that declares the
     # damage in prose alone is refused at the claim gate rather than silently left
     # holding the house. These run through `run`, because the gate is in `check()`.
@@ -3325,7 +3604,11 @@ def self_test():
     if got and got.get("placement_from"):
         failures.append("the repair claimed a house it placed on nothing")
 
-    # …and a street_only that DOES name its street is still an address, and still holds.
+    # …and a street_only that DOES name its street is still an address, and still
+    # holds — against an anchor on ANOTHER street, which is what this fixture prints.
+    # T-0948 below narrows it where the anchor stands on the SAME street, and the two
+    # rules meet exactly there: a street named is still a statement about the
+    # frontage, and only a landmark ON that frontage says more about it.
     out = run_anchor(silent_then_placed(LATE, early_placement={
         "class": "street_only", "street": "South Water Street"}),
         {"merges": [], "anchor_changes": []}, None,
