@@ -14,33 +14,33 @@
   "chicago_democrat_1834_01_28#c001",
   "chicago_democrat_1834_02_04#c016",
   "chicago_democrat_1834_03_04#c026",
-  "chicago_democrat_1834_03_04#c027"
+  "chicago_democrat_1834_03_04#c027",
+  "chicago_democrat_1834_03_04#c033"
  ],
  "counts": {
   "printed_lines": 170,
   "people_named": 169,
   "firm_lines": 2,
   "lines_naming_two_people": 1,
-  "tied_to_an_extracted_name": 116,
-  "readings_tied": 149,
+  "tied_to_an_extracted_name": 170,
+  "readings_tied": 203,
   "tied_by": {
-   "image": 76,
+   "image": 130,
    "text": 58,
    "part_of_a_line": 1,
    "spelling": 14
   },
   "reaches": {
-   "minted": 64,
-   "unread": 54,
-   "held_already": 5,
-   "refused": 47
+   "minted": 90,
+   "refused": 70,
+   "held_already": 10
   },
-  "reaches_a_card": 69,
+  "reaches_a_card": 100,
   "refused_by_reason": {
-   "the town already names that family": 21,
-   "surname already minted": 15,
-   "a firm, not a person": 1,
-   "garbled": 10
+   "surname already minted": 24,
+   "the town already names that family": 33,
+   "garbled": 12,
+   "a firm, not a person": 1
   },
   "readings_that_disagree": 19,
   "extracted_names_no_line_carries": 28,
@@ -49,7 +49,8 @@
    "the list carries this surname and no line's forename agrees with this reading of it": 10,
    "the list carries this surname on more than one line and this reading has no forename to choose between them": 6,
    "the postmaster's signature under the list, which the roster counts separately from its 170 addressee lines": 2
-  }
+  },
+  "extracted_names_ruled_on_in_identity_json": 11
  },
  "lines": [
   {
@@ -78,10 +79,19 @@
    "column": "left",
    "as_printed": "J. W. Anderson",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "J. W. Anderson",
+     "extracted_as": "J. W. Anderson"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_j_w_anderson",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -89,10 +99,19 @@
    "column": "left",
    "as_printed": "Constant Abbott",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Constant Abbott",
+     "extracted_as": "Constant Abbott"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_constant_abbott",
+    "reason": "the town already names a Abbott",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -100,10 +119,21 @@
    "column": "left",
    "as_printed": "Wm. G. Austin",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Wm. G. Austin",
+     "extracted_as": "Wm. G. Austin"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "held_already",
+    "person": "person_wm_g_austin",
+    "resident": "austin_w_g",
+    "household": "hh_austin_w_g",
+    "card_name": "W G Austin",
+    "action": "enrich"
    }
   },
   {
@@ -111,10 +141,20 @@
    "column": "left",
    "as_printed": "Almond Axtell 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Almond Axtell 2",
+     "extracted_as": "Almond Axtell 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_almond_axtell_2",
+    "household": "hh_almond_axtell_2",
+    "card_name": "Axtell [?] Almond",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -122,10 +162,20 @@
    "column": "left",
    "as_printed": "Myron K. Brownson",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Myron K. Brownson",
+     "extracted_as": "Myron K. Brownson"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_myron_k_brownson",
+    "household": "hh_brownson_myron_k",
+    "card_name": "Myron K. Brownson",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -133,10 +183,20 @@
    "column": "left",
    "as_printed": "Timothy Burnett",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Timothy Burnett",
+     "extracted_as": "Timothy Burnett"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_timothy_burnett",
+    "household": "hh_burnett_timothy",
+    "card_name": "Timothy Burnett",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -144,10 +204,20 @@
    "column": "left",
    "as_printed": "B. H. Bertrand",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "B. H. Bertrand",
+     "extracted_as": "B. H. Bertrand"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_b_h_bertrand",
+    "household": "hh_bertrand_b_h",
+    "card_name": "B. H. Bertrand",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -155,10 +225,19 @@
    "column": "left",
    "as_printed": "Cyntha Burbee",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Cyntha Burbee",
+     "extracted_as": "Cyntha Burbee"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_cyntha_burbee",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -166,10 +245,20 @@
    "column": "left",
    "as_printed": "Joseph Babeu",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Joseph Babeu",
+     "extracted_as": "Joseph Babeu"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_joseph_babeu",
+    "household": "hh_babeu_joseph",
+    "card_name": "Joseph Babeu",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -199,10 +288,20 @@
    "column": "left",
    "as_printed": "Anthony Beers",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Anthony Beers",
+     "extracted_as": "Anthony Beers"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_anthony_heere",
+    "household": "hh_heere_anthony",
+    "card_name": "Anthony Heere",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -236,10 +335,19 @@
    "column": "left",
    "as_printed": "J. K. Blodgett",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "J. K. Blodgett",
+     "extracted_as": "J. K. Blodgett"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_j_k_blodgett",
+    "reason": "the town already names a Blodgett",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -358,10 +466,19 @@
    "column": "left",
    "as_printed": "Aarri[?]t Bradford",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Aarri[?]t Bradford",
+     "extracted_as": "Aarri[?]t Bradford"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_aarri_t_bradford",
+    "reason": "garbled",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -415,10 +532,21 @@
    "column": "left",
    "as_printed": "Erastus Bowen",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Erastus Bowen",
+     "extracted_as": "Erastus Bowen"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "held_already",
+    "person": "person_erastus_bowen",
+    "resident": "bowen_erastus_selden",
+    "household": "hh_bowen_erastus_selden",
+    "card_name": "Erastus Selden Bowen",
+    "action": "enrich"
    }
   },
   {
@@ -426,10 +554,20 @@
    "column": "left",
    "as_printed": "Chas. Babcock",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Chas. Babcock",
+     "extracted_as": "Chas. Babcock"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_chas_babcock",
+    "household": "hh_babcock_chas",
+    "card_name": "Chas. Babcock",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -437,10 +575,19 @@
    "column": "left",
    "as_printed": "Aaron Bemis",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Aaron Bemis",
+     "extracted_as": "Aaron Bemis"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_aaron_bemis",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -563,10 +710,20 @@
    "column": "left",
    "as_printed": "O. P. Catran",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "O. P. Catran",
+     "extracted_as": "O. P. Catran"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_o_p_catran",
+    "household": "hh_catran_o_p",
+    "card_name": "O. P. Catran",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -574,10 +731,20 @@
    "column": "left",
    "as_printed": "D. P. Clevinger",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "D. P. Clevinger",
+     "extracted_as": "D. P. Clevinger"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_d_p_clevinger",
+    "household": "hh_clevinger_d_p",
+    "card_name": "D. P. Clevinger",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -585,10 +752,20 @@
    "column": "left",
    "as_printed": "E. W. Center",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "E. W. Center",
+     "extracted_as": "E. W. Center"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_e_w_conte",
+    "household": "hh_conte_e_w",
+    "card_name": "E. W. Conte",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -616,10 +793,19 @@
    "column": "left",
    "as_printed": "Alfred Clarke",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Alfred Clarke",
+     "extracted_as": "Alfred Clarke"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_alfred_clarke",
+    "reason": "the town already names a Clarke",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -668,10 +854,20 @@
    "column": "left",
    "as_printed": "Daniel B. Clevinger 4",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Daniel B. Clevinger 4",
+     "extracted_as": "Daniel B. Clevinger 4"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_daniel_b_clevinger_4",
+    "household": "hh_daniel_b_clevinger_4",
+    "card_name": "B. Clevinger [?] Daniel",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -679,10 +875,19 @@
    "column": "left",
    "as_printed": "Henry B. Clarke 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Henry B. Clarke 2",
+     "extracted_as": "Henry B. Clarke 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_henry_b_clarke_2",
+    "reason": "the town already names a Henry",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -690,10 +895,20 @@
    "column": "left",
    "as_printed": "Alfred Churchill",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Alfred Churchill",
+     "extracted_as": "Alfred Churchill"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_alfred_churchill",
+    "household": "hh_churchill_alfred",
+    "card_name": "Alfred Churchill",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -743,10 +958,19 @@
    "column": "left",
    "as_printed": "Gustavus Clark",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Gustavus Clark",
+     "extracted_as": "Gustavus Clark"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_gustavus_clark",
+    "reason": "the town already names a Clark",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -754,10 +978,19 @@
    "column": "left",
    "as_printed": "Benj. Chapman",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Benj. Chapman",
+     "extracted_as": "Benj. Chapman"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_benj_chapman",
+    "reason": "the town already names a Chapman",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -931,10 +1164,20 @@
    "column": "left",
    "as_printed": "Samuel Eberiden",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Samuel Eberiden",
+     "extracted_as": "Samuel Eberiden"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_samuel_eberiden",
+    "household": "hh_eberiden_samuel",
+    "card_name": "Samuel Eberiden",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1015,10 +1258,20 @@
    "column": "left",
    "as_printed": "H. K. Fay",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "H. K. Fay",
+     "extracted_as": "H. K. Fay"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_h_k_fay",
+    "household": "hh_fay_h_k",
+    "card_name": "H. K. Fay",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1026,10 +1279,19 @@
    "column": "left",
    "as_printed": "Aaron Friend",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Aaron Friend",
+     "extracted_as": "Aaron Friend"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_aaron_friend",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1058,10 +1320,20 @@
    "column": "left",
    "as_printed": "Jane Forrister",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Jane Forrister",
+     "extracted_as": "Jane Forrister"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_jane_forster",
+    "household": "hh_forster_jane",
+    "card_name": "Jane Forster",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1121,10 +1393,19 @@
    "column": "left",
    "as_printed": "P. Field",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "P. Field",
+     "extracted_as": "P. Field"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_p_field",
+    "reason": "the town already names a Field",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1201,10 +1482,21 @@
    "column": "left",
    "as_printed": "Ebenezer Goodrich",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Ebenezer Goodrich",
+     "extracted_as": "Ebenezer Goodrich"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "held_already",
+    "person": "person_ebenezer_goodrich",
+    "resident": "goodrich_ebenezer",
+    "household": "hh_goodrich_ebenezer",
+    "card_name": "Ebenezer Goodrich",
+    "action": "enrich"
    }
   },
   {
@@ -1233,10 +1525,20 @@
    "column": "left",
    "as_printed": "dane Gray",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "dane Gray",
+     "extracted_as": "dane Gray"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_dane_gray",
+    "household": "hh_gray_dane",
+    "card_name": "dane Gray",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1244,10 +1546,19 @@
    "column": "left",
    "as_printed": "William Gooding 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "William Gooding 2",
+     "extracted_as": "William Gooding 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_william_gooding_2",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1255,10 +1566,19 @@
    "column": "left",
    "as_printed": "Jos. A. Gooding",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Jos. A. Gooding",
+     "extracted_as": "Jos. A. Gooding"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_jos_a_gooding",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1328,10 +1648,19 @@
    "column": "left",
    "as_printed": "O. Grant",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "O. Grant",
+     "extracted_as": "O. Grant"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_o_grant",
+    "reason": "the town already names a Grant",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1360,10 +1689,19 @@
    "column": "left",
    "as_printed": "Pomeroy Goodrich",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Pomeroy Goodrich",
+     "extracted_as": "Pomeroy Goodrich"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_pomeroy_goodrich",
+    "reason": "the town already names a Goodrich",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1371,10 +1709,20 @@
    "column": "left",
    "as_printed": "Luther Hatch",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Luther Hatch",
+     "extracted_as": "Luther Hatch"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_luther_hatch",
+    "household": "hh_hatch_luther",
+    "card_name": "Luther Hatch",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1402,10 +1750,19 @@
    "column": "left",
    "as_printed": "Reuben Hart",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Reuben Hart",
+     "extracted_as": "Reuben Hart"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_reuben_hart",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1476,10 +1833,19 @@
    "column": "left",
    "as_printed": "Wooster Harrison [?]",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Wooster Harrison [?]",
+     "extracted_as": "Wooster Harrison [?]"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_wooster_harrison",
+    "reason": "garbled",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1487,10 +1853,19 @@
    "column": "left",
    "as_printed": "Benj. Harrison",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Benj. Harrison",
+     "extracted_as": "Benj. Harrison"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_benj_harrison",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1498,10 +1873,20 @@
    "column": "left",
    "as_printed": "J. P. Harkness",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "J. P. Harkness",
+     "extracted_as": "J. P. Harkness"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_j_p_harkness",
+    "household": "hh_harkness_j_p",
+    "card_name": "J. P. Harkness",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1509,10 +1894,20 @@
    "column": "right",
    "as_printed": "Isaac Hays",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Isaac Hays",
+     "extracted_as": "Isaac Hays"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_isaac_hays",
+    "household": "hh_hays_isaac",
+    "card_name": "Isaac Hays",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1520,10 +1915,20 @@
    "column": "right",
    "as_printed": "Levi Hills 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Levi Hills 2",
+     "extracted_as": "Levi Hills 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_levi_hills_2",
+    "household": "hh_levi_hills_2",
+    "card_name": "Hills [?] Levi",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1531,10 +1936,20 @@
    "column": "right",
    "as_printed": "H. B. Hoffman",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "H. B. Hoffman",
+     "extracted_as": "H. B. Hoffman"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_h_b_hoffman",
+    "household": "hh_hoffman_h_b",
+    "card_name": "H. B. Hoffman",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1791,10 +2206,20 @@
    "column": "right",
    "as_printed": "J. S. Lacey",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "J. S. Lacey",
+     "extracted_as": "J. S. Lacey"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_j_s_lacey",
+    "household": "hh_lacey_j_s",
+    "card_name": "J. S. Lacey",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1802,10 +2227,20 @@
    "column": "right",
    "as_printed": "Jacob Loose",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Jacob Loose",
+     "extracted_as": "Jacob Loose"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_jacob_loose",
+    "household": "hh_loose_jacob",
+    "card_name": "Jacob Loose",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1917,10 +2352,21 @@
    "column": "right",
    "as_printed": "Joseph Meeker",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Joseph Meeker",
+     "extracted_as": "Joseph Meeker"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "held_already",
+    "person": "person_joseph_meeker",
+    "resident": "meeker_joseph",
+    "household": "hh_meeker_joseph",
+    "card_name": "Joseph Meeker",
+    "action": "enrich"
    }
   },
   {
@@ -1928,10 +2374,20 @@
    "column": "right",
    "as_printed": "James Makio",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "James Makio",
+     "extracted_as": "James Makio"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_james_makio",
+    "household": "hh_makio_james",
+    "card_name": "James Makio",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2022,10 +2478,19 @@
    "column": "right",
    "as_printed": "F. B. Northrop",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "F. B. Northrop",
+     "extracted_as": "F. B. Northrop"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_f_b_northrop",
+    "reason": "surname already minted",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2054,10 +2519,20 @@
    "column": "right",
    "as_printed": "Lauretta Plympton 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Lauretta Plympton 2",
+     "extracted_as": "Lauretta Plympton 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_lauretta_plympton_2",
+    "household": "hh_lauretta_plympton_2",
+    "card_name": "Plympton [?] Lauretta",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2065,10 +2540,19 @@
    "column": "right",
    "as_printed": "T. E. Parsons 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "T. E. Parsons 2",
+     "extracted_as": "T. E. Parsons 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_t_e_parsons_2",
+    "reason": "the town already names a Parsons",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2217,10 +2701,19 @@
    "column": "right",
    "as_printed": "Rob't. Robinson",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Rob't. Robinson",
+     "extracted_as": "Rob't. Robinson"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_rob_t_robinson",
+    "reason": "the town already names a Robinson",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2382,10 +2875,21 @@
    "column": "right",
    "as_printed": "Axtel & Steele",
    "addressee": "a firm, not a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "Axtel & Steele",
+     "extracted_as": "Axtel & Steele"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "held_already",
+    "person": "person_axtel_steele",
+    "resident": "steele_ashbel",
+    "household": "hh_steele_ashbel",
+    "card_name": "Ashbel Steele",
+    "action": "enrich"
    }
   },
   {
@@ -2414,10 +2918,20 @@
    "column": "right",
    "as_printed": "B. P. Stafford",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "B. P. Stafford",
+     "extracted_as": "B. P. Stafford"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": "person_b_p_stafford",
+    "household": "hh_stafford_b_p",
+    "card_name": "B. P. Stafford",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2465,10 +2979,19 @@
    "column": "right",
    "as_printed": "H. S. Steele 2",
    "addressee": "a person",
-   "tie": null,
+   "tie": [
+    {
+     "tied_by": "image",
+     "claim": "chicago_democrat_1834_03_04#c033",
+     "as_printed_in_that_printing": "H. S. Steele 2",
+     "extracted_as": "H. S. Steele 2"
+    }
+   ],
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": "person_h_s_steele_2",
+    "reason": "the town already names a Steele",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -3560,12 +4083,23 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "Anthony Heere",
    "extracted_as": "Anthony Heere",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 12",
+    "line": 12,
+    "held_as": "Anthony Heere",
+    "ticket": "T-1011"
+   },
    "why": "no line of the printed list carries this surname at all, so either the transcription read a name the ninth impression does not set or the image read lost it"
   },
   {
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "BP. ‘Biatord",
    "extracted_as": "B. P. [uncertain: Bickford]",
+   "ruled_by_identity": {
+    "ruling": "refused: not joined to printed line 133",
+    "line": 133,
+    "refused_because": "Line 133 is set 'B. P. Stafford' at the page image and it is the ONLY line of the 170 beginning B. P.; the 1834-01-28 transcription carries 'B. P. [uncertain: Bickford]', read off 'BP. ‘Biatord', and it is the only B. P. on that side. The structural argument therefore names line 133 and no other, and it is still not enough: no reading of the letters 'Biatord' reaches 'Stafford' the way 'Cleviny' reaches 'Clevinger', the crop's neighbours are not in alphabetical order so position adds nothing, and a forename of two initials is a weak thing to merge a surname on by itself. Refused, and recorded rather than dropped: the page image of the 1834-01-28 impression would settle it in one look, and nothing else will. T-1011."
+   },
    "why": "no line of the printed list carries this surname at all, so either the transcription read a name the ninth impression does not set or the image read lost it"
   },
   {
@@ -3581,12 +4115,24 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "EW. Conte",
    "extracted_as": "E. W. Conte",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 33",
+    "line": 33,
+    "held_as": "E. W. Conte",
+    "ticket": "T-1011"
+   },
    "why": "no line of the printed list carries this surname at all, so either the transcription read a name the ninth impression does not set or the image read lost it"
   },
   {
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "Gustavus C!",
    "extracted_as": "Gustavus C[…]",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 43",
+    "line": 43,
+    "held_as": "Gustavus Clark",
+    "ticket": "T-1011"
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "Jesse B. Winn & Co."
@@ -3596,6 +4142,11 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "H, B..Steole 2",
    "extracted_as": "H. B. Steele",
+   "ruled_by_identity": {
+    "ruling": "refused: not joined to printed line 136",
+    "line": 136,
+    "refused_because": "Line 136 is set 'H. S. Steele 2' at the page image and the 1834-01-28 transcription carries 'H. B. Steele'. Same surname, both sets of initials read, and they disagree in the second — so the merge is refused by the rule that has no escape. The structural argument that every untied 1834-01-28 reading is one of the 170 lines would put this reading on line 136 and no other; it is refused anyway, because an argument about which line a reading must be cannot overrule an initial the printer actually set. T-1011."
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "Axtel & Steele",
@@ -3606,6 +4157,11 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "IK. Blodgett",
    "extracted_as": "I. K. Blodgett",
+   "ruled_by_identity": {
+    "ruling": "refused: not joined to printed line 14",
+    "line": 14,
+    "refused_because": "Line 14 of the 1 January 1834 return is set 'J. K. Blodgett' at the page image and the 1834-01-28 transcription of the same return carries 'I. K. Blodgett'. The surname is the same string and both first initials are READ — I against J — so this project never merges them, with or without a rule. That the two letters are one another's commonest confusion in this type is an argument about the printer, not evidence about the man, and the families rule exists because the 1835 letter lists are full of brothers. The town holds one Blodgett household either way: the minting pass's refusal 7 turns the second away on the surname. T-1011."
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "J. K. Blodgett",
@@ -3616,6 +4172,12 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "Jane Forster",
    "extracted_as": "Jane Forster",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 59",
+    "line": 59,
+    "held_as": "Jane Forster",
+    "ticket": "T-1011"
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "Caleb Foster",
@@ -3638,6 +4200,12 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "William Cr",
    "extracted_as": "William Cr[…]",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 42",
+    "line": 42,
+    "held_as": "William Crissy",
+    "ticket": "T-0323"
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "Jesse B. Winn & Co."
@@ -3647,6 +4215,11 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "¥..B Northrop",
    "extracted_as": "[?] B. Northrop",
+   "ruled_by_identity": {
+    "ruling": "refused: not joined to printed line 113",
+    "line": 113,
+    "refused_because": "Line 113 is set 'F. B. Northrop' at the page image and the 1834-01-28 transcription carries '[?] B. Northrop', whose first initial is a glyph nobody could read. An unread initial is a POSITION, NOT AN ABSENCE (T-0397): '[?] B.' reads against 'F. B.' and the two refuse, exactly as '[?]. Beegle' refuses 'A. Beegle'. Whether that refusal is right is the open policy question T-0392 puts to the owner; until it is answered the conservative reading stands. Nothing is duplicated by the refusal — the town already holds Francis B. Northrop and the minting pass turns both of these away on the surname. T-1011."
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "F. B. Northrop"
@@ -3726,6 +4299,12 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "Astist Bradford",
    "extracted_as": "[uncertain: Astist] Bradford",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 20",
+    "line": 20,
+    "held_as": "Aarri[?]t Bradford",
+    "ticket": "T-1011"
+   },
    "why": "the list carries this surname and no line's forename agrees with this reading of it",
    "lines_carrying_the_surname": [
     "Aarri[?]t Bradford"
@@ -3735,6 +4314,12 @@
    "claim": "chicago_democrat_1834_01_28#c001",
    "as_printed": "D. P. Cleviny",
    "extracted_as": "[uncertain: D. P. Cleviny]",
+   "ruled_by_identity": {
+    "ruling": "one person with printed line 32",
+    "line": 32,
+    "held_as": "D. P. Clevinger",
+    "ticket": "T-1011"
+   },
    "why": "no line of the printed list carries this surname at all, so either the transcription read a name the ninth impression does not set or the image read lost it"
   },
   {

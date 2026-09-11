@@ -22,11 +22,11 @@ one family name.
 
 ## The two readings, over the same pool
 
-* the pool the register offers this pass: **1837** candidates
-* accepted under the pre-T-0638 reading: **674**
-* accepted under the corrected reading: **682**
-* candidates the correction REFUSES that the old reading accepted: **9**
-* candidates the correction ADMITS that the old reading refused: **17**
+* the pool the register offers this pass: **1877** candidates
+* accepted under the pre-T-0638 reading: **692**
+* accepted under the corrected reading: **704**
+* candidates the correction REFUSES that the old reading accepted: **8**
+* candidates the correction ADMITS that the old reading refused: **20**
 
 ## The collisions — what the paper printed, and who holds the surname instead
 
@@ -39,7 +39,6 @@ rules for. `carries` is what a retirement would strand.
 | `Es,Jones, High` | Jones, High Es | `es` | `jones` | the town already names a Jones | Benjamin Jones (hh_jones_benjamin); D E Jones (hh_jones_d_e); M Jones (hh_jones_m) … | 1 | research row T-0481 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Esther Preston` | Esther Preston | `preston` | `preston` | surname already minted | Stephen II. Preston | 1 | research row T-0479 (no_corroboration_yet) |
 | `Frederick W. Page` | Frederick W. Page | `page` | `page` | surname already minted | Elisha S. Page | 1 | research row T-0510 (no_corroboration) |
-| `John Wilson 4` | Wilson [?] John | `4` | `john` | the town already names a John | W John (hh_john_w) | 1 | — |
 | `Mason Sabrina A.` | Sabrina A. Mason | `a` | `mason` | the town already names a Mason | Matthias Mason (hh_mason_matthias) | 1 | research row T-0482 (no_corroboration_yet) |
 | `Mills Joel C.` | Joel C. Mills | `c` | `mills` | the town already names a Mills | John A Mills (hh_mills_john_a); Samuel Mills (hh_mills_samuel) | 1 | research row T-0482 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
 | `Norton Wm. H.` | Wm. H. Norton | `h` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet) |
@@ -61,8 +60,8 @@ rules for. `carries` is what a retirement would strand.
 
 ## The committed cohort against its own derivation
 
-The tree holds **725** letter-list households. The pass, run today
-against that same tree, derives **682**. `check.sh` runs this pass's
+The tree holds **747** letter-list households. The pass, run today
+against that same tree, derives **704**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 
 | households | cause |
@@ -84,8 +83,11 @@ The other half of the same diff, and none of them is committed today.
 | printed | as a card would show it | old | new | returns |
 |---|---|---|---|---|
 | `Augustus H, Conant` | Conant Augustus H | `h` | `augustus` | 1 |
+| `Chester Marshall 2` | Marshall [?] Chester | `2` | `chester` | 1 |
 | `Eliphalet Atkins 2` | Atkins [?] Eliphalet | `2` | `eliphalet` | 1 |
 | `Julius Perrin 2` | Perrin [?] Julius | `2` | `julius` | 1 |
+| `Lauretta Plympton 2` | Plympton [?] Lauretta | `2` | `lauretta` | 1 |
+| `Levi Hills 2` | Hills [?] Levi | `2` | `levi` | 1 |
 | `Loweley. Watere e` | Watere e Loweley | `e` | `loweley` | 1 |
 | `Miranda Miner 2` | Miner [?] Miranda | `2` | `miranda` | 1 |
 | `Mr. Roult 2` | Roult [?] Mr | `2` | `roult` | 1 |

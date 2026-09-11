@@ -2141,6 +2141,53 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             loc = claim.get("locator") or {}
             if not loc:
                 continue
+
+            # A CLAIM READ AT THE PAGE IMAGE, NOT AT THE TRANSCRIPTION (T-1011).
+            #
+            # Everything below this point locates a claim in the deposit's typed
+            # transcription and re-reads its quote out of it, character for character.
+            # That is the right default and it is the whole of the corpus but for the
+            # case ruling 2 already contemplates: where a scan exists and is read, the
+            # scan is the authority. Until now the scan could only CORRECT a reading the
+            # transcription also carried — it had no way to carry one the transcription
+            # does not. The 1 January 1834 letter list is where that ran out: an
+            # advertisement stands down the middle of the printed column, the segmenter
+            # lost 54 of the return's 170 lines to it, and no transcription of any of the
+            # return's nine impressions carries them. A quote reassembled from lines that
+            # are not there cannot be made, and the reading is real.
+            #
+            # So a locator may name the PAGE IMAGE instead, and the escape is narrower
+            # than the thing it replaces rather than looser. It buys nothing except
+            # exemption from the transcription reassembly, and it costs a provenance
+            # block that has to resolve: the deposit's own image record — item, file,
+            # sha256 and jp2 page — is re-read out of the roster file the claim cites,
+            # and every field has to agree with it. A claim that says `read_at_image`
+            # and names a roster that does not exist, or whose image block does not
+            # match, is a compile error. There is no form of this that asserts a reading
+            # nothing can be checked against.
+            img = loc.get("read_at_image")
+            if img is not None:
+                for field in ("roster", "internet_archive_item", "file", "file_sha256"):
+                    if not img.get(field):
+                        bad.append("%s %s: a page-image locator must carry %s — the "
+                                   "deposit record is what makes the reading checkable"
+                                   % (at, key, field))
+                roster_rel = img.get("roster") or ""
+                roster_path = repo / roster_rel if roster_rel else None
+                if roster_path is None or not roster_path.exists():
+                    bad.append("%s %s: the page-image locator cites roster %r, which is "
+                               "not in the tree" % (at, key, roster_rel))
+                else:
+                    held = (json.loads(roster_path.read_text()).get("image") or {})
+                    for field in ("internet_archive_item", "file", "file_sha256",
+                                  "jp2_page"):
+                        if field in img and img[field] != held.get(field):
+                            bad.append("%s %s: the page-image locator's %s is %r and the "
+                                       "roster records %r — a claim may not restate the "
+                                       "deposit differently from the reading it cites"
+                                       % (at, key, field, img[field], held.get(field)))
+                continue
+
             role = loc.get("artifact_role")
             art = artifact_of(issue, role)
             if art is None:
@@ -2411,6 +2458,25 @@ def self_test():
         "a quote with no normalized reading")
     run(lambda d, i: d["claims"][0]["locator"].update(artifact_role="imaginary"),
         "which this issue does not have", "an artifact role the issue lacks")
+
+    # T-1011'S ESCAPE, and each of the three ways it could be abused.
+    IMG = {"roster": "chicago/4d/data/research/newspapers/"
+                     "letter_list_1834_01_01_printed.json",
+           "internet_archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+           "file": "Jan1834-Mar1834.pdf",
+           "file_sha256": "9fdfe5762de29a2581dcffb0a2b2140a15eb04b1811747aa37d78bbda92022d3"}
+
+    def at_image(d, **kw):
+        rec = dict(IMG)
+        rec.update(kw)
+        d["claims"][0]["locator"]["read_at_image"] = rec
+
+    run(lambda d, i: at_image(d, roster=None), "must carry roster",
+        "a page-image locator that cites no roster")
+    run(lambda d, i: at_image(d, roster="chicago/4d/data/nope.json"),
+        "not in the tree", "a page-image locator citing a roster that does not exist")
+    run(lambda d, i: at_image(d, file_sha256="0" * 64), "may not restate the deposit",
+        "a page-image locator restating the deposit's own sha256")
     run(lambda d, i: d["claims"][0]["locator"].update(lines_of_claim=[1]),
         "fall outside the cited range", "a claim line outside the cited range")
     run(lambda d, i: d.update(issue_id="chicago_democrat_1999_01_01"),

@@ -1832,6 +1832,72 @@
       ],
       "difference": "recognition",
       "merge_rule": "\"Wm. Band[l]e\" and \"[W]m. Bandie\" are one entry of the list of letters remaining in the Post Office at Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and 1834-07-16. They stand at the same place in the list in each of the printings that carry them (1834-07-09 and 1834-07-16), and the reading kept here is the one 1834-07-16 prints. The readings differ by Bandie against Bandle: a recognition-class difference in one printing's type, not two names."
+    },
+    {
+      "into": "Jane Forster",
+      "from": "Jane Forrister",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "difference": "surname setting",
+      "merge_rule": "THE STRUCTURAL ARGUMENT THIS MERGE RESTS ON (T-1011). Two impressions of ONE return print the same list of names, so a name the 1834-01-28 impression's transcription carries and the ninth impression's 170 printed lines do not is either a misreading of one of those lines or a line the image read lost. T-0424 read the WHOLE printed column at the scan and counted it off against its own stated sub-columns, 85 and 85, so the second branch is closed: every untied 1834-01-28 reading of this return IS one of the 170 lines, set differently. The printed list carries exactly one line whose forename is Jane — line 59, which the ninth impression sets 'Jane Forrister' — and the 1834-01-28 transcription carries exactly one Jane, 'Jane Forster'. They are one woman, and the two impressions disagree only in the syllable the type dropped or doubled. The reading kept is the transcription's, 'Jane Forster', because T-0424's rule is that the image OVERTURNS A CUT READING and this one is not cut: it is a complete setting of the name by a different impression, and the concordance records 'Jane Forrister' beside it as what line 59 prints. Without this merge the roster lift T-1011 makes would put the same woman in the town twice under two surnames, which is the duplicate class T-1002 is open on.",
+      "ticket": "T-1011"
+    },
+    {
+      "into": "E. W. Conte",
+      "from": "E. W. Center",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "difference": "surname setting",
+      "merge_rule": "THE STRUCTURAL ARGUMENT THIS MERGE RESTS ON (T-1011). Two impressions of ONE return print the same list of names, so a name the 1834-01-28 impression's transcription carries and the ninth impression's 170 printed lines do not is either a misreading of one of those lines or a line the image read lost. T-0424 read the WHOLE printed column at the scan and counted it off against its own stated sub-columns, 85 and 85, so the second branch is closed: every untied 1834-01-28 reading of this return IS one of the 170 lines, set differently. The printed list carries exactly one line beginning with the initials E. W. — line 33, which the ninth impression sets 'E. W. Center' — and the 1834-01-28 transcription carries exactly one E. W., 'E. W. Conte'. The initials are read on both sides and agree, so the families rule is satisfied rather than bypassed, and the surnames are one misread word. The reading kept is the transcription's, 'E. W. Conte', because it is a complete setting and not a cut one; 'E. W. Center' stands on the line in the concordance as what the type sets.",
+      "ticket": "T-1011"
+    },
+    {
+      "into": "Anthony Heere",
+      "from": "Anthony Beers",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "difference": "surname setting",
+      "merge_rule": "THE STRUCTURAL ARGUMENT THIS MERGE RESTS ON (T-1011). Two impressions of ONE return print the same list of names, so a name the 1834-01-28 impression's transcription carries and the ninth impression's 170 printed lines do not is either a misreading of one of those lines or a line the image read lost. T-0424 read the WHOLE printed column at the scan and counted it off against its own stated sub-columns, 85 and 85, so the second branch is closed: every untied 1834-01-28 reading of this return IS one of the 170 lines, set differently. The printed list carries exactly one line whose forename is Anthony — line 12, which the ninth impression sets 'Anthony Beers' — and the 1834-01-28 transcription carries exactly one Anthony, 'Anthony Heere'. One man, two settings of a short surname. The reading kept is the transcription's, 'Anthony Heere', on the same rule as the two above: it is complete, not cut, so the image does not overturn it.",
+      "ticket": "T-1011"
+    },
+    {
+      "into": "Gustavus Clark",
+      "from": "Gustavus C[…]",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "difference": "the crop cut the surname",
+      "merge_rule": "THE STRUCTURAL ARGUMENT THIS MERGE RESTS ON (T-1011). Two impressions of ONE return print the same list of names, so a name the 1834-01-28 impression's transcription carries and the ninth impression's 170 printed lines do not is either a misreading of one of those lines or a line the image read lost. T-0424 read the WHOLE printed column at the scan and counted it off against its own stated sub-columns, 85 and 85, so the second branch is closed: every untied 1834-01-28 reading of this return IS one of the 170 lines, set differently. The printed list carries exactly one line whose forename is Gustavus — line 43, which the ninth impression sets 'Gustavus Clark'. The 1834-01-28 crop cut the surname after its first letter and the transcription carries 'Gustavus C[…]', a capital C and a run nobody could read. Here the image DOES overturn, on T-0424's own rule and on the precedent of 'William Cr[…]' before it: a cut reading gives way to the type, so the person is held as 'Gustavus Clark' and the fragment is the variant.",
+      "ticket": "T-1011"
+    },
+    {
+      "into": "D. P. Clevinger",
+      "from": "[uncertain: D. P. Cleviny]",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "difference": "the transcriber would not vouch for the surname's tail",
+      "merge_rule": "THE STRUCTURAL ARGUMENT THIS MERGE RESTS ON (T-1011). Two impressions of ONE return print the same list of names, so a name the 1834-01-28 impression's transcription carries and the ninth impression's 170 printed lines do not is either a misreading of one of those lines or a line the image read lost. T-0424 read the WHOLE printed column at the scan and counted it off against its own stated sub-columns, 85 and 85, so the second branch is closed: every untied 1834-01-28 reading of this return IS one of the 170 lines, set differently. The printed list carries exactly one line beginning D. P. — line 32, which the ninth impression sets 'D. P. Clevinger' — and the 1834-01-28 transcription carries '[uncertain: D. P. Cleviny]', a reading it would not vouch for, of a name whose first six letters are the same six. The list also carries 'Daniel B. Clevinger 4' at line 38, and that line is NOT this one: its initials are read and differ. The image overturns the uncertain reading, so the person is held as 'D. P. Clevinger'.",
+      "ticket": "T-1011"
+    },
+    {
+      "into": "Aarri[?]t Bradford",
+      "from": "[uncertain: Astist] Bradford",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "difference": "both readings of the forename are marked unread",
+      "merge_rule": "THE STRUCTURAL ARGUMENT THIS MERGE RESTS ON (T-1011). Two impressions of ONE return print the same list of names, so a name the 1834-01-28 impression's transcription carries and the ninth impression's 170 printed lines do not is either a misreading of one of those lines or a line the image read lost. T-0424 read the WHOLE printed column at the scan and counted it off against its own stated sub-columns, 85 and 85, so the second branch is closed: every untied 1834-01-28 reading of this return IS one of the 170 lines, set differently. The printed list carries exactly one Bradford — line 20, which the ninth impression sets 'Aarri[?]t Bradford', a forename with one glyph the image cannot carry. The 1834-01-28 transcription carries '[uncertain: Astist] Bradford', a forename it would not vouch for on the same line. The surname is identical and read on both sides, and NEITHER forename is read, so the families rule has nothing to separate here: an unread forename beside an unvouched one is one person the project cannot name, not two people. The reading kept is the image's, 'Aarri[?]t Bradford'. It stays refused as garbled by the minting pass either way — what the merge prevents is the town counting the same unnamed Bradford twice.",
+      "ticket": "T-1011"
     }
   ],
   "refused_merges": [
@@ -2243,6 +2309,62 @@
       "initials_read": {
         "Thomas [H]. Moreland": "T. H.",
         "Thomas U. Moreland": "T. U."
+      }
+    },
+    {
+      "into": "J. K. Blodgett",
+      "from": "I. K. Blodgett",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "kind": "read_initials_disagree",
+      "refused_because": "Line 14 of the 1 January 1834 return is set 'J. K. Blodgett' at the page image and the 1834-01-28 transcription of the same return carries 'I. K. Blodgett'. The surname is the same string and both first initials are READ — I against J — so this project never merges them, with or without a rule. That the two letters are one another's commonest confusion in this type is an argument about the printer, not evidence about the man, and the families rule exists because the 1835 letter lists are full of brothers. The town holds one Blodgett household either way: the minting pass's refusal 7 turns the second away on the surname. T-1011.",
+      "initials_read": {
+        "J. K. Blodgett": "J. K.",
+        "I. K. Blodgett": "I. K."
+      }
+    },
+    {
+      "into": "F. B. Northrop",
+      "from": "[?] B. Northrop",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "kind": "unread_initial",
+      "refused_because": "Line 113 is set 'F. B. Northrop' at the page image and the 1834-01-28 transcription carries '[?] B. Northrop', whose first initial is a glyph nobody could read. An unread initial is a POSITION, NOT AN ABSENCE (T-0397): '[?] B.' reads against 'F. B.' and the two refuse, exactly as '[?]. Beegle' refuses 'A. Beegle'. Whether that refusal is right is the open policy question T-0392 puts to the owner; until it is answered the conservative reading stands. Nothing is duplicated by the refusal — the town already holds Francis B. Northrop and the minting pass turns both of these away on the surname. T-1011.",
+      "initials_read": {
+        "F. B. Northrop": "F. B.",
+        "[?] B. Northrop": "[?] B."
+      }
+    },
+    {
+      "into": "H. S. Steele 2",
+      "from": "H. B. Steele",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "kind": "read_initials_disagree",
+      "refused_because": "Line 136 is set 'H. S. Steele 2' at the page image and the 1834-01-28 transcription carries 'H. B. Steele'. Same surname, both sets of initials read, and they disagree in the second — so the merge is refused by the rule that has no escape. The structural argument that every untied 1834-01-28 reading is one of the 170 lines would put this reading on line 136 and no other; it is refused anyway, because an argument about which line a reading must be cannot overrule an initial the printer actually set. T-1011.",
+      "initials_read": {
+        "H. S. Steele 2": "H. S.",
+        "H. B. Steele": "H. B."
+      }
+    },
+    {
+      "into": "B. P. Stafford",
+      "from": "B. P. [uncertain: Bickford]",
+      "witnesses": [
+        "1834-01-28",
+        "1834-03-04"
+      ],
+      "kind": "surname_unreachable",
+      "refused_because": "Line 133 is set 'B. P. Stafford' at the page image and it is the ONLY line of the 170 beginning B. P.; the 1834-01-28 transcription carries 'B. P. [uncertain: Bickford]', read off 'BP. ‘Biatord', and it is the only B. P. on that side. The structural argument therefore names line 133 and no other, and it is still not enough: no reading of the letters 'Biatord' reaches 'Stafford' the way 'Cleviny' reaches 'Clevinger', the crop's neighbours are not in alphabetical order so position adds nothing, and a forename of two initials is a weak thing to merge a surname on by itself. Refused, and recorded rather than dropped: the page image of the 1834-01-28 impression would settle it in one look, and nothing else will. T-1011.",
+      "initials_read": {
+        "B. P. Stafford": "B. P.",
+        "B. P. [uncertain: Bickford]": "B. P."
       }
     }
   ],

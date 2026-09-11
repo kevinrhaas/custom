@@ -10087,7 +10087,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 725 people
+**Scope:** `residents.persons[letter_list_only]` — 747 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10114,6 +10114,19 @@ dated returns behind it — so a name printed on the scene date can be told from
 eighteen months earlier. `--gate` refuses a roof, a trade, a second member, a manifest row that
 drops the flag and a structure record that names one of them; `--self-test` breaks each of those
 seven assertions and requires the gate to fire.
+
+**And twenty-two have joined it, off a line nothing had ever read (T-1011).** The 1 January
+1834 return prints 170 lines. The extraction this pass minted that cohort from is two segmenter
+crops of the return's ninth impression, and an advertisement stands down the middle of the
+printed column, so between them the crops carry 78 names. T-1010 put the page-image roster
+beside the cohort line by line and found 54 lines reaching nothing at all — not refused, because
+no rule had ever seen them. `tools/lift_letter_list_1834_unread.py` lifted those 54 into the
+extraction of the impression they were printed in and the refusals then ran over them as over
+any other name: 22 minted, 32 turned away under a named rule. The set is 725 people plus those
+22. The liberty does not change shape by it — these are the same evidence as the other 725, a
+name in a list of letters uncalled-for and nothing else — but the number it is stated in does,
+and the direction it moves in is the point: the cohort was a FLOOR, not a count, and the floor
+was 45 per cent of one return.
 
 **One has left the set, and the way it left is the pattern.** `N. R. Norton` was minted here
 from a single return of 1 July 1835 and carried nothing else. T-0723 ruled it the same man as
@@ -10713,8 +10726,8 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
 **Recorded:** 2026-09-04.
 
-### L223 — Seven houses stand on a street a directory printed eight years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 7 households
+### L223 — Eight houses stand on a street a directory printed eight years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 8 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds` — in
 Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
@@ -10726,11 +10739,16 @@ absorbed. The argument is that a home is not a shop in two places. A residence n
 attested trade**, where a business does — everybody the town holds lived somewhere in it,
 so an absent occupation says nothing about whether a man had a house — and that departure
 is most of the yield: 44 of the 48 residence addresses on the layer belong to people the
-1835 papers give no trade, and five of these seven placements are such people. Against
+1835 papers give no trade, and five of these eight placements are such people. Against
 that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
 into one street's trade and a lodging is a month's rent.
-**Consequence:** seven households stand on a face on the authority of a volume printed
-four or eight years after the scene. Twenty of 825 households carried a real `lives_at`
+**Consequence:** eight households stand on a face on the authority of a volume printed
+four or eight years after the scene. The eighth arrived without a directory page being
+read: T-1011 lifted 54 lines of the 1 January 1834 letter list that no transcription
+carried, the mint took J. S. Lacey into the town off one of them, and the Fergus
+residence this pass had already adjudicated then had a card to reach. It is the shape
+this entry should be read for — the count moves when the TOWN grows as well as when the
+reading does, and the second is the only one that is a new liberty. Twenty of 825 households carried a real `lives_at`
 before this pass and twenty carry one after — the faces are text on a card and not a
 placement of anybody in the town.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door

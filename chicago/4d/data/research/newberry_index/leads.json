@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "22a9e70b5ac69c83a22355a5a07929489bef0dbfa1e865f67be53b006f1866f3",
+    "fingerprint": "19cde0e3e6bf14584244bc43ba3a7dfb94c52783c8322407d67c723b1eb4a8be",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1355,
+      "residents": 1377,
       "structures": 380,
       "voters": 345
     }
@@ -21,10 +21,10 @@
   "counts": {
     "cards": 6635,
     "distinct_surname_keys": 4530,
-    "leads": 1020,
+    "leads": 1026,
     "leads_by_layer": {
       "census_1840": 355,
-      "residents": 478,
+      "residents": 484,
       "structures": 36,
       "voters": 151
     }
@@ -9143,6 +9143,26 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v01_daniel_residents",
+      "surname_key": "daniel",
+      "spellings_as_printed": [
+        "Daniel, or Dnnyel"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "daniel_b_clevinger_4",
+          "name": "B. Clevinger [?] Daniel",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v01_1782"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v01_daniele_census_1840",
       "surname_key": "daniele",
       "spellings_as_printed": [
@@ -9153,6 +9173,28 @@
         {
           "id": "33S7-9YYJ-W6:l23",
           "name": "Daniel [?]",
+          "rule": "OCR variant (0.92 similarity to 'daniel')"
+        }
+      ],
+      "entries": [
+        "nbi_v01_1784"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v01_daniele_residents",
+      "surname_key": "daniele",
+      "spellings_as_printed": [
+        "Daniele"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "daniel_b_clevinger_4",
+          "name": "B. Clevinger [?] Daniel",
           "rule": "OCR variant (0.92 similarity to 'daniel')"
         }
       ],
@@ -13374,6 +13416,33 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v02_gray_residents",
+      "surname_key": "gray",
+      "spellings_as_printed": [
+        "Gray"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "gray_dane",
+          "name": "dane Gray",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v02_0467",
+        "nbi_v02_0468",
+        "nbi_v02_0469",
+        "nbi_v02_0474"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v02_green_residents",
       "surname_key": "green",
       "spellings_as_printed": [
@@ -14627,6 +14696,29 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
+      "id": "lead_v02_hatch_residents",
+      "surname_key": "hatch",
+      "spellings_as_printed": [
+        "Hatch"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "hatch_luther",
+          "name": "Luther Hatch",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v02_0751",
+        "nbi_v02_0752"
+      ],
+      "works_cited": [
+        "county_histories_kett_and_co"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
       "id": "lead_v02_hathaway_residents",
       "surname_key": "hathaway",
       "spellings_as_printed": [
@@ -15010,6 +15102,36 @@
       ],
       "works_cited": [
         "andreas_history_of_chicago"
+      ],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v02_hoffman_residents",
+      "surname_key": "hoffman",
+      "spellings_as_printed": [
+        "Hoffman",
+        "ndex Hoffman"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "hoffman_h_b",
+          "name": "H. B. Hoffman",
+          "rule": "exact surname"
+        }
+      ],
+      "entries": [
+        "nbi_v02_1018",
+        "nbi_v02_1019",
+        "nbi_v02_1020",
+        "nbi_v02_1021",
+        "nbi_v02_1022"
+      ],
+      "works_cited": [
+        "andreas_history_of_chicago",
+        "la_salle_book_co_cook_county",
+        "moses_illinois_historical_and_statistical",
+        "moses_kirkland_history_of_chicago"
       ],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
@@ -18119,6 +18241,26 @@
         "nbi_v02_1838",
         "nbi_v02_1839",
         "nbi_v02_1840"
+      ],
+      "works_cited": [],
+      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
+    },
+    {
+      "id": "lead_v02_levil_residents",
+      "surname_key": "levil",
+      "spellings_as_printed": [
+        "Levil"
+      ],
+      "layer": "residents",
+      "candidates": [
+        {
+          "id": "levi_hills_2",
+          "name": "Hills [?] Levi",
+          "rule": "OCR variant (0.89 similarity to 'levi')"
+        }
+      ],
+      "entries": [
+        "nbi_v02_1853"
       ],
       "works_cited": [],
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."

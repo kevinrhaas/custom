@@ -1657,6 +1657,19 @@ step "…and its two readings of a printed name are still two" \
 step "the 1834 letter list's 170 lines still reach what the concordance says they reach" \
   python3 tools/concord_letter_list_1834_01_01.py --check
 
+# T-1011. And the lift that closed the 54 the ledger above found reaching nothing. The
+# claim it writes is DERIVED — the set of lines is every one the other five claims leave
+# untied, computed through the concordance's own tie rules — so the failure mode is a
+# line carried twice: a later pass re-reads one of the crops, that reading takes a line
+# this claim also lifts, and the town holds the same addressee under two names with
+# nothing looking wrong in either record. --check re-derives the set against the
+# committed claim and fails on drift in EITHER direction.
+step "the lines the 1834 crops lost are still exactly the ones the roster lift carries" \
+  python3 tools/lift_letter_list_1834_unread.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/lift_letter_list_1834_unread.py --self-test
+
 step "…and its tie rules still refuse the ambiguities they are meant to" \
   python3 tools/concord_letter_list_1834_01_01.py --self-test
 

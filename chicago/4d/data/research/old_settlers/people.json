@@ -39,14 +39,14 @@
   "OS1": 40,
   "OS2A": 7,
   "OS2": 2,
-  "OS3": 106,
+  "OS3": 115,
   "OS4": 9,
-  "OS5": 163,
+  "OS5": 154,
   "merged": 47,
   "probable": 2,
   "candidate": 9,
-  "refused": 106,
-  "unmatched": 163
+  "refused": 115,
+  "unmatched": 154
  },
  "people": [
   {
@@ -620,12 +620,12 @@
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
     "resident_name": "Erastus Selden Bowen",
-    "resident_grade": "inferred",
+    "resident_grade": "attested",
     "why": "surname and spelled-out forename agree, one bearer"
    },
    "proposed": {
     "rung": "no_change",
-    "reason": "the person is already in the residents layer at grade 'inferred'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source. What this roll adds that the 1882 one could not: the man's own date of arrival, 1833, registered in his own hand in 1879. That is a DATED RECOLLECTION and it is worth what the ladder says a recollection is worth — it is not a contemporary record of 1833."
+    "reason": "the person is already in the residents layer at grade 'attested'. This source is a later recollection: it corroborates and dates, and under the ratified ladder it cannot lift a rung by itself. The citation goes on the record; the grade is T-0515's to revisit with a contemporary second source. What this roll adds that the 1882 one could not: the man's own date of arrival, 1833, registered in his own hand in 1879. That is a DATED RECOLLECTION and it is worth what the ladder says a recollection is worth — it is not a contemporary record of 1833."
    }
   },
   {
@@ -1997,10 +1997,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'f'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2030,10 +2030,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'g'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2063,10 +2063,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2096,10 +2096,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -2129,10 +2129,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'w'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -6757,10 +6757,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'c'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -6785,10 +6785,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -6813,10 +6813,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'gray' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'gray', none with the forename initial 'w'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -7093,10 +7093,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS5",
-    "outcome": "unmatched",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "why": "no bearer of the surname 'hoffman' in the residents layer"
+    "why": "the residents layer has 1 bearer(s) of 'hoffman', none with the forename initial 'm'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",

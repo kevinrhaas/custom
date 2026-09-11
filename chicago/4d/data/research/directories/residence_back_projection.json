@@ -8,18 +8,19 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 46,
-  "printed_as_a_residence": 32,
+  "addresses_adjudicated": 47,
+  "printed_as_a_residence": 33,
   "printed_as_a_lodging": 14,
-  "placed": 7,
-  "placed_as_a_face": 7,
-  "placed_with_no_1835_trade": 4,
+  "placed": 8,
+  "placed_as_a_face": 8,
+  "placed_with_no_1835_trade": 5,
   "already_better_placed": 0,
   "refused": 39,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
    "Market Street",
+   "North Water Street",
    "Randolph Street",
    "Washington Street"
   ],
@@ -530,6 +531,27 @@
    "street_id": null,
    "face": null,
    "placement": null
+  },
+  {
+   "household_id": "hh_lacey_j_s",
+   "person_id": "lacey_j_s",
+   "person": "J. S. Lacey",
+   "address_as_printed": "res North Water, bet Dearborn and Wolcott",
+   "kind": "resides",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Dearborn Street and Wolcott Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "north_water",
+   "face": "North Water Street",
+   "placement": "face"
   },
   {
    "household_id": "hh_lamb_a",
