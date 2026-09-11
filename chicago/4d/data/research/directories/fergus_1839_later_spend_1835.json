@@ -35,12 +35,12 @@
   {
    "rule": "F2",
    "why": "a surname-only agreement is a refusal in both crosswalks and in the newspapers' ratified rules, and refusals are not spent",
-   "rulings": 275
+   "rulings": 278
   },
   {
    "rule": "F3",
    "why": "the voter, letter-list and 1840-head pools match a row in ANOTHER reading rather than a person this town holds a card for. They are corroboration between readings and there is no card to write them onto; T-0515 is the pass that rules on the letter list",
-   "rulings": 424
+   "rulings": 429
   },
   {
    "rule": "F4",
@@ -2283,7 +2283,7 @@
    "person_id": "bowen_erastus_selden",
    "name": "Erastus Selden Bowen",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Bowen' folds to the same string as the register entry's, and the given name of both begins E."
    ],

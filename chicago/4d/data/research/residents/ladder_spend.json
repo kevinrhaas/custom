@@ -13,18 +13,18 @@
  "counts": {
   "person_records": 1375,
   "carried_by_the_civic_mint": 483,
-  "rungs_spent": 790,
-  "conflicts_for_the_owner": 99,
+  "rungs_spent": 811,
+  "conflicts_for_the_owner": 78,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 89,
    "G1c": 10,
-   "G2e": 47,
-   "G3": 622
+   "G2e": 48,
+   "G3": 642
   },
   "conflicts_by_kind": {
    "abstention": 41,
-   "downgrade": 57,
+   "downgrade": 36,
    "subtype": 1
   }
  },
@@ -315,6 +315,15 @@
    "resident_subtype": null
   },
   {
+   "person_id": "axtell_almond",
+   "household_id": "hh_axtell_almond",
+   "name": "Almond Axtell",
+   "identity": "id_axtell_almond",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "ayers_david",
    "household_id": "hh_ayers_david",
    "name": "David Ayers",
@@ -328,6 +337,24 @@
    "household_id": "hh_ayres_levi",
    "name": "Levi Ayres",
    "identity": "id_ayres_levi",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "babcock_chas",
+   "household_id": "hh_babcock_chas",
+   "name": "Chas. Babcock",
+   "identity": "id_babcock_charles",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "babeu_joseph",
+   "household_id": "hh_babeu_joseph",
+   "name": "Joseph Babeu",
+   "identity": "id_babeu_joseph",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -738,6 +765,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "bertrand_b_h",
+   "household_id": "hh_bertrand_b_h",
+   "name": "B. H. Bertrand",
+   "identity": "id_bertrand_b_h",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "biakie_a_or_h_p",
    "household_id": "hh_biakie_a_or_h_p",
    "name": "A. or H. P Biakie",
@@ -1026,6 +1062,15 @@
    "resident_subtype": null
   },
   {
+   "person_id": "brownson_myron_k",
+   "household_id": "hh_brownson_myron_k",
+   "name": "Myron K. Brownson",
+   "identity": "id_brownson_myron_k",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "bruen_hir",
    "household_id": "hh_bruen_hir",
    "name": "hir. Bruen",
@@ -1143,6 +1188,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "burnett_timothy",
+   "household_id": "hh_burnett_timothy",
+   "name": "Timothy Burnett",
+   "identity": "id_burnett_timothy",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "bush_riley",
    "household_id": "hh_bush_riley",
    "name": "Riley Bush",
@@ -1215,6 +1269,15 @@
    "resident_subtype": null
   },
   {
+   "person_id": "carrier_lamira",
+   "household_id": "hh_carrier_lamira",
+   "name": "Lamira Carrier",
+   "identity": "id_carrier_lamira",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "carter_j",
    "household_id": "hh_carter_j",
    "name": "J. Carter",
@@ -1276,6 +1339,15 @@
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
+  },
+  {
+   "person_id": "catran_o_p",
+   "household_id": "hh_catran_o_p",
+   "name": "O. P. Catran",
+   "identity": "id_catran_o_p",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "catton_william",
@@ -1476,6 +1548,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "churchill_alfred",
+   "household_id": "hh_churchill_alfred",
+   "name": "Alfred Churchill",
+   "identity": "id_churchill_alfred",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "clapp_a_p",
    "household_id": "hh_clapp_a_p",
    "name": "A. P. Clapp",
@@ -1516,6 +1597,15 @@
    "household_id": "hh_clement_dorcinrk",
    "name": "DorCinrk Clement",
    "identity": "id_clement_dorcinrk",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "clevinger_daniel_b",
+   "household_id": "hh_clevinger_daniel_b",
+   "name": "Daniel B. Clevinger",
+   "identity": "id_clevinger_daniel_b",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -2214,6 +2304,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "eberiden_samuel",
+   "household_id": "hh_eberiden_samuel",
+   "name": "Samuel Eberiden",
+   "identity": "id_eberiden_samuel",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "elias_maynar",
    "household_id": "hh_elias_maynar",
    "name": "Maynar Elias",
@@ -2362,6 +2461,15 @@
    "household_id": "hh_farren_dean",
    "name": "Dean Farren",
    "identity": "id_farren_dean",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "fay_h_k",
+   "household_id": "hh_fay_h_k",
+   "name": "H. K. Fay",
+   "identity": "id_fay_h_k",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -2952,6 +3060,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "harkness_j_p",
+   "household_id": "hh_harkness_j_p",
+   "name": "J. P. Harkness",
+   "identity": "id_harkness_j_p",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "harmon_isaac_d",
    "household_id": "hh_harmon_brothers",
    "name": "Isaac Dewey Harmon",
@@ -3015,6 +3132,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "hatch_luther",
+   "household_id": "hh_hatch_luther",
+   "name": "Luther Hatch",
+   "identity": "id_hatch_luther",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "hateh_betsey",
    "household_id": "hh_hateh_betsey",
    "name": "Betsey Hateh",
@@ -3037,6 +3163,15 @@
    "household_id": "hh_hawley_oscar_l",
    "name": "Oscar L. Hawley",
    "identity": "id_hawley_oscar_l",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "hays_isaac",
+   "household_id": "hh_hays_isaac",
+   "name": "Isaac Hays",
+   "identity": "id_hays_isaac",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -3145,6 +3280,24 @@
    "household_id": "hh_hill_isaac_l",
    "name": "Isaac L. Hill",
    "identity": "id_hill_isaac_l",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "hills_levi",
+   "household_id": "hh_hills_levi",
+   "name": "Levi Hills",
+   "identity": "id_hills_levi",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "hoffman_h_b",
+   "household_id": "hh_hoffman_h_b",
+   "name": "H. B. Hoffman",
+   "identity": "id_hoffman_h_b",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -3951,6 +4104,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "lacey_j_s",
+   "household_id": "hh_lacey_j_s",
+   "name": "J. S. Lacey",
+   "identity": "id_lacey_john",
+   "rule": "G2e",
+   "grade": "inferred",
+   "resident_subtype": null
+  },
+  {
    "person_id": "lafton_lewis",
    "household_id": "hh_lafton_lewis",
    "name": "Lewis Lafton",
@@ -4140,6 +4302,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "loose_jacob",
+   "household_id": "hh_loose_jacob",
+   "name": "Jacob Loose",
+   "identity": "id_loose_jacob",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
    "person_id": "lorenzo_maccoy",
    "household_id": "hh_lorenzo_maccoy",
    "name": "maccoy Lorenzo",
@@ -4297,6 +4468,15 @@
    "household_id": "hh_makepiece_george_r",
    "name": "George R. Makepiece",
    "identity": "id_makepiece_george_r",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "makio_james",
+   "household_id": "hh_makio_james",
+   "name": "James Makio",
+   "identity": "id_makio_james",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5233,6 +5413,15 @@
    "household_id": "hh_plimpton_lauretta",
    "name": "Lauretta Plimpton",
    "identity": "id_plimpton_lauretta",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "plympton_lauretta",
+   "household_id": "hh_plympton_lauretta",
+   "name": "Lauretta Plympton",
+   "identity": "id_plympton_lauretta",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -7193,51 +7382,6 @@
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
-   "person_id": "axtell_almond",
-   "household_id": "hh_axtell_almond",
-   "name": "Almond Axtell",
-   "identity": "id_axtell_almond",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "babcock_chas",
-   "household_id": "hh_babcock_chas",
-   "name": "Chas. Babcock",
-   "identity": "id_babcock_charles",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "babeu_joseph",
-   "household_id": "hh_babeu_joseph",
-   "name": "Joseph Babeu",
-   "identity": "id_babeu_joseph",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "bailey_bennet",
    "household_id": "hh_bailey_bennet",
    "name": "Bennet Bailey",
@@ -7326,21 +7470,6 @@
     "resident_subtype": null
    },
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
-  },
-  {
-   "person_id": "bertrand_b_h",
-   "household_id": "hh_bertrand_b_h",
-   "name": "B. H. Bertrand",
-   "identity": "id_bertrand_b_h",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
    "person_id": "blakesley_harvey_a",
@@ -7433,36 +7562,6 @@
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
-   "person_id": "brownson_myron_k",
-   "household_id": "hh_brownson_myron_k",
-   "name": "Myron K. Brownson",
-   "identity": "id_brownson_myron_k",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "burnett_timothy",
-   "household_id": "hh_burnett_timothy",
-   "name": "Timothy Burnett",
-   "identity": "id_burnett_timothy",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "caldwell_billy",
    "household_id": "hh_caldwell_billy",
    "name": "Billy Caldwell (Sauganash)",
@@ -7474,36 +7573,6 @@
    "proposed": {
     "grade": "inferred",
     "resident_subtype": null
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "carrier_lamira",
-   "household_id": "hh_carrier_lamira",
-   "name": "Lamira Carrier",
-   "identity": "id_carrier_lamira",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "catran_o_p",
-   "household_id": "hh_catran_o_p",
-   "name": "O. P. Catran",
-   "identity": "id_catran_o_p",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
    },
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
@@ -7553,21 +7622,6 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
-   "person_id": "churchill_alfred",
-   "household_id": "hh_churchill_alfred",
-   "name": "Alfred Churchill",
-   "identity": "id_churchill_alfred",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "cleland_martin",
    "household_id": "hh_cleland_martin",
    "name": "Martin Cleland",
@@ -7575,21 +7629,6 @@
    "rule": "G3",
    "grade": "attested",
    "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "clevinger_daniel_b",
-   "household_id": "hh_clevinger_daniel_b",
-   "name": "Daniel B. Clevinger",
-   "identity": "id_clevinger_daniel_b",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
    "kind": "downgrade",
    "proposed": {
     "grade": "inferred",
@@ -7703,21 +7742,6 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
-   "person_id": "eberiden_samuel",
-   "household_id": "hh_eberiden_samuel",
-   "name": "Samuel Eberiden",
-   "identity": "id_eberiden_samuel",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "egan_emeline",
    "household_id": "hh_egan_william_b",
    "name": "Emeline Egan",
@@ -7755,21 +7779,6 @@
    "rule": "G3",
    "grade": "attested",
    "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "fay_h_k",
-   "household_id": "hh_fay_h_k",
-   "name": "H. K. Fay",
-   "identity": "id_fay_h_k",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
    "kind": "downgrade",
    "proposed": {
     "grade": "inferred",
@@ -7868,21 +7877,6 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
-   "person_id": "harkness_j_p",
-   "household_id": "hh_harkness_j_p",
-   "name": "J. P. Harkness",
-   "identity": "id_harkness_j_p",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "name": "Charles Loomis Harmon",
@@ -7913,21 +7907,6 @@
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
-   "person_id": "hatch_luther",
-   "household_id": "hh_hatch_luther",
-   "name": "Luther Hatch",
-   "identity": "id_hatch_luther",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "hathaway_joshua",
    "household_id": "hh_hathaway_joshua",
    "name": "Joshua Hathaway jr.",
@@ -7943,36 +7922,6 @@
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
-   "person_id": "hays_isaac",
-   "household_id": "hh_hays_isaac",
-   "name": "Isaac Hays",
-   "identity": "id_hays_isaac",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "hills_levi",
-   "household_id": "hh_hills_levi",
-   "name": "Levi Hills",
-   "identity": "id_hills_levi",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "hobson_jesse",
    "household_id": "hh_hobson_jesse",
    "name": "Jesse Hobson",
@@ -7980,21 +7929,6 @@
    "rule": "G3",
    "grade": "attested",
    "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "hoffman_h_b",
-   "household_id": "hh_hoffman_h_b",
-   "name": "H. B. Hoffman",
-   "identity": "id_hoffman_h_b",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
    "kind": "downgrade",
    "proposed": {
     "grade": "inferred",
@@ -8063,21 +7997,6 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
-   "person_id": "lacey_j_s",
-   "household_id": "hh_lacey_j_s",
-   "name": "J. S. Lacey",
-   "identity": "id_lacey_john",
-   "rule": "G2e",
-   "grade": "inferred",
-   "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": null
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "lampman_henry_s",
    "household_id": "hh_blodgett_tyler_k",
    "name": "Henry S. Lampman",
@@ -8115,36 +8034,6 @@
    "rule": "G3",
    "grade": "attested",
    "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "loose_jacob",
-   "household_id": "hh_loose_jacob",
-   "name": "Jacob Loose",
-   "identity": "id_loose_jacob",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "makio_james",
-   "household_id": "hh_makio_james",
-   "name": "James Makio",
-   "identity": "id_makio_james",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
    "kind": "downgrade",
    "proposed": {
     "grade": "inferred",
@@ -8346,21 +8235,6 @@
     "resident_subtype": null
    },
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
-  },
-  {
-   "person_id": "plympton_lauretta",
-   "household_id": "hh_plympton_lauretta",
-   "name": "Lauretta Plympton",
-   "identity": "id_plympton_lauretta",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident",
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": "projected_resident"
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
    "person_id": "porter_eliza_chappel",
