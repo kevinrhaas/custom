@@ -1,7 +1,7 @@
 ---
 id: T-1024
 title: Two faults in the volume 2 folio derivation leave twelve claims with no printed page: the verso-head regex matches 'history of Chicago' in running prose, and the recto folios the volume prints are never read at all
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1110
 claimed_by: run 9/11/2026, 1:17:52 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T06:46:14.916Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34562840711
 ---
 
