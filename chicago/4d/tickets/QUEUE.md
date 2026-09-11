@@ -107,8 +107,8 @@
 
 
 
-T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
 T-1034 — The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869
+T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
@@ -339,6 +339,9 @@ T-1017 — Is buying at the town's OWN school-section sale a check on a town-sid
 T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
 T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 
