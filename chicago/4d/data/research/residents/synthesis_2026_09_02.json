@@ -190,7 +190,29 @@
         "name": "Nelts Wm."
       }
     ],
-    "letter_list_missing_research_row": [],
+    "letter_list_missing_research_row": [
+      "almond_axtell_2",
+      "babcock_chas",
+      "babeu_joseph",
+      "bertrand_b_h",
+      "brownson_myron_k",
+      "burnett_timothy",
+      "catran_o_p",
+      "clevinger_d_p",
+      "daniel_b_clevinger_4",
+      "eberiden_samuel",
+      "fay_h_k",
+      "gray_dane",
+      "harkness_j_p",
+      "hatch_luther",
+      "hays_isaac",
+      "hoffman_h_b",
+      "lauretta_plympton_2",
+      "levi_hills_2",
+      "loose_jacob",
+      "makio_james",
+      "stafford_b_p"
+    ],
     "letter_list_deferred_to_ladder": [
       "albert_shepherd",
       "allen_william",
@@ -221,6 +243,7 @@
       "gould_a_b",
       "hopkins_henry",
       "jordan_j_b",
+      "lacey_j_s",
       "lamb_a",
       "lansing_andrew",
       "lawrence_james_r",
@@ -994,13 +1017,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1331,
-    "persons": 1355,
-    "attested": 490,
-    "inferred": 865,
+    "households": 1353,
+    "persons": 1377,
+    "attested": 491,
+    "inferred": 886,
     "reconstructed": 0,
-    "letter_list_only": 725,
-    "projected_residents": 710,
+    "letter_list_only": 747,
+    "projected_residents": 731,
     "census_1840_linked": 3
   },
   "retirement": {

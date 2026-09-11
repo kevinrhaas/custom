@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1352
+   "n": 1374
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -28,7 +28,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2554
+   "n": 2597
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -40,13 +40,13 @@
   "residents_matched_one_entry": 92,
   "residents_ambiguous": 32,
   "residents_contested": 23,
-  "residents_surname_only_refused": 221,
+  "residents_surname_only_refused": 225,
   "voters_matched_one_entry": 82,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 85,
-  "letter_list_matched_one_entry": 189,
-  "letter_list_ambiguous": 60,
-  "letter_list_surname_only_refused": 525,
+  "letter_list_matched_one_entry": 191,
+  "letter_list_ambiguous": 62,
+  "letter_list_surname_only_refused": 535,
   "heads_1840_matched_one_entry": 86,
   "heads_1840_ambiguous": 21,
   "heads_1840_surname_only_refused": 202
@@ -2945,7 +2945,7 @@
     ],
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
-    "grade_1835": "inferred"
+    "grade_1835": "attested"
    },
    {
     "name": "George Davis",
@@ -4276,6 +4276,11 @@
     "rule": "The surname 'Harman' stands in the 1837 poll and no man under it carries the initial 'I' of 'Isaac Harman'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Isaac Hays",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Hays' stands in the 1837 poll and no man under it carries the initial 'I' of 'Isaac Hays'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Issac Stevens",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Stevens' stands in the 1837 poll and no man under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
@@ -4299,6 +4304,11 @@
     "name": "J. K. Boyer",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Boyer' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. K. Boyer'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "J. S. Lacey",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Lacey' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. S. Lacey'. A surname-only agreement is a refusal."
    },
    {
     "name": "James Burk",
@@ -4504,6 +4514,11 @@
     "name": "Lieut. James Allen",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Luther Hatch",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Hatch' stands in the 1837 poll and no man under it carries the initial 'L' of 'Luther Hatch'. A surname-only agreement is a refusal."
    },
    {
     "name": "M D Harmon",
@@ -4884,6 +4899,11 @@
     "name": "c. Warren",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Warren' stands in the 1837 poll and no man under it carries the initial 'C' of 'c. Warren'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "dane Gray",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Gray' stands in the 1837 poll and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
    }
   ]
  },
@@ -8107,6 +8127,24 @@
     ]
    },
    {
+    "name": "Alfred Clarke",
+    "rule": "Surname 'Clarke' folds to the same string as the 1837 entry's, and the given name of both begins A.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0392",
+      "as_printed": "Abram F. Clarke",
+      "printed_page": 43,
+      "role": "voter",
+      "ward_1837": 2,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
     "name": "Anderson, William V.",
     "rule": "Surname 'Anderson' folds to the same string as the 1837 entry's, and the given name of both begins W.",
     "entries_1837": [
@@ -10681,6 +10719,24 @@
     ]
    },
    {
+    "name": "Reuben Hart",
+    "rule": "Surname 'Hart' folds to the same string as the 1837 entry's, and the given name of both begins R.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0279",
+      "as_printed": "Robert Hart",
+      "printed_page": 43,
+      "role": "voter",
+      "ward_1837": 2,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
     "name": "S. B. Cobb",
     "rule": "Surname 'Cobb' folds to the same string as the 1837 entry's, and the given name of both begins S.",
     "entries_1837": [
@@ -11499,6 +11555,36 @@
     ]
    },
    {
+    "name": "Axtel & Steele",
+    "rule": "Surname 'Steele' folds to the same string as the 1837 entry's, and the given name of both begins A.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0417",
+      "as_printed": "Ashbel Steele",
+      "printed_page": 44,
+      "role": "voter",
+      "ward_1837": 3,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     },
+     {
+      "claim": "f1839_v0739",
+      "as_printed": "Ashbel Steele",
+      "printed_page": 40,
+      "role": "judge_of_election",
+      "ward_1837": 3,
+      "voted_for": null,
+      "party": null,
+      "office": "judge_of_election",
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
     "name": "Brown, John",
     "rule": "Surname 'Brown' folds to the same string as the 1837 entry's, and the given name of both begins J.",
     "entries_1837": [
@@ -11685,6 +11771,36 @@
       "voted_for": null,
       "party": null,
       "office": "judge_of_election",
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
+    "name": "Erastus Bowen",
+    "rule": "Surname 'Bowen' folds to the same string as the 1837 entry's, and the given name of both begins E.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0155",
+      "as_printed": "Erastus Bowen,",
+      "printed_page": 42,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "John H. Kinzie",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     },
+     {
+      "claim": "f1839_v0717",
+      "as_printed": "Erastus Bowen",
+      "printed_page": 40,
+      "role": "nominee",
+      "ward_1837": 1,
+      "voted_for": null,
+      "party": "Whig",
+      "office": "assessor",
       "column_run_on": false,
       "candidate_inferred": false
      }
@@ -13645,6 +13761,11 @@
     "rule": "The surname 'Beaubien' stands in the 1837 poll and no man under it carries the initial 'J' of 'Beaubien, John B.'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Benj. Chapman",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Chapman' stands in the 1837 poll and no man under it carries the initial 'B' of 'Benj. Chapman'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Benjamin Thomp[s]on",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Thomp[s]on' stands in the 1837 poll and no man under it carries the initial 'B' of 'Benjamin Thomp[s]on'. A surname-only agreement is a refusal."
@@ -14270,6 +14391,11 @@
     "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gurdon S. Hubbard'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Gustavus Clark",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Clark' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gustavus Clark'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "H. B. Steele",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Steele' stands in the 1837 poll and no man under it carries the initial 'H' of 'H. B. Steele'. A surname-only agreement is a refusal."
@@ -14515,6 +14641,11 @@
     "rule": "The surname 'Clark' stands in the 1837 poll and no man under it carries the initial 'I' of 'Isaac Clark'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Isaac Hays",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Hays' stands in the 1837 poll and no man under it carries the initial 'I' of 'Isaac Hays'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Isaac Merrill",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Merrill' stands in the 1837 poll and no man under it carries the initial 'I' of 'Isaac Merrill'. A surname-only agreement is a refusal."
@@ -14555,6 +14686,11 @@
     "rule": "The surname 'Mulford' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. H. Mulford'. A surname-only agreement is a refusal."
    },
    {
+    "name": "J. K. Blodgett",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Blodgett' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. K. Blodgett'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "J. K. Boyer",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Boyer' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. K. Boyer'. A surname-only agreement is a refusal."
@@ -14568,6 +14704,16 @@
     "name": "J. P. [uncertain: Cobb]",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Cobb]' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. P. [uncertain: Cobb]'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "J. S. Lacey",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Lacey' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. S. Lacey'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "J. W. Anderson",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Anderson' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. W. Anderson'. A surname-only agreement is a refusal."
    },
    {
     "name": "J. W. Lewis",
@@ -14935,6 +15081,11 @@
     "rule": "The surname 'Luce' stands in the 1837 poll and no man under it carries the initial 'W' of 'Luce, William'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Luther Hatch",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Hatch' stands in the 1837 poll and no man under it carries the initial 'L' of 'Luther Hatch'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Lyman Smith",
     "candidates_under_that_surname": 11,
     "rule": "The surname 'Smith' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lyman Smith'. A surname-only agreement is a refusal."
@@ -15070,6 +15221,11 @@
     "rule": "The surname 'Dole' stands in the 1837 poll and no man under it carries the initial 'N' of 'Newberry & Dole'. A surname-only agreement is a refusal."
    },
    {
+    "name": "O. Grant",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Grant' stands in the 1837 poll and no man under it carries the initial 'O' of 'O. Grant'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Oliver Newberry",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Newberry' stands in the 1837 poll and no man under it carries the initial 'O' of 'Oliver Newberry'. A surname-only agreement is a refusal."
@@ -15158,6 +15314,11 @@
     "name": "Pitman Fisher",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Fisher' stands in the 1837 poll and no man under it carries the initial 'P' of 'Pitman Fisher'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Pomeroy Goodrich",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Goodrich' stands in the 1837 poll and no man under it carries the initial 'P' of 'Pomeroy Goodrich'. A surname-only agreement is a refusal."
    },
    {
     "name": "R. J. Hamilton",
@@ -16063,6 +16224,11 @@
     "name": "[…] Goodhue",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Goodhue' stands in the 1837 poll and no man under it carries the initial '-' of '[…] Goodhue'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "dane Gray",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Gray' stands in the 1837 poll and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
    },
    {
     "name": "graves, Willard",

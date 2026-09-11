@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 579,
-  "carried": 209,
-  "matched": 395,
+  "rulings": 581,
+  "carried": 210,
+  "matched": 397,
   "refused": 184,
-  "distinct_people": 285,
-  "distinct_claims": 639
+  "distinct_people": 286,
+  "distinct_claims": 641
  },
  "rulings": [
   {
@@ -7477,6 +7477,52 @@
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
+  },
+  {
+   "outcome": "matched",
+   "person_id": "lacey_j_s",
+   "household_id": "hh_lacey_j_s",
+   "resident": "J. S. Lacey",
+   "volume": "fergus_1843",
+   "source_id": "fergus_chicago_directory_1843",
+   "source_ids": [
+    "fergus_chicago_directory_1843"
+   ],
+   "claim_id": "f1843_e1527",
+   "claim_ids": [
+    "f1843_e1527"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Lacey' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "carried": [
+    "occupation",
+    "address"
+   ],
+   "refused_to_carry": [],
+   "why_refused": null
+  },
+  {
+   "outcome": "matched",
+   "person_id": "lacey_j_s",
+   "household_id": "hh_lacey_j_s",
+   "resident": "J. S. Lacey",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e1054",
+   "claim_ids": [
+    "n1844_e1054"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Lacey' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "carried": [],
+   "refused_to_carry": [
+    "address",
+    "occupation"
+   ],
+   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
    "outcome": "matched",
