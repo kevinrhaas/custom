@@ -1,7 +1,7 @@
 ---
 id: T-0990
 title: The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
-state: claimed
+state: open
 epic: META
 requested_by: steward
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: run 9/10/2026, 6:10:18 PM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34540643440
+claimed_run: null
 ---
 
 The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next.
@@ -174,7 +174,7 @@ surgeon was sixteen in 1835); **T-1005**, the seven stale `letter_list_only` fla
 ---
 
 **Cohort C2 — the twenty-one `forename_agrees` proposals with namesakes, surnames D-J.** Ruled
-2026-09-10. **Sixteen upheld, five refused** — matched 106 → 101, ruled 89 → 110, unruled 49 →
+2026-09-10, PR #1093. **Sixteen upheld, five refused** — matched 106 → 101, ruled 89 → 110, unruled 49 →
 28; four cards retracted and one rewritten, fourteen register rows, 476.52 acres and $1,525.75
 taken back off them, against 57 rows, 4,086.77 acres and $7,855.29 that stand.
 
