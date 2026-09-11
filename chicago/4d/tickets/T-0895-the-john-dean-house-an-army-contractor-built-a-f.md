@@ -1,7 +1,7 @@
 ---
 id: T-0895
 title: The John-Dean house: an army contractor built a five-room house at the foot of Randolph Street in 1815, Beaubien bought it in 1817 for $1,000, and this project models nothing there
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1138
+claimed_by: run 9/11/2026, 11:25:29 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T17:04:23.918Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34619435315
 ---
 
 The John-Dean house: an army contractor built a five-room house at the foot of Randolph Street in 1815, Beaubien bought it in 1817 for $1,000, and this project models nothing there.
