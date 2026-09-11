@@ -1,7 +1,7 @@
 ---
 id: T-1010
 title: The 170 printed lines of the 1 January 1834 return, tied line by line to what each of them reaches: a minted card, a resident the town already held, a named refusal, or nothing
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1008
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1095
 claimed_by: run 9/10/2026, 7:18:34 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T00:32:22.990Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34544959894
 ---
 
@@ -40,7 +40,7 @@ Piece 1 of 2 of **T-1008 — The ninety-two lines of the 1 January 1834 letter l
 - Where the image's reading of a name differs from the reading a card was minted on,
   both are carried, and the card's own spelling says which of the two it follows.
 
-**Closed by PR #NNNN.** 116 of the 170 lines tie to a name this project has extracted
+**Closed by PR #1095.** 116 of the 170 lines tie to a name this project has extracted
 from one of the return's nine impressions; 69 reach a card (64 minted, 5 already held);
 47 are refused under a named rule; **54 reach nothing at all**, and that number is the
 floor T-1011 mints against.
