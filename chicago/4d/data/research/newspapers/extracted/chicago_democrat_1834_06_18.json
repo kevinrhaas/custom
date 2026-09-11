@@ -376,7 +376,7 @@
     {
       "id": "c009",
       "kind": "business",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Cabinet and Chair\nWare House\n* HE subscribers ha-\ni ving on hand (at\nga Se their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very\nCLARK, FILER, & Ca.\nN. B. Sign and ornamental painting neatly |\nkecuted. .\nChicago, June 10, 1834. 25",
       "normalized": "Cabinet and Chair Ware House. [T]HE subscribers ha[v]ing on hand (at their ware house on South water St. five doors [e]ast of the corner of Randolph st.) a very [large assortment of cherry, curl and pin maple, black walnut and mahogany FURNITURE …] CLARK, FILER, & C[o]. N. B. Sign and ornamental painting neatly [e]xecuted. Chicago, June 10, 1834. 2[8]",
       "locator": {
@@ -444,10 +444,11 @@
           "anchor": "the corner of Randolph st.",
           "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
           "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
-          "street": "South Water Street"
+          "street": "South Water Street",
+          "note": "T-0869 RULED THIS PLACEMENT A BEARING, NOT AN ADDRESS. All three printings of this advertisement were re-read at the page images on 2026-09-11 and every one of them sets 'the corner of Randolph st.' — see data/research/newspapers/clark_filer_randolph_corner_1834.json for the readings, the crop regions and the deposit sha256. They are ONE standing setting re-impressed, not three compositions: identical line breaks through the placement, the same 'cosisting' misprint, the same chair cuts, the same 'Chicago, June 10, 1834. 28' at the foot, and the phrase runs in at least five issues from 1834-06-11 to 1834-07-23. So the cross street was NOT mis-set by a slipping hand — there is no per-impression variation to be the slip. What stands is that the firm named a corner it did not stand on, which is how it locates elsewhere in the same month ('three doors from the Baptist meeting house', 1834-06-04). A wrong word in the firm's own copy, standing for six weeks, cannot be separated from that and has the same consequence: the phrase does not measure onto the committed plat. The ware house keeps street_only, `streets_cross` is right to refuse the ordinal (T-0771), and the anchor is left as printed rather than amended to what the plat allows. Do not re-open on a closer reading of these columns; only another impression setting a DIFFERENT street, or a source placing the ware house on the ground, moves it."
         }
       },
-      "notes": "THE PLACEMENT WHOLE, AND UNBRACKETED — this issue's page 3 is not interleaved, so the two words the 1834-06-11 printing cuts ('doors east') are on the page here. Five doors east of Randolph on South Water Street is the tightest offset in the June reading after the Lake Street lot-and-block claim (c006). THE N.B. IS A SECOND TRADE: sign and ornamental painting done by the same firm — which is where a signboard on this street would have been made."
+      "notes": "READ AT THE PAGE IMAGE ON 2026-09-11 (T-0869). This issue's page 3, column 3 sets 'of Randolph st.)' cleanly, and its tail carries the firm's signature, the N.B. on sign and ornamental painting and the dateline 'Chicago, June 10, 1834.' — the impression the other two are read against. THE PLACEMENT WHOLE, AND UNBRACKETED — this issue's page 3 is not interleaved, so the two words the 1834-06-11 printing cuts ('doors east') are on the page here. Five doors east of Randolph on South Water Street is the tightest offset in the June reading after the Lake Street lot-and-block claim (c006). THE N.B. IS A SECOND TRADE: sign and ornamental painting done by the same firm — which is where a signboard on this street would have been made."
     },
     {
       "id": "c010",
