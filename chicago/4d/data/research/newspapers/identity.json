@@ -24,6 +24,12 @@
       "what": "A repair to the NAME PARSE the refusals below are stated on, not to the policy. `initials()` deleted the `[?]` marker before splitting a forename, so an unread initial either vanished or was replaced by the next letter of the same word.",
       "method": "The marker becomes a sentinel that survives the bracket strip and stays welded to the word it opens, so `[?]rah` is ONE forename whose initial is unread, and `[?]. M. Fish` keeps M in second position. UNREAD is a value in the initials tuple and is equal to no letter.",
       "result": "All 17 `unread_initial` refusals were stated on a wrong reading and are restated here: 7 named a letter invented from the rest of the forename (R., N., B., A., K., O., S.), 6 collapsed a middle initial into first position, 4 read no initial at all. Nothing merged or unmerged: 177 declared merges and 29 refusals before and after, and every one of the 11 `read_initials_disagree` refusals still refuses. The policy question itself is open and is T-0392's."
+    },
+    {
+      "ticket": "T-0901",
+      "what": "THE OCR'S TURKISH ALPHABET, AND THE ONE MERGE IT COST. Seven readings in the corpus carried a letter no compositor in 1835 Chicago had in his case — ı (U+0131), İ (U+0130) and Ğ (U+011E), three letters Turkish has and the Latin alphabet this project transcribes does not. They are the signature of an OCR run whose language model was Turkish, not of anything the Democrat set, and tools/repair_ocr_turkish_alphabet.py maps each back to its base letter in every READING while leaving every `quote` — and every claim `notes` that quotes the artefact to explain a correction — character for character as it was.",
+      "method": "The substitution is demonstrated and not inferred from resemblance. `JOHN H. KİNZIE.` of 1834-08-06 becomes the name every other impression in the corpus sets; `JOHN WRİĞHT` of 1833-11-26 becomes `JOHN WRIGHT`, which that claim's own notes already called a spurious breve and a recognition artefact; and `Benjamın Swena` becomes `Benjamin Swena`, which T-0299 had ALREADY ruled the same entry of the same list, aligned by position across three printings. No word is repaired, only a character: `Willınm Bandle` becomes `Willinm Bandle` and stops there, still refused against Fergus 1843's `Willis` because two full forenames that differ do not merge.",
+      "result": "ONE MERGE RETIRED, and it is the Swena one directly above this file's 1834-07-09 entries: `Benjamın Swena` and `Benjamin Swena` are now ONE STRING, so the gazetteer coalesces them on its own key and a declared merge of a name into itself is not a judgement at all. 177 declared person merges become 176. Nothing else merged or unmerged, and no person count moved: what changed is that three names the town holds are spelled with letters a hand could have written."
     }
   ],
   "merges": [
@@ -151,16 +157,6 @@
       ],
       "difference": "recognition",
       "merge_rule": "\"Benjamin Sloat\" and \"Benjamin Sloas\" are one entry of the list of letters remaining in the Post Office at Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and 1834-07-16. They stand at the same place in the list in each of the printings that carry them (1834-07-02 and 1834-07-09 and 1834-07-16), and the reading kept here is the one 1834-07-16 prints. The readings differ by Sloas against Sloat: a recognition-class difference in one printing's type, not two names."
-    },
-    {
-      "into": "Benjamin Swena",
-      "from": "Benjamın Swena",
-      "witnesses": [
-        "1834-07-09",
-        "1834-07-16"
-      ],
-      "difference": "recognition",
-      "merge_rule": "\"Benjamin Swena\" and \"Benjamın Swena\" are one entry of the list of letters remaining in the Post Office at Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and 1834-07-16. They stand at the same place in the list in each of the printings that carry them (1834-07-09 and 1834-07-16), and the reading kept here is the one 1834-07-16 prints. The readings differ by Benjamın against Benjamin: a recognition-class difference in one printing's type, not two names."
     },
     {
       "into": "Benjamin Swena",

@@ -56,7 +56,7 @@
   {
    "person_id": "adains_will_si",
    "household_id": "hh_adains_will_si",
-   "name": "Willısi Adains",
+   "name": "Willisi Adains",
    "identity": "id_adains_willsi",
    "rule": "G3",
    "grade": "inferred",
@@ -416,7 +416,7 @@
   {
    "person_id": "bandle_will_nm",
    "household_id": "hh_bandle_will_nm",
-   "name": "Willınm Bandle",
+   "name": "Willinm Bandle",
    "identity": "id_bandle_willnm",
    "rule": "G3",
    "grade": "inferred",
@@ -6545,7 +6545,7 @@
   {
    "person_id": "swena_benjam_n",
    "household_id": "hh_swena_benjam_n",
-   "name": "Benjamın Jr. Swena",
+   "name": "Benjamin Jr. Swena",
    "identity": "id_swena_benjamn",
    "rule": "G3",
    "grade": "inferred",

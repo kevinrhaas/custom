@@ -8779,15 +8779,15 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_adains_will_si",
-      "name": "Adains, Willısi",
+      "id": "person_adains_willisi",
+      "name": "Adains, Willisi",
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "adains_will_si",
-      "action_note": "data/residents/ already holds this person as adains_will_si (hh_adains_will_si, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as adains_will_si (hh_adains_will_si, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_adam_brown",
@@ -10154,15 +10154,15 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_bandle_will_nm",
-      "name": "Bandle, Willınm",
+      "id": "person_bandle_willinm",
+      "name": "Bandle, Willinm",
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "bandle_will_nm",
-      "action_note": "data/residents/ already holds this person as bandle_will_nm (hh_bandle_will_nm, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as bandle_will_nm (hh_bandle_will_nm, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_banks",
@@ -32649,15 +32649,15 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_swena_benjam_n_jr",
-      "name": "Swena, Benjamın Jr.",
+      "id": "person_swena_benjamin_jr",
+      "name": "Swena, Benjamin Jr.",
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
       "action_target": "swena_benjam_n",
-      "action_note": "data/residents/ already holds this person as swena_benjam_n (hh_swena_benjam_n, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as swena_benjam_n (hh_swena_benjam_n, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_swift_richard_k",
