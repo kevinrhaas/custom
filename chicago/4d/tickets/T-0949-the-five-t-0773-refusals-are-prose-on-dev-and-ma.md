@@ -1,7 +1,7 @@
 ---
 id: T-0949
 title: The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-07
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 4:45:32 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34650613262
 ---
 
 **Found by T-0927, 2026-09-07,** checking PR #962's claim against `dev` before closing it as
