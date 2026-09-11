@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/11/2026, 12:16:21 PM CT
+claimed_by: run 9/11/2026, 4:07:07 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34626025065
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34647482664
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -440,4 +440,150 @@ filed as tickets** (owner's rule of 2026-09-10): the volume's shared street word
 loses Clark that way), and the 64 clause-1 refusals that are business-shaped addresses
 against people the 1835 corpus gives no trade, which get one ruling on the business
 question and none on any other. No successor ticket is filed; this ticket stays open and
+is its own cursor.
+
+## Stretch 5, 2026-09-11 — the could-carry pool of Fergus 1843 and Norris 1844, and the three characters their splitters cut at wrongly
+
+**The stretch:** the could-carry pool of `fergus_1843_crosswalk_1835.json` (71 trades,
+83 addresses) and `norris_1844_crosswalk_1835.json` (65 trades, 80 addresses) — the
+third of this ticket's four pools in the two volumes stretch 4's defect did not reach.
+Bounded to those two directories; nothing was read off a page image. It is the stretch
+stretch 4 nominated, down to the question it told this run to ask FIRST: "whether their
+own splitters carry the same comma rule". Both did, and two more besides.
+
+**Both halves of the pool were already SPENT, as in stretch 4** — clause 3's `unwritten`
+at 0 before and after — so what was wrong was again the READING the pool is drawn from.
+`read_fergus_1843.py` and `read_norris_1844.py` are separate files from the 1839 reader
+and from each other, and **151 of their 4,768 entries were split at a character the
+compositor did not set a boundary at**.
+
+**Four defects, in the two readers, each fixed at its one place:**
+
+1. **The printed comma closes the name** — stretch 4's rule, never carried here. The
+   test was a capital and a count of three (1844) or four (1843), so the run walked
+   past the comma set after the forenames:
+   `Baumgarteu, Morris, Illinois street, b Dearborn and Wolcott` read a forename of
+   "Morris, Illinois" and lost Illinois Street, the only street in the line;
+   `Hanson, Abraham, Methodist clergymen` and `Harrington, Joseph, Unitarian clergyman`
+   lost the trade the comma opened; `Barker, Peleg A., Farmers Exchange, 35 Lake` lost
+   the Exchange.
+2. **A suffix or an initial standing on the far side of that comma is not the end of
+   the name.** `still_the_name` states the three shapes the name runs THROUGH — a
+   suffix's own comma (`Bates, jr., John`), a suffix standing after (`Bumpstead,
+   Thomas, jr.`), and a comma the compositor set between two initials (`Hamlin, E. H.,
+   Baptist clergyman`). Without it the rule in (1) took eleven of Fergus's `jr.`
+   entries apart.
+3. **A comma set with NO SPACE after it is the same comma**, and it sits inside a
+   whitespace token where (1) could never see it: `Cleaver, T. B.,soap and oil factory`
+   and `Wilson, Maihew,ship carpenter` were read as forenames "T. B.,soap" and
+   "Maihew,ship". Keeping the comma on the kept half leaves the offset `rest` is sliced
+   at unchanged, so the trade comes back whole.
+4. **Norris's abbreviations are lower case and a man's initial is not** — the largest of
+   the four, 106 entries. `h`, `r` and `b` are his own shorthand for house, residence
+   and between, printed in his preface; the pattern that finds where the address begins
+   was compiled `re.I`, so it stopped at the first CAPITAL initial in any name.
+   `Adams, R. E. W, physician, corner of Clark and Lake streets` was left with no trade
+   at all and an address of "E. W, physician, corner of Clark and Lake streets";
+   `Beer, Adam, shoemaker, at J. B. Mitchell's` read a trade of "shoemaker, at J";
+   `Bigelow, A. clerk at H. O. Stone's, house State street` read a trade of "clerk at"
+   and filed his employer's shop as where he lived. The abbreviation WORDS stay
+   case-blind; the three single letters do not.
+5. **A hyphen is not a word boundary that rule may cut at** (7 entries, Fergus 1843).
+   `\b` holds on the far side of one, so `light-house`, `boarding-house`, `packing-house`
+   and `poor-house` each read as a trade ending in a hyphen and an address beginning
+   "house …". Mark Beaubien keeps a light-house in 1843 and lives at River Street, not
+   at "house keeper, res River street".
+
+**Measured, before and after:**
+
+| | before | after |
+|---|---|---|
+| Fergus 1843 entries whose split changes | — | **45 of 2,695** |
+| Norris 1844 entries whose split changes | — | **106 of 2,073** |
+| Norris trades cut at a capital initial | 106 | **0** |
+| forenames carrying an unspaced comma | 3 | **0** |
+| trades ending in a hyphen, 1843 | 7 | **0** |
+| 1844 addresses that were the tail of a name (`could_carry_address`) | 80 | **79** |
+| directories, on a card / `unwritten` (clause 3) | 927 of 927 / **0** | 927 of 927 / **0** |
+| directories claims read / spent / unspent | 8,258 / 1,007 / 7,251 | unchanged |
+| 1835 grades moved by the spend | 0 | **0** |
+| business street faces (L218) / residence faces (L223) | 18 / 6 | **18 / 6** |
+
+**What a reader can see — and the part that was not expected.** The cross-domain identity
+index (`consolidate_resident_evidence.py`) keys an identity on the surname and forename the
+reading gives it, so **51 identities were keyed on a forename with a street, a trade or a
+denomination stuck to the end of it** — `id_anderson_john_washington_hall_n`,
+`id_barker_peleg_a_farmers_exchange`, `id_wilson_maihewship`, `id_beaubien_mark_u_s`,
+`id_hanson_abraham_methodist`. Such a key can never meet the man it belongs to. All 51 come
+back to their own names, and **five men the index was carrying twice are one man again**:
+Charles Billings Smith, David Lewis Roberts, William Rowlatt, James L. Howe and John P.
+Bowes. Identities 6,851 → **6,846**; derived refusals 1,837 → **1,833** (four were refusing a
+name nobody had); the directories domain's identities 2,897 → **2,892**; rungs R3 124 → 121
+and R4 77 → 76. That file is gated (`--check`) and is where the fault would otherwise have
+kept sitting.
+
+**Six household cards correct the LINE they cite.** `mint_civic_residents.py` carries the
+directory locator onto the card, and six were pointing a reader at a fragment that began in
+the middle of a man's own firm: `hh_bowen_erastus_selden` cited "B. & Cole, house Michigan
+avenue" and now cites "house Michigan avenue"; `hh_smith_e_kirby` cited "H. & E. Smith, h
+Ohio jst. b Dear and Wolcott" and now cites "h Ohio jst. b Dear and Wolcott";
+`hh_bradley_joseph`, `hh_goodrich_john`, `hh_jones_william` and `hh_sherman_rebecca` the
+same. `ladder_spend.json` re-derives with them.
+
+One card gives something up and it is the honest direction:
+`hh_bradley_joseph`'s Norris 1844 line, "Bradley, Joseph, clerk, at W. H. Adams & Co.'s",
+stops declaring that it HOLDS an address — the address it held was the second half of his
+employer's name. **This stretch placed nothing on the ground** (clause 5): the four
+volumes' precedence rule is untouched, every person whose reading changed already carries
+an earlier volume's trade or an 1835 one, and the crosswalk counts are unmoved but for the
+one false address above. What changed is that 151 printed lines now read as the printer
+set them. `read_norris_1844.py --self-test` holds all three comma-and-capital rules on
+seven named lines and sweeps the whole reading for either failure; the assertions fire
+when broken.
+
+**The 1839 reader was NOT changed.** The same three shapes exist there — `Morrison,
+Ephriam, jr., teamster` reads a trade of "jr., teamster", `O'Meara, Timothy, Rev.,
+Catholic priest` one of "Rev., Catholic priest", and `Dickey, Hugh, T. , attorney` loses
+the T. — but that volume's `TITLES` includes `judge`, `hon` and `prof`, which are trades
+there as often as titles, and the exception written for 1843 and 1844 walks straight into
+them: it turned `Pearson, Hon. John, judge Circuit Court` into a forename of "Hon. John,
+judge". Seven entries, three of them wrong today and four of them made wrong by the
+naive fix. It needs the 1839 volume's own list, not this one's, and it is recorded here
+rather than filed (owner's rule of 2026-09-10).
+
+**The pools after this stretch:**
+
+**re-derived from the four files today, not copied from stretch 4's table, which had
+drifted** — ambiguous + contested, residents only:
+
+```
+  ties                        34 (1839) · 54 (1843) · 33 (1844) · 11 (1844 ad)  = 132
+  initial-absent refusals    277 · 349 · 343 · 130                              = 1,099
+  forename-disagreed          75 · 91 · 51                                      = 217
+  could-carry, 1839           89 trades · 95 streets, spent, the reading correct (stretch 4)
+  could-carry, 1843           71 trades · 83 addresses, all spent or refused with a clause
+  could-carry, 1844           65 trades · 79 addresses, ALL 144 refused — see below
+  could-carry, 1844 ad        12 trades · 15 places of business
+```
+
+Stretch 4's line read "34 · 58 · 39 · 11 = 142" and "277 · 349 · 335 · 140 = 1,101";
+three of those eight numbers were carried forward rather than re-read, which is the
+drift stretch 2 caught the first time and named. Every figure above comes from the
+`counts` block of the file beside it, re-derived in this run.
+
+**Stretch 6 is the 1844 half of that last line, and this stretch is what unblocks it.**
+`spend_directories.py` carries a volume-level flag, `parse_trusted: False`, on Norris 1844
+alone, and every one of that volume's 144 could-carry units is refused by it under one
+clause — T-0569's `UNTRUSTED_SPLIT`, which says the split "yields a value containing no
+trade at all rather than a trade with something extra on it" and cites `of Loyd`,
+`of Horace Norton & Co` and twice simply `of`. Measured against the corrected reading:
+**13 of the volume's 65 matched trades are that shape** (a partnership named where the
+trade would go) and **52 are plain legible trades** — carpenter, baker, tailor, physician,
+watchmaker, "grocery and provisions, South Water st". A great many of the rest of that
+refusal's reputation was defect 4 above, now gone. A blanket refusal is not a ruling about
+a line, and clause 1 of this ticket asks for one per unit: stretch 6 replaces the volume
+flag with a per-entry, per-FIELD predicate (the partnership shape refuses a TRADE and says
+nothing about the address beside it), and spends what survives. No successor ticket is
+filed — `tickets/README.md` puts the succession on the run that CLOSES the programme, and
+the owner's filing rule of 2026-09-10 asks for fewer tickets. This ticket stays open and
 is its own cursor.

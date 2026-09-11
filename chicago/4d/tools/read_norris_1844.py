@@ -38,7 +38,23 @@ ADDENDA_FROM = (72, 28)
 
 FIRM = re.compile(r"^[^,]{0,40}\s&\s|&\s*Co\b|\bBrothers\b", re.I)
 TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "sr", "sen"}
-PLACE = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
+# Norris's own abbreviations, printed in his preface: h for house, r for residence,
+# b for between. Two things had to be said about them that were not (T-0987 stretch 5):
+#
+#   `(?<!-)` — the compositor's HYPHEN is not a word boundary this rule may cut at.
+#   `\b` holds on the far side of one, so `boarding-house` read as a trade ending in
+#   a hyphen and an address beginning "house …".
+#
+#   THE SINGLE LETTERS ARE LOWER CASE AND A MAN'S INITIAL IS NOT. The whole pattern
+#   was compiled `re.I`, so `h`, `r` and `b` matched the capital initials this volume
+#   sets everywhere — and the address began at the first of them. `Adams, R. E. W,
+#   physician, corner of Clark and Lake streets` cut at the `R.` of the man's own
+#   name and left him no trade at all and an address of "E. W, physician, corner of
+#   Clark and Lake streets"; `Beer, Adam, shoemaker, at J. B. Mitchell's` cut at the
+#   `B.` of his employer and read a trade of "shoemaker, at J". 271 of the 2,073
+#   entries were cut at an initial. The abbreviation WORDS stay case-blind (`res`,
+#   `Res`); the three single letters do not.
+PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s")
 
 # FIRM OR PERSON IS DECIDED ON THE LEADING TOKENS, NOT ON THE FIRST COMMA (T-1013).
 #
@@ -296,6 +312,28 @@ def overrun_refusal(head: str, prefix, span: str):
     return None
 
 
+def still_the_name(tok: str, toks, i: int) -> bool:
+    """Is a comma-carrying token's comma one the name runs THROUGH?
+
+    Three printed shapes say yes, and Norris sets all three:
+
+      a suffix's own comma      `Bosworth, jr., Ezra`
+      a suffix standing after   `Bumpstead, Thomas, jr. house Wells st.`
+      a comma between initials  `Fuller, Andrew, E. clerk` where the scanner set
+                                the stop of `Andrew E.` as a comma
+
+    Everything else is the compositor closing the name and opening the trade,
+    which is the boundary `split_entry` walks past when this returns False.
+    """
+    if tok.strip(".,'\"()").lower().strip(",") in TITLES:
+        return True
+    nxt = toks[i + 1] if i + 1 < len(toks) else ""
+    if not nxt:
+        return False
+    return (nxt.strip(".,'\"()").lower() in TITLES
+            or bool(re.fullmatch(r"[A-Z]", nxt.strip(".,"))))
+
+
 def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
     head, head_repair = repair_welded_of(clean_head(text))
@@ -333,11 +371,33 @@ def split_entry(text: str):
         # guess off the far side of a comma, so the token test below cannot help.
         given = prefix[1:]
     elif not firm:
-        for tok in rest.split():
+        toks = rest.split()
+        for i, tok in enumerate(toks):
             bare = tok.strip(".,'\"").lower()
             if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
                     tok[:1].isupper() and len(given) < 3 and not PLACE.fullmatch(tok + " ")):
+                # AND THE COMMA THE COMPOSITOR SET WITHOUT A SPACE AFTER IT is the
+                # same comma. `Cleaver, T. B.,soap and oil factory` and `Wilson,
+                # Maihew,ship carpenter` put it inside a whitespace token, where the
+                # test below could never see it, and read forenames of "T. B.,soap"
+                # and "Maihew,ship". Keeping the comma on the kept half leaves the
+                # offset `rest` is sliced at unchanged, so the trade comes back whole.
+                inner = tok.find(",")
+                if 0 <= inner < len(tok) - 1:
+                    given.append(tok[:inner + 1])
+                    break
                 given.append(tok)
+                # THE PRINTED COMMA CLOSES THE NAME (T-0987 stretch 5, the defect
+                # stretch 4 fixed in `read_fergus_1839.py` and this stretch found
+                # unfixed here and in Fergus 1843). A capital and a count of three
+                # were the whole test, so the run walked past the comma Norris set
+                # after the forenames and took the word after it for another one:
+                # `Baumgarteu, Morris, Illinois street, b Dearborn and Wolcott`
+                # read a forename of "Morris, Illinois" and left Illinois Street
+                # inside the name; `Hanson, Abraham, Methodist clergymen` read
+                # "Abraham, Methodist" and lost the trade the comma opened.
+                if tok.rstrip(".").endswith(",") and not still_the_name(tok, toks, i):
+                    break
                 continue
             break
         rest = rest[len(" ".join(given)):].strip(" ,.")
@@ -867,6 +927,45 @@ def self_test():
         if want == "empty_prefix" and cid in by_id and not by_id[cid]["normalized"]["surname"]:
             fired.append("%s was capped to an empty surname, which drops it out of the "
                          "crosswalk with nothing said" % cid)
+    # T-0987 stretch 5. The three places the split cut at the wrong character, each
+    # asserted on a line Norris printed and then swept over the whole reading, because
+    # a rule proved on one entry and broken everywhere else reads green.
+    SPLIT_CASES = {
+        # the printed comma closes the name
+        "n1844_e0098": ("Morris", "Illinois street"),
+        "n1844_e0791": ("Abraham", "Methodist clergymen"),
+        # …and the comma set with no space after it is the same comma
+        "n1844_e0367": ("T. B", "soap and oil factory"),
+        "n1844_e1918": ("Maihew", "ship carpenter"),
+        # …and a suffix or an initial standing after it is not the end of the name
+        "n1844_e0235": ("Thomas, jr", None),
+        # the abbreviation is lower case and a man's initial is not
+        "n1844_e0113": ("Adam", "shoemaker, at J. B. Mitchell's"),
+        "n1844_e0135": ("A", "clerk at H. O. Stone's"),
+    }
+    for cid, (given, occupation) in SPLIT_CASES.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in SPLIT_CASES and is not in the reading" % cid)
+            continue
+        got = c["normalized"]
+        if got.get("given") != given:
+            fired.append("%s reads a forename of %r, not %r — the split moved"
+                         % (cid, got.get("given"), given))
+        if occupation is not None and got.get("occupation") != occupation:
+            fired.append("%s reads a trade of %r, not %r — the split moved"
+                         % (cid, got.get("occupation"), occupation))
+    for c in claims:
+        n = c["normalized"]
+        if re.match(r"^[A-Z]\.?\s", n.get("address") or ""):
+            fired.append("%s begins its address at %r — PLACE cut at a capital, which "
+                         "is a man's initial in this volume and never Norris's own "
+                         "abbreviation" % (c["id"], (n["address"] or "")[:24]))
+        if re.search(r",\S", n.get("given") or ""):
+            fired.append("%s reads a forename of %r — the comma inside it was set "
+                         "without a space and still closes the name"
+                         % (c["id"], n["given"]))
+
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
@@ -878,6 +977,9 @@ def self_test():
           "and %d against the page image (each read twice, on a reproducible crop), "
           "%d left damaged on purpose"
           % (len(REPAIRS), len(IMAGE_REPAIRS), len(UNREPAIRED)))
+    print("norris 1844 --self-test: %d printed lines hold the three split rules, and "
+          "no entry in %d begins an address at a capital or keeps an unspaced comma "
+          "inside a forename" % (len(SPLIT_CASES), len(claims)))
     print("norris 1844 --self-test: %d names read past the end of the name — %d capped "
           "at the prefix, %s"
           % (len(OVERRUN_CLASSES), tally["repaired"],

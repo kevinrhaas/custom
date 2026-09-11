@@ -24,7 +24,7 @@
   "of_those_contested": 0,
   "of_those_ambiguous": 3,
   "could_carry_occupation": 65,
-  "could_carry_address": 80
+  "could_carry_address": 79
  },
  "matches": [
   {
@@ -350,8 +350,8 @@
      "claim": "n1844_e0971",
      "as_printed": "Jones, Benjamin, of B. J. & Co. house Rand, b Clark aud Dearb",
      "printed_page": 42,
-     "occupation_1844": "of",
-     "address_1844": "B. J. & Co. house Rand, b Clark aud Dearb"
+     "occupation_1844": "of B. J. & Co",
+     "address_1844": "house Rand, b Clark aud Dearb"
     }
    ],
    "could_carry": [
@@ -622,8 +622,8 @@
      "claim": "n1844_e1645",
      "as_printed": "Smith, Elijah, of H. & E. Smith, h Ohio jst. b Dear and Wolcott",
      "printed_page": 56,
-     "occupation_1844": "of",
-     "address_1844": "H. & E. Smith, h Ohio jst. b Dear and Wolcott"
+     "occupation_1844": "of H. & E. Smith",
+     "address_1844": "h Ohio jst. b Dear and Wolcott"
     }
    ],
    "could_carry": [
@@ -851,8 +851,8 @@
      "claim": "n1844_e0167",
      "as_printed": "Bowen, Erastus, of B. & Cole, house Michigan avenue",
      "printed_page": 25,
-     "occupation_1844": "of",
-     "address_1844": "B. & Cole, house Michigan avenue"
+     "occupation_1844": "of B. & Cole",
+     "address_1844": "house Michigan avenue"
     }
    ],
    "could_carry": [
@@ -1103,8 +1103,8 @@
      "claim": "n1844_e0146",
      "as_printed": "Blakesley, H. A. of Loyd, B. & Co. residence Mrs. Boyer's",
      "printed_page": 24,
-     "occupation_1844": "of Loyd",
-     "address_1844": "B. & Co. residence Mrs. Boyer's"
+     "occupation_1844": "of Loyd, B. & Co",
+     "address_1844": "residence Mrs. Boyer's"
     }
    ],
    "could_carry": [
@@ -1353,8 +1353,8 @@
      "claim": "n1844_e0164",
      "as_printed": "Botsford, J. K. of B. & Beers, 109 Lake st. house Wabash street",
      "printed_page": 25,
-     "occupation_1844": "of",
-     "address_1844": "B. & Beers, 109 Lake st. house Wabash street"
+     "occupation_1844": "of B. & Beers, 109 Lake st",
+     "address_1844": "house Wabash street"
     }
    ],
    "could_carry": [
@@ -1629,8 +1629,8 @@
      "claim": "n1844_e0711",
      "as_printed": "Goodrich, J. W. clerk, at T. B. Carter & Co.'s, res S. Johnson's",
      "printed_page": 36,
-     "occupation_1844": "clerk, at T",
-     "address_1844": "B. Carter & Co.'s, res S. Johnson's"
+     "occupation_1844": "clerk, at T. B. Carter & Co.'s",
+     "address_1844": "res S. Johnson's"
     }
    ],
    "could_carry": [
@@ -1857,13 +1857,12 @@
      "claim": "n1844_e0186",
      "as_printed": "Bradley, Joseph, clerk, at W. H. Adams & Co.'s",
      "printed_page": 25,
-     "occupation_1844": "clerk, at W",
-     "address_1844": "H. Adams & Co.'s"
+     "occupation_1844": "clerk, at W. H. Adams & Co.'s",
+     "address_1844": null
     }
    ],
    "could_carry": [
-    "occupation",
-    "address"
+    "occupation"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false
@@ -2160,8 +2159,8 @@
      "claim": "n1844_e0200",
      "as_printed": "Bristol, R. C. of B. & Porter, residence on Reservation",
      "printed_page": 26,
-     "occupation_1844": "of",
-     "address_1844": "B. & Porter, residence on Reservation"
+     "occupation_1844": "of B. & Porter",
+     "address_1844": "residence on Reservation"
     }
    ],
    "could_carry": [
@@ -2186,8 +2185,8 @@
      "claim": "n1844_e1610",
      "as_printed": "Sherman, R. D. agent, B. F. Sherman, h Clark st. b Mad. & Mon",
      "printed_page": 55,
-     "occupation_1844": "agent",
-     "address_1844": "B. F. Sherman, h Clark st. b Mad. & Mon"
+     "occupation_1844": "agent, B. F. Sherman",
+     "address_1844": "h Clark st. b Mad. & Mon"
     }
    ],
    "could_carry": [
@@ -2212,8 +2211,8 @@
      "claim": "n1844_e0782",
      "as_printed": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
      "printed_page": 38,
-     "occupation_1844": "of",
-     "address_1844": "H. & Chamberlaine, h Mich b Cass <fe Hush"
+     "occupation_1844": "of H. & Chamberlaine",
+     "address_1844": "h Mich b Cass <fe Hush"
     }
    ],
    "could_carry": [],
@@ -2642,8 +2641,8 @@
      "claim": "n1844_e0011",
      "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison",
      "printed_page": 21,
-     "occupation_1844": "of W",
-     "address_1844": "H. A. & Co. residence iasalle. street, b Washington and Madison"
+     "occupation_1844": "of W. H. A. & Co",
+     "address_1844": "residence iasalle. street, b Washington and Madison"
     }
    ],
    "could_carry": [
@@ -2668,8 +2667,8 @@
      "claim": "n1844_e0981",
      "as_printed": "Jones, Wm. of B. Jones & Co. house cor Randolph and Dearborn",
      "printed_page": 42,
-     "occupation_1844": "of",
-     "address_1844": "B. Jones & Co. house cor Randolph and Dearborn"
+     "occupation_1844": "of B. Jones & Co",
+     "address_1844": "house cor Randolph and Dearborn"
     }
    ],
    "could_carry": [
@@ -4070,7 +4069,7 @@
      "claim": "n1844_e1323",
      "as_printed": "Murphy, John, United States Hotel, corner Randolph and W. Water sts. (See card.)",
      "printed_page": 49,
-     "occupation_1844": "Hotel, corner Randolph and W. Water sts. (See card.)",
+     "occupation_1844": "United States Hotel, corner Randolph and W. Water sts. (See card.)",
      "address_1844": null
     },
     {
@@ -6967,8 +6966,8 @@
     "claim": "n1844_e1645",
     "as_printed": "Smith, Elijah, of H. & E. Smith, h Ohio jst. b Dear and Wolcott",
     "printed_page": 56,
-    "occupation_1844": "of",
-    "address_1844": "H. & E. Smith, h Ohio jst. b Dear and Wolcott",
+    "occupation_1844": "of H. & E. Smith",
+    "address_1844": "h Ohio jst. b Dear and Wolcott",
     "forename_1835": "Elded",
     "forename_printed": "Elijah",
     "garbled_reading": false,
@@ -7111,8 +7110,8 @@
     "claim": "n1844_e1653",
     "as_printed": "Smith, John E. clerk at B. F. Sherman's",
     "printed_page": 56,
-    "occupation_1844": "clerk at",
-    "address_1844": "B. F. Sherman's",
+    "occupation_1844": "clerk at B. F. Sherman's",
+    "address_1844": null,
     "forename_1835": "James",
     "forename_printed": "John",
     "garbled_reading": false,
@@ -7175,8 +7174,8 @@
     "claim": "n1844_e1653",
     "as_printed": "Smith, John E. clerk at B. F. Sherman's",
     "printed_page": 56,
-    "occupation_1844": "clerk at",
-    "address_1844": "B. F. Sherman's",
+    "occupation_1844": "clerk at B. F. Sherman's",
+    "address_1844": null,
     "forename_1835": "Jeremiah",
     "forename_printed": "John",
     "garbled_reading": false,
@@ -7527,8 +7526,8 @@
     "claim": "n1844_e1660",
     "as_printed": "Smith, Michael, at S. B. Cobb's",
     "printed_page": 56,
-    "occupation_1844": "at S",
-    "address_1844": "B. Cobb's",
+    "occupation_1844": "at S. B. Cobb's",
+    "address_1844": null,
     "forename_1835": "Matthias",
     "forename_printed": "Michael",
     "garbled_reading": false,
@@ -7559,8 +7558,8 @@
     "claim": "n1844_e0783",
     "as_printed": "Hamilton, Robert P. of H. & White, res T. E. Hamilton's",
     "printed_page": 38,
-    "occupation_1844": "of",
-    "address_1844": "H. & White, res T. E. Hamilton's",
+    "occupation_1844": "of H. & White",
+    "address_1844": "res T. E. Hamilton's",
     "forename_1835": "Richard",
     "forename_printed": "Robert",
     "garbled_reading": false,
@@ -7751,8 +7750,8 @@
     "claim": "n1844_e0981",
     "as_printed": "Jones, Wm. of B. Jones & Co. house cor Randolph and Dearborn",
     "printed_page": 42,
-    "occupation_1844": "of",
-    "address_1844": "B. Jones & Co. house cor Randolph and Dearborn",
+    "occupation_1844": "of B. Jones & Co",
+    "address_1844": "house cor Randolph and Dearborn",
     "forename_1835": "Willard",
     "forename_printed": "Wm",
     "garbled_reading": false,

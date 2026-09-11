@@ -2830,8 +2830,8 @@
     "given": "C.",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "grocery store and boarding-",
-    "address": "house attached, and stabling in the rear, corner of Market and Randolph streets, between the South-Branch bridge and the Sauganash Hotel, Chicago, Ill",
+    "occupation": "grocery store and boarding-house attached, and stabling in the rear, corner of Market and Randolph streets, between the South-Branch bridge and the Sauganash Hotel, Chicago, Ill",
+    "address": null,
     "bracket_notes": [],
     "as_printed": "C. McDONNELL, grocery store and boarding-house attached, and stabling in the rear, corner of Market and Randolph streets, between the South-Branch bridge and the Sauganash Hotel, Chicago, Ill.",
     "section": "business directory",
@@ -4294,8 +4294,8 @@
     "given": "Eri",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "butcher and packer, Chicago, Ill., packing-",
-    "address": "house on the South-Branch, office at his residence on Dearborn St. N.B.- Butchering and packing will be done at the shortest notice, and on as reasonable terms as at any other establishment",
+    "occupation": "butcher and packer, Chicago, Ill., packing-house on the South-Branch, office at his",
+    "address": "residence on Dearborn St. N.B.- Butchering and packing will be done at the shortest notice, and on as reasonable terms as at any other establishment",
     "bracket_notes": [],
     "as_printed": "ERI REYNOLDS, butcher and packer, Chicago, Ill., packing-house on the South-Branch, office at his residence on Dearborn St. N.B.- Butchering and packing will be done at the shortest notice, and on as reasonable terms as at any other establishment.",
     "section": "business directory",
@@ -9207,12 +9207,12 @@
    "reading": "transcription_mediated",
    "quote": "Barker, Peleg A., Farmers Exchange, 35 Lake, s.-w. cor Wabash ave [died, Morris, Ill., September 13, 1871, aged\n64.]",
    "normalized": {
-    "printed_name": "Barker, Peleg A., Farmers Exchange",
+    "printed_name": "Barker, Peleg A",
     "surname": "Barker",
-    "given": "Peleg A., Farmers Exchange",
+    "given": "Peleg A",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "35 Lake, s.-w",
+    "occupation": "Farmers Exchange, 35 Lake, s.-w",
     "address": "cor Wabash ave",
     "bracket_notes": [
      "died, Morris, Ill., September 13, 1871, aged 64."
@@ -9232,7 +9232,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Barker, Peleg A., Farmers Exchange"
+    "Barker, Peleg A"
    ],
    "town_finding": false,
    "notes": null
@@ -10205,12 +10205,12 @@
    "reading": "transcription_mediated",
    "quote": "Baumgarten, Maurice, Illinois, bet N. Dearborn and Wolcott [died November 1, 1858, aged 77.]",
    "normalized": {
-    "printed_name": "Baumgarten, Maurice, Illinois",
+    "printed_name": "Baumgarten, Maurice",
     "surname": "Baumgarten",
-    "given": "Maurice, Illinois",
+    "given": "Maurice",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": null,
+    "occupation": "Illinois",
     "address": "bet N. Dearborn and Wolcott",
     "bracket_notes": [
      "died November 1, 1858, aged 77."
@@ -10230,7 +10230,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Baumgarten, Maurice, Illinois"
+    "Baumgarten, Maurice"
    ],
    "town_finding": false,
    "notes": null
@@ -10702,13 +10702,13 @@
    "reading": "transcription_mediated",
    "quote": "Beaubien, Mark, U.S. light-house keeper, res River street [died, Kankakee, Ill., April 11, 1881, aged 81]",
    "normalized": {
-    "printed_name": "Beaubien, Mark, U.S",
+    "printed_name": "Beaubien, Mark",
     "surname": "Beaubien",
-    "given": "Mark, U.S",
+    "given": "Mark",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "light-",
-    "address": "house keeper, res River street",
+    "occupation": "U.S. light-house keeper",
+    "address": "res River street",
     "bracket_notes": [
      "died, Kankakee, Ill., April 11, 1881, aged 81"
     ],
@@ -10727,7 +10727,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Beaubien, Mark, U.S"
+    "Beaubien, Mark"
    ],
    "town_finding": false,
    "notes": null
@@ -11188,12 +11188,12 @@
    "reading": "transcription_mediated",
    "quote": "Bell, John, Stow's Foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "Bell, John, Stow's Foundry",
+    "printed_name": "Bell, John",
     "surname": "Bell",
-    "given": "John, Stow's Foundry",
+    "given": "John",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": null,
+    "occupation": "Stow's Foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "Bell, John, Stow's Foundry, bds Western Hotel",
@@ -11211,7 +11211,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Bell, John, Stow's Foundry"
+    "Bell, John"
    ],
    "town_finding": false,
    "notes": null
@@ -12691,12 +12691,12 @@
    "reading": "transcription_mediated",
    "quote": "Blaney, James VanZant, M.D., prof, chemistry Rush Medical College [died December 12,1874, aged 54½.]",
    "normalized": {
-    "printed_name": "Blaney, James VanZant, M.D",
+    "printed_name": "Blaney, James VanZant",
     "surname": "Blaney",
-    "given": "James VanZant, M.D",
+    "given": "James VanZant",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "prof, chemistry Rush Medical College",
+    "occupation": "M.D., prof, chemistry Rush Medical College",
     "address": null,
     "bracket_notes": [
      "died December 12,1874, aged 54½."
@@ -12716,7 +12716,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Blaney, James VanZant, M.D"
+    "Blaney, James VanZant"
    ],
    "town_finding": false,
    "notes": null
@@ -13638,12 +13638,12 @@
    "reading": "transcription_mediated",
    "quote": "Bowes, John P., John Gage's mill, res Clinton, bet Adams & Jackson",
    "normalized": {
-    "printed_name": "Bowes, John P., John Gage's",
+    "printed_name": "Bowes, John P",
     "surname": "Bowes",
-    "given": "John P., John Gage's",
+    "given": "John P",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "mill",
+    "occupation": "John Gage's mill",
     "address": "res Clinton, bet Adams & Jackson",
     "bracket_notes": [],
     "as_printed": "Bowes, John P., John Gage's mill, res Clinton, bet Adams & Jackson",
@@ -13661,7 +13661,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Bowes, John P., John Gage's"
+    "Bowes, John P"
    ],
    "town_finding": false,
    "notes": null
@@ -26122,12 +26122,12 @@
    "reading": "transcription_mediated",
    "quote": "Curtiss, James, State's attorney, 136 Lake, res W. Randolph, bet May and Ann [9th mayor, died, Joliet, Ill, November\n2, 1859, aged 56]",
    "normalized": {
-    "printed_name": "Curtiss, James, State's",
+    "printed_name": "Curtiss, James",
     "surname": "Curtiss",
-    "given": "James, State's",
+    "given": "James",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "attorney, 136 Lake",
+    "occupation": "State's attorney, 136 Lake",
     "address": "res W. Randolph, bet May and Ann",
     "bracket_notes": [
      "9th mayor, died, Joliet, Ill, November 2, 1859, aged 56"
@@ -26147,7 +26147,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Curtiss, James, State's"
+    "Curtiss, James"
    ],
    "town_finding": false,
    "notes": null
@@ -28170,12 +28170,12 @@
    "reading": "transcription_mediated",
    "quote": "Dickinson, Augustus, City Eating House, Dearb'n. bet Lake & S. Water [died January 13, 1891. aged 74]",
    "normalized": {
-    "printed_name": "Dickinson, Augustus, City Eating House",
+    "printed_name": "Dickinson, Augustus",
     "surname": "Dickinson",
-    "given": "Augustus, City Eating House",
+    "given": "Augustus",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "Dearb'n",
+    "occupation": "City Eating House, Dearb'n",
     "address": "bet Lake & S. Water",
     "bracket_notes": [
      "died January 13, 1891. aged 74"
@@ -28195,7 +28195,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Dickinson, Augustus, City Eating House"
+    "Dickinson, Augustus"
    ],
    "town_finding": false,
    "notes": null
@@ -29504,12 +29504,12 @@
    "reading": "transcription_mediated",
    "quote": "Doun, William, Stow's foundry",
    "normalized": {
-    "printed_name": "Doun, William, Stow's",
+    "printed_name": "Doun, William",
     "surname": "Doun",
-    "given": "William, Stow's",
+    "given": "William",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": null,
     "bracket_notes": [],
     "as_printed": "Doun, William, Stow's foundry",
@@ -29527,7 +29527,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Doun, William, Stow's"
+    "Doun, William"
    ],
    "town_finding": false,
    "notes": null
@@ -33083,12 +33083,12 @@
    "reading": "transcription_mediated",
    "quote": "Fischer, Francis Joseph, Catholic priest, res Wabash ave",
    "normalized": {
-    "printed_name": "Fischer, Francis Joseph, Catholic",
+    "printed_name": "Fischer, Francis Joseph",
     "surname": "Fischer",
-    "given": "Francis Joseph, Catholic",
+    "given": "Francis Joseph",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "priest",
+    "occupation": "Catholic priest",
     "address": "res Wabash ave",
     "bracket_notes": [],
     "as_printed": "Fischer, Francis Joseph, Catholic priest, res Wabash ave",
@@ -33106,7 +33106,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Fischer, Francis Joseph, Catholic"
+    "Fischer, Francis Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -34431,12 +34431,12 @@
    "reading": "transcription_mediated",
    "quote": "Foss, John Peaslee, Foss & Brothers' planing-mill",
    "normalized": {
-    "printed_name": "Foss, John Peaslee, Foss",
+    "printed_name": "Foss, John Peaslee",
     "surname": "Foss",
-    "given": "John Peaslee, Foss",
+    "given": "John Peaslee",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "& Brothers' planing-mill",
+    "occupation": "Foss & Brothers' planing-mill",
     "address": null,
     "bracket_notes": [],
     "as_printed": "Foss, John Peaslee, Foss & Brothers' planing-mill",
@@ -34454,7 +34454,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Foss, John Peaslee, Foss"
+    "Foss, John Peaslee"
    ],
    "town_finding": false,
    "notes": null
@@ -34465,12 +34465,12 @@
    "reading": "transcription_mediated",
    "quote": "Foss, Robert Harris, Foss & Brothers' planing-mill [died, Dover, N.H., July 28, 1893, aged 79]",
    "normalized": {
-    "printed_name": "Foss, Robert Harris, Foss",
+    "printed_name": "Foss, Robert Harris",
     "surname": "Foss",
-    "given": "Robert Harris, Foss",
+    "given": "Robert Harris",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "& Brothers' planing-mill",
+    "occupation": "Foss & Brothers' planing-mill",
     "address": null,
     "bracket_notes": [
      "died, Dover, N.H., July 28, 1893, aged 79"
@@ -34490,7 +34490,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Foss, Robert Harris, Foss"
+    "Foss, Robert Harris"
    ],
    "town_finding": false,
    "notes": null
@@ -34501,12 +34501,12 @@
    "reading": "transcription_mediated",
    "quote": "Foss, Sam'l Titcomb, Foss & Bros.' planing-mill [d.Mar. 28,1870, a. 59].",
    "normalized": {
-    "printed_name": "Foss, Sam'l Titcomb, Foss",
+    "printed_name": "Foss, Sam'l Titcomb",
     "surname": "Foss",
-    "given": "Sam'l Titcomb, Foss",
+    "given": "Sam'l Titcomb",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "& Bros.' planing-mill",
+    "occupation": "Foss & Bros.' planing-mill",
     "address": null,
     "bracket_notes": [
      "d.Mar. 28,1870, a. 59"
@@ -34526,7 +34526,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Foss, Sam'l Titcomb, Foss"
+    "Foss, Sam'l Titcomb"
    ],
    "town_finding": false,
    "notes": null
@@ -34537,12 +34537,12 @@
    "reading": "transcription_mediated",
    "quote": "Foss, William Ham, Foss & Brothers' planing-mill [died, Portsmouth, N.H., September 1858, aged 50]",
    "normalized": {
-    "printed_name": "Foss, William Ham, Foss",
+    "printed_name": "Foss, William Ham",
     "surname": "Foss",
-    "given": "William Ham, Foss",
+    "given": "William Ham",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "& Brothers' planing-mill",
+    "occupation": "Foss & Brothers' planing-mill",
     "address": null,
     "bracket_notes": [
      "died, Portsmouth, N.H., September 1858, aged 50"
@@ -34562,7 +34562,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Foss, William Ham, Foss"
+    "Foss, William Ham"
    ],
    "town_finding": false,
    "notes": null
@@ -38416,8 +38416,8 @@
     "given": "Gabriel",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "boarding-",
-    "address": "house and grocery, Canada Home, N. Water",
+    "occupation": "boarding-house and grocery, Canada Home, N. Water",
+    "address": null,
     "bracket_notes": [],
     "as_printed": "Goulet, Gabriel, boarding-house and grocery, Canada Home, N. Water",
     "section": "alphabetical directory",
@@ -41536,12 +41536,12 @@
    "reading": "transcription_mediated",
    "quote": "Hamlin, E. H., Baptist clergyman, res LaSalle, bet Washington & Mad.",
    "normalized": {
-    "printed_name": "Hamlin, E. H., Baptist",
+    "printed_name": "Hamlin, E. H",
     "surname": "Hamlin",
-    "given": "E. H., Baptist",
+    "given": "E. H",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Baptist clergyman",
     "address": "res LaSalle, bet Washington & Mad",
     "bracket_notes": [],
     "as_printed": "Hamlin, E. H., Baptist clergyman, res LaSalle, bet Washington & Mad.",
@@ -41559,7 +41559,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Hamlin, E. H., Baptist"
+    "Hamlin, E. H"
    ],
    "town_finding": false,
    "notes": null
@@ -41710,12 +41710,12 @@
    "reading": "transcription_mediated",
    "quote": "Hanson, Abraham, Methodist clergyman, res Clark, bet Washington and Madison",
    "normalized": {
-    "printed_name": "Hanson, Abraham, Methodist",
+    "printed_name": "Hanson, Abraham",
     "surname": "Hanson",
-    "given": "Abraham, Methodist",
+    "given": "Abraham",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Methodist clergyman",
     "address": "res Clark, bet Washington and Madison",
     "bracket_notes": [],
     "as_printed": "Hanson, Abraham, Methodist clergyman, res Clark, bet Washington and Madison",
@@ -41733,7 +41733,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Hanson, Abraham, Methodist"
+    "Hanson, Abraham"
    ],
    "town_finding": false,
    "notes": null
@@ -42196,12 +42196,12 @@
    "reading": "transcription_mediated",
    "quote": "Harrington, Joseph, Unitarian clergyman, res Michigan, n.-w. cor N. Dearborn [died, San Francisco, Cal., November\n2, 1852, aged 39 2/3.]",
    "normalized": {
-    "printed_name": "Harrington, Joseph, Unitarian",
+    "printed_name": "Harrington, Joseph",
     "surname": "Harrington",
-    "given": "Joseph, Unitarian",
+    "given": "Joseph",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Unitarian clergyman",
     "address": "res Michigan, n.-w. cor N. Dearborn",
     "bracket_notes": [
      "died, San Francisco, Cal., November 2, 1852, aged 39 2/3."
@@ -42221,7 +42221,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Harrington, Joseph, Unitarian"
+    "Harrington, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -44498,12 +44498,12 @@
    "reading": "transcription_mediated",
    "quote": "Hitchcock, Luke, Methodist clergyman, res Parsonage, 115.Clark",
    "normalized": {
-    "printed_name": "Hitchcock, Luke, Methodist",
+    "printed_name": "Hitchcock, Luke",
     "surname": "Hitchcock",
-    "given": "Luke, Methodist",
+    "given": "Luke",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Methodist clergyman",
     "address": "res Parsonage, 115.Clark",
     "bracket_notes": [],
     "as_printed": "Hitchcock, Luke, Methodist clergyman, res Parsonage, 115.Clark",
@@ -44521,7 +44521,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Hitchcock, Luke, Methodist"
+    "Hitchcock, Luke"
    ],
    "town_finding": false,
    "notes": null
@@ -46692,12 +46692,12 @@
    "reading": "transcription_mediated",
    "quote": "Howe, James L., City bakery, 285 Kinzie near Rush [died February 27, 1863. aged 48]",
    "normalized": {
-    "printed_name": "Howe, James L., City",
+    "printed_name": "Howe, James L",
     "surname": "Howe",
-    "given": "James L., City",
+    "given": "James L",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "bakery, 285 Kinzie",
+    "occupation": "City bakery, 285 Kinzie",
     "address": "near Rush",
     "bracket_notes": [
      "died February 27, 1863. aged 48"
@@ -46717,7 +46717,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Howe, James L., City"
+    "Howe, James L"
    ],
    "town_finding": false,
    "notes": null
@@ -54502,12 +54502,12 @@
    "reading": "transcription_mediated",
    "quote": "Lawless, F. H., Stow's foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "Lawless, F. H., Stow's",
+    "printed_name": "Lawless, F. H",
     "surname": "Lawless",
-    "given": "F. H., Stow's",
+    "given": "F. H",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "Lawless, F. H., Stow's foundry, bds Western Hotel",
@@ -54525,7 +54525,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Lawless, F. H., Stow's"
+    "Lawless, F. H"
    ],
    "town_finding": false,
    "notes": null
@@ -57188,12 +57188,12 @@
    "reading": "transcription_mediated",
    "quote": "McCarty, William, Stow's foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "McCarty, William, Stow's",
+    "printed_name": "McCarty, William",
     "surname": "McCarty",
-    "given": "William, Stow's",
+    "given": "William",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "McCarty, William, Stow's foundry, bds Western Hotel",
@@ -57211,7 +57211,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "McCarty, William, Stow's"
+    "McCarty, William"
    ],
    "town_finding": false,
    "notes": null
@@ -58818,12 +58818,12 @@
    "reading": "transcription_mediated",
    "quote": "McIntyre, William, Scoville & Gates",
    "normalized": {
-    "printed_name": "McIntyre, William, Scoville",
+    "printed_name": "McIntyre, William",
     "surname": "McIntyre",
-    "given": "William, Scoville",
+    "given": "William",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "& Gates",
+    "occupation": "Scoville & Gates",
     "address": null,
     "bracket_notes": [],
     "as_printed": "McIntyre, William, Scoville & Gates",
@@ -58841,7 +58841,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "McIntyre, William, Scoville"
+    "McIntyre, William"
    ],
    "town_finding": false,
    "notes": null
@@ -59058,12 +59058,12 @@
    "reading": "transcription_mediated",
    "quote": "McLeoud, R., Stow's foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "McLeoud, R., Stow's",
+    "printed_name": "McLeoud, R",
     "surname": "McLeoud",
-    "given": "R., Stow's",
+    "given": "R",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "McLeoud, R., Stow's foundry, bds Western Hotel",
@@ -59081,7 +59081,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "McLeoud, R., Stow's"
+    "McLeoud, R"
    ],
    "town_finding": false,
    "notes": null
@@ -60306,12 +60306,12 @@
    "reading": "transcription_mediated",
    "quote": "Manley, William E., Universalist clergyman, res Clark",
    "normalized": {
-    "printed_name": "Manley, William E., Universalist",
+    "printed_name": "Manley, William E",
     "surname": "Manley",
-    "given": "William E., Universalist",
+    "given": "William E",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Universalist clergyman",
     "address": "res Clark",
     "bracket_notes": [],
     "as_printed": "Manley, William E., Universalist clergyman, res Clark",
@@ -60329,7 +60329,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Manley, William E., Universalist"
+    "Manley, William E"
    ],
    "town_finding": false,
    "notes": null
@@ -61913,8 +61913,8 @@
     "given": "Mrs. Mary",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "boarding-",
-    "address": "house Lake, bet State and Wabash ave",
+    "occupation": "boarding-house Lake",
+    "address": "bet State and Wabash ave",
     "bracket_notes": [],
     "as_printed": "Merriam, Mrs. Mary, boarding-house Lake, bet State and Wabash ave",
     "section": "alphabetical directory",
@@ -62819,12 +62819,12 @@
    "reading": "transcription_mediated",
    "quote": "Mitchell, George, Stow's foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "Mitchell, George, Stow's",
+    "printed_name": "Mitchell, George",
     "surname": "Mitchell",
-    "given": "George, Stow's",
+    "given": "George",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "Mitchell, George, Stow's foundry, bds Western Hotel",
@@ -62842,7 +62842,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Mitchell, George, Stow's"
+    "Mitchell, George"
    ],
    "town_finding": false,
    "notes": null
@@ -63097,12 +63097,12 @@
    "reading": "transcription_mediated",
    "quote": "Moffet, James, Scoville & Gates",
    "normalized": {
-    "printed_name": "Moffet, James, Scoville",
+    "printed_name": "Moffet, James",
     "surname": "Moffet",
-    "given": "James, Scoville",
+    "given": "James",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "& Gates",
+    "occupation": "Scoville & Gates",
     "address": null,
     "bracket_notes": [],
     "as_printed": "Moffet, James, Scoville & Gates",
@@ -63120,7 +63120,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Moffet, James, Scoville"
+    "Moffet, James"
    ],
    "town_finding": false,
    "notes": null
@@ -66010,12 +66010,12 @@
    "reading": "transcription_mediated",
    "quote": "Noble, George Alexander, M.D., school-teacher, Lake, res s.e. cor Washington and Franklin",
    "normalized": {
-    "printed_name": "Noble, George Alexander, M.D",
+    "printed_name": "Noble, George Alexander",
     "surname": "Noble",
-    "given": "George Alexander, M.D",
+    "given": "George Alexander",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "school-teacher, Lake",
+    "occupation": "M.D., school-teacher, Lake",
     "address": "res s.e. cor Washington and Franklin",
     "bracket_notes": [],
     "as_printed": "Noble, George Alexander, M.D., school-teacher, Lake, res s.e. cor Washington and Franklin",
@@ -66033,7 +66033,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Noble, George Alexander, M.D"
+    "Noble, George Alexander"
    ],
    "town_finding": false,
    "notes": null
@@ -67339,8 +67339,8 @@
     "given": "Seth",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "county poor-",
-    "address": "house keeper",
+    "occupation": "county poor-house keeper",
+    "address": null,
     "bracket_notes": [
      "died April 27, 1847, aged 70."
     ],
@@ -68240,12 +68240,12 @@
    "reading": "transcription_mediated",
    "quote": "Patterson, Robert Wilson, Presby. minister, res State near Randolph [died, Evanston, Ill., March 28, 1894, aged\n7?]",
    "normalized": {
-    "printed_name": "Patterson, Robert Wilson, Presby",
+    "printed_name": "Patterson, Robert Wilson",
     "surname": "Patterson",
-    "given": "Robert Wilson, Presby",
+    "given": "Robert Wilson",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "minister",
+    "occupation": "Presby. minister",
     "address": "res State near Randolph",
     "bracket_notes": [
      "died, Evanston, Ill., March 28, 1894, aged 7?"
@@ -68265,7 +68265,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Patterson, Robert Wilson, Presby"
+    "Patterson, Robert Wilson"
    ],
    "town_finding": false,
    "notes": null
@@ -71196,12 +71196,12 @@
    "reading": "transcription_mediated",
    "quote": "Quarters, Walter, Catholic priest, bds 114 Michigan ave",
    "normalized": {
-    "printed_name": "Quarters, Walter, Catholic",
+    "printed_name": "Quarters, Walter",
     "surname": "Quarters",
-    "given": "Walter, Catholic",
+    "given": "Walter",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "priest",
+    "occupation": "Catholic priest",
     "address": "bds 114 Michigan ave",
     "bracket_notes": [],
     "as_printed": "Quarters, Walter, Catholic priest, bds 114 Michigan ave",
@@ -71219,7 +71219,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Quarters, Walter, Catholic"
+    "Quarters, Walter"
    ],
    "town_finding": false,
    "notes": null
@@ -72724,12 +72724,12 @@
    "reading": "transcription_mediated",
    "quote": "Rice, Joseph, Stow's foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "Rice, Joseph, Stow's",
+    "printed_name": "Rice, Joseph",
     "surname": "Rice",
-    "given": "Joseph, Stow's",
+    "given": "Joseph",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "Rice, Joseph, Stow's foundry, bds Western Hotel",
@@ -72747,7 +72747,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Rice, Joseph, Stow's"
+    "Rice, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -73040,12 +73040,12 @@
    "reading": "transcription_mediated",
    "quote": "Roberts, David Lewis, Chicago Temperance House, 17-19 LaSalle [died, Jefferson, Ill., December 30, 1864. aged 63]",
    "normalized": {
-    "printed_name": "Roberts, David Lewis, Chicago Temperance",
+    "printed_name": "Roberts, David Lewis",
     "surname": "Roberts",
-    "given": "David Lewis, Chicago Temperance",
+    "given": "David Lewis",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "House, 17-19 LaSalle",
+    "occupation": "Chicago Temperance House, 17-19 LaSalle",
     "address": null,
     "bracket_notes": [
      "died, Jefferson, Ill., December 30, 1864. aged 63"
@@ -73065,7 +73065,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Roberts, David Lewis, Chicago Temperance"
+    "Roberts, David Lewis"
    ],
    "town_finding": false,
    "notes": null
@@ -73212,12 +73212,12 @@
    "reading": "transcription_mediated",
    "quote": "Robertson, David, Sauganash Hotel",
    "normalized": {
-    "printed_name": "Robertson, David, Sauganash Hotel",
+    "printed_name": "Robertson, David",
     "surname": "Robertson",
-    "given": "David, Sauganash Hotel",
+    "given": "David",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": null,
+    "occupation": "Sauganash Hotel",
     "address": null,
     "bracket_notes": [],
     "as_printed": "Robertson, David, Sauganash Hotel",
@@ -73235,7 +73235,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Robertson, David, Sauganash Hotel"
+    "Robertson, David"
    ],
    "town_finding": false,
    "notes": null
@@ -74248,12 +74248,12 @@
    "reading": "transcription_mediated",
    "quote": "Rowlatt, William, Bethel clergyman, bds Henry Smith",
    "normalized": {
-    "printed_name": "Rowlatt, William, Bethel",
+    "printed_name": "Rowlatt, William",
     "surname": "Rowlatt",
-    "given": "William, Bethel",
+    "given": "William",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Bethel clergyman",
     "address": "bds Henry Smith",
     "bracket_notes": [],
     "as_printed": "Rowlatt, William, Bethel clergyman, bds Henry Smith",
@@ -74271,7 +74271,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Rowlatt, William, Bethel"
+    "Rowlatt, William"
    ],
    "town_finding": false,
    "notes": null
@@ -75931,8 +75931,8 @@
     "given": "Andre",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "boarding-",
-    "address": "house and saloon, 207-9 Randolph",
+    "occupation": "boarding-house and saloon, 207-9 Randolph",
+    "address": null,
     "bracket_notes": [
      "died May 5, 1872"
     ],
@@ -76100,12 +76100,12 @@
    "reading": "transcription_mediated",
    "quote": "Schlatter, Charles L., U.-S. government agent, res Fort Dearborn",
    "normalized": {
-    "printed_name": "Schlatter, Charles L., U.-S",
+    "printed_name": "Schlatter, Charles L",
     "surname": "Schlatter",
-    "given": "Charles L., U.-S",
+    "given": "Charles L",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "government agent",
+    "occupation": "U.-S. government agent",
     "address": "res Fort Dearborn",
     "bracket_notes": [],
     "as_printed": "Schlatter, Charles L., U.-S. government agent, res Fort Dearborn",
@@ -76123,7 +76123,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Schlatter, Charles L., U.-S"
+    "Schlatter, Charles L"
    ],
    "town_finding": false,
    "notes": null
@@ -79433,12 +79433,12 @@
    "reading": "transcription_mediated",
    "quote": "Smith, Charles Billings, Baptist clergyman, bds Mrs. Merriam [died, Grand Rapids, Mich., September 17, 1890, aged\n76]",
    "normalized": {
-    "printed_name": "Smith, Charles Billings, Baptist",
+    "printed_name": "Smith, Charles Billings",
     "surname": "Smith",
-    "given": "Charles Billings, Baptist",
+    "given": "Charles Billings",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clergyman",
+    "occupation": "Baptist clergyman",
     "address": "bds Mrs. Merriam",
     "bracket_notes": [
      "died, Grand Rapids, Mich., September 17, 1890, aged 76"
@@ -79458,7 +79458,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Smith, Charles Billings, Baptist"
+    "Smith, Charles Billings"
    ],
    "town_finding": false,
    "notes": null
@@ -84664,12 +84664,12 @@
    "reading": "transcription_mediated",
    "quote": "Thompson, George C, Stow's foundry, bds Western Hotel",
    "normalized": {
-    "printed_name": "Thompson, George C, Stow's",
+    "printed_name": "Thompson, George C",
     "surname": "Thompson",
-    "given": "George C, Stow's",
+    "given": "George C",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "foundry",
+    "occupation": "Stow's foundry",
     "address": "bds Western Hotel",
     "bracket_notes": [],
     "as_printed": "Thompson, George C, Stow's foundry, bds Western Hotel",
@@ -84687,7 +84687,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Thompson, George C, Stow's"
+    "Thompson, George C"
    ],
    "town_finding": false,
    "notes": null
@@ -86504,12 +86504,12 @@
    "reading": "transcription_mediated",
    "quote": "Vandreuzer, E., Eagle Saloon, 10 Dearborn",
    "normalized": {
-    "printed_name": "Vandreuzer, E., Eagle Saloon",
+    "printed_name": "Vandreuzer, E",
     "surname": "Vandreuzer",
-    "given": "E., Eagle Saloon",
+    "given": "E",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "10 Dearborn",
+    "occupation": "Eagle Saloon, 10 Dearborn",
     "address": null,
     "bracket_notes": [],
     "as_printed": "Vandreuzer, E., Eagle Saloon, 10 Dearborn",
@@ -86527,7 +86527,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Vandreuzer, E., Eagle Saloon"
+    "Vandreuzer, E"
    ],
    "town_finding": false,
    "notes": null
@@ -89601,12 +89601,12 @@
    "reading": "transcription_mediated",
    "quote": "Wentworth, Geo. Wallingford, M.D., assist, editor Chicago Democrat , bds United States Hotel [died August\n14, 1850, aged 30.]",
    "normalized": {
-    "printed_name": "Wentworth, Geo. Wallingford, M.D",
+    "printed_name": "Wentworth, Geo. Wallingford",
     "surname": "Wentworth",
-    "given": "Geo. Wallingford, M.D",
+    "given": "Geo. Wallingford",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "assist, editor Chicago Democrat",
+    "occupation": "M.D., assist, editor Chicago Democrat",
     "address": "bds United States Hotel",
     "bracket_notes": [
      "died August 14, 1850, aged 30."
@@ -89626,7 +89626,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Wentworth, Geo. Wallingford, M.D"
+    "Wentworth, Geo. Wallingford"
    ],
    "town_finding": false,
    "notes": null
@@ -91524,12 +91524,12 @@
    "reading": "transcription_mediated",
    "quote": "Wills, Solomon, Circuit Court clerk's office, res 187 State",
    "normalized": {
-    "printed_name": "Wills, Solomon, Circuit Court",
+    "printed_name": "Wills, Solomon",
     "surname": "Wills",
-    "given": "Solomon, Circuit Court",
+    "given": "Solomon",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "clerk's office",
+    "occupation": "Circuit Court clerk's office",
     "address": "res 187 State",
     "bracket_notes": [],
     "as_printed": "Wills, Solomon, Circuit Court clerk's office, res 187 State",
@@ -91547,7 +91547,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Wills, Solomon, Circuit Court"
+    "Wills, Solomon"
    ],
    "town_finding": false,
    "notes": null

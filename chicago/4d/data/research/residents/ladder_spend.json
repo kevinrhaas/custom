@@ -587,7 +587,7 @@
    "person_id": "beaubien_mark",
    "household_id": "hh_beaubien_mark",
    "name": "Mark Beaubien",
-   "identity": "id_beaubien_mark_u_s",
+   "identity": "id_beaubien_mark",
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
@@ -1892,7 +1892,7 @@
    "person_id": "curtiss_j",
    "household_id": "hh_curtiss_j",
    "name": "J. Curtiss",
-   "identity": "id_curtiss_james_states",
+   "identity": "id_curtiss_james",
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
@@ -4934,7 +4934,7 @@
    "person_id": "murphy_john",
    "household_id": "hh_murphy_john",
    "name": "John Murphy",
-   "identity": "id_murphy_john_united_states",
+   "identity": "id_murphy_john",
    "rule": "G1a",
    "grade": "attested",
    "resident_subtype": null

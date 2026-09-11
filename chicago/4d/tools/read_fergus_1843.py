@@ -81,7 +81,12 @@ TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "
 # residence, bds for boards. `cor` and `op.` are his too. The address begins at the
 # first of them. Deliberately NOT `at`: "attorney at law" is a trade, and an `at`
 # in the list cut sixteen hundred of them in half.
-PLACE = re.compile(r"\b(?:res|bds|bet|cor|house|boards|residence|opp?|near|over)\.?\s", re.I)
+# `(?<!-)` because the compositor's HYPHEN is not a word boundary this rule may cut
+# at (T-0987 stretch 5). `\b` holds on the far side of one, so `boarding-house`,
+# `packing-house`, `poor-house` and Mark Beaubien's `light-house keeper` were each read
+# as a trade ending in a hyphen and an address beginning "house …" — seven entries whose
+# address was the tail of their own trade.
+PLACE = re.compile(r"\b(?<!-)(?:res|bds|bet|cor|house|boards|residence|opp?|near|over)\.?\s", re.I)
 
 
 def lines_of(page: int):
@@ -93,6 +98,27 @@ def fold_surname(s: str) -> str:
     return re.sub(r"[^a-z]", "", (s or "").lower())
 
 
+def still_the_name(tok: str, toks, i: int) -> bool:
+    """Is a comma-carrying token's comma one the name runs THROUGH?
+
+    Three printed shapes say yes, and the volume sets all three:
+
+      a suffix's own comma      `Bates, jr., John`  `Baumgarten, jr., Morris`
+      a suffix standing after   `Bumpstead, Thomas, jr.`
+      a comma between initials  `Stewart, E, A, watchmaker`  `Hamlin, E. H., Baptist`
+
+    Everything else is the compositor closing the name and opening the trade,
+    which is what `split_name` walks past when this returns False.
+    """
+    if tok.strip(".,'\"()").lower().strip(",") in TITLES:
+        return True
+    nxt = toks[i + 1] if i + 1 < len(toks) else ""
+    if not nxt:
+        return False
+    return (nxt.strip(".,'\"()").lower() in TITLES
+            or bool(re.fullmatch(r"[A-Z]", nxt.strip(".,"))))
+
+
 def split_name(rest: str):
     """The leading run of name-shaped tokens after the surname comma.
 
@@ -100,16 +126,36 @@ def split_name(rest: str):
     where Fergus's trade begins: "Adams, Mrs. Maria, laundress" gives "Mrs.
     Maria"; "Allen, James Pierce (J. P A. & Co.) res 9 River" gives "James
     Pierce" and leaves the firm to the occupation.
+
+    AND IT STOPS AT THE PRINTED COMMA (T-0987 stretch 5, the same defect
+    stretch 4 fixed in `read_fergus_1839.py`). A capital and a count of four
+    were the whole test, so the run walked straight past the comma the
+    compositor set after the forenames and took the next capitalised word for
+    another one: `Baumgarten, Maurice, Illinois, bet N. Dearborn and Wolcott`
+    read a forename of "Maurice, Illinois" and left Illinois Street — the only
+    street in the line — inside the name. A title or a suffix carries a comma
+    of its own (`Bates, jr., John`), so its comma is not the one that closes
+    the name.
     """
     given = []
     toks = rest.split()
-    for tok in toks:
+    for i, tok in enumerate(toks):
         bare = tok.strip(".,'\"()").lower()
         if tok.startswith("("):
             break
         if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
                 tok[:1].isupper() and len(given) < 4):
+            # AND THE COMMA THE COMPOSITOR SET WITHOUT A SPACE AFTER IT is the same
+            # comma: it sits inside a whitespace token, where the test below could
+            # never see it. Keeping the comma on the kept half leaves the offset
+            # `rest` is sliced at unchanged, so the trade comes back whole.
+            inner = tok.find(",")
+            if 0 <= inner < len(tok) - 1:
+                given.append(tok[:inner + 1])
+                break
             given.append(tok)
+            if tok.rstrip(".").endswith(",") and not still_the_name(tok, toks, i):
+                break
             continue
         break
     given_s = " ".join(given).strip(" ,.")
