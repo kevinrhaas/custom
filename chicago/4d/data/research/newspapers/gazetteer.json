@@ -165,11 +165,11 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_06_11.json",
-      "sha256": "21a27be6fb55e53df5887c311ef9fdfe1f87b9f070ebbec703e39e0c46a11443"
+      "sha256": "1d3b937b2bbe6e17e01224548add6888c014608bc31fce1482f81b67a2dc9f1e"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_06_18.json",
-      "sha256": "5a510756bc2903dc88d8d55a312f41911f40fda70bcf6ef7794ed3a0db56c889"
+      "sha256": "81eaae36a81d426214e0ca30fb37473de932891849747b6f00c3a2cfec52c8f3"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_06_25.json",
@@ -177,7 +177,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_02.json",
-      "sha256": "4025ff9fb3d55df268971ba09b1c90f1085c1ab53db2c2598e26b97875a46088"
+      "sha256": "0a198dcb6ad969edac347e3dff5e4e95394a9fb4b08d6df1974bec4819a432a1"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_09.json",
@@ -60326,9 +60326,10 @@
       "placement": {
         "class": "relative",
         "anchor": "the corner of Randolph st.",
-        "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
+        "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
         "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
-        "street": "South Water Street"
+        "street": "South Water Street",
+        "note": "T-0869 RULED THIS PLACEMENT A BEARING, NOT AN ADDRESS. All three printings of this advertisement were re-read at the page images on 2026-09-11 and every one of them sets 'the corner of Randolph st.' — see data/research/newspapers/clark_filer_randolph_corner_1834.json for the readings, the crop regions and the deposit sha256. They are ONE standing setting re-impressed, not three compositions: identical line breaks through the placement, the same 'cosisting' misprint, the same chair cuts, the same 'Chicago, June 10, 1834. 28' at the foot, and the phrase runs in at least five issues from 1834-06-11 to 1834-07-23. So the cross street was NOT mis-set by a slipping hand — there is no per-impression variation to be the slip. What stands is that the firm named a corner it did not stand on, which is how it locates elsewhere in the same month ('three doors from the Baptist meeting house', 1834-06-04). A wrong word in the firm's own copy, standing for six weeks, cannot be separated from that and has the same consequence: the phrase does not measure onto the committed plat. The ware house keeps street_only, `streets_cross` is right to refuse the ordinal (T-0771), and the anchor is left as printed rather than amended to what the plat allows. Do not re-open on a closer reading of these columns; only another impression setting a DIFFERENT street, or a source placing the ware house on the ground, moves it."
       },
       "evidence": {
         "first_issue": "1834-05-28",
@@ -60373,9 +60374,10 @@
           "placement": {
             "class": "relative",
             "anchor": "the corner of Randolph st.",
-            "offset_text": "their ware house on\nSouth water St. five\n| doors cast of the corner\nof Randolph st.) a very",
+            "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
             "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
-            "street": "South Water Street"
+            "street": "South Water Street",
+            "note": "T-0869 RULED THIS PLACEMENT A BEARING, NOT AN ADDRESS. All three printings of this advertisement were re-read at the page images on 2026-09-11 and every one of them sets 'the corner of Randolph st.' — see data/research/newspapers/clark_filer_randolph_corner_1834.json for the readings, the crop regions and the deposit sha256. They are ONE standing setting re-impressed, not three compositions: identical line breaks through the placement, the same 'cosisting' misprint, the same chair cuts, the same 'Chicago, June 10, 1834. 28' at the foot, and the phrase runs in at least five issues from 1834-06-11 to 1834-07-23. So the cross street was NOT mis-set by a slipping hand — there is no per-impression variation to be the slip. What stands is that the firm named a corner it did not stand on, which is how it locates elsewhere in the same month ('three doors from the Baptist meeting house', 1834-06-04). A wrong word in the firm's own copy, standing for six weeks, cannot be separated from that and has the same consequence: the phrase does not measure onto the committed plat. The ware house keeps street_only, `streets_cross` is right to refuse the ordinal (T-0771), and the anchor is left as printed rather than amended to what the plat allows. Do not re-open on a closer reading of these columns; only another impression setting a DIFFERENT street, or a source placing the ware house on the ground, moves it."
           }
         },
         {

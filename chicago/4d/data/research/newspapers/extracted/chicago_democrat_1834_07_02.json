@@ -709,7 +709,7 @@
     {
       "id": "c014",
       "kind": "business",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Cabinet and Chair\nae Ware House\n* HE aubseribers ha-\nsd ving on hand (at\no their ware house on\no P South water St. five }\nf | doory east of the corner\nof Rando!ph st.) a yer i pcate\nr aut CLARK, FILER, & Co.\nChicago, June 10, 1834, 28",
       "normalized": "Cabinet and Chair Ware House. [T]HE subscribers having on hand (at their ware house on South Water St. five doors east of the corner of Randolph st.) a very large [assortment] […] CLARK, FILER, & CO. Chicago, June 10, 1834. 28",
       "locator": {
@@ -775,10 +775,11 @@
           "anchor": "the corner of Randolph st.",
           "offset_text": "their ware house on\no P South water St. five }\nf | doory east of the corner\nU\nof Rando!ph st.)",
           "offset_normalized": "their ware house on South Water St. five doors east of the corner of Randolph st.",
-          "street": "South Water Street"
+          "street": "South Water Street",
+          "note": "T-0869 RULED THIS PLACEMENT A BEARING, NOT AN ADDRESS. All three printings of this advertisement were re-read at the page images on 2026-09-11 and every one of them sets 'the corner of Randolph st.' — see data/research/newspapers/clark_filer_randolph_corner_1834.json for the readings, the crop regions and the deposit sha256. They are ONE standing setting re-impressed, not three compositions: identical line breaks through the placement, the same 'cosisting' misprint, the same chair cuts, the same 'Chicago, June 10, 1834. 28' at the foot, and the phrase runs in at least five issues from 1834-06-11 to 1834-07-23. So the cross street was NOT mis-set by a slipping hand — there is no per-impression variation to be the slip. What stands is that the firm named a corner it did not stand on, which is how it locates elsewhere in the same month ('three doors from the Baptist meeting house', 1834-06-04). A wrong word in the firm's own copy, standing for six weeks, cannot be separated from that and has the same consequence: the phrase does not measure onto the committed plat. The ware house keeps street_only, `streets_cross` is right to refuse the ordinal (T-0771), and the anchor is left as printed rather than amended to what the plat allows. Do not re-open on a closer reading of these columns; only another impression setting a DIFFERENT street, or a source placing the ware house on the ground, moves it."
         }
       },
-      "notes": "THE BEST-PLACED STOREFRONT IN THE ISSUE: a street, a named corner, a side and a count of doors. The quoted lines carry slivers of the neighbouring column at their left edge ('o P', 'f |', 'U'), which is why the verbatim `offset_text` is not readable prose; the unshuffling is the whole of the judgement and it lives in `offset_normalized`. 'doory'→'doors', 'Rando!ph'→'Randolph'. Line 4763 is the bare sliver 'U' and is excluded. The 'N. B. Sign and ornamental painting' at 4781-4782 is a second trade and is recorded in `trade`."
+      "notes": "READ AT THE PAGE IMAGE ON 2026-09-11 (T-0869), AND THE 'Rando!ph' IS A BROKEN LETTER. At the image the `l` prints as a short vertical stroke with a gap under the ascender — an under-inked or damaged sort in a line that is otherwise the same standing setting, in the same place, as the two clean impressions of 1834-06-11 and 1834-06-18. It is damage to one letter of Randolph and it is not a witness to any other street. THE BEST-PLACED STOREFRONT IN THE ISSUE: a street, a named corner, a side and a count of doors. The quoted lines carry slivers of the neighbouring column at their left edge ('o P', 'f |', 'U'), which is why the verbatim `offset_text` is not readable prose; the unshuffling is the whole of the judgement and it lives in `offset_normalized`. 'doory'→'doors', 'Rando!ph'→'Randolph'. Line 4763 is the bare sliver 'U' and is excluded. The 'N. B. Sign and ornamental painting' at 4781-4782 is a second trade and is recorded in `trade`."
     },
     {
       "id": "c015",
