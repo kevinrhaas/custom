@@ -1275,6 +1275,28 @@ step "restamp moves the queue line it was handed, not the other one" \
 step "new --after places directly under the named ticket and moves nothing else" \
   node tools/test_ticket_after.mjs
 
+# THE CLAIM IS A LOCK, and this is what holds it shut. On 2026-09-11 six open PRs
+# turned out to be six runs working tickets another run had already finished —
+# T-0990, T-1008, T-0867/T-0868, T-1026, T-0424, T-1011, every one closed on `dev`
+# by somebody else. The cause was visibility, not merging: `claim` writes a ticket
+# FILE that reaches `dev` only when its PR merges, and the branch scan can only see
+# a branch that has been PUSHED, which happens about an hour later. T-1026's loser
+# claimed 24 minutes after its winner and 77 minutes before the winner pushed.
+#
+# So the claim takes a marker ref on the remote first, and the SERVER decides who
+# gets it. A lock is worth nothing asserted in the abstract, so every case here
+# runs ticket.mjs twice against a real bare repository: two runs contend, an
+# unreachable remote never stops a run, a dead claim is stolen and a live one is
+# not, two stealers of one dead claim produce one winner, `done` lets go, and a
+# runner with no git identity still takes it (the `fatal: empty ident name` that
+# silently broke every PR lap until 2026-09-10). It found two real faults while
+# being written: `??` passing an EMPTY identity through, and — the one that
+# mattered — two runs claiming in the same second building the identical commit
+# object, so git answered the loser `Everything up-to-date`, exit 0, and told it
+# that it had won. That is the exact case the lock exists to decide.
+step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
+  node tools/test_ticket_claim_lock.mjs
+
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
 # the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each

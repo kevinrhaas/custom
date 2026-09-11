@@ -233,6 +233,24 @@ is the contract. The short form:
   records WHICH Actions run holds the ticket (`claimed_run`) and `done` records the
   INSTANT it finished (`closed_at`), so BOARD.md can show what is being worked now and
   what finished in the order it finished. Neither is ever hand-written.
+- **A CLAIM IS A LOCK, AND IT IS TAKEN ON THE REMOTE** (owner, 2026-09-11: *"can you
+  prevent duplicate claiming going forward?"*). `claim` pushes a marker branch
+  `claim/t-NNNN` before you do any work, and the push is a compare-and-swap the GitHub
+  server decides — two runs claiming in the same second cannot both win. **If it tells
+  you the ticket is already claimed, it is: take the next workable ticket.** That
+  message is not advisory and `--force` is not the way past it.
+  - This exists because six open PRs on 2026-09-11 were six runs working tickets another
+    run had already finished. Claiming EARLIER is no protection: T-1008's loser claimed
+    an hour BEFORE the winner. A claim reaches `dev` only when its PR merges, so until
+    then every other run reads the ticket as `open` — which is why this check does not
+    read `dev`, and why the branch scan could never have caught it (a run does not push
+    for about an hour after it claims).
+  - A claim older than 3h is a dead run and is **stolen automatically**, so a crashed
+    run cannot strand a ticket. `--no-lock` is for a checkout with no remote; it is not
+    a way past a live claim. `ticket.mjs claims [--sweep]` lists the locks held and
+    deletes the stale ones.
+  - Unreachable remote, no credentials, no git? The claim **succeeds and says so**. The
+    lock never turns a network blip into a dead slice.
 - **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
   `block --owner "the question"` — the question goes in the ticket, where the owner will
   actually see it, not only in a PR body. **Closing after `publish.sh` is fine**: the tool

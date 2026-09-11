@@ -84,8 +84,24 @@ the queue an hour later, saw T-0062 open at the top, and rebuilt it from scratch
 own branch (#259, which merged). Two runs, one ticket, one of them binned — about
 seventy minutes of loop time.
 
-Two things close it, and neither substitutes for the other:
+Three things close it, and none substitutes for the others:
 
+- **THE CLAIM ITSELF IS A LOCK ON THE REMOTE, taken before any work.** `claim` pushes a
+  marker branch `claim/t-NNNN` whose push is a compare-and-swap the server decides
+  (`--force-with-lease` with an empty expected value: *only if this ref does not exist*),
+  so two runs claiming in the same second cannot both win. **Told a ticket is already
+  claimed? It is. Take the next one.** A marker older than three hours is a dead run and
+  is stolen automatically, so a crash cannot strand a ticket; an unreachable remote lets
+  the claim through with a note, because a network blip must never kill a slice.
+  `ticket.mjs claims [--sweep]` lists the locks and clears stale ones.
+
+  This was added on 2026-09-11, when six open PRs turned out to be six runs working
+  tickets another run had already closed on `dev` (T-0990, T-1008, T-0867/T-0868,
+  T-1026, T-0424, T-1011). The two measurements that shaped it: T-1026's loser claimed
+  **24 minutes after** its winner and **77 minutes before** the winner pushed anything,
+  so there was nothing on the remote to see; and T-1008's loser claimed **first**, an
+  hour before the run that won — claiming earlier is no protection at all when claims
+  are invisible.
 - **`ticket.mjs claim` looks for a rival branch first.** It reads `git ls-remote` and
   refuses if a remote branch name carries this ticket's number in any of the shapes the
   loop has actually used (`t62-…`, `t-0062-…`). Check whether that branch has an open
@@ -97,8 +113,11 @@ Two things close it, and neither substitutes for the other:
 ## Seeing what is being worked on right now
 
 Same reason, same blind spot: `BOARD.md` shows the queue and what has landed, and it
-cannot show a claim in flight. The branch list can, because a run pushes its branch in
-its first commit, hours before anything merges.
+cannot show a claim in flight. The branch list can — but only from the moment a branch
+is actually PUSHED, and that is not the first commit: measured across the duplicates of
+2026-09-11, a run's first push lands about an hour after its claim. That hour is the
+window the claim lock above closes, and it is why `inflight` now also shows
+`claim/t-NNNN` markers, which appear the instant a ticket is claimed.
 
 ```
 node tools/ticket.mjs inflight
