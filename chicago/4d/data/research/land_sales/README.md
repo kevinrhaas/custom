@@ -522,6 +522,89 @@ with middle names the register does not have.
 **Still unruled: 28** — cohort C3, surnames K-Z. The log on T-0990 carries it, and it holds
 KIMBERLY EDMUND S, which is T-1001's man.
 
+## Cohort C3: the twenty-eight remaining, surnames K-Z (T-0990) — and the last of them
+
+The block T-0697 opened closes here. **Seventeen upheld, eleven refused.** What moved:
+matched spellings 101 → **90**, ruled 110 → **138**, unruled 28 → **0**. Ten cards were
+retracted and with them twenty-one register rows — **1,214.64 acres and $3,631.08** of
+ground taken back off them — against 45 rows, 2,031.01 acres and $7,069.69 that stand. The
+spend pass reports `people_written` 88 → **78**, `households_touched` 85 → **76**,
+`entries_carried` 323 → **302** and `acres_carried` 15,896.39 → **14,681.75**.
+
+| the register | the town's own record | ruling |
+|---|---|---|
+| KINZIE ROBERT A | **the tract IS the story**: ls0059 is the north fractional half of section 10, the ground Butler's letter says Kinzie offered Bronson | upheld |
+| TEMPLE JOHN T | poll 1833, tax 1833, poll 1834 bracket eight blocks bought eleven weeks after he arrived; Fergus 1843 *John Taylor, physician* | upheld |
+| OWEN THOMAS J V | two middle initials, four Democrat printings, the town's **first president** buying at the town's own sale | upheld |
+| SNOW GEORGE W | the town's **Assessor and Surveyor** from 4 Dec 1833, buying at the school-section sale six weeks before; Fergus 1843 *George Washington* | upheld |
+| SHERMAN SILAS W | Democrat *Silas W.* on both sides of the row; Fergus 1843 *Silas Wooster*, **sheriff of Cook County** 1834 | upheld |
+| SWEET ALANSON | Andreas *Alanson Sweet, 1832*, builder of the first Tremont; tax 1833 + polls 1834 and 1835 | upheld |
+| WRIGHT TRUMAN G | Fergus 1839 *Truman G., **speculator**, bds Tremont House* — the EGAN reasoning; cohort A's WRIGHT T G is its twin | upheld |
+| NOBLE JOHN | Fergus 1839 *John Noble, **real estate**, res. Dutchman's Point* and 320 acres in the townships between | upheld |
+| TAYLOR EDMUND D | the Democrat brackets the ring day, 25 Mar and 8 Jul 1835; Fergus 1839 *Col. Edmund D., Taylor, Breese Co.* | upheld |
+| KIMBERLY EDMUND S | Fergus 1843 *Edmund Stoughten, physician*; clerk of the incorporation meeting; T-1001 already merged its sister spelling here | upheld |
+| MULFORD JAMES H | Fergus 1839 *James H. & Edward H. jr., jewelers* — the line names the card's only namesake | upheld |
+| KINZIE JAMES | the register's own **ILLINOIS**, with Andreas's residents list and the 1833 election as its partner | upheld |
+| SMITH JEREMIAH | the register's own **COOK** twice, with the 1832 muster and the Democrat printing *Jeremiah* in full | upheld |
+| MERRILL GEO W · MERRILL GEORGE W | the **W** is what separates him from the *Merrill, George, clerk* printed four lines away in 1839 | upheld |
+| TAYLOR ANSON H | Fergus 1839's only Anson, *Anson H., general supply store, near the Garrison*; Andreas's bridge-builder | upheld |
+| REED THOMAS | Fergus 1839 *Thomas Reed, **teamster**, 115 Lake street* — a trade AND a street; poll 1835 | upheld |
+| TAYLOR CHARLES | the card is *Charles **H.***, the register is bare, and 1839, 1843 and 1844 each print **two** Charles Taylors | **refused** |
+| MURPHY JOHN | *nothing the surname does not give away* — Fergus 1843 and Norris 1844 each print a John Murphy hotel keeper AND a John Murphy labourer | **refused** |
+| SMITH GEORGE | a coffee-house keeper against **three printed George Smiths**, one of them the LaSalle Street banking house | **refused** |
+| WENTWORTH ELIJAH · WENTWORTH ELIJAH W | the **register itself** sells to ELIJAH, ELIJAH SEN, ELIJAH W and ELIJAM SEN; the layer holds one | **refused** |
+| KING NEHEMIAH | one printing of the forename in full; every other reading is *N. King*, and Fergus 1839 prints *King, **Nathaniel**, clerk, Tuthill King* | **refused** |
+| THOMPSON JOHN L | the register's **L** belongs to `thompson_lieut_j_l`, not to the bare *John Thompson* it was matched to; `letter_list_only` and true | **refused** |
+| TUCKER ALEXANDER H | one return of letters, read as *'fucker, Alexr. H. ot* — the initial pair IS the town's whole record | **refused** |
+| RUSSELL SAMUEL | three whole blocks for $1,205 against a **G3 projected resident** documented once, on the tax list | **refused** |
+| SKINNER JOSEPH | the tax list of 1833 and one uncalled-for letter, neither saying anything but the name | **refused** |
+| KERCHEVAL BENJAMIN | a canal row of **1830**, five years before the tax list that is the card's whole record | **refused** |
+
+**THE REGISTER CAN PROVE THE SECOND MAN ITSELF, AND THAT IS WHAT C3 ADDS TO THE BROWN RULE.**
+C1 and C2 refused BROWN WM, JONES WILLIAM, HARMON ISAAC and TAYLOR CHARLES because the town's
+own PRINTED record held a second man of the name. WENTWORTH needed no directory at all: the
+tract register sells to **WENTWORTH ELIJAH, WENTWORTH ELIJAH SEN, WENTWORTH ELIJAH W and
+WENTWORTH ELIJAM SEN**, and a source that writes *Sen* has told you there are two. A card that
+can meet none of the register's own distinctions cannot be handed a row the register took the
+trouble to distinguish. The honest reading of a surname like that is that the LAYER IS MISSING
+MEN, not that one card owns them all.
+
+**A SECOND DOCUMENT MUST SAY SOMETHING, NOT MERELY REPEAT THE NAME.** Cohort B's operative
+line was whether the town holds the man more than once, and C3 is where counting to two stops
+being enough. SKINNER JOSEPH is held twice — the tax list of 1833 and an uncalled-for letter of
+April 1834 — and neither reading prints a trade, a street, an office or a middle initial, and no
+directory of 1839, 1843 or 1844 prints a Joseph Skinner at all. REED THOMAS is held three times
+and one of them is *Reed, Thomas, teamster, 115 Lake street*. That difference, and not the
+count, is the line: the rule asks what the register's row can be CHECKED against, and two bare
+names cannot check a third. It is the cohort's closest call and it is marked so on the ruling.
+
+**THE COMMONEST SURNAME IN THE TOWN SPLIT, WHICH IS THE RULE WORKING RATHER THAN FAILING.**
+SMITH GEORGE is refused and SMITH JEREMIAH upheld, both entered on 27 June 1835. Three George
+Smiths are printed in this corpus and no volume prints a Jeremiah; the register, which sells to
+eleven spellings of the surname, sells to one JEREMIAH and states **COOK** on two of his four
+rows. A common surname is not what refuses a proposal — a second printed claimant is.
+
+**AND THE MECHANICAL RULE CAN MATCH A MIDDLE INITIAL ONTO A CARD THAT HAS NONE WHILE A RIVAL
+CARRIES IT.** THOMPSON JOHN L was proposed onto `thompson_john`, which holds no middle initial
+at all, while the layer holds `thompson_lieut_j_l`. The forename rule looked at the forename and
+could not see that the discriminating token already had an owner. Filed as **T-1016**.
+
+Filed on the way past: **T-1014**, the N. King readings on `king_nehemiah` that the directory
+gives to Nathaniel; **T-1015**, the *Anson W. Taylor* reading on `taylor_anson_h`; **T-1016**,
+the Thompson initial above; **T-1017**, whether buying at the town's OWN school-section sale is
+itself a check on a town-side name — the question SKINNER JOSEPH and RUSSELL SAMUEL both turn
+on, filed rather than decided because answering it would reopen rulings already made.
+
+**A FIFTH DERIVED FILE MOVES BEHIND A REFUSAL.** C2 named `export_resident_audit.py --build`,
+`compile_scene.py --all` and `consolidate_resident_evidence.py --build`; a retraction also moves
+`data/research/residents/town_card_candidates.json`, so `tools/consolidate_town_cards.py --apply`
+belongs in the same pass. The gate reports them one failing step at a time.
+
+**Nothing is left unruled.** `resident_crosswalk.json` → `ruled` reads
+`upheld 89, named 1, refused 48, unruled 0`. Every proposal T-0697 added when the surname rule
+widened has been adjudicated by hand, and T-0990 closes on that number rather than on an
+absence.
+
 ## Forty rulings were reverted, and restored (#1073, T-1000)
 
 **For part of 10 September 2026 this file's rulings block held eight entries and its own
