@@ -44,7 +44,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -86,7 +90,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -128,7 +136,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -170,7 +182,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -212,7 +228,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -254,7 +274,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -296,7 +320,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -338,7 +366,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -380,7 +412,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -422,7 +458,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -464,7 +504,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -506,7 +550,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -548,7 +596,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -590,7 +642,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -632,7 +688,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -674,7 +734,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -716,7 +780,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -758,7 +826,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -800,7 +872,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -842,7 +918,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -884,7 +964,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -926,7 +1010,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -968,7 +1056,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1010,7 +1102,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1052,7 +1148,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1094,7 +1194,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1136,7 +1240,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1178,7 +1286,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1220,7 +1332,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1262,7 +1378,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1304,7 +1424,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1346,7 +1470,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1388,7 +1516,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1430,7 +1562,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1472,7 +1608,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1514,7 +1654,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1556,7 +1700,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1598,7 +1746,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1640,7 +1792,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1682,7 +1838,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1724,7 +1884,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1766,7 +1930,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1808,7 +1976,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1850,7 +2022,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1892,7 +2068,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1934,7 +2114,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -1976,7 +2160,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2018,7 +2206,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2060,7 +2252,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2102,7 +2298,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2144,7 +2344,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2186,7 +2390,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2228,7 +2436,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2270,7 +2482,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2312,7 +2528,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2354,7 +2574,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2396,7 +2620,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2438,7 +2666,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2480,7 +2712,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2522,7 +2758,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2564,7 +2804,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2606,7 +2850,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2648,7 +2896,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2690,7 +2942,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2732,7 +2988,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2774,7 +3034,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2816,7 +3080,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2858,7 +3126,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2900,7 +3172,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2942,7 +3218,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -2984,7 +3264,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3026,7 +3310,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3068,7 +3356,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3110,7 +3402,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3152,7 +3448,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3194,7 +3494,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3236,7 +3540,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3278,7 +3586,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3320,7 +3632,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3362,7 +3678,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3404,7 +3724,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3446,7 +3770,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3488,7 +3816,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3530,7 +3862,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3572,7 +3908,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3614,7 +3954,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3656,7 +4000,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3698,7 +4046,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3740,7 +4092,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3782,7 +4138,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3824,7 +4184,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3866,7 +4230,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3908,7 +4276,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3950,7 +4322,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -3992,7 +4368,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4034,7 +4414,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4076,7 +4460,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4118,7 +4506,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4160,7 +4552,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4202,7 +4598,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4244,7 +4644,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4286,7 +4690,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4328,7 +4736,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4370,7 +4782,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4412,7 +4828,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4454,7 +4874,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4496,7 +4920,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4538,7 +4966,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4580,7 +5012,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4622,7 +5058,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4664,7 +5104,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4706,7 +5150,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4748,7 +5196,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4790,7 +5242,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4832,7 +5288,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4874,7 +5334,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4916,7 +5380,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -4958,7 +5426,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5000,7 +5472,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5042,7 +5518,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5084,7 +5564,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5126,7 +5610,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5168,7 +5656,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5210,7 +5702,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5252,7 +5748,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5294,7 +5794,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5336,7 +5840,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5378,7 +5886,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5420,7 +5932,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5462,7 +5978,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5504,7 +6024,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5546,7 +6070,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5588,7 +6116,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5630,7 +6162,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5672,7 +6208,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5714,7 +6254,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5756,7 +6300,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5798,7 +6346,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5840,7 +6392,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5882,7 +6438,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5924,7 +6484,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -5966,7 +6530,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6008,7 +6576,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6050,7 +6622,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6092,7 +6668,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6134,7 +6714,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6176,7 +6760,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6218,7 +6806,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6260,7 +6852,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6302,7 +6898,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6344,7 +6944,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6386,7 +6990,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6428,7 +7036,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6470,7 +7082,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6512,7 +7128,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6554,7 +7174,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6596,7 +7220,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6638,7 +7266,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6680,7 +7312,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6722,7 +7358,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6764,7 +7404,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6806,7 +7450,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6848,7 +7496,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6890,7 +7542,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6932,7 +7588,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -6974,7 +7634,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7016,7 +7680,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7058,7 +7726,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7100,7 +7772,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7142,7 +7818,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7184,7 +7864,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7226,7 +7910,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7268,7 +7956,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7310,7 +8002,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7352,7 +8048,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7394,7 +8094,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7436,7 +8140,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7478,7 +8186,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7520,7 +8232,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7562,7 +8278,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7604,7 +8324,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7646,7 +8370,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7688,7 +8416,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7730,7 +8462,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7772,7 +8508,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7814,7 +8554,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7856,7 +8600,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7898,7 +8646,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7940,7 +8692,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -7982,7 +8738,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8024,7 +8784,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8066,7 +8830,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8108,7 +8876,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8150,7 +8922,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8192,7 +8968,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8234,7 +9014,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8276,7 +9060,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8318,7 +9106,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8360,7 +9152,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8402,7 +9198,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8444,7 +9244,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8486,7 +9290,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8528,7 +9336,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8570,7 +9382,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8612,7 +9428,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8654,7 +9474,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8696,7 +9520,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8738,7 +9566,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8780,7 +9612,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8822,7 +9658,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8864,7 +9704,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8906,7 +9750,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8948,7 +9796,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -8990,7 +9842,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9032,7 +9888,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9074,7 +9934,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9116,7 +9980,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9158,7 +10026,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9200,7 +10072,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9242,7 +10118,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9284,7 +10164,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9326,7 +10210,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9368,7 +10256,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9410,7 +10302,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9452,7 +10348,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9494,7 +10394,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9536,7 +10440,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9578,7 +10486,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9620,7 +10532,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9662,7 +10578,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9704,7 +10624,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9746,7 +10670,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9788,7 +10716,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9830,7 +10762,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9872,7 +10808,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9914,7 +10854,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9956,7 +10900,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -9998,7 +10946,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10040,7 +10992,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10082,7 +11038,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10124,7 +11084,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10166,7 +11130,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10208,7 +11176,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10250,7 +11222,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10292,7 +11268,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10334,7 +11314,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10376,7 +11360,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10418,7 +11406,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10460,7 +11452,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10502,7 +11498,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10544,7 +11544,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10586,7 +11590,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10628,7 +11636,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10670,7 +11682,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10712,7 +11728,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10754,7 +11774,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10796,7 +11820,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10838,7 +11866,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10880,7 +11912,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10922,7 +11958,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -10964,7 +12004,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11006,7 +12050,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11048,7 +12096,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11090,7 +12142,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11132,7 +12188,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11174,7 +12234,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11216,7 +12280,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11258,7 +12326,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11300,7 +12372,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11342,7 +12418,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11384,7 +12464,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11426,7 +12510,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11468,7 +12556,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11510,7 +12602,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11552,7 +12648,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11594,7 +12694,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11636,7 +12740,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11678,7 +12786,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11720,7 +12832,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11762,7 +12878,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11804,7 +12924,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11846,7 +12970,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11888,7 +13016,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11930,7 +13062,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -11972,7 +13108,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12014,7 +13154,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12056,7 +13200,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12098,7 +13246,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12140,7 +13292,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12182,7 +13338,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12224,7 +13384,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12266,7 +13430,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12308,7 +13476,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12350,7 +13522,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12392,7 +13568,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12434,7 +13614,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12476,7 +13660,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12518,7 +13706,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12560,7 +13752,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12602,7 +13798,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12644,7 +13844,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12686,7 +13890,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12728,7 +13936,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12770,7 +13982,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12812,7 +14028,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12854,7 +14074,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12896,7 +14120,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12938,7 +14166,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -12980,7 +14212,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13022,7 +14258,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13064,7 +14304,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13106,7 +14350,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13148,7 +14396,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13190,7 +14442,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13232,7 +14488,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13274,7 +14534,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13316,7 +14580,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13358,7 +14626,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13400,7 +14672,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13442,7 +14718,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13484,7 +14764,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13526,7 +14810,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13568,7 +14856,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13610,7 +14902,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13652,7 +14948,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13694,7 +14994,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13736,7 +15040,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13778,7 +15086,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13820,7 +15132,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13862,7 +15178,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13904,7 +15224,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13946,7 +15270,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -13988,7 +15316,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14030,7 +15362,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14072,7 +15408,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14114,7 +15454,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14156,7 +15500,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14198,7 +15546,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14240,7 +15592,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14282,7 +15638,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14324,7 +15684,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14366,7 +15730,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14408,7 +15776,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14450,7 +15822,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14492,7 +15868,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14534,7 +15914,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14576,7 +15960,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14618,7 +16006,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14660,7 +16052,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14702,7 +16098,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14744,7 +16144,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14786,7 +16190,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14828,7 +16236,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14870,7 +16282,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14912,7 +16328,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14954,7 +16374,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -14996,7 +16420,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15038,7 +16466,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15080,7 +16512,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15122,7 +16558,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15164,7 +16604,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15206,7 +16650,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15248,7 +16696,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15290,7 +16742,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15332,7 +16788,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15374,7 +16834,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": true
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": true,
+        "refusal": null
       }
     },
     {
@@ -15416,7 +16880,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15458,7 +16926,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15500,7 +16972,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15542,7 +17018,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15584,7 +17064,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15626,7 +17110,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15668,7 +17156,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15710,7 +17202,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15752,7 +17248,11 @@
         "resolves": "unparsed",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15794,7 +17294,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15836,7 +17340,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15878,7 +17386,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15920,7 +17432,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -15962,7 +17478,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16004,7 +17524,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16046,7 +17570,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16088,7 +17616,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16130,7 +17662,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16172,7 +17708,11 @@
         "resolves": "quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16214,7 +17754,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     },
     {
@@ -16256,7 +17800,11 @@
         "resolves": "half_quarter_section",
         "lot": null,
         "block": null,
-        "void": false
+        "lot_fraction": null,
+        "town_code": null,
+        "plat": null,
+        "void": false,
+        "refusal": null
       }
     }
   ]

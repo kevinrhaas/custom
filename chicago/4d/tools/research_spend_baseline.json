@@ -10,7 +10,7 @@
   "books": 222,
   "directories": 7251,
   "newberry_index": 4914,
-  "land_sales": 456,
+  "land_sales": 869,
   "old_settlers": 443
  },
  "witness": {
@@ -43,8 +43,8 @@
    "spent": 2091
   },
   "land_sales": {
-   "read": 953,
-   "spent": 497
+   "read": 1572,
+   "spent": 703
   },
   "old_settlers": {
    "read": 1094,
@@ -504,6 +504,14 @@
    "to": 443,
    "date": "2026-09-11",
    "why": "T-1026 folded beaubien_medard onto beaubien_madore, so the town carries one card fewer for the old-settlers pool to be ruled onto and the unspent count rose by exactly one, 442 to 443, with nothing newly read. The ceiling tracks how far ahead of the town a domain has read; a fold moves it without any reading having happened."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 456,
+   "to": 869,
+   "date": "2026-09-11",
+   "why": "T-1032 harvested Cook County's 619 sectionless town-lot sales and T-1033 (this PR) read them into the deposit, taking land_sales from 953 rows to 1,572. The read is the whole point of the ticket: the 619 are the town's own plat changing hands in the fortnight of June 1836, they were invisible to every by-section pass this project had made, and holding them out of the reading was what T-1032 did for one day and what T-1033 was filed to end. NOT ONE of them is spent, deliberately: the crosswalk's new proposals carry `ruling: null`, no resident is minted or regraded, and adjudicating 69 new purchaser matches is more than one run's demonstration. T-1034 is filed directly under this ticket to rule on them in cohorts as T-0990 did for the by-section rows, and this number comes down when that lands. It may not drift up."
   }
  ],
  "lowered": [

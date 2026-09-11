@@ -66,16 +66,45 @@ RULING_KINDS = ("upheld", "refused", "named")
 # on a derived firm that is not declared here. Adding a deposit that carries a new one
 # is meant to stop the build: read the rows, then add the spelling.
 KNOWN_FIRMS = ("GARRETT A ET CO", "PRUYNE P AND CO")
+# THE BUYERS THAT ARE NEITHER PEOPLE NOR PARTNERSHIPS (T-1033). The town lots brought
+# three of them and the firm test could not see one: it looks for the conjunction the
+# register sets before `CO` — `GARRETT A ET CO` — and a body corporate has no partner in
+# front of it to conjoin. So `UNION HOTEL CO` bought two lots and would have gone to the
+# forename rule as a man named Union, and `COOK CNTY COM` — the county commissioners,
+# twenty-four lots, the fourth busiest buyer in the whole reading — was refused only
+# because no Cook of the layer is called Cnty. Being refused for the wrong reason is not
+# the same as being read. BODY_WORDS below is the test, asked of everything AFTER the
+# surname so that Thomas Church stays a man, and a spelling it catches must be declared
+# here with what the register's own page says the body was. The guard is the firms' one:
+# an undeclared body stops the build rather than passing quietly.
+BODY_WORDS = frozenset((
+    "CNTY", "COUNTY", "COM", "COMMRS", "CO", "COMPANY", "COMPY", "SCHOOL", "SCHOOLS",
+    "TRUSTEE", "TRUSTEES", "BANK", "CHURCH", "CITY", "STATE", "TOWN"))
+KNOWN_BODIES = {
+    "COOK CNTY COM": "The commissioners of Cook County, buying on the county's account. "
+                     "The register gives the residence as UNKNOWN on every one of the "
+                     "twenty-four rows, as it does for every town lot.",
+    "CHICAGO CITY SCHOOLS": "The town's school fund, the same body whose section 16 the "
+                            "school-section sales above are the selling of.",
+    "UNION HOTEL CO": "A hotel company. Which house it was, and who stood in it, is not "
+                      "on the register's page and is not guessed at here.",
+}
 # THE DEPOSITS, IN THE ORDER THEY WERE ADDED, and that order is load-bearing. Record
 # ids are positional — `ls0001` upward across the whole reading — and data/structures/
 # *.json cite them by id, so a new deposit APPENDS and never renumbers what is already
 # cited. Each carries the (township, range) pairs its sweep asked for, section by
 # section, and the ticket that read them; coverage is derived from exactly that.
+# A deposit read BY SECTION carries the (township, range) pairs its sweep asked for. The
+# town lots have none — the register gives them no section, which is the whole reason they
+# were invisible — so that deposit carries `pairs: ()` and declares the county's
+# sectionless group instead of a grid of sections (T-1033).
 DEPOSITS = (
     {"tsv": "isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv",
      "ticket": "T-0675", "pairs": ((39, 14), (40, 14))},
     {"tsv": "isa_land_tract_sales_t39n_t40n_r13e_t38n_t41n_r14e_t38n_r15e_through_1836.tsv",
      "ticket": "T-0676", "pairs": ((39, 13), (40, 13), (38, 14), (41, 14), (38, 15))},
+    {"tsv": "isa_land_tract_sales_cook_town_lots_through_1836.tsv",
+     "ticket": "T-1033", "pairs": (), "county": "COOK", "sectionless": True},
 )
 
 
@@ -104,6 +133,12 @@ PROBE_COLS = ["purchase_no", "purchaser", "legal_description", "section", "towns
 # acquired a section, is a fault and not a silence.
 HARVESTED = {"tsv": "isa_land_tract_sales_cook_town_lots_through_1836.tsv",
              "ticket": "T-1032", "read_by": "T-1033"}
+# T-1033 JOINED IT. The file above is now the third entry of DEPOSITS and derives records,
+# entries, coverage and a crosswalk like any other — `tract()` can say what a lot and a
+# block in a named plat is, or refuse it, which is what was missing. `HARVESTED` stays
+# because `check_harvested` below is still worth running: being a deposit makes the file
+# derived-from, and it says nothing about whether it is still FAITHFUL to the county list
+# it was drawn from. Those are two different questions and the gate asks both.
 
 
 # The seven townships the deposits above declare, as the probe's list page spells them.
@@ -148,6 +183,10 @@ def build_probe(rows: list, probe: list) -> dict:
     outside = [r for r in probe
                if r["section"].strip() and (r["township"].strip(), r["range"].strip()) not in seven]
     missed = [r for r in inside if r["purchase_no"] not in held]
+    # T-1033 read the sectionless group into the deposit, so this group has an answer now
+    # and it is the same question asked of it: how many does the domain HOLD?
+    missed_sectionless = [r for r in sectionless if r["purchase_no"] not in held]
+    missed_outside = [r for r in outside if r["purchase_no"] not in held]
     years, codes = {}, {}
     for r in sectionless:
         y = r["date_purchased"][-4:]
@@ -155,6 +194,10 @@ def build_probe(rows: list, probe: list) -> dict:
         m = re.search(r"(CHI[A-Z]*)$", r["legal_description"])
         code = m.group(1) if m else "(no town code)"
         codes[code] = codes.get(code, 0) + 1
+    outside_townships = {}
+    for r in missed_outside:
+        key = "T%s R%s" % (r["township"].strip() or "?", r["range"].strip() or "?")
+        outside_townships[key] = outside_townships.get(key, 0) + 1
     return {
         "ticket": PROBE["ticket"],
         "deposit": PROBE["tsv"],
@@ -167,29 +210,46 @@ def build_probe(rows: list, probe: list) -> dict:
         "inside_the_declared_townships": len(inside),
         "of_those_missing_from_the_deposit": len(missed),
         "sectioned_outside_the_declared_townships": len(outside),
+        "of_those_missing_from_the_deposit_too": len(missed_outside),
         "carrying_no_section_at_all": len(sectionless),
+        "of_those_missing_from_the_deposit_now": len(missed_sectionless),
         "sectionless_by_year": dict(sorted(years.items())),
         "sectionless_by_town_code": dict(sorted(codes.items(), key=lambda kv: -kv[1])),
         "the_seven_townships_are_read_whole": not missed,
-        "complete_for_%d_cook_county" % PROBE["through_year"]: not sectionless and not missed,
-        "reading": "The by-section sweep is READ WHOLE for the ground it declares: every "
-                   "one of the %d rows the county lists inside the seven declared townships "
-                   "through %d is in the deposit, and none is missing. It is NOT the whole "
-                   "of %d Cook County, and the shortfall is not a section it failed to walk "
-                   "— it is %d rows that have no section to walk. Every one of those is a "
-                   "lot and block: %d of them carry a town code (%s) where a legal "
-                   "description would go, and %d is a bare lot and block with no code at "
-                   "all. Their dates are the register's own and are carried unsmoothed, "
-                   "including the four this project does not believe. They are counted "
-                   "here and they are NOT in this deposit. Their detail pages ARE now "
-                   "committed, one per row, as %s (T-1032); reading those into records is "
-                   "T-1033."
-                   % (len(inside), PROBE["through_year"], PROBE["through_year"],
-                      len(sectionless),
+        "the_sectionless_rows_are_read_whole": not missed_sectionless,
+        "complete_for_%d_cook_county" % PROBE["through_year"]:
+            not missed and not missed_sectionless and not missed_outside,
+        "what_is_still_outside_it": {
+            "rows": len(missed_outside),
+            "ticket": "T-1033",
+            "what": "Rows the county list gives a section that is NOT in one of the seven "
+                    "townships the deposits declare. They are not a hole in this domain — "
+                    "no deposit ever promised them — and they are the whole of the "
+                    "difference between it and Cook County.",
+            "by_township": dict(sorted(outside_townships.items(),
+                                       key=lambda kv: (-kv[1], kv[0]))),
+        } if missed_outside else None,
+        "reading": "TWO of the three groups are now closed. The by-section sweep is READ "
+                   "WHOLE for the ground it declares: every one of the %d rows the county "
+                   "lists inside the seven declared townships through %d is in the "
+                   "deposit. And the %d rows that carry NO section — the ones no section "
+                   "query could ever return, every one of them a lot and a block in a "
+                   "platted town — were read at their own detail pages by T-1032 and "
+                   "joined to the deposit by T-1033: %d of them are held, %d are missing. "
+                   "%d of the sectionless carry a town code (%s) where a legal "
+                   "description would go and %d carries none at all; this project still "
+                   "does not expand those codes, so `tract()` resolves the lot and the "
+                   "block and refuses the plat. What is left between this domain and the "
+                   "whole of %d Cook County is ONE group and it is named above: %d rows "
+                   "sectioned outside the seven townships the deposits declare. Their "
+                   "dates are the register's own and are carried unsmoothed, including "
+                   "the four this project does not believe."
+                   % (len(inside), PROBE["through_year"], len(sectionless),
+                      len(sectionless) - len(missed_sectionless), len(missed_sectionless),
                       sum(n for c, n in codes.items() if c.startswith("CHI")),
                       ", ".join(sorted(c for c in codes if c.startswith("CHI"))),
                       sum(n for c, n in codes.items() if not c.startswith("CHI")),
-                      HARVESTED["tsv"]),
+                      PROBE["through_year"], len(missed_outside)),
     }
 
 
@@ -229,6 +289,21 @@ COLS = ["purchase_no", "purchaser", "residence", "social_status", "aliquot_or_lo
 LOT = re.compile(r"^LOT(\d+)BL(\d+)$")
 HALF = re.compile(r"^([NSEW])2([NS][EW])(FR|VOID|VO)?$")
 QUARTER = re.compile(r"^([NS][EW])([NS][EW])?(FR|VOID|VO)?$")
+# A LOT AND A BLOCK IN A PLATTED TOWN (T-1033). `L4BL36CHIOT` is lot 4 of block 36 in
+# whatever plat `CHIOT` names; `L2B17CHIOT` is the same thing one letter shorter, and the
+# register uses both spellings on the same page. A leading run of halves is a part OF the
+# lot — `W2L3B34CHIOT` is the west half, `E2E2L1B46CHI` the east half of the east half —
+# and it is carried as written rather than reduced to a fraction, because a half of a half
+# is how the clerk described the ground and an eighth is this project's arithmetic.
+# The trailing letters are the register's own code for the plat. THEY ARE NOT EXPANDED
+# HERE (T-0830's rule, unchanged): the Archives' key for them is not reachable from this
+# runner, so the code is carried verbatim as `town_code` and `plat` stays null. Guessing
+# which addition `CHIV` names would put a house in the wrong half of the town.
+TOWN_LOT = re.compile(r"^((?:[NSEW]2)*)L(\d+)(BL|B)(\d+)([A-Z]*)$")
+# THE TOWN CODES THIS READING HAS SEEN, longest first so `CHIOT` never eats `CHIOTV`.
+# Membership is all this list is for — a code that is not on it is still carried, and
+# still refuses to be a plat.
+TOWN_CODES = ("CHIOTVO", "CHIOTV", "CHIOT", "CHIV", "CHI")
 
 SUFFIXES = {"JR", "SR", "II", "III"}
 
@@ -277,11 +352,19 @@ def tract(row: dict) -> dict:
     `part` is the aliquot description as the register wrote it. `resolves` says what
     kind of thing it is, because a town lot and a half quarter-section are not the
     same object and a map that treats them alike puts a house in a cornfield.
+
+    `refusal` is what this reading declines to say about the tract, and why. It is set
+    and not null wherever the page does not carry the answer — an unparsable sectionless
+    tract, a lot with no town code, a town code ending in the letters that mean VOID
+    elsewhere. A refusal is a reading, not a gap: it names the question and leaves it
+    open rather than settling it with the likelier of two guesses (T-1033).
     """
     part = row["aliquot_or_lot"]
+    sectionless = not row["section"].strip()
     t = {"section": row["section"], "township": row["township"], "range": row["range"],
          "meridian": row["meridian"], "part": part, "resolves": "unparsed",
-         "lot": None, "block": None, "void": part.endswith(("VOID", "VO"))}
+         "lot": None, "block": None, "lot_fraction": None, "town_code": None,
+         "plat": None, "void": part.endswith(("VOID", "VO")), "refusal": None}
     m = LOT.match(part)
     if m:
         t["resolves"] = "town_lot"
@@ -293,6 +376,52 @@ def tract(row: dict) -> dict:
     if QUARTER.match(part):
         t["resolves"] = "quarter_section" if len(QUARTER.match(part).group(0).rstrip("FRVOID")) <= 2 \
             else "quarter_quarter_section"
+        return t
+    # A row the register gives no section is described by a plat, not by the survey, and
+    # the two are read by different rules. Asking the aliquot patterns above about
+    # `L2BL46CHIOT` and then falling through to `unparsed` was the old behaviour and it
+    # said nothing; this branch either resolves the lot and block or says why it will not.
+    if sectionless:
+        m = TOWN_LOT.match(part)
+        if not m:
+            t["resolves"] = "refused"
+            t["void"] = None
+            t["refusal"] = ("The register gives this row no section and its tract is not a "
+                            "lot and a block: %r matches no form this reading can parse. "
+                            "It is carried as printed and resolved to nothing, because a "
+                            "guess here would invent ground." % part)
+            return t
+        fraction, lot, _sep, block, code = m.groups()
+        t["resolves"] = "town_plat_lot"
+        t["lot"], t["block"] = lot, block
+        t["lot_fraction"] = fraction or None
+        t["town_code"] = code or None
+        # THE `VO` TRAP (T-1032 named it, T-1033 rules on it). `tract()` reads a trailing
+        # `VO` as the register's void mark, and twenty of these rows end `CHIOTVO`. The
+        # mark is defined on an ALIQUOT — `E2SEVO`, a half quarter-section struck out —
+        # where the letters before it are the survey's own. Here the trailing letters are
+        # a town code, so the test is a category error and the answer it gives is noise.
+        # The evidence does not settle what `CHIOTVO` is: nineteen of the twenty carry a
+        # price between $1,500 and $9,600, which a void sale in this register also does
+        # (`E2NEVOID`, $100), and none of the twenty has a `CHIOT` peer on the same lot
+        # and block, which a voided-and-resold Original Town lot would be expected to.
+        # So this reading REFUSES the question rather than answering it either way: void
+        # is null on every town-plat lot, and the refusal is on the record.
+        t["void"] = None
+        if code and code.endswith("VO"):
+            t["refusal"] = ("The town code %r ends in the letters this register uses "
+                            "elsewhere to strike a sale out, and nothing reachable here "
+                            "says which it is: a void sale of a %s lot, or a fifth plat "
+                            "code. The code is carried verbatim and `void` is null — "
+                            "neither claimed nor denied (T-1033)." % (code, code[:-2]))
+        elif not code:
+            t["refusal"] = ("The tract names a lot and a block and no town at all, so "
+                            "which plat it belongs to is not on the page (T-1033).")
+        elif code not in TOWN_CODES:
+            t["refusal"] = ("%r is a town code this reading has never seen. The lot and "
+                            "the block are the register's own and stand; the code is "
+                            "carried verbatim and is not assumed to be one of the five "
+                            "already read (T-1033)." % code)
         return t
     return t
 
@@ -343,6 +472,13 @@ def givens_of(as_read: str) -> list:
 
 
 def list_name(row: dict) -> str:
+    """The query a row was read under, which is what a declaration can promise.
+
+    A sectioned row names its section. A town lot has none to name, so it names the one
+    query that could reach it: the county's own list, sectionless (T-1033).
+    """
+    if not row["section"].strip():
+        return "%s county list, no section" % (row["county"] or "?")
     return "T%s R%s sec %s" % (row["township"], row["range"], row["section"])
 
 
@@ -408,6 +544,24 @@ def build_coverage(rows: list, probe: list) -> dict:
     truncated = ["T%s R%s sec %s" % tr for tr in sorted(TRUNCATED)]
     declarations, empty = [], []
     for dep in DEPOSITS:
+        if dep.get("sectionless"):
+            # Not a grid of sections: one query, the county listed whole, and the group
+            # of it that carries no section at all. Every one of those rows was then read
+            # at its own detail page, so what is declared is the GROUP and not a township
+            # (T-1033). There is no empty-section block to keep beside it, because no
+            # section was asked for.
+            declarations.append({
+                "unit": "list",
+                "ticket": dep["ticket"],
+                "note": "Read in full: %s's list was walked to its end through the More "
+                        "cursor, every row it returned with no section was taken, and "
+                        "each of those was then read at its own detail page into %s. A "
+                        "section query cannot reach these rows, so this is the only "
+                        "query that declares them." % (dep["county"], dep["tsv"]),
+                "items": [n for n in sorted(reached)
+                          if n == "%s county list, no section" % dep["county"]],
+            })
+            continue
         queried = ["T%dN R%dE sec %02d" % (tw, rg, sn)
                    for tw, rg in dep["pairs"] for sn in range(1, 37)]
         declarations.append({
@@ -445,7 +599,11 @@ def build_coverage(rows: list, probe: list) -> dict:
                 "asked for: nothing around the town is unread now. T-0830 then MEASURED "
                 "that claim against the whole county, listed in one query, and "
                 "`completeness_probe` below is the result: right about every section it "
-                "declares, and blind to a row the register gives no section."
+                "declares, and blind to a row the register gives no section. THAT "
+                "BLINDNESS IS CLOSED (T-1033): the third deposit is not read by section "
+                "at all — it is the county's own list, the group of it that carries no "
+                "section, every row of which is a lot and a block in a platted town and "
+                "was read at its own detail page. It declares that group and not a grid."
                 % (36 * sum(len(d["pairs"]) for d in DEPOSITS), townships),
         "declarations": declarations,
         "queried_no_sales_through_1836": empty,
@@ -466,7 +624,11 @@ def build_coverage(rows: list, probe: list) -> dict:
                     "`completeness_probe` above: the sweep is complete for every section "
                     "it declares, and Cook County's register also holds sales with NO "
                     "section — town lots described by their plat — which no section "
-                    "query can return. Those are counted, not read; T-1028 reads them.",
+                    "query can return. T-1032 harvested those and T-1033 read them into "
+                    "the third deposit, so they are no longer counted-and-unread. What "
+                    "is left between this domain and the whole of 1836 Cook County is "
+                    "the rows sectioned OUTSIDE the seven declared townships, and "
+                    "`completeness_probe` names them and counts them by township.",
         },
     }
 
@@ -707,7 +869,7 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
         if all(c[0] != survivor for c in bucket):
             bucket.append(row)
             via_merge[(surname, survivor)] = folded
-    matches, refusals, firms = [], [], []
+    matches, refusals, firms, bodies = [], [], [], []
     sales_of = {}
     for row in rows:
         sales_of.setdefault(row["purchaser"], []).append(row)
@@ -756,6 +918,32 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                 "firm": True,
                 "firm_style": style,
                 "carried_by": "firm_purchasers[]",
+            })
+            continue
+        # THE BUYER WAS A BODY (T-1033), asked immediately after the firm test and for
+        # the same reason: a county's lots are not a man's, and a refusal that says so is
+        # a reading where a refusal on a missing forename is an accident.
+        if BODY_WORDS & set(givens):
+            bodies.append({
+                "body_as_read": as_read,
+                "what_the_register_sold_to": KNOWN_BODIES.get(as_read),
+                "record_ids": sorted(by_name[as_read]),
+                "lots": len(sales_of[as_read]),
+                "residence_column": ", ".join(residences[as_read]),
+                "declared": as_read in KNOWN_BODIES,
+            })
+            refusals.append({
+                "a": as_read, "b": "(the residents layer)",
+                "rule": "%s is refused against every person: the words the register sets "
+                        "after the surname (%s) say the buyer was a BODY and not a man, "
+                        "and this crosswalk proposes correspondences between a purchaser "
+                        "and a PERSON. Its ground is carried in body_purchasers[] so the "
+                        "reading is not lost with the proposal."
+                        % (as_read, ", ".join(sorted(BODY_WORDS & set(givens)))),
+                "record_ids": sorted(by_name[as_read]),
+                "evidence": ["data/research/land_sales/text/" + row["_file"]],
+                "body": True,
+                "carried_by": "body_purchasers[]",
             })
             continue
         if not givens:
@@ -968,7 +1156,7 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
                   "unruled": sum(1 for m in matches if not m.get("ruling"))},
         "counts": {"purchasers": len({r["purchaser"] for r in rows}),
                    "matched": len(matches), "refused": len(refusals),
-                   "firms": len(firms)},
+                   "firms": len(firms), "bodies": len(bodies)},
         "matches": matches,
         "refusals": refusals,
         # T-0851. The purchasers this crosswalk CANNOT propose, because they are not
@@ -976,6 +1164,9 @@ def build_resident_crosswalk(rows: list, ids: dict, domain: Path = DOMAIN,
         # with the proposal. Every firm is also in refusals[], so the count of
         # adjudicated spellings stays whole.
         "firm_purchasers": firms,
+        # T-1033. The same block for a buyer that is a body rather than a partnership:
+        # a county, a school fund, a hotel company. Every one is also in refusals[].
+        "body_purchasers": bodies,
     }
 
 
@@ -1044,7 +1235,10 @@ def build_entries(rows: list, records: list) -> dict:
         "source_id": SOURCE_ID,
         "generated_by": "tools/read_land_sales.py --build",
         "scope": "Third principal meridian, %s, every sale dated on or before "
-                 "31 December 1836."
+                 "31 December 1836 — and, from T-1033, every sale Cook County's register "
+                 "gives NO section at all through the same date: a lot and a block in a "
+                 "platted town, which no township can hold because the register states "
+                 "none."
                  % ", ".join("T%dN R%dE" % tr for dep in DEPOSITS for tr in dep["pairs"]),
         "note": "Fields are the database's own, unsummarised. `tract` is derived and is "
                 "the only computed field here.",
@@ -1098,6 +1292,7 @@ def derive(domain: Path) -> dict:
 
 def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
     out = derive(domain)
+    bad = []
     # T-0851. A firm the reading found and nobody declared is a purchaser that reaches
     # no card, no business and no eye. It stops the build rather than passing quietly.
     undeclared = [f["firm_as_read"] for f in out["resident_crosswalk.json"]["firm_purchasers"]
@@ -1106,6 +1301,21 @@ def build(domain: Path = DOMAIN, quiet: bool = False) -> int:
         bad.append("land_sales: %r is a partnership the register sells to and it is not in "
                    "KNOWN_FIRMS — read the rows it entered, then declare the spelling "
                    "(tools/read_land_sales.py, T-0851)" % spelling)
+    undeclared_bodies = [b["body_as_read"] for b in
+                         out["resident_crosswalk.json"]["body_purchasers"]
+                         if not b["declared"]]
+    for spelling in undeclared_bodies:
+        bad.append("land_sales: %r is a buyer the register's own words mark as a BODY and "
+                   "it is not in KNOWN_BODIES — read the rows it entered, then declare "
+                   "what the page says it was (tools/read_land_sales.py, T-1033)"
+                   % spelling)
+    # T-1033: these were appended to a name that does not exist here, so an undeclared
+    # firm crashed the build with a NameError instead of naming itself. It is meant to
+    # stop the build, and now it stops it by saying which spelling stopped it.
+    if bad:
+        for line in bad:
+            print(line)
+        return 1
     for rel, doc in out.items():
         dump(domain / rel, doc)
     if not quiet:
@@ -1144,6 +1354,7 @@ def check_rulings(domain: Path, rows: list, ids: dict) -> list:
     # holds nobody of both land here without one, and neither is reachable.
     nameable = {r["a"]: [v["key"] for v in r["rivals"]]
                 for r in mechanical["refusals"] if r.get("rivals")}
+    mechanically_refused = {r["a"] for r in mechanical["refusals"]}
     seen = set()
     for r in doc.get("ruled") or []:
         who = r.get("purchaser_as_read")
@@ -1165,6 +1376,17 @@ def check_rulings(domain: Path, rows: list, ids: dict) -> list:
                            "%d resident(s) of the surname the rule weighed"
                            % (RULINGS_NAME, who, r.get("resident_id"), len(nameable[who])))
         elif who not in proposed:
+            # T-1033: UNLESS THE RULE HAS CAUGHT UP WITH IT. T-0700 refused WILSON
+            # JOHN L against the town's one John Wilson by hand. Joining the town lots
+            # gave `namesake.collide` a second reading of that surname — the register
+            # also sells to WILSON JOHN S — so the rule now refuses the spelling on its
+            # own, before any hand ruling is consulted, and there is no proposal left for
+            # the ruling to move. Rule and ruling AGREE; the ruling is superseded, not
+            # empty, and its reasoning is still what refusals[] carries. An `upheld` or
+            # `named` ruling in this position is a different thing and still fails here,
+            # because it would name a person the rule no longer reaches at all.
+            if r.get("ruling") == "refused" and who in mechanically_refused:
+                continue
             bad.append("land_sales: %s: %r is not a purchaser the crosswalk proposed a "
                        "match for — a ruling on nothing" % (RULINGS_NAME, who))
             continue
@@ -1262,6 +1484,14 @@ def check(domain: Path = DOMAIN, quiet: bool = False) -> list:
         bad.append("land_sales: %r is a partnership the register sells to and it is not in "
                    "KNOWN_FIRMS — read the rows it entered, then declare the spelling "
                    "(tools/read_land_sales.py, T-0851)" % spelling)
+    undeclared_bodies = [b["body_as_read"] for b in
+                         out["resident_crosswalk.json"]["body_purchasers"]
+                         if not b["declared"]]
+    for spelling in undeclared_bodies:
+        bad.append("land_sales: %r is a buyer the register's own words mark as a BODY and "
+                   "it is not in KNOWN_BODIES — read the rows it entered, then declare "
+                   "what the page says it was (tools/read_land_sales.py, T-1033)"
+                   % spelling)
     for rel, doc in out.items():
         path = domain / rel
         if not path.exists():
@@ -1325,6 +1555,29 @@ def _fixture(tmp: Path) -> Path:
         + "\t".join(["0000006", "GARRETT A ET CO", "UNKNOWN", "", "W2SW", "33", "38N",
                       "14E", "3", "COOK", "80.00", "1.25", "100.00", "FD", "12/01/1835",
                       "687", "300"]) + "\n", encoding="utf-8")
+    # The third deposit — the town lots (T-1033). Five REAL rows of the committed file,
+    # chosen because each is a different thing the tract grammar has to do: the plain
+    # `BL` spelling, a half of a half, the `CHIOTVO` code whose last two letters mean
+    # VOID everywhere else in this register, a tract that names a lot and a block and no
+    # town, and one the parser must refuse rather than guess at. They are LAST so the ids
+    # above them do not move, which is the whole point of appending a deposit.
+    (d / "text" / DEPOSITS[2]["tsv"]).write_text(
+        "\t".join(COLS) + "\n"
+        + "\t".join(["0362468", "BEAUBIEN J B", "UNKNOWN", "I", "L4BL36CHIOT", "", "", "",
+                      "", "COOK", "0000.00", "000.00", "37.00", "CN", "09/27/1830",
+                      "L5A", "013"]) + "\n"
+        + "\t".join(["0363250", "DALTON GEORGE", "UNKNOWN", "", "E2E2L1B46CHI", "", "",
+                      "", "", "COOK", "0000.00", "000.00", "343.75", "CN", "06/25/1836",
+                      "L5A", "016"]) + "\n"
+        + "\t".join(["0364011", "HALE EBENEZER", "UNKNOWN", "", "L4BL6CHIOTVO", "", "",
+                      "", "", "COOK", "0000.00", "000.00", "7310.00", "CN", "06/21/1836",
+                      "L5A", "002"]) + "\n"
+        + "\t".join(["0514846", "COOK CNTY COM", "UNKNOWN", "", "L6BL17", "", "", "",
+                      "", "COOK", "0000.00", "000.00", "00000.00", "CN", "11/10/1831",
+                      "L5A", "005"]) + "\n"
+        + "\t".join(["0365596", "PERKINS EPH JR", "UNKNOWN", "", "L1013CHIOT", "", "",
+                      "", "", "COOK", "0000.00", "000.00", "5100.00", "CN", "06/24/1836",
+                      "L5A", "004"]) + "\n", encoding="utf-8")
     build(d, quiet=True)
     return d
 
@@ -1454,6 +1707,30 @@ def self_test() -> int:
             print("SELF-TEST: a named ruling onto somebody outside the rivals did not "
                   "fail the gate"); return 1
         fired.append("a named ruling cannot reach outside the rivals the rule weighed")
+
+        # A RULING THE RULE HAS CAUGHT UP WITH (T-1033). `COOK CNTY COM` is refused by
+        # the rule itself — the forename names none of the Cooks the layer holds — so a
+        # hand REFUSAL of it has no proposal to move and agrees with the rule anyway.
+        # That is not a ruling on nothing. An UPHELD one in the same place is, and the
+        # gate must still say so, because it would name a person nothing reaches.
+        dump(rulings, {"schema": 1, "ruled": [
+            {"purchaser_as_read": "COOK CNTY COM", "resident_id": "cook_daniel",
+             "ruling": "refused", "ruled_on": "2026-09-11", "ticket": "T-1033",
+             "checked_against": ["the fixture"], "reasoning": "a county is not a man"}]})
+        build(d, quiet=True)
+        if check(d, quiet=True):
+            print("SELF-TEST: a refusal the rule also makes must not read as a ruling on "
+                  "nothing"); return 1
+        fired.append("a hand refusal the rule has caught up with still passes the gate")
+        doc = load(rulings)
+        doc["ruled"][0]["ruling"] = "upheld"
+        dump(rulings, doc)
+        build(d, quiet=True)
+        if not check(d, quiet=True):
+            print("SELF-TEST: an upheld ruling on a proposal the rule refuses did not "
+                  "fail the gate"); return 1
+        fired.append("an upheld ruling on a proposal the rule refuses fails the gate")
+
         rulings.unlink()
         build(d, quiet=True)
         cross = load(d / "resident_crosswalk.json")
@@ -1464,6 +1741,81 @@ def self_test() -> int:
         if ring["records"][0]["locator"]["text_file"] != DEPOSITS[1]["tsv"]:
             print("SELF-TEST: a record must cite the deposit it is on"); return 1
         fired.append("a second deposit appends its ids and cites its own file")
+
+        # THE TOWN LOTS (T-1033). A lot and a block in a platted town is a different
+        # object from a quarter-section, and the whole reason the 619 sat outside the
+        # deposits for a fortnight was that `tract()` had no way to say so.
+        lots = load(d / records_name(DEPOSITS[2]["tsv"]))
+        if [r["id"] for r in lots["records"]][0] != "ls0008":
+            print("SELF-TEST: the third deposit's ids must continue the second's"); return 1
+        fired.append("a third deposit appends its ids after the second's")
+        by_pno = {r["locator"]["purchase_no"]: r["tract"] for r in lots["records"]}
+        plain = by_pno["0362468"]
+        if plain["resolves"] != "town_plat_lot" or (plain["lot"], plain["block"]) != ("4", "36"):
+            print("SELF-TEST: a lot and a block in a platted town must resolve"); return 1
+        if plain["town_code"] != "CHIOT" or plain["plat"] is not None:
+            print("SELF-TEST: a town code is carried verbatim and never expanded to a plat")
+            return 1
+        if plain["section"].strip():
+            print("SELF-TEST: a sectionless row must never acquire a section"); return 1
+        fired.append("a town lot resolves its lot and block and refuses to name the plat")
+        half = by_pno["0363250"]
+        if half["lot_fraction"] != "E2E2" or half["lot"] != "1":
+            print("SELF-TEST: a half of a half of a lot is carried as the clerk wrote it")
+            return 1
+        fired.append("a part OF a town lot keeps the register's own fractions")
+        vo = by_pno["0364011"]
+        if vo["void"] is not None or "VOID" not in (vo["refusal"] or "").upper():
+            print("SELF-TEST: a CHIOTVO lot must neither be called void nor called valid")
+            return 1
+        if vo["town_code"] != "CHIOTVO":
+            print("SELF-TEST: the CHIOTVO code is carried whole, not split at the VO")
+            return 1
+        fired.append("a town code ending in VO leaves `void` null and states the question")
+        bare = by_pno["0514846"]
+        if bare["town_code"] is not None or not bare["refusal"]:
+            print("SELF-TEST: a lot and block naming no town must say the plat is not on "
+                  "the page"); return 1
+        fired.append("a lot and block naming no town refuses the plat and says why")
+        refused = by_pno["0365596"]
+        if refused["resolves"] != "refused" or refused["lot"] is not None:
+            print("SELF-TEST: an unparsable sectionless tract must refuse, not guess")
+            return 1
+        if not (refused["refusal"] or "").strip():
+            print("SELF-TEST: a refusal must state its reason"); return 1
+        fired.append("an unparsable sectionless tract is refused with a stated reason")
+        # The school section's `LOT5BL3` is a town lot too and is read by the OTHER
+        # grammar, in aliquot space, with a section on the row. The two must not collide.
+        school = next(r["tract"] for r in load(d / records_name(DEPOSITS[0]["tsv"]))["records"]
+                      if r["tract"]["part"].startswith("LOT"))
+        if school["resolves"] != "town_lot" or school["town_code"] is not None:
+            print("SELF-TEST: a sectioned LOTnBLn is not a town-plat lot"); return 1
+        fired.append("the school section's lots and the plat's lots stay two kinds")
+
+        # A BUYER THAT IS A BODY (T-1033). The county commissioners are in the fixture
+        # because the firm test cannot see them — there is no conjunction before `COM` —
+        # and the refusal they used to get was an accident of no Cook being called Cnty.
+        cross_lots = load(d / "resident_crosswalk.json")
+        body = [b for b in cross_lots["body_purchasers"]
+                if b["body_as_read"] == "COOK CNTY COM"]
+        if len(body) != 1 or not body[0]["declared"]:
+            print("SELF-TEST: a declared body must reach body_purchasers[]"); return 1
+        if any(m["purchaser_as_read"] == "COOK CNTY COM" for m in cross_lots["matches"]):
+            print("SELF-TEST: a body must never be proposed as a person"); return 1
+        if not any(r["a"] == "COOK CNTY COM" and r.get("body")
+                   for r in cross_lots["refusals"]):
+            print("SELF-TEST: a body must be refused for being a body"); return 1
+        fired.append("a body corporate is refused as a body and carried with its ground")
+        was = dict(KNOWN_BODIES)
+        try:
+            KNOWN_BODIES.pop("COOK CNTY COM")
+            if not check(d, quiet=True):
+                print("SELF-TEST: an undeclared body did not stop the gate"); return 1
+        finally:
+            KNOWN_BODIES.clear()
+            KNOWN_BODIES.update(was)
+        build(d, quiet=True)
+        fired.append("an undeclared body stops the gate until somebody reads its rows")
 
         cov = load(d / "coverage.json")
         # T-0675 read the three sections T-0557 could not, so they MUST be declared now;
