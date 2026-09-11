@@ -344,4 +344,4 @@ T-1021 — Seven Norris 1844 firms are read as people because the scanner set th
 T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
-
+T-1029 — consolidate_town_cards.py --apply overwrites a survivor's merged_from, so a card folded onto twice forgets the first fold
