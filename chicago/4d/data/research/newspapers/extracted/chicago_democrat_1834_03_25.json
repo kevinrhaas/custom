@@ -385,7 +385,8 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "note": "Three hundred cedar posts under a scrap of song, with no address whatever. This is the claim T-0859 was found on: the business-level South Water Street beside it comes from a reader who knew Hogan's store, not from the notice, and it is not read back here."
         }
       },
       "ad_copy_date": {

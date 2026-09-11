@@ -191,7 +191,11 @@
         ],
         "street": "Randolph Street",
         "placement": {
-          "class": "street_only"
+          "class": "street_only",
+          "anchor": null,
+          "offset_text": "a shop, on Kandolph street,",
+          "offset_normalized": "[for] a shop, on [R]andolph street",
+          "street": "Randolph Street"
         }
       }
     },

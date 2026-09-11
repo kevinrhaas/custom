@@ -333,7 +333,10 @@
         "placement": {
           "class": "street_only",
           "anchor": null,
-          "offset_text": null
+          "offset_text": "and Canal streets, oppor",
+          "offset_normalized": "[…] and Canal streets, oppo[site …]",
+          "street": "Canal Street",
+          "note": "THE CORNER IS NOT ON THIS IMPRESSION AND IS NOT TAKEN FROM ANOTHER. The type here carries neither the word \"corner\" nor the first street name: what survives is \"and Canal streets, oppor\", and the plural is the only trace of a junction. The same standing advertisement — one dateline, 25 June 1834 — does print it, four times (1834-06-25 c005, 1834-07-02 c051, 1834-09-10 c017, 1834-11-19 c007), and those readings carry the corner class on their own type. Reading THIS printing as a corner would take the word off its sister impressions rather than off this page, so it stays street_only, carrying the one street the page does print. What is repaired is the silence: the placement said nothing where the page says Canal street."
         }
       }
     },

@@ -70,7 +70,10 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "offset_text": "at his rooin on soutl: water street.",
+          "offset_normalized": "at his room on sout[h] water street",
+          "street": "South Water Street"
         }
       },
       "ad_copy_date": {
@@ -296,7 +299,8 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "note": "The fire-insurance card and the hardware notice beside it print no address. The business-level `street` is not read back into the placement (T-0859)."
         }
       },
       "ad_copy_date": {
@@ -777,7 +781,10 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "offset_text": "Montgomery's Auction. Roum, South\ny | Water Street",
+          "offset_normalized": "re[c]eived a[t] Montgomery's Auction Room, South Water Street",
+          "street": "South Water Street"
         }
       }
     },
