@@ -27,7 +27,7 @@ AND SINCE T-1011, THREE ROWS THE PAGE IMAGE SUPPLIED. The rest of this file gues
 reading from what the town already holds; those three read it off the scan of the
 printed line itself, which is why their right-hand side is the strongest here — and why
 they say something worse than a misread letter. Each stands beside a SECOND card for
-what is very likely one addressee, and the repair is an identity question (T-1016), so
+what is very likely one addressee, and the repair is an identity question (T-1002), so
 they are registered on the same terms as everything else: graded nothing, acted on
 nowhere.
 
@@ -79,7 +79,7 @@ SUSPICIONS: tuple[tuple[str, str, str | None], ...] = (
     # one addressee twice. The right-hand side below is therefore not a guess: it is what
     # the page image sets on the line. It is still registered rather than applied —
     # repairing it means changing the reading at the extracted column and retiring one of
-    # the two cards, which is T-1016's question and not this file's.
+    # the two cards, which is T-1002's question and not this file's.
     ("hh_heere_anthony", "Heere", "Beers"),
     ("hh_conte_e_w", "Conte", "Center"),
     ("hh_forster_jane", "Forster", "Forrister"),
@@ -112,15 +112,15 @@ NOTES = {
         "hh_beers_anthony because no extraction of any impression carries that line. "
         "Two edits separate the surnames, one more than the concordance's `spelling` "
         "rule admits, so nothing tied them and the town holds the addressee twice. A "
-        "SUSPECTED DUPLICATE, not a correction: see T-1016.",
+        "SUSPECTED DUPLICATE, not a correction: see T-1002.",
     ("hh_conte_e_w", "Conte"):
         "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 33 of the "
         "same return reads 'E. W. Center' at the scan (T-0424), minted by T-1011 as "
-        "hh_center_e_w. A SUSPECTED DUPLICATE, not a correction: see T-1016.",
+        "hh_center_e_w. A SUSPECTED DUPLICATE, not a correction: see T-1002.",
     ("hh_forster_jane", "Forster"):
         "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 59 of the "
         "same return reads 'Jane Forrister' at the scan (T-0424), minted by T-1011 as "
-        "hh_forrister_jane. A SUSPECTED DUPLICATE, not a correction: see T-1016.",
+        "hh_forrister_jane. A SUSPECTED DUPLICATE, not a correction: see T-1002.",
 }
 
 

@@ -10129,7 +10129,8 @@ a card minted from a transcription of the same return whose letters differ by mo
 concordance's tie rules admit (Beers/Heere, Center/Conte, Forrister/Forster), so the town very
 likely holds one addressee twice in three places. That is registered as a suspicion in
 `data/research/residents/letter_list_reading_suspicions.json` and resolved nowhere — it is a
-reading question (T-1016), and the pattern above is how it will leave if it is one man.
+reading question (T-1002, which already owns the duplicates the surname-string candidate test
+cannot see), and the pattern above is how it will leave if it is one man.
 
 **One has left the set, and the way it left is the pattern.** `N. R. Norton` was minted here
 from a single return of 1 July 1835 and carried nothing else. T-0723 ruled it the same man as

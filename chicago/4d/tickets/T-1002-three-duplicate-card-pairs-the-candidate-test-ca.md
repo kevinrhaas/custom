@@ -39,6 +39,27 @@ of the three pairs ever reached the T-0839 pass, the T-0844 pass or the T-0993 p
 refused, not deferred, **never proposed**. The forty-one clusters that file holds are the
 pairs the string test could see, and the file has no way to say how many it could not.
 
+**AND THREE MORE, FOUND BY T-1011 ON 2026-09-11, at TWO letters rather than one — filed here
+rather than as a ticket of their own because this is the same question one edit further out.**
+T-1011 minted 24 of the 54 lines of the 1 January 1834 post-office return that no transcription
+of any of its nine impressions carries, reading them off the page image. Three of the 24 stand
+beside a card already minted from a TRANSCRIPTION of the same return:
+
+| the card minted from a transcription | the card minted from the page image | the letters |
+|---|---|---|
+| `hh_heere_anthony` — Anthony Heere | `hh_beers_anthony` — Anthony Beers, line 12 | H for B, e for s |
+| `hh_conte_e_w` — E. W. Conte | `hh_center_e_w` — E. W. Center, line 33 | o for e, t for t+er |
+| `hh_forster_jane` — Jane Forster | `hh_forrister_jane` — Jane Forrister, line 59 | a doubled r, an i |
+
+One addressee, one printed line, two impressions of it, and two cards — the plainest kind of
+duplicate this layer can hold, and the string test cannot see any of the three for the same
+reason it could not see the three above. They are registered as suspicions in
+`data/research/residents/letter_list_reading_suspicions.json`, which is the only place in the
+tree that says so, and the right-hand column there is not a guess: the page image sets it. The
+repair is not a merge rule — it is to change the reading at the extracted column, which retires
+one card of each pair the way L214's N. R. Norton left the set.
+
+
 **The shape is the same in all three, and it is a shape and not a coincidence:** one
 hand-authored card out of Andreas carrying a trade, an arrival and a source, and one card
 minted by `tools/mint_civic_residents.py` off a poll list or the Chicago Democrat carrying a
