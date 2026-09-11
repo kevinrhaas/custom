@@ -66,6 +66,15 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# THE ONCE-EACH RULE lives in one place (T-0846). `gaps` asks whether this pass's
+# paragraph is PRESENT and `strays` whether an unruled card carries one; neither can
+# see a card that carries it TWICE, which is what an add-only applier produces when the
+# wording changes between runs. T-0677 measured that on this series and closed it in one
+# tool; three copies later the copies had already drifted apart, so the rule is shared.
+import spend_write_once  # noqa: E402
 DIRECTORIES = ROOT / "data" / "research" / "directories"
 ELECTION = DIRECTORIES / "fergus_1839_election_crosswalk_1835.json"
 REGISTER = DIRECTORIES / "fergus_1839_register_crosswalk_1835.json"
@@ -81,6 +90,15 @@ SOURCE_ID = "fergus_chicago_directory_1839"
 # The sentence that says a paragraph is this pass's, so re-running it is idempotent and
 # `--check` can find its own work without guessing.
 MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
+
+# A WORDING THIS PASS HAS REPLACED — the second half of the once-each rule (T-0846). An
+# applier here is add-only (`if MARKER not in note`), so rewriting the paragraph makes a
+# re-run APPEND a second one saying the same thing in different words rather than overwrite
+# the first, and neither `gaps` nor `strays` can see it. T-0677 measured exactly that on
+# `spend_land_sales.py`: thirty-one cards doubled, `tools/check.sh` green. Any MARKER this
+# pass retires belongs in this tuple from the commit that retires it, and `--check` then
+# refuses a card still carrying it. Empty means this pass has never changed its wording.
+SUPERSEDED_MARKERS: tuple = ()
 
 LADDER_LIMIT = (
     "This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a "
@@ -392,6 +410,19 @@ def strays(rows: list) -> list:
     return bad
 
 
+def doubles() -> list:
+    """…and a card says this pass's source ONCE, however many passes have written it.
+
+    The third direction, and the one `gaps` and `strays` are both blind to: `gaps` asks
+    whether the paragraph is PRESENT and `strays` whether an unruled card carries one, so a
+    card carrying it TWICE answers both correctly. T-0677 measured that hole on
+    `spend_land_sales.py` — thirty-one cards each doubled by re-running a superseded version
+    of the tool, and `tools/check.sh` green over all of it. T-0846 gives this pass the same
+    rule, out of `tools/spend_write_once.py` so that six passes hold one implementation.
+    """
+    return spend_write_once.doubles(MARKER, SUPERSEDED_MARKERS, HOUSEHOLDS)
+
+
 def check(quiet: bool = False) -> int:
     rows = matches()
     if not LEDGER.exists():
@@ -401,7 +432,7 @@ def check(quiet: bool = False) -> int:
         print("   %s no longer re-derives from the two crosswalks — re-run the tool"
               % LEDGER.relative_to(ROOT))
         return 1
-    bad = gaps(rows) + strays(rows)
+    bad = gaps(rows) + strays(rows) + doubles()
     if bad:
         for line in bad[:20]:
             print("   %s" % line)
@@ -409,7 +440,8 @@ def check(quiet: bool = False) -> int:
             print("   …and %d more" % (len(bad) - 20))
         return 1
     if not quiet:
-        print("fergus 1839 later lists: %d ruling(s) on %d card(s), no strays"
+        print("fergus 1839 later lists: %d ruling(s) on %d card(s), no strays, none "
+              "written twice"
               % (sum(len(r["entries"]) for r in rows), len(rows)))
     return 0
 
@@ -470,6 +502,27 @@ def self_test() -> int:
     silent["note"] = "Existing sentence."
     want("gaps must fire on a card that carries no paragraph",
          any("no paragraph" in g for g in _gaps_over(rows[0], silent)))
+
+    # THE ONCE-EACH RULE, both directions (T-0846). `gaps` and `strays` are both blind to a
+    # card that carries this pass's paragraph twice — the one answers "present", the other
+    # "ruled" — and an add-only applier produces exactly that when the wording changes
+    # between runs. The card the applier actually writes must stay silent; the same card
+    # with the paragraph appended again, and the same card carrying a superseded wording
+    # beside it, must both fault.
+    want("the once-each rule must stay silent on the card the applier writes",
+         spend_write_once.doubles_over("hh_x", after, MARKER, SUPERSEDED_MARKERS) == [])
+    doubled = json.loads(json.dumps(after))
+    doubled["note"] = doubled["note"] + " " + doubled["note"]
+    want("the once-each rule must fire on a card carrying this pass's paragraph twice",
+         any("2 times" in d for d in spend_write_once.doubles_over(
+             "hh_x", doubled, MARKER, SUPERSEDED_MARKERS)))
+    rival = json.loads(json.dumps(after))
+    rival["note"] = rival["note"] + " A SUPERSEDED WORDING OF THE SAME PASS. …"
+    want("the once-each rule must fire on a superseded paragraph left standing",
+         any("superseded" in d for d in spend_write_once.doubles_over(
+             "hh_x", rival, MARKER, ("A SUPERSEDED WORDING OF THE SAME PASS.",))))
+    want("this pass must declare its superseded wordings as a tuple",
+         isinstance(SUPERSEDED_MARKERS, tuple))
 
     for line in fails:
         print("   %s" % line)
