@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A card says a source once, and five gates could not tell', kind: 'fix', ts: '',
+  { v: 717, title: 'A card says a source once, and five gates could not tell', kind: 'fix', ts: '2026-09-11T08:02:44.305Z', date: 'Sep 11, 2026, 3:02 AM CT',
     items: [
       'When this project spends a source \u2014 a voter roll, a directory, a register of land sales \u2014 it writes a short paragraph onto each person it names, saying what that source is worth and what it is not. Every one of those passes checks its own work afterwards in two directions: is the paragraph on every card it ruled for, and is it on any card it did not. Neither question can see a card carrying the same paragraph TWICE, because a doubled card answers both of them correctly.',
       'That is not a hypothetical. Each pass writes by adding, never by replacing, so re-running an older version of one after its wording has changed leaves the card saying the same thing twice in two sets of words. It was measured once already: an earlier version of the land-sales pass, run against this project\u2019s working branch, gave all thirty-one of its cards a second paragraph about the same register, and the whole per-commit gate stayed green over it.',
