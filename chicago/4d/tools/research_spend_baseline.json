@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1017
+   "spent": 1021
   },
   "newberry_index": {
    "read": 7005,
@@ -488,6 +488,14 @@
    "to": 222,
    "date": "2026-09-11",
    "why": "T-0826 read volume 2 of Moses and Kirkland, the half of a work whose first half this domain already holds, and wrote 20 claims off it. THE SPEND IS DEFERRED BY THE TICKET AND NOT BY NEGLECT: T-0581's third acceptance clause, which binds T-0826 too, forbids a books reading from editing data/residents/, data/households/, data/structures/ or data/businesses/ at all — anything the volume dates and places before 1835-07-01 is offered to those layers under the ratified ladder IN THAT LAYER'S OWN PR. So these twenty cannot be ruled on in the PR that reads them, by the project's own rule, and the ceiling moves by exactly the twenty rather than by a round number. What they are owed to: two dated presence lists (the Baptist fourteen of 19 October 1833 and the Episcopal eleven of 1834), a brick yard, a tannery, a residence with a block, and a second address for the Chicago Democrat's office. A run that spends them should --tighten this back."
+   },
+   {
+   "domain": "directories",
+   "hop": "write",
+   "from": 260,
+   "to": 264,
+   "date": "2026-09-11",
+   "why": "T-1018 repaired 46 Norris 1844 entries whose name ran past the end of the name into the trade and the street. The crosswalk now reaches 936 town people where it reached 928, and 672 cards carry a directory line where 668 did: every one of the four new MATCHES was spent onto a card in the same pass (Charles L. Harmon, Leonard C. Hugunin, Edmund S. Kimberly, John H. Kinzie). The residue of four is the new REFUSALS the repair made visible — a surname now legible with no agreeing initial, or two full forenames that disagree — and a refusal is not a card's to carry. No ruling went unspent for want of spending it."
   }
  ],
  "lowered": [
@@ -534,7 +542,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 260,
+  "directories": 264,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 0

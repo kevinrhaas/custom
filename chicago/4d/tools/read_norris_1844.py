@@ -144,6 +144,158 @@ def clean_head(text: str) -> str:
     return re.sub(r"^[^A-Za-z]*(?:[a-zA-Z]\s)?", "", text).strip()
 
 
+# THE FIRST COMMA IS NOT ALWAYS NORRIS'S NAME COMMA (T-1018).
+#
+# `split_entry` takes a person's name as everything before the first comma, which is
+# how Norris set it — `Crissman, John M. laborer`. archive.org's OCR loses that comma
+# constantly, setting a full stop or nothing at all, and then the name runs on into
+# whatever follows: `Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle and
+# Wells` read as a surname of thirteen words, with the trade and the street lost
+# inside it.
+#
+# `name_prefix()` (T-1013) already knows where a name ends — it walks the leading
+# tokens and stops at the trade or at `of` — so the repair is to CAP the comma-derived
+# name at that prefix. 69 entries read past it. The cap is right for 46 of them and
+# would do damage in the other 23, so each of those four classes is refused by name
+# and the refusal is written onto the claim.
+#
+#   firm_branch (7)    The entry is a firm, and the firm branch below never uses the
+#                      comma at all — it takes the name from `firm_name(prefix)`. The
+#                      overrun is in a span that is not read. Nothing to repair.
+#
+#   firm_conj (7)      The scanner set the ampersand as `<fc`, `6c` or `it`, so FIRM
+#                      never fired and `Bowen & Cole` is read as a man. Capping would
+#                      truncate it to `Bowen` and MINT A MAN WHO IS NOT IN THE BOOK —
+#                      strictly worse than the run-on. The span is exactly
+#                      `Name <conj> Name`, which is what this refusal tests. Widening
+#                      FIRM to read those three tokens as ampersands is a separate
+#                      ruling about firm/person classification, and `it` is an English
+#                      word, so it is filed as its own ticket rather than smuggled in.
+#
+#   split_surname (4)  The comma IS Norris's name comma and the prefix stops INSIDE a
+#                      surname the scanner broke in two: `Went worth, Geo. W.`,
+#                      `Lurk in, Timothy`, `Woi thinglnm, Wm.`, `Brine kerb off, John`.
+#                      `name_prefix` breaks on the lower-case second half. Capping
+#                      would read Wentworth as `Went`. The tell is that the span holds
+#                      no capitalised token after the first — no forename, no initial,
+#                      so no trade can have started — and a forename stands after the
+#                      comma.
+#
+#   empty_prefix (5)   The reading begins at the trade, so the prefix is empty and the
+#                      cap would set the surname to `''` — which drops the claim out of
+#                      crosswalk_norris_1844.py, silently, because it skips a claim
+#                      with no surname. These are turned lines the entry-boundary rule
+#                      mis-cut (`ady` for `<'ady, Dennis S.`) or margin droppings. They
+#                      need a ruling of their own; an empty prefix is a REFUSAL.
+#
+# A refused entry reads exactly as it did before this ticket, and says so on the claim
+# in `normalized.name_overrun`. `--self-test` asserts the counts of all five classes.
+OVERRUN_CONJ = {"<fc", "6c", "it", "fc", "ic"}
+
+# The 69, by class and by entry id — the self-test's ratchet (see there).
+OVERRUN_CLASSES = {
+    # --- repaired
+    "n1844_e0104": "repaired",            # Bearup^ John I. teacher
+    "n1844_e0139": "repaired",            # Birdf J. H. at Dr. Biuinard's
+    "n1844_e0275": "repaired",            # Bir/.zard. S. laborer
+    "n1844_e0429": "repaired",            # Crissman John M. laborer
+    "n1844_e0430": "repaired",            # Crocker Josiah D. white washer
+    "n1844_e0550": "repaired",            # Eachus. Virgil H. tailor
+    "n1844_e0574": "repaired",            # Enos Wra. C. jr. at A. Clyburn's
+    "n1844_e0615": "repaired",            # Flint. Mrs. house Adams st. b Clinton and Jefferson sfs
+    "n1844_e0700": "repaired",            # Gilmorc. Win. laborer
+    "n1844_e0706": "repaired",            # Godnrd. H. B. clerk
+    "n1844_e0749": "repaired",            # Greyhnn. W. hostler
+    "n1844_e0754": "repaired",            # Griswold. Clns. E. clerk
+    "n1844_e0756": "repaired",            # JrisivoM. David D. res D. S. Griswold's
+    "n1844_e0795": "repaired",            # Harmon Charles L. dry goods and groceries
+    "n1844_e0918": "repaired",            # Hugunin. L. C. at United States Hotel
+    "n1844_e0942": "repaired",            # Jeffries. Gco. warehouse man
+    "n1844_e0948": "repaired",            # Jocelyn. J.H. barkeeper at Western Hotel
+    "n1844_e1019": "repaired",            # Kimberly Ed. S. physician
+    "n1844_e1031": "repaired",            # Kinzie. John H. register land office
+    "n1844_e1123": "repaired",            # Lowe. Samuel A. clerk
+    "n1844_e1354": "repaired",            # Norton. C. C. of N. & Case
+    "n1844_e1388": "repaired",            # Paine. James S. saddler
+    "n1844_e1418": "repaired",            # Penton. D. R. at Dr. Britickerhoff's
+    "n1844_e1427": "repaired",            # Peterson. GPO. captain schooner St. Joseph
+    "n1844_e1443": "repaired",            # Plagge G. shoemaker
+    "n1844_e1451": "repaired",            # Powless. John shoemaker
+    "n1844_e1460": "repaired",            # Ransom. J. W. res corner Monroe and Clark st
+    "n1844_e1502": "repaired",            # Robinson. P. P. boot maker
+    "n1844_e1522": "repaired",            # Rowlatt. W. Bethel clergyman
+    "n1844_e1525": "repaired",            # Rowley Tlios. E. teamster
+    "n1844_e1533": "repaired",            # Russell. C. G. of Rew & Russell
+    "n1844_e1590": "repaired",            # Sharer.\"Geo. tailor
+    "n1844_e1696": "repaired",            # Steel. J. H. h Lake st. b Water and Canal sts
+    "n1844_e1700": "repaired",            # Stevens S. tailor
+    "n1844_e1734": "repaired",            # Surdam. S. J. stoves
+    "n1844_e1766": "repaired",            # Thompson. Leonard W. carpenter
+    "n1844_e1783": "repaired",            # Truesdell. Geo. \\V. clothier
+    "n1844_e1830": "repaired",            # Walker. Martin O. of Frink
+    "n1844_e1839": "repaired",            # Walton. J. W. dry goods and groceries
+    "n1844_e1844": "repaired",            # Ward Mrs. res near North Branch Bridge
+    "n1844_e1868": "repaired",            # Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasall
+    "n1844_e1891": "repaired",            # Wicker. C. G. of C. G. Wicker & Go. res Tremont
+    "n1844_e1893": "repaired",            # Wicker. J. H. at C. G. Wicker & Go's
+    "n1844_e1936": "repaired",            # AVorcester. D. L. at H. Norton & Co.'s
+    "n1844_e1966": "repaired",            # Dennis. Edward M. res Dr. Smith's
+    "n1844_e1985": "repaired",            # Greenwood. Theophilus S. house Ontario st. b Dearborn and 
+    # --- firm_branch
+    "n1844_e0357": "firm_branch",         # Clarke & Co. druggists
+    "n1844_e0547": "firm_branch",         # Dyer & Chapin dry goods and groceries
+    "n1844_e0554": "firm_branch",         # Eddy & Co. dealers in iron
+    "n1844_e1429": "firm_branch",         # Pfund & Co. bakers
+    "n1844_e1623": "firm_branch",         # Sicar & Co. groceries
+    "n1844_e1817": "firm_branch",         # WTadsworth. E. S. & J. dry goods and groceries
+    "n1844_e1892": "firm_branch",         # Wicker. C. G. & Co. dry goods and groceries
+    # --- firm_conj
+    "n1844_e0063": "firm_conj",           # Ballentine <fc Sherman
+    "n1844_e0168": "firm_conj",           # Bowen 6c Cole
+    "n1844_e0180": "firm_conj",           # Bracken it Tuller
+    "n1844_e0439": "firm_conj",           # Crauer <fc Sanser
+    "n1844_e0719": "firm_conj",           # Gould it Dodge
+    "n1844_e0787": "firm_conj",           # Hamilton <fc White
+    "n1844_e1629": "firm_conj",           # Skinner 6c .Smith
+    # --- split_surname
+    "n1844_e0198": "split_surname",       # Brine kerb off
+    "n1844_e1075": "split_surname",       # Lurk in
+    "n1844_e1872": "split_surname",       # Went worth
+    "n1844_e1937": "split_surname",       # Woi thinglnm
+    # --- empty_prefix
+    "n1844_e0009": "empty_prefix",        # house Clark street (See card)
+    "n1844_e0276": "empty_prefix",        # ady
+    "n1844_e0278": "empty_prefix",        # ilhoun
+    "n1844_e0771": "empty_prefix",        # llageman
+    "n1844_e1637": "empty_prefix",        # v; Smith
+}
+
+
+def _capitalised(tok: str) -> bool:
+    bare = tok.strip(".,'\"<>;:&")
+    return bool(bare) and bare[0].isupper()
+
+
+def overrun_refusal(head: str, prefix, span: str):
+    """Why the comma-derived name must NOT be capped at the prefix, or None."""
+    toks = span.split()
+    over = toks[len(prefix):]
+    after = head.split(",", 1)[1].strip() if "," in head else ""
+    first_after = after.split()[0] if after else ""
+    if not prefix:
+        return ("empty_prefix", "the reading begins at the trade, so there is no name to "
+                "cap to; an empty surname would drop the claim out of the crosswalk")
+    if len(toks) == 3 and over[0] in OVERRUN_CONJ and _capitalised(over[1]):
+        return ("firm_conj", "the scanner set this firm's ampersand as %r, so the firm "
+                "test never fired; capping would truncate it to a man who is not in "
+                "the book" % over[0])
+    if not any(_capitalised(t) for t in toks[1:]) and first_after and (
+            _capitalised(first_after) or first_after.strip(".,").lower() in TITLES):
+        return ("split_surname", "the comma is Norris's own, and the prefix stops inside "
+                "a surname the scanner broke in two")
+    return None
+
+
 def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
     head, head_repair = repair_welded_of(clean_head(text))
@@ -153,9 +305,34 @@ def split_entry(text: str):
         surname, rest = head.split(",", 1)
     else:
         surname, rest = head, ""
+    # T-1018. The comma-derived name runs past the end of the name — cap it at the
+    # prefix, unless one of the four named classes refuses.
+    overrun = None
+    capped = False
+    if len(surname.split()) > len(prefix):
+        reason = ("firm_branch", "the firm branch takes the name from firm_name(prefix) "
+                  "and never reads the comma span") if firm else \
+            overrun_refusal(head, prefix, surname)
+        if reason:
+            overrun = {"refused": reason[0], "why": reason[1],
+                       "as_split_on_comma": surname.strip(" .&")}
+        else:
+            overrun = {"repaired": True, "name": " ".join(prefix),
+                       "as_split_on_comma": surname.strip(" .&")}
+            # With no name comma inside the prefix, Norris's surname is the first
+            # token of it and every token after is a forename. `split(None, n)`
+            # returns the untouched remainder as its last element, so the trade and
+            # the street come back whole however the scanner spaced them.
+            parts = head.split(None, len(prefix))
+            surname, capped = prefix[0], True
+            rest = parts[len(prefix)] if len(parts) > len(prefix) else ""
     surname, rest = surname.strip(" .&"), rest.strip()
     given = []
-    if not firm:
+    if capped:
+        # The forenames are the prefix tail, already delimited by the walk — not a
+        # guess off the far side of a comma, so the token test below cannot help.
+        given = prefix[1:]
+    elif not firm:
         for tok in rest.split():
             bare = tok.strip(".,'\"").lower()
             if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
@@ -191,6 +368,8 @@ def split_entry(text: str):
     }
     if head_repair:
         out["head_repair"] = head_repair
+    if overrun:
+        out["name_overrun"] = overrun
     return out
 
 
@@ -659,15 +838,51 @@ def self_test():
         if c["normalized"]["firm"] and not FIRM.search(c["normalized"]["printed_name"] + ","):
             fired.append("%s is read as a business but its name %r carries no firm "
                          "marker" % (c["id"], c["normalized"]["printed_name"]))
+    # T-1018. THE 69 ENTRIES WHOSE NAME RAN PAST THE END OF THE NAME, BY CLASS.
+    #
+    # The cap is right for 46 and would do damage in 23, so the four refusals are
+    # asserted BY ENTRY ID, not by count: the whole risk of this repair is that a
+    # re-read moves a line, a refusal stops firing, and the entry is quietly capped
+    # to `Went` or to `''`. An entry that leaves its class fails here.
+    #
+    # `empty_prefix` is the one the acceptance names, because capping to an empty
+    # surname is SILENT — crosswalk_norris_1844.py skips a claim with no surname and
+    # says nothing — so it is asserted twice: by id, and by the surname it keeps.
+    by_id = {c["id"]: c for c in claims}
+    for cid, want in OVERRUN_CLASSES.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in OVERRUN_CLASSES and is not in the reading" % cid)
+            continue
+        got = c["normalized"].get("name_overrun")
+        got = "repaired" if (got or {}).get("repaired") else (got or {}).get("refused")
+        if got != want:
+            fired.append("%s was %s by T-1018 and now reads %r — the line moved under "
+                         "the classifier" % (cid, want, got))
+    seen = {c["id"] for c in claims if c["normalized"].get("name_overrun")}
+    for cid in sorted(seen - set(OVERRUN_CLASSES)):
+        fired.append("%s reads past the end of its name with no row in OVERRUN_CLASSES: "
+                     "%r" % (cid, by_id[cid]["normalized"]["name_overrun"]))
+    for cid, want in OVERRUN_CLASSES.items():
+        if want == "empty_prefix" and cid in by_id and not by_id[cid]["normalized"]["surname"]:
+            fired.append("%s was capped to an empty surname, which drops it out of the "
+                         "crosswalk with nothing said" % cid)
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
         print("norris 1844 --self-test: %d case(s) failed" % len(fired), file=sys.stderr)
         return 1
+    from collections import Counter
+    tally = Counter(OVERRUN_CLASSES.values())
     print("norris 1844 --self-test: %d forename repairs hold against the second hand "
           "and %d against the page image (each read twice, on a reproducible crop), "
           "%d left damaged on purpose"
           % (len(REPAIRS), len(IMAGE_REPAIRS), len(UNREPAIRED)))
+    print("norris 1844 --self-test: %d names read past the end of the name — %d capped "
+          "at the prefix, %s"
+          % (len(OVERRUN_CLASSES), tally["repaired"],
+             ", ".join("%d refused %s" % (n, k) for k, n in sorted(tally.items())
+                       if k != "repaired")))
     return 0
 
 
