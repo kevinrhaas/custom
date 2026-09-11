@@ -12,90 +12,121 @@
       "passed": 110,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 321,
-      "takenAt": "2026-09-10T23:58:29.443Z",
-      "ref": "steward/t-0990-cohort-c2-land-sale-rulings",
-      "commit": "8c3f0fda304d",
+      "wallSeconds": 324,
+      "takenAt": "2026-09-11T00:27:01.135Z",
+      "ref": "steward/t-1008-letter-list-1834-roster-mint",
+      "commit": "3d66d6371090",
       "devCommit": "af0f45cd8ca7",
-      "treeHash": "sha256:417f4c351f16e60d",
+      "treeHash": "sha256:103649ed2b9271f2",
       "treeDirty": false,
-      "changelogHash": "sha256:f841d470265ade7d",
+      "changelogHash": "sha256:8d2c30b85d24e6e3",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.5,
-          4.7,
-          3.5
+          4.2,
+          4.3,
+          3.6
         ]
       },
-      "source": "/tmp/smoke-d2.log"
+      "source": "/tmp/smoke_d2.log"
     },
     {
       "viewport": "desktop",
-      "stage": "3,12",
+      "stage": "3,10",
       "parts": [
         3,
-        12
+        10
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 138,
+      "passed": 103,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 373,
-      "takenAt": "2026-09-10T23:58:29.355Z",
-      "ref": "steward/t-0990-cohort-c2-land-sale-rulings",
-      "commit": "8c3f0fda304d",
+      "wallSeconds": 470,
+      "takenAt": "2026-09-11T00:27:01.044Z",
+      "ref": "steward/t-1008-letter-list-1834-roster-mint",
+      "commit": "3d66d6371090",
       "devCommit": "af0f45cd8ca7",
-      "treeHash": "sha256:417f4c351f16e60d",
+      "treeHash": "sha256:103649ed2b9271f2",
       "treeDirty": false,
-      "changelogHash": "sha256:f841d470265ade7d",
+      "changelogHash": "sha256:8d2c30b85d24e6e3",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.5,
-          4.7,
-          3.5
+          4.2,
+          4.3,
+          3.6
         ]
       },
-      "source": "/tmp/smoke-d1.log"
+      "source": "/tmp/smoke_d1.log"
     },
     {
       "viewport": "mobile",
-      "stage": "3,12-13",
+      "stage": "13",
       "parts": [
-        3,
-        12,
         13
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 239,
+      "passed": 110,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 372,
-      "takenAt": "2026-09-10T23:58:29.267Z",
-      "ref": "steward/t-0990-cohort-c2-land-sale-rulings",
-      "commit": "8c3f0fda304d",
+      "wallSeconds": 181,
+      "takenAt": "2026-09-11T00:27:00.953Z",
+      "ref": "steward/t-1008-letter-list-1834-roster-mint",
+      "commit": "3d66d6371090",
       "devCommit": "af0f45cd8ca7",
-      "treeHash": "sha256:417f4c351f16e60d",
+      "treeHash": "sha256:103649ed2b9271f2",
       "treeDirty": false,
-      "changelogHash": "sha256:f841d470265ade7d",
+      "changelogHash": "sha256:8d2c30b85d24e6e3",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.5,
-          4.7,
-          3.5
+          4.2,
+          4.3,
+          3.6
         ]
       },
-      "source": "/tmp/smoke-m.log"
+      "source": "/tmp/smoke_m2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,10,12",
+      "parts": [
+        3,
+        10,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 161,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 427,
+      "takenAt": "2026-09-11T00:27:00.863Z",
+      "ref": "steward/t-1008-letter-list-1834-roster-mint",
+      "commit": "3d66d6371090",
+      "devCommit": "af0f45cd8ca7",
+      "treeHash": "sha256:103649ed2b9271f2",
+      "treeDirty": false,
+      "changelogHash": "sha256:8d2c30b85d24e6e3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.3,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_m1.log"
     },
     {
       "viewport": "desktop",
@@ -1240,38 +1271,6 @@
         ]
       },
       "source": "/tmp/s2_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 168,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 289,
-      "takenAt": "2026-09-10T15:32:41.104Z",
-      "ref": "steward/t-0999-restore-reverted-rulings",
-      "commit": "6304d9bfc30f",
-      "devCommit": "2e5aa8a02d6c",
-      "treeHash": "sha256:a8ebf2012fd3ea99",
-      "treeDirty": false,
-      "changelogHash": "sha256:392f115903127c61",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.5,
-          3.7
-        ]
-      },
-      "source": "/tmp/s2_m.log"
     },
     {
       "viewport": "mobile",
