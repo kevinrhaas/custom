@@ -992,22 +992,105 @@ ceiling came down 869 → 868. **That is the blind spot T-0962 named for census_
 in this domain**, and it means the ceiling is not the measure of this ticket's progress —
 the crosswalk's own `ruled` block is.
 
+### Cohort B: the twenty-four with no namesake, of the town lots (T-1034)
+
+**Ten upheld, fourteen refused.** Ruled 2026-09-11. The crosswalk's `ruled` block moves
+`upheld 108, named 1, refused 49, unruled 52` → **`upheld 118, named 1, refused 63,
+unruled 28`**; matched spellings 161 → 147, **thirteen cards retracted** and with them
+twenty-three register rows and **$45,319** of stated purchase money. Twenty-two of those
+rows are town or canal lots, which have no acreage at all, so **only 80 acres move** — the
+single quarter-section of section 11, 40N 13E, that came off FAY H K. Nothing was written
+on: upholding a proposal only confirms what the spend pass had already put there.
+
+| upheld | refused |
+|---|---|
+| FUNK ABSALOM, GARRETT A, GARRETT AUGUST, HEACOCK RUSSEL E, HEACOCK RUSSELL E, LOYD A, MCKEE DAVID, OGDEN WILLIAM B, SPRING GILES, WELLMAKER JOHN | CHURCH T JR, FAY HARRISON K, FINLEY CLEMENT A, KEYES EDWARD, MACK STEPHEN, MCGREGOR A, PEARSON HIRAM, ROBERTS E, ROBERTS EDMUND, RYAN THOMAS, SHEPHERD A, SHERWOOD S J, WILCOX DELAFAYETTE, WILSON JOHN S |
+
+**THE LINE IS THE ONE T-0990's OWN COHORT B DREW, AND IT HELD WITHOUT BEING BENT.** The
+same field defines both cohorts — `rivals[]` empty, the residents layer holding the surname
+exactly once — and the same question decides them: does the town hold this man in anything
+more than a bare name? Every one of the ten upholds has a second document with something in
+it, and nine of the fourteen refusals have one name-only reading and nothing else. Four of
+those fourteen are cards the layer itself marks **`letter_list_only`** — FAY H K, MACK
+STEPHEN, SHEPHERD A, SHERWOOD S — which is the SPENCER WILLIAM G test written as a field,
+and two of the four were already refused under T-0990 in their other spelling.
+
+*The discriminator is a directory printing the forename whole where the card carries an
+initial*, and it decided five of the ten:
+
+| the register | the town's own printing | ruling |
+|---|---|---|
+| GARRETT A · GARRETT AUGUST | Fergus 1843: *Garrett, Augustus (G. & Seaman)*; Norris 1844 the same | upheld |
+| LOYD A | Fergus 1843: *Loyd, Alexander, carpenter and builder*; 1840 census *Alex[r]. Loyd* | upheld |
+| OGDEN WILLIAM B | Fergus 1843: *Ogden, William Butler (O. & Jones)* | upheld |
+| FUNK ABSALOM | Norris 1844: *Funk, Absalom, butcher, Fulton and Boston markets* | upheld |
+| SPRING GILES | Fergus 1843: *Spring, Giles (S. & Goodrich), res 62 Adams near State* | upheld |
+
+**THE CIVIC LISTS ARE WHERE THIS COHORT'S WEIGHT SAT, AND ONE LINE OF ONE IS STILL NOT
+ENOUGH.** Seven of the fourteen refusals rest on exactly one line of the 1833 tax list or
+the poll of 1834 — FINLEY CLEMENT A, KEYES EDWARD, RYAN THOMAS, ROBERTS E, ROBERTS EDMUND,
+MCGREGOR A, and MACK STEPHEN with a letter beside it. That is T-0990's STANLEY JOSEPH and
+BLAISDELL BENJAMIN refusals, and it is not a rule against civic lists: **WELLMAKER JOHN is
+upheld on them**, because the town holds him SIX times across five domains — the 1832 Black
+Hawk muster, the 1833 tax list, the poll of 1834, a Democrat notice of December 1833 in the
+paper's prose rather than its letter column, a witness signature in the St Cyr register of
+April 1836, and an old-settler death notice — and because **the surname appears exactly once
+in the whole corpus of 6,849 identities**, so there is no rival reading anywhere rather than
+none in a thin layer. A count of readings is not the test; what each reading says is.
+
+**MCKEE DAVID IS THE COHORT'S ONE UPHOLD ON A TRADE.** The card carries `arrival` 1823 and
+`works_at` the government blacksmith shop at the foot of State Street, both attested to
+Andreas, so the town records a resident tradesman and not a name — and a blacksmith of seven
+years' standing taking the two cheapest lots of the town's first sale, $31 and $30 on 27
+September 1830, is a purchase consistent with what is recorded of him. That is the ruling
+rule's second limb, used once in this cohort and available nowhere else in it.
+
+**THE REGISTER CAN BE ITS OWN RIVAL READING, AND PEARSON HIRAM IS WHERE IT IS.** This is
+the one refusal made for a positive reason rather than for want of evidence: the same volume
+enters **PEARSONS HIRAM** and **PEARSONS H** forty-four times, two of them town lots in this
+very June 1836 sale six days earlier, and that spelling is upheld to Hiram Pearsons — while
+the town's record of a Hiram PEARSON is two bare civic lines a surname fold away from him.
+Four lots of block 1 and **$22,410, the largest retraction in the cohort**, come off a card
+that should probably never have carried them. The README's own warning of cohort A named this
+one in advance.
+
+**AND THE MIDDLE INITIAL CAN NAME THE OTHER MAN.** SHERWOOD S J is refused against the
+letter-list Stephen Sherwood because the J belongs to somebody the corpus holds under his own
+name — Norris 1844's *Sherwood, Smith J. jeweler, 144 Lake st*, the business card signed
+*S. J. SHERWOOD*, Fergus's *Sherwood, Smith Jones, jeweler and watchmaker*. Found on the way
+past and filed as **T-1038**: the identity layer has ALREADY folded that Norris 1844 jeweler
+line onto the letter-list card, so a jeweler's trade and address sit on a person minted to
+claim nothing.
+
+**WHAT THE SEQUENCE ARGUMENT COULD NOT DO HERE.** Cohort A's strongest tool was the June 1836
+sale's block-by-block order, which decided EGAN WILLIAM by standing him between EGAN WILLIAM
+B's lots. It decides nothing in cohort B: by definition these surnames appear once in the
+layer, and on the register's side not one of the twenty-four stands on a block beside another
+reading of its own surname. What the neighbours DID show is a second thing, and it is filed:
+lot 8 of block 53 is entered three times for GARRETT A at $940, $940 and $1,880; lot 8 of
+block 32 twice, at $3,000 each, for LOYD A and LOYD J; lot 5 of block 54 three times at
+$1,110 for MERRILL G W, SHERWOOD S J and WHITLOCK T; lot 4 of block 29 twice at $50 for
+ROBERTS E and MENARD PETER JR. **T-0885 asked this of the school section and answered it
+there; the town-lot volume was never asked, and the paired and doubled prices suggest halves
+of a parcel rather than duplicate rows.** Filed as **T-1039**.
+
+**The ceiling came down 868 → 867, by one again, and for the reason cohort A gave.**
+`measure_research_spend.py` anchors rulings through a domain's `crosswalk.json` and cannot
+see `resident_crosswalk.json`, so twenty-four judgements move the meter by one. That is
+T-0962's blind spot, alive in this domain for the second cohort running; the crosswalk's own
+`ruled` block is the number to read.
+
 ### NEXT
 
-**Cohort B — the twenty-four remaining proposals with NO namesake** (`rivals[]` empty).
-The crosswalk's `ruled` block reads **52 unruled**; cohort A took twenty of the
-seventy-two, and the fifty-two left split exactly twenty-four with an empty `rivals[]` and
-twenty-eight with one. Take the empty-`rivals` twenty-four next, as T-0990's cohort B did,
-then the twenty-eight by surname. They are HEACOCK RUSSEL E, HEACOCK RUSSELL E, FAY
-HARRISON K, CHURCH T JR, FINLEY CLEMENT A, FUNK ABSALOM, GARRETT A, GARRETT AUGUST, KEYES
-EDWARD, LOYD A, MACK STEPHEN, MCGREGOR A, MCKEE DAVID, OGDEN WILLIAM B, PEARSON HIRAM,
-ROBERTS E, ROBERTS EDMUND, RYAN THOMAS, SHEPHERD A, SHERWOOD S J, SPRING GILES, WELLMAKER
-JOHN, WILCOX DELAFAYETTE and WILSON JOHN S — and cohort B of T-0990 is the warning to read
-first: **an empty `rivals[]` is not safety**, it says the layer holds the surname once. Two
-pairs here are the register abbreviating and expanding the same man (HEACOCK, GARRETT,
-ROBERTS), and PEARSON HIRAM against the already-upheld PEARSONS HIRAM is a surname fold
-away from being one too. This ticket closes when `ruled` reads zero unruled, and says so
-with the count.
+**Cohort C — the twenty-eight remaining proposals, every one of them with a NAMESAKE**
+(`rivals[]` non-empty). The crosswalk's `ruled` block reads **28 unruled**, and after cohort
+B every one of them is of this shape: the layer holds a namesake of the surname and the
+forename alone chose between them, which is where T-0990's cohorts C1–C3 found their
+refusals. Take them **by surname block** as T-0990 did rather than all at once — twenty-eight
+is more than one run can argue honestly, and a run that closes a block names the next here
+before it closes. The BROWN WM rule of C1 is the one to read first: a spelling with no
+discriminating token is its own proposal however well a fuller spelling of the same name did.
+This ticket closes when `ruled` reads zero unruled, and says so with the count.
 
 ## The join to the ground, and the four tracts the town stands on
 

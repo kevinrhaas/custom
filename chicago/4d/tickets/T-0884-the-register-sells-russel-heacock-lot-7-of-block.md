@@ -43,3 +43,22 @@ Monroe Street at all.
 **Acceptance:** the disagreement is read to a ruling — the position moves, its grade
 moves, or the coincidence is written down as one — and nothing is placed by preferring the
 answer that makes a house fit a block.
+
+---
+
+**ADDED BY T-1034 COHORT B, 2026-09-11 — the identity half of this question is settled, so
+what is left is geometry.** The purchaser spelling this ticket rests on, **HEACOCK RUSSEL E**,
+is now UPHELD against `heacock_russel_e` (and so is HEACOCK RUSSELL E, the register's other
+spelling of the same hand): the Democrat prints 'Russel E. Heacock' on 13 August 1834 and
+'Russell E. Heacock' on 27 May 1835, so the middle initial is on the town's side twice and
+independently, and the corpus's other Heacocks — R. E. jr. the clerk and Reuben B. the medical
+student — are both printed as BOARDING WITH him, not as rival claimants. The ruling and its
+reasoning are in `data/research/land_sales/resident_rulings.json`.
+
+So the third of this ticket's three possibilities is the one that has moved: *the man who
+bought lot 7 of block 117* is the man the card names, and the coincidence-of-name escape is
+narrower than it was. It is NOT closed off — the ruling is about who entered the ground, and
+says nothing about which roof at Monroe was his. **One reading to add when this is worked:**
+the card the identity layer carries also holds a 1843 directory line for *Heacock, Russel E.,
+jr., clerk, Charles Walker & Co.* — the son folded onto the father — so a source consulted
+through that card can hand back the wrong man's address.

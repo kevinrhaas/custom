@@ -10,7 +10,7 @@
   "books": 222,
   "directories": 7251,
   "newberry_index": 4914,
-  "land_sales": 868,
+  "land_sales": 867,
   "old_settlers": 443
  },
  "witness": {
@@ -44,7 +44,7 @@
   },
   "land_sales": {
    "read": 1572,
-   "spent": 704
+   "spent": 705
   },
   "old_settlers": {
    "read": 1094,
@@ -569,6 +569,14 @@
    "to": 868,
    "date": "2026-09-11",
    "why": "T-1034 cohort A adjudicated twenty of the town-lot proposals T-1032/T-1033 added — nineteen upheld, one refused — and the domain now reads 868 unspent against a ceiling of 869. Reclaiming the one point the cohort earned. The meter moves by one and not by twenty because it anchors rulings through crosswalk.json while this domain adjudicates in resident_rulings.json, folded onto resident_crosswalk.json — the blind spot T-0962 named for census_1840, still open here."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 868,
+   "to": 867,
+   "date": "2026-09-11",
+   "why": "T-1034 cohort B: the twenty-four empty-rivals purchaser proposals adjudicated — ten upheld, fourteen refused, thirteen cards retracted. The crosswalk's ruled block reads 118/1/63/28."
   }
  ],
  "unwritten_ceiling": {

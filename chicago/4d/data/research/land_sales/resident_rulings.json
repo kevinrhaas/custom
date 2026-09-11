@@ -5,7 +5,7 @@
  "_doc": "RULINGS on the crosswalk's proposals. tools/read_land_sales.py --build folds this file onto resident_crosswalk.json; --check refuses a ruling that names a spelling the register does not hold, or a person the proposal did not name. This file is HAND-AUTHORED and is the one file under data/research/land_sales/ that is not derived from the deposit — a judgement is not a derivation, and the project does not pretend otherwise.",
  "why_this_exists": "build_resident_crosswalk() applies ONE mechanical rule: the surname agrees, the residents layer holds exactly one person of that surname, and the first forename agrees in full or as an initial. That rule proposes; it does not decide. tools/spend_land_sales.py's own rule 1 says so in as many words — 'ONLY WHAT THE CROSSWALK ALREADY DECLARED. This pass re-adjudicates nothing.' — so between the proposal and the card there was nobody. T-0700 is the ticket that noticed it, against the nine spellings the ring townships added (T-0676).",
  "the_ruling_rule": "A proposal is UPHELD only where the town's own record of the person carries something the register's row can be checked against BEYOND a bare name — a middle initial the register repeats, a trade the purchase is consistent with, a second document, or the register's own Residence column. Where the town holds nothing but a name read once off a post-office letter list, the proposal rests on the residents layer being THIN rather than on the two records agreeing: an uncalled-for letter says a correspondent thought the name reachable at Chicago, and a tract entry says a name entered ground, and two name-only readings do not make an identity. Such a proposal is REFUSED. A ruling never raises a grade, never mints a resident, and never asserts a residence; a refusal retracts what a pass had already written. T-0993 adds the ruling that goes the other way. `upheld` and `refused` can only adjudicate a proposal; a reading the forename rule structurally cannot reach — a man's middle name printed where his forename belongs — had no way to be ruled on at all, and the gate called a ruling on it 'a ruling on nothing'. `named` gives the match instead of taking it away, and it is held to the mirror of the same guards: only where the surname gathered rivals and the forename failed to choose among them, only onto one of those rivals, and never onto a surname-only purchaser, which this domain refuses however well the tract agrees.",
- "scope": "The nine purchaser spellings the ring deposit (T-0676) added, ruled under T-0700; the twenty-six the first deposit matched, ruled under T-0850 — sixteen upheld, ten refused; and, under T-0990, COHORT A — the fourteen proposals whose crosswalk match is `initial_agrees` AND whose `rivals[]` is non-empty, which is where the mechanical rule is weakest: the layer holds a namesake of the surname and a forename INITIAL alone chose between them. Eleven upheld, three refused. What is left unruled is the rest of what T-0697 ADDED when the mechanical rule stopped requiring exactly one person of the surname; the count is on the crosswalk's own `ruled` block rather than in this sentence, and the next cohort is its own ticket. And, under T-0993, the ONE spelling the mechanical rule could never propose: BLANCHARD GURTREY, the six school-section rows ls0076-ls0081, NAMED onto blanchard_f_gantry — the register printing Francis Gurtrey Blanchard's middle name in the forename's place. That is a third ruling kind, `named`, and read_land_sales.py's gate guards it. A ruling the derivation later absorbs is moved to `retired[]` with the date, the ticket and the reason: retired, not deleted, because the argument is what the rule was written from. COHORT B, under T-0990 — the twenty-four proposals whose `rivals[]` is EMPTY, where the layer holds the surname exactly once and the mechanical rule had no namesake to choose among: twelve upheld, twelve refused. COHORT C1 — the seventeen `forename_agrees` proposals with namesakes whose surname falls in A-C, ruled under T-0990: eleven upheld, six refused. COHORT C2 — the twenty-one `forename_agrees` proposals with namesakes whose surname falls in D-J, ruled under T-0990: sixteen upheld, five refused. COHORT C3 — the twenty-eight remaining `forename_agrees` proposals with namesakes, surnames K-Z, ruled under T-0990: seventeen upheld, eleven refused. That is every proposal T-0697 added; the crosswalk's `ruled` block reads zero unruled. Under T-1034, the proposals the TOWN-LOT harvest added: T-1032 read the 619 sales of the town's own lots that the by-section sweep could not see and T-1033 joined them to the reading, and 72 new purchaser spellings arrived proposed and unruled. COHORT A — the twenty whose PERSON already carries a ruling under another spelling of the same name, which is where the register's abbreviate-and-expand habit is densest and where a precedent could be applied without being re-argued. Nineteen upheld, one refused.",
+ "scope": "The nine purchaser spellings the ring deposit (T-0676) added, ruled under T-0700; the twenty-six the first deposit matched, ruled under T-0850 — sixteen upheld, ten refused; and, under T-0990, COHORT A — the fourteen proposals whose crosswalk match is `initial_agrees` AND whose `rivals[]` is non-empty, which is where the mechanical rule is weakest: the layer holds a namesake of the surname and a forename INITIAL alone chose between them. Eleven upheld, three refused. What is left unruled is the rest of what T-0697 ADDED when the mechanical rule stopped requiring exactly one person of the surname; the count is on the crosswalk's own `ruled` block rather than in this sentence, and the next cohort is its own ticket. And, under T-0993, the ONE spelling the mechanical rule could never propose: BLANCHARD GURTREY, the six school-section rows ls0076-ls0081, NAMED onto blanchard_f_gantry — the register printing Francis Gurtrey Blanchard's middle name in the forename's place. That is a third ruling kind, `named`, and read_land_sales.py's gate guards it. A ruling the derivation later absorbs is moved to `retired[]` with the date, the ticket and the reason: retired, not deleted, because the argument is what the rule was written from. COHORT B, under T-0990 — the twenty-four proposals whose `rivals[]` is EMPTY, where the layer holds the surname exactly once and the mechanical rule had no namesake to choose among: twelve upheld, twelve refused. COHORT C1 — the seventeen `forename_agrees` proposals with namesakes whose surname falls in A-C, ruled under T-0990: eleven upheld, six refused. COHORT C2 — the twenty-one `forename_agrees` proposals with namesakes whose surname falls in D-J, ruled under T-0990: sixteen upheld, five refused. COHORT C3 — the twenty-eight remaining `forename_agrees` proposals with namesakes, surnames K-Z, ruled under T-0990: seventeen upheld, eleven refused. That is every proposal T-0697 added; the crosswalk's `ruled` block reads zero unruled. Under T-1034, the proposals the TOWN-LOT harvest added: T-1032 read the 619 sales of the town's own lots that the by-section sweep could not see and T-1033 joined them to the reading, and 72 new purchaser spellings arrived proposed and unruled. COHORT A — the twenty whose PERSON already carries a ruling under another spelling of the same name, which is where the register's abbreviate-and-expand habit is densest and where a precedent could be applied without being re-argued. Nineteen upheld, one refused. COHORT B — the twenty-four remaining proposals whose `rivals[]` is EMPTY, the shape T-0990's own cohort B was named for: the residents layer holds the surname once and the mechanical rule had no namesake to choose among, which makes a proposal look safer than it is. Ten upheld, fourteen refused; the line is the same one — whether the town holds the man in something more than a bare name, and four of the fourteen refusals are cards the layer itself marks `letter_list_only`.",
  "ruled_by": "the steward loop, under T-0700, T-0850, T-0990 and T-0993",
  "ruled": [
   {
@@ -2246,6 +2246,320 @@
     "fergus_chicago_directory_1843"
    ],
    "reasoning": "REFUSED, and it is the cohort's one refusal. The reading is a bare forename initial with no middle initial, and the town's own PRINTED record holds two Wrights whose forename begins with T: 'Wright, Truman G., speculator, bds Tremont House' and 'Wright, Timothy, Michigan ave. cor. Madison st', both in Fergus 1839, Timothy again in Fergus 1843 boarding at Mrs. John Wright's. That is the BROWN WM rule exactly — a second printed claimant, not merely a common surname. The register makes the same point on its own account: it writes T G nine times and TRUMAN G twice, so the hand that entered this man ordinarily wrote the G, and this single row of 28 June 1836 has not got it. Both upheld spellings of Truman G. Wright rest on that middle initial and cannot lend it to a spelling that lacks it. Lot 7 of block 5, $900, is retracted from the card."
+  },
+  {
+   "purchaser_as_read": "HEACOCK RUSSEL E",
+   "resident_id": "heacock_russel_e",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ],
+   "reasoning": "UPHELD. The register's middle initial is on the town's side twice and independently: the Democrat of 13 August 1834 prints 'Russel E. Heacock' and the Democrat of 27 May 1835 prints 'Russell E. Heacock', which is the JAMISON LOUIS T shape — an initial pair the town already holds, not an initial pair invented to match. The surname is held once in the layer and the corpus's other Heacocks are answered rather than ignored: 'Russel Easton' of the retrospective directory line is this man spelled out, and R. E. jr. the clerk and Reuben B. the medical student are both printed as BOARDING WITH Russel E. Heacock, so neither is a second claimant to a purchase of 1833. Ten rows: eight school-section lots of 22–25 October 1833 (including lot 7 of block 117, $80, which is T-0884's subject) and two 80-acre half-quarters of section 32 on 4 November 1834. Note against the CARD and not against this ruling: the 1843 directory line the identity layer folded onto it is the SON's, and that fold is not what carries the uphold."
+  },
+  {
+   "purchaser_as_read": "HEACOCK RUSSELL E",
+   "resident_id": "heacock_russel_e",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ],
+   "reasoning": "UPHELD, and it is the same man under the spelling his own newspaper used: the double-L 'Russell E. Heacock' is exactly how the Democrat of 27 May 1835 sets it, so the register's variant is corroborated rather than merely tolerated. Two of the three rows carry COOK in the Residence column — the strongest thing this source offers — and they are the 4 November 1834 pair of section 32 that the RUSSEL E spelling also enters on the same day, one hand alternating between two spellings of one name over one entry. Three half-quarters, 240 acres, $364."
+  },
+  {
+   "purchaser_as_read": "FAY HARRISON K",
+   "resident_id": "fay_h_k",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835"
+   ],
+   "reasoning": "REFUSED. The town's whole record of this person is ONE uncalled-for letter — the Democrat's return of 4 March 1834 — and the card is marked `letter_list_only`, which is the SPENCER WILLIAM G test written as a field. The register expanding H. K. to HARRISON K does not repair that: a fuller reading of one name beside a shorter reading of the same name is still one name on each side, which is how ROWLEY HEMAN A and HURD NIRAM F went. The COOK in the Residence column was weighed and does not carry it either, on T-0990's own ruling for CHIPMAN ANSEL and ALLISON THOMAS — a COOK row and an uncalled-for letter agree about a county, not about a man. One quarter-section of section 11, 40N 13E, $100, retracted."
+  },
+  {
+   "purchaser_as_read": "CHURCH T JR",
+   "resident_id": "church_thomas",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "reasoning": "REFUSED, on T-0990 cohort B's ruling for CHURCH THOS JR against this same card, and the argument is unchanged by the new spelling: the JR is the page saying there was another Thomas Church of the same county, and the register gives the forename as the single initial T. The directories DO print Thomas Church with a trade — dry goods and groceries, 111 Lake in Fergus 1843 — but they print the father, and a suffix the town's record cannot answer is the reading's own warning. The register's sequence, which decided EGAN WILLIAM in cohort A, is silent here: lot 6 of block 45 on 25 June 1836 stands among Egans, Lees and a Peck, with no other Church on the block or the day. $2,000 retracted."
+  },
+  {
+   "purchaser_as_read": "FINLEY CLEMENT A",
+   "resident_id": "finley_clement_a",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. The town's whole record is one line of the 1833 tax list, which is the STANLEY JOSEPH shape exactly — T-0990 cohort B refused that on a single tax line and a single poll line alike. The middle initial A the register repeats does not rescue it: an initial DISCRIMINATES among readings the town already holds and cannot CORROBORATE when the initial pair is the town's entire record. The two rows are lots 5 and 6 of block 31 at the canal commissioners' first sale, 27 September 1830 — three years before the earliest reading of any Clement A. Finley in this corpus. $101 retracted."
+  },
+  {
+   "purchaser_as_read": "FUNK ABSALOM",
+   "resident_id": "funk_absolom",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "norris_directory_1844",
+    "fergus_chicago_directory_1843"
+   ],
+   "reasoning": "UPHELD, and it is one of the cohort's strongest. Norris 1844 prints 'Funk, Absalom, butcher, Fulton and Boston markets, res Wells st. b Wash, and Rand, st' — the register's own spelling ABSALOM, a trade and an address — while the card's card-name is the Democrat's 'Absolom' of 3 December 1834, so the town holds the man twice, spelt both ways, before and after the purchase. The 1843 business directory's 'A. FUNK, butcher, Fulton and Boston Markets' is a third printing of the same trade. Lot 4 of block 42, 23 June 1836, $9,800, carried as an entry."
+  },
+  {
+   "purchaser_as_read": "GARRETT A",
+   "resident_id": "garrett_a",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "chicago_american_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "reasoning": "UPHELD. The card carries the initial and the town prints the forename whole: Fergus 1843 'Garrett, Augustus (G. & Seaman)' and Norris 1844 'Garrett, Augustus, of G. & Seaman, res Sauganash Hotel', with two business cards of the same directory signed A. GARRETT as insurance agent, and the American of 1835 and the Democrat of 12 August 1835 both printing 'A. Garrett' in the town the year before the sale. That is four independent documents against T-0700's refusal of GARRETT A ET CO, which was refused for being a FIRM and not for being this initial. Four rows, $7,860 — lot 5 of block 41 and three entries of lot 8 of block 53 at $940, $940 and $1,880, which is the duplicate-parcel shape of this volume and not a ruling question."
+  },
+  {
+   "purchaser_as_read": "GARRETT AUGUST",
+   "resident_id": "garrett_a",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "reasoning": "UPHELD. AUGUST is the register's own truncation of the forename the directories print in full — Fergus 1843 and Norris 1844 both read Augustus — and it is entered in the same June 1836 sale, two days before the GARRETT A rows, by the same hand alternating between a truncation and an initial for one name. The town holds the man in four documents (see GARRETT A); nothing in the corpus prints a second Garrett of any forename. Lot 7 of block 31, 21 June 1836, $8,100."
+  },
+  {
+   "purchaser_as_read": "KEYES EDWARD",
+   "resident_id": "keyes_edward",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. One line of the 1833 tax list is the whole of the town's record of Edward Keyes, and the register offers nothing to check it against — no middle initial, no trade, no Residence column, and the rows are the canal sale of 28 September 1830, three years before the tax list. That is the STANLEY JOSEPH refusal. The corpus's only other Keyes is a Robert of the 1840 census, so the surname being held once says how thin the layer is, not that this reading is safe. Three lots — 5 and 6 of block 8 and 9 of block 28 — $78, retracted."
+  },
+  {
+   "purchaser_as_read": "LOYD A",
+   "resident_id": "loyd_alexander",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "census_1840_chicago_familysearch_images",
+    "fergus_chicago_directory_1843"
+   ],
+   "reasoning": "UPHELD. Three independent documents print the man, two of them with the forename whole where the register gives the initial: the 1840 census reads 'Alex[r]. Loyd', Fergus 1843 reads 'Loyd, Alexander, carpenter and builder, (L., Blakesley & Co.), res 52 Wells', and the Democrat of 19 November 1834 sets 'A. Loyd' exactly as this row does, in the town nineteen months before the sale. Lot 8 of block 32, 21 June 1836, $3,000 — and the register enters that same lot at that same price under LOYD J on the same day, which is this volume's duplicate-parcel shape and a question about the parcel, not about who A is."
+  },
+  {
+   "purchaser_as_read": "MACK STEPHEN",
+   "resident_id": "mack_stephen",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. The card is `letter_list_only` — minted from the post office's return of 1 April 1834 — and the one other reading the corpus holds, a line of the 1833 tax list, is a bare name as well. Two bare names on the town's side do not make an identity: the ruling rule asks for something the row can be checked against BEYOND a name, and neither reading offers a middle initial, a trade or an address. The two rows are lots 7 and 8 of block 43 at the canal sale of 27 September 1830, three and a half years before the earliest of those readings. $53 retracted."
+  },
+  {
+   "purchaser_as_read": "MCGREGOR A",
+   "resident_id": "mcgregor_ashor",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. The town's whole record is one line of the poll of 1834, which is the BLAISDELL BENJAMIN refusal exactly, and the register gives only the initial A — so the distinctive forename Ashor, which is the one thing that would have decided this, is precisely what the row does not print. The corpus's other McGregor is an Alexander of the press, whose forename the same initial would fit. Lot 3 of block 54, 23 June 1836, $2,820, retracted."
+  },
+  {
+   "purchaser_as_read": "MCKEE DAVID",
+   "resident_id": "mckee_david",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "andreas_1884_v1",
+    "blackhawk_war_chicago_enrollments_isa",
+    "fergus_1843_old_settler_death_notices"
+   ],
+   "reasoning": "UPHELD, and it is the cohort's one uphold that turns on a trade rather than a spelling. The card carries `arrival` 1823 and `works_at` the government blacksmith shop at the foot of State Street, both attested to Andreas, so the town holds this man as a tradesman of seven years' standing rather than as a name — and the 1832 Black Hawk muster of Chicago men and the old-settler death notice of April 1881 hold him twice more, before and long after. A resident blacksmith taking two of the cheapest lots at the town's first sale — lot 1 of block 5 and lot 7 of block 4, 27 September 1830, $31 and $30 — is a purchase consistent with what the town records of him. The corpus's other McKee is a James of the press."
+  },
+  {
+   "purchaser_as_read": "OGDEN WILLIAM B",
+   "resident_id": "ogden_w_b",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_american_1835",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "reasoning": "UPHELD. The register prints WILLIAM B and Fergus 1843 prints 'Ogden, William Butler (O. & Jones)' — the forename whole and the middle initial expanded — with Norris 1844 reading 'Ogden, Wm. B. of O. & Jones' in between, which is the nine-of-twelve discriminator of T-0990 cohort B. The American of 20 June 1835 sets 'W. B. Ogden' in the town twelve months before the purchase, so a second document brackets the scene date. The corpus's other Ogdens are a Mahlon D. and a Wm. L., neither reachable from WILLIAM B. Lot 3 of block 6, 21 June 1836, $6,790."
+  },
+  {
+   "purchaser_as_read": "PEARSON HIRAM",
+   "resident_id": "pearson_hiram",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED, and this one is refused with a positive reason rather than for want of evidence. The register itself is the rival reading: it enters PEARSONS HIRAM and PEARSONS H forty-four times — including lot 8 of block 36 and lot 8 of block 37 in this same June 1836 town sale, six days before these rows — and that spelling is upheld to Hiram Pearsons, whom the corpus prints as one of the town's largest buyers. Against that, the town's record of a Hiram PEARSON is two bare lines, the poll and the tax list of 1833, and a surname fold away from the other man; the likelier reading is the register dropping the S. Four lots of block 1, 28 June 1836, $22,410 — the largest retraction in the cohort, and it comes off a card that should probably not have carried it."
+  },
+  {
+   "purchaser_as_read": "ROBERTS E",
+   "resident_id": "roberts_edmund",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. The forename is the single initial E, the town's record of Edmund Roberts is one line of the 1833 tax list, and the corpus prints twelve other Robertses — an Alexander, two readings of a David Lewis, a David S., a Henry Lewis, a James S., a John T., a W. S. — so the surname being held once in the residents layer is a fact about the layer. The register's own other spellings of the surname make the same point. Lot 4 of block 29, 28 September 1830, $50, retracted; the register enters that same lot at that same price under MENARD PETER JR on the same day."
+  },
+  {
+   "purchaser_as_read": "ROBERTS EDMUND",
+   "resident_id": "roberts_edmund",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. The forename agrees in full and there is nothing behind it: one line of the 1833 tax list is the town's whole reading of Edmund Roberts, with no middle initial, no trade and no address, against twelve other Robertses in the corpus. A full forename read once on each side is the STANLEY JOSEPH shape, not the JAMISON LOUIS T shape. Lot 2 of block 18, 27 September 1830, $45, retracted."
+  },
+  {
+   "purchaser_as_read": "RYAN THOMAS",
+   "resident_id": "ryan_thomas",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED. One line of the 1833 tax list, and the corpus holds ten other Ryans — Bridget, Daniel, Elleanor and John in the parish register, an Edward and a John in the directories, an E. and an H. H. in the 1840 census — which is a surname this town carries repeatedly while the residents layer happens to hold one bearer. Nothing checks the row: no middle initial, no trade, no Residence column, and the entry is the canal sale of 27 September 1830. Lot 2 of block 20, $42, retracted."
+  },
+  {
+   "purchaser_as_read": "SHEPHERD A",
+   "resident_id": "shepherd_a",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835"
+   ],
+   "reasoning": "REFUSED, on T-0990 cohort B's ruling for SHEPHERD ALBERT against this same `letter_list_only` card: the town's whole record is one uncalled-for letter, the Democrat's return of 2 July 1834, and the register reduces the forename to A. The corpus prints three other Shepherds with trades and addresses — Hiram and Thomas J., masons, and Robert, a carpenter — so the initial has more than one place it could land even inside this surname. Two rows, lot 3 of block 37 and lot 8 of block 57, $11,120 retracted."
+  },
+  {
+   "purchaser_as_read": "SHERWOOD S J",
+   "resident_id": "sherwood_s",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "norris_directory_1844",
+    "fergus_chicago_directory_1839"
+   ],
+   "reasoning": "REFUSED, and the refusal names the other man. The card is `letter_list_only` — the Democrat's returns of 28 January and 2 July 1834, 'Stephen Sherwood' and 'S. Sherwood' — while the middle initial J the register prints belongs to somebody the corpus holds under his own name: Norris 1844's 'Sherwood, Smith J. jeweler, 144 Lake st', the 1844 business card signed S. J. SHERWOOD, and Fergus's 'Sherwood, Smith Jones, jeweler and watchmaker, 144 Lake'. S J is that man, not the Stephen of the letter lists. FOUND ON THE WAY PAST AND FILED: the identity layer has already folded the Norris 1844 jeweler line onto this letter-list card, so a jeweler's trade and address sit on a person minted to claim nothing. Lot 5 of block 54, 23 June 1836, $1,110, retracted — one of three rows the register enters for that lot at that price."
+  },
+  {
+   "purchaser_as_read": "SPRING GILES",
+   "resident_id": "spring_giles",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ],
+   "reasoning": "UPHELD, and it is the best-attested reading in the cohort. Six independent readings print the man: the poll of 1834 as 'Spring, Giles', the poll of 1835 as 'Spring, G.', the Democrat of 12 November 1834 as 'Giles Spring' and of 28 January 1834 as 'G. Spring', Fergus 1843 as 'Spring, Giles (S. & Goodrich), res 62 Adams near State', and Norris 1844 again with the partnership and the house. The town's own rolls put him in it for both years either side of the scene date, and the directories print the forename whole. The corpus's other Springs are a Samuel, a Thomas O. and an alderman H., and the register separately enters SPRING C A and SPRING CHARLES A, all of them answered by the full forename. Three lots — 5 and 6 of block 12 on 29 June 1836 and lot 4 of block 41 on 5 September 1836 — $5,850."
+  },
+  {
+   "purchaser_as_read": "WELLMAKER JOHN",
+   "resident_id": "wellmaker_john",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "chicago_voter_lists_1833_1835_irad",
+    "blackhawk_war_chicago_enrollments_isa",
+    "st_cyr_register_ichr_v4",
+    "fergus_1843_old_settler_death_notices"
+   ],
+   "reasoning": "UPHELD. The town holds this man SIX times across five domains and, uniquely in the cohort, the surname appears exactly once in the whole corpus of identities rather than once in a thin layer — there is no rival Wellmaker anywhere to be confused with. The readings are the town's own rolls and not a correspondent's guess: the 1832 Black Hawk muster of Chicago men, the 1833 tax list, the poll of 1834, a Democrat notice of 10 December 1833 (its prose, not a letter list), a witness signature in the St Cyr register of 4 April 1836, and an old-settler death notice. That is the line T-0990 cohort B drew when it refused six `letter_list_only` cards. Said plainly: the four rows are lots 1, 2, 7 and 8 of block 14 at the canal sale of 27 September 1830, two years before the earliest of those readings, and nothing in the corpus gives the man a trade."
+  },
+  {
+   "purchaser_as_read": "WILCOX DELAFAYETTE",
+   "resident_id": "wilcox_d",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835"
+   ],
+   "reasoning": "REFUSED, on T-0990 cohort B's ruling for WILCOX DE LA FAYETTE against this same card, and for the reason it gave: the reading reduces as distinctive a forename as the cohort contains to the initial D, the town's whole record is one press line — 'Capt. D. Wilcox', the Democrat of 4 February 1834 — and the register's social-status column is blank, so the captaincy checks against nothing. The corpus prints seven other Wilcoxes. Lot 7 of block 6, 28 June 1836, $1,700, retracted."
+  },
+  {
+   "purchaser_as_read": "WILSON JOHN S",
+   "resident_id": "wilson_john",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_democrat_1833_1835",
+    "census_1840_chicago_familysearch_images"
+   ],
+   "reasoning": "REFUSED. The middle initial S is the register's and the town never prints it — the card's readings are one uncalled-for letter of 28 January 1834 and two 1840 census households, at 229:2 and 239:4, which is the town holding TWO John Wilsons rather than corroborating one. The corpus carries twenty Wilsons, among them a John C., a John Lush, a John McNeil, a John Quintard and a 'W S Wilson', so the S has somewhere else to land inside the surname. T-0700 refused WILSON JOHN L against this same one card for the same want of a discriminator, and T-1033 records that the rule has since caught up with that spelling on its own. Lots 9 and 10 of block 6, 28 June 1836, $3,690, retracted."
   }
  ],
  "retired": [
