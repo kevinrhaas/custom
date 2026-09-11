@@ -1,7 +1,7 @@
 ---
 id: T-1011
 title: Mint the 54 lines of the 1 January 1834 return that reach no card at all, under ruling 1 and carrying letter_list_only, with the roster line as the source
-state: open
+state: claimed
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1008
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 8:36:24 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34551115214
 ---
 
 Mint the 54 lines of the 1 January 1834 return that reach no card at all, under ruling 1 and carrying letter_list_only, with the roster line as the source.
