@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 581,
+  "rulings": 585,
   "carried": 210,
-  "matched": 401,
+  "matched": 405,
   "refused": 180,
   "distinct_people": 286,
-  "distinct_claims": 637
+  "distinct_claims": 641
  },
  "rulings": [
   {
@@ -5364,6 +5364,28 @@
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "resident": "Charles Loomis Harmon",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e0795",
+   "claim_ids": [
+    "n1844_e0795"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+  },
+  {
+   "outcome": "matched",
+   "person_id": "harmon_charles_l",
+   "household_id": "hh_harmon_brothers",
+   "resident": "Charles Loomis Harmon",
    "volume": "norris_1844_advertiser",
    "source_id": "norris_directory_1844",
    "source_ids": [
@@ -6160,6 +6182,28 @@
    ],
    "refused_to_carry": [],
    "why_refused": null
+  },
+  {
+   "outcome": "matched",
+   "person_id": "hugunin_leonard_c",
+   "household_id": "hh_hugunin_leonard_c",
+   "resident": "Leonard, C. Hugunin",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e0918",
+   "claim_ids": [
+    "n1844_e0918"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Hugunin' folds to the same string as the 1844 entry's, and the given name of both begins L.",
+   "carried": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
+   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
    "outcome": "matched",
@@ -7053,6 +7097,28 @@
    "why_refused": null
   },
   {
+   "outcome": "matched",
+   "person_id": "kimberly_edmund_s",
+   "household_id": "hh_pruyne_kimberly",
+   "resident": "Dr Edmund Stoughton Kimberly",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e1019",
+   "claim_ids": [
+    "n1844_e1019"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Kimberly' folds to the same string as the 1844 entry's, and the given name of both begins E.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+  },
+  {
    "outcome": "refused",
    "person_id": "king_byra",
    "household_id": "hh_king_byra",
@@ -7352,6 +7418,28 @@
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
+  },
+  {
+   "outcome": "matched",
+   "person_id": "kinzie_john_h",
+   "household_id": "hh_kinzie_john_h",
+   "resident": "John Harris Kinzie",
+   "volume": "norris_1844",
+   "source_id": "norris_directory_1844",
+   "source_ids": [
+    "norris_directory_1844"
+   ],
+   "claim_id": "n1844_e1031",
+   "claim_ids": [
+    "n1844_e1031"
+   ],
+   "match_status": "single_entry",
+   "rule": "Surname 'Kinzie' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "carried": [],
+   "refused_to_carry": [
+    "address"
+   ],
+   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
    "outcome": "refused",

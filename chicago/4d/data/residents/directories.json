@@ -46,10 +46,10 @@
  ],
  "counts": {
   "people_shown": 286,
-  "people_met_by_more_than_one_volume": 170,
+  "people_met_by_more_than_one_volume": 171,
   "carrying_an_occupation": 138,
   "carrying_an_address": 153,
-  "line_held_but_parse_refused": 17,
+  "line_held_but_parse_refused": 19,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
@@ -65,8 +65,8 @@
     "contested": 15
    },
    "norris_1844": {
-    "people": 138,
-    "single_entry": 104,
+    "people": 142,
+    "single_entry": 108,
     "ambiguous": 20,
     "contested": 14
    },
@@ -9491,6 +9491,29 @@
      ]
     },
     {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e0795",
+       "printed_page": 38,
+       "as_printed": "Harmon Charles L. dry goods and groceries, cor Clark and South Water sts. res Dearborn st. b Wash and Mad sts (.See card)"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
+    },
+    {
      "volume": "norris_1844_advertiser",
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
@@ -9515,7 +9538,7 @@
    ],
    "occupation_later": null,
    "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
+   "holds_a_line_whose_parse_does_not_cross": true,
    "sources": [
     "fergus_chicago_directory_1843",
     "norris_directory_1844"
@@ -10962,6 +10985,29 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Hugunin' folds to the same string as the 1844 entry's, and the given name of both begins L.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e0918",
+       "printed_page": 41,
+       "as_printed": "Hugunin. L. C. at United States Hotel"
+      }
+     ],
+     "holds": [
+      "occupation"
+     ],
+     "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -10980,7 +11026,8 @@
    },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -12547,6 +12594,29 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Kimberly' folds to the same string as the 1844 entry's, and the given name of both begins E.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1019",
+       "printed_page": 43,
+       "as_printed": "Kimberly Ed. S. physician, 101 Lake st. house State st"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -12566,7 +12636,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -13108,14 +13179,38 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Kinzie' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1031",
+       "printed_page": 43,
+       "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "parse_carries": false,
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
    "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
+   "holds_a_line_whose_parse_does_not_cross": true,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
