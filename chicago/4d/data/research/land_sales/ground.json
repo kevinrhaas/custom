@@ -258,6 +258,742 @@
           "blocks": 5
         }
       ]
+    },
+    "town_lots": {
+      "rows_read": 619,
+      "rows_that_parse_to_a_lot": 616,
+      "distinct_parcels": 559,
+      "distinct_parcels_if_the_town_code_is_not_the_plat": 478,
+      "parcels_entered_more_than_once": 47,
+      "of_those_on_one_day_and_one_page": 40,
+      "of_those_entered_again_on_a_later_day": 7,
+      "rows_in_a_repeated_parcel": 104,
+      "same_day_groups_repeating_a_purchaser_name": [],
+      "divisions_the_rounding_proves": [
+        {
+          "town_code": "CHIOT",
+          "block": "38",
+          "lot": "8",
+          "date": "1836-06-22",
+          "page": "014",
+          "shares_as_read": [
+            "1166.00",
+            "1166.00",
+            "1168.00"
+          ],
+          "they_sum_to": "3500.00",
+          "the_shares_spread_by": "2.00",
+          "reading": "The rounding remainder is spread across the 3 rows, so the rows are SHARES of one price and not one price written more than once."
+        },
+        {
+          "town_code": "CHIOTV",
+          "block": "51",
+          "lot": "1",
+          "date": "1836-06-27",
+          "page": "019",
+          "shares_as_read": [
+            "1916.66",
+            "1916.67",
+            "1916.67"
+          ],
+          "they_sum_to": "5750.00",
+          "the_shares_spread_by": "0.01",
+          "reading": "The rounding remainder is spread across the 3 rows, so the rows are SHARES of one price and not one price written more than once."
+        },
+        {
+          "town_code": "CHIOTV",
+          "block": "51",
+          "lot": "3",
+          "date": "1836-06-27",
+          "page": "019",
+          "shares_as_read": [
+            "686.66",
+            "686.67",
+            "686.67"
+          ],
+          "they_sum_to": "2060.00",
+          "the_shares_spread_by": "0.01",
+          "reading": "The rounding remainder is spread across the 3 rows, so the rows are SHARES of one price and not one price written more than once."
+        }
+      ],
+      "co_purchaser_sets": [
+        {
+          "purchasers": [
+            "GOODHUE J C",
+            "THOMPSON C H"
+          ],
+          "parcels": 4,
+          "where": [
+            "lot 13 of block 21 (CHIV)",
+            "lot 5 of block 13 (CHIV)",
+            "lot 5 of block 17 (CHIV)",
+            "lot 8 of block 13 (CHIV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BROWN D B",
+            "BROWN N J",
+            "GARNETT A"
+          ],
+          "parcels": 3,
+          "where": [
+            "lot 1 of block 51 (CHIOTV)",
+            "lot 3 of block 51 (CHIOTV)",
+            "lot 5 of block 51 (CHIOTV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "DALTON GEORGE",
+            "WHEELER RUSSEL"
+          ],
+          "parcels": 3,
+          "where": [
+            "lot 1 of block 46 (CHIOTV)",
+            "lot 1 of block 46 E2E2 (CHI)",
+            "lot 1 of block 46 W2 (CHIV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "RICHARDS R K",
+            "STONE H O"
+          ],
+          "parcels": 2,
+          "where": [
+            "lot 3 of block 49 (CHIOTV)",
+            "lot 4 of block 49 (CHIOTV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "SMITH JAMES A",
+            "TAYLOR WILLIAM H"
+          ],
+          "parcels": 2,
+          "where": [
+            "lot 4 of block 5 N2 (CHI)",
+            "lot 4 of block 5 S2 (CHIV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "ALLEN JAMES",
+            "ALLEN ROBERT A"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 5 of block 5 (CHI)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BALSTIER J M",
+            "HUBBARD T R"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 6 of block 56 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BENTON LEWIS",
+            "WALKER GEORGE H"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 1 of block 37 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BICKERDYKE R",
+            "GOODRICH H",
+            "MEACHEM J",
+            "MILLER J"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 3 of block 41 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BOTSFORD J K",
+            "HADDOCK E H"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 3 (CHI)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BRIGGS BENJAMIN",
+            "HUMFRIES"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 7 of block 33 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "BROCK THOMAS",
+            "COOK ISAAC"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 31 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "CROSS TIMOTHY",
+            "STOZE CLEMENS"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 4 of block 40 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "DALTON GEORGE",
+            "HITCHCOCK J S"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 2 of block 46 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "DALTON GEORGE",
+            "WHEELER RUSSELL"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 5 of block 50 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "GOODRICH H",
+            "MEACHEM S",
+            "MILLER J"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 38 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "GOODWIN D B",
+            "HEARSY H"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 1 of block 5 (CHIV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "GREENWOOD J W",
+            "GREENWOOD T S"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 5 of block 7 (CHIV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "HARMON C S",
+            "LOOMIS H G"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 4 of block 58 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "JOHNSON R",
+            "JOHNSON S"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 46 S2 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "LOYD A",
+            "LOYD J"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 32 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "MENARD PETER JR",
+            "ROBERTS E"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 4 of block 29 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "MERRILL G W",
+            "SHERWOOD S J",
+            "WHITLOCK T"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 5 of block 54 (CHIOTV)"
+          ]
+        },
+        {
+          "purchasers": [
+            "MERRILL G W",
+            "WHITLOCK THOMAS"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 5 of block 55 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "PEARSONS H",
+            "TAYLOR E D"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 36 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "PECK P F W",
+            "SPRING GILES"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 4 of block 41 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "SHERMAN F T",
+            "STEEL A",
+            "WADSWORTH E S",
+            "WADSWORTH J"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 2 of block 35 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "SPALDING J F",
+            "TAYLOR A D"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 8 of block 6 (CHI)"
+          ]
+        },
+        {
+          "purchasers": [
+            "TAYLOR W H",
+            "WHITLOCK T"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 5 of block 56 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "TEMPLE H S",
+            "TEMPLE J T"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 6 of block 20 (CHIOT)"
+          ]
+        },
+        {
+          "purchasers": [
+            "WRIGHT A",
+            "WRIGHT T"
+          ],
+          "parcels": 1,
+          "where": [
+            "lot 7 of block 5 (CHI)"
+          ]
+        }
+      ],
+      "lots_whose_fractions_partition_them": [
+        {
+          "block": "34",
+          "lot": "3",
+          "date": "1836-06-22",
+          "page": "012",
+          "one_price_per_lot": "9000.00",
+          "town_codes_on_this_one_lot": [
+            "CHIOT"
+          ],
+          "spans_more_than_one_town_code": false,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "E2L3B34CHIOT",
+              "lot_fraction": "E2",
+              "price": 4500.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            },
+            {
+              "as_read": "W2L3B34CHIOT",
+              "lot_fraction": "W2",
+              "price": 4500.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            }
+          ]
+        },
+        {
+          "block": "46",
+          "lot": "1",
+          "date": "1836-06-25",
+          "page": "016",
+          "one_price_per_lot": "2750.00",
+          "town_codes_on_this_one_lot": [
+            "CHI",
+            "CHIOTV",
+            "CHIV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": true,
+          "parts": [
+            {
+              "as_read": "E2E2L1B46CHI",
+              "lot_fraction": "E2E2",
+              "price": 687.5,
+              "rows": 2,
+              "town_code": "CHI"
+            },
+            {
+              "as_read": "L1B46CHIOTV",
+              "lot_fraction": null,
+              "price": 687.5,
+              "rows": 2,
+              "town_code": "CHIOTV",
+              "read_as_the_residual": "1/4 of the lot"
+            },
+            {
+              "as_read": "W2L1BL46CHIV",
+              "lot_fraction": "W2",
+              "price": 1375.0,
+              "rows": 2,
+              "town_code": "CHIV"
+            }
+          ]
+        },
+        {
+          "block": "48",
+          "lot": "3",
+          "date": "1836-06-27",
+          "page": "018",
+          "one_price_per_lot": "1000.00",
+          "town_codes_on_this_one_lot": [
+            "CHIOT",
+            "CHIV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "N2L3B48CHIOT",
+              "lot_fraction": "N2",
+              "price": 500.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            },
+            {
+              "as_read": "S2L3B48CHIV",
+              "lot_fraction": "S2",
+              "price": 500.0,
+              "rows": 1,
+              "town_code": "CHIV"
+            }
+          ]
+        },
+        {
+          "block": "5",
+          "lot": "9",
+          "date": "1836-06-28",
+          "page": "025",
+          "one_price_per_lot": "2700.00",
+          "town_codes_on_this_one_lot": [
+            "CHI",
+            "CHIV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "N2L9BL5CHI",
+              "lot_fraction": "N2",
+              "price": 1350.0,
+              "rows": 1,
+              "town_code": "CHI"
+            },
+            {
+              "as_read": "S2L9BL5CHIV",
+              "lot_fraction": "S2",
+              "price": 1350.0,
+              "rows": 1,
+              "town_code": "CHIV"
+            }
+          ]
+        },
+        {
+          "block": "50",
+          "lot": "1",
+          "date": "1836-06-27",
+          "page": "019",
+          "one_price_per_lot": "2650.00",
+          "town_codes_on_this_one_lot": [
+            "CHIOT",
+            "CHIV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "N2L1B50CHIV",
+              "lot_fraction": "N2",
+              "price": 1325.0,
+              "rows": 1,
+              "town_code": "CHIV"
+            },
+            {
+              "as_read": "S2L1B50CHIOT",
+              "lot_fraction": "S2",
+              "price": 1325.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            }
+          ]
+        },
+        {
+          "block": "53",
+          "lot": "2",
+          "date": "1836-06-23",
+          "page": "020",
+          "one_price_per_lot": "2980.00",
+          "town_codes_on_this_one_lot": [
+            "CHI",
+            "CHIOT",
+            "CHIOTV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": true,
+          "parts": [
+            {
+              "as_read": "L2B53CHIOTV",
+              "lot_fraction": null,
+              "price": 745.0,
+              "rows": 1,
+              "town_code": "CHIOTV",
+              "read_as_the_residual": "1/4 of the lot"
+            },
+            {
+              "as_read": "W2E2L2B53CHI",
+              "lot_fraction": "W2E2",
+              "price": 745.0,
+              "rows": 1,
+              "town_code": "CHI"
+            },
+            {
+              "as_read": "W2L2B53CHIOT",
+              "lot_fraction": "W2",
+              "price": 1490.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            }
+          ]
+        },
+        {
+          "block": "53",
+          "lot": "8",
+          "date": "1836-06-23",
+          "page": "020",
+          "one_price_per_lot": "3760.00",
+          "town_codes_on_this_one_lot": [
+            "CHI",
+            "CHIOT",
+            "CHIOTV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": true,
+          "parts": [
+            {
+              "as_read": "L8B53CHIOTV",
+              "lot_fraction": null,
+              "price": 940.0,
+              "rows": 1,
+              "town_code": "CHIOTV",
+              "read_as_the_residual": "1/4 of the lot"
+            },
+            {
+              "as_read": "N2L8B53CHIOT",
+              "lot_fraction": "N2",
+              "price": 1880.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            },
+            {
+              "as_read": "N2S2L8B53CHI",
+              "lot_fraction": "N2S2",
+              "price": 940.0,
+              "rows": 1,
+              "town_code": "CHI"
+            }
+          ]
+        },
+        {
+          "block": "54",
+          "lot": "4",
+          "date": "1836-06-23",
+          "page": "021",
+          "one_price_per_lot": "3510.00",
+          "town_codes_on_this_one_lot": [
+            "CHIOT",
+            "CHIV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "N2L4B54CHIV",
+              "lot_fraction": "N2",
+              "price": 1755.0,
+              "rows": 1,
+              "town_code": "CHIV"
+            },
+            {
+              "as_read": "S2L4B54CHIOT",
+              "lot_fraction": "S2",
+              "price": 1755.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            }
+          ]
+        },
+        {
+          "block": "58",
+          "lot": "3",
+          "date": "1836-06-24",
+          "page": "022",
+          "one_price_per_lot": "3510.00",
+          "town_codes_on_this_one_lot": [
+            "CHIOT"
+          ],
+          "spans_more_than_one_town_code": false,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "E2L3B58CHIOT",
+              "lot_fraction": "E2",
+              "price": 1755.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            },
+            {
+              "as_read": "W2L3B58CHIOT",
+              "lot_fraction": "W2",
+              "price": 1755.0,
+              "rows": 1,
+              "town_code": "CHIOT"
+            }
+          ]
+        },
+        {
+          "block": "7",
+          "lot": "2",
+          "date": "1836-06-28",
+          "page": "026",
+          "one_price_per_lot": "1710.00",
+          "town_codes_on_this_one_lot": [
+            "CHI"
+          ],
+          "spans_more_than_one_town_code": false,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "N2L2BL7CHI",
+              "lot_fraction": "N2",
+              "price": 855.0,
+              "rows": 1,
+              "town_code": "CHI"
+            },
+            {
+              "as_read": "S2L2BL7CHI",
+              "lot_fraction": "S2",
+              "price": 855.0,
+              "rows": 1,
+              "town_code": "CHI"
+            }
+          ]
+        },
+        {
+          "block": "9",
+          "lot": "5",
+          "date": "1836-06-29",
+          "page": "026",
+          "one_price_per_lot": "2620.00",
+          "town_codes_on_this_one_lot": [
+            "CHI",
+            "CHIV"
+          ],
+          "spans_more_than_one_town_code": true,
+          "needs_the_bare_row_read_as_a_fraction": false,
+          "parts": [
+            {
+              "as_read": "N2L5BL9CHI",
+              "lot_fraction": "N2",
+              "price": 1310.0,
+              "rows": 1,
+              "town_code": "CHI"
+            },
+            {
+              "as_read": "S2L5BL9CHIV",
+              "lot_fraction": "S2",
+              "price": 1310.0,
+              "rows": 1,
+              "town_code": "CHIV"
+            }
+          ]
+        }
+      ],
+      "of_those_spanning_more_than_one_town_code": 8,
+      "block_and_lot_pairs_under_more_than_one_town_code": 80,
+      "purchase_money_over_the_parsed_rows": "1387606.33",
+      "purchase_money_over_every_row": "1399066.33",
+      "what_this_is_not": "Not a merge, not a refusal and not a re-parse. Every row stands, every name stands, and `lot_fraction` stays null on every row the clerk left bare. This counts the ground under the rows so that a row count is never read as a parcel count, and records the arithmetic that says the repeats are SHARES rather than duplicates. Identity is ruled on in resident_crosswalk.json."
     }
   },
   "tracts": [
