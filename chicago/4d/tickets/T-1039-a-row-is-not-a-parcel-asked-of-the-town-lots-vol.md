@@ -1,7 +1,7 @@
 ---
 id: T-1039
 title: A row is not a parcel, asked of the town lots: volume L5A enters one lot twice and three times over, in paired and doubled prices that look like halves of a parcel rather than duplicate rows
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1145
 claimed_by: run 9/11/2026, 2:03:44 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T19:39:00.923Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34636497778
 ---
 
