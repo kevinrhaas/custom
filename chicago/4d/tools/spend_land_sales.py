@@ -143,6 +143,20 @@ def tract_of(row: dict) -> str:
     inside the town as having bought nothing at all.
     """
     t = row.get("tract") or {}
+    # THE REGISTER SELLS A THIRD THING (T-1033): a lot and a block in a platted town,
+    # with no section, no township and no range because the plat is the description. The
+    # old sentence put those three empty strings into "sec  T R" and the card read as if
+    # the ground were missing rather than as if it were in the town. `plat` is never
+    # guessed at — the town code is the register's own abbreviation and this project does
+    # not expand it — so the lot is named and the code is quoted, and that is all.
+    if t.get("resolves") == "town_plat_lot" and t.get("lot") and t.get("block"):
+        town = (" in the town the register codes %s" % t["town_code"]) if t.get("town_code") \
+            else ", in a town the register does not name"
+        part = ("the %s of " % t["lot_fraction"]) if t.get("lot_fraction") else ""
+        return "%slot %s of block %s%s (%s, as printed)" % (part, t["lot"], t["block"],
+                                                            town, t.get("part"))
+    if t.get("resolves") == "refused":
+        return "%s — a tract this reading refuses to resolve" % (t.get("part") or "—")
     where = "sec %s T%s R%s" % (t.get("section"), t.get("township"), t.get("range"))
     if t.get("resolves") == "town_lot" and t.get("lot") and t.get("block"):
         return "lot %s of block %s of the school section (%s)" % (t["lot"], t["block"], where)
@@ -168,6 +182,9 @@ def entry(rid: str, row: dict) -> dict:
         "tract": tract_of(row),
         "resolves": (row.get("tract") or {}).get("resolves"),
         "sale_kind": ("school_section" if sale.get("type_of_sale") == "SC"
+                      else "town_plat_lot"
+                      if (row.get("tract") or {}).get("resolves") in ("town_plat_lot",
+                                                                     "refused")
                       else "federal_entry"),
         "purchase_no": loc.get("purchase_no"),
         "volume": sale.get("volume"),
@@ -224,7 +241,8 @@ def totals(row: dict) -> dict:
             return 0.0
     dates = sorted(e["date_purchased"] for e in row["entries"] if e.get("date_purchased"))
     lots = [e for e in row["entries"] if e.get("sale_kind") == "school_section"]
-    country = [e for e in row["entries"] if e.get("sale_kind") != "school_section"]
+    town = [e for e in row["entries"] if e.get("sale_kind") == "town_plat_lot"]
+    country = [e for e in row["entries"] if e.get("sale_kind") == "federal_entry"]
     return {
         "entries": len(row["entries"]),
         "acres": round(sum(num(e["acres"]) for e in row["entries"]), 2),
@@ -233,6 +251,8 @@ def totals(row: dict) -> dict:
         "last_purchase": dates[-1] if dates else None,
         "tracts": sorted({e["tract"] for e in country}),
         "school_section": sorted({e["tract"] for e in lots}),
+        "town_plat_lots": sorted({e["tract"] for e in town}),
+        "town_plat_dollars": round(sum(num(e["total_price"]) for e in town), 2),
         "residence_as_read": sorted({e["residence_as_read"] or "UNKNOWN"
                                      for e in row["entries"]}),
     }
@@ -253,6 +273,11 @@ def paragraph(row: dict) -> str:
         bought.append("%d federal land entr%s — %s"
                       % (len(t["tracts"]), "y" if len(t["tracts"]) == 1 else "ies",
                          "; ".join(t["tracts"])))
+    if t["town_plat_lots"]:
+        bought.append("%d lot%s in the platted town — %s"
+                      % (len(t["town_plat_lots"]),
+                         "" if len(t["town_plat_lots"]) == 1 else "s",
+                         "; ".join(t["town_plat_lots"])))
     if t["school_section"]:
         bought.append("%d parcel%s of the school section — %s"
                       % (len(t["school_section"]),
@@ -265,6 +290,17 @@ def paragraph(row: dict) -> str:
                 "quarter-section is, and it is still a purchase: the register names a "
                 "purchaser and never an occupant, and nothing here puts this person on that "
                 "ground." if t["school_section"] else "")
+    # T-1033. The same warning for the canal town lots, and it needs its own words: these
+    # are the town's own plat, sold in the fortnight of June 1836, and the register states
+    # no acreage against any of them because there is no aliquot to state.
+    town_note = (" THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook "
+                 "County's register describes them by lot and block in a platted town "
+                 "and gives them no section, no township and no acreage at all, so they "
+                 "add nothing to the acre figure above and $%.2f to the money. This "
+                 "project does not expand the register's town codes, so which addition a "
+                 "lot stands in is carried as the code and not as a name. It is still a "
+                 "purchase and it still places nobody."
+                 % t["town_plat_dollars"] if t["town_plat_lots"] else "")
     return (
         "%s The Illinois State Archives' Public Domain Land Tract Sales register enters this "
         "person %d time%s, as %s, %s: %s, %.2f acres stated in all, for $%.2f (%s). THE "
@@ -273,7 +309,8 @@ def paragraph(row: dict) -> str:
         "a purchase here places nobody.%s %s Identity by the crosswalk's own rule: %s "
         "(data/research/land_sales/resident_crosswalk.json). %s"
         % (MARKER, t["entries"], "" if t["entries"] == 1 else "s", spellings, span,
-           " and ".join(bought), t["acres"], t["dollars"], ids, residence, lot_note,
+           " and ".join(bought), t["acres"], t["dollars"], ids, residence,
+           lot_note + town_note,
            " ".join(row["carry"]),
            row["rules"][0] if row["rules"] else "stated in the crosswalk", LADDER_LIMIT))
 
