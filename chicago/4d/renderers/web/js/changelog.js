@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Twenty-one land purchases judged by hand, and five taken back', kind: 'change', ts: '',
+  { v: 705, title: 'Twenty-one land purchases judged by hand, and five taken back', kind: 'change', ts: '2026-09-11T00:11:35.703Z', date: 'Sep 10, 2026, 7:11 PM CT',
     items: [
       'The federal land register names the people who bought ground around Chicago, and a mechanical rule matches those names to the town\u2019s residents. The rule is crude on purpose \u2014 it agrees on a surname and a forename and stops \u2014 so every match it proposes is read by hand first. Twenty-one were read this time: the surnames from Davis to Jones, where the register\u2019s spelling had to be told apart from a namesake in the same town.',
       'Sixteen stand. Dr William Bradshaw Egan is upheld because the directory of 1839 calls him a real estate dealer and the register enters him for 720 acres \u2014 the trade predicts the purchase. Elijah Kent Hubbard is upheld on a larger scale: a banker who took 2,428 acres in two afternoons of the June 1835 sales. Ebenezer Goodrich is upheld because the Chicago Democrat of 13 August 1834 reports him elected a trustee of this town, and the lot he bought is inside it. Benjamin Jones was made its first street commissioner a fortnight after his purchase.',
