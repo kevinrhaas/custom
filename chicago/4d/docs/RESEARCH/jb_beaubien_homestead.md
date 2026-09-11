@@ -213,11 +213,10 @@ second building, at the corner § 2 now places this record on.
    line. The bound stands as a **floor** — the modelled building is older than 1817 on either
    reading — and the correction is carried by **T-0893**.
 
-**What still blocks the identity is a position, not a date.** Andreas p. 191 and Hurlbut's Hubbard
-both put the factory building **just south of the fort**; this record stands **north** of it, on the
-corner two passages agree the homestead occupied. That contradiction is the whole of what is left of
-the question, and it is filed as **T-0894** rather than resolved by preferring whichever source
-agrees with the position already committed.
+**What blocked the identity was a position, not a date — and § 6a answers it.** Andreas p. 191 and
+Hurlbut's Hubbard both put the factory building **just south of the fort**. That was filed as
+**T-0894** rather than resolved by preferring whichever source agrees with the position already
+committed, and T-0894 resolved it by measurement.
 
 **Nothing was resized or regraded on this evidence.** `bk_hub_063`'s **two storeys** against this
 record's inferred one is now *more* relevant than it was, and `form.stories` is still **1** — see the
@@ -225,16 +224,68 @@ value's own note. Doubling the massing of the oldest building in the dataset on 
 of 1818, about a building whose sources site it somewhere this record is not, is the move § 6 forbids.
 If **T-0894** settles toward the Factor House, the value moves to 2 and the building rebakes.
 
+### 6a. The bearing, measured — T-0894, 2026-09-11
+
+**The plan has both locators in one frame, and nobody had looked.** Every reading of this question
+before this one read *prose*, and prose is why it would not close: *"just south of the fort"* and
+*"the north-east corner of South Water and Michigan"* are two locators in two frames with no common
+term. F. Harrison Jr.'s 1830 plan — `harrison_1830_river_mouth`, the plate this project's fort,
+garrison garden, Out Buildings and Mrs Jouett's grave are all placed from — **letters `U.S. Factor's
+House`**, on the reservation, south of the stockade.
+
+Read by the transform T-0883 stated and T-0882 reused (anchor px 1445, 644 on local ENU 1152.0,
+221.0; 0.33528 m/px):
+
+| | local ENU | |
+|---|---|---|
+| the three blocks the plate letters, ink-weighted | **(1145.6, 38.7)** | 152 m south of the palisade's nearest corner |
+| `jb_beaubien_homestead`, footprint centroid | **(1133.2, 177.8)** | 10 m south of that same corner |
+| separation | **140 m** | against ~20 m of working uncertainty here and 25 m on the plate |
+
+`data/traces/harrison_1830_us_factors_house.json` is the reading: per-block pixels, sizes and
+bearings, and three checks — the grave, the Out Buildings and the garden's road frontage all land on
+their own ink under the same transform, so the 140 m is a measurement and not an impression.
+
+**Two things fall out, and the first is a correction to this dossier.**
+
+1. **This record never stood north of the fort.** § 6 said so above, and the sentence was reading the
+   modern intersection's *name* rather than the georeference: South Water and Michigan is north of
+   the fort **on today's street grid**, and § 3 has already warned that neither street existed here
+   in 1835. In the committed frame the record stands 10 m *south* of the palisade's southern corner.
+   The bearing was never the contradiction; the **distance** is.
+2. **The identity is withdrawn, and the position stays.** What places this record is the 1839 sale —
+   Block 5, east of Michigan Avenue, between South Water Street and the reserved lots — and that
+   ground is not the ground the plate letters, 140 m south inside the reservation. So the two
+   passages that say "just south of the fort" are right about the Factor House and this is not it.
+   Moving the point onto the Factor's House would assert the identity the same measurement refuses.
+   The alias *"the American Fur Company factory building"* came off the record on this ticket.
+
+**What is still not established, in as many words.** *Which* building of the homestead group this is.
+Andreas leaves room for the answer — he says Beaubien built a **new residence** — and Wentworth's
+"traditional residence" at the corner is most likely that one, but nothing reached says so and
+nothing here is regraded to make it look tidier. The corner stays `inferred`.
+
+**`form.stories` is settled at 1**, and the reason has changed from caution to a measurement:
+`bk_hub_063`'s two-storey squared-log Factor House describes a building 140 m from this one. No bake
+follows, because no geometry moved.
+
+**And the Factor's House is now a ticket rather than a question.** The plate gives its three blocks
+an arrangement and a size to ±20 %, and no material, no roof, no opening, and no way to say which of
+the three carries Hubbard's two storeys. `refused_here` in the trace says why nothing was built on
+this ticket.
+
 ## 7. Open threads
 
 - Any description of the factory building's material or size. **Construction is `inferred` as log
   from date and place alone**; if it was frame the record is on the wrong archetype.
 - Wentworth and Quaife on Fort Dearborn (both now source records in this project) for the
   reservation's building group.
-- **Whether the modelled building is the Factory House at all.** No longer the same question as
-  the corner — the corner is decided (§ 2) and the John Dean premise is answered (§ 6). What is
-  left is the bearing: two sources put the factory building *just south of the fort* and this
-  record stands north of it.
+- ~~**Whether the modelled building is the Factory House at all.**~~ **Closed, T-0894, § 6a:** it is
+  not. The 1830 plate letters the Factor's House 140 m south of this record's centroid. What
+  replaces it as an open thread is narrower — *which* building of the homestead group this is, with
+  Andreas's "new residence" the reading with most room in it and no source reached that says so.
+- **The `U.S. Factor's House` itself, unbuilt.** Measured at local ENU (1145.6, 38.7) and refused as
+  fabric on T-0894 for want of everything above the footprint; `data/traces/harrison_1830_us_factors_house.json`.
 - **A lot dimension for Block 5 of the Fort Dearborn Addition**, which would turn Wentworth's lots
   6–10 into a distance north of the corner and tighten § 2 from a floor to a position.
 - **Any plan or description of the John-Dean house**, the 1815 lakeshore building of five rooms at
