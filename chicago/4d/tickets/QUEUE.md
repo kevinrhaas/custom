@@ -111,7 +111,6 @@ T-1002 — Three duplicate-card pairs the candidate test cannot see, because eac
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-1018 — Norris's names are split on the first comma and 69 entries have no comma there, so a man's printed name runs on into his trade and his street
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
-T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
 T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
