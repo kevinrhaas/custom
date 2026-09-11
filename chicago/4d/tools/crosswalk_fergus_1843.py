@@ -34,6 +34,7 @@ from collections import defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import name_agreement as na  # the forename rule, imported rather than restated
 import tiebreak            # the tie discriminator (T-0696), likewise
+import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1843_directory_entries.json")
@@ -171,7 +172,15 @@ def main():
             "entries_1843": rows,
         }
         carries = []
-        if not r["occupation"] and any(x["occupation_1843"] for x in rows):
+        # `none_recorded` IS NO OCCUPATION (T-0867). The residents layer writes
+        # that sentinel where a person's trade was never attested, and the
+        # truthiness test this line used to make read every one of them as
+        # already traded — so this file reported `could_carry_occupation: 0`
+        # beside Norris's fixed twin reporting 63, on a directory that prints a
+        # trade against most of its names. The predicate is imported now, not
+        # restated, because restating it is how two of the four got it wrong.
+        if trade_recorded.absent(r["occupation"]) and any(
+                x["occupation_1843"] for x in rows):
             carries.append("occupation")
         if not r["lives_at"] and any(x["address_1843"] for x in rows):
             carries.append("address")

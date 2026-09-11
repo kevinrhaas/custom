@@ -10,13 +10,13 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1402,
-  "matched_one_card": 16,
-  "matched_more_than_one_ambiguous": 8,
-  "one_card_contested_by_two_residents": 13,
-  "surname_present_initial_absent_refused": 140,
-  "could_carry_trade": 0,
-  "could_carry_place_of_business": 12
+  "residents_considered": 1353,
+  "matched_one_card": 17,
+  "matched_more_than_one_ambiguous": 3,
+  "one_card_contested_by_two_residents": 11,
+  "surname_present_initial_absent_refused": 129,
+  "could_carry_trade": 10,
+  "could_carry_place_of_business": 13
  },
  "matches": [
   {
@@ -39,6 +39,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -63,6 +64,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -84,28 +86,6 @@
      "trade_1844": "general dealers in dry goods, groceries, lumber and produce; cash paid for wheat",
      "address_1844": "South Water street, between Clark and Dearborn streets",
      "printed_page": 90
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "Charles H. Taylor",
-   "person_id": "taylor_charles",
-   "household_id": "hh_taylor_anson",
-   "grade_1835": "attested",
-   "occupation_1835": "carpenter",
-   "lives_at_1835": null,
-   "works_at_1835": "south_branch_raft_bridge",
-   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0150",
-     "proprietor_as_printed": "Chas. Taylor",
-     "firm": "Chas. Taylor",
-     "trade_1844": "fashionable tailor",
-     "address_1844": "Clark street, between Lake street and the Post Office",
-     "printed_page": 114
     }
    ],
    "could_carry": [],
@@ -153,6 +133,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -177,6 +158,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -201,6 +183,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -249,6 +232,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -297,6 +281,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -367,6 +352,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -391,6 +377,54 @@
     }
    ],
    "could_carry": [
+    "trade",
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "Silas B. Cobb",
+   "person_id": "cobb_silas_b",
+   "household_id": "hh_goss_cobb",
+   "grade_1835": "attested",
+   "occupation_1835": "saddler",
+   "lives_at_1835": null,
+   "works_at_1835": "goss_cobb_saddlery",
+   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0139",
+     "proprietor_as_printed": "Silas B. Cobb",
+     "firm": "Silas B. Cobb",
+     "trade_1844": "general dealer in saddles, harnesses, trunks, valises, collars, whips and carpet bags",
+     "address_1844": "No. 171 Lake street",
+     "printed_page": 112
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "William Hanford Adams",
+   "person_id": "adams_william_h",
+   "household_id": "hh_adams_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0024",
+     "proprietor_as_printed": "W. H. Adams",
+     "firm": "W. H. Adams & Co.",
+     "trade_1844": "manufacturers and wholesale and retail dealers in boots, shoes, leather and findings",
+     "address_1844": "138 Lake street",
+     "printed_page": 83
+    }
+   ],
+   "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
@@ -417,11 +451,37 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
    "contested_with": [
     "Harvey A. Blakesley"
+   ]
+  },
+  {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "lives_at_1835": null,
+   "works_at_1835": "south_branch_raft_bridge",
+   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0150",
+     "proprietor_as_printed": "Chas. Taylor",
+     "firm": "Chas. Taylor",
+     "trade_1844": "fashionable tailor",
+     "address_1844": "Clark street, between Lake street and the Post Office",
+     "printed_page": 114
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Mrs. C. Taylor"
    ]
   },
   {
@@ -444,6 +504,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -471,6 +532,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -498,6 +560,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -525,6 +588,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -552,6 +616,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -560,55 +625,31 @@
    ]
   },
   {
-   "resident": "S B Cobb",
-   "person_id": "cobb_s_b",
-   "household_id": "hh_cobb_s_b",
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "household_id": "hh_taylor_c",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "cards_1844": [
     {
-     "claim": "n1844_ad0139",
-     "proprietor_as_printed": "Silas B. Cobb",
-     "firm": "Silas B. Cobb",
-     "trade_1844": "general dealer in saddles, harnesses, trunks, valises, collars, whips and carpet bags",
-     "address_1844": "No. 171 Lake street",
-     "printed_page": 112
+     "claim": "n1844_ad0150",
+     "proprietor_as_printed": "Chas. Taylor",
+     "firm": "Chas. Taylor",
+     "trade_1844": "fashionable tailor",
+     "address_1844": "Clark street, between Lake street and the Post Office",
+     "printed_page": 114
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
    "contested_with": [
-    "Silas B. Cobb"
-   ]
-  },
-  {
-   "resident": "Silas B. Cobb",
-   "person_id": "cobb_silas_b",
-   "household_id": "hh_goss_cobb",
-   "grade_1835": "inferred",
-   "occupation_1835": "saddler",
-   "lives_at_1835": null,
-   "works_at_1835": "goss_cobb_saddlery",
-   "rule": "Surname 'Cobb' folds to the same string as the card's, and the given name of both begins S. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0139",
-     "proprietor_as_printed": "Silas B. Cobb",
-     "firm": "Silas B. Cobb",
-     "trade_1844": "general dealer in saddles, harnesses, trunks, valises, collars, whips and carpet bags",
-     "address_1844": "No. 171 Lake street",
-     "printed_page": 112
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
-   "contested_with": [
-    "S B Cobb"
+    "Charles H. Taylor"
    ]
   },
   {
@@ -631,6 +672,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -659,66 +701,13 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
    "contested_with": [
     "William Jones",
     "W B Ogden"
-   ]
-  },
-  {
-   "resident": "William Adams",
-   "person_id": "adams_william",
-   "household_id": "hh_adams_william",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0024",
-     "proprietor_as_printed": "W. H. Adams",
-     "firm": "W. H. Adams & Co.",
-     "trade_1844": "manufacturers and wholesale and retail dealers in boots, shoes, leather and findings",
-     "address_1844": "138 Lake street",
-     "printed_page": 83
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
-   "contested_with": [
-    "William Hanford Adams"
-   ]
-  },
-  {
-   "resident": "William Hanford Adams",
-   "person_id": "adams_william_h",
-   "household_id": "hh_adams_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0024",
-     "proprietor_as_printed": "W. H. Adams",
-     "firm": "W. H. Adams & Co.",
-     "trade_1844": "manufacturers and wholesale and retail dealers in boots, shoes, leather and findings",
-     "address_1844": "138 Lake street",
-     "printed_page": 83
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
-   "contested_with": [
-    "William Adams"
    ]
   },
   {
@@ -741,6 +730,7 @@
     }
    ],
    "could_carry": [
+    "trade",
     "place_of_business"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
@@ -792,102 +782,6 @@
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
-   "resident": "G Hubbard",
-   "person_id": "hubbard_g",
-   "household_id": "hh_hubbard_g",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0072",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "G. S. Hubbard",
-     "trade_1844": "forwarding merchant and dealer in produce and provisions",
-     "address_1844": "South Water street, between Clark and La Salle streets",
-     "printed_page": 94
-    },
-    {
-     "claim": "n1844_ad0108",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
-     "trade_1844": "fire insurance agency",
-     "address_1844": "Chicago",
-     "printed_page": 104
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "G S Hubbard",
-   "person_id": "hubbard_g_s",
-   "household_id": "hh_hubbard_g_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0072",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "G. S. Hubbard",
-     "trade_1844": "forwarding merchant and dealer in produce and provisions",
-     "address_1844": "South Water street, between Clark and La Salle streets",
-     "printed_page": 94
-    },
-    {
-     "claim": "n1844_ad0108",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
-     "trade_1844": "fire insurance agency",
-     "address_1844": "Chicago",
-     "printed_page": 104
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "G T Hubbard",
-   "person_id": "hubbard_g_t",
-   "household_id": "hh_hubbard_g_t",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0072",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "G. S. Hubbard",
-     "trade_1844": "forwarding merchant and dealer in produce and provisions",
-     "address_1844": "South Water street, between Clark and La Salle streets",
-     "printed_page": 94
-    },
-    {
-     "claim": "n1844_ad0108",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
-     "trade_1844": "fire insurance agency",
-     "address_1844": "Chicago",
-     "printed_page": 104
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
    "resident": "George Smith",
    "person_id": "smith_george",
    "household_id": "hh_smith_george",
@@ -911,70 +805,6 @@
      "firm": "George Smith & Co.",
      "trade_1844": "insurance brokers",
      "address_1844": "Bank Building, La Salle street",
-     "printed_page": 104
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "Gordon S Hubbard",
-   "person_id": "hubbard_gordon_s",
-   "household_id": "hh_hubbard_gordon_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0072",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "G. S. Hubbard",
-     "trade_1844": "forwarding merchant and dealer in produce and provisions",
-     "address_1844": "South Water street, between Clark and La Salle streets",
-     "printed_page": 94
-    },
-    {
-     "claim": "n1844_ad0108",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
-     "trade_1844": "fire insurance agency",
-     "address_1844": "Chicago",
-     "printed_page": 104
-    }
-   ],
-   "could_carry": [
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "Gurdon S Hubbard",
-   "person_id": "hubbard_gurdon_s",
-   "household_id": "hh_hubbard_gurdon_s",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0072",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "G. S. Hubbard",
-     "trade_1844": "forwarding merchant and dealer in produce and provisions",
-     "address_1844": "South Water street, between Clark and La Salle streets",
-     "printed_page": 94
-    },
-    {
-     "claim": "n1844_ad0108",
-     "proprietor_as_printed": "G. S. Hubbard",
-     "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
-     "trade_1844": "fire insurance agency",
-     "address_1844": "Chicago",
      "printed_page": 104
     }
    ],
@@ -1063,20 +893,6 @@
    "surname_on_a_card": "Taylor",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson H. Taylor'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Anson N Taylor",
-   "person_id": "taylor_anson_n",
-   "surname_on_a_card": "Taylor",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson N Taylor'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Anson W Taylor",
-   "person_id": "taylor_anson_w",
-   "surname_on_a_card": "Taylor",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson W Taylor'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Archibald Clybourn",
@@ -1184,13 +1000,6 @@
    "rule": "The surname 'Egan' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Dr William Bradshaw Egan'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "E D Taylor",
-   "person_id": "taylor_e_d",
-   "surname_on_a_card": "Taylor",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'E' of 'E D Taylor'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "E F Skinner",
    "person_id": "skinner_e_f",
    "surname_on_a_card": "Skinner",
@@ -1296,13 +1105,6 @@
    "rule": "The surname 'Thomas' stands on an 1844 advertising card and no proprietor under it carries the initial 'F' of 'Frederick Thomas'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "G W Dole",
-   "person_id": "dole_g_w",
-   "surname_on_a_card": "Dole",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Dole' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'G W Dole'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "George Dyer",
    "person_id": "dyer_george",
    "surname_on_a_card": "Dyer",
@@ -1371,13 +1173,6 @@
    "surname_on_a_card": "Comstock",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Comstock' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'H. H. Comstock'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Harriet E Bates",
-   "person_id": "bates_harriet_e",
-   "surname_on_a_card": "Bates",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Bates' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Harriet E Bates'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Harriet Ellen Bates",
@@ -1455,13 +1250,6 @@
    "surname_on_a_card": "Harmon",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'I' of 'Isaac Dewey Harmon'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Isaac Harmon",
-   "person_id": "harmon_isaac",
-   "surname_on_a_card": "Harmon",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Harmon' stands on an 1844 advertising card and no proprietor under it carries the initial 'I' of 'Isaac Harmon'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Issac Stevens",
@@ -1730,13 +1518,6 @@
    "rule": "The surname 'Murphy' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'N Murphy'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "N. R. Norton",
-   "person_id": "norton_n_r",
-   "surname_on_a_card": "Norton",
-   "cards_under_that_surname": 5,
-   "rule": "The surname 'Norton' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'N. R. Norton'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Nathaniel Carpenter",
    "person_id": "carpenter_nathaniel",
    "surname_on_a_card": "Carpenter",
@@ -1765,20 +1546,6 @@
    "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'O' of 'Otis Hubbard'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "P F Peck",
-   "person_id": "peck_p_f",
-   "surname_on_a_card": "Peck",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Peck' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'P F Peck'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "P F W Peck",
-   "person_id": "peck_p_f_w",
-   "surname_on_a_card": "Peck",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Peck' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'P F W Peck'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "P T Russell",
    "person_id": "russell_p_t",
    "surname_on_a_card": "Russell",
@@ -1805,13 +1572,6 @@
    "surname_on_a_card": "Morris",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Morris' stands on an 1844 advertising card and no proprietor under it carries the initial 'P' of 'Potily Morris'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "R J Hamilton",
-   "person_id": "hamilton_r_j",
-   "surname_on_a_card": "Hamilton",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Hamilton' stands on an 1844 advertising card and no proprietor under it carries the initial 'R' of 'R J Hamilton'. A surname-only agreement is a refusal."
   },
   {
    "resident": "R. C. Bristol",
@@ -1924,13 +1684,6 @@
    "surname_on_a_card": "Clarke",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Clarke' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'W B Clarke'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "W H Brown",
-   "person_id": "brown_w_h",
-   "surname_on_a_card": "Brown",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Brown' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'W H Brown'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Walter Loomis Newberry",

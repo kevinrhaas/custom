@@ -1,7 +1,7 @@
 ---
 id: T-0867
 title: The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-10
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T00:59:46.894Z
 claimed_run: null
 ---
 
