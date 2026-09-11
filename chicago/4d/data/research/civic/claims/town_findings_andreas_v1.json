@@ -72,7 +72,7 @@
         "E. S. Kimberly"
       ],
       "town_finding": true,
-      "notes": "Twenty-six votes of twenty-eight (Andreas) or of thirty (the list) is a near-unanimous town. 'Beaubien, Medard' and Andreas's 'Madore B. Beaubien' are the same man under two spellings; the merge is not made here."
+      "notes": "Twenty-six votes of twenty-eight (Andreas) or of thirty (the list) is a near-unanimous town. 'Beaubien, Medard' and Andreas's 'Madore B. Beaubien' are the same man under two spellings, and the merge IS NOW MADE: T-1026 folds `beaubien_medard` onto `beaubien_madore` under rule C12 in data/residents/card_merge_rulings.json. What decided it was not this note's internal check alone but Fergus's directory of 1839, whose alphabetical run of the surname on printed page 6 names Charles, John B., Mark and \"Beaubien, Medard B. , merchant, South Water street\" and no Madore \u2014 the survivor's own trade and his own shop. The parish registers, which would print a baptismal M\u00e9dard if it were one, were read for this ruling and do not reach him."
     },
     {
       "id": "c004",
