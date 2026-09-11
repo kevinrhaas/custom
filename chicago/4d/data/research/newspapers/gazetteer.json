@@ -5,15 +5,15 @@
   "compiled_from": [
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_08.json",
-      "sha256": "6228aad88ae244ec287be59a2c2c9dfd3b83c2560b8e9429d9f745e3a0c737b3"
+      "sha256": "fcb413a757ce37e3eba836e9eea398b1f13183a51cf564a2e058b69d839721f7"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_13.json",
-      "sha256": "811397b35a8f63b27d178d64e050d5aaf3bf4d6bbc642f0367a62fc9aa9cd783"
+      "sha256": "24ef2f014025ee17b040605b2e7c9f442538e33824d875b485601eb07e192f0d"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_20.json",
-      "sha256": "f9a1fcd58573d4cf2e2f1e57a2d7a7453b06fd6b3521789c03e3eea6bbccc330"
+      "sha256": "2c09709875ef054a7e8cd97e54c21064f152f9b7c04b52fa6093b0b97a6d59b1"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_06_27.json",
@@ -25,7 +25,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_11.json",
-      "sha256": "66c9f1aab446d276443b3e5bf8bf04f050c0cdd6b78447ac4d990f83b3f2dcad"
+      "sha256": "5e20c14d8809a48d1efe05f35ca3d53506bd3223d81da885ae4cab8ae6780cb6"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_american_1835_07_18.json",
@@ -209,7 +209,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_08_27.json",
-      "sha256": "3a89489d3a90ba64f2c341843fc1dbec6872917275131e00d8da42966d2f59be"
+      "sha256": "90fab2c929f380670722fd10b948df227084227c24ad2224dcb0facd8f1e2e41"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_09_03.json",
@@ -64115,6 +64115,7 @@
       "placement": {
         "class": "corner",
         "anchor": "a corner with Clark street, unread on this line",
+        "anchor_unread": true,
         "offset_text": "corner of\nand char",
         "offset_normalized": "corner of […] and [Cl]ar[k]",
         "street": null
@@ -64185,6 +64186,7 @@
           "placement": {
             "class": "corner",
             "anchor": "a corner with Clark street, unread on this line",
+            "anchor_unread": true,
             "offset_text": "corner of\nand char",
             "offset_normalized": "corner of […] and [Cl]ar[k]",
             "street": null
@@ -68285,9 +68287,9 @@
       "street": "Dearborn Street",
       "placement": {
         "class": "relative",
-        "anchor": "three doors north of an unread anchor, in Dearborn Street",
-        "offset_text": "a tue abuve business three doors worth of i,",
-        "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
+        "anchor": "the Tremont House",
+        "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
+        "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
         "street": "Dearborn Street"
       },
       "evidence": {
@@ -68316,6 +68318,7 @@
           "placement": {
             "class": "relative",
             "anchor": "three doors north of an unread anchor, in Dearborn Street",
+            "anchor_unread": true,
             "offset_text": "a tue abuve business three doors worth of i,",
             "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
             "street": "Dearborn Street"
@@ -68332,6 +68335,7 @@
           "placement": {
             "class": "relative",
             "anchor": "an unnamed House, three doors south, in Dearborn Street",
+            "anchor_unread": true,
             "offset_text": "1 above business thrve doors north o at House, in Dearborn street,",
             "offset_normalized": "the above business three doors north o[f the … ] House, in Dearborn street",
             "street": "Dearborn Street"
@@ -68354,6 +68358,19 @@
           }
         }
       ],
+      "placement_from": {
+        "rule": "T-0385: the printing that minted this house declares its anchor unread, so the house is placed by the earliest printing of the same advertisement that reads it. An anchor the pass could not read names no landmark and contradicts none; the bound is one dateline at or before the scene date, which is what makes the impressions one card rather than two addresses.",
+        "first_issue": "1835-07-04",
+        "claims": [
+          "chicago_american_1835_07_04#c003"
+        ],
+        "copy_date": "1835-06-08",
+        "superseded": {
+          "class": "relative",
+          "anchor": "three doors north of an unread anchor, in Dearborn Street",
+          "anchor_unread": true
+        }
+      },
       "refused_merges": [
         {
           "with": "Peter Cohen's store",
@@ -70413,6 +70430,7 @@
       "placement": {
         "class": "corner",
         "anchor": "the corner of Lake Street and an unread cross street",
+        "anchor_unread": true,
         "offset_text": "at his abop, comer of Lake anc Amor. | stvests",
         "offset_normalized": "at his shop, corner of Lake an[d] [uncertain: Amor.] streets",
         "street": "Lake Street"
@@ -70445,6 +70463,7 @@
           "placement": {
             "class": "corner",
             "anchor": "the corner of Lake Street and an unread cross street",
+            "anchor_unread": true,
             "offset_text": "at his abop, comer of Lake anc Amor. | stvests",
             "offset_normalized": "at his shop, corner of Lake an[d] [uncertain: Amor.] streets",
             "street": "Lake Street"
