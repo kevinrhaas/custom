@@ -102,6 +102,65 @@ letter-list-only name is `inferred`, never `attested` — and says so here rathe
 quietly. **If the owner rules the other way, one line of `grade()` changes and the counts
 move; nothing else does.**
 
+### The second reading put back to the owner — the parish register, and the man who kept it (T-0841)
+
+**Does G2c's `a party to a marriage or burial in the parish` mean the parish REGISTER, baptisms
+included?** T-0724 gave `st_cyr_john_mary` a rung at last and the rung came out **G5**, the ladder
+abstaining. T-0841 read that as a question about one man — may the keeper of a register be graded on
+his own register — and it is not. Measured on dev 8c260130f, with the register's rows put through
+`read_church()` four different ways and nothing committed:
+
+- **He is not only the officiant.** St Mary's baptismal register names him as a PARTY four times in
+  his own hand: godfather at 1834 entry 19 and 1835 entry 9, sponsor at 1834 entry 21 — all three at
+  Chicago — and sponsor once at 1834 entry 10, which was written in Sangamon County. The premise
+  that "he is a party to neither" is true of the marriage and death pages this tool reads and false
+  of the register as a whole. **Under G2c as written a baptism is still neither a marriage nor a
+  burial**, so the rung does not reach him even so; what changes is the question. It is not
+  *may we grade the keeper on his book* — special pleading for one priest — but *does the rung mean
+  the register*, which is a reading of five words the owner ratified.
+- **It is not one man's rung.** Reading the register's Chicago rows under the existing church class
+  moves **137 people onto G2c** (34 → 171), mints 131 identities, lifts 3 to G1c on convergence with
+  the press or the civic lists, and takes 5 off G0. Eighty-five of the register's Chicago adults
+  reach no surname anywhere else in the layer: the French, Métis, Irish and German Catholic town
+  the poll books never recorded.
+- **There is no read-it-and-change-nothing option.** Putting the rows under a class of their own that
+  no rung accepts still lifts the priest — to G4, on count alone — and moves 135 others with him
+  (G3 1,703 → 1,808, G4 1 → 31). The ladder counts appearances; a source it can see is a source that
+  grades.
+- **A naive read plants twelve entries in the wrong place.** Eleven of them — 1834 entries 1 to 11 —
+  were written at Bear Creek, the South Fork of the Sangamon and Springfield, in Sangamon County, on
+  the priest's journey back from St Louis, and a twelfth, 1833 entry 7, at Ottawa. The reading marks
+  all twelve `at_chicago: false`. Ignoring that flag adds the register's 57 non-Chicago readings and
+  38 more people to G2c who were never in this town. **Any read of this register filters on
+  `at_chicago` or it is wrong**, and the source record says so itself.
+- **And it would mint a second priest before it graded the first.** The register spells the particle
+  out — `John Mary Saint Cyr`, `Jean Marie Irénée Saint Cyr` — and T-0724's closed particle list
+  carries `St` and not `Saint`. So `Saint Cyr` splits to a surname **`cyr`** with `saint` left
+  standing among the forenames, the three Chicago party rows land on a NEW identity
+  `id_cyr_john_mary_irenaeus_saint`, that
+  identity takes G2c, and the town's own `id_stcyr_john_mary_irenaeus` stays at G5 beside it. This is
+  exactly the hazard T-0724's own note names — one rival `Cyr` away from putting the priest on
+  another man — recurring on the spelled-out printing. **Whatever the owner rules, `saint` joins the
+  particle list first**, and the corpus now prints it, so the closed list's own evidence rule is met.
+- **The register's RULINGS already reach this tool; only its ROWS do not.** `declared_rulings()` and
+  `person_links()` rglob every `*crosswalk*.json`, so `st_marys_baptisms_crosswalk.json`'s 8 merges,
+  18 refusals and 275 rulings are spent here today. The register says who is who and testifies to
+  nobody's presence.
+
+**The question, and it is his.** Either (1) G2c means a marriage or a burial and no more — the
+register's baptismal pages stay out, the priest stays a G5 conflict, and this is written down as a
+ruling rather than an omission; or (2) G2c means the parish register of 1833-1835, its parties
+whatever the sacrament, in which case the rung's text changes to say so and 137 people take it. Both
+are defensible. Neither is a tool's call, and the tool has not made it: nothing in
+`grading_proposal.json` moved for this pass.
+
+**What did land**, because it needs no ruling: every reading in `data/research/church/records/` is now
+either read by `read_church()` or declared unread in `CHURCH_RECORDS_NOT_READ` with its reason, and
+`--check` fails on a file that is neither. The baptismal register was invisible for as long as the
+file list was a two-name tuple, and it was not alone — the Second Presbyterian roll of 1842-1892 sat
+beside it in the same silence. `--report` now prints both, under the domain table whose `church` row
+counts two readings of four.
+
 ## What the tool proposes today
 
 Built 2026-09-03 from seven landed domains; `--report` prints these.
