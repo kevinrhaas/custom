@@ -6,7 +6,7 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 491,
+  "church": 498,
   "books": 202,
   "directories": 7251,
   "newberry_index": 4914,
@@ -27,8 +27,8 @@
    "spent": 819
   },
   "church": {
-   "read": 1744,
-   "spent": 1253
+   "read": 1754,
+   "spent": 1256
   },
   "books": {
    "read": 282,
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1007
+   "spent": 1015
   },
   "newberry_index": {
    "read": 7005,
@@ -464,6 +464,22 @@
    "to": 256,
    "date": "2026-09-11",
    "why": "T-1012, and the one extra is a REFUSAL that is correct. Re-deriving the advertising-card crosswalk against today's residents layer turned Charles Taylor's match into a contest — taylor_c and taylor_charles both meet the one card, and at most one of them is the man who paid for it — so spend_directories.py files a ruling that names him and carries nothing to his card, which is what rule 2 of that pass requires. It also gained two matches the stale file could not make (adams_william_h, cobb_silas_b) and both DID reach their cards. So reached goes 915 to 916, on a card stays 660, and the unwritten figure rises by the single ruling the town is right to refuse to write. Lowering this ceiling again is free and is what the next spend earns."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 491,
+   "to": 498,
+   "date": "2026-09-11",
+   "why": "T-1011 minted 24 residents off the printed roster of the 1 January 1834 post-office return, and the Second Presbyterian reader holds roll lines apart by whether it can tie them to one person in the town: 24 more residents to consider left 10 more roll records standing separate and 3 more of them ruled on, so the church domain's unspent count rises by 7 without anybody reading a new page. The debt is real and it is the church spend pass's to pay; what moved here is the denominator."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 256,
+   "to": 258,
+   "date": "2026-09-11",
+   "why": "Two of the directories' rulings now name a person whose card has not learned it, and both are T-1011's: a letter-list-only card may not be given a trade (mint_letter_list_residents.py --gate refuses it without independently corroborated resident research), so a directory ruling that reaches one of the 24 has nowhere to land until that corroboration exists. Stated rather than hidden; T-0987 is where it is paid."
   }
  ],
  "lowered": [
@@ -510,7 +526,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 256,
+  "directories": 258,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 0

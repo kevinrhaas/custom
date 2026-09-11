@@ -10,11 +10,11 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1353,
+  "residents_considered": 1377,
   "matched_one_card": 17,
   "matched_more_than_one_ambiguous": 3,
   "one_card_contested_by_two_residents": 11,
-  "surname_present_initial_absent_refused": 129,
+  "surname_present_initial_absent_refused": 132,
   "could_carry_trade": 10,
   "could_carry_place_of_business": 13
  },
@@ -895,6 +895,13 @@
    "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson H. Taylor'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Anthony Beers",
+   "person_id": "beers_anthony",
+   "surname_on_a_card": "Beers",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Beers' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anthony Beers'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Archibald Clybourn",
    "person_id": "clybourn_archibald",
    "surname_on_a_card": "Clybourn",
@@ -1462,6 +1469,13 @@
    "rule": "The surname 'Cady' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'Levi Cady'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Luther Hatch",
+   "person_id": "hatch_luther",
+   "surname_on_a_card": "Hatch",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Hatch' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'Luther Hatch'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "M D Harmon",
    "person_id": "harmon_m_d",
    "surname_on_a_card": "Harmon",
@@ -1747,6 +1761,13 @@
    "surname_on_a_card": "Norton",
    "cards_under_that_surname": 5,
    "rule": "The surname 'Norton' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Wm. H. Norton'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "dane Gray",
+   "person_id": "gray_dane",
+   "surname_on_a_card": "Gray",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Gray' stands on an 1844 advertising card and no proprietor under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
   }
  ]
 }
