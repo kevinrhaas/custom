@@ -1,7 +1,7 @@
 ---
 id: T-0432
 title: Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: T-0420
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 9:27:42 AM CT
 blocked_on: null
 needs_bake: true
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34609865983
 ---
 
 Open `blk_south_water_dearborn` — 4 roof(s) of headroom, 2 free lot(s) — under the anonymous-block
