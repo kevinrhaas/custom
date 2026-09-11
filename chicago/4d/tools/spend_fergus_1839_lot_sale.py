@@ -121,10 +121,13 @@ def lot_entry(bid: dict, lot: dict) -> dict:
         "amount_usd": lot.get("amount_usd"),
         "printed_page": lot.get("printed_page"),
         "describes_date": "1839-06",
-        # The table's two shorthands, kept rather than flattened: a ditto mark under the
-        # name above is not the name printed again, and a block carried forward from an
-        # earlier row is not a block printed on this one.
+        # The table's three shorthands, kept rather than flattened: a ditto mark under the
+        # name above is not the name printed again, a brace that gathers this lot with the
+        # one above it under a single name and a single price is not a name printed on this
+        # row at all, and a block carried forward from an earlier row is not a block printed
+        # on this one.
         "bidder_ditto": bool(lot.get("bidder_ditto")),
+        "bidder_braced": bool(lot.get("bidder_braced")),
         "block_carried": bool(lot.get("block_carried")),
     }
 
@@ -180,12 +183,19 @@ def _cite(e: dict) -> str:
 def shorthand_note(row: dict) -> str:
     """What the table printed and what it carried — never silently the same thing."""
     ditto = sum(1 for e in row["entries"] if e["bidder_ditto"])
+    braced = sum(1 for e in row["entries"] if e.get("bidder_braced"))
     carried = sum(1 for e in row["entries"] if e["block_carried"])
     parts = []
     if ditto:
         parts.append("%d of those rows %s the bidder as a ditto mark under the name "
                      "above rather than the name itself"
                      % (ditto, "prints" if ditto == 1 else "print"))
+    if braced:
+        parts.append("%d %s no name and no price at all: a printer's brace gathers %s "
+                     "with the lot above under one name and one amount, and that amount "
+                     "is printed over the pair and is not divided here"
+                     % (braced, "carries" if braced == 1 else "carry",
+                        "it" if braced == 1 else "them"))
     if carried:
         parts.append("%d %s the block number forward from the last row that printed one"
                      % (carried, "carries" if carried == 1 else "carry"))
@@ -256,6 +266,8 @@ def ledger_doc() -> dict:
             "dollars_carried": sum(r["total_usd"] for r in rows),
             "lot_rows_bidder_dittoed": sum(1 for r in rows for e in r["entries"]
                                            if e["bidder_ditto"]),
+            "lot_rows_bidder_braced": sum(1 for r in rows for e in r["entries"]
+                                          if e.get("bidder_braced")),
             "lot_rows_block_carried": sum(1 for r in rows for e in r["entries"]
                                           if e["block_carried"]),
         },
