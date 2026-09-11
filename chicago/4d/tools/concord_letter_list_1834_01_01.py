@@ -83,6 +83,7 @@ DATA = ROOT / "data"
 ROSTER = DATA / "research" / "newspapers" / "letter_list_1834_01_01_printed.json"
 EXTRACTED = DATA / "research" / "newspapers" / "extracted"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
+IDENTITY = DATA / "research" / "newspapers" / "identity.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 HOUSEHOLDS = DATA / "residents" / "households"
 OUT = DATA / "research" / "newspapers" / "letter_list_1834_01_01_concordance.json"
@@ -96,6 +97,13 @@ CLAIMS = (
     ("chicago_democrat_1834_02_04", "c016"),
     ("chicago_democrat_1834_03_04", "c026"),
     ("chicago_democrat_1834_03_04", "c027"),
+    # T-1011. The 54 lines the two crops lost to the advertisement set down the middle
+    # of the column, lifted from T-0424's roster into the extraction of the impression
+    # they were printed in. It is the SAME impression as c026 and c027 and a DIFFERENT
+    # reading of it — the whole column at the scan, where those two are segmenter crops
+    # — so it is tied as its own printing, which is what lets its entities take the
+    # lines the crops could not offer a reading for.
+    ("chicago_democrat_1834_03_04", "c033"),
 )
 
 # A bracket in either reading is the READER speaking, not the type. The two
@@ -385,7 +393,44 @@ def variant_owner(gaz: dict) -> dict:
     return owner
 
 
-def classify_untied(ent: dict, rows: list[dict], signed: str) -> dict:
+def identity_rulings(rows: list[dict]) -> dict[str, dict]:
+    """Reading -> the ruling `identity.json` makes about it, for the untied readings.
+
+    T-1011. The 1834-01-28 transcription carries readings no line of the ninth
+    impression's 170 carries, and the tie rules above refuse every one of them: a
+    concordance that guesses is worse than one that counts its gaps. But two
+    impressions of ONE return print the same names, and once the whole printed column
+    has been read at the image the only place left for such a reading to be is on one
+    of those lines, set differently. That is an IDENTITY question, and `identity.json`
+    is the only place it may be answered. This reads the answers back onto the rows so
+    the ledger says which of its own gaps have since been ruled on, and which were
+    ruled UNCLOSEABLE — a refusal is an answer and the more useful half of this map.
+    """
+    doc = load(IDENTITY)
+    printed = {r["as_printed"] for r in rows}
+    by_line = {r["as_printed"]: r["n"] for r in rows}
+    out: dict[str, dict] = {}
+    for rule in doc.get("merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        for reading, other in ((frm, into), (into, frm)):
+            if reading and other and (other in printed) and (reading not in printed):
+                out[reading] = {"ruling": "one person with printed line %d" % by_line[other],
+                                "line": by_line[other], "held_as": into,
+                                "ticket": rule.get("ticket")}
+    for rule in doc.get("refused_merges", []):
+        into, frm = rule.get("into"), rule.get("from")
+        for reading, other in ((frm, into), (into, frm)):
+            if reading and other and (other in printed) and (reading not in printed):
+                out.setdefault(reading, {
+                    "ruling": "refused: not joined to printed line %d" % by_line[other],
+                    "line": by_line[other],
+                    "refused_because": rule.get("refused_because"),
+                })
+    return out
+
+
+def classify_untied(ent: dict, rows: list[dict], signed: str,
+                    ruled: dict[str, dict] | None = None) -> dict:
     """An extracted name no printed line carries — and, where the pass can say so, why.
 
     Three of the four kinds are not gaps at all. The postmaster signed the return and
@@ -397,6 +442,9 @@ def classify_untied(ent: dict, rows: list[dict], signed: str) -> dict:
     """
     out = {"claim": ent["claim"], "as_printed": ent["as_printed"],
            "extracted_as": ent["normalized"]}
+    ruling = (ruled or {}).get(ent["normalized"])
+    if ruling:
+        out["ruled_by_identity"] = ruling
     if signed and fold(ent["normalized"]) == fold(signed):
         out["why"] = ("the postmaster's signature under the list, which the roster "
                       "counts separately from its 170 addressee lines")
@@ -544,7 +592,8 @@ def build() -> dict:
             key = mint_pass.reason_key(line["reaches"]["reason"])
             refusal_tally[key] = refusal_tally.get(key, 0) + 1
 
-    untied_rows = [classify_untied(e, rows, signed) for e in untied]
+    ruled = identity_rulings(rows)
+    untied_rows = [classify_untied(e, rows, signed, ruled) for e in untied]
     untied_tally: dict[str, int] = {}
     for u in untied_rows:
         untied_tally[u["why"]] = untied_tally.get(u["why"], 0) + 1
@@ -580,11 +629,13 @@ def build() -> dict:
             "readings_that_disagree": len(name_differs),
             "extracted_names_no_line_carries": len(untied),
             "extracted_names_no_line_carries_by_why": untied_tally,
+            "extracted_names_ruled_on_in_identity_json": sum(
+                1 for u in untied_rows if u.get("ruled_by_identity")),
         },
         "lines": lines,
         "name_differs": name_differs,
         "extracted_names_no_line_carries": [
-            classify_untied(e, rows, signed)
+            classify_untied(e, rows, signed, ruled)
             for e in sorted(untied, key=lambda e: (e["claim"], e["normalized"] or ""))
         ],
         "ambiguities_this_pass_declined_to_decide": ambiguities,
@@ -615,9 +666,13 @@ def report(doc: dict) -> None:
               f"extracted {', '.join(repr(x) for x in d['extracted_as'])}{card}"
               f"\n              {d['kind']}")
     print(f"\n  extracted names no line carries "
-          f"{c['extracted_names_no_line_carries']:4d}")
+          f"{c['extracted_names_no_line_carries']:4d}"
+          f"  ({c.get('extracted_names_ruled_on_in_identity_json', 0)} since ruled on "
+          f"in identity.json)")
     for e in doc["extracted_names_no_line_carries"]:
         print(f"    {e['extracted_as']!r}  ({e['claim']})\n        {e['why']}")
+        if e.get("ruled_by_identity"):
+            print(f"        RULED: {e['ruled_by_identity']['ruling']}")
     print("\n  UNREAD — the lines that reach nothing")
     for line in doc["lines"]:
         if line["reaches"]["kind"] == "unread":
