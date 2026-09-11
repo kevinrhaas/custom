@@ -45,29 +45,29 @@
   }
  ],
  "counts": {
-  "people_shown": 286,
-  "people_met_by_more_than_one_volume": 171,
-  "carrying_an_occupation": 138,
-  "carrying_an_address": 153,
+  "people_shown": 283,
+  "people_met_by_more_than_one_volume": 169,
+  "carrying_an_occupation": 137,
+  "carrying_an_address": 152,
   "line_held_but_parse_refused": 19,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 235,
-    "single_entry": 159,
-    "ambiguous": 47,
+    "people": 232,
+    "single_entry": 158,
+    "ambiguous": 45,
     "contested": 29
    },
    "fergus_1843": {
-    "people": 177,
-    "single_entry": 121,
-    "ambiguous": 41,
+    "people": 175,
+    "single_entry": 120,
+    "ambiguous": 40,
     "contested": 15
    },
    "norris_1844": {
-    "people": 142,
+    "people": 141,
     "single_entry": 108,
-    "ambiguous": 20,
+    "ambiguous": 19,
     "contested": 14
    },
    "norris_1844_advertiser": {
@@ -1326,49 +1326,6 @@
    "household_id": "hh_beaubien_medard",
    "resident": "Medard Beaubien",
    "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e0083",
-       "printed_page": 6,
-       "as_printed": "Beaubien, Mark, hotel-keeper, Lake st"
-      },
-      {
-       "claim_id": "f1839_e0084",
-       "printed_page": 6,
-       "as_printed": "Beaubien, Medard B. , merchant, South Water street"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    }
-   ],
-   "occupation_later": null,
-   "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ]
-  },
-  {
-   "person_id": "beaubien_medore_b",
-   "household_id": "hh_beaubien_medore_b",
-   "resident": "Medore B Beaubien",
-   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -5477,96 +5434,6 @@
     "fergus_chicago_directory_1839",
     "fergus_chicago_directory_1843",
     "norris_directory_1844"
-   ]
-  },
-  {
-   "person_id": "clybourn_archibald",
-   "household_id": "hh_clybourn_archibald",
-   "resident": "Archibald Clybourn",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Clybourn' folds to the same string as the 1839 entry's, and the given name of both begins A.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e0298",
-       "printed_page": 11,
-       "as_printed": "Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    },
-    {
-     "volume": "fergus_1843",
-     "title": "Fergus's Chicago directory of 1843",
-     "year": 1843,
-     "source_id": "fergus_chicago_directory_1843",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Clybourn' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1843_e0653",
-       "printed_page": "fergus_1843_page_002",
-       "as_printed": "Clybourn, Archibald (C. & Hovey), res North Branch, city and county beef and pork inspector [612 Alston ave, died Aug. 23, 1872, a. 70]"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ]
-    }
-   ],
-   "occupation_later": {
-    "value": "farmer and cattle-dealer",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e0298",
-    "as_printed": "Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave",
-    "printed_fields": "f1839_e0298 | Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave | farmer and cattle-dealer | 512 Elston ave",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "address_later": {
-    "value": "Elston ave",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e0298",
-    "as_printed": "Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave",
-    "printed_fields": "f1839_e0298 | Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave | farmer and cattle-dealer | 512 Elston ave",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Clybourn, Archibald, farmer and cattle-dealer, 512 Elston ave'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. The street NUMBER printed against it is a number in the 1839 grid, a numbering this town's year does not have, so the street name crosses and the number does not. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
    ]
   },
   {
@@ -9801,118 +9668,6 @@
    "grade_1835": "attested",
    "occupation_1835": "attorney",
    "lives_at_1835": "heacock_house_monroe",
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Heacock' folds to the same string as the 1839 entry's, and the given name of both begins R.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e0667",
-       "printed_page": 17,
-       "as_printed": "Heacock, Reuben B., medical student, Dr. C. V. Dyer"
-      },
-      {
-       "claim_id": "f1839_e0668",
-       "printed_page": 18,
-       "as_printed": "Heacock, Russell E., att’y, justice of peace, Adams cur. Clark"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    },
-    {
-     "volume": "fergus_1843",
-     "title": "Fergus's Chicago directory of 1843",
-     "year": 1843,
-     "source_id": "fergus_chicago_directory_1843",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Heacock' folds to the same string as the 1843 entry's, and the given name of both begins R.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1843_e1241",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Heacock, Russel Easton [Old Shallow-Cut. Chicago's first attorney at law], res 129 Adams [died, Summit, Ill., June 26. 1849, aged 70.]"
-      },
-      {
-       "claim_id": "f1843_e1242",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Heacock, Russel E., jr., clerk, Charles Walker & Co., bds Russel E. Heacock"
-      },
-      {
-       "claim_id": "f1843_e1243",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Heacock, R. E., mason, Alson S. Sherman"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ]
-    },
-    {
-     "volume": "norris_1844",
-     "title": "Norris's Chicago directory of 1844",
-     "year": 1844,
-     "source_id": "norris_directory_1844",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Heacock' folds to the same string as the 1844 entry's, and the given name of both begins R.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "n1844_e0827",
-       "printed_page": 39,
-       "as_printed": "Heacock, R. B. res R. E. Heacock's"
-      },
-      {
-       "claim_id": "n1844_e0828",
-       "printed_page": 39,
-       "as_printed": "Heacock, R. E. attorney at law, ho Adams st. b Clinton & Lasalle"
-      },
-      {
-       "claim_id": "n1844_e0829",
-       "printed_page": 39,
-       "as_printed": "Heacock, R. E. jr. clerk, at C.Walker & Co.'s, res R. E. Heacock's"
-      },
-      {
-       "claim_id": "n1844_e0830",
-       "printed_page": 39,
-       "as_printed": "Heacock, R. E- mason, at A. S. Sherman's"
-      }
-     ],
-     "holds": [],
-     "parse_carries": false,
-     "sources": [
-      "norris_directory_1844"
-     ]
-    }
-   ],
-   "occupation_later": null,
-   "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843",
-    "norris_directory_1844"
-   ]
-  },
-  {
-   "person_id": "heacock_russell_e",
-   "household_id": "hh_heacock_russell_e",
-   "resident": "Russell E Heacock",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
     {
