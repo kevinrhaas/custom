@@ -184,6 +184,39 @@ SPLIT_CAUTION = (
     "split is checkable against it, and neither is read into an 1835 claim."
 )
 
+# WHY THE CARD NAMES THE ENTRY IDS (T-0989, spent by T-0987). A ruling in a generated
+# crosswalk states no source of its own: the file says once, at the top, which volume it
+# rests on, and every ruling in it shares that one id. `tools/measure_research_spend.py`
+# therefore judges such a ruling written only if the card ALSO names the unit adjudicated
+# — and until this line was added not one of the 263 matches these four crosswalks make
+# did. The instance the ticket checked by hand: `hh_garrett_a` cites
+# `fergus_chicago_directory_1839` because this pass writes the volume into `sources`,
+# while Fergus 1839's ruling for Garrett — entry f1839_e0527 — was nowhere on the record.
+# The citation was doing the work of a reading.
+#
+# So the block's own note ends by naming, per person and per volume, the printed entries
+# this pass ruled onto this household and the status it ruled them at. It goes in the
+# NOTE rather than in a new leaf deliberately: the note is already rendered whole by
+# `renderers/web/js/residents.js` and already declared `shown` in
+# `tools/measure_layer_reads.py`, so the entry a reader would have to go back to arrives
+# in front of that reader instead of into a field nothing opens. It is also the only
+# place that can speak for the 92 people this pass rules on and carries nothing for —
+# an ambiguous or contested match writes no graded value, and before this the card said
+# of them only that some volume had met somebody of the name.
+RULED_ON_PREAMBLE = (
+    "WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: "
+    "each volume below is followed by the printed entries it set against this person and "
+    "the status the crosswalk ruled them at — a single entry carries what its own "
+    "`could_carry` declares, and an ambiguous or contested match carries nothing and is "
+    "shown so that the silence is legible. "
+)
+
+STATUS_WORDS = {
+    "single_entry": "a single entry",
+    "ambiguous": "ambiguous, so nothing crossed",
+    "contested": "contested, so nothing crossed",
+}
+
 
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -458,6 +491,25 @@ def ledger(rows: list) -> dict:
     }
 
 
+def ruled_on(rows: list) -> str:
+    """The entry ids this pass adjudicated onto one household, as one rendered sentence.
+
+    Deterministic in the order `cards` already sorts by — person, then volume as
+    `VOLUMES` lists them — because this string is compared byte for byte by `--check`."""
+    parts = []
+    for row in sorted(rows, key=lambda r: r["person_id"]):
+        for app in row["appearances"]:
+            ids = ", ".join(e["claim_id"] for e in app["entries"])
+            if not ids:
+                continue
+            parts.append("%s, %s — %s (%s)"
+                         % (row["person_id"], app["title"], ids,
+                            STATUS_WORDS.get(app["match_status"], app["match_status"])))
+    if not parts:
+        return ""
+    return RULED_ON_PREAMBLE + "; ".join(parts) + "."
+
+
 def card_block(row: dict) -> dict:
     """What goes onto the household record — the person's later readings, and no more.
 
@@ -498,8 +550,11 @@ def cards(rows: list) -> dict:
         })
         out[hid]["people"].append(card_block(row))
         out[hid]["sources"] = sorted(set(out[hid]["sources"]) | set(row["sources"]))
-    for block in out.values():
+    for hid, block in out.items():
         block["people"].sort(key=lambda p: p["person_id"])
+        sentence = ruled_on([r for r in rows if r["household_id"] == hid])
+        if sentence:
+            block["note"] = block["note"] + " " + sentence
     return out
 
 
