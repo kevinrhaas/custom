@@ -1,7 +1,8 @@
 # A printed address outranked by a later printed address — the seven, ruled one by one
 
-**Ticket:** T-0773 · **Records touched:** `data/research/newspapers/identity.json`
-(`anchor_changes`) · **Tools:** `tools/measure_placement_silence.py`,
+**Tickets:** T-0773 (the reading) · T-0949 (the refusals, landed as data a tool checks)
+· **Records touched:** `data/research/newspapers/identity.json`
+(`anchor_changes`, `refused_anchor_changes`) · **Tools:** `tools/measure_placement_silence.py`,
 `tools/compile_gazetteer.py` § the dated anchor change ·
 **Corpus:** `data/research/newspapers/extracted/` (the *Chicago Democrat*, 1833-11 to
 1835-08; the *Chicago American*, 1835-06 to 1835-08)
@@ -246,6 +247,86 @@ someone to decide something.
 
 ---
 
-**Links:** T-0773 · T-0440 (the silent half, repaired) · T-0345 (readings kept with their
-own dates) · T-0324 · T-0396 · T-0407 · T-0412 · `tools/measure_placement_silence.py` ·
-`tools/compile_gazetteer.py` § the dated anchor change.
+## T-0949 — the refusals, landed as data the compiler checks (2026-09-11)
+
+Everything above was written as PROSE. T-0927 found, checking PR #962 against `dev`, that
+the machinery which made the same five refusals *declarations a tool reads* had never
+landed on any branch that merged: `identity.json` had no `refused_anchor_changes`,
+`compile_gazetteer.py` had no `REFUSED_ANCHOR_KINDS`, and `measure_placement_silence.py`
+could not tell a refusal from a house nobody had opened. T-0949 lands it.
+
+**What a declared refusal is now.** `identity.json` § `refused_anchor_changes` holds one
+entry per house: the `business`, a `kind`, and a `refused_because` that must name VERBATIM
+one of the anchors it refuses to be reordered by. `compile_gazetteer.py` checks the kind
+against the readings rather than taking the author's word:
+
+| kind | what the compiler makes it prove |
+|---|---|
+| `printed_in_the_same_weeks` | a reading of the LIVE anchor and one that outranks it have overlapping windows |
+| `silence_is_not_an_anchor` | the live placement names no anchor at all |
+| `after_the_scene_date` | every printing that outranks the live placement was first set after 1835-07-01 |
+
+and, whatever the kind: the house is compiled, it is not ALSO declared an
+`anchor_changes`, the reasoning is not empty, and — the load-bearing one — **something
+still outranks it.** A refusal whose pair has gone is a judgement about nothing and is a
+compile error, exactly as T-0399's firm refusals are. Nine of the ten guards are asserted
+in `compile_gazetteer.py`'s self-test — the tenth, a set of outranking readings that name
+no anchor at all, is unreachable from any placement the corpus produces and is left as a
+compile error without a fixture. The self-test includes *a REFUSAL re-placed the house it
+refused to re-place*, which is the one that keeps this from becoming a re-placement
+mechanism by accident.
+
+**Two of the five could be declared, and that is the pair guard working.** Between
+T-0773's reading on 2026-09-06 and this landing on 2026-09-11, three later tickets
+repaired their own halves of the population, and each left a refusal with nothing to
+refuse:
+
+| house | T-0773's refusal | why it could not be declared |
+|---|---|---|
+| `business_j_s_c_hogan` | `silence_is_not_an_anchor` | T-0859/T-0440 place it from 1834-08-13; nothing outranks it |
+| `business_newberry_dole` | `silence_is_not_an_anchor` | same — placed from 1834-05-14 |
+| `business_rockwell_cabinet_furniture_warehouse` | `after_the_scene_date` | T-0948 narrows it on its own street under its own dateline |
+
+The compiler refuses all three with *"no printing of this house outranks its live
+placement — a refusal whose pair has gone"*. Writing them anyway would have been the
+rotten record this whole mechanism exists to prevent, so they are recorded here and not in
+`identity.json`. `silence_is_not_an_anchor` is consequently declared by no house today; the
+kind stays, because the next silent-then-anchored house will need it and its guards are
+asserted in the self-test.
+
+The two that stand:
+
+* **`business_j_k_botsford` — `printed_in_the_same_weeks`.** Live anchor *Graves' Tavern*,
+  outranked by six `corner` readings of *the corner of Dearborn and Lake streets* running
+  1834-02-25 to 1834-12-03. Both cards run in one issue, 1834-04-01, and Graves' Tavern IS
+  that corner (T-0324). The overlap guard confirms the concurrency from the readings' own
+  windows.
+* **`business_samuel_lewis` — `after_the_scene_date`.** Live placement `street_only`, South
+  Water Street; outranked by the `relative` reading *A. Garrett's Auction Room* of
+  1835-08-12. The guard re-derives that 1835-08-12 is after 1835-07-01, so the refusal
+  cannot outlive its own reason: the day the corpus carries a printing of that room on or
+  before the scene date, the compile fails rather than the house quietly changing bucket.
+
+**The report's three ways became six, and the number the ticket asked for is zero.**
+
+| line | count |
+|---|---:|
+| outranked, and waiting on an `anchor_changes` judgement | **0** |
+| outranked, and the judgement has been WRITTEN | 1 |
+| outranked, and DECLARED REFUSED a change | 2 |
+| outranked only by a printing after 1835-07-01 | 0 |
+
+Nothing in the town moved: `--build` on the gazetteer and the register leaves the same
+206 houses with the same actions, and the only new field is `anchor_refusal` on the two
+houses above. The corner-crossing guard T-0773's branch also carried had already landed on
+`dev` in a more general form — `street` resolutions are excluded from the one-landmark set
+and a street reach is required to be CONTAINED by the placing resolution, with both of its
+self-test cases — and G. Spring's superseded window duly resolves as `corner`, checked here
+rather than taken on trust.
+
+---
+
+**Links:** T-0773 · T-0949 (the refusals, landed as data) · T-0440 (the silent half,
+repaired) · T-0345 (readings kept with their own dates) · T-0324 · T-0396 · T-0407 ·
+T-0412 · T-0859 · T-0927 · T-0948 · `tools/measure_placement_silence.py` ·
+`tools/compile_gazetteer.py` § the dated anchor change and its refusal.

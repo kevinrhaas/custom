@@ -51,6 +51,21 @@ THE TWO POPULATIONS, AND ONLY ONE OF THEM IS THIS PASS'S TO FIX.
     could prefer that address without placing the house on the strength of an
     advertisement that had not run yet.
 
+    AND A HOUSE MAY BE DECLARED REFUSED A RULE, which T-0949 landed off T-0773's reading
+    and is what closes the report's last hole. Until then the only record of "this house
+    is never getting an `anchor_changes` rule" was the ABSENCE of one, which is the same
+    number as "nobody has opened this house yet" — so the sweep that read this report
+    could not tell a judgement from a silence, and read the same houses again. A refusal
+    is now declared in `identity.json` § `refused_anchor_changes` with its KIND, and
+    `compile_gazetteer.py` checks the kind against the readings rather than taking the
+    author's word, so a refusal counted on that line has been argued and machine-checked.
+    Two houses hold one: J. K. Botsford, whose two anchors ran in the same issue, and
+    Samuel Lewis, whose only sharper address was printed six weeks after the scene date.
+    The refusal line sits ABOVE the scene-date one because a reader who has stated the
+    bound in writing may not have that statement quietly outlive it — the compiler fails
+    the refusal the moment such a printing turns up inside the scene, where the computed
+    bucket would simply have reclassified the house and said nothing.
+
 AND A THIRD, SINCE T-0948, WHICH IS NEITHER OF THOSE: **A STREET NAMED, NARROWED BY
 AN ANCHOR ON THAT SAME STREET.** A house printing "South Water street" one week and
 "on South Water street, at the stand formerly occupied by Clark & Co." the next has
@@ -87,7 +102,7 @@ def survey():
     reg = {b["id"]: b for b in json.loads(REGISTER.read_text(encoding="utf-8"))["businesses"]}
     scene_iso = SCENE_DATE.isoformat()
     silent, outranked, after_scene, ruled, out_of_scene = [], [], [], [], []
-    groundless = []
+    refused, groundless = [], []
     for biz in gaz["businesses"]:
         # T-0859. "Places nothing" is a question about the PLACEMENT, not about its
         # class: a `street_only` carrying neither a street nor an anchor names no
@@ -133,6 +148,8 @@ def survey():
             "action": (reg.get(biz["id"]) or {}).get("action"),
             "took_a_later_printing": bool(biz.get("placement_from")),
             "ruled": bool(biz.get("anchor_change")),
+            "refused": bool(biz.get("anchor_refusal")),
+            "refusal_kind": (biz.get("anchor_refusal") or {}).get("kind"),
             "live_anchor": (biz.get("anchor_change") or {}).get("live_anchor"),
             "outranked_in_scene": any(
                 placement_rank(r.get("placement")) > live for r in in_scene),
@@ -144,16 +161,31 @@ def survey():
         elif row["ruled"]:
             # The judgement this report exists to count has been made for this house.
             ruled.append(row)
+        elif row["refused"]:
+            # …and so has the judgement that NO rule may be written (T-0773, landed by
+            # T-0949). This is the other half of `ruled`, and it has to be its own line:
+            # before it existed, a declared refusal and a house nobody had opened were
+            # the same number, and the sweep that read this report could not tell them
+            # apart. `identity.json` § `refused_anchor_changes` carries the argument and
+            # `compile_gazetteer.py` checks the kind against the readings, so a refusal
+            # counted here has been argued and machine-checked, not merely asserted. The
+            # check is placed ABOVE the scene-date bound on purpose: a refusal of kind
+            # `after_the_scene_date` is a reader saying in writing what the bound says by
+            # computation, and it may not outlive the bound silently — the compiler fails
+            # it the moment an outranking printing turns up inside the scene.
+            refused.append(row)
         elif not row["outranked_in_scene"]:
             # Outranked only by an address first printed after the scene date.
             out_of_scene.append(row)
         else:
             outranked.append(row)
-    return silent, outranked, after_scene, ruled, out_of_scene, groundless
+    return (silent, outranked, after_scene, ruled, refused, out_of_scene,
+            groundless)
 
 
 def report() -> int:
-    silent, outranked, after_scene, ruled, out_of_scene, groundless = survey()
+    (silent, outranked, after_scene, ruled, refused, out_of_scene,
+     groundless) = survey()
     gaz = json.loads(GAZETTEER.read_text(encoding="utf-8"))
     print("A HOUSE'S LIVE PLACEMENT AGAINST ITS OWN PRINTINGS — T-0440\n")
     took = [b for b in gaz["businesses"] if b.get("placement_from")]
@@ -167,6 +199,8 @@ def report() -> int:
           "(a judgement, and `anchor_changes` owns it)" % len(outranked))
     print("  — outranked, and the judgement has been WRITTEN            %4d  "
           "(an authored `anchor_changes` rule)" % len(ruled))
+    print("  — outranked, and DECLARED REFUSED a change                 %4d  "
+          "(`refused_anchor_changes`, kind checked)" % len(refused))
     print("  — outranked only by a printing after %s        %4d  "
           "(the scene-date bound, working)"
           % (SCENE_DATE.isoformat(), len(out_of_scene)))
@@ -230,6 +264,14 @@ def report() -> int:
         for r in sorted(ruled, key=lambda r: r["id"]):
             print("  %-52s %-11s live anchor: %s"
                   % (r["id"], r["live_class"], r["live_anchor"]))
+    if refused:
+        print("\nOUTRANKED, AND DECLARED REFUSED A CHANGE (T-0773) — the judgement was "
+              "made\nand it was that no rule may be written; each names an anchor it "
+              "will not be\nreordered by, and the compiler checks the kind against the "
+              "readings")
+        for r in sorted(refused, key=lambda r: r["id"]):
+            print("  %-52s %-11s outranked by %-11s %s"
+                  % (r["id"], r["live_class"], r["best_class"], r["refusal_kind"]))
     if out_of_scene:
         print("\nOUTRANKED ONLY BY A PRINTING AFTER THE SCENE DATE — no judgement is "
               "owed;\nan address that had not run yet may not place a house on %s"
@@ -241,7 +283,8 @@ def report() -> int:
 
 
 def check() -> int:
-    silent, outranked, after_scene, ruled, out_of_scene, groundless = survey()
+    (silent, outranked, after_scene, ruled, refused, out_of_scene,
+     groundless) = survey()
     if silent:
         print("PLACEMENT SILENCE FAIL — %d house(s) hold a live placement that places "
               "nothing while one of their own printings places them:" % len(silent))
@@ -253,12 +296,13 @@ def check() -> int:
     took = len([1 for b in json.loads(GAZETTEER.read_text(encoding="utf-8"))["businesses"]
                 if b.get("placement_from")])
     print("  ok    no house is placed by a printing that gave no address; %d house(s) "
-          "take a later printing's, %d wait on an `anchor_changes` judgement, %d have "
-          "one written, %d are outranked only by a printing after the scene date, %d are "
+          "take a later printing's, %d WAIT on a judgement nobody has made, %d have an "
+          "`anchor_changes` rule written, %d are declared REFUSED one with the kind "
+          "checked, %d are outranked only by a printing after the scene date, %d are "
           "placed by nothing printed on or before it, and %d were never given any ground "
           "by any printing of their own"
-          % (took, len(outranked), len(ruled), len(out_of_scene), len(after_scene),
-             len(groundless)))
+          % (took, len(outranked), len(ruled), len(refused), len(out_of_scene),
+             len(after_scene), len(groundless)))
     return 0
 
 
