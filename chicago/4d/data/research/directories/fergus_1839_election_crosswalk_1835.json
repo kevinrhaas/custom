@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1371
+   "n": 1370
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -39,7 +39,7 @@
  "counts": {
   "residents_matched_one_entry": 92,
   "residents_ambiguous": 32,
-  "residents_contested": 22,
+  "residents_contested": 21,
   "residents_surname_only_refused": 225,
   "voters_matched_one_entry": 82,
   "voters_ambiguous": 38,
@@ -2375,7 +2375,7 @@
    },
    {
     "name": "Madore Benjamin Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the 1837 entry's, and the given name of both begins M. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Beaubien' folds to the same string as the 1837 entry's, and the given name of both begins M. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0006",
@@ -2394,13 +2394,12 @@
     "household_id": "hh_beaubien_madore",
     "grade_1835": "attested",
     "contested_with": [
-     "Mark Beaubien",
-     "Medard Beaubien"
+     "Mark Beaubien"
     ]
    },
    {
     "name": "Mark Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the 1837 entry's, and the given name of both begins M. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Beaubien' folds to the same string as the 1837 entry's, and the given name of both begins M. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0006",
@@ -2419,33 +2418,7 @@
     "household_id": "hh_beaubien_mark",
     "grade_1835": "attested",
     "contested_with": [
-     "Madore Benjamin Beaubien",
-     "Medard Beaubien"
-    ]
-   },
-   {
-    "name": "Medard Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the 1837 entry's, and the given name of both begins M. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0006",
-      "as_printed": "Medor B. Beaubien,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "beaubien_medard",
-    "household_id": "hh_beaubien_medard",
-    "grade_1835": "inferred",
-    "contested_with": [
-     "Madore Benjamin Beaubien",
-     "Mark Beaubien"
+     "Madore Benjamin Beaubien"
     ]
    },
    {

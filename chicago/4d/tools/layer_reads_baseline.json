@@ -153,17 +153,17 @@
     "residents/household:persons[].merge_ruling[].weighed_against": {
       "records": 42
     },
-    "residents/household:persons[].merged_from.cards": {
-      "records": 20
+    "residents/household:persons[].merged_from[].cards": {
+      "records": 26
     },
-    "residents/household:persons[].merged_from.cluster": {
-      "records": 20
+    "residents/household:persons[].merged_from[].cluster": {
+      "records": 26
     },
-    "residents/household:persons[].merged_from.rule": {
-      "records": 20
+    "residents/household:persons[].merged_from[].rule": {
+      "records": 26
     },
-    "residents/household:persons[].merged_from.ticket": {
-      "records": 20
+    "residents/household:persons[].merged_from[].ticket": {
+      "records": 26
     },
     "residents/household:persons[].resident_research.asserted_identity": {
       "records": 842

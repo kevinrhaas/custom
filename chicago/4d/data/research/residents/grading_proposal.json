@@ -59,21 +59,21 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6850,
+  "identities": 6849,
   "by_grade": {
    "None": 45,
    "not_1835_resident": 4392,
-   "inferred": 1966,
+   "inferred": 1965,
    "attested": 447
   },
   "by_subtype": {
    "None": 5119,
-   "projected_resident": 1731
+   "projected_resident": 1730
   },
   "by_rule": {
    "G5": 45,
    "G0": 4392,
-   "G3": 1730,
+   "G3": 1729,
    "G1b": 374,
    "G2b": 38,
    "G1a": 51,
@@ -465,9 +465,8 @@
   {"identity":"id_beaubien_jerome","name":"Jerome Beaubien","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_death_11_1"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_beaubien_john_s","name":"John S Beaubien","canonical_person_id":"beaubien_john_s","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:tax_1833_002"],"evidence_classes":["tax_1833","town_layer"]},
   {"identity":"id_beaubien_josette_laframboise","name":"Josette Laframboise Beaubien","canonical_person_id":"beaubien_josette","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
-  {"identity":"id_beaubien_madore_benjamin","name":"Madore Benjamin Beaubien","canonical_person_id":"beaubien_madore","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_010","newspapers:person_medore_b_beaubien"],"evidence_classes":["newspaper_1833_1835","poll_1834","town_layer"]},
+  {"identity":"id_beaubien_madore_benjamin","name":"Madore Benjamin Beaubien","canonical_person_id":"beaubien_madore","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1834_010","civic:poll_1833_005","newspapers:person_medore_b_beaubien"],"evidence_classes":["newspaper_1833_1835","poll_1833","poll_1834","town_layer"]},
   {"identity":"id_beaubien_mark_u_s","name":"Mark U S Beaubien","canonical_person_id":"beaubien_mark","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e0310","civic:poll_1833_004","civic:tax_1833_003","civic:poll_1834_011","newspapers:person_mark_b_beaubien"],"evidence_classes":["directory_1843","newspaper_1833_1835","poll_1833","poll_1834","tax_1833","town_layer"]},
-  {"identity":"id_beaubien_medard","name":"Medard Beaubien","canonical_person_id":"beaubien_medard","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:poll_1833_005"],"evidence_classes":["poll_1833","town_layer"]},
   {"identity":"id_beaubien_medore_benjamin","name":"Medore Benjamin Beaubien","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0030"],"evidence_classes":["death_notice"]},
   {"identity":"id_beaubien_william","name":"William Beaubien","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0312"],"evidence_classes":["directory_1843"]},
   {"identity":"id_beaumont_c_a_o","name":"C A O Beaumont","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-38:28"],"evidence_classes":["census_1840"]},
