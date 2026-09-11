@@ -10398,9 +10398,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 480 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 479 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 480 people
+**Scope:** `residents.persons[civic_mint]` — 479 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10411,8 +10411,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **480
-today**, and the figure has moved seven times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **479
+today**, and the figure has moved eight times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10467,7 +10467,21 @@ register's crosswalk went from 91 named purchasers to 93. AND THE BLIND SPOT IS 
 rather than guessed at: `tools/measure_card_fuzzy_candidates.py` runs the candidate test again
 with one letter of slack and proposes 68 further pairs, which is not a licence to fold on a
 distance — the same list holds John Hale against John Vale and Mark Noble against Mary Noble —
-but it is the first honest statement of how many pairs this derivation cannot see. The number
+but it is the first honest statement of how many pairs this derivation cannot see. T-1026 took it
+to 479 on 2026-09-11, folding `beaubien_medard` — the card T-1002's own ruling named, in its
+`against` clause, as the one thing it was deliberately leaving undone. Medard is THREE letters from
+Madore, so neither C9's page nor C10's title nor C11's office can reach it, and the parish registers
+this project holds — St Mary's baptisms of 1833-1835 and St Cyr's marriages and deaths — turn out to
+name nine Beaubiens and no Medard and no Madore, so the baptismal-forename argument that filed the
+ticket is neither proved nor disproved. What settles it is a page of a different kind, under a new
+rule C12: Fergus's directory of 1839 prints the town's Beaubiens in ONE ALPHABETICAL RUN on printed
+page 6 — Charles, John B., Mark, and `Beaubien, Medard B. , merchant, South Water street` — with no
+entry under Madore at all. A history names whom it chooses and its silence means nothing; an
+alphabetical run is a page that undertook to name them all, so the spelling missing from it is
+missing because the compositor set the other one, and the merchant of South Water street is the
+survivor's own attested trade and his own log house and store at the corner of South Water and
+Dearborn. The town's own polls say the same thing twice over: Medard stands in the alphabetical run
+of 1833 and Madore in that of 1834, and neither list holds both. The number
 this liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 

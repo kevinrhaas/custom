@@ -11,7 +11,7 @@
   "directories": 7251,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 442
+  "old_settlers": 443
  },
  "witness": {
   "civic": {
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 652
+   "spent": 651
   }
  },
  "raised": [
@@ -496,6 +496,14 @@
    "to": 264,
    "date": "2026-09-11",
    "why": "T-1018 repaired 46 Norris 1844 entries whose name ran past the end of the name into the trade and the street. The crosswalk now reaches 936 town people where it reached 928, and 672 cards carry a directory line where 668 did: every one of the four new MATCHES was spent onto a card in the same pass (Charles L. Harmon, Leonard C. Hugunin, Edmund S. Kimberly, John H. Kinzie). The residue of four is the new REFUSALS the repair made visible — a surname now legible with no agreeing initial, or two full forenames that disagree — and a refusal is not a card's to carry. No ruling went unspent for want of spending it."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 442,
+   "to": 443,
+   "date": "2026-09-11",
+   "why": "T-1026 folded the duplicate card `beaubien_medard` onto `beaubien_madore` under rule C12, and the ceiling moves by exactly the one row that card carried. The old-settlers crosswalk rules ONE ROW PER RESIDENT CARD it considers, so removing a card removes a ruling: ruled_on falls 652 -> 651 against an unchanged 1,094 read, and unspent rises 442 -> 443. NOTHING WAS READ AND LEFT UNRULED. The two rows the fold actually touched both got BETTER: the Calumet Club's 1882 guest 'Beaubien, Medore B.' (os1882g010) goes from three M-Beaubien candidates to two, and the Fergus death notice 'Beaubien, Medore Benj., d., Silver Lake, Kas., Dec. 26, 1883' (fdn0030) from three contested residents to two. Both stay unmatched because Mark Beaubien also begins M, which is the crosswalk's own initial rule and not a debt this pass incurred."
   }
  ],
  "lowered": [

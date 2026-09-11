@@ -1018,13 +1018,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1350,
-    "persons": 1374,
+    "households": 1349,
+    "persons": 1373,
     "attested": 488,
-    "inferred": 886,
+    "inferred": 885,
     "reconstructed": 0,
     "letter_list_only": 747,
-    "projected_residents": 730,
+    "projected_residents": 729,
     "census_1840_linked": 3
   },
   "retirement": {
