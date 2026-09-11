@@ -28,12 +28,34 @@ WHAT THIS DIRECTORY WILL NOT GIVE, however well a name matches: an address. Ferg
 prints on page 3 that no street but Lake carried numbers in 1839 and that "the
 numbers now given are those of the present day" — 1876's. The street NAME crosses;
 the number does not, and `address_is_street_only` says which rows are which.
+
+T-0670'S FORENAME RULE, AND WHY IT TOO READS ONE POOL OF THE FOUR. Where BOTH
+readings print a full forename and the two disagree, the match is REFUSED and the
+refusal is filed — tools/name_agreement.py is the rule, imported rather than
+restated. It is applied to the RESIDENTS pool, where a false match writes a trade
+onto a person's card, and not to the three lists of names, which mint nobody here
+and are consumed by spend passes of their own whose ties are theirs to re-derive;
+`forename_rule_scope` below says so on the file. Running it matters most for the
+ties: an 1839 line whose own forename contradicts the 1835 name was standing in
+the tie pool, and a discriminator weighing that line can name it.
+
+THE TIE DISCRIMINATOR (T-0696), AND WHY IT READS ONE POOL OF THE FOUR. A trade may
+NARROW a tie and never make it a match; a premises and a year may not. The rule is
+tools/tiebreak.py and it is run here over the RESIDENTS pool only — not because
+that pool is the interesting one, but because a discriminator needs a trade on the
+1835 side of the tie and the residents layer is the only one of the four pools that
+holds one. The voter and poll lists, the letter-list persons and the 1840 heads are
+lists of NAMES: there is nothing on their side to narrow on, so their ties stand by
+the construction of the pool rather than by a ruling, and `discriminator_scope`
+below says so on the file.
 """
 import json, os, re, sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import trade_recorded     # "does the layer hold a trade?" (T-0867), imported not restated
+import tiebreak            # the tie discriminator (T-0696), likewise
+import name_agreement as na  # the forename rule (T-0670), likewise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1839_directory_entries.json")
@@ -97,6 +119,7 @@ def residents():
                 "person_id": p.get("id"), "household_id": doc.get("id"),
                 "grade": p.get("grade"),
                 "occupation": ((p.get("occupation") or {}).get("value")),
+                "occupation_confidence": ((p.get("occupation") or {}).get("confidence")),
                 "lives_at": ((doc.get("lives_at") or {}).get("value")),
             })
     return out
@@ -145,8 +168,13 @@ def index(entries):
     return by_key, surnames
 
 
-def match_pool(pool, by_key, surnames, extra=None):
-    """One pool against the index. Returns (matched, ambiguous, refused)."""
+def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None):
+    """One pool against the index. Returns (matched, ambiguous, refused).
+
+    T-0670's forename rule is applied where the CALLER hands in a list to file
+    its refusals into, and not otherwise — see `forename_rule_scope` on the
+    generated file for why only one of the four pools asks for it.
+    """
     matched, ambiguous, refused = [], [], []
     for r in pool:
         f, i = fold(r["surname"]), initial(r["given"])
@@ -161,6 +189,25 @@ def match_pool(pool, by_key, surnames, extra=None):
                             % (r["surname"], (i or "-").upper(), r["name"]),
                 })
             continue
+        # T-0670. BOTH READINGS PRINT A FULL FORENAME AND THE TWO DISAGREE: refused,
+        # and the refusal is FILED, never dropped. An initial standing against a full
+        # name is untouched — that is the case the initial rule exists to serve.
+        if forename_refusals is not None:
+            kept = []
+            for h in hits:
+                note = na.refusal(r["given"], h["normalized"]["given"])
+                if note:
+                    row = row_of(h)
+                    row.update(note)
+                    rec = {"name": r["name"], "entry_1839": row}
+                    if extra:
+                        rec.update(extra(r))
+                    forename_refusals.append(rec)
+                else:
+                    kept.append(h)
+            hits = kept
+            if not hits:
+                continue
         rec = {"name": r["name"],
                "rule": "Surname %r folds to the same string as the 1839 entry's, and the "
                        "given name of both begins %s." % (r["surname"], i.upper()),
@@ -176,10 +223,13 @@ def main():
     by_key, surnames = index(entries)
 
     people = residents()
+    res_forename_refused = []
     res_matched, res_ambiguous, res_refused = match_pool(
         people, by_key, surnames,
+        forename_refusals=res_forename_refused,
         extra=lambda r: {"person_id": r["person_id"], "household_id": r["household_id"],
                          "grade_1835": r["grade"], "occupation_1835": r["occupation"],
+                         "occupation_1835_confidence": r["occupation_confidence"],
                          "lives_at_1835": r["lives_at"]})
     # What a match COULD carry, if the pass that spends it decides to. The residents
     # layer writes `none_recorded` where it holds no trade, and 738 of its 849 people
@@ -214,6 +264,65 @@ def main():
                 contested.append(m)
     res_matched = [m for m in res_matched if "contested_with" not in m]
 
+    # T-0696. THE TIE DISCRIMINATOR, over the residents pool — the only one of the four
+    # with a trade on the 1835 side. A trade may NARROW a tie and never make it a match:
+    # the narrowing is filed below in `residents.discriminated`, the losing side is filed
+    # as SILENT rather than contradicted, nothing moves into `matches` and no grade moves
+    # in either direction. A premises and a year are REFUSED discriminators, and
+    # tools/tiebreak.py carries both refusals with their reasons. EVERY tie gets a ruling:
+    # where the trade names two sides or none the tie stands, and `discriminator` says so
+    # on the record rather than leaving the row silent.
+    discriminated = []
+    for _cid, rivals in sorted(claimed.items()):
+        if len(rivals) < 2:
+            continue
+        printed = rivals[0]["entries_1839"][0]["occupation_1839"]
+        result = tiebreak.narrow([
+            {"key": m["person_id"], "occupation_1835": m["occupation_1835"],
+             "printed": printed} for m in rivals])
+        winner = next((m for m in rivals if m["person_id"] == result["named"]), None)
+        note = tiebreak.block(result, winner["occupation_1835"] if winner else None,
+                              winner["occupation_1835_confidence"] if winner else None)
+        for m in rivals:
+            m["discriminator"] = note or {"kind": tiebreak.KIND, "named": None,
+                                          "why": result["why"], "sides": result["sides"]}
+        if note:
+            discriminated.append({
+                "tie": "contested",
+                "entry_1839": rivals[0]["entries_1839"][0]["as_printed"],
+                "claim": _cid,
+                "printed_page": rivals[0]["entries_1839"][0]["printed_page"],
+                "rivals": [m["name"] for m in rivals],
+                "named": winner["name"],
+                "person_id": winner["person_id"],
+                "household_id": winner["household_id"],
+                "discriminator": note,
+            })
+
+    # The other shape of the same tie: one person of 1835 meeting several printed lines.
+    # The sides are the printed entries and the trade is the one the resident carries, so
+    # the same rule reads it without restatement.
+    for m in res_ambiguous:
+        result = tiebreak.narrow([
+            {"key": e["claim"], "occupation_1835": m["occupation_1835"],
+             "printed": e["occupation_1839"]} for e in m["entries_1839"]])
+        note = tiebreak.block(result, m["occupation_1835"], m["occupation_1835_confidence"])
+        m["discriminator"] = note or {"kind": tiebreak.KIND, "named": None,
+                                      "why": result["why"], "sides": result["sides"]}
+        if note:
+            named = next(e for e in m["entries_1839"] if e["claim"] == result["named"])
+            discriminated.append({
+                "tie": "ambiguous",
+                "resident": m["name"],
+                "person_id": m["person_id"],
+                "household_id": m["household_id"],
+                "entries": len(m["entries_1839"]),
+                "named": named["as_printed"],
+                "claim": named["claim"],
+                "printed_page": named["printed_page"],
+                "discriminator": note,
+            })
+
     voters = list_pool(VOTERS, "entries", lambda r: r.get("normalized") or r.get("as_read"),
                        lambda r: r.get("list"))
     v_matched, v_ambiguous, v_refused = match_pool(voters, by_key, surnames)
@@ -223,6 +332,43 @@ def main():
     heads = list_pool(HEADS_1840, "heads", lambda r: r.get("normalized") or r.get("as_read"),
                       lambda r: r.get("familysearch_id"))
     h_matched, h_ambiguous, h_refused = match_pool(heads, by_key, surnames)
+
+    # THE NARROWING MAY NOT NAME ONE PRINTED LINE FOR TWO PEOPLE OF 1835. Two
+    # ambiguous residents narrowed onto the same entry is a CONTESTED group wearing
+    # another shape, and contested is the one thing the matching rule refuses by
+    # construction — so both narrowings come out and the ties stand. Before T-0670
+    # was applied above this fired on Fergus's three Taylors: `Taylor, Augustin
+    # Deodat, carpenter and builder` was named for BOTH Anson H. Taylor and
+    # Augustine Deodat Taylor, each an 1835 carpenter. It is kept as a gate rather
+    # than retired with the cause, because it is the invariant and not the symptom.
+    by_claim = defaultdict(list)
+    for d in discriminated:
+        if d["tie"] == "ambiguous":
+            by_claim[d["claim"]].append(d)
+    collisions = []
+    for cid, rows in sorted(by_claim.items()):
+        if len(rows) < 2:
+            continue
+        collisions.append({
+            "claim": cid,
+            "entry_1839": rows[0]["named"],
+            "residents": [r["resident"] for r in rows],
+            "rule": "The trade narrowed this one printed line onto %d people of 1835, which "
+                    "is a contested group in another shape. Both narrowings are withdrawn "
+                    "and the ties stand: at most one of them is the person printed, and the "
+                    "trade cannot say which." % len(rows),
+        })
+        for r in rows:
+            for m in res_ambiguous:
+                if m["person_id"] == r["person_id"]:
+                    m["discriminator"] = {
+                        "kind": tiebreak.KIND, "named": None,
+                        "why": "the trade named one side, and that side was named for "
+                               "another person of 1835 as well — withdrawn",
+                        "sides": r["discriminator"]["sides"],
+                    }
+    withdrawn = {id(r) for rows in by_claim.values() if len(rows) > 1 for r in rows}
+    discriminated = [d for d in discriminated if id(d) not in withdrawn]
 
     doc = {
         "schema": 1,
@@ -239,6 +385,27 @@ def main():
                           "volume is Fergus's 1876 completion of a list first set up from "
                           "memory in 1839. Evidence about 1839, recalled in 1876.",
         "mints_or_regrades": False,
+        "discriminator_rule": tiebreak.__doc__.split("THE RULING")[1].split(
+            "Run it directly")[0].strip(),
+        "refused_discriminators": tiebreak.REFUSED_DISCRIMINATORS,
+        "forename_rule": na.__doc__.split("The tightening, written out")[1].split(
+            "This module is the rule")[0].strip(),
+        "forename_rule_scope": "T-0670's forename rule is applied to the residents pool "
+                               "only. That is where a false match writes a trade or an "
+                               "address onto the card of a person this town stands up; the "
+                               "voter and poll lists, the letter-list persons and the 1840 "
+                               "heads are lists of names this file mints nobody from, and "
+                               "their ties belong to the spend passes that consume them "
+                               "(T-0513, T-0514, T-0515) rather than to this stretch. Their "
+                               "counts below are therefore unmoved and are NOT to be read as "
+                               "having passed the rule.",
+        "discriminator_scope": "The T-0696 discriminator is run over the residents pool "
+                               "only. It needs a trade on the 1835 side of the tie, and the "
+                               "residents layer is the only one of the four pools that holds "
+                               "one — the voter and poll lists, the letter-list persons and "
+                               "the 1840 heads are lists of names. Their ties stand by the "
+                               "construction of the pool, not by a ruling that weighed "
+                               "anything, and this file does not pretend otherwise.",
         "address_rule": "An address number in this directory is an 1876 number everywhere "
                         "except Lake street, on the compiler's own statement (printed page 3). "
                         "Only the street name crosses; address_is_street_only marks every row "
@@ -267,6 +434,20 @@ def main():
             "heads_1840_matched_one_entry": len(h_matched),
             "heads_1840_ambiguous": len(h_ambiguous),
             "heads_1840_surname_only_refused": len(h_refused),
+            "residents_initial_agreed_forenames_disagreed_refused": len(
+                res_forename_refused),
+            "of_those_a_garbled_printed_forename": sum(
+                1 for f in res_forename_refused if f["entry_1839"]["garbled_reading"]),
+            "residents_left_with_no_entry_by_that_refusal": len(
+                {f["person_id"] for f in res_forename_refused}
+                - {m["person_id"] for m in res_matched + res_ambiguous + contested}),
+            "residents_ties_narrowed_by_a_trade": len(discriminated),
+            "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
+            "of_those_ambiguous": sum(1 for d in discriminated if d["tie"] == "ambiguous"),
+            "residents_narrowings_withdrawn_as_a_collision": len(collisions),
+            "residents_ties_left_standing": len(contested) + len(res_ambiguous) - sum(
+                len(d.get("rivals", [])) if d["tie"] == "contested" else 1
+                for d in discriminated),
             "residents_could_carry_occupation": sum(
                 1 for m in res_matched if "occupation" in m["could_carry"]),
             "residents_could_carry_street": sum(
@@ -274,9 +455,13 @@ def main():
         },
         "residents": {
             "matches": sorted(res_matched, key=lambda m: m["name"]),
+            "discriminated": sorted(discriminated, key=lambda d: (d["tie"], d["claim"])),
             "contested": sorted(contested, key=lambda m: m["name"]),
             "ambiguous": sorted(res_ambiguous, key=lambda m: m["name"]),
             "refusals": sorted(res_refused, key=lambda m: m["name"]),
+            "forename_refusals": sorted(res_forename_refused,
+                                        key=lambda m: (m["name"], m["entry_1839"]["claim"])),
+            "narrowings_withdrawn_as_a_collision": collisions,
         },
         "voters": {"matches": sorted(v_matched, key=lambda m: m["name"]),
                    "ambiguous": sorted(v_ambiguous, key=lambda m: m["name"]),

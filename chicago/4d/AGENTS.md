@@ -49,6 +49,12 @@ disposable. The first rendered scene is `1835` (target date 1835-07-01).
    your own work reads the meter up and the domain looks further behind for having checked
    itself. Both are printed by the report; neither is ever a silent zero.
 9. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
+   **Read its last four lines, not its middle.** 115 of its 304 steps are self-tests that
+   prove a gate by breaking it, so a GREEN run prints fourteen `FAIL` lines on purpose.
+   Those are tagged — every line of a self-test's transcript starts `   self-test | ` —
+   and the steps that actually failed are listed once, by label, under `CHECK FAIL` at
+   the end. An untagged `FAIL` is the only kind worth chasing. Three tickets were filed
+   against tagged ones before T-0763; do not make a fourth.
 
 ## Standing constraint — 1835 and Indigenous history
 

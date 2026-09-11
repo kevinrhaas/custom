@@ -154,6 +154,12 @@ READINGS = ("transcription_mediated", "scan_verified")
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
 
+# The ways this corpus's reading passes have written "I could not read the word the
+# anchor turns on" into the anchor field itself. Used by `claim_problems` ONLY, to
+# refuse a placement that says it in prose and not in `anchor_unread` (T-0385).
+ANCHOR_UNREAD_PROSE = re.compile(
+    r"\b(unread|unnamed|illegible|unresolved|indecipherable)\b", re.I)
+
 # AND A PLACEMENT CAN BELONG TO A HOUSE THE ADVERTISER IS SELLING (T-0412). A `building`
 # claim carries an address because the notice gives one, and the extractor attaches the
 # business the signature names to it — which is right where the signer KEEPS the house
@@ -1206,6 +1212,111 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             biz["street"] = street
             biz["placement_from"]["street_from_reading"] = street
 
+    # AN ANCHOR THE READING PASS COULD NOT READ IS NOT A SECOND ANCHOR (T-0385).
+    #
+    # T-0771 above already holds the rule this wants — *an anchor printed four ways is
+    # resolved on its BEST reading* — and it holds it for exactly this shape: one
+    # advertisement's one sentence, printed whole in one impression and damaged in
+    # another. It reaches a damaged printing through `wholer()`, which compares the
+    # bracketed SUPPLIES in `offset_normalized`, and it only ever chooses between
+    # printings `reading_key` has already grouped as one reading.
+    #
+    # It cannot reach the case where the damage fell on the LANDMARK'S NAME, and the
+    # reason is a habit of the reading pass rather than anything about the paper. Where
+    # a column cut the word the anchor turns on, the pass does not bracket a supply it
+    # cannot make — it says so in prose, in the anchor field itself: "three doors north
+    # of an unread anchor", "an unnamed House, three doors south", "the corner of Lake
+    # Street and an unread cross street". That prose is what `reading_key` keys on, so
+    # one sentence becomes two readings that differ in their anchors, T-0771 never looks
+    # at them, and the mint keeps the earliest — the unread one — for good.
+    #
+    # The New York Clothing Store is the case. Tuthill King's card, datelined 8 June
+    # 1835, ran in the American on 06-08, 06-20 and 07-04 and says the same thing every
+    # time: the store is three doors north of the Tremont House, in Dearborn Street. The
+    # 06-08 impression falls inside an 8,024-character blob and the anchor is cut away;
+    # the 06-20 impression reads "three doors north o[f the ... ] House" and can see the
+    # word House and not the name in front of it; the 07-04 impression prints "[the
+    # T]remont House" and the town holds `tremont_house_1`. The house was placed by the
+    # blob, so the register called it `street_only` on the whole of Dearborn Street with
+    # the address it could not read printed three lines below in the same file.
+    #
+    # WHAT THIS DECIDES, AND WHAT IT REFUSES TO. An unread anchor is not a competing
+    # address. It is the reading pass saying it could not say — no landmark is named, so
+    # nothing is asserted that a named landmark could contradict, and preferring the
+    # legible impression is not a judgement between two addresses any more than T-0440's
+    # preferring speech to silence was. Which is also the whole of its reach: it fires
+    # only where the live placement is DECLARED unread, never between two anchors both
+    # of which were read, and `anchor_changes` below still runs after it and overwrites
+    # what it decides. `anchor_unread` is an authored field on the placement and not a
+    # phrase sniffed out of the prose — the pass that could not read the word is the one
+    # that says so, and `claim_problems` refuses an anchor whose prose says it and whose
+    # field does not.
+    #
+    # THE BOUNDS, each of which is a way this could have become a judgement it may not
+    # make:
+    #   1. SAME CLASS. A `corner` read and a `relative` unread are two sentences, not
+    #      one sentence read twice.
+    #   2. SAME STREET, where the unread reading names one. A house whose unread
+    #      impression names Dearborn Street is not re-placed onto South Water Street by
+    #      an impression that names an anchor there; that is a MOVE, and a move is
+    #      `anchor_changes`' to declare.
+    #   3. ONE ADVERTISEMENT, evidenced by ONE DATELINE at or before the scene date.
+    #      This is what stands in for T-0440's issue-date bound, and it has to, because
+    #      the legible impression of King's card is 3 July 1835 and the scene date is
+    #      1 July. That impression is not an address first printed after the scene date
+    #      — the address ran on 06-08 and 06-20, and all we gain on 07-04 is the ability
+    #      to read it. A single dateline across a house's printings is the paper's own
+    #      statement that they are impressions of one setting of one card; the bound is
+    #      conservative rather than exact, and a house printing two datelines is refused
+    #      here and left to `anchor_changes`.
+    #   4. AND THE UNREAD READING MUST ITSELF BE RUNNING BY THE SCENE DATE, so that the
+    #      advertisement this is reading is one the July town could have walked past.
+    for biz in businesses.values():
+        live = biz.get("placement") or {}
+        if not live.get("anchor_unread"):
+            continue
+        copy_dates = sorted(set(biz["evidence"]["copy_dates"]))
+        if len(copy_dates) != 1 or copy_dates[0] > scene_iso_placement:
+            continue
+        held = [r for r in biz["placement_readings"]
+                if (r["placement"] or {}).get("anchor_unread")
+                and r["first_issue"] <= scene_iso_placement]
+        if not held:
+            continue
+        live_street = (live.get("street") or "").strip().lower()
+        read = [r for r in biz["placement_readings"]
+                if not (r["placement"] or {}).get("anchor_unread")
+                and (r["placement"] or {}).get("class") == live.get("class")
+                and (r["placement"] or {}).get("anchor")
+                and not places_nothing(r["placement"])
+                and (not live_street
+                     or ((r["placement"] or {}).get("street") or "").strip().lower()
+                     == live_street)]
+        if not read:
+            continue
+        first = min(read, key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(live)
+        biz["placement"] = first["placement"]
+        biz["placement_from"] = {
+            "rule": "T-0385: the printing that minted this house declares its anchor "
+                    "unread, so the house is placed by the earliest printing of the "
+                    "same advertisement that reads it. An anchor the pass could not "
+                    "read names no landmark and contradicts none; the bound is one "
+                    "dateline at or before the scene date, which is what makes the "
+                    "impressions one card rather than two addresses.",
+            "first_issue": first["first_issue"],
+            "claims": sorted(first["claims"]),
+            "copy_date": copy_dates[0],
+            "superseded": {"class": superseded.get("class") or "none",
+                           "anchor": superseded.get("anchor"),
+                           "anchor_unread": True},
+        }
+        street = (first["placement"] or {}).get("street")
+        if street and not biz.get("street") and " and " not in street \
+                and street != "unstated":
+            biz["street"] = street
+            biz["placement_from"]["street_from_reading"] = street
+
     # THE DATED ANCHOR CHANGE (T-0345). A firm merge unions two STYLES of one house.
     # This is the other thing two printings of one advertisement can differ about, and
     # it is not a spelling: Mason & Co.'s blacksmith notice runs under one copy date of
@@ -2077,6 +2188,28 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                 if place.get("class") == "relative" and not place.get("offset_text"):
                     bad.append("%s %s: a relative placement must carry the paper's own "
                                "offset text verbatim — that text IS the evidence" % (at, key))
+                # T-0385. The unread anchor is a FIELD, and the prose beside it may not
+                # be the only place it is said. A pass that could not read the word the
+                # anchor turns on writes the damage into the anchor itself — "an unread
+                # cross street", "an unnamed House" — and the placement rule above reads
+                # `anchor_unread` and never that prose, so a reading that says it in
+                # words alone would be silently held by the impression it could not
+                # read. This is the gate that stops the next such reading going in
+                # unflagged; it is deliberately a gate and not a sniffer, because what
+                # the field asserts is the READER's judgement and no regular expression
+                # is entitled to make it.
+                if ANCHOR_UNREAD_PROSE.search(place.get("anchor") or "") \
+                        and not place.get("anchor_unread"):
+                    bad.append("%s %s: the anchor %r says the pass could not read it "
+                               "and the placement does not set `anchor_unread` — the "
+                               "flag is what the placement rules read, and prose alone "
+                               "leaves the house placed by the impression nobody could "
+                               "read" % (at, key, place.get("anchor")))
+                if place.get("anchor_unread") and place.get("class") not in \
+                        ("corner", "relative"):
+                    bad.append("%s %s: `anchor_unread` on a %s placement — only a "
+                               "placement that turns on an anchor can declare one unread"
+                               % (at, key, place.get("class")))
             ad = claim.get("ad_copy_date")
             if ad is not None:
                 if not ad.get("verbatim"):
@@ -3011,6 +3144,138 @@ def self_test():
         if got and placement_rank(got.get("placement")) > 0:
             failures.append("an address first printed after the scene date %s placed "
                             "the house at it: %r" % (scene_iso, got["placement"]))
+
+    # AN UNREAD ANCHOR DOES NOT HOLD A HOUSE'S PLACEMENT (T-0385). The shape is
+    # T-0440's one rung up and the bound is different, so every guard is asserted here
+    # as well as the firing. The fixture is Tuthill King's card in miniature: one
+    # dateline before the scene date, an impression whose anchor the pass could not read
+    # minting the house, and a LATER impression — after the scene date, as the real one
+    # is — that reads it.
+    DATELINE = {"verbatim": "June 8, 1835.", "iso": "1835-06-08"}
+
+    def unread_then_read(read_placement, unread_placement=None, dateline=DATELINE,
+                         late_dateline=None):
+        unread = unread_placement or {
+            "class": "relative", "anchor": "three doors north of an unread anchor",
+            "anchor_unread": True, "offset_text": "three doors north of",
+            "street": "Dearborn Street"}
+
+        def doc_for(issue_id, placement, ad):
+            claim = {"id": "zu0", "kind": "business", "reading": "transcription_mediated",
+                     "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                  "placement": placement}}
+            if ad:
+                claim["ad_copy_date"] = ad
+            return {"issue_id": issue_id, "claims": [claim]}
+        return [doc_for(silent_id, unread, dateline),
+                doc_for(placed_after_id, read_placement, late_dateline or dateline)]
+
+    READ = {"class": "relative", "anchor": "the hotel",
+            "offset_text": "three doors north of the hotel", "street": "Dearborn Street"}
+
+    if placed_after_id is not None and silent_id < placed_after_id:
+        out = run_anchor(unread_then_read(READ), {"merges": [], "anchor_changes": []},
+                         None, "an unread anchor gives way to the impression that reads it")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got is None:
+            failures.append("the unread-anchor case lost the house it was declared on")
+        elif (got["placement"] or {}).get("anchor") != "the hotel":
+            failures.append("a house whose minting impression could not read its anchor "
+                            "is left placed by the impression that could not read it: %r"
+                            % got["placement"])
+        elif not (got.get("placement_from") or {}).get("rule", "").startswith("T-0385"):
+            failures.append("the unread-anchor pass placed a house and left no record "
+                            "of where the placement came from: %r"
+                            % got.get("placement_from"))
+        elif got["placement_from"]["copy_date"] != DATELINE["iso"]:
+            failures.append("the dateline that makes the impressions one card is not "
+                            "recorded: %r" % got["placement_from"])
+        elif len(got["placement_readings"]) != 2:
+            failures.append("the unread impression was dropped rather than kept as a "
+                            "reading: %d reading(s)" % len(got["placement_readings"]))
+
+        # GUARD 3. Two datelines are two advertisements, and the pass may not reach
+        # across them — that is a move, and a move is `anchor_changes`' to declare.
+        out = run_anchor(
+            unread_then_read(READ, late_dateline={"verbatim": "July 2, 1835.",
+                                                  "iso": "1835-07-02"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "two datelines are two advertisements, and the unread rule refuses them")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the unread-anchor pass reached across two datelines, which "
+                            "is a move it may not declare: %r" % got["placement_from"])
+
+        # …and a dateline AFTER the scene date is an advertisement the July town never
+        # saw, whatever its impressions were read from.
+        out = run_anchor(
+            unread_then_read(READ, dateline={"verbatim": "August 5, 1835.",
+                                             "iso": "1835-08-05"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "a card datelined after the scene date is not read back into the town")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a card datelined after the scene date placed a house at "
+                            "it: %r" % got["placement_from"])
+
+        # GUARD 2. A read anchor on ANOTHER street is a second address, not the same
+        # one legible.
+        out = run_anchor(
+            unread_then_read(dict(READ, street="South Water Street")),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor read on another street is a move and not a reading")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the unread-anchor pass moved a house onto a street its own "
+                            "unread impression does not name: %r" % got["placement_from"])
+
+        # GUARD 1. A corner read against a relative unread is two sentences.
+        out = run_anchor(
+            unread_then_read({"class": "corner",
+                              "anchor": "the corner of Lake and Clark streets",
+                              "street": "Dearborn Street"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "a corner does not read a relative placement's unread anchor")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the unread-anchor pass read one sentence's anchor off "
+                            "another sentence: %r" % got["placement_from"])
+
+        # …and the pass never touches a house whose live anchor WAS read. Reordering
+        # two anchors both of which the pass could read is `anchor_changes`' alone.
+        out = run_anchor(
+            unread_then_read(READ, unread_placement={
+                "class": "relative", "anchor": "the tavern",
+                "offset_text": "opposite the tavern", "street": "Dearborn Street"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "two anchors both of which were read are not this pass's to reorder")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and (got["placement"] or {}).get("anchor") != "the tavern":
+            failures.append("a house whose first printed anchor was READ was re-placed "
+                            "by the unread rule: %r" % got["placement"])
+
+    # …and the flag is the only thing the pass reads, so a reading that declares the
+    # damage in prose alone is refused at the claim gate rather than silently left
+    # holding the house. These run through `run`, because the gate is in `check()`.
+    def placed(d, placement):
+        d["claims"][0]["kind"] = "business"
+        d["claims"][0]["business"] = {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                      "placement": placement}
+
+    run(lambda d, i: placed(d, {
+        "class": "relative", "anchor": "three doors north of an unread anchor",
+        "offset_text": "three doors north of", "street": "Dearborn Street"}),
+        "does not set `anchor_unread`",
+        "an anchor whose prose says it was unread must say so in the field")
+    run(lambda d, i: placed(d, {
+        "class": "relative", "anchor": "three doors north of an unread anchor",
+        "anchor_unread": True, "offset_text": "three doors north of",
+        "street": "Dearborn Street"}),
+        None, "…and the same anchor with the flag set is clean")
+    run(lambda d, i: placed(d, {"class": "street_only", "anchor_unread": True,
+                                "street": "Dearborn Street"}),
+        "only a placement that turns on an anchor can declare one unread",
+        "`anchor_unread` on a placement with no anchor to be unread")
 
     # A `street_only` THAT NAMES NO STREET PLACES NOTHING (T-0859). `placement_rank`
     # reads the CLASS, and one class can be written without the field that gives it
