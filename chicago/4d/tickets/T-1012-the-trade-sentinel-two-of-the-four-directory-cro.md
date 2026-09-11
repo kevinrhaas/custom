@@ -1,7 +1,7 @@
 ---
 id: T-1012
 title: The trade sentinel two of the four directory crosswalks read as a trade, so Fergus 1843 and the advertising cards could carry nothing
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0867
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1097
 claimed_by: run 9/10/2026, 7:59:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T01:32:15.991Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34548035832
 ---
 
