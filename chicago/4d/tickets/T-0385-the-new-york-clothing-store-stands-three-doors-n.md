@@ -1,7 +1,7 @@
 ---
 id: T-0385
 title: The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: T-0306
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 9:51:33 AM CT
 blocked_on: null
 needs_bake: true
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34612162594
 ---
 
 The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street.
