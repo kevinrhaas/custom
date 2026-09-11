@@ -1,7 +1,7 @@
 ---
 id: T-0990
 title: The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
-state: open
+state: claimed
 epic: META
 requested_by: steward
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/10/2026, 8:44:43 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34551682868
 ---
 
 The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next.
@@ -223,14 +223,61 @@ was clean.
 
 ---
 
+---
+
+**Cohort C3 — the twenty-eight remaining, surnames K-Z.** Ruled 2026-09-11. **Seventeen upheld,
+eleven refused** — matched 101 → 90, ruled 110 → 138, unruled 28 → **0**; ten cards retracted,
+twenty-one register rows, 1,214.64 acres and $3,631.08 taken back off them, against 45 rows,
+2,031.01 acres and $7,069.69 that stand. The spend pass reports `people_written` 88 → 78,
+`households_touched` 85 → 76, `entries_carried` 323 → 302, `acres_carried` 15,896.39 →
+14,681.75.
+
+| upheld | refused |
+|---|---|
+| KIMBERLY EDMUND S, KINZIE JAMES, KINZIE ROBERT A, MERRILL GEO W, MERRILL GEORGE W, MULFORD JAMES H, NOBLE JOHN, OWEN THOMAS J V, REED THOMAS, SHERMAN SILAS W, SMITH JEREMIAH, SNOW GEORGE W, SWEET ALANSON, TAYLOR ANSON H, TAYLOR EDMUND D, TEMPLE JOHN T, WRIGHT TRUMAN G | KERCHEVAL BENJAMIN, KING NEHEMIAH, MURPHY JOHN, RUSSELL SAMUEL, SKINNER JOSEPH, SMITH GEORGE, TAYLOR CHARLES, THOMPSON JOHN L, TUCKER ALEXANDER H, WENTWORTH ELIJAH, WENTWORTH ELIJAH W |
+
+**What the cohort taught.**
+
+*The REGISTER can prove the second man itself, and that is what C3 adds to C1's BROWN WM rule.*
+Brown, Jones, Harmon and Taylor were all refused because the town's own PRINTED record held a
+second man of the name. WENTWORTH needed no directory at all: the tract register sells to
+WENTWORTH ELIJAH, **WENTWORTH ELIJAH SEN**, WENTWORTH ELIJAH W and WENTWORTH ELIJAM SEN, and a
+source that writes *Sen* has told you there are two. This layer holds one Elijah Wentworth, with
+no middle initial and no *Sen*, and a card that can meet none of the register's own distinctions
+cannot be handed a row the register took the trouble to distinguish. **Look at the register's
+other spellings of the surname before ruling** — it costs one pass over `entries.json` and it
+decided two of the eleven refusals outright.
+
+*A second document must SAY something, not merely repeat the name.* Cohort B's operative line
+was whether the town holds the man more than once; C3 is where counting to two stops being
+enough. SKINNER JOSEPH is held twice — the tax list of 1833 and an uncalled-for letter of April
+1834 — and neither prints a trade, a street, an office or a middle initial, and no directory of
+1839, 1843 or 1844 prints a Joseph Skinner at all. REED THOMAS is held three times and one of
+them is *Reed, Thomas, teamster, 115 Lake street*. The difference, not the count, is the line.
+
+*A common surname does not refuse a proposal; a second printed claimant does.* SMITH GEORGE
+refused and SMITH JEREMIAH upheld, both entered on 27 June 1835 on the commonest surname in the
+town. Three George Smiths are printed in this corpus and no volume prints a Jeremiah.
+
+*The forename rule can match the register's middle initial onto a card that has none while a
+rival card carries it.* THOMPSON JOHN L went to `thompson_john`, which holds no middle initial,
+while the layer holds `thompson_lieut_j_l`. Filed as T-1016.
+
+*And the Residence column cannot choose between two townsmen.* TAYLOR CHARLES states COOK on one
+row and the poll lists are the town-side partner cohort B requires — but BOTH printed Charles
+Taylors are Chicago men, so a county name discriminates no better than the bare forename does.
+
+Filed on the way past: **T-1014**, the N. King readings on `king_nehemiah` that Fergus 1839 gives
+to Nathaniel; **T-1015**, the *Anson W. Taylor* reading on an Anson H. card; **T-1016**, the
+Thompson initial; **T-1017**, whether buying at the town's OWN school-section sale is itself a
+check on a town-side name — the question SKINNER JOSEPH and RUSSELL SAMUEL both turn on, filed
+rather than decided because answering it would reopen rulings already made.
+
+---
+
 ### NEXT
 
-1. **Cohort C3 — the twenty-eight remaining, surnames K-Z.** Read T-1001 before starting it: an
-   empty `rivals[]` means "no namesake OF THAT SPELLING", so a surname block should be gathered by
-   eye as well as by `namesake.py`, and KIMBERLY EDMUND S is in this block and is T-1001's man.
-   The paired spellings to rule TOGETHER, and to expect to disagree, are the ones C2's rule names:
-   look for a spelling that drops a middle initial a fuller one carries, and check Fergus 1843 for
-   a second man of that forename before upholding it.
-
-**Remaining after cohort C2: 28 unruled** (`resident_crosswalk.json` → `ruled`). This ticket
-closes when that number is zero, and says so with the number.
+**Nothing.** `resident_crosswalk.json` → `ruled` reads `upheld 89, named 1, refused 48,
+**unruled 0**`. Every proposal T-0697 added when the surname rule widened has been adjudicated
+by hand across five cohorts, and this ticket closes on that number, with the number, rather
+than on an absence.
