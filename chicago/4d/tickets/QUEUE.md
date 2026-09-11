@@ -107,10 +107,13 @@
 
 
 
+
+
+
+
 T-1026 — Medard Beaubien is a third card for the man T-1002 folded to two, and a committed note already calls it the same man under two spellings
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
-T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
 T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
@@ -319,6 +322,9 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+
 # --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
 # --- by tools/measure_card_fuzzy_candidates.py after T-1002 ruled its three. Each needs a page
 # --- of its own: the list mixes real printed spelling variations (Foot/Foote, Lloyd/Loyd,
@@ -327,9 +333,6 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- against John Vale, Mark Noble against Mary Noble. No distance separates the first kind from
 # --- the last, which is T-1001's answer over the land register reached again over the cards.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
 T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
 T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
@@ -347,3 +350,4 @@ T-1021 — Seven Norris 1844 firms are read as people because the scanner set th
 T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
+
