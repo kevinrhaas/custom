@@ -155,15 +155,17 @@
      "rule": "G1b"
     }
    ],
-   "merged_from": {
-    "ticket": "T-0844",
-    "rule": "C3",
-    "cluster": "kinzie-john",
-    "cards": [
-     "kinzie_john_s"
-    ],
-    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
-   },
+   "merged_from": [
+    {
+     "ticket": "T-0844",
+     "rule": "C3",
+     "cluster": "kinzie-john",
+     "cards": [
+      "kinzie_john_s"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
    "merge_ruling": [
     {
      "ticket": "T-0839",
@@ -230,7 +232,7 @@
  "review_required": false,
  "research_note": "THE HOUSEHOLD THAT EXPOSES A DATE THE WHOLE OFFICER LAYER TURNS ON. Andreas says only that 'the third election was held in July, 1835' and then lists the officers it produced - H. Hugunin president, with W. Kimball, B. King, S. Jackson, E. B. Williams, F. C. Sherman, A. Loyd and George W. Dole as trustees. THIS PROJECT CANNOT SAY WHETHER THAT ELECTION HAD HAPPENED BY 1 JULY 1835. If it had not, the town's president on the scene date is John H. Kinzie and the 1834 board is in office; if it had, it is Hiram Hugunin. The town elections of 1833 and 1834 were both held on the tenth or eleventh of August, which is an argument that the 1835 one fell late in the month rather than at its start, but Andreas's own text says July. NO OFFICE-HOLDING CLAIM IN THIS PARCEL RESTS ON THE ANSWER, and the seven trustees of the 1835 board are deliberately not written as households on the strength of an election this project cannot date. THE READING BEHIND THIS RECORD'S KIN ROW: Hurlbut's 1881 bracketed note makes this head the HALF brother of kinzie_james in hh_kinzie_james (bk_afc_015). The link is the reciprocal `kin` row T-0704 gave this layer; the note as printed, its locator and its rung are written onto the person as a cited book_evidence reading, so what the row rests on is visible on the card. Nothing about either household's position, arrival, trade or membership changes.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. kinzie_john_h, Fergus's Chicago directory of 1839 — f1839_e0861 (contested, so nothing crossed); kinzie_john_h, Fergus's Chicago directory of 1843 — f1843_e1500, f1843_e1501 (ambiguous, so nothing crossed); kinzie_john_h, Norris's Chicago directory of 1844 — n1844_e1031 (a single entry); kinzie_juliette, Fergus's Chicago directory of 1839 — f1839_e0861 (contested, so nothing crossed).",
   "sources": [
    "fergus_chicago_directory_1839",
    "fergus_chicago_directory_1843",

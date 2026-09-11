@@ -55,9 +55,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# THE ONCE-EACH RULE lives in one place (T-0846). `gaps` asks whether this pass's
+# paragraph is PRESENT and `strays` whether an unruled card carries one; neither can
+# see a card that carries it TWICE, which is what an add-only applier produces when the
+# wording changes between runs. T-0677 measured that on this series and closed it in one
+# tool; three copies later the copies had already drifted apart, so the rule is shared.
+import spend_write_once  # noqa: E402
 CENSUS = ROOT / "data" / "research" / "census_1840"
 CROSSWALK = CENSUS / "resident_crosswalk.json"
 LEDGER = CENSUS / "head_spend_1835.json"
@@ -72,6 +82,15 @@ SOURCE_ID = "census_1840_chicago_familysearch_images"
 # The sentence that says a paragraph is this pass's, so re-running it is idempotent and
 # `--check` can find its own work without guessing.
 MARKER = "THE 1840 FEDERAL CENSUS — A HEAD FIVE YEARS AFTER THE SCENE, AND NEVER AN 1835 FACT."
+
+# A WORDING THIS PASS HAS REPLACED — the second half of the once-each rule (T-0846). An
+# applier here is add-only (`if MARKER not in note`), so rewriting the paragraph makes a
+# re-run APPEND a second one saying the same thing in different words rather than overwrite
+# the first, and neither `gaps` nor `strays` can see it. T-0677 measured exactly that on
+# `spend_land_sales.py`: thirty-one cards doubled, `tools/check.sh` green. Any MARKER this
+# pass retires belongs in this tuple from the commit that retires it, and `--check` then
+# refuses a card still carrying it. Empty means this pass has never changed its wording.
+SUPERSEDED_MARKERS: tuple = ()
 
 # What the crosswalk carries as `outcome` and this pass will write. `refused` is not here
 # and must never be: a rival still standing is not a ruling to spend.
@@ -387,15 +406,14 @@ def strays(rows: list) -> list:
 
 
 def doubles() -> list:
-    """One paragraph per person, once. A tool re-run must never leave two."""
-    bad = []
-    for path in sorted(HOUSEHOLDS.glob("*.json")):
-        for person in load(path).get("persons") or []:
-            note = person.get("note") or ""
-            if note.count(MARKER) > 1:
-                bad.append("%s/%s — carries this pass's paragraph %d times"
-                           % (path.stem, person.get("id"), note.count(MARKER)))
-    return bad
+    """One paragraph per person, once. A tool re-run must never leave two.
+
+    T-0846 moved the rule itself into `tools/spend_write_once.py`, where the six passes
+    that write a paragraph share one implementation. The copy that stood here counted the
+    marker and nothing else; the shared rule also refuses a SUPERSEDED wording standing
+    beside the current one, which is the half this pass never had.
+    """
+    return spend_write_once.doubles(MARKER, SUPERSEDED_MARKERS, HOUSEHOLDS)
 
 
 def check(quiet: bool = False) -> int:
@@ -516,10 +534,29 @@ def self_test() -> int:
         fires("every paragraph names its sheets",
               all(s in text for s in sheets(r)))
 
+    # THE ONCE-EACH RULE, both directions (T-0846). The copy that stood in this file counted
+    # the marker and never looked for a SUPERSEDED wording — the half `spend_land_sales.py`
+    # had and this one did not. The rule now comes out of `tools/spend_write_once.py`, and
+    # these three assertions are what says it still fires from here.
+    fires("the once-each rule is silent on the card the applier writes",
+          spend_write_once.doubles_over("hh_x", after, MARKER, SUPERSEDED_MARKERS) == [])
+    twice = json.loads(json.dumps(after))
+    twice["note"] = twice["note"] + " " + twice["note"]
+    fires("the once-each rule fires on a card carrying this paragraph twice",
+          any("2 times" in d for d in spend_write_once.doubles_over(
+              "hh_x", twice, MARKER, SUPERSEDED_MARKERS)))
+    rival = json.loads(json.dumps(after))
+    rival["note"] = rival["note"] + " A SUPERSEDED WORDING OF THE SAME PASS. …"
+    fires("the once-each rule fires on a superseded paragraph left standing",
+          any("superseded" in d for d in spend_write_once.doubles_over(
+              "hh_x", rival, MARKER, ("A SUPERSEDED WORDING OF THE SAME PASS.",))))
+    fires("this pass declares its superseded wordings as a tuple",
+          isinstance(SUPERSEDED_MARKERS, tuple))
+
     for line in fails:
         print("   FAIL: %s" % line)
     print("1840 census heads self-test: %d assertion group(s), %d failure(s)"
-          % (18 + 4 * len(rows), len(fails)))
+          % (22 + 4 * len(rows), len(fails)))
     return 1 if fails else 0
 
 

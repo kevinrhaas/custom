@@ -280,6 +280,19 @@ def _rank(sid: str, n: int) -> int:
     return int(hashlib.sha1(sid.encode("utf-8")).hexdigest()[:8], 16) % n
 
 
+def _slew(wid: str, envelope_deg: float) -> float:
+    """How far off its derived bearing one wagon stands, dealt from its own id.
+
+    T-0836. `_rank` for the same reason every other invented attribute on this layer
+    uses it: the deal has to be the same on every run, and `check.sh` re-derives this
+    record byte for byte. The envelope is walked end to end in `WAGON_SLEW_STEPS`, so
+    the middle step is dead square — a town where NO wagon is square would be as much
+    an invention as one where they all are.
+    """
+    step = _rank(wid, WAGON_SLEW_STEPS)
+    return _round(-envelope_deg + step * (2.0 * envelope_deg / (WAGON_SLEW_STEPS - 1)), 1)
+
+
 def _house_mark(name: str) -> str:
     """The house's own mark, as a stencil or a brand would carry it.
 
@@ -433,6 +446,24 @@ TOWN_DRY_M = 0.60           # over the water surface, under the wheels
 TOWN_EDGE_INSET_M = 3.00    # off the heightfield's own edge
 TOWN_GAP_M = 1.20           # of air between one wagon's ground and the next's
 WAGON_HALF_W_M = 0.75       # the wagon's own half-width over its hubs
+
+# HOW FAR OFF SQUARE ONE WAGON STANDS — T-0836. Every stand above is derived square to
+# something: to the road it serves, or to the yard's own long axis. That is where the
+# rule PUTS a wagon; it is not how a wagon that has been left standing actually sits.
+# Nobody squared an unhitched wagon to a kerb in 1835 — there was no kerb, the verge was
+# mud and grass, and a man who has backed a loaded box up to a door and dropped the
+# tongue leaves it where it stopped. So each wagon is slewed off its derived bearing by
+# an angle dealt from its OWN id, inside an envelope that says how hard the manoeuvre
+# was: smallest for one driven up ALONG a road, where the road itself lines it up;
+# larger for one backed SQUARE to the road, which is the harder manoeuvre and the one a
+# driver judges over his shoulder; largest in a YARD, where there is no line to work to
+# at all. The envelope is a claim about how the town LOOKED, and it is written down:
+# docs/LIBERTIES.md L230. The slew is dealt, never chosen and never random — the same
+# sha1-of-the-id `_rank` deals every other invented attribute on this layer with.
+WAGON_SLEW_ALONG_DEG = 6.0
+WAGON_SLEW_SQUARE_DEG = 12.0
+WAGON_SLEW_YARD_DEG = 15.0
+WAGON_SLEW_STEPS = 9        # of the envelope, end to end, so the deal is reproducible
 
 # What each kind is called in the prose of its own record.
 KIND_WORDS = {
@@ -1356,6 +1387,25 @@ def _street_kind(street: dict, ordinal: int) -> str:
     return "cart"
 
 
+def _lateral_reach(back: float, fore: float, slew_deg: float, square: bool) -> float:
+    """How far a slewed wagon reaches SIDEWAYS of its own stand, toward the road.
+
+    T-0836, and it is the whole cost of standing a wagon askew. The stand's offset from
+    a centreline was `WAGON_HALF_W_M` (drawn up along the road) or half the body length
+    (backed square to it) — both of them the reach of a wagon squared to the road, and
+    both of them leaving exactly 0.05 m of slack over `TOWN_TRACK_CLEAR_M`. Slew such a
+    wagon by a single degree and a corner 4 m from its stand swings 7 cm into the
+    travelled track, which `_stand_refusal` refuses — correctly. So the offset has to
+    know the slew: this returns the greatest perpendicular reach of the slewed
+    rectangle, corner included, and the stand is set back by it. A wagon standing askew
+    takes more of the verge than one standing square, which is what a verge is for.
+    """
+    th = math.radians(abs(slew_deg))
+    if square:
+        return WAGON_BODY_L_M / 2 * math.cos(th) + WAGON_HALF_W_M * math.sin(th)
+    return WAGON_HALF_W_M * math.cos(th) + max(back, fore) * math.sin(th)
+
+
 def _kind_reach(kind: str) -> tuple[float, float]:
     """How far a vehicle of this kind reaches behind and ahead of its own stand."""
     if kind == "cart":
@@ -1417,6 +1467,12 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
             # lot line so the pole lies away from the traffic. A principal street's edge
             # is where a wagon stands ALONG it; a lane has the room to back one in.
             square = square_ok and k % 3 == 0
+            wid = f"town_wagon_{street['id']}_{k}"
+            # T-0836: and then slewed off that square by its own dealt angle, inside the
+            # envelope the manoeuvre earns. Applied HERE, before the ground is tested,
+            # because a wagon standing askew covers askew ground — slewing the record
+            # alone would draw a wagon across a stand this rule had cleared as square.
+            slew = _slew(wid, WAGON_SLEW_SQUARE_DEG if square else WAGON_SLEW_ALONG_DEG)
             reasons = []
             stood = False
             # BOTH SIDES ARE TRIED, in a stated order: the side the ordinal names first,
@@ -1426,7 +1482,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
             # river and refuses every time.
             for side in ((1, -1) if k % 2 else (-1, 1)):
                 nrm = (-head[1] * side, head[0] * side)
-                lateral = (WAGON_BODY_L_M / 2 if square else WAGON_HALF_W_M)
+                lateral = _lateral_reach(back, fore, slew, square)
                 off = street["track_w"] / 2 + TOWN_TRACK_CLEAR_M + lateral + 0.05
                 e = point[0] + nrm[0] * off
                 n = point[1] + nrm[1] * off
@@ -1445,6 +1501,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                 else:
                     head_b = math.degrees(math.atan2(head[0], head[1])) % 360.0
                     bearing = head_b if side > 0 else (head_b + 180.0) % 360.0
+                bearing = (bearing + slew) % 360.0
                 quad = _ground_quad(e, n, bearing, back, fore)
                 why = _stand_refusal(quad, world, taken)
                 if why:
@@ -1452,7 +1509,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                     continue
                 yoked = kind == "covered"
                 wagons.append({
-                    "id": f"town_wagon_{street['id']}_{k}",
+                    "id": wid,
                     "kind": kind,
                     "stands_on": street["id"],
                     "belongs_to": None,
@@ -1462,6 +1519,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                     "at_local_enu_m": [_round(e), _round(n)],
                     "bearing_deg": _round(bearing, 1),
                     "drawn_up": "square to the road" if square else "along the road",
+                    "slew_deg": slew,
                     "clear_of_track_m": _round(off - lateral - street["track_w"] / 2),
                     "note": (
                         f"A {KIND_WORDS[kind]} standing at the verge of "
@@ -1475,7 +1533,15 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                         f"{_round(off - lateral - street['track_w'] / 2):.2f} m clear of "
                         "the travelled track, drawn up "
                         f"{'square to the road' if square else 'along the road'} and "
-                        "facing the way traffic on this side of it goes. THE TEAM IS NOT "
+                        "facing the way traffic on this side of it goes — and then "
+                        f"slewed {abs(slew):.1f} degrees "
+                        f"{'off that square' if abs(slew) > 1e-9 else 'not at all'}"
+                        f"{'' if abs(slew) < 1e-9 else (' to the left' if slew < 0 else ' to the right')}"
+                        ", because nobody squared an unhitched wagon to a verge that was "
+                        "mud and grass: the angle is dealt from this wagon's own id "
+                        f"inside an envelope of {WAGON_SLEW_SQUARE_DEG if square else WAGON_SLEW_ALONG_DEG:.0f} "
+                        "degrees, which is a claim about how the town looked and is "
+                        "written down at docs/LIBERTIES.md L230. THE TEAM IS NOT "
                         "DRAWN and never will be: this project models no animal in the "
                         "scene, so the wagon stands unhitched with its "
                         f"{'shafts' if kind == 'cart' else 'tongue'} down on the ground"
@@ -1541,7 +1607,13 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                 break
             kind = "covered" if stood % 2 == 0 else "farm_box"
             back, fore = _kind_reach(kind)
-            face = (bearing + 180.0) % 360.0 if stood % 2 else bearing
+            wid = f"town_wagon_{interior['record']}_{stood + 1}"
+            # T-0836, and the yard is where the envelope is widest: a yard has no road
+            # to line a wagon up on, so the axis below is the rule's own convenience
+            # rather than anything a driver was working to.
+            slew = _slew(wid, WAGON_SLEW_YARD_DEG)
+            face = ((bearing + 180.0) % 360.0 if stood % 2 else bearing) + slew
+            face %= 360.0
             quad = _ground_quad(e, n, face, back, fore)
             # A lattice slot whose ground is already under a wagon is passed over in
             # silence — the search is walking a 0.5 m grid and half of it is under the
@@ -1556,7 +1628,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                 last_why = why
                 continue
             wagons.append({
-                "id": f"town_wagon_{interior['record']}_{stood + 1}",
+                "id": wid,
                 "kind": kind,
                 "in_enclosure": interior["record"],
                 "belongs_to": None,
@@ -1566,6 +1638,7 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                 "at_local_enu_m": [_round(e), _round(n)],
                 "bearing_deg": _round(face, 1),
                 "drawn_up": "along the yard's long axis",
+                "slew_deg": slew,
                 "clearance_m": _round(clear),
                 "note": (
                     f"A {KIND_WORDS[kind]} standing in {interior['record']}, whose "
@@ -1578,7 +1651,11 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                     f"{WAGON_CLEAR_M:.2f} m — {_round(clear):.2f} m here — and whose "
                     "ground, pole included, is clear of every wagon already standing. The "
                     "bearing is the yard's own long axis, turned end for end at every "
-                    "second wagon the way a yard full of them stands. THE TEAM IS NOT "
+                    "second wagon the way a yard full of them stands, and then slewed "
+                    f"{abs(slew):.1f} degrees off it — dealt from this wagon's own id "
+                    f"inside an envelope of {WAGON_SLEW_YARD_DEG:.0f} degrees, the "
+                    "widest on this layer because a yard has no road to line a wagon up "
+                    "on (docs/LIBERTIES.md L230). THE TEAM IS NOT "
                     "DRAWN: the wagon is unhitched, tongue down and yoke laid by on the "
                     "ground. Invented entirely — docs/LIBERTIES.md L162."
                 ),
@@ -2004,6 +2081,26 @@ def record(frontages: list, refused: list, wagons: list, wagons_refused: list,
                 "every third stand of a quieter street it is backed square to the road "
                 "instead, nose to the lot line. Nothing here is a chosen number: change "
                 "the committed centreline and every wagon on it moves."
+            ),
+            "slew_note": (
+                "AND THEN IT IS TURNED OFF THAT BEARING — T-0836, docs/LIBERTIES.md "
+                "L230. Everything above squares a wagon to the thing it serves, which is "
+                "where a rule PUTS a wagon and is not how one that has been left "
+                "standing sits: there was no kerb to square to, the verge was mud and "
+                "grass, and a driver who backed a loaded box to a door and dropped the "
+                "tongue left it where it stopped. So each wagon carries a `slew_deg` of "
+                "its own, dealt from its id by the same sha1 rank that deals every other "
+                "invented attribute here and walked across its envelope in "
+                f"{WAGON_SLEW_STEPS} steps — so the middle step is dead square and some "
+                "of them still are. The envelope is graded by the manoeuvre: up to "
+                f"{WAGON_SLEW_ALONG_DEG:.0f} degrees drawn up along a road, which lines "
+                f"the wagon up itself; up to {WAGON_SLEW_SQUARE_DEG:.0f} backed square "
+                "to one, which a driver judges over his shoulder; up to "
+                f"{WAGON_SLEW_YARD_DEG:.0f} in a yard, which offers no line to work to "
+                "at all. THE CLEARANCES ARE NOT WEAKENED FOR IT: the stand is set back "
+                "by the greatest perpendicular reach of the SLEWED rectangle, corner "
+                "included, so an askew wagon takes more of the verge and still stands "
+                "the full clearance clear of every track, wall and footway below."
             ),
             "refusal_note": (
                 "A stand is REFUSED, in writing and with its reason, if it would put a "

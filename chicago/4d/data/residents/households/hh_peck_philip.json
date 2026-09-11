@@ -155,23 +155,25 @@
      "rule": "G1b"
     }
    ],
-   "merged_from": {
-    "ticket": "T-0839",
-    "rule": "C4",
-    "cluster": "peck",
-    "cards": [
-     "peck_p_f",
-     "peck_p_f_w"
-    ],
-    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
-   }
+   "merged_from": [
+    {
+     "ticket": "T-0839",
+     "rule": "C4",
+     "cluster": "peck",
+     "cards": [
+      "peck_p_f",
+      "peck_p_f_w"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ]
   }
  ],
  "touches_removal": false,
  "review_required": false,
  "research_note": "THE HOUSEHOLD AT THE CENTRE OF A THREE-WAY LINK. Peck's store lodged the Presbyterian minister in its loft and Rufus Brown's log boarding house stood directly behind it - so a single corner of South Water and LaSalle carries a merchant, a minister and a boarding-house keeper, all documented, all in this parcel. That is the density the inferred phase should expect to find everywhere and can only demonstrate here.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. peck_philip, Fergus's Chicago directory of 1839 — f1839_e1162 (a single entry); peck_philip, Fergus's Chicago directory of 1843 — f1843_e1977 (a single entry); peck_philip, Norris's Chicago directory of 1844 — n1844_e1414 (a single entry).",
   "sources": [
    "fergus_chicago_directory_1839",
    "fergus_chicago_directory_1843",

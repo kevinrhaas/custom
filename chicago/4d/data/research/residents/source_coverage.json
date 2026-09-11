@@ -17,7 +17,7 @@
   },
   "civic": {
    "names_read": 460,
-   "identities": 376,
+   "identities": 375,
    "appearances_on_an_identity_the_town_already_carries": 346,
    "unmatched": 114
   },
@@ -29,7 +29,7 @@
   },
   "newspapers": {
    "names_read": 2317,
-   "identities": 2112,
+   "identities": 2111,
    "appearances_on_an_identity_the_town_already_carries": 1302,
    "unmatched": 1015
   },
@@ -40,10 +40,10 @@
    "unmatched": 690
   },
   "residents": {
-   "names_read": 1374,
-   "identities": 1374,
+   "names_read": 1370,
+   "identities": 1370,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1374
+   "unmatched": 1370
   },
   "books": {
    "names_read": 0,
@@ -92,25 +92,25 @@
   "church|newspapers": 9,
   "church|old_settlers": 6,
   "church|residents": 40,
-  "civic|civic": 376,
-  "civic|directories": 84,
-  "civic|newspapers": 106,
+  "civic|civic": 375,
+  "civic|directories": 85,
+  "civic|newspapers": 108,
   "civic|old_settlers": 30,
-  "civic|residents": 264,
+  "civic|residents": 263,
   "directories|directories": 2897,
   "directories|newspapers": 168,
   "directories|old_settlers": 33,
   "directories|residents": 175,
-  "newspapers|newspapers": 2112,
+  "newspapers|newspapers": 2111,
   "newspapers|old_settlers": 50,
-  "newspapers|residents": 1133,
+  "newspapers|residents": 1132,
   "old_settlers|old_settlers": 736,
   "old_settlers|residents": 52,
-  "residents|residents": 1374
+  "residents|residents": 1370
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1377,
-  "persons_this_tool_placed_on_an_identity": 1374,
+  "persons_in_the_layer": 1373,
+  "persons_this_tool_placed_on_an_identity": 1370,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {
@@ -122,6 +122,6 @@
    "R4": 77,
    "R6": 9
   },
-  "declared_refusals": 2172
+  "declared_refusals": 2170
  }
 }

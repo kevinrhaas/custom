@@ -10398,9 +10398,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 483 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 479 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 483 people
+**Scope:** `residents.persons[civic_mint]` — 479 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10411,8 +10411,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **483
-today**, and the figure has moved six times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **479
+today**, and the figure has moved eight times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10445,8 +10445,50 @@ the forenames agreed; what settles them is a page, under a new rule C9 written t
 The Chicago Democrat of 1 July 1835 sets both spellings in one column — `E. S. Kimberly` in
 the dinner committee's signature block, `E. S. Kimberley` in the next article's committee of
 fourteen, and `Dr. Kimberly` four sentences after that — so the difference the split turned on
-is one the compositor himself does not hold to. The number this liberty declares is the number
-of containers standing, and it will fall again as the remaining rulings are made.
+is one the compositor himself does not hold to. T-1002 took it to 480 on 2026-09-11, folding
+three at once — `beaubien_medore_b`, `clybourn_archibald` and `heacock_russell_e` — and each of
+the three was, like the two before it, found by hand rather than raised: all were pairs ONE
+LETTER apart, which is the class the candidate test is blind to on both of its axes, the
+surname (Clybourn against Clybourne) and the forename (Madore against Medore, Russel against
+Russell). Two of the three are ruled on a page in C9's manner: printed page 389 of Moses and
+Kirkland's first volume sets Archibald Clybourn's surname both ways four lines apart in the
+story of his own slaughter house, and the Chicago Democrat prints `Russel E. Heacock` in the
+county return of August 1834 and `RUSSELL FE. HEACOCK` at the head of his own advertisement of
+July 1835 — the card that carried the doubled l being minted from a scan of that same
+advertisement which reads neither, `RUSSEN L E. HEACOCK`. The third is ruled on an OFFICE
+instead, under a new rule C11, because no single title is caught spelling Beaubien both ways:
+Andreas and Moses and Kirkland print the same five trustees of 10 August 1833 and the same
+distinctive tally of 23 against the third of them while spelling his forename differently, and
+the town's own ordinance of that December names four of those five, under the second spelling,
+as the committee the board appointed out of itself. WHAT THAT FOLD BOUGHT, which no earlier one
+did: the land tract register prints Heacock's forename both ways too and both readings were
+REFUSED for having two rivals — the two rivals being this man's own two cards — so the
+register's crosswalk went from 91 named purchasers to 93. AND THE BLIND SPOT IS NOW COUNTED
+rather than guessed at: `tools/measure_card_fuzzy_candidates.py` runs the candidate test again
+with one letter of slack and proposes 68 further pairs, which is not a licence to fold on a
+distance — the same list holds John Hale against John Vale and Mark Noble against Mary Noble —
+but it is the first honest statement of how many pairs this derivation cannot see. T-1026 took it
+to 479 on 2026-09-11, folding `beaubien_medard` onto that same `beaubien_madore` — the card T-1002
+had just made the survivor of `beaubien_medore_b`, and the THIRD card the town was holding for one
+man. T-1002 found it and deliberately did not take it: Medard is three letters from Madore and two
+from Medore, so it is outside the one-letter class that ticket measured and outside C10 and C11
+both, and folding a baptismal forename onto a familiar one is a reading about a family and not
+about a compositor. IT IS RULED ON A ROLL INSTEAD, under a new rule C12, and the rule never weighs
+how alike the two spellings are — which is the only thing that lets it work at three letters where
+C9 and C10 are held to one. The poll list of the first election of the Board of Trustees, 10 August
+1833, carries thirty names; four of the five men that election returned stand on it under names
+nobody disputes; exactly three of the thirty are Beaubiens — J. B. the father, Mark the
+tavern-keeper, and Medard — and the first two hold cards of their own that the trustee is not. So
+the roll leaves him one entry, and the identification is a count over a bounded list rather than a
+resemblance. Fergus's directory of 1839 corroborates without carrying it: its fourth Beaubien is
+`Beaubien, Medard B., merchant, South Water street` — the survivor's own trade and street, and the
+middle initial B the poll does not print — in a book that holds no Madore. AND THE NEGATIVE RESULT
+IS RECORDED RATHER THAN DROPPED: the ticket asked for the St Cyr and St Mary's registers to be read
+for a Médard baptism, because that is where a baptismal forename would be printed if it is one, and
+they hold none — no Médard, no Madore, no Medore, as principal, parent, sponsor or decedent — so
+the philological argument has no page here and the ruling does not rest on it. The number
+this liberty declares is the number of containers standing, and it will fall again as the
+remaining rulings are made.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
@@ -11019,3 +11061,47 @@ invented) · **L45** and **L47** (the fort's other `geometry: absent` declaratio
 (no figure is drawn) · tickets **T-0882** (this), **T-0758** (the parent), **T-0883** (the
 three buildings off the same sheet).
 **Recorded:** 2026-09-06 (T-0882).
+
+### L230 — Not one of the town's wagons stands square, and by how much each is off is dealt from its own id
+**Decision:** every one of the town's 65 derived wagons is turned off the bearing the
+placement rule gives it by an angle of its own — **up to 6 degrees** where it is drawn up
+*along* a road, **up to 12 degrees** where it is backed *square* to one, and **up to 15
+degrees** in a working yard. The angle is not chosen and not random: it is dealt from the
+wagon's own id by the same sha1 `_rank` that deals every other invented attribute on this
+layer, walked across the envelope in nine steps, so **the middle step is dead square** and
+ten of the sixty-five still stand exactly on the derived bearing. It re-derives byte for
+byte, and `tools/check.sh` proves that it does. It is recorded per wagon as `slew_deg`, and
+every wagon's own note says how far it was turned and inside what envelope.
+**Why:** the rule stands a wagon square to the thing it serves — the road's own bearing, or
+the yard's long axis — because that is the only line the committed data gives it. That is
+where a rule PUTS a wagon; it is not how a wagon that has been left standing actually sits.
+There was no kerb to square to in 1835: the verge was mud and grass, and a man who has
+backed a loaded box up to a door and dropped the tongue leaves it where it stopped. The
+envelope is graded by how hard the manoeuvre was — smallest along a road, which lines the
+wagon up itself; larger for backing square to one, which a driver judges over his shoulder;
+widest in a yard, which offers no line to work to at all.
+**This is a claim about how the town LOOKED, which is why it is written here** and not
+quietly inside a generator. Nothing attests it. No plate in this project's corpus shows a
+Chicago street wagon at a measurable angle to a known street line, and the three numbers
+above are invented — they are a judgement that a town of sixty-five wagons all agreeing to
+the degree reads as a fleet parked by a surveyor rather than as vehicles left where their
+drivers stopped.
+**What it cost, and this is the honest part:** the stand's own offset from the centreline
+had to grow with the slew. It was set so a *squared* wagon cleared the travelled track by
+1.00 m with 0.05 m to spare; slew such a wagon and a corner 4 m from its stand swings into
+the roadway, which `_stand_refusal` refuses. So `_lateral_reach` now sets each stand back by
+the greatest perpendicular reach of the *slewed* rectangle, corner included. **Not one
+clearance was weakened to let this in**: every wagon still stands the full 1.00 m clear of
+every travelled track, 1.00 m clear of every committed footprint, off every plank walk and
+out of every garden and pen. An askew wagon simply takes more of the verge, which is what a
+verge is for — and the town still stands 65 of them, on 17 streets, over 1,236 m of
+east-west spread.
+**How to resolve:** any dated view of a Chicago street with a standing vehicle in it and a
+street line to measure against would replace all three envelopes with a reading. Failing
+that, a traveller's description of the town's streets that speaks to how vehicles stood in
+them would at least grade the judgement.
+Related: **L162** (the sixty-four wagons themselves, and the rule that stands them) · **L1**
+(no figure and no team is drawn, which is why they stand unhitched) · tickets **T-0836**
+(this, and the smoke red that found it), **T-0825** (folded into it), **T-0688** (the gate's
+own floor of eight distinct headings), **T-0064** (the town's wagons).
+**Recorded:** 2026-09-11 (T-0836).

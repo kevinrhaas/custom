@@ -1738,6 +1738,17 @@ step "one person, one card — every duplicate cluster carries a written ruling"
 step "…and that pass's own assertions still fire when broken" \
   python3 tools/consolidate_town_cards.py --self-test
 
+# T-1002. The candidate test above folds the surname AND the forename exactly, and three
+# duplicate pairs one letter apart were therefore never proposed to it — not refused, not
+# deferred, never seen. The measurement is the only thing that says how large that blind
+# spot is, and its answer (71 pairs one letter of slack would add, against the 21 the exact
+# test proposes) is the reason the remaining ones are ruled on pages and not on a distance.
+# The counts move whenever the residents layer grows, so they are not gated for equality;
+# what is gated is that the test still runs at all and still sees its own three pairs. A
+# measurement that quietly stopped firing would report "the class is only the three".
+step "the one-letter candidate test still measures the blind spot it was written for" \
+  python3 tools/measure_card_fuzzy_candidates.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 
@@ -1910,6 +1921,21 @@ step "…and the later HOME addresses re-derive through the residence clauses" \
 
 step "…and no back-projected home has grown a point, a roof or an 1835 link" \
   python3 tools/back_project_residences.py --self-test
+
+# T-0846, THE ONCE-EACH RULE, shared. Every pass below finds its own work by a MARKER
+# sentence and asks two questions about it — is it PRESENT on the cards a ruling names, and
+# does any UNRULED card carry it. A card carrying it TWICE answers both correctly, which is
+# how T-0677's measurement went green with all thirty-one land-sales cards doubled. That
+# ticket closed the hole in one tool; T-0846 found six passes write a paragraph and three
+# still had no such rule, and the three copies that existed had already drifted — two of them
+# counted the marker and never looked for a superseded wording. One implementation now, and
+# this step is what keeps it wired: it re-reads the tools, so a seventh pass that grows an
+# add-only paragraph applier and no `doubles()` fails here on the commit that adds it.
+step "…and every pass that writes a paragraph onto a card holds the once-each rule" \
+  python3 tools/spend_write_once.py --self-test
+
+step "…and no card in the town carries any pass's paragraph twice" \
+  python3 tools/spend_write_once.py --sweep
 
 # T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
 # four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and

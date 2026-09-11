@@ -80,12 +80,17 @@ put guesses:
     WHOLE row — block, lot, amount, whether the lot was withheld, AND the bidder. T-0679
     deliberately left the bidder column alone and said so; T-0779 read all six half-page
     bidder columns off the same images and corrected the thirteen names the scan mangled
-    and the three ditto marks it mapped no ink to. A row that carries no correction is
-    still `transcription_mediated`, which is what its numerals are.
+    and the three ditto marks it mapped no ink to. T-0910 added the third bidder repair,
+    `bidder_brace`: the one lot on these pages that a printer's BRACE gathers under a
+    name rather than under *Reserved.* A row that carries no correction is still
+    `transcription_mediated`, which is what its numerals are.
 
 What the image settles is the ink, not the sequence: where the page prints nothing —
 a braced run of reserved lots sharing one price, the blank line between two blocks —
-the correction fills nothing and says why.
+the correction fills nothing and says why. A brace that gathers a lot under a NAME is
+the one place that rule is not enough, because the lot is sold and reaches the reading
+with no bidder at all; see `bidder_brace` in the row loop, which gives it the name its
+brace carries and still refuses to divide the one price printed over the pair.
 
 AND THE ROW THE SCAN HAS NO INK FOR AT ALL (T-0778). A correction reaches a cell the row
 map gathered; it cannot mint a row, and printed page 47 needs one. That half ends on
@@ -438,6 +443,7 @@ def added_row(spec, lots, rowmap, lines, seq):
             "as_printed": {"block": None, "lot": None, "bidder": None, "amount": None},
             "bidder": None,
             "bidder_ditto": False,
+            "bidder_braced": False,
             "bidder_wrapped": False,
             "block": prev["normalized"]["block"],
             "block_carried": True,
@@ -516,7 +522,7 @@ def build():
     lots, n, last_bidder, last_block, last_lot = [], 0, None, None, None
     illegible = {"lot": 0, "amount": 0, "block": 0}
     settled = {"lot": 0, "amount": 0, "block": 0, "withheld_from_sale": 0,
-               "bidder": 0, "bidder_ditto": 0, "rows": 0}
+               "bidder": 0, "bidder_ditto": 0, "bidder_brace": 0, "rows": 0}
     for cell in raw:
         quote = "\n".join(v for v in (cell["block"], cell["lot"], cell["bidder"],
                                       cell["amount"]) if v)
@@ -544,9 +550,22 @@ def build():
         #                  against the carry rather than trusted: a ditto that disagrees
         #                  with the name standing above it is a row map that moved, not a
         #                  correction, and it raises like every other broken assertion.
+        #   `bidder_brace` the page gathers this lot with the row above it inside a
+        #                  printer's BRACE, and sets ONE name and ONE price against the
+        #                  pair (T-0910). A brace is not a ditto and is deliberately not
+        #                  read as one — `reads_as_ditto` refuses a mark with no price
+        #                  beside it precisely so that a brace leg cannot hand the man
+        #                  above somebody else's lot — so the braced lot reached the
+        #                  reading with no bidder at all. This kind gives it the name its
+        #                  brace carries and says HOW it carries it: `bidder_braced` on
+        #                  the claim, never `bidder_ditto`, because the page prints no
+        #                  mark on this row and a card that said it did would be wrong
+        #                  about the ink. The PRICE is not touched: the brace prints one
+        #                  amount over several lots and this layer does not divide it.
         fix = lot_fixes.get("f1839_lot%04d" % n, {})
         read_name, fixed_bidder = apply_fix(fix, "bidder", cell["bidder"], None)
         carried_name, fixed_ditto = apply_fix(fix, "bidder_ditto", cell["bidder"], None)
+        braced_name, fixed_brace = apply_fix(fix, "bidder_brace", cell["bidder"], None)
         if fixed_bidder:
             named, ditto, last_bidder = True, False, read_name
         elif named:
@@ -559,6 +578,24 @@ def build():
                     "but the name standing above it is %r — re-read the page image rather "
                     "than editing the assertion" % (n, carried_name, last_bidder))
             ditto = True
+        braced = False
+        if fixed_brace:
+            if braced_name != last_bidder:
+                raise SystemExit(
+                    "fergus 1839 lots: the brace correction for f1839_lot%04d reads %r, "
+                    "but the name standing above it is %r — re-read the page image rather "
+                    "than editing the assertion" % (n, braced_name, last_bidder))
+            if named or ditto or withheld_word:
+                raise SystemExit(
+                    "fergus 1839 lots: the brace correction for f1839_lot%04d sits on a "
+                    "row that already carries a bidder of its own — a braced lot is one "
+                    "the printer left blank, so this is a row map that moved" % n)
+            if cell["amount"].strip():
+                raise SystemExit(
+                    "fergus 1839 lots: the brace correction for f1839_lot%04d sits on a "
+                    "row with ink in the amount column — the brace prints ONE price over "
+                    "the lots it gathers and this layer does not divide it" % n)
+            braced = True
         # WHAT THE SCAN DESTROYED is counted on the OCR's reading, before the page image
         # is allowed to speak: the count describes the scan, not what was rescued from it.
         if cell["block"].strip() and block is None:
@@ -577,16 +614,17 @@ def build():
         withheld_word, fixed_withheld = apply_fix(fix, "withheld", cell["bidder"],
                                                   withheld_word)
         if fixed_withheld and withheld_word:
-            named, ditto = False, False
+            named, ditto, braced = False, False, False
         for what, did in (("block", fixed_block), ("lot", fixed_lot),
                           ("amount", fixed_amount),
                           ("withheld_from_sale", fixed_withheld),
-                          ("bidder", fixed_bidder), ("bidder_ditto", fixed_ditto)):
+                          ("bidder", fixed_bidder), ("bidder_ditto", fixed_ditto),
+                          ("bidder_brace", fixed_brace)):
             settled[what] += 1 if did else 0
         settled["rows"] += 1 if fix else 0
 
         block, carried, last_block, last_lot = carry_block(block, lot, last_block, last_lot)
-        bidder = last_bidder if (named or ditto) else None
+        bidder = last_bidder if (named or ditto or braced) else None
         lots.append({
             "id": "f1839_lot%04d" % n,
             "kind": "person" if bidder else "civic",
@@ -597,6 +635,7 @@ def build():
                                if not k.startswith("_")},
                 "bidder": bidder,
                 "bidder_ditto": ditto,
+                "bidder_braced": braced,
                 "bidder_wrapped": bool(cell.get("_wrapped")),
                 "block": block,
                 "block_carried": carried,
@@ -708,9 +747,12 @@ def build():
                         "its NUMERAL columns — block, lot, amount, and whether the lot was "
                         "withheld — read off the page image by T-0679, and the reading it "
                         "was made against is committed as "
-                        "fergus_1839_lots_corrections.json. That grade does NOT extend to "
-                        "the bidder column, which is still the OCR's on every row of these "
-                        "three pages. The damage is left in every cell on purpose — the "
+                        "fergus_1839_lots_corrections.json. Since T-0779 that grade covers "
+                        "the bidder column too: all six half-page bidder columns were read "
+                        "off the same images, and the names the scan mangled, the ditto "
+                        "marks it mapped no ink to and — since T-0910 — the one braced lot "
+                        "it left bidderless are corrected there and nowhere else. The "
+                        "damage is left in every cell on purpose — the "
                         "ink stays in as_printed beside the number the image settled, "
                         "because a tidied cell cannot be found again on the page. The "
                         "columns are the hazard here rather than the spelling: the OCR "
@@ -738,6 +780,19 @@ def build():
                       "name above it with bidder_ditto true — the mark IS the printer "
                       "saying the same name, so the name is not an inference, but which "
                       "mark it was is not recoverable and the ink is kept in as_printed.",
+        "brace_note": "A BRACE IS NOT A DITTO, and one lot on these pages turns on the "
+                      "difference (T-0910). The printer gathers a run of lots with a "
+                      "brace and sets ONE entry against the whole run: on block 2's lots "
+                      "8-10, block 4's lots 1-6 and block 5's lots 1-5 that entry is "
+                      "Reserved. and there is no bidder to lose, but on block 4's lots 39 "
+                      "and 40 it is `C. Walker,` and $408 the pair. The brace leg breaks "
+                      "into the same wreckage a ruined ditto does, so reads_as_ditto "
+                      "refuses any mark with no price beside it rather than hand the man "
+                      "above somebody else's lot — which left lot 40 with no bidder at "
+                      "all. Such a row now carries bidder_braced true and bidder_ditto "
+                      "FALSE: the name is the brace's, the page prints no mark on the row "
+                      "itself, and the amount stays null because the one price is printed "
+                      "over the pair and this reading does not divide it.",
         "counts": {
             "claims": len(lots),
             "rows": len(lots),
@@ -854,6 +909,27 @@ def self_test() -> int:
     want(bool(braced), True, "printed page 47 still has block 4's braced lots")
     want([c["normalized"]["bidder"] for c in braced], [None] * len(braced),
          "the brace over block 4's first six lots gives nobody a lot")
+
+    # 5. and the ONE brace on these pages that gathers a lot under a NAME (T-0910)
+    by_brace = [c for c in lots["claims"] if c["normalized"]["bidder_braced"]]
+    want([c["id"] for c in by_brace], ["f1839_lot0060"],
+         "block 4's lot 40 is the only lot on printed pages 47-49 a brace carries under a "
+         "bidder's name — every other braced run reads Reserved.")
+    lot40 = by_id["f1839_lot0060"]
+    want(lot40["normalized"]["bidder"], "C. Walker",
+         "and it carries the name its brace carries")
+    want(lot40["normalized"]["bidder_ditto"], False,
+         "without claiming the page printed a ditto mark on it, because it printed none")
+    want(lot40["normalized"]["amount_usd"], None,
+         "and with no price of its own: $408 is printed over the pair and is not divided")
+    want(by_id["f1839_lot0059"]["normalized"]["amount_usd"], 408,
+         "the price stays where the printer set it, on lot 39")
+    bidderless = [c["id"] for c in lots["claims"]
+                  if c["normalized"]["bidder"] is None
+                  and not c["normalized"]["withheld_from_sale"]]
+    want(bidderless, ["f1839_lot0005", "f1839_lot0173"],
+         "and the only rows left with neither a bidder nor a withholding are the two that "
+         "carry no lot number either — a speck and the rule between two blocks")
     p49 = [c for c in lots["claims"] if c["locator"]["printed_page"] == 49
            and c["locator"]["column"] == "L"]
     want(bool(p49), True, "printed page 49's left half is still read")

@@ -19,6 +19,7 @@
   "lots_carried": 49,
   "dollars_carried": 19284.0,
   "lot_rows_bidder_dittoed": 24,
+  "lot_rows_bidder_braced": 0,
   "lot_rows_block_carried": 48
  },
  "not_written": [
@@ -30,7 +31,7 @@
   {
    "rule": "F2",
    "why": "a surname-only agreement is a refusal in this crosswalk's own rule — the directory lists forty-one Smiths — and refusals are not spent",
-   "rulings": 86
+   "rulings": 84
   },
   {
    "rule": "F3",
@@ -63,6 +64,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -75,6 +77,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -99,6 +102,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -111,6 +115,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -123,6 +128,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -135,6 +141,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -147,6 +154,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -159,6 +167,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -171,6 +180,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -183,6 +193,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -195,6 +206,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -207,6 +219,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -219,6 +232,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -231,6 +245,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -243,6 +258,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -255,6 +271,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -267,6 +284,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -291,6 +309,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -315,6 +334,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -327,6 +347,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -339,6 +360,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -363,6 +385,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -387,6 +410,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -399,6 +423,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -411,6 +436,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -423,6 +449,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -435,6 +462,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -447,6 +475,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -459,6 +488,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -483,6 +513,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -495,6 +526,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -507,6 +539,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -531,6 +564,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -543,6 +577,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -567,6 +602,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -591,6 +627,7 @@
      "printed_page": 47,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -615,6 +652,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -639,6 +677,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -651,6 +690,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -663,6 +703,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -687,6 +728,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -711,6 +753,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -723,6 +766,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -735,6 +779,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -759,6 +804,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -783,6 +829,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": true
     },
     {
@@ -795,6 +842,7 @@
      "printed_page": 49,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],
@@ -819,6 +867,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": false,
+     "bidder_braced": false,
      "block_carried": false
     },
     {
@@ -831,6 +880,7 @@
      "printed_page": 48,
      "describes_date": "1839-06",
      "bidder_ditto": true,
+     "bidder_braced": false,
      "block_carried": true
     }
    ],

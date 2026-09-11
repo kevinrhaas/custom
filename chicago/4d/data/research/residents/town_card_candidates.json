@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1377,
+  "town_people": 1373,
   "open_clusters": 15,
   "cards_in_open_clusters": 33,
   "rulings": {
    "distinct": 13,
-   "merge": 32,
+   "merge": 36,
    "undecided_rule": 8
   },
-  "landed_merges": 32,
-  "cards_folded": 51
+  "landed_merges": 36,
+  "cards_folded": 55
  },
  "landed": [
   {
@@ -60,6 +60,26 @@
    "rule": "C2"
   },
   {
+   "cluster": "beaubien-madore",
+   "survivor": "beaubien_madore",
+   "survivor_household": "hh_beaubien_madore",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "beaubien_medore_b"
+   ],
+   "rule": "C11"
+  },
+  {
+   "cluster": "beaubien-medard",
+   "survivor": "beaubien_madore",
+   "survivor_household": "hh_beaubien_madore",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "beaubien_medard"
+   ],
+   "rule": "C12"
+  },
+  {
    "cluster": "blanchard",
    "survivor": "blanchard_f_gantry",
    "survivor_household": "hh_blanchard_f_gantry",
@@ -78,6 +98,16 @@
     "brown_w_h"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "clybourne",
+   "survivor": "clybourne_archibald",
+   "survivor_household": "hh_clybourne_archibald",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "clybourn_archibald"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "cobb",
@@ -142,6 +172,16 @@
     "harmon_isaac"
    ],
    "rule": "C3"
+  },
+  {
+   "cluster": "heacock",
+   "survivor": "heacock_russel_e",
+   "survivor_household": "hh_heacock_russel_e",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "heacock_russell_e"
+   ],
+   "rule": "C10"
   },
   {
    "cluster": "hogan",

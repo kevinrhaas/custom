@@ -10,11 +10,11 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1375,
+  "residents_considered": 1371,
   "matched_one_card": 17,
   "matched_more_than_one_ambiguous": 3,
   "one_card_contested_by_two_residents": 11,
-  "surname_present_initial_absent_refused": 131,
+  "surname_present_initial_absent_refused": 130,
   "could_carry_trade": 10,
   "could_carry_place_of_business": 13
  },
@@ -893,13 +893,6 @@
    "surname_on_a_card": "Taylor",
    "cards_under_that_surname": 2,
    "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Anson H. Taylor'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Archibald Clybourn",
-   "person_id": "clybourn_archibald",
-   "surname_on_a_card": "Clybourn",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Clybourn' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Archibald Clybourn'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Augustine Deodat Taylor",

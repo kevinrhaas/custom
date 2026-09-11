@@ -10,19 +10,19 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1375,
-  "matched_one_1843_entry": 121,
-  "matched_more_than_one_ambiguous": 41,
+  "residents_considered": 1371,
+  "matched_one_1843_entry": 120,
+  "matched_more_than_one_ambiguous": 40,
   "one_1843_entry_contested_by_two_residents": 15,
   "surname_present_initial_absent_refused": 349,
-  "initial_agreed_forenames_disagreed_refused": 94,
+  "initial_agreed_forenames_disagreed_refused": 91,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1843_entry_by_that_refusal": 44,
+  "residents_left_with_no_1843_entry_by_that_refusal": 42,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 73,
-  "could_carry_address": 85,
+  "could_carry_occupation": 72,
+  "could_carry_address": 84,
   "could_carry_death_note": 82
  },
  "matches": [
@@ -310,35 +310,6 @@
      "trade_heading": null,
      "occupation_1843": "(Jennings & F.)",
      "address_1843": "bds American Temperance House",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "Archibald Clybourn",
-   "person_id": "clybourn_archibald",
-   "household_id": "hh_clybourn_archibald",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Clybourn' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0653",
-     "as_printed": "Clybourn, Archibald (C. & Hovey), res North Branch, city and county beef and pork inspector [612 Alston ave, died Aug. 23, 1872, a. 70]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(C. & Hovey)",
-     "address_1843": "res North Branch, city and county beef and pork inspector",
      "death_note_1843": null
     }
    ],
@@ -6362,78 +6333,6 @@
    }
   },
   {
-   "resident": "Russell E Heacock",
-   "person_id": "heacock_russell_e",
-   "household_id": "hh_heacock_russell_e",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Heacock' folds to the same string as the 1843 entry's, and the given name of both begins R.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1241",
-     "as_printed": "Heacock, Russel Easton [Old Shallow-Cut. Chicago's first attorney at law], res 129 Adams [died, Summit, Ill., June 26. 1849, aged 70.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": "res 129 Adams",
-     "death_note_1843": "died, Summit, Ill., June 26. 1849, aged 70."
-    },
-    {
-     "claim": "f1843_e1242",
-     "as_printed": "Heacock, Russel E., jr., clerk, Charles Walker & Co., bds Russel E. Heacock",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, Charles Walker & Co",
-     "address_1843": "bds Russel E. Heacock",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1243",
-     "as_printed": "Heacock, R. E., mason, Alson S. Sherman",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "mason, Alson S. Sherman",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1241",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1242",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1243",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "S. Sherwood",
    "person_id": "sherwood_s",
    "household_id": "hh_sherwood_s",
@@ -10639,44 +10538,6 @@
    }
   },
   {
-   "resident": "Medard Beaubien",
-   "person_id": "beaubien_medard",
-   "grade_1835": "inferred",
-   "entry_1843": {
-    "claim": "f1843_e0310",
-    "as_printed": "Beaubien, Mark, U.S. light-house keeper, res River street [died, Kankakee, Ill., April 11, 1881, aged 81]",
-    "page": "fergus_1843_page_002",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "light-",
-    "address_1843": "house keeper, res River street",
-    "death_note_1843": "died, Kankakee, Ill., April 11, 1881, aged 81",
-    "forename_1835": "Medard",
-    "forename_printed": "Mark",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Medard' against 'Mark'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "Medore B Beaubien",
-   "person_id": "beaubien_medore_b",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e0310",
-    "as_printed": "Beaubien, Mark, U.S. light-house keeper, res River street [died, Kankakee, Ill., April 11, 1881, aged 81]",
-    "page": "fergus_1843_page_002",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "light-",
-    "address_1843": "house keeper, res River street",
-    "death_note_1843": "died, Kankakee, Ill., April 11, 1881, aged 81",
-    "forename_1835": "Medore",
-    "forename_printed": "Mark",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Medore' against 'Mark'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
    "resident": "Nehemiah King",
    "person_id": "king_nehemiah",
    "grade_1835": "attested",
@@ -10769,25 +10630,6 @@
     "forename_printed": "Reuben",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Russel' against 'Reuben'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "Russell E Heacock",
-   "person_id": "heacock_russell_e",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e1240",
-    "as_printed": "Heacock, Reuben B., medical student, bds Russel E. Heacock",
-    "page": "fergus_1843_page_003",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "medical student",
-    "address_1843": "bds Russel E. Heacock",
-    "death_note_1843": null,
-    "forename_1835": "Russell",
-    "forename_printed": "Reuben",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Russell' against 'Reuben'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {

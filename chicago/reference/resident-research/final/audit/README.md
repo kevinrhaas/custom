@@ -12,7 +12,7 @@ rests on.
 
 | file | what it is |
 | --- | --- |
-| `resident_audit_master.csv` | the table, one row per person, 1377 rows and 45 columns |
+| `resident_audit_master.csv` | the table, one row per person, 1373 rows and 45 columns |
 | `resident_audit_master.xlsx` | the same table as a workbook, plus the metrics, gaps and category sheets. Written when `openpyxl` imports; the CSV is the gated artifact |
 | `README.md` | this file |
 
@@ -21,11 +21,11 @@ no grade moves. Every cell is copied or counted from a committed record.
 
 ## Coverage
 
-Each line is *how many of the 1377 people carry at least one record of that kind*.
+Each line is *how many of the 1373 people carry at least one record of that kind*.
 
-| coverage | of 1377 | % | what counts |
+| coverage | of 1373 | % | what counts |
 | --- | ---: | ---: | --- |
-| identities | **1374** | 99.8% | a name with at least one source id anywhere on the card |
+| identities | **1370** | 99.8% | a name with at least one source id anywhere on the card |
 | occupations | **133** | 9.7% | an occupation that is not `none_recorded` |
 | household membership | **44** | 3.2% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
@@ -37,10 +37,10 @@ Each line is *how many of the 1377 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 465 | 33.8% |
-| `two_or_more_sources_one_category` | 15 | 1.1% |
-| `one_source` | 325 | 23.6% |
-| `the_letter_lists_alone` | 569 | 41.3% |
+| `corroborated_across_categories` | 464 | 33.8% |
+| `two_or_more_sources_one_category` | 14 | 1.0% |
+| `one_source` | 323 | 23.5% |
+| `the_letter_lists_alone` | 569 | 41.4% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -51,7 +51,7 @@ record agree; two newspaper notices of the same name are
 
 | category | people citing at least one |
 | --- | ---: |
-| newspaper | 1150 |
+| newspaper | 1149 |
 | civic | 289 |
 | census | 49 |
 | church | 46 |
@@ -236,7 +236,7 @@ secondary). A source id no rule reaches stops the build.
 | T-0509 | 76 |
 | T-0510 | 75 |
 | **reviewed** | **840** |
-| **not yet reviewed** | **537** |
+| **not yet reviewed** | **533** |
 
 | research outcome | people |
 | --- | ---: |
@@ -250,7 +250,7 @@ secondary). A source id no rule reaches stops the build.
 ## The conflicts, and what was ruled on them
 
 Under **T-0733**. The ledgers record a conflict against a candidate for **96**
-of the 1377 people. Before T-0733 nothing ruled on any of them, and a conflict
+of the 1373 people. Before T-0733 nothing ruled on any of them, and a conflict
 that is recorded and never adjudicated reads, to anybody downstream, exactly like
 a conflict nobody found. `data/research/residents/conflict_rulings.json` is the
 adjudication: a verdict, the conflict text it was made against, and the record
@@ -320,12 +320,12 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1328 | no 1840 census row is bridged to this person |
-| no address | 1301 | neither `lives_at` nor `works_at` resolves |
-| unplaced | 1281 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 894 | one source id on the card and no second category to check it against |
+| no census linkage | 1324 | no 1840 census row is bridged to this person |
+| no address | 1297 | neither `lives_at` nor `works_at` resolves |
+| unplaced | 1277 | the household carries division `unplaced`: in the town, on no lot |
+| rests on one source | 892 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 569 | known only from the post office's uncalled-for lists |
-| no research row | 537 | no cohort ticket has reviewed this person; the programme reached 840 of 1377 |
+| no research row | 533 | no cohort ticket has reviewed this person; the programme reached 840 of 1373 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |
 | standing constraint | 13 | the household carries `review_required` with `touches_removal`: the final removal of the Potawatomi reaches it, no scene holding it may be `released`, and no research retires the flag |

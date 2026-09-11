@@ -2,6 +2,8 @@
 """Fetch the Illinois State Archives land tract sales and write the committed deposit.
 
     tools/harvest_land_sales.py --sweep [--tr 39:14 --tr 40:14]
+    tools/harvest_land_sales.py --county-list COOK [--through-year 1836]
+    tools/harvest_land_sales.py --town-lots COOK [--limit 170]
 
 A TOWNSHIP IS A TOWNSHIP AND A RANGE (T-0676). The sweep asks for the pairs given to
 `--tr`, defaulting to the two the town stands on; `--township 39` is the older spelling
@@ -28,6 +30,16 @@ TWO THINGS ABOUT THE SOURCE, both learned the hard way on T-0557.
    The `name` field belongs to a different search form and does NOT narrow a
    legal-description query — it replaces it, returning that name from every township
    in Illinois, so it cannot be used to break a section into smaller pieces.
+
+3. A SECTION QUERY CANNOT SEE A ROW THAT HAS NO SECTION (T-0830). The register
+   describes a town lot by its plat — `L2BL46CHIOT` — and leaves Section, Township,
+   Range and Meridian EMPTY. There is no section number such a row answers to, so no
+   number of section queries will ever return it, however completely each one is
+   walked. `--county-list` is the query that can: county alone, walked to its end
+   through the same cursor, which is the whole county's list page and therefore holds
+   the sectionless rows too. It writes the LIST columns only — the nine the results
+   page prints — because it exists to say what a sweep is missing, not to replace the
+   detail pages a sweep fetches.
 
 2. THE SITE REFUSES DATACENTRE ADDRESSES. Every user agent from this runner's Azure
    address gets a bare 403 from the WAF. The sweep therefore fetches through the
@@ -303,9 +315,170 @@ def sweep(pairs, through_year: int, direct: bool, workers: int,
     return 0
 
 
+# ---------------------------------------------------------------------------
+# The completeness probe (T-0830): one county, listed, walked to its end.
+
+LIST_COLS = ["purchase_no", "purchaser", "legal_description", "section", "township",
+             "range", "meridian", "date_purchased", "county"]
+CUR_SEC = re.compile(r'name="hiddenSectionNo" value="([^"]*)"')
+
+
+def county_url(county: str, cursor=None) -> str:
+    q = {"township": "", "norS": "N", "range": "", "eorW": "E", "meridian": "",
+         "county": county, "name": "", "sectionNum": ""}
+    if cursor:
+        q.update({"purchaseNo": "", "hiddenPurchaseNo": cursor[0],
+                  "hiddenPurchaser": cursor[1], "hiddenSectionNo": cursor[2]})
+    return BASE + "?" + urllib.parse.urlencode(q)
+
+
+def list_rows_of(html: str) -> list:
+    """The results page's own nine columns, as it prints them, corrected nowhere."""
+    found = []
+    for m in ROW.finditer(html):
+        cells = [clean(c) for c in CELL.findall(m.group(3))]
+        if len(cells) < 7:
+            continue
+        found.append(dict(zip(LIST_COLS, [m.group(1), clean(m.group(2))] + cells[:7])))
+    return found
+
+
+def county_list(county: str, through_year: int, direct: bool) -> int:
+    """Every sale the county holds, from the list page, filtered to through_year.
+
+    ONE query, paged. The results are ordered by purchaser and the More button is the
+    same keyset cursor `walk_section` follows, so the walk is the county in full — and
+    unlike a section sweep it can see a row whose Section column is empty, which is the
+    only way a town lot appears in this register.
+    """
+    name = "isa_land_tract_sales_%s_county_list_through_%d.tsv" % (county.lower(), through_year)
+    rows, seen, cursor, pages = [], set(), None, 0
+    while pages < 400:
+        html = fetch(county_url(county, cursor), direct)
+        pages += 1
+        found = list_rows_of(html)
+        fresh = [r for r in found if r["purchase_no"] not in seen]
+        seen.update(r["purchase_no"] for r in fresh)
+        rows += fresh
+        if pages % 10 == 0:
+            print("  page %d: %d rows so far" % (pages, len(rows)), flush=True)
+        if len(found) < CEILING or not fresh:
+            break
+        nxt = tuple((r.search(html).group(1).strip() if r.search(html) else "")
+                    for r in (CUR_NO, CUR_WHO, CUR_SEC))
+        if not nxt[0] or nxt == cursor:
+            break
+        cursor = nxt
+    else:
+        print("  STILL SHORT after 400 pages, NOT walked to the end")
+        return 1
+    wanted = [r for r in rows
+              if r["date_purchased"][-4:].isdigit()
+              and int(r["date_purchased"][-4:]) <= through_year]
+    wanted.sort(key=lambda r: (r["purchaser"], r["purchase_no"]))
+    OUT.mkdir(parents=True, exist_ok=True)
+    lines = ["\t".join(LIST_COLS)]
+    for r in wanted:
+        lines.append("\t".join(r[c].replace("\t", " ") for c in LIST_COLS))
+    (OUT / name).write_text("\n".join(lines) + "\n", encoding="utf-8")
+    blank = sum(1 for r in wanted if not r["section"].strip())
+    print("county list: %d rows over %d pages, %d dated through %d (%d of them with no "
+          "section at all) written to %s"
+          % (len(rows), pages, len(wanted), through_year, blank, name))
+    return 0
+
+
+# ---------------------------------------------------------------------------
+# The town lots (T-1028/T-1032): the rows the probe found and no section query can.
+
+def town_lot_rows(county: str, through_year: int) -> list:
+    """The committed probe's rows that carry NO section, in a fixed order.
+
+    This mode reads a file rather than a search, and that is the point: the probe
+    (`--county-list`) has already walked the county to its end and committed what it
+    found, so the 619 sectionless rows are known by purchase number before a single
+    detail page is asked for. Re-walking the list to rediscover them would cost 83
+    pages and could only agree with the deposit already in the repo.
+    """
+    name = "isa_land_tract_sales_%s_county_list_through_%d.tsv" % (county.lower(), through_year)
+    path = OUT / name
+    if not path.exists():
+        raise SystemExit("no probe to read: %s — run --county-list %s first" % (name, county))
+    lines = path.read_text(encoding="utf-8").splitlines()
+    head = lines[0].split("\t")
+    if head != LIST_COLS:
+        raise SystemExit("%s: header is not the list header" % name)
+    out = []
+    for line in lines[1:]:
+        cells = line.split("\t")
+        if len(cells) != len(head):
+            continue
+        row = dict(zip(head, cells))
+        if not row["section"].strip():
+            out.append(row)
+    out.sort(key=lambda r: r["purchase_no"])
+    return out
+
+
+def town_lots(county: str, through_year: int, direct: bool, workers: int,
+              limit: int, refetch: bool) -> int:
+    """Detail pages for the sectionless rows, written as their own deposit.
+
+    RESUMABLE BY THE DEPOSIT ITSELF, not by a cache: `--limit` fetches that many new
+    pages, writes what it holds, and prints what is left, so a reader paced at three
+    seconds a request can cross six hundred pages in several passes without either a
+    scratch directory or a single page asked for twice. The deposit carries the same
+    sixteen detail columns as a sweep's, so the reading layer sees one shape.
+    """
+    name = "isa_land_tract_sales_%s_town_lots_through_%d.tsv" % (county.lower(), through_year)
+    listed = town_lot_rows(county, through_year)
+    wanted = [r["purchase_no"] for r in listed]
+    held = {} if refetch else held_rows(name)
+    todo = [p for p in wanted if p not in held]
+    print("  %d sectionless rows in the probe; %d already in the deposit, %d to fetch"
+          % (len(wanted), len(wanted) - len(todo), len(todo)), flush=True)
+    batch_all = todo if limit <= 0 else todo[:limit]
+    records = [held[p] for p in wanted if p in held]
+    for start in range(0, len(batch_all), CHUNK):
+        batch = batch_all[start:start + CHUNK]
+        with ThreadPoolExecutor(workers) as ex:
+            pages = list(ex.map(lambda p: fetch("%s?purchaseNo=%s" % (BASE, p), direct, need=DETAIL_OK), batch))
+        for pno, html in zip(batch, pages):
+            d = detail(html)
+            if not d.get("purchaser"):
+                print("  ✗ %s: no detail page" % pno)
+                return 1
+            if d.get("section", "").strip():
+                print("  ✗ %s: the detail page carries section %s and the list page gave none"
+                      % (pno, d["section"]))
+                return 1
+            records.append(dict(d, purchase_no=pno))
+        print("    %d/%d" % (len(records), len(wanted)), flush=True)
+    records.sort(key=lambda r: (r["purchaser"], r["purchase_no"]))
+    OUT.mkdir(parents=True, exist_ok=True)
+    lines = ["\t".join(COLS)]
+    for r in records:
+        lines.append("\t".join(r[c].replace("\t", " ") for c in COLS))
+    (OUT / name).write_text("\n".join(lines) + "\n", encoding="utf-8")
+    left = len(wanted) - len(records)
+    print("town lots: %d of %d detail pages written to %s%s"
+          % (len(records), len(wanted), name,
+             "" if not left else "; %d still to fetch — run again" % left))
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--sweep", action="store_true")
+    ap.add_argument("--town-lots", default=None, metavar="COUNTY",
+                    help="detail pages for the sectionless rows the committed "
+                         "--county-list probe found (T-1028)")
+    ap.add_argument("--limit", type=int, default=0,
+                    help="with --town-lots: fetch at most this many new pages, then "
+                         "write and stop; 0 is all of them")
+    ap.add_argument("--county-list", default=None,
+                    help="walk ONE county's list page to its end — the only query that "
+                         "returns a row with no section (T-0830)")
     ap.add_argument("--township", action="append", type=int, default=None,
                     help="the older spelling of --tr N:14")
     ap.add_argument("--tr", action="append", default=None,
@@ -319,12 +492,17 @@ def main(argv=None) -> int:
     ap.add_argument("--cache", default=None,
                     help="directory of fetched pages, so an interrupted sweep resumes")
     args = ap.parse_args(argv)
-    if not args.sweep:
+    if not args.sweep and not args.county_list and not args.town_lots:
         ap.print_help()
         return 2
     global CACHE
     if args.cache:
         CACHE = Path(args.cache)
+    if args.town_lots:
+        return town_lots(args.town_lots.upper(), args.through_year, args.direct,
+                         args.workers, args.limit, args.refetch)
+    if args.county_list:
+        return county_list(args.county_list.upper(), args.through_year, args.direct)
     pairs = [tuple(int(x) for x in tr.split(":", 1)) for tr in (args.tr or [])]
     pairs += [(tw, 14) for tw in (args.township or [])]
     return sweep(pairs or [(39, 14), (40, 14)], args.through_year, args.direct,

@@ -214,25 +214,27 @@
      "rule": "G1b"
     }
    ],
-   "merged_from": {
-    "ticket": "T-0839",
-    "rule": "C0",
-    "cluster": "hubbard",
-    "cards": [
-     "hubbard_g_s",
-     "hubbard_g_t",
-     "hubbard_gordon_s",
-     "hubbard_gurdon_s"
-    ],
-    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
-   }
+   "merged_from": [
+    {
+     "ticket": "T-0839",
+     "rule": "C0",
+     "cluster": "hubbard",
+     "cards": [
+      "hubbard_g_s",
+      "hubbard_g_t",
+      "hubbard_gordon_s",
+      "hubbard_gurdon_s"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ]
   }
  ],
  "touches_removal": false,
  "review_required": false,
  "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS - UNTIL A SENTENCE TURNED UP. Everything about Hubbard's later Chicago life was documented here and the date he first came was a fact everyone knew and nothing in data/sources/ stated, so it was carried as a conjecture citing nothing and left visibly empty rather than quietly filled: it was the case AGENTS.md rule 1 exists for. Hurlbut's American Fur Company chapter, read for T-0575 and cited by this record since T-0594, closes it - Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or the first of November - and the asymmetry that was worth leaving visible is now a smaller and more interesting one. The sentence is the COMPILER'S, not the man's: it stands outside the quotation marks in which Hubbard speaks four lines later, so a date this project had no source for at all now has a source of 1881 at rung 4, and the record says both things on its face rather than letting the citation look like an attestation. WHAT T-0753 ADDED, AND THE ONE THING IT COULD NOT. The same sentence carries more than the date T-0594 spent, and the rest of it is now on the card: `origin` reads \"Windsor, Vermont, by way of Montreal\" rather than the \"Montreal\" a careless reading of the field would have written, and the person carries a `birth_year` of 1802 with the birthplace in its note, both at the inferred grade the rung-4 layer supports and both corroborated by the man's own Calumet Club register entry of 1879. THE PARENTS WERE THE PART THAT DID NOT FIT, AND T-0849 RULED WHERE THEY GO. Hurlbut names Elizur and Abigail (Sage) Hubbard, and this dataset held no structure for them: the only relationship structure it has is the household-level `kin[]` block ratified on 2026-09-05, whose rows are reciprocal between two households IN THIS DATASET, and Hubbard's parents were living in Montreal, were never in this scene, and have no household here. T-0849 set out two readings - leave parentage outside the town as evidence, or invent an external kin row with `household` null - and on 2026-09-10 chose the first, on the ground that both rules `kin[]` enforces are rules about the FAR END. The inverse must be legal; the mirror row must exist. A row with no far end is not a weaker kin row, it is one with the entire checked part removed, and a graded name with nothing checking it is a note. The second reading would also have made every genealogical name in the corpus eligible for a residents layer that reconstructs a town on one day. SO THEY ARE A NOTE, AND THEY ARE ON THE CARD: the `origin` note above names them at inferred, under this record's own Hurlbut citation, which is the idiom the `birth_year` note uses for the birthplace and hh_harmon_elijah_d and hh_porter_jeremiah use for theirs. docs/PROVENANCE.md carries the rule for the next fact that has no field, and tools/validate.py now refuses a null-household kin row in the ruling's own words rather than reporting a household that failed to resolve - a message that would send a later run off to mint a Montreal household, which is the wrong answer twice over. The evidence is unmoved, in bk_afc_004's `entities`.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. hubbard_gurdon, Fergus's Chicago directory of 1843 — f1843_e0073, f1843_e0112, f1843_e1349 (ambiguous, so nothing crossed); hubbard_gurdon, Norris's Chicago directory of 1844 — n1844_e0915 (a single entry); hubbard_gurdon, the advertising cards in Norris's directory of 1844 — n1844_ad0072, n1844_ad0108 (ambiguous, so nothing crossed).",
   "sources": [
    "fergus_chicago_directory_1843",
    "norris_directory_1844"

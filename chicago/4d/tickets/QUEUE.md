@@ -107,12 +107,9 @@
 
 
 
-T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-1024 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
-T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
-T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
-T-0830 — The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
+T-1033 — Read the town-lot deposit into records: append the ids, declare its firms, and make tract() resolve or refuse a lot-and-block-in-a-named-town without inventing a section
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
@@ -130,7 +127,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- repair; they are one run. T-0763 is why eight "dev is red" tickets were filed on a green
 # --- dev and withdrawn today: check.sh's negative-control self-tests print FAIL lines that
 # --- look exactly like a failing step.
-T-0836 — The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 
@@ -319,6 +315,15 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 
+# --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
+# --- by tools/measure_card_fuzzy_candidates.py after T-1002 ruled its three. Each needs a page
+# --- of its own: the list mixes real printed spelling variations (Foot/Foote, Lloyd/Loyd,
+# --- Pearson/Pearsons, Pruyne/Pryne) with cards minted off scanner wreckage that R5 refuses and
+# --- T-0695 reads, and with pairs that are simply two people one letter apart — John Hale
+# --- against John Vale, Mark Noble against Mary Noble. No distance separates the first kind from
+# --- the last, which is T-1001's answer over the land register reached again over the cards.
+T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
+
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
@@ -341,3 +346,4 @@ T-1023 — Five Norris 1844 entries begin at the trade with no name at all — t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
+T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
