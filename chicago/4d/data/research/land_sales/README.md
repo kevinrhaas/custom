@@ -699,12 +699,72 @@ county and date.
 - **Sales to purchasers whose stated residence is Chicago or Cook County outside these
   townships.** The database's name search cannot be filtered by residence, so this
   needs a different shape of query.
-- **The canal sections.** They were sold by the canal commissioners, not the land
-  office, and are not in this database at all — their absence is not a hole.
+- **The canal sections.** ~~They were sold by the canal commissioners, not the land
+  office, and are not in this database at all — their absence is not a hole.~~
+  **That was wrong, and T-0830 is what caught it.** The database carries canal sales
+  under its own type code `CN`, twenty-four of them are already in this deposit, and
+  the town-lot sales the next section counts are `CN` too. What is true is narrower:
+  the canal land the sweep reached is the alternate SECTIONS, because those are the
+  only canal rows a section query can see.
 **Done, 2026-09-04 (T-0609):** the join from a tract to a standing structure.
 `tools/resolve_land_tracts.py` puts every sale on the ground or says why it cannot,
 writes the result to `ground.json`, and puts a `land_owner` block on the 63 structures
 the resolved tracts reach. See the next section.
+
+## The sweep is complete for every section it declares, and blind to a row with no section (T-0830)
+
+The lead was one line of the Dalton Data Bank, read by T-0497: *George Dalton, price
+$1055, 6/25/1836*, under COOK COUNTY, sourced to the Illinois Archives. The date falls
+inside the window this domain declares it read, and no Dalton was in it. The reading
+above said that was a purchase outside the seven townships and not a hole. **It is not
+outside them, and it is a hole — of a shape the by-section reading could not have
+found.**
+
+**The five purchases, at the register's own detail pages.** Every field below is the
+database's own, and the prices match the Dalton Data Bank's line exactly.
+
+| purchase no | tract as written | date | total price | type | vol/page | residence |
+|---|---|---|---|---|---|---|
+| 0363249 | `L2BL46CHIOT` | 25/06/1836 | $1,055.00 | CN | L5A 017 | UNKNOWN |
+| 0363250 | `E2E2L1B46CHI` | 25/06/1836 | $343.75 | CN | L5A 016 | UNKNOWN |
+| 0515062 | `W2L1BL46CHIV` | 25/06/1836 | $687.50 | CN | L5A 016 | UNKNOWN |
+| 0515063 | `L1B46CHIOTV` | 25/06/1836 | $343.75 | CN | L5A 016 | UNKNOWN |
+| 0379985 | `L5BL50CHIOT` | 27/06/1836 | $875.00 | CN | L5A 019 | UNKNOWN |
+
+**They cannot be placed in a section, because the register gives them none.** Section,
+Township, Range and Meridian are all EMPTY on every one of the five, on the list page
+and on the detail page alike. The tract is a lot and a block in a platted town and the
+register writes a town code — `CHIOT`, `CHI`, `CHIV` — where a legal description would
+go. **This project does not expand those codes**; they are the Archives' abbreviations
+and the Archives' own key for them is not reachable from this runner, so they are
+carried exactly as printed. What follows does not depend on expanding them.
+
+**Why no amount of sweeping would have found them.** `harvest_land_sales.py --sweep`
+asks the search for a section. A row with no section answers no section query, ever. So
+the sweep's completeness could not be measured from inside the sweep.
+
+**The query that could measure it (`--county-list`).** County alone, no township and no
+section, walked to its end through the same More cursor — 83 pages, 12,444 rows, of
+which **2,785 are dated on or before 31 December 1836**. That walk is committed as
+`text/isa_land_tract_sales_cook_county_list_through_1836.tsv` (the results page's nine
+columns, nothing added) and `coverage.json § completeness_probe` derives the measurement
+from it. The 2,785 fall into three groups and the answer differs for each:
+
+| | rows | in the deposit | what it means |
+|---|---|---|---|
+| inside the seven declared townships | 953 | **953** | the by-section sweep is read whole — **nothing is missing** |
+| sectioned, outside the seven | 1,213 | 0 | outside what the deposits declare; not a hole in them |
+| **no section at all** | **619** | **0** | no section query can return these |
+
+So **both halves of the answer are worth having**. The declaration this domain has been
+making is exactly true: an independent whole-county walk finds all 953 of its rows and
+not one more. And the domain is not the whole of 1836 Cook County: 619 sales are missing
+and 466 of them are dated 1836 — the town's own lots, changing hands in the year the
+land rush reached the plat. 618 carry a town code and one is a bare `L6BL17`.
+
+**Nothing here mints, grades or moves a resident.** George Dalton's residence reads
+UNKNOWN on all five rows; a purchase is a transaction and never a home, which is this
+domain's first discipline. **T-1028** is the ticket that reads the 619.
 
 ## The join to the ground, and the four tracts the town stands on
 
