@@ -1,7 +1,7 @@
 ---
 id: T-1020
 title: date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 1:05:42 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34568181956
 ---
 
 date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone.
