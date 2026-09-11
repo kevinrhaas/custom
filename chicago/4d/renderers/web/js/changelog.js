@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'What each of the post office\u2019s 170 lines actually reaches', kind: 'change', ts: '',
+  { v: 706, title: 'What each of the post office\u2019s 170 lines actually reaches', kind: 'change', ts: '2026-09-11T00:35:45.997Z', date: 'Sep 10, 2026, 7:35 PM CT',
     items: [
       'Two things about the 1 January 1834 letter list were known separately and had never been put side by side. The list is 170 printed lines \u2014 read off the page image last week. And this town holds a cohort of residents minted out of that same list, a long while earlier, from damaged transcriptions of two of its nine printings. Nobody could say WHICH lines those residents are, and therefore nobody could say how many of the 170 reach nobody at all.',
       'There is now a ledger with one row per printed line, and it answers that for every one of them. Sixty-nine of the 170 reach a card: sixty-four the town minted from this list, and five people it already held on better evidence \u2014 a line addressed to J. H. Kinzie reaches John H. Kinzie. Forty-seven were seen by the minting pass and turned away under a rule it names, most often because the town already holds that family name. And fifty-four reach nothing whatever.',
