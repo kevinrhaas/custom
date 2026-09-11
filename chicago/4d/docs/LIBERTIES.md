@@ -10785,24 +10785,26 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
 **Recorded:** 2026-09-04.
 
-### L223 — Six houses stand on a street a directory printed eight years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 6 households
+### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 14 households
 **Decision:** where no source of the scene year says where a person's house stood, a
-**street** printed as that person's residence — the volume's own `res` or `bds` — in
-Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
-household's street **face**. The placement is graded `reconstructed`, the note says how
+**street** printed as that person's residence — the volume's own `res` or `bds`, or
+`house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
+his preface — in Fergus's Chicago directory of 1839 or 1843, or Norris's of 1844, may be
+read backwards and carried as the household's street **face**. The placement is graded `reconstructed`, the note says how
 many years it was carried, and the policy is `docs/RESIDENCE-BACK-PROJECTION.md`.
 **Why:** this is L218's mechanism aimed at the other question, and `docs/ADDRESS-BACK-
 PROJECTION.md` clause 2 refused it by name so that it would be argued rather than
 absorbed. The argument is that a home is not a shop in two places. A residence needs **no
 attested trade**, where a business does — everybody the town holds lived somewhere in it,
 so an absent occupation says nothing about whether a man had a house — and that departure
-is most of the yield: 35 of the 44 residence addresses on the layer belong to people the
-1835 papers give no trade, and three of these six placements are such people. Against
+is most of the yield: 47 of the 61 residence addresses on the layer belong to people the
+1835 papers give no trade, and nine of these fourteen placements are such people. Against
 that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
 into one street's trade and a lodging is a month's rent.
-**Consequence:** six households stand on a face on the authority of Fergus's directory of
-1843, printed eight years after the scene. The count has moved twice in both directions and
+**Consequence:** fourteen households stand on a face on the authority of a volume printed
+eight or nine years after the scene — six on Fergus's directory of 1843, eight on Norris's
+of 1844. The count has moved three times in both directions and
 neither move was a new liberty, which is the shape this entry should be read for. It reached
 eight without a directory page being read: T-1011 lifted 54 lines of the 1 January 1834
 letter list that no transcription carried, the mint took J. S. Lacey into the town off one
@@ -10829,20 +10831,48 @@ count, **no `lives_at`**, and — unlike L218 — **no point, ever**, not even w
 volume prints a corner. Every residence entry that prints one prints it against a street
 NUMBER from a grid Chicago did not have in 1835, so the corner is how an 1843 volume tells
 its reader which of two hundred Clark Street doors it means, and reading it back would be
-reading a finding aid as a survey. The 38 refusals are on the record beside the six, so
-the arithmetic is visible and not just the successes.
+reading a finding aid as a survey. The 47 refusals are on the record beside the fourteen,
+so the arithmetic is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer.
 **How to resolve:** a source inside the scene year that says where somebody slept. The
 1835 poll and tax lists are closer to 1835 than a directory is, and any one of them that
-houses one of these six supersedes this entry under the policy's clause R3 without an
+houses one of these fourteen supersedes this entry under the policy's clause R3 without an
 argument.
 
 Related: **L218** (the business half, and the clause that refused this one) · **L212**
 (a street name constrains a face) · **L2** (nothing is drawn) · tickets **T-0669** (this),
-**T-0633**, **T-0632**, **T-0987** (the restatement to six), **T-0670** (the rule that
-took one of the two).
+**T-0633**, **T-0632**, **T-0987** (the restatements to six and to fourteen), **T-0670**
+(the rule that took one of the two), **T-0569** (the refusal whose scope the fourteen
+came out of).
 **Recorded:** 2026-09-04 (T-0669). **Restated:** 2026-09-11 (T-0987).
+**Restated:** 2026-09-11 (T-0987 stretch 6), from six to fourteen, and the reason is that
+a volume this pass had never been allowed to read became readable one line at a time.
+Norris's directory of 1844 carried a single flag — `parse_trusted: False` — that refused
+all 144 of its could-carry units under one sentence about three of them, so not one of its
+addresses had ever reached these clauses. Stretch 6 replaced the flag with a per-entry,
+per-field predicate and sixteen of its addresses arrived here; **eight place**, carried
+nine years, which is the widest gap in the set. They bring three streets no residence had
+reached — Dearborn, Randolph and Wells — and they are what makes this pass, not the
+business half, the one that reads Norris: he prints a man's house far more often than his
+shop. The other eight were refused, and two of those refusals are the entry's own words
+being read properly rather than a clause being relaxed:
+
+- **`marsh_silvester`** was PLACED BY THE BUSINESS PASS, on North Water Street, on
+  `house N Water st (See card` — his home. `docs/ADDRESS-BACK-PROJECTION.md` clause 2
+  refuses a residence by name, but the shared `RESIDENCE_PREFIX` knew only Fergus's `res`
+  and `bds`; Norris's `house` had never been tested against it because his parse never
+  reached the clause. He now refuses there and places here, which is the same face under
+  the right policy — and the only street in the town no other rule can seat a building on.
+- **`clark_erastus`** was placed HERE, on Clark Street, off `residence Hum phrey Clark's`
+  — the house of Humphrey Clark, not the street of that name. Two tests already stood in
+  front of the street table for exactly this collision and a mis-set space defeated both:
+  `Hum phrey` is neither an initial nor a capitalised forename. The possessive is not
+  defeated by it, and none of these four volumes ever prints a street possessively, so a
+  body ending `'s` is now refused as a householder before the street table is consulted.
+
+Nothing was regraded and no placement was invented. Twenty of 825 households carried a real
+`lives_at` before this restatement and twenty carry one after.
 
 ### L224 — A house the paper measured, on a corner the paper did not
 **Decision:** `lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat*
