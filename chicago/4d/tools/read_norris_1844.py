@@ -37,6 +37,12 @@ SKIP = {
 ADDENDA_FROM = (72, 28)
 
 FIRM = re.compile(r"^[^,]{0,40}\s&\s|&\s*Co\b|\bBrothers\b", re.I)
+# The preposition with which a PARTNER names the firm he stands in — "Burley, A. G.
+# of A. G. B. & Co." — and therefore the one place a firm marker stands inside a
+# person's entry. Deliberately boundary-insensitive on both sides: this scanner welds
+# the word onto its neighbour, and a `\bof\b` stop reads `B.-of` and `of'G.` as firms
+# (T-1013). It will not fire inside a surname, because a letter may not precede it.
+OF_STOP = re.compile(r"(?<![A-Za-z])of(?![a-z])")
 TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "sr", "sen"}
 PLACE = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
 
@@ -68,11 +74,73 @@ def clean_head(text: str) -> str:
     return re.sub(r"^[^A-Za-z]*(?:[a-zA-Z]\s)?", "", text).strip()
 
 
+def name_prefix(head: str):
+    """The tokens at the front of an entry that are still the NAME (T-1013).
+
+    Norris sets the surname first for the alphabet, so his firm style is INVERTED —
+
+        Jones, B. & Co. dry goods and groceries, S. Water, b Clark and Dearborn
+
+    — and a firm test that reads only the text before the first comma sees `Jones`
+    and normalises the entry as a person. The name runs until the trade starts, and
+    the trade starts at the first plain lower-case word, or at `of`.
+
+    The rule is NOT "the line carries `& Co.`": 124 entries do and 91 of them are
+    people, because a clerk gives the house he works at and a partner gives the firm
+    he stands in. Both of those markers fall AFTER the name, so the prefix refuses
+    them: `Bradley, Joseph, clerk, at W. H. Adams & Co.'s` stops at `clerk`, and
+    `Burley, A. G. of A. G. B. & Co.` stops at `of`.
+    """
+    keep = []
+    for tok in head.split():
+        if tok.islower() or OF_STOP.search(tok):
+            break
+        keep.append(tok)
+    return keep
+
+
+def firm_style(head: str):
+    """(how many leading tokens are the firm style, the style as printed).
+
+    (0, "") when the name at the front of the entry carries no firm marker — which
+    is the whole of the firm test for an entry Norris sets in his ordinary shape.
+
+    The style ALSO ends at the first comma that falls after the marker. Norris's
+    alphabetising comma stands before it (`Jones, B. & Co.`), so a comma after it
+    has already left the name: `Cook & Surdam, American Temperance House, Lake st`
+    names a house, not a third partner. Without that cut the lower-case stop runs
+    through a capitalised trade and takes it into the style.
+    """
+    toks = name_prefix(head)
+    mo = FIRM.search(" ".join(toks) + ",")
+    if not mo:
+        return 0, ""
+    run = ""
+    for i, tok in enumerate(toks):
+        run = (run + " " + tok).strip()
+        if len(run) >= mo.end() and tok.endswith(","):
+            return i + 1, " ".join(toks[:i + 1]).strip(" ,.")
+    return len(toks), " ".join(toks).strip(" ,.")
+
+
 def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
     head = clean_head(text)
-    firm = bool(FIRM.search(head.split(",")[0] + ","))
-    if "," in head:
+    # Two readings of where the firm marker may stand, and the entry is a firm if
+    # either finds one. The PREFIX reading is the rule (T-1013); the before-the-first-
+    # comma reading is kept because 56 entries have a period set where the comma
+    # belongs after the surname — `Norton. C. C. of N. & Case, house State st.` — so
+    # their first comma falls past the trade. Dropping it would read those six as
+    # people, which they are, with a surname running to that late comma, which is a
+    # different defect in a different pass (T-1020).
+    n_style, style = firm_style(head)
+    prefix_firm = bool(n_style)
+    firm = prefix_firm or bool(FIRM.search(head.split(",")[0] + ","))
+    if prefix_firm:
+        # The style is printed at the front, inverted or not: what follows it is the
+        # trade and the address, and the first comma is inside the name.
+        surname, rest = "", " ".join(head.split()[n_style:])
+    elif "," in head:
         surname, rest = head.split(",", 1)
     else:
         surname, rest = head, ""
@@ -93,7 +161,9 @@ def split_entry(text: str):
     address = (rest[m.start():] if m else "").strip(" ,.")
     if not occupation and address:
         occupation, address = "", address
-    if firm:
+    if prefix_firm:
+        printed = style
+    elif firm:
         # A firm's name runs until the trade starts, and the trade starts at the
         # first plain lower-case word: "Sicar & Co. groceries and boarding house".
         keep = []

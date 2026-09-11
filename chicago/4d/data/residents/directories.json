@@ -66,8 +66,8 @@
    },
    "norris_1844": {
     "people": 138,
-    "single_entry": 100,
-    "ambiguous": 24,
+    "single_entry": 104,
+    "ambiguous": 20,
     "contested": 14
    },
    "norris_1844_advertiser": {
@@ -208,22 +208,20 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "ambiguous",
+     "match_status": "single_entry",
      "match_rule": "Surname 'Adams' folds to the same string as the 1844 entry's, and the given name of both begins W.",
      "reading": "transcription_mediated",
      "entries": [
-      {
-       "claim_id": "n1844_e0010",
-       "printed_page": 21,
-       "as_printed": "Adams, W. H. & Co. boot and shoe dealers, 138 Lake st (See card)"
-      },
       {
        "claim_id": "n1844_e0011",
        "printed_page": 21,
        "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "parse_carries": false,
      "sources": [
       "norris_directory_1844"
@@ -8891,22 +8889,19 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "ambiguous",
+     "match_status": "single_entry",
      "match_rule": "Surname 'Gale' folds to the same string as the 1844 entry's, and the given name of both begins S.",
      "reading": "transcription_mediated",
      "entries": [
-      {
-       "claim_id": "n1844_e0670",
-       "printed_page": 36,
-       "as_printed": "\" « Gale, Stephen F. & Co. book store, 106 Lake st"
-      },
       {
        "claim_id": "n1844_e0671",
        "printed_page": 36,
        "as_printed": "v Gale, Stephen F. of S. F. & Co. h c of Wabash and Dearborn sts"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address"
+     ],
      "parse_carries": false,
      "sources": [
       "norris_directory_1844"
@@ -11752,7 +11747,7 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "ambiguous",
+     "match_status": "single_entry",
      "match_rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins B.",
      "reading": "transcription_mediated",
      "entries": [
@@ -11760,14 +11755,11 @@
        "claim_id": "n1844_e0971",
        "printed_page": 42,
        "as_printed": "Jones, Benjamin, of B. J. & Co. house Rand, b Clark aud Dearb"
-      },
-      {
-       "claim_id": "n1844_e0972",
-       "printed_page": 42,
-       "as_printed": "Jones, B. & Co. dry goods and groceries, S. Water, b Clark and Dearborn (See card)"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address"
+     ],
      "parse_carries": false,
      "sources": [
       "norris_directory_1844"
@@ -19436,7 +19428,7 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "ambiguous",
+     "match_status": "single_entry",
      "match_rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins G.",
      "reading": "transcription_mediated",
      "entries": [
@@ -19444,14 +19436,11 @@
        "claim_id": "n1844_e1646",
        "printed_page": 56,
        "as_printed": "Smith, George, of'G. S. & Co. res City Hotel"
-      },
-      {
-       "claim_id": "n1844_e1647",
-       "printed_page": 56,
-       "as_printed": "Smith, George & Co. private banker* and exchange brokers, Bank Buildings (See card)"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address"
+     ],
      "parse_carries": false,
      "sources": [
       "norris_directory_1844"
