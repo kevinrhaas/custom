@@ -451,8 +451,76 @@ a. 69]*, who was born about 1819 and was sixteen on the scene date. The layer's 
 keyed `bowen_erastus_selden` and appears to hold the elder man's documents under the younger
 man's name. The ruling is against the elder and says so; the conflation is **T-1004**.
 
-**Still unruled: 49** — cohort C2 (surnames D-J, 21 spellings) and C3 (K-Z, 28). The log on
-T-0990 carries them, and C3 holds KIMBERLY EDMUND S, which is T-1001's man.
+**Still unruled after C1: 49** — cohort C2 (surnames D-J, 21 spellings) and C3 (K-Z, 28). C2
+is ruled in the section below; C3 holds KIMBERLY EDMUND S, which is T-1001's man.
+
+## Cohort C2: the twenty-one with a namesake, surnames D-J (T-0990)
+
+C1's block was A to C; this is D to J, the same question — the mechanical rule fired on a
+surname the layer holds several of, and a forename agreeing in full chose among them — and
+the paired spellings the ticket flagged in advance were ruled together, as it asked.
+
+**Sixteen upheld, five refused.** What moved: matched spellings 106 → **101**, ruled 89 →
+**110**, unruled 49 → **28**; four cards retracted and one rewritten, and with them fourteen
+register rows — **476.52 acres and $1,525.75** of ground taken back off them. What stands: 57
+rows, 4,086.77 acres and $7,855.29, of which 2,428.28 acres are Elijah Kent Hubbard's alone.
+Nothing was written on; upholding a proposal confirms what the spend pass had already put
+there. The spend pass reports `people_written` 92 → 88 and `entries_carried` 337 → 323.
+
+| the register | the town's own record | ruling |
+|---|---|---|
+| EGAN WILLIAM B | tax 1833 + poll 1834 print *William Bradshaw* whole; Fergus 1839 **real estate dealer**; Andreas has him building Egan's Row | upheld |
+| HUBBARD ELIJAH K | Fergus 1839 *Elijah K., **banker**, 47-51 Dearborn st*; poll 1835; a death notice printing *Elijah Kent* | upheld |
+| HUBBARD GURDON S | eight printings, 1834-44, incl. the trustee election of Aug 1834 and the 1840 census | upheld |
+| HAMILTON RICHARD J | poll 1833, tax 1833, poll 1834; Fergus 1843 *Richard Jones*; clerk and recorder of Cook County | upheld |
+| HADDOCK EDWARD H | the full spelling of cohort A's HADDOCK E H; Fergus 1839 *commission merchant, South Water st* | upheld |
+| HUNTER EDWARD E | cohort A's HUNTER E E read with the Residence column; poll 1834 + the register's own **COOK** | upheld |
+| HARMON ELIJAH D | Fergus 1839 *Dr. Elijah D.*, 1843 *Elijah Dewey, physician*; the register's own **COOK** | upheld |
+| HARMON CHARLES L · HARMON CHAS L | poll 1834 *C. L.*; the 1837 return *Chas. L.*; Fergus 1843 both the card and the roll entry | upheld |
+| HARMON ISAAC D | the card's own readings are all bare — Fergus 1839's *Isaac D., dry goods merchant, 8 Clark street* supplies the D | upheld |
+| JONES BENJAMIN | street commissioner 7 Nov 1833, a fortnight after the sale; advertising 26 Nov 1833; Fergus 1839 *grocer, South Water* | upheld |
+| JONES WILLARD | tax 1833, poll 1834, poll 1835 — and an uncommon forename where both records hold plain Williams | upheld |
+| GOODRICH EBENEZER | Democrat, 13 Aug 1834: elected a **town trustee** beside Kinzie and Hubbard; poll 1834 | upheld |
+| DAVIS GEORGE | *county clerk, 107-109 Lake st* in 1839, 1843 AND 1844, + poll 1834 and the 1840 census | upheld |
+| FOOT JOHN | tax 1833 + poll 1835 bracket the sale; Fergus 1839 *blacksmith, Randolph street, near State* | upheld |
+| HANDY HENRY S | his own signed notice, Democrat 18 Mar 1834: *H. S. HANDY*; a death notice, *Maj. Henry S.* | upheld |
+| JONES WILLIAM | *nothing the surname does not give away* — Fergus 1843 prints three William Joneses, and the 1839 line is `contested` with Willard | **refused** |
+| DAVIS JOHN | the card asserts a **hotel keeper**; all three directories print *Davis, John, tailor* | **refused** |
+| HARMON ISAAC | *nothing the fuller spelling does not already carry* — and Fergus 1843 prints a second Isaac Harmon | **refused** |
+| JACKSON SAMUEL | `letter_list_only`, one return — and Fergus 1843 prints *Samuel Thomas* AND *Samuel Ezra* | **refused** |
+| HALL GEORGE | *nothing* — one repudiated fifty-dollar note, and the advertiser's own name is cut off at the crop | **refused** |
+
+**C1's BROWN WM RULE DID THE MOST WORK OF ANY LESSON CARRIED FORWARD, AND IT FIRED TWICE.**
+HARMON ISAAC D is upheld and HARMON ISAAC refused, two days apart on the same card; JONES
+WILLARD is upheld and JONES WILLIAM refused, on the same two afternoons of October 1833. Both
+times the barer spelling failed for the same reason Brown's did: the town's own PRINTED record
+holds a second man of that name — *Harmon, Isaac Newton, with C. L. Harmon* in Fergus 1843,
+three William Joneses in the same volume — and the layer holds one only because the layer is
+thin. **HARMON CHAS L is the control**: it is a contraction, not a barer spelling, it carries
+the middle initial, and it is upheld beside HARMON CHARLES L without argument.
+
+**THE STRONGEST UPHOLD IN THE COHORT IS THE ONE WHERE THE TRADE PREDICTS THE PURCHASE.** Fergus
+1839 calls William B. Egan a *real estate dealer* and Elijah K. Hubbard a *banker*; the register
+enters the first for 720 acres over four months and the second for 2,428 acres in two afternoons
+of the June 1835 ring. That is the PEARSONS reasoning — a speculator buying half of what he can
+reach in an afternoon is the man the town already holds, not a stranger who shares the county
+and the week — and it is the arm the rule names second.
+
+**A REFUSAL CAN COME OFF THE CARD'S OWN NOTE.** DAVIS JOHN needed no outside argument: the card
+already says it, *"a 'Mr. Davis' also took over the Sauganash Hotel in 1835, and whether that is
+this man is unknown … if it is not, there is a second Davis in the town."* A card that refuses
+to resolve its own identity cannot be the town-side half of a bare-name match.
+
+**AND `letter_list_only` TOLD THE TRUTH ONCE MORE.** JACKSON SAMUEL is the cohort's only card
+carrying the flag, C1's test was applied to it — read `press_evidence[].list`, not the flag —
+and the flag was right: one return of uncalled-for letters, the Democrat of 22 October 1834, and
+nothing else in the corpus. The county history's harbour foreman arriving from Buffalo in June
+1833 is an enrichment with real content, which is more than C1's ANDREWS DAVID had, and it still
+does not check a row: it predicts no purchase, and the directories print two Samuel Jacksons
+with middle names the register does not have.
+
+**Still unruled: 28** — cohort C3, surnames K-Z. The log on T-0990 carries it, and it holds
+KIMBERLY EDMUND S, which is T-1001's man.
 
 ## Forty rulings were reverted, and restored (#1073, T-1000)
 

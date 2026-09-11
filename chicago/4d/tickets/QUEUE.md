@@ -111,7 +111,6 @@ T-0990 — The land-sale proposals T-0697 added when the surname rule widened ar
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-1011 — Mint the 54 lines of the 1 January 1834 return that reach no card at all, under ruling 1 and carrying letter_list_only, with the roster line as the source
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
-T-0866 — The card rename of T-0721 broke the register's link to two townspeople: Abbot and Gabbs are proposed as new residents the town does not hold
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
 T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
@@ -332,3 +331,4 @@ T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller r
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
 T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
+
