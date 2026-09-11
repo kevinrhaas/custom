@@ -1,7 +1,7 @@
 ---
 id: T-0867
 title: The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1098
 claimed_by: run 9/10/2026, 7:43:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T01:35:27.798Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34547403898
 ---
 
