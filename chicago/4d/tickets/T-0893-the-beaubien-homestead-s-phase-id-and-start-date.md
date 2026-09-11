@@ -1,7 +1,7 @@
 ---
 id: T-0893
 title: The Beaubien homestead's phase id and start date still say 1817, and Andreas's own pages say the factory building reached Beaubien in 1822
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1142
 claimed_by: run 9/11/2026, 1:13:22 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T18:44:17.260Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34631049207
 ---
 
