@@ -207,11 +207,11 @@ second building, at the corner § 2 now places this record on.
    **conflation**: the 1817 purchase in Andreas is the *Dean house*, and Andreas dates the factory
    building's arrival to 1822 exactly as Hubbard does. The disagreement this dossier reported was
    never between the sources.
-2. **The record's phase is misnamed.** `factory_1817` fuses the two buildings in its id and in its
-   `documented_range.from`. Nothing was moved on T-0718: changing the bound renames the phase and
-   with it the committed GLB, two manifests, the 1835 sidecar and a `docs/LIBERTIES.md` coverage
-   line. The bound stands as a **floor** — the modelled building is older than 1817 on either
-   reading — and the correction is carried by **T-0893**.
+2. **The record's phase was misnamed, and is now `log_1822` — T-0893, 2026-09-11.** `factory_1817`
+   fused the two buildings in its id and in its `documented_range.from`. Nothing was moved on
+   T-0718, because changing the bound renames the phase and with it the committed GLB, two
+   manifests, the 1835 sidecar and a `docs/LIBERTIES.md` coverage line; **T-0893 moved all of
+   them**, and § 6b records what the id became and why it is not `factory_1822`.
 
 **What blocked the identity was a position, not a date — and § 6a answers it.** Andreas p. 191 and
 Hurlbut's Hubbard both put the factory building **just south of the fort**. That was filed as
@@ -273,6 +273,40 @@ follows, because no geometry moved.
 an arrangement and a size to ±20 %, and no material, no roof, no opening, and no way to say which of
 the three carries Hubbard's two storeys. `refused_here` in the trace says why nothing was built on
 this ticket.
+
+### 6b. The id, moved — T-0893, 2026-09-11
+
+**`factory_1817` → `log_1822`, and the opening bound with it: `1817-01-01` → `1822-01-01`.** Both
+halves of the old id were wrong, and they were wrong on two different tickets' evidence.
+
+**The year** is T-0718's finding, above: the 1817 purchase in Andreas is the *Dean house* at the
+foot of Randolph Street — a third building this project models nothing of (**T-0895**) — and the
+year the same sources give for Beaubien leaving it is **1822** (Andreas pp. 191, 205; Hurlbut's
+Hubbard, `bk_afc_009`). Andreas and Hubbard agree on the year and the chain.
+
+**The word *factory*** does not survive § 6a. `factory_1822` would have re-asserted on the record's
+own id the identity T-0894 refused by measurement, 140 m. So the id takes this record's
+**construction** and its opening year — the form `log_1820`, `log_1823` and `log_1831` already carry
+elsewhere in this dataset — and claims nothing about *which* building of the homestead group it is.
+
+**What the 1822 is doing on a record § 6a says is not the factory building.** It is a **floor**, the
+same kind of bound `1817-01-01` was meant to be. Beaubien was in the Dean house from 1817 "for
+several years" and left it in 1822; what places this record is the 1839 sale, and Wentworth finds
+the residence there *"after he moved from … the John-Dean house"*. So he is not at this corner
+before 1822 on any reading reached: either the residence the retrospectives follow from 1822 to 1839
+**is** this building, and 1822 opens it, or the homestead group held more than one building across
+that span and this is a later one of them. **The residual is stated rather than smoothed:** nothing
+reached names the year this particular building went up, so `1822-01-01` is the earliest date the
+sources leave open and not a construction date. The confidence stays **`inferred`** — moving a bound
+onto better reasoning is not grounds to regrade it.
+
+**The phase id is an input to the mesh hash**, so the rename staled the committed GLB and
+`jb_beaubien_homestead` was re-baked on the same commit; the glTF node prefix now reads `log_1822`
+too. No geometry moved — the resolved generator parameters are byte-identical before and after.
+
+**What moved in the same commit:** the record, `assets/gltf/` and `assets/web/` masters and their
+two manifests, the 1835 sidecar and its index, `docs/LIBERTIES.md` L17's Covers line and the
+compiled `data/liberties.json`, and this dossier.
 
 ## 7. Open threads
 
