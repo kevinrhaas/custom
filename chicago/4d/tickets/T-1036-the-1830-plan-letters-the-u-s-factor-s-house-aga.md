@@ -1,7 +1,7 @@
 ---
 id: T-1036
 title: The 1830 plan letters the U.S. Factor's House against three blocks 152 m south of the stockade, T-0894 measured them, and the fort reservation's one documented dwelling outside the pickets is still not built
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-11
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 1:15:03 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34632001897
 ---
 
 The 1830 plan letters the U.S. Factor's House against three blocks 152 m south of the stockade, T-0894 measured them, and the fort reservation's one documented dwelling outside the pickets is still not built.
