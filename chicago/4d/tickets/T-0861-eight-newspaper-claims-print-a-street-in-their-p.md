@@ -1,7 +1,7 @@
 ---
 id: T-0861
 title: Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 5:07:51 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34652380475
 ---
 
 Eight newspaper claims print a street in their prose and their placement record carries none, so the reading ranks as an address that names no ground.
