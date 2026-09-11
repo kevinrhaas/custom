@@ -38,7 +38,12 @@ TWO THINGS ABOUT THE SOURCE, both learned the hard way on T-0557.
    through the same cursor, which is the whole county's list page and therefore holds
    the sectionless rows too. It writes the LIST columns only — the nine the results
    page prints — because it exists to say what a sweep is missing, not to replace the
-   detail pages a sweep fetches.
+   detail pages a sweep fetches. `--sectionless` is the pass that DOES fetch them:
+   it reads the committed county list, takes the rows whose Section column is empty,
+   and asks each one's detail page for the eight fields the list page never prints —
+   residence, social status, acres, price per acre, total price, type of sale, volume
+   and page. It writes its OWN deposit, renumbers nothing, and appends to that deposit
+   after every chunk, so a pass cut short by a wall clock keeps what it read (T-1030).
 
 2. THE SITE REFUSES DATACENTRE ADDRESSES. Every user agent from this runner's Azure
    address gets a bare 403 from the WAF. The sweep therefore fetches through the
@@ -387,9 +392,112 @@ def county_list(county: str, through_year: int, direct: bool) -> int:
     return 0
 
 
+# ---------------------------------------------------------------------------
+# The sectionless harvest (T-1030): the town lots the section sweep cannot reach.
+
+
+def list_deposit_rows(county: str, through_year: int) -> list:
+    """The committed county list, as it was written. Never re-fetched here."""
+    path = OUT / ("isa_land_tract_sales_%s_county_list_through_%d.tsv"
+                  % (county.lower(), through_year))
+    if not path.exists():
+        raise SystemExit("no county list at %s — run --county-list %s first"
+                         % (path, county))
+    lines = path.read_text(encoding="utf-8").splitlines()
+    head = lines[0].split("\t")
+    return [dict(zip(head, line.split("\t"))) for line in lines[1:]
+            if len(line.split("\t")) == len(head)]
+
+
+def write_deposit(path: Path, records: list) -> None:
+    """The deposit as it stands, sorted the only way a sectionless row can be.
+
+    Rewritten in full after every chunk rather than at the end: the fetch is paced at
+    one page every three seconds and six hundred pages outlast any one run's wall
+    clock, so a pass that is cut off mid-harvest must leave the rows it read behind it.
+    """
+    records = sorted(records, key=lambda r: (r["purchaser"], r["purchase_no"]))
+    lines = ["\t".join(COLS)]
+    for r in records:
+        lines.append("\t".join(r[c].replace("\t", " ") for c in COLS))
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def sectionless(county: str, through_year: int, direct: bool, workers: int,
+                refetch: bool = False, limit: int = 0) -> int:
+    """Detail pages for every row of the county list that carries no section.
+
+    The list page prints nine columns; a detail page prints seventeen. The eight it
+    adds — residence, social status, acres, price per acre, total price, type of sale,
+    volume and page — are the ones that make a row a SALE rather than a name against a
+    plat, and they are the reason this pass exists.
+
+    Two things are cross-checked against the list row and never silently corrected: the
+    purchaser and the date of purchase. A disagreement is printed and makes the pass
+    exit non-zero AFTER the deposit is written, because a register that says two
+    different things about one purchase is a reading to rule on, not a row to drop.
+    """
+    name = "isa_land_tract_sales_%s_sectionless_through_%d.tsv" % (county.lower(), through_year)
+    path = OUT / name
+    listed = {r["purchase_no"]: r for r in list_deposit_rows(county, through_year)
+              if not (r.get("section") or "").strip()}
+    wanted = sorted(listed)
+    held = {} if refetch else held_rows(name)
+    records = [held[p] for p in wanted if p in held]
+    todo = [p for p in wanted if p not in held]
+    outstanding = len(todo)
+    if limit:
+        todo = todo[:limit]
+    print("  %d sectionless rows in the %s list through %d; %d already in the deposit, "
+          "%d still to read, %d detail pages this pass"
+          % (len(wanted), county, through_year, len(records), outstanding, len(todo)),
+          flush=True)
+    for start in range(0, len(todo), CHUNK):
+        batch = todo[start:start + CHUNK]
+        with ThreadPoolExecutor(workers) as ex:
+            pages = list(ex.map(lambda p: fetch("%s?purchaseNo=%s" % (BASE, p), direct,
+                                                need=DETAIL_OK), batch))
+        for pno, html in zip(batch, pages):
+            d = detail(html)
+            if not d.get("purchaser"):
+                write_deposit(path, records)
+                print("  ✗ %s: no detail page (deposit written with %d rows)"
+                      % (pno, len(records)))
+                return 1
+            records.append(dict(d, purchase_no=pno))
+        write_deposit(path, records)
+        print("    %d/%d" % (len(records), len(wanted)), flush=True)
+    write_deposit(path, records)
+    disagreed = []
+    for r in records:
+        was = listed.get(r["purchase_no"])
+        if not was:
+            continue
+        for field in ("purchaser", "date_purchased"):
+            if r[field].strip() != was[field].strip():
+                disagreed.append("%s %s: list %r, detail %r"
+                                 % (r["purchase_no"], field, was[field], r[field]))
+    sectioned = [r["purchase_no"] for r in records if r["section"].strip()]
+    print("sectionless harvest: %d of %d rows read at their detail pages, written to %s"
+          % (len(records), len(wanted), name))
+    if sectioned:
+        print("  %d detail pages DO carry a section the list page left blank: %s"
+              % (len(sectioned), ", ".join(sectioned[:20])))
+    for line in disagreed:
+        print("  ✗ list and detail disagree — %s" % line)
+    return 1 if disagreed else 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--sweep", action="store_true")
+    ap.add_argument("--sectionless", default=None,
+                    help="fetch the detail page of every row of ONE county's committed "
+                         "list that carries no section — the town lots (T-1030)")
+    ap.add_argument("--limit", type=int, default=0,
+                    help="stop after this many NEW detail pages; the deposit is written "
+                         "either way, so the next pass carries it forward")
     ap.add_argument("--county-list", default=None,
                     help="walk ONE county's list page to its end — the only query that "
                          "returns a row with no section (T-0830)")
@@ -406,12 +514,15 @@ def main(argv=None) -> int:
     ap.add_argument("--cache", default=None,
                     help="directory of fetched pages, so an interrupted sweep resumes")
     args = ap.parse_args(argv)
-    if not args.sweep and not args.county_list:
+    if not args.sweep and not args.county_list and not args.sectionless:
         ap.print_help()
         return 2
     global CACHE
     if args.cache:
         CACHE = Path(args.cache)
+    if args.sectionless:
+        return sectionless(args.sectionless.upper(), args.through_year, args.direct,
+                           args.workers, args.refetch, args.limit)
     if args.county_list:
         return county_list(args.county_list.upper(), args.through_year, args.direct)
     pairs = [tuple(int(x) for x in tr.split(":", 1)) for tr in (args.tr or [])]
