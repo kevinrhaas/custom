@@ -68,7 +68,8 @@
     "note": "'Russel E. Heacock, who had come in 1827' - the first of the six lawyers Andreas counts, and a justice of the peace for Cook County who administered the oaths at the incorporation meeting of 5 August 1833. Under date of 5 August 1835 - five weeks after the scene date - Andreas finds him 'advertised as attorney, which is perhaps an indication that he did not seek re-election as a Justice'. He was licensed to keep a tavern at Heacock's Point on the South Branch in April 1831 and cultivated land there, and Judge Goodrich records that 'Heacock in those first years, 1827 to 1835, made more money as a carpenter than as a lawyer or justice'."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "chicago_democrat_1833_1835"
    ],
    "note": "THE ONE VOTE AGAINST THE TOWN. He cast the single 'against incorporation' ballot on 5 August 1833 - Andreas prints the poll - 'he living at that time beyond the extreme southern border of the proposed town, although having his business and professional interests at the settlement. He moved into the town the following year.' Andreas calls it 'exceptional fidelity to conviction and independence of opinion'. He received one hundred dollars at the Indian treaty of 26 September 1833 and was among the original subscribers to the Chicago Democrat in November 1833.",
    "resident_research": {
@@ -89,6 +90,26 @@
      "fergus_historical_series_26_29",
      "norris_directory_1844"
     ]
+   },
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "Russell E. Heacock",
+     "locator": "chicago_democrat_1835_05_27#c007",
+     "record_id": "person_russell_e_heacock",
+     "describes_date": "1835-05-27",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": {
+    "ticket": "T-1002",
+    "rule": "C10",
+    "cluster": "heacock-russel",
+    "cards": [
+     "heacock_russell_e"
+    ],
+    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
    }
   },
   {
