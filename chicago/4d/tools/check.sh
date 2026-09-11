@@ -570,6 +570,21 @@ step "every deferred in-town water feature is dated against the scene" \
 step "the slough crossing spans open water, and nothing else stands in the cut" \
   python3 tools/measure_slough_crossing.py --gate
 
+# And the water the town DRANK, which is a different argument about the same surfaces.
+# `data/yard/town_water_cart.json` stands one cart where Andreas says the watermen drove
+# into the lake, and the committed field says that water is the old southward channel with
+# the sand bar and a quarter of a kilometre of open lake beyond it. T-0886 ruled the
+# contradiction — the phrase names a stretch of bank, and 167 m south along that bank the
+# traced bar ends and the water IS the lake — and the ruling is a set of distances read off
+# a derived surface, written out in two documents. Nothing but this joins the prose to the
+# field; a re-carve that drowns the bar or moves the waterline would leave both standing
+# over a shore that is no longer there.
+step "the watering place's ruling still matches the committed surfaces" \
+  python3 tools/measure_watering_place.py --gate --quiet
+
+selftest "…and the run classifier that reading rests on still fires" \
+  python3 tools/measure_watering_place.py --self-test
+
 # And the feature that crossing's own drain runs OUT of. "How much of the public
 # square was wet" (T-0027) presumes a fraction can be read off the block, and it
 # cannot: the terrain draws the square at the South Division plain's +2.9 ft with
