@@ -1,4 +1,4 @@
-"""What each of the 170 printed lines of the 1 January 1834 return reaches (T-1008).
+"""What each of the 170 printed lines of the 1 January 1834 return reaches (T-1010, out of T-1008).
 
     python3 tools/concord_letter_list_1834_01_01.py            write
     python3 tools/concord_letter_list_1834_01_01.py --check    re-derive and diff
