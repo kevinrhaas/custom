@@ -153,7 +153,10 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "offset_text": "that he has purchascd a lot and Store-] 106\neon South Water Street,",
+          "offset_normalized": "that he has purchased a lot and Store[hous]e on South Water Street",
+          "street": "South Water Street"
         }
       },
       "ad_copy_date": {
@@ -477,7 +480,8 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "note": "The dissolution notice says the business \"will be continued at the old stand\" and names no street. The business-level `street` carries South Water Street from a reader who knew the house; it is not read back into a placement the page never printed, so this placement still names no ground (T-0859)."
         }
       },
       "ad_copy_date": {
@@ -945,7 +949,8 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "note": "The card prints a trade, an assortment and a dateline, and no address at all. The business-level `street` is not read back into the placement (T-0859)."
         }
       },
       "ad_copy_date": {

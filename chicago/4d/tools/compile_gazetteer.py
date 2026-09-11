@@ -2289,18 +2289,26 @@ def places_nothing(placement):
     `placement_rank` reads the CLASS, and one class can be written without the field
     that gives it its meaning: a `street_only` carrying neither a `street` nor an
     `anchor` names no street, so it can no more put a shop on the ground than
-    `{"class": "none"}` can. Twelve claims in the corpus carry one and eleven houses
-    hold one, and J. S. C. Hogan is the case that made it visible — his live placement
-    came off a two-line notice of three hundred cedar posts that gives no address
+    `{"class": "none"}` can. Twelve claims in the corpus carried one and eleven houses
+    held one when the rule was written — five claims since T-0861 — and J. S. C. Hogan
+    is the case that made it visible — his live placement came off a two-line notice of three hundred cedar posts that gives no address
     whatever, and it outranked eight printings that place him one door from the Post
     Office. The class and the `South Water Street` beside it came from the extraction's
     BUSINESS-level `street` field, supplied by a reader who knew where the store was.
 
-    This is a statement about the PLACEMENT RECORD, not about the advertisement. Eight
-    of the twelve notices do print a street in their prose, and the reading simply did
-    not carry it into the placement; that is a defect in the extraction and it is
-    T-0861's, not this function's. Either way the placement itself names no ground, and
-    a reading that names no ground may not outrank one that does.
+    This is a statement about the PLACEMENT RECORD, not about the advertisement. Seven
+    of the twelve notices DID print a street in their prose, and the reading simply had
+    not carried it into the placement; that was a defect in the extraction and not in
+    this function, and T-0861 repaired it — each of the seven now carries the street its
+    own type prints, quoted, and the twelve are FIVE. The five left are the population
+    proper: notices that place themselves "at his Store" or "at the old stand" or give no
+    address at all, whose business-level `street` came from a reader who knew the house
+    and is not read back into a placement the page never printed. Not one house's live
+    placement moved when the seven were repaired, which is what the ticket predicted:
+    `compile_register` adopts a street face off the business-level field, so nothing was
+    mis-placed by the silence — what was wrong is that the reading did not say what the
+    printing said. Either way the placement itself names no ground, and a reading that
+    names no ground may not outrank one that does.
     """
     p = placement or {}
     if placement_rank(p) <= 0:

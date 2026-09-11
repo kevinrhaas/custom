@@ -198,7 +198,9 @@
         ],
         "address_text": "at his Store",
         "placement": {
-          "class": "street_only"
+          "class": "street_only",
+          "anchor": null,
+          "note": "The notice places itself \"at his Store\" and names no street. The business-level `street` is empty here too, and nothing is supplied: this placement names no ground and is T-0859's population proper."
         }
       },
       "ad_copy_date": {
