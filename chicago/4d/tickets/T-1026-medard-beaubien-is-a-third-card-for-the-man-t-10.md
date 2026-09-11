@@ -1,7 +1,7 @@
 ---
 id: T-1026
 title: Medard Beaubien is a third card for the man T-1002 folded to two, and a committed note already calls it the same man under two spellings
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-11
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 3:46:22 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34580576063
 ---
 
 Medard Beaubien is a third card for the man T-1002 folded to two, and a committed note
