@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 118,
+    "upheld": 124,
     "named": 1,
-    "refused": 63,
-    "unruled": 28
+    "refused": 66,
+    "unruled": 19
   },
   "counts": {
     "purchasers": 647,
-    "matched": 147,
-    "refused": 500,
+    "matched": 144,
+    "refused": 503,
     "firms": 2,
     "bodies": 3
   },
@@ -5053,7 +5053,17 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "fergus_chicago_directory_1839",
+          "chicago_voter_lists_1833_1835_irad",
+          "chicago_democrat_1833_1835"
+        ],
+        "reasoning": "UPHELD, and it is the cohort's demonstration that a namesake is only a rival where the printed record can hold one. The layer's three Baileys are Amos, Bennet and Esth[er] R. M., so the mechanical rule chose on the forename alone; the test is not the layer but the page, and the page is not thin here. The three directories print SIX Baileys between them — Amos, Bennett, Henry and Joseph in Fergus 1839; Harlow and Justice added by Fergus 1843 and Norris 1844 — and exactly one of the six is an Amos: 'Bailey, Amos, carpenter and surveyor' (f1839_e0041, printed page 6), printed in 1839 and in neither later book. The Democrat and the American, which print Bennet Bailey twice in the 1835 letter lists, a Samuel J., an Esther M., a James and an H. W., print no Amos Bailey at all. So the forename is a discriminating token against the FULLEST record the town has, which is what BROWN WM asks and what BROWN WM did not have. The second limb is the trade: the directories crosswalk already matches f1839_e0041 to this person with `could_carry: [occupation]`, so the town holds a carpenter and surveyor of this name and not a bare one, and two town lots at the June 1836 sale is a purchase a building tradesman in that month is consistent with. Lot 5 of block 16 and lot 6 of block 5, 28 and 30 June 1836, $3,720, stand. The 1839 trade has not been SPENT onto the card — that is T-0987's work and not a ruling's."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5139,42 +5149,6 @@
         ],
         "reasoning": "UPHELD. The token is a single letter and it is unique: of the nine Carpenters this corpus holds — Job, Joseph, Samuel, William, George, James H., John D. in the directories, Abel B. and Nathaniel in the layer — only Philo's forename begins with P, and the register writes CARPENTER PHILO on three rows and sells to no other Carpenter at all. What makes it more than a lucky letter is the trade T-0990 upheld the full spelling on: by 1843 both Fergus and Norris seat him in CARPENTER'S ADDITION, a subdivision under his own name, which is to say the man platted and sold Chicago ground. Lot 7 of block 40 at the town's own sale of 23 June 1836, $3,000, is what that record predicts rather than merely permits."
       },
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "COBB L B",
-      "record_ids": [
-        "ls1042"
-      ],
-      "resident_id": "cobb_l_b",
-      "resident_name": "L B Cobb",
-      "household_id": "hh_cobb_l_b",
-      "match": "initial_agrees",
-      "rule": "COBB L B matches L B Cobb: the forename names L B Cobb of the 2 people of this surname, and the forename agrees as an initial only.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "cobb_l_b",
-          "name": "L B Cobb",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": "B",
-          "reading_middle_initial": "B",
-          "outcome": "survives"
-        },
-        {
-          "key": "cobb_silas_b",
-          "name": "Silas B. Cobb",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "B",
-          "reading_middle_initial": "B",
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5269,75 +5243,6 @@
         ],
         "reasoning": "UPHELD, and it is the hardest case in the cohort, because the reading carries no middle initial and the register itself sells to an EGAN WILLIAM G. What decides it is position rather than spelling. This row is lot 4 of block 45 on 25 June 1836, and EGAN WILLIAM B takes lots 5 and 7 of THAT block on THAT day, with this row entered among them; the WILLIAM G row is a different block (58), a different day (24 June) and two leaves further on. That is the PEARSONS argument — one hand at work, read off the register's own sequence — and it is the only check a spelling with no discriminating token can pass. THIS RULING DOES NOT TOUCH EGAN WILLIAM G, which the crosswalk proposes no match for; whether it is a fourth reading of the same man or a second William Egan is left open."
       },
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "FOSTER AMOS",
-      "record_ids": [
-        "ls1129",
-        "ls1130",
-        "ls1131",
-        "ls1132",
-        "ls1133",
-        "ls1134",
-        "ls1135",
-        "ls1136",
-        "ls1137",
-        "ls1138",
-        "ls1139",
-        "ls1140",
-        "ls1141",
-        "ls1142",
-        "ls1143",
-        "ls1144",
-        "ls1145",
-        "ls1146",
-        "ls1147",
-        "ls1148",
-        "ls1149",
-        "ls1150",
-        "ls1151",
-        "ls1152",
-        "ls1153"
-      ],
-      "resident_id": "foster_amos",
-      "resident_name": "Amos Foster",
-      "household_id": "hh_foster_amos",
-      "match": "forename_agrees",
-      "rule": "FOSTER AMOS matches Amos Foster: the forename names Amos Foster of the 3 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "foster_amos",
-          "name": "Amos Foster",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "foster_caleb",
-          "name": "Caleb Foster",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "foster_john_n",
-          "name": "John N Foster",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "N",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5537,7 +5442,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1839",
+          "fergus_1843_old_settler_death_notices",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "UPHELD on a trade and a premises printed three weeks before the scene date. The Democrat of 10 June 1835 carries James Grant's own professional card — 'JAMES GRANT, attorney and counsellor at law', office in the store of Hubbard & Co., La Salle Street — one of four new Chicago houses advertising in that issue, and the anchor claim for the brick store it stands in. Fergus 1839 prints him again in the same trade and a different house, 'Grant, Jas., attorney, N. Water st near Rush, bds. Lake House', and the old-settler death notices carry 'Grant, James', 14 March 1891. The layer's one rival is Thomas D. Grant and the printed record adds no second James, so the forename discriminates on the page and not merely in a thin layer. Eleven lots of blocks 2, 4, 5 and 6, 28 June 1836, $28,120 — a speculation in the boom month by a lawyer with an office in it — stand. ONE CAUTION RECORDED RATHER THAN ACTED ON: the card also carries 'J. GRANT, Jr.', regimental adjutant of the Cook county regiment, from the Democrat of 3 September 1834, and a 'Jr.' is the one suffix that says the town held two men of a name. That fold was made on an initial and a suffix; it is a card-merge question, not a purchaser question, and the register prints JAMES in full."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5850,7 +5766,19 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "UPHELD, and this is the pair of initials doing what COBB L B's could not. Six Hubbards stand in the layer — Ahira, B., Elijah Kent, Gurdon Saltonstall, Henry G. and Otis — and the printed record adds Moses and Thomas R. and still holds exactly one H. G.: 'Hubbard, Henry G., at G. S. Hubbard & Co.'s warehouse' (Fergus 1839), 'Hubbard, Henry George, clerk, Circuit Court' (Fergus 1843), 'Hubbard, H. G. at clerk's office' (Norris 1844). The town prints the register's own abbreviation, and prints it beside the men it is not: G. S., E. K., A. So the initials are checked against the fullest record and not against a gap. Behind them is a standing: the Democrat of 2 July 1834 sets Henry G. Hubbard as a proprietor of Hubbard & Co., commission and forwarding merchants, and the issue of 5 August 1835 sets 'Moxa Go Hornage' — read Hubbard, [Henry] G. — as a partner of the house beside Gurdon S. Hubbard. A partner in the town's principal forwarding house taking ten lots in blocks 9, 10 and 16 on 29 and 30 June 1836 for $14,720 is a purchase consistent with what is recorded of him, which is the ruling rule's second limb. Stands."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5886,7 +5814,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1839",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_1843_old_settler_death_notices"
+        ],
+        "reasoning": "UPHELD, and it is the ruling that says what an initial-only spelling has to survive. A bare H is the BROWN WM shape until you ask the page how many men it could be, and here the page answers: Fergus 1839 prints SIX Hugunins — Capt. Robert, Daniel the ship chandler, Hiram the merchant on West Water street near Lake, James R., John C. and Leonard C. — and exactly one of them begins with H. The town then prints the register's own abbreviation for him: the Democrat of 20 May 1835 sets 'H. HUGUNIN' as chairman of the town meeting, and the corpus reads it Hiram Hugunin because the same run prints him in full as 'Capt. HIRAM HUGUNIN, Agent, Chicago' for the North Western Fire and Marine of Oswego a month later. An initial the town itself uses for one man, unique in the fullest printed record of the surname, is a discriminating token and not the absence of one. The 1835 poll list has 'Hugunin, H.' likewise. Lot 7 of block 23, 24 June 1836, $4,190, stands."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5922,7 +5861,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1839",
+          "fergus_1843_old_settler_death_notices",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "UPHELD, ruled beside HUGUNIN H and for more than that spelling had. The town holds Hiram Hugunin with a trade, an office and a title before the scene date: chairman of the town meeting of 20 May 1835 (Democrat), 'Capt. HIRAM HUGUNIN, Agent, Chicago' for the North Western Fire and Marine Insurance Company of Oswego in the issue of 17 June 1835, writing fire and marine risks; 'Hugunin, Hiram, merchant, West Water street near Lake st' in Fergus 1839; and the old-settler death notices give his death, 12 December 1866. The layer's rival is his namesake Leonard C. Hugunin, himself documented — the letter lists of 31 March and 1 July 1835 and Fergus 1839's 'speculator' — so the forenames are two real men and the register writes one of them in full. Lot 2 of block 31, 21 June 1836, $9,000, stands."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6070,67 +6020,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "KINZIE JOHN",
-      "record_ids": [
-        "ls1308",
-        "ls1309",
-        "ls1310",
-        "ls1311",
-        "ls1312",
-        "ls1313",
-        "ls1314"
-      ],
-      "resident_id": "kinzie_john_h",
-      "resident_name": "John Harris Kinzie",
-      "household_id": "hh_kinzie_john_h",
-      "match": "forename_agrees",
-      "rule": "KINZIE JOHN matches John Harris Kinzie: the forename names John Harris Kinzie of the 4 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "kinzie_james",
-          "name": "James Kinzie",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "kinzie_john_h",
-          "name": "John Harris Kinzie",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": "H",
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "kinzie_juliette",
-          "name": "Juliette Augusta Magill Kinzie",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "kinzie_robert_a",
-          "name": "Robert Allen Kinzie",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "chicago_american_1835",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD, and the eight-strong rival list is the weakest of the cohort once the page is read. The layer's other Kings are Byra, Byram, Byron, Hyram, John Lyle, Nehemiah and Sherman; the three directories print THIRTEEN distinct Kings between them — Byram, Henry, Joe, Joseph, Nathaniel, Richard, Tuthill, Willis and John jr. in Fergus 1839, with J. the carpenter, Solomon, Thomas and Wendell R. added by Fergus 1843 and Norris 1844 — and exactly one of the thirteen is a Tuthill. He is not a name but a shop: the Chicago American of 20 June, 27 June, 4 and 11 July 1835 carries his clothing store, placed three doors north of the Tremont House in Dearborn street, one of the run's first recoverable frontages; Fergus 1839 prints 'King, Tuthill, New York clothing store, 115 Lake st' and Fergus 1843 and Norris 1844 the same trade at the same number. A forename unique in the printed record, on a man with a trade and a premises in the town's own paper in the month of the scene. The two rows are the north and south halves of lot 5 of block 9, both $1,310 on 29 June 1836, which is one parcel bought in halves by one buyer and not the shared-row shape T-1039 described. Stands."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -16551,6 +16452,20 @@
       ]
     },
     {
+      "a": "COBB L B",
+      "b": "L B Cobb",
+      "rule": "REFUSED, and the two initials are not the discriminator they look like. The town's whole record of an L. B. Cobb is ONE line — 'Cobb, L. B.' in the 1835 poll list — and the register's 'COBB L B' is the second bare name; the ruling rule calls that two name-only readings and not an identity. What makes the refusal positive rather than an admission of thinness is the Cobb the town DOES document, and he carries the same middle initial: S. B. Cobb, saddle, harness and trunk manufactory at the corner of Lake street, advertised in the American of 8 and 13 June 1835 out of the dissolution of Goss & Cobb, a 'Silas Cobb' in the Democrat's letter list of 1 April 1834, and 'Cobb, Silas B.' at 171 Lake in Fergus 1839 and 'Silas Bowman' in Norris 1844. Beside him the directories print one other Cobb, Geo. W., a clerk. So the B does not choose between the proposal and its namesake — both have it — and the only thing that does is the forename initial, read once on each side and printed nowhere else in the corpus. A $9,000 lot (lot 2 of block 33, 21 June 1836) is a large thing to hang on a single letter that no second document repeats. Retracted.",
+      "record_ids": [
+        "ls1042"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "COBB L B matches L B Cobb: the forename names L B Cobb of the 2 people of this surname, and the forename agrees as an initial only."
+    },
+    {
       "a": "COOK CNTY COM",
       "b": "(the residents layer)",
       "rule": "COOK CNTY COM is refused against every person: the words the register sets after the surname (CNTY, COM) say the buyer was a BODY and not a man, and this crosswalk proposes correspondences between a purchaser and a PERSON. Its ground is carried in body_purchasers[] so the reading is not lost with the proposal.",
@@ -16908,6 +16823,44 @@
       "evidence": [
         "data/residents/index.json"
       ]
+    },
+    {
+      "a": "FOSTER AMOS",
+      "b": "Amos Foster",
+      "rule": "REFUSED, and it is the cohort's largest retraction by rows. The card looks like three domains and is one reading: 'Foster, Amos' in the 1833 poll list. Its two directory readings are 'Foster, A. H. (Jennings & F.)' (Fergus 1843) and 'Foster, A. H. of Jennings & F.' (Norris 1844), folded on by the crosswalk's forename rule — 'the given name of both begins A' — which is agreement on one letter and disagreement on the H that follows it; A. H. Foster boards the American Temperance House in both years and is a partner in Jennings & Foster, and nothing ties him to an Amos. Strip that fold and the printed record holds NO Amos Foster anywhere: Fergus 1839 and 1843 and Norris 1844 give Dr. John Herbert, Edward, George Franklin and A. H.; the Democrat's letter lists of 1834 and 1835 give Caleb four times, Alburn, Jacob P. and a J. H. So the proposal is a poll line of 1833 against twenty-five register rows of 27 and 28 September 1830 — the first sale of the town, three years EARLIER than the one reading — with UNKNOWN in the Residence column. Two name-only readings, and the earlier one is the register's own. Twenty-five rows and $468 retracted.",
+      "record_ids": [
+        "ls1129",
+        "ls1130",
+        "ls1131",
+        "ls1132",
+        "ls1133",
+        "ls1134",
+        "ls1135",
+        "ls1136",
+        "ls1137",
+        "ls1138",
+        "ls1139",
+        "ls1140",
+        "ls1141",
+        "ls1142",
+        "ls1143",
+        "ls1144",
+        "ls1145",
+        "ls1146",
+        "ls1147",
+        "ls1148",
+        "ls1149",
+        "ls1150",
+        "ls1151",
+        "ls1152",
+        "ls1153"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "FOSTER AMOS matches Amos Foster: the forename names Amos Foster of the 3 people of this surname, and the forename agrees in full."
     },
     {
       "a": "FRENCH WILLIAM B",
@@ -17841,6 +17794,26 @@
       "evidence": [
         "data/residents/index.json"
       ]
+    },
+    {
+      "a": "KINZIE JOHN",
+      "b": "John Harris Kinzie",
+      "rule": "REFUSED, and this project has already refused the identical name once. The register prints JOHN bare on all seven rows of 27 September 1830 with UNKNOWN in the Residence column, and a bare John Kinzie is the one Chicago name of 1830 that cannot be read off the layer: the printed record holds John Harris Kinzie, register of the U.S. land office, AND 'Kinzie, John Harris, jr., killed, Ft. St. Charles, Ark., June 18, 1862, a. 33' (Fergus 1843), AND the elder John Kinzie of Hubbard's own pages. T-0501 met this exact string in McIlvaine's list of the trustees elected 11 August 1834 and REFUSED it — 'the printed name is impossible for the man it looks like and ambiguous among the men it could be' — saying in terms that the identification is probable and was not that pass's to make. THE ARGUMENT THAT WOULD OVERTURN IT IS AVAILABLE AND IS NOT TAKEN, and it is recorded so a later run can weigh it rather than rediscover it: the elder died in 1828 and cannot buy in 1830, and the junior's printed age puts him at about one year old that September, so chronology leaves only John Harris. That is elimination, not a token on the page; the register supplies no middle initial, no trade and no residence, and HARMON ISAAC declined the same shape of argument for the same reason. Consistency between two domains reading one name is worth more here than seven lots. Seven rows of the first town sale and $129 retracted.",
+      "record_ids": [
+        "ls1308",
+        "ls1309",
+        "ls1310",
+        "ls1311",
+        "ls1312",
+        "ls1313",
+        "ls1314"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "KINZIE JOHN matches John Harris Kinzie: the forename names John Harris Kinzie of the 4 people of this surname, and the forename agrees in full."
     },
     {
       "a": "LAFROMBOISE JOSEPH",
