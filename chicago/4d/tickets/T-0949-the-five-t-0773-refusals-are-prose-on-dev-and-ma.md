@@ -1,7 +1,7 @@
 ---
 id: T-0949
 title: The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1151
 claimed_by: run 9/11/2026, 4:45:32 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T22:26:25.937Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34650613262
 ---
 
