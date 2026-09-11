@@ -12,7 +12,7 @@
     "structures": 380,
     "structures_sharing_a_name": 37,
     "streets": 40,
-    "resident_persons": 1377
+    "resident_persons": 1374
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2666,
       "by_action": {
-        "enrich": 1418,
-        "new_resident": 1224,
+        "enrich": 1417,
+        "new_resident": 1225,
         "replace_invented": 24
       },
       "letter_list_only": 1972
@@ -8345,9 +8345,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1834-12-24",
-      "action": "enrich",
-      "action_target": "clybourn_archibald",
-      "action_note": "data/residents/ already holds this person as clybourn_archibald (hh_clybourn_archibald, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_filer",
@@ -26122,8 +26122,8 @@
       "first_seen": "1833-12-10",
       "last_seen": "1833-12-10",
       "action": "enrich",
-      "action_target": "beaubien_medore_b",
-      "action_note": "data/residents/ already holds this person as beaubien_medore_b (hh_beaubien_medore_b, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "beaubien_mark",
+      "action_note": "data/residents/ already holds this person as beaubien_mark (hh_beaubien_mark, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_meltic_alezamler",
@@ -30291,8 +30291,8 @@
       "first_seen": "1835-05-27",
       "last_seen": "1835-07-29",
       "action": "enrich",
-      "action_target": "heacock_russell_e",
-      "action_note": "data/residents/ already holds this person as heacock_russell_e (hh_heacock_russell_e, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "heacock_russel_e",
+      "action_note": "data/residents/ already holds this person as heacock_russel_e (hh_heacock_russel_e, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_russell_gilbert_w",
