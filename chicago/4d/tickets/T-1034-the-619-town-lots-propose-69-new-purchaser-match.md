@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-11
 closed: null
 pr: null
-claimed_by: run 9/11/2026, 12:15:15 PM CT
+claimed_by: run 9/11/2026, 4:44:55 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34626225713
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34650587516
 ---
 
 The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869.
