@@ -26,6 +26,7 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import name_agreement as na  # the forename rule, imported rather than restated
+import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
 import tiebreak            # the tie discriminator (T-0696), likewise
 import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 
@@ -76,6 +77,7 @@ def residents():
             out.append({
                 "person_id": p.get("id"),
                 "household_id": doc.get("id"),
+                "letter_list_only": bool(p.get("letter_list_only")),
                 "name": name,
                 "surname": parts[-1],
                 "given": " ".join(parts[:-1]),
@@ -105,6 +107,8 @@ def main():
             surnames[fold(n["surname"])].append(c)
 
     matches, ambiguous, refusals, forename_refusals = [], [], [], []
+    bucket_refusals = []
+    ll_index = llb.buckets(llb.pool())
     people = residents()
     for r in people:
         key = (fold(r["surname"]), initial(r["given"]))
@@ -128,6 +132,20 @@ def main():
                 "occupation_1844": h["normalized"]["occupation"],
                 "address_1844": h["normalized"]["address"],
             }
+        # T-1038. THE CARD IS AN INITIAL THE LETTER LIST PRINTS TWICE. Refused
+        # before the forename rule is asked, because the rule cannot see the
+        # reading this card was seated over — and it is that reading, not this
+        # one, that the entry would have to answer.
+        bucket = llb.refusal(r["name"], r["letter_list_only"], ll_index)
+        if bucket:
+            for h in hits:
+                row = dict(bucket)
+                row.update({"resident": r["name"], "person_id": r["person_id"],
+                            "household_id": r["household_id"],
+                            "grade_1835": r["grade"], "record_id": h["id"],
+                            "entry_1844": row_of(h)})
+                bucket_refusals.append(row)
+            continue
         kept, refused = [], []
         for h in hits:
             note = na.refusal(r["given"], h["normalized"]["given"])
@@ -258,6 +276,8 @@ def main():
             "matched_more_than_one_ambiguous": len(ambiguous),
             "one_1844_entry_contested_by_two_residents": len(contested),
             "surname_present_initial_absent_refused": len(refusals),
+            "letter_list_bucket_refused": len(bucket_refusals),
+            "residents_that_refusal_reaches": len({b["person_id"] for b in bucket_refusals}),
             "initial_agreed_forenames_disagreed_refused": len(forename_refusals),
             "of_those_a_garbled_printed_forename": sum(
                 1 for f in forename_refusals if f["entry_1844"]["garbled_reading"]),
@@ -275,6 +295,8 @@ def main():
         "contested": sorted(contested, key=lambda m: m["resident"]),
         "ambiguous": sorted(ambiguous, key=lambda m: m["resident"]),
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
+        "letter_list_bucket_refusals": sorted(
+            bucket_refusals, key=lambda m: (m["resident"], m["entry_1844"]["claim"])),
         "forename_refusals": sorted(forename_refusals,
                                     key=lambda m: (m["resident"], m["entry_1844"]["claim"])),
     }

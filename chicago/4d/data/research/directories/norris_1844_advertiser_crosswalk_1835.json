@@ -16,16 +16,18 @@
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
   "residents_considered": 1371,
-  "matched_one_card": 20,
+  "matched_one_card": 19,
   "matched_more_than_one_ambiguous": 3,
   "one_printed_proprietor_contested_by_two_residents": 8,
   "surname_present_initial_absent_refused": 130,
+  "letter_list_bucket_refused": 1,
+  "residents_that_refusal_reaches": 1,
   "ties_offered_the_trade_discriminator": 11,
   "ties_narrowed_by_a_trade": 0,
   "of_those_contested": 0,
   "of_those_ambiguous": 0,
-  "could_carry_trade": 13,
-  "could_carry_place_of_business": 16
+  "could_carry_trade": 12,
+  "could_carry_place_of_business": 15
  },
  "matches": [
   {
@@ -424,32 +426,6 @@
      "trade_1844": "physician",
      "address_1844": "office and residence on Randolph street, first door west of City Hotel",
      "printed_page": 111
-    }
-   ],
-   "could_carry": [
-    "trade",
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "S. Sherwood",
-   "person_id": "sherwood_s",
-   "household_id": "hh_sherwood_s",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Sherwood' folds to the same string as the card's, and the given name of both begins S.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0114",
-     "proprietor_as_printed": "S. J. Sherwood",
-     "firm": "S. J. Sherwood",
-     "trade_1844": "general dealer in gold and silver watches, clocks and jewelry; watches and clocks repaired",
-     "address_1844": "144 Lake street",
-     "printed_page": 107
     }
    ],
    "could_carry": [
@@ -1975,6 +1951,29 @@
    "surname_on_a_card": "Gray",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Gray' stands on an 1844 advertising card and no proprietor under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
+  }
+ ],
+ "letter_list_bucket_refusals": [
+  {
+   "outcome": "refused_letter_list_bucket",
+   "card": "S. Sherwood",
+   "seated_over": [
+    "Stephen Sherwood"
+   ],
+   "rule": "The card is a CONTESTED LETTER-LIST BUCKET (T-1038): it prints an INITIAL, the post office's returns print another name under the same surname and the same initial IN FULL, and mint_letter_list_residents.py seats one household per surname — so the card stands for readings the corpus cannot separate, and at least one of them would refuse this entry under T-0670's forename rule. What is refused is the SPEND, not the identity: nothing here says the readings are two people. A source naming the letter-list person in full retires the refusal.",
+   "resident": "S. Sherwood",
+   "person_id": "sherwood_s",
+   "household_id": "hh_sherwood_s",
+   "grade_1835": "inferred",
+   "record_id": "n1844_ad0114",
+   "card_1844": {
+    "claim": "n1844_ad0114",
+    "proprietor_as_printed": "S. J. Sherwood",
+    "firm": "S. J. Sherwood",
+    "trade_1844": "general dealer in gold and silver watches, clocks and jewelry; watches and clocks repaired",
+    "address_1844": "144 Lake street",
+    "printed_page": 107
+   }
   }
  ]
 }

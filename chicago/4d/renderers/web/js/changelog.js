@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: null, title: 'A jeweller\u2019s trade came off a card that was only an initial', kind: 'fix', ts: '', date: '',
+    items: [
+      'The post office\u2019s lists of undelivered letters are the whole of what this town knows about three residents in four. One of them was printed as \u2018S. Sherwood\u2019 in the return of 1 July 1834, and nothing more \u2014 no trade, no street, no household.',
+      'His card had been carrying a jeweller\u2019s trade and a shop at 144 Lake Street, taken from Fergus\u2019s directory of 1839 and Norris\u2019s of 1844, which both print \u2018Sherwood, Smith J., watchmaker and jeweller\u2019. The two were joined on a surname and one letter.',
+      'The same letter lists print \u2018Stephen Sherwood\u2019 six months earlier. Only one Sherwood was let into the town \u2014 the pass that mints these people seats one household per surname \u2014 so Stephen was refused and the card the directories met is the other one. Set against Stephen, \u2018Smith\u2019 is a different name and the match would have been refused outright. Which way it went was settled by which reading was ranked first, and a ranking is not evidence about anybody.',
+      'So the trade and the address come off, and so does an 1837 poll entry for the same Smith J. Sherwood. Nothing here says the two readings are two men. What is refused is the spend, and a source naming the letter-list man in full would undo it tomorrow.',
+      'A. Lamb loses a shipcarpenter\u2019s trade and a house on Michigan Avenue the same way, to an Adam Lamb the same returns print.',
+      'Five crosswalks now refuse a card that is a bare initial the post office printed twice over. Two of the town\u2019s cards are; the other 745 are untouched, and nothing in the scene moved.'
   { v: 737, title: 'Two men bought one lot, and the register wrote it once', kind: 'fix', ts: '2026-09-11T19:48:35.493Z', date: 'Sep 11, 2026, 2:48 PM CT',
     items: [
       'The 619 town lots sold at the auctions of 1830 and 1836 are 619 lines in a clerk\u2019s register, and a line is not a piece of ground. Some lots appear two, three and four times over \u2014 one is entered three times for A. Garrett at $940, $940 and $1,880 \u2014 which looked like the same sale written down twice, the answer the same question got when it was asked of the school section south of town.',
