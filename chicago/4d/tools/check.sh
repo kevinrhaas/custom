@@ -2310,6 +2310,24 @@ step "every newspaper claim resolves, quotes verbatim, and the gazetteer is comp
 step "…and its own assertions still fire when broken" \
   python3 tools/compile_gazetteer.py --self-test
 
+# T-0901. THE OCR'S TURKISH ALPHABET. Seven readings in the corpus carried ı, İ or Ğ
+# — letters Turkish has and the Latin alphabet this project transcribes does not, and the
+# signature of an OCR run whose language model was Turkish rather than of anything a
+# compositor set in 1835. They repair to their base letter, demonstrated three ways: the
+# repair turns `KİNZIE` into the name every other impression sets, `WRİĞHT` into the
+# WRIGHT that claim's own notes already called a spurious breve, and `Benjamın Swena` into
+# the `Benjamin Swena` T-0299 had ALREADY ruled the same entry of the same list. The gate is
+# here rather than in the repair because the defect ARRIVES with a reading: a card carrying a
+# character no hand wrote was refused against its own directory entry for three weeks before
+# anyone read the card. A `quote` and a claim's `notes` keep the letter — the quote because
+# it is the transcription character for character, the notes because they quote the artefact
+# to explain a correction.
+step "no reading carries a letter of the OCR's Turkish alphabet" \
+  python3 tools/repair_ocr_turkish_alphabet.py --check
+
+step "…and its own assertions still fire when broken" \
+  python3 tools/repair_ocr_turkish_alphabet.py --self-test
+
 # T-1006 (of T-0988). The December 1835 State census counted the town BY CLASS — forty-four
 # stores, eight taverns, twenty-two lawyers — and the register's `trade` is free prose off
 # the printed notice, 152 distinct strings for 206 businesses. There was no class to count

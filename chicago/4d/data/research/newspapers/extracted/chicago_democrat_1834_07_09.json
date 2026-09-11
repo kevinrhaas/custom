@@ -1395,7 +1395,7 @@
       "reading": "transcription_mediated",
       "letter_list_only": true,
       "quote": "JON. awartwout jr.\nFrancis c. sherman\ninn M. Gooding\n.. M. Fish\n. Smith\nasper A. Gooding\nRichard G. smith 2\nlacob Galutia 2\nS. sherwood\noseph Graybem\nBenjamın swena\nlohn Graham\nEzekiel Turner\naroline Gooding\nWm. Tuller\nacob Gur 2\nc. e. Townsend\nAbbot Gicen\nsamuel. Toby\nGoodrich Honey\nBenjamin Thompeon\nMariah Green\nEdward Trimble\nHarriet Gridley\nJacob Van Acker",
-      "normalized": "J[n]o. Swartwout jr. / Francis C. Sherman / [?]nn M. Gooding / [?]. M. Fish / [?]. Smith / [J]asper A. Gooding / Richard G. Smith / [J]acob Galutia / S. Sherwood / [J]oseph Graybem / Benjamın Swena / [J]ohn Graham / Ezekiel Turner / [C]aroline Gooding / Wm. Tuller / [J]acob Gur / C. E. Townsend / Abbot G[r]een / Samuel. Toby / Goodrich Ho[n]ey / Benjamin Thompeon / Mariah Green / Edward Trimble / Harriet Gridley / Jacob Van Acker",
+      "normalized": "J[n]o. Swartwout jr. / Francis C. Sherman / [?]nn M. Gooding / [?]. M. Fish / [?]. Smith / [J]asper A. Gooding / Richard G. Smith / [J]acob Galutia / S. Sherwood / [J]oseph Graybem / Benjamin Swena / [J]ohn Graham / Ezekiel Turner / [C]aroline Gooding / Wm. Tuller / [J]acob Gur / C. E. Townsend / Abbot G[r]een / Samuel. Toby / Goodrich Ho[n]ey / Benjamin Thompeon / Mariah Green / Edward Trimble / Harriet Gridley / Jacob Van Acker",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
@@ -1485,8 +1485,8 @@
           "role": "addressee"
         },
         {
-          "as_printed": "Benjamın swena",
-          "normalized": "Benjamın Swena",
+          "as_printed": "Benjamin swena",
+          "normalized": "Benjamin Swena",
           "role": "addressee"
         },
         {

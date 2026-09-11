@@ -515,9 +515,17 @@ the printed forename is garbled — the scanner's `C!;as.` for Chas. — the rec
 says so, because that is a transcription defect and not a disagreement between
 two people. **Since T-0695 the Norris file carries none of them**: the eleven
 garbled forenames there are repaired in the reading against a second hand, and the
-repair is described under that volume above. This crosswalk's one remaining
-garbled record is on the 1835 side, not the printed one — `Willınm Bandle`, a
-resident name carrying a dotless `ı`, which is T-0901 and not a directory fix.
+repair is described under that volume above. **And since T-0901 this crosswalk carries none
+either.** Its one remaining garbled record was on the 1835 side rather than the printed
+one — `Willınm Bandle`, a resident name carrying a dotless `ı`, one of seven readings in
+the corpus spelled with a letter of the OCR's Turkish alphabet. `tools/repair_ocr_turkish_alphabet.py`
+puts each of those letters back to its base, so the record now reads `Willinm Bandle` and
+`garbled_reading` on that refusal is `false`. **The refusal itself SURVIVES**, which was
+T-0901's open question: `Willinm` against Fergus's `Willis` is still two full forenames
+that differ, and the rule sentence now says exactly that instead of blaming a transcription
+defect that is no longer there. No word was repaired, only a character — `Willinm` is what
+the column's OCR makes of `William` all the way down it, and reading the word rather than
+the letter needs the page.
 
 **Page 1's civic account is NOT read here.** Lines 37-750 — the officers and
 courts, twenty-odd churches and societies with their ministers and memberships,

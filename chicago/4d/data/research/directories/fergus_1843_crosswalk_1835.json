@@ -16,7 +16,7 @@
   "one_1843_entry_contested_by_two_residents": 15,
   "surname_present_initial_absent_refused": 349,
   "initial_agreed_forenames_disagreed_refused": 94,
-  "of_those_a_garbled_printed_forename": 1,
+  "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_1843_entry_by_that_refusal": 44,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 1,
@@ -11133,7 +11133,7 @@
    }
   },
   {
-   "resident": "Willınm Bandle",
+   "resident": "Willinm Bandle",
    "person_id": "bandle_will_nm",
    "grade_1835": "inferred",
    "entry_1843": {
@@ -11145,10 +11145,10 @@
     "occupation_1843": "blacksmith, Stow's Foundry",
     "address_1843": "res North Branch, w.side",
     "death_note_1843": null,
-    "forename_1835": "Willınm",
+    "forename_1835": "Willinm",
     "forename_printed": "Willis",
-    "garbled_reading": true,
-    "rule": "Both readings print a full forename and the two disagree: 'Willınm' against 'Willis'. An initial standing against a full name is a match; two full names that differ are not. The printed forename is garbled, so this is a transcription defect rather than two people (T-0695)."
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'Willinm' against 'Willis'. An initial standing against a full name is a match; two full names that differ are not."
    }
   }
  ]

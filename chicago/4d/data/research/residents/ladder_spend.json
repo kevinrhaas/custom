@@ -19,8 +19,8 @@
    "G1a": 22,
    "G1b": 89,
    "G1c": 10,
-   "G2e": 48,
-   "G3": 640
+   "G2e": 49,
+   "G3": 639
   },
   "conflicts_by_kind": {
    "abstention": 45,
@@ -56,8 +56,8 @@
   {
    "person_id": "adains_will_si",
    "household_id": "hh_adains_will_si",
-   "name": "Willısi Adains",
-   "identity": "id_adains_willsi",
+   "name": "Willisi Adains",
+   "identity": "id_adains_willisi",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -416,8 +416,8 @@
   {
    "person_id": "bandle_will_nm",
    "household_id": "hh_bandle_will_nm",
-   "name": "Willınm Bandle",
-   "identity": "id_bandle_willnm",
+   "name": "Willinm Bandle",
+   "identity": "id_bandle_willinm",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -6545,11 +6545,11 @@
   {
    "person_id": "swena_benjam_n",
    "household_id": "hh_swena_benjam_n",
-   "name": "Benjamın Jr. Swena",
-   "identity": "id_swena_benjamn",
-   "rule": "G3",
+   "name": "Benjamin Jr. Swena",
+   "identity": "id_swena_benjamin",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "taylor_anson_h",
