@@ -24,8 +24,8 @@
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 28,
-        "street_only": 60,
+        "new_building": 29,
+        "street_only": 59,
         "unplaceable": 88
       },
       "by_placement_class": {
@@ -36,8 +36,8 @@
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 28,
-        "street_only": 60,
+        "new_building": 29,
+        "street_only": 59,
         "unplaceable": 71
       },
       "outside_the_plat": 5,
@@ -5219,21 +5219,97 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "dearborn"
-        ],
+        "kind": "structure",
+        "target": "tremont_house_1",
+        "streets": null,
         "via": null,
-        "note": "The anchor is a reach of dearborn and names nothing narrower."
+        "note": "The landmark is the committed structure tremont_house_1."
       },
-      "anchor_change": null,
+      "anchor_change": {
+        "live_anchor": "the Tremont House",
+        "live_reason": "This house has one declared anchor, read 3 ways between 1835-06-08 and 1835-07-04, so it is the anchor live at the scene date 1835-07-01 and no change is asserted.",
+        "changes": [],
+        "rule": "One anchor, the Tremont House, read three ways and never changing. This is not a dated change and no change is asserted: it is the same standing advertisement over one copy date, and the difference between its printings is the segmenter's, not the advertiser's. The house is therefore placed on the reading that names the anchor — 1835-07-04's — rather than on the 8 June printing that lost it, which is the only printing order would otherwise have offered.",
+        "cannot_say": "WHICH SIDE OF DEARBORN STREET, AND HOW WIDE A DOOR IS. “Three doors north of the Tremont House, in Dearborn street” fixes the street, the direction and the count and states neither the side of the street nor the frontage of a door, and nothing else in this corpus supplies either. Nor does any printing say the Tremont's own door on Dearborn is the one being counted from; the hotel is documented at the north-west corner of Lake and Dearborn and fronts Lake, so the count starts at a flank. The placement this supports is recorded on the structure record and its residual is stated there.",
+        "history": [
+          {
+            "anchor": "the Tremont House",
+            "first_issue": "1835-06-08",
+            "last_issue": "1835-07-04",
+            "claims": [
+              "chicago_american_1835_06_08#c014",
+              "chicago_american_1835_06_20#c007",
+              "chicago_american_1835_07_04#c003"
+            ],
+            "live_at_scene_date": true,
+            "resolved": {
+              "kind": "structure",
+              "target": "tremont_house_1",
+              "streets": null,
+              "via": null,
+              "note": "The landmark is the committed structure tremont_house_1."
+            },
+            "resolved_on_reading": "the Tremont House",
+            "readings": [
+              {
+                "anchor": "three doors north of an unread anchor, in Dearborn Street",
+                "first_issue": "1835-06-08",
+                "last_issue": "1835-06-08",
+                "claims": [
+                  "chicago_american_1835_06_08#c014"
+                ],
+                "resolved": {
+                  "kind": "street",
+                  "target": null,
+                  "streets": [
+                    "dearborn"
+                  ],
+                  "via": null,
+                  "note": "The anchor is a reach of dearborn and names nothing narrower."
+                }
+              },
+              {
+                "anchor": "an unnamed House, three doors south, in Dearborn Street",
+                "first_issue": "1835-06-20",
+                "last_issue": "1835-06-20",
+                "claims": [
+                  "chicago_american_1835_06_20#c007"
+                ],
+                "resolved": {
+                  "kind": "street",
+                  "target": null,
+                  "streets": [
+                    "dearborn"
+                  ],
+                  "via": null,
+                  "note": "The anchor is a reach of dearborn and names nothing narrower."
+                }
+              },
+              {
+                "anchor": "the Tremont House",
+                "first_issue": "1835-07-04",
+                "last_issue": "1835-07-04",
+                "claims": [
+                  "chicago_american_1835_07_04#c003"
+                ],
+                "resolved": {
+                  "kind": "structure",
+                  "target": "tremont_house_1",
+                  "streets": null,
+                  "via": null,
+                  "note": "The landmark is the committed structure tremont_house_1."
+                }
+              }
+            ]
+          }
+        ]
+      },
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
+      "action": "new_building",
+      "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
       "id": "business_newberry_dole",

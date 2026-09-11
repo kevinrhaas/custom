@@ -1467,6 +1467,27 @@ def compile_register(gazetteer, town, quiet=True):
                            ", ".join(sorted(str(x) for x in reaches))))
                 elif placed:
                     named = set(next(iter(placed))[3])
+                    # …AND THE HOUSE'S OWN STREET IS ONE OF THE STREETS IT NAMES
+                    # (T-0385). A `structure` resolution carries no streets at all —
+                    # this dataset gives a building a footprint and a position, never a
+                    # list of the lines it fronts — so the containment test above has
+                    # nothing to contain a reach IN, and any street clause grouped
+                    # beside a building anchor reads as a second place. Tuthill King's
+                    # advertisement is the case: three printings of one sentence, of
+                    # which only 1835-07-04 sets "[T]remont House" legibly, while
+                    # 1835-06-08 loses the hotel's name entirely and leaves "in Dearborn
+                    # [s]t[r]e[et]" standing beside the hole. The reach of Dearborn is
+                    # then all that resolves — and Dearborn is the street the row
+                    # ALREADY carries in its own `street` field, off the same sentence.
+                    # A reading that resolves to no more than the house's own street
+                    # therefore asserts nothing the row does not already say, and cannot
+                    # disagree with the placement about where the house is.
+                    #
+                    # It is the house's own street and no other: T-0773's refusal is
+                    # untouched, because a reach of a street the row does not name is
+                    # still two different things declared one landmark.
+                    if entry.get("street_id"):
+                        named.add(entry["street_id"])
                     stray = [r for r in reaches if r and not set(r) <= named]
                     if stray:
                         problems.append(
