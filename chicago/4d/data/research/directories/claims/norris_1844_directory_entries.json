@@ -365,8 +365,8 @@
     "surname": "Adams",
     "given": "W. H",
     "firm": false,
-    "occupation": "of W",
-    "address": "H. A. & Co. residence iasalle. street, b Washington and Madison",
+    "occupation": "of W. H. A. & Co",
+    "address": "residence iasalle. street, b Washington and Madison",
     "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison",
     "section": "directory"
    },
@@ -919,11 +919,11 @@
    "reading": "transcription_mediated",
    "quote": "Anderson, John, Washington Hall, N. Water st. n*bridge See card",
    "normalized": {
-    "printed_name": "Anderson, John, Washington Hall, N",
+    "printed_name": "Anderson, John",
     "surname": "Anderson",
-    "given": "John, Washington Hall, N",
+    "given": "John",
     "firm": false,
-    "occupation": "Water st. n*bridge See card",
+    "occupation": "Washington Hall, N. Water st. n*bridge See card",
     "address": null,
     "as_printed": "Anderson, John, Washington Hall, N. Water st. n*bridge See card",
     "section": "directory"
@@ -939,7 +939,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Anderson, John, Washington Hall, N"
+    "Anderson, John"
    ],
    "town_finding": false,
    "notes": null
@@ -1946,8 +1946,8 @@
     "surname": "Ballentine",
     "given": "David",
     "firm": false,
-    "occupation": "of",
-    "address": "B. & Sherman, Dearborn street bet Kinzie and Michigan",
+    "occupation": "of B. & Sherman, Dearborn street bet Kinzie and Michigan",
+    "address": null,
     "as_printed": "Ballentine, David, of B. & Sherman, Dearborn street bet Kinzie and Michigan",
     "section": "directory"
    },
@@ -2013,8 +2013,8 @@
     "surname": "Ballingall",
     "given": "Patrick",
     "firm": false,
-    "occupation": "of Smith &",
-    "address": "B. res Illinois Exchange",
+    "occupation": "of Smith &, B",
+    "address": "res Illinois Exchange",
     "as_printed": "Ballingall, Patrick, of Smith &, B. res Illinois Exchange",
     "section": "directory"
    },
@@ -2350,11 +2350,11 @@
    "reading": "transcription_mediated",
    "quote": "Barnett, John, Kin/.ie street, b Wolcott and Dearborn street",
    "normalized": {
-    "printed_name": "Barnett, John, Kin/.ie",
+    "printed_name": "Barnett, John",
     "surname": "Barnett",
-    "given": "John, Kin/.ie",
+    "given": "John",
     "firm": false,
-    "occupation": "street",
+    "occupation": "Kin/.ie street",
     "address": "b Wolcott and Dearborn street",
     "as_printed": "Barnett, John, Kin/.ie street, b Wolcott and Dearborn street",
     "section": "directory"
@@ -2370,7 +2370,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Barnett, John, Kin/.ie"
+    "Barnett, John"
    ],
    "town_finding": false,
    "notes": null
@@ -3075,11 +3075,11 @@
    "reading": "transcription_mediated",
    "quote": "Baumgarteu, Morris, Illinois street, b Dearborn and Wolcott sts",
    "normalized": {
-    "printed_name": "Baumgarteu, Morris, Illinois",
+    "printed_name": "Baumgarteu, Morris",
     "surname": "Baumgarteu",
-    "given": "Morris, Illinois",
+    "given": "Morris",
     "firm": false,
-    "occupation": "street",
+    "occupation": "Illinois street",
     "address": "b Dearborn and Wolcott sts",
     "as_printed": "Baumgarteu, Morris, Illinois street, b Dearborn and Wolcott sts",
     "section": "directory"
@@ -3095,7 +3095,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Baumgarteu, Morris, Illinois"
+    "Baumgarteu, Morris"
    ],
    "town_finding": false,
    "notes": null
@@ -3301,8 +3301,8 @@
     "surname": "Beaumont",
     "given": "George A. O",
     "firm": false,
-    "occupation": "pf",
-    "address": "B. & Skinner, house State st. b Ran dolph and Washington streets",
+    "occupation": "pf B. & Skinner",
+    "address": "house State st. b Ran dolph and Washington streets",
     "as_printed": "Beaumont, George A. O. pf B. & Skinner, house State st. b Ran dolph and Washington streets",
     "section": "directory"
    },
@@ -3549,8 +3549,8 @@
     "surname": "Beer",
     "given": "Adam",
     "firm": false,
-    "occupation": "shoemaker, at J",
-    "address": "B. Mitchell's",
+    "occupation": "shoemaker, at J. B. Mitchell's",
+    "address": null,
     "as_printed": "Beer, Adam, shoemaker, at J. B. Mitchell's",
     "section": "directory"
    },
@@ -3611,8 +3611,8 @@
     "surname": "Beers",
     "given": "Cyrenus",
     "firm": false,
-    "occupation": "of Botsibrd &",
-    "address": "B. house Wabash st",
+    "occupation": "of Botsibrd & B",
+    "address": "house Wabash st",
     "as_printed": "Beers, Cyrenus, of Botsibrd & B. house Wabash st",
     "section": "directory"
    },
@@ -4231,8 +4231,8 @@
     "surname": "Bigelow",
     "given": "A",
     "firm": false,
-    "occupation": "clerk at",
-    "address": "H. O. Stone's, house State street, bet Wash ington and Madison",
+    "occupation": "clerk at H. O. Stone's",
+    "address": "house State street, bet Wash ington and Madison",
     "as_printed": "Bigelow, A. clerk at H. O. Stone's, house State street, bet Wash ington and Madison",
     "section": "directory"
    },
@@ -4324,8 +4324,8 @@
     "surname": "Bills",
     "given": "George R",
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "H. Norton &: Go. res Trrmont House",
+    "occupation": "clerk, at H. Norton &: Go",
+    "address": "res Trrmont House",
     "as_printed": "Bills, George R. clerk, at H. Norton &: Go. res Trrmont House",
     "section": "directory"
    },
@@ -4453,8 +4453,8 @@
     "surname": "Blacktnan",
     "given": "Edwin",
     "firm": false,
-    "occupation": "clerk at",
-    "address": "H. H. Magic & Co.'s, residence Man sion House",
+    "occupation": "clerk at H. H. Magic & Co.'s",
+    "address": "residence Man sion House",
     "as_printed": "Blacktnan, Edwin, clerk at H. H. Magic & Co.'s, residence Man sion House",
     "section": "directory"
    },
@@ -4484,8 +4484,8 @@
     "surname": "Blaikie",
     "given": "A",
     "firm": false,
-    "occupation": "of Ryerson &",
-    "address": "B. res American Temperance House",
+    "occupation": "of Ryerson & B",
+    "address": "res American Temperance House",
     "as_printed": "Blaikie, A. of Ryerson & B. res American Temperance House",
     "section": "directory"
    },
@@ -4577,8 +4577,8 @@
     "surname": "Blakesley",
     "given": "H. A",
     "firm": false,
-    "occupation": "of Loyd",
-    "address": "B. & Co. residence Mrs. Boyer's",
+    "occupation": "of Loyd, B. & Co",
+    "address": "residence Mrs. Boyer's",
     "as_printed": "Blakesley, H. A. of Loyd, B. & Co. residence Mrs. Boyer's",
     "section": "directory"
    },
@@ -4701,8 +4701,8 @@
     "surname": "Blandey",
     "given": "Christopher",
     "firm": false,
-    "occupation": "clerk to John",
-    "address": "H. Foster, residence same",
+    "occupation": "clerk to John H. Foster",
+    "address": "residence same",
     "as_printed": "Blandey, Christopher, clerk to John H. Foster, residence same",
     "section": "directory"
    },
@@ -5135,8 +5135,8 @@
     "surname": "Botsford",
     "given": "J. K",
     "firm": false,
-    "occupation": "of",
-    "address": "B. & Beers, 109 Lake st. house Wabash street",
+    "occupation": "of B. & Beers, 109 Lake st",
+    "address": "house Wabash street",
     "as_printed": "Botsford, J. K. of B. & Beers, 109 Lake st. house Wabash street",
     "section": "directory"
    },
@@ -5228,8 +5228,8 @@
     "surname": "Bowen",
     "given": "Erastus",
     "firm": false,
-    "occupation": "of",
-    "address": "B. & Cole, house Michigan avenue",
+    "occupation": "of B. & Cole",
+    "address": "house Michigan avenue",
     "as_printed": "Bowen, Erastus, of B. & Cole, house Michigan avenue",
     "section": "directory"
    },
@@ -5419,8 +5419,8 @@
     "surname": "Bowinaster",
     "given": "Wm",
     "firm": false,
-    "occupation": "cabinet maker, at J",
-    "address": "B. Weir's",
+    "occupation": "cabinet maker, at J. B. Weir's",
+    "address": null,
     "as_printed": "Bowinaster, Wm. cabinet maker, at J. B. Weir's",
     "section": "directory"
    },
@@ -5827,8 +5827,8 @@
     "surname": "Bradley",
     "given": "Joseph",
     "firm": false,
-    "occupation": "clerk, at W",
-    "address": "H. Adams & Co.'s",
+    "occupation": "clerk, at W. H. Adams & Co.'s",
+    "address": null,
     "as_printed": "Bradley, Joseph, clerk, at W. H. Adams & Co.'s",
     "section": "directory"
    },
@@ -6266,8 +6266,8 @@
     "surname": "Bristol",
     "given": "R. C",
     "firm": false,
-    "occupation": "of",
-    "address": "B. & Porter, residence on Reservation",
+    "occupation": "of B. & Porter",
+    "address": "residence on Reservation",
     "as_printed": "Bristol, R. C. of B. & Porter, residence on Reservation",
     "section": "directory"
    },
@@ -7378,11 +7378,11 @@
    "reading": "transcription_mediated",
    "quote": "Bunch, Clyborn, Wells st. b Madison and Washington sts",
    "normalized": {
-    "printed_name": "Bunch, Clyborn, Wells",
+    "printed_name": "Bunch, Clyborn",
     "surname": "Bunch",
-    "given": "Clyborn, Wells",
+    "given": "Clyborn",
     "firm": false,
-    "occupation": "st",
+    "occupation": "Wells st",
     "address": "b Madison and Washington sts",
     "as_printed": "Bunch, Clyborn, Wells st. b Madison and Washington sts",
     "section": "directory"
@@ -7398,7 +7398,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bunch, Clyborn, Wells"
+    "Bunch, Clyborn"
    ],
    "town_finding": false,
    "notes": null
@@ -7413,8 +7413,8 @@
     "surname": "Burch",
     "given": "G.H",
     "firm": false,
-    "occupation": "of Newberry &",
-    "address": "B. res City Hotel",
+    "occupation": "of Newberry & B",
+    "address": "res City Hotel",
     "given_repair": {
      "as_read": "G/H",
      "reading": "G.H",
@@ -7704,8 +7704,8 @@
     "surname": "Burley",
     "given": "A. G",
     "firm": false,
-    "occupation": "of A. G",
-    "address": "B. & Co. res Tremont House",
+    "occupation": "of A. G. B. & Co",
+    "address": "res Tremont House",
     "as_printed": "Burley, A. G. of A. G. B. & Co. res Tremont House",
     "section": "directory"
    },
@@ -8386,8 +8386,8 @@
     "surname": "Buuerfield",
     "given": "Justin",
     "firm": false,
-    "occupation": "of",
-    "address": "B. <fc Collins, res c Michigan and Rush sts",
+    "occupation": "of B. <fc Collins",
+    "address": "res c Michigan and Rush sts",
     "as_printed": "Buuerfield, Justin, of B. <fc Collins, res c Michigan and Rush sts",
     "section": "directory"
    },
@@ -9079,11 +9079,11 @@
    "reading": "transcription_mediated",
    "quote": "Carpenter, George, Grocer^ South Water st",
    "normalized": {
-    "printed_name": "Carpenter, George, Grocer^ South",
+    "printed_name": "Carpenter, George",
     "surname": "Carpenter",
-    "given": "George, Grocer^ South",
+    "given": "George",
     "firm": false,
-    "occupation": "Water st",
+    "occupation": "Grocer^ South Water st",
     "address": null,
     "as_printed": "Carpenter, George, Grocer^ South Water st",
     "section": "directory"
@@ -9099,7 +9099,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Carpenter, George, Grocer^ South"
+    "Carpenter, George"
    ],
    "town_finding": false,
    "notes": null
@@ -9765,8 +9765,8 @@
     "surname": "Cassidy",
     "given": "P. E",
     "firm": false,
-    "occupation": "clerk to",
-    "address": "H. O Stone, residence same",
+    "occupation": "clerk to H. O Stone",
+    "address": "residence same",
     "as_printed": "Cassidy, P. E. clerk to H. O Stone, residence same",
     "section": "directory"
    },
@@ -11444,8 +11444,8 @@
     "surname": "Cleaver",
     "given": "Joseph",
     "firm": false,
-    "occupation": "cabinet maker ;it J",
-    "address": "B. Weir's",
+    "occupation": "cabinet maker ;it J. B. Weir's",
+    "address": null,
     "as_printed": "Cleaver, Joseph, cabinet maker ;it J. B. Weir's",
     "section": "directory"
    },
@@ -11471,11 +11471,11 @@
    "reading": "transcription_mediated",
    "quote": "Cleaver, T. B.,soap and oil factory, res at Charles Cleaver's",
    "normalized": {
-    "printed_name": "Cleaver, T. B.,soap",
+    "printed_name": "Cleaver, T. B",
     "surname": "Cleaver",
-    "given": "T. B.,soap",
+    "given": "T. B",
     "firm": false,
-    "occupation": "and oil factory",
+    "occupation": "soap and oil factory",
     "address": "res at Charles Cleaver's",
     "as_printed": "Cleaver, T. B.,soap and oil factory, res at Charles Cleaver's",
     "section": "directory"
@@ -11491,7 +11491,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Cleaver, T. B.,soap"
+    "Cleaver, T. B"
    ],
    "town_finding": false,
    "notes": null
@@ -12064,8 +12064,8 @@
     "surname": "CoUins",
     "given": "George",
     "firm": false,
-    "occupation": "of S",
-    "address": "B. Collins & Co. res S. B. Collins",
+    "occupation": "of S. B. Collins & Co",
+    "address": "res S. B. Collins",
     "as_printed": "CoUins, George, of S. B. Collins & Co. res S. B. Collins",
     "section": "directory"
    },
@@ -12188,8 +12188,8 @@
     "surname": "Collins",
     "given": "Samuel B",
     "firm": false,
-    "occupation": "of S",
-    "address": "B. C. & Co., res Washington st. b Dear born and State sts",
+    "occupation": "of S. B. C. & Co",
+    "address": "res Washington st. b Dear born and State sts",
     "as_printed": "Collins, Samuel B. of S. B. C. & Co., res Washington st. b Dear born and State sts",
     "section": "directory"
    },
@@ -13264,8 +13264,8 @@
     "surname": "Craft",
     "given": "George W",
     "firm": false,
-    "occupation": "shoemaker, at J",
-    "address": "B. Mitchell's",
+    "occupation": "shoemaker, at J. B. Mitchell's",
+    "address": null,
     "as_printed": "Craft, George W. shoemaker, at J. B. Mitchell's",
     "section": "directory"
    },
@@ -14488,8 +14488,8 @@
     "surname": "Darling",
     "given": "Win",
     "firm": false,
-    "occupation": "blacksmith, at Win",
-    "address": "B. Stevens'",
+    "occupation": "blacksmith, at Win. B. Stevens'",
+    "address": null,
     "as_printed": "Darling, Win. blacksmith, at Win. B. Stevens'",
     "section": "directory"
    },
@@ -14581,8 +14581,8 @@
     "surname": "Davidson",
     "given": "D",
     "firm": false,
-    "occupation": "clerk to",
-    "address": "H. Norton & Co., res Amer. Temp. House",
+    "occupation": "clerk to H. Norton & Co",
+    "address": "res Amer. Temp. House",
     "as_printed": "Davidson, D. clerk to H. Norton & Co., res Amer. Temp. House",
     "section": "directory"
    },
@@ -14891,8 +14891,8 @@
     "surname": "Daus",
     "given": "D",
     "firm": false,
-    "occupation": "clerk at",
-    "address": "H. O. Stone res Michigan st",
+    "occupation": "clerk at H. O. Stone",
+    "address": "res Michigan st",
     "as_printed": "Daus, D. clerk at H. O. Stone res Michigan st",
     "section": "directory"
    },
@@ -16215,8 +16215,8 @@
     "surname": "Donivan",
     "given": "Dennis",
     "firm": false,
-    "occupation": "saddle and harness maker, at S",
-    "address": "B. Cobb's",
+    "occupation": "saddle and harness maker, at S. B. Cobb's",
+    "address": null,
     "as_printed": "Donivan, Dennis, saddle and harness maker, at S. B. Cobb's",
     "section": "directory"
    },
@@ -16494,8 +16494,8 @@
     "surname": "Downs",
     "given": "A. G",
     "firm": false,
-    "occupation": "clerk, at T",
-    "address": "B. Carter's, res Seth Johnson's",
+    "occupation": "clerk, at T. B. Carter's",
+    "address": "res Seth Johnson's",
     "as_printed": "Downs, A. G. clerk, at T. B. Carter's, res Seth Johnson's",
     "section": "directory"
    },
@@ -16525,8 +16525,8 @@
     "surname": "Downs",
     "given": "A. S",
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "H. & E. Smith's",
+    "occupation": "clerk, at H. & E. Smith's",
+    "address": null,
     "as_printed": "Downs, A. S. clerk, at H. & E. Smith's",
     "section": "directory"
    },
@@ -18126,8 +18126,8 @@
     "surname": "Farewell",
     "given": "James",
     "firm": false,
-    "occupation": "cigar maker, a\"t A",
-    "address": "B. Wheeler's",
+    "occupation": "cigar maker, a\"t A. B. Wheeler's",
+    "address": null,
     "as_printed": "Farewell, James, cigar maker, a\"t A. B. Wheeler's",
     "section": "directory"
    },
@@ -18281,8 +18281,8 @@
     "surname": "Fellman",
     "given": "J. Francis",
     "firm": false,
-    "occupation": "chairmaker, at J",
-    "address": "B. Weir's, res N. Water'st",
+    "occupation": "chairmaker, at J. B. Weir's",
+    "address": "res N. Water'st",
     "as_printed": "Fellman, J. Francis, chairmaker, at J. B. Weir's, res N. Water'st",
     "section": "directory"
    },
@@ -19712,8 +19712,8 @@
     "surname": "Forrest",
     "given": "Tho. L",
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "H. Norton & Co.'s res city eating house",
+    "occupation": "clerk, at H. Norton & Co.'s",
+    "address": "res city eating house",
     "as_printed": "Forrest, Tho. L clerk, at H. Norton & Co.'s res city eating house",
     "section": "directory"
    },
@@ -20022,8 +20022,8 @@
     "surname": "Frank",
     "given": "John",
     "firm": false,
-    "occupation": "cabinet maker, at John",
-    "address": "B. Weir's",
+    "occupation": "cabinet maker, at John B. Weir's",
+    "address": null,
     "as_printed": "Frank, John, cabinet maker, at John B. Weir's",
     "section": "directory"
    },
@@ -22245,8 +22245,8 @@
     "surname": "Goodrich",
     "given": "J. W",
     "firm": false,
-    "occupation": "clerk, at T",
-    "address": "B. Carter & Co.'s, res S. Johnson's",
+    "occupation": "clerk, at T. B. Carter & Co.'s",
+    "address": "res S. Johnson's",
     "as_printed": "Goodrich, J. W. clerk, at T. B. Carter & Co.'s, res S. Johnson's",
     "section": "directory"
    },
@@ -22994,8 +22994,8 @@
     "surname": "Gray",
     "given": "F. D",
     "firm": false,
-    "occupation": "clerk at",
-    "address": "H. Norton & Co.'s res E. Walter's",
+    "occupation": "clerk at H. Norton & Co.'s",
+    "address": "res E. Walter's",
     "as_printed": "Gray, F. D. clerk at H. Norton & Co.'s res E. Walter's",
     "section": "directory"
    },
@@ -23118,8 +23118,8 @@
     "surname": "Gray",
     "given": null,
     "firm": false,
-    "occupation": "\\Vm. clerk, at J",
-    "address": "H. Gray's res Columbian House",
+    "occupation": "\\Vm. clerk, at J. H. Gray's",
+    "address": "res Columbian House",
     "as_printed": "Gray, \\Vm. clerk, at J. H. Gray's res Columbian House",
     "section": "directory"
    },
@@ -24063,8 +24063,8 @@
     "surname": "Hadley",
     "given": "T. G",
     "firm": false,
-    "occupation": "of Howard &",
-    "address": "H. house alley b Wolcott & Dearborn",
+    "occupation": "of Howard & H",
+    "address": "house alley b Wolcott & Dearborn",
     "as_printed": "Hadley, T. G. of Howard & H. house alley b Wolcott & Dearborn",
     "section": "directory"
    },
@@ -24254,8 +24254,8 @@
     "surname": "Haincs",
     "given": "J. C",
     "firm": false,
-    "occupation": "of Clark",
-    "address": "H. & Co. res S:tuganashjHlotel",
+    "occupation": "of Clark, H. & Co",
+    "address": "res S:tuganashjHlotel",
     "as_printed": "Haincs, J. C of Clark, H. & Co. res S:tuganashjHlotel",
     "section": "directory"
    },
@@ -24359,8 +24359,8 @@
     "surname": "Hall",
     "given": "E. G",
     "firm": false,
-    "occupation": "clerk, at S",
-    "address": "B. Walker's, res same",
+    "occupation": "clerk, at S. B. Walker's",
+    "address": "res same",
     "as_printed": "Hall, E. G. clerk, at S. B. Walker's, res same",
     "section": "directory"
    },
@@ -24483,8 +24483,8 @@
     "surname": "Hamilton",
     "given": "R. J",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & Chamberlaine, h Mich b Cass <fe Hush",
+    "occupation": "of H. & Chamberlaine",
+    "address": "h Mich b Cass <fe Hush",
     "as_printed": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
     "section": "directory"
    },
@@ -24514,8 +24514,8 @@
     "surname": "Hamilton",
     "given": "Robert P",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & White, res T. E. Hamilton's",
+    "occupation": "of H. & White",
+    "address": "res T. E. Hamilton's",
     "as_printed": "Hamilton, Robert P. of H. & White, res T. E. Hamilton's",
     "section": "directory"
    },
@@ -24763,11 +24763,11 @@
    "reading": "transcription_mediated",
    "quote": "Hanson, Abraham, Methodist clergymen, res Clark st. b Washing-\n  ton and Madison sts",
    "normalized": {
-    "printed_name": "Hanson, Abraham, Methodist",
+    "printed_name": "Hanson, Abraham",
     "surname": "Hanson",
-    "given": "Abraham, Methodist",
+    "given": "Abraham",
     "firm": false,
-    "occupation": "clergymen",
+    "occupation": "Methodist clergymen",
     "address": "res Clark st. b Washing ton and Madison sts",
     "as_printed": "Hanson, Abraham, Methodist clergymen, res Clark st. b Washing ton and Madison sts",
     "section": "directory"
@@ -24783,7 +24783,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hanson, Abraham, Methodist"
+    "Hanson, Abraham"
    ],
    "town_finding": false,
    "notes": null
@@ -24958,8 +24958,8 @@
     "surname": "Harmon",
     "given": "J..of Wooster",
     "firm": false,
-    "occupation": "&",
-    "address": "H. res John Gray's",
+    "occupation": "& H",
+    "address": "res John Gray's",
     "as_printed": "Harmon, J..of Wooster & H. res John Gray's",
     "section": "directory"
    },
@@ -25078,11 +25078,11 @@
    "reading": "transcription_mediated",
    "quote": "Harrington, Joseph, Unitarian clergyman, house cor Michigan and.\n  Dearborn sts",
    "normalized": {
-    "printed_name": "Harrington, Joseph, Unitarian",
+    "printed_name": "Harrington, Joseph",
     "surname": "Harrington",
-    "given": "Joseph, Unitarian",
+    "given": "Joseph",
     "firm": false,
-    "occupation": "clergyman",
+    "occupation": "Unitarian clergyman",
     "address": "house cor Michigan and. Dearborn sts",
     "as_printed": "Harrington, Joseph, Unitarian clergyman, house cor Michigan and. Dearborn sts",
     "section": "directory"
@@ -25098,7 +25098,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Harrington, Joseph, Unitarian"
+    "Harrington, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -25578,8 +25578,8 @@
     "surname": "Hatch",
     "given": "Herman",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & Shur, South Water st",
+    "occupation": "of H. & Shur, South Water st",
+    "address": null,
     "as_printed": "Hatch, Herman, of H. & Shur, South Water st.",
     "section": "directory"
    },
@@ -25671,8 +25671,8 @@
     "surname": "Hathaway",
     "given": "L. W",
     "firm": false,
-    "occupation": "clerk, at S",
-    "address": "B. Collins & Co.'s, house Wabash s b Clark and Lasalle sts",
+    "occupation": "clerk, at S. B. Collins & Co.'s",
+    "address": "house Wabash s b Clark and Lasalle sts",
     "as_printed": "Hathaway, L. W. clerk, at S. B. Collins & Co.'s, house Wabash s b Clark and Lasalle sts",
     "section": "directory"
    },
@@ -26198,8 +26198,8 @@
     "surname": "Hequenbourg",
     "given": "G. W",
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "B. F. Sherman's, res same",
+    "occupation": "clerk, at B. F. Sherman's",
+    "address": "res same",
     "given_repair": {
      "as_read": "G. VV",
      "reading": "G. W",
@@ -26561,8 +26561,8 @@
     "surname": "High",
     "given": "John, jr",
     "firm": false,
-    "occupation": "of",
-    "address": "H. H. Magie & Co. Wabash st. b Clark and Lasalle sts",
+    "occupation": "of H. H. Magie & Co. Wabash st",
+    "address": "b Clark and Lasalle sts",
     "as_printed": "High, John, jr. of H. H. Magie & Co. Wabash st. b Clark and Lasalle sts",
     "section": "directory"
    },
@@ -27522,8 +27522,8 @@
     "surname": "Holland",
     "given": "C",
     "firm": false,
-    "occupation": "of Lawrence &",
-    "address": "H. res Mrs. Green's",
+    "occupation": "of Lawrence & H",
+    "address": "res Mrs. Green's",
     "as_printed": "Holland, C. of Lawrence & H. res Mrs. Green's",
     "section": "directory"
    },
@@ -27770,8 +27770,8 @@
     "surname": "Hood",
     "given": "David",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & Gallagher, house alley b Wolcolt and Dearb",
+    "occupation": "of H. & Gallagher",
+    "address": "house alley b Wolcolt and Dearb",
     "as_printed": "Hood, David, of H. & Gallagher, house alley b Wolcolt and Dearb",
     "section": "directory"
    },
@@ -28204,8 +28204,8 @@
     "surname": "Hovey",
     "given": "Sam'l. S",
     "firm": false,
-    "occupation": "of Clybtirn &",
-    "address": "H. Western market, cor of Lakfc and Wells sts, res Clark, b Illinois and Indiana streets",
+    "occupation": "of Clybtirn & H. Western market, cor of Lakfc and Wells sts",
+    "address": "res Clark, b Illinois and Indiana streets",
     "as_printed": "Hovey, Sam'l. S. of Clybtirn & H. Western market, cor of Lakfc and Wells sts, res Clark, b Illinois and Indiana streets",
     "section": "directory"
    },
@@ -28829,8 +28829,8 @@
     "surname": "Humphieys",
     "given": "D",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & Winslow, res City Hotel",
+    "occupation": "of H. & Winslow",
+    "address": "res City Hotel",
     "as_printed": "Humphieys, D. of H. & Winslow, res City Hotel",
     "section": "directory"
    },
@@ -30389,8 +30389,8 @@
     "surname": "Jones",
     "given": "Benjamin",
     "firm": false,
-    "occupation": "of",
-    "address": "B. J. & Co. house Rand, b Clark aud Dearb",
+    "occupation": "of B. J. & Co",
+    "address": "house Rand, b Clark aud Dearb",
     "as_printed": "Jones, Benjamin, of B. J. & Co. house Rand, b Clark aud Dearb",
     "section": "directory"
    },
@@ -30699,8 +30699,8 @@
     "surname": "Jones",
     "given": "Wm",
     "firm": false,
-    "occupation": "of",
-    "address": "B. Jones & Co. house cor Randolph and Dearborn",
+    "occupation": "of B. Jones & Co",
+    "address": "house cor Randolph and Dearborn",
     "as_printed": "Jones, Wm. of B. Jones & Co. house cor Randolph and Dearborn",
     "section": "directory"
    },
@@ -30761,8 +30761,8 @@
     "surname": "Judd",
     "given": null,
     "firm": false,
-    "occupation": "-N",
-    "address": "B. of Scarnmon & Judd, res .City Hotel",
+    "occupation": "-N. B. of Scarnmon & Judd",
+    "address": "res .City Hotel",
     "as_printed": "Judd,-N. B. of Scarnmon & Judd, res .City Hotel",
     "section": "directory"
    },
@@ -34144,11 +34144,11 @@
    "reading": "transcription_mediated",
    "quote": "Lees, James, Gth ward",
    "normalized": {
-    "printed_name": "Lees, James, Gth",
+    "printed_name": "Lees, James",
     "surname": "Lees",
-    "given": "James, Gth",
+    "given": "James",
     "firm": false,
-    "occupation": "ward",
+    "occupation": "Gth ward",
     "address": null,
     "as_printed": "Lees, James, Gth ward",
     "section": "directory"
@@ -34164,7 +34164,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lees, James, Gth"
+    "Lees, James"
    ],
    "town_finding": false,
    "notes": null
@@ -34935,8 +34935,8 @@
     "surname": "Lothrop",
     "given": "Isaac",
     "firm": false,
-    "occupation": "shoe maker, at J",
-    "address": "B. Mitchell's",
+    "occupation": "shoe maker, at J. B. Mitchell's",
+    "address": null,
     "as_printed": "Lothrop, Isaac, shoe maker, at J. B. Mitchell's",
     "section": "directory"
    },
@@ -35839,8 +35839,8 @@
     "surname": "JYIcCanny",
     "given": null,
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "H. M. Stow's",
+    "occupation": "clerk, at H. M. Stow's",
+    "address": null,
     "as_printed": "JYIcCanny,, clerk, at H. M. Stow's",
     "section": "directory"
    },
@@ -35870,8 +35870,8 @@
     "surname": "Mack",
     "given": "Firman",
     "firm": false,
-    "occupation": "at W",
-    "address": "H. Adams & Co.'s, house Lasalle st. b Ma dison and Washington sts",
+    "occupation": "at W. H. Adams & Co.'s",
+    "address": "house Lasalle st. b Ma dison and Washington sts",
     "as_printed": "Mack, Firman, at W. H. Adams & Co.'s, house Lasalle st. b Ma dison and Washington sts",
     "section": "directory"
    },
@@ -37730,8 +37730,8 @@
     "surname": "Magie",
     "given": "H. H",
     "firm": false,
-    "occupation": "of",
-    "address": "H. H. M. & Co. house",
+    "occupation": "of H. H. M. & Co. house",
+    "address": null,
     "as_printed": "Magie, H. H. of H. H. M. & Co. house",
     "section": "directory"
    },
@@ -38439,11 +38439,11 @@
    "reading": "transcription_mediated",
    "quote": "Marrs, Samuel,' pump pedlar, h Lasalle b Wash and Madison'",
    "normalized": {
-    "printed_name": "Marrs, Samuel,'",
+    "printed_name": "Marrs, Samuel",
     "surname": "Marrs",
-    "given": "Samuel,'",
+    "given": "Samuel",
     "firm": false,
-    "occupation": "pump pedlar",
+    "occupation": "' pump pedlar",
     "address": "h Lasalle b Wash and Madison'",
     "as_printed": "Marrs, Samuel,' pump pedlar, h Lasalle b Wash and Madison'",
     "section": "directory"
@@ -38459,7 +38459,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Marrs, Samuel,'"
+    "Marrs, Samuel"
    ],
    "town_finding": false,
    "notes": null
@@ -41202,8 +41202,8 @@
     "surname": "Mukautc",
     "given": "P",
     "firm": false,
-    "occupation": "clerk at J",
-    "address": "B. Busch",
+    "occupation": "clerk at J. B. Busch",
+    "address": null,
     "as_printed": "Mukautc, P. clerk at J. B. Busch",
     "section": "directory"
    },
@@ -41353,11 +41353,11 @@
    "reading": "transcription_mediated",
    "quote": "Murphy, John, United States Hotel, corner Randolph and W.\n  Water sts. (See card.)",
    "normalized": {
-    "printed_name": "Murphy, John, United States",
+    "printed_name": "Murphy, John",
     "surname": "Murphy",
-    "given": "John, United States",
+    "given": "John",
     "firm": false,
-    "occupation": "Hotel, corner Randolph and W. Water sts. (See card.)",
+    "occupation": "United States Hotel, corner Randolph and W. Water sts. (See card.)",
     "address": null,
     "as_printed": "Murphy, John, United States Hotel, corner Randolph and W. Water sts. (See card.)",
     "section": "directory"
@@ -41373,7 +41373,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Murphy, John, United States"
+    "Murphy, John"
    ],
    "town_finding": false,
    "notes": null
@@ -43940,8 +43940,8 @@
     "surname": "Pearsons",
     "given": "P. H..clerk",
     "firm": false,
-    "occupation": "at",
-    "address": "R. Ambrose's, res same",
+    "occupation": "at R. Ambrose's",
+    "address": "res same",
     "as_printed": "Pearsons, P. H..clerk, at R. Ambrose's, res same",
     "section": "directory"
    },
@@ -45317,8 +45317,8 @@
     "surname": "Powell",
     "given": "J. P",
     "firm": false,
-    "occupation": "cabinet maker, at J",
-    "address": "B. Weir's",
+    "occupation": "cabinet maker, at J. B. Weir's",
+    "address": null,
     "as_printed": "Powell, J. P. cabinet maker, at J. B. Weir's",
     "section": "directory"
    },
@@ -45566,11 +45566,11 @@
    "reading": "transcription_mediated",
    "quote": "Quarters, William, Catholic Bishop, cor Mich. av. and Madison st",
    "normalized": {
-    "printed_name": "Quarters, William, Catholic Bishop",
+    "printed_name": "Quarters, William",
     "surname": "Quarters",
-    "given": "William, Catholic Bishop",
+    "given": "William",
     "firm": false,
-    "occupation": "cor Mich. av. and Madison st",
+    "occupation": "Catholic Bishop, cor Mich. av. and Madison st",
     "address": null,
     "as_printed": "Quarters, William, Catholic Bishop, cor Mich. av. and Madison st",
     "section": "directory"
@@ -45586,7 +45586,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Quarters, William, Catholic Bishop"
+    "Quarters, William"
    ],
    "town_finding": false,
    "notes": null
@@ -45761,8 +45761,8 @@
     "surname": "Raskupp",
     "given": "John",
     "firm": false,
-    "occupation": "at S",
-    "address": "B. Cobb's",
+    "occupation": "at S. B. Cobb's",
+    "address": null,
     "as_printed": "Raskupp, John, at S. B. Cobb's",
     "section": "directory"
    },
@@ -45947,8 +45947,8 @@
     "surname": "Raymond",
     "given": "B. W",
     "firm": false,
-    "occupation": "of",
-    "address": "B. W. R. & Co. h Wash, b Clark and Lasalle",
+    "occupation": "of B. W. R. & Co",
+    "address": "h Wash, b Clark and Lasalle",
     "head_repair": {
      "as_read": "ofJ5.",
      "reading": "of B.",
@@ -45990,8 +45990,8 @@
     "surname": "Raymond",
     "given": "Geo",
     "firm": false,
-    "occupation": "at",
-    "address": "B. W. Raymond's 122 Lake st",
+    "occupation": "at B. W. Raymond's 122 Lake st",
+    "address": null,
     "as_printed": "Raymond, Geo. at B. W. Raymond's 122 Lake st",
     "section": "directory"
    },
@@ -46300,8 +46300,8 @@
     "surname": "Rew",
     "given": "Norman",
     "firm": false,
-    "occupation": "of",
-    "address": "R. & Russell, h State street",
+    "occupation": "of R. & Russell",
+    "address": "h State street",
     "as_printed": "Rew, Norman, of R. & Russell, h State street",
     "section": "directory"
    },
@@ -46579,8 +46579,8 @@
     "surname": "Robb",
     "given": "George A",
     "firm": false,
-    "occupation": "of Foster &",
-    "address": "R. res J. B. Mitchell's",
+    "occupation": "of Foster & R",
+    "address": "res J. B. Mitchell's",
     "as_printed": "Robb, George A. of Foster & R. res J. B. Mitchell's",
     "section": "directory"
    },
@@ -46641,8 +46641,8 @@
     "surname": "Robertson",
     "given": "Cyrus D",
     "firm": false,
-    "occupation": "clerk nt",
-    "address": "H. H. Yates'",
+    "occupation": "clerk nt H. H. Yates'",
+    "address": null,
     "as_printed": "Robertson, Cyrus D. clerk nt H. H. Yates'",
     "section": "directory"
    },
@@ -46765,8 +46765,8 @@
     "surname": "Roberts",
     "given": "J. S",
     "firm": false,
-    "occupation": "chair painter at J",
-    "address": "B. Weir's",
+    "occupation": "chair painter at J. B. Weir's",
+    "address": null,
     "as_printed": "Roberts, J. S. chair painter at J. B. Weir's",
     "section": "directory"
    },
@@ -47741,8 +47741,8 @@
     "surname": "Rucker",
     "given": "Edward A",
     "firm": false,
-    "occupation": "law student at",
-    "address": "H. L. Rucker's",
+    "occupation": "law student at H. L. Rucker's",
+    "address": null,
     "as_printed": "Rucker, Edward A. law student at H. L. Rucker's",
     "section": "directory"
    },
@@ -48242,8 +48242,8 @@
     "surname": "Ryerson",
     "given": "J. T",
     "firm": false,
-    "occupation": "of",
-    "address": "R. & Blaikie, res Tremont House",
+    "occupation": "of R. & Blaikie",
+    "address": "res Tremont House",
     "as_printed": "Ryerson, J. T. of R. & Blaikie, res Tremont House",
     "section": "directory"
    },
@@ -50231,8 +50231,8 @@
     "surname": "Sherman",
     "given": "F. T",
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "H. H. ilusted's, res F. C. Sherman's",
+    "occupation": "clerk, at H. H. ilusted's",
+    "address": "res F. C. Sherman's",
     "as_printed": "Sherman, F. T. clerk, at H. H. ilusted's, res F. C. Sherman's",
     "section": "directory"
    },
@@ -50355,8 +50355,8 @@
     "surname": "Sherman",
     "given": "R. D",
     "firm": false,
-    "occupation": "agent",
-    "address": "B. F. Sherman, h Clark st. b Mad. & Mon",
+    "occupation": "agent, B. F. Sherman",
+    "address": "h Clark st. b Mad. & Mon",
     "as_printed": "Sherman, R. D. agent, B. F. Sherman, h Clark st. b Mad. & Mon",
     "section": "directory"
    },
@@ -51331,8 +51331,8 @@
     "surname": "Smith",
     "given": "Chas. A",
     "firm": false,
-    "occupation": "clerk at",
-    "address": "B. F. Sherman's",
+    "occupation": "clerk at B. F. Sherman's",
+    "address": null,
     "as_printed": "Smith, Chas. A. clerk at B. F. Sherman's",
     "section": "directory"
    },
@@ -51455,8 +51455,8 @@
     "surname": "Smith",
     "given": "Elijah",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & E. Smith, h Ohio jst. b Dear and Wolcott",
+    "occupation": "of H. & E. Smith",
+    "address": "h Ohio jst. b Dear and Wolcott",
     "as_printed": "Smith, Elijah, of H. & E. Smith, h Ohio jst. b Dear and Wolcott",
     "section": "directory"
    },
@@ -51548,8 +51548,8 @@
     "surname": "Smith",
     "given": "Henry",
     "firm": false,
-    "occupation": "of",
-    "address": "H. & E. Sioifh, h Ohio st. b Dearb and Wolcott",
+    "occupation": "of H. & E. Sioifh",
+    "address": "h Ohio st. b Dearb and Wolcott",
     "as_printed": "Smith, Henry, of H. & E. Sioifh, h Ohio st. b Dearb and Wolcott",
     "section": "directory"
    },
@@ -51703,8 +51703,8 @@
     "surname": "Smith",
     "given": "John E",
     "firm": false,
-    "occupation": "clerk at",
-    "address": "B. F. Sherman's",
+    "occupation": "clerk at B. F. Sherman's",
+    "address": null,
     "as_printed": "Smith, John E. clerk at B. F. Sherman's",
     "section": "directory"
    },
@@ -51827,8 +51827,8 @@
     "surname": "Smith",
     "given": null,
     "firm": false,
-    "occupation": "shoemaker, at J",
-    "address": "B. Mitchell's",
+    "occupation": "shoemaker, at J. B. Mitchell's",
+    "address": null,
     "as_printed": "Smith,, shoemaker, at J. B. Mitchell's",
     "section": "directory"
    },
@@ -51920,8 +51920,8 @@
     "surname": "Smith",
     "given": "Michael",
     "firm": false,
-    "occupation": "at S",
-    "address": "B. Cobb's",
+    "occupation": "at S. B. Cobb's",
+    "address": null,
     "as_printed": "Smith, Michael, at S. B. Cobb's",
     "section": "directory"
    },
@@ -52912,8 +52912,8 @@
     "surname": "Stearns",
     "given": "L",
     "firm": false,
-    "occupation": "at L",
-    "address": "B. Goodsell'a",
+    "occupation": "at L. B. Goodsell'a",
+    "address": null,
     "as_printed": "Stearns, L. at L. B. Goodsell'a",
     "section": "directory"
    },
@@ -53848,11 +53848,11 @@
    "reading": "transcription_mediated",
    "quote": "Stuart, William, Post Master, h Ontario st. b Cass and Wolcott sts",
    "normalized": {
-    "printed_name": "Stuart, William, Post Master",
+    "printed_name": "Stuart, William",
     "surname": "Stuart",
-    "given": "William, Post Master",
+    "given": "William",
     "firm": false,
-    "occupation": null,
+    "occupation": "Post Master",
     "address": "h Ontario st. b Cass and Wolcott sts",
     "as_printed": "Stuart, William, Post Master, h Ontario st. b Cass and Wolcott sts",
     "section": "directory"
@@ -53868,7 +53868,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Stuart, William, Post Master"
+    "Stuart, William"
    ],
    "town_finding": false,
    "notes": null
@@ -54353,8 +54353,8 @@
     "surname": "Swenser",
     "given": "Even",
     "firm": false,
-    "occupation": "laborer, at J",
-    "address": "B. Weir's",
+    "occupation": "laborer, at J. B. Weir's",
+    "address": null,
     "as_printed": "Swenser, Even, laborer, at J. B. Weir's",
     "section": "directory"
    },
@@ -54477,8 +54477,8 @@
     "surname": "Tallmadge",
     "given": "S. W",
     "firm": false,
-    "occupation": "shoemaker, at W",
-    "address": "H. Adams & Co. h Clark st",
+    "occupation": "shoemaker, at W. H. Adams & Co",
+    "address": "h Clark st",
     "as_printed": "Tallmadge, S. W. shoemaker, at W. H. Adams & Co. h Clark st",
     "section": "directory"
    },
@@ -54818,8 +54818,8 @@
     "surname": "Taylor",
     "given": "H",
     "firm": false,
-    "occupation": "saddle and harness maker, at S",
-    "address": "B. Cobb's",
+    "occupation": "saddle and harness maker, at S. B. Cobb's",
+    "address": null,
     "as_printed": "Taylor, H. saddle and harness maker, at S. B. Cobb's",
     "section": "directory"
    },
@@ -55691,8 +55691,8 @@
     "surname": "Townsend",
     "given": "E. H",
     "firm": false,
-    "occupation": "clerk, at",
-    "address": "B. F. Sherman's",
+    "occupation": "clerk, at B. F. Sherman's",
+    "address": null,
     "as_printed": "Townsend, E. H. clerk, at B. F. Sherman's",
     "section": "directory"
    },
@@ -55913,8 +55913,8 @@
     "surname": "Turner",
     "given": "Charles",
     "firm": false,
-    "occupation": "of",
-    "address": "R. L. & C. Turner",
+    "occupation": "of R. L. & C. Turner",
+    "address": null,
     "as_printed": "Turner, Charles, of R. L. & C. Turner",
     "section": "directory"
    },
@@ -56409,8 +56409,8 @@
     "surname": "Van Gaasbeck",
     "given": "T. L",
     "firm": false,
-    "occupation": "clerk",
-    "address": "H. O. Stone's",
+    "occupation": "clerk H. O. Stone's",
+    "address": null,
     "as_printed": "Van Gaasbeck, T. L. clerk H. O. Stone's",
     "section": "directory"
    },
@@ -57003,8 +57003,8 @@
     "surname": "Wait",
     "given": "John",
     "firm": false,
-    "occupation": "blacksmith, at",
-    "address": "H. Chapman's, res New York House",
+    "occupation": "blacksmith, at H. Chapman's",
+    "address": "res New York House",
     "as_printed": "Wait, John, blacksmith, at H. Chapman's, res New York House",
     "section": "directory"
    },
@@ -57096,8 +57096,8 @@
     "surname": "Waldron",
     "given": "Hiram",
     "firm": false,
-    "occupation": "wagon maker, at Win",
-    "address": "H. Howard's",
+    "occupation": "wagon maker, at Win. H. Howard's",
+    "address": null,
     "as_printed": "Waldron, Hiram, wagon maker, at Win. H. Howard's",
     "section": "directory"
    },
@@ -57411,8 +57411,8 @@
     "surname": "Walter",
     "given": "J. C",
     "firm": false,
-    "occupation": "of",
-    "address": "H. Norton & Co. res E. Walter's",
+    "occupation": "of H. Norton & Co",
+    "address": "res E. Walter's",
     "as_printed": "Walter, J. C. of H. Norton & Co. res E. Walter's",
     "section": "directory"
    },
@@ -58041,8 +58041,8 @@
     "surname": "Waughop",
     "given": "J. W",
     "firm": false,
-    "occupation": "tailor, at",
-    "address": "B. Smith's, res J. Rockwell's",
+    "occupation": "tailor, at B. Smith's",
+    "address": "res J. Rockwell's",
     "as_printed": "Waughop, J. W. tailor, at B. Smith's, res J. Rockwell's",
     "section": "directory"
    },
@@ -58103,8 +58103,8 @@
     "surname": "Weber",
     "given": "Ignace",
     "firm": false,
-    "occupation": "clerk at J",
-    "address": "B. Busch's, Clark st",
+    "occupation": "clerk at J. B. Busch's, Clark st",
+    "address": null,
     "as_printed": "Weber, Ignace, clerk at J. B. Busch's, Clark st",
     "section": "directory"
    },
@@ -59996,11 +59996,11 @@
    "reading": "transcription_mediated",
    "quote": "Wilson, Maihew,ship carpenter, h Washington, b Wells and Frank",
    "normalized": {
-    "printed_name": "Wilson, Maihew,ship",
+    "printed_name": "Wilson, Maihew",
     "surname": "Wilson",
-    "given": "Maihew,ship",
+    "given": "Maihew",
     "firm": false,
-    "occupation": "carpenter",
+    "occupation": "ship carpenter",
     "address": "h Washington, b Wells and Frank",
     "as_printed": "Wilson, Maihew,ship carpenter, h Washington, b Wells and Frank",
     "section": "directory"
@@ -60016,7 +60016,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wilson, Maihew,ship"
+    "Wilson, Maihew"
    ],
    "town_finding": false,
    "notes": null
@@ -60570,8 +60570,8 @@
     "surname": "AVorcester",
     "given": "D. L",
     "firm": false,
-    "occupation": "at",
-    "address": "H. Norton & Co.'s, h Wabash st",
+    "occupation": "at H. Norton & Co.'s",
+    "address": "h Wabash st",
     "name_overrun": {
      "repaired": true,
      "name": "AVorcester. D. L.",
@@ -62357,8 +62357,8 @@
     "surname": "Intelligence Office",
     "given": "Clark",
     "firm": false,
-    "occupation": "st. opposite Saloon, over J;",
-    "address": "B. F. Rus sell's Land Office",
+    "occupation": "st. opposite Saloon, over J; B. F. Rus sell's Land Office",
+    "address": null,
     "as_printed": "Intelligence Office, Clark st. opposite Saloon, over J; B. F. Rus sell's Land Office",
     "section": "addenda"
    },
@@ -62543,8 +62543,8 @@
     "surname": "Kellogs:",
     "given": "C. P",
     "firm": false,
-    "occupation": "stage agent, Tillotson",
-    "address": "H. & Co. res Tremont House",
+    "occupation": "stage agent, Tillotson, H. & Co",
+    "address": "res Tremont House",
     "as_printed": "Kellogs:, C. P. stage agent, Tillotson, H. & Co. res Tremont House",
     "section": "addenda"
    },
@@ -64372,8 +64372,8 @@
     "surname": "Tappan",
     "given": "A. W",
     "firm": false,
-    "occupation": "clerk at J",
-    "address": "B. Irvin & Co's",
+    "occupation": "clerk at J. B. Irvin & Co's",
+    "address": null,
     "as_printed": "Tappan, A. W. clerk at J. B. Irvin & Co's",
     "section": "addenda"
    },
