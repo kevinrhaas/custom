@@ -122,6 +122,90 @@ the parent's queue position. The continuation coverage count includes inspected
 lines with unresolved cells; it is not a claim that every glyph was deciphered.
 
 
+## Shipped 2026-09-11 — T-0432: blk_south_water_dearborn's second deal, and the last block with room in it
+
+**What shipped.** Three roofs on `blk_south_water_dearborn`, the FOURTH and last of the South
+Water blocks T-0009's ruling unblocked (T-0420 piece 4 of 4):
+
+- `recon_1835_blk_south_water_dearborn_d3_08` — a **D3 one-room frame cottage**, 5.047 m wide,
+  standing ON the committed South Water block face at the plat module's 1.5 m margin, its
+  **east wall the west wall of `frederick_thomas_shop`** on a shared party line.
+- `recon_1835_blk_south_water_dearborn_d5_07` — a **D5 deep-plan frame cottage**, 6.835 m wide,
+  the same party line read from the other side: its west wall is the shop's east wall.
+- `recon_1835_blk_south_water_dearborn_a1_09` — the A1 stable in the same lot's yard, at the
+  alley end.
+
+The three and the shop make **21.2 m of continuous street wall** — 28.547 m to 49.742 m along
+the face. Lot 7, the Lake-and-State corner, stays open. The block moves `open` →
+**`at_capacity`**, free lots 2 → 1, headroom 4 → 0, standing roofs 11 → 14; the town's standing
+count goes 367 → 370 of 667.
+
+**The count of two is measured twice, in different units, and the two agree.** Lot 2 projects
+onto the north face between 25.93 m and 52.86 m; less the plat module's 1.5 m margin each side
+that is 23.93 m buildable, of which the shop holds 33.594 m to 42.907 m. West gap 6.164 m, east
+gap 8.453 m — and the west gap is really 5.932 m, because `john_holbrook_store` ends at
+24.662 m on the lot next door and the three-metre separation rule admits no party wall this run
+did not declare. One roof each; neither gap takes two. Separately, T-0079 allows
+`ROW_UNITS_PER_LOT` = 3 row units to a lot of this grid and the shop is one of them, so two more
+reach that ceiling exactly. The metres also chose the western FAMILY: the generator sizes a D4
+at 6.072 m, which will not go in 5.932 m, so the west unit is the D3 and the D4 returns to the
+south district's balance.
+
+**Every platted block the plat module reaches is now `at_capacity`.** That is the statement
+T-0028 asked whichever of the four runs went last to make: the anonymous-block programme has run
+out of committed ground. The 297 roofs still owed are all behind named gates —
+`blk_south_water_market` (South Water's centreline stops 24 m short of control, 27 roofs) and
+the four coverage gates west, south, north and at Wolf Point (270 between them). Fifteen of the
+eighteen built-out blocks still hold one lot open on purpose; three have none, from earlier
+parcels.
+
+### The gate that had to be taught something: two deals may meet on one lot
+
+`tools/generate_block_infill.py` accounted for a block's lots in four classes — built on by this
+parcel, built on by another deal on this block, already carrying a roof, named open — and held
+them **pairwise disjoint**. That made "built on by another deal" a PROHIBITION as well as an
+account: a lot the first deal's run stood over could never be dealt again. It had never bitten,
+because `blk_south_water_clark`'s two deals took lots 4 and 2 and never met. Here the block's
+whole remaining headroom stands on lot 2, so the old ceiling of one principal roof per lot —
+retired by T-0079 in August — would have gone on enforcing itself through an accounting rule.
+
+Three changes, and each is bounded:
+
+1. **The overlap is admitted.** "Built on by another deal" is now that set LESS the lots this
+   deal builds on; the other three pairs stay disjoint and every lot is still accounted for.
+2. **It is bounded by the density standard's own ceiling, counted across deals.** A lot may
+   carry `ROW_UNITS_PER_LOT` row units; the units already standing are read off the committed
+   ground, and a yard building is not one of them (a privy behind the row does not pack a
+   frontage). A record this programme did not write carries no inventory class and is counted —
+   Frederick Thomas's shop stands in this row whoever built it.
+3. **The occupancy question is asked of the whole parcel, not of one entry.** `mine_ids` is one
+   recipe entry's records, which on a block dealt once is every anonymous roof on it — so the
+   question had always been asked of ground the parcel itself had not touched. Read with only
+   its own records excluded, the first deal's `--check` saw the second deal's cottages as a
+   stranger's houses, and the owner's business-front clause switched off under the shared lot the
+   moment a third claimant stood on it. Every `recon_1835_blk_<block>_*` record is excluded
+   instead. Nothing physical relaxes: lot margin, corridor, three-metre separation and the run's
+   own strip all refuse what they always refused.
+
+### T-0441's ceiling is not a wall here
+
+PR #599, the closed prior attempt at this ticket, failed on the `balanced` tier's triangle
+ceiling — `dev` at 1,208,434 of 1,210,000 and the branch at 1,210,608. The ceilings were raised
+on the owner's ruling afterwards (#765). Measured on this branch by
+`node tools/measure_detail_ceilings.mjs`: full **1,359,838 of 1,460,000** (PASS by 100,162),
+balanced **1,200,848 of 1,280,000** (PASS by 79,152), light **773,942 of 825,000** (PASS by
+51,058). The three roofs cost 1,704 triangles at the master.
+
+### Derived layers that moved with the roofs
+
+The siding stock is dealt over the whole town at once (T-0112), so three new clapboard walls
+re-dealt `chicago_american_office`'s exposure and its GLB was re-baked in the same commit.
+Re-derived and committed: the lot-line fences, dooryard plantings, planted rows, lot building
+material, the town census, the land-tract join, the scene-date register, the street-face
+adoptions, the Newberry leads (the fingerprint gate forces a re-parse of all four volumes) and
+the frontage works. `tools/measure_generator_half.py`'s stated asset counts go 380 → 383 and
+378 → 381.
+
 ## Shipped 2026-09-07 — T-0788: Wright's block numbers, read off the sheet instead of counted
 
 **What shipped.** The Original Town's block numbers, **read**. `data/traces/thompson_block_numbering.json`
