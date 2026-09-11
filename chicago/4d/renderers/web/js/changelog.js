@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Twenty-four buyers of town lots, and fourteen were the wrong man', kind: 'fix', ts: '', date: '',
+  { v: 732, title: 'Twenty-four buyers of town lots, and fourteen were the wrong man', kind: 'fix', ts: '2026-09-11T18:00:25.504Z', date: 'Sep 11, 2026, 1:00 PM CT',
     items: [
       'When the town\u2019s own lots came up for auction \u2014 first in 1830, when the canal commissioners sold blocks for thirty dollars apiece, and again in the boom of June 1836, when one lot fetched ten thousand \u2014 a clerk wrote each buyer\u2019s name into a register, in abbreviations. Matching them to the people this reconstruction knows is guesswork until somebody argues each one. Twenty-four have now been argued.',
       'Ten are the man the machine guessed, and the ground and money they entered stays on their card. Augustus Garrett, printed by the directories as a partner in Garrett & Seaman and signing his insurance advertisements \u2018A. GARRETT\u2019, takes lots in blocks 31, 41 and 53. Absalom Funk, butcher of the Fulton and Boston markets, takes lot 4 of block 42 for $9,800. Giles Spring the lawyer, named on the town\u2019s polls in both 1834 and 1835, takes three. William Butler Ogden and Alexander Loyd, carpenter and builder, take one apiece.',
