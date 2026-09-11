@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1374,
+  "town_people": 1373,
   "open_clusters": 15,
   "cards_in_open_clusters": 33,
   "rulings": {
    "distinct": 13,
-   "merge": 35,
+   "merge": 36,
    "undecided_rule": 8
   },
-  "landed_merges": 35,
-  "cards_folded": 54
+  "landed_merges": 36,
+  "cards_folded": 55
  },
  "landed": [
   {
@@ -68,6 +68,16 @@
     "beaubien_medore_b"
    ],
    "rule": "C11"
+  },
+  {
+   "cluster": "beaubien-madore",
+   "survivor": "beaubien_madore",
+   "survivor_household": "hh_beaubien_madore",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "beaubien_medard"
+   ],
+   "rule": "C12"
   },
   {
    "cluster": "blanchard",

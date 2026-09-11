@@ -397,7 +397,7 @@
       "resident_name": "Mark Beaubien",
       "household_id": "hh_beaubien_mark",
       "match": "forename_agrees",
-      "rule": "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 9 people of this surname, and the forename agrees in full.",
+      "rule": "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 8 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -471,15 +471,6 @@
           "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "survives"
-        },
-        {
-          "key": "beaubien_medard",
-          "name": "Medard Beaubien",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -3072,7 +3063,7 @@
       "resident_name": "Col. Jean Baptiste Beaubien",
       "household_id": "hh_beaubien_jean_baptiste",
       "match": "initial_agrees",
-      "rule": "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 9 people of this surname, and the forename agrees as an initial only.",
+      "rule": "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 8 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -3141,15 +3132,6 @@
         {
           "key": "beaubien_mark",
           "name": "Mark Beaubien",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "B",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "beaubien_medard",
-          "name": "Medard Beaubien",
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
