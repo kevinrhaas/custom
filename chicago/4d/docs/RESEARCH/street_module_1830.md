@@ -138,10 +138,43 @@ question of the data that exists.
   control; its two ends must meet the traced 1834 waterline at that northing, which is what makes
   the span measured. Tolerance 0.5 m rather than 0.05, because a traced bank is a polyline and
   where it crosses a given northing depends on which vertex pair you sample.
+- **`street_frontage`** (added 2026-09-11, T-0946) — a frontage instead of a corner, for the
+  streets this module cannot reach. `platted_corner` steps half a module from a control point out
+  to a named kerb, and both halves of that need a street with an `ew`/`ns` axis; north of the
+  river there is no such street. The committed `north_water` line is a derived offset curve from
+  the traced bank (T-0307, T-0447) running 41.4° east of north, with no control point of its own,
+  so every placement on that bank had to declare `not_derivable` — not because the readings were
+  loose but because the vocabulary had no term for them. **§ 11 settled what the setback north of
+  the river IS; this settles how a record SAYS it.** The declaration names a street id in
+  `data/streets/1835.json`, one of the building's **own** four walls (`front`/`back`/`left`/
+  `right`, the footprint frame of `docs/GLB-CONTRACT.md` — a wall on a 41° street has no compass
+  face), and the wall's setback from the committed centreline. Re-derived: the perpendicular
+  distance from that wall's midpoint to the nearest point on the committed path, to 0.05 m, AND
+  that the street lies on the side the wall faces. The second half is not decoration — a back yard
+  can be as close to a street as a front wall is, so a check that measured only the distance would
+  certify a building standing with its back to its own frontage. The arithmetic is
+  `tools/generate_business_signboards.py::_nearest_on_path`, which has decided which street a
+  signboard faces since T-0459; T-0946 promoted it from a generator's private helper to a gate.
+
+  **It does not replace `tools/measure_north_bank_frontage.py --gate`, and the two ask different
+  questions.** That tool holds the RULE across the bank — five records on it, eight named
+  exceptions each with its reason, and an unbaselined north-bank frontage fails — which is a
+  claim about the bank that no single record can make. This method holds each RECORD to what that
+  record itself declares, in the same block every other placement declares its derivation in, and
+  at 0.05 m rather than 0.20. The Steamboat Hotel is now held by both: 5.00 m measured against
+  5.00 m declared.
+
 - **`not_derivable`** — three of the nine phases, each owing a reason. No surviving street here
   (Miller House); a position stacked on another inferred position (Walker's meeting house); an
   interpolation plus a free 40 m (Wolf Point Tavern). Recording those as derivations would be the
-  check certifying a guess.
+  check certifying a guess. **It is still by far the commonest declaration: 378 of the 384 phases
+  with coordinates, measured 2026-09-11.** T-0946 gave the module a third word and converted
+  exactly one record with it, the Steamboat Hotel, because § 11 had just settled what that
+  record's setback is. Of the 378 that remain, 377 stand at no recognisable module distance from
+  the nearest street in front of them — most are infill placed on a lot grid rather than off a
+  centreline — so converting them would again be the check certifying a guess. The gap the third
+  method closes is a gap in what can be SAID, and it is filled one record at a time by records
+  that have a settled setback to say.
 
 **What it cannot do.** It cannot tell you the control is *right*. Since 2026-08-10 every control
 point can at least be re-fetched from OpenStreetMap and re-derived from the street names (§ 7),

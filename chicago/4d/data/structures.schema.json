@@ -541,12 +541,13 @@
         "method"
       ],
       "additionalProperties": false,
-      "description": "How this coordinate was arrived at, in a form tools/validate.py can recompute from data/traces/street_control.json. Every phase with coordinates carries one; a placement that no line in the dataset can check declares 'not_derivable' with a reason rather than going undeclared.",
+      "description": "How this coordinate was arrived at, in a form tools/validate.py can recompute from data/traces/street_control.json (a platted corner, a traced waterline) or from data/streets/1835.json (a frontage off a committed centreline). Every phase with coordinates carries one; a placement that no line in the dataset can check declares 'not_derivable' with a reason rather than going undeclared.",
       "properties": {
         "method": {
           "enum": [
             "platted_corner",
             "traced_waterline",
+            "street_frontage",
             "not_derivable"
           ]
         },
@@ -634,6 +635,39 @@
                   "west"
                 ]
               }
+            }
+          }
+        },
+        "frontage": {
+          "type": "object",
+          "required": [
+            "street",
+            "face",
+            "setback_m"
+          ],
+          "additionalProperties": false,
+          "description": "A frontage off a committed street centreline, for a street that is not square to the grid and so has no kerb to step to. tools/validate.py re-derives the perpendicular distance from the named wall's midpoint to the nearest point on the street's committed path, and refuses a street that lies behind that wall rather than in front of it.",
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Street id in data/streets/1835.json."
+            },
+            "face": {
+              "enum": [
+                "front",
+                "back",
+                "left",
+                "right"
+              ],
+              "description": "Which of the building's own four walls stands on the frontage. Named in the footprint's frame per docs/GLB-CONTRACT.md — polygon `u` runs right along the front and `v` back from it, so `front` is the max-`v` wall, the one the facade bearing points out of. Not a compass direction: on a street running 41 degrees east of north these walls have no compass face."
+            },
+            "setback_m": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Perpendicular distance from that wall to the street's committed centreline. Half the platted module puts the wall on the corridor line."
+            },
+            "note": {
+              "type": "string"
             }
           }
         },

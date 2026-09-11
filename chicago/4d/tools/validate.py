@@ -1826,6 +1826,95 @@ def face_of(pts: list[tuple[float, float]], face: str) -> float:
     return {"west": min(es), "east": max(es), "south": min(ns), "north": max(ns)}[face]
 
 
+# The building's own four walls, named as docs/GLB-CONTRACT.md names the footprint
+# axes: polygon `u` runs right along the front and `v` runs back from it, so the wall
+# a facade bearing points out of is the max-`v` one. `face_of` above answers a
+# different question — where a placed shape's most-westerly point lands on the grid —
+# and the two are the same wall only when the building is square to the grid.
+FOOTPRINT_FACES = {"front": (1, max), "back": (1, min),
+                   "right": (0, max), "left": (0, min)}
+
+
+def footprint_face(phase: dict, face: str) -> tuple[tuple[float, float],
+                                                    tuple[float, float]] | None:
+    """The midpoint and outward normal of one named wall, in EPSG:26916 metres.
+
+    The same composition `world_footprint` makes, asked of one edge rather than the
+    whole ring, because a frontage is a claim about a WALL: "this house's front
+    stands 12.19 m off North Water Street" stays true when the house is rotated and
+    is not a claim about the polygon's westmost corner. The normal is the direction
+    that wall faces, which is what tells a frontage from a back yard.
+    """
+    pos = phase.get("position") or {}
+    poly = (phase.get("footprint") or {}).get("polygon") or []
+    if pos.get("utm_e") is None or pos.get("utm_n") is None or len(poly) < 3:
+        return None
+    axis, pick = FOOTPRINT_FACES[face]
+    other = 1 - axis
+    extreme = pick(p[axis] for p in poly)
+    on = [p for p in poly if abs(p[axis] - extreme) < 1e-6]
+    if len(on) < 2:
+        return None
+    mid = (min(p[other] for p in on) + max(p[other] for p in on)) / 2.0
+    u, v = (extreme, mid) if axis == 0 else (mid, extreme)
+    b = math.radians(float(pos.get("rotation_deg") or 0.0))
+    cos, sin = math.cos(b), math.sin(b)
+    point = (float(pos["utm_e"]) + u * cos + v * sin,
+             float(pos["utm_n"]) - u * sin + v * cos)
+    normal = {"front": (sin, cos), "back": (-sin, -cos),
+              "right": (cos, -sin), "left": (-cos, sin)}[face]
+    return point, normal
+
+
+def nearest_on_path(pt: tuple[float, float],
+                    path: list[tuple[float, float]]) -> tuple[float, tuple[float, float]]:
+    """(distance, foot) from a point to an open polyline, in metres.
+
+    Character for character the arithmetic in
+    `tools/generate_business_signboards.py::_nearest_on_path`, which has decided
+    which street a signboard faces since T-0459. It was a generator's private
+    helper and is now also a gate; the recipe did not change, only what may lean
+    on it.
+    """
+    x, y = pt
+    best = (float("inf"), (x, y))
+    for i in range(len(path) - 1):
+        x1, y1 = path[i]
+        x2, y2 = path[i + 1]
+        dx, dy = x2 - x1, y2 - y1
+        L2 = dx * dx + dy * dy
+        t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / L2))
+        fx, fy = x1 + t * dx, y1 + t * dy
+        d = math.hypot(x - fx, y - fy)
+        if d < best[0]:
+            best = (d, (fx, fy))
+    return best
+
+
+def committed_street_paths(base: Path, rep: Report) -> dict:
+    """`data/streets/1835.json`'s centrelines, reprojected to EPSG:26916.
+
+    The street records are stored in local ENU metres from `data/datum.json`'s
+    origin and the placements are stored in UTM; the offset between them is a
+    translation and nothing else, so this adds it once here rather than in every
+    caller. A missing datum or streets file is an error the caller reports against
+    the placement that asked for it.
+    """
+    datum = load_json(base / "datum.json", rep, required=False)
+    doc = load_json(base / "streets" / "1835.json", rep, required=False)
+    if not isinstance(datum, dict) or not isinstance(doc, dict):
+        return {}
+    e0, n0 = datum.get("origin_utm_e"), datum.get("origin_utm_n")
+    if e0 is None or n0 is None:
+        return {}
+    out: dict = {}
+    for st in doc.get("streets") or []:
+        path = [(float(e0) + float(p[0]), float(n0) + float(p[1]))
+                for p in st.get("path_local_enu_m") or []]
+        out[st.get("id")] = {"name": st.get("name_1835") or st.get("id"), "path": path}
+    return out
+
+
 def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
                         where: str) -> list[float]:
     """Eastings where the traced water boundary crosses a northing."""
@@ -1873,6 +1962,33 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
     declares `not_derivable` and owes a reason — three of the nine do, and their
     reasons are the honest ones: no surviving street here, a position stacked on
     another inferred position, an interpolation plus a free 40 m.
+
+    THE THREE METHODS, AND WHAT EACH RE-DERIVES.
+
+    - `platted_corner` — `control` names a junction in the control table and each
+      constraint names a `street`, a `kerb` and the `face` of the placed footprint
+      that stands on it. Re-derived: that face's grid coordinate against the control
+      stepped half a platted module (plus any `offset_m`) out to the named kerb.
+      Requires the street to have an `ew`/`ns` axis, because a kerb is found by
+      stepping along one.
+
+    - `traced_waterline` — `centreline` gives the axis and any declared variance from
+      control, `ends` the epoch and the faces that must land on it. Re-derived: the
+      variance, and that each named end meets the traced waterline.
+
+    - `street_frontage` (T-0946) — `frontage` names a `street` id in
+      `data/streets/1835.json`, the `face` of the building's own four walls that
+      stands on it, and the `setback_m` of that wall from the street's committed
+      centreline. Re-derived: the perpendicular distance from that wall's midpoint
+      to the nearest point on the committed path, to PLACEMENT_TOL_M, AND that the
+      street lies on the side the wall faces rather than behind it. This is the
+      method for a street that is not square to the grid, which is most of the north
+      bank: `north_water` is a derived offset curve from the traced bank (T-0307,
+      T-0447) running 41.4° east of north, so it has no axis to step a kerb along
+      and no control point can be hung on it. Before this method the whole bank
+      declared `not_derivable` — not because the readings were loose but because the
+      vocabulary had no term for them, and a placement nothing re-computes is a
+      placement two runs can land 36 m apart without either noticing (T-0947).
     """
     base = data_root or DATA
     doc = load_json(base / "traces" / "street_control.json", rep, required=False)
@@ -1936,6 +2052,7 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                                             f"have to reproject the answer it is checking")
 
     checked = declared = 0
+    streets_utm: dict | None = None
     for name, st in sorted(structures.items()):
         sid = st.get("id", name)
         for ph in st.get("phases", []):
@@ -1958,9 +2075,55 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                 if not (der.get("reason") or "").strip():
                     rep.error(where, "not_derivable without a reason — that is an undeclared "
                                      "placement with a label on it")
-                for k in ("control", "constraints", "centreline", "ends"):
+                for k in ("control", "constraints", "centreline", "ends", "frontage"):
                     if der.get(k):
                         rep.error(where, f"not_derivable but carries `{k}`")
+                continue
+
+            if method == "street_frontage":
+                fr = der.get("frontage") or {}
+                if streets_utm is None:
+                    streets_utm = committed_street_paths(base, rep)
+                st_rec = streets_utm.get(fr.get("street") or "")
+                if not st_rec:
+                    rep.error(where, f"fronts street '{fr.get('street')}', which is not a "
+                                     f"record in data/streets/1835.json")
+                    continue
+                if len(st_rec["path"]) < 2:
+                    rep.error(where, f"fronts '{fr.get('street')}', whose committed record "
+                                     f"carries no path to stand off")
+                    continue
+                face = fr.get("face")
+                if face not in FOOTPRINT_FACES:
+                    rep.error(where, f"names face '{face}', which is not one of the "
+                                     f"building's four walls")
+                    continue
+                setback = fr.get("setback_m")
+                if not isinstance(setback, (int, float)) or setback < 0:
+                    rep.error(where, "declares a frontage and no setback from the committed "
+                                     "centreline, which is the whole of the claim")
+                    continue
+                placed = footprint_face(ph, face)
+                if placed is None:
+                    rep.error(where, f"has no footprint edge at its {face} to stand on a "
+                                     f"frontage")
+                    continue
+                (px, pn), normal = placed
+                got, foot = nearest_on_path((px, pn), st_rec["path"])
+                # A back yard can be as close to a street as a front wall is, so the
+                # distance alone does not say "frontage". The street has to lie on the
+                # side the wall faces — the same test the signboard layer makes before
+                # it will stand a post out in front of a wall.
+                if (foot[0] - px) * normal[0] + (foot[1] - pn) * normal[1] <= 0:
+                    rep.error(where, f"declares its {face} wall on {st_rec['name']}, and "
+                                     f"that street lies behind the wall rather than in "
+                                     f"front of it — that is a back, not a frontage")
+                elif abs(got - float(setback)) > PLACEMENT_TOL_M:
+                    rep.error(where, f"its {face} wall stands {got:.2f} m from "
+                                     f"{st_rec['name']}'s committed centreline and declares "
+                                     f"{float(setback):.2f} ({got - float(setback):+.2f} m)")
+                else:
+                    checked += 1
                 continue
 
             cid = der.get("control")
@@ -2041,7 +2204,7 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                 rep.error(where, f"unknown derivation method '{method}'")
 
     rep.note(f"placement derivations: {declared} declared, {checked} constraint(s) recomputed "
-             f"from data/traces/street_control.json")
+             f"from data/traces/street_control.json and data/streets/1835.json")
 
 
 def check_drawn_by(structures: dict, rep: Report) -> None:
