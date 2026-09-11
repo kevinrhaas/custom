@@ -1,7 +1,7 @@
 ---
 id: T-0987
 title: The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-state: claimed
+state: open
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/11/2026, 7:54:14 AM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34601078208
+claimed_run: null
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -180,7 +180,7 @@ ticket orders them. No successor ticket is filed: `tickets/README.md` puts the s
 on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for
 fewer tickets, not one per stretch. This ticket stays open and is its own cursor.
 
-## Stretch 2, 2026-09-11 — the advertiser's ties: 14 ruled, 3 released, and the 64 silent refusals
+## Stretch 2, 2026-09-11 (PR #1128) — the advertiser's ties: 14 ruled, 3 released, and the 64 silent refusals
 
 **The stretch:** the ties of `norris_1844_advertiser_crosswalk_1835.json`, the smallest of the
 four pools and the one stretch 1's claim had named before it took the write debt instead. Every
