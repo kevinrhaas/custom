@@ -7,7 +7,7 @@ export const CHANGELOG = [ // newest first
       'Every line a self-test prints now carries a mark at the front of it saying so, with the wording of the alarm kept intact underneath \u2014 nothing was quietened to make the log look clean. And the suite now ends by naming the checks that actually failed, once each, by name, where a reader is already looking. A run that passes says so in a sentence with no alarm word in it at all.',
       'A new check holds that in place: if a self-test is ever wired back in as an ordinary check, where its alarms would print unmarked again, the suite refuses the change.'
     ] },
-  { v: null, title: 'Seventy-five men the directory was never printing', kind: 'fix', ts: '',
+  { v: 726, title: 'Seventy-five men the directory was never printing', kind: 'fix', ts: '2026-09-11T14:28:42.035Z', date: 'Sep 11, 2026, 9:28 AM CT',
     items: [
       'Fergus\u2019s Chicago directory of 1839 is one of the few books that can say whether somebody standing in this town in 1835 was still here four years later, and what trade and street he had by then. It is matched to this town\u2019s people on a deliberately blunt rule: the surname must agree, and so must the first initial of the forename. The book lists forty-one Smiths, so a surname alone is never enough.',
       'That rule has a known weakness, written down five days ago and fixed then for two of the three directories: when BOTH the book and this town print a full forename and the two full names disagree, an agreeing initial is worth nothing. Thomas is not Titus. Calvin is not Charles. Hiram is not High. The correction was never applied to the 1839 volume, which is the largest of the three, and so seventy-five of its matches were standing on an initial and a contradiction.',
