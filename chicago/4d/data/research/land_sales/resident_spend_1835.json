@@ -12,20 +12,20 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 91,
-  "people_written": 79,
-  "households_touched": 77,
+  "matched_rulings": 93,
+  "people_written": 80,
+  "households_touched": 78,
   "grades_changed": 0,
-  "entries_carried": 303,
-  "acres_carried": 14761.75,
-  "school_section_parcels_carried": 146,
-  "matched_more_than_once": 10
+  "entries_carried": 316,
+  "acres_carried": 15179.04,
+  "school_section_parcels_carried": 154,
+  "matched_more_than_once": 11
  },
  "not_written": [
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 340
+   "rulings": 338
   },
   {
    "rule": "L2",
@@ -1219,7 +1219,7 @@
     "BEAUBIEN MARK"
    ],
    "rules": [
-    "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 10 people of this surname, and the forename agrees in full."
+    "BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 9 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 2,
@@ -1270,7 +1270,7 @@
      "page": "009"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “BEAUBIEN MARK”, 1833-10-25: 2 parcels of the school section — lot 7 of block 81 of the school section (sec 16 T39N R14E); lot 8 of block 81 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $171.00 (ls0069, ls0070). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 10 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “BEAUBIEN MARK”, 1833-10-25: 2 parcels of the school section — lot 7 of block 81 of the school section (sec 16 T39N R14E); lot 8 of block 81 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $171.00 (ls0069, ls0070). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BEAUBIEN MARK matches Mark Beaubien: the forename names Mark Beaubien of the 9 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_blanchard_f_gantry",
@@ -3178,6 +3178,257 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “HARMON ISAAC D”, 1833-10-22: 1 parcel of the school section — BL137 of the school section (sec 16 T39N R14E), as read, 0.00 acres stated in all, for $130.00 (ls0229). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_heacock_russel_e",
+   "person_id": "heacock_russel_e",
+   "name": "Russel E. Heacock",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "HEACOCK RUSSEL E",
+    "HEACOCK RUSSELL E"
+   ],
+   "rules": [
+    "HEACOCK RUSSEL E matches Russel E. Heacock: the forename names Russel E. Heacock of the 1 person of this surname, and the forename agrees in full.",
+    "HEACOCK RUSSELL E matches Russel E. Heacock: the forename names Russel E. Heacock of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 13,
+    "acres": 417.29,
+    "dollars": 1145.0,
+    "first_purchase": "1833-10-22",
+    "last_purchase": "1835-06-26",
+    "tracts": [
+     "E2NW sec 32 T39N R14E",
+     "E2SE sec 34 T39N R13E",
+     "W2NE sec 32 T39N R14E"
+    ],
+    "school_section": [
+     "BL129 of the school section (sec 16 T39N R14E), as read",
+     "BL20 of the school section (sec 16 T39N R14E), as read",
+     "BL30 of the school section (sec 16 T39N R14E), as read",
+     "BL61 of the school section (sec 16 T39N R14E), as read",
+     "BL9 of the school section (sec 16 T39N R14E), as read",
+     "lot 2 of block 23 of the school section (sec 16 T39N R14E)",
+     "lot 7 of block 117 of the school section (sec 16 T39N R14E)",
+     "lot 7 of block 25 of the school section (sec 16 T39N R14E)"
+    ],
+    "residence_as_read": [
+     "COOK",
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0230",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-25",
+     "acres": "0000.00",
+     "total_price": "47.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 7 of block 25 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369955",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0231",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-23",
+     "acres": "2.26",
+     "total_price": "77.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL30 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369956",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0232",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-22",
+     "acres": "3.69",
+     "total_price": "85.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL20 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369957",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0233",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-23",
+     "acres": "3.69",
+     "total_price": "62.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL9 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369958",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0234",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-22",
+     "acres": "4.20",
+     "total_price": "67.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL61 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369959",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0235",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-24",
+     "acres": "0000.00",
+     "total_price": "41.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 2 of block 23 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369960",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0236",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-24",
+     "acres": "3.45",
+     "total_price": "122.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "BL129 of the school section (sec 16 T39N R14E), as read",
+     "resolves": "unparsed",
+     "sale_kind": "school_section",
+     "purchase_no": "0369961",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0237",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1833-10-22",
+     "acres": "0000.00",
+     "total_price": "80.00",
+     "type_of_sale": "school section sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 7 of block 117 of the school section (sec 16 T39N R14E)",
+     "resolves": "town_lot",
+     "sale_kind": "school_section",
+     "purchase_no": "0369962",
+     "volume": "818",
+     "page": "008"
+    },
+    {
+     "record_id": "ls0475",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1834-11-04",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2NW sec 32 T39N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0002075",
+     "volume": "687",
+     "page": "269"
+    },
+    {
+     "record_id": "ls0476",
+     "as_read": "HEACOCK RUSSEL E",
+     "date_purchased": "1834-11-04",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "W2NE sec 32 T39N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0026363",
+     "volume": "687",
+     "page": "269"
+    },
+    {
+     "record_id": "ls0477",
+     "as_read": "HEACOCK RUSSELL E",
+     "date_purchased": "1834-11-04",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "COOK",
+     "county": "COOK",
+     "tract": "W2NE sec 32 T39N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0195128",
+     "volume": "236",
+     "page": "042"
+    },
+    {
+     "record_id": "ls0478",
+     "as_read": "HEACOCK RUSSELL E",
+     "date_purchased": "1834-11-04",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "COOK",
+     "county": "COOK",
+     "tract": "E2NW sec 32 T39N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0195129",
+     "volume": "236",
+     "page": "042"
+    },
+    {
+     "record_id": "ls0869",
+     "as_read": "HEACOCK RUSSELL E",
+     "date_purchased": "1835-06-26",
+     "acres": "80.00",
+     "total_price": "164.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2SE sec 34 T39N R13E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0003210",
+     "volume": "687",
+     "page": "189"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 13 times, as “HEACOCK RUSSEL E”, “HEACOCK RUSSELL E”, 1833-10-22 to 1835-06-26: 3 federal land entries — E2NW sec 32 T39N R14E; E2SE sec 34 T39N R13E; W2NE sec 32 T39N R14E and 8 parcels of the school section — BL129 of the school section (sec 16 T39N R14E), as read; BL20 of the school section (sec 16 T39N R14E), as read; BL30 of the school section (sec 16 T39N R14E), as read; BL61 of the school section (sec 16 T39N R14E), as read; BL9 of the school section (sec 16 T39N R14E), as read; lot 2 of block 23 of the school section (sec 16 T39N R14E); lot 7 of block 117 of the school section (sec 16 T39N R14E); lot 7 of block 25 of the school section (sec 16 T39N R14E), 417.29 acres stated in all, for $1145.00 (ls0230, ls0231, ls0232, ls0233, ls0234, ls0235, ls0236, ls0237, ls0475, ls0476, ls0477, ls0478, ls0869). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: HEACOCK RUSSEL E matches Russel E. Heacock: the forename names Russel E. Heacock of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_hubbard_gurdon",
@@ -5279,7 +5530,7 @@
     "BEAUBIEN J B"
    ],
    "rules": [
-    "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 10 people of this surname, and the forename agrees as an initial only."
+    "BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 9 people of this surname, and the forename agrees as an initial only."
    ],
    "totals": {
     "entries": 4,
@@ -5365,7 +5616,7 @@
      "page": "140"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “BEAUBIEN J B”, 1830-09-29: 4 federal land entries — NFR2NEVO sec 29 T39N R14E; NFRNE sec 29 T39N R14E; NWFRPTNW sec 29 T39N R14E; NWFRPTNWVO sec 29 T39N R14E, 425.22 acres stated in all, for $2126.40 (ls0454, ls0455, ls0456, ls0457). THE REGISTER'S OWN RESIDENCE COLUMN READS ILLINOIS, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 10 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “BEAUBIEN J B”, 1830-09-29: 4 federal land entries — NFR2NEVO sec 29 T39N R14E; NFRNE sec 29 T39N R14E; NWFRPTNW sec 29 T39N R14E; NWFRPTNWVO sec 29 T39N R14E, 425.22 acres stated in all, for $2126.40 (ls0454, ls0455, ls0456, ls0457). THE REGISTER'S OWN RESIDENCE COLUMN READS ILLINOIS, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 9 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_smith_jeremiah",

@@ -107,7 +107,11 @@
 
 
 
-T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
+
+
+
+
+T-1026 — Medard Beaubien is a third card for the man T-1002 folded to two, and a committed note already calls it the same man under two spellings
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
@@ -320,6 +324,15 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+
+# --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
+# --- by tools/measure_card_fuzzy_candidates.py after T-1002 ruled its three. Each needs a page
+# --- of its own: the list mixes real printed spelling variations (Foot/Foote, Lloyd/Loyd,
+# --- Pearson/Pearsons, Pruyne/Pryne) with cards minted off scanner wreckage that R5 refuses and
+# --- T-0695 reads, and with pairs that are simply two people one letter apart — John Hale
+# --- against John Vale, Mark Noble against Mary Noble. No distance separates the first kind from
+# --- the last, which is T-1001's answer over the land register reached again over the cards.
+T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
 T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
 T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
 T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
@@ -343,3 +356,4 @@ T-1023 — Five Norris 1844 entries begin at the trade with no name at all — t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
+

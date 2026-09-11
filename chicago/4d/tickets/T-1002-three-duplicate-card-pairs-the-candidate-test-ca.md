@@ -1,7 +1,7 @@
 ---
 id: T-1002
 title: Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1112
+claimed_by: run 9/11/2026, 1:45:45 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T07:31:48.944Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34570959296
 ---
 
 Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock.
