@@ -1,7 +1,7 @@
 ---
 id: T-0901
 title: A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1101
 claimed_by: run 9/10/2026, 9:29:03 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T03:42:07.853Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34554470197
 ---
 
