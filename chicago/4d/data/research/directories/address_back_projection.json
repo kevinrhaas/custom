@@ -7,14 +7,14 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 151,
+  "addresses_adjudicated": 149,
   "placed": 18,
   "placed_as_a_face": 15,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
   "already_better_placed": 23,
-  "refused": 110,
-  "refused_clause_1_no_1835_business": 100,
+  "refused": 108,
+  "refused_clause_1_no_1835_business": 98,
   "refused_clause_2_a_residence_not_a_shop": 6,
   "refused_clause_3_not_on_the_1835_grid": 4,
   "faces_reached": [
@@ -1930,27 +1930,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_lamb_a",
-   "person_id": "lamb_a",
-   "person": "A. Lamb",
-   "address_as_printed": "res 96 Michigan ave",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_lincoln_solomon",
    "person_id": "lincoln_solomon",
    "person": "Solomon Lincoln",
@@ -2774,27 +2753,6 @@
    "person_id": "sherman_silas_w",
    "person": "Silas W Sherman",
    "address_as_printed": "Clark street",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_sherwood_s",
-   "person_id": "sherwood_s",
-   "person": "S. Sherwood",
-   "address_as_printed": "144 Lake st",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [

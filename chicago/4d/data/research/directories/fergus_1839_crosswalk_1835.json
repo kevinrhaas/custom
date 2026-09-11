@@ -43,7 +43,7 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 158,
+  "residents_matched_one_entry": 157,
   "residents_ambiguous": 22,
   "residents_contested": 12,
   "residents_surname_only_refused": 277,
@@ -59,13 +59,15 @@
   "residents_initial_agreed_forenames_disagreed_refused": 75,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_entry_by_that_refusal": 39,
+  "residents_letter_list_bucket_refused": 1,
+  "residents_that_refusal_reaches": 1,
   "residents_ties_narrowed_by_a_trade": 4,
   "of_those_contested": 0,
   "of_those_ambiguous": 4,
   "residents_narrowings_withdrawn_as_a_collision": 0,
   "residents_ties_left_standing": 30,
-  "residents_could_carry_occupation": 90,
-  "residents_could_carry_street": 96
+  "residents_could_carry_occupation": 89,
+  "residents_could_carry_street": 95
  },
  "residents": {
   "matches": [
@@ -3438,34 +3440,6 @@
     "occupation_1835_confidence": "attested",
     "lives_at_1835": null,
     "could_carry": [
-     "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "S. Sherwood",
-    "rule": "Surname 'Sherwood' folds to the same string as the 1839 entry's, and the given name of both begins S.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e1338",
-      "as_printed": "Sherwood, Smith J., watchmaker and jeweller, 144 Lake st",
-      "printed_page": 30,
-      "occupation_1839": "watchmaker and jeweller",
-      "address_1839": "144 Lake st",
-      "streets_1839": [
-       "Lake st"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "sherwood_s",
-    "household_id": "hh_sherwood_s",
-    "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
      "street_1839"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
@@ -9127,6 +9101,35 @@
     },
     "person_id": "bandle_will_nm",
     "household_id": "hh_bandle_will_nm",
+    "grade_1835": "inferred",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null
+   }
+  ],
+  "letter_list_bucket_refusals": [
+   {
+    "outcome": "refused_letter_list_bucket",
+    "card": "S. Sherwood",
+    "seated_over": [
+     "Stephen Sherwood"
+    ],
+    "rule": "The card is a CONTESTED LETTER-LIST BUCKET (T-1038): it prints an INITIAL, the post office's returns print another name under the same surname and the same initial IN FULL, and mint_letter_list_residents.py seats one household per surname — so the card stands for readings the corpus cannot separate, and at least one of them would refuse this entry under T-0670's forename rule. What is refused is the SPEND, not the identity: nothing here says the readings are two people. A source naming the letter-list person in full retires the refusal.",
+    "name": "S. Sherwood",
+    "record_id": "f1839_e1338",
+    "entry_1839": {
+     "claim": "f1839_e1338",
+     "as_printed": "Sherwood, Smith J., watchmaker and jeweller, 144 Lake st",
+     "printed_page": 30,
+     "occupation_1839": "watchmaker and jeweller",
+     "address_1839": "144 Lake st",
+     "streets_1839": [
+      "Lake st"
+     ],
+     "address_is_street_only": false
+    },
+    "person_id": "sherwood_s",
+    "household_id": "hh_sherwood_s",
     "grade_1835": "inferred",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",

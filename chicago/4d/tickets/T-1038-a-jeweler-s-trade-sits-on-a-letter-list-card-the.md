@@ -1,7 +1,7 @@
 ---
 id: T-1038
 title: A jeweler's trade sits on a letter-list card: the identity layer folds Norris 1844's 'Sherwood, Smith J. jeweler, 144 Lake' onto hh_sherwood_s, minted from two uncalled-for letters for Stephen Sherwood
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1146
+claimed_by: run 9/11/2026, 2:26:20 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T20:39:07.043Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34638552772
 ---
 
 A jeweler's trade sits on a letter-list card: the identity layer folds Norris 1844's 'Sherwood, Smith J. jeweler, 144 Lake' onto hh_sherwood_s, minted from two uncalled-for letters for Stephen Sherwood.

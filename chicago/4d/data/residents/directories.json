@@ -45,34 +45,34 @@
   }
  ],
  "counts": {
-  "people_shown": 253,
-  "people_met_by_more_than_one_volume": 161,
-  "carrying_an_occupation": 128,
-  "carrying_an_address": 151,
+  "people_shown": 251,
+  "people_met_by_more_than_one_volume": 159,
+  "carrying_an_occupation": 126,
+  "carrying_an_address": 149,
   "line_held_but_parse_refused": 17,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 192,
-    "single_entry": 158,
+    "people": 191,
+    "single_entry": 157,
     "ambiguous": 22,
     "contested": 12
    },
    "fergus_1843": {
-    "people": 175,
-    "single_entry": 120,
-    "ambiguous": 40,
+    "people": 173,
+    "single_entry": 119,
+    "ambiguous": 39,
     "contested": 15
    },
    "norris_1844": {
-    "people": 141,
-    "single_entry": 108,
+    "people": 139,
+    "single_entry": 106,
     "ambiguous": 19,
     "contested": 14
    },
    "norris_1844_advertiser": {
-    "people": 31,
-    "single_entry": 20,
+    "people": 30,
+    "single_entry": 19,
     "ambiguous": 3,
     "contested": 8
    }
@@ -12331,96 +12331,6 @@
    ]
   },
   {
-   "person_id": "lamb_a",
-   "household_id": "hh_lamb_a",
-   "resident": "A. Lamb",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1843",
-     "title": "Fergus's Chicago directory of 1843",
-     "year": 1843,
-     "source_id": "fergus_chicago_directory_1843",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Lamb' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1843_e1539",
-       "printed_page": "fergus_1843_page_003",
-       "as_printed": "Lamb, Artemus, shipcarpenter, res 96 Michigan ave"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ]
-    },
-    {
-     "volume": "norris_1844",
-     "title": "Norris's Chicago directory of 1844",
-     "year": 1844,
-     "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Lamb' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "n1844_e1060",
-       "printed_page": 44,
-       "as_printed": "Lamb, Artemus. ship carpenter, house Michigan avenue"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": false,
-     "sources": [
-      "norris_directory_1844"
-     ]
-    }
-   ],
-   "occupation_later": {
-    "value": "shipcarpenter",
-    "confidence": "attested",
-    "describes_date": 1843,
-    "sources": [
-     "fergus_chicago_directory_1843"
-    ],
-    "claim_id": "f1843_e1539",
-    "as_printed": "Lamb, Artemus, shipcarpenter, res 96 Michigan ave",
-    "printed_fields": "f1843_e1539 | Lamb, Artemus, shipcarpenter, res 96 Michigan ave | fergus_1843_page_003 | alphabetical directory | shipcarpenter | res 96 Michigan ave",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Lamb, Artemus, shipcarpenter, res 96 Michigan ave'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "address_later": {
-    "value": "res 96 Michigan ave",
-    "confidence": "attested",
-    "describes_date": 1843,
-    "sources": [
-     "fergus_chicago_directory_1843"
-    ],
-    "claim_id": "f1843_e1539",
-    "as_printed": "Lamb, Artemus, shipcarpenter, res 96 Michigan ave",
-    "printed_fields": "f1843_e1539 | Lamb, Artemus, shipcarpenter, res 96 Michigan ave | fergus_1843_page_003 | alphabetical directory | shipcarpenter | res 96 Michigan ave",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Lamb, Artemus, shipcarpenter, res 96 Michigan ave'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1843",
-    "norris_directory_1844"
-   ]
-  },
-  {
    "person_id": "lawrence_james_r",
    "household_id": "hh_lawrence_james_r",
    "resident": "James R. Lawrence",
@@ -17218,148 +17128,6 @@
    "sources": [
     "fergus_chicago_directory_1839",
     "fergus_chicago_directory_1843"
-   ]
-  },
-  {
-   "person_id": "sherwood_s",
-   "household_id": "hh_sherwood_s",
-   "resident": "S. Sherwood",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Sherwood' folds to the same string as the 1839 entry's, and the given name of both begins S.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e1338",
-       "printed_page": 30,
-       "as_printed": "Sherwood, Smith J., watchmaker and jeweller, 144 Lake st"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    },
-    {
-     "volume": "fergus_1843",
-     "title": "Fergus's Chicago directory of 1843",
-     "year": 1843,
-     "source_id": "fergus_chicago_directory_1843",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Sherwood' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1843_e0116",
-       "printed_page": "fergus_1843_page_001",
-       "as_printed": "S. J. SHERWOOD, 144 Lake Street, Chicago, Ill., general dealer in gold and silver watches, clocks, jewelry, gold safety-chains, gold fob-chains, gold spectacles, thimbles, pencil cases, breast pins, finger rings, silver spoons, music boxes, card cases, pocket brushes, needles; watches and clocks repaired and warranted; cash paid for old silver."
-      },
-      {
-       "claim_id": "f1843_e2255",
-       "printed_page": "fergus_1843_page_004",
-       "as_printed": "Sherwood, Smith Jones, jeweler and watchmaker, 144 Lake, res LaSalle, bet Washington and Madison"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ]
-    },
-    {
-     "volume": "norris_1844",
-     "title": "Norris's Chicago directory of 1844",
-     "year": 1844,
-     "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Sherwood' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "n1844_e1613",
-       "printed_page": 55,
-       "as_printed": "Sherwood, Smith J. jeweler, 144 Lake st. house Lasalle st. b Washington and Madison sts (See card)"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": false,
-     "sources": [
-      "norris_directory_1844"
-     ]
-    },
-    {
-     "volume": "norris_1844_advertiser",
-     "title": "the advertising cards in Norris's directory of 1844",
-     "year": 1844,
-     "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Sherwood' folds to the same string as the card's, and the given name of both begins S.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "n1844_ad0114",
-       "printed_page": 107,
-       "as_printed": "S. J. Sherwood",
-       "firm": "S. J. Sherwood"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "parse_carries": true,
-     "sources": [
-      "norris_directory_1844"
-     ]
-    }
-   ],
-   "occupation_later": {
-    "value": "watchmaker and jeweller",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e1338",
-    "as_printed": "Sherwood, Smith J., watchmaker and jeweller, 144 Lake st",
-    "printed_fields": "f1839_e1338 | Sherwood, Smith J., watchmaker and jeweller, 144 Lake st | watchmaker and jeweller | 144 Lake st",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Sherwood, Smith J., watchmaker and jeweller, 144 Lake st'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "address_later": {
-    "value": "144 Lake st",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e1338",
-    "as_printed": "Sherwood, Smith J., watchmaker and jeweller, 144 Lake st",
-    "printed_fields": "f1839_e1338 | Sherwood, Smith J., watchmaker and jeweller, 144 Lake st | watchmaker and jeweller | 144 Lake st",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Sherwood, Smith J., watchmaker and jeweller, 144 Lake st'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843",
-    "norris_directory_1844"
    ]
   },
   {

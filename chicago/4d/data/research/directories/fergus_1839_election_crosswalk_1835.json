@@ -37,10 +37,11 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 92,
+  "residents_matched_one_entry": 91,
   "residents_ambiguous": 32,
   "residents_contested": 21,
   "residents_surname_only_refused": 225,
+  "residents_letter_list_bucket_refused": 1,
   "voters_matched_one_entry": 82,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 85,
@@ -1613,28 +1614,6 @@
     "person_id": "foot_s",
     "household_id": "hh_foot_s",
     "grade_1835": "attested",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
-    "name": "S. Sherwood",
-    "rule": "Surname 'Sherwood' folds to the same string as the 1837 entry's, and the given name of both begins S.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0358",
-      "as_printed": "Smith J . Sherwood",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "sherwood_s",
-    "household_id": "hh_sherwood_s",
-    "grade_1835": "inferred",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -4848,6 +4827,33 @@
     "name": "dane Gray",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Gray' stands in the 1837 poll and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
+   }
+  ],
+  "letter_list_bucket_refusals": [
+   {
+    "outcome": "refused_letter_list_bucket",
+    "card": "S. Sherwood",
+    "seated_over": [
+     "Stephen Sherwood"
+    ],
+    "rule": "The card is a CONTESTED LETTER-LIST BUCKET (T-1038): it prints an INITIAL, the post office's returns print another name under the same surname and the same initial IN FULL, and mint_letter_list_residents.py seats one household per surname — so the card stands for readings the corpus cannot separate, and at least one of them would refuse this entry under T-0670's forename rule. What is refused is the SPEND, not the identity: nothing here says the readings are two people. A source naming the letter-list person in full retires the refusal.",
+    "name": "S. Sherwood",
+    "record_id": "f1839_v0358",
+    "entry_1837": {
+     "claim": "f1839_v0358",
+     "as_printed": "Smith J . Sherwood",
+     "printed_page": 43,
+     "role": "voter",
+     "ward_1837": 2,
+     "voted_for": "John H. Kinzie",
+     "party": null,
+     "office": null,
+     "column_run_on": false,
+     "candidate_inferred": false
+    },
+    "person_id": "sherwood_s",
+    "household_id": "hh_sherwood_s",
+    "grade_1835": "inferred"
    }
   ]
  },

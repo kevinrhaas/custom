@@ -8,14 +8,14 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 45,
-  "printed_as_a_residence": 31,
+  "addresses_adjudicated": 44,
+  "printed_as_a_residence": 30,
   "printed_as_a_lodging": 14,
   "placed": 6,
   "placed_as_a_face": 6,
   "placed_with_no_1835_trade": 3,
   "already_better_placed": 0,
-  "refused": 39,
+  "refused": 38,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
@@ -530,27 +530,6 @@
    "street_id": "north_water",
    "face": "North Water Street",
    "placement": "face"
-  },
-  {
-   "household_id": "hh_lamb_a",
-   "person_id": "lamb_a",
-   "person": "A. Lamb",
-   "address_as_printed": "res 96 Michigan ave",
-   "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "refused",
-   "clause": "R4",
-   "reason": "Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both.",
-   "street_id": null,
-   "face": null,
-   "placement": null
   },
   {
    "household_id": "hh_mills_john_a",

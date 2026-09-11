@@ -56,6 +56,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import trade_recorded     # "does the layer hold a trade?" (T-0867), imported not restated
 import tiebreak            # the tie discriminator (T-0696), likewise
 import name_agreement as na  # the forename rule (T-0670), likewise
+import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1839_directory_entries.json")
@@ -117,6 +118,7 @@ def residents():
             out.append({
                 "name": name, "surname": surname, "given": given,
                 "person_id": p.get("id"), "household_id": doc.get("id"),
+                "letter_list_only": bool(p.get("letter_list_only")),
                 "grade": p.get("grade"),
                 "occupation": ((p.get("occupation") or {}).get("value")),
                 "occupation_confidence": ((p.get("occupation") or {}).get("confidence")),
@@ -168,13 +170,18 @@ def index(entries):
     return by_key, surnames
 
 
-def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None):
+def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
+               bucket_refusals=None):
     """One pool against the index. Returns (matched, ambiguous, refused).
 
     T-0670's forename rule is applied where the CALLER hands in a list to file
     its refusals into, and not otherwise — see `forename_rule_scope` on the
-    generated file for why only one of the four pools asks for it.
+    generated file for why only one of the four pools asks for it. T-1038's
+    letter-list bucket refusal is handed in the same way and for the same
+    reason: it asks whether a POOL ROW is a card the mint pass seated over
+    another reading, and only the residents pool holds cards.
     """
+    ll_index = llb.buckets(llb.pool())
     matched, ambiguous, refused = [], [], []
     for r in pool:
         f, i = fold(r["surname"]), initial(r["given"])
@@ -189,6 +196,24 @@ def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None):
                             % (r["surname"], (i or "-").upper(), r["name"]),
                 })
             continue
+        # T-1038. The card prints an INITIAL that the post office's returns also
+        # print in full under the same surname, and the mint pass seats one
+        # household per surname — so the card stands for readings the corpus
+        # cannot separate. This file showed the contest before the rule existed:
+        # in its own letter-list pool below, f1839_e1338 matches BOTH `S.
+        # Sherwood` and `Stephen Sherwood`, and only the residents pool could
+        # not see it, because only one of the two was ever minted.
+        if bucket_refusals is not None:
+            bucket = llb.refusal(r["name"], r.get("letter_list_only"), ll_index)
+            if bucket:
+                for h in hits:
+                    rec = dict(bucket)
+                    rec.update({"name": r["name"], "record_id": row_of(h)["claim"],
+                                "entry_1839": row_of(h)})
+                    if extra:
+                        rec.update(extra(r))
+                    bucket_refusals.append(rec)
+                continue
         # T-0670. BOTH READINGS PRINT A FULL FORENAME AND THE TWO DISAGREE: refused,
         # and the refusal is FILED, never dropped. An initial standing against a full
         # name is untouched — that is the case the initial rule exists to serve.
@@ -224,9 +249,11 @@ def main():
 
     people = residents()
     res_forename_refused = []
+    res_bucket_refused = []
     res_matched, res_ambiguous, res_refused = match_pool(
         people, by_key, surnames,
         forename_refusals=res_forename_refused,
+        bucket_refusals=res_bucket_refused,
         extra=lambda r: {"person_id": r["person_id"], "household_id": r["household_id"],
                          "grade_1835": r["grade"], "occupation_1835": r["occupation"],
                          "occupation_1835_confidence": r["occupation_confidence"],
@@ -441,6 +468,8 @@ def main():
             "residents_left_with_no_entry_by_that_refusal": len(
                 {f["person_id"] for f in res_forename_refused}
                 - {m["person_id"] for m in res_matched + res_ambiguous + contested}),
+            "residents_letter_list_bucket_refused": len(res_bucket_refused),
+            "residents_that_refusal_reaches": len({b["person_id"] for b in res_bucket_refused}),
             "residents_ties_narrowed_by_a_trade": len(discriminated),
             "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
             "of_those_ambiguous": sum(1 for d in discriminated if d["tie"] == "ambiguous"),
@@ -461,6 +490,8 @@ def main():
             "refusals": sorted(res_refused, key=lambda m: m["name"]),
             "forename_refusals": sorted(res_forename_refused,
                                         key=lambda m: (m["name"], m["entry_1839"]["claim"])),
+            "letter_list_bucket_refusals": sorted(
+                res_bucket_refused, key=lambda m: (m["name"], m["entry_1839"]["claim"])),
             "narrowings_withdrawn_as_a_collision": collisions,
         },
         "voters": {"matches": sorted(v_matched, key=lambda m: m["name"]),

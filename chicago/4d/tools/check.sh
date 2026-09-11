@@ -1875,6 +1875,17 @@ selftest "the directory forename rule's own assertions still fire when broken" \
 selftest "…and the tie discriminator's do too" \
   python3 tools/tiebreak.py --self-test
 
+# T-1038. THE THIRD RULE MODULE, and the one that answers a question the other two
+# cannot ask: is the 1835 person a PERSON at all, or the one card the letter-list
+# mint pass was allowed to seat over a surname the post office printed twice? An
+# initial standing against a full forename is a match under T-0670 — deliberately —
+# so a card reading `S. Sherwood` took `Sherwood, Smith J., watchmaker and jeweller,
+# 144 Lake st` and the reading it was seated over, `Stephen Sherwood`, would have
+# refused it. Loosening this module widens what five crosswalks may carry to a card
+# the letter list gave a name and nothing else, so it is gated like its two siblings.
+selftest "…and the letter-list bucket refusal's, which all five directory crosswalks import" \
+  python3 tools/letter_list_bucket.py --self-test
+
 # T-0867. And the one-line predicate BOTH of those rules stand on: "does the 1835
 # layer already hold a trade for this person?" It was written four times, once per
 # directory crosswalk, and two of the four wrote the truthiness test — which reads
