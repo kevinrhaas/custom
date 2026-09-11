@@ -8,14 +8,14 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 44,
+  "addresses_adjudicated": 45,
   "printed_as_a_residence": 31,
-  "printed_as_a_lodging": 13,
+  "printed_as_a_lodging": 14,
   "placed": 6,
   "placed_as_a_face": 6,
   "placed_with_no_1835_trade": 3,
   "already_better_placed": 0,
-  "refused": 38,
+  "refused": 39,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
@@ -947,6 +947,27 @@
    "outcome": "refused",
    "clause": "R4",
    "reason": "Adams Street is south of Madison, outside the platted town of 1835.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_wolcott_alexander",
+   "person_id": "wolcott_alexander",
+   "person": "Alexander Wolcott",
+   "address_as_printed": "bds H. Wolcott",
+   "kind": "boards",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names the person this man boarded with, set with an initial, and not a street — and the surname is also a street this town carries, which is the collision this test is ordered in front of the street table to catch. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null

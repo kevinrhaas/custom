@@ -66,9 +66,20 @@ NUMBER = re.compile(r"\b\d{1,3}\b")
 LAKE = re.compile(r"\bLake\b", re.I)
 
 STREET_WORD = r"(?:st|street|streets|sts|ave|avenue|av|road|rd|alley|place|court|square)"
+# The head of a street name is a PROPER NOUN and the volume prints it capitalised. The
+# pattern was compiled re.I, which made `[A-Z]` match a lower-case letter too, so the
+# joining words this directory sets between two streets were read as street names of
+# their own: `cor. Clark and Randolph sts` yielded "and Randolph sts", `bet Dearborn and
+# State sts` yielded "and State sts", and `clerk Steamer Geo. W. Dole, for St. Joseph`
+# yielded "for St" — a street out of a destination. The street WORD stays case-blind
+# (the volume sets `st`, `St`, `STREET`); the NAME does not, and the joining words are
+# refused by name as well, because `And` opens a line often enough to be capitalised.
+STREET_NAME = r"[A-Z][A-Za-z'’]+"
+JOINER = {"and", "bet", "between", "cor", "corner", "near", "for", "opp", "opposite",
+          "over", "the", "to", "of", "on", "at", "from", "next"}
 STREET = re.compile(
     r"\b((?:North|South|East|West|N|S|E|W|No|So)\.?\s+)?"
-    r"([A-Z][A-Za-z'’]+(?:\s+[A-Z][A-Za-z'’]+)?)\s+" + STREET_WORD + r"\b\.?", re.I)
+    r"(" + STREET_NAME + r"(?:\s+" + STREET_NAME + r")?)\s+(?i:" + STREET_WORD + r")\b\.?")
 
 
 def header_like(line: str) -> bool:
@@ -96,7 +107,19 @@ def streets_in(text: str):
     """Every street named in an address, as printed. A clue, not a gazetteer."""
     found, seen = [], set()
     for m in STREET.finditer(text or ""):
-        s = re.sub(r"\s+", " ", m.group(0)).strip(" .")
+        # `and Randolph sts` — the two-word name form catching a joiner in front of the
+        # real head. Drop the joiner and keep the street; if nothing is left, it was
+        # never a street.
+        name = re.sub(r"\s+", " ", m.group(2)).strip()
+        head = name.split()[0].strip(".,").lower()
+        if head in JOINER:
+            rest_of_name = name.split()[1:]
+            if not rest_of_name:
+                continue
+            s = re.sub(r"\s+", " ", m.group(0)).strip(" .")
+            s = s[s.index(name.split()[1]):] if name.split()[1] in s else s
+        else:
+            s = re.sub(r"\s+", " ", m.group(0)).strip(" .")
         key = s.lower()
         if key not in seen:
             seen.add(key)
@@ -120,6 +143,18 @@ def split_entry(text: str):
             if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
                     tok[:1].isupper() and len(given) < 3 and not PLACE.fullmatch(tok + " ")):
                 given.append(tok)
+                # THE PRINTED COMMA CLOSES THE NAME. Without this the loop ran on past
+                # it and took the next capitalised word for a forename, because a
+                # capital and a count of three were the whole test: `Beaubien, John B.,
+                # Michigan ave.` read "Michigan" as part of the name and left the
+                # address as the tail of its own qualifier, `So. Water sts` — the wrong
+                # street. The volume sets a comma after the given names and before the
+                # trade, so the comma is the boundary the compositor actually printed.
+                # A title or a suffix carries a comma of its own — the volume sets
+                # `Bates, jr., John` and `Baumgarten, jr., Morris` — so its comma is
+                # not the one that closes the name.
+                if tok.rstrip(".").endswith(",") and bare.strip(",") not in TITLES:
+                    break
                 continue
             break
         rest = rest[len(" ".join(given)):].strip(" ,.")
@@ -193,7 +228,10 @@ def build_entries():
         for first, last in entries:
             n += 1
             raw = "\n".join(lines[first - 1:last])
-            flat = re.sub(r"\s+", " ", raw.replace("-\n", "")).strip()
+            # The scan sets an end-of-line break as `-` or as `¬`; both join the word
+            # back up. Eleven lines carry the second form and one of them is an address:
+            # `La¬ / Salle st cor. So. Water` read as a street called "Salle".
+            flat = re.sub(r"\s+", " ", re.sub(r"[-¬]\n\s*", "", raw)).strip()
             norm = split_entry(flat)
             norm["as_printed"] = flat
             claims.append({

@@ -60,7 +60,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "& Doyle, butchers",
+     "value": "Funk & Doyle, butchers",
      "describes_date": 1839,
      "confidence": "attested",
      "sources": [
@@ -114,7 +114,7 @@
    {
     "person_id": "funk_absolom",
     "occupation_later": {
-     "value": "& Doyle, butchers",
+     "value": "Funk & Doyle, butchers",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [
