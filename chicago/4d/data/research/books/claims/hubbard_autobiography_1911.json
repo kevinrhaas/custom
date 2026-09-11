@@ -1229,10 +1229,13 @@
       },
       "describes_date": "1818-1827",
       "entities": [
-        "The Pines"
+        "The Pines",
+        "John-Dean house",
+        "Dean",
+        "Jean Baptiste Beaubien"
       ],
       "town_finding": true,
-      "notes": "THE OLD RIVER MOUTH, NAMED AND DATED — a mile south of the fort, marked by a hundred stunted pines on sand-hills, and still the outlet as late as 1827. The 1834 harbour cut is what moved it; this is where it was before."
+      "notes": "THE OLD RIVER MOUTH, NAMED AND DATED — a mile south of the fort, marked by a hundred stunted pines on sand-hills, and still the outlet as late as 1827. The 1834 harbour cut is what moved it; this is where it was before. THE HOUSE IN THE MIDDLE OF THIS SENTENCE WAS NEVER PICKED UP, and T-0895 identifies it: it is the John-Dean house — built on the lake shore near the foot of Randolph Street in 1815 by an army contractor named Dean, bought by Jean Baptiste Beaubien in 1817 and lived in by him for several years (Andreas scan p. 183). THE IDENTIFICATION IS FORCED BY HUBBARD'S OWN EXHAUSTIVENESS, not merely suggested by agreement: `bk_hub_066` closes this inventory with the buildings named 'comprised all the buildings within the present limits of Cook County', so a house standing here in 1818 has to be on the list, and every other building on it — the Factor House by the road (`bk_hub_063`), Craft's round-log storehouse on the river's edge (`bk_hub_065`), Hardscrabble, Ouilmette's cabin, Kinzie's house — is placed somewhere this one is not. This is the only unnamed building on the list. 'Back of it flowed the Chicago River' agrees: `bk_hub_067` has the old channel running south behind the sand strip, so a lakeshore house there has the river behind it to the west. And the distance agrees at the precision it carries — the foot of Randolph Street, derived by T-0759's method, lies 1,512 ft south of `fort_dearborn_palisade` in this project's own frame, against Hubbard's 'twelve hundred or more feet'. THE READING ABOVE IS UNTOUCHED and `kind` is left at `landscape`, because the sentence was filed for the old river mouth and still carries it; what this note adds is the building. IT IS GRADED `inferred` AND WILL NOT IMPROVE: Hubbard names neither Dean nor Beaubien here and dates no construction. NOTHING IS BUILT ON IT — the house is excluded from the scene at `data/exclusions.json#john_dean_house` because no source places it after 1818, thirteen years before the scene date. Full reading: docs/RESEARCH/john_dean_house.md."
     },
     {
       "id": "bk_hub_065",

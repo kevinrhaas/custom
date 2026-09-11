@@ -242,6 +242,18 @@
         "wright_1834",
         "hathaway_1834"
       ]
+    },
+    {
+      "id": "john_dean_house",
+      "name": "The John-Dean house at the foot of Randolph Street",
+      "reason": "NO SOURCE ATTESTS ITS SURVIVAL — last seen in 1818, thirteen years before the scene, and no demolition is recorded either. The same disposition as `ouilmette_cabin`, for the same reason.",
+      "detail": "Andreas scan p. 183: 'In 1815 ... an army contractor named Dean, built a house on the lake shore, at the mouth of the Chicago River, near where is now the foot of Randolph Street. In 1817, Mr. Beaubien purchased this house, which was a low, gloomy building of five rooms, for $1,000 ... he lived in the Dean house for several years'. A SECOND AND INDEPENDENT WITNESS WAS ALREADY IN THIS CORPUS, filed under `landscape` and never noticed: `bk_hub_064` has Gurdon Hubbard, describing Chicago as he found it in 1818, put 'another house of hewn logs ... twelve hundred or more feet from the road, and back of it flowed the Chicago River'. The identification is FORCED rather than suggested, and what forces it is Hubbard's own exhaustiveness — `bk_hub_066` closes his inventory with the buildings named 'comprised all the buildings within the present limits of Cook County', and every other building on that list is placed somewhere this one is not. It adds a material (hewn logs) this project had for no other reading of the house. EVERY SIGHTING FALLS IN 1815-1818: built 1815, bought 1817, Varnum boarding 1816-1822, Hubbard 1818. Beaubien is elsewhere by 1822 or 1823, and nothing follows the building past him. Wentworth's 1881 'what was before known as the John-Dean house' is a statement about a NAME made sixty-six years after the fact, not a sighting. THE SITE IS NO HELP EITHER WAY: the 1828 cut through the spit and the 1833-34 harbour piers rebuilt the mouth a quarter mile north of here and did not touch the ground at the foot of Randolph, so 'the shore changed' is not a demolition argument and is not used as one. The 1830 land-entry map cannot license a dwelling (its own source record says so) and therefore cannot refuse one; the Thompson plat stops well west of this ground, which is unplatted lakefront inside the Fort Dearborn Reservation. A SECOND REASON THAT WOULD HOLD EVEN IF SURVIVAL WERE GRANTED: nothing dimensions it. 'Five rooms' is a room count and not a dimension — no length, no depth, no storey height, no bearing — and 'near where is now the foot of Randolph Street', derived by T-0759's method against this project's own Randolph line and the traced 1834 shoreline, lands on the WATERLINE at local east 1224.1, north -262.43, so a house there would need an invented setback, bearing and size. Full reading, including the measured agreement between Hubbard's distances and this project's geometry, at docs/RESEARCH/john_dean_house.md. T-0895.",
+      "earliest_scene": null,
+      "sources": [
+        "andreas_1884_v1",
+        "hubbard_autobiography_1911",
+        "wentworth_1881_fort_dearborn"
+      ]
     }
   ],
   "watch_list_doc": "Structures whose 1835 status is genuinely uncertain rather than excluded — the third category, between a building that stands and one that was researched and left out. They belong in the dataset with honest confidence, and they are listed here so nobody promotes them to documented without new evidence. That last sentence was unenforced prose until 2026-08-10: `original` on each entry is the free-text line it was written as, kept verbatim because this file's rule is that a finding is added to and not rewritten. Entries opened since carry `opened` instead, because there is no scaffold line to keep.",
