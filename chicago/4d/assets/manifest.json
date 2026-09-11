@@ -333,6 +333,15 @@
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_sutlers_store"
     },
+    "fort_dearborn_us_factors_house__us_factors_house_1818.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 58356,
+      "inputs_sha256": "19f2478e5015b64f6ceb07ad1a84608fe841f445d13d7d207e672636416fb71a",
+      "kind": "generated",
+      "phase_id": "us_factors_house_1818",
+      "structure_id": "fort_dearborn_us_factors_house"
+    },
     "fort_dearborn_wash_house__wash_house_1830.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
@@ -693,13 +702,13 @@
       "phase_id": "dwelling_1830",
       "structure_id": "james_kinzie_house"
     },
-    "jb_beaubien_homestead__factory_1817.glb": {
+    "jb_beaubien_homestead__log_1822.glb": {
       "archetype": "log_dwelling",
       "baked_ao": false,
-      "bytes": 32408,
-      "inputs_sha256": "eae1b79caeac043e925264c68cf55f7f3d7608946fdb42d4e4870b94d1389fef",
+      "bytes": 32396,
+      "inputs_sha256": "2ba87baa07b90fc5e328ab887901afce284f817651b10cbd11fd7933acfc44eb",
       "kind": "generated",
-      "phase_id": "factory_1817",
+      "phase_id": "log_1822",
       "structure_id": "jb_beaubien_homestead"
     },
     "jh_kinzie_forwarding_store__frame_1830s.glb": {

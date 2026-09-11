@@ -268,9 +268,43 @@ carries the `geometry:` declaration and a liberty:
 - **Named ground on the 1830 plan and not modelled**: the Well, the Out Buildings, the
   U.S. Factor's House, the Cultivated Field, the Ferry. Each is a candidate for a later
   slice and each would be almost entirely invention today — the plan gives a symbol and a
-  label and no form. The Fort Cemetery left this list on 2026-09-06 (T-0882) and the Out
-  Buildings on the same day (T-0881); both are two bullets down.
-- **The U.S. Factor's House is now READ, and still not built** — 2026-09-11, T-0894. The
+  label and no form. The Fort Cemetery left this list on 2026-09-06 (T-0882), the Out
+  Buildings on the same day (T-0881), and the U.S. Factor's House on 2026-09-11 (T-1036) —
+  the last of those because a witness the plan does not contain gave it a fabric and a
+  storey count. **The Well, the Cultivated Field and the Ferry remain**, and the Well has a
+  coordinate and no archetype (two bullets down).
+- **The U.S. Factor's House is now BUILT, and two of its three blocks are not** — 2026-09-11,
+  T-1036: `fort_dearborn_us_factors_house`, a two-storey squared-log building 20.4 x 7.9 m at
+  local ENU **(1152.2, 36.4)** — UTM 448224.90 E, 4637432.20 N — 152 m south of the palisade's
+  nearest corner, east of the road and off the garrison garden's southern corner. It is BLOCK A,
+  the one the plate's label touches and the largest of the three; T-0894 read all three and
+  refused to build any, and what changed is that the prose was read alongside the plate instead
+  of after it. `bk_hub_063` closes two of that refusal's four gaps in one clause — *"a two-story,
+  squared-log structure"* — so `construction` here is **attested**, the only fabric on this
+  reservation that is, and the storeys attach to A rather than to the group because the label
+  touches A and because A is the only one of the three a two-storey dwelling-and-store will fit.
+  Three witnesses across eighteen years and none of them dates it: Hubbard in 1818, Hurlbut's
+  1822 sale out of government hands to the American Fur Company with Beaubien moving his family
+  in (`bk_afc_009`), and the plate of 1830. The roof, its pitch, the eave, the stack and which
+  long wall is the front are invented at **L231**.
+- **Blocks B and C are drawn, unlettered, and stay unbuilt** — T-1036. 16.6 x 5.1 m set across A
+  12 m to the north-west, and 6.7 x 5.0 m 15 m to the south-west. A government factory had a
+  store, a warehouse, a stable and a smith about it; the sheet says something stood on those two
+  footprints and cannot say which. Their pixels are banked in
+  `data/traces/harrison_1830_us_factors_house.json`.
+- **And the Factor House's split-picket fence is attested and not built** — T-1036. `bk_hub_063`
+  gives the house *"a neat split-picket fence"*, and the Jouett grave 50 m away got its fence
+  built off the same clause at **L229**. Three things separate them. This plate draws the three
+  blocks and draws NO enclosure round any of them while it DOES draw the garden's zigzag fence
+  and John Crafts's Lot's property lines, so its silence means something here and meant nothing
+  at the grave, where it drew a name alone. A grave plot's 10 x 8 ft is the size a burial is; the
+  extent of a yard round a 20 m building is bounded by nothing, so it would be the largest
+  invented dimension on the ticket rather than its smallest. And Hubbard is describing 1818 — the
+  fence is a government establishment's, and the house had been thirteen years in private hands
+  by the scene date. NOT a judgement that there was no fence: a statement that this project
+  cannot say where it ran. A plat or a survey that draws the yard turns it into an enclosure
+  record beside the grave's.
+- **What T-0894 read, and why it refused** — 2026-09-11. The
   plate letters it against **three** solid blocks 152 m south of the palisade's nearest
   corner, east of the road and off the garrison garden's southern corner, ink-weighted
   centre local ENU **(1145.6, 38.7)**; `data/traces/harrison_1830_us_factors_house.json`
@@ -280,7 +314,8 @@ carries the `geometry:` declaration and a liberty:
   that came off on the same ticket — so the fabric is deliberately left unauthored: the plate
   gives arrangement and a ±20 % size and no material, no roof, no opening, and no way to say
   which of the three blocks carries `bk_hub_063`'s two storeys. The reading makes it a ticket
-  someone can size.
+  someone can size. **T-1036 sized it and built block A** (three bullets up): the two storeys
+  and the squared log came out of the prose, which this reading had not been asked to consult.
 - **Two more of that list are now built, and the list was wrong about one of them** —
   2026-09-06, T-0881: `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b`.
   The plate letters *Out Buildings* against a PAIR of solid blocks about 160 m south of

@@ -141,13 +141,21 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # structure assets, so three more meshes a change to the shared generator modules or to
 # build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
 #
+# 383 -> 384 and 381 -> 382 on 2026-09-11 (T-1036): `fort_dearborn_us_factors_house`, the
+# United States factory on the fort reservation — block A of the three the 1830 Harrison plate
+# letters `U.S. Factor's House`, built as a `log_dwelling` where T-0894 read all three and
+# built none. One new structure asset, so one more mesh a change to the shared generator
+# modules or to build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+# Blocks B and C are drawn, unlettered and refused, and add nothing here for the same reason
+# the Well adds nothing: measured and deliberately not built.
+#
 STATED = {
-    "assets": 383,
+    "assets": 384,
     "restales": {
-        "generators/common/*.py": 383,
+        "generators/common/*.py": 384,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 381,
+        "generators/build.py": 382,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
