@@ -421,3 +421,99 @@ assumption and is now a reading.
    traverse crosses three candidates and all three are rejected for the same reason — one of
    the two lines bounding them stops after 24–32 m, well short of a block face. Both streets
    need a traverse placed for them, not a looser filter.
+
+## 11. The north bank has no module, and its frontages come off the track
+
+**T-0947, 2026-09-11.** Everything above this section is a measurement of the Original Town
+and the West Division. § 8's eleven corridors are Desplaines, Jefferson, Clinton and Canal
+on the block row south of Lake, plus Lake, Randolph and one unnamed corridor east of Canal;
+§ 4's control points are Kinzie × Canal, Lake × Canal, Lake × Market, Randolph × Canal and
+South Water × Franklin. **Not one of them is north of the river.** `street_control.json`
+says as much in its own note — the 80 ft figure is applied "town-wide to Lake, Market,
+Canal, Randolph and Kinzie" — and `tools/plat_corridors.py` agrees by construction:
+`generate_plat_lots.EW_STREETS` and `NS_STREETS` name no north-bank street, so `north_water`
+has no corridor ring, and no record has ever been reported lapping one.
+
+That silence was read, twice on one day, as permission.
+
+### What it cost: one ruling, two green answers, 36.79 m apart
+
+On 2026-09-06 two reconciliations of T-0812 were written hours apart. Both ruled the same
+way about Kinzie Street (see `kinzie_alignment_1835.md`) and then placed the Steamboat Hotel
+in two different places. PR #974, which landed, offset **12.192 m** from North Water Street's
+committed centreline — half the platted module, carried across the river. PR #975, which was
+closed, offset **7.00 m**, argued from a band of neighbours' setbacks. Nothing could tell
+them apart: both records declare `derivation.method: not_derivable`, and `validate.py
+--stale` asks whether a mesh matches the record it was baked from, not whether a record
+matches the rule it says it follows.
+
+### The rule, and it was already here
+
+North of the river this project's placements do not offset from a module. They offset from
+the street **as drawn**, and the arithmetic is stated four times over — once in each of the
+Dearborn sheds' own `position.note`:
+
+> North Water Street's travelled track, `data/streets/1835.json`, `track_width_m` 6.0: at
+> local E 678.0 the drawn centreline stands at N 108.35, so its north edge is 3.00 m north
+> of that. The front wall is set 2.00 m back from that edge — **5.00 m from the centreline**,
+> leaving the front wall 2.00 m clear of the drawn ribbon
+
+**The frontage line is the street record's own kerb plus a 2.00 m clearance.** The kerb is
+`track_width_m / 2` and is never written down twice, so a street re-drawn in
+`data/streets/1835.json` re-derives every frontage on it in the same commit — which is
+exactly what happened when T-0226 moved North Water Street off the water mask and the sheds
+came with it. The clearance is this programme's own invention and is declared as one.
+
+### Why the module is refused here, and why the neighbour band is too
+
+The module is refused because it has never been measured on this bank and this dataset
+holds no corridor for it. Applying half of it left the Steamboat Hotel standing 12.20 m back
+on a bank where every other building's face stands between **0.06 and 5.05 m** of the same
+centreline.
+
+The *neighbour band* is refused as a rule for a different reason: it is not a band. Measured
+on the committed records, the nine north-bank frontages inside 25 m of the centreline read
+0.06, 1.00, 1.75, 2.02, 2.89, 4.42, 4.85–5.05, 9.65 — and **five of them are drawn inside
+the 6 m track**. A scatter that includes five buildings standing in the roadway is the
+residue of independently-placed records met by a later-traced line; it is not a custom, and
+the loose end of it is not a setback. (PR #975's own figures — "school 2.15, Cobweb Castle
+2.89, Dearborn sheds 5.01–5.17, Kinzie & Hunter 5.35, brickyard 7.02, boatman's cabin 7.31"
+— reproduce on the committed records only for Cobweb Castle. Kinzie & Hunter measures 0.06,
+not 5.35. A number derived by hand and thrown away does not reproduce; that is § 1's lesson
+and `measure_corridor_intrusion`'s, met again.)
+
+What the four sheds have that the other five do not is a **stated rule**, applied
+identically, that reproduces. That is what is adopted.
+
+### The gate
+
+`tools/measure_north_bank_frontage.py` measures every committed building phase whose street
+face stands within 25 m of North Water Street's committed centreline — the same
+`FRONTAGE_BAND_M` `tools/fronting_street.py` uses — and sorts each into one of three:
+
+| verdict | held to | population |
+|---|---|---|
+| `on_rule` | the derived 5.00 m, within 0.20 m | the four Dearborn sheds and the Steamboat Hotel |
+| `exception` | its own committed figure, within 0.25 m, **with the reason named** | eight records |
+| `unbaselined` | nothing — **the gate fails** | none, and that is the point |
+
+The 0.20 m is about the street and not about the placements: the face is measured to the
+nearest point of a POLYLINE, which at a vertex is a corner-to-corner distance rather than
+the perpendicular the rule is stated in. The sheds read 4.85–5.05 m for that reason alone.
+
+The exceptions are recorded rather than repaired, and five of them are buildings drawn
+inside the track. That is a real fault of this dataset, and the reason it is not fixed here
+is the one `measure_corridor_intrusion` states for the platted grid: **a position with a
+source outranks a corridor this project derived.** Cobweb Castle's corner is documented
+twice; the school's is Andreas, twice; Kinzie & Hunter stands at the forks where the street
+is a trace that has already been re-derived once. Moving them to make a number smaller is
+exactly what that tool refuses to do, and so does this one.
+
+### What moved
+
+`data/structures/steamboat_hotel.json` only, by **7.87 m**: its face onto the frontage line,
+then 3.17 m along the street's own bearing to restore the 5.486 m platted alley to
+`council_house`'s footprint that PR #974's station is constructed on. The along-street
+station is #974's and is unchanged in substance; #975's is not taken, and its own placement
+would have put this facade 6.24 m from the `attested` `kinzie` centreline — 5.95 m inside
+the platted corridor of a street that genuinely carries the module.
