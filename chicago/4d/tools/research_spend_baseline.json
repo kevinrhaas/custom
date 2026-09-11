@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 284,
   "church": 497,
-  "books": 202,
+  "books": 222,
   "directories": 7251,
   "newberry_index": 4914,
   "land_sales": 456,
@@ -31,7 +31,7 @@
    "spent": 1255
   },
   "books": {
-   "read": 282,
+   "read": 302,
    "spent": 80
   },
   "directories": {
@@ -480,6 +480,14 @@
    "to": 260,
    "date": "2026-09-11",
    "why": "T-1013. Thirty inverted firm entries — 'Jones, B. & Co.' — were read as people because the firm test looked only before the first comma, and four residents were therefore contested by their own companies. Removing the firms from the person pool turns those four refusals into matches (Adams, Gale, Jones, Smith), so four rulings now REACH a card that did not before. What they carry is still refused on T-0569's standing ground: Norris sets a partnership where the trade would go, so the parse yields 'of' and no trade, and the card takes the line and not the split. The gap widened by four because four more names are ruled on, not because four more were read."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 202,
+   "to": 222,
+   "date": "2026-09-11",
+   "why": "T-0826 read volume 2 of Moses and Kirkland, the half of a work whose first half this domain already holds, and wrote 20 claims off it. THE SPEND IS DEFERRED BY THE TICKET AND NOT BY NEGLECT: T-0581's third acceptance clause, which binds T-0826 too, forbids a books reading from editing data/residents/, data/households/, data/structures/ or data/businesses/ at all — anything the volume dates and places before 1835-07-01 is offered to those layers under the ratified ladder IN THAT LAYER'S OWN PR. So these twenty cannot be ruled on in the PR that reads them, by the project's own rule, and the ceiling moves by exactly the twenty rather than by a round number. What they are owed to: two dated presence lists (the Baptist fourteen of 19 October 1833 and the Episcopal eleven of 1834), a brick yard, a tannery, a residence with a block, and a second address for the Chicago Democrat's office. A run that spends them should --tighten this back."
   }
  ],
  "lowered": [
