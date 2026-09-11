@@ -20,7 +20,19 @@ claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/3460643
 
 check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them.
 
-**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+**Acceptance** (stated before working, 2026-09-11):
+
+1. On a GREEN `./tools/check.sh` (exit 0), **no line containing `FAIL` reads as a failure**:
+   every one of them is a self-test's own output and is marked as such at the START of the
+   line, where `grep` and a skimmed log both read.
+2. **Nothing is silenced.** Each fired assertion's own words survive verbatim, stderr
+   included.
+3. `check.sh` names **the failing steps once, by label, at the end**, beside
+   `CHECK PASS`/`CHECK FAIL` — so "what is red?" is answered where the reader already is.
+4. The exit status is unchanged in both directions: a self-test that STOPS firing still
+   fails the gate.
+5. A gate keeps it true. A self-test that drifts back onto plain `step` — where it would
+   print untagged again — is refused by a step of the gate itself.
 
 **Measured 2026-09-05 on a GREEN tree** (`f3dfcc28f`, `./tools/check.sh` exit **0**, zero
 `^ <label> failed`): **ten lines of the output still contain `FAIL`.** All ten are
