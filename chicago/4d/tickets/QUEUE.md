@@ -139,8 +139,10 @@ T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from 
 # --- businesses, 60 street-only and 71 unplaceable. Roofs and placements first, ordered by
 # --- what each puts on the ground; then the identity and anchor repairs those placements
 # --- cannot be correct without. The triangle ceiling no longer gates any of this — every tier is
-# --- inside its ceiling on dev — so T-0432's four roofs lead, as the owner ruled on 2026-08-30.
-T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
+# --- inside its ceiling on dev. T-0432's four roofs led this band on the owner's 2026-08-30
+# --- ruling and landed on 2026-09-11 as three (PR #1135): the metres of lot 2 took two roofs
+# --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
+# --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0895 — The John-Dean house: an army contractor built a five-room house at the foot of Randolph Street in 1815, Beaubien bought it in 1817 for $1,000, and this project models nothing there
 T-0894 — Two sources put the Factory House just SOUTH of Fort Dearborn and jb_beaubien_homestead stands north of it: that bearing is all that is left of the identity question, and form.stories waits on it
