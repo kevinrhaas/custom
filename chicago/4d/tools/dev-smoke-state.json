@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "2",
+      "parts": [
+        2
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 86,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-09-11T12:50:00.634Z",
+      "ref": "steward/t-0688-wagon-variety-gate",
+      "commit": "6a0d2bc32f88",
+      "devCommit": "9642c607f773",
+      "treeHash": "sha256:c4ec71602ce8c292",
+      "treeDirty": false,
+      "changelogHash": "sha256:bf2e9bd87c78f107",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.9,
+          2.8,
+          2.2
+        ]
+      },
+      "source": "/tmp/s-m2.log /tmp/s-d2.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -1363,37 +1394,6 @@
         ]
       },
       "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 110,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 133,
-      "takenAt": "2026-09-11T02:41:01.647Z",
-      "ref": "steward/t-1011-letter-list-1834-mint-unread",
-      "commit": "2afa994a895a",
-      "devCommit": "c7742f3225b8",
-      "treeHash": "sha256:4ce8d57a2ab94104",
-      "treeDirty": false,
-      "changelogHash": "sha256:8ccf5ccd463d9f6a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5,
-          4.4,
-          3.1
-        ]
-      },
-      "source": "/tmp/smoke_m13.log"
     },
     {
       "viewport": "desktop",
