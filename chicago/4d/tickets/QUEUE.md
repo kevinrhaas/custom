@@ -107,7 +107,6 @@
 
 
 
-T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-1011 — Mint the 54 lines of the 1 January 1834 return that reach no card at all, under ruling 1 and carrying letter_list_only, with the roster line as the source
 T-1013 — Norris prints a firm as 'Jones, B. & Co.' and the firm test only looks before the comma, so 33 firm entries are read as people
@@ -331,3 +330,9 @@ T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds
 T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1014 — The card for Nehemiah King gathers every 'N. King' reading in the corpus, and Fergus 1839 prints a Nathaniel King clerking for Tuthill King
+T-1015 — The card for Anson H. Taylor carries a press reading of 'Anson W. Taylor' and an 'A. W. Taylor' militia row, against an Anson H. everywhere else
+T-1016 — THOMPSON JOHN L was proposed onto a card with no middle initial while the layer holds Lieut J L Thompson, and the same card carries a death notice for Gen. John Leverett Thompson
+T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
