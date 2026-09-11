@@ -10768,8 +10768,8 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
 **Recorded:** 2026-09-04.
 
-### L223 — Eight houses stand on a street a directory printed eight years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 8 households
+### L223 — Six houses stand on a street a directory printed eight years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 6 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds` — in
 Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
@@ -10780,37 +10780,52 @@ PROJECTION.md` clause 2 refused it by name so that it would be argued rather tha
 absorbed. The argument is that a home is not a shop in two places. A residence needs **no
 attested trade**, where a business does — everybody the town holds lived somewhere in it,
 so an absent occupation says nothing about whether a man had a house — and that departure
-is most of the yield: 44 of the 48 residence addresses on the layer belong to people the
-1835 papers give no trade, and five of these eight placements are such people. Against
+is most of the yield: 35 of the 44 residence addresses on the layer belong to people the
+1835 papers give no trade, and three of these six placements are such people. Against
 that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
 into one street's trade and a lodging is a month's rent.
-**Consequence:** eight households stand on a face on the authority of a volume printed
-four or eight years after the scene. The eighth arrived without a directory page being
-read: T-1011 lifted 54 lines of the 1 January 1834 letter list that no transcription
-carried, the mint took J. S. Lacey into the town off one of them, and the Fergus
-residence this pass had already adjudicated then had a card to reach. It is the shape
-this entry should be read for — the count moves when the TOWN grows as well as when the
-reading does, and the second is the only one that is a new liberty. Twenty of 825 households carried a real `lives_at`
-before this pass and twenty carry one after — the faces are text on a card and not a
-placement of anybody in the town.
+**Consequence:** six households stand on a face on the authority of Fergus's directory of
+1843, printed eight years after the scene. The count has moved twice in both directions and
+neither move was a new liberty, which is the shape this entry should be read for. It reached
+eight without a directory page being read: T-1011 lifted 54 lines of the 1 January 1834
+letter list that no transcription carried, the mint took J. S. Lacey into the town off one
+of them, and the Fergus residence this pass had already adjudicated then had a card to
+reach — the count moves when the TOWN grows as well as when the reading does. It came back
+to six when T-0987's second stretch put Fergus 1839's ties through T-0670's forename rule,
+and two of the eight were standing on a reading that rule refuses:
+
+- **`jones_es_high`** stood on Randolph Street on the authority of `Jones, Hiram, bds.
+  Randolph street cor. Dearborn` (1839, printed page 20). High is not Hiram, both volumes
+  print a full forename, and the refusal is filed in the crosswalk's `forename_refusals`.
+  The town loses a face it should not have had.
+- **`morrison_james_m`** lost his the other way, by gaining better evidence. His 1839 tie
+  cleared to one entry — `Morrison, James M., carpenter, 131 Clark street` — so his card now
+  carries the printing of 1839 read back FOUR years in place of 1843's `res 131 Clark` read
+  back eight. Fergus 1839 does not mark an address `res` or `bds`, so it never says the
+  street was his HOME, and this pass may not say it for him. A nearer reading that says less
+  replaced a further one that said more, and the face goes with the claim.
+
+Twenty of 825 households carried a real `lives_at` before this pass and twenty carry one
+after — the faces are text on a card and not a placement of anybody in the town.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, **no `lives_at`**, and — unlike L218 — **no point, ever**, not even where the
 volume prints a corner. Every residence entry that prints one prints it against a street
 NUMBER from a grid Chicago did not have in 1835, so the corner is how an 1843 volume tells
 its reader which of two hundred Clark Street doors it means, and reading it back would be
-reading a finding aid as a survey. The 41 refusals are on the record beside the seven, so
+reading a finding aid as a survey. The 38 refusals are on the record beside the six, so
 the arithmetic is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer.
 **How to resolve:** a source inside the scene year that says where somebody slept. The
 1835 poll and tax lists are closer to 1835 than a directory is, and any one of them that
-houses one of these seven supersedes this entry under the policy's clause R3 without an
+houses one of these six supersedes this entry under the policy's clause R3 without an
 argument.
 
 Related: **L218** (the business half, and the clause that refused this one) · **L212**
 (a street name constrains a face) · **L2** (nothing is drawn) · tickets **T-0669** (this),
-**T-0633**, **T-0632**.
-**Recorded:** 2026-09-04 (T-0669).
+**T-0633**, **T-0632**, **T-0987** (the restatement to six), **T-0670** (the rule that
+took one of the two).
+**Recorded:** 2026-09-04 (T-0669). **Restated:** 2026-09-11 (T-0987).
 
 ### L224 — A house the paper measured, on a corner the paper did not
 **Decision:** `lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat*
