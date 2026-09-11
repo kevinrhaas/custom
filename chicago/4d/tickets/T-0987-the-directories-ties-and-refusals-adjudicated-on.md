@@ -587,3 +587,117 @@ nothing about the address beside it), and spends what survives. No successor tic
 filed — `tickets/README.md` puts the succession on the run that CLOSES the programme, and
 the owner's filing rule of 2026-09-10 asks for fewer tickets. This ticket stays open and
 is its own cursor.
+
+## Stretch 6, 2026-09-11 — Norris 1844's blanket refusal, replaced per entry and per field
+
+**The stretch:** the could-carry pool of `norris_1844_crosswalk_1835.json` — 65 trades and
+79 addresses, all 144 of them refused by one clause — and the volume flag that refused
+them. It is the stretch stretch 5 nominated, in the words it nominated it: "replaces the
+volume flag with a per-entry, per-FIELD predicate (the partnership shape refuses a TRADE
+and says nothing about the address beside it), and spends what survives."
+
+**What the flag was.** `spend_directories.py` carried `parse_trusted: False` on Norris
+1844 alone, and `graded()` skipped every row of a volume that had it. The refusal's
+GROUND, T-0569's, is sound and is unchanged here: the volume sets a partnership where the
+trade would go — `of Loyd`, `of Horace Norton & Co`, twice simply `of` — so the split
+yields "a value containing no trade at all rather than a trade with something extra on
+it". What was wrong was the SCOPE: a sentence about three lines refusing a hundred and
+forty-four, which is not a ruling about a line, and clause 1 of this ticket asks for one
+per unit.
+
+**The predicate.** `split_refusal(field, value)` returns the clause key this entry's
+split is refused under for this field, or nothing — and `SPLIT_CLAUSES` holds the three
+clauses, written into the layer so the sentence on the record and the sentence in the
+ledger are the same sentence. Three shapes:
+
+| clause | shape | refuses |
+|---|---|---|
+| `firm_where_a_trade_is` | the value BEGINS `of` — the volume's "Surname, initials, of <firm>" | the trade |
+| `premises_where_a_trade_is` | the value BEGINS `at` — `at United States Hotel`, `at clerk's office` | the trade |
+| `address_is_a_backreference` | a locative and then only a ditto — `res same`, `house same`, `res "` | the address |
+
+Both trade patterns anchor at the START, which is what separates them from a trade with
+something extra on it: `clerk, at T. King's` and `book-keeper at G. S. Hubbard's` are
+trades and cross. No trade in the English of 1844 begins with either word.
+
+**The shapes are a compositor's construction, not one volume's habit, so all four volumes
+are asked** — and two of the three the flag TRUSTED print them and had been carrying them.
+That is the finding the boolean could not make: under it nobody ever looked.
+
+**Measured, before and after** (`spend_directories.py --report`, whole town):
+
+| | before | after |
+|---|---|---|
+| people carrying a later trade | 126 | **138** |
+| people carrying a later address | 149 | **165** |
+| ledger rulings that carried something | 202 | **220** |
+| `line_held_but_parse_refused` — held a line, got nothing | 17 | **0** |
+| trades refused, by clause | 65 (one clause, one volume) | **16** (2 clauses, 2 volumes) |
+| addresses refused, by clause | 79 (one clause, one volume) | **8** (1 clause, 2 volumes) |
+| directories, on a card / `unwritten` (clause 3) | 927 of 927 / **0** | 927 of 927 / **0** |
+| 1835 grades moved | 0 | **0** |
+| business street faces (L218) | 18 | **18** |
+| residence faces (L223) | 6 | **14** |
+
+**What the retractions were.** `hubbard_henry_g` carried `at G. S. Hubbard & Co.’s
+warehouse` as his 1839 trade — a door, not an occupation; Fergus 1843's `clerk, Circuit
+Court` now wins the field, a real trade four years nearer the scene, so the clause
+promoted a reading rather than costing one. `rue_john_c` carried `res same` and now
+carries Norris's `h Clark, b Madison and Monroe`. `burton_edward` carried `res same` and
+no other volume names him, so his card gives the address up: the honest direction.
+
+**Two older faults the released lines walked into, both fixed here because leaving either
+would have shipped a placement the policy documents forbid in writing.**
+
+1. **`RESIDENCE_PREFIX` knew only Fergus's words.** `docs/ADDRESS-BACK-PROJECTION.md`
+   clause 2 refuses an address the volume prints as a residence, and the pattern that
+   reads it listed `res`, `bds`, `boards` — never `house`, `h` or `r`, which are Norris's
+   own shorthand, declared in his preface. It had never been exercised on them because
+   his parse never reached the clause. The first that did was `house N Water st (See
+   card` — Silvester Marsh's HOME — and the business pass PLACED it as a shop face on
+   North Water Street, the one street in the town no other rule can seat a building on.
+   The pattern is shared by both passes, so adding the four words moves him to the
+   residence pass, where he places as a home. Business faces end where they started, 18.
+2. **A mis-set space defeated both personal-name tests.** `residence Hum phrey Clark's`
+   is Humphrey Clark's house; `street_words` read `Clark` as Clark Street and placed
+   Erastus Clark on it. `INITIALLED_PERSON` and `BARE_PERSON` both stand in front of the
+   street table for exactly this collision and both key on the SHAPE of a name, which
+   `Hum phrey` is not. `POSSESSIVE_HOST` does not: none of these four volumes ever prints
+   a street possessively, so a body ending `'s` is refused as a householder before the
+   street table is consulted. Four of the addresses this pass adjudicates are that shape.
+
+**What a reader can see.** Fourteen households stand on a street face where six did this
+morning, and three streets — Dearborn, Randolph and Wells — are reached by a house for the
+first time; Norris prints a man's home far oftener than his shop, which is why this pass
+and not the business half is the one his volume feeds. **L223 is restated 6 → 14** with
+both faults above written into it; **L218 is unmoved at 18**. Nothing is drawn (L2).
+`residents.js` names WHICH field's split does not cross instead of saying it of the whole
+line, and the panel's summary sentence reports the two per-field counts in place of a
+figure that is now always zero.
+
+**The gates.** `check.sh` 308 steps green. Both back-projection passes gained self-test
+rows for Norris's words, the possessive and the ditto, and the business pass gained two
+holding that `Randolph st` and `Lake st` are still streets and not `r` and `h`.
+`spend_directories.py --self-test` replaces its one-volume rule-3 assertion with two that
+run over every volume: nothing a clause refused reached a card, and nothing that reached
+one has a shape a clause names — the assertion the flag could never make.
+
+**The pools after this stretch**, re-derived from the four `counts` blocks today:
+
+```
+  ties                        34 (1839) · 54 (1843) · 33 (1844) · 11 (1844 ad)  = 132
+  initial-absent refusals    277 · 349 · 343 · 130                              = 1,099
+  forename-disagreed          75 · 91 · 51                                      = 217
+  could-carry, 1839           89 trades · 95 streets, spent (stretch 4)
+  could-carry, 1843           71 trades · 83 addresses, spent or refused (stretch 5)
+  could-carry, 1844           65 trades · 79 addresses — 50 and 75 SPENT, 15 and 4
+                              refused per entry, per field, each naming its clause
+  could-carry, 1844 ad        12 trades · 15 places of business, spent (stretch 2)
+```
+
+**The could-carry pool is now closed in all four volumes.** Stretch 7 takes the **ties**,
+132 of them, as this ticket's own ordering asks — a tie is one page-read from a match and
+they are the pool that stood first in the table before the write debt and the readers
+took precedence. No successor ticket is filed: `tickets/README.md` puts the succession on
+the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for
+fewer tickets. This ticket stays open and is its own cursor.
