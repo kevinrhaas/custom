@@ -39,7 +39,7 @@
  * tickets/README.md documents is exactly what parses; nothing else does.
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync, renameSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import path from 'node:path';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
@@ -337,17 +337,198 @@ function branchCarries(branch, id) {
   return new RegExp(`(?:^|[^0-9a-z])t-?0*${Number(n)}(?![0-9])`, 'i').test(branch);
 }
 
-/** Branches that look like somebody ELSE is already working this ticket. */
+/** A claim marker is not a work branch — see the claim lock below. */
+const isClaimMarker = (name) => /^claim\//.test(name);
+
+/** Branches that look like somebody ELSE is already working this ticket.
+ *  Claim markers are deliberately NOT counted here: the lock is the authority on
+ *  a live claim and says who holds it and since when, so letting them fall
+ *  through to this scan would only replace a precise message with a vague one. */
 function remoteBranchesFor(id) {
   const here = currentBranch();
   return remoteBranches()
-    .filter((b) => b.name !== here && branchCarries(b.name, id))
+    .filter((b) => b.name !== here && !isClaimMarker(b.name) && branchCarries(b.name, id))
     .map((b) => {
       const age = branchAgeHours(b.sha);
       return age !== null && age > RUN_HOURS
         ? `${b.name}  (last pushed ${Math.round(age)}h ago — older than a run, likely litter)`
         : b.name;
     });
+}
+
+/* ------------------------------------------------------- the claim lock */
+
+/**
+ * THE CLAIM IS A LOCK ON THE REMOTE, AND IT IS TAKEN AT CLAIM TIME.
+ *
+ * WHY THIS EXISTS (owner, 2026-09-11, asking "can you prevent duplicate claiming
+ * going forward?" after six open PRs turned out to be six runs working tickets
+ * another run had already finished — T-0990, T-1008, T-0867/T-0868, T-1026,
+ * T-0424, T-1011, every one of them closed on `dev` by somebody else).
+ *
+ * `claim` writes `state: claimed` into a ticket FILE, and that file reaches `dev`
+ * only when the PR merges — so until then every other run reads the ticket as
+ * `open`. `remoteBranchesFor` above is the mitigation and it is the right idea,
+ * but it can only see a branch that has been PUSHED, and a run does not push for
+ * about an hour after it claims. Measured on the two duplicates that cost most:
+ *
+ *   T-1026  winner claimed 03:46, loser claimed 04:10 — 24 minutes later — and
+ *           the winner's branch was not pushed until 05:27. A 1h41m window with
+ *           nothing on the remote to see.
+ *   T-1008  the LOSER claimed FIRST, at 18:05. The run that won claimed at 19:08,
+ *           read `dev`, and saw `open`, because the first claim was still local.
+ *           Claiming earlier is no protection at all when claims are invisible.
+ *
+ * So a claim now takes a marker ref on the remote BEFORE any work, and the push
+ * that takes it is a compare-and-swap the SERVER decides: `--force-with-lease=
+ * <ref>:` with an empty expected value means "only if this ref does not exist".
+ * Two runs claiming in the same second cannot both win. Verified against a real
+ * remote before this was written, all four cases — create, reject, steal, and a
+ * steal with the wrong expected sha.
+ *
+ * IT IS STILL NEVER A FALSE STOP, which is the property the branch scan already
+ * promised. A REJECTION refuses the claim. Anything else — no network, no
+ * credentials, no remote, a checkout with no push rights — warns and lets the run
+ * through, exactly as a failed `ls-remote` does.
+ *
+ * A marker older than RUN_HOURS is a run that died, and is STOLEN automatically:
+ * the steal leases on the sha the marker actually holds, so two runs racing to
+ * steal one dead claim still produce exactly one winner. That is why a crashed
+ * run cannot strand a ticket — the worst it costs is RUN_HOURS.
+ *
+ * The marker is a branch (`claim/t-1026`) rather than a ref under some private
+ * namespace, for two reasons: GitHub accepts pushes to `refs/heads/*` without
+ * argument, and `branchCarries` already matches it, so `inflight` and the rival
+ * scan see claims for free. It is a PARENTLESS, EMPTY-TREE commit — it carries no
+ * code, cannot be merged into anything by accident, and its commit date is the
+ * honest age of the claim. The janitor sweeps `steward/*`, never `claim/*`.
+ */
+const claimBranch = (id) => `claim/${id.toLowerCase()}`;
+
+/** git that REPORTS failure instead of throwing, and keeps stderr — the lock
+ *  has to tell a rejection from an unreachable remote, and that is in stderr. */
+function gitTry(args) {
+  const r = spawnSync('git', args, {
+    cwd: ROOT,
+    encoding: 'utf8',
+    timeout: 30_000,
+    // The identity is forced rather than assumed. `commit-tree` dies with
+    // `fatal: empty ident name` on a runner that never configured one, and that
+    // is not hypothetical — it is the bug that silently broke every PR lap until
+    // 2026-09-10 (.github/steward/pr-lap.sh). A tool that only writes an orphan
+    // marker should never be the thing that needs a configured git user.
+    // `||`, NOT `??`, and the test holds it there: git refuses an EMPTY ident
+    // (`fatal: empty ident name (for <>) not allowed`) exactly as it refuses an
+    // absent one, and `??` passes an empty string straight through. Caught by
+    // test_ticket_claim_lock case 7, which reported a claim that succeeded and
+    // wrote no marker — the lock silently doing nothing, which is worse than
+    // refusing, because the run believes it holds the ticket.
+    env: {
+      ...process.env,
+      GIT_AUTHOR_NAME: process.env.GIT_AUTHOR_NAME || 'polecat-steward',
+      GIT_AUTHOR_EMAIL: process.env.GIT_AUTHOR_EMAIL || 'steward@polecat.live',
+      GIT_COMMITTER_NAME: process.env.GIT_COMMITTER_NAME || 'polecat-steward',
+      GIT_COMMITTER_EMAIL: process.env.GIT_COMMITTER_EMAIL || 'steward@polecat.live',
+    },
+  });
+  return {
+    ok: r.status === 0,
+    out: (r.stdout ?? '').trim(),
+    err: `${r.stderr ?? ''}${r.error ? ` ${r.error.message}` : ''}`.trim(),
+  };
+}
+
+/**
+ * Did this push fail because the remote ALREADY HOLDS the ref, or because we
+ * could not reach the remote at all? Only the first is an answer about the
+ * ticket; the second must never stop a run.
+ */
+const isRefRejection = (err) =>
+  /\[rejected\]|stale info|non-fast-forward|fetch first|cannot lock ref|already exists/i.test(err);
+
+/**
+ * The claim record itself: one parentless commit, empty tree, message = who.
+ *
+ * THE NONCE IS LOad-BEARING, and it is the whole lock. A commit object is a pure
+ * function of its content, so two runs building a parentless empty-tree commit
+ * with the same forced identity, the same message and the same SECOND produce
+ * the SAME SHA — and git answers the second one `Everything up-to-date`, exit 0.
+ * The loser is then told it won, which is precisely the simultaneous claim this
+ * lock exists to decide. Found by test_ticket_claim_lock, whose two runs claim
+ * inside one second; it is not exotic, because two slices of one workflow share
+ * `runUrl()` as well as the clock.
+ */
+function claimCommit(id, by, run) {
+  const tree = gitTry(['hash-object', '-w', '-t', 'tree', '/dev/null']);
+  if (!tree.ok || !tree.out) return null;
+  const nonce = `${Date.now().toString(36)}${process.pid.toString(36)}${Math.random().toString(36).slice(2, 10)}`;
+  const msg = `claim ${id} — ${by}${run ? `\n\nrun: ${run}` : ''}\nnonce: ${nonce}`;
+  const c = gitTry(['commit-tree', tree.out, '-m', msg]);
+  return c.ok && c.out ? c.out : null;
+}
+
+/** Who holds the marker for this ticket, and since when. */
+function inspectClaim(id) {
+  const ref = `refs/heads/${claimBranch(id)}`;
+  const ls = gitTry(['ls-remote', 'origin', ref]);
+  const sha = ls.ok ? (ls.out.split('\t')[0] || '').trim() : '';
+  if (!sha) return { sha: null, by: null, ageHours: null };
+  // The object is one commit with an empty tree; fetching it is cheap, and it is
+  // the only way to read a claim's AGE and its run URL without the web API.
+  gitTry(['fetch', '--quiet', 'origin', ref]);
+  const log = gitTry(['log', '-1', '--format=%ct%n%B', sha]);
+  if (!log.ok) return { sha, by: null, ageHours: null };
+  const [ts, ...rest] = log.out.split('\n');
+  const ageHours = Number.isFinite(Number(ts)) ? (Date.now() / 1000 - Number(ts)) / 3600 : null;
+  return { sha, ageHours, by: rest.join('\n').trim() || null };
+}
+
+const sinceWords = (h) =>
+  h === null ? 'age unknown'
+    : h < 1 ? `taken ${Math.max(1, Math.round(h * 60))}m ago`
+      : `taken ${h.toFixed(1)}h ago`;
+
+/**
+ * Take the claim for `id`. Returns one of:
+ *   { held: true }                      this run holds it
+ *   { held: false, ... }                somebody else does — refuse
+ *   { unknown: why }                    the remote could not answer — proceed
+ */
+function takeClaimLock(id, by, run, { steal = false } = {}) {
+  const ref = `refs/heads/${claimBranch(id)}`;
+  const commit = claimCommit(id, by, run);
+  if (!commit) return { unknown: 'could not write a claim commit' };
+
+  const take = (expect) =>
+    gitTry(['push', 'origin', `${commit}:${ref}`, `--force-with-lease=${ref}:${expect}`]);
+
+  let push = take('');                       // '' — the ref must not exist
+  // A push that changed NOTHING never took anything, whatever its exit status.
+  // With the nonce above this is unreachable; it is kept because the failure it
+  // guards is silent, and a silent lock is worse than no lock at all.
+  if (push.ok && /Everything up-to-date/i.test(push.err)) {
+    return { unknown: 'the claim push changed nothing' };
+  }
+  if (push.ok) return { held: true };
+  if (!isRefRejection(push.err)) {
+    return { unknown: (push.err.split('\n').filter(Boolean).pop() || 'push failed').trim() };
+  }
+
+  const holder = inspectClaim(id);
+  const dead = holder.ageHours !== null && holder.ageHours > RUN_HOURS;
+  if (!steal && !dead) return { held: false, ...holder };
+  if (!holder.sha) return { held: false, ...holder };
+
+  // Stealing leases on the sha the marker ACTUALLY holds, so two runs racing to
+  // steal one dead claim still produce exactly one winner.
+  push = take(holder.sha);
+  return push.ok ? { held: true, stolen: holder } : { held: false, ...holder, raced: true };
+}
+
+/** Give the claim back. Best-effort by design: a marker nobody released is
+ *  litter, never a block, because a stale one is stolen on the next claim. */
+function releaseClaimLock(id) {
+  return gitTry(['push', 'origin', '--delete', claimBranch(id)]).ok;
 }
 
 function find(tickets, id) {
@@ -751,12 +932,39 @@ switch (cmd) {
         + `  node tools/ticket.mjs claim ${t.id} --force`);
       process.exit(1);
     }
-    t.state = 'claimed';
-    t.claimed_by = `${flag('by') ?? 'run'} ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })} CT`;
+    const claimedBy = `${flag('by') ?? 'run'} ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })} CT`;
     // WHICH run holds it. `claimed_by` says when; when five slices run at once
     // that is not enough to tell whose ticket this is, or to open the log of the
     // run that went quiet with it. `--run <url>` overrides for a hand claim.
-    t.claimed_run = flag('run') ?? runUrl();
+    const claimedRun = flag('run') ?? runUrl();
+
+    // THE LOCK, taken before a line of work — see takeClaimLock above for why the
+    // branch scan alone could never have caught the six duplicates of 2026-09-11.
+    // `--no-lock` is for a checkout with no remote at all; it is not a way past a
+    // live claim, which is what `--force` is for.
+    if (!has('no-lock')) {
+      const lock = takeClaimLock(t.id, claimedBy, claimedRun, { steal: has('force') });
+      if (lock.unknown) {
+        console.error(`  note: claim lock not taken (${lock.unknown}) — proceeding, as the branch scan does`);
+      } else if (!lock.held) {
+        console.error(`${t.id} IS ALREADY CLAIMED on the remote — another run holds it.\n`
+          + `  ${claimBranch(t.id)}  ${lock.by ? `— ${lock.by.split('\n')[0]}` : ''}\n`
+          + `  ${sinceWords(lock.ageHours)}${lock.raced ? ', and another run took it while this one looked' : ''}\n`
+          + (lock.by?.includes('run: ') ? `  ${lock.by.split('\n').find((l) => l.startsWith('run: '))}\n` : '')
+          + `\nThat run's claim will not reach \`dev\` until its PR merges, which is exactly\n`
+          + `why this check does not read \`dev\`. Take the next workable ticket instead:\n`
+          + `  node tools/ticket.mjs list --workable\n`
+          + `A claim older than ${RUN_HOURS}h is a dead run and is stolen automatically. To override now:\n`
+          + `  node tools/ticket.mjs claim ${t.id} --force`);
+        process.exit(1);
+      } else if (lock.stolen) {
+        console.log(`  stole a dead claim (${sinceWords(lock.stolen.ageHours)}) — ${lock.stolen.by?.split('\n')[0] ?? 'holder unknown'}`);
+      }
+    }
+
+    t.state = 'claimed';
+    t.claimed_by = claimedBy;
+    t.claimed_run = claimedRun;
     writeTicket(t); generateBoard(loadAll());
     console.log(`${t.id} claimed`);
     break;
@@ -766,6 +974,7 @@ switch (cmd) {
     t.state = 'done'; t.closed = today(); t.closed_at = nowIso(); t.pr = flag('pr');
     if (!t.pr) { console.error('done needs --pr N — the closing PR is the receipt'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
+    releaseClaimLock(t.id);
     console.log(`${t.id} done (PR #${t.pr}) — removed from QUEUE`);
     break;
   }
@@ -775,6 +984,7 @@ switch (cmd) {
     t.blocked_on = flag('on');
     if (!t.blocked_on) { console.error('block needs --on "the question or the missing thing"'); process.exit(1); }
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
+    releaseClaimLock(t.id);
     console.log(`${t.id} → ${t.state}`);
     break;
   }
@@ -789,6 +999,7 @@ switch (cmd) {
     const t = find(tickets, args[0]);
     t.state = 'withdrawn'; t.closed = today(); t.closed_at = nowIso(); t.blocked_on = flag('why') ?? t.blocked_on;
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
+    releaseClaimLock(t.id);
     console.log(`${t.id} withdrawn`);
     break;
   }
@@ -919,7 +1130,7 @@ switch (cmd) {
       console.log(`IN FLIGHT — ${live.length} branch(es) pushed within ${RUN_HOURS}h on unfinished tickets:\n`);
       for (const r of live) {
         console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
-        console.log(`          ↳ ${r.b}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
+        console.log(`          ↳ ${r.b}${isClaimMarker(r.b) ? '   (claim lock — claimed, nothing pushed yet)' : ''}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
       }
     }
     console.log('Git cannot tell you whether a branch LANDED — everything here squash-merges,');
@@ -960,7 +1171,35 @@ switch (cmd) {
     console.log(`ticket queue OK — ${tickets.length} tickets, ${open} in the queue, ${blocked} waiting on the owner`);
     break;
   }
+  case 'claims': {
+    // The claim locks, and a broom for the ones nobody released. A stale marker
+    // is never a BLOCK — the next claim steals it — so this is hygiene, and it
+    // is a separate verb because deleting other runs' claims is not something
+    // `check` should ever do on its way past.
+    const markers = remoteBranches().filter((b) => isClaimMarker(b.name));
+    if (!markers.length) { console.log('no claim locks held'); break; }
+    console.log(`CLAIM LOCKS — ${markers.length} held:\n`);
+    const stale = [];
+    for (const m of markers) {
+      const id = tickets.find((t) => branchCarries(m.name, t.id))?.id;
+      const info = inspectClaim(id ?? m.name.replace(/^claim\//, '').toUpperCase());
+      const dead = info.ageHours !== null && info.ageHours > RUN_HOURS;
+      if (dead) stale.push(m.name);
+      console.log(`  ${m.name.padEnd(18)} ${sinceWords(info.ageHours)}${dead ? '  ← older than a run' : ''}`);
+      if (info.by) for (const line of info.by.split('\n').filter(Boolean)) console.log(`      ${line}`);
+    }
+    if (has('sweep')) {
+      for (const name of stale) {
+        const ok = gitTry(['push', 'origin', '--delete', name]).ok;
+        console.log(`  ${ok ? 'deleted' : 'could not delete'} ${name}`);
+      }
+      if (!stale.length) console.log('\nnothing stale to sweep');
+    } else if (stale.length) {
+      console.log(`\n${stale.length} older than ${RUN_HOURS}h — \`ticket.mjs claims --sweep\` deletes those.`);
+    }
+    break;
+  }
   default:
-    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|board|check');
+    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|claims|board|check');
     process.exit(cmd ? 1 : 0);
 }
