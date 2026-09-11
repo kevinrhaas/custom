@@ -10357,9 +10357,9 @@ this wing was sized around) · tickets **T-0626** (this), **T-0617** (the readin
 **Recorded:** 2026-09-04.
 
 ### L219 — Sixty-eight roofs are told who entered their ground by a survey grid nobody traced
-**Scope:** `structures.land_owner[constructed_section_grid]` — 68 structures
+**Scope:** `structures.land_owner[constructed_section_grid]` — 69 structures
 **Decision:** the Public Land Survey section lines of T39N R14E are CONSTRUCTED rather than
-traced, and 68 structures carry a `land_owner` block that rests on them. The construction is
+traced, and 69 structures carry a `land_owner` block that rests on them. The construction is
 one committed control point — `G1` in `data/traces/gcp/wright_1834_gcps.json`, State &
 Madison, whose own note has said since the datum work that it is the *PLSS section corner:
 sections 9/10/15/16, T39N R14E* — carried on the plat's own east-west bearing, which Lake,
@@ -10384,15 +10384,16 @@ and deliberately NOT put on the ground** for being outside them. Inside them eac
 is graded by its own margin: a footprint more than 40 m inside its tract, twice the working
 horizontal uncertainty of anything traced off the 1834 sheets, is `inferred`; one nearer a
 tract line than that drops to `reconstructed`, and the metres are printed on the row. **51 of
-the 68 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
+the 69 stand at the bottom tier**, and mostly not for geometry: 44 of them are roofs a recipe
 dealt to a lot, and nothing on an invented structure may outrank the invention that put it
 there — the tract is real, but the claim that THIS roof stands on it is the recipe's. Three of
 the remaining seven are the fort's own service buildings, added 2026-09-06 by T-0883, and they
 are at the bottom tier for the ordinary geometric reason rather than for an invention behind
 them: the wash house stands 12.9 m from a tract line and the shop 39.1 m, both inside the 40 m
 the middle tier asks for, on the same reservation ring the homestead beside them sits on. Only
-17 documented buildings carry the middle tier, the newest of them the fort's two out
-buildings, added 2026-09-06 by T-0881 at 81.1 m and 76.4 m from a tract line — the widest
+18 documented buildings carry the middle tier, the newest of them the United States
+factory, added 2026-09-11 by T-1036 at 101.6 m from a tract line — a wider margin than
+either of the fort's two out buildings, added 2026-09-06 by T-0881 at 81.1 m and 76.4 m — the widest
 margins on the reservation ring, because they stand the furthest south of anything on it. Two tracts are not grid squares at all
 and are not treated as any: Beaubien's south-west fractional quarter of section 10 is the
 reservation ring L108 already derives, and Robert A. Kinzie's north fraction is section 10

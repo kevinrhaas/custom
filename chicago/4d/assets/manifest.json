@@ -333,6 +333,15 @@
       "phase_id": "log_1816",
       "structure_id": "fort_dearborn_sutlers_store"
     },
+    "fort_dearborn_us_factors_house__us_factors_house_1818.glb": {
+      "archetype": "log_dwelling",
+      "baked_ao": false,
+      "bytes": 58356,
+      "inputs_sha256": "19f2478e5015b64f6ceb07ad1a84608fe841f445d13d7d207e672636416fb71a",
+      "kind": "generated",
+      "phase_id": "us_factors_house_1818",
+      "structure_id": "fort_dearborn_us_factors_house"
+    },
     "fort_dearborn_wash_house__wash_house_1830.glb": {
       "archetype": "outbuilding",
       "baked_ao": false,
