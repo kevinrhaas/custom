@@ -1823,6 +1823,17 @@ step "the directory forename rule's own assertions still fire when broken" \
 step "…and the tie discriminator's do too" \
   python3 tools/tiebreak.py --self-test
 
+# T-0867. And the one-line predicate BOTH of those rules stand on: "does the 1835
+# layer already hold a trade for this person?" It was written four times, once per
+# directory crosswalk, and two of the four wrote the truthiness test — which reads
+# the layer's `none_recorded` sentinel as a trade, so the crosswalk asking whose
+# trade a directory could supply answered nobody. Fergus 1843 reported
+# `could_carry_occupation: 0` for two thousand entries on it. It is one module now
+# and this is its alarm: widening the sentinel list widens what every directory is
+# allowed to carry to a card.
+step "…and the trade-sentinel predicate all four crosswalks import" \
+  python3 tools/trade_recorded.py --self-test
+
 step "Norris's 1844 directory entries re-derive from the committed page text" \
   python3 tools/read_norris_1844.py --check
 
@@ -1836,6 +1847,15 @@ step "…and every garbled forename in them is repaired, cited, and none is left
 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
+
+# T-0867. The ADVERTISING directory's crosswalk beside it, which was the only one of
+# the four with a committed output and no gate — so it sat at the residents layer of
+# 4 September while the layer moved under it, and a regeneration on this ticket moved
+# eleven refusals, five ambiguities and a match that nothing had asked for. Gated now
+# for the same reason as its three siblings: a proposal nobody re-derives is a
+# proposal that stops describing the town it proposes about.
+step "…and the advertising directory's crosswalk re-derives too" \
+  python3 tools/crosswalk_norris_1844_advertiser.py --check
 
 # T-0632. And the pass that spends ALL FOUR directory crosswalks — Fergus 1839, Fergus
 # 1843, Norris 1844 and Norris's advertising cards — onto the town: the layer the panel
