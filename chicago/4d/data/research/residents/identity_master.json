@@ -26,7 +26,7 @@
   "derived_refusals": 1837,
   "declared_merges": 422,
   "appearances_moved_by_a_landed_adjudication": 174,
-  "declared_refusals": 2328
+  "declared_refusals": 2329
  },
  "identities": [
   {"id":"id_abbot_g","surname":"abbot","forename":"g","canonical_person_id":"abbot_8_g","town_person_ids":["abbot_8_g"],"household_id":"hh_abbot_8_g","merge_rules":["M1"],"appearances":[{"domain":"residents","record_id":"abbot_8_g","source_id":null,"as_read":"[?] G. Abbot","locator":"hh_abbot_8_g","describes_date":null,"evidence_class":"town_layer"}],"domains":["residents"],"sources_cited_on_the_card":["chicago_democrat_1833_1835"],"rulings_reaching_this_person":5,"rulings_that_state_no_source":5},
@@ -10667,6 +10667,7 @@
   {"a":"WILKINSON E R","b":"0 residents named Wilkinson","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"WOOLEY JEDEDIAH JR","b":"2 residents named Wooley","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"WRIGHT J S","b":"6 residents named Wright","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
+  {"a":"WRIGHT T","b":"Truman G Wright","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/research/land_sales/resident_rulings.json"]},
   {"a":"YOUNG WILLIAM","b":"2 residents named Young","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BOND HEMAN","b":"H Bond","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
   {"a":"BOND HARVEY","b":"H Bond","rule":"D2","declared_in":"land_sales/resident_crosswalk.json#refusals","evidence":["data/residents/index.json"]},
