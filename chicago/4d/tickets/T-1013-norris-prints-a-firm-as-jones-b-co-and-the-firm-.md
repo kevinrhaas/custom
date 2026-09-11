@@ -1,7 +1,7 @@
 ---
 id: T-1013
 title: Norris prints a firm as 'Jones, B. & Co.' and the firm test only looks before the comma, so 33 firm entries are read as people
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0867
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1104
 claimed_by: run 9/10/2026, 10:56:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T04:40:00.986Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34559995385
 ---
 
