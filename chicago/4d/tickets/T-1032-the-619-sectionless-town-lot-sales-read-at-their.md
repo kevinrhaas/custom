@@ -1,7 +1,7 @@
 ---
 id: T-1032
 title: The 619 sectionless town-lot sales read at their detail pages and committed as their own deposit — the harvest only, nothing joined to ground yet
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1028
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1121
 claimed_by: run 9/11/2026, 5:43:54 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T11:41:43.404Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34590257523
 ---
 
