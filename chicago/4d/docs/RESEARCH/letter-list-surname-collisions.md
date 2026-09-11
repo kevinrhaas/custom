@@ -67,9 +67,9 @@ against that same tree, derives **682**. `check.sh` runs this pass's
 
 | households | cause |
 |---|---|
-| 75 | the town gained this surname from another pass after the mint (the town already names that family) |
+| 77 | the town gained this surname from another pass after the mint (the town already names that family) |
 | 8 | THIS FAULT — the corrected reading collides it with another record |
-| 5 | no longer in the pool the register offers |
+| 3 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |
 
 **This is the finding that resizes T-0660.** The ticket was filed believing the

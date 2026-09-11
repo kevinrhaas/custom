@@ -84,9 +84,12 @@ WHAT AN ACTION MEANS, for the seeding tickets that consume this:
 
 AND WHAT A PERSON ACTION MEANS:
 
-  enrich           `data/residents/` already holds this person, matched under the
-                   gazetteer's OWN identity policy (surname plus forename initials,
-                   imported from compile_gazetteer so the two tools cannot drift).
+  enrich           `data/residents/` already holds this person — matched EITHER by the
+                   card the minting passes wrote from this very printed name (the card's
+                   id is that name normalized, so the link outlives any later correction
+                   of the display string; T-0866) OR, failing that, under the gazetteer's
+                   OWN identity policy (surname plus forename initials, imported from
+                   compile_gazetteer so the two tools cannot drift).
   replace_invented a documented person whose occupation is one the town INVENTED a
                    household for. The candidate to retire that invention (T-0264).
   new_resident     everybody else. Ruling 1: a letter-list name is enough.
@@ -109,6 +112,26 @@ from compile_gazetteer import (  # noqa: E402  — the identity policy has one h
     REPO, ROOT, RESEARCH, GAZETTEER,
     SCENE_DATE, dumps, firm_surnames, initials, load_json, slug, surname, unmarked,
 )
+# THE MINTING KEYS, imported from the passes that own them rather than re-derived here
+# (T-0866). A card minted from a printed name is keyed by that pass's `plain_fragment`
+# of the name, so a third copy of the function living in this file would be a link that
+# can drift out of agreement with the link it is meant to be.
+#
+# AND THERE ARE TWO OF THEM, WHICH IS THE POINT OF ASKING RATHER THAN ASSUMING. The two
+# passes do not read a printed name the same way: the letter-list pass knows the lists'
+# SURNAME-FIRST setting, so `Mills Joel C.` is a Mills to it and a Mr C. to the
+# documented pass. Ask each mint for the key IT would have written, and match only
+# against the cards it actually wrote. `mint_civic_residents.py` and
+# `mint_placed_residents.py` both take the documented pass's copy, so they share its key.
+from mint_documented_residents import plain_fragment as documented_fragment  # noqa: E402
+from mint_letter_list_residents import plain_fragment as letter_list_fragment  # noqa: E402
+
+MINT_KEY = {
+    "letter_list": letter_list_fragment,
+    "documented": documented_fragment,
+    "civic": documented_fragment,
+    "placed": documented_fragment,
+}
 
 import re  # noqa: E402
 
@@ -598,6 +621,10 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
                 "name": p.get("name"),
                 "grade": p.get("grade"),
                 "occupation": occ.get("value") if isinstance(occ, dict) else occ,
+                # Which pass wrote this card, or None where a hand authored it. It is
+                # what says whether the person id is a printed name normalized or just
+                # an id, and the register's rename-proof link turns on that (T-0866).
+                "source_pass": d.get("source_pass"),
             })
 
     # The invented layer, per trade: how many households the town raised because no
@@ -1226,6 +1253,37 @@ def dated_anchor(town, business, by_firm, window):
     }
 
 
+def minted_link_problems(persons, minted_card):
+    """THE INVARIANT, AS A GATE (T-0866 acceptance 3). Above is the fix; this is the
+    thing that must still be true after somebody edits the fix.
+
+    It is asked of the EMITTED rows and of the town's own cards, not of the matcher, so
+    it fires whatever the matcher comes to do — which is why it lives out here where a
+    self-test can hand it rows the matcher would never produce. A printed name that a
+    mint turned into a card must reach that card, and no other. Both halves have been
+    live faults: the register called 37 rows "a named person the town does not hold"
+    while holding a card minted from that very name, and a display-string match handed
+    17 more of them to a different person of the same surname.
+    """
+    out = []
+    for entry in persons:
+        card = minted_card(entry["name"])
+        if not card:
+            continue
+        if entry["action"] != "enrich":
+            out.append(
+                "%s: %r, but the %s pass minted %s from this very printed name — the "
+                "town holds this person and the register says it does not"
+                % (entry["id"], entry["action"], card["source_pass"], card["person"]))
+        elif entry["action_target"] != card["person"]:
+            out.append(
+                "%s: enriches %s, but the %s pass minted %s from this very printed "
+                "name — the row belongs to the card it was minted from"
+                % (entry["id"], entry["action_target"], card["source_pass"],
+                   card["person"]))
+    return out
+
+
 def compile_register(gazetteer, town, quiet=True):
     """Derive the register. Returns (doc, problems). Nothing here reads the clock."""
     problems = []
@@ -1432,7 +1490,43 @@ def compile_register(gazetteer, town, quiet=True):
         if key[0]:
             resident_by_key.setdefault(key, []).append(r)
 
+    # THE LINK THAT SURVIVES A RENAME (T-0866). The key above is the card's stored
+    # DISPLAY string, and this project rewrites display strings whenever a reading is
+    # corrected — T-0638 moved 36 of them, and T-0721 rewrote three letter-list cards
+    # (`8. G. Abbot` became `[?] G. Abbot`). Every such rewrite silently unlinked the
+    # card from the printed name it was MINTED FROM, and the register then said of two
+    # people the town holds that it does not hold them: the exact untruth T-0692 is
+    # about, in a derived file.
+    #
+    # So do not ask the display string. Ask the minting pass's own key: every mint in
+    # this project (`letter_list`, `documented`, `civic`, `placed`) writes its person id
+    # as `plain_fragment(printed name)`, so the ID IS THE PRINTED NAME NORMALIZED — and
+    # an id does not move when a reading is corrected. That restores the contract
+    # `mint_letter_list_residents.py` states of itself: "the moment this pass mints
+    # somebody the compiler stops calling him `new_resident`".
+    #
+    # It is exactly as sound as the mint's own identity decision and no sounder: two
+    # printed names collide here only when they carry the same surname and the same
+    # given words, which is the case the passes already refuse to mint twice. A
+    # HAND-AUTHORED card is excluded — its id was never derived from a printing, so an
+    # id that happens to equal a fragment is a coincidence and not a link.
+    minted_from_printed = {}
+    for r in town["residents"]:
+        if r.get("source_pass") in MINT_KEY:
+            minted_from_printed.setdefault((r["source_pass"], r["person"]), r)
+
+    def minted_card(name):
+        """The card a mint wrote FROM this printed name, or None."""
+        for pass_name, key in MINT_KEY.items():
+            card = minted_from_printed.get((pass_name, key(name)))
+            if card:
+                return card
+        return None
+
     def resident_match(name):
+        minted = minted_card(name)
+        if minted:
+            return minted
         sn, ini = surname(name), initials(name)
         if not sn:
             return None
@@ -1489,9 +1583,19 @@ def compile_register(gazetteer, town, quiet=True):
         if match:
             entry["action"] = "enrich"
             entry["action_target"] = match["person"]
+            # How the link was made is part of what the row asserts: matched on the id
+            # the mint wrote from this printed name, or on surname-plus-initials against
+            # the card's display string (T-0866).
+            if match is minted_card(p["name"]):
+                how = ("the %s pass minted that card from this printed name, so the link "
+                       "is the card's id and not its display string"
+                       % match["source_pass"])
+            else:
+                how = ("matched under the gazetteer's identity policy, surname plus "
+                       "forename initials")
             entry["action_note"] = ("data/residents/ already holds this person as %s "
-                                    "(%s, %s). The papers add mentions and dates."
-                                    % (match["person"], match["household"], match["grade"]))
+                                    "(%s, %s) — %s. The papers add mentions and dates."
+                                    % (match["person"], match["household"], match["grade"], how))
         elif occ and occ in town["invented"]:
             entry["action"] = "replace_invented"
             entry["action_target"] = occ
@@ -1508,6 +1612,15 @@ def compile_register(gazetteer, town, quiet=True):
         if entry["action"] not in PERSON_ACTIONS:
             problems.append("%s: action %r is not in the vocabulary" % (p["id"], entry["action"]))
         persons.append(entry)
+
+    # THE INVARIANT, AS A GATE (T-0866 acceptance 3). Above is the fix; this is the
+    # thing that will still be true after somebody edits the fix. It is asked of the
+    # emitted rows, not of the matcher, so it fires whatever the matcher comes to do:
+    # a printed name that a mint turned into a card must reach that card, and no other.
+    # Both halves have been live faults — the register called 28 letter-list cards it
+    # holds "a named person the town does not hold", and a display-string match can
+    # equally hand a minted card's row to a different person of the same initials.
+    problems.extend(minted_link_problems(persons, minted_card))
 
     # ---- counts ------------------------------------------------------------
     def tally(rows, field):
@@ -1713,7 +1826,20 @@ def self_test():
         "residents": [{"household": "hh_x", "person": "cohen_peter", "name": "Peter Cohen",
                        "grade": "attested", "occupation": "clothier"},
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
-                       "name": "Silas Stiles", "grade": "reconstructed", "occupation": "baker"}],
+                       "name": "Silas Stiles", "grade": "reconstructed", "occupation": "baker"},
+                      # T-0866's own shape: a card the letter-list pass minted from the
+                      # printed 'Gabbs, James I1.', whose DISPLAY string was later
+                      # corrected to mark the initial nobody can read. The id is the
+                      # printed name and did not move; the display string did.
+                      {"household": "hh_gabbs_james_i1", "person": "gabbs_james_i1",
+                       "name": "James [?] Gabbs", "grade": "inferred",
+                       "occupation": None, "source_pass": "letter_list"},
+                      # And the case the two mints read differently: the letter lists set
+                      # the surname FIRST, so this card is a Mills to the pass that wrote
+                      # it and a Mr C. to the documented pass's reading of the same words.
+                      {"household": "hh_mills_joel_c", "person": "mills_joel_c",
+                       "name": "Joel C. Mills", "grade": "inferred",
+                       "occupation": None, "source_pass": "letter_list"}],
         "invented": {"baker": ["hh_inf_baker"]},
         "has_creek": False,
     }
@@ -2187,6 +2313,44 @@ def self_test():
          gaz(persons=[person("p1", "J. Cohen")]),
          lambda d: True if d["persons"][0]["action"] == "new_resident"
          else "action=%r" % d["persons"][0]["action"])
+    # T-0866: the link is to the card the mint wrote from this printed name, so it
+    # outlives the display string. Under the initials policy alone `Gabbs, James I1.`
+    # reads ('j', 'i') against the corrected card's ('j', '?') and matches nothing.
+    case("a card renamed since it was minted is still the person the papers print",
+         gaz(persons=[person("p1", "Gabbs, James I1.", letter_list_only=True)]),
+         lambda d: True if (d["persons"][0]["action"] == "enrich"
+                            and d["persons"][0]["action_target"] == "gabbs_james_i1")
+         else "action=%r target=%r" % (d["persons"][0]["action"], d["persons"][0]["action_target"]))
+    case("the surname-first setting is read by the pass that mints from it",
+         gaz(persons=[person("p1", "Mills Joel C.", letter_list_only=True)]),
+         lambda d: True if (d["persons"][0]["action"] == "enrich"
+                            and d["persons"][0]["action_target"] == "mills_joel_c")
+         else "action=%r target=%r" % (d["persons"][0]["action"], d["persons"][0]["action_target"]))
+    case("and the row says which of the two links carried it",
+         gaz(persons=[person("p1", "Gabbs, James I1.", letter_list_only=True)]),
+         lambda d: True if "minted that card from this printed name" in d["persons"][0]["action_note"]
+         else "note=%r" % d["persons"][0]["action_note"])
+    case("a name no mint wrote a card from is still ruled by the identity policy",
+         gaz(persons=[person("p1", "P. Cohen")]),
+         lambda d: True if "surname plus forename initials" in d["persons"][0]["action_note"]
+         else "note=%r" % d["persons"][0]["action_note"])
+
+    # …and the gate over it fires on both halves, asked of rows the matcher above can no
+    # longer produce — which is the whole reason it is a separate function (T-0866).
+    minted = {"person": "gabbs_james_i1", "source_pass": "letter_list"}
+    unit("the gate catches a minted card called a stranger",
+         bool(minted_link_problems(
+             [{"id": "p1", "name": "Gabbs, James I1.", "action": "new_resident",
+               "action_target": None}], lambda n: minted)), True)
+    unit("the gate catches a minted card's row handed to somebody else",
+         bool(minted_link_problems(
+             [{"id": "p1", "name": "Gabbs, James I1.", "action": "enrich",
+               "action_target": "gabbs_james"}], lambda n: minted)), True)
+    unit("and it is silent where the row reaches its own card",
+         minted_link_problems(
+             [{"id": "p1", "name": "Gabbs, James I1.", "action": "enrich",
+               "action_target": "gabbs_james_i1"}], lambda n: minted), [])
+
     case("a documented baker is a candidate to retire the invented one",
          gaz(persons=[person("p1", "Amos Thing", occupations=["baker"])]),
          lambda d: True if (d["persons"][0]["action"] == "replace_invented"
