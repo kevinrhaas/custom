@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 578,
-  "carried": 209,
+  "rulings": 539,
+  "carried": 203,
   "matched": 406,
-  "refused": 172,
-  "distinct_people": 282,
-  "distinct_claims": 639
+  "refused": 133,
+  "distinct_people": 253,
+  "distinct_claims": 589
  },
  "rulings": [
   {
@@ -139,28 +139,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "albee_clark_b",
-   "household_id": "hh_albee_clark_b",
-   "resident": "Clark B. Albee",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0011",
-   "claim_ids": [
-    "f1839_e0011"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Albee' folds to the same string as the 1839 entry's, and the given name of both begins C.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "allen_edward_richards",
    "household_id": "hh_allen_edward_richards",
    "resident": "Edward Richards Allen",
@@ -279,27 +257,6 @@
     "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
     "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "refused",
-   "person_id": "anderson_eli_f",
-   "household_id": "hh_anderson_eli_f",
-   "resident": "Eli F Anderson",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e0021",
-    "f1839_e0022"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Anderson' folds to the same string as the 1839 entry's, and the given name of both begins E.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -488,28 +445,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "bandle_will_nm",
-   "household_id": "hh_bandle_will_nm",
-   "resident": "Willinm Bandle",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0054",
-   "claim_ids": [
-    "f1839_e0054"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Bandle' folds to the same string as the 1839 entry's, and the given name of both begins W.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "beaubien_charles_h",
    "household_id": "hh_beaubien_charles_h",
    "resident": "Charles H Beaubien",
@@ -527,26 +462,6 @@
    "carried": [
     "occupation"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "beaubien_jean_baptiste",
-   "household_id": "hh_beaubien_jean_baptiste",
-   "resident": "Col. Jean Baptiste Beaubien",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0082",
-   "claim_ids": [
-    "f1839_e0082"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -571,7 +486,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "beaubien_john_s",
    "household_id": "hh_beaubien_john_s",
    "resident": "John S Beaubien",
@@ -584,55 +499,17 @@
    "claim_ids": [
     "f1839_e0082"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
+   "match_status": "single_entry",
+   "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
   {
-   "outcome": "refused",
-   "person_id": "beaubien_josette",
-   "household_id": "hh_beaubien_jean_baptiste",
-   "resident": "Josette LaFramboise Beaubien",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0082",
-   "claim_ids": [
-    "f1839_e0082"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "beaubien_madore",
-   "household_id": "hh_beaubien_madore",
-   "resident": "Madore Benjamin Beaubien",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e0083",
-    "f1839_e0084"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "beaubien_mark",
    "household_id": "hh_beaubien_mark",
    "resident": "Mark Beaubien",
@@ -641,14 +518,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e0083",
    "claim_ids": [
-    "f1839_e0083",
-    "f1839_e0084"
+    "f1839_e0083"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -668,11 +546,13 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Beaubien' folds to the same string as the 1843 entry's, and the given name of both begins M.",
-   "carried": [
+   "carried": [],
+   "refused_to_carry": [
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "why_refused": {
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "matched",
@@ -1102,28 +982,6 @@
    "why_refused": null
   },
   {
-   "outcome": "matched",
-   "person_id": "boardman_harry",
-   "household_id": "hh_boardman_harry",
-   "resident": "Harry Boardman",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0129",
-   "claim_ids": [
-    "f1839_e0129"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Boardman' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
    "outcome": "refused",
    "person_id": "bond_h",
    "household_id": "hh_bond_h",
@@ -1447,50 +1305,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "breese_judge_sidney",
-   "household_id": "hh_breese_judge_sidney",
-   "resident": "Judge Sidney Breese",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0162",
-   "claim_ids": [
-    "f1839_e0162"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Breese' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "bristol_charles_l",
-   "household_id": "hh_bristol_charles_l",
-   "resident": "Charles L Bristol",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0168",
-   "claim_ids": [
-    "f1839_e0168"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Bristol' folds to the same string as the 1839 entry's, and the given name of both begins C.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "bristol_r_c",
    "household_id": "hh_bristol_r_c",
    "resident": "R. C. Bristol",
@@ -1585,29 +1399,6 @@
    "person_id": "brown_hanna_e",
    "household_id": "hh_brown_hanna_e",
    "resident": "Hanna E Brown",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0186",
-   "claim_ids": [
-    "f1839_e0186"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "brown_hanna_e",
-   "household_id": "hh_brown_hanna_e",
-   "resident": "Hanna E Brown",
    "volume": "norris_1844_advertiser",
    "source_id": "norris_directory_1844",
    "source_ids": [
@@ -1619,34 +1410,10 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Brown' folds to the same string as the card's, and the given name of both begins H.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
-    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
-   }
-  },
-  {
-   "outcome": "refused",
-   "person_id": "brown_jesse_b",
-   "household_id": "hh_brown_jesse_b",
-   "resident": "Jesse B Brown",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e0187",
-    "f1839_e0188"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -2111,8 +1878,7 @@
    "claim_id": null,
    "claim_ids": [
     "f1839_e0229",
-    "f1839_e0230",
-    "f1839_e0231"
+    "f1839_e0230"
    ],
    "match_status": "ambiguous",
    "rule": "Surname 'Campbell' folds to the same string as the 1839 entry's, and the given name of both begins J.",
@@ -2547,29 +2313,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "childs_sarah",
-   "household_id": "hh_childs_sarah",
-   "resident": "Sarah Childs",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0271",
-   "claim_ids": [
-    "f1839_e0271"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Childs' folds to the same string as the 1839 entry's, and the given name of both begins S.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "christy_nathan",
    "household_id": "hh_christy_nathan",
    "resident": "Nathan Christy",
@@ -2898,29 +2641,6 @@
    "match_status": "contested",
    "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet the printed name 'J. Coe Clark' on that rule, and at most one of them is the man who paid for it. The match is not made.",
    "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "clark_timothy_j",
-   "household_id": "hh_clark_timothy_j",
-   "resident": "Timothy J Clark",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0290",
-   "claim_ids": [
-    "f1839_e0290"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Clark' folds to the same string as the 1839 entry's, and the given name of both begins T.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -3484,27 +3204,6 @@
     "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
     "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "refused",
-   "person_id": "cook_josiah_p",
-   "household_id": "hh_cook_josiah_p",
-   "resident": "Josiah P Cook",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e0323",
-    "f1839_e0324"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Cook' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -5361,7 +5060,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "hamilton_richard_j",
    "household_id": "hh_hamilton_richard_j",
    "resident": "Richard Jones Hamilton",
@@ -5370,14 +5069,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e0626",
    "claim_ids": [
-    "f1839_e0626",
-    "f1839_e0627"
+    "f1839_e0626"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Hamilton' folds to the same string as the 1839 entry's, and the given name of both begins R.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -5507,7 +5207,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "harmon_elijah_d",
    "household_id": "hh_harmon_elijah_d",
    "resident": "Dr Elijah Dewey Harmon",
@@ -5516,12 +5216,11 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e0640",
    "claim_ids": [
-    "f1839_e0640",
-    "f1839_e0643"
+    "f1839_e0640"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Harmon' folds to the same string as the 1839 entry's, and the given name of both begins E.",
    "carried": [],
    "refused_to_carry": [],
@@ -5657,7 +5356,7 @@
    }
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "heacock_russel_e",
    "household_id": "hh_heacock_russel_e",
    "resident": "Russel E. Heacock",
@@ -5666,12 +5365,11 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e0668",
    "claim_ids": [
-    "f1839_e0667",
     "f1839_e0668"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Heacock' folds to the same string as the 1839 entry's, and the given name of both begins R.",
    "carried": [],
    "refused_to_carry": [],
@@ -5719,29 +5417,6 @@
    "match_status": "ambiguous",
    "rule": "Surname 'Heacock' folds to the same string as the 1844 entry's, and the given name of both begins R.",
    "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "henry_hamilton_s",
-   "household_id": "hh_henry_hamilton_s",
-   "resident": "Hamilton S. Henry",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0679",
-   "claim_ids": [
-    "f1839_e0679"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Henry' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -5951,28 +5626,6 @@
    "carried": [
     "occupation",
     "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "howard_joshua",
-   "household_id": "hh_howard_joshua",
-   "resident": "Joshua Howard",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0739",
-   "claim_ids": [
-    "f1839_e0739"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Howard' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation"
    ],
    "refused_to_carry": [],
    "why_refused": null
@@ -6816,48 +6469,6 @@
    }
   },
   {
-   "outcome": "matched",
-   "person_id": "jones_es_high",
-   "household_id": "hh_jones_es_high",
-   "resident": "Jones, High Es",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0811",
-   "claim_ids": [
-    "f1839_e0811"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Jones' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "jones_willard",
-   "household_id": "hh_jones_willard",
-   "resident": "Willard Jones",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0814",
-   "claim_ids": [
-    "f1839_e0814"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Jones' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
    "outcome": "refused",
    "person_id": "jones_willard",
    "household_id": "hh_jones_willard",
@@ -6878,7 +6489,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "jones_william",
    "household_id": "hh_jones_william",
    "resident": "William Jones",
@@ -6891,9 +6502,12 @@
    "claim_ids": [
     "f1839_e0814"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Jones' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
+   "match_status": "single_entry",
+   "rule": "Surname 'Jones' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -7212,7 +6826,7 @@
     "f1839_e0851"
    ],
    "match_status": "contested",
-   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -7232,56 +6846,13 @@
     "f1839_e0851"
    ],
    "match_status": "contested",
-   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "king_byron",
-   "household_id": "hh_king_byron",
-   "resident": "Byron King",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0851",
-   "claim_ids": [
-    "f1839_e0851"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins B. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
   {
    "outcome": "matched",
-   "person_id": "king_hyram",
-   "household_id": "hh_king_hyram",
-   "resident": "Hyram King",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0855",
-   "claim_ids": [
-    "f1839_e0855"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
    "person_id": "king_john_lyle",
    "household_id": "hh_king_john_lyle",
    "resident": "John Lyle King",
@@ -7290,15 +6861,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e0852",
    "claim_ids": [
-    "f1839_e0852",
-    "f1839_e0853",
-    "f1839_e0854"
+    "f1839_e0852"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -7348,28 +6919,6 @@
     "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
     "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "matched",
-   "person_id": "king_nehemiah",
-   "household_id": "hh_king_nehemiah",
-   "resident": "Nehemiah King",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0856",
-   "claim_ids": [
-    "f1839_e0856"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins N.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7447,7 +6996,7 @@
    }
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "kinzie_james",
    "household_id": "hh_kinzie_james",
    "resident": "James Kinzie",
@@ -7460,29 +7009,11 @@
    "claim_ids": [
     "f1839_e0861"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "kinzie_john_h",
-   "household_id": "hh_kinzie_john_h",
-   "resident": "John Harris Kinzie",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
+   "match_status": "single_entry",
+   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+   "carried": [
+    "address"
    ],
-   "claim_id": "f1839_e0861",
-   "claim_ids": [
-    "f1839_e0861"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -7530,26 +7061,6 @@
    "why_refused": {
     "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "refused",
-   "person_id": "kinzie_juliette",
-   "household_id": "hh_kinzie_john_h",
-   "resident": "Juliette Augusta Magill Kinzie",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0861",
-   "claim_ids": [
-    "f1839_e0861"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7643,7 +7154,7 @@
    }
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "knight_john",
    "household_id": "hh_knight_john",
    "resident": "John Knight",
@@ -7652,14 +7163,16 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e0867",
    "claim_ids": [
-    "f1839_e0867",
-    "f1839_e0868"
+    "f1839_e0867"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Knight' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -7785,28 +7298,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "legg_gregory_e",
-   "household_id": "hh_legg_gregory_e",
-   "resident": "Gregory E. Legg",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0900",
-   "claim_ids": [
-    "f1839_e0900"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Legg' folds to the same string as the 1839 entry's, and the given name of both begins G.",
-   "carried": [
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "lincoln_solomon",
    "household_id": "hh_lincoln_solomon",
    "resident": "Solomon Lincoln",
@@ -7881,28 +7372,6 @@
    "person_id": "loomis_henry",
    "household_id": "hh_loomis_henry",
    "resident": "Henry Loomis",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0919",
-   "claim_ids": [
-    "f1839_e0919"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Loomis' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "loomis_henry",
-   "household_id": "hh_loomis_henry",
-   "resident": "Henry Loomis",
    "volume": "fergus_1843",
    "source_id": "fergus_chicago_directory_1843",
    "source_ids": [
@@ -7915,14 +7384,11 @@
    "match_status": "single_entry",
    "rule": "Surname 'Loomis' folds to the same string as the 1843 entry's, and the given name of both begins H.",
    "carried": [
+    "occupation",
     "address"
    ],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "refused",
@@ -8411,7 +7877,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "miller_john",
    "household_id": "hh_miller_john",
    "resident": "John Miller",
@@ -8420,39 +7886,18 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1031",
    "claim_ids": [
-    "f1839_e1030",
     "f1839_e1031"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Miller' folds to the same string as the 1839 entry's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
   {
-   "outcome": "refused",
-   "person_id": "mills_joel_c",
-   "household_id": "hh_mills_joel_c",
-   "resident": "Joel C. Mills",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1035",
-   "claim_ids": [
-    "f1839_e1035"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Mills' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "mills_john_a",
    "household_id": "hh_mills_john_a",
    "resident": "John A Mills",
@@ -8465,9 +7910,11 @@
    "claim_ids": [
     "f1839_e1035"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Mills' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
+   "match_status": "single_entry",
+   "rule": "Surname 'Mills' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -8488,11 +7935,14 @@
    "match_status": "single_entry",
    "rule": "Surname 'Mills' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
-    "occupation",
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "refused_to_carry": [
+    "occupation"
+   ],
+   "why_refused": {
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "matched",
@@ -8542,29 +7992,6 @@
     "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
     "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "matched",
-   "person_id": "mitchell_henry",
-   "household_id": "hh_mitchell_henry",
-   "resident": "Henry Mitchell",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1043",
-   "claim_ids": [
-    "f1839_e1043"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Mitchell' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -8751,28 +8178,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "morrison_amanda",
-   "household_id": "hh_morrison_amanda",
-   "resident": "Amanda Morrison",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1061",
-   "claim_ids": [
-    "f1839_e1061"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Morrison' folds to the same string as the 1839 entry's, and the given name of both begins A.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
    "person_id": "morrison_james_m",
    "household_id": "hh_morrison_james_m",
    "resident": "James M Morrison",
@@ -8781,15 +8186,16 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1067",
    "claim_ids": [
-    "f1839_e1067",
-    "f1839_e1068",
-    "f1839_e1069"
+    "f1839_e1067"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Morrison' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -8809,12 +8215,15 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Morrison' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation",
-    "address"
+   "carried": [],
+   "refused_to_carry": [
+    "address",
+    "occupation"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "why_refused": {
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "matched",
@@ -8986,7 +8395,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "murphy_john",
    "household_id": "hh_murphy_john",
    "resident": "John Murphy",
@@ -8995,12 +8404,11 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1078",
    "claim_ids": [
-    "f1839_e1077",
     "f1839_e1078"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Murphy' folds to the same string as the 1839 entry's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [],
@@ -9233,7 +8641,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "noble_mark",
    "household_id": "hh_noble_mark",
    "resident": "Esq. Mark Noble",
@@ -9242,35 +8650,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1104",
    "claim_ids": [
-    "f1839_e1102",
     "f1839_e1104"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Noble' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "noble_mary",
-   "household_id": "hh_noble_mary",
-   "resident": "Mary Noble",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
+   "carried": [
+    "occupation"
    ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e1102",
-    "f1839_e1104"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Noble' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -9842,28 +9230,6 @@
     "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
     "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "matched",
-   "person_id": "phelps_james_h",
-   "household_id": "hh_phelps_james_h",
-   "resident": "James H. Phelps",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1176",
-   "claim_ids": [
-    "f1839_e1176"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Phelps' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -10675,28 +10041,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "shapley_major_l",
-   "household_id": "hh_shapley_major_l",
-   "resident": "Major L Shapley",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1319",
-   "claim_ids": [
-    "f1839_e1319"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Shapley' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "sherman_rebecca",
    "household_id": "hh_sherman_rebecca",
    "resident": "Rebecca Sherman",
@@ -11025,7 +10369,7 @@
    }
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "smith_e_kirby",
    "household_id": "hh_smith_e_kirby",
    "resident": "E Kirby Smith",
@@ -11038,9 +10382,11 @@
    "claim_ids": [
     "f1839_e1360"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
+   "match_status": "single_entry",
+   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E.",
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -11061,11 +10407,14 @@
    "match_status": "single_entry",
    "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [
-    "occupation",
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "refused_to_carry": [
+    "occupation"
+   ],
+   "why_refused": {
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "matched",
@@ -11109,26 +10458,6 @@
    ],
    "match_status": "contested",
    "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet the printed name 'E. Smith' on that rule, and at most one of them is the man who paid for it. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_elded",
-   "household_id": "hh_smith_elded",
-   "resident": "Elded Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1360",
-   "claim_ids": [
-    "f1839_e1360"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -11245,7 +10574,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "smith_james",
    "household_id": "hh_smith_james",
    "resident": "James Smith",
@@ -11254,18 +10583,16 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1366",
    "claim_ids": [
-    "f1839_e1366",
-    "f1839_e1367",
-    "f1839_e1368",
-    "f1839_e1369",
-    "f1839_e1370",
-    "f1839_e1371"
+    "f1839_e1366"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -11318,31 +10645,6 @@
    "person_id": "smith_jeremiah",
    "household_id": "hh_smith_jeremiah",
    "resident": "Jeremiah Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e1366",
-    "f1839_e1367",
-    "f1839_e1368",
-    "f1839_e1369",
-    "f1839_e1370",
-    "f1839_e1371"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_jeremiah",
-   "household_id": "hh_smith_jeremiah",
-   "resident": "Jeremiah Smith",
    "volume": "norris_1844",
    "source_id": "norris_directory_1844",
    "source_ids": [
@@ -11365,28 +10667,6 @@
    "person_id": "smith_matthias",
    "household_id": "hh_smith_matthias",
    "resident": "Matthias Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1372",
-   "claim_ids": [
-    "f1839_e1372"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "smith_matthias",
-   "household_id": "hh_smith_matthias",
-   "resident": "Matthias Smith",
    "volume": "fergus_1843",
    "source_id": "fergus_chicago_directory_1843",
    "source_ids": [
@@ -11398,13 +10678,11 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins M.",
-   "carried": [],
-   "refused_to_carry": [
+   "carried": [
     "occupation"
    ],
-   "why_refused": {
-    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "refused",
@@ -11577,7 +10855,7 @@
    }
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "spence_james_c",
    "household_id": "hh_spence_james_c",
    "resident": "James C Spence",
@@ -11586,14 +10864,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1392",
    "claim_ids": [
-    "f1839_e1391",
     "f1839_e1392"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Spence' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -11687,28 +10966,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "stewart_james",
-   "household_id": "hh_stewart_james",
-   "resident": "James Stewart",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1415",
-   "claim_ids": [
-    "f1839_e1415"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Stewart' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "stewart_r",
    "household_id": "hh_stewart_r",
    "resident": "R. Stewart",
@@ -11772,7 +11029,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "taylor_anson_h",
    "household_id": "hh_taylor_anson",
    "resident": "Anson H. Taylor",
@@ -11781,13 +11038,11 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1462",
    "claim_ids": [
-    "f1839_e1461",
-    "f1839_e1462",
-    "f1839_e1463"
+    "f1839_e1462"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins A.",
    "carried": [],
    "refused_to_carry": [],
@@ -11814,7 +11069,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "taylor_augustine",
    "household_id": "hh_taylor_augustine",
    "resident": "Augustine Deodat Taylor",
@@ -11823,15 +11078,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1463",
    "claim_ids": [
-    "f1839_e1461",
-    "f1839_e1462",
     "f1839_e1463"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins A.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -11851,11 +11106,13 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-   "carried": [
+   "carried": [],
+   "refused_to_carry": [
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "why_refused": {
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "refused",
@@ -12046,7 +11303,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "taylor_edmund_d",
    "household_id": "hh_taylor_edmund_d",
    "resident": "Edmund D Taylor",
@@ -12055,14 +11312,16 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1468",
    "claim_ids": [
-    "f1839_e1468",
-    "f1839_e1469"
+    "f1839_e1468"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Taylor' folds to the same string as the 1839 entry's, and the given name of both begins E.",
-   "carried": [],
+   "carried": [
+    "occupation",
+    "address"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -12407,70 +11666,7 @@
    }
   },
   {
-   "outcome": "refused",
-   "person_id": "walker_james",
-   "household_id": "hh_walker_james",
-   "resident": "James Walker",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1538",
-   "claim_ids": [
-    "f1839_e1538"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Walker' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "walker_jeremiah",
-   "household_id": "hh_walker_jeremiah",
-   "resident": "Jeremiah Walker",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1538",
-   "claim_ids": [
-    "f1839_e1538"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Walker' folds to the same string as the 1839 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
    "outcome": "matched",
-   "person_id": "ward_hanibal",
-   "household_id": "hh_ward_hanibal",
-   "resident": "Hanibal Ward",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1549",
-   "claim_ids": [
-    "f1839_e1549"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Ward' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
    "person_id": "wesencraft_charles",
    "household_id": "hh_wesencraft_charles",
    "resident": "Charles Wesencraft",
@@ -12483,9 +11679,11 @@
    "claim_ids": [
     "f1839_e1580"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Wesencraft' folds to the same string as the 1839 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
+   "match_status": "single_entry",
+   "rule": "Surname 'Wesencraft' folds to the same string as the 1839 entry's, and the given name of both begins C.",
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -12506,11 +11704,14 @@
    "match_status": "single_entry",
    "rule": "Surname 'Wesencraft' folds to the same string as the 1843 entry's, and the given name of both begins C.",
    "carried": [
-    "occupation",
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "refused_to_carry": [
+    "occupation"
+   ],
+   "why_refused": {
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "matched",
@@ -12535,26 +11736,6 @@
    "why_refused": {
     "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
-  },
-  {
-   "outcome": "refused",
-   "person_id": "wesencraft_charlotte",
-   "household_id": "hh_wesencraft_charlotte",
-   "resident": "Charlotte Wesencraft",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1580",
-   "claim_ids": [
-    "f1839_e1580"
-   ],
-   "match_status": "contested",
-   "rule": "Surname 'Wesencraft' folds to the same string as the 1839 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -12753,8 +11934,7 @@
    "claim_id": null,
    "claim_ids": [
     "f1839_e1625",
-    "f1839_e1627",
-    "f1839_e1628"
+    "f1839_e1627"
    ],
    "match_status": "ambiguous",
    "rule": "Surname 'Wilson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
@@ -12997,7 +12177,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "wright_truman_g",
    "household_id": "hh_wright_truman_g",
    "resident": "Truman G Wright",
@@ -13006,14 +12186,15 @@
    "source_ids": [
     "fergus_chicago_directory_1839"
    ],
-   "claim_id": null,
+   "claim_id": "f1839_e1650",
    "claim_ids": [
-    "f1839_e1649",
     "f1839_e1650"
    ],
-   "match_status": "ambiguous",
+   "match_status": "single_entry",
    "rule": "Surname 'Wright' folds to the same string as the 1839 entry's, and the given name of both begins T.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   }
