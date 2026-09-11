@@ -1,7 +1,7 @@
 ---
 id: T-0910
 title: Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 1:49:41 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34571421320
 ---
 
 Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all.
