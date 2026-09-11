@@ -10,7 +10,7 @@
   "books": 222,
   "directories": 7251,
   "newberry_index": 4914,
-  "land_sales": 869,
+  "land_sales": 868,
   "old_settlers": 443
  },
  "witness": {
@@ -44,7 +44,7 @@
   },
   "land_sales": {
    "read": 1572,
-   "spent": 703
+   "spent": 704
   },
   "old_settlers": {
    "read": 1094,
@@ -561,6 +561,14 @@
    "to": 0,
    "date": "2026-09-11",
    "why": "T-0987: the directories' write debt paid — every one of the 263 was the same defect, a card that cited the volume and never named the entry ruled onto it, and the block note now names them."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 869,
+   "to": 868,
+   "date": "2026-09-11",
+   "why": "T-1034 cohort A adjudicated twenty of the town-lot proposals T-1032/T-1033 added — nineteen upheld, one refused — and the domain now reads 868 unspent against a ceiling of 869. Reclaiming the one point the cohort earned. The meter moves by one and not by twenty because it anchors rulings through crosswalk.json while this domain adjudicates in resident_rulings.json, folded onto resident_crosswalk.json — the blind spot T-0962 named for census_1840, still open here."
   }
  ],
  "unwritten_ceiling": {
