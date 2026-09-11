@@ -10,11 +10,11 @@ legacy_id: null
 parent: T-1008
 opened: 2026-09-10
 closed: 2026-09-10
-pr: 0
+pr: 1100
 claimed_by: run 9/10/2026, 8:36:24 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: 2026-09-11T02:41:01.940Z
+closed_at: 2026-09-11T03:06:12.231Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34551115214
 ---
 
