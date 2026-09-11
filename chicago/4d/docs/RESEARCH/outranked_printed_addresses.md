@@ -226,6 +226,52 @@ beside it is again the business-level field. The house is silent on both counts 
 bound is not what holds it. The bound is unchanged and still asserted, now on a fixture
 rather than on a house that turned out not to be one.
 
+### T-0861 carried it, and the twelve are five (2026-09-11)
+
+The defect the count turned up is repaired at the reading, and the arithmetic above is
+corrected with it: **seven** of the twelve print a street, not eight. The table in the
+section above lists six quotes and one corner, and five notices are correctly silent —
+David Carver *"at his Store"*, Brewster, Hogan & Co. *"at the old stand"*, Newberry &
+Dole's assortment card, Hogan's three hundred cedar posts, and the Jones, King & Co.
+page, which carries a fire-insurance card printing no address at all. Five, not four.
+
+**The six that print a plain street now carry it in the placement, quoted off their own
+type.** Each takes `street`, an `offset_text` that is a verbatim substring of the claim's
+own `quote`, and an `offset_normalized` beside it — the same three fields every other
+`street_only` in the corpus carries:
+
+| claim | placement street | printed |
+|---|---|---|
+| `chicago_democrat_1834_03_04#c004` Hiram Pearsons | South Water Street | *"that he has purchased a lot and Store[hous]e on South Water Street"* |
+| `chicago_democrat_1834_11_05#c008` Jno. S. Wilson & Co | Dearborn Street | *"Dearborn-stre[et]"* |
+| `chicago_democrat_1834_11_12#c005` Briggs & Humphrey | Randolph Street | *"[for] a shop, on [R]andolph street"* |
+| `chicago_democrat_1834_12_03#c016` Briggs & Humphrey | Randolph Street | *"for a shop, on Rando[l]ph street"* |
+| `chicago_democrat_1835_08_05#c004` Samuel Lewis | South Water Street | *"at his room on sout[h] water street"* |
+| `chicago_democrat_1835_08_05#c016` W. Montgomery | South Water Street | *"re[c]eived a[t] Montgomery's Auction Room, South Water Street"* |
+
+**Pierce & French is the seventh, and it is NOT read as a corner.** The 17 December
+impression carries neither the word *corner* nor the first street name: what survives is
+*"and Canal streets, oppor"*, and the plural is the only trace of a junction. The same
+standing advertisement — one dateline, 25 June 1834 — does print the corner, four times
+(1834-06-25 c005, 1834-07-02 c051, 1834-09-10 c017, 1834-11-19 c007), and those readings
+carry `corner` on their own type. Reading THIS printing as a corner would take the word
+off its sister impressions rather than off this page. So it stays `street_only` and
+carries the one street the page does print, Canal Street, with the reasoning on the
+placement itself. What is repaired is the silence, not the class.
+
+**And the five that print nothing keep an empty placement, and now say why.** Each
+carries a placement `note` stating that the prose names no street and that the
+business-level `street` beside it is not read back into a placement the page never had —
+which is the distinction the whole of §4 turns on, written where the next reader of the
+claim will meet it rather than only here.
+
+**Nothing moved in the town.** No house's live `placement`, `placement_from` or `street`
+changes across the rebuild — the register adopts a street face off the business-level
+field, so nothing had been mis-placed by the silence, exactly as the ruling said. What
+changes is `places_nothing`'s population: **twelve claims to five**, and the five are the
+population proper. `measure_placement_silence.py --check` re-derives and still passes,
+with three houses under *no printing of theirs ever named any ground*.
+
 ## 5 and 6. Rockwell, and Samuel Lewis — NO JUDGEMENT IS OWED
 
 Both are outranked only by a printing that ran **after the scene date**.

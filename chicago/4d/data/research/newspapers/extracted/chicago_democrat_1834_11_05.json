@@ -316,7 +316,11 @@
         ],
         "street": "Dearborn Street",
         "placement": {
-          "class": "street_only"
+          "class": "street_only",
+          "anchor": null,
+          "offset_text": "P1S3L Dearborn-strec, Ri",
+          "offset_normalized": "Dearborn-stre[et]",
+          "street": "Dearborn Street"
         }
       }
     },
