@@ -134,6 +134,24 @@
   },
   {
    "outcome": "merged",
+   "person_id": "beaubien_madore",
+   "folded_person_id": "beaubien_medore_b",
+   "rule": "C11",
+   "cluster": "beaubien-madore",
+   "record_ids": [
+    "person_medore_b_beaubien"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "chicago_tribune_1882_05_19_fourth_reception"
+   ],
+   "evidence": "T-1002: 'beaubien_medore_b' and 'beaubien_madore' are one person under rule C11; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'beaubien-madore'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "blanchard_f_gantry",
    "folded_person_id": "blanchard_gantry",
    "rule": "C8",
@@ -165,6 +183,27 @@
     "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'brown_w_h' and 'brown_william_h' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'brown-william-h'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "clybourne_archibald",
+   "folded_person_id": "clybourn_archibald",
+   "rule": "C9",
+   "cluster": "clybourne",
+   "record_ids": [
+    "f1843_e0653",
+    "person_a_clybourn"
+   ],
+   "domains": [
+    "directories",
+    "newspapers",
+    "old_settlers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence": "T-1002: 'clybourn_archibald' and 'clybourne_archibald' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'clybourne'."
   },
   {
    "outcome": "merged",
@@ -344,6 +383,23 @@
     "chicago_democrat_1833_1835"
    ],
    "evidence": "T-0839: 'harmon_isaac' and 'harmon_isaac_d' are one person under rule C3; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'harmon-isaac'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "heacock_russel_e",
+   "folded_person_id": "heacock_russell_e",
+   "rule": "C10",
+   "cluster": "heacock",
+   "record_ids": [
+    "person_russell_e_heacock"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-1002: 'heacock_russell_e' and 'heacock_russel_e' are one person under rule C10; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'heacock'."
   },
   {
    "outcome": "merged",
