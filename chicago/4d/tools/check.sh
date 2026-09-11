@@ -1645,6 +1645,21 @@ step "the letter-list collision report still describes the tree" \
 step "…and its two readings of a printed name are still two" \
   python3 tools/report_letter_list_collisions.py --self-test
 
+# T-1008. And the ledger that puts T-0424's 170 printed lines beside T-0310's cohort,
+# line by line. It is DERIVED — from the roster, from the extractions of the return's
+# impressions, and from `mint_letter_list_residents.mint()` itself — so it has three
+# masters and any of them can move under it: a name added to a crop, a household the
+# mint newly refuses on a surname some other pass just took, a line re-read at the
+# scan. Each of those changes what a printed line reaches while leaving the ledger's
+# own text untouched and plausible, which is exactly the rot --check exists for. The
+# figure it defends is the one the cohort's floor is stated in: 54 of the 170 lines
+# reach nothing at all.
+step "the 1834 letter list's 170 lines still reach what the concordance says they reach" \
+  python3 tools/concord_letter_list_1834_01_01.py --check
+
+step "…and its tie rules still refuse the ambiguities they are meant to" \
+  python3 tools/concord_letter_list_1834_01_01.py --self-test
+
 # And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
 # owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
 # into a proposal; nothing in that proposal had ever been written onto a card, and only 37
