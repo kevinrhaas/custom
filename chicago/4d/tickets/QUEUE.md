@@ -141,7 +141,6 @@ T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from 
 # --- cannot be correct without. The triangle ceiling no longer gates any of this — every tier is
 # --- inside its ceiling on dev — so T-0432's four roofs lead, as the owner ruled on 2026-08-30.
 T-0432 — Open blk_south_water_dearborn: 4 roofs of headroom on two free lots
-T-0385 — The New York Clothing Store stands three doors north of the Tremont House in Dearborn Street
 T-0895 — The John-Dean house: an army contractor built a five-room house at the foot of Randolph Street in 1815, Beaubien bought it in 1817 for $1,000, and this project models nothing there
 T-0894 — Two sources put the Factory House just SOUTH of Fort Dearborn and jb_beaubien_homestead stands north of it: that bearing is all that is left of the identity question, and form.stories waits on it
 T-0893 — The Beaubien homestead's phase id and start date still say 1817, and Andreas's own pages say the factory building reached Beaubien in 1822
