@@ -179,3 +179,92 @@ stretch can actually pass rather than a debt it inherits.
 ticket orders them. No successor ticket is filed: `tickets/README.md` puts the succession
 on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for
 fewer tickets, not one per stretch. This ticket stays open and is its own cursor.
+
+## Stretch 2, 2026-09-11 (PR #1128) — the advertiser's ties: 14 ruled, 3 released, and the 64 silent refusals
+
+**The stretch:** the ties of `norris_1844_advertiser_crosswalk_1835.json`, the smallest of the
+four pools and the one stretch 1's claim had named before it took the write debt instead. Every
+tie in it now carries a ruling; nothing in the stretch is silent.
+
+**What was in it, and what a tie turned out to be.** The pool measured 3 ambiguous + 11
+contested = 14. Three of the eleven contests were not contests. The generator keyed the contest
+on the CARD:
+
+```python
+claimed[m["cards_1844"][0]["claim"]].append(m)     # the card, not the name on it
+```
+
+An advertising card is a FIRM's, and a firm's card names its partners. `n1844_ad0046` prints
+"A. Loyd" and "H. A. Blakesley" over one grocery at 101 Lake street; `n1844_ad0116` prints
+"William B. Ogden" and "William E. Jones" over the North-Western Land Agency. Keying on the card
+made rivals of the partners — of men the card itself says stood in business together — and
+withheld three matches the surname-plus-initial rule had already made. The key is now
+`(claim, proprietor_as_printed)`, which is the only pair two readings can actually contest.
+
+| | before | after |
+|---|---|---|
+| matched one card | 17 | **20** |
+| contested | 11 | **8** |
+| ambiguous | 3 | 3 |
+| refusals (surname present, initial absent) | 130 | 130 |
+
+Released: **Alexander Loyd** and **Harvey A. Blakesley** (Loyd, Blakesley & Co., grocers, 101
+Lake street) and **William B. Ogden** (North-Western Land Agency, Kinzie street east of
+Dearborn). The eight that remain are all one printed name read two ways — two Smiths on
+"E. Smith", two Clarks on "J. Coe Clark", two Taylors on "Chas. Taylor", and the two Joneses on
+the "William E. Jones" that stood under Ogden, who was never their rival.
+
+**Every tie was offered the discriminator, and the offer is recorded.** The advertiser crosswalk
+was the one of the four that never imported `tiebreak` — T-0696's ruling had no reach here at
+all. It does now, on both shapes of tie, and it fired on none of the eleven:
+
+```
+ties_offered_the_trade_discriminator  11
+ties_narrowed_by_a_trade               0
+```
+
+Nine of the eleven sides carry `none_recorded` in 1835, and a trade that names no side leaves
+the tie standing (T-0696 term 2). The two that do carry one do not agree with what was printed:
+Charles Taylor is a **carpenter** in 1835 against a "fashionable tailor" card, and Gurdon
+Hubbard a **packer** against a forwarding merchant's and an insurance agency's. Neither is a
+narrowing and neither was made into one. **This stretch placed nothing on the ground** (clause 5)
+— an 1844 advertisement is evidence about 1844, and all three released men already carry an
+earlier trade and address from Fergus 1839, which keeps them under the precedence rule.
+
+**The 64 silent refusals, which clause 2 found.** `spend_directories.py`'s ledger says of itself
+that "a refusal is declared as explicitly as a carry — the absence of one reads like a pair
+nobody has looked at yet", and then wrote `why_refused: null` on **64 of its 161 refusals**,
+including all three of this stretch's new matches. Only the untrusted-parse refusal had ever had
+a reason. Each refused field now names its clause and the volume that beat it — the
+earliest-volume precedence rule, stated at the head of `VOLUMES` and never carried onto a
+ruling until now — and a `--self-test` invariant holds it:
+
+| | before | after |
+|---|---|---|
+| rulings refusing something | 161 | 161 |
+| …naming no clause | **64** | **0** |
+
+**Measured** (`tools/measure_research_spend.py`): directories on a card 932 → **938 of 938**,
+`unwritten` **0 → 0**. Clause 3 holds. No 1835 grade moved (`grades_1835_changed: 0`), and all
+four crosswalks re-derive.
+
+**The pools after this stretch**, for the next one to take:
+
+**re-derived from the four files today, not copied from this ticket's 2026-09-09 table, which
+had drifted** — ambiguous + contested, residents only:
+
+| pool | before | after |
+|---|---|---|
+| ties, Norris 1844 advertiser | 14 | **11, every one ruled** |
+| ties, Norris 1844 proper | 33 | 33 |
+| ties, Fergus 1843 | 55 | 55 |
+| ties, Fergus 1839 (`residents` block: 44 ambiguous + 29 contested) | 73 | 73 |
+| **total ties left in the programme** | 175 | **172** |
+| initial-absent refusals, four files | 276 · 349 · 335 · 130 = 1,090 | unchanged |
+
+No successor ticket is filed, for the reason stretch 1 gave: `tickets/README.md` puts the
+succession on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks
+for fewer tickets. **Stretch 3 is the Fergus 1839 ties — 73, the largest pool and the volume
+nearest the scene** — and it should check first whether that crosswalk, like this one, has never
+been offered the discriminator at all: `tools/crosswalk_fergus_1839.py` does not import
+`tiebreak` either, so T-0696's ruling still has no reach over the biggest pool of the four.
