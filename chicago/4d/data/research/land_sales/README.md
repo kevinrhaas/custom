@@ -825,7 +825,8 @@ VOID sale elsewhere in this domain, and `tract()` currently reads a trailing `VO
 Whether those twenty are void sales or a fifth town code is a question for T-1033 and is
 NOT answered here.
 
-**Nothing downstream has moved.** The file is deliberately not in `DEPOSITS`: a deposit
+**Nothing downstream had moved when this was written, and T-1033 moved it — the
+next section is the join.** The file was deliberately not in `DEPOSITS`: a deposit
 mints record ids, proposes a resident crosswalk and puts firms in front of the ruling
 layer, and none of that can be done honestly while `tract()` has no way to say what
 ground `L2BL46CHIOT` is. So `entries.json`, `ground.json`, `crosswalk.json` and every
@@ -838,6 +839,94 @@ list called sectionless, no more and no fewer; the purchaser, date and legal des
 the list page printed, unchanged by the detail page; and Section, Township, Range and
 Meridian still empty on every row. All three agreed on all 619 on the day it was
 harvested. Five self-test assertions prove that check still fires when broken.
+
+## The 619 joined: a tract that is a lot and a block, and the plat it refuses to name (T-1033)
+
+The section above harvested the 619 and stopped at the join, for one reason stated plainly:
+`tract()` had no way to say what ground `L2BL46CHIOT` is. It has one now, and the file is
+the **third deposit**. The reading is 1,572 sales: the 953 read by section and the 619 the
+register gives no section, **ids APPENDED** — `ls0954` upward — so nothing `data/structures/
+*.json` already cites has renumbered.
+
+**The grammar, and it is the register's and not this project's.** A sectionless tract is
+`(half)* L<lot> (BL|B) <block> <towncode>`: 616 of the 619 parse, and the three that do not
+are REFUSED by name rather than left to a downstream guess.
+
+| | rows | what `tract()` says |
+|---|---|---|
+| a lot and a block in a coded town | 615 | `town_plat_lot`, lot and block resolved, code carried |
+| a lot and a block naming **no** town | 1 | `town_plat_lot`, and a refusal: the plat is not on the page |
+| `L5BLCHIV`, `L1013CHIOT`, `SEL1B28CHIOT` | 3 | `refused`, each with its reason |
+
+57 distinct blocks, 1 to 58. 46 rows are a part OF a lot and the fraction is carried as the
+clerk wrote it — `N2` 15, `S2` 11, `W2` 7, `E2` 4, and eight rows of a half of a half
+(`E2W2`, `E2E2`, `N2S2`, `W2W2`, `W2E2`). **A half of a half is not reduced to a quarter**:
+an eighth would be this project's arithmetic and the doubled half is the register's prose.
+
+**The plat is never named.** `town_code` carries `CHIOT` (334), `CHIOTV` (107), `CHIV` (92),
+`CHI` (62) and `CHIOTVO` (20) exactly as printed and `plat` stays null, under T-0830's
+unchanged rule: the Archives' key for these abbreviations is not reachable from this runner,
+and guessing which addition `CHIV` names would put a house in the wrong half of the town.
+
+**The `VO` trap, ruled — by refusing it.** T-1032 left the question open: `CHIOTVO` ends in
+the two letters this register uses elsewhere to strike a sale out, and `tract()` read a
+trailing `VO` as void. That test is defined on an ALIQUOT — `E2SEVO`, a half quarter-section
+cancelled — where the letters before it are the survey's own; here the trailing letters are a
+town code, so asking it is a category error and the answer is noise. **What the evidence
+does and does not settle:**
+
+- It does not settle it by price. Nineteen of the twenty carry $1,500 to $9,600 — but a
+  void sale in this same register carries a price too (`E2NEVOID`, 80 acres, $100), so a
+  filled price column proves nothing either way.
+- It does not settle it by re-sale. If these were voided Original Town lots one would expect
+  the lot to come back as `CHIOT`; **not one of the twenty has a `CHIOT` peer** on the same
+  lot and block. Eight have a peer under `CHI` or `CHIV`, every one of them on a LATER day
+  (20-24 June against 28-29 June) and at 12% to 95% of the `CHIOTVO` row's price — a spread
+  too wide to read anything into. That leans against the void reading and is not proof: a
+  re-sale after 1836 is outside this deposit entirely.
+
+So **`void` is null on every town-plat lot**, neither claimed nor denied, and the twenty
+carry a refusal that states the question in full. Nothing downstream may read them as valid
+sales by default and nothing may quietly drop them.
+
+**Three buyers that are not people, and the firm test could not see one of them** (T-1033).
+`namesake.firm_style` looks for the conjunction the register sets before `CO` — `GARRETT A
+ET CO` — and a body corporate has no partner in front of it to conjoin. So `UNION HOTEL CO`
+would have gone to the forename rule as a man named Union, and **`COOK CNTY COM` — the
+county commissioners, 24 lots, the third busiest buyer of the 619** — was refused
+only because no Cook of the residents layer is called Cnty. *Being refused for the wrong
+reason is not the same as being read.* `KNOWN_BODIES` now declares the three (`COOK CNTY
+COM`, `CHICAGO CITY SCHOOLS`, `UNION HOTEL CO`), they are refused against every person FOR
+BEING BODIES, their ground is carried in `resident_crosswalk.json § body_purchasers`, and an
+undeclared body stops the build exactly as an undeclared firm does. No new PARTNERSHIP is in
+the 619: `KNOWN_FIRMS` is unchanged at two.
+
+**No resident is minted and none is regraded.** The crosswalk goes from 431 purchaser
+spellings to 647 and from 93 proposals to 162; every new one is a PROPOSAL and carries
+`ruling: null` until somebody rules it. What reached the cards is the same sentence the
+by-section rows reach them with — *a purchase and nothing more* — and the town lots get
+their own warning beside it, because they are not acres: the register states 0000.00 against
+every one, so they add nothing to a card's acreage and only to its money.
+
+**One hand ruling was overtaken by the rule.** T-0700 refused `WILSON JOHN L` against the
+town's one John Wilson. The 619 bring a second reading of that surname — the register also
+sells to `WILSON JOHN S` — so `namesake.collide` now refuses the spelling on its own, before
+any ruling is consulted, and there is no proposal left for the ruling to move. Rule and
+ruling AGREE and the reasoning still stands in `refusals[]`, so the gate allows a REFUSED
+ruling in that position and still fails an `upheld` one, which would name a person the rule
+no longer reaches.
+
+**What the completeness probe says now.** Two of its three groups are closed: the 953 inside
+the seven declared townships (held), and the 619 with no section (held). `complete_for_1836_
+cook_county` is still **false**, and it now says precisely what is outside it — **1,213 rows
+the county list gives a section that is not one of the seven townships the deposits
+declare**, counted by township in `what_is_still_outside_it`. That is the whole of the
+difference between this domain and Cook County, and no deposit ever promised it.
+
+**A bug the join found.** `build()`'s undeclared-firm guard appended to a name that does not
+exist in its scope, so a new firm would have crashed the build with a `NameError` instead of
+naming itself. It is meant to stop the build, and now it stops it by saying which spelling
+stopped it.
 
 ## The join to the ground, and the four tracts the town stands on
 
