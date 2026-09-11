@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The lot the printer\u2019s brace gave to nobody', kind: 'fix', ts: '',
+  { v: 716, title: 'The lot the printer\u2019s brace gave to nobody', kind: 'fix', ts: '2026-09-11T07:45:01.677Z', date: 'Sep 11, 2026, 2:45 AM CT',
     items: [
       'Fergus\u2019s directory of 1839 prints the sale of the Fort Dearborn Addition \u2014 three pages of block, lot, bidder and price \u2014 and where one man took several lots together the printer sets a single brace over them and one name and one amount against the pair. Block 4\u2019s lots 39 and 40 are braced that way: C. Walker, $408 the two.',
       'The reading gave lot 39 to Walker and lot 40 to nobody. That was deliberate, and it was the safe half of a rule worth keeping: the printer also repeats a bidder with a ditto mark, the scan ruins both a ditto and a brace into the same one- and two-character wreckage, and reading a brace as a ditto hands the man above somebody else\u2019s lot. So a mark with no price beside it is refused \u2014 which is right for the braces over the reserved lots, where there is no bidder to lose, and wrong for this one.',
