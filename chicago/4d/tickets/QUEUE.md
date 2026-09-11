@@ -143,7 +143,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-1036 — The 1830 plan letters the U.S. Factor's House against three blocks 152 m south of the stockade, T-0894 measured them, and the fort reservation's one documented dwelling outside the pickets is still not built
-T-0947 — Two reconciliations of the same T-0812 ruling put the Steamboat Hotel 36 m apart: dev carries one and PR #975 the other, with no test that would have caught it
 T-0946 — The placement derivation module cannot express a frontage on a street that is not axis-aligned, so the north bank's houses all read not_derivable
 T-0948 — A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
 T-0949 — The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed

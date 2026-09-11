@@ -1,7 +1,7 @@
 ---
 id: T-0947
 title: Two reconciliations of the same T-0812 ruling put the Steamboat Hotel 36 m apart: dev carries one and PR #975 the other, with no test that would have caught it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1147
 claimed_by: run 9/11/2026, 2:44:39 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T20:41:04.137Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34640226800
 ---
 
