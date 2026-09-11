@@ -1,7 +1,7 @@
 ---
 id: T-1018
 title: Norris's names are split on the first comma and 69 entries have no comma there, so a man's printed name runs on into his trade and his street
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 12:05:39 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34564250517
 ---
 
 Norris's names are split on the first comma and 69 entries have no comma there, so a man's printed name runs on into his trade and his street.
