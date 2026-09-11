@@ -107,7 +107,7 @@
 
 
 
-T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
+T-1026 — Medard Beaubien is a third card for the man T-1002 folded to two, and a committed note already calls it the same man under two spellings
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
@@ -318,6 +318,15 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 # --- EPIC: THE NEWBERRY INDEX — 4,199 of 6,658 cards unread at a measured 0.0% match rate.
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
+
+# --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
+# --- by tools/measure_card_fuzzy_candidates.py after T-1002 ruled its three. Each needs a page
+# --- of its own: the list mixes real printed spelling variations (Foot/Foote, Lloyd/Loyd,
+# --- Pearson/Pearsons, Pruyne/Pryne) with cards minted off scanner wreckage that R5 refuses and
+# --- T-0695 reads, and with pairs that are simply two people one letter apart — John Hale
+# --- against John Vale, Mark Noble against Mary Noble. No distance separates the first kind from
+# --- the last, which is T-1001's answer over the land register reached again over the cards.
+T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
