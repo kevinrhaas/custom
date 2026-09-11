@@ -11,11 +11,11 @@
       "heads_adjudicated": 965,
       "outcomes": {
         "named_heads": 965,
-        "matched": 13,
-        "candidate": 17,
+        "matched": 14,
+        "candidate": 16,
         "refused": 935
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 17 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -113,6 +113,19 @@
         "norris_directory_1844"
       ],
       "person_id": "hubbard_gurdon",
+      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
+    },
+    {
+      "from": "John H. Kinzie",
+      "into": "John Harris Kinzie",
+      "rule": "The 1840 head written 'John H. Kinzie' at printed page 232 line 25 (33S7-9YYJ-W6) and the 1835 person 'John Harris Kinzie' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "evidence": [
+        "33S7-9YYJ-W6",
+        "T-0505",
+        "data/research/census_1840/resident_crosswalk.json",
+        "norris_directory_1844"
+      ],
+      "person_id": "kinzie_john_h",
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     },
     {
@@ -1939,6 +1952,16 @@
       ]
     },
     {
+      "a": "C. M. Gray",
+      "b": "dane Gray",
+      "rule": "'C. M. Gray' at printed page 210 line 19 (33S7-9YYJ-9RG) is NOT 'dane Gray': The head is written 'C. M. Gray' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'gray'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33S7-9YYJ-9RG",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
       "a": "J. M. Strode",
       "b": "P'. M. Strode",
       "rule": "'J. M. Strode' at printed page 210 line 21 (33S7-9YYJ-9RG) is NOT \"P'. M. Strode\": The head is written 'J. M. Strode' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'strode'. A surname and a letter is not an identity.",
@@ -2442,6 +2465,16 @@
       "a": "Mark Mitchell",
       "b": "Henry Mitchell",
       "rule": "'Mark Mitchell' at printed page 226 line 14 (33S7-9YYJ-B3) is NOT 'Henry Mitchell': The surname 'mitchell' is carried by 1 person(s) of 1835 (Henry Mitchell) and none of their given names is 'mark'.",
+      "evidence": [
+        "33S7-9YYJ-B3",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Alexander Gray",
+      "b": "dane Gray",
+      "rule": "'Alexander Gray' at printed page 226 line 16 (33S7-9YYJ-B3) is NOT 'dane Gray': The surname 'gray' is carried by 1 person(s) of 1835 (dane Gray) and none of their given names is 'alexander'.",
       "evidence": [
         "33S7-9YYJ-B3",
         "T-0505",

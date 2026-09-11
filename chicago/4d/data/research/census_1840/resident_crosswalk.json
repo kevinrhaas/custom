@@ -60,7 +60,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1355
+      "n": 1377
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -72,7 +72,7 @@
       "what": "letter-list and newspaper persons",
       "path": "data/research/newspapers/gazetteer.json",
       "available": true,
-      "n": 2630
+      "n": 2666
     },
     {
       "what": "recovered v1 workbook bridge rows",
@@ -84,7 +84,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 148
+      "n": 153
     },
     {
       "what": "the 1839 Chicago directory",
@@ -101,19 +101,19 @@
   ],
   "counts": {
     "named_heads": 965,
-    "matched": 13,
-    "candidate": 17,
+    "matched": 14,
+    "candidate": 16,
     "refused": 935
   },
   "counts_by_rule": {
     "L1 unreadable_name": 249,
-    "L2 no_surname_in_the_1835_pools": 412,
-    "L3 given_name_conflict": 193,
-    "L4 initial_only": 73,
+    "L2 no_surname_in_the_1835_pools": 410,
+    "L3 given_name_conflict": 194,
+    "L4 initial_only": 74,
     "L5 name_is_not_unique": 8,
-    "L6 matched": 13,
+    "L6 matched": 14,
     "L6a low_confidence_caps_at_candidate": 5,
-    "L7 candidate": 12
+    "L7 candidate": 11
   },
   "printed_pages_read_here": [
     207,
@@ -3814,6 +3814,14 @@
           "source_ids": [
             "chicago_democrat_1833_1835"
           ]
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_john_wilson_4",
+          "name": "John Wilson 4",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         }
       ],
       "outcome": "refused",
@@ -5005,8 +5013,11 @@
       "forename": null,
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'gray'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "rule": "L4 initial_only",
+      "reason": "The head is written 'C. M. Gray' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'gray'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "gray_dane"
+      ]
     },
     {
       "familysearch_id": "33S7-9YYJ-9RG",
@@ -5958,8 +5969,11 @@
       "forename": "alexander",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'gray'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'gray' is carried by 1 person(s) of 1835 (dane Gray) and none of their given names is 'alexander'.",
+      "surname_bearers_1835": [
+        "gray_dane"
+      ]
     },
     {
       "familysearch_id": "33S7-9YYJ-B3",
@@ -8571,7 +8585,16 @@
       "name_confidence": "medium",
       "surname": "robinson",
       "forename": "robert",
-      "same_name_support": [],
+      "same_name_support": [
+        {
+          "pool": "letter_list",
+          "id": "person_rob_t_robinson",
+          "name": "Rob't. Robinson",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        }
+      ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'robert'.",
@@ -9964,10 +9987,45 @@
       "household_id": "hh_kinzie_john_h",
       "resident_name": "John Harris Kinzie",
       "resident_grade_1835": "attested",
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (John H. Kinzie = John Harris Kinzie) and the name is unique on both sides, but nothing independent of the name was found: kinzie_john_h carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 6 1835 list(s), which is the same name again and does not discriminate."
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
+      "outcome": "matched",
+      "rule": "L6 matched",
+      "reason": "Full forename and surname agree (John H. Kinzie = John Harris Kinzie), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "proposed_later_census": {
+        "year": 1840,
+        "source_id": "census_1840_chicago_familysearch_images",
+        "serial": null,
+        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
+        "head_name_transcribed": "John H. Kinzie",
+        "head_name_normalized": "John H. Kinzie",
+        "name_confidence": "medium",
+        "identity_confidence": "provisional",
+        "bridge_status": "proposed",
+        "serial_mapping_confidence": null,
+        "census_page": 232,
+        "census_row": 25,
+        "source_image": "chicago/reference/census1840/33S7-9YYJ-W6.jpg",
+        "source_kind": "1840 left image, read line by line in this repo",
+        "household": {
+          "persons_columns_read": 0,
+          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
+        },
+        "bridge_basis": "Full forename and surname agree (John H. Kinzie = John Harris Kinzie), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
+      }
     },
     {
       "familysearch_id": "33S7-9YYJ-W6",
@@ -10141,6 +10199,14 @@
           "pool": "letter_list",
           "id": "person_john_wilson",
           "name": "John Wilson",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_john_wilson_4",
+          "name": "John Wilson 4",
           "source_ids": [
             "chicago_democrat_1833_1835"
           ]

@@ -300,6 +300,11 @@
     "firm": false,
     "occupation": null,
     "address": null,
+    "name_overrun": {
+     "refused": "empty_prefix",
+     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
+     "as_split_on_comma": "house Clark street (See card)"
+    },
     "as_printed": ". -house Clark street (See card)",
     "section": "directory"
    },
@@ -1974,6 +1979,11 @@
     "firm": false,
     "occupation": "dry goods and groceries, 122 Lake street (See card)",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as '<fc', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Ballentine <fc Sherman"
+    },
     "as_printed": "Ballentine <fc Sherman, dry goods and groceries, 122 Lake street (See card)",
     "section": "directory"
    },
@@ -3251,12 +3261,17 @@
    "reading": "transcription_mediated",
    "quote": "Bearup^ John I. teacher, res North Water street",
    "normalized": {
-    "printed_name": "Bearup^ John I. teacher",
-    "surname": "Bearup^ John I. teacher",
-    "given": null,
+    "printed_name": "Bearup^, John I",
+    "surname": "Bearup^",
+    "given": "John I",
     "firm": false,
-    "occupation": null,
+    "occupation": "teacher",
     "address": "res North Water street",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Bearup^ John I.",
+     "as_split_on_comma": "Bearup^ John I. teacher"
+    },
     "as_printed": "Bearup^ John I. teacher, res North Water street",
     "section": "directory"
    },
@@ -3271,7 +3286,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bearup^ John I. teacher"
+    "Bearup^, John I"
    ],
    "town_finding": false,
    "notes": null
@@ -4336,12 +4351,17 @@
    "reading": "transcription_mediated",
    "quote": "Birdf J. H. at Dr. Biuinard's, residence City Hotel",
    "normalized": {
-    "printed_name": "Birdf J. H. at Dr. Biuinard's",
-    "surname": "Birdf J. H. at Dr. Biuinard's",
-    "given": null,
+    "printed_name": "Birdf, J. H",
+    "surname": "Birdf",
+    "given": "J. H",
     "firm": false,
-    "occupation": null,
+    "occupation": "at Dr. Biuinard's",
     "address": "residence City Hotel",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Birdf J. H.",
+     "as_split_on_comma": "Birdf J. H. at Dr. Biuinard's"
+    },
     "as_printed": "Birdf J. H. at Dr. Biuinard's, residence City Hotel",
     "section": "directory"
    },
@@ -4356,7 +4376,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Birdf J. H. at Dr. Biuinard's"
+    "Birdf, J. H"
    ],
    "town_finding": false,
    "notes": null
@@ -5241,6 +5261,11 @@
     "firm": false,
     "occupation": "dry goods and groceries, 66 Lake street",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as '6c', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Bowen 6c Cole"
+    },
     "as_printed": "Bowen 6c Cole, dry goods and groceries, 66 Lake street",
     "section": "directory"
    },
@@ -5613,6 +5638,11 @@
     "firm": false,
     "occupation": "dry goods and groceries, 161 Lake st (See card)",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as 'it', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Bracken it Tuller"
+    },
     "as_printed": "Bracken it Tuller, dry goods and groceries, 161 Lake st (See card)",
     "section": "directory"
    },
@@ -6171,6 +6201,11 @@
     "firm": false,
     "occupation": "physician, Clark st. office 143 Lake st. check ered drug store (See card)",
     "address": null,
+    "name_overrun": {
+     "refused": "split_surname",
+     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
+     "as_split_on_comma": "Brine kerb off"
+    },
     "as_printed": "Brine kerb off, John, physician, Clark st. office 143 Lake st. check ered drug store (See card)",
     "section": "directory"
    },
@@ -8564,12 +8599,17 @@
    "reading": "transcription_mediated",
    "quote": "Bir/.zard. S. laborer, at S. Jackson's",
    "normalized": {
-    "printed_name": "Bir/.zard. S. laborer",
-    "surname": "Bir/.zard. S. laborer",
-    "given": null,
+    "printed_name": "Bir/.zard, S",
+    "surname": "Bir/.zard",
+    "given": "S",
     "firm": false,
-    "occupation": "at S. Jackson's",
+    "occupation": "laborer, at S. Jackson's",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Bir/.zard. S.",
+     "as_split_on_comma": "Bir/.zard. S. laborer"
+    },
     "as_printed": "Bir/.zard. S. laborer, at S. Jackson's",
     "section": "directory"
    },
@@ -8584,7 +8624,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bir/.zard. S. laborer"
+    "Bir/.zard, S"
    ],
    "town_finding": false,
    "notes": null
@@ -8601,6 +8641,11 @@
     "firm": false,
     "occupation": "Street House, 135 Lake st (Sec card)",
     "address": null,
+    "name_overrun": {
+     "refused": "empty_prefix",
+     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
+     "as_split_on_comma": "ady"
+    },
     "as_printed": "<'ady, Dennis S. Lake Street House, 135 Lake st (Sec card)",
     "section": "directory"
    },
@@ -8663,6 +8708,11 @@
     "firm": false,
     "occupation": "printer",
     "address": "house State st. b Wash and Madison sts",
+    "name_overrun": {
+     "refused": "empty_prefix",
+     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
+     "as_split_on_comma": "ilhoun"
+    },
     "as_printed": "* '.ilhoun, John, printer, house State st. b Wash and Madison sts",
     "section": "directory"
    },
@@ -11112,6 +11162,11 @@
     "firm": true,
     "occupation": "druggists, manufacturers of lard oil and candles, 102 Lake st. Indiana st",
     "address": "b Cass and Wolcott sts",
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "Clarke & Co. druggists"
+    },
     "as_printed": "Clarke & Co. druggists, manufacturers of lard oil and candles, 102 Lake st. Indiana st. b Cass and Wolcott sts",
     "section": "directory"
    },
@@ -13360,12 +13415,17 @@
    "reading": "transcription_mediated",
    "quote": "Crissman John M. laborer",
    "normalized": {
-    "printed_name": "Crissman John M. laborer",
-    "surname": "Crissman John M. laborer",
-    "given": null,
+    "printed_name": "Crissman, John M",
+    "surname": "Crissman",
+    "given": "John M",
     "firm": false,
-    "occupation": null,
+    "occupation": "laborer",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Crissman John M.",
+     "as_split_on_comma": "Crissman John M. laborer"
+    },
     "as_printed": "Crissman John M. laborer",
     "section": "directory"
    },
@@ -13380,7 +13440,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Crissman John M. laborer"
+    "Crissman, John M"
    ],
    "town_finding": false,
    "notes": null
@@ -13391,12 +13451,17 @@
    "reading": "transcription_mediated",
    "quote": "Crocker Josiah D. white washer, res Clark st. corner of Monroe",
    "normalized": {
-    "printed_name": "Crocker Josiah D. white washer",
-    "surname": "Crocker Josiah D. white washer",
-    "given": null,
+    "printed_name": "Crocker, Josiah D",
+    "surname": "Crocker",
+    "given": "Josiah D",
     "firm": false,
-    "occupation": null,
+    "occupation": "white washer",
     "address": "res Clark st. corner of Monroe",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Crocker Josiah D.",
+     "as_split_on_comma": "Crocker Josiah D. white washer"
+    },
     "as_printed": "Crocker Josiah D. white washer, res Clark st. corner of Monroe",
     "section": "directory"
    },
@@ -13411,7 +13476,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Crocker Josiah D. white washer"
+    "Crocker, Josiah D"
    ],
    "town_finding": false,
    "notes": null
@@ -13676,6 +13741,11 @@
     "firm": false,
     "occupation": "builders, Clark st",
     "address": "b Randolph and Michigan sts",
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as '<fc', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Crauer <fc Sanser"
+    },
     "as_printed": "Crauer <fc Sanser, builders, Clark st. b Randolph and Michigan sts",
     "section": "directory"
    },
@@ -17046,6 +17116,11 @@
     "firm": true,
     "occupation": "dry goods and groceries, 103 Lake st (See card)",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "Dyer & Chapin dry goods and groceries"
+    },
     "as_printed": "Dyer & Chapin dry goods and groceries, 103 Lake st (See card)",
     "section": "directory"
    },
@@ -17133,12 +17208,17 @@
    "reading": "transcription_mediated",
    "quote": "Eachus. Virgil H. tailor, at A. J. Cox's res .Mansion House",
    "normalized": {
-    "printed_name": "Eachus. Virgil H. tailor",
-    "surname": "Eachus. Virgil H. tailor",
-    "given": null,
+    "printed_name": "Eachus, Virgil H",
+    "surname": "Eachus",
+    "given": "Virgil H",
     "firm": false,
-    "occupation": "at A. J. Cox's",
+    "occupation": "tailor, at A. J. Cox's",
     "address": "res .Mansion House",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Eachus. Virgil H.",
+     "as_split_on_comma": "Eachus. Virgil H. tailor"
+    },
     "as_printed": "Eachus. Virgil H. tailor, at A. J. Cox's res .Mansion House",
     "section": "directory"
    },
@@ -17153,7 +17233,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Eachus. Virgil H. tailor"
+    "Eachus, Virgil H"
    ],
    "town_finding": false,
    "notes": null
@@ -17263,6 +17343,11 @@
     "firm": true,
     "occupation": "dealers in iron, stoves, and hardware, 96 Lake st",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "Eddy & Co. dealers in iron"
+    },
     "as_printed": "Eddy & Co. dealers in iron, stoves, and hardware, 96 Lake st",
     "section": "directory"
    },
@@ -17877,12 +17962,17 @@
    "reading": "transcription_mediated",
    "quote": "Enos Wra. C. jr. at A. Clyburn's",
    "normalized": {
-    "printed_name": "Enos Wra. C. jr. at A. Clyburn's",
-    "surname": "Enos Wra. C. jr. at A. Clyburn's",
-    "given": null,
+    "printed_name": "Enos, Wra. C",
+    "surname": "Enos",
+    "given": "Wra. C",
     "firm": false,
-    "occupation": null,
+    "occupation": "jr. at A. Clyburn's",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Enos Wra. C.",
+     "as_split_on_comma": "Enos Wra. C. jr. at A. Clyburn's"
+    },
     "as_printed": "Enos Wra. C. jr. at A. Clyburn's",
     "section": "directory"
    },
@@ -17897,7 +17987,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Enos Wra. C. jr. at A. Clyburn's"
+    "Enos, Wra. C"
    ],
    "town_finding": false,
    "notes": null
@@ -19148,12 +19238,17 @@
    "reading": "transcription_mediated",
    "quote": "Flint. Mrs. house Adams st. b Clinton and Jefferson sfs",
    "normalized": {
-    "printed_name": "Flint. Mrs. house Adams st. b Clinton and Jefferson sfs",
-    "surname": "Flint. Mrs. house Adams st. b Clinton and Jefferson sfs",
-    "given": null,
+    "printed_name": "Flint, Mrs",
+    "surname": "Flint",
+    "given": "Mrs",
     "firm": false,
     "occupation": null,
-    "address": null,
+    "address": "house Adams st. b Clinton and Jefferson sfs",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Flint. Mrs.",
+     "as_split_on_comma": "Flint. Mrs. house Adams st. b Clinton and Jefferson sfs"
+    },
     "as_printed": "Flint. Mrs. house Adams st. b Clinton and Jefferson sfs",
     "section": "directory"
    },
@@ -19168,7 +19263,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Flint. Mrs. house Adams st. b Clinton and Jefferson sfs"
+    "Flint, Mrs"
    ],
    "town_finding": false,
    "notes": null
@@ -21795,12 +21890,17 @@
    "reading": "transcription_mediated",
    "quote": "Gilmorc. Win. laborer, li N. Branch, n river",
    "normalized": {
-    "printed_name": "Gilmorc. Win. laborer",
-    "surname": "Gilmorc. Win. laborer",
-    "given": null,
+    "printed_name": "Gilmorc, Win",
+    "surname": "Gilmorc",
+    "given": "Win",
     "firm": false,
-    "occupation": "li N. Branch, n river",
+    "occupation": "laborer, li N. Branch, n river",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Gilmorc. Win.",
+     "as_split_on_comma": "Gilmorc. Win. laborer"
+    },
     "as_printed": "Gilmorc. Win. laborer, li N. Branch, n river",
     "section": "directory"
    },
@@ -21815,7 +21915,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Gilmorc. Win. laborer"
+    "Gilmorc, Win"
    ],
    "town_finding": false,
    "notes": null
@@ -21981,12 +22081,17 @@
    "reading": "transcription_mediated",
    "quote": "Godnrd. H. B. clerk, at Ruel Ambrose's, res siiine",
    "normalized": {
-    "printed_name": "Godnrd. H. B. clerk",
-    "surname": "Godnrd. H. B. clerk",
-    "given": null,
+    "printed_name": "Godnrd, H. B",
+    "surname": "Godnrd",
+    "given": "H. B",
     "firm": false,
-    "occupation": "at Ruel Ambrose's",
+    "occupation": "clerk, at Ruel Ambrose's",
     "address": "res siiine",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Godnrd. H. B.",
+     "as_split_on_comma": "Godnrd. H. B. clerk"
+    },
     "as_printed": "Godnrd. H. B. clerk, at Ruel Ambrose's, res siiine",
     "section": "directory"
    },
@@ -22001,7 +22106,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Godnrd. H. B. clerk"
+    "Godnrd, H. B"
    ],
    "town_finding": false,
    "notes": null
@@ -22390,6 +22495,11 @@
     "firm": false,
     "occupation": "ball alley and grocery, South Water st",
     "address": "b State and Dearborn sts",
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as 'it', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Gould it Dodge"
+    },
     "as_printed": "Gould it Dodge, ball alley and grocery, South Water st. b State and Dearborn sts",
     "section": "directory"
    },
@@ -23314,12 +23424,17 @@
    "reading": "transcription_mediated",
    "quote": "Greyhnn. W. hostler, at the Western Hotel",
    "normalized": {
-    "printed_name": "Greyhnn. W. hostler",
-    "surname": "Greyhnn. W. hostler",
-    "given": null,
+    "printed_name": "Greyhnn, W",
+    "surname": "Greyhnn",
+    "given": "W",
     "firm": false,
-    "occupation": "at the Western Hotel",
+    "occupation": "hostler, at the Western Hotel",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Greyhnn. W.",
+     "as_split_on_comma": "Greyhnn. W. hostler"
+    },
     "as_printed": "Greyhnn. W. hostler, at the Western Hotel",
     "section": "directory"
    },
@@ -23334,7 +23449,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Greyhnn. W. hostler"
+    "Greyhnn, W"
    ],
    "town_finding": false,
    "notes": null
@@ -23469,12 +23584,17 @@
    "reading": "transcription_mediated",
    "quote": "Griswold. Clns. E. clerk, at G. S. Hubbard's, res D. S. Griswold's",
    "normalized": {
-    "printed_name": "Griswold. Clns. E. clerk",
-    "surname": "Griswold. Clns. E. clerk",
-    "given": null,
+    "printed_name": "Griswold, Clns. E",
+    "surname": "Griswold",
+    "given": "Clns. E",
     "firm": false,
-    "occupation": "at G. S. Hubbard's",
+    "occupation": "clerk, at G. S. Hubbard's",
     "address": "res D. S. Griswold's",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Griswold. Clns. E.",
+     "as_split_on_comma": "Griswold. Clns. E. clerk"
+    },
     "as_printed": "Griswold. Clns. E. clerk, at G. S. Hubbard's, res D. S. Griswold's",
     "section": "directory"
    },
@@ -23489,7 +23609,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Griswold. Clns. E. clerk"
+    "Griswold, Clns. E"
    ],
    "town_finding": false,
    "notes": null
@@ -23531,12 +23651,17 @@
    "reading": "transcription_mediated",
    "quote": "(JrisivoM. David D. res D. S. Griswold's",
    "normalized": {
-    "printed_name": "JrisivoM. David D. res D. S. Griswold's",
-    "surname": "JrisivoM. David D. res D. S. Griswold's",
-    "given": null,
+    "printed_name": "JrisivoM, David D",
+    "surname": "JrisivoM",
+    "given": "David D",
     "firm": false,
     "occupation": null,
-    "address": null,
+    "address": "res D. S. Griswold's",
+    "name_overrun": {
+     "repaired": true,
+     "name": "JrisivoM. David D.",
+     "as_split_on_comma": "JrisivoM. David D. res D. S. Griswold's"
+    },
     "as_printed": "(JrisivoM. David D. res D. S. Griswold's",
     "section": "directory"
    },
@@ -23551,7 +23676,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "JrisivoM. David D. res D. S. Griswold's"
+    "JrisivoM, David D"
    ],
    "town_finding": false,
    "notes": null
@@ -24002,6 +24127,11 @@
     "firm": false,
     "occupation": "grocer, N. Water st",
     "address": "b Clark & Dearborn",
+    "name_overrun": {
+     "refused": "empty_prefix",
+     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
+     "as_split_on_comma": "llageman"
+    },
     "as_printed": "llageman, Christopher, grocer, N. Water st. b Clark & Dearborn",
     "section": "directory"
    },
@@ -24510,6 +24640,11 @@
     "firm": false,
     "occupation": "dry goods and grocery store, 139 Lake st",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as '<fc', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Hamilton <fc White"
+    },
     "as_printed": "Hamilton <fc White, dry goods and grocery store, 139 Lake st",
     "section": "directory"
    },
@@ -24752,12 +24887,17 @@
    "reading": "transcription_mediated",
    "quote": "Harmon Charles L. dry goods and groceries, cor Clark and South\n  Water sts. res Dearborn st. b Wash and Mad sts (.See card)",
    "normalized": {
-    "printed_name": "Harmon Charles L. dry goods and groceries",
-    "surname": "Harmon Charles L. dry goods and groceries",
-    "given": null,
+    "printed_name": "Harmon, Charles L",
+    "surname": "Harmon",
+    "given": "Charles L",
     "firm": false,
-    "occupation": "cor Clark and South Water sts",
+    "occupation": "dry goods and groceries, cor Clark and South Water sts",
     "address": "res Dearborn st. b Wash and Mad sts (.See card)",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Harmon Charles L.",
+     "as_split_on_comma": "Harmon Charles L. dry goods and groceries"
+    },
     "as_printed": "Harmon Charles L. dry goods and groceries, cor Clark and South Water sts. res Dearborn st. b Wash and Mad sts (.See card)",
     "section": "directory"
    },
@@ -24772,7 +24912,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Harmon Charles L. dry goods and groceries"
+    "Harmon, Charles L"
    ],
    "town_finding": false,
    "notes": null
@@ -28587,12 +28727,17 @@
    "reading": "transcription_mediated",
    "quote": "Hugunin. L. C. at United States Hotel",
    "normalized": {
-    "printed_name": "Hugunin. L. C. at United States Hotel",
-    "surname": "Hugunin. L. C. at United States Hotel",
-    "given": null,
+    "printed_name": "Hugunin, L. C",
+    "surname": "Hugunin",
+    "given": "L. C",
     "firm": false,
-    "occupation": null,
+    "occupation": "at United States Hotel",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Hugunin. L. C.",
+     "as_split_on_comma": "Hugunin. L. C. at United States Hotel"
+    },
     "as_printed": "Hugunin. L. C. at United States Hotel",
     "section": "directory"
    },
@@ -28607,7 +28752,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hugunin. L. C. at United States Hotel"
+    "Hugunin, L. C"
    ],
    "town_finding": false,
    "notes": null
@@ -29331,12 +29476,17 @@
    "reading": "transcription_mediated",
    "quote": "Jeffries. Gco. warehouse man, house Indiana, b Cass and Rush",
    "normalized": {
-    "printed_name": "Jeffries. Gco. warehouse man",
-    "surname": "Jeffries. Gco. warehouse man",
-    "given": null,
+    "printed_name": "Jeffries, Gco",
+    "surname": "Jeffries",
+    "given": "Gco",
     "firm": false,
-    "occupation": null,
+    "occupation": "warehouse man",
     "address": "house Indiana, b Cass and Rush",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Jeffries. Gco.",
+     "as_split_on_comma": "Jeffries. Gco. warehouse man"
+    },
     "as_printed": "Jeffries. Gco. warehouse man, house Indiana, b Cass and Rush",
     "section": "directory"
    },
@@ -29351,7 +29501,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Jeffries. Gco. warehouse man"
+    "Jeffries, Gco"
    ],
    "town_finding": false,
    "notes": null
@@ -29517,12 +29667,17 @@
    "reading": "transcription_mediated",
    "quote": "Jocelyn. J.H. barkeeper at Western Hotel",
    "normalized": {
-    "printed_name": "Jocelyn. J.H. barkeeper at Western Hotel",
-    "surname": "Jocelyn. J.H. barkeeper at Western Hotel",
-    "given": null,
+    "printed_name": "Jocelyn, J.H",
+    "surname": "Jocelyn",
+    "given": "J.H",
     "firm": false,
-    "occupation": null,
+    "occupation": "barkeeper at Western Hotel",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Jocelyn. J.H.",
+     "as_split_on_comma": "Jocelyn. J.H. barkeeper at Western Hotel"
+    },
     "as_printed": "Jocelyn. J.H. barkeeper at Western Hotel",
     "section": "directory"
    },
@@ -29537,7 +29692,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Jocelyn. J.H. barkeeper at Western Hotel"
+    "Jocelyn, J.H"
    ],
    "town_finding": false,
    "notes": null
@@ -31730,12 +31885,17 @@
    "reading": "transcription_mediated",
    "quote": "Kimberly Ed. S. physician, 101 Lake st. house State st",
    "normalized": {
-    "printed_name": "Kimberly Ed. S. physician",
-    "surname": "Kimberly Ed. S. physician",
-    "given": null,
+    "printed_name": "Kimberly, Ed. S",
+    "surname": "Kimberly",
+    "given": "Ed. S",
     "firm": false,
-    "occupation": "101 Lake st",
+    "occupation": "physician, 101 Lake st",
     "address": "house State st",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Kimberly Ed. S.",
+     "as_split_on_comma": "Kimberly Ed. S. physician"
+    },
     "as_printed": "Kimberly Ed. S. physician, 101 Lake st. house State st",
     "section": "directory"
    },
@@ -31750,7 +31910,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Kimberly Ed. S. physician"
+    "Kimberly, Ed. S"
    ],
    "town_finding": false,
    "notes": null
@@ -32102,12 +32262,17 @@
    "reading": "transcription_mediated",
    "quote": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
    "normalized": {
-    "printed_name": "Kinzie. John H. register land office",
-    "surname": "Kinzie. John H. register land office",
-    "given": null,
+    "printed_name": "Kinzie, John H",
+    "surname": "Kinzie",
+    "given": "John H",
     "firm": false,
-    "occupation": "82 Lake st",
+    "occupation": "register land office, 82 Lake st",
     "address": "h c Mich dc Cass",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Kinzie. John H.",
+     "as_split_on_comma": "Kinzie. John H. register land office"
+    },
     "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
     "section": "directory"
    },
@@ -32122,7 +32287,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Kinzie. John H. register land office"
+    "Kinzie, John H"
    ],
    "town_finding": false,
    "notes": null
@@ -33472,6 +33637,11 @@
     "firm": false,
     "occupation": "mason",
     "address": "house Kinzie st. b Frank, and Wells sts",
+    "name_overrun": {
+     "refused": "split_surname",
+     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
+     "as_split_on_comma": "Lurk in"
+    },
     "as_printed": "Lurk in, Timothy, mason, house Kinzie st. b Frank, and Wells sts",
     "section": "directory"
    },
@@ -34978,12 +35148,17 @@
    "reading": "transcription_mediated",
    "quote": "Lowe. Samuel A. clerk, Scammon & Judd, res S. J. Lowe's",
    "normalized": {
-    "printed_name": "Lowe. Samuel A. clerk, Scammon",
-    "surname": "Lowe. Samuel A. clerk",
-    "given": "Scammon",
+    "printed_name": "Lowe, Samuel A",
+    "surname": "Lowe",
+    "given": "Samuel A",
     "firm": false,
-    "occupation": "& Judd",
+    "occupation": "clerk, Scammon & Judd",
     "address": "res S. J. Lowe's",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Lowe. Samuel A.",
+     "as_split_on_comma": "Lowe. Samuel A. clerk"
+    },
     "as_printed": "Lowe. Samuel A. clerk, Scammon & Judd, res S. J. Lowe's",
     "section": "directory"
    },
@@ -34998,7 +35173,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lowe. Samuel A. clerk, Scammon"
+    "Lowe, Samuel A"
    ],
    "town_finding": false,
    "notes": null
@@ -42139,12 +42314,17 @@
    "reading": "transcription_mediated",
    "quote": "Norton. C. C. of N. & Case, house State st. b Madison and Mon",
    "normalized": {
-    "printed_name": "Norton. C. C. of N. & Case",
-    "surname": "Norton. C. C. of N. & Case",
-    "given": null,
+    "printed_name": "Norton, C. C",
+    "surname": "Norton",
+    "given": "C. C",
     "firm": false,
-    "occupation": null,
+    "occupation": "of N. & Case",
     "address": "house State st. b Madison and Mon",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Norton. C. C.",
+     "as_split_on_comma": "Norton. C. C. of N. & Case"
+    },
     "as_printed": "Norton. C. C. of N. & Case, house State st. b Madison and Mon",
     "section": "directory"
    },
@@ -42159,7 +42339,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Norton. C. C. of N. & Case"
+    "Norton, C. C"
    ],
    "town_finding": false,
    "notes": null
@@ -43193,12 +43373,17 @@
    "reading": "transcription_mediated",
    "quote": "Paine. James S. saddler, Dearb. st. b Lake and Water (See card)",
    "normalized": {
-    "printed_name": "Paine. James S. saddler, Dearb",
-    "surname": "Paine. James S. saddler",
-    "given": "Dearb",
+    "printed_name": "Paine, James S",
+    "surname": "Paine",
+    "given": "James S",
     "firm": false,
-    "occupation": "st",
+    "occupation": "saddler, Dearb. st",
     "address": "b Lake and Water (See card)",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Paine. James S.",
+     "as_split_on_comma": "Paine. James S. saddler"
+    },
     "as_printed": "Paine. James S. saddler, Dearb. st. b Lake and Water (See card)",
     "section": "directory"
    },
@@ -43213,7 +43398,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Paine. James S. saddler, Dearb"
+    "Paine, James S"
    ],
    "town_finding": false,
    "notes": null
@@ -44135,12 +44320,17 @@
    "reading": "transcription_mediated",
    "quote": "Penton. D. R. at Dr. Britickerhoff's, res same",
    "normalized": {
-    "printed_name": "Penton. D. R. at Dr. Britickerhoff's",
-    "surname": "Penton. D. R. at Dr. Britickerhoff's",
-    "given": null,
+    "printed_name": "Penton, D. R",
+    "surname": "Penton",
+    "given": "D. R",
     "firm": false,
-    "occupation": null,
+    "occupation": "at Dr. Britickerhoff's",
     "address": "res same",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Penton. D. R.",
+     "as_split_on_comma": "Penton. D. R. at Dr. Britickerhoff's"
+    },
     "as_printed": "Penton. D. R. at Dr. Britickerhoff's, res same",
     "section": "directory"
    },
@@ -44155,7 +44345,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Penton. D. R. at Dr. Britickerhoff's"
+    "Penton, D. R"
    ],
    "town_finding": false,
    "notes": null
@@ -44426,12 +44616,17 @@
    "reading": "transcription_mediated",
    "quote": "Peterson. GPO. captain schooner St. Joseph, house Canal st",
    "normalized": {
-    "printed_name": "Peterson. GPO. captain schooner St. Joseph",
-    "surname": "Peterson. GPO. captain schooner St. Joseph",
-    "given": null,
+    "printed_name": "Peterson, GPO",
+    "surname": "Peterson",
+    "given": "GPO",
     "firm": false,
-    "occupation": null,
+    "occupation": "captain schooner St. Joseph",
     "address": "house Canal st",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Peterson. GPO.",
+     "as_split_on_comma": "Peterson. GPO. captain schooner St. Joseph"
+    },
     "as_printed": "Peterson. GPO. captain schooner St. Joseph, house Canal st",
     "section": "directory"
    },
@@ -44446,7 +44641,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Peterson. GPO. captain schooner St. Joseph"
+    "Peterson, GPO"
    ],
    "town_finding": false,
    "notes": null
@@ -44494,6 +44689,11 @@
     "firm": true,
     "occupation": "bakers, Clark st",
     "address": "b Lake and S. Water (See card)",
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "Pfund & Co. bakers"
+    },
     "as_printed": "Pfund & Co. bakers, Clark st. b Lake and S. Water (See card)",
     "section": "directory"
    },
@@ -44922,12 +45122,17 @@
    "reading": "transcription_mediated",
    "quote": "Plagge G. shoemaker, North Water st. house same",
    "normalized": {
-    "printed_name": "Plagge G. shoemaker, North Water",
-    "surname": "Plagge G. shoemaker",
-    "given": "North Water",
+    "printed_name": "Plagge, G",
+    "surname": "Plagge",
+    "given": "G",
     "firm": false,
-    "occupation": "st",
+    "occupation": "shoemaker, North Water st",
     "address": "house same",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Plagge G.",
+     "as_split_on_comma": "Plagge G. shoemaker"
+    },
     "as_printed": "Plagge G. shoemaker, North Water st. house same",
     "section": "directory"
    },
@@ -44942,7 +45147,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Plagge G. shoemaker, North Water"
+    "Plagge, G"
    ],
    "town_finding": false,
    "notes": null
@@ -45170,12 +45375,17 @@
    "reading": "transcription_mediated",
    "quote": "Powless. John shoemaker, at J. E. Ware's",
    "normalized": {
-    "printed_name": "Powless. John shoemaker",
-    "surname": "Powless. John shoemaker",
-    "given": null,
+    "printed_name": "Powless, John",
+    "surname": "Powless",
+    "given": "John",
     "firm": false,
-    "occupation": "at J. E. Ware's",
+    "occupation": "shoemaker, at J. E. Ware's",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Powless. John",
+     "as_split_on_comma": "Powless. John shoemaker"
+    },
     "as_printed": "Powless. John shoemaker, at J. E. Ware's",
     "section": "directory"
    },
@@ -45190,7 +45400,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Powless. John shoemaker"
+    "Powless, John"
    ],
    "town_finding": false,
    "notes": null
@@ -45449,12 +45659,17 @@
    "reading": "transcription_mediated",
    "quote": "Ransom. J. W. res corner Monroe and Clark st",
    "normalized": {
-    "printed_name": "Ransom. J. W. res corner Monroe and Clark st",
-    "surname": "Ransom. J. W. res corner Monroe and Clark st",
-    "given": null,
+    "printed_name": "Ransom, J. W",
+    "surname": "Ransom",
+    "given": "J. W",
     "firm": false,
     "occupation": null,
-    "address": null,
+    "address": "res corner Monroe and Clark st",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Ransom. J. W.",
+     "as_split_on_comma": "Ransom. J. W. res corner Monroe and Clark st"
+    },
     "as_printed": "Ransom. J. W. res corner Monroe and Clark st",
     "section": "directory"
    },
@@ -45469,7 +45684,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ransom. J. W. res corner Monroe and Clark st"
+    "Ransom, J. W"
    ],
    "town_finding": false,
    "notes": null
@@ -46763,12 +46978,17 @@
    "reading": "transcription_mediated",
    "quote": "Robinson. P. P. boot maker, 139 Lake street",
    "normalized": {
-    "printed_name": "Robinson. P. P. boot maker",
-    "surname": "Robinson. P. P. boot maker",
-    "given": null,
+    "printed_name": "Robinson, P. P",
+    "surname": "Robinson",
+    "given": "P. P",
     "firm": false,
-    "occupation": "139 Lake street",
+    "occupation": "boot maker, 139 Lake street",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Robinson. P. P.",
+     "as_split_on_comma": "Robinson. P. P. boot maker"
+    },
     "as_printed": "Robinson. P. P. boot maker, 139 Lake street",
     "section": "directory"
    },
@@ -46783,7 +47003,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Robinson. P. P. boot maker"
+    "Robinson, P. P"
    ],
    "town_finding": false,
    "notes": null
@@ -47383,12 +47603,17 @@
    "reading": "transcription_mediated",
    "quote": "Rowlatt. W. Bethel clergyman, res at Henry Smith's",
    "normalized": {
-    "printed_name": "Rowlatt. W. Bethel clergyman",
-    "surname": "Rowlatt. W. Bethel clergyman",
-    "given": null,
+    "printed_name": "Rowlatt, W. Bethel",
+    "surname": "Rowlatt",
+    "given": "W. Bethel",
     "firm": false,
-    "occupation": null,
+    "occupation": "clergyman",
     "address": "res at Henry Smith's",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Rowlatt. W. Bethel",
+     "as_split_on_comma": "Rowlatt. W. Bethel clergyman"
+    },
     "as_printed": "Rowlatt. W. Bethel clergyman, res at Henry Smith's",
     "section": "directory"
    },
@@ -47403,7 +47628,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Rowlatt. W. Bethel clergyman"
+    "Rowlatt, W. Bethel"
    ],
    "town_finding": false,
    "notes": null
@@ -47476,12 +47701,17 @@
    "reading": "transcription_mediated",
    "quote": "Rowley Tlios. E. teamster, at A. Funk's",
    "normalized": {
-    "printed_name": "Rowley Tlios. E. teamster",
-    "surname": "Rowley Tlios. E. teamster",
-    "given": null,
+    "printed_name": "Rowley, Tlios. E",
+    "surname": "Rowley",
+    "given": "Tlios. E",
     "firm": false,
-    "occupation": "at A. Funk's",
+    "occupation": "teamster, at A. Funk's",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Rowley Tlios. E.",
+     "as_split_on_comma": "Rowley Tlios. E. teamster"
+    },
     "as_printed": "Rowley Tlios. E. teamster, at A. Funk's",
     "section": "directory"
    },
@@ -47496,7 +47726,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Rowley Tlios. E. teamster"
+    "Rowley, Tlios. E"
    ],
    "town_finding": false,
    "notes": null
@@ -47724,12 +47954,17 @@
    "reading": "transcription_mediated",
    "quote": "Russell. C. G. of Rew & Russell, res City Refectory",
    "normalized": {
-    "printed_name": "Russell. C. G. of Rew & Russell",
-    "surname": "Russell. C. G. of Rew & Russell",
-    "given": null,
+    "printed_name": "Russell, C. G",
+    "surname": "Russell",
+    "given": "C. G",
     "firm": false,
-    "occupation": null,
+    "occupation": "of Rew & Russell",
     "address": "res City Refectory",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Russell. C. G.",
+     "as_split_on_comma": "Russell. C. G. of Rew & Russell"
+    },
     "as_printed": "Russell. C. G. of Rew & Russell, res City Refectory",
     "section": "directory"
    },
@@ -47744,7 +47979,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Russell. C. G. of Rew & Russell"
+    "Russell, C. G"
    ],
    "town_finding": false,
    "notes": null
@@ -49491,12 +49726,17 @@
    "reading": "transcription_mediated",
    "quote": "Sharer.\"Geo. tailor, at Hodgson's, h'Wells si. b Wash, and Mad.",
    "normalized": {
-    "printed_name": "Sharer.\"Geo. tailor",
-    "surname": "Sharer.\"Geo. tailor",
+    "printed_name": "Sharer.\"Geo",
+    "surname": "Sharer.\"Geo",
     "given": null,
     "firm": false,
-    "occupation": "at Hodgson's, h'Wells si",
+    "occupation": "tailor, at Hodgson's, h'Wells si",
     "address": "b Wash, and Mad",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Sharer.\"Geo.",
+     "as_split_on_comma": "Sharer.\"Geo. tailor"
+    },
     "as_printed": "Sharer.\"Geo. tailor, at Hodgson's, h'Wells si. b Wash, and Mad.",
     "section": "directory"
    },
@@ -49511,7 +49751,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Sharer.\"Geo. tailor"
+    "Sharer.\"Geo"
    ],
    "town_finding": false,
    "notes": null
@@ -50520,6 +50760,11 @@
     "firm": true,
     "occupation": "groceries, and boarding house, N. Water st. n Dcarb",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "Sicar & Co. groceries"
+    },
     "as_printed": "Sicar & Co. groceries, and boarding house, N. Water st. n Dcarb",
     "section": "directory"
    },
@@ -50706,6 +50951,11 @@
     "firm": false,
     "occupation": null,
     "address": "House. 6G Lake street (Sec card)",
+    "name_overrun": {
+     "refused": "firm_conj",
+     "why": "the scanner set this firm's ampersand as '6c', so the firm test never fired; capping would truncate it to a man who is not in the book",
+     "as_split_on_comma": "Skinner 6c .Smith"
+    },
     "as_printed": "Skinner 6c .Smith, Mansion House. 6G Lake street (Sec card)",
     "section": "directory"
    },
@@ -50954,6 +51204,11 @@
     "firm": false,
     "occupation": "printer. Dem. Olnce",
     "address": "res Lake Street House",
+    "name_overrun": {
+     "refused": "empty_prefix",
+     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
+     "as_split_on_comma": "v; Smith"
+    },
     "as_printed": "v; Smith, Abial, printer. Dem. Olnce, res Lake Street House",
     "section": "directory"
    },
@@ -52777,12 +53032,17 @@
    "reading": "transcription_mediated",
    "quote": "Steel. J. H. h Lake st. b Water and Canal sts",
    "normalized": {
-    "printed_name": "Steel. J. H. h Lake st. b Water and Canal sts",
-    "surname": "Steel. J. H. h Lake st. b Water and Canal sts",
-    "given": null,
+    "printed_name": "Steel, J. H",
+    "surname": "Steel",
+    "given": "J. H",
     "firm": false,
     "occupation": null,
-    "address": null,
+    "address": "h Lake st. b Water and Canal sts",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Steel. J. H.",
+     "as_split_on_comma": "Steel. J. H. h Lake st. b Water and Canal sts"
+    },
     "as_printed": "Steel. J. H. h Lake st. b Water and Canal sts",
     "section": "directory"
    },
@@ -52797,7 +53057,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Steel. J. H. h Lake st. b Water and Canal sts"
+    "Steel, J. H"
    ],
    "town_finding": false,
    "notes": null
@@ -52901,12 +53161,17 @@
    "reading": "transcription_mediated",
    "quote": "Stevens S. tailor, Clark st. 4 doors north Lake st",
    "normalized": {
-    "printed_name": "Stevens S. tailor, Clark",
-    "surname": "Stevens S. tailor",
-    "given": "Clark",
+    "printed_name": "Stevens, S",
+    "surname": "Stevens",
+    "given": "S",
     "firm": false,
-    "occupation": "st. 4 doors north Lake st",
+    "occupation": "tailor, Clark st. 4 doors north Lake st",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Stevens S.",
+     "as_split_on_comma": "Stevens S. tailor"
+    },
     "as_printed": "Stevens S. tailor, Clark st. 4 doors north Lake st",
     "section": "directory"
    },
@@ -52921,7 +53186,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Stevens S. tailor, Clark"
+    "Stevens, S"
    ],
    "town_finding": false,
    "notes": null
@@ -53955,12 +54220,17 @@
    "reading": "transcription_mediated",
    "quote": "Surdam. S. J. stoves, &c. 132 Lake st",
    "normalized": {
-    "printed_name": "Surdam. S. J. stoves",
-    "surname": "Surdam. S. J. stoves",
-    "given": null,
+    "printed_name": "Surdam, S. J",
+    "surname": "Surdam",
+    "given": "S. J",
     "firm": false,
-    "occupation": "&c. 132 Lake st",
+    "occupation": "stoves, &c. 132 Lake st",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Surdam. S. J.",
+     "as_split_on_comma": "Surdam. S. J. stoves"
+    },
     "as_printed": "Surdam. S. J. stoves, &c. 132 Lake st",
     "section": "directory"
    },
@@ -53975,7 +54245,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Surdam. S. J. stoves"
+    "Surdam, S. J"
    ],
    "town_finding": false,
    "notes": null
@@ -54947,12 +55217,17 @@
    "reading": "transcription_mediated",
    "quote": "Thompson. Leonard W. carpenter, house 3d ward, S. of Jackson",
    "normalized": {
-    "printed_name": "Thompson. Leonard W. carpenter",
-    "surname": "Thompson. Leonard W. carpenter",
-    "given": null,
+    "printed_name": "Thompson, Leonard W",
+    "surname": "Thompson",
+    "given": "Leonard W",
     "firm": false,
-    "occupation": null,
+    "occupation": "carpenter",
     "address": "house 3d ward, S. of Jackson",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Thompson. Leonard W.",
+     "as_split_on_comma": "Thompson. Leonard W. carpenter"
+    },
     "as_printed": "Thompson. Leonard W. carpenter, house 3d ward, S. of Jackson",
     "section": "directory"
    },
@@ -54967,7 +55242,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Thompson. Leonard W. carpenter"
+    "Thompson, Leonard W"
    ],
    "town_finding": false,
    "notes": null
@@ -55474,12 +55749,17 @@
    "reading": "transcription_mediated",
    "quote": "Truesdell. Geo. \\V. clothier, house Cass st. b Ills, and Indiana sts",
    "normalized": {
-    "printed_name": "Truesdell. Geo. \\V. clothier",
-    "surname": "Truesdell. Geo. \\V. clothier",
-    "given": null,
+    "printed_name": "Truesdell, Geo. \\V",
+    "surname": "Truesdell",
+    "given": "Geo. \\V",
     "firm": false,
-    "occupation": null,
+    "occupation": "clothier",
     "address": "house Cass st. b Ills, and Indiana sts",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Truesdell. Geo. \\V.",
+     "as_split_on_comma": "Truesdell. Geo. \\V. clothier"
+    },
     "as_printed": "Truesdell. Geo. \\V. clothier, house Cass st. b Ills, and Indiana sts",
     "section": "directory"
    },
@@ -55494,7 +55774,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Truesdell. Geo. \\V. clothier"
+    "Truesdell, Geo. \\V"
    ],
    "town_finding": false,
    "notes": null
@@ -56534,6 +56814,11 @@
     "firm": true,
     "occupation": "dry goods and groceries, 113 Lake st (See card)",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "WTadsworth. E. S. & J. dry goods and groceries"
+    },
     "as_printed": "WTadsworth. E. S. & J. dry goods and groceries, 113 Lake st (See card)",
     "section": "directory"
    },
@@ -56931,12 +57216,17 @@
    "reading": "transcription_mediated",
    "quote": "Walker. Martin O. of Frink, Walker, & Co. h State st. b Lake\n  and Randolph sts",
    "normalized": {
-    "printed_name": "Walker. Martin O. of Frink, Walker",
-    "surname": "Walker. Martin O. of Frink",
-    "given": "Walker",
+    "printed_name": "Walker, Martin O",
+    "surname": "Walker",
+    "given": "Martin O",
     "firm": false,
-    "occupation": "& Co",
+    "occupation": "of Frink, Walker, & Co",
     "address": "h State st. b Lake and Randolph sts",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Walker. Martin O.",
+     "as_split_on_comma": "Walker. Martin O. of Frink"
+    },
     "as_printed": "Walker. Martin O. of Frink, Walker, & Co. h State st. b Lake and Randolph sts",
     "section": "directory"
    },
@@ -56951,7 +57241,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Walker. Martin O. of Frink, Walker"
+    "Walker, Martin O"
    ],
    "town_finding": false,
    "notes": null
@@ -57210,12 +57500,17 @@
    "reading": "transcription_mediated",
    "quote": "Walton. J. W. dry goods and groceries, South Water st",
    "normalized": {
-    "printed_name": "Walton. J. W. dry goods and groceries, South Water",
-    "surname": "Walton. J. W. dry goods and groceries",
-    "given": "South Water",
+    "printed_name": "Walton, J. W",
+    "surname": "Walton",
+    "given": "J. W",
     "firm": false,
-    "occupation": "st",
+    "occupation": "dry goods and groceries, South Water st",
     "address": null,
+    "name_overrun": {
+     "repaired": true,
+     "name": "Walton. J. W.",
+     "as_split_on_comma": "Walton. J. W. dry goods and groceries"
+    },
     "as_printed": "Walton. J. W. dry goods and groceries, South Water st",
     "section": "directory"
    },
@@ -57230,7 +57525,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Walton. J. W. dry goods and groceries, South Water"
+    "Walton, J. W"
    ],
    "town_finding": false,
    "notes": null
@@ -57365,12 +57660,17 @@
    "reading": "transcription_mediated",
    "quote": "Ward Mrs. res near North Branch Bridge, 5th ward",
    "normalized": {
-    "printed_name": "Ward Mrs. res near North Branch Bridge",
-    "surname": "Ward Mrs. res near North Branch Bridge",
-    "given": null,
+    "printed_name": "Ward, Mrs",
+    "surname": "Ward",
+    "given": "Mrs",
     "firm": false,
-    "occupation": "5th ward",
-    "address": null,
+    "occupation": null,
+    "address": "res near North Branch Bridge, 5th ward",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Ward Mrs.",
+     "as_split_on_comma": "Ward Mrs. res near North Branch Bridge"
+    },
     "as_printed": "Ward Mrs. res near North Branch Bridge, 5th ward",
     "section": "directory"
    },
@@ -57385,7 +57685,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ward Mrs. res near North Branch Bridge"
+    "Ward, Mrs"
    ],
    "town_finding": false,
    "notes": null
@@ -58109,12 +58409,17 @@
    "reading": "transcription_mediated",
    "quote": "Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle\n  and Wells",
    "normalized": {
-    "printed_name": "Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle and Wells",
-    "surname": "Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle and Wells",
-    "given": null,
+    "printed_name": "Wells, Andrew S",
+    "surname": "Wells",
+    "given": "Andrew S",
     "firm": false,
-    "occupation": null,
-    "address": null,
+    "occupation": "of Johoimett W. & Co",
+    "address": "h Rand st. b Lasalle and Wells",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Wells. Andrew S.",
+     "as_split_on_comma": "Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle and Wells"
+    },
     "as_printed": "Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle and Wells",
     "section": "directory"
    },
@@ -58129,7 +58434,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wells. Andrew S. of Johoimett W. & Co. h Rand st. b Lasalle and Wells"
+    "Wells, Andrew S"
    ],
    "town_finding": false,
    "notes": null
@@ -58239,6 +58544,11 @@
     "firm": false,
     "occupation": "nst. editor Chicago Democrat",
     "address": "res U. S. Hotel",
+    "name_overrun": {
+     "refused": "split_surname",
+     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
+     "as_split_on_comma": "Went worth"
+    },
     "as_printed": "s Went worth, Geo. W. nst. editor Chicago Democrat, res U. S. Hotel",
     "section": "directory"
    },
@@ -58834,12 +59144,17 @@
    "reading": "transcription_mediated",
    "quote": "Wicker. C. G. of C. G. Wicker & Go. res Tremont",
    "normalized": {
-    "printed_name": "Wicker. C. G. of C. G. Wicker & Go. res Tremont",
-    "surname": "Wicker. C. G. of C. G. Wicker & Go. res Tremont",
-    "given": null,
+    "printed_name": "Wicker, C. G",
+    "surname": "Wicker",
+    "given": "C. G",
     "firm": false,
-    "occupation": null,
-    "address": null,
+    "occupation": "of C. G. Wicker & Go",
+    "address": "res Tremont",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Wicker. C. G.",
+     "as_split_on_comma": "Wicker. C. G. of C. G. Wicker & Go. res Tremont"
+    },
     "as_printed": "Wicker. C. G. of C. G. Wicker & Go. res Tremont",
     "section": "directory"
    },
@@ -58854,7 +59169,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wicker. C. G. of C. G. Wicker & Go. res Tremont"
+    "Wicker, C. G"
    ],
    "town_finding": false,
    "notes": null
@@ -58871,6 +59186,11 @@
     "firm": true,
     "occupation": "dry goods and groceries, 94 Lake st.(See card)",
     "address": null,
+    "name_overrun": {
+     "refused": "firm_branch",
+     "why": "the firm branch takes the name from firm_name(prefix) and never reads the comma span",
+     "as_split_on_comma": "Wicker. C. G. & Co. dry goods and groceries"
+    },
     "as_printed": "Wicker. C. G. & Co. dry goods and groceries, 94 Lake st.(See card)",
     "section": "directory"
    },
@@ -58896,12 +59216,17 @@
    "reading": "transcription_mediated",
    "quote": "Wicker. J. H. at C. G. Wicker & Go's, h Dearborn, b Washington\n  and Madison sts",
    "normalized": {
-    "printed_name": "Wicker. J. H. at C. G. Wicker & Go's",
-    "surname": "Wicker. J. H. at C. G. Wicker & Go's",
-    "given": null,
+    "printed_name": "Wicker, J. H",
+    "surname": "Wicker",
+    "given": "J. H",
     "firm": false,
-    "occupation": null,
+    "occupation": "at C. G. Wicker & Go's",
     "address": "h Dearborn, b Washington and Madison sts",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Wicker. J. H.",
+     "as_split_on_comma": "Wicker. J. H. at C. G. Wicker & Go's"
+    },
     "as_printed": "Wicker. J. H. at C. G. Wicker & Go's, h Dearborn, b Washington and Madison sts",
     "section": "directory"
    },
@@ -58916,7 +59241,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wicker. J. H. at C. G. Wicker & Go's"
+    "Wicker, J. H"
    ],
    "town_finding": false,
    "notes": null
@@ -60241,12 +60566,17 @@
    "reading": "transcription_mediated",
    "quote": "AVorcester. D. L. at H. Norton & Co.'s, h Wabash st",
    "normalized": {
-    "printed_name": "AVorcester. D. L. at H. Norton & Co.'s",
-    "surname": "AVorcester. D. L. at H. Norton & Co.'s",
-    "given": null,
+    "printed_name": "AVorcester, D. L",
+    "surname": "AVorcester",
+    "given": "D. L",
     "firm": false,
-    "occupation": null,
-    "address": "h Wabash st",
+    "occupation": "at",
+    "address": "H. Norton & Co.'s, h Wabash st",
+    "name_overrun": {
+     "repaired": true,
+     "name": "AVorcester. D. L.",
+     "as_split_on_comma": "AVorcester. D. L. at H. Norton & Co.'s"
+    },
     "as_printed": "AVorcester. D. L. at H. Norton & Co.'s, h Wabash st",
     "section": "directory"
    },
@@ -60261,7 +60591,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "AVorcester. D. L. at H. Norton & Co.'s"
+    "AVorcester, D. L"
    ],
    "town_finding": false,
    "notes": null
@@ -60278,6 +60608,11 @@
     "firm": false,
     "occupation": "mason",
     "address": "h Monroe st. b State .md Clark st",
+    "name_overrun": {
+     "refused": "split_surname",
+     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
+     "as_split_on_comma": "Woi thinglnm"
+    },
     "as_printed": "Woi thinglnm, Wm. mason, h Monroe st. b State .md Clark st",
     "section": "directory"
    },
@@ -61171,12 +61506,17 @@
    "reading": "transcription_mediated",
    "quote": "Dennis. Edward M. res Dr. Smith's",
    "normalized": {
-    "printed_name": "Dennis. Edward M. res Dr. Smith's",
-    "surname": "Dennis. Edward M. res Dr. Smith's",
-    "given": null,
+    "printed_name": "Dennis, Edward M",
+    "surname": "Dennis",
+    "given": "Edward M",
     "firm": false,
     "occupation": null,
-    "address": null,
+    "address": "res Dr. Smith's",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Dennis. Edward M.",
+     "as_split_on_comma": "Dennis. Edward M. res Dr. Smith's"
+    },
     "as_printed": "Dennis. Edward M. res Dr. Smith's",
     "section": "addenda"
    },
@@ -61191,7 +61531,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Dennis. Edward M. res Dr. Smith's"
+    "Dennis, Edward M"
    ],
    "town_finding": false,
    "notes": null
@@ -61760,12 +62100,17 @@
    "reading": "transcription_mediated",
    "quote": "Greenwood. Theophilus S. house Ontario st. b Dearborn and Wol",
    "normalized": {
-    "printed_name": "Greenwood. Theophilus S. house Ontario st. b Dearborn and Wol",
-    "surname": "Greenwood. Theophilus S. house Ontario st. b Dearborn and Wol",
-    "given": null,
+    "printed_name": "Greenwood, Theophilus S",
+    "surname": "Greenwood",
+    "given": "Theophilus S",
     "firm": false,
     "occupation": null,
-    "address": null,
+    "address": "house Ontario st. b Dearborn and Wol",
+    "name_overrun": {
+     "repaired": true,
+     "name": "Greenwood. Theophilus S.",
+     "as_split_on_comma": "Greenwood. Theophilus S. house Ontario st. b Dearborn and Wol"
+    },
     "as_printed": "Greenwood. Theophilus S. house Ontario st. b Dearborn and Wol",
     "section": "addenda"
    },
@@ -61780,7 +62125,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Greenwood. Theophilus S. house Ontario st. b Dearborn and Wol"
+    "Greenwood, Theophilus S"
    ],
    "town_finding": false,
    "notes": null
