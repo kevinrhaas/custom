@@ -29,9 +29,9 @@
   },
   "newspapers": {
    "names_read": 2317,
-   "identities": 2113,
-   "appearances_on_an_identity_the_town_already_carries": 1301,
-   "unmatched": 1016
+   "identities": 2112,
+   "appearances_on_an_identity_the_town_already_carries": 1302,
+   "unmatched": 1015
   },
   "old_settlers": {
    "names_read": 744,
@@ -101,7 +101,7 @@
   "directories|newspapers": 168,
   "directories|old_settlers": 33,
   "directories|residents": 175,
-  "newspapers|newspapers": 2113,
+  "newspapers|newspapers": 2112,
   "newspapers|old_settlers": 50,
   "newspapers|residents": 1133,
   "old_settlers|old_settlers": 736,
@@ -119,7 +119,7 @@
    "R5": 289,
    "R2": 983,
    "R3": 122,
-   "R4": 76,
+   "R4": 75,
    "R6": 9
   },
   "declared_refusals": 2170

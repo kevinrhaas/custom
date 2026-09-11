@@ -68,6 +68,7 @@ against that same tree, derives **704**. `check.sh` runs this pass's
 |---|---|
 | 77 | the town gained this surname from another pass after the mint (the town already names that family) |
 | 8 | THIS FAULT — the corrected reading collides it with another record |
+| 3 | the record stands under a different id (a rename, not a retirement) |
 | 3 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |
 
