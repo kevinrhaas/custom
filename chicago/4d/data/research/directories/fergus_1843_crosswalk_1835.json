@@ -10,14 +10,14 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1372,
+  "residents_considered": 1371,
   "matched_one_1843_entry": 120,
   "matched_more_than_one_ambiguous": 40,
   "one_1843_entry_contested_by_two_residents": 15,
   "surname_present_initial_absent_refused": 349,
-  "initial_agreed_forenames_disagreed_refused": 92,
+  "initial_agreed_forenames_disagreed_refused": 91,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1843_entry_by_that_refusal": 43,
+  "residents_left_with_no_1843_entry_by_that_refusal": 42,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
@@ -10535,25 +10535,6 @@
     "forename_printed": "Michael",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Matthias' against 'Michael'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "Medard Beaubien",
-   "person_id": "beaubien_medard",
-   "grade_1835": "inferred",
-   "entry_1843": {
-    "claim": "f1843_e0310",
-    "as_printed": "Beaubien, Mark, U.S. light-house keeper, res River street [died, Kankakee, Ill., April 11, 1881, aged 81]",
-    "page": "fergus_1843_page_002",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "light-",
-    "address_1843": "house keeper, res River street",
-    "death_note_1843": "died, Kankakee, Ill., April 11, 1881, aged 81",
-    "forename_1835": "Medard",
-    "forename_printed": "Mark",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Medard' against 'Mark'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {

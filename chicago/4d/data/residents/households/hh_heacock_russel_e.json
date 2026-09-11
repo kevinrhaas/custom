@@ -103,15 +103,17 @@
      "rule": "G1b"
     }
    ],
-   "merged_from": {
-    "ticket": "T-1002",
-    "rule": "C10",
-    "cluster": "heacock",
-    "cards": [
-     "heacock_russell_e"
-    ],
-    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
-   }
+   "merged_from": [
+    {
+     "ticket": "T-1002",
+     "rule": "C10",
+     "cluster": "heacock",
+     "cards": [
+      "heacock_russell_e"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ]
   },
   {
    "id": "heacock_household_unnamed",

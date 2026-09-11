@@ -121,15 +121,37 @@
      "rule": "G1b"
     }
    ],
-   "merged_from": {
-    "ticket": "T-1002",
-    "rule": "C11",
-    "cluster": "beaubien-madore",
-    "cards": [
-     "beaubien_medore_b"
-    ],
-    "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
-   }
+   "merged_from": [
+    {
+     "ticket": "T-1002",
+     "rule": "C11",
+     "cluster": "beaubien-madore",
+     "cards": [
+      "beaubien_medore_b"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    },
+    {
+     "ticket": "T-1026",
+     "rule": "C12",
+     "cluster": "beaubien-medard",
+     "cards": [
+      "beaubien_medard"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
+   "civic_evidence": [
+    {
+     "list": "poll_1833",
+     "as_read": "Beaubien, Medard",
+     "locator": "poll_1833",
+     "record_id": "poll_1833_005",
+     "describes_date": "1833",
+     "source": "chicago_voter_lists_1833_1835_irad",
+     "rule": "G3"
+    }
+   ]
   }
  ],
  "touches_removal": true,

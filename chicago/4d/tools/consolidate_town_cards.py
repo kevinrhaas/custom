@@ -617,7 +617,24 @@ def apply(write: bool = True) -> dict:
                 survivor[key] = (survivor.get(key) or []) + sorted(
                     add, key=lambda e: (str(e.get("describes_date") or ""),
                                         str(e.get("record_id") or "")))
-            survivor["merged_from"] = {
+            # ONE SURVIVOR, MORE THAN ONE FOLD — a LIST, keyed by cluster (T-1026).
+            #
+            # This was a dict, written straight over whatever stood there, and it held
+            # for as long as no card was the survivor of two rulings. `beaubien_madore`
+            # is the first: T-1002 folded `beaubien_medore_b` onto it from the
+            # `beaubien-madore` cluster under C11, and T-1026 folds `beaubien_medard`
+            # onto it from `beaubien-medard` under C12. The second --apply erased the
+            # first ruling's row, so the card carried the T-1026 fold and no trace of
+            # the T-1002 one — the sources and evidence blocks of a merge the project
+            # had made and argued, with nothing on the card to say where they came
+            # from. A survivor may be the answer to any number of clusters and the card
+            # has to say so once per cluster, which is exactly what `merge_ruling`
+            # below has always done for the DISTINCT and UNDECIDED rows.
+            #
+            # Re-running a cluster REPLACES that cluster's row and leaves the others, so
+            # --apply stays idempotent and a re-ruled cluster is followed rather than
+            # doubled.
+            block = {
                 "ticket": ruling.get("ticket") or TICKET,
                 "rule": ruling["rule"],
                 "cluster": ruling["cluster"],
@@ -629,6 +646,11 @@ def apply(write: bool = True) -> dict:
                         "`merged` table. The reasoning for the merge is in "
                         "data/residents/card_merge_rulings.json.",
             }
+            was = survivor.get("merged_from")
+            rows = [b for b in (was if isinstance(was, list) else [was] if was else [])
+                    if b.get("cluster") != ruling["cluster"]]
+            survivor["merged_from"] = sorted(rows + [block],
+                                             key=lambda b: b["cluster"])
             files[HOUSEHOLDS / f"{survivor_home}.json"] = dump(survivor_doc)
 
     # the written DISTINCT and UNDECIDED rulings, onto the cards themselves

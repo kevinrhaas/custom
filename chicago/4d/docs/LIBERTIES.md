@@ -10398,9 +10398,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 480 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 479 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 480 people
+**Scope:** `residents.persons[civic_mint]` — 479 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10411,8 +10411,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **480
-today**, and the figure has moved seven times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **479
+today**, and the figure has moved eight times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10467,7 +10467,26 @@ register's crosswalk went from 91 named purchasers to 93. AND THE BLIND SPOT IS 
 rather than guessed at: `tools/measure_card_fuzzy_candidates.py` runs the candidate test again
 with one letter of slack and proposes 68 further pairs, which is not a licence to fold on a
 distance — the same list holds John Hale against John Vale and Mark Noble against Mary Noble —
-but it is the first honest statement of how many pairs this derivation cannot see. The number
+but it is the first honest statement of how many pairs this derivation cannot see. T-1026 took it
+to 479 on 2026-09-11, folding `beaubien_medard` onto that same `beaubien_madore` — the card T-1002
+had just made the survivor of `beaubien_medore_b`, and the THIRD card the town was holding for one
+man. T-1002 found it and deliberately did not take it: Medard is three letters from Madore and two
+from Medore, so it is outside the one-letter class that ticket measured and outside C10 and C11
+both, and folding a baptismal forename onto a familiar one is a reading about a family and not
+about a compositor. IT IS RULED ON A ROLL INSTEAD, under a new rule C12, and the rule never weighs
+how alike the two spellings are — which is the only thing that lets it work at three letters where
+C9 and C10 are held to one. The poll list of the first election of the Board of Trustees, 10 August
+1833, carries thirty names; four of the five men that election returned stand on it under names
+nobody disputes; exactly three of the thirty are Beaubiens — J. B. the father, Mark the
+tavern-keeper, and Medard — and the first two hold cards of their own that the trustee is not. So
+the roll leaves him one entry, and the identification is a count over a bounded list rather than a
+resemblance. Fergus's directory of 1839 corroborates without carrying it: its fourth Beaubien is
+`Beaubien, Medard B., merchant, South Water street` — the survivor's own trade and street, and the
+middle initial B the poll does not print — in a book that holds no Madore. AND THE NEGATIVE RESULT
+IS RECORDED RATHER THAN DROPPED: the ticket asked for the St Cyr and St Mary's registers to be read
+for a Médard baptism, because that is where a baptismal forename would be printed if it is one, and
+they hold none — no Médard, no Madore, no Medore, as principal, parent, sponsor or decedent — so
+the philological argument has no page here and the ruling does not rest on it. The number
 this liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 
