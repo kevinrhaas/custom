@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Seventy-five men the directory was never printing', kind: 'fix', ts: '', date: '',
+  { v: 725, title: 'Seventy-five men the directory was never printing', kind: 'fix', ts: '2026-09-11T13:52:23.797Z', date: 'Sep 11, 2026, 8:52 AM CT',
     items: [
       'Fergus\u2019s Chicago directory of 1839 is one of the few books that can say whether somebody standing in this town in 1835 was still here four years later, and what trade and street he had by then. It is matched to this town\u2019s people on a deliberately blunt rule: the surname must agree, and so must the first initial of the forename. The book lists forty-one Smiths, so a surname alone is never enough.',
       'That rule has a known weakness, written down five days ago and fixed then for two of the three directories: when BOTH the book and this town print a full forename and the two full names disagree, an agreeing initial is worth nothing. Thomas is not Titus. Calvin is not Charles. Hiram is not High. The correction was never applied to the 1839 volume, which is the largest of the three, and so seventy-five of its matches were standing on an initial and a contradiction.',
