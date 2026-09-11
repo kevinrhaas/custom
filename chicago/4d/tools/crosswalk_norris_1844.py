@@ -27,6 +27,7 @@ from collections import defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import name_agreement as na  # the forename rule, imported rather than restated
 import tiebreak            # the tie discriminator (T-0696), likewise
+import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/norris_1844_directory_entries.json")
@@ -85,11 +86,6 @@ def residents():
                 "works_at": ((doc.get("works_at") or {}).get("value")),
             })
     return out
-
-
-def blank_occupation(value) -> bool:
-    """True where the 1835 layer records a trade. `none_recorded` records none."""
-    return bool(value) and value != "none_recorded"
 
 
 def main():
@@ -163,7 +159,7 @@ def main():
         # already having a trade and reported `could_carry_occupation: 0` — a
         # nil that looked like a finding and was a bug. Twenty-one of them have
         # a trade printed against their name in 1844 (T-0569).
-        if not blank_occupation(r["occupation"]) and any(x["occupation_1844"] for x in rows):
+        if trade_recorded.absent(r["occupation"]) and any(x["occupation_1844"] for x in rows):
             carries.append("occupation")
         if not r["lives_at"] and any(x["address_1844"] for x in rows):
             carries.append("address")

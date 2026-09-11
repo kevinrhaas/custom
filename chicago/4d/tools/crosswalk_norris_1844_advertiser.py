@@ -30,6 +30,9 @@ a candidate trade, and the carry, when T-0569 makes it, is stated as 1844 eviden
 import json, os, re, sys
 from collections import defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import trade_recorded     # "does the layer hold a trade?" (T-0867), imported not restated
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CARDS = os.path.join(ROOT, "data/research/directories/claims/norris_1844_advertiser.json")
 HH = os.path.join(ROOT, "data/residents/households")
@@ -161,7 +164,9 @@ def main():
             "cards_1844": rows,
         }
         carries = []
-        if not r["occupation"] and any(x["trade_1844"] for x in rows):
+        # `none_recorded` IS NO OCCUPATION (T-0867) — the same predicate, and the
+        # same bug, as the directory-proper crosswalk carried until this ticket.
+        if trade_recorded.absent(r["occupation"]) and any(x["trade_1844"] for x in rows):
             carries.append("trade")
         if not r["works_at"] and any(x["address_1844"] for x in rows):
             carries.append("place_of_business")
