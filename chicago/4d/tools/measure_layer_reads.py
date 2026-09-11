@@ -189,6 +189,12 @@ STATED_SHARED = frozenset({
     # RECORD's `present_on_scene_date` block is read and shown by residents.js;
     # the manifest's copy of it is read by nothing, and the two are the same word.
     "present_on_scene_date",
+    # The verbatim setting of a printed line. `read_at_image.as_printed` (T-1011, the
+    # roster line a letter-list person was minted off) is read by nothing;
+    # residents.js:341 reads `e.as_printed` out of the later-directory appearances
+    # block, and quotes it on the card. Two figures, one word, and a bare-name scan
+    # cannot say which one the renderer touched — so the roster's copy stays banked.
+    "as_printed",
     # These leaves also occur in the separately rendered research_pilot payload;
     # a bare-name text scan cannot attribute those accesses to the embedded block.
     "assessment", "basis", "conflicts", "notes", "outcome", "reviewed_on", "summary",

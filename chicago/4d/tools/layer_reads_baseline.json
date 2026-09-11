@@ -65,114 +65,132 @@
       "records": 31
     },
     "residents/household:division": {
-      "records": 1338,
+      "records": 1355,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
     "residents/household:head": {
-      "records": 1338,
+      "records": 1355,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:old_settler_deaths.people[].age_as_printed": {
-      "records": 45
+      "records": 44
     },
     "residents/household:old_settler_deaths.people[].as_read": {
-      "records": 64
-    },
-    "residents/household:old_settler_deaths.people[].birth_year_arithmetic": {
-      "records": 43
-    },
-    "residents/household:old_settler_deaths.people[].birth_year_earliest": {
-      "records": 43
-    },
-    "residents/household:old_settler_deaths.people[].birth_year_latest": {
-      "records": 43
-    },
-    "residents/household:old_settler_deaths.people[].death_date": {
-      "records": 58
-    },
-    "residents/household:old_settler_deaths.people[].entry_given_as_read": {
-      "records": 64
-    },
-    "residents/household:old_settler_deaths.people[].entry_given_is_initial_only": {
-      "records": 64
-    },
-    "residents/household:old_settler_deaths.people[].manner_of_death": {
       "records": 63
     },
+    "residents/household:old_settler_deaths.people[].birth_year_arithmetic": {
+      "records": 42
+    },
+    "residents/household:old_settler_deaths.people[].birth_year_earliest": {
+      "records": 42
+    },
+    "residents/household:old_settler_deaths.people[].birth_year_latest": {
+      "records": 42
+    },
+    "residents/household:old_settler_deaths.people[].death_date": {
+      "records": 57
+    },
+    "residents/household:old_settler_deaths.people[].entry_given_as_read": {
+      "records": 63
+    },
+    "residents/household:old_settler_deaths.people[].entry_given_is_initial_only": {
+      "records": 63
+    },
+    "residents/household:old_settler_deaths.people[].manner_of_death": {
+      "records": 62
+    },
     "residents/household:old_settler_deaths.people[].matched_as": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].matched_by": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].matched_on_initial_only": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].person_id": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].place_of_death": {
-      "records": 35
+      "records": 34
     },
     "residents/household:old_settler_deaths.people[].record_id": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].resident_given_is_initial_only": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].the_agreement": {
-      "records": 64
+      "records": 63
     },
     "residents/household:old_settler_deaths.people[].trade_or_office": {
-      "records": 23
+      "records": 22
     },
     "residents/household:old_settler_deaths.the_header_admission": {
-      "records": 64
+      "records": 63
     },
     "residents/household:persons[].merge_ruling[].against_merge": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merge_ruling[].cluster": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merge_ruling[].for_merge": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merge_ruling[].referred_to": {
-      "records": 30
+      "records": 23
     },
     "residents/household:persons[].merge_ruling[].rule": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merge_ruling[].ticket": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merge_ruling[].verdict": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merge_ruling[].weighed_against": {
-      "records": 42
+      "records": 45
     },
     "residents/household:persons[].merged_from.cards": {
-      "records": 20
+      "records": 21
     },
     "residents/household:persons[].merged_from.cluster": {
-      "records": 20
+      "records": 21
     },
     "residents/household:persons[].merged_from.rule": {
-      "records": 20
+      "records": 21
     },
     "residents/household:persons[].merged_from.ticket": {
-      "records": 20
+      "records": 21
+    },
+    "residents/household:persons[].read_at_image.as_printed": {
+      "records": 24
+    },
+    "residents/household:persons[].read_at_image.letters_waiting": {
+      "records": 3
+    },
+    "residents/household:persons[].read_at_image.printed_line": {
+      "records": 24
+    },
+    "residents/household:persons[].read_at_image.printing": {
+      "records": 24
+    },
+    "residents/household:persons[].read_at_image.reading": {
+      "records": 24
+    },
+    "residents/household:persons[].read_at_image.roster": {
+      "records": 24
     },
     "residents/household:persons[].resident_research.asserted_identity": {
-      "records": 842
+      "records": 840
     },
     "residents/household:persons[].resident_research.candidate_ids": {
       "records": 97
     },
     "residents/household:persons[].resident_research.candidates[].asserted": {
-      "records": 64
+      "records": 70
     },
     "residents/household:persons[].resident_research.candidates[].assessment": {
       "records": 13
@@ -190,52 +208,52 @@
       "records": 270
     },
     "residents/household:persons[].resident_research.evidence_for": {
-      "records": 477
+      "records": 476
     },
     "residents/household:persons[].resident_research.notes": {
-      "records": 485
+      "records": 484
     },
     "residents/household:persons[].resident_research.outcome": {
-      "records": 842
+      "records": 840
     },
     "residents/household:persons[].resident_research.programme": {
-      "records": 842
+      "records": 840
     },
     "residents/household:persons[].resident_research.proposed_facts": {
       "records": 6
     },
     "residents/household:persons[].resident_research.refusals[].reason": {
-      "records": 46
+      "records": 49
     },
     "residents/household:persons[].resident_research.refusals[].regraded_on": {
-      "records": 46
+      "records": 49
     },
     "residents/household:persons[].resident_research.refusals[].rule": {
-      "records": 46
+      "records": 49
     },
     "residents/household:persons[].resident_research.refusals[].withheld": {
-      "records": 46
+      "records": 49
     },
     "residents/household:persons[].resident_research.regraded_on": {
-      "records": 72
+      "records": 74
     },
     "residents/household:persons[].resident_research.reviewed_on": {
-      "records": 842
+      "records": 840
     },
     "residents/household:persons[].resident_research.rule": {
-      "records": 72
+      "records": 74
     },
     "residents/household:persons[].resident_research.source_ids": {
-      "records": 510
+      "records": 554
     },
     "residents/household:persons[].resident_research.summary": {
-      "records": 621
+      "records": 694
     },
     "residents/household:persons[].resident_research.ticket": {
-      "records": 842
+      "records": 840
     },
     "residents/household:source_pass": {
-      "records": 1260,
+      "records": 1276,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
     },
     "residents/manifest:_merged_doc": {
@@ -256,39 +274,39 @@
       "records": 1
     },
     "residents/manifest:households[].head": {
-      "records": 1338,
+      "records": 1355,
       "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 1338,
+      "records": 1355,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 715
+      "records": 710
     },
     "residents/manifest:merged[].cluster": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].household": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].merged_into_household": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].merged_into_person": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].person": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].record_file": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].rule": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:merged[].ticket": {
-      "records": 42
+      "records": 50
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1

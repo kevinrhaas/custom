@@ -44,16 +44,16 @@
   }
  ],
  "counts": {
-  "leads_ruled": 1020,
-  "cards_ruled": 1426,
+  "leads_ruled": 1023,
+  "cards_ruled": 1431,
   "by_outcome": {
-   "refused": 756,
-   "candidate": 264
+   "refused": 757,
+   "candidate": 266
   },
   "by_class": {
    "ocr_variant_only": 361,
-   "testable_in_a_held_work": 264,
-   "locality_absent": 294,
+   "testable_in_a_held_work": 266,
+   "locality_absent": 295,
    "surname_only_chicago": 101
   },
   "matched": 0,
@@ -16889,6 +16889,42 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v02_gray_residents",
+   "surname_key": "gray",
+   "spellings_as_printed": [
+    "Gray"
+   ],
+   "layer": "residents",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of dane Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "record_ids": [
+    "nbi_v02_0467",
+    "nbi_v02_0468",
+    "nbi_v02_0469",
+    "nbi_v02_0474"
+   ],
+   "candidates": [
+    {
+     "id": "gray_dane",
+     "name": "dane Gray",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [
+    "gray_dane"
+   ],
+   "works_cited": [
+    "andreas_history_of_chicago",
+    "moses_illinois_historical_and_statistical",
+    "moses_kirkland_history_of_chicago"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v02_green_residents",
    "surname_key": "green",
    "spellings_as_printed": [
@@ -18475,6 +18511,36 @@
    "discriminators": []
   },
   {
+   "lead_id": "lead_v02_hatch_residents",
+   "surname_key": "hatch",
+   "spellings_as_printed": [
+    "Hatch"
+   ],
+   "layer": "residents",
+   "outcome": "refused",
+   "class": "locality_absent",
+   "reason": "Refused. All 2 card(s) heading 'Hatch' name Illinois and neither Chicago nor Cook County, so the lead against Luther Hatch stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "record_ids": [
+    "nbi_v02_0751",
+    "nbi_v02_0752"
+   ],
+   "candidates": [
+    {
+     "id": "hatch_luther",
+     "name": "Luther Hatch",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [
+    "hatch_luther"
+   ],
+   "works_cited": [
+    "county_histories_kett_and_co"
+   ],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
    "lead_id": "lead_v02_hathaway_residents",
    "surname_key": "hathaway",
    "spellings_as_printed": [
@@ -18906,10 +18972,16 @@
      "id": "hill_isaac_l",
      "name": "Isaac L. Hill",
      "rule": "exact surname"
+    },
+    {
+     "id": "hills_levi",
+     "name": "Levi Hills",
+     "rule": "OCR variant (0.89 similarity to 'hills')"
     }
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
    "works_cited": [
     "andreas_history_of_chicago",
@@ -18971,6 +19043,45 @@
    ],
    "works_cited": [
     "andreas_history_of_chicago"
+   ],
+   "held_works": [
+    "andreas_history_of_chicago"
+   ],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v02_hoffman_residents",
+   "surname_key": "hoffman",
+   "spellings_as_printed": [
+    "Hoffman",
+    "ndex Hoffman"
+   ],
+   "layer": "residents",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 4 of the 5 card(s) heading 'Hoffman/ndex Hoffman' name Chicago or Cook County, the heading is the surname of H. B. Hoffman exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "record_ids": [
+    "nbi_v02_1018",
+    "nbi_v02_1019",
+    "nbi_v02_1020",
+    "nbi_v02_1021",
+    "nbi_v02_1022"
+   ],
+   "candidates": [
+    {
+     "id": "hoffman_h_b",
+     "name": "H. B. Hoffman",
+     "rule": "exact surname"
+    }
+   ],
+   "person_ids": [
+    "hoffman_h_b"
+   ],
+   "works_cited": [
+    "andreas_history_of_chicago",
+    "la_salle_book_co_cook_county",
+    "moses_illinois_historical_and_statistical",
+    "moses_kirkland_history_of_chicago"
    ],
    "held_works": [
     "andreas_history_of_chicago"
@@ -47114,18 +47225,22 @@
   {
    "record_id": "nbi_v02_0467",
    "a": "Gray | 4 — Ciicago, III, (Andreas, A. T.) 1684-01 1-3.",
-   "b": "John Grays; C. M. Gray; Alexander Gray",
+   "b": "John Grays; C. M. Gray; Alexander Gray; dane Gray",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | 4 — Ciicago, III, (Andreas, A. T.) 1684-01 1-3.' against John Grays; C. M. Gray; Alexander Gray.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | 4 — Ciicago, III, (Andreas, A. T.) 1684-01 1-3.' against John Grays; C. M. Gray; Alexander Gray; dane Gray.",
    "layers": [
-    "census_1840"
+    "census_1840",
+    "residents"
    ],
    "leads": [
-    "lead_v02_gray_census_1840"
+    "lead_v02_gray_census_1840",
+    "lead_v02_gray_residents"
    ],
-   "person_ids": [],
-   "person_id": null,
+   "person_ids": [
+    "gray_dane"
+   ],
+   "person_id": "gray_dane",
    "evidence": [
     "nbi_v02_0467",
     "data/research/newberry_index/leads.json"
@@ -47145,18 +47260,22 @@
   {
    "record_id": "nbi_v02_0468",
    "a": "Gray | Chicago, III, (Moset, I , ned Klrklan l , I.) 1895i",
-   "b": "John Grays; C. M. Gray; Alexander Gray",
+   "b": "John Grays; C. M. Gray; Alexander Gray; dane Gray",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | Chicago, III, (Moset, I , ned Klrklan l , I.) 1895i' against John Grays; C. M. Gray; Alexander Gray.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | Chicago, III, (Moset, I , ned Klrklan l , I.) 1895i' against John Grays; C. M. Gray; Alexander Gray; dane Gray.",
    "layers": [
-    "census_1840"
+    "census_1840",
+    "residents"
    ],
    "leads": [
-    "lead_v02_gray_census_1840"
+    "lead_v02_gray_census_1840",
+    "lead_v02_gray_residents"
    ],
-   "person_ids": [],
-   "person_id": null,
+   "person_ids": [
+    "gray_dane"
+   ],
+   "person_id": "gray_dane",
    "evidence": [
     "nbi_v02_0468",
     "data/research/newberry_index/leads.json"
@@ -47176,18 +47295,22 @@
   {
    "record_id": "nbi_v02_0469",
    "a": "Gray | Chicagd, III, Second",
-   "b": "John Grays; C. M. Gray; Alexander Gray",
+   "b": "John Grays; C. M. Gray; Alexander Gray; dane Gray",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | Chicagd, III, Second' against John Grays; C. M. Gray; Alexander Gray.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | Chicagd, III, Second' against John Grays; C. M. Gray; Alexander Gray; dane Gray.",
    "layers": [
-    "census_1840"
+    "census_1840",
+    "residents"
    ],
    "leads": [
-    "lead_v02_gray_census_1840"
+    "lead_v02_gray_census_1840",
+    "lead_v02_gray_residents"
    ],
-   "person_ids": [],
-   "person_id": null,
+   "person_ids": [
+    "gray_dane"
+   ],
+   "person_id": "gray_dane",
    "evidence": [
     "nbi_v02_0469",
     "data/research/newberry_index/leads.json"
@@ -47207,18 +47330,22 @@
   {
    "record_id": "nbi_v02_0474",
    "a": "Gray | i — - L a o i l i c Co., III, (Bild-.-.;,;. E.I 1B77: 3 3 6 . •Ba",
-   "b": "John Grays; C. M. Gray; Alexander Gray",
+   "b": "John Grays; C. M. Gray; Alexander Gray; dane Gray",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | i — - L a o i l i c Co., III, (Bild-.-.;,;. E.I 1B77: 3 3 6 . •Ba' against John Grays; C. M. Gray; Alexander Gray.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 4 card(s) heading 'Gray' name Chicago or Cook County, the heading is the surname of C. M. Gray; Alexander Gray exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Gray | i — - L a o i l i c Co., III, (Bild-.-.;,;. E.I 1B77: 3 3 6 . •Ba' against John Grays; C. M. Gray; Alexander Gray; dane Gray.",
    "layers": [
-    "census_1840"
+    "census_1840",
+    "residents"
    ],
    "leads": [
-    "lead_v02_gray_census_1840"
+    "lead_v02_gray_census_1840",
+    "lead_v02_gray_residents"
    ],
-   "person_ids": [],
-   "person_id": null,
+   "person_ids": [
+    "gray_dane"
+   ],
+   "person_id": "gray_dane",
    "evidence": [
     "nbi_v02_0474",
     "data/research/newberry_index/leads.json"
@@ -48241,10 +48368,10 @@
   {
    "record_id": "nbi_v02_0955",
    "a": "Hill | 93.7 . Boane Ce., III. (Kett & Co.. Puh.) 1877: 353.",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hill | 93.7 . Boane Ce., III. (Kett & Co.. Puh.) 1877: 353.' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hill | 93.7 . Boane Ce., III. (Kett & Co.. Puh.) 1877: 353.' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48254,9 +48381,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0955",
     "data/research/newberry_index/leads.json"
@@ -48276,10 +48404,10 @@
   {
    "record_id": "nbi_v02_0956",
    "a": "Hill | Illinois. See. Sons Am. Rev. 1896: 151.",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hill | Illinois. See. Sons Am. Rev. 1896: 151.' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hill | Illinois. See. Sons Am. Rev. 1896: 151.' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48289,9 +48417,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0956",
     "data/research/newberry_index/leads.json"
@@ -48311,10 +48440,10 @@
   {
    "record_id": "nbi_v02_0957",
    "a": "jOi f Hill | . Chicago, 111. (Andreas, A. T.) 1884-61 J__3. I H",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'jOi f Hill | . Chicago, 111. (Andreas, A. T.) 1884-61 J__3. I H' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'jOi f Hill | . Chicago, 111. (Andreas, A. T.) 1884-61 J__3. I H' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48324,9 +48453,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0957",
     "data/research/newberry_index/leads.json"
@@ -48346,10 +48476,10 @@
   {
    "record_id": "nbi_v02_0958",
    "a": "H l Hill | , Cola Co., III. fJutaWta, W„ )r„ 4 Ct., Poke 118f9i",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | , Cola Co., III. fJutaWta, W„ )r„ 4 Ct., Poke 118f9i' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | , Cola Co., III. fJutaWta, W„ )r„ 4 Ct., Poke 118f9i' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48359,9 +48489,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0958",
     "data/research/newberry_index/leads.json"
@@ -48381,10 +48512,10 @@
   {
    "record_id": "nbi_v02_0959",
    "a": "H l Hill | 2 Chrisl ;n Co., III. tO.-i,,k,",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | 2 Chrisl ;n Co., III. tO.-i,,k,' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | 2 Chrisl ;n Co., III. tO.-i,,k,' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48394,9 +48525,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0959",
     "data/research/newberry_index/leads.json"
@@ -48416,10 +48548,10 @@
   {
    "record_id": "nbi_v02_0960",
    "a": "H l Hill | Cock Co., III. U n d r - i",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | Cock Co., III. U n d r - i' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | Cock Co., III. U n d r - i' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48429,9 +48561,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0960",
     "data/research/newberry_index/leads.json"
@@ -48451,10 +48584,10 @@
   {
    "record_id": "nbi_v02_0961",
    "a": "H l Hill | Co«^,', ill. (Weed, 0. VV.) IR8I1 16».",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"H l Hill | Co«^,', ill. (Weed, 0. VV.) IR8I1 16».\" against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"H l Hill | Co«^,', ill. (Weed, 0. VV.) IR8I1 16».\" against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48464,9 +48597,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0961",
     "data/research/newberry_index/leads.json"
@@ -48486,10 +48620,10 @@
   {
    "record_id": "nbi_v02_0962",
    "a": "H l Hill | Fulton Ce, III. (Chapman, C. C. & Ce.) 1879:",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | Fulton Ce, III. (Chapman, C. C. & Ce.) 1879:' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | Fulton Ce, III. (Chapman, C. C. & Ce.) 1879:' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48499,9 +48633,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0962",
     "data/research/newberry_index/leads.json"
@@ -48521,10 +48656,10 @@
   {
    "record_id": "nbi_v02_0963",
    "a": "H l Hill | O^I Cicago, III. Second Pretb. Cb., 1842-92. (Craol,",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | O^I Cicago, III. Second Pretb. Cb., 1842-92. (Craol,' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'H l Hill | O^I Cicago, III. Second Pretb. Cb., 1842-92. (Craol,' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48534,9 +48669,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0963",
     "data/research/newberry_index/leads.json"
@@ -48556,10 +48692,10 @@
   {
    "record_id": "nbi_v02_0964",
    "a": "Hill | . l —Madlton Co., III. (Brink, W. R. & Co., Pubt)",
-   "b": "Edmond Hill; Isaac L. Hill",
+   "b": "Edmond Hill; Isaac L. Hill; Levi Hills",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hill | . l —Madlton Co., III. (Brink, W. R. & Co., Pubt)' against Edmond Hill; Isaac L. Hill.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 10 card(s) heading 'H l Hill/Hill/jOi f Hill' name Chicago or Cook County, the heading is the surname of Edmond Hill exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hill | . l —Madlton Co., III. (Brink, W. R. & Co., Pubt)' against Edmond Hill; Isaac L. Hill; Levi Hills.",
    "layers": [
     "census_1840",
     "residents"
@@ -48569,9 +48705,10 @@
     "lead_v02_hill_residents"
    ],
    "person_ids": [
-    "hill_isaac_l"
+    "hill_isaac_l",
+    "hills_levi"
    ],
-   "person_id": "hill_isaac_l",
+   "person_id": null,
    "evidence": [
     "nbi_v02_0964",
     "data/research/newberry_index/leads.json"
@@ -48585,6 +48722,171 @@
     ],
     "index_page": 540,
     "column": 3
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v02_1018",
+   "a": "Hoffman | . .. Cook Co., 111. (Andreas, A. T.! 1884 1476,",
+   "b": "H. B. Hoffman",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 4 of the 5 card(s) heading 'Hoffman/ndex Hoffman' name Chicago or Cook County, the heading is the surname of H. B. Hoffman exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hoffman | . .. Cook Co., 111. (Andreas, A. T.! 1884 1476,' against H. B. Hoffman.",
+   "layers": [
+    "residents"
+   ],
+   "leads": [
+    "lead_v02_hoffman_residents"
+   ],
+   "person_ids": [
+    "hoffman_h_b"
+   ],
+   "person_id": "hoffman_h_b",
+   "evidence": [
+    "nbi_v02_1018",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_02",
+    "text_file": "vol_02_locality_cards.txt",
+    "lines": [
+     2041,
+     2042
+    ],
+    "index_page": 577,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v02_1019",
+   "a": "Hoffman | . uS'ilta Co., III. (Baldwin, E.) I877i 36«.",
+   "b": "H. B. Hoffman",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 4 of the 5 card(s) heading 'Hoffman/ndex Hoffman' name Chicago or Cook County, the heading is the surname of H. B. Hoffman exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Hoffman | . uS'ilta Co., III. (Baldwin, E.) I877i 36«.\" against H. B. Hoffman.",
+   "layers": [
+    "residents"
+   ],
+   "leads": [
+    "lead_v02_hoffman_residents"
+   ],
+   "person_ids": [
+    "hoffman_h_b"
+   ],
+   "person_id": "hoffman_h_b",
+   "evidence": [
+    "nbi_v02_1019",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_02",
+    "text_file": "vol_02_locality_cards.txt",
+    "lines": [
+     2043,
+     2044
+    ],
+    "index_page": 577,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v02_1020",
+   "a": "Hoffman | Chicago, III. (Moses, J, nnl Kirkland, J.) 1095:",
+   "b": "H. B. Hoffman",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 4 of the 5 card(s) heading 'Hoffman/ndex Hoffman' name Chicago or Cook County, the heading is the surname of H. B. Hoffman exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hoffman | Chicago, III. (Moses, J, nnl Kirkland, J.) 1095:' against H. B. Hoffman.",
+   "layers": [
+    "residents"
+   ],
+   "leads": [
+    "lead_v02_hoffman_residents"
+   ],
+   "person_ids": [
+    "hoffman_h_b"
+   ],
+   "person_id": "hoffman_h_b",
+   "evidence": [
+    "nbi_v02_1020",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_02",
+    "text_file": "vol_02_locality_cards.txt",
+    "lines": [
+     2045,
+     2046
+    ],
+    "index_page": 577,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v02_1021",
+   "a": "Hoffman | Cook Co.. 14. (La Salle Bock Co., Pub,) lOO\").",
+   "b": "H. B. Hoffman",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 4 of the 5 card(s) heading 'Hoffman/ndex Hoffman' name Chicago or Cook County, the heading is the surname of H. B. Hoffman exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hoffman | Cook Co.. 14. (La Salle Bock Co., Pub,) lOO\").' against H. B. Hoffman.",
+   "layers": [
+    "residents"
+   ],
+   "leads": [
+    "lead_v02_hoffman_residents"
+   ],
+   "person_ids": [
+    "hoffman_h_b"
+   ],
+   "person_id": "hoffman_h_b",
+   "evidence": [
+    "nbi_v02_1021",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_02",
+    "text_file": "vol_02_locality_cards.txt",
+    "lines": [
+     2047,
+     2048
+    ],
+    "index_page": 577,
+    "column": 1
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v02_1022",
+   "a": "ndex Hoffman | , Cook Co.. III. (Le Salle Book Co., Pub.) I9P0.",
+   "b": "H. B. Hoffman",
+   "outcome": "candidate",
+   "class": "testable_in_a_held_work",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 4 of the 5 card(s) heading 'Hoffman/ndex Hoffman' name Chicago or Cook County, the heading is the surname of H. B. Hoffman exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'ndex Hoffman | , Cook Co.. III. (Le Salle Book Co., Pub.) I9P0.' against H. B. Hoffman.",
+   "layers": [
+    "residents"
+   ],
+   "leads": [
+    "lead_v02_hoffman_residents"
+   ],
+   "person_ids": [
+    "hoffman_h_b"
+   ],
+   "person_id": "hoffman_h_b",
+   "evidence": [
+    "nbi_v02_1022",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_02",
+    "text_file": "vol_02_locality_cards.txt",
+    "lines": [
+     2049,
+     2050
+    ],
+    "index_page": 578,
+    "column": 2
    },
    "ticket": "T-0590"
   },
@@ -72349,18 +72651,22 @@
   {
    "record_id": "nbi_v02_0751",
    "a": "Hatch | Ogle Co., III. (Kelt, H. ,F., & Ca.) 78781 640.",
-   "b": "[?] Hatch",
+   "b": "[?] Hatch; Luther Hatch",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Hatch' name Illinois and neither Chicago nor Cook County, so the lead against [?] Hatch stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Hatch | Ogle Co., III. (Kelt, H. ,F., & Ca.) 78781 640.' against [?] Hatch.",
+   "rule": "Refused. All 2 card(s) heading 'Hatch' name Illinois and neither Chicago nor Cook County, so the lead against [?] Hatch stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Hatch | Ogle Co., III. (Kelt, H. ,F., & Ca.) 78781 640.' against [?] Hatch; Luther Hatch.",
    "layers": [
-    "census_1840"
+    "census_1840",
+    "residents"
    ],
    "leads": [
-    "lead_v02_hatch_census_1840"
+    "lead_v02_hatch_census_1840",
+    "lead_v02_hatch_residents"
    ],
-   "person_ids": [],
-   "person_id": null,
+   "person_ids": [
+    "hatch_luther"
+   ],
+   "person_id": "hatch_luther",
    "evidence": [
     "nbi_v02_0751",
     "data/research/newberry_index/leads.json"
@@ -72380,18 +72686,22 @@
   {
    "record_id": "nbi_v02_0752",
    "a": "Hatch | PU,. Co., ill. (Chapman, C C. A(_,Pj__ W60i",
-   "b": "[?] Hatch",
+   "b": "[?] Hatch; Luther Hatch",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Hatch' name Illinois and neither Chicago nor Cook County, so the lead against [?] Hatch stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Hatch | PU,. Co., ill. (Chapman, C C. A(_,Pj__ W60i' against [?] Hatch.",
+   "rule": "Refused. All 2 card(s) heading 'Hatch' name Illinois and neither Chicago nor Cook County, so the lead against [?] Hatch stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Hatch | PU,. Co., ill. (Chapman, C C. A(_,Pj__ W60i' against [?] Hatch; Luther Hatch.",
    "layers": [
-    "census_1840"
+    "census_1840",
+    "residents"
    ],
    "leads": [
-    "lead_v02_hatch_census_1840"
+    "lead_v02_hatch_census_1840",
+    "lead_v02_hatch_residents"
    ],
-   "person_ids": [],
-   "person_id": null,
+   "person_ids": [
+    "hatch_luther"
+   ],
+   "person_id": "hatch_luther",
    "evidence": [
     "nbi_v02_0752",
     "data/research/newberry_index/leads.json"

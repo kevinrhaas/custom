@@ -10087,7 +10087,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 725 people
+**Scope:** `residents.persons[letter_list_only]` — 749 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10114,6 +10114,22 @@ dated returns behind it — so a name printed on the scene date can be told from
 eighteen months earlier. `--gate` refuses a roof, a trade, a second member, a manifest row that
 drops the flag and a structure record that names one of them; `--self-test` breaks each of those
 seven assertions and requires the gate to fire.
+
+**And twenty-four have joined it, off a page image rather than a transcription.** T-0424 read
+the ninth impression of the 1 January 1834 return at the scan and counted 170 printed lines;
+T-1010 put that roster beside the extractions and found 54 lines reaching no card at all, because
+the crops the extraction pass read carry an advertisement interleaved through the list and it
+swallowed them. They were never refused — no rule had seen them. T-1011 made the printed line a
+pool of this pass's own, put all 54 through the same refusals in the list's own printed order, and
+the refusals admitted 24: the count goes from 725 to 749. Nothing about the liberty changes, only
+its size — these are the same kind of claim, a name on the same return, and they carry
+`read_at_image` naming the roster, the printed line and the impression, because the reading is the
+SCAN's and not a transcription's. The cost is recorded where it falls: three of the 24 stand beside
+a card minted from a transcription of the same return whose letters differ by more than the
+concordance's tie rules admit (Beers/Heere, Center/Conte, Forrister/Forster), so the town very
+likely holds one addressee twice in three places. That is registered as a suspicion in
+`data/research/residents/letter_list_reading_suspicions.json` and resolved nowhere — it is a
+reading question (T-1016), and the pattern above is how it will leave if it is one man.
 
 **One has left the set, and the way it left is the pattern.** `N. R. Norton` was minted here
 from a single return of 1 July 1835 and carried nothing else. T-0723 ruled it the same man as
