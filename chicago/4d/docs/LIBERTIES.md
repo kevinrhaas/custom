@@ -11042,3 +11042,47 @@ invented) · **L45** and **L47** (the fort's other `geometry: absent` declaratio
 (no figure is drawn) · tickets **T-0882** (this), **T-0758** (the parent), **T-0883** (the
 three buildings off the same sheet).
 **Recorded:** 2026-09-06 (T-0882).
+
+### L230 — Not one of the town's wagons stands square, and by how much each is off is dealt from its own id
+**Decision:** every one of the town's 65 derived wagons is turned off the bearing the
+placement rule gives it by an angle of its own — **up to 6 degrees** where it is drawn up
+*along* a road, **up to 12 degrees** where it is backed *square* to one, and **up to 15
+degrees** in a working yard. The angle is not chosen and not random: it is dealt from the
+wagon's own id by the same sha1 `_rank` that deals every other invented attribute on this
+layer, walked across the envelope in nine steps, so **the middle step is dead square** and
+ten of the sixty-five still stand exactly on the derived bearing. It re-derives byte for
+byte, and `tools/check.sh` proves that it does. It is recorded per wagon as `slew_deg`, and
+every wagon's own note says how far it was turned and inside what envelope.
+**Why:** the rule stands a wagon square to the thing it serves — the road's own bearing, or
+the yard's long axis — because that is the only line the committed data gives it. That is
+where a rule PUTS a wagon; it is not how a wagon that has been left standing actually sits.
+There was no kerb to square to in 1835: the verge was mud and grass, and a man who has
+backed a loaded box up to a door and dropped the tongue leaves it where it stopped. The
+envelope is graded by how hard the manoeuvre was — smallest along a road, which lines the
+wagon up itself; larger for backing square to one, which a driver judges over his shoulder;
+widest in a yard, which offers no line to work to at all.
+**This is a claim about how the town LOOKED, which is why it is written here** and not
+quietly inside a generator. Nothing attests it. No plate in this project's corpus shows a
+Chicago street wagon at a measurable angle to a known street line, and the three numbers
+above are invented — they are a judgement that a town of sixty-five wagons all agreeing to
+the degree reads as a fleet parked by a surveyor rather than as vehicles left where their
+drivers stopped.
+**What it cost, and this is the honest part:** the stand's own offset from the centreline
+had to grow with the slew. It was set so a *squared* wagon cleared the travelled track by
+1.00 m with 0.05 m to spare; slew such a wagon and a corner 4 m from its stand swings into
+the roadway, which `_stand_refusal` refuses. So `_lateral_reach` now sets each stand back by
+the greatest perpendicular reach of the *slewed* rectangle, corner included. **Not one
+clearance was weakened to let this in**: every wagon still stands the full 1.00 m clear of
+every travelled track, 1.00 m clear of every committed footprint, off every plank walk and
+out of every garden and pen. An askew wagon simply takes more of the verge, which is what a
+verge is for — and the town still stands 65 of them, on 17 streets, over 1,236 m of
+east-west spread.
+**How to resolve:** any dated view of a Chicago street with a standing vehicle in it and a
+street line to measure against would replace all three envelopes with a reading. Failing
+that, a traveller's description of the town's streets that speaks to how vehicles stood in
+them would at least grade the judgement.
+Related: **L162** (the sixty-four wagons themselves, and the rule that stands them) · **L1**
+(no figure and no team is drawn, which is why they stand unhitched) · tickets **T-0836**
+(this, and the smoke red that found it), **T-0825** (folded into it), **T-0688** (the gate's
+own floor of eight distinct headings), **T-0064** (the town's wagons).
+**Recorded:** 2026-09-11 (T-0836).

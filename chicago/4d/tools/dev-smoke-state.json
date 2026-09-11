@@ -3,38 +3,6 @@
   "readings": [
     {
       "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 168,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 305,
-      "takenAt": "2026-09-11T09:00:50.958Z",
-      "ref": "steward/t-0830-dalton-cook-1836",
-      "commit": "dc7822c014c9",
-      "devCommit": "cf8922e46d0d",
-      "treeHash": "sha256:d3e59b15e1e31752",
-      "treeDirty": false,
-      "changelogHash": "sha256:6601b5174ad41320",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          3.2,
-          2.5
-        ]
-      },
-      "source": "/tmp/smoke_m1213b.log"
-    },
-    {
-      "viewport": "desktop",
       "stage": "13",
       "parts": [
         13
@@ -44,59 +12,28 @@
       "passed": 110,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 338,
-      "takenAt": "2026-09-11T08:44:27.065Z",
-      "ref": "steward/t-0830-dalton-cook-1836",
-      "commit": "a4ad0084b1ae",
+      "wallSeconds": 137,
+      "takenAt": "2026-09-11T08:58:01.659Z",
+      "ref": "steward/t-0836-wagons-stand-askew",
+      "commit": "d0c0b04e5180",
       "devCommit": "45cb6cc958f1",
-      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeHash": "sha256:daf880ce2c4db317",
       "treeDirty": false,
-      "changelogHash": "sha256:4e29639f2d036d16",
+      "changelogHash": "sha256:a07b5320dc72a905",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          2.6,
-          3.8,
-          2.8
+          4.8,
+          4.5,
+          3.3
         ]
       },
-      "source": "/tmp/smoke_d13.log"
+      "source": "/tmp/smoke_m13.log"
     },
     {
       "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 250,
-      "takenAt": "2026-09-11T08:44:26.971Z",
-      "ref": "steward/t-0830-dalton-cook-1836",
-      "commit": "a4ad0084b1ae",
-      "devCommit": "45cb6cc958f1",
-      "treeHash": "sha256:3121cd5f0bfec7ae",
-      "treeDirty": false,
-      "changelogHash": "sha256:4e29639f2d036d16",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.6,
-          3.8,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
       "stage": "12-13",
       "parts": [
         12,
@@ -107,25 +44,90 @@
       "passed": 168,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 306,
-      "takenAt": "2026-09-11T08:44:26.878Z",
-      "ref": "steward/t-0830-dalton-cook-1836",
-      "commit": "a4ad0084b1ae",
+      "wallSeconds": 422,
+      "takenAt": "2026-09-11T08:55:40.736Z",
+      "ref": "steward/t-0836-wagons-stand-askew",
+      "commit": "d0c0b04e5180",
       "devCommit": "45cb6cc958f1",
-      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeHash": "sha256:daf880ce2c4db317",
       "treeDirty": false,
-      "changelogHash": "sha256:4e29639f2d036d16",
+      "changelogHash": "sha256:a07b5320dc72a905",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          2.6,
-          3.8,
-          2.8
+          4.4,
+          4.3,
+          3.1
         ]
       },
-      "source": "/tmp/smoke_m1213.log"
+      "source": "/tmp/smoke_d1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "2-3,12",
+      "parts": [
+        2,
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 214,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 252,
+      "takenAt": "2026-09-11T08:48:34.606Z",
+      "ref": "steward/t-0836-wagons-stand-askew",
+      "commit": "d0c0b04e5180",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:daf880ce2c4db317",
+      "treeDirty": false,
+      "changelogHash": "sha256:a07b5320dc72a905",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3.7,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_m2312.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 156,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 283,
+      "takenAt": "2026-09-11T08:44:15.512Z",
+      "ref": "steward/t-0836-wagons-stand-askew",
+      "commit": "d0c0b04e5180",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:daf880ce2c4db317",
+      "treeDirty": false,
+      "changelogHash": "sha256:a07b5320dc72a905",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          2.9,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
     },
     {
       "viewport": "desktop",
@@ -1301,6 +1303,102 @@
       "source": "/tmp/smoke_desk1.log"
     },
     {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 239,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 374,
+      "takenAt": "2026-09-10T22:44:42.508Z",
+      "ref": "steward/t-0424-letter-list-image-read",
+      "commit": "8e7c7092e5f6",
+      "devCommit": "8c260130fcaa",
+      "treeHash": "sha256:29ae74c780887f82",
+      "treeDirty": false,
+      "changelogHash": "sha256:7d26c163eefddd35",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1,
+          1.2,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_mobile.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 234,
+      "takenAt": "2026-09-10T22:31:56.998Z",
+      "ref": "steward/t-0849-external-kin-parentage",
+      "commit": "28907c90dcc6",
+      "devCommit": "8c260130fcaa",
+      "treeHash": "sha256:65159be2c15d3a84",
+      "treeDirty": false,
+      "changelogHash": "sha256:6a5d3eb7d2072e95",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.4,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 278,
+      "takenAt": "2026-09-10T22:31:56.920Z",
+      "ref": "steward/t-0849-external-kin-parentage",
+      "commit": "28907c90dcc6",
+      "devCommit": "8c260130fcaa",
+      "treeHash": "sha256:65159be2c15d3a84",
+      "treeDirty": false,
+      "changelogHash": "sha256:6a5d3eb7d2072e95",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.4,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "9",
       "parts": [
@@ -1392,40 +1490,6 @@
         ]
       },
       "source": "/tmp/smoke_d1.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3",
-      "parts": [
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 155,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
-      ],
-      "wallSeconds": 274,
-      "takenAt": "2026-09-07T01:48:59.877Z",
-      "ref": "steward/t-0723-honorific-split-norton-dedupe",
-      "commit": "47fe70766f0f",
-      "devCommit": "6aba9d39cf0d",
-      "treeHash": "sha256:2d1931ad427e1f18",
-      "treeDirty": false,
-      "changelogHash": "sha256:055e83aafd8dcae9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          3.4,
-          2
-        ]
-      },
-      "source": "/tmp/smoke_d23.log"
     },
     {
       "viewport": "desktop",
@@ -1661,73 +1725,6 @@
       "source": "/tmp/smoke_m1.log"
     },
     {
-      "viewport": "desktop",
-      "stage": "2-3",
-      "parts": [
-        2,
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 150,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 346,
-      "takenAt": "2026-09-04T23:36:13.840Z",
-      "ref": "steward/t-0596-indian-trade-ruling",
-      "commit": "094c6397c204",
-      "devCommit": "5b917815adb9",
-      "treeHash": "sha256:81049d4f0671ea56",
-      "treeDirty": false,
-      "changelogHash": "sha256:4a6e9caac1db7645",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          3.3,
-          3
-        ]
-      },
-      "source": "/tmp/smoke_d23b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-5",
-      "parts": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 256,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 562,
-      "takenAt": "2026-09-04T23:21:00.043Z",
-      "ref": "steward/t-0596-indian-trade-ruling",
-      "commit": "cd93965e50b4",
-      "devCommit": "36d1dde22287",
-      "treeHash": "sha256:8b8a1e1994bf4622",
-      "treeDirty": false,
-      "changelogHash": "sha256:e25713eeee1a86a9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.5,
-          3.8
-        ]
-      },
-      "source": "/tmp/smoke_m15.log"
-    },
-    {
       "viewport": "mobile",
       "stage": "6-10",
       "parts": [
@@ -1921,6 +1918,233 @@
         ]
       },
       "source": "/tmp/s_m5_8.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 168,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 305,
+      "takenAt": "2026-09-11T09:00:50.958Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "dc7822c014c9",
+      "devCommit": "cf8922e46d0d",
+      "treeHash": "sha256:d3e59b15e1e31752",
+      "treeDirty": false,
+      "changelogHash": "sha256:6601b5174ad41320",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          3.2,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_m1213b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 338,
+      "takenAt": "2026-09-11T08:44:27.065Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "a4ad0084b1ae",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeDirty": false,
+      "changelogHash": "sha256:4e29639f2d036d16",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.8,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 250,
+      "takenAt": "2026-09-11T08:44:26.971Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "a4ad0084b1ae",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeDirty": false,
+      "changelogHash": "sha256:4e29639f2d036d16",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.8,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 168,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 306,
+      "takenAt": "2026-09-11T08:44:26.878Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "a4ad0084b1ae",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeDirty": false,
+      "changelogHash": "sha256:4e29639f2d036d16",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.8,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_m1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 155,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the town's wagons vary in type and in the way they stand — 24 farm_box, 19 cart, 23 covered; 6 distinct heading(s) to the nearest 5 degrees"
+      ],
+      "wallSeconds": 274,
+      "takenAt": "2026-09-07T01:48:59.877Z",
+      "ref": "steward/t-0723-honorific-split-norton-dedupe",
+      "commit": "47fe70766f0f",
+      "devCommit": "6aba9d39cf0d",
+      "treeHash": "sha256:2d1931ad427e1f18",
+      "treeDirty": false,
+      "changelogHash": "sha256:055e83aafd8dcae9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.3,
+          3.4,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 150,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 346,
+      "takenAt": "2026-09-04T23:36:13.840Z",
+      "ref": "steward/t-0596-indian-trade-ruling",
+      "commit": "094c6397c204",
+      "devCommit": "5b917815adb9",
+      "treeHash": "sha256:81049d4f0671ea56",
+      "treeDirty": false,
+      "changelogHash": "sha256:4a6e9caac1db7645",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          3.3,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d23b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-5",
+      "parts": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 256,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 562,
+      "takenAt": "2026-09-04T23:21:00.043Z",
+      "ref": "steward/t-0596-indian-trade-ruling",
+      "commit": "cd93965e50b4",
+      "devCommit": "36d1dde22287",
+      "treeHash": "sha256:8b8a1e1994bf4622",
+      "treeDirty": false,
+      "changelogHash": "sha256:e25713eeee1a86a9",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.5,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_m15.log"
     }
   ]
 }
