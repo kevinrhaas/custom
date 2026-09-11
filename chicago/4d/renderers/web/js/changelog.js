@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two men bought one lot, and the register wrote it once', kind: 'fix', ts: '',
+  { v: 737, title: 'Two men bought one lot, and the register wrote it once', kind: 'fix', ts: '2026-09-11T19:48:35.493Z', date: 'Sep 11, 2026, 2:48 PM CT',
     items: [
       'The 619 town lots sold at the auctions of 1830 and 1836 are 619 lines in a clerk\u2019s register, and a line is not a piece of ground. Some lots appear two, three and four times over \u2014 one is entered three times for A. Garrett at $940, $940 and $1,880 \u2014 which looked like the same sale written down twice, the answer the same question got when it was asked of the school section south of town.',
       'It is not. The one count that settles it: in forty repeated lots, the register never once repeats a BUYER\u2019S NAME. Every repeat is two, three or four different men. What they are is a joint purchase, entered as one line per buyer, each line carrying that man\u2019s share of the price rather than the whole of it.',
