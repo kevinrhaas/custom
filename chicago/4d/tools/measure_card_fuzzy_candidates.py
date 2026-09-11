@@ -23,13 +23,17 @@ it subtracts the pairs the exact test already proposes, and prints what is left.
 MEASUREMENT and not a proposal: nothing here changes `clusters()`, and running it changes
 no committed file.
 
-THE ANSWER IT GIVES, measured on the tree that shipped T-1002 — quoted rather than gated
-for equality, because the residents layer grows on almost every ticket:
+THE ANSWER IT GIVES — quoted rather than gated for equality, because the residents layer
+grows on almost every ticket. Measured on the tree T-1002 read, BEFORE its three merges:
 
     1,376 cards that name somebody
        21 pairs the exact candidate test already proposes
        71 pairs a one-letter test would ADD — 63 on the surname, 8 on the forename
-       12 of those 71 already carry a written ruling, T-1002's three among them
+       12 of those 71 already carry a written ruling
+
+and on the tree that ticket shipped, with its three folded away: 1,373 cards and 68 pairs,
+62 on the surname and 6 on the forename. The three the ticket ruled are gone from the list
+because the cards are one card each now, which is the only way a pair leaves it.
 
 SO THE CLASS IS NOT THREE, AND IT IS NOT THE 71 EITHER. Read the list and it falls into
 three kinds that want three different answers, which is why T-1002 rules its three and
