@@ -1,7 +1,7 @@
 ---
 id: T-0987
 title: The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 7:37:44 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34599438377
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -268,3 +268,87 @@ for fewer tickets. **Stretch 3 is the Fergus 1839 ties — 73, the largest pool 
 nearest the scene** — and it should check first whether that crosswalk, like this one, has never
 been offered the discriminator at all: `tools/crosswalk_fergus_1839.py` does not import
 `tiebreak` either, so T-0696's ruling still has no reach over the biggest pool of the four.
+
+## Stretch 3, 2026-09-11 — Fergus 1839's ties, and the rule that had never been run on them
+
+**The stretch:** the ties of `fergus_1839_crosswalk_1835.json` — 44 ambiguous and 29
+contested, 73 of the 172 the stretch above re-counted, and the largest of the four pools.
+This is the stretch the run above nominated, down to the reason it gave: "it should check
+first whether that crosswalk, like this one, has never been offered the discriminator at
+all." It had not. Bounded to one directory's resident ties; nothing was read off a page
+image. Worked in parallel with that run, which is why the Norris advertiser pool it took is
+untouched here.
+
+**What was actually wrong, found before anything was ruled.** T-0696's discriminator and
+T-0670's forename rule are both landed, both gated in `check.sh`, and both imported rather
+than restated — and NEITHER had ever been wired into `tools/crosswalk_fergus_1839.py`.
+`crosswalk_fergus_1843.py` and `crosswalk_norris_1844.py` import them; the 1839 file
+imported only `trade_recorded`. So the largest tie pool in the programme had never met
+either ruling.
+
+Running the discriminator FIRST, before the forename rule, is what showed why the order
+matters. It narrowed 8 of the 73 ties, and two of the eight were wrong in the same way:
+
+> `Taylor, Augustin Deodat, carpenter and builder, 74 Lake st` was named for **both**
+> Anson H. Taylor and Augustine Deodat Taylor, each an attested 1835 carpenter. One
+> printed line, two people of 1835 — which is the CONTESTED shape the matching rule
+> refuses by construction, manufactured by a discriminator weighing a line whose own
+> forename contradicts one of the two names.
+
+`Madore Benjamin Beaubien` was the other: narrowed onto `Beaubien, Medard B., merchant` on
+a trade agreement, across a forename disagreement T-0670 refuses outright. Medard Beaubien
+is a third card this town holds (T-1026).
+
+**So the guard landed first, and the ruling second.**
+
+1. `name_agreement.py` (T-0670) is applied to the residents pool: **75 refusals filed**,
+   0 against a garbled reading, 39 residents left with no 1839 entry at all by it. The
+   refusals are in `residents.forename_refusals`, each naming its clause and both
+   forenames. Scope is the residents pool only — `forename_rule_scope` on the file says
+   why: the three list pools mint nobody here and belong to T-0513/T-0514/T-0515.
+2. `tiebreak.py` (T-0696) then reads what is left: **4 ties narrowed by a trade**, 30 left
+   standing with `discriminator` stating on the record why the trade named two sides or
+   none. Every one of the 34 surviving ties carries a ruling; nothing is silent.
+3. A third gate is added because the invariant is worth keeping after its cause is gone:
+   a narrowing may not name one printed line for two people of 1835. It reads 0 now that
+   T-0670 runs first, and `narrowings_withdrawn_as_a_collision` is where it would show.
+
+**Measured, before and after:**
+
+| | before | after |
+|---|---|---|
+| resident ties (ambiguous + contested) | 44 + 29 = **73** | 22 + 12 = **34** |
+| resident matches | 158 | **158** — 22 withdrawn, 22 arrived |
+| forename refusals filed | 0 (rule not run) | **75** |
+| ties narrowed by a trade | 0 (rule not run) | **4** |
+| business street faces (L218) | 15 | **18** |
+| residence street faces (L223) | 8 | **6** |
+| directories `unwritten` (clause 3) | 0 | **0** |
+
+**What a reader can see.** Three businesses of 1835 reach a street they had no position
+on: **Mark Beaubien** on Lake Street, **James Kinzie** on Canal Street, and **Richard J.
+Hamilton**, clerk of the circuit court, on the Clark and Randolph corner Fergus prints —
+all carried four years, the narrowest gap in L218's set, and all three had been sitting in
+the tie pool. Going the other way, **Charles L. Bristol**'s card loses the 1839 trade
+`canal contractor`, which was read off `Bristol, Calvin, canal contractor` — the exact
+instance T-0670's own docstring names as the defect it was written for — and
+**`jones_es_high`** loses a Randolph Street house that stood on `Jones, Hiram`. The rule
+gives where the printed name is the man's and takes where it is not, and both directions
+are the same measurement.
+
+**The pools after this stretch**, for the next one to order itself by:
+
+```
+  ties                        34 (1839, was 73) · 58 (1843) · 39 (1844) · 21 (1844 ad)  = 152
+  initial-absent refusals    277 · 349 · 335 · 140                                     = 1,101
+  forename-disagreed          75 (1839, NEW — the rule ran) · 94 · 48                  = 217
+```
+
+**Stretch 4 is the 1839 volume's could-carry pool, 92 trades and 96 streets on matched
+entries** — the third of this ticket's four pools, now that the matched set it is drawn from
+has been corrected rather than merely counted, and `trade_recorded.absent` (T-0867) is the
+predicate that says which of them the 1835 layer has room for. The ties that remain are 34
+here, 58 in Fergus 1843, 39 in Norris 1844 and 11 in its advertiser cards: 142, each one
+carrying a written reason. No successor ticket is filed — `tickets/README.md` puts the
+succession on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10
+asks for fewer tickets. This ticket stays open and is its own cursor.
