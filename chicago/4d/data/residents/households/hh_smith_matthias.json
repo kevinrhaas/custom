@@ -60,13 +60,13 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "clerk",
-     "describes_date": 1839,
+     "value": "teacher public school 3, district 4",
+     "describes_date": 1843,
      "confidence": "attested",
      "sources": [
-      "fergus_chicago_directory_1839"
+      "fergus_chicago_directory_1843"
      ],
-     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1843. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1843 is evidence about 1843. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1843\" are not the same fact (T-0693)."
     },
     "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
@@ -108,22 +108,21 @@
  "review_required": false,
  "research_note": "MINTED FROM THE CONSOLIDATED CIVIC, CHURCH, PRESS, BOOK AND CENSUS EVIDENCE (T-0513, T-0514). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here is written unattested in its own block, because the lists that name this person name a person and not a family. What is claimed is that the sources cited on the member below name them at Chicago, and the grade is the owner's ratified ladder applied by tools/consolidate_resident_evidence.py --build and spent by tools/mint_civic_residents.py, which prints every refusal. docs/LIBERTIES.md L215 carries the liberty and the tension with L213.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. smith_matthias, Fergus's Chicago directory of 1839 — f1839_e1372 (a single entry); smith_matthias, Fergus's Chicago directory of 1843 — f1843_e2305 (a single entry).",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. smith_matthias, Fergus's Chicago directory of 1843 — f1843_e2305 (a single entry).",
   "sources": [
-   "fergus_chicago_directory_1839",
    "fergus_chicago_directory_1843"
   ],
   "people": [
    {
     "person_id": "smith_matthias",
     "occupation_later": {
-     "value": "clerk",
+     "value": "teacher public school 3, district 4",
      "confidence": "attested",
-     "describes_date": 1839,
+     "describes_date": 1843,
      "sources": [
-      "fergus_chicago_directory_1839"
+      "fergus_chicago_directory_1843"
      ],
-     "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Smith, Marcellus B., clerk,'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+     "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Smith, Miss M., teacher public school 3, district 4'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
     }
    }
   ]
