@@ -12,11 +12,11 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 162,
+  "matched_rulings": 161,
   "people_written": 125,
   "households_touched": 123,
   "grades_changed": 0,
-  "entries_carried": 619,
+  "entries_carried": 618,
   "acres_carried": 15179.04,
   "school_section_parcels_carried": 154,
   "matched_more_than_once": 31
@@ -25,7 +25,7 @@
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 485
+   "rulings": 486
   },
   {
    "rule": "L2",
@@ -6691,20 +6691,18 @@
    "source_id": "isa_public_domain_land_tract_sales",
    "purchaser_spellings": [
     "WRIGHT T G",
-    "WRIGHT TRUMAN G",
-    "WRIGHT T"
+    "WRIGHT TRUMAN G"
    ],
    "rules": [
     "WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only.",
-    "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees in full.",
-    "WRIGHT T matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only."
+    "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees in full."
    ],
    "totals": {
-    "entries": 12,
+    "entries": 11,
     "acres": 90.61,
-    "dollars": 22382.0,
+    "dollars": 21482.0,
     "first_purchase": "1833-10-22",
-    "last_purchase": "1836-06-28",
+    "last_purchase": "1836-06-24",
     "tracts": [
      "SWFR sec 34 T40N R14E",
      "W2NW sec 08 T40N R14E"
@@ -6720,10 +6718,9 @@
     "town_plat_lots": [
      "lot 1 of block 52 in the town the register codes CHIOTV (L1BL52CHIOTV, as printed)",
      "lot 2 of block 52 in the town the register codes CHIOTV (L2BL52CHIOTV, as printed)",
-     "lot 7 of block 5 in the town the register codes CHI (L7BL5CHI, as printed)",
      "lot 7 of block 57 in the town the register codes CHIOT (L7BL57CHIOT, as printed)"
     ],
-    "town_plat_dollars": 20910.0,
+    "town_plat_dollars": 20010.0,
     "residence_as_read": [
      "UNKNOWN"
     ]
@@ -6904,25 +6901,9 @@
      "purchase_no": "0021044",
      "volume": "687",
      "page": "272"
-    },
-    {
-     "record_id": "ls1568",
-     "as_read": "WRIGHT T",
-     "date_purchased": "1836-06-28",
-     "acres": "0000.00",
-     "total_price": "900.00",
-     "type_of_sale": "canal land sale",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "lot 7 of block 5 in the town the register codes CHI (L7BL5CHI, as printed)",
-     "resolves": "town_plat_lot",
-     "sale_kind": "town_plat_lot",
-     "purchase_no": "0384681",
-     "volume": "L5A",
-     "page": "025"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 12 times, as “WRIGHT T G”, “WRIGHT TRUMAN G”, “WRIGHT T”, 1833-10-22 to 1836-06-28: 2 federal land entries — SWFR sec 34 T40N R14E; W2NW sec 08 T40N R14E and 4 lots in the platted town — lot 1 of block 52 in the town the register codes CHIOTV (L1BL52CHIOTV, as printed); lot 2 of block 52 in the town the register codes CHIOTV (L2BL52CHIOTV, as printed); lot 7 of block 5 in the town the register codes CHI (L7BL5CHI, as printed); lot 7 of block 57 in the town the register codes CHIOT (L7BL57CHIOT, as printed) and 6 parcels of the school section — BL51 of the school section (sec 16 T39N R14E), as read; BL69 of the school section (sec 16 T39N R14E), as read; lot 1 of block 70 of the school section (sec 16 T39N R14E); lot 2 of block 70 of the school section (sec 16 T39N R14E); lot 3 of block 70 of the school section (sec 16 T39N R14E); lot 4 of block 70 of the school section (sec 16 T39N R14E), 90.61 acres stated in all, for $22382.00 (ls0393, ls0394, ls0395, ls0396, ls0397, ls0398, ls1569, ls1570, ls1571, ls0518, ls0566, ls1568). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $20910.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 11 times, as “WRIGHT T G”, “WRIGHT TRUMAN G”, 1833-10-22 to 1836-06-24: 2 federal land entries — SWFR sec 34 T40N R14E; W2NW sec 08 T40N R14E and 3 lots in the platted town — lot 1 of block 52 in the town the register codes CHIOTV (L1BL52CHIOTV, as printed); lot 2 of block 52 in the town the register codes CHIOTV (L2BL52CHIOTV, as printed); lot 7 of block 57 in the town the register codes CHIOT (L7BL57CHIOT, as printed) and 6 parcels of the school section — BL51 of the school section (sec 16 T39N R14E), as read; BL69 of the school section (sec 16 T39N R14E), as read; lot 1 of block 70 of the school section (sec 16 T39N R14E); lot 2 of block 70 of the school section (sec 16 T39N R14E); lot 3 of block 70 of the school section (sec 16 T39N R14E); lot 4 of block 70 of the school section (sec 16 T39N R14E), 90.61 acres stated in all, for $21482.00 (ls0393, ls0394, ls0395, ls0396, ls0397, ls0398, ls1569, ls1570, ls1571, ls0518, ls0566). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $20010.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_brown_william_h",

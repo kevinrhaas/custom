@@ -928,6 +928,87 @@ exist in its scope, so a new firm would have crashed the build with a `NameError
 naming itself. It is meant to stop the build, and now it stops it by saying which spelling
 stopped it.
 
+## The town lots' own proposals, cohort A: the twenty the register had already been ruled on (T-1034)
+
+**T-1032 read the 619 town lots and T-1033 joined them to the crosswalk, and 72 new
+purchaser spellings arrived proposed and unruled** — the same arrival the widened surname
+rule made in T-0697, and adjudicated the same way, one bounded cohort per run, under
+T-1034. The `ruled` block read `upheld 89, named 1, refused 48, unruled 72` the morning
+this cohort started.
+
+**Cohort A is the twenty whose PERSON already carries a ruling under another spelling of
+the same name.** It is the natural first one for the reason cohort A of T-0990 was: it is
+where the register's abbreviate-and-expand habit is densest, so a judgement already made
+can be applied rather than re-argued — and, just as importantly, it is where applying one
+blindly would be wrong, because C1's BROWN WM rule says a spelling with no discriminating
+token is its own proposal however well the fuller spelling did. **Nineteen upheld, one
+refused.** Ruled 2026-09-11. `ruled` now reads `upheld 108, named 1, refused 49, unruled
+52`; matched 162 → 161, entries carried 619 → 618, one card retracted.
+
+| upheld | refused |
+|---|---|
+| BOTSFORD J K, CARPENTER P, EGAN W B, EGAN WILLIAM, FULLERTON A N, GOODHUE J C, HAMILTON R J, HUBBARD E K, HUBBARD GORDON S, KIMBERLY E S, KINZIE ROBERT, MARSH S, MERRILL G W, MULFORD J H, NEWBERRY W L, PRICE JERE, SHERMAN S W, TAYLOR E D, TEMPLE J T | WRIGHT T |
+
+**What the cohort taught, and cohort B should use it.**
+
+*The precedent is not the ruling.* Nineteen of the twenty carry a token the fuller spelling
+also carried — a middle initial (W B, A N, J C, R J, E K, GORDON **S**, E S, G W, W L, S W,
+E D, J T), a forename that is unique among everyone the corpus prints of that surname
+(CARPENTER **P**, MARSH **S**, PRICE **JERE**, MULFORD **J** H), or the register's own
+expansion of it. The twentieth, WRIGHT T, carries none, and Fergus 1839 prints TWO Wrights
+whose forename begins with T — Truman G. the speculator and Timothy of Michigan avenue.
+**Ask what the token is before reaching for the precedent**, because the precedent was
+bought with a token this reading may not have.
+
+*The register's SEQUENCE is a check, and this cohort is where it works.* These are town
+lots sold over ten days of one auction and entered block by block, so a bare spelling can
+be placed by where it sits rather than by how it is spelt. EGAN WILLIAM has no middle
+initial and would fail the BROWN WM test on paper; it is lot 4 of block 45 on 25 June 1836,
+entered among EGAN WILLIAM B's lots 5 and 7 of that block on that day, while the rival
+EGAN WILLIAM G stands on another block, another day and another leaf. EGAN W B is lot 2 of
+block 25 immediately before WILLIAM B takes lots 3 through 8 of it. **That is the PEARSONS
+argument, and the June 1836 sale hands it to you page by page** — the section deposits
+almost never do, because a ring tract has no neighbours in the book.
+
+*The town's own paper can be the source of the mis-spelling.* HUBBARD GORDON S looks like a
+different man until you read the Democrat of 13 August 1834, which prints "Gordon S.
+Hubbard" in the notice electing him a town trustee. A register spelling that the man's own
+newspaper also used is not evidence of a second man.
+
+*Three spellings the crosswalk does NOT propose turned up beside these and are left open,
+deliberately:* GOODHUE G J (two rows of block 49, 27 June 1836, beside J C's nine),
+KIMBERLY EDWARD (one row, where every printing of the physician reads Edmund), and
+NEWBERRY WALTER S (six rows of the 1833 school-section sale and an $11,950 lot on the same
+20 June 1836 as W L, and no volume of this corpus prints a Walter S. Newberry). Each may be
+a misreading of a spelling already ruled on, and none of them is ruled on here — a ruling
+this domain can only make on a proposal the crosswalk holds. The Newberry question is
+noted on T-0396, which already owns which Newberry the corpus is holding.
+
+**And the spend meter moved by ONE, not by twenty.** `measure_research_spend.py` anchors
+rulings through a domain's `crosswalk.json`; this domain adjudicates in
+`resident_rulings.json`, folded onto `resident_crosswalk.json`, which the second hop cannot
+see. So `land_sales` reads 1,572 read against 704 spent whatever a cohort does, and the
+ceiling came down 869 → 868. **That is the blind spot T-0962 named for census_1840, alive
+in this domain**, and it means the ceiling is not the measure of this ticket's progress —
+the crosswalk's own `ruled` block is.
+
+### NEXT
+
+**Cohort B — the twenty-four remaining proposals with NO namesake** (`rivals[]` empty).
+The crosswalk's `ruled` block reads **52 unruled**; cohort A took twenty of the
+seventy-two, and the fifty-two left split exactly twenty-four with an empty `rivals[]` and
+twenty-eight with one. Take the empty-`rivals` twenty-four next, as T-0990's cohort B did,
+then the twenty-eight by surname. They are HEACOCK RUSSEL E, HEACOCK RUSSELL E, FAY
+HARRISON K, CHURCH T JR, FINLEY CLEMENT A, FUNK ABSALOM, GARRETT A, GARRETT AUGUST, KEYES
+EDWARD, LOYD A, MACK STEPHEN, MCGREGOR A, MCKEE DAVID, OGDEN WILLIAM B, PEARSON HIRAM,
+ROBERTS E, ROBERTS EDMUND, RYAN THOMAS, SHEPHERD A, SHERWOOD S J, SPRING GILES, WELLMAKER
+JOHN, WILCOX DELAFAYETTE and WILSON JOHN S — and cohort B of T-0990 is the warning to read
+first: **an empty `rivals[]` is not safety**, it says the layer holds the surname once. Two
+pairs here are the register abbreviating and expanding the same man (HEACOCK, GARRETT,
+ROBERTS), and PEARSON HIRAM against the already-upheld PEARSONS HIRAM is a surname fold
+away from being one too. This ticket closes when `ruled` reads zero unruled, and says so
+with the count.
+
 ## The join to the ground, and the four tracts the town stands on
 
 `tools/resolve_land_tracts.py --build` derives `ground.json`: one row per sale, carrying

@@ -38,6 +38,12 @@
       "resolves": ["chicago/4d/data/research/church/second_presbyterian_crosswalk.json"]
     },
     {
+      "why": "The Second Presbyterian roll's spend, after the crosswalk it spends.",
+      "command": ["python3", "tools/spend_second_presbyterian_roll.py"],
+      "resolves": ["chicago/4d/data/research/church/second_presbyterian_roll_spend_1835.json"],
+      "verify": ["python3", "tools/spend_second_presbyterian_roll.py", "--check"]
+    },
+    {
       "command": ["python3", "tools/read_st_cyr_register.py", "--build"],
       "resolves": [
         "chicago/4d/data/research/church/st_cyr_crosswalk.json",
@@ -60,6 +66,18 @@
       ]
     },
     {
+      "why": "Norris's 1844 businesses, dated back to the window.",
+      "command": ["python3", "tools/date_norris_1844_businesses.py"],
+      "resolves": ["chicago/4d/data/research/directories/norris_1844_businesses_1835.json"],
+      "verify": ["python3", "tools/date_norris_1844_businesses.py", "--check"]
+    },
+    {
+      "why": "The later Fergus lists' spend, after the directory crosswalks it reads.",
+      "command": ["python3", "tools/spend_fergus_1839_later_lists.py"],
+      "resolves": ["chicago/4d/data/research/directories/fergus_1839_later_spend_1835.json"],
+      "verify": ["python3", "tools/spend_fergus_1839_later_lists.py", "--check"]
+    },
+    {
       "command": ["python3", "tools/spend_land_sales.py"],
       "resolves": ["chicago/4d/data/research/land_sales/resident_spend_1835.json"],
       "verify": ["python3", "tools/spend_land_sales.py", "--check"]
@@ -79,7 +97,10 @@
     {
       "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
       "command": ["python3", "tools/synthesize_resident_research.py"],
-      "resolves": ["chicago/4d/data/research/residents/synthesis_2026_09_02.json"],
+      "resolves": [
+        "chicago/4d/data/research/residents/synthesis_2026_09_02.json",
+        "chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md"
+      ],
       "verify": ["python3", "tools/synthesize_resident_research.py", "--check"]
     },
     {
@@ -104,6 +125,12 @@
       "command": ["python3", "tools/consolidate_town_cards.py", "--candidates"],
       "resolves": ["chicago/4d/data/research/residents/town_card_candidates.json"],
       "verify": ["python3", "tools/consolidate_town_cards.py", "--check"]
+    },
+    {
+      "why": "data/residents/index.json — the town's index and its `merged` redirect table, rebuilt from the cards. The single most frequent blocker in the laps of 2026-09-10/11: it was named in nine of the five laps' refusals, more than any other file.",
+      "command": ["python3", "tools/rebuild_resident_index.py", "--write"],
+      "resolves": ["chicago/4d/data/residents/index.json"],
+      "verify": ["python3", "tools/rebuild_resident_index.py", "--check"]
     },
     {
       "why": "The ladder's spend, which reads the consolidated evidence above it.",
