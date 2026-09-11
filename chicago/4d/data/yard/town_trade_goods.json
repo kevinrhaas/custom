@@ -2914,20 +2914,20 @@
       "standoff_m": 0.55,
       "ground_quad_local_enu_m": [
         [
-          920.2,
-          222.9
+          927.7,
+          220.51
         ],
         [
-          910.28,
-          211.65
+          917.78,
+          209.26
         ],
         [
-          916.28,
-          206.36
+          923.78,
+          203.97
         ],
         [
-          926.2,
-          217.61
+          933.7,
+          215.22
         ]
       ],
       "items": [
@@ -2935,8 +2935,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            926.08,
-            216.64
+            933.58,
+            214.25
           ],
           "bearing_deg": 131.4,
           "mark": {
@@ -2951,8 +2951,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            925.67,
-            216.17
+            933.17,
+            213.78
           ],
           "bearing_deg": 131.4,
           "mark": {
@@ -2967,8 +2967,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            925.26,
-            215.71
+            932.76,
+            213.32
           ],
           "bearing_deg": 131.4,
           "mark": {
@@ -2983,8 +2983,8 @@
           "kind": "barrel",
           "pose": "upright",
           "at_local_enu_m": [
-            924.85,
-            215.24
+            932.35,
+            212.85
           ],
           "bearing_deg": 131.4,
           "mark": {
@@ -2999,8 +2999,8 @@
           "kind": "barrel",
           "pose": "laid",
           "at_local_enu_m": [
-            924.21,
-            214.52
+            931.71,
+            212.13
           ],
           "bearing_deg": 131.4,
           "mark": {
@@ -3015,8 +3015,8 @@
           "kind": "crate",
           "tier": 0,
           "at_local_enu_m": [
-            923.33,
-            213.52
+            930.83,
+            211.13
           ],
           "bearing_deg": 131.4,
           "mark": {
@@ -3032,8 +3032,8 @@
           "kind": "crate",
           "tier": 1,
           "at_local_enu_m": [
-            923.33,
-            213.52
+            930.83,
+            211.13
           ],
           "bearing_deg": 131.4,
           "mark": {

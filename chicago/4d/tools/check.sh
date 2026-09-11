@@ -605,6 +605,19 @@ step "no building has newly been drawn standing in a platted street" \
 selftest "…and its absolute assertion still fires when a generated roof is put in a street" \
   python3 tools/measure_corridor_intrusion.py --self-test
 
+# The platted corridor above is an Original Town and West Division question: not one of the
+# eleven corridors street_control.json measures is north of the river, and plat_corridors
+# gives no north-bank street a ring at all. So nothing re-derived a north-bank frontage, and
+# on 2026-09-06 two reconciliations of one ruling (PRs #974 and #975) put the Steamboat Hotel
+# 36.79 m apart with both of them green. This is the missing half: the north bank's own rule
+# — the drawn track's kerb plus a 2.00 m clearance — re-derived from the committed street on
+# every commit, with every frontage that is not on it named and held to its own figure.
+step "north-bank frontages still stand on the rule the north bank is placed by" \
+  python3 tools/measure_north_bank_frontage.py --gate --quiet
+
+selftest "…and that assertion fires when a roof leaves the frontage line" \
+  python3 tools/measure_north_bank_frontage.py --self-test
+
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
 # blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart
