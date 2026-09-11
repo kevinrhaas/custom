@@ -12,22 +12,22 @@
       "passed": 110,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 327,
-      "takenAt": "2026-09-11T13:22:08.231Z",
-      "ref": "steward/t-0987-ties-stretch-2",
-      "commit": "fe8a2abfec7f",
+      "wallSeconds": 240,
+      "takenAt": "2026-09-11T12:48:16.995Z",
+      "ref": "steward/t-1033-town-lot-records",
+      "commit": "fc2a4c28f41f",
       "devCommit": "9642c607f773",
-      "treeHash": "sha256:1fa76911fa298c65",
+      "treeHash": "sha256:9c4fdebf8a93e6ab",
       "treeDirty": false,
-      "changelogHash": "sha256:fce5f08792420d87",
+      "changelogHash": "sha256:94d53d0ca9060b9c",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.7,
-          3.9,
-          3
+          4.6,
+          4.1,
+          2.9
         ]
       },
       "source": "/tmp/smoke_d2.log"
@@ -44,22 +44,22 @@
       "passed": 138,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 379,
-      "takenAt": "2026-09-11T13:22:08.141Z",
-      "ref": "steward/t-0987-ties-stretch-2",
-      "commit": "fe8a2abfec7f",
+      "wallSeconds": 292,
+      "takenAt": "2026-09-11T12:48:16.916Z",
+      "ref": "steward/t-1033-town-lot-records",
+      "commit": "fc2a4c28f41f",
       "devCommit": "9642c607f773",
-      "treeHash": "sha256:1fa76911fa298c65",
+      "treeHash": "sha256:9c4fdebf8a93e6ab",
       "treeDirty": false,
-      "changelogHash": "sha256:fce5f08792420d87",
+      "changelogHash": "sha256:94d53d0ca9060b9c",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.7,
-          3.9,
-          3
+          4.6,
+          4.1,
+          2.9
         ]
       },
       "source": "/tmp/smoke_d1.log"
@@ -77,22 +77,22 @@
       "passed": 239,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 369,
-      "takenAt": "2026-09-11T13:22:08.048Z",
-      "ref": "steward/t-0987-ties-stretch-2",
-      "commit": "fe8a2abfec7f",
+      "wallSeconds": 270,
+      "takenAt": "2026-09-11T12:48:16.836Z",
+      "ref": "steward/t-1033-town-lot-records",
+      "commit": "fc2a4c28f41f",
       "devCommit": "9642c607f773",
-      "treeHash": "sha256:1fa76911fa298c65",
+      "treeHash": "sha256:9c4fdebf8a93e6ab",
       "treeDirty": false,
-      "changelogHash": "sha256:fce5f08792420d87",
+      "changelogHash": "sha256:94d53d0ca9060b9c",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.7,
-          3.9,
-          3
+          4.6,
+          4.1,
+          2.9
         ]
       },
       "source": "/tmp/smoke_m.log"
