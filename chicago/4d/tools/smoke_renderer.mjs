@@ -4596,7 +4596,21 @@ for (const [label, viewport, touch] of [
         // refusals do not move: the building is still there and still the street
         // wall on that face.
         && frontage.census?.posts === 19 && frontage.census?.fences === 32
-        && frontage.census?.refused === 85
+        // T-1037 stood new_york_clothing_store three doors north of the Tremont
+        // House on the west DEARBORN face of blk_south_water_clark, and takes
+        // the refusals to 86. POSTS DO NOT MOVE, and the reason is the one this
+        // layer exists to state out loud: the record's door faces 90 deg, east
+        // onto Dearborn, while the platted lot it physically stands on (lot 7)
+        // fronts Lake Street at 180.5 deg — 90.5 deg apart, over the 45 deg
+        // this layer allows. A post there would serve a street the trade does
+        // not open onto, so it is refused in writing rather than set. It is a
+        // documented store, which is a trade the hitching rule otherwise
+        // accepts, so this is the FACE and not the trade — the same distinction
+        // T-0263 and T-0384 are recorded against from the other side. Walks,
+        // crossings and fences do not move: the shop stands 1.50 m back from
+        // the block's Dearborn boundary, that wall was already refused a street
+        // fence as prairie, and a walk is laid off the block face.
+        && frontage.census?.refused === 86
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'

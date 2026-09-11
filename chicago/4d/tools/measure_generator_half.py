@@ -134,20 +134,20 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # adds nothing here: it is measured to a coordinate and deliberately not built, because this
 # project has no well archetype (docs/RESEARCH/wells.md section 5, T-0887).
 #
-# 380 -> 383 and 378 -> 381 on 2026-09-11 (T-0432): the second deal on
-# `blk_south_water_dearborn`, the last of the four South Water blocks T-0420 held in one
-# ticket — two frame cottages on the South Water frontage of lot 2, one party-walled to each
-# side wall of Frederick Thomas's shop, and the stable in the yard behind them. Three new
-# structure assets, so three more meshes a change to the shared generator modules or to
-# build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+# 380 -> 381 and 378 -> 379 on 2026-09-11 (T-0385): the New York Clothing Store, Tuthill
+# King's clothing house, raised at the third door north of the Tremont House once the
+# three impressions of his address were reconciled onto the landmark one of them sets.
+# One new `frame_storefront` record, so one more committed asset and one more mesh a
+# change to the shared generator modules or to build.py would re-stale; the terrain and
+# pier_crib reaches stay at 2 each.
 #
 STATED = {
-    "assets": 383,
+    "assets": 381,
     "restales": {
-        "generators/common/*.py": 383,
+        "generators/common/*.py": 381,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 381,
+        "generators/build.py": 379,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
