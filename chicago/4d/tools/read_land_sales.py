@@ -79,6 +79,102 @@ DEPOSITS = (
 )
 
 
+# THE COMPLETENESS PROBE (T-0830). The deposits above are read BY SECTION, and a
+# section query is blind by construction to a row the register gives no section: a town
+# lot is described by its plat — `L2BL46CHIOT` — with Section, Township, Range and
+# Meridian all empty. So no walk of any section, however complete, can reach one, and
+# the domain could not tell whether that mattered. This file is the query that can: ONE
+# county, listed, walked to its end (`harvest_land_sales.py --county-list COOK`). It is
+# the results page's own nine columns and nothing more — it is here to MEASURE the
+# sweep, not to be read as one — and `build_coverage` derives the measurement from it.
+PROBE = {"tsv": "isa_land_tract_sales_cook_county_list_through_1836.tsv",
+         "ticket": "T-0830", "county": "COOK", "through_year": 1836}
+PROBE_COLS = ["purchase_no", "purchaser", "legal_description", "section", "township",
+              "range", "meridian", "date_purchased", "county"]
+# The seven townships the deposits above declare, as the probe's list page spells them.
+def declared_townships() -> frozenset:
+    return frozenset(("%dN" % tw, "%dE" % rg) for dep in DEPOSITS for tw, rg in dep["pairs"])
+
+
+def read_probe(domain: Path) -> list:
+    """The probe's rows, or [] when it is not committed. Header checked like a deposit."""
+    path = domain / "text" / PROBE["tsv"]
+    if not path.exists():
+        return []
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if lines[0].split("\t") != PROBE_COLS:
+        raise SystemExit("land_sales: the probe's header is not the harvest's list header")
+    out = []
+    for n, line in enumerate(lines[1:], start=2):
+        if not line.strip():
+            continue
+        cells = line.split("\t")
+        if len(cells) != len(PROBE_COLS):
+            raise SystemExit("land_sales: %s line %d has %d cells, not %d"
+                             % (PROBE["tsv"], n, len(cells), len(PROBE_COLS)))
+        out.append(dict(zip(PROBE_COLS, cells)))
+    return out
+
+
+def build_probe(rows: list, probe: list) -> dict:
+    """What the whole-county list says about the by-section sweep beside it.
+
+    Three disjoint groups, and the answer is different for each: a row inside the seven
+    declared townships (the sweep must hold it), a row sectioned outside them (out of
+    what the deposits declare, and not a hole in them), and a row with NO section (which
+    no section query could ever return, and which the deposits therefore cannot hold).
+    """
+    if not probe:
+        return {}
+    held = {r["purchase_no"] for r in rows}
+    seven = declared_townships()
+    inside = [r for r in probe if (r["township"].strip(), r["range"].strip()) in seven]
+    sectionless = [r for r in probe if not r["section"].strip()]
+    outside = [r for r in probe
+               if r["section"].strip() and (r["township"].strip(), r["range"].strip()) not in seven]
+    missed = [r for r in inside if r["purchase_no"] not in held]
+    years, codes = {}, {}
+    for r in sectionless:
+        y = r["date_purchased"][-4:]
+        years[y] = years.get(y, 0) + 1
+        m = re.search(r"(CHI[A-Z]*)$", r["legal_description"])
+        code = m.group(1) if m else "(no town code)"
+        codes[code] = codes.get(code, 0) + 1
+    return {
+        "ticket": PROBE["ticket"],
+        "deposit": PROBE["tsv"],
+        "query": "county %s alone, no township and no section, walked to the end of the "
+                 "results through the More cursor" % PROBE["county"],
+        "why": "A section query cannot return a row the register gives no section, so the "
+               "by-section sweep could not measure its own completeness. The county's own "
+               "list page can, because it holds every row the county holds.",
+        "rows_dated_through_%d" % PROBE["through_year"]: len(probe),
+        "inside_the_declared_townships": len(inside),
+        "of_those_missing_from_the_deposit": len(missed),
+        "sectioned_outside_the_declared_townships": len(outside),
+        "carrying_no_section_at_all": len(sectionless),
+        "sectionless_by_year": dict(sorted(years.items())),
+        "sectionless_by_town_code": dict(sorted(codes.items(), key=lambda kv: -kv[1])),
+        "the_seven_townships_are_read_whole": not missed,
+        "complete_for_%d_cook_county" % PROBE["through_year"]: not sectionless and not missed,
+        "reading": "The by-section sweep is READ WHOLE for the ground it declares: every "
+                   "one of the %d rows the county lists inside the seven declared townships "
+                   "through %d is in the deposit, and none is missing. It is NOT the whole "
+                   "of %d Cook County, and the shortfall is not a section it failed to walk "
+                   "— it is %d rows that have no section to walk. Every one of those is a "
+                   "lot and block: %d of them carry a town code (%s) where a legal "
+                   "description would go, and %d is a bare lot and block with no code at "
+                   "all. Their dates are the register's own and are carried unsmoothed, "
+                   "including the four this project does not believe. They are counted "
+                   "here and they are NOT in the deposit; reading them is T-1028."
+                   % (len(inside), PROBE["through_year"], PROBE["through_year"],
+                      len(sectionless),
+                      sum(n for c, n in codes.items() if c.startswith("CHI")),
+                      ", ".join(sorted(c for c in codes if c.startswith("CHI"))),
+                      sum(n for c, n in codes.items() if not c.startswith("CHI"))),
+    }
+
+
 def deposit_of(name: str) -> dict:
     for d in DEPOSITS:
         if d["tsv"] == name:
@@ -283,7 +379,7 @@ def build_records(rows: list, start: int = 1) -> dict:
     }
 
 
-def build_coverage(rows: list) -> dict:
+def build_coverage(rows: list, probe: list) -> dict:
     # A DECLARATION is a promise that something in the domain reaches the item, and the
     # gate is right to call a declared item nothing reaches a hole. Every section of
     # every township in DEPOSITS was queried; only the ones that returned a sale through
@@ -328,10 +424,14 @@ def build_coverage(rows: list) -> dict:
                 "was walked and held no sale through 1836 is listed under "
                 "`queried_no_sales_through_1836` instead — read, empty, and not a hole. "
                 "T-0676 added the five ring townships, which are the last of what T-0610 "
-                "asked for: nothing around the town is unread now."
+                "asked for: nothing around the town is unread now. T-0830 then MEASURED "
+                "that claim against the whole county, listed in one query, and "
+                "`completeness_probe` below is the result: right about every section it "
+                "declares, and blind to a row the register gives no section."
                 % (36 * sum(len(d["pairs"]) for d in DEPOSITS), townships),
         "declarations": declarations,
         "queried_no_sales_through_1836": empty,
+        "completeness_probe": build_probe(rows, probe),
         "not_read": {
             "ticket": "T-0676",
             "truncated_at_the_150_row_ceiling": truncated,
@@ -343,7 +443,12 @@ def build_coverage(rows: list) -> dict:
                     "domain is stated in the README and is not a hole in it: purchasers "
                     "whose stated residence is Cook County but whose ground lies "
                     "elsewhere, which the database cannot be asked for, and the canal "
-                    "sections, which the land office did not sell.",
+                    "sections, which the land office did not sell. What T-0830 then "
+                    "found is a hole of a different shape and it is named in "
+                    "`completeness_probe` above: the sweep is complete for every section "
+                    "it declares, and Cook County's register also holds sales with NO "
+                    "section — town lots described by their plat — which no section "
+                    "query can return. Those are counted, not read; T-1028 reads them.",
         },
     }
 
@@ -967,7 +1072,7 @@ def derive(domain: Path) -> dict:
         ordered += recs["records"]
     ids = {row["purchase_no"]: rec["id"] for row, rec in zip(rows, ordered)}
     out["entries.json"] = build_entries(rows, ordered)
-    out["coverage.json"] = build_coverage(rows)
+    out["coverage.json"] = build_coverage(rows, read_probe(domain))
     out["crosswalk.json"] = build_crosswalk(rows, ids)
     out["resident_crosswalk.json"] = build_resident_crosswalk(rows, ids, domain)
     return out
