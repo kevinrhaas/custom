@@ -109,7 +109,8 @@
 
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
-T-1028 — The 619 town-lot sales the by-section sweep cannot see: Cook County's register describes a lot and block with no section, so 466 sales of 1836 — the town's own ground — are outside the land_sales deposit
+T-1030 — The 619 sectionless Cook County sales are read at their detail pages and committed as their own deposit
+T-1031 — The sectionless deposit joins the domain: DEPOSITS, a tract() that resolves or refuses a lot-and-block in a named town, and the completeness probe re-derived
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
