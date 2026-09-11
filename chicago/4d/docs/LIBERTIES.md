@@ -10398,9 +10398,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 483 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 480 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 483 people
+**Scope:** `residents.persons[civic_mint]` — 480 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10411,8 +10411,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **483
-today**, and the figure has moved six times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **480
+today**, and the figure has moved seven times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10445,8 +10445,31 @@ the forenames agreed; what settles them is a page, under a new rule C9 written t
 The Chicago Democrat of 1 July 1835 sets both spellings in one column — `E. S. Kimberly` in
 the dinner committee's signature block, `E. S. Kimberley` in the next article's committee of
 fourteen, and `Dr. Kimberly` four sentences after that — so the difference the split turned on
-is one the compositor himself does not hold to. The number this liberty declares is the number
-of containers standing, and it will fall again as the remaining rulings are made.
+is one the compositor himself does not hold to. T-1002 took it to 480 on 2026-09-11, folding
+three at once — `beaubien_medore_b`, `clybourn_archibald` and `heacock_russell_e` — and each of
+the three was, like the two before it, found by hand rather than raised: all were pairs ONE
+LETTER apart, which is the class the candidate test is blind to on both of its axes, the
+surname (Clybourn against Clybourne) and the forename (Madore against Medore, Russel against
+Russell). Two of the three are ruled on a page in C9's manner: printed page 389 of Moses and
+Kirkland's first volume sets Archibald Clybourn's surname both ways four lines apart in the
+story of his own slaughter house, and the Chicago Democrat prints `Russel E. Heacock` in the
+county return of August 1834 and `RUSSELL FE. HEACOCK` at the head of his own advertisement of
+July 1835 — the card that carried the doubled l being minted from a scan of that same
+advertisement which reads neither, `RUSSEN L E. HEACOCK`. The third is ruled on an OFFICE
+instead, under a new rule C11, because no single title is caught spelling Beaubien both ways:
+Andreas and Moses and Kirkland print the same five trustees of 10 August 1833 and the same
+distinctive tally of 23 against the third of them while spelling his forename differently, and
+the town's own ordinance of that December names four of those five, under the second spelling,
+as the committee the board appointed out of itself. WHAT THAT FOLD BOUGHT, which no earlier one
+did: the land tract register prints Heacock's forename both ways too and both readings were
+REFUSED for having two rivals — the two rivals being this man's own two cards — so the
+register's crosswalk went from 91 named purchasers to 93. AND THE BLIND SPOT IS NOW COUNTED
+rather than guessed at: `tools/measure_card_fuzzy_candidates.py` runs the candidate test again
+with one letter of slack and proposes 68 further pairs, which is not a licence to fold on a
+distance — the same list holds John Hale against John Vale and Mark Noble against Mary Noble —
+but it is the first honest statement of how many pairs this derivation cannot see. The number
+this liberty declares is the number of containers standing, and it will fall again as the
+remaining rulings are made.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
