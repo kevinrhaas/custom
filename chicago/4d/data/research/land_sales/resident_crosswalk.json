@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 89,
+    "upheld": 108,
     "named": 1,
-    "refused": 48,
-    "unruled": 72
+    "refused": 49,
+    "unruled": 52
   },
   "counts": {
     "purchasers": 647,
-    "matched": 162,
-    "refused": 485,
+    "matched": 161,
+    "refused": 486,
     "firms": 2,
     "bodies": 3
   },
@@ -5067,7 +5067,18 @@
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD on the discriminator that carried BOTSFORD JABEZ K, running the other way: there it was the register that spelled the forename out and the card that held only initials, and here it is the register that abbreviates and the town that prints the man as he signed. Norris 1844 has 'Botsford, J. K. of B. & Beers, 109 Lake st.' — this string letter for letter — while Fergus 1839 gives 'Jabez K.' and Fergus 1843 'Jabez Kent'. The register writes JABEZ K on two rows and J K on this one, the abbreviate-and-expand habit T-0990's cohort A named. The only other Botsford any volume prints is 'Botsford, I., tailor', a different initial, so nothing of this surname competes for a J K. Lot 8 of block 3, 28 June 1836, $1,025, carried as an entry and not as a dwelling."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5112,7 +5123,19 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "andreas_1884_v1",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. The token is a single letter and it is unique: of the nine Carpenters this corpus holds — Job, Joseph, Samuel, William, George, James H., John D. in the directories, Abel B. and Nathaniel in the layer — only Philo's forename begins with P, and the register writes CARPENTER PHILO on three rows and sells to no other Carpenter at all. What makes it more than a lucky letter is the trade T-0990 upheld the full spelling on: by 1843 both Fergus and Norris seat him in CARPENTER'S ADDITION, a subdivision under his own name, which is to say the man platted and sold Chicago ground. Lot 7 of block 40 at the town's own sale of 23 June 1836, $3,000, is what that record predicts rather than merely permits."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5201,7 +5224,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD, and the register's own page settles it before a directory is opened. On 24 June 1836 EGAN WILLIAM B takes lots 3, 4, 5, 6, 7 and 8 of block 25; this row is lot 2 of that block on that day, entered immediately before them. The middle initial B is on both sides, and Fergus 1839 prints 'Egan, Dr. William B., real estate dealer, bds. City Hotel' — the trade-about-land reading that upheld the forty-one rows of the full spelling. Only one William Egan is printed in any volume of this corpus. $1,500, carried as an entry."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5237,7 +5271,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD, and it is the hardest case in the cohort, because the reading carries no middle initial and the register itself sells to an EGAN WILLIAM G. What decides it is position rather than spelling. This row is lot 4 of block 45 on 25 June 1836, and EGAN WILLIAM B takes lots 5 and 7 of THAT block on THAT day, with this row entered among them; the WILLIAM G row is a different block (58), a different day (24 June) and two leaves further on. That is the PEARSONS argument — one hand at work, read off the register's own sequence — and it is the only check a spelling with no discriminating token can pass. THIS RULING DOES NOT TOUCH EGAN WILLIAM G, which the crosswalk proposes no match for; whether it is a fourth reading of the same man or a second William Egan is left open."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5343,7 +5388,18 @@
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. Norris 1844 prints 'Fullerton, A. N., attorney at law, h Dearborn st' — the register's string letter for letter — Fergus 1839 'Fullerton, Alex. N., lumber merchant, North Water st' and Fergus 1843 'Alexander Nathaniel'. The middle initial N is on both sides and the corpus prints no second Fullerton of any forename. The register writes ALEXANDER on six rows and A N on these three: lot 7 of block 54, lot 7 of block 55 and lot 7 of block 58, taken on 23 and 24 June 1836 for $6,880 together. A lumber merchant buying town ground at the canal sale is the trade doing what the card says it did."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5422,7 +5478,19 @@
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_chicago_directory_1839",
+          "fergus_1843_old_settler_death_notices"
+        ],
+        "reasoning": "UPHELD, on the ruling that already carried GOODHUE JOSIAH C. Fergus 1839 prints 'Goodhue, Dr. Josiah C., Dearborn street north of Lake street' and the register writes JOSIAH C on one row and J C on these nine — forename initial and middle initial agreeing with the only Goodhue any volume of this corpus prints. The card is attested at a trade off the Democrat of 4 February 1834, physician, and is held again on the poll lists and in the old-settler death notices, so the town holds him three times over beyond the name. Nine town lots for $17,080 between 22 and 30 June 1836 are carried as ENTRIES: this household's roof was raised by the occupation census and is still reconstructed, and nothing here says he lived on any of this ground. The register's two GOODHUE G J rows, block 49 on 27 June, are not proposed by the crosswalk and are not ruled on here."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5517,7 +5585,19 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. Norris 1844 prints 'Hamilton, R. J. of H. & Chamberlaine' — this exact string — Fergus 1839 'Hamilton, Rich'd J., clerk circuit court, Clark st cor. Randolph', Fergus 1843 'Richard Jones Hamilton'. Of the seven other Hamiltons printed the only forename beginning with R is Robert P., and the middle initial refuses him. The register writes RICHARD J on two rows and R J on these five. Five town lots for $17,160 between 20 and 29 June 1836, one of them lot 4 of block 2 at $10,000, against a man the town's own rolls hold as clerk of the circuit court."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5590,7 +5670,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. The register writes HUBBARD ELIJAH K on twenty-four rows and E K on these two, and Fergus 1839 prints 'Hubbard, Elijah K., banker, 47-51 Dearborn st'. The middle initial is what separates him from the five other Hubbards the layer holds — Ahira, B., Gurdon S., Henry G., Otis — and from the H G and T R the register itself sells to. Lots 6 and 7 of block 4 on one day, 28 June 1836, $4,120: a banker taking two adjoining lots at the canal sale is the trade C2 upheld the full spelling's 2,428 acres on, doing the same thing inside the town."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5665,7 +5756,19 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD, and it is the oldest reading in the cohort: lots 1, 2, 7 and 8 of block 19, taken on 27 September 1830 for $41, $34, $27 and $31. The mis-spelling is the TOWN'S OWN — the Democrat of 13 August 1834 prints 'Gordon S. Hubbard' in the very notice that elects him a trustee, beside 'G. S. Hubbard' in the same paper of 1 April 1834 and 'Gurdon Saltonstall Hubbard' in Fergus 1843 — so the register's Gordon is a spelling the man's own newspaper used, not a second Hubbard. The middle initial S is on both sides and the register expands its own abbreviation once, GURDON S, at the school-section sale of 1833. The date is no obstacle: this card's arrival is 31 October 1818 on Hurlbut's account, twelve years before the sale."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5883,7 +5986,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. Norris 1844 prints 'Kimberly Ed. S. physician, 101 Lake st. house State st' — the forename cut to a fragment and the middle initial kept, which is the same reduction the register makes to E S — and Fergus 1839 has 'Kimberly, Dr. Edmund S., res. N. Water st next Lake House'. The middle initial S refuses the layer's Ira and Osa and the register's own J E and S A. Two lots, $4,300: lot 9 of block 48 on 27 June 1836 and lot 5 of block 1 on 5 September, after the June sale had closed. The register's KIMBERLY EDWARD row is not proposed by the crosswalk and is not ruled on here; whether it is Edmund misread is a question this ruling leaves open."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6089,7 +6203,19 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "andreas_1884_v1",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843"
+        ],
+        "reasoning": "UPHELD. The reading carries no middle initial, so the BROWN WM test applies, and it passes: this corpus holds four Kinzies — James, John Harris, Juliette and Robert Allen — and exactly one Robert, printed 'Kinzie, Robert A., Davis, Kinzie & Hyde, Kinzie street' in Fergus 1839 and again in Fergus 1843. The register expands its own abbreviation once, ROBERT A, on the row of 7 May 1831 that states COOK in the Residence column — the check that carried PEARSONS H, a fuller spelling of the same hand giving the county eight months after these two lots. And the card puts him at Chicago in 1830: Andreas has him remain when the rest of the family left in the spring of 1831. Lots 3 and 5 of block 35, 27 September 1830, $58 together."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6261,7 +6387,18 @@
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD, and thinly — this is the weakest uphold in the cohort and is marked so. The token is one letter: of the five Marshes Fergus 1843 prints (Alexander, Elisha Azro, Joshua Leonard, Luther, Sylvester) only Sylvester's forename begins with S, and the register writes SYLVESTER on four rows and sells to no other Marsh. Beyond the letter, the town holds him ONCE, at the Democrat of 13 August 1834, and what that printing gives is a TRADE, provision dealer — which is what cohort B's line asks for, a second document that SAYS something rather than a second reading of the name. Fergus 1843 and Norris 1844 carry the same trade on to a packing-house at 98 Lake. Lot 4 of block 3, 28 June 1836, $2,130."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6335,7 +6472,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD on the middle initial, which is doing real work here: Fergus 1839 prints TWO Merrills, 'George W., dry goods merchant, 166 Lake st' and 'George, clerk, Geo. Chacksfield', and only the first carries a W. The register writes GEORGE W and GEO W once each — both already upheld under T-0990 — and G W on these four. Four town lots for $8,525 between 22 and 30 June 1836. A Lake Street dry-goods merchant who is in provisions at the corner of Lake and LaSalle by 1843 is a man with premises and capital, and the rows are carried as entries only."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6679,7 +6827,16 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839"
+        ],
+        "reasoning": "UPHELD. Fergus 1839 prints the two working Mulfords of this town in one line — 'Mulford, James H. & Edward H. jr., jewelers, etc., Dearborn st' — and a third, 'Mulford, Major E. H., Illinois street near State'; the forename initial J separates James H. from both, and the middle initial H is common to all three so it decides nothing. The register writes JAMES H on five rows and J H on this one. Lot 9 of block 46, 25 June 1836, $1,900."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6696,7 +6853,18 @@
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD on the middle initial, which is what T-0700 upheld NEWBERRY WALTER L on: the town's man is Walter LOOMIS Newberry, printed 'Walter L.' in Fergus 1839 and Norris 1844 and 'Walter Loomis' in Fergus 1843. The register INSISTS on the distinction — WALTER L six rows, WALTER S six rows, W L and W S one each — and the card meets the L side of it, which is the WENTWORTH test passed rather than failed. Lot 8 of block 3, 20 June 1836, $8,290, the opening day of the sale. WHAT THIS RULING DOES NOT SETTLE: Walter S. Newberry, six rows of the school-section sale of October 1833 and an $11,950 lot on this same 20 June 1836, is a purchaser no volume of this corpus prints. Whether he is a second man or a misreading of Walter L. is noted on T-0396, which already owns the question of which Newberry the corpus is holding."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6750,7 +6918,19 @@
       "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. JERE is the ordinary contraction of Jeremiah and not a barer spelling — the C2 control, HARMON CHAS L — so the token that discriminates is still there. Of the eight Prices the directories print (Robert, Abner, Cornelius, Cornelius jr., John Maloy, two Williams, Jeremiah) only one has a forename beginning J, and the register writes JEREMIAH on eleven rows and JERE on this one. The town holds Jeremiah Price on the tax list of 1833 and in all three directories, 'fire warden, South Water st near Wells' in 1839. Lot 3 of block 58, 24 June 1836, $1,755."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6864,7 +7044,17 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843"
+        ],
+        "reasoning": "UPHELD, and the middle initial is the whole of it. Fergus 1843 prints 'Sherman, Silas Wooster, [elected sheriff Cook County in 1834 and 1836]' — the W spelled out — and Fergus 1839 'Sherman, Silas W., ex-sheriff, 48 Clark street'. Twelve Shermans are printed in this corpus and Silas is the only forename among them beginning with S; the register writes SILAS W on one other row and sells besides to an F C, an F T and a FRANCIS C, all refused on the forename initial. A man twice elected sheriff of the county is held by the town's own record in the years the purchase falls between. Lot 8 of block 34, 22 June 1836, $9,500."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -7225,7 +7415,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD. Taylor is the hardest surname in this register — ten spellings sold to, seven Taylors in the layer — so the reading has to carry two tokens, and it does: E for Edmund and D for the middle initial Fergus 1839 prints, 'Taylor, Col. Edmund D., Taylor, Breese Co., Lake street'. The register distinguishes E D from A D on its own pages, and A D is Augustine Deodat the carpenter and builder, a separate proposal this ruling does not touch. The register writes EDMUND D on four rows, upheld under T-0990. Lots 2 and 8 of block 36, both 22 June 1836, $9,000 and $5,000 — a merchant firm's money and not a householder's."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -7271,7 +7472,17 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843"
+        ],
+        "reasoning": "UPHELD. Fergus 1839 prints 'Temple, Dr. John T., 218 Lake st' — forename initial, middle initial and honorific — and Fergus 1843 spells it out, 'Temple, John Taylor, physician, 218 Lake'. The other Temple the town prints is Dr. Peter, a real estate agent in block 17 of the school section, and the register's own other spellings are H L and H S; none of them is a J. The register writes JOHN T on eight rows and J T on these two. Lots 4 and 6 of block 20, both 21 June 1836, $15,000 and $5,000 — the largest pair in the cohort, carried as entries."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -7675,78 +7886,6 @@
           "middle_initial": "G",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "WRIGHT T",
-      "record_ids": [
-        "ls1568"
-      ],
-      "resident_id": "wright_truman_g",
-      "resident_name": "Truman G Wright",
-      "household_id": "hh_wright_truman_g",
-      "match": "initial_agrees",
-      "rule": "WRIGHT T matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "wright_amasa",
-          "name": "Amasa Wright",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "wright_j",
-          "name": "J Wright",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "wright_john",
-          "name": "John Wright",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "wright_john_s",
-          "name": "John S. Wright",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "S",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "wright_robert_c",
-          "name": "Robert C Wright",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "C",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "wright_truman_g",
-          "name": "Truman G Wright",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": "G",
-          "reading_middle_initial": null,
-          "outcome": "survives"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -19364,6 +19503,20 @@
       "evidence": [
         "data/residents/index.json"
       ]
+    },
+    {
+      "a": "WRIGHT T",
+      "b": "Truman G Wright",
+      "rule": "REFUSED, and it is the cohort's one refusal. The reading is a bare forename initial with no middle initial, and the town's own PRINTED record holds two Wrights whose forename begins with T: 'Wright, Truman G., speculator, bds Tremont House' and 'Wright, Timothy, Michigan ave. cor. Madison st', both in Fergus 1839, Timothy again in Fergus 1843 boarding at Mrs. John Wright's. That is the BROWN WM rule exactly — a second printed claimant, not merely a common surname. The register makes the same point on its own account: it writes T G nine times and TRUMAN G twice, so the hand that entered this man ordinarily wrote the G, and this single row of 28 June 1836 has not got it. Both upheld spellings of Truman G. Wright rest on that middle initial and cannot lend it to a spelling that lacks it. Lot 7 of block 5, $900, is retracted from the card.",
+      "record_ids": [
+        "ls1568"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "WRIGHT T matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only."
     },
     {
       "a": "YOUNG WILLIAM",
