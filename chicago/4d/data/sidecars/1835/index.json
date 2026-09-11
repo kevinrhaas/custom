@@ -5850,6 +5850,12 @@
       "asset": "gltf/recon_1835_blk_south_water_clark_d5_01__inferred_1835.glb"
     },
     {
+      "id": "recon_1835_blk_south_water_dearborn_a1_09",
+      "name": "Reconstructed A1 stable #09",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_a1_09.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_a1_09__inferred_1835.glb"
+    },
+    {
       "id": "recon_1835_blk_south_water_dearborn_a3_06",
       "name": "Reconstructed A3 privy #06",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_a3_06.json",
@@ -5878,6 +5884,18 @@
       "name": "Reconstructed D2 rough plank dwelling or shanty #04",
       "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d2_04.json",
       "asset": "gltf/recon_1835_blk_south_water_dearborn_d2_04__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d3_08",
+      "name": "Reconstructed D3 one-room frame cottage #08",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d3_08.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d3_08__inferred_1835.glb"
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_d5_07",
+      "name": "Reconstructed D5 deep-plan frame cottage #07",
+      "sidecar": "sidecars/1835/recon_1835_blk_south_water_dearborn_d5_07.json",
+      "asset": "gltf/recon_1835_blk_south_water_dearborn_d5_07__inferred_1835.glb"
     },
     {
       "id": "recon_1835_blk_south_water_dearborn_h1_03",

@@ -66,8 +66,8 @@
     "chicago_american_office__frame_1835.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 51652,
-      "inputs_sha256": "ecf8238c4e6e9b42c0897293dbce4ccbfe562829679828b7f42fa4dab3155063",
+      "bytes": 48532,
+      "inputs_sha256": "75a69752c82b74d903b2f8560c0e2d609b6c5bf3a0ddd70a0b8eed930a02c0d9",
       "kind": "generated",
       "phase_id": "frame_1835",
       "structure_id": "chicago_american_office"

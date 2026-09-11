@@ -1390,8 +1390,21 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # as it was put to him and all three tests the clause has to pass; everything
     # physical below — the lot margin, the corridor, the three-metre separation — is
     # untouched by it and still refuses what it always refused.
+    # T-0432. THE OTHER DEAL'S ROOFS ARE NOT A STRANGER'S. `mine_ids` is this ENTRY's
+    # records, and on a block dealt once that is every anonymous roof on it — so this
+    # question has always been asked of ground the parcel itself had not touched. A
+    # second deal breaks the coincidence: read with only its own records excluded, the
+    # first deal's run reads the second deal's cottages as somebody else's houses, and
+    # the business-front clause switches off underneath the lot they share the moment a
+    # third claimant stands on it. The whole parcel is excluded instead, which restores
+    # the question the clause was ruled on — was this lot free of everything THIS
+    # PROGRAMME did not build — and leaves every physical gate reading the full town.
+    # What it does not relax is density: the ceiling counted across deals, above, is
+    # what now refuses a lot the programme has already filled.
+    parcel = {sid for sid, _ in footprints(datum)
+              if sid.startswith(f"{PREFIX}{block['block_id'][len('blk_'):]}_")}
     occupied = exclusive_lots({"blocks": [grid]}, datum,
-                              exclude=mine_ids).get(block["block_id"], {})
+                              exclude=mine_ids | parcel).get(block["block_id"], {})
     for index in (frontage["lots"] if frontage else []):
         holder = occupied.get(index)
         if holder is not None:
@@ -1475,7 +1488,13 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
         standing = standing.get(block["block_id"], {})
         placed = {sid: poly for sid, poly in mine}
         for index in sorted(shared_with_sibling):
-            already = len(standing.get(index, ()))
+            # ROW UNITS, not roofs. A yard building is not in the street row and was
+            # never what `ROW_UNITS_PER_LOT` counted — the ceiling is a statement about
+            # how tightly a frontage packs, and a privy behind the row does not pack it.
+            # A building this programme did not write carries no inventory class and is
+            # counted: Frederick Thomas's shop stands in this row whoever built it.
+            already = sum(1 for sid in standing.get(index, ())
+                          if not is_ancillary_record(sid))
             # Where a row unit STANDS, not which lots its run was dealt. A run is one
             # stretch of frontage across several lots and its units fall where the
             # chain of party walls puts them — the first deal on this block declared
@@ -1640,6 +1659,19 @@ def claimed_lots(block: dict) -> set[int]:
     """Every lot of the grid a recipe entry stands a roof on, run or not."""
     lots = {int(slot["lot"]) for slot in block["slots"] if "lot" in slot}
     return lots | {int(index) for index in (block.get("frontage") or {}).get("lots", [])}
+
+
+def is_ancillary_record(structure_id: str) -> bool:
+    """Whether a COMMITTED record is a yard building, read off the record itself.
+
+    Only this generator's own records carry an inventory class; a documented building
+    has none and is not ancillary — it is a roof in the row like any other.
+    """
+    path = STRUCTURES / f"{structure_id}.json"
+    if not path.exists():
+        return False
+    recon = load(path).get("reconstruction") or {}
+    return recon.get("inventory_class") == "ancillary"
 
 
 def siblings(blocks: list[dict], block: dict) -> frozenset[int]:
