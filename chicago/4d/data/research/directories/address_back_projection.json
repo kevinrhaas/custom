@@ -7,14 +7,14 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 150,
+  "addresses_adjudicated": 151,
   "placed": 18,
   "placed_as_a_face": 15,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
   "already_better_placed": 23,
-  "refused": 109,
-  "refused_clause_1_no_1835_business": 99,
+  "refused": 110,
+  "refused_clause_1_no_1835_business": 100,
   "refused_clause_2_a_residence_not_a_shop": 6,
   "refused_clause_3_not_on_the_1835_grid": 4,
   "faces_reached": [
@@ -139,7 +139,7 @@
    "household_id": "hh_beaubien_john_s",
    "person_id": "beaubien_john_s",
    "person": "John S Beaubien",
-   "address_as_printed": "So. Water sts",
+   "address_as_printed": "Michigan ave., bet. Lake and So. Water sts",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -457,7 +457,7 @@
    "household_id": "hh_brown_william_h",
    "person_id": "brown_william_h",
    "person": "William H Brown",
-   "address_as_printed": "Salle st cor. So. Water",
+   "address_as_printed": "LaSalle st cor. So. Water",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -688,7 +688,7 @@
    "household_id": "hh_church_thomas",
    "person_id": "church_thomas",
    "person": "Thomas Church",
-   "address_as_printed": "hi Lake st",
+   "address_as_printed": "Lake st",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -1339,7 +1339,7 @@
    "household_id": "hh_hamilton_richard_j",
    "person_id": "hamilton_richard_j",
    "person": "Richard Jones Hamilton",
-   "address_as_printed": "clerk circuit court, Clark st cor. Randolph",
+   "address_as_printed": "Clark st cor. Randolph",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -1557,6 +1557,27 @@
    "read_back_years": 8,
    "sources": [
     "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_hunter_david",
+   "person_id": "hunter_david",
+   "person": "David Hunter",
+   "address_as_printed": "Illinois street, near Rush",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2290,7 +2311,7 @@
    "household_id": "hh_norton_nelson_r",
    "person_id": "norton_nelson_r",
    "person": "Nelson R. Norton",
-   "address_as_printed": "and Indiana sts",
+   "address_as_printed": "Indiana sts",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -3130,7 +3151,7 @@
    "household_id": "hh_williams_eli_b",
    "person_id": "williams_eli_b",
    "person": "Eli B Williams",
-   "address_as_printed": "and Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
+   "address_as_printed": "Randolph sts, and groceries, etc., South Water st, bet Dearborn and State sts",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -3172,11 +3193,11 @@
    "household_id": "hh_wolcott_alexander",
    "person_id": "wolcott_alexander",
    "person": "Alexander Wolcott",
-   "address_as_printed": "for St. Joseph",
-   "describes_date": 1839,
-   "read_back_years": 4,
+   "address_as_printed": "bds H. Wolcott",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "fergus_chicago_directory_1839"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,

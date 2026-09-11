@@ -110,6 +110,17 @@ NAMED_PLACE = (
 # McDonald` is a person by any reading and `McDonald` is not `[A-Z][a-z]+`.
 BARE_PERSON = re.compile(r"^[A-Z][a-z]+\.?\s+([A-Z]\.?\s+)?[A-Z][a-zA-Z']+\b")
 
+# `bds H. Wolcott`: the same person, set with an INITIAL instead of a forename — and
+# unlike `bds John Gray` it has to be tested BEFORE the street table rather than after
+# it, because the surname a man boards with can also be a street this town has. Alexander
+# Wolcott boarded with H. Wolcott in 1843; `street_words` read `Wolcott` as Wolcott
+# Street, the bare-personal-name row is only reached when NO street name is found, and
+# the pass placed a man on a street because his host shared a name with it. The compass
+# initials are excluded, or `res N. Water` reads as a man called Water; and a street word
+# anywhere in the body means the volume is naming a street, not a host.
+INITIALLED_PERSON = re.compile(
+    r"^(?!(?:N|S|E|W|No|So)\b)[A-Z]\.\s*(?:[A-Z]\.\s*)?[A-Z][a-zA-Z']+\.?$")
+
 
 def kind_of(printed: str) -> str:
     return "boards" if BOARDS.match(printed) else "resides"
@@ -174,6 +185,17 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
         if pattern.search(sign_body):
             row.update(outcome="refused", clause="R4", reason=why)
             return row
+
+    if INITIALLED_PERSON.match(body):
+        row.update(outcome="refused", clause="R4",
+                   reason="The entry names the person this man boarded with, set with an "
+                          "initial, and not a street — and the surname is also a street "
+                          "this town carries, which is the collision this test is ordered "
+                          "in front of the street table to catch. Where that person is "
+                          "himself in this town the two records could be joined, but that "
+                          "is a crosswalk between two people and not an address read "
+                          "backwards.")
+        return row
 
     names = street_words(printed)
     if not names:
@@ -464,6 +486,12 @@ def self_test() -> int:
     want("bds Mrs. Post", one("bds Mrs. Post"), "refused", "R4")
     want("bds John Gray", one("bds John Gray"), "refused", "R4")
     want("bds Michael McDonald", one("bds Michael McDonald"), "refused", "R4")
+    # The host whose surname is also a street: refused as a person, and the compass
+    # initial that must NOT read as one.
+    want("bds H. Wolcott is a host, not Wolcott Street",
+         one("bds H. Wolcott"), "refused", "R4")
+    want("res N. Water is a street and not a man called Water",
+         one("res N. Water"), "placed", "R4 and R5", "face")
     want("a ward is not a street", one("res 3d Ward, south of Jackson"), "refused", "R4")
     # R4 — the 1835 grid, head and qualifier both.
     want("Michigan ave is not Michigan Street", one("res 96 Michigan ave"),

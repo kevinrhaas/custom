@@ -352,3 +352,92 @@ here, 58 in Fergus 1843, 39 in Norris 1844 and 11 in its advertiser cards: 142, 
 carrying a written reason. No successor ticket is filed — `tickets/README.md` puts the
 succession on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10
 asks for fewer tickets. This ticket stays open and is its own cursor.
+
+## Stretch 4, 2026-09-11 — the 1839 could-carry pool, and the split that fed it
+
+**The stretch:** the could-carry pool of `fergus_1839_crosswalk_1835.json` — 92 trades and
+96 streets on matched entries, the third of this ticket's four pools and the one stretch 3
+nominated. Bounded to one directory; nothing was read off a page image.
+
+**What the pool turned out to be.** Both halves were already SPENT — the trades on the
+cards as `occupation_later`, the addresses through both back-projections, with clause 3's
+`unwritten` at 0. What was wrong was not the spending but the READING the pool is drawn
+from. `tools/read_fergus_1839.py` splits one printed line into name / trade / address, and
+the rule for where the name ends was "keep taking capitalised words, up to three":
+
+```
+Beaubien, John B., Michigan ave., bet. Lake and So. Water sts
+  name 'Beaubien, John B., Michigan' · trade 'ave., bet. Lake and' · address 'So. Water sts'
+```
+
+The comma the compositor set was not a boundary to it. So the head street was eaten into
+the name, the address became the tail of its own qualifier — **the wrong street** — and the
+fragment between them was carried onto the card as a TRADE. `hh_beaubien_john_s` asserted
+an occupation of `ave., bet. Lake and`; `hh_hunter_david` one of `street, near Rush`.
+
+**Four defects, all in the reading, fixed at their one place:**
+
+1. **The printed comma closes the name**, unless the token is a title or a suffix — the
+   volume sets `Bates, jr., John` and `Baumgarten, jr., Morris`, whose comma is their own.
+2. **A street's head word is a proper noun.** `STREET` was compiled `re.I`, so `[A-Z]`
+   matched a lower-case letter and the volume's joining words became street names:
+   `cor. Clark and Randolph sts` → "and Randolph sts", `bet Dearborn and State sts` →
+   "and State sts", `clerk Steamer Geo. W. Dole, for St. Joseph` → **"for St"**. The name
+   is now case-sensitive, the street WORD stays case-blind, and a joiner in front of a
+   real head is dropped rather than kept.
+3. **The compositor's end-of-line break rejoins**, `¬` as well as `-`, and takes the turned
+   line's indent with it: `La¬ / Salle st` was read as a street called Salle, and
+   `apothe¬ / caries` as two words.
+4. **A host named with an initial is a person, tested BEFORE the street table.** Not a
+   defect of the split but one it uncovered: with Wolcott's 1839 line no longer a false
+   address, his 1843 `bds H. Wolcott` surfaced, and `back_project_residences.py` placed him
+   on **Wolcott Street**. `BARE_PERSON` is only reached when no street name is found, so a
+   host whose surname is also a street could never reach it. `INITIALLED_PERSON` is ordered
+   in front of `street_words`, and excludes the compass initials or `res N. Water` reads as
+   a man called Water. Both directions are self-tested.
+
+**Measured, before and after:**
+
+| | before | after |
+|---|---|---|
+| 1839 entries whose split changes | — | **192 of 1,655** |
+| cards whose later trade or address changes | — | **16** |
+| phantom streets read off a non-street phrase | 5 | **0** |
+| `residents_could_carry_occupation` | 92 | **90** — two were the garbage above |
+| `residents_could_carry_street` | 96 | 96 |
+| business addresses adjudicated / placed | 150 / 18 | **151 / 18** |
+| residence addresses adjudicated / placed | 44 / 6 | **45 / 6** |
+| false placements (Wolcott Street) | 1 would have landed | **0** |
+| directories on a card / `unwritten` (clause 3) | 938 / 0 | **938 / 0** |
+
+The five streets that vanish are all refusals earned: `for St` and `schooner St` and
+`mate steamer St` are vessels and destinations, `ake st` and `born st` are OCR damage that
+the 1835 table refused anyway. No 1835 grade moved; `qualify_later_trades.py` re-derived
+13 records.
+
+**What a reader can see.** Sixteen cards. John B. Beaubien's directory line now reads as
+the printer set it, from Michigan Avenue; David Hunter's trade of `street, near Rush`
+becomes the address it was cut from; Tuthill King keeps the New York Clothing Store, and
+Funk, Parsons, Hyde, Tucker and Austin each recover the first name of their own firm.
+**No face was added and none was lost** — 18 business and 6 residence, as before.
+
+**The pools after this stretch:**
+
+```
+  ties                        34 (1839) · 58 (1843) · 39 (1844) · 11 (1844 ad)  = 142
+  initial-absent refusals    277 · 349 · 335 · 140                              = 1,101
+  forename-disagreed          75 · 94 · 48                                      = 217
+  could-carry, 1839           90 trades · 96 streets, all spent, the reading now correct
+```
+
+**Stretch 5 is the could-carry pool of Fergus 1843 and Norris 1844** — the same third pool
+in the two volumes this one's defect does not reach, and it should check FIRST whether
+their own splitters carry the same comma rule: `read_fergus_1843.py` and
+`read_norris_1844.py` are separate files and this one's four defects were all local to the
+1839 reader. **Two findings this stretch declined to take, recorded here rather than
+filed as tickets** (owner's rule of 2026-09-10): the volume's shared street word
+(`Clark and Randolph sts` names TWO streets and only the last is read — Eli B. Williams
+loses Clark that way), and the 64 clause-1 refusals that are business-shaped addresses
+against people the 1835 corpus gives no trade, which get one ruling on the business
+question and none on any other. No successor ticket is filed; this ticket stays open and
+is its own cursor.

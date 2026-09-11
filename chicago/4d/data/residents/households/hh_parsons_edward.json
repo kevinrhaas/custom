@@ -61,7 +61,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "& Holden",
+     "value": "Parsons & Holden",
      "describes_date": 1839,
      "confidence": "attested",
      "sources": [
@@ -148,7 +148,7 @@
    {
     "person_id": "parsons_edward",
     "occupation_later": {
-     "value": "& Holden",
+     "value": "Parsons & Holden",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [

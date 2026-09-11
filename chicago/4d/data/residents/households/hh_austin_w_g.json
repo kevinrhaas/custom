@@ -60,7 +60,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "& Austin",
+     "value": "Dodge & Austin",
      "describes_date": 1839,
      "confidence": "attested",
      "sources": [
@@ -118,7 +118,7 @@
    {
     "person_id": "austin_w_g",
     "occupation_later": {
-     "value": "& Austin",
+     "value": "Dodge & Austin",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [

@@ -7,11 +7,11 @@
  "number_rule": "Fergus, printed page 3: 'There were no numbers on any street (except Lake Street,) at that time — the numbers now given are those of the present day.' Every address number in this volume off Lake street is an 1876 number. This file counts STREETS, not addresses.",
  "counts": {
   "entries": 1655,
-  "entries_with_an_address": 976,
-  "distinct_streets": 102,
-  "distinct_trades": 945,
-  "trades_the_vocabulary_cannot_say": 468,
-  "entries_under_a_trade_the_vocabulary_cannot_say": 736,
+  "entries_with_an_address": 979,
+  "distinct_streets": 86,
+  "distinct_trades": 960,
+  "trades_the_vocabulary_cannot_say": 466,
+  "entries_under_a_trade_the_vocabulary_cannot_say": 728,
   "firms_with_an_address": 59
  },
  "streets": [
@@ -20,15 +20,10 @@
    "as_printed": [
     "Lake st",
     "Lake street",
-    "near Lake st",
     "Lake Street",
-    "near Lake street",
-    "and Lake sts",
-    "north of Lake street",
-    "south of Lake st",
-    "north of Lake st"
+    "Lake sts"
    ],
-   "entries": 199,
+   "entries": 200,
    "firms": 28,
    "trades": [
     {
@@ -120,11 +115,11 @@
      "n": 1
     },
     {
-     "trade": "& Austin",
+     "trade": "Dodge & Austin",
      "n": 1
     },
     {
-     "trade": "cabinet makers and under¬ takers",
+     "trade": "cabinet makers and undertakers",
      "n": 1
     },
     {
@@ -140,7 +135,7 @@
      "n": 1
     },
     {
-     "trade": "Bingham & Co",
+     "trade": "Frink, Bingham & Co",
      "n": 1
     },
     {
@@ -184,11 +179,15 @@
      "n": 1
     },
     {
+     "trade": "grocery and provision store, hi",
+     "n": 1
+    },
+    {
      "trade": "lottery and exchange broker, 150^",
      "n": 1
     },
     {
-     "trade": "& Abram F. , wholesale druggists and apothe¬ caries",
+     "trade": "& Abram F. , wholesale druggists and apothecaries",
      "n": 1
     },
     {
@@ -204,7 +203,7 @@
      "n": 1
     },
     {
-     "trade": "Exchange, 192-",
+     "trade": "Illinois Exchange, 192-",
      "n": 1
     },
     {
@@ -212,7 +211,7 @@
      "n": 1
     },
     {
-     "trade": "hotel-keeper, Tremont House, n.-w. cor. Dearborn",
+     "trade": "hotel-keeper, Tremont House, n.-w. cor. Dearborn and",
      "n": 1
     },
     {
@@ -276,7 +275,7 @@
      "n": 1
     },
     {
-     "trade": "York millinery store",
+     "trade": "New York millinery store",
      "n": 1
     },
     {
@@ -293,10 +292,6 @@
     },
     {
      "trade": "lenry",
-     "n": 1
-    },
-    {
-     "trade": "street",
      "n": 1
     },
     {
@@ -356,7 +351,7 @@
      "n": 1
     },
     {
-     "trade": "clothing store",
+     "trade": "New York clothing store",
      "n": 1
     },
     {
@@ -364,7 +359,7 @@
      "n": 1
     },
     {
-     "trade": "carpenter, west on river bank",
+     "trade": "carpenter, west on river bank, south of",
      "n": 1
     },
     {
@@ -416,7 +411,7 @@
      "n": 1
     },
     {
-     "trade": "York House",
+     "trade": "New York House",
      "n": 1
     },
     {
@@ -440,10 +435,6 @@
      "n": 1
     },
     {
-     "trade": "st",
-     "n": 1
-    },
-    {
      "trade": "wholesale drygoods merchant",
      "n": 1
     },
@@ -461,6 +452,10 @@
     },
     {
      "trade": "furniture dealer",
+     "n": 1
+    },
+    {
+     "trade": "Mansion House",
      "n": 1
     },
     {
@@ -504,7 +499,7 @@
      "n": 1
     },
     {
-     "trade": "attorney",
+     "trade": "City attorney",
      "n": 1
     },
     {
@@ -568,7 +563,7 @@
      "n": 1
     },
     {
-     "trade": "& Co., 1 1",
+     "trade": "Kendall, Vail & Co., 1 1",
      "n": 1
     },
     {
@@ -584,7 +579,7 @@
      "n": 1
     },
     {
-     "trade": "(variety store), 152^",
+     "trade": "Great Western (variety store), 152^",
      "n": 1
     },
     {
@@ -608,7 +603,7 @@
      "n": 1
     },
     {
-     "trade": "& James H., wholesale dry goods mer¬ chants",
+     "trade": "& James H., wholesale dry goods merchants",
      "n": 1
     }
    ]
@@ -618,12 +613,9 @@
    "as_printed": [
     "Clark street",
     "Clark st",
-    "and Clark sts",
-    "at Clark street",
-    "near Clark st",
-    "east of Clark st"
+    "Clark sts"
    ],
-   "entries": 94,
+   "entries": 95,
    "firms": 3,
    "trades": [
     {
@@ -636,7 +628,7 @@
     },
     {
      "trade": "attorney and counsellor at law",
-     "n": 5
+     "n": 4
     },
     {
      "trade": "carpenter and builder",
@@ -667,15 +659,15 @@
      "n": 2
     },
     {
-     "trade": "office",
+     "trade": "Postmaster, office",
      "n": 1
     },
     {
-     "trade": "attorneys and coun¬ sellors at law",
+     "trade": "attorneys and counsellors at law",
      "n": 1
     },
     {
-     "trade": "Church",
+     "trade": "Presbyterian Church",
      "n": 1
     },
     {
@@ -691,11 +683,11 @@
      "n": 1
     },
     {
-     "trade": "ferryman",
+     "trade": "ferryman at",
      "n": 1
     },
     {
-     "trade": "grocery and provision store, South Water",
+     "trade": "grocery and provision store, South Water near",
      "n": 1
     },
     {
@@ -704,6 +696,10 @@
     },
     {
      "trade": "blacksmith, carriage and wagon repairer",
+     "n": 1
+    },
+    {
+     "trade": "T. , attorney and counsellor at law",
      "n": 1
     },
     {
@@ -723,6 +719,10 @@
      "n": 1
     },
     {
+     "trade": "clerk circuit court",
+     "n": 1
+    },
+    {
      "trade": "dry goods merchant",
      "n": 1
     },
@@ -736,6 +736,10 @@
     },
     {
      "trade": "boarding and saloon",
+     "n": 1
+    },
+    {
+     "trade": "boarding-",
      "n": 1
     },
     {
@@ -807,6 +811,10 @@
      "n": 1
     },
     {
+     "trade": "City Hotel",
+     "n": 1
+    },
+    {
      "trade": "upholsterer",
      "n": 1
     },
@@ -843,7 +851,7 @@
      "n": 1
     },
     {
-     "trade": "publisher and editor of Chicago Daily American, cor. So. Water",
+     "trade": "publisher and editor of Chicago Daily American, cor. So. Water and",
      "n": 1
     },
     {
@@ -906,10 +914,6 @@
      "n": 3
     },
     {
-     "trade": "dyer and scourer",
-     "n": 2
-    },
-    {
      "trade": "teamster",
      "n": 2
     },
@@ -934,7 +938,11 @@
      "n": 1
     },
     {
-     "trade": "dyer",
+     "trade": "Parisian dyer",
+     "n": 1
+    },
+    {
+     "trade": "dyer and scourer",
      "n": 1
     },
     {
@@ -943,6 +951,10 @@
     },
     {
      "trade": "and Samuel, bakers",
+     "n": 1
+    },
+    {
+     "trade": "Steamboat Hotel",
      "n": 1
     },
     {
@@ -998,7 +1010,7 @@
      "n": 1
     },
     {
-     "trade": "Gurdon S., forwarding, and commission mer¬ chants",
+     "trade": "Gurdon S., forwarding, and commission merchants",
      "n": 1
     },
     {
@@ -1015,6 +1027,10 @@
     },
     {
      "trade": "carpenter and builder",
+     "n": 1
+    },
+    {
+     "trade": "American Hotel",
      "n": 1
     },
     {
@@ -1066,6 +1082,10 @@
      "n": 1
     },
     {
+     "trade": "Parisian dyer and scourer",
+     "n": 1
+    },
+    {
      "trade": "general merchant",
      "n": 1
     },
@@ -1078,7 +1098,7 @@
      "n": 1
     },
     {
-     "trade": "produce and commission merchant, Hub¬ bard & Co.’s warehouse",
+     "trade": "produce and commission merchant, Hubbard & Co.’s warehouse",
      "n": 1
     },
     {
@@ -1142,10 +1162,6 @@
     },
     {
      "trade": "commission merchants",
-     "n": 1
-    },
-    {
-     "trade": "ave., bet. Lake and",
      "n": 1
     },
     {
@@ -1221,7 +1237,7 @@
      "n": 1
     },
     {
-     "trade": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale gro¬ cers, s.-w. cor. Clark and",
+     "trade": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale grocers, s.-w. cor. Clark and",
      "n": 1
     },
     {
@@ -1337,7 +1353,7 @@
      "n": 1
     },
     {
-     "trade": "cor. Clark",
+     "trade": "Recorder, cor. Clark and",
      "n": 1
     },
     {
@@ -1355,9 +1371,9 @@
    "as_printed": [
     "Dearborn street",
     "Dearborn st",
-    "and Dearborn sts"
+    "Dearborn sts"
    ],
-   "entries": 40,
+   "entries": 42,
    "firms": 4,
    "trades": [
     {
@@ -1461,7 +1477,7 @@
      "n": 1
     },
     {
-     "trade": "Refectory",
+     "trade": "City Refectory",
      "n": 1
     },
     {
@@ -1491,12 +1507,9 @@
    "as_printed": [
     "Randolph street",
     "Randolph st",
-    "and Randolph sts",
-    "Randolph st alley",
-    "Randolph street alley",
-    "near Randolph st"
+    "Randolph sts"
    ],
-   "entries": 33,
+   "entries": 34,
    "firms": 1,
    "trades": [
     {
@@ -1548,6 +1561,10 @@
      "n": 1
     },
     {
+     "trade": "Sheriff",
+     "n": 1
+    },
+    {
      "trade": "boarding-house",
      "n": 1
     },
@@ -1580,6 +1597,10 @@
      "n": 1
     },
     {
+     "trade": "horse-dealer",
+     "n": 1
+    },
+    {
      "trade": "wagonmaker",
      "n": 1
     },
@@ -1588,7 +1609,7 @@
      "n": 1
     },
     {
-     "trade": "cor. Clark",
+     "trade": "Recorder, cor. Clark and",
      "n": 1
     },
     {
@@ -1602,10 +1623,9 @@
    "as_printed": [
     "State street",
     "State st",
-    "and State sts",
-    "and State st"
+    "State sts"
    ],
-   "entries": 25,
+   "entries": 27,
    "firms": 1,
    "trades": [
     {
@@ -1633,7 +1653,7 @@
      "n": 1
     },
     {
-     "trade": "grocer and liquor dealer, cor. Lake",
+     "trade": "grocer and liquor dealer, cor. Lake and",
      "n": 1
     },
     {
@@ -1654,6 +1674,10 @@
     },
     {
      "trade": "lenry",
+     "n": 1
+    },
+    {
+     "trade": "Southern Hotel",
      "n": 1
     },
     {
@@ -1681,77 +1705,7 @@
      "n": 1
     },
     {
-     "trade": "cor. Clark",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "cass",
-   "as_printed": [
-    "Cass street",
-    "Cass st",
-    "near Cass street",
-    "and Cass streets",
-    "and Cass street"
-   ],
-   "entries": 20,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "laborer",
-     "n": 4
-    },
-    {
-     "trade": "carpenter",
-     "n": 3
-    },
-    {
-     "trade": "carpenter and builder",
-     "n": 2
-    },
-    {
-     "trade": "teamster",
-     "n": 1
-    },
-    {
-     "trade": "mathematical school",
-     "n": 1
-    },
-    {
-     "trade": "sexton, St. James’ Church",
-     "n": 1
-    },
-    {
-     "trade": "St. James’ church,'",
-     "n": 1
-    },
-    {
-     "trade": "cooper, cor. Pearsons",
-     "n": 1
-    },
-    {
-     "trade": "laborer, cor",
-     "n": 1
-    },
-    {
-     "trade": "turner",
-     "n": 1
-    },
-    {
-     "trade": "ice cream, soda water",
-     "n": 1
-    },
-    {
-     "trade": "phrenologist",
-     "n": 1
-    },
-    {
-     "trade": "gardener",
-     "n": 1
-    },
-    {
-     "trade": "mason builder",
+     "trade": "Recorder, cor. Clark and",
      "n": 1
     }
    ]
@@ -1760,10 +1714,9 @@
    "street": "illinois",
    "as_printed": [
     "Illinois street",
-    "Illinois st",
-    "and Illinois st"
+    "Illinois st"
    ],
-   "entries": 19,
+   "entries": 21,
    "firms": 0,
    "trades": [
     {
@@ -1799,7 +1752,7 @@
      "n": 1
     },
     {
-     "trade": "& John, brassfounders, 55 Clark",
+     "trade": "& John, brassfounders, 55 Clark and",
      "n": 1
     },
     {
@@ -1813,204 +1766,69 @@
    ]
   },
   {
-   "street": "chicago avenue",
+   "street": "cass",
    "as_printed": [
-    "Chicago ave",
-    "Chicago avenue",
-    "north of Chicago ave",
-    "Chicago av",
-    "near Chicago avenue",
-    "and Chicago ave",
-    "near Chicago ave"
+    "Cass street",
+    "Cass st",
+    "Cass streets"
    ],
-   "entries": 18,
+   "entries": 20,
    "firms": 0,
    "trades": [
     {
-     "trade": "teamster",
-     "n": 2
-    },
-    {
-     "trade": "laborer, cor",
-     "n": 2
-    },
-    {
-     "trade": "brewer, cor",
-     "n": 2
-    },
-    {
      "trade": "laborer",
-     "n": 2
+     "n": 4
     },
     {
      "trade": "carpenter",
-     "n": 2
-    },
-    {
-     "trade": "milkman",
-     "n": 1
-    },
-    {
-     "trade": "plasterer and bricklayer, LaSalle cor",
-     "n": 1
-    },
-    {
-     "trade": "brewer",
-     "n": 1
-    },
-    {
-     "trade": "veg’t gardener, cor",
-     "n": 1
-    },
-    {
-     "trade": "contractor, n.vv. cor",
-     "n": 1
-    },
-    {
-     "trade": "waterman",
-     "n": 1
-    },
-    {
-     "trade": "stone mason",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "kinzie",
-   "as_printed": [
-    "Kinzie st",
-    "Kinzie street",
-    "and Kinzie sts",
-    "and Kinzie st",
-    "near Kinzie street",
-    "and Kinzie streets"
-   ],
-   "entries": 16,
-   "firms": 1,
-   "trades": [
-    {
-     "trade": "constable, alley bet. North Water",
-     "n": 1
-    },
-    {
-     "trade": "& Hyde, hardware",
-     "n": 1
-    },
-    {
-     "trade": "burr mill stone manufactory",
-     "n": 1
-    },
-    {
-     "trade": "city bakehouse",
-     "n": 1
-    },
-    {
-     "trade": "with Simon Doyle, tailor",
-     "n": 1
-    },
-    {
-     "trade": "drayman",
-     "n": 1
-    },
-    {
-     "trade": "Kinzie & Hyde",
-     "n": 1
-    },
-    {
-     "trade": "teamster",
-     "n": 1
-    },
-    {
-     "trade": "livery stable keeper",
-     "n": 1
-    },
-    {
-     "trade": "real estate dealer",
-     "n": 1
-    },
-    {
-     "trade": "house, sign, and ornamental painter",
-     "n": 1
-    },
-    {
-     "trade": "sawyer",
-     "n": 1
-    },
-    {
-     "trade": "carpenter",
-     "n": 1
-    },
-    {
-     "trade": "and Leighton, livery stables, cor. North State",
-     "n": 1
-    },
-    {
-     "trade": "contractor and builder, cor. North State",
-     "n": 1
-    },
-    {
-     "trade": "private boarding house, cor. North State",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "lasalle",
-   "as_printed": [
-    "LaSalle st",
-    "LaSalle street",
-    "and LaSalle sts"
-   ],
-   "entries": 15,
-   "firms": 1,
-   "trades": [
-    {
-     "trade": "boarding-house",
      "n": 3
     },
     {
-     "trade": "baker",
+     "trade": "carpenter and builder",
      "n": 2
     },
     {
-     "trade": "cabinet makers",
+     "trade": "teamster",
      "n": 1
     },
     {
-     "trade": "First Baptist Church",
+     "trade": "mathematical school",
      "n": 1
     },
     {
-     "trade": "school agent",
+     "trade": "sexton, St. James’ Church",
      "n": 1
     },
     {
-     "trade": "private boarding",
+     "trade": "St. James’ church,'",
      "n": 1
     },
     {
-     "trade": "deputy-sheriff and constable",
+     "trade": "cooper, cor. Pearsons and",
      "n": 1
     },
     {
-     "trade": "teller, Illinois State Bank Branch",
+     "trade": "laborer, cor",
      "n": 1
     },
     {
-     "trade": "bricklayer",
+     "trade": "turner",
      "n": 1
     },
     {
-     "trade": "boot and shoe maker",
+     "trade": "ice cream, soda water",
      "n": 1
     },
     {
-     "trade": "tavern-keeper, cor. South Water",
+     "trade": "phrenologist",
      "n": 1
     },
     {
-     "trade": "ship carpenter",
+     "trade": "gardener",
+     "n": 1
+    },
+    {
+     "trade": "mason builder",
      "n": 1
     }
    ]
@@ -2019,10 +1837,9 @@
    "street": "michigan avenue",
    "as_printed": [
     "Michigan ave",
-    "Michigan avenue",
-    "of Michigan ave"
+    "Michigan avenue"
    ],
-   "entries": 14,
+   "entries": 20,
    "firms": 0,
    "trades": [
     {
@@ -2076,15 +1893,217 @@
    ]
   },
   {
+   "street": "chicago avenue",
+   "as_printed": [
+    "Chicago ave",
+    "Chicago avenue",
+    "Chicago av"
+   ],
+   "entries": 19,
+   "firms": 0,
+   "trades": [
+    {
+     "trade": "teamster",
+     "n": 2
+    },
+    {
+     "trade": "laborer, cor",
+     "n": 2
+    },
+    {
+     "trade": "brewer, cor",
+     "n": 2
+    },
+    {
+     "trade": "laborer",
+     "n": 2
+    },
+    {
+     "trade": "carpenter",
+     "n": 2
+    },
+    {
+     "trade": "milkman",
+     "n": 1
+    },
+    {
+     "trade": "plasterer and bricklayer, LaSalle cor",
+     "n": 1
+    },
+    {
+     "trade": "brewer",
+     "n": 1
+    },
+    {
+     "trade": "ship carpenter, North Branch, nr",
+     "n": 1
+    },
+    {
+     "trade": "veg’t gardener, cor",
+     "n": 1
+    },
+    {
+     "trade": "contractor, n.vv. cor",
+     "n": 1
+    },
+    {
+     "trade": "waterman",
+     "n": 1
+    },
+    {
+     "trade": "stone mason",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "street": "kinzie",
+   "as_printed": [
+    "Kinzie st",
+    "Kinzie street",
+    "Kinzie sts",
+    "Kinzie streets"
+   ],
+   "entries": 16,
+   "firms": 1,
+   "trades": [
+    {
+     "trade": "constable, alley bet. North Water and",
+     "n": 1
+    },
+    {
+     "trade": "& Hyde, hardware",
+     "n": 1
+    },
+    {
+     "trade": "burr mill stone manufactory",
+     "n": 1
+    },
+    {
+     "trade": "city bakehouse",
+     "n": 1
+    },
+    {
+     "trade": "with Simon Doyle, tailor",
+     "n": 1
+    },
+    {
+     "trade": "drayman",
+     "n": 1
+    },
+    {
+     "trade": "Davis, Kinzie & Hyde",
+     "n": 1
+    },
+    {
+     "trade": "teamster",
+     "n": 1
+    },
+    {
+     "trade": "livery stable keeper",
+     "n": 1
+    },
+    {
+     "trade": "real estate dealer",
+     "n": 1
+    },
+    {
+     "trade": "house, sign, and ornamental painter",
+     "n": 1
+    },
+    {
+     "trade": "sawyer, near",
+     "n": 1
+    },
+    {
+     "trade": "carpenter",
+     "n": 1
+    },
+    {
+     "trade": "and Leighton, livery stables, cor. North State and",
+     "n": 1
+    },
+    {
+     "trade": "contractor and builder, cor. North State and",
+     "n": 1
+    },
+    {
+     "trade": "private boarding house, cor. North State and",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "street": "lasalle",
+   "as_printed": [
+    "LaSalle st",
+    "LaSalle street",
+    "LaSalle sts"
+   ],
+   "entries": 16,
+   "firms": 1,
+   "trades": [
+    {
+     "trade": "boarding-house",
+     "n": 3
+    },
+    {
+     "trade": "baker",
+     "n": 2
+    },
+    {
+     "trade": "cashier, Branch State Bank Illinois",
+     "n": 1
+    },
+    {
+     "trade": "cabinet makers",
+     "n": 1
+    },
+    {
+     "trade": "First Baptist Church",
+     "n": 1
+    },
+    {
+     "trade": "Sunday school agent",
+     "n": 1
+    },
+    {
+     "trade": "private boarding",
+     "n": 1
+    },
+    {
+     "trade": "deputy-sheriff and constable",
+     "n": 1
+    },
+    {
+     "trade": "teller, Illinois State Bank Branch",
+     "n": 1
+    },
+    {
+     "trade": "bricklayer",
+     "n": 1
+    },
+    {
+     "trade": "boot and shoe maker",
+     "n": 1
+    },
+    {
+     "trade": "tavern-keeper, cor. South Water and",
+     "n": 1
+    },
+    {
+     "trade": "ship carpenter",
+     "n": 1
+    }
+   ]
+  },
+  {
    "street": "rush",
    "as_printed": [
     "Rush street",
-    "and Rush street",
-    "and Rush sts",
     "Rush st",
-    "and Rush st",
-    "and Rush streets",
-    "at Rush st"
+    "Rush sts",
+    "Rush streets"
    ],
    "entries": 13,
    "firms": 0,
@@ -2098,7 +2117,7 @@
      "n": 1
     },
     {
-     "trade": "“ Shakspeare”, cor. North Water",
+     "trade": "“ Shakspeare”, cor. North Water and",
      "n": 1
     },
     {
@@ -2118,7 +2137,7 @@
      "n": 1
     },
     {
-     "trade": "House, cor. North Water",
+     "trade": "Lake House, cor. North Water and",
      "n": 1
     },
     {
@@ -2130,7 +2149,7 @@
      "n": 1
     },
     {
-     "trade": "laborer, cor. Oak",
+     "trade": "laborer, cor. Oak and",
      "n": 1
     }
    ]
@@ -2140,7 +2159,7 @@
    "as_printed": [
     "Wells st",
     "Wells street",
-    "and Wells sts"
+    "Wells sts"
    ],
    "entries": 13,
    "firms": 0,
@@ -2154,7 +2173,11 @@
      "n": 1
     },
     {
-     "trade": "Exchange, 192-",
+     "trade": "Columbian House",
+     "n": 1
+    },
+    {
+     "trade": "Illinois Exchange, 192-",
      "n": 1
     },
     {
@@ -2174,7 +2197,7 @@
      "n": 1
     },
     {
-     "trade": "milliner and mantua-maker, cor. Lake",
+     "trade": "milliner and mantua-maker, cor. Lake and",
      "n": 1
     },
     {
@@ -2191,6 +2214,51 @@
     },
     {
      "trade": "teamster",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "street": "canal",
+   "as_printed": [
+    "Canal street",
+    "Canal st",
+    "Canal sts",
+    "Canal streets"
+   ],
+   "entries": 11,
+   "firms": 1,
+   "trades": [
+    {
+     "trade": "machinist, 42-",
+     "n": 2
+    },
+    {
+     "trade": "canal contractor",
+     "n": 1
+    },
+    {
+     "trade": "boot and shoemaker",
+     "n": 1
+    },
+    {
+     "trade": "milkman",
+     "n": 1
+    },
+    {
+     "trade": "Indian chief",
+     "n": 1
+    },
+    {
+     "trade": "millers, South Branch",
+     "n": 1
+    },
+    {
+     "trade": "gardener",
+     "n": 1
+    },
+    {
+     "trade": "carpenter",
      "n": 1
     }
    ]
@@ -2251,8 +2319,7 @@
    "street": "adams",
    "as_printed": [
     "Adams street",
-    "Adams st",
-    "near Adams street"
+    "Adams st"
    ],
    "entries": 10,
    "firms": 0,
@@ -2296,51 +2363,6 @@
    ]
   },
   {
-   "street": "canal",
-   "as_printed": [
-    "Canal street",
-    "near Canal st",
-    "and Canal sts",
-    "and Canal streets"
-   ],
-   "entries": 10,
-   "firms": 1,
-   "trades": [
-    {
-     "trade": "machinist, 42-",
-     "n": 2
-    },
-    {
-     "trade": "canal contractor",
-     "n": 1
-    },
-    {
-     "trade": "boot and shoemaker",
-     "n": 1
-    },
-    {
-     "trade": "milkman",
-     "n": 1
-    },
-    {
-     "trade": "chief",
-     "n": 1
-    },
-    {
-     "trade": "millers, South Branch",
-     "n": 1
-    },
-    {
-     "trade": "gardener",
-     "n": 1
-    },
-    {
-     "trade": "carpenter",
-     "n": 1
-    }
-   ]
-  },
-  {
    "street": "madison",
    "as_printed": [
     "Madison street",
@@ -2350,19 +2372,19 @@
    "firms": 0,
    "trades": [
     {
-     "trade": "ave. cor",
-     "n": 3
-    },
-    {
      "trade": "carpenter",
      "n": 2
     },
     {
      "trade": "teamster",
-     "n": 2
+     "n": 1
     },
     {
      "trade": "farmer",
+     "n": 1
+    },
+    {
+     "trade": "jr., teamster",
      "n": 1
     },
     {
@@ -2379,8 +2401,7 @@
    "street": "market",
    "as_printed": [
     "Market st",
-    "Market street",
-    "near Market st"
+    "Market street"
    ],
    "entries": 9,
    "firms": 0,
@@ -2406,11 +2427,19 @@
      "n": 1
     },
     {
+     "trade": "Sauganash Hotel",
+     "n": 1
+    },
+    {
      "trade": "teamster",
      "n": 1
     },
     {
      "trade": "blacksmith, Asahel Pierce",
+     "n": 1
+    },
+    {
+     "trade": "City Crier",
      "n": 1
     }
    ]
@@ -2459,6 +2488,50 @@
    ]
   },
   {
+   "street": "north canal",
+   "as_printed": [
+    "North Canal street",
+    "North Canal sts",
+    "North Canal st"
+   ],
+   "entries": 9,
+   "firms": 0,
+   "trades": [
+    {
+     "trade": "saloon",
+     "n": 1
+    },
+    {
+     "trade": "fisherman",
+     "n": 1
+    },
+    {
+     "trade": "hotel-keeper, cor. West Lake and",
+     "n": 1
+    },
+    {
+     "trade": "Chicago Hotel, cor. West Lake and",
+     "n": 1
+    },
+    {
+     "trade": "real estate agent",
+     "n": 1
+    },
+    {
+     "trade": "horse-rider",
+     "n": 1
+    },
+    {
+     "trade": "sawyer",
+     "n": 1
+    },
+    {
+     "trade": "carpenter",
+     "n": 1
+    }
+   ]
+  },
+  {
    "street": "west lake",
    "as_printed": [
     "West Lake st",
@@ -2497,50 +2570,6 @@
     },
     {
      "trade": "school-teacher",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "north canal",
-   "as_printed": [
-    "North Canal street",
-    "North Canal sts",
-    "North Canal st"
-   ],
-   "entries": 8,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "saloon",
-     "n": 1
-    },
-    {
-     "trade": "fisherman",
-     "n": 1
-    },
-    {
-     "trade": "hotel-keeper, cor. West Lake and",
-     "n": 1
-    },
-    {
-     "trade": "cor. West Lake and",
-     "n": 1
-    },
-    {
-     "trade": "real estate agent",
-     "n": 1
-    },
-    {
-     "trade": "horse-rider",
-     "n": 1
-    },
-    {
-     "trade": "sawyer",
-     "n": 1
-    },
-    {
-     "trade": "carpenter",
      "n": 1
     }
    ]
@@ -2686,8 +2715,7 @@
    "street": "washington",
    "as_printed": [
     "Washington st",
-    "near Washington st",
-    "and Washington streets",
+    "Washington streets",
     "Washington street"
    ],
    "entries": 7,
@@ -2710,7 +2738,7 @@
      "n": 1
     },
     {
-     "trade": "bricklayer, cor. Market",
+     "trade": "bricklayer, cor. Market and",
      "n": 1
     },
     {
@@ -2759,8 +2787,8 @@
    "street": "indiana",
    "as_printed": [
     "Indiana street",
-    "and Indiana streets",
-    "and Indiana sts",
+    "Indiana streets",
+    "Indiana sts",
     "Indiana st"
    ],
    "entries": 6,
@@ -2771,7 +2799,7 @@
      "n": 2
     },
     {
-     "trade": "sailor, cor. Cass",
+     "trade": "sailor, cor. Cass and",
      "n": 1
     },
     {
@@ -2779,7 +2807,7 @@
      "n": 1
     },
     {
-     "trade": "bridge-builder, n.-w. cor. N. State",
+     "trade": "bridge-builder, n.-w. cor. N. State and",
      "n": 1
     },
     {
@@ -2792,7 +2820,7 @@
    "street": "milwaukee avenue",
    "as_printed": [
     "Milwaukee ave",
-    "and Milwaukee av"
+    "Milwaukee av"
    ],
    "entries": 5,
    "firms": 0,
@@ -2816,25 +2844,52 @@
    ]
   },
   {
-   "street": "pearsons",
+   "street": "ohio",
    "as_printed": [
-    "and Pearsons streets",
-    "and Pearsons sts",
-    "near Pearsons street"
+    "Ohio street",
+    "Ohio st"
    ],
    "entries": 5,
    "firms": 0,
    "trades": [
     {
-     "trade": "laborer, cor. Cass",
+     "trade": "whitewasher and laborer",
      "n": 1
     },
     {
-     "trade": "laborer, cor. Rush",
+     "trade": "drayman",
      "n": 1
     },
     {
-     "trade": "cabinetmaker, cor. Rush",
+     "trade": "blacksmith and horse-shoer",
+     "n": 1
+    },
+    {
+     "trade": "teamster",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "street": "pearsons",
+   "as_printed": [
+    "Pearsons streets",
+    "Pearsons sts",
+    "Pearsons street"
+   ],
+   "entries": 5,
+   "firms": 0,
+   "trades": [
+    {
+     "trade": "laborer, cor. Cass and",
+     "n": 1
+    },
+    {
+     "trade": "laborer, cor. Rush and",
+     "n": 1
+    },
+    {
+     "trade": "cabinetmaker, cor. Rush and",
      "n": 1
     },
     {
@@ -2842,7 +2897,38 @@
      "n": 1
     },
     {
-     "trade": "bricklayer, cor. Cass",
+     "trade": "bricklayer, cor. Cass and",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "street": "river",
+   "as_printed": [
+    "River street",
+    "River st"
+   ],
+   "entries": 5,
+   "firms": 0,
+   "trades": [
+    {
+     "trade": "drayman",
+     "n": 1
+    },
+    {
+     "trade": "real estate",
+     "n": 1
+    },
+    {
+     "trade": "grocery and boarding-house, S. Water, nr",
+     "n": 1
+    },
+    {
+     "trade": "light-housekeeper",
+     "n": 1
+    },
+    {
+     "trade": "lumber dealer",
      "n": 1
     }
    ]
@@ -2871,37 +2957,9 @@
    ]
   },
   {
-   "street": "ohio",
-   "as_printed": [
-    "Ohio st",
-    "Ohio street"
-   ],
-   "entries": 4,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "whitewasher and laborer",
-     "n": 1
-    },
-    {
-     "trade": "drayman",
-     "n": 1
-    },
-    {
-     "trade": "blacksmith and horse-shoer",
-     "n": 1
-    },
-    {
-     "trade": "teamster",
-     "n": 1
-    }
-   ]
-  },
-  {
    "street": "pine",
    "as_printed": [
     "Pine street",
-    "and Pine street",
     "Pine st"
    ],
    "entries": 4,
@@ -2913,33 +2971,6 @@
     },
     {
      "trade": "brewer",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "river",
-   "as_printed": [
-    "River street",
-    "River st"
-   ],
-   "entries": 4,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "drayman",
-     "n": 1
-    },
-    {
-     "trade": "real estate",
-     "n": 1
-    },
-    {
-     "trade": "light-housekeeper",
-     "n": 1
-    },
-    {
-     "trade": "lumber dealer",
      "n": 1
     }
    ]
@@ -2996,14 +3027,14 @@
   {
    "street": "chestnut",
    "as_printed": [
-    "and Chestnut streets",
+    "Chestnut streets",
     "Chestnut street"
    ],
    "entries": 3,
    "firms": 0,
    "trades": [
     {
-     "trade": "laborer, cor. Cass",
+     "trade": "laborer, cor. Cass and",
      "n": 2
     },
     {
@@ -3023,14 +3054,17 @@
     {
      "trade": "clerk",
      "n": 2
+    },
+    {
+     "trade": "judge",
+     "n": 1
     }
    ]
   },
   {
    "street": "monroe",
    "as_printed": [
-    "Monroe street",
-    "and Monroe street"
+    "Monroe street"
    ],
    "entries": 3,
    "firms": 0,
@@ -3044,7 +3078,29 @@
      "n": 1
     },
     {
-     "trade": "painter, cor. Clinton",
+     "trade": "painter, cor. Clinton and",
+     "n": 1
+    }
+   ]
+  },
+  {
+   "street": "north avenue",
+   "as_printed": [
+    "North ave"
+   ],
+   "entries": 3,
+   "firms": 0,
+   "trades": [
+    {
+     "trade": "gardener",
+     "n": 1
+    },
+    {
+     "trade": "teamster",
+     "n": 1
+    },
+    {
+     "trade": "miller, at the wind mill, above",
      "n": 1
     }
    ]
@@ -3076,6 +3132,10 @@
    "entries": 3,
    "firms": 0,
    "trades": [
+    {
+     "trade": "city street carpenter",
+     "n": 1
+    },
     {
      "trade": "laborer",
      "n": 1
@@ -3119,7 +3179,7 @@
    "firms": 0,
    "trades": [
     {
-     "trade": "saloon",
+     "trade": "Eagle saloon",
      "n": 1
     },
     {
@@ -3149,7 +3209,7 @@
   {
    "street": "fifth avenue",
    "as_printed": [
-    "near Fifth ave"
+    "Fifth ave"
    ],
    "entries": 2,
    "firms": 0,
@@ -3163,8 +3223,8 @@
   {
    "street": "halsted",
    "as_printed": [
-    "near Halsted street",
-    "and Halsted streets"
+    "Halsted street",
+    "Halsted streets"
    ],
    "entries": 2,
    "firms": 0,
@@ -3174,7 +3234,7 @@
      "n": 1
     },
     {
-     "trade": "farmer, cor 22d",
+     "trade": "farmer, cor 22d and",
      "n": 1
     }
    ]
@@ -3183,7 +3243,7 @@
    "street": "jackson",
    "as_printed": [
     "Jackson st",
-    "and Jackson sts"
+    "Jackson sts"
    ],
    "entries": 2,
    "firms": 0,
@@ -3193,26 +3253,7 @@
      "n": 1
     },
     {
-     "trade": "painter and glazier, cor. Canal",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "north avenue",
-   "as_printed": [
-    "near North ave",
-    "North ave"
-   ],
-   "entries": 2,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "gardener",
-     "n": 1
-    },
-    {
-     "trade": "teamster",
+     "trade": "painter and glazier, cor. Canal and",
      "n": 1
     }
    ]
@@ -3239,7 +3280,7 @@
    "street": "vanburen",
    "as_printed": [
     "VanBuren street",
-    "near VanBuren st"
+    "VanBuren st"
    ],
    "entries": 2,
    "firms": 0,
@@ -3269,6 +3310,25 @@
    ]
   },
   {
+   "street": "water",
+   "as_printed": [
+    "Water street",
+    "Water st"
+   ],
+   "entries": 2,
+   "firms": 0,
+   "trades": [
+    {
+     "trade": "tailor, N orth",
+     "n": 1
+    },
+    {
+     "trade": "house, sign, and ornamental painter, X",
+     "n": 1
+    }
+   ]
+  },
+  {
    "street": "west kinzie",
    "as_printed": [
     "West Kinzie street"
@@ -3285,89 +3345,6 @@
      "n": 1
     }
    ]
-  },
-  {
-   "street": "above north avenue",
-   "as_printed": [
-    "above North ave"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "miller, at the wind mill",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "ake",
-   "as_printed": [
-    "ake st"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "tailor and clothier, J53 *",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "bds randolph",
-   "as_printed": [
-    "bds Randolph st"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "horse-dealer",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "born",
-   "as_printed": [
-    "born st"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "attorney and counsellor at law, 46 Deai-",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "city",
-   "as_printed": [
-    "city street"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
-  },
-  {
-   "street": "clerk circuit",
-   "as_printed": [
-    "clerk circuit court"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
-  },
-  {
-   "street": "contractor and",
-   "as_printed": [
-    "contractor and street"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
   },
   {
    "street": "cottage grove avenue",
@@ -3412,6 +3389,15 @@
    ]
   },
   {
+   "street": "dunn",
+   "as_printed": [
+    "Dunn street"
+   ],
+   "entries": 1,
+   "firms": 0,
+   "trades": []
+  },
+  {
    "street": "elston",
    "as_printed": [
     "Elston road"
@@ -3440,15 +3426,15 @@
    ]
   },
   {
-   "street": "for",
+   "street": "fullerton avenue",
    "as_printed": [
-    "for St"
+    "Fullerton av"
    ],
    "entries": 1,
    "firms": 0,
    "trades": [
     {
-     "trade": "clerk Steamer Geo. W. Dole",
+     "trade": "laborer",
      "n": 1
     }
    ]
@@ -3460,32 +3446,23 @@
    ],
    "entries": 1,
    "firms": 0,
-   "trades": []
+   "trades": [
+    {
+     "trade": "contractor and street maker",
+     "n": 1
+    }
+   ]
   },
   {
    "street": "harmon",
    "as_printed": [
-    "near Harmon court"
+    "Harmon court"
    ],
    "entries": 1,
    "firms": 0,
    "trades": [
     {
      "trade": "musician",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "hi lake",
-   "as_printed": [
-    "hi Lake st"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "grocery and provision store",
      "n": 1
     }
    ]
@@ -3547,15 +3524,6 @@
    ]
   },
   {
-   "street": "mate steamer",
-   "as_printed": [
-    "mate steamer St"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
-  },
-  {
    "street": "north clinton",
    "as_printed": [
     "North Clinton st"
@@ -3598,20 +3566,6 @@
    ]
   },
   {
-   "street": "north orth water",
-   "as_printed": [
-    "N orth Water street"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "tailor",
-     "n": 1
-    }
-   ]
-  },
-  {
    "street": "north union",
    "as_printed": [
     "North Union st"
@@ -3624,57 +3578,6 @@
      "n": 1
     }
    ]
-  },
-  {
-   "street": "nr chicago avenue",
-   "as_printed": [
-    "nr Chicago av"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "ship carpenter, North Branch",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "nr fullerton avenue",
-   "as_printed": [
-    "nr Fullerton av"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "laborer",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "nr river",
-   "as_printed": [
-    "nr River st"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "grocery and boarding-house, S. Water",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "office dearborn",
-   "as_printed": [
-    "office Dearborn street"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
   },
   {
    "street": "ontario",
@@ -3693,23 +3596,13 @@
   {
    "street": "public",
    "as_printed": [
-    "of Public Square",
     "Public Square"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
-  },
-  {
-   "street": "salle",
-   "as_printed": [
-    "Salle st"
    ],
    "entries": 1,
    "firms": 0,
    "trades": [
     {
-     "trade": "cashier, Branch State Bank Illinois, La¬",
+     "trade": "Sheriff",
      "n": 1
     }
    ]
@@ -3717,16 +3610,11 @@
   {
    "street": "sand",
    "as_printed": [
-    "and Sand sts"
+    "Sand sts"
    ],
    "entries": 1,
    "firms": 0,
-   "trades": [
-    {
-     "trade": "street bet. Pine",
-     "n": 1
-    }
-   ]
+   "trades": []
   },
   {
    "street": "sangamon",
@@ -3743,18 +3631,9 @@
    ]
   },
   {
-   "street": "schooner",
-   "as_printed": [
-    "schooner St"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": []
-  },
-  {
    "street": "sedgwick",
    "as_printed": [
-    "near Sedgwick street"
+    "Sedgwick street"
    ],
    "entries": 1,
    "firms": 0,
@@ -3780,43 +3659,15 @@
    ]
   },
   {
-   "street": "south on clark",
-   "as_printed": [
-    "south on Clark street"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "boarding-",
-     "n": 1
-    }
-   ]
-  },
-  {
    "street": "townsend",
    "as_printed": [
-    "near Townsend street"
+    "Townsend street"
    ],
    "entries": 1,
    "firms": 0,
    "trades": [
     {
      "trade": "carpenter",
-     "n": 1
-    }
-   ]
-  },
-  {
-   "street": "water",
-   "as_printed": [
-    "Water st"
-   ],
-   "entries": 1,
-   "firms": 0,
-   "trades": [
-    {
-     "trade": "house, sign, and ornamental painter, X",
      "n": 1
     }
    ]
@@ -3866,7 +3717,7 @@
   {
    "street": "western avenue",
    "as_printed": [
-    "near Western ave"
+    "Western ave"
    ],
    "entries": 1,
    "firms": 0,
@@ -3880,13 +3731,13 @@
   {
    "street": "white",
    "as_printed": [
-    "and White streets"
+    "White streets"
    ],
    "entries": 1,
    "firms": 0,
    "trades": [
     {
-     "trade": "cor. Cass",
+     "trade": "cor. Cass and",
      "n": 1
     }
    ]
@@ -3894,13 +3745,13 @@
   {
    "street": "whitney",
    "as_printed": [
-    "and Whitney streets"
+    "Whitney streets"
    ],
    "entries": 1,
    "firms": 0,
    "trades": [
     {
-     "trade": "teamster, cor. Rush",
+     "trade": "teamster, cor. Rush and",
      "n": 1
     }
    ]
@@ -3908,7 +3759,7 @@
   {
    "street": "twelfth",
    "as_printed": [
-    "and Twelfth sts"
+    "Twelfth sts"
    ],
    "entries": 0,
    "firms": 0,
@@ -3930,7 +3781,7 @@
   },
   {
    "trade": "teamster",
-   "n": 30
+   "n": 29
   },
   {
    "trade": "drayman",
@@ -3941,11 +3792,11 @@
    "n": 20
   },
   {
-   "trade": "grocery and provision store",
-   "n": 19
+   "trade": "carpenter and builder",
+   "n": 18
   },
   {
-   "trade": "carpenter and builder",
+   "trade": "grocery and provision store",
    "n": 18
   },
   {
@@ -3953,16 +3804,16 @@
    "n": 15
   },
   {
+   "trade": "blacksmith",
+   "n": 14
+  },
+  {
    "trade": "tailor",
-   "n": 15
+   "n": 14
   },
   {
    "trade": "attorney and counsellor at law",
-   "n": 14
-  },
-  {
-   "trade": "blacksmith",
-   "n": 14
+   "n": 13
   },
   {
    "trade": "attorney at law",
@@ -3970,11 +3821,11 @@
   },
   {
    "trade": "boarding-house",
-   "n": 12
+   "n": 11
   },
   {
    "trade": "saloon",
-   "n": 11
+   "n": 10
   },
   {
    "trade": "real estate dealer",
@@ -4065,10 +3916,6 @@
    "n": 4
   },
   {
-   "trade": "& Co",
-   "n": 4
-  },
-  {
    "trade": "blacksmith, Asahel Pierce",
    "n": 4
   },
@@ -4101,14 +3948,6 @@
    "n": 4
   },
   {
-   "trade": "street",
-   "n": 4
-  },
-  {
-   "trade": "sawyer",
-   "n": 4
-  },
-  {
    "trade": "plasterer",
    "n": 4
   },
@@ -4126,10 +3965,6 @@
   },
   {
    "trade": "clerk, Mansion House",
-   "n": 3
-  },
-  {
-   "trade": "dyer and scourer",
    "n": 3
   },
   {
@@ -4153,7 +3988,7 @@
    "n": 3
   },
   {
-   "trade": "& Campbell",
+   "trade": "Goodsell & Campbell",
    "n": 3
   },
   {
@@ -4181,7 +4016,11 @@
    "n": 3
   },
   {
-   "trade": "laborer, cor. Cass",
+   "trade": "sawyer",
+   "n": 3
+  },
+  {
+   "trade": "laborer, cor. Cass and",
    "n": 3
   },
   {
@@ -4205,11 +4044,19 @@
    "n": 3
   },
   {
+   "trade": "Garrison",
+   "n": 3
+  },
+  {
    "trade": "blacksmith, Joseph Willemin",
    "n": 3
   },
   {
    "trade": "cabinet and chair maker",
+   "n": 3
+  },
+  {
+   "trade": "Smead, Kendall & Co",
    "n": 3
   },
   {
@@ -4233,15 +4080,7 @@
    "n": 3
   },
   {
-   "trade": "attorney",
-   "n": 3
-  },
-  {
    "trade": "tailor, Francis",
-   "n": 3
-  },
-  {
-   "trade": "ave. cor",
    "n": 3
   },
   {
@@ -4257,7 +4096,7 @@
    "n": 2
   },
   {
-   "trade": "& Doyle",
+   "trade": "Andrus & Doyle",
    "n": 2
   },
   {
@@ -4281,6 +4120,14 @@
    "n": 2
   },
   {
+   "trade": "Botsford & Beers",
+   "n": 2
+  },
+  {
+   "trade": "dyer and scourer",
+   "n": 2
+  },
+  {
    "trade": "auctioneer, Stanton & Black",
    "n": 2
   },
@@ -4293,7 +4140,7 @@
    "n": 2
   },
   {
-   "trade": "& Bosworth",
+   "trade": "Edwards & Bosworth",
    "n": 2
   },
   {
@@ -4341,7 +4188,7 @@
    "n": 2
   },
   {
-   "trade": "& Mathes",
+   "trade": "Crosman & Mathes",
    "n": 2
   },
   {
@@ -4369,7 +4216,7 @@
    "n": 2
   },
   {
-   "trade": "& Tucker",
+   "trade": "Dodge & Tucker",
    "n": 2
   },
   {
@@ -4421,7 +4268,7 @@
    "n": 2
   },
   {
-   "trade": "& Matteson",
+   "trade": "Gurnee & Matteson",
    "n": 2
   },
   {
@@ -4433,7 +4280,7 @@
    "n": 2
   },
   {
-   "trade": "& Hallam",
+   "trade": "Stearns & Hallam",
    "n": 2
   },
   {
@@ -4493,7 +4340,7 @@
    "n": 2
   },
   {
-   "trade": "& McKenzie",
+   "trade": "Davis, Kinzie & Hyde",
    "n": 2
   },
   {
@@ -4501,7 +4348,7 @@
    "n": 2
   },
   {
-   "trade": "chief",
+   "trade": "Indian chief",
    "n": 2
   },
   {
@@ -4553,11 +4400,15 @@
    "n": 2
   },
   {
+   "trade": "attorney",
+   "n": 2
+  },
+  {
    "trade": "farmer, South Branch, north of 22d street",
    "n": 2
   },
   {
-   "trade": "office",
+   "trade": "Postmaster, office",
    "n": 1
   },
   {
@@ -4621,7 +4472,7 @@
    "n": 1
   },
   {
-   "trade": "& Austin",
+   "trade": "Dodge & Austin",
    "n": 1
   },
   {
@@ -4641,6 +4492,10 @@
    "n": 1
   },
   {
+   "trade": "& Co",
+   "n": 1
+  },
+  {
    "trade": "boarding house, cor. Randolph and Franklin",
    "n": 1
   },
@@ -4657,7 +4512,7 @@
    "n": 1
   },
   {
-   "trade": "cabinet makers and under¬ takers",
+   "trade": "cabinet makers and undertakers",
    "n": 1
   },
   {
@@ -4666,10 +4521,6 @@
   },
   {
    "trade": "- , plasterer",
-   "n": 1
-  },
-  {
-   "trade": "street, near North State",
    "n": 1
   },
   {
@@ -4693,11 +4544,7 @@
    "n": 1
   },
   {
-   "trade": "ave., bet. Lake and",
-   "n": 1
-  },
-  {
-   "trade": "attorneys and coun¬ sellors at law",
+   "trade": "attorneys and counsellors at law",
    "n": 1
   },
   {
@@ -4706,10 +4553,6 @@
   },
   {
    "trade": "boot, shoe, and leather dealer",
-   "n": 1
-  },
-  {
-   "trade": "& Beers",
    "n": 1
   },
   {
@@ -4725,7 +4568,7 @@
    "n": 1
   },
   {
-   "trade": "dyer",
+   "trade": "Parisian dyer",
    "n": 1
   },
   {
@@ -4741,7 +4584,7 @@
    "n": 1
   },
   {
-   "trade": "Bingham & Co",
+   "trade": "Frink, Bingham & Co",
    "n": 1
   },
   {
@@ -4765,7 +4608,7 @@
    "n": 1
   },
   {
-   "trade": "Church",
+   "trade": "Presbyterian Church",
    "n": 1
   },
   {
@@ -4802,10 +4645,6 @@
   },
   {
    "trade": "copper, tin and sheetiron, cor. Lake & Dearborn",
-   "n": 1
-  },
-  {
-   "trade": "Botsford & Beers",
    "n": 1
   },
   {
@@ -4853,7 +4692,7 @@
    "n": 1
   },
   {
-   "trade": "constable, alley bet. North Water",
+   "trade": "constable, alley bet. North Water and",
    "n": 1
   },
   {
@@ -4861,7 +4700,7 @@
    "n": 1
   },
   {
-   "trade": "Breese & Co",
+   "trade": "Taylor, Breese & Co",
    "n": 1
   },
   {
@@ -4925,7 +4764,7 @@
    "n": 1
   },
   {
-   "trade": "cashier, Branch State Bank Illinois, La¬",
+   "trade": "cashier, Branch State Bank Illinois",
    "n": 1
   },
   {
@@ -4949,7 +4788,7 @@
    "n": 1
   },
   {
-   "trade": "grocer and liquor dealer, cor. Lake",
+   "trade": "grocer and liquor dealer, cor. Lake and",
    "n": 1
   },
   {
@@ -4969,6 +4808,10 @@
    "n": 1
   },
   {
+   "trade": "Columbian House",
+   "n": 1
+  },
+  {
    "trade": "medical student",
    "n": 1
   },
@@ -4977,7 +4820,7 @@
    "n": 1
   },
   {
-   "trade": "Chicago river, 5th ward",
+   "trade": "North Branch Chicago river, 5th ward",
    "n": 1
   },
   {
@@ -5009,7 +4852,7 @@
    "n": 1
   },
   {
-   "trade": "ferryman",
+   "trade": "ferryman at",
    "n": 1
   },
   {
@@ -5025,7 +4868,7 @@
    "n": 1
   },
   {
-   "trade": "bricklayer, cor. Market",
+   "trade": "bricklayer, cor. Market and",
    "n": 1
   },
   {
@@ -5041,7 +4884,11 @@
    "n": 1
   },
   {
-   "trade": "grocery and provision store, South Water",
+   "trade": "Steamboat Hotel",
+   "n": 1
+  },
+  {
+   "trade": "grocery and provision store, South Water near",
    "n": 1
   },
   {
@@ -5054,6 +4901,10 @@
   },
   {
    "trade": "fisherman",
+   "n": 1
+  },
+  {
+   "trade": "grocery and provision store, hi",
    "n": 1
   },
   {
@@ -5077,10 +4928,6 @@
    "n": 1
   },
   {
-   "trade": "ave, cor. 1 6th street",
-   "n": 1
-  },
-  {
    "trade": "(Hobbie & Clark)",
    "n": 1
   },
@@ -5097,7 +4944,7 @@
    "n": 1
   },
   {
-   "trade": "& Abram F. , wholesale druggists and apothe¬ caries",
+   "trade": "& Abram F. , wholesale druggists and apothecaries",
    "n": 1
   },
   {
@@ -5145,7 +4992,7 @@
    "n": 1
   },
   {
-   "trade": "attorney and counsellor at law, 46 Deai-",
+   "trade": "attorney and counsellor at law, 46 Deai-born st",
    "n": 1
   },
   {
@@ -5161,15 +5008,19 @@
    "n": 1
   },
   {
-   "trade": "Exchange, 192-",
+   "trade": "Illinois Exchange, 192-",
    "n": 1
   },
   {
-   "trade": "hotel-keeper, Tremont House, n.-w. cor. Dearborn",
+   "trade": "Eagle saloon",
    "n": 1
   },
   {
-   "trade": "House",
+   "trade": "hotel-keeper, Tremont House, n.-w. cor. Dearborn and",
+   "n": 1
+  },
+  {
+   "trade": "Superintendent Tremont House",
    "n": 1
   },
   {
@@ -5181,7 +5032,7 @@
    "n": 1
   },
   {
-   "trade": "topographical engineer, Garrison",
+   "trade": "U. S. topographical engineer, Garrison",
    "n": 1
   },
   {
@@ -5266,6 +5117,10 @@
   },
   {
    "trade": "chair and furniture maker",
+   "n": 1
+  },
+  {
+   "trade": "T. , attorney and counsellor at law",
    "n": 1
   },
   {
@@ -5493,7 +5348,7 @@
    "n": 1
   },
   {
-   "trade": "& Doyle, butchers",
+   "trade": "Funk & Doyle, butchers",
    "n": 1
   },
   {
@@ -5517,11 +5372,11 @@
    "n": 1
   },
   {
-   "trade": "York millinery store",
+   "trade": "New York millinery store",
    "n": 1
   },
   {
-   "trade": "laborer, cor. Rush",
+   "trade": "laborer, cor. Rush and",
    "n": 1
   },
   {
@@ -5529,7 +5384,11 @@
    "n": 1
   },
   {
-   "trade": "cabinetmaker, cor. Rush",
+   "trade": "cabinetmaker, cor. Rush and",
+   "n": 1
+  },
+  {
+   "trade": "Sheriff",
    "n": 1
   },
   {
@@ -5549,11 +5408,11 @@
    "n": 1
   },
   {
-   "trade": "“ Shakspeare”, cor. North Water",
+   "trade": "“ Shakspeare”, cor. North Water and",
    "n": 1
   },
   {
-   "trade": "& Gillespie",
+   "trade": "Kinzie & Gillespie",
    "n": 1
   },
   {
@@ -5585,7 +5444,7 @@
    "n": 1
   },
   {
-   "trade": "Goss ik. Co",
+   "trade": "Samuel W. Goss ik. Co",
    "n": 1
   },
   {
@@ -5629,7 +5488,7 @@
    "n": 1
   },
   {
-   "trade": "cor. West Lake and",
+   "trade": "Chicago Hotel, cor. West Lake and",
    "n": 1
   },
   {
@@ -5669,7 +5528,7 @@
    "n": 1
   },
   {
-   "trade": "sailor, cor. Cass",
+   "trade": "sailor, cor. Cass and",
    "n": 1
   },
   {
@@ -5678,10 +5537,6 @@
   },
   {
    "trade": "carpenter, cor. North Water and",
-   "n": 1
-  },
-  {
-   "trade": "street near West Lake",
    "n": 1
   },
   {
@@ -5698,6 +5553,10 @@
   },
   {
    "trade": "St. James’ church,'",
+   "n": 1
+  },
+  {
+   "trade": "clerk circuit court",
    "n": 1
   },
   {
@@ -5721,7 +5580,7 @@
    "n": 1
   },
   {
-   "trade": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale gro¬ cers, s.-w. cor. Clark and",
+   "trade": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale grocers, s.-w. cor. Clark and",
    "n": 1
   },
   {
@@ -5729,7 +5588,7 @@
    "n": 1
   },
   {
-   "trade": "Unitarian Church",
+   "trade": "First Unitarian Church",
    "n": 1
   },
   {
@@ -5937,7 +5796,7 @@
    "n": 1
   },
   {
-   "trade": "milliner and mantua-maker, cor. Lake",
+   "trade": "milliner and mantua-maker, cor. Lake and",
    "n": 1
   },
   {
@@ -5945,7 +5804,7 @@
    "n": 1
   },
   {
-   "trade": "Gurdon S., forwarding, and commission mer¬ chants",
+   "trade": "Gurdon S., forwarding, and commission merchants",
    "n": 1
   },
   {
@@ -5981,10 +5840,6 @@
    "n": 1
   },
   {
-   "trade": "street, near Rush",
-   "n": 1
-  },
-  {
    "trade": "deputy-sheriff, ex-justice of peace",
    "n": 1
   },
@@ -5994,10 +5849,6 @@
   },
   {
    "trade": "ladies and gents’ tailor and cutter",
-   "n": 1
-  },
-  {
-   "trade": "& Hyde",
    "n": 1
   },
   {
@@ -6013,7 +5864,11 @@
    "n": 1
   },
   {
-   "trade": "works, near Garrison",
+   "trade": "Southern Hotel",
+   "n": 1
+  },
+  {
+   "trade": "Government works, near Garrison",
    "n": 1
   },
   {
@@ -6025,11 +5880,11 @@
    "n": 1
   },
   {
-   "trade": "Garrison",
+   "trade": "managers Chicago Theatre",
    "n": 1
   },
   {
-   "trade": "managers Chicago Theatre",
+   "trade": "Jefferson & McKenzie",
    "n": 1
   },
   {
@@ -6065,7 +5920,7 @@
    "n": 1
   },
   {
-   "trade": "Branch, west side",
+   "trade": "North Branch, west side",
    "n": 1
   },
   {
@@ -6145,6 +6000,10 @@
    "n": 1
   },
   {
+   "trade": "Jones, King & Co",
+   "n": 1
+  },
+  {
    "trade": "John, merchant",
    "n": 1
   },
@@ -6157,7 +6016,7 @@
    "n": 1
   },
   {
-   "trade": "clothing store",
+   "trade": "New York clothing store",
    "n": 1
   },
   {
@@ -6166,10 +6025,6 @@
   },
   {
    "trade": "forwarding, commission merchants",
-   "n": 1
-  },
-  {
-   "trade": "Kinzie & Hyde",
    "n": 1
   },
   {
@@ -6221,7 +6076,15 @@
    "n": 1
   },
   {
+   "trade": "city street carpenter",
+   "n": 1
+  },
+  {
    "trade": "supt. U. S. works, Fort Dearborn",
+   "n": 1
+  },
+  {
+   "trade": "contractor and street maker",
    "n": 1
   },
   {
@@ -6233,7 +6096,7 @@
    "n": 1
   },
   {
-   "trade": "carpenter, west on river bank",
+   "trade": "carpenter, west on river bank, south of",
    "n": 1
   },
   {
@@ -6245,7 +6108,7 @@
    "n": 1
   },
   {
-   "trade": "school agent",
+   "trade": "Sunday school agent",
    "n": 1
   },
   {
@@ -6281,11 +6144,11 @@
    "n": 1
   },
   {
-   "trade": "painter and glazier, cor. Canal",
+   "trade": "painter and glazier, cor. Canal and",
    "n": 1
   },
   {
-   "trade": "cooper, cor. Pearsons",
+   "trade": "cooper, cor. Pearsons and",
    "n": 1
   },
   {
@@ -6309,6 +6172,10 @@
    "n": 1
   },
   {
+   "trade": "McClure & Co",
+   "n": 1
+  },
+  {
    "trade": "lottery office liberty Bigelow",
    "n": 1
   },
@@ -6317,7 +6184,11 @@
    "n": 1
   },
   {
-   "trade": "& McCord",
+   "trade": "Mosely & McCord",
+   "n": 1
+  },
+  {
+   "trade": "American Hotel",
    "n": 1
   },
   {
@@ -6361,10 +6232,6 @@
    "n": 1
   },
   {
-   "trade": "street bet. Pine",
-   "n": 1
-  },
-  {
    "trade": "salesman, Eli",
    "n": 1
   },
@@ -6373,11 +6240,19 @@
    "n": 1
   },
   {
+   "trade": "Theatre, Jefferson & McKenzie",
+   "n": 1
+  },
+  {
+   "trade": "tailor, N orth",
+   "n": 1
+  },
+  {
    "trade": "porter, Lake House",
    "n": 1
   },
   {
-   "trade": "ship carpenter, North Branch",
+   "trade": "ship carpenter, North Branch, nr",
    "n": 1
   },
   {
@@ -6437,6 +6312,10 @@
    "n": 1
   },
   {
+   "trade": "schooner St. Joseph",
+   "n": 1
+  },
+  {
    "trade": "tanner, North Branch, fire warden, 4th ward",
    "n": 1
   },
@@ -6473,11 +6352,15 @@
    "n": 1
   },
   {
-   "trade": "miller, at the wind mill",
+   "trade": "miller, at the wind mill, above",
    "n": 1
   },
   {
    "trade": "attorney and counseller at law",
+   "n": 1
+  },
+  {
+   "trade": "street",
    "n": 1
   },
   {
@@ -6509,6 +6392,10 @@
    "n": 1
   },
   {
+   "trade": "jr., teamster",
+   "n": 1
+  },
+  {
    "trade": "street com., collector, coroner",
    "n": 1
   },
@@ -6525,7 +6412,7 @@
    "n": 1
   },
   {
-   "trade": "Hotel, West Water cor. Randolph",
+   "trade": "United States Hotel, West Water cor. Randolph",
    "n": 1
   },
   {
@@ -6557,7 +6444,7 @@
    "n": 1
   },
   {
-   "trade": "cor. Cass",
+   "trade": "cor. Cass and",
    "n": 1
   },
   {
@@ -6569,7 +6456,7 @@
    "n": 1
   },
   {
-   "trade": "Unitarian Society, Saloon",
+   "trade": "First Unitarian Society, Saloon",
    "n": 1
   },
   {
@@ -6585,7 +6472,7 @@
    "n": 1
   },
   {
-   "trade": "bridge-builder, n.-w. cor. N. State",
+   "trade": "bridge-builder, n.-w. cor. N. State and",
    "n": 1
   },
   {
@@ -6617,11 +6504,11 @@
    "n": 1
   },
   {
-   "trade": "& Strail",
+   "trade": "Osbourn & Strail",
    "n": 1
   },
   {
-   "trade": "York House",
+   "trade": "New York House",
    "n": 1
   },
   {
@@ -6633,11 +6520,11 @@
    "n": 1
   },
   {
-   "trade": "priest, cor. State and Lake",
+   "trade": "Rev., Catholic priest, cor. State and Lake",
    "n": 1
   },
   {
-   "trade": "farmer, cor 22d",
+   "trade": "farmer, cor 22d and",
    "n": 1
   },
   {
@@ -6649,7 +6536,7 @@
    "n": 1
   },
   {
-   "trade": "wood inspector",
+   "trade": "City wood inspector",
    "n": 1
   },
   {
@@ -6661,7 +6548,7 @@
    "n": 1
   },
   {
-   "trade": "& Holden",
+   "trade": "Parsons & Holden",
    "n": 1
   },
   {
@@ -6681,11 +6568,15 @@
    "n": 1
   },
   {
+   "trade": "judge",
+   "n": 1
+  },
+  {
    "trade": "grocer and dry goods, cor. S. Water and Clark",
    "n": 1
   },
   {
-   "trade": "& Peck",
+   "trade": "Wheeler & Peck",
    "n": 1
   },
   {
@@ -6761,15 +6652,11 @@
    "n": 1
   },
   {
-   "trade": "tailor and clothier, J53 *",
+   "trade": "tailor and clothier, J53 * ,ake st",
    "n": 1
   },
   {
    "trade": "contractor, n.vv. cor",
-   "n": 1
-  },
-  {
-   "trade": "st",
    "n": 1
   },
   {
@@ -6781,7 +6668,7 @@
    "n": 1
   },
   {
-   "trade": "& John, brassfounders, 55 Clark",
+   "trade": "& John, brassfounders, 55 Clark and",
    "n": 1
   },
   {
@@ -6869,6 +6756,10 @@
    "n": 1
   },
   {
+   "trade": "Mansion House",
+   "n": 1
+  },
+  {
    "trade": "sausage maker, Absalom Funk",
    "n": 1
   },
@@ -6877,7 +6768,11 @@
    "n": 1
   },
   {
-   "trade": "teamster, cor. Rush",
+   "trade": "teamster, cor. Rush and",
+   "n": 1
+  },
+  {
+   "trade": "sawyer, near",
    "n": 1
   },
   {
@@ -6909,6 +6804,10 @@
    "n": 1
   },
   {
+   "trade": "City Hotel",
+   "n": 1
+  },
+  {
    "trade": "U.S.A",
    "n": 1
   },
@@ -6917,7 +6816,7 @@
    "n": 1
   },
   {
-   "trade": "grocery and boarding-house, S. Water",
+   "trade": "grocery and boarding-house, S. Water, nr",
    "n": 1
   },
   {
@@ -6938,6 +6837,10 @@
   },
   {
    "trade": "cooper, Frederick Sammons",
+   "n": 1
+  },
+  {
+   "trade": "Frederick Sammons",
    "n": 1
   },
   {
@@ -6985,11 +6888,15 @@
    "n": 1
   },
   {
+   "trade": "Sauganash Hotel",
+   "n": 1
+  },
+  {
    "trade": "upholsterer",
    "n": 1
   },
   {
-   "trade": "works, near the Garrison",
+   "trade": "Government works, near the Garrison",
    "n": 1
   },
   {
@@ -7001,7 +6908,7 @@
    "n": 1
   },
   {
-   "trade": "House, cor. North Water",
+   "trade": "Lake House, cor. North Water and",
    "n": 1
   },
   {
@@ -7033,7 +6940,7 @@
    "n": 1
   },
   {
-   "trade": "& Parsons",
+   "trade": "jr., Sherman & Parsons",
    "n": 1
   },
   {
@@ -7057,15 +6964,15 @@
    "n": 1
   },
   {
-   "trade": "Smead, Kendall & Co",
-   "n": 1
-  },
-  {
    "trade": "tavern keeper",
    "n": 1
   },
   {
    "trade": "butcher, Archibald Clybourn",
+   "n": 1
+  },
+  {
+   "trade": "Parisian dyer and scourer",
    "n": 1
   },
   {
@@ -7082,10 +6989,6 @@
   },
   {
    "trade": "candle maker",
-   "n": 1
-  },
-  {
-   "trade": "Kendall & Co",
    "n": 1
   },
   {
@@ -7133,7 +7036,7 @@
    "n": 1
   },
   {
-   "trade": "Smith & Co., 127 Lake sti'eet",
+   "trade": "James A. Smith & Co., 127 Lake sti'eet",
    "n": 1
   },
   {
@@ -7145,7 +7048,11 @@
    "n": 1
   },
   {
-   "trade": "Supreme Coui't",
+   "trade": "City attorney",
+   "n": 1
+  },
+  {
+   "trade": "judge Supreme Coui't",
    "n": 1
   },
   {
@@ -7185,7 +7092,7 @@
    "n": 1
   },
   {
-   "trade": "Williams & Co",
+   "trade": "Giles Williams & Co",
    "n": 1
   },
   {
@@ -7209,7 +7116,7 @@
    "n": 1
   },
   {
-   "trade": "Refectory",
+   "trade": "City Refectory",
    "n": 1
   },
   {
@@ -7273,7 +7180,7 @@
    "n": 1
   },
   {
-   "trade": "publisher and editor of Chicago Daily American, cor. So. Water",
+   "trade": "publisher and editor of Chicago Daily American, cor. So. Water and",
    "n": 1
   },
   {
@@ -7305,7 +7212,7 @@
    "n": 1
   },
   {
-   "trade": "States Marshal",
+   "trade": "United States Marshal",
    "n": 1
   },
   {
@@ -7326,6 +7233,10 @@
   },
   {
    "trade": "Taylor, Breese Co",
+   "n": 1
+  },
+  {
+   "trade": "Henry Wolcott’s boarding-house",
    "n": 1
   },
   {
@@ -7373,7 +7284,7 @@
    "n": 1
   },
   {
-   "trade": "tavern-keeper, cor. South Water",
+   "trade": "tavern-keeper, cor. South Water and",
    "n": 1
   },
   {
@@ -7397,7 +7308,7 @@
    "n": 1
   },
   {
-   "trade": "and Leighton, livery stables, cor. North State",
+   "trade": "and Leighton, livery stables, cor. North State and",
    "n": 1
   },
   {
@@ -7425,11 +7336,11 @@
    "n": 1
   },
   {
-   "trade": "& Co., 1 1",
+   "trade": "Kendall, Vail & Co., 1 1",
    "n": 1
   },
   {
-   "trade": "contractor and builder, cor. North State",
+   "trade": "contractor and builder, cor. North State and",
    "n": 1
   },
   {
@@ -7445,7 +7356,7 @@
    "n": 1
   },
   {
-   "trade": "bricklayer, cor. Cass",
+   "trade": "bricklayer, cor. Cass and",
    "n": 1
   },
   {
@@ -7473,7 +7384,7 @@
    "n": 1
   },
   {
-   "trade": "(variety store), 152^",
+   "trade": "Great Western (variety store), 152^",
    "n": 1
   },
   {
@@ -7541,7 +7452,7 @@
    "n": 1
   },
   {
-   "trade": "painter, cor. Clinton",
+   "trade": "painter, cor. Clinton and",
    "n": 1
   },
   {
@@ -7549,7 +7460,7 @@
    "n": 1
   },
   {
-   "trade": "k Peck",
+   "trade": "Wheeler k Peck",
    "n": 1
   },
   {
@@ -7573,11 +7484,19 @@
    "n": 1
   },
   {
+   "trade": "City Crier",
+   "n": 1
+  },
+  {
+   "trade": "mate steamer St. Louis",
+   "n": 1
+  },
+  {
    "trade": "clerk, Wm. L. Whiting",
    "n": 1
   },
   {
-   "trade": "produce and commission merchant, Hub¬ bard & Co.’s warehouse",
+   "trade": "produce and commission merchant, Hubbard & Co.’s warehouse",
    "n": 1
   },
   {
@@ -7605,15 +7524,11 @@
    "n": 1
   },
   {
-   "trade": "street cor. of Washington",
+   "trade": "laborer, cor. Oak and",
    "n": 1
   },
   {
-   "trade": "laborer, cor. Oak",
-   "n": 1
-  },
-  {
-   "trade": "cor. Clark",
+   "trade": "Recorder, cor. Clark and",
    "n": 1
   },
   {
@@ -7621,7 +7536,7 @@
    "n": 1
   },
   {
-   "trade": "& Williams",
+   "trade": "Stow & Williams",
    "n": 1
   },
   {
@@ -7645,7 +7560,7 @@
    "n": 1
   },
   {
-   "trade": "clerk Steamer Geo. W. Dole",
+   "trade": "clerk Steamer Geo. W. Dole, for St. Joseph",
    "n": 1
   },
   {
@@ -7657,7 +7572,7 @@
    "n": 1
   },
   {
-   "trade": "private boarding house, cor. North State",
+   "trade": "private boarding house, cor. North State and",
    "n": 1
   },
   {
@@ -7669,7 +7584,7 @@
    "n": 1
   },
   {
-   "trade": "& James H., wholesale dry goods mer¬ chants",
+   "trade": "& James H., wholesale dry goods merchants",
    "n": 1
   },
   {
@@ -7678,10 +7593,6 @@
   },
   {
    "trade": "gardener, block c. Desplaines & Washington",
-   "n": 1
-  },
-  {
-   "trade": "ave. cor. Madison",
    "n": 1
   },
   {
@@ -7719,11 +7630,11 @@
    },
    {
     "trade": "boarding-house",
-    "n": 12
+    "n": 11
    },
    {
     "trade": "saloon",
-    "n": 11
+    "n": 10
    },
    {
     "trade": "real estate dealer",
@@ -7762,10 +7673,6 @@
     "n": 4
    },
    {
-    "trade": "& Co",
-    "n": 4
-   },
-   {
     "trade": "wagon maker",
     "n": 4
    },
@@ -7775,10 +7682,6 @@
    },
    {
     "trade": "compositor, Daily American office",
-    "n": 4
-   },
-   {
-    "trade": "street",
     "n": 4
    },
    {
@@ -7794,10 +7697,6 @@
     "n": 3
    },
    {
-    "trade": "dyer and scourer",
-    "n": 3
-   },
-   {
     "trade": "clerk, Botsford & Beers",
     "n": 3
    },
@@ -7806,7 +7705,7 @@
     "n": 3
    },
    {
-    "trade": "& Campbell",
+    "trade": "Goodsell & Campbell",
     "n": 3
    },
    {
@@ -7826,7 +7725,7 @@
     "n": 3
    },
    {
-    "trade": "laborer, cor. Cass",
+    "trade": "laborer, cor. Cass and",
     "n": 3
    },
    {
@@ -7834,11 +7733,15 @@
     "n": 3
    },
    {
-    "trade": "clerk, Newberry & Dole",
+    "trade": "Garrison",
     "n": 3
    },
    {
-    "trade": "ave. cor",
+    "trade": "Smead, Kendall & Co",
+    "n": 3
+   },
+   {
+    "trade": "clerk, Newberry & Dole",
     "n": 3
    },
    {
@@ -7846,7 +7749,7 @@
     "n": 2
    },
    {
-    "trade": "& Doyle",
+    "trade": "Andrus & Doyle",
     "n": 2
    },
    {
@@ -7858,11 +7761,19 @@
     "n": 2
    },
    {
+    "trade": "Botsford & Beers",
+    "n": 2
+   },
+   {
+    "trade": "dyer and scourer",
+    "n": 2
+   },
+   {
     "trade": "horse dealer",
     "n": 2
    },
    {
-    "trade": "& Bosworth",
+    "trade": "Edwards & Bosworth",
     "n": 2
    },
    {
@@ -7890,7 +7801,7 @@
     "n": 2
    },
    {
-    "trade": "& Mathes",
+    "trade": "Crosman & Mathes",
     "n": 2
    },
    {
@@ -7898,7 +7809,7 @@
     "n": 2
    },
    {
-    "trade": "& Tucker",
+    "trade": "Dodge & Tucker",
     "n": 2
    },
    {
@@ -7922,11 +7833,11 @@
     "n": 2
    },
    {
-    "trade": "& Matteson",
+    "trade": "Gurnee & Matteson",
     "n": 2
    },
    {
-    "trade": "& Hallam",
+    "trade": "Stearns & Hallam",
     "n": 2
    },
    {
@@ -7954,11 +7865,11 @@
     "n": 2
    },
    {
-    "trade": "& McKenzie",
+    "trade": "Davis, Kinzie & Hyde",
     "n": 2
    },
    {
-    "trade": "chief",
+    "trade": "Indian chief",
     "n": 2
    },
    {
@@ -7986,10 +7897,6 @@
     "n": 2
    },
    {
-    "trade": "office",
-    "n": 1
-   },
-   {
     "trade": "st. sub-contractor",
     "n": 1
    },
@@ -8014,7 +7921,11 @@
     "n": 1
    },
    {
-    "trade": "& Austin",
+    "trade": "Dodge & Austin",
+    "n": 1
+   },
+   {
+    "trade": "& Co",
     "n": 1
    },
    {
@@ -8026,23 +7937,11 @@
     "n": 1
    },
    {
-    "trade": "street, near North State",
-    "n": 1
-   },
-   {
     "trade": "schooner Constitution",
     "n": 1
    },
    {
     "trade": "violinist",
-    "n": 1
-   },
-   {
-    "trade": "ave., bet. Lake and",
-    "n": 1
-   },
-   {
-    "trade": "& Beers",
     "n": 1
    },
    {
@@ -8054,11 +7953,11 @@
     "n": 1
    },
    {
-    "trade": "dyer",
+    "trade": "Parisian dyer",
     "n": 1
    },
    {
-    "trade": "Bingham & Co",
+    "trade": "Frink, Bingham & Co",
     "n": 1
    },
    {
@@ -8070,7 +7969,7 @@
     "n": 1
    },
    {
-    "trade": "Church",
+    "trade": "Presbyterian Church",
     "n": 1
    },
    {
@@ -8091,10 +7990,6 @@
    },
    {
     "trade": "copper, tin and sheetiron, cor. Lake & Dearborn",
-    "n": 1
-   },
-   {
-    "trade": "Botsford & Beers",
     "n": 1
    },
    {
@@ -8134,7 +8029,7 @@
     "n": 1
    },
    {
-    "trade": "constable, alley bet. North Water",
+    "trade": "constable, alley bet. North Water and",
     "n": 1
    },
    {
@@ -8142,7 +8037,7 @@
     "n": 1
    },
    {
-    "trade": "Breese & Co",
+    "trade": "Taylor, Breese & Co",
     "n": 1
    },
    {
@@ -8178,7 +8073,7 @@
     "n": 1
    },
    {
-    "trade": "cashier, Branch State Bank Illinois, La¬",
+    "trade": "cashier, Branch State Bank Illinois",
     "n": 1
    },
    {
@@ -8190,6 +8085,10 @@
     "n": 1
    },
    {
+    "trade": "Columbian House",
+    "n": 1
+   },
+   {
     "trade": "medical student",
     "n": 1
    },
@@ -8198,7 +8097,7 @@
     "n": 1
    },
    {
-    "trade": "Chicago river, 5th ward",
+    "trade": "North Branch Chicago river, 5th ward",
     "n": 1
    },
    {
@@ -8246,10 +8145,6 @@
     "n": 1
    },
    {
-    "trade": "ave, cor. 1 6th street",
-    "n": 1
-   },
-   {
     "trade": "(Hobbie & Clark)",
     "n": 1
    },
@@ -8274,11 +8169,15 @@
     "n": 1
    },
    {
-    "trade": "Exchange, 192-",
+    "trade": "Illinois Exchange, 192-",
     "n": 1
    },
    {
-    "trade": "House",
+    "trade": "Eagle saloon",
+    "n": 1
+   },
+   {
+    "trade": "Superintendent Tremont House",
     "n": 1
    },
    {
@@ -8410,7 +8309,7 @@
     "n": 1
    },
    {
-    "trade": "laborer, cor. Rush",
+    "trade": "laborer, cor. Rush and",
     "n": 1
    },
    {
@@ -8426,11 +8325,11 @@
     "n": 1
    },
    {
-    "trade": "“ Shakspeare”, cor. North Water",
+    "trade": "“ Shakspeare”, cor. North Water and",
     "n": 1
    },
    {
-    "trade": "& Gillespie",
+    "trade": "Kinzie & Gillespie",
     "n": 1
    },
    {
@@ -8442,7 +8341,7 @@
     "n": 1
    },
    {
-    "trade": "Goss ik. Co",
+    "trade": "Samuel W. Goss ik. Co",
     "n": 1
    },
    {
@@ -8470,10 +8369,6 @@
     "n": 1
    },
    {
-    "trade": "cor. West Lake and",
-    "n": 1
-   },
-   {
     "trade": "clerk, Joseph II. Gray",
     "n": 1
    },
@@ -8490,11 +8385,7 @@
     "n": 1
    },
    {
-    "trade": "sailor, cor. Cass",
-    "n": 1
-   },
-   {
-    "trade": "street near West Lake",
+    "trade": "sailor, cor. Cass and",
     "n": 1
    },
    {
@@ -8506,6 +8397,10 @@
     "n": 1
    },
    {
+    "trade": "clerk circuit court",
+    "n": 1
+   },
+   {
     "trade": "schooner Gen. Thornton",
     "n": 1
    },
@@ -8514,15 +8409,11 @@
     "n": 1
    },
    {
-    "trade": "(Chas. L. ) Loomis (Horatio G. ) & Co., wholesale gro¬ cers, s.-w. cor. Clark and",
-    "n": 1
-   },
-   {
     "trade": "(called “Old Harper,” vag. )",
     "n": 1
    },
    {
-    "trade": "Unitarian Church",
+    "trade": "First Unitarian Church",
     "n": 1
    },
    {
@@ -8662,10 +8553,6 @@
     "n": 1
    },
    {
-    "trade": "Gurdon S., forwarding, and commission mer¬ chants",
-    "n": 1
-   },
-   {
     "trade": "at G. S. Hubbard & Co.’s warehouse",
     "n": 1
    },
@@ -8690,14 +8577,6 @@
     "n": 1
    },
    {
-    "trade": "street, near Rush",
-    "n": 1
-   },
-   {
-    "trade": "& Hyde",
-    "n": 1
-   },
-   {
     "trade": "bookkeeper, Crawford & Hervey",
     "n": 1
    },
@@ -8706,7 +8585,7 @@
     "n": 1
    },
    {
-    "trade": "works, near Garrison",
+    "trade": "Government works, near Garrison",
     "n": 1
    },
    {
@@ -8718,11 +8597,11 @@
     "n": 1
    },
    {
-    "trade": "Garrison",
+    "trade": "managers Chicago Theatre",
     "n": 1
    },
    {
-    "trade": "managers Chicago Theatre",
+    "trade": "Jefferson & McKenzie",
     "n": 1
    },
    {
@@ -8746,7 +8625,7 @@
     "n": 1
    },
    {
-    "trade": "Branch, west side",
+    "trade": "North Branch, west side",
     "n": 1
    },
    {
@@ -8802,15 +8681,15 @@
     "n": 1
    },
    {
+    "trade": "Jones, King & Co",
+    "n": 1
+   },
+   {
     "trade": "(pork an’ a bean) restaurant, South Water near Clark",
     "n": 1
    },
    {
     "trade": "clerk, Tuthill King",
-    "n": 1
-   },
-   {
-    "trade": "Kinzie & Hyde",
     "n": 1
    },
    {
@@ -8850,6 +8729,10 @@
     "n": 1
    },
    {
+    "trade": "contractor and street maker",
+    "n": 1
+   },
+   {
     "trade": "locksmith",
     "n": 1
    },
@@ -8870,11 +8753,15 @@
     "n": 1
    },
    {
+    "trade": "McClure & Co",
+    "n": 1
+   },
+   {
     "trade": "lottery office liberty Bigelow",
     "n": 1
    },
    {
-    "trade": "& McCord",
+    "trade": "Mosely & McCord",
     "n": 1
    },
    {
@@ -8886,11 +8773,11 @@
     "n": 1
    },
    {
-    "trade": "street bet. Pine",
+    "trade": "salesman, Eli",
     "n": 1
    },
    {
-    "trade": "salesman, Eli",
+    "trade": "Theatre, Jefferson & McKenzie",
     "n": 1
    },
    {
@@ -8930,6 +8817,10 @@
     "n": 1
    },
    {
+    "trade": "schooner St. Joseph",
+    "n": 1
+   },
+   {
     "trade": "clerk, Jas. M. Strode",
     "n": 1
    },
@@ -8943,6 +8834,10 @@
    },
    {
     "trade": "private boarding",
+    "n": 1
+   },
+   {
+    "trade": "street",
     "n": 1
    },
    {
@@ -8986,11 +8881,11 @@
     "n": 1
    },
    {
-    "trade": "cor. Cass",
+    "trade": "cor. Cass and",
     "n": 1
    },
    {
-    "trade": "Unitarian Society, Saloon",
+    "trade": "First Unitarian Society, Saloon",
     "n": 1
    },
    {
@@ -9002,11 +8897,11 @@
     "n": 1
    },
    {
-    "trade": "& Strail",
+    "trade": "Osbourn & Strail",
     "n": 1
    },
    {
-    "trade": "York House",
+    "trade": "New York House",
     "n": 1
    },
    {
@@ -9014,7 +8909,7 @@
     "n": 1
    },
    {
-    "trade": "priest, cor. State and Lake",
+    "trade": "Rev., Catholic priest, cor. State and Lake",
     "n": 1
    },
    {
@@ -9022,11 +8917,11 @@
     "n": 1
    },
    {
-    "trade": "wood inspector",
+    "trade": "City wood inspector",
     "n": 1
    },
    {
-    "trade": "& Holden",
+    "trade": "Parsons & Holden",
     "n": 1
    },
    {
@@ -9034,7 +8929,11 @@
     "n": 1
    },
    {
-    "trade": "& Peck",
+    "trade": "judge",
+    "n": 1
+   },
+   {
+    "trade": "Wheeler & Peck",
     "n": 1
    },
    {
@@ -9075,10 +8974,6 @@
    },
    {
     "trade": "contractor, n.vv. cor",
-    "n": 1
-   },
-   {
-    "trade": "st",
     "n": 1
    },
    {
@@ -9134,6 +9029,10 @@
     "n": 1
    },
    {
+    "trade": "Mansion House",
+    "n": 1
+   },
+   {
     "trade": "sausage maker, Absalom Funk",
     "n": 1
    },
@@ -9178,6 +9077,10 @@
     "n": 1
    },
    {
+    "trade": "Frederick Sammons",
+    "n": 1
+   },
+   {
     "trade": "canal subcontractor",
     "n": 1
    },
@@ -9206,7 +9109,7 @@
     "n": 1
    },
    {
-    "trade": "works, near the Garrison",
+    "trade": "Government works, near the Garrison",
     "n": 1
    },
    {
@@ -9214,7 +9117,7 @@
     "n": 1
    },
    {
-    "trade": "House, cor. North Water",
+    "trade": "Lake House, cor. North Water and",
     "n": 1
    },
    {
@@ -9234,7 +9137,7 @@
     "n": 1
    },
    {
-    "trade": "& Parsons",
+    "trade": "jr., Sherman & Parsons",
     "n": 1
    },
    {
@@ -9246,11 +9149,7 @@
     "n": 1
    },
    {
-    "trade": "Smead, Kendall & Co",
-    "n": 1
-   },
-   {
-    "trade": "Kendall & Co",
+    "trade": "Parisian dyer and scourer",
     "n": 1
    },
    {
@@ -9282,7 +9181,7 @@
     "n": 1
    },
    {
-    "trade": "Smith & Co., 127 Lake sti'eet",
+    "trade": "James A. Smith & Co., 127 Lake sti'eet",
     "n": 1
    },
    {
@@ -9290,7 +9189,7 @@
     "n": 1
    },
    {
-    "trade": "Supreme Coui't",
+    "trade": "judge Supreme Coui't",
     "n": 1
    },
    {
@@ -9314,7 +9213,7 @@
     "n": 1
    },
    {
-    "trade": "Williams & Co",
+    "trade": "Giles Williams & Co",
     "n": 1
    },
    {
@@ -9394,11 +9293,15 @@
     "n": 1
    },
    {
-    "trade": "States Marshal",
+    "trade": "United States Marshal",
     "n": 1
    },
    {
     "trade": "Taylor, Breese Co",
+    "n": 1
+   },
+   {
+    "trade": "Henry Wolcott’s boarding-house",
     "n": 1
    },
    {
@@ -9450,7 +9353,7 @@
     "n": 1
    },
    {
-    "trade": "& Co., 1 1",
+    "trade": "Kendall, Vail & Co., 1 1",
     "n": 1
    },
    {
@@ -9498,11 +9401,19 @@
     "n": 1
    },
    {
-    "trade": "k Peck",
+    "trade": "Wheeler k Peck",
     "n": 1
    },
    {
     "trade": "tin, sheet-iron, and coppersmith, 145 Lake",
+    "n": 1
+   },
+   {
+    "trade": "City Crier",
+    "n": 1
+   },
+   {
+    "trade": "mate steamer St. Louis",
     "n": 1
    },
    {
@@ -9518,19 +9429,15 @@
     "n": 1
    },
    {
-    "trade": "street cor. of Washington",
+    "trade": "laborer, cor. Oak and",
     "n": 1
    },
    {
-    "trade": "laborer, cor. Oak",
+    "trade": "Recorder, cor. Clark and",
     "n": 1
    },
    {
-    "trade": "cor. Clark",
-    "n": 1
-   },
-   {
-    "trade": "& Williams",
+    "trade": "Stow & Williams",
     "n": 1
    },
    {
@@ -9546,7 +9453,7 @@
     "n": 1
    },
    {
-    "trade": "clerk Steamer Geo. W. Dole",
+    "trade": "clerk Steamer Geo. W. Dole, for St. Joseph",
     "n": 1
    },
    {
@@ -9563,10 +9470,6 @@
    },
    {
     "trade": "gardener, block c. Desplaines & Washington",
-    "n": 1
-   },
-   {
-    "trade": "ave. cor. Madison",
     "n": 1
    },
    {
@@ -9618,7 +9521,7 @@
   },
   {
    "claim": "f1839_e0064",
-   "as_printed": "Bates (A. S.) & Morgan (Caleb), cabinet makers and under¬ takers, 199 Lake st",
+   "as_printed": "Bates (A. S.) & Morgan (Caleb), cabinet makers and undertakers, 199 Lake st",
    "printed_page": 6,
    "address": "199 Lake st",
    "streets": [
@@ -9628,7 +9531,7 @@
   },
   {
    "claim": "f1839_e0085",
-   "as_printed": "Beaumont (Geo. A. O.) & Skinner (Mark), attorneys and coun¬ sellors at law, Clark st cor. Lake",
+   "as_printed": "Beaumont (Geo. A. O.) & Skinner (Mark), attorneys and counsellors at law, Clark st cor. Lake",
    "printed_page": 6,
    "address": "Clark st cor. Lake",
    "streets": [
@@ -9860,7 +9763,7 @@
   },
   {
    "claim": "f1839_e0746",
-   "as_printed": "Hubbard & Co., Gurdon S., forwarding, and commission mer¬ chants, North Water st near Rush",
+   "as_printed": "Hubbard & Co., Gurdon S., forwarding, and commission merchants, North Water st near Rush",
    "printed_page": 19,
    "address": "North Water st near Rush",
    "streets": [
