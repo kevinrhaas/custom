@@ -1,7 +1,7 @@
 ---
 id: T-1033
 title: Read the town-lot deposit into records: append the ids, declare its firms, and make tract() resolve or refuse a lot-and-block-in-a-named-town without inventing a section
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1028
 opened: 2026-09-11
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1125
+claimed_by: run 9/11/2026, 6:54:57 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T12:48:58.012Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34596064091
 ---
 
 Read the town-lot deposit into records: append the ids, declare its firms, and make tract() resolve or refuse a lot-and-block-in-a-named-town without inventing a section.

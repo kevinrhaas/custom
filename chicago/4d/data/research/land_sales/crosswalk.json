@@ -15,10 +15,148 @@
       "what": "Every pair of differently-spelled purchasers entering the same tract in T39N R13E and T40N R13E and T38N R14E and T41N R14E and T38N R15E through 1836.",
       "merges": 0,
       "refusals": 23
+    },
+    {
+      "ticket": "T-1033",
+      "what": "Every pair of differently-spelled purchasers entering the same tract in  through 1836.",
+      "merges": 0,
+      "refusals": 11
     }
   ],
   "merges": [],
   "refusals": [
+    {
+      "a": "BROWN D B",
+      "b": "BROWN N J",
+      "rule": "BROWN D B and BROWN N J entered the same tract (T R sec , L1BL51CHIOTV) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1019",
+        "ls1024"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WADSWORTH E S",
+      "b": "WADSWORTH J",
+      "rule": "WADSWORTH E S and WADSWORTH J entered the same tract (T R sec , L2BL35CHIOT) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1522",
+        "ls1523"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "MEACHEM J",
+      "b": "MILLER J",
+      "rule": "MEACHEM J and MILLER J entered the same tract (T R sec , L3BL41CHIOT) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1361",
+        "ls1372"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "BROWN D B",
+      "b": "BROWN N J",
+      "rule": "BROWN D B and BROWN N J entered the same tract (T R sec , L3BL51CHIOTV) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1021",
+        "ls1022"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "BROWN D B",
+      "b": "BROWN N J",
+      "rule": "BROWN D B and BROWN N J entered the same tract (T R sec , L5BL51CHIOTV) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1020",
+        "ls1023"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "ALLEN JAMES",
+      "b": "ALLEN ROBERT A",
+      "rule": "ALLEN JAMES and ALLEN ROBERT A entered the same tract (T R sec , L5BL5CHI) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls0954",
+        "ls0955"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "GREENWOOD J W",
+      "b": "GREENWOOD T S",
+      "rule": "GREENWOOD J W and GREENWOOD T S entered the same tract (T R sec , L5BL7CHIV) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1197",
+        "ls1198"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "TEMPLE H S",
+      "b": "TEMPLE J T",
+      "rule": "TEMPLE H S and TEMPLE J T entered the same tract (T R sec , L6BL20CHIOT) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1504",
+        "ls1505"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "WRIGHT A",
+      "b": "WRIGHT T",
+      "rule": "WRIGHT A and WRIGHT T entered the same tract (T R sec , L7BL5CHI) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1560",
+        "ls1568"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "LOYD A",
+      "b": "LOYD J",
+      "rule": "LOYD A and LOYD J entered the same tract (T R sec , L8BL32CHIOT) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1335",
+        "ls1336"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
+    {
+      "a": "JOHNSON R",
+      "b": "JOHNSON S",
+      "rule": "JOHNSON R and JOHNSON S entered the same tract (T R sec , S2L8B46CHIOT) and are not merged: tract agreement is where two spellings MIGHT be one man, and it is never proof that they are.",
+      "record_ids": [
+        "ls1260",
+        "ls1262"
+      ],
+      "evidence": [
+        "data/research/land_sales/text/isa_land_tract_sales_cook_town_lots_through_1836.tsv"
+      ]
+    },
     {
       "a": "SMITH LIMAN",
       "b": "SMITH SIMAN",

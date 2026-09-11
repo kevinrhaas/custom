@@ -2,7 +2,7 @@
   "schema": 1,
   "domain": "land_sales",
   "generated_by": "tools/read_land_sales.py --build",
-  "note": "The reading is BY SECTION because a whole-township query stops at the database's 150-row page and looks complete. 252 section queries were run (T39N R14E, T40N R14E, T39N R13E, T40N R13E, T38N R14E, T41N R14E, T38N R15E, third principal meridian, sections 01-36) and each was walked to its end through the results page's own More button, whose keyset cursor returns the rows after the last one shown (T-0675). Every section here is therefore read whole, including the three — 16, 21 and 29 — that T-0557 declared truncated because it took the first page for the whole. A declaration promises that a record reaches the item, so a section that was walked and held no sale through 1836 is listed under `queried_no_sales_through_1836` instead — read, empty, and not a hole. T-0676 added the five ring townships, which are the last of what T-0610 asked for: nothing around the town is unread now. T-0830 then MEASURED that claim against the whole county, listed in one query, and `completeness_probe` below is the result: right about every section it declares, and blind to a row the register gives no section.",
+  "note": "The reading is BY SECTION because a whole-township query stops at the database's 150-row page and looks complete. 252 section queries were run (T39N R14E, T40N R14E, T39N R13E, T40N R13E, T38N R14E, T41N R14E, T38N R15E, third principal meridian, sections 01-36) and each was walked to its end through the results page's own More button, whose keyset cursor returns the rows after the last one shown (T-0675). Every section here is therefore read whole, including the three — 16, 21 and 29 — that T-0557 declared truncated because it took the first page for the whole. A declaration promises that a record reaches the item, so a section that was walked and held no sale through 1836 is listed under `queried_no_sales_through_1836` instead — read, empty, and not a hole. T-0676 added the five ring townships, which are the last of what T-0610 asked for: nothing around the town is unread now. T-0830 then MEASURED that claim against the whole county, listed in one query, and `completeness_probe` below is the result: right about every section it declares, and blind to a row the register gives no section. THAT BLINDNESS IS CLOSED (T-1033): the third deposit is not read by section at all — it is the county's own list, the group of it that carries no section, every row of which is a lot and a block in a platted town and was read at its own detail page. It declares that group and not a grid.",
   "declarations": [
     {
       "unit": "list",
@@ -111,6 +111,14 @@
         "T38N R15E sec 30",
         "T38N R15E sec 31",
         "T38N R15E sec 32"
+      ]
+    },
+    {
+      "unit": "list",
+      "ticket": "T-1033",
+      "note": "Read in full: COOK's list was walked to its end through the More cursor, every row it returned with no section was taken, and each of those was then read at its own detail page into isa_land_tract_sales_cook_town_lots_through_1836.tsv. A section query cannot reach these rows, so this is the only query that declares them.",
+      "items": [
+        "COOK county list, no section"
       ]
     }
   ],
@@ -296,7 +304,9 @@
     "inside_the_declared_townships": 953,
     "of_those_missing_from_the_deposit": 0,
     "sectioned_outside_the_declared_townships": 1213,
+    "of_those_missing_from_the_deposit_too": 1213,
     "carrying_no_section_at_all": 619,
+    "of_those_missing_from_the_deposit_now": 0,
     "sectionless_by_year": {
       "1000": 3,
       "1483": 1,
@@ -313,13 +323,39 @@
       "(no town code)": 1
     },
     "the_seven_townships_are_read_whole": true,
+    "the_sectionless_rows_are_read_whole": true,
     "complete_for_1836_cook_county": false,
-    "reading": "The by-section sweep is READ WHOLE for the ground it declares: every one of the 953 rows the county lists inside the seven declared townships through 1836 is in the deposit, and none is missing. It is NOT the whole of 1836 Cook County, and the shortfall is not a section it failed to walk — it is 619 rows that have no section to walk. Every one of those is a lot and block: 618 of them carry a town code (CHI, CHIOT, CHIOTV, CHIOTVO, CHIV) where a legal description would go, and 1 is a bare lot and block with no code at all. Their dates are the register's own and are carried unsmoothed, including the four this project does not believe. They are counted here and they are NOT in this deposit. Their detail pages ARE now committed, one per row, as isa_land_tract_sales_cook_town_lots_through_1836.tsv (T-1032); reading those into records is T-1033."
+    "what_is_still_outside_it": {
+      "rows": 1213,
+      "ticket": "T-1033",
+      "what": "Rows the county list gives a section that is NOT in one of the seven townships the deposits declare. They are not a hole in this domain — no deposit ever promised them — and they are the whole of the difference between it and Cook County.",
+      "by_township": {
+        "T39N R12E": 157,
+        "T37N R13E": 149,
+        "T36N R12E": 140,
+        "T37N R12E": 129,
+        "T38N R12E": 126,
+        "T37N R14E": 120,
+        "T36N R13E": 109,
+        "T38N R13E": 108,
+        "T37N R11E": 92,
+        "T37N R15E": 24,
+        "T40N R12E": 20,
+        "T36N R14E": 16,
+        "T41N R12E": 14,
+        "T36N R15E": 5,
+        "T41N R13E": 1,
+        "T42N R09E": 1,
+        "T42N R12E": 1,
+        "T42N R13E": 1
+      }
+    },
+    "reading": "TWO of the three groups are now closed. The by-section sweep is READ WHOLE for the ground it declares: every one of the 953 rows the county lists inside the seven declared townships through 1836 is in the deposit. And the 619 rows that carry NO section — the ones no section query could ever return, every one of them a lot and a block in a platted town — were read at their own detail pages by T-1032 and joined to the deposit by T-1033: 619 of them are held, 0 are missing. 618 of the sectionless carry a town code (CHI, CHIOT, CHIOTV, CHIOTVO, CHIV) where a legal description would go and 1 carries none at all; this project still does not expand those codes, so `tract()` resolves the lot and the block and refuses the plat. What is left between this domain and the whole of 1836 Cook County is ONE group and it is named above: 1213 rows sectioned outside the seven townships the deposits declare. Their dates are the register's own and are carried unsmoothed, including the four this project does not believe."
   },
   "not_read": {
     "ticket": "T-0676",
     "truncated_at_the_150_row_ceiling": [],
     "townships_not_read": [],
-    "note": "Nothing is left unread of what T-0610 asked for: T-0675 walked the two townships the town stands on to the end of every section, and T-0676 did the same for the five ring townships. Both lists are kept as the shape a future hole would fill. What remains outside this domain is stated in the README and is not a hole in it: purchasers whose stated residence is Cook County but whose ground lies elsewhere, which the database cannot be asked for, and the canal sections, which the land office did not sell. What T-0830 then found is a hole of a different shape and it is named in `completeness_probe` above: the sweep is complete for every section it declares, and Cook County's register also holds sales with NO section — town lots described by their plat — which no section query can return. Those are counted, not read; T-1028 reads them."
+    "note": "Nothing is left unread of what T-0610 asked for: T-0675 walked the two townships the town stands on to the end of every section, and T-0676 did the same for the five ring townships. Both lists are kept as the shape a future hole would fill. What remains outside this domain is stated in the README and is not a hole in it: purchasers whose stated residence is Cook County but whose ground lies elsewhere, which the database cannot be asked for, and the canal sections, which the land office did not sell. What T-0830 then found is a hole of a different shape and it is named in `completeness_probe` above: the sweep is complete for every section it declares, and Cook County's register also holds sales with NO section — town lots described by their plat — which no section query can return. T-1032 harvested those and T-1033 read them into the third deposit, so they are no longer counted-and-unread. What is left between this domain and the whole of 1836 Cook County is the rows sectioned OUTSIDE the seven declared townships, and `completeness_probe` names them and counts them by township."
   }
 }
