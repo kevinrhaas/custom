@@ -8,20 +8,19 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 47,
-  "printed_as_a_residence": 33,
-  "printed_as_a_lodging": 14,
-  "placed": 8,
-  "placed_as_a_face": 8,
-  "placed_with_no_1835_trade": 5,
+  "addresses_adjudicated": 44,
+  "printed_as_a_residence": 31,
+  "printed_as_a_lodging": 13,
+  "placed": 6,
+  "placed_as_a_face": 6,
+  "placed_with_no_1835_trade": 3,
   "already_better_placed": 0,
-  "refused": 39,
+  "refused": 38,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
    "Market Street",
    "North Water Street",
-   "Randolph Street",
    "Washington Street"
   ],
   "lives_at_real_values": 20,
@@ -470,27 +469,6 @@
    "placement": null
   },
   {
-   "household_id": "hh_jones_es_high",
-   "person_id": "jones_es_high",
-   "person": "Jones, High Es",
-   "address_as_printed": "bds. Randolph street cor. Dearborn",
-   "kind": "boards",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "placed",
-   "clause": "R4 and R5",
-   "reason": "Randolph Street stands in 1835 under that name and in that place, and the entry prints it as this man's lodging. The volume narrows it further — it names Dearborn Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
-   "street_id": "randolph",
-   "face": "Randolph Street",
-   "placement": "face"
-  },
-  {
    "household_id": "hh_jordan_j_b",
    "person_id": "jordan_j_b",
    "person": "J. B. Jordan",
@@ -635,27 +613,6 @@
    "reason": "Market Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "market",
    "face": "Market Street",
-   "placement": "face"
-  },
-  {
-   "household_id": "hh_morrison_james_m",
-   "person_id": "morrison_james_m",
-   "person": "James M Morrison",
-   "address_as_printed": "res 131 Clark",
-   "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "placed",
-   "clause": "R4 and R5",
-   "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
-   "street_id": "clark",
-   "face": "Clark Street",
    "placement": "face"
   },
   {
@@ -990,27 +947,6 @@
    "outcome": "refused",
    "clause": "R4",
    "reason": "Adams Street is south of Madison, outside the platted town of 1835.",
-   "street_id": null,
-   "face": null,
-   "placement": null
-  },
-  {
-   "household_id": "hh_taylor_augustine",
-   "person_id": "taylor_augustine",
-   "person": "Augustine Deodat Taylor",
-   "address_as_printed": "res Michigan ave, bet Lake and Randolph",
-   "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "carpenter",
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "refused",
-   "clause": "R4",
-   "reason": "Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both.",
    "street_id": null,
    "face": null,
    "placement": null
