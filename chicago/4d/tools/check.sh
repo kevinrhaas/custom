@@ -1922,6 +1922,21 @@ step "…and the later HOME addresses re-derive through the residence clauses" \
 step "…and no back-projected home has grown a point, a roof or an 1835 link" \
   python3 tools/back_project_residences.py --self-test
 
+# T-0846, THE ONCE-EACH RULE, shared. Every pass below finds its own work by a MARKER
+# sentence and asks two questions about it — is it PRESENT on the cards a ruling names, and
+# does any UNRULED card carry it. A card carrying it TWICE answers both correctly, which is
+# how T-0677's measurement went green with all thirty-one land-sales cards doubled. That
+# ticket closed the hole in one tool; T-0846 found six passes write a paragraph and three
+# still had no such rule, and the three copies that existed had already drifted — two of them
+# counted the marker and never looked for a superseded wording. One implementation now, and
+# this step is what keeps it wired: it re-reads the tools, so a seventh pass that grows an
+# add-only paragraph applier and no `doubles()` fails here on the commit that adds it.
+step "…and every pass that writes a paragraph onto a card holds the once-each rule" \
+  python3 tools/spend_write_once.py --self-test
+
+step "…and no card in the town carries any pass's paragraph twice" \
+  python3 tools/spend_write_once.py --sweep
+
 # T-0634, consolidation pass 1. The other half of the same defect, and the older half: the
 # four early Chicago lists — the 1833 trustees' poll, the 1833 tax list, the 1834 poll and
 # the 1835 poll — had matched 99 entries to people this town holds, and not one of the 99

@@ -61,9 +61,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# THE ONCE-EACH RULE lives in one place (T-0846). `gaps` asks whether this pass's
+# paragraph is PRESENT and `strays` whether an unruled card carries one; neither can
+# see a card that carries it TWICE, which is what an add-only applier produces when the
+# wording changes between runs. T-0677 measured that on this series and closed it in one
+# tool; three copies later the copies had already drifted apart, so the rule is shared.
+import spend_write_once  # noqa: E402
 LAND_SALES = ROOT / "data" / "research" / "land_sales"
 CROSSWALK = LAND_SALES / "resident_crosswalk.json"
 RECORDS = LAND_SALES / "records"
@@ -517,17 +527,7 @@ def strays(rows: list) -> list:
 
 def _doubles_over(household_id: str, person: dict) -> list:
     """doubles() for one already-loaded person — what the self-test needs and the gate reuses."""
-    note = person.get("note") or ""
-    out = []
-    if note.count(MARKER) > 1:
-        out.append("%s/%s — carries this pass's paragraph %d times; the register is written "
-                   "onto a card once" % (household_id, person.get("id"), note.count(MARKER)))
-    for old in SUPERSEDED_MARKERS:
-        if old in note:
-            out.append("%s/%s — carries a superseded tract-sales paragraph beside this one; "
-                       "the register is written onto a card once"
-                       % (household_id, person.get("id")))
-    return out
+    return spend_write_once.doubles_over(household_id, person, MARKER, SUPERSEDED_MARKERS)
 
 
 def doubles() -> list:
@@ -535,14 +535,12 @@ def doubles() -> list:
 
     Two ways a card ends up saying it twice and both are silent to the two gates above:
     this pass's own paragraph appended a second time, or a superseded pass's paragraph
-    left standing beside it.
+    left standing beside it. T-0677 wrote that rule here first; T-0846 moved it to
+    `tools/spend_write_once.py`, where the six passes that write a paragraph share it —
+    three copies had already drifted, two of them counting the marker and never looking
+    for a superseded wording at all.
     """
-    bad = []
-    for path in sorted(HOUSEHOLDS.glob("*.json")):
-        hh = load(path)
-        for person in hh.get("persons") or []:
-            bad.extend(_doubles_over(hh.get("id"), person))
-    return bad
+    return spend_write_once.doubles(MARKER, SUPERSEDED_MARKERS, HOUSEHOLDS)
 
 
 def check(quiet: bool = False) -> int:
