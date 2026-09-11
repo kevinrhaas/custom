@@ -120,6 +120,33 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
+ROSTER = DATA / "research" / "newspapers" / "letter_list_1834_01_01_printed.json"
+CONCORDANCE = DATA / "research" / "newspapers" / "letter_list_1834_01_01_concordance.json"
+
+# T-1011. THE SECOND POOL: THE PRINTED ROSTER ITSELF.
+#
+# Everything above this line reaches a name through an EXTRACTION — a claim cut out of
+# a transcription of one impression. T-0424 read the ninth and last impression of the
+# 1 January 1834 return at the page image instead, and counted 170 printed lines;
+# T-1010 then put the roster beside the extractions and found that 54 of those lines
+# reach no card at all, because the crops the extraction pass read carry an interleaved
+# advertisement that swallowed them. They are not refusals. No rule of this pass ever
+# saw them, which is the only reason they are not residents.
+#
+# So the concordance's `unread` rows become candidates here, and the rules below decide
+# them exactly as they decide a candidate out of the register: same refusals, same
+# record, same bound. The roster LINE is the source — `read_at_image` on the person
+# names the file, the printed line and the impression, and the note says the reading is
+# the scan's and not a transcription's.
+ROSTER_PRINTING = "chicago_democrat_1834_03_04"
+ROSTER_PRINTING_SAID = "the ninth and last of the nine impressions of this return"
+
+# The trailing digit on a roster line is the COUNT OF LETTERS WAITING, which is how
+# this list marks them — the roster's own `_doc` says so, and that is the one thing a
+# transcription of the same line cannot tell you. It is therefore not part of the name
+# and is carried as a count, so that `Almond Axtell 2` mints an Axtell rather than
+# `surname()` reading `2` as an unreadable surname slot and landing on `Almond`.
+LETTERS_WAITING = re.compile(r"\s+(\d+)$")
 
 SCENE_DATE = "1835-07-01"
 PREFIX = "hh_ll_"
@@ -682,6 +709,67 @@ def letter_list_pool(register: dict, own_pass: frozenset[str] = frozenset()) -> 
                           or str(p.get("action_target") or "") in own_pass)))]
 
 
+def split_letters_waiting(as_printed: str) -> tuple[str, int | None]:
+    """`Almond Axtell 2` -> (`Almond Axtell`, 2). The digit is a count, not an initial.
+
+    The roster records its own notation (`letter_list_1834_01_01_printed.json`'s
+    `_doc`): "a trailing digit is the count of letters waiting, which is how this list
+    marks them". Only a TRAILING run of digits is taken, and only off a roster line —
+    the transcriptions this pass has always read carry the same digits with no
+    statement of what they mean, so the cards minted from them are untouched here and
+    the reading they got is a finding of its own (T-1013).
+    """
+    m = LETTERS_WAITING.search(as_printed)
+    if not m:
+        return as_printed.strip(), None
+    return as_printed[: m.start()].strip(), int(m.group(1))
+
+
+def roster_pool() -> tuple[list[dict], dict]:
+    """The printed lines of the 1 January 1834 return that no extraction reaches.
+
+    In PRINTED ORDER, deliberately. The order handed to `apply_refusals` decides
+    refusal 8, and nothing in the evidence separates two of these lines: they stand in
+    one return, on one page, read in one sitting, so there is no stronger and no weaker
+    among them. The list's own order is then the only tie-break that is not invented,
+    and six surnames inside this cohort need one (Clevinger, Clarke, Goodrich, Gooding,
+    Harrison, Steele each stand on two lines).
+
+    Returns (candidates, gazetteer-shaped entries), the same two shapes
+    `letter_list_pool` and `gazetteer.json` hand the refusals, so the rules below do
+    not learn that a second pool exists.
+    """
+    conc = load(CONCORDANCE)
+    roster_date = load(ROSTER)["printing_read"]["date"]
+    cands: list[dict] = []
+    gaz: dict[str, dict] = {}
+    for line in conc["lines"]:
+        if (line.get("reaches") or {}).get("kind") != "unread":
+            continue
+        printed = line["as_printed"]
+        name, waiting = split_letters_waiting(printed)
+        key = f"roster_line_{line['n']:03d}"
+        cands.append({
+            "id": key,
+            "name": name,
+            "action": "new_resident",
+            "letter_list_only": True,
+            "first_seen": roster_date,
+            "last_seen": roster_date,
+            "roster_line": line["n"],
+            "roster_as_printed": printed,
+            "letters_waiting": waiting,
+        })
+        gaz[key] = {
+            "id": key,
+            "name": name,
+            "mentions": [f"{ROSTER_PRINTING}#roster_line_{line['n']}"],
+            "variants": [{"as_printed": printed}],
+            "associated_places": [],
+        }
+    return cands, gaz
+
+
 def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
                    in_town: set[str], guard=None, blind=frozenset()):
     """The nine refusals, in order, over an already-ranked list of candidates.
@@ -787,8 +875,17 @@ def mint(docs: dict, index: dict):
     own_pass = frozenset(doc["head"] for doc in docs.values()
                          if doc.get("source_pass") == "letter_list")
 
-    return apply_refusals(rank(letter_list_pool(register, own_pass), gazetteer),
-                          gazetteer, known, in_town, guard=guard, blind=blind)
+    # T-1011's second pool, AFTER the register's — and that order is the rule, not an
+    # implementation detail. Refusal 8 gives a surname to whichever candidate reaches it
+    # first, and a roster line is the one kind of candidate no extraction pass has ever
+    # read: where it collides with a name the corpus actually carries a claim for, the
+    # claim keeps the family name. Same reasoning as refusal 7, one step further down.
+    roster_cands, roster_gaz = roster_pool()
+    gazetteer.update(roster_gaz)
+    ordered = (rank(letter_list_pool(register, own_pass), gazetteer)
+               + roster_cands)
+
+    return apply_refusals(ordered, gazetteer, known, in_town, guard=guard, blind=blind)
 
 
 # ---------------------------------------------------------------------------
@@ -871,6 +968,22 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
                  "in."),
     }
     person["sources"] = list(sources)
+    if cand.get("roster_line"):
+        # T-1011. The roster line IS the source, so it is on the person structurally and
+        # not only in prose: the file, the printed line, the impression it was read at,
+        # and the count of letters the office was holding. `reading` is scan_verified
+        # because T-0424 read this line at the page image — stronger than the
+        # transcription-mediated readings the rest of this cohort rests on, and a reader
+        # should not have to infer that from a paragraph.
+        person["read_at_image"] = {
+            "roster": str(ROSTER.relative_to(ROOT)),
+            "printed_line": cand["roster_line"],
+            "as_printed": cand["roster_as_printed"],
+            "printing": ROSTER_PRINTING,
+            "reading": "scan_verified",
+        }
+        if cand.get("letters_waiting") is not None:
+            person["read_at_image"]["letters_waiting"] = cand["letters_waiting"]
     if len(groups) > 1:
         held = (f"KNOWN ONLY FROM THE POST OFFICE, AND HELD THERE MORE THAN ONCE. The "
                 f"papers print " + " and ".join(f"'{p}'" for p in printed)
@@ -901,8 +1014,30 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
         f"and quoted above; what has stopped is the card asserting that setting is a "
         f"name. A pass that reaches the page images settles it and this marker goes. "
     ) if UNREAD in name else ""
+    roster_read = ""
+    if cand.get("roster_line"):
+        waiting = cand.get("letters_waiting")
+        count = ("" if waiting is None else
+                 f" The line ends on `{waiting}`, which on this list is the COUNT OF "
+                 f"LETTERS WAITING and not a middle initial — the roster records that "
+                 f"notation itself — so the count is carried beside the name and the "
+                 f"name is the line without it. ")
+        roster_read = (
+            f"READ AT THE PAGE IMAGE, OFF THE PRINTED LINE, AND MINTED ONLY NOW. This "
+            f"person's evidence is line {cand['roster_line']} of the return as it stands "
+            f"in {ROSTER_PRINTING_SAID}, set `{cand['roster_as_printed']}` and read at "
+            f"the scan by T-0424 ({ROSTER.relative_to(ROOT)}). NO TRANSCRIPTION OF ANY "
+            f"IMPRESSION CARRIES IT: the crops this project extracted from have an "
+            f"advertisement interleaved through the list, and it swallowed this line "
+            f"along with 53 others — which is the whole reason the name reached no card "
+            f"for a year of this corpus's work, and is not a judgement anybody made "
+            f"about it (T-1010 measured the gap, T-1011 closed it).{count}The reading is "
+            f"the scan's, so it is the strongest kind this cohort holds; what it says is "
+            f"still only that a letter was waiting. "
+        )
     person["note"] = (
         held
+        + roster_read
         + unread
         + f"Nothing else in the corpus names this person: no trade, no street, no "
         f"household, no arrival, so every other claim here is written unattested in its own "
@@ -985,7 +1120,24 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     return doc
 
 
-def build(preload: dict | None = None):
+def build(preload: dict | None = None, only_roster: bool = False):
+    """The files this pass derives, the cohort it admitted, and the refusals.
+
+    `only_roster` is T-1011's write mode, and it exists because the default one is a
+    RE-DERIVATION: it rebuilds every card in the cohort from the register, which was
+    right the day the pass first ran and is destructive ever after. Later passes have
+    since graded these people, written `resident_research` outcomes onto them and
+    enriched them, and none of that is derivable from here — re-deriving
+    `hh_stout_samuel` today would throw away T-0485's no-corroboration finding and drop
+    the card's ladder rule. T-1011 adds names and must not rewrite anybody, so this mode
+    writes the records the ROSTER pool reached and nothing else: every card already
+    committed is left exactly as it stands, and so is every name the register pool
+    reaches that the tree does not yet carry (46 of those, a gap of its own — T-1014).
+
+    Candidate order and id allocation are unaffected by the mode: every accepted
+    candidate is still built, in the same order, against the same `seen` set, so the
+    household ids this writes are the ones the full derivation would give them.
+    """
     docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
             if preload is not None
             else {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))})
@@ -1002,12 +1154,22 @@ def build(preload: dict | None = None):
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
+        if only_roster and not cand.get("roster_line"):
+            continue
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
 
     # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
     # keep every other row verbatim, so a household no pass owned could be regraded
     # elsewhere and go on carrying a stale row for ever. `final` is the whole layer
     # as this pass leaves it, and the derivation reads all of it.
+    if only_roster:
+        final = dict(docs)
+        final.update({path: json.loads(text) for path, text in files.items()})
+        rebuild(index, final)
+        files[INDEX] = dumps(index, 1)
+        # No stale set: nothing already committed is this mode's to remove.
+        return files, accepted, refusals, set()
+
     final = {path: doc for path, doc in docs.items() if path not in mine_paths}
     final.update({path: json.loads(text) for path, text in files.items()
                   if path != INDEX})
@@ -1543,6 +1705,9 @@ def main() -> int:
                     help="print the mint and every refusal")
     ap.add_argument("--scale", "--scale-report", dest="scale", action="store_true",
                     help="what the owner's ruling did to the town, counted here (T-0379)")
+    ap.add_argument("--mint-roster", action="store_true",
+                    help="write only the households the printed roster's own lines "
+                         "reach, leaving every committed card untouched (T-1011)")
     ap.add_argument("--gate", action="store_true",
                     help="prove the minted cohort is what the ruling permits")
     ap.add_argument("--self-test", action="store_true",
@@ -1557,7 +1722,7 @@ def main() -> int:
         scale_report()
         return 0
 
-    files, accepted, refusals, mine_paths = build()
+    files, accepted, refusals, mine_paths = build(only_roster=args.mint_roster)
     if args.report:
         docs = {p: load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}
         report(accepted, refusals, docs)
@@ -1583,7 +1748,9 @@ def main() -> int:
     for p, text in files.items():
         p.write_text(text, encoding="utf-8")
     print(f"minted {len(accepted)} letter-list resident(s); refused "
-          f"{len(refusals)} candidate(s)")
+          f"{len(refusals)} candidate(s)"
+          + (f"; wrote {len(files) - 1} record(s) from the printed roster, every "
+             f"committed card untouched" if args.mint_roster else ""))
     return 0
 
 
