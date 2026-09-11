@@ -134,13 +134,20 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # adds nothing here: it is measured to a coordinate and deliberately not built, because this
 # project has no well archetype (docs/RESEARCH/wells.md section 5, T-0887).
 #
+# 380 -> 383 and 378 -> 381 on 2026-09-11 (T-0432): the second deal on
+# `blk_south_water_dearborn`, the last of the four South Water blocks T-0420 held in one
+# ticket — two frame cottages on the South Water frontage of lot 2, one party-walled to each
+# side wall of Frederick Thomas's shop, and the stable in the yard behind them. Three new
+# structure assets, so three more meshes a change to the shared generator modules or to
+# build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 380,
+    "assets": 383,
     "restales": {
-        "generators/common/*.py": 380,
+        "generators/common/*.py": 383,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 378,
+        "generators/build.py": 381,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

@@ -2138,6 +2138,81 @@
           "lateral_m": -3.5
         }
       ]
+    },
+    {
+      "block_id": "blk_south_water_dearborn",
+      "district": "south",
+      "programme_phase": "phase3_platted_block_south_water_dearborn_second_deal",
+      "claimed": "2026-09-11",
+      "seq_start": 7,
+      "bounded_by": {
+        "north": "south_water",
+        "south": "lake",
+        "west": "dearborn",
+        "east": "state"
+      },
+      "drawn_from_schedule": {
+        "capacity_roofs": 31,
+        "standing_roofs": 11,
+        "free_lots": 2,
+        "headroom": 4,
+        "dealt_roofs": 3,
+        "dealt_principal": 2,
+        "dealt_ancillary": 1,
+        "principal": 2,
+        "ancillary": 1
+      },
+      "families": {
+        "A1": 1,
+        "D3": 1,
+        "D5": 1
+      },
+      "open_lots": [
+        {
+          "lot": 7,
+          "why": "The Lake-and-State corner, kept open on the reason the first deal gave it and re-read here rather than restated: tools/measure_end_rule.py blk_south_water_dearborn --list puts its frontage 236.20 m walked from the foot of the Dearborn Street drawbridge, the remotest of this block's eight lots from the only crossing of the main stem in July 1835, where lot 0 at the other end of the same block reads 36.94 m. State Street is the platted town's eastern limit and the fort's reservation lies beyond it, so the lot the criterion leaves open is also the one with the least town around it. It is the lot the schedule's own sizing reserves as well — principal room is ROW_UNITS_PER_LOT times the free lots LESS ONE, precisely so a block is never dealt out of its open lot — and the programme's placement rule is explicit that a block at capacity is a claim about 1835 the evidence does not support."
+        }
+      ],
+      "frontage": {
+        "face": "north",
+        "fronts": "south_water",
+        "setback_m": 1.5,
+        "lots": [
+          2
+        ],
+        "why": "T-0432, piece 4 of 4 of T-0420, and the last of the four South Water blocks T-0009 unblocked. T-0143 and T-0188 each refused to tighten a party-line row against a street line that might move, and T-0317 inherited the refusal; T-0009 closed it on 2026-08-29 under the owner's ruling that the drawn South Water line does NOT move — the corridor was re-derived from committed control (`recentred`, +8.58 m) and data/streets/1835.json was not touched — so this face may carry a row again. THE ROW STILL STANDS ON THE BLOCK FACE AND NOT ON THAT CORRIDOR, which is the distinction the two refusals were protecting: the face is committed geometry read from data/traces/vectors/thompson_lots.json, and this run takes its line, its bearing and both walls it packs against off that boundary. The 8.58 m the corridor moved is therefore not in this placement, and if the strip between the corridor and the block faces is later resolved (T-0419) neither of these roofs moves with it. THE FACE IS THIS BLOCK'S OWN RECORD: South Water is the town's business front and the first deal's own note reads it as such, and the party wall this run builds against is a DOCUMENTED one — Frederick Thomas's shop, seated back onto the committed line by T-0198 and T-0199 and measured here at off -1.500 m, exactly the plat module's lot margin, so it stands ON the platted line and a row may share its wall rather than break around it. NO COORDINATE IS AUTHORED: the line, its bearing and the lot's own stretch of it are read from the committed block boundary, and the 1.5 m setback is the plat module's own lot margin rather than a measurement of this frontage.",
+        "runs": "One run of TWO, one to each side of Frederick Thomas's shop, and the count is measured rather than chosen. Lot 2 projects onto the north face between 25.93 m and 52.86 m, so with the plat module's 1.5 m margin off each conjectural side line the lot offers 23.93 m of buildable frontage, from 27.43 m to 51.36 m. The shop holds 33.594 m to 42.907 m of it. That leaves 6.164 m clear to the west and 8.453 m to the east, and the west gap is tighter than it looks: John Holbrook's store ends at 24.662 m on the lot next door, and the three-metre separation rule — which no party wall exempts, because this run declares none against Holbrook — puts the west unit's own west wall no nearer than 27.662 m. So the west gap takes 5.932 m and the east gap 8.453 m, one roof each and neither gap takes two. THE WEST GAP ALSO CHOOSES THE WEST FAMILY: at 5.932 m it will not take the D4 two-room cottage this generator sizes at 6.072 m, so the west unit is the D3 one-room cottage the schedule dealt this block beside it, and the D4 is what returns to the balance. THE DENSITY CEILING SAYS TWO AS WELL, AND IT IS A DIFFERENT MEASUREMENT: T-0079 allows ROW_UNITS_PER_LOT roofs on a lot of this grid, the shop is one of them already, and two more reach that ceiling exactly. The schedule dealt this block three principal roofs and this run carries two; the third — the D4 two-room cottage — is not deferred and is not refused, it has nowhere to stand, and it returns to the south district's balance where every marginal still sums to the programme's total."
+      },
+      "arrangement_note": "THE SECOND DEAL ON THIS BLOCK, and the LAST of the four South Water blocks T-0420 held in one ticket. The first deal (2026-08-15, the entry above) built six roofs under the rule that allowed one principal roof per platted lot; T-0079 retired that ceiling and T-0198, T-0199 and the owner's 2026-08-27 business-front clause then seated the street's documented stores back onto the committed plat, which is what left this block two free lots and four roofs of headroom. Rewriting the first entry would restate an August schedule under numbers that were not true in August, so this is its own entry against its own headroom, numbered from seq_start so the two cannot collide on a record id. WHAT IS BUILT: two frame cottages on the South Water frontage of lot 2, one party-walled to each side wall of Frederick Thomas's shop, and the stable that belongs to the lot they stand on. WHY LOT 2 AND NOT LOT 7: the block's two free lots are lot 2 on South Water — free only under the owner's clause, which says a documented shop standing at the street does not exhaust a business-front lot — and lot 7, the Lake-and-State corner. The end rule names lot 2 by a wide margin, 62.86 m walked from the Dearborn drawbridge against 236.20 m for lot 7, and lot 7 is the lot the schedule's own sizing reserves: spending it to take the remaining roofs would spend exactly the lot that rule keeps open. THIS PARCEL CLAIMS THREE OF THE FOUR ROOFS THE SCHEDULE DEALT, AND SAYS SO IN ITS NUMBERS: drawn_from_schedule records the block's headroom of 4 and a draw of 3. The fourth is the D4 the run has no metres for, and it goes back to the south district's remainder rather than being deferred by name. TWO DEALS MEET ON ONE LOT FOR THE FIRST TIME IN THIS PROGRAMME and the generator had to be taught to account for it: until this block the four lot classes were held pairwise disjoint, which made 'built on by another deal' a prohibition as well as an account and would have refused this ground on the strength of the ceiling T-0079 retired. The overlap is admitted and bounded by the density standard's own ceiling counted across deals, and nothing physical relaxes with it. AFTER THIS DEAL lot 2 carries roofs that are not a documented store at the street, so it stops being a shared business front, the block's free lots fall to one and its principal room to zero — the block reaches at_capacity with lot 7 still open, which is the state the programme's placement rule wants a finished block to be in. NOTHING ELSE ON THIS BLOCK MOVES: every record the first deal wrote keeps its id, family, footprint and every form value, and no household is re-homed. WHAT IS UNVERIFIED IS EVERYTHING THAT MATTERS — that any building stood on this ground, that these were dwellings, and that either shared a wall with the shop are all inventions of this programme, and the side lot lines the run stands clear of are conjectural in every record this generator has ever written.",
+      "slots": [
+        {
+          "family": "D5",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_east_of": "frederick_thomas_shop"
+          }
+        },
+        {
+          "family": "D3",
+          "inventory_class": "principal_functional",
+          "stands_on": "frontage",
+          "fronts": "south_water",
+          "anchor": {
+            "abut_west_of": "frederick_thomas_shop"
+          }
+        },
+        {
+          "family": "A1",
+          "inventory_class": "ancillary",
+          "lot": 2,
+          "stands_on": "alley",
+          "fronts": "south_water",
+          "setback_m": 5.0,
+          "lateral_m": -3.5
+        }
+      ]
     }
   ]
 }

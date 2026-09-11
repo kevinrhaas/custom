@@ -78,3 +78,22 @@ passing is that ticket's business and this one shrinks accordingly.
 
 **Links:** T-0429 (where it was found and corrected on `lasalle`) · T-0430 · T-0431 · T-0432 ·
 T-0105 (the lot classes) · T-0079 (the three-units-per-lot ceiling) · `tools/plat_occupancy.py`.
+
+**Measured on `blk_south_water_dearborn`, 2026-09-11 by T-0432, and the entry was NOT corrected.**
+The first deal declares `frontage.lots: [0, 2, 4]` and its run of three units stands entirely on
+lot 4: `plat_occupancy.lot_holders` puts `c3_01`, `c3_02` and `d1_05` on lot 4 and nothing of that
+run on lot 0 or lot 2. So this block is a live instance of the defect — two of the three declared
+lots carry none of the run — and T-0432 left the entry alone on purpose. Rewriting an August
+entry's declaration is exactly what T-0105's second-deal rule exists to avoid, and T-0432 needed
+the opposite of a correction: it needed lot 2, which the declaration puts in the FIRST deal's
+hands, to be dealable by a second. It got there by admitting the overlap and bounding it with the
+density ceiling counted across deals, not by narrowing the declaration.
+
+That changes what this ticket is worth, and it is worth saying plainly rather than quietly
+shrinking the scope: the over-declaration no longer HIDES this block's headroom, because the
+headroom was found and spent without touching it. What is left is that the declaration is still
+untrue about lots 0 and 2 — a recipe saying a run stands on ground it does not reach — and the
+three sibling entries have not been measured since. A run taking this ticket should re-measure all
+four against `lot_holders` before editing any of them, and should know that `generate_block_infill`
+now reads a lot's row units off where they STAND rather than off what a run was dealt, so a
+corrected declaration and an uncorrected one give the same ceiling.
