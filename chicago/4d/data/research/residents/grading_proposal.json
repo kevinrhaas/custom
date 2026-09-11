@@ -59,31 +59,31 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6849,
+  "identities": 6851,
   "by_grade": {
    "None": 45,
-   "not_1835_resident": 4392,
+   "not_1835_resident": 4394,
    "inferred": 1965,
    "attested": 447
   },
   "by_subtype": {
-   "None": 5119,
-   "projected_resident": 1730
+   "None": 5120,
+   "projected_resident": 1731
   },
   "by_rule": {
    "G5": 45,
-   "G0": 4392,
-   "G3": 1729,
+   "G0": 4394,
+   "G3": 1730,
    "G1b": 374,
    "G2b": 38,
    "G1a": 51,
    "G1c": 22,
-   "G2e": 130,
+   "G2e": 129,
    "G2c": 34,
    "G2a": 33,
    "G4": 1
   },
-  "proposed_changes_to_existing_people": 80,
+  "proposed_changes_to_existing_people": 79,
   "conflicts": 79
  },
  "proposals": [
@@ -3738,8 +3738,9 @@
   {"identity":"id_laister_henry","name":"Henry Laister","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1536","directories:n1844_e1053"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_lake_lewis","name":"Lewis Lake","canonical_person_id":"lake_lewis","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_lewis_lake"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_laly_timothy","name":"Timothy Laly","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_027_3"],"evidence_classes":["church_after_1835"]},
-  {"identity":"id_lamb_a","name":"A Lamb","canonical_person_id":"lamb_a","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["newspapers:person_lamb_a","directories:f1843_e1539","directories:n1844_e1060"],"evidence_classes":["directory_1843","directory_1844","newspaper_letter_list","town_layer"]},
+  {"identity":"id_lamb_a","name":"A Lamb","canonical_person_id":"lamb_a","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_lamb_a"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_lamb_adam","name":"Adam Lamb","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_adam_lamb"],"evidence_classes":["newspaper_letter_list"]},
+  {"identity":"id_lamb_artemus","name":"Artemus Lamb","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1539","directories:n1844_e1060"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_lamb_caleb","name":"Caleb Lamb","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_caleb_lamb"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_lamb_e_s","name":"E S Lamb","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1540","directories:n1844_e1061"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_lamb_larkin","name":"Larkin Lamb","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1541","directories:n1844_e1062"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -5696,8 +5697,9 @@
   {"identity":"id_sherwood_jeremiah","name":"Jeremiah Sherwood","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["newspapers:person_jeremiah_sherwood","census_1840:33S7-9YYJ-9WF:20"],"evidence_classes":["census_1840","newspaper_letter_list"]},
   {"identity":"id_sherwood_r_w","name":"R W Sherwood","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2254","directories:n1844_e2050"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_sherwood_s_j","name":"S J Sherwood","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0116"],"evidence_classes":["directory_1843"]},
+  {"identity":"id_sherwood_smith_j","name":"Smith J Sherwood","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1613"],"evidence_classes":["directory_1844"]},
   {"identity":"id_sherwood_smith_jones","name":"Smith Jones Sherwood","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2255"],"evidence_classes":["directory_1843"]},
-  {"identity":"id_sherwood_stephen","name":"Stephen Sherwood","canonical_person_id":"sherwood_s","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["newspapers:person_stephen_sherwood","newspapers:person_s_sherwood","directories:n1844_e1613"],"evidence_classes":["directory_1844","newspaper_letter_list","town_layer"]},
+  {"identity":"id_sherwood_stephen","name":"Stephen Sherwood","canonical_person_id":"sherwood_s","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["newspapers:person_stephen_sherwood","newspapers:person_s_sherwood"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_sherwood_william","name":"William Sherwood","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2256"],"evidence_classes":["directory_1843"]},
   {"identity":"id_shielde_willam","name":"Willam Shielde","canonical_person_id":"shielde_willam","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_shielde_willam"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_shields_joseph","name":"Joseph Shields","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-RY:2"],"evidence_classes":["census_1840"]},
@@ -7008,7 +7010,6 @@
   {"identity":"id_pugsley_john_k","person_id":"pugsley_john_k","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
   {"identity":"id_robinson_catherine_chevalier","person_id":"robinson_catherine","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_sen_elijah_wentworth","person_id":"sen_elijah_wentworth","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"},"rule":"G3","direction":"down"},
-  {"identity":"id_sherwood_stephen","person_id":"sherwood_s","from":{"grade":"inferred","resident_subtype":"projected_resident"},"to":{"grade":"inferred","resident_subtype":null},"rule":"G2e","direction":"subtype_only"},
   {"identity":"id_stcyr_john_mary_irenaeus","person_id":"st_cyr_john_mary","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_stow_william_h","person_id":"stow_william_h","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},
   {"identity":"id_taylor_augustine_deodat","person_id":"taylor_augustine","from":{"grade":"attested","resident_subtype":null},"to":{"grade":null,"resident_subtype":null},"rule":"G5","direction":"down"},

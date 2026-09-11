@@ -40,6 +40,7 @@ from collections import defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tiebreak            # the tie discriminator (T-0696), imported not restated
 import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
+import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CARDS = os.path.join(ROOT, "data/research/directories/claims/norris_1844_advertiser.json")
@@ -99,6 +100,7 @@ def residents():
             out.append({
                 "person_id": p.get("id"),
                 "household_id": doc.get("id"),
+                "letter_list_only": bool(p.get("letter_list_only")),
                 "name": name,
                 "surname": parts[-1],
                 "given": " ".join(parts[:-1]),
@@ -146,6 +148,8 @@ def main():
         }
 
     matches, ambiguous, refusals = [], [], []
+    bucket_refusals = []
+    ll_index = llb.buckets(llb.pool())
     people = residents()
     for r in people:
         key = (fold(r["surname"]), initial(r["given"]))
@@ -161,6 +165,22 @@ def main():
                             "surname-only agreement is a refusal."
                             % (r["surname"], initial(r["given"]).upper() or "-", r["name"]),
                 })
+            continue
+        # T-1038. A card that prints only an initial the post office's returns
+        # print in full under the same surname takes nothing from a later
+        # volume. It matters most HERE: Norris's alphabetical entry for the
+        # jeweler says "(See card)", so a refusal that reached only the
+        # directory proper would have let his own advertising card carry the
+        # same trade and the same 144 Lake street to the same person.
+        bucket = llb.refusal(r["name"], r["letter_list_only"], ll_index)
+        if bucket:
+            for c, printed in hits:
+                row = dict(bucket)
+                row.update({"resident": r["name"], "person_id": r["person_id"],
+                            "household_id": r["household_id"],
+                            "grade_1835": r["grade"], "record_id": card_row(c, printed)["claim"],
+                            "card_1844": card_row(c, printed)})
+                bucket_refusals.append(row)
             continue
         rows = [card_row(c, printed) for c, printed in hits]
         rec = {
@@ -286,6 +306,8 @@ def main():
             "matched_more_than_one_ambiguous": len(ambiguous),
             "one_printed_proprietor_contested_by_two_residents": len(contested),
             "surname_present_initial_absent_refused": len(refusals),
+            "letter_list_bucket_refused": len(bucket_refusals),
+            "residents_that_refusal_reaches": len({b["person_id"] for b in bucket_refusals}),
             "ties_offered_the_trade_discriminator": len(ambiguous) + len(contested),
             "ties_narrowed_by_a_trade": len(discriminated),
             "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
@@ -299,6 +321,8 @@ def main():
         "contested": sorted(contested, key=lambda m: m["resident"]),
         "ambiguous": sorted(ambiguous, key=lambda m: m["resident"]),
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
+        "letter_list_bucket_refusals": sorted(
+            bucket_refusals, key=lambda m: (m["resident"], m["card_1844"]["claim"])),
     }
     if "--check" in sys.argv:
         if not os.path.exists(OUT):

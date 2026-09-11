@@ -41,6 +41,7 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import crosswalk_fergus_1839 as cw  # the rule, imported rather than restated
+import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTER = os.path.join(ROOT,
@@ -122,7 +123,8 @@ def index(claims):
     return by_key, surnames, unindexable
 
 
-def match_pool(pool, by_key, surnames, extra=None):
+def match_pool(pool, by_key, surnames, extra=None, bucket_refusals=None):
+    ll_index = llb.buckets(llb.pool())
     matched, ambiguous, refused = [], [], []
     for r in pool:
         f, i = cw.fold(r["surname"]), cw.initial(r["given"])
@@ -138,6 +140,22 @@ def match_pool(pool, by_key, surnames, extra=None):
                             % (r["surname"], (i or "-").upper(), r["name"]),
                 })
             continue
+        # T-1038. THE CARD IS AN INITIAL THE LETTER LIST PRINTS TWICE. The post
+        # office's returns print another name under this surname and this
+        # initial IN FULL, and mint_letter_list_residents.py seats one household
+        # per surname — so the card stands for readings the corpus cannot
+        # separate, and a later list has not met any one of them.
+        if bucket_refusals is not None:
+            bucket = llb.refusal(r["name"], r.get("letter_list_only"), ll_index)
+            if bucket:
+                for h in hits:
+                    rec = dict(bucket)
+                    rec.update({"name": r["name"], "record_id": row_of(h)["claim"],
+                                "entry_1839": row_of(h)})
+                    if extra:
+                        rec.update(extra(r))
+                    bucket_refusals.append(rec)
+                continue
         rows = [row_of(h) for h in hits]
         # A TABLE PRINTS A MAN TWICE. Augustus Garrett is mayor in 1843 and again in
         # 1845, Silas W. Sherman sheriff in 1834 and again in 1836. Two hits on identical
@@ -180,8 +198,9 @@ def main():
     by_key, surnames, unindexable = index(claims)
 
     people = cw.residents()
+    res_bucket_refused = []
     res_matched, res_ambiguous, res_refused = match_pool(
-        people, by_key, surnames,
+        people, by_key, surnames, bucket_refusals=res_bucket_refused,
         extra=lambda r: {"person_id": r["person_id"], "household_id": r["household_id"],
                          "grade_1835": r["grade"]})
     # ONE REGISTER ENTRY, TWO 1835 PEOPLE is a collision, not a match.
@@ -283,6 +302,7 @@ def main():
                 1 for m in res_ambiguous if m["same_man_reprinted"]),
             "residents_contested": len(contested),
             "residents_surname_only_refused": len(res_refused),
+            "residents_letter_list_bucket_refused": len(res_bucket_refused),
             "voters_matched_one_entry": len(v_matched),
             "voters_ambiguous": len(v_ambiguous),
             "voters_surname_only_refused": len(v_refused),
@@ -298,6 +318,8 @@ def main():
             "contested": sorted(contested, key=lambda m: m["name"]),
             "ambiguous": sorted(res_ambiguous, key=lambda m: m["name"]),
             "refusals": sorted(res_refused, key=lambda m: m["name"]),
+            "letter_list_bucket_refusals": sorted(
+                res_bucket_refused, key=lambda m: (m["name"], m["entry_1839"]["claim"])),
         },
         "voters": {"matches": sorted(v_matched, key=lambda m: m["name"]),
                    "ambiguous": sorted(v_ambiguous, key=lambda m: m["name"]),

@@ -108,8 +108,6 @@
 
 
 T-1034 — The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869
-T-1039 — A row is not a parcel, asked of the town lots: volume L5A enters one lot twice and three times over, in paired and doubled prices that look like halves of a parcel rather than duplicate rows
-T-1038 — A jeweler's trade sits on a letter-list card: the identity layer folds Norris 1844's 'Sherwood, Smith J. jeweler, 144 Lake' onto hh_sherwood_s, minted from two uncalled-for letters for Stephen Sherwood
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
@@ -142,7 +140,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- ruling and landed on 2026-09-11 as three (PR #1135): the metres of lot 2 took two roofs
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
-T-1036 — The 1830 plan letters the U.S. Factor's House against three blocks 152 m south of the stockade, T-0894 measured them, and the fort reservation's one documented dwelling outside the pickets is still not built
 T-0946 — The placement derivation module cannot express a frontage on a street that is not axis-aligned, so the north bank's houses all read not_derivable
 T-0948 — A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
 T-0949 — The five T-0773 refusals are prose on dev and machine-checked only on a closed branch: the corner-crossing guard, REFUSED_ANCHOR_KINDS and the declared refusals never landed
@@ -340,3 +337,4 @@ T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house',
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
+

@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 539,
-  "carried": 204,
-  "matched": 406,
-  "refused": 133,
-  "distinct_people": 253,
-  "distinct_claims": 589
+  "rulings": 533,
+  "carried": 202,
+  "matched": 401,
+  "refused": 132,
+  "distinct_people": 251,
+  "distinct_claims": 582
  },
  "rulings": [
   {
@@ -7226,55 +7226,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "lamb_a",
-   "household_id": "hh_lamb_a",
-   "resident": "A. Lamb",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1539",
-   "claim_ids": [
-    "f1843_e1539"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Lamb' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "lamb_a",
-   "household_id": "hh_lamb_a",
-   "resident": "A. Lamb",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1060",
-   "claim_ids": [
-    "n1844_e1060"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Lamb' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
-   ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
-  },
-  {
-   "outcome": "matched",
    "person_id": "lawrence_james_r",
    "household_id": "hh_lawrence_james_r",
    "resident": "James R. Lawrence",
@@ -10106,102 +10057,6 @@
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "sherwood_s",
-   "household_id": "hh_sherwood_s",
-   "resident": "S. Sherwood",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1338",
-   "claim_ids": [
-    "f1839_e1338"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Sherwood' folds to the same string as the 1839 entry's, and the given name of both begins S.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "sherwood_s",
-   "household_id": "hh_sherwood_s",
-   "resident": "S. Sherwood",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1843_e0116",
-    "f1843_e2255"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Sherwood' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "sherwood_s",
-   "household_id": "hh_sherwood_s",
-   "resident": "S. Sherwood",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1613",
-   "claim_ids": [
-    "n1844_e1613"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Sherwood' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
-   ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
-  },
-  {
-   "outcome": "matched",
-   "person_id": "sherwood_s",
-   "household_id": "hh_sherwood_s",
-   "resident": "S. Sherwood",
-   "volume": "norris_1844_advertiser",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_ad0114",
-   "claim_ids": [
-    "n1844_ad0114"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Sherwood' folds to the same string as the card's, and the given name of both begins S.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
-   ],
-   "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
-    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
-   }
   },
   {
    "outcome": "matched",
