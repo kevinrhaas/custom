@@ -91,6 +91,35 @@ PROBE = {"tsv": "isa_land_tract_sales_cook_county_list_through_1836.tsv",
          "ticket": "T-0830", "county": "COOK", "through_year": 1836}
 PROBE_COLS = ["purchase_no", "purchaser", "legal_description", "section", "township",
               "range", "meridian", "date_purchased", "county"]
+# THE SECTIONLESS READING (T-1030). The probe above COUNTS the rows no section query can
+# return; this file is those rows READ, at the register's own detail pages, fetched by
+# purchase number — the one handle a sectionless row has. It carries the sweep's
+# seventeen columns, so it is the same shape as a deposit, and it is NOT in DEPOSITS
+# yet: joining it to the domain renumbers nothing only if the join is done deliberately,
+# and that is T-1031. Until then it is reported here — committed, counted, and honest
+# about being un-joined — rather than silently sitting in `text/` unread by anything.
+SECTIONLESS = {"tsv": "isa_land_tract_sales_cook_county_sectionless_through_1836.tsv",
+               "ticket": "T-1030", "joined_by": "T-1031"}
+
+
+def read_sectionless(domain: Path) -> list:
+    """The T-1030 deposit's rows, or [] when it is not committed. Header is a deposit's."""
+    path = domain / "text" / SECTIONLESS["tsv"]
+    if not path.exists():
+        return []
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if lines[0].split("\t") != COLS:
+        raise SystemExit("land_sales: the sectionless deposit's header is not the harvest's header")
+    out = []
+    for n, line in enumerate(lines[1:], start=2):
+        if not line.strip():
+            continue
+        cells = line.split("\t")
+        if len(cells) != len(COLS):
+            raise SystemExit("land_sales: %s line %d has %d cells, not %d"
+                             % (SECTIONLESS["tsv"], n, len(cells), len(COLS)))
+        out.append(dict(zip(COLS, cells)))
+    return out
 # The seven townships the deposits above declare, as the probe's list page spells them.
 def declared_townships() -> frozenset:
     return frozenset(("%dN" % tw, "%dE" % rg) for dep in DEPOSITS for tw, rg in dep["pairs"])
@@ -116,7 +145,7 @@ def read_probe(domain: Path) -> list:
     return out
 
 
-def build_probe(rows: list, probe: list) -> dict:
+def build_probe(rows: list, probe: list, read: list = ()) -> dict:
     """What the whole-county list says about the by-section sweep beside it.
 
     Three disjoint groups, and the answer is different for each: a row inside the seven
@@ -127,6 +156,7 @@ def build_probe(rows: list, probe: list) -> dict:
     if not probe:
         return {}
     held = {r["purchase_no"] for r in rows}
+    read_ids = {r["purchase_no"] for r in read}
     seven = declared_townships()
     inside = [r for r in probe if (r["township"].strip(), r["range"].strip()) in seven]
     sectionless = [r for r in probe if not r["section"].strip()]
@@ -140,6 +170,19 @@ def build_probe(rows: list, probe: list) -> dict:
         m = re.search(r"(CHI[A-Z]*)$", r["legal_description"])
         code = m.group(1) if m else "(no town code)"
         codes[code] = codes.get(code, 0) + 1
+    missing_from_read = [r["purchase_no"] for r in sectionless
+                         if r["purchase_no"] not in read_ids] if read else []
+    if not read:
+        read_note = "They are not read: reading them is %s." % SECTIONLESS["ticket"]
+    elif missing_from_read:
+        read_note = ("%s read %d of them at their detail pages into %s and %d are still "
+                     "unread." % (SECTIONLESS["ticket"], len(read), SECTIONLESS["tsv"],
+                                  len(missing_from_read)))
+    else:
+        read_note = ("%s read all %d at their detail pages into %s, which is committed "
+                     "beside this file; joining them to the domain is %s."
+                     % (SECTIONLESS["ticket"], len(read), SECTIONLESS["tsv"],
+                        SECTIONLESS["joined_by"]))
     return {
         "ticket": PROBE["ticket"],
         "deposit": PROBE["tsv"],
@@ -166,12 +209,36 @@ def build_probe(rows: list, probe: list) -> dict:
                    "description would go, and %d is a bare lot and block with no code at "
                    "all. Their dates are the register's own and are carried unsmoothed, "
                    "including the four this project does not believe. They are counted "
-                   "here and they are NOT in the deposit; reading them is T-1028."
+                   "here and they are NOT in the deposits the sweep writes. %s"
                    % (len(inside), PROBE["through_year"], PROBE["through_year"],
                       len(sectionless),
                       sum(n for c, n in codes.items() if c.startswith("CHI")),
                       ", ".join(sorted(c for c in codes if c.startswith("CHI"))),
-                      sum(n for c, n in codes.items() if not c.startswith("CHI"))),
+                      sum(n for c, n in codes.items() if not c.startswith("CHI")),
+                      read_note),
+        "sectionless_read_at_their_detail_pages": {
+            "ticket": SECTIONLESS["ticket"],
+            "deposit": SECTIONLESS["tsv"],
+            "rows": len(read),
+            "of": len(sectionless),
+            "read_whole": len(read) == len(sectionless) and not missing_from_read,
+            "named_by_the_list_and_not_read": sorted(missing_from_read),
+            "joined_to_the_domain": False,
+            "joined_by": SECTIONLESS["joined_by"],
+            "note": "Read by purchase number at the register's own detail pages, which is "
+                    "the one handle a row with no section has, and committed with the "
+                    "sweep's seventeen columns. It is NOT in DEPOSITS: record ids are "
+                    "positional and data/structures/*.json cite them, so the join is its "
+                    "own deliberate piece of work (%s). Nothing here mints, grades or "
+                    "moves a resident." % SECTIONLESS["joined_by"],
+        } if read else {
+            "ticket": SECTIONLESS["ticket"],
+            "deposit": SECTIONLESS["tsv"],
+            "rows": 0,
+            "of": len(sectionless),
+            "read_whole": False,
+            "note": "Not committed. The rows are counted above and unread.",
+        },
     }
 
 
@@ -379,7 +446,7 @@ def build_records(rows: list, start: int = 1) -> dict:
     }
 
 
-def build_coverage(rows: list, probe: list) -> dict:
+def build_coverage(rows: list, probe: list, read: list = ()) -> dict:
     # A DECLARATION is a promise that something in the domain reaches the item, and the
     # gate is right to call a declared item nothing reaches a hole. Every section of
     # every township in DEPOSITS was queried; only the ones that returned a sale through
@@ -431,7 +498,7 @@ def build_coverage(rows: list, probe: list) -> dict:
                 % (36 * sum(len(d["pairs"]) for d in DEPOSITS), townships),
         "declarations": declarations,
         "queried_no_sales_through_1836": empty,
-        "completeness_probe": build_probe(rows, probe),
+        "completeness_probe": build_probe(rows, probe, read),
         "not_read": {
             "ticket": "T-0676",
             "truncated_at_the_150_row_ceiling": truncated,
@@ -448,7 +515,10 @@ def build_coverage(rows: list, probe: list) -> dict:
                     "`completeness_probe` above: the sweep is complete for every section "
                     "it declares, and Cook County's register also holds sales with NO "
                     "section — town lots described by their plat — which no section "
-                    "query can return. Those are counted, not read; T-1028 reads them.",
+                    "query can return. Those are COUNTED by the probe and READ by "
+                    "T-1030, at their detail pages, into "
+                    "`isa_land_tract_sales_cook_county_sectionless_through_1836.tsv`; "
+                    "that deposit is not joined to this domain yet and T-1031 joins it.",
         },
     }
 
@@ -1072,7 +1142,7 @@ def derive(domain: Path) -> dict:
         ordered += recs["records"]
     ids = {row["purchase_no"]: rec["id"] for row, rec in zip(rows, ordered)}
     out["entries.json"] = build_entries(rows, ordered)
-    out["coverage.json"] = build_coverage(rows, read_probe(domain))
+    out["coverage.json"] = build_coverage(rows, read_probe(domain), read_sectionless(domain))
     out["crosswalk.json"] = build_crosswalk(rows, ids)
     out["resident_crosswalk.json"] = build_resident_crosswalk(rows, ids, domain)
     return out
@@ -1482,6 +1552,54 @@ def self_test() -> int:
             print("SELF-TEST: a merge onto somebody the layer does not hold must be "
                   "skipped, not proposed"); return 1
         fired.append("a merge onto a person the layer has lost is skipped")
+
+        # THE SECTIONLESS READING (T-1030). The probe COUNTS the rows no section query
+        # can return; this block says how many of them are actually READ. It must never
+        # report "read whole" while the list names a row the deposit does not hold, and
+        # it must never imply the deposit is joined to the domain, because it is not —
+        # record ids are positional and T-1031 is the deliberate join.
+        listed = [{"purchase_no": "0000010", "purchaser": "DALTON GEORGE",
+                   "legal_description": "L2BL46CHIOT", "section": "", "township": "",
+                   "range": "", "meridian": "", "date_purchased": "06/25/1836",
+                   "county": "COOK"},
+                  {"purchase_no": "0000011", "purchaser": "DALTON GEORGE",
+                   "legal_description": "L5BL50CHIOT", "section": "", "township": "",
+                   "range": "", "meridian": "", "date_purchased": "06/27/1836",
+                   "county": "COOK"}]
+        blk = build_probe([], listed)["sectionless_read_at_their_detail_pages"]
+        if blk["rows"] or blk["read_whole"]:
+            print("SELF-TEST: a sectionless row nobody has read must not report as read")
+            return 1
+        fired.append("a sectionless row nobody has read reports as unread")
+        blk = build_probe([], listed, [{"purchase_no": "0000010"}])[
+            "sectionless_read_at_their_detail_pages"]
+        if blk["read_whole"] or blk["named_by_the_list_and_not_read"] != ["0000011"]:
+            print("SELF-TEST: a half-read sectionless deposit must name what is missing")
+            return 1
+        fired.append("a half-read sectionless deposit names the row it has not read")
+        blk = build_probe([], listed, [{"purchase_no": "0000010"},
+                                       {"purchase_no": "0000011"}])[
+            "sectionless_read_at_their_detail_pages"]
+        if not blk["read_whole"] or blk["joined_to_the_domain"]:
+            print("SELF-TEST: a whole sectionless reading must read whole and still say "
+                  "it is not joined to the domain"); return 1
+        fired.append("a whole sectionless reading reads whole and still says it is "
+                     "not joined to the domain")
+
+        stray = d / "text" / SECTIONLESS["tsv"]
+        stray.parent.mkdir(parents=True, exist_ok=True)
+        stray.write_text("purchase_no\tpurchaser\n0000010\tDALTON GEORGE\n",
+                         encoding="utf-8")
+        try:
+            read_sectionless(d)
+            held = False
+        except SystemExit:
+            held = True
+        stray.unlink()
+        if not held:
+            print("SELF-TEST: a sectionless deposit whose header is not the harvest's "
+                  "did not stop the build"); return 1
+        fired.append("a sectionless deposit whose header is not the harvest's stops the build")
 
     print("read_land_sales --self-test: %d assertions fire when broken" % len(fired))
     for f in fired:

@@ -764,7 +764,69 @@ land rush reached the plat. 618 carry a town code and one is a bare `L6BL17`.
 
 **Nothing here mints, grades or moves a resident.** George Dalton's residence reads
 UNKNOWN on all five rows; a purchase is a transaction and never a home, which is this
-domain's first discipline. **T-1028** is the ticket that reads the 619.
+domain's first discipline. **T-1030 read the 619**, and the next section is that reading.
+
+## The 619 sectionless sales, read at their detail pages (T-1030)
+
+The probe above COUNTS them. This is them READ: every one of the 619 rows the Cook
+County list gives no section, fetched at the register's own detail page by purchase
+number — the one handle such a row has, since there is no section, township or range to
+ask with. `harvest_land_sales.py --sectionless COOK` is the pass, and it writes the
+sweep's seventeen columns, so the file is the same shape as a deposit:
+`text/isa_land_tract_sales_cook_county_sectionless_through_1836.tsv`.
+
+**The detail page and the list page agree letter for letter, on all 619.** Purchaser,
+date and legal description are identical in both, and Section, Township, Range and
+Meridian are empty in both. Not one detail page printed a section its list row left
+blank. So nothing here is a correction of the probe; it is the probe's rows with the
+eight columns the list page does not print — residence, social status, acres, price per
+acre, total price, type of sale, volume and page.
+
+**What the eight new columns say.**
+
+| | |
+|---|---|
+| type of sale | `CN` — canal land sale — on **all 619**. Not one is a federal cash entry or a school-section sale. |
+| residence | `UNKNOWN` on **all 619**. No row here can move, mint or grade a resident, and none does. |
+| acres | `0000.00` on all 619, and price per acre `000.00`: the register prices a town lot as a lot, not by area. |
+| volume | `L5A` on all 619 — one book, pages 001–030. |
+| total price | **$1,399,066.33** across the 619, of which **$1,390,763.33** is the 466 rows dated 1836. |
+| purchasers | 255 distinct spellings. The heaviest are `EGAN WILLIAM B` (35), `FOSTER AMOS` (25), `COOK CNTY COM` (24), `PECK P F W` (15), `JONES WILLIAM` (14), `KINZIE JAMES` (12). |
+
+**The 133 rows of 1830 sell town lots for tens of dollars.** 108 are dated 27 September
+1830, 22 the following day and 3 on 4 October; sixteen more follow on 10 November 1831.
+`BEAUBIEN J B`, `L4BL36CHIOT`, **$37.00** — against the hundreds and thousands the same
+kind of lot fetches in 1836. Those are the register's own dates and prices and nothing
+more is claimed for them here: what sale of the plat they belong to is not on the page,
+and this domain does not name it. It holds nothing else from either year at this scale,
+and none of it is placed on the ground yet.
+
+**Four dates the register itself mis-prints, carried unsmoothed.** `01/10/1000` twice,
+`02/31/1000` once — a thirty-first of February — and `01/00/1483` once, on purchase
+numbers 0381044, 0515959, 0515960 and 0381387. They are written exactly as the page
+writes them. Guessing at the year the clerk meant would be an invention, and there is
+nothing on the page to guess from.
+
+**The legal-description field is TWELVE characters wide, and 154 of the 619 fill it.**
+`E2E2L1B46CHI`, `N2S2L3B29CHI`, `W2E2L2B53CHI` — a description carrying a half or a
+quarter of a lot spends its characters on the fractions and the town code is cut where
+the field ends. **So a 12-character description's town code cannot be read as complete**:
+`CHI` at the end of a full field may be `CHI`, `CHIV`, `CHIOT` or `CHIOTV`, and the page
+does not say which. 123 of the 154 are plain lot-and-block rows that happen to be 12
+characters long; 31 carry a fraction. This is not a defect of the reading — both the
+list page and the detail page print the same truncated string — and it is the first
+thing the tract join (T-1031) has to refuse rather than guess at.
+
+**One row has no town code at all**: `L6BL17`, six characters, a lot and a block naming
+no plat. Which of the town's plats it belongs to is not on the page.
+
+**This deposit is not joined to the domain yet.** Record ids in `records/` are positional
+— `ls0001` upward across the whole reading — and `data/structures/*.json` cite them, so
+adding a deposit to `DEPOSITS` is a deliberate piece of work that must append and never
+renumber. `coverage.json § completeness_probe.sectionless_read_at_their_detail_pages`
+reports the file, its 619 rows, and that it is unjoined; `complete_for_1836_cook_county`
+stays **false** until the join lands. **T-1031** is that join, and it owns the tract
+resolver, the crosswalk and the re-derived probe.
 
 ## The join to the ground, and the four tracts the town stands on
 
