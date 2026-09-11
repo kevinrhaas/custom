@@ -72,9 +72,9 @@
    },
    "norris_1844_advertiser": {
     "people": 31,
-    "single_entry": 17,
+    "single_entry": 20,
     "ambiguous": 3,
-    "contested": 11
+    "contested": 8
    }
   }
  },
@@ -1829,8 +1829,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "contested",
-     "match_rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -1840,7 +1840,10 @@
        "firm": "Loyd, Blakesley & Co."
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "parse_carries": true,
      "sources": [
       "norris_directory_1844"
@@ -4935,7 +4938,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet the printed name 'J. Coe Clark' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -5044,7 +5047,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet the printed name 'J. Coe Clark' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -11804,7 +11807,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet the printed name 'William E. Jones' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -11920,7 +11923,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet the printed name 'William E. Jones' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -13806,8 +13809,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "contested",
-     "match_rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -13817,7 +13820,10 @@
        "firm": "Loyd, Blakesley & Co."
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "parse_carries": true,
      "sources": [
       "norris_directory_1844"
@@ -16152,8 +16158,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "contested",
-     "match_rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -16163,7 +16169,10 @@
        "firm": "North-Western Land Agency"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "parse_carries": true,
      "sources": [
       "norris_directory_1844"
@@ -19064,7 +19073,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet the printed name 'E. Smith' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -19150,7 +19159,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet the printed name 'E. Smith' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -20522,7 +20531,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'Chas. Taylor' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -20646,7 +20655,7 @@
      "year": 1844,
      "source_id": "norris_directory_1844",
      "match_status": "contested",
-     "match_rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "match_rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'Chas. Taylor' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {

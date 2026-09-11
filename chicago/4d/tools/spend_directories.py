@@ -153,6 +153,8 @@ VOLUMES = [
     },
 ]
 
+BY_KEY = {v["key"]: v for v in VOLUMES}
+
 STATUS_ARRAYS = (("matches", "single_entry"), ("ambiguous", "ambiguous"),
                  ("contested", "contested"))
 
@@ -170,6 +172,22 @@ UNTRUSTED_SPLIT = (
     "T-0569 refused it on that ground and this pass inherits the refusal: the line goes "
     "to the card as Norris set it and archive.org read it, damage and all, and what it "
     "HOLDS is stated separately for a reader to check against the quote."
+)
+EARLIER_VOLUME = (
+    "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest "
+    "first because the one closest to 1835 is the reading worth most and the one whose "
+    "value is carried when two disagree: %s prints %s against this person, and %s — %d, "
+    "nearer the scene — had printed one already. The refusal is the precedence rule and "
+    "nothing about this line. What this volume prints stands in the layer beside the "
+    "value that won, and its entry id is named on the card, so a reader can compare "
+    "them rather than take the earlier reading on trust."
+)
+# The two carryable things, in the words a refusal reads them back in.
+FIELD_AS_PROSE = {"occupation": "a trade", "address": "an address"}
+NOT_A_SINGLE_ENTRY = (
+    "THE MATCH IS NOT A SINGLE ENTRY. Rule 2 of this pass: a person met by several "
+    "entries is ambiguous and an entry met by two people is contested, and neither "
+    "writes a value onto a card. The line holds this field and it does not cross."
 )
 # And the caution that rides on every value that DOES cross. The Fergus volumes set the
 # trade first and whatever qualifies it after — a market, an employer, a corner — on the
@@ -434,6 +452,34 @@ def layer(rows: list) -> dict:
     }
 
 
+def why_refused(row: dict, a: dict, carried: list) -> dict | None:
+    """The clause each refused field was refused under, named field by field."""
+    refused = sorted(set(a["holds"]) - set(carried))
+    if not refused:
+        return None
+    out = {}
+    for field in refused:
+        if not a["parse_carries"]:
+            out[field] = UNTRUSTED_SPLIT
+            continue
+        if a["match_status"] != "single_entry":
+            out[field] = NOT_A_SINGLE_ENTRY
+            continue
+        won = row["%s_later" % field]
+        # Two of the four volumes share a source id, so the winner is found by the
+        # entry it was carried from rather than by that id.
+        winner = next((b for b in row["appearances"]
+                       if won and any(e["claim_id"] == won["claim_id"]
+                                      for e in b["entries"])), None)
+        if won and winner:
+            out[field] = EARLIER_VOLUME % (
+                BY_KEY[a["volume"]]["title"], FIELD_AS_PROSE[field],
+                BY_KEY[winner["volume"]]["title"], won["describes_date"])
+        else:
+            out[field] = NOT_A_SINGLE_ENTRY
+    return out
+
+
 def ledger(rows: list) -> dict:
     """The adjudication, in the domain that holds the reading.
 
@@ -464,8 +510,12 @@ def ledger(rows: list) -> dict:
                 "rule": a["match_rule"],
                 "carried": carried,
                 "refused_to_carry": sorted(set(a["holds"]) - set(carried)),
-                "why_refused": (UNTRUSTED_SPLIT if a["holds"] and not carried
-                                and not a["parse_carries"] else None),
+                # ONE CLAUSE PER REFUSED FIELD. The doc below promises a refusal is
+                # declared as explicitly as a carry; until T-0987 stretch 2 only the
+                # untrusted-parse refusal said anything, and 64 of 161 refusals named
+                # nothing at all — the shape this file says "reads like a pair nobody
+                # has looked at yet".
+                "why_refused": why_refused(row, a, carried),
             })
     rulings.sort(key=lambda r: (r["person_id"], r["volume"]))
     return {
@@ -700,6 +750,16 @@ def self_test() -> int:
                   all(part.strip() in printed for part in block["value"].split(",")))
 
     # Every ruling states what it rests on: the third hop's ratchet is zero.
+    # T-0987 stretch 2: this file's own doc says a refusal is declared as explicitly
+    # as a carry, "the absence of one reads like a pair nobody has looked at yet".
+    # Hold it, so the 64 silent refusals that stood until then cannot come back.
+    for r in led["rulings"]:
+        named = set((r["why_refused"] or {}))
+        check("%s/%s refuses %s and names no clause for it"
+              % (r["person_id"], r["volume"],
+                 ", ".join(sorted(set(r["refused_to_carry"]) - named)) or "-"),
+              set(r["refused_to_carry"]) <= named)
+
     check("a ruling states no source",
           all(r["source_ids"] for r in led["rulings"]))
     check("a ruling names a person no household holds",
