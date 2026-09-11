@@ -59,26 +59,26 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6870,
+  "identities": 6869,
   "by_grade": {
    "None": 45,
    "not_1835_resident": 4408,
-   "inferred": 1969,
+   "inferred": 1968,
    "attested": 448
   },
   "by_subtype": {
-   "None": 5135,
-   "projected_resident": 1735
+   "None": 5136,
+   "projected_resident": 1733
   },
   "by_rule": {
    "G5": 45,
    "G0": 4408,
-   "G3": 1734,
+   "G3": 1732,
    "G1b": 375,
    "G2b": 38,
    "G1a": 51,
    "G1c": 22,
-   "G2e": 129,
+   "G2e": 130,
    "G2c": 34,
    "G2a": 33,
    "G4": 1
@@ -99,7 +99,7 @@
   {"identity":"id_ackhoft_nicholas","name":"Nicholas Ackhoft","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0003"],"evidence_classes":["directory_1844"]},
   {"identity":"id_ackley_benjamin_f","name":"Benjamin F Ackley","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0179","directories:f1843_e0178","directories:n1844_e0004"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_ad_el_s_jon_s","name":"El S Jon S Ad","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_ad_i_el_s_jon_e_s"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_adains_willsi","name":"Willsi Adains","canonical_person_id":"adains_will_si","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_adains_will_si"],"evidence_classes":["newspaper_letter_list","town_layer"]},
+  {"identity":"id_adains_willisi","name":"Willisi Adains","canonical_person_id":"adains_will_si","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_adains_willisi"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_adams_benjamin_f","name":"Benjamin F Adams","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0180"],"evidence_classes":["directory_1843"]},
   {"identity":"id_adams_elizabeth","name":"Elizabeth Adams","canonical_person_id":"adams_elizabeth","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_elizabeth_adams","old_settlers:fdn0001"],"evidence_classes":["death_notice","newspaper_1833_1835","town_layer"]},
   {"identity":"id_adams_george","name":"George Adams","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0181","directories:f1843_e0182","directories:n1844_e0006","directories:n1844_e0007"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -350,8 +350,8 @@
   {"identity":"id_banck_eleanor","name":"Eleanor Banck","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_048_2"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_bandle_ann","name":"Ann Bandle","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_ann_bandle"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_bandle_william","name":"William Bandle","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_william_bandle"],"evidence_classes":["newspaper_letter_list"]},
+  {"identity":"id_bandle_willinm","name":"Willinm Bandle","canonical_person_id":"bandle_will_nm","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_bandle_willinm"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_bandle_willis","name":"Willis Bandle","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0263"],"evidence_classes":["directory_1843"]},
-  {"identity":"id_bandle_willnm","name":"Willnm Bandle","canonical_person_id":"bandle_will_nm","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_bandle_will_nm"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_bane_george_b","name":"George B Bane","canonical_person_id":"bane_george_b","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_george_b_bane"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_bannister_t","name":"T Bannister","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0264","directories:n1844_e0067"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_bannon_andrew","name":"Andrew Bannon","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0265","directories:n1844_e0068"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -6136,8 +6136,7 @@
   {"identity":"id_sweet_richard_m","name":"Richard M Sweet","canonical_person_id":"sweet_richard_m","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0652","newspapers:person_richard_m_sweet","newspapers:person_sweet_richard_m","civic:tax_1833_100"],"evidence_classes":["death_notice","newspaper_1833_1835","tax_1833","town_layer"]},
   {"identity":"id_sweet_rubert","name":"Rubert Sweet","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_sweet_rubert"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_sweetland_samuel_e","name":"Samuel E Sweetland","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_sweetland_samuel_e"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_swena_benjamin","name":"Benjamin Swena","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_benjamin_swena"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_swena_benjamn","name":"Benjamn Swena","canonical_person_id":"swena_benjam_n","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_swena_benjam_n_jr"],"evidence_classes":["newspaper_letter_list","town_layer"]},
+  {"identity":"id_swena_benjamin","name":"Benjamin Swena","canonical_person_id":"swena_benjam_n","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["newspapers:person_benjamin_swena","newspapers:person_swena_benjamin_jr"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_swenser_even","name":"Even Swenser","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2401","directories:n1844_e1738"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_swett_leonard","name":"Leonard Swett","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0653"],"evidence_classes":["death_notice"]},
   {"identity":"id_swift_elijah","name":"Elijah Swift","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2402","directories:n1844_e1740"],"evidence_classes":["directory_1843","directory_1844"]},
