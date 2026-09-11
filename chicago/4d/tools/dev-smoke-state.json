@@ -2110,6 +2110,39 @@
         ]
       },
       "source": "/tmp/s2_m31012.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 239,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 338,
+      "takenAt": "2026-09-11T14:39:50.511Z",
+      "ref": "steward/t-1034-town-lot-purchasers",
+      "commit": "bf536862135d",
+      "devCommit": "cf54d1c70034",
+      "treeHash": "sha256:6dd76672361f3f0b",
+      "treeDirty": false,
+      "changelogHash": "sha256:5969ae9fa0058baf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.9,
+          3.5,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke_m2.log"
     }
   ]
 }
