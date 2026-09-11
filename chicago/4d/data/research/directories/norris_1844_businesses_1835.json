@@ -15,19 +15,19 @@
   "sketch_findings_dated_at_or_before_1835": 25,
   "sketch_candidate_namings": 0,
   "advertising_cards_carrying_any_date": 7,
-  "firms_also_printed_in_fergus_1843": 154,
+  "firms_also_printed_in_fergus_1843": 163,
   "fergus_1843_entries_with_founding_language": 1,
   "firms_dated_at_or_before_1835": 0,
   "firms_written": 0,
   "firms_refused_as_1844_evidence_only": 231,
   "continuity_with_a_business_the_town_already_holds": 2,
-  "continuity_ambiguous": 1,
-  "continuity_refused_on_a_surname_alone": 9
+  "continuity_ambiguous": 2,
+  "continuity_refused_on_a_surname_alone": 8
  },
  "written": {
   "firms_written_to_the_businesses_layer": 0,
   "why": "NONE, and the measurement is the reason rather than the excuse. Each of the three printings the ticket named was walked over every firm the volume prints, and not one of them dates a firm's founding at or before 1835. The Historical Sketch names no 1844 firm in any of the 25 statements it dates at or before the scene — its early paragraphs are about the fort, the harbour, the mails, the two newspapers and a handful of houses, and the businesses in them (the Fur Company's traffic, R. A. Kinzie's store at Wolf Point, Mark Beaubien's Eagle) are places this town already holds, not firms Norris lists nine years later. The Advertising Directory's seven dated cards are dated December 1843 or 1844, which is what T-0568 reported after reading all 158 of them. And Fergus's 1843 directory advertises in the present tense: 153 of these 207 firms are already in it, which is continuity to 1843 and no more, and the single entry in the whole volume that prints a founding year prints 1839. So no firm here reaches the town of 1 July 1835, and writing one in would be the exact move the ticket forbids — stretching an 1844 listing back nine years to have something to show. The businesses layer is unchanged.",
-  "what_the_pass_did_confirm": "Two of the 206 businesses the 1835 papers give the town are still in print in 1844 under the same firm style — Newberry & Dole, and G. S. Hubbard against Hubbard & Co. — which is the validating half of the owner's ask answered: the town's own businesses survive into the first directory, and this file names the two the rule admits, the one it leaves ambiguous and the seven it refuses on a surname alone.",
+  "what_the_pass_did_confirm": "Two of the 206 businesses the 1835 papers give the town are still in print in 1844 under the same firm style — Newberry & Dole, and G. S. Hubbard against Hubbard & Co. — which is the validating half of the owner's ask answered: the town's own businesses survive into the first directory, and this file names the two the rule admits, the two it leaves ambiguous and the eight it refuses on a surname alone — six of those eight on an initial that CONTRADICTS rather than one that is missing, which is the eleven-Smiths rule refusing on evidence.",
   "what_would_change_this": "A printing that dates a founding. The likeliest are the 1839 Chicago directory, which this project cites but has never read entry by entry, and the old-settler reminiscences (T-0554), which date arrivals and openings by year as a matter of course."
  },
  "continuity": [
@@ -87,6 +87,14 @@
     "business_b_jones_storage_and_forwarding"
    ],
    "rule": "More than one 1835 business meets this firm on the surname-set rule. Filed, not resolved."
+  },
+  {
+   "firm_1844": "Jones, B. & Co",
+   "meets": [
+    "business_b_jones_grocery_and_provision_store",
+    "business_b_jones_storage_and_forwarding"
+   ],
+   "rule": "More than one 1835 business meets this firm on the surname-set rule. Filed, not resolved."
   }
  ],
  "continuity_refused_on_a_surname_alone": [
@@ -96,7 +104,7 @@
    "meets_on_surname_alone": [
     "business_mrs_h_sherman"
    ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+   "rule": "An initial printed on both sides contradicts. Refused — the eleven-Smiths rule."
   },
   {
    "firm_1844": "C. E. Peck",
@@ -105,7 +113,7 @@
     "business_p_f_peck",
     "business_p_f_w_peck"
    ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+   "rule": "An initial printed on both sides contradicts. Refused — the eleven-Smiths rule."
   },
   {
    "firm_1844": "C. L. Harmon",
@@ -113,7 +121,7 @@
    "meets_on_surname_alone": [
     "business_c_i_harmon"
    ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+   "rule": "An initial printed on both sides contradicts. Refused — the eleven-Smiths rule."
   },
   {
    "firm_1844": "D. A. & E. M. Jones",
@@ -122,7 +130,7 @@
     "business_b_jones_grocery_and_provision_store",
     "business_b_jones_storage_and_forwarding"
    ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+   "rule": "An initial printed on both sides contradicts. Refused — the eleven-Smiths rule."
   },
   {
    "firm_1844": "Johnson & Co",
@@ -138,16 +146,7 @@
    "meets_on_surname_alone": [
     "business_lathrop_johnson_co_livery"
    ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
-  },
-  {
-   "firm_1844": "Jones, B. & Co",
-   "surname": "jones",
-   "meets_on_surname_alone": [
-    "business_b_jones_grocery_and_provision_store",
-    "business_b_jones_storage_and_forwarding"
-   ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+   "rule": "An initial printed on both sides contradicts. Refused — the eleven-Smiths rule."
   },
   {
    "firm_1844": "L. W. Clark",
@@ -163,7 +162,7 @@
    "meets_on_surname_alone": [
     "business_mrs_h_sherman"
    ],
-   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+   "rule": "An initial printed on both sides contradicts. Refused — the eleven-Smiths rule."
   }
  ],
  "firms": [
@@ -396,8 +395,19 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0029",
+      "founding_year_printed": null,
+      "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
+     },
+     {
+      "claim": "f1843_e0130",
+      "founding_year_printed": null,
+      "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -840,8 +850,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0156",
+      "founding_year_printed": null,
+      "quote": "D. A. BARROWS & CO., manufacturers of and wholesale and retail dealers in confectionary, syrups, cakes, and\nice creams; 147 Lake St., Chicago."
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -1081,8 +1097,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0045",
+      "founding_year_printed": null,
+      "quote": "A. G. BURLEY & CO., importers and wholesale and retail dealers in china, glass, earthen, stone-ware, and looking-glasses,\n105 Lake Street."
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -1813,8 +1835,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0030",
+      "founding_year_printed": null,
+      "quote": "S. B. COLLINS & CO., boot, shoe, and leather dealers, 140 Lake Street."
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -3629,8 +3657,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0052",
+      "founding_year_printed": null,
+      "quote": "C. N. HOLDEN & CO., wholesale and retail dealers in dry goods, groceries, nails, glass, boots, shoes, hats,\ncaps, shovels, spades, forks, ropes, pails, and cords; choice tea and coffee always on hand;"
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -3859,8 +3893,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0053",
+      "founding_year_printed": null,
+      "quote": "J. B. IRVIN & CO., wholesale and retail dealers in dry goods, groceries, hardware, crockery, boots, shoes,\netc., Dearborn Street, 2d door from Lake Street, Chicago, Ill. N. B.- Cash and the highest pr"
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -4784,8 +4824,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0054",
+      "founding_year_printed": null,
+      "quote": "B. JONES & CO., general dealers in dry goods, groceries, lumber, and produce, South-Water Street, between Clark\nand Dearborn streets, Chicago; cash paid for wheat."
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -6692,8 +6738,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0166",
+      "founding_year_printed": null,
+      "quote": "L. P. SANGER & CO., 123 Lake Street, Chicago, Ill., manufacturers and wholesale and retail dealers in hats,\ncaps, muffs, boas, buffalo coats, buffalo robes, buffalo overshoes, buckskin mitts; cash pai"
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -7526,8 +7578,14 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
+    "entries": [
+     {
+      "claim": "f1843_e0064",
+      "founding_year_printed": null,
+      "quote": "C. WALKER & CO., wholesale and retail dealers in leather, boots, shoes, and findings, dry goods, groceries,\nhardware, nails, oils, paints, glass, etc., South-Water Street, Chicago; cash paid for wheat"
+     }
+    ],
+    "present_in_1843": true,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",

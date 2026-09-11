@@ -3687,7 +3687,16 @@ for (const [label, viewport, touch] of [
             e: w.at_local_enu_m[0], n: w.at_local_enu_m[1],
             bearing: w.bearing_deg ?? 0, street: w.stands_on ?? null,
             enclosure: w.in_enclosure ?? null, confidence: w.confidence,
-            yoke: !!w.yoke, tilt: !!w.tilt })),
+            yoke: !!w.yoke, tilt: !!w.tilt,
+            // T-0688. The deal T-0836 made, carried out whole: how far off its
+            // square bearing this wagon stands, the envelope it was dealt inside
+            // and how many steps that envelope was walked in. The two wagons the
+            // record holds by hand — the attested Western Hotel wagon and the
+            // Randolph Street water cart — carry no slew, and read as null here.
+            drawnUp: w.drawn_up ?? null,
+            slew: typeof w.slew_deg === 'number' ? w.slew_deg : null,
+            slewEnvelope: typeof w.slew_envelope_deg === 'number' ? w.slew_envelope_deg : null,
+            slewSteps: typeof w.slew_steps === 'number' ? w.slew_steps : null })),
         wagonsRefused: (y?.records ?? []).reduce(
           (t, r) => t + (r.wagons_refused ?? []).length, 0),
       };
@@ -3880,13 +3889,62 @@ for (const [label, viewport, touch] of [
     const kindCounts = {};
     for (const w of townWagons) kindCounts[w.kind] = (kindCounts[w.kind] ?? 0) + 1;
     const commonest = Math.max(0, ...Object.values(kindCounts));
-    const bearings = new Set(townWagons.map((w) => Math.round(w.bearing / 5)));
-    check(`${label}: the town's wagons vary in type and in the way they stand`,
+    check(`${label}: the town's wagons vary in type`,
       kinds.size >= 3 && kinds.has('covered') && kinds.has('cart')
-        && kinds.has('farm_box')
-        && commonest <= townWagons.length * 0.75 && bearings.size >= 8,
-      `${Object.entries(kindCounts).map(([k, v]) => `${v} ${k}`).join(', ')}; `
-      + `${bearings.size} distinct heading(s) to the nearest 5 degrees`);
+        && kinds.has('farm_box') && commonest <= townWagons.length * 0.75,
+      `${Object.entries(kindCounts).map(([k, v]) => `${v} ${k}`).join(', ')}`);
+    // AND IN THE WAY THEY STAND — T-0688, and this clause measures THE WAGON
+    // RULE, which the one it replaces did not. It used to count distinct
+    // `bearing_deg` to the nearest five degrees against a floor of 8. A town
+    // wagon drawn up along a road takes that road's bearing, so what it counted
+    // was distinct STREET headings that happened to carry a wagon: re-deriving
+    // one street's centreline (T-0447) took the reading from 9 buckets to 7 and
+    // failed a gate no wagon rule controls, while the floor of 8 was only the
+    // last green reading written down. What the rule does control is the SLEW —
+    // T-0836 turns every derived wagon off its square bearing by an angle dealt
+    // from its own id, inside an envelope graded by the manoeuvre — so the slew
+    // is what is asked about, and every number below is read off the record's
+    // own `slew_envelope_deg` and `slew_steps` rather than restated here.
+    const dealt = townWagons.filter((w) => w.slew !== null);
+    // The two the record holds by hand (the attested Western Hotel wagon, the
+    // Randolph Street water cart) are the only ones that may stand undealt.
+    const undealt = townWagons.filter((w) => w.slew === null);
+    // Every slew inside the envelope its own manoeuvre was graded at. This is
+    // the exact clause, not a floor: a wagon outside its envelope is a deal that
+    // has escaped the rule, and _lateral_reach set its stand back for an angle
+    // it no longer stands at.
+    const escaped = dealt.filter((w) => !(w.slewEnvelope > 0)
+      || Math.abs(w.slew) > w.slewEnvelope + 1e-6);
+    // Three envelopes, because the rule grades the manoeuvre three ways — along
+    // a road, backed square to one, and in a yard with no line to work to. All
+    // three have to be standing or the grading is untested.
+    const envelopes = new Set(dealt.map((w) => w.slewEnvelope));
+    // AND THE DEAL HAS TO BE DEALING. The slew is `sha1(id) mod steps` walked
+    // end to end over the envelope, which is a uniform deal into `slewSteps`
+    // buckets; with sixty-odd wagons over nine steps every step is expected to
+    // carry about seven, and the chance a uniform deal leaves even one step
+    // empty is well under a percent. So the floor is `slewSteps - 1`: the deal's
+    // own step count, with one step of slack for the town gaining or losing a
+    // wagon — derived from the rule, not read off a green run. And no step may
+    // carry more than a quarter, which is more than double the uniform share.
+    const steps = Math.max(0, ...dealt.map((w) => w.slewSteps ?? 0));
+    const stepCounts = {};
+    for (const w of dealt) {
+      const k = `${w.slewEnvelope}:${w.slew.toFixed(1)}`;
+      stepCounts[k] = (stepCounts[k] ?? 0) + 1;
+    }
+    const alongSlews = new Set(dealt.filter((w) => w.drawnUp === 'along the road')
+      .map((w) => w.slew.toFixed(1)));
+    const commonestStep = Math.max(0, ...Object.values(stepCounts));
+    check(`${label}: the town's wagons stand at the slew the rule dealt them`,
+      dealt.length >= 55 && undealt.length <= 2 && escaped.length === 0
+        && envelopes.size === 3 && steps > 0 && alongSlews.size >= steps - 1
+        && commonestStep <= dealt.length * 0.25,
+      `${dealt.length} dealt and ${undealt.length} held by hand; `
+      + `${escaped.length} outside their own envelope; envelopes `
+      + `${[...envelopes].sort((x, z) => x - z).join('/')} degrees; `
+      + `${alongSlews.size} of ${steps} steps used along the road, `
+      + `commonest step ${commonestStep} of ${dealt.length}`);
     // GRADED, every one of them, and the tilt/yoke flags have to agree with the
     // kind — a covered wagon without its canvas is a farm wagon the record is
     // lying about.

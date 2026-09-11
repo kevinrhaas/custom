@@ -1,7 +1,7 @@
 ---
 id: T-0688
 title: The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1126
+claimed_by: run 9/11/2026, 7:33:04 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T12:42:36.492Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34596674770
 ---
 
 The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8.
@@ -89,3 +89,53 @@ either is a change to a gate made by the change the gate refused:
    which in its own comment.
 2. Its floor is derived from something, not from the last green reading.
 3. The T-0447 branch's diff is green under the re-cut gate, or T-0447 is told why not.
+
+---
+
+## THE RULING — answer 1, the proxy was wrong (2026-09-11)
+
+**What it measured was never the wagon rule.** A town wagon drawn up along a road takes
+that road's bearing, so `new Set(townWagons.map((w) => Math.round(w.bearing / 5)))`
+counted distinct STREET headings that happened to carry a wagon. The floor of 8 was the
+last green reading written down, which is why re-deriving one centreline could fail it.
+
+**T-0836 landed between the survey and this ruling, and it changes the numbers without
+changing the argument.** Every derived wagon is now slewed off its square bearing by an
+angle dealt from its own id, so the bearing buckets on dev today read **14**, not 9 —
+the clause passes with six buckets of margin, and passes on the JITTER rather than on
+anything about the town. A measure that failed for the wrong reason in August now passes
+for the wrong reason in September. `town_wagon_north_water_8`, one of the two buckets the
+survey named, no longer exists on dev at all: T-0836's own setback refused its stand.
+
+**The re-cut.** The old clause is split in two. The kind clause keeps its floors, which
+were always properties of the wagon rule. The standing clause now asks the SLEW about
+itself, and reads every number off the record rather than restating it:
+
+- `generate_yard_goods.py` now writes `slew_envelope_deg` and `slew_steps` onto each
+  dealt wagon. Nothing in the smoke repeats 6/12/15/9, so the two files cannot drift.
+- **Every slew inside its own envelope** — the exact clause, not a floor. A wagon outside
+  it is a deal that escaped the rule, and `_lateral_reach` set its stand back for an angle
+  it no longer stands at.
+- **All three envelopes standing** (6 along a road, 12 backed square, 15 in a yard), or
+  the grading of the manoeuvre is untested. Measured: 3.
+- **The deal is dealing**: the along-the-road class must use at least `slew_steps - 1` of
+  the deal's own steps, and no step may carry more than a quarter of the dealt wagons.
+  Derivation, stated so the floor is not a reading: the slew is `sha1(id) mod steps`
+  walked end to end, a uniform deal into 9 buckets; 58 wagons over 9 steps is about seven
+  apiece, and a uniform deal leaving even one bucket empty is well under a percent — so
+  the expectation is 9 and the floor is 9 minus one step of slack for the town gaining or
+  losing a wagon. A quarter is more than double the uniform share of 11 %.
+- Two wagons may stand undealt, and only two: the attested Western Hotel yard wagon and
+  the Randolph Street water cart, which the record holds by hand rather than deriving.
+
+**Measured on dev at 9642c607f, after regeneration:** 64 dealt and 2 held by hand; 0
+outside their own envelope; envelopes 6/12/15; 9 of 9 steps used along the road;
+commonest step 9 of 64.
+
+**Acceptance 3 — T-0447 is green under the re-cut, and here is why.** The re-cut clause
+never reads a street bearing, so the reading T-0447 broke is gone. Its two wagons: 
+`town_wagon_north_water_8` is already refused on dev and cannot be removed twice;
+`town_wagon_north_water_7` sits at the +1.5 degree step, which carries two wagons, so
+removing it leaves that step occupied and the along-the-road class still uses all 9 steps
+— two above the floor of 8. **T-0447 may unpark.**
+

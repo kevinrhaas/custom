@@ -91,21 +91,32 @@ def firm_names(printed):
 
     Splits on the ampersand, on 'and', and on the comma Norris uses between partners
     ('Jones, King & Co.'); an initial is a single letter, a surname is anything
-    longer that is not one of the trade words above."""
+    longer that is not one of the trade words above.
+
+    Norris also alphabetises, and his alphabetising comma looks exactly like his
+    partner comma: 'Jones, B. & Co' splits into 'Jones' / 'B.' / 'Co'. The middle
+    part is an initial with no surname beside it, so an initial-only part that
+    FOLLOWS a surname part is read as that surname's initial. One that follows
+    nothing is a leading initial the part after it carries ('D. A. & E. M. Jones'),
+    and is still dropped here."""
     if not printed:
         return set(), {}
     text = re.sub(r"[^A-Za-z&., ]", " ", printed)
     surnames, initials = set(), defaultdict(set)
+    last_surname = None
     for part in re.split(r"&|\band\b|,", text):
         words = [w.strip(". ") for w in part.split()]
         words = [w for w in words if w and w.lower().strip(".") not in NOISE]
         inits = [w.upper() for w in words if len(w) == 1]
         longs = [w for w in words if len(w) > 1]
         if not longs:
+            if inits and last_surname:
+                initials[last_surname].update(inits)
             continue
         for w in longs:
             surnames.add(fold(w))
-        initials[fold(longs[-1])].update(inits)
+        last_surname = fold(longs[-1])
+        initials[last_surname].update(inits)
     return {s for s in surnames if s}, {k: v for k, v in initials.items() if k}
 
 
@@ -214,6 +225,11 @@ def self_test():
          agree_rule({"jones"}, {"jones": {"B"}}, {"jones"}, {"jones": {"B"}})[0], True)
     case("a contradicted initial is refused",
          agree_rule({"jones"}, {"jones": {"B"}}, {"jones"}, {"jones": {"W"}})[0], False)
+
+    case("the alphabetising comma's initial attaches to the surname before it",
+         firm_names("Jones, B. & Co")[1], {"jones": {"B"}})
+    case("...and a leading initial-only part still attaches to nothing",
+         firm_names("D. A. & E. M. Jones")[1], {"jones": {"E", "M"}})
 
     case("a founding year at or before the scene is read",
          year_at_or_before("established 1834"), 1834)
@@ -421,12 +437,18 @@ def main():
             row["continuity_with_1835"] = None
             if len(sur) == 1:
                 s = next(iter(sur))
-                near = [tb["id"] for tb in town_firms if tb["surnames"] == sur]
+                near = [tb for tb in town_firms if tb["surnames"] == sur]
                 if near:
+                    # Say WHICH half of the rule refused it. Absence and contradiction are
+                    # different findings, and reading the inverted style's initial turns
+                    # some of these from the first into the second.
+                    why = sorted({agree(sur, ini, tb["surnames"], tb["initials"])[1]
+                                  for tb in near} - {None})
                     refused_surname_only.append(
-                        {"firm_1844": f["firm"], "surname": s, "meets_on_surname_alone": near,
-                         "rule": "One surname, and no initial printed on both sides agrees. "
-                                 "Refused — the eleven-Smiths rule."})
+                        {"firm_1844": f["firm"], "surname": s,
+                         "meets_on_surname_alone": [tb["id"] for tb in near],
+                         "rule": "%s. Refused — the eleven-Smiths rule."
+                                 % "; ".join(w[0].upper() + w[1:] for w in why)})
         rows.append(row)
 
     written = {
@@ -452,8 +474,10 @@ def main():
                "town are still in print in 1844 under the same firm style — Newberry & "
                "Dole, and G. S. Hubbard against Hubbard & Co. — which is the validating "
                "half of the owner's ask answered: the town's own businesses survive into "
-               "the first directory, and this file names the two the rule admits, the one "
-               "it leaves ambiguous and the seven it refuses on a surname alone.",
+               "the first directory, and this file names the two the rule admits, the two "
+               "it leaves ambiguous and the eight it refuses on a surname alone — six of "
+               "those eight on an initial that CONTRADICTS rather than one that is "
+               "missing, which is the eleven-Smiths rule refusing on evidence.",
         "what_would_change_this": "A printing that dates a founding. The likeliest are the "
                "1839 Chicago directory, which this project cites but has never read entry "
                "by entry, and the old-settler reminiscences (T-0554), which date arrivals "

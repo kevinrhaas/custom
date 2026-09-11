@@ -43,15 +43,15 @@
      "business_j_l_wilson_co",
      "business_james_grant",
      "business_magie_wilkinson",
-     "business_new_york_clothing_store",
      "business_pierce_french",
      "business_s_abell_attorney_and_counsellor",
+     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 31,
+    "would_still_refuse": 30,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 24,
+     "the face holds no roof standing on it": 23,
      "this face already holds this proprietor": 7,
      "every roof on the face is spoken for": 0
     }
@@ -67,12 +67,12 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 21,
+    "would_still_refuse": 20,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 3,
-     "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 10
+     "this face already holds this proprietor": 10,
+     "every roof on the face is spoken for": 7
     }
    },
    "a corner side or the band is a face": {
@@ -87,25 +87,25 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 21,
+    "would_still_refuse": 20,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 1,
-     "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 12
+     "this face already holds this proprietor": 10,
+     "every roof on the face is spoken for": 9
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 60,
+  "street_only_in_register": 59,
   "adopted": 39,
-  "refused": 21,
+  "refused": 20,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 3,
-   "this face already holds this proprietor": 8,
-   "every roof on the face is spoken for": 10
+   "this face already holds this proprietor": 10,
+   "every roof on the face is spoken for": 7
   },
   "unplaceable_present_at_scene_date": 71,
   "by_street": {
@@ -125,7 +125,7 @@
    },
    "dearborn": {
     "street_name": "Dearborn Street",
-    "businesses_naming_it": 17,
+    "businesses_naming_it": 16,
     "adopted": 6,
     "roofs_lot_front": 0,
     "roofs_corner_side": 18,
@@ -211,14 +211,14 @@
     "street_name": "South Water Street",
     "businesses_naming_it": 24,
     "adopted": 19,
-    "roofs_lot_front": 33,
+    "roofs_lot_front": 36,
     "roofs_corner_side": 0,
-    "roofs_on_the_adopted_face": 33,
-    "roofs_free": 19,
+    "roofs_on_the_adopted_face": 36,
+    "roofs_free": 21,
     "roofs_home": 5,
     "roofs_home_named": 0,
     "roofs_home_inferred": 5,
-    "roofs_yard": 9,
+    "roofs_yard": 10,
     "roofs_in_centreline_band_declined": 0
    }
   }
@@ -242,7 +242,7 @@
    "first_issue": "1834-03-04",
    "last_issue": "1834-05-21",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d3_10",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d1_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -268,7 +268,7 @@
    "first_issue": "1834-12-17",
    "last_issue": "1834-12-24",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d2_09",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -297,7 +297,7 @@
    "first_issue": "1835-06-27",
    "last_issue": "1835-07-25",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_09",
+   "structure_id": "recon_1835_blk_south_water_franklin_d4_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -351,7 +351,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-05-20",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
+   "structure_id": "recon_1835_blk_south_water_dearborn_d5_07",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -380,7 +380,7 @@
    "first_issue": "1834-05-28",
    "last_issue": "1834-12-10",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_c2_10",
+   "structure_id": "recon_1835_blk_south_water_dearborn_d3_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -406,7 +406,7 @@
    "first_issue": "1835-07-22",
    "last_issue": "1835-07-29",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_randolph_dearborn_h1_14",
+   "structure_id": "recon_1835_blk_randolph_dearborn_d3_15",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -487,7 +487,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1834-06-04",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d6_11",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -513,7 +513,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1834-07-09",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_randolph_dearborn_d1_16",
+   "structure_id": "recon_1835_blk_randolph_clark_d6_04",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -566,7 +566,7 @@
    "first_issue": "1834-05-28",
    "last_issue": "1834-07-02",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_lasalle_c3_13",
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -626,7 +626,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1834-07-02",
    "mentions": 1,
-   "structure_id": "recon_1835_south_c3_040",
+   "structure_id": "recon_1835_blk_randolph_dearborn_h1_14",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -651,7 +651,7 @@
    "first_issue": "1835-08-05",
    "last_issue": "1835-08-05",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d7_12",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -681,7 +681,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-08-12",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d4_08",
+   "structure_id": "recon_1835_blk_south_water_franklin_c2_10",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -777,7 +777,7 @@
    "first_issue": "1835-05-27",
    "last_issue": "1835-08-05",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -870,33 +870,6 @@
    "note": "The advertisement names Randolph Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Randolph Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
-   "business_id": "business_new_york_clothing_store",
-   "business_name": "New York Clothing Store",
-   "trade": "clothing, wholesale and retail",
-   "proprietors": [
-    "Tuthill King"
-   ],
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "street_text": "Dearborn Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_american_1835_06_08#c014",
-    "chicago_american_1835_06_20#c007",
-    "chicago_american_1835_07_04#c003"
-   ],
-   "first_issue": "1835-06-08",
-   "last_issue": "1835-07-04",
-   "mentions": 3,
-   "structure_id": "recon_1835_blk_randolph_clark_d6_04",
-   "face": "corner side",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
    "business_id": "business_peter_cohen",
    "business_name": "Peter Cohen",
    "trade": "clothier, grocer and liquor dealer",
@@ -979,7 +952,7 @@
    "first_issue": "1835-06-13",
    "last_issue": "1835-07-04",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d1_08",
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_09",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1006,7 +979,7 @@
    "first_issue": "1835-06-24",
    "last_issue": "1835-08-01",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_randolph_dearborn_d3_15",
+   "structure_id": "recon_1835_blk_randolph_dearborn_d1_16",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1035,7 +1008,7 @@
    "first_issue": "1835-07-22",
    "last_issue": "1835-08-12",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d2_09",
+   "structure_id": "recon_1835_blk_south_water_lasalle_c3_13",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1085,7 +1058,7 @@
    "first_issue": "1834-04-01",
    "last_issue": "1834-04-01",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d3_10",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1110,7 +1083,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1834-07-02",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d7_12",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1135,7 +1108,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1834-07-02",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d6_11",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1165,6 +1138,31 @@
    "claims_lot": false,
    "order_is_a_claim": false,
    "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+   "business_name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+   "trade": "boot, shoe and leather store, and boot and shoe making",
+   "proprietors": [
+    "[uncertain: W. H. Taylor]"
+   ],
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "street_text": "Dearborn Street",
+   "placement_class": "street_only",
+   "cites": [
+    "chicago_democrat_1834_07_16#c020"
+   ],
+   "first_issue": "1834-07-16",
+   "last_issue": "1834-07-16",
+   "mentions": 1,
+   "structure_id": "recon_1835_south_c3_040",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_unnamed_new_store_la_salle_street",
@@ -1349,30 +1347,6 @@
    "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
-   "business_id": "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
-   "business_name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_wm_h_taylor",
-   "business_name": "Wm. H. Taylor",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
-  },
-  {
-   "business_id": "business_wm_h_taylor_boot_shoe_leather_store",
-   "business_name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
-   "street_id": "dearborn",
-   "street_name": "Dearborn Street",
-   "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
-  },
-  {
    "business_id": "business_ebenezer_s_more_attorney_at_law",
    "business_name": "Ebenezer S. More, attorney at law",
    "street_id": "monroe",
@@ -1459,6 +1433,22 @@
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
    "detail": "'a new auction and commission room, South Water Street' already stands on this face under the same proprietor surname(s) montgomery in the same trade (auctioneer), which identity.json's two_houses ruling on this surname does not separate, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+  },
+  {
+   "business_id": "business_wm_h_taylor",
+   "business_name": "Wm. H. Taylor",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "this face already holds this proprietor",
+   "detail": "'[uncertain: W. H. Taylor], Dearborn Street boot and shoe store' already stands on this face under the same proprietor surname(s) taylor in the same trade (shoemaker), which identity.json's two_houses ruling on this surname does not separate, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
+  },
+  {
+   "business_id": "business_wm_h_taylor_boot_shoe_leather_store",
+   "business_name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
+   "street_id": "dearborn",
+   "street_name": "Dearborn Street",
+   "refusal": "this face already holds this proprietor",
+   "detail": "'[uncertain: W. H. Taylor], Dearborn Street boot and shoe store' already stands on this face under the same proprietor surname(s) taylor in the same trade (shoemaker), which identity.json's two_houses ruling on this surname does not separate, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   }
  ]
 }

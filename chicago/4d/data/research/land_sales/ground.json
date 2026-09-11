@@ -35,14 +35,14 @@
       "block_not_on_the_sheet": 0,
       "description_not_read": 3
     },
-    "structures_placed": 380,
+    "structures_placed": 383,
     "structures_reached": 68,
     "structures_reached_by_grade": {
       "inferred": 17,
       "reconstructed": 51
     },
     "structures_unreached_by_section": {
-      "09": 310,
+      "09": 313,
       "10": 1,
       "16": 1
     },
@@ -38936,11 +38936,14 @@
       "recon_1835_blk_south_water_clark_d3_03",
       "recon_1835_blk_south_water_clark_d4_02",
       "recon_1835_blk_south_water_clark_d5_01",
+      "recon_1835_blk_south_water_dearborn_a1_09",
       "recon_1835_blk_south_water_dearborn_a3_06",
       "recon_1835_blk_south_water_dearborn_c3_01",
       "recon_1835_blk_south_water_dearborn_c3_02",
       "recon_1835_blk_south_water_dearborn_d1_05",
       "recon_1835_blk_south_water_dearborn_d2_04",
+      "recon_1835_blk_south_water_dearborn_d3_08",
+      "recon_1835_blk_south_water_dearborn_d5_07",
       "recon_1835_blk_south_water_dearborn_h1_03",
       "recon_1835_blk_south_water_franklin_a1_06",
       "recon_1835_blk_south_water_franklin_a3_07",

@@ -1520,6 +1520,14 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                     "bearing_deg": _round(bearing, 1),
                     "drawn_up": "square to the road" if square else "along the road",
                     "slew_deg": slew,
+                    # T-0688. The envelope this slew was dealt inside, and the number of
+                    # steps it was dealt over, carried ON the record. The smoke's variety
+                    # clause used to count distinct STREET bearings, which no wagon rule
+                    # controls; it now asks the deal about itself, and it asks these two
+                    # numbers rather than repeating 6/12/15/9 in a second file that can
+                    # drift from this one.
+                    "slew_envelope_deg": WAGON_SLEW_SQUARE_DEG if square else WAGON_SLEW_ALONG_DEG,
+                    "slew_steps": WAGON_SLEW_STEPS,
                     "clear_of_track_m": _round(off - lateral - street["track_w"] / 2),
                     "note": (
                         f"A {KIND_WORDS[kind]} standing at the verge of "
@@ -1639,6 +1647,9 @@ def build_town_wagons(cars: dict, placed: list) -> tuple[list, list]:
                 "bearing_deg": _round(face, 1),
                 "drawn_up": "along the yard's long axis",
                 "slew_deg": slew,
+                # T-0688, as above: the deal's own envelope and step count, on the record.
+                "slew_envelope_deg": WAGON_SLEW_YARD_DEG,
+                "slew_steps": WAGON_SLEW_STEPS,
                 "clearance_m": _round(clear),
                 "note": (
                     f"A {KIND_WORDS[kind]} standing in {interior['record']}, whose "
