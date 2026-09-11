@@ -12,8 +12,8 @@
  "counts": {
   "rulings": 578,
   "carried": 209,
-  "matched": 403,
-  "refused": 175,
+  "matched": 406,
+  "refused": 172,
   "distinct_people": 282,
   "distinct_claims": 639
  },
@@ -948,7 +948,7 @@
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "blakesley_harvey_a",
    "household_id": "hh_blakesley_harvey_a",
    "resident": "Harvey A. Blakesley",
@@ -961,10 +961,13 @@
    "claim_ids": [
     "n1844_ad0046"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "match_status": "single_entry",
+   "rule": "Surname 'Blakesley' folds to the same string as the card's, and the given name of both begins H.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "address",
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -2714,7 +2717,7 @@
     "n1844_ad0020"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet the one printed name 'J. Coe Clark' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -2795,7 +2798,7 @@
     "n1844_ad0020"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Clark' folds to the same string as the card's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet the one printed name 'J. Coe Clark' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -5031,7 +5034,7 @@
     "n1844_ad0112"
    ],
    "match_status": "ambiguous",
-   "rule": "Surname 'Garrett' folds to the same string as the card's, and the given name of both begins A.",
+   "rule": "Surname 'Garrett' folds to the same string as the card's, and the given name of both begins A. The 3 cards all print the one name 'A. Garrett', so what is ambiguous is WHICH ADVERTISEMENT and not which man. The match is still not made and nothing is carried: a tie is filed, never resolved into a match (T-0696).",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -5911,7 +5914,7 @@
     "n1844_ad0108"
    ],
    "match_status": "ambiguous",
-   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G.",
+   "rule": "Surname 'Hubbard' folds to the same string as the card's, and the given name of both begins G. The 2 cards all print the one name 'G. S. Hubbard', so what is ambiguous is WHICH ADVERTISEMENT and not which man. The match is still not made and nothing is carried: a tie is filed, never resolved into a match (T-0696).",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -6652,7 +6655,7 @@
     "n1844_ad0116"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet the one printed name 'William E. Jones' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -6737,7 +6740,7 @@
     "n1844_ad0116"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet the one printed name 'William E. Jones' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -7734,7 +7737,7 @@
    "why_refused": null
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "loyd_alexander",
    "household_id": "hh_loyd_alexander",
    "resident": "Alexander Loyd",
@@ -7747,10 +7750,13 @@
    "claim_ids": [
     "n1844_ad0046"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "match_status": "single_entry",
+   "rule": "Surname 'Loyd' folds to the same string as the card's, and the given name of both begins A.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "address",
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -9070,7 +9076,7 @@
    "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
   },
   {
-   "outcome": "refused",
+   "outcome": "matched",
    "person_id": "ogden_w_b",
    "household_id": "hh_ogden_w_b",
    "resident": "W B Ogden",
@@ -9083,10 +9089,13 @@
    "claim_ids": [
     "n1844_ad0116"
    ],
-   "match_status": "contested",
-   "rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W. CONTESTED: 3 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "match_status": "single_entry",
+   "rule": "Surname 'Ogden' folds to the same string as the card's, and the given name of both begins W.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "address",
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -10726,7 +10735,7 @@
     "n1844_ad0060"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet the one printed name 'E. Smith' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -10766,7 +10775,7 @@
     "n1844_ad0060"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet the one printed name 'E. Smith' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -10853,7 +10862,7 @@
     "n1844_ad0109"
    ],
    "match_status": "ambiguous",
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins G.",
+   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins G. The 2 cards all print the one name 'George Smith', so what is ambiguous is WHICH ADVERTISEMENT and not which man. The match is still not made and nothing is carried: a tie is filed, never resolved into a match (T-0696).",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -11564,7 +11573,7 @@
     "n1844_ad0150"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the one printed name 'Chas. Taylor' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -11648,7 +11657,7 @@
     "n1844_ad0150"
    ],
    "match_status": "contested",
-   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one card on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the one printed name 'Chas. Taylor' on that rule, and at most one of them is the man it names. The match is not made.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null

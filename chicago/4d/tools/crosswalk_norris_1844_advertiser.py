@@ -17,8 +17,19 @@ THE RULE, written out so it reads back without the code:
   A surname-only agreement is a REFUSAL, however good it looks — Norris lists
   eleven Smiths, and a card that says only "Skinner & Smith" says two surnames and
   nothing else. Where an 1835 person meets more than one card on that rule the match
-  is AMBIGUOUS and is filed as such, not resolved; where two 1835 people meet one
-  card the match is CONTESTED and is not made.
+  is AMBIGUOUS and is filed as such, not resolved; where two 1835 people meet ONE
+  PRINTED PROPRIETOR the match is CONTESTED and is not made.
+
+  THE CONTEST IS OVER A PRINTED NAME, NOT OVER A CARD (T-0987). A display card is
+  bought by a FIRM and prints its partners: "Loyd, Blakesley & Co." sets A. Loyd,
+  H. A. Blakesley and Henry Norton over one advertisement, and the North-Western
+  Land Agency sets William B. Ogden beside William E. Jones. Until this ticket the
+  contest was keyed on the card, so two men who met two DIFFERENT printed names on
+  one card were filed as rivals for it and neither was matched — on the reasoning
+  that "at most one of them is the man who paid for it", which is false of a
+  partnership that prints both partners. Rivalry is now keyed on the (card,
+  proprietor) pair: two residents are rivals only where they meet the SAME printed
+  name, which is the only place the old reasoning holds.
 
 WHAT A MATCH IS WORTH, and it is less than it looks. An advertising card is a
 SUBSCRIPTION: the firms in this section are the ones that paid Norris, so the
@@ -32,6 +43,7 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import trade_recorded     # "does the layer hold a trade?" (T-0867), imported not restated
+import tiebreak           # the tie discriminator (T-0696), imported not restated
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CARDS = os.path.join(ROOT, "data/research/directories/claims/norris_1844_advertiser.json")
@@ -96,6 +108,7 @@ def residents():
                 "given": " ".join(parts[:-1]),
                 "grade": p.get("grade"),
                 "occupation": ((p.get("occupation") or {}).get("value")),
+                "occupation_confidence": ((p.get("occupation") or {}).get("confidence")),
                 "lives_at": ((doc.get("lives_at") or {}).get("value")),
                 "works_at": ((doc.get("works_at") or {}).get("value")),
             })
@@ -158,6 +171,7 @@ def main():
             "resident": r["name"], "person_id": r["person_id"],
             "household_id": r["household_id"], "grade_1835": r["grade"],
             "occupation_1835": r["occupation"],
+            "occupation_1835_confidence": r["occupation_confidence"],
             "lives_at_1835": r["lives_at"], "works_at_1835": r["works_at"],
             "rule": "Surname %r folds to the same string as the card's, and the given "
                     "name of both begins %s." % (r["surname"], initial(r["given"]).upper()),
@@ -178,19 +192,93 @@ def main():
                              "existed in 1844 and none at all that it existed in 1835.")
         (matches if len(rows) == 1 else ambiguous).append(rec)
 
+    # RIVALRY IS OVER A PRINTED NAME (T-0987). Keyed on the (card, proprietor) pair,
+    # so the partners a firm prints over one advertisement are not made rivals for it.
     claimed = defaultdict(list)
     for m in matches:
-        claimed[m["cards_1844"][0]["claim"]].append(m)
+        row = m["cards_1844"][0]
+        claimed[(row["claim"], row["proprietor_as_printed"])].append(m)
     contested = []
-    for _, rivals in sorted(claimed.items()):
+    for (_cid, printed), rivals in sorted(claimed.items()):
         if len(rivals) > 1:
             for m in rivals:
                 m["contested_with"] = [x["resident"] for x in rivals if x is not m]
-                m["rule"] += (" CONTESTED: %d residents of 1835 meet this one card on that "
-                              "rule, and at most one of them is the man who paid for it. "
-                              "The match is not made." % len(rivals))
+                m["rule"] += (" CONTESTED: %d residents of 1835 meet the one printed name "
+                              "%r on that rule, and at most one of them is the man it "
+                              "names. The match is not made." % (len(rivals), printed))
                 contested.append(m)
     matches = [m for m in matches if "contested_with" not in m]
+
+    # T-0696, THE TIE DISCRIMINATOR, read here for the first time. A trade may NARROW
+    # a tie and never make one a match: the narrowed tie is filed in `discriminated`,
+    # the losing side is filed as SILENT rather than contradicted, nothing moves into
+    # `matches` and no grade moves. A premises and a year are REFUSED discriminators —
+    # tools/tiebreak.py carries both refusals and why.
+    discriminated = []
+    for (_cid, printed), rivals in sorted(claimed.items()):
+        if len(rivals) < 2:
+            continue
+        trade = rivals[0]["cards_1844"][0]["trade_1844"]
+        result = tiebreak.narrow([
+            {"key": m["person_id"], "occupation_1835": m["occupation_1835"],
+             "printed": trade} for m in rivals])
+        winner = next((m for m in rivals if m["person_id"] == result["named"]), None)
+        note = tiebreak.block(result, winner["occupation_1835"] if winner else None,
+                              winner["occupation_1835_confidence"] if winner else None)
+        for m in rivals:
+            m["discriminator"] = note or {"kind": tiebreak.KIND, "named": None,
+                                          "why": result["why"], "sides": result["sides"]}
+        if note:
+            discriminated.append({
+                "tie": "contested",
+                "proprietor_as_printed": printed,
+                "firm": rivals[0]["cards_1844"][0]["firm"],
+                "claim": _cid,
+                "rivals": [m["resident"] for m in rivals],
+                "named": winner["resident"],
+                "person_id": winner["person_id"],
+                "discriminator": note,
+            })
+
+    # The other shape of the same tie: one person of 1835 meeting several cards. The
+    # sides are the cards and the trade is the one the resident carries, so the same
+    # rule reads it without restatement.
+    #
+    # AND THE PRIOR QUESTION THE CARDS ANSWER FIRST: whether the ambiguity is over WHO
+    # or over WHICH ADVERTISEMENT. Where every card a resident meets prints the SAME
+    # proprietor name the identification is not in doubt on this file's own rule — one
+    # man advertising two or three businesses, as G. S. Hubbard advertises forwarding
+    # and fire insurance on facing pages. That is recorded, and it still carries
+    # nothing: which of his cards a trade or a place of business should be read off is
+    # exactly what stays unsettled, and T-0696 forbids resolving a tie into a match.
+    for m in ambiguous:
+        names = sorted({c["proprietor_as_printed"] for c in m["cards_1844"]})
+        m["proprietor_names_printed"] = names
+        m["ambiguity_is_over"] = "which card" if len(names) == 1 else "which name"
+        if len(names) == 1:
+            m["rule"] += (" The %d cards all print the one name %r, so what is ambiguous "
+                          "is WHICH ADVERTISEMENT and not which man. The match is still "
+                          "not made and nothing is carried: a tie is filed, never "
+                          "resolved into a match (T-0696)."
+                          % (len(m["cards_1844"]), names[0]))
+        result = tiebreak.narrow([
+            {"key": c["claim"], "occupation_1835": m["occupation_1835"],
+             "printed": c["trade_1844"]} for c in m["cards_1844"]])
+        note = tiebreak.block(result, m["occupation_1835"], m["occupation_1835_confidence"])
+        m["discriminator"] = note or {"kind": tiebreak.KIND, "named": None,
+                                      "why": result["why"], "sides": result["sides"]}
+        if note:
+            named = next(c for c in m["cards_1844"] if c["claim"] == result["named"])
+            discriminated.append({
+                "tie": "ambiguous",
+                "resident": m["resident"],
+                "person_id": m["person_id"],
+                "cards": len(m["cards_1844"]),
+                "named": named["proprietor_as_printed"],
+                "firm": named["firm"],
+                "claim": named["claim"],
+                "discriminator": note,
+            })
 
     doc = {
         "schema": 1,
@@ -202,6 +290,9 @@ def main():
         "generated_by": "tools/crosswalk_norris_1844_advertiser.py",
         "source_id": "norris_directory_1844",
         "rule": __doc__.split("THE RULE, written out")[1].split("WHAT A MATCH")[0].strip(),
+        "discriminator_rule": tiebreak.__doc__.split("THE RULING")[1].split(
+            "Run it directly")[0].strip(),
+        "refused_discriminators": tiebreak.REFUSED_DISCRIMINATORS,
         "what_a_match_is_worth": __doc__.split("WHAT A MATCH IS WORTH")[1].strip(),
         "counts": {
             "cards": len(cards),
@@ -211,7 +302,12 @@ def main():
             "residents_considered": len(people),
             "matched_one_card": len(matches),
             "matched_more_than_one_ambiguous": len(ambiguous),
-            "one_card_contested_by_two_residents": len(contested),
+            "one_printed_proprietor_contested_by_two_residents": len(contested),
+            "ties_narrowed_by_a_trade": len(discriminated),
+            "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
+            "of_those_ambiguous": sum(1 for d in discriminated if d["tie"] == "ambiguous"),
+            "ambiguities_over_which_card_not_which_man": sum(
+                1 for m in ambiguous if m["ambiguity_is_over"] == "which card"),
             "surname_present_initial_absent_refused": len(refusals),
             "could_carry_trade": sum(1 for m in matches if "trade" in m["could_carry"]),
             "could_carry_place_of_business": sum(
@@ -219,6 +315,7 @@ def main():
         },
         "matches": sorted(matches, key=lambda m: m["resident"]),
         "contested": sorted(contested, key=lambda m: m["resident"]),
+        "discriminated": sorted(discriminated, key=lambda d: d["claim"]),
         "ambiguous": sorted(ambiguous, key=lambda m: m["resident"]),
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
     }

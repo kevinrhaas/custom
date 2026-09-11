@@ -1,7 +1,7 @@
 ---
 id: T-0987
 title: The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 7:52:30 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34600959332
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -179,3 +179,86 @@ stretch can actually pass rather than a debt it inherits.
 ticket orders them. No successor ticket is filed: `tickets/README.md` puts the succession
 on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for
 fewer tickets, not one per stretch. This ticket stays open and is its own cursor.
+
+## Stretch 2, 2026-09-11 — the advertiser ties: 14 ruled, 3 released, 8 held, 3 re-described
+
+**The stretch, named and bounded:** every tie in
+`norris_1844_advertiser_crosswalk_1835.json` — 3 ambiguous and 11 contested, 14 units,
+the smallest of the four tie pools and the one whose units carry the most (a card prints
+its trade and its address as their own lines, so this file's parse is trusted where
+Norris's alphabetical volume's is not). **Yield stated in advance:** up to 14 people
+gaining an 1844 trade and place of business. Landed: 3.
+
+**What the ties were.** Not one of the fourteen needed a page image. The pool was
+mostly an artefact of how the contest was keyed:
+
+```
+  before                          after
+  matched_one_card        17      20      +3
+  ambiguous                3       3      re-described, carrying nothing
+  contested               11       8      -3
+```
+
+**The defect.** A display card is bought by a FIRM and prints its PARTNERS.
+`crosswalk_norris_1844_advertiser.py` keyed rivalry on the CARD — `claimed[card_id]` —
+so two residents who met two *different* printed names on one advertisement were filed
+as rivals for it and neither was matched, on the file's own reasoning that "at most one
+of them is the man who paid for it". That is true of a printed name and false of a card:
+"Loyd, Blakesley & Co." prints A. Loyd, H. A. Blakesley and Henry Norton; the
+North-Western Land Agency prints William B. Ogden beside William E. Jones. Rivalry is
+now keyed on the `(card, proprietor)` pair, which is the only place the old reasoning
+holds, and the docstring rule says so in the same words.
+
+**Released, and spent in the same run** — `tools/spend_directories.py` re-run, three
+household cards rewritten, each card's note moving from "contested, so nothing crossed"
+to "a single entry":
+
+| person | card | what it now holds |
+|---|---|---|
+| `loyd_alexander` | n1844_ad0046 | Loyd, Blakesley & Co., wholesale and retail groceries, nails, glass, shoes and leather — 101 Lake street |
+| `blakesley_harvey_a` | n1844_ad0046 | the same firm, as its other named partner |
+| `ogden_w_b` | n1844_ad0116 | North-Western Land Agency, general land agents — office on Kinzie street, east of Dearborn |
+
+No graded value on any of the three MOVED: `graded()` takes the earliest trusted volume
+and all three already carried a Fergus 1839 or 1843 trade and street. What a visitor
+gains is the 1844 appearance itself — `residents.js` renders `match_status` and the
+`holds` chips — and what the measure gains is three rulings that now reach their card
+as matches rather than as silences.
+
+**Held, with the clause named.** The 8 that remain contested meet ONE printed name each
+and are real ties: `E. Smith` (smith_e_kirby / smith_elded), `J. Coe Clark`
+(clark_john_a / clark_john_k), `Chas. Taylor` (taylor_charles / taylor_c),
+`William E. Jones` (jones_willard / jones_william). T-0696's discriminator is read on
+this file for the first time — `tools/tiebreak.py` imported, not restated, with
+`discriminator_rule` and `refused_discriminators` now in the file — and it **names
+nobody**: `ties_narrowed_by_a_trade: 0`. Each side carries the block saying why (Taylor:
+"two trades that do not agree" — carpenter in 1835 against a fashionable tailor of 1844;
+the other three pairs: no trade recorded on either side). A premises and a year stay
+refused discriminators for the reasons T-0696 wrote.
+
+**Re-described, and this is a ruling too.** All 3 ambiguous rows meet cards that print
+the *identical* proprietor name — `G. S. Hubbard` on forwarding and on the Aetna fire
+agency, `George Smith` twice for George Smith & Co., `A. Garrett` on three agencies. The
+ambiguity is over WHICH ADVERTISEMENT, not which man, and the file now says which of the
+two it is (`ambiguity_is_over`, `proprietor_names_printed`). They are still not matched
+and still carry nothing: which card a trade should be read off is exactly what stays
+unsettled, and T-0696 forbids resolving a tie into a match.
+
+**Acceptance, measured** (`tools/measure_research_spend.py`, whole town):
+
+| | before | after |
+|---|---|---|
+| directories, reached | 932 | **938** |
+| directories, on a card | 932 of 932 | **938 of 938** |
+| directories, **unwritten** | **0** | **0** |
+| town total, unwritten | 0 | **0** |
+
+Clause 3 holds: the stretch landed and the column is still 0.
+
+**The pools after this stretch** — the ties are ~196 − 14 = **~182**, of which 8 of this
+file's are now ruled-and-held rather than unruled: `fergus_1839` 44+29, `fergus_1843`
+40+15, `norris_1844` 19+14, `norris_1844_advertiser` 3+8. **Stretch 3 takes
+`norris_1844`'s 33** — the same shape, a volume whose trade line is printed, and the
+next-smallest pool. No successor ticket is filed: the succession is on the run that
+CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for fewer tickets.
+This ticket stays open and is its own cursor.
