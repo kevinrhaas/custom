@@ -9,7 +9,7 @@
       "persons": 2666,
       "businesses": 206
     },
-    "structures": 380,
+    "structures": 381,
     "structures_sharing_a_name": 37,
     "streets": 40,
     "resident_persons": 1373
@@ -23,9 +23,9 @@
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 30,
+        "enrich_existing": 31,
         "new_building": 28,
-        "street_only": 60,
+        "street_only": 59,
         "unplaceable": 88
       },
       "by_placement_class": {
@@ -35,9 +35,9 @@
         "street_only": 19
       },
       "present_by_action": {
-        "enrich_existing": 30,
+        "enrich_existing": 31,
         "new_building": 28,
-        "street_only": 60,
+        "street_only": 59,
         "unplaceable": 71
       },
       "outside_the_plat": 5,
@@ -2581,7 +2581,13 @@
         "target": "tremont_house_1",
         "streets": null,
         "via": null,
-        "note": "The landmark is the committed structure tremont_house_1."
+        "note": "The landmark is the committed structure tremont_house_1. An ordinal off a landmark: 1 door north of it. The count of doors is the paper's; how far one door is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215).",
+        "ordinal": {
+          "count": 1,
+          "direction": "north",
+          "of": "tremont_house_1",
+          "phrase": "first door north from the Tremont House, on Dearborn-street"
+        }
       },
       "anchor_change": {
         "live_anchor": "the Tremont House",
@@ -2735,7 +2741,13 @@
               "target": "tremont_house_1",
               "streets": null,
               "via": null,
-              "note": "The landmark is the committed structure tremont_house_1."
+              "note": "The landmark is the committed structure tremont_house_1. An ordinal off a landmark: 1 door north of it. The count of doors is the paper's; how far one door is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215).",
+              "ordinal": {
+                "count": 1,
+                "direction": "north",
+                "of": "tremont_house_1",
+                "phrase": "first door north from the Tremont House, on Dearborn-street"
+              }
             },
             "resolved_on_reading": "the Tremont House",
             "readings": [
@@ -2752,7 +2764,13 @@
                   "target": "tremont_house_1",
                   "streets": null,
                   "via": null,
-                  "note": "The landmark is the committed structure tremont_house_1."
+                  "note": "The landmark is the committed structure tremont_house_1. An ordinal off a landmark: 1 door north of it. The count of doors is the paper's; how far one door is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215).",
+                  "ordinal": {
+                    "count": 1,
+                    "direction": "north",
+                    "of": "tremont_house_1",
+                    "phrase": "first door north from the Tremont House, on Dearborn-street"
+                  }
                 }
               }
             ]
@@ -2764,7 +2782,7 @@
       "action_target": "tremont_house_1",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1. An ordinal off a landmark: 1 door north of it. The count of doors is the paper's; how far one door is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215)."
     },
     {
       "id": "business_g_w_keeney",
@@ -3339,7 +3357,13 @@
         "target": "exchange_coffee_house",
         "streets": null,
         "via": null,
-        "note": "The landmark is the committed structure exchange_coffee_house."
+        "note": "The landmark is the committed structure exchange_coffee_house. An ordinal off a landmark: 1 door north of it. The count of doors is the paper's; how far one door is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215).",
+        "ordinal": {
+          "count": 1,
+          "direction": "north",
+          "of": "exchange_coffee_house",
+          "phrase": "one door north of the Exchange"
+        }
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -3347,7 +3371,7 @@
       "action_target": "exchange_coffee_house",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure exchange_coffee_house."
+      "action_note": "Placeable against the committed town. The landmark is the committed structure exchange_coffee_house. An ordinal off a landmark: 1 door north of it. The count of doors is the paper's; how far one door is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215)."
     },
     {
       "id": "business_j_b_brown_dearborn_street_grocery",
@@ -5219,21 +5243,25 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "dearborn"
-        ],
+        "kind": "structure",
+        "target": "tremont_house_1",
+        "streets": null,
         "via": null,
-        "note": "The anchor is a reach of dearborn and names nothing narrower."
+        "note": "The landmark is the committed structure tremont_house_1. An ordinal off a landmark: 3 doors north of it. The count of doors is the paper's; how far 3 doors is from the landmark is this project's reconstruction (docs/CORNER-ORDINAL.md, L215).",
+        "ordinal": {
+          "count": 3,
+          "direction": "north",
+          "of": "tremont_house_1",
+          "phrase": "three doors north of the Tremont House, in Dearborn street"
+        }
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "street_only",
-      "action_target": "dearborn",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Dearborn Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
+      "action": "enrich_existing",
+      "action_target": "new_york_clothing_store",
+      "match_tier": "occupants",
+      "match_evidence": "Tuthill King",
+      "action_note": "new_york_clothing_store already stands and its occupants carries king — 'Tuthill King'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_newberry_dole",

@@ -11136,3 +11136,75 @@ Related: **L162** (the sixty-four wagons themselves, and the rule that stands th
 (this, and the smoke red that found it), **T-0825** (folded into it), **T-0688** (the gate's
 own floor of eight distinct headings), **T-0064** (the town's wagons).
 **Recorded:** 2026-09-11 (T-0836).
+
+### L231 — Three doors north of the Tremont House: the count is the paper's, and the two doors between are a ruler and not two buildings
+**Decision:** the Chicago American printed Tuthill King's card three times over one copy date of
+8 June 1835, and only the impression of 4 July sets the landmark its address is counted from —
+"the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]". The
+address is therefore read and the BUILDING is invented: a 30 by 25 ft one-storey frame shop on the
+west side of Dearborn Street, fronting east. Its footprint, its storey count and its clapboard stock
+are declared here, and so is the one number the ordinal reading makes load bearing.
+**THE DOOR PITCH — the metres, which are not evidence.** L215 owns the gap between ONE front and a
+named neighbour: 3.048 m (10 ft) clear of the wall it neighbours. This address counts THREE doors
+and nothing is built at the first or the second, so the gap alone cannot reach it. THE RULE: a
+premises on a business face is given the parcel's small-shop front of 9.144 m (30 ft) plus L215's
+3.048 m gap, so one door is **12.192 m (40 ft) of face**. Counted north from `tremont_house_1`'s
+north wall at local ENU N -91.42, the first door opens at N -88.37, the second at N -76.18 and the
+third — this record — at N -63.99, its 30 ft front running to N -54.84 and its east wall on the
+Tremont's own Dearborn frontage at E 687.82.
+**AND THE TWO DOORS BETWEEN ARE NOT BUILDINGS.** This is the part worth being plain about, because
+the alternative reading is the one that would be dishonest: the pitch is a RULER laid along the face
+to read a count, not two invented shops. No geometry, no sidecar, no census line and no signboard
+stands at the first or second door. If either is later evidenced at a width this pitch does not
+admit, the third door moves with it and this entry is what says so.
+**AND THE SIDE OF DEARBORN.** The sentence gives a street, a direction and a count, and no side.
+West is taken because the Tremont House the count starts from stands on the west side, and a count
+of doors north FROM a building runs along that building's own face. The corpus corroborates the face
+rather than the record alone: G. Spring's office card reads "first door north from the Tremont
+House, on Dearborn-street" and H. C. Bennett's reads as a door north of the Tremont in the same
+weeks, so three advertisements out of this town's own press count doors north of the Tremont along
+Dearborn Street. That is a reading of three sources against each other, which is why the position is
+graded `inferred` rather than `reconstructed`; the fork is real and it is recorded here as well as
+on the record.
+**Why:** every dimension of the building is borrowed rather than found. The 30 ft front is the
+parcel's small-shop figure, the same `john_holbrook_store` and `frederick_thomas_shop` wear; the
+25 ft depth is `chicago_american_office`'s committed depth, taken because King advertises WHOLESALE
+AND RETAIL over a stock of frock coats, pantaloons, vests, hunting coats, jackets and brogans that
+Country Merchants are invited to call and examine, and a counter trade carrying that much cloth
+needs a stock room behind it. One storey is the smaller claim for premises the advertisement
+describes only as a counter and a stock. The alternative to inventing them was to leave a documented
+trade standing on a reconstructed roof three blocks from the address its own paper prints.
+**Consequence:** a visitor walking north up Dearborn Street from the Tremont House sees a shop front
+where the committed data had open ground, and it is the first documented storefront on the west
+Dearborn face to stand on an address of its own — a face the street-face policy refused entirely
+when it shipped, because Dearborn shows this reconstruction eighteen roofs a side and not one a
+front. The Evidence panel grades the footprint and the storey count `reconstructed` and says on each
+value that it is borrowed. **No lot is claimed and none is taken**: the record carries a `lot_claim`
+block declaring `claims_lot: false` under the placement rule `landmark_ordinal`,
+`tools/plat_occupancy.py` reads it and leaves the plat's entitlements where they were, and
+`tools/measure_corner_ordinals.py` — which since T-0385 sweeps an ordinal counted off a landmark as
+well as one counted off a corner — fails if any of that stops being true.
+**What it cost, and this is the honest part:** the store gives up a roof to gain a door. Until this
+entry the New York Clothing Store was a `street_only` business adopted onto a standing reconstructed
+roof under L212, on the Randolph and Clark face, because the corpus placed the house on its EARLIEST
+printing and that printing is the one whose type gave the landmark up. The adoption is withdrawn by
+this record and the roof goes back to the face's free list. Nothing was nudged to make room for the
+new position: the count and the pitch put the store in the open middle of the face on their own
+arithmetic, 27.43 m clear of the Tremont and 11.14 m clear of `bates_auction_room`, which is the
+first check this placement had to pass and could have failed.
+**On the clapboard, and on L148, which this does not edit:** the exposed face of this building's
+siding is L148's rule applied to a record written after that entry was — `tools/deal_siding_stock.py`
+dealt it, keyed to the construction season and advanced so no frame building within 60 m shares it,
+and the tool's own note names L148 as the owner of the invention.
+**How to resolve:** the page image of the 4 July 1835 impression would settle whether the sentence
+carries a side of the street. Any source fixing the first or second door north of the Tremont at a
+width would replace the pitch with a measurement, and a canal-commission lot record or an assessment
+naming Tuthill King would replace the count of doors with a lot — and would be the thing that lets
+this record claim one, which today it may not.
+Related: **L215** (the door-gap rule this pitch is built on, and the corner ordinal it was written
+for) · **L212** (street-face adoption, the policy this house was placed under until the landmark was
+read) · **L148** (the clapboard rule this record's siding is dealt by) · **L130** (the fact of a sign
+on a named trade) · tickets **T-0385** (this), **T-0306** (its parent, the American's storefronts),
+**T-0384** (the ordinal ruling it extends).
+**Covers:** `new_york_clothing_store.frame_1835.footprint`, `new_york_clothing_store.frame_1835.form.stories`, `new_york_clothing_store.frame_1835.form.siding_exposure_m`.
+**Recorded:** 2026-09-11.

@@ -940,6 +940,58 @@ ORDINAL_DOOR = re.compile(
     % "|".join(sorted(ORDINAL_COUNT)), re.I)
 
 
+# A TRANSCRIBER'S SUPPLY IS NOT A DEFECT IN THE SENTENCE (T-0385). `offset_normalized`
+# is the reading after OCR judgement and it marks every letter the reader supplied in
+# square brackets, so the American's clearest impression of Tuthill King's address reads
+# "the above business thre[e] doors north of [the T]remont House". `ORDINAL_DOOR` is a
+# word-boundary match on a count word, and "thre[e]" is not "three" — so the one field
+# written to be read carried a count no reader of it could see, and the raw column
+# ("threw doors") could not carry it either. Opening the supplies is the same operation
+# `compile_gazetteer.unbracketed` already performs for exactly this reason.
+SUPPLIED = re.compile(r"\[[^\]]*\]")
+
+
+def opened(text):
+    """A normalised reading with its supplied letters opened. `thre[e]` → `three`."""
+    return " ".join(SUPPLIED.sub(lambda m: m.group(0)[1:-1], str(text or "")).split())
+
+
+def door_count(placement, supplies=False):
+    """The count of DOORS a placement's offset carries, or None.
+
+    The fields are searched in order and the FIRST that carries the phrase supplies it,
+    rather than concatenating them: `offset_normalized` is the reading after OCR
+    judgement and `offset_text` is the raw column, and joining the two quotes a phrase
+    that stands in neither.
+
+    `supplies` IS OFF BY DEFAULT, AND THAT IS T-0771's RULING KEPT (see
+    `tools/measure_corner_ordinals.py` § THE SUPPLY): a bracket is the reading pass
+    saying it could not see the word, this project does not spend a supply, and a corner
+    ordinal whose count or cross street falls inside brackets stays REFUSED. Eleven
+    claims in the corpus are held off the ground that way and they are counted rather
+    than opened. `ordinal_off_a_corner` therefore never passes this flag.
+
+    IT IS ON FOR A LANDMARK ORDINAL, and the difference is what the count is being spent
+    ON. A corner ordinal's count is what PLACES the business at all — open the bracket
+    and an unplaceable notice becomes a placed one, which is the spend T-0771 refuses.
+    A landmark ordinal's count places nothing: `resolve_anchor` has already resolved the
+    landmark from the anchor by name, and the count only says how far along that
+    landmark's own face the door stands — a figure `docs/CORNER-ORDINAL.md` and L215
+    already declare to be this project's reconstruction and never the paper's. The case
+    that needed it is Tuthill King's, whose clearest impression reads "the above business
+    thre[e] doors north of [the T]remont House" over a raw column reading "threw doors
+    north of": the bracket corrects a letter the column carries, which is the
+    `John [H]. Kin[g]` case identity.json's canonical rule calls a correction and not a
+    defect, and not a word supplied into a gap the page leaves empty.
+    """
+    for field in ("offset_normalized", "offset_text"):
+        text = str(placement.get(field) or "")
+        m = ORDINAL_DOOR.search(opened(text) if supplies else text)
+        if m:
+            return m
+    return None
+
+
 def streets_in(town, text, require_suffix):
     """Every platted street a phrase names, as street ids.
 
@@ -1048,11 +1100,7 @@ def ordinal_off_a_corner(town, placement):
     # rather than concatenating them: `offset_normalized` is the reading after OCR
     # judgment and `offset_text` is the raw column, and joining the two quotes a phrase
     # that stands in neither.
-    m = None
-    for field in ("offset_normalized", "offset_text"):
-        m = ORDINAL_DOOR.search(str(placement.get(field) or ""))
-        if m:
-            break
+    m = door_count(placement)
     if not m:
         return None
     reference = streets_in(town, m.group(3), True)
@@ -1148,8 +1196,34 @@ def resolve_anchor(town, business, by_firm):
                             "file's and not the paper's."
                             % (placement.get("anchor"), len(sids), ", ".join(sids))}
         if sids:
-            return {"kind": "structure", "target": sids[0], "streets": None, "via": None,
-                    "note": "The landmark is the committed structure %s." % sids[0]}
+            # AN ORDINAL OFF A BUILDING IS STILL AN ORDINAL (T-0385). The KIND does not
+            # change — `ordinal_off_a_corner`'s own docstring says a count of doors off a
+            # landmark "is placed by that building and was always read that way", and
+            # nothing about that precedence moves here. What is added is the COUNT, in a
+            # field, so the limit that goes with an ordinal can be gated instead of
+            # trusted: `docs/CORNER-ORDINAL.md` § the one limit says a count of premises
+            # fixes a position in a sequence along a face and names no platted lot, and
+            # the reason it gives holds word for word when the thing counted from is a
+            # building rather than a crossing. `tools/measure_corner_ordinals.py` reads
+            # this block and requires a `lot_claim` on whatever record the count raises.
+            count = door_count(placement, supplies=True)
+            out = {"kind": "structure", "target": sids[0], "streets": None, "via": None,
+                   "note": "The landmark is the committed structure %s." % sids[0]}
+            if count:
+                n = ORDINAL_COUNT[count.group(1).lower()]
+                direction = (count.group(2) or "").lower() or None
+                out["ordinal"] = {
+                    "count": n, "direction": direction, "of": sids[0],
+                    "phrase": " ".join(count.group(0).split()),
+                }
+                out["note"] += (
+                    " An ordinal off a landmark: %d door%s%s it. The count of doors is "
+                    "the paper's; how far %s is from the landmark is this project's "
+                    "reconstruction (docs/CORNER-ORDINAL.md, L215)."
+                    % (n, "" if n == 1 else "s",
+                       " %s of" % direction if direction else " from",
+                       "one door" if n == 1 else "%d doors" % n))
+            return out
         # One hop: the landmark is another documented business. Same refusal — the
         # corpus prints one house under more than one heading, so a firm name can
         # answer for two records here exactly as a building name can above.

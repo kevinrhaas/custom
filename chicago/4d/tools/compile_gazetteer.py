@@ -1395,6 +1395,171 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                          "placement": w["placement"]}
                         for w in windows],
         }
+
+    # THE ANCHOR READ MORE THAN ONE WAY, AND IT IS NOT A CHANGE (T-0385).
+    #
+    # `anchor_changes` above is for a house whose printed anchor CHANGED: two landmarks,
+    # two windows, and a `cannot_say` about which side of the change moved. It refuses a
+    # single anchor on purpose — "one anchor is not a change" — and that refusal left the
+    # opposite case with nowhere to live. The New York Clothing Store is the case. One
+    # advertisement, one copy date of 8 June 1835, one sentence, three printings:
+    #
+    #   1835-06-08  "a tue abuve business three doors worth of i,"
+    #   1835-06-20  "1 above business thrve doors north o at House, in Dearborn street,"
+    #   1835-07-04  "the abova business threw doors north of of] ‘fremont House, in
+    #                Dearborn atteal,"
+    #
+    # The first loses the landmark to an 8,024-character blob, the second keeps the bare
+    # word "House", the third sets "[T]remont House" legibly. Three readings of ONE
+    # anchor, differing in what the ink left — the same shape the `Graves' Tavern`
+    # grouping inside an `anchor_changes` rule already describes, with no second anchor
+    # beside it to make the rule legal. So the house was minted on the earliest printing,
+    # which is the one that reads nothing, and the register called it `street_only` on
+    # Dearborn with the Tremont House standing unread in its own corpus.
+    #
+    # The T-0440 pass above does not reach it either: that pass fires where the minting
+    # printing PLACES NOTHING, and a `relative` reading carrying an offset and a street
+    # places something. It places three doors north of a thing it cannot name.
+    #
+    # WHAT A DECLARATION HERE MAY SAY, AND IT IS LESS THAN `anchor_changes` SAYS. Only
+    # that the house's readings are ONE anchor read more than one way, and which of its
+    # OWN printed readings is the one to keep. It may not mint an anchor, it may not
+    # reach past the readings the corpus carries, and it may not leave a printing out.
+    # Nine guards, and each is a way this could assert something the corpus does not:
+    #   1. the house has to be one the corpus compiles, or nobody can check the rule;
+    #   2. ONE anchor group. Two is a change, and `anchor_changes` owns that — a rule
+    #      that could be written either way would let an author pick the mechanism whose
+    #      guards they liked;
+    #   3. at least two readings. One reading is not a reconciliation of anything;
+    #   4. every reading named has to be one some printing of THIS house carries,
+    #      matched verbatim against its own readings;
+    #   5. EVERY placing reading of the house has to be named. A printing left out is a
+    #      printing silently dropped, which is the defect this exists to end;
+    #   6. the anchor KEPT has to be one of those readings — never a string this file
+    #      composed. That is the whole difference between reading a damaged line and
+    #      writing over it;
+    #   7. the house has to carry exactly ONE advertisement copy date. That is the
+    #      COMPUTED evidence that these printings are one sentence rather than a shop
+    #      that re-advertised: two copy dates are two cards and cannot be reconciled
+    #      here at all;
+    #   8. `why` names the kept anchor verbatim, so the judgement reads back without the
+    #      code;
+    #   9. `cannot_say` is required, for `anchor_changes`' own reason — a reconciliation
+    #      that says nothing about what it leaves open has decided it in silence.
+    #
+    # THE SCENE-DATE BOUND DOES NOT APPLY, AND THAT IS GUARD 7's DOING. The T-0440 pass
+    # bounds its substitute printing at the scene date because it is choosing between
+    # PRINTINGS, and a printing after 1 July 1835 is not evidence about 1 July 1835. This
+    # pass is not choosing between printings; it is reading one sentence off the clearest
+    # impression of it. The sentence was set under a copy date of 8 June 1835 and guard 7
+    # is what proves there is only one such sentence, so the 4 July impression is the 8
+    # June copy and the date it happens to have been re-set on says nothing about where
+    # the shop stood.
+    for rule in identity.get("anchor_readings", []):
+        bid = rule.get("business")
+        groups = rule.get("anchors") or []
+        why = (rule.get("rule") or "").strip()
+        cannot = (rule.get("cannot_say") or "").strip()
+        label = "identity.json anchor_reading %r" % bid
+        bkey = bid[len("business_"):] if (bid or "").startswith("business_") else bid
+        if not bkey or bkey not in businesses:
+            problems.append("%s: no business of that id is compiled — an anchor rule for "
+                            "a house that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        if len(groups) != 1:
+            problems.append("%s: this mechanism reconciles ONE anchor read more than one "
+                            "way and %d anchor(s) are declared — two printed anchors are a "
+                            "change, and `anchor_changes` is what may order them"
+                            % (label, len(groups)))
+            continue
+        group = groups[0]
+        name = group.get("name")
+        readings = group.get("readings") or []
+        if not name:
+            problems.append("%s: the anchor needs a `name`" % label)
+            continue
+        if len(readings) < 2:
+            problems.append("%s: anchor %r names %d reading(s) — one reading is not a "
+                            "reconciliation of anything" % (label, name, len(readings)))
+            continue
+        if not why:
+            problems.append("%s: no rule — an unexplained reconciliation is a compile "
+                            "error, because a wrong reading of three printings is "
+                            "invisible afterwards" % label)
+            continue
+        if not cannot:
+            problems.append("%s: no `cannot_say` — a reconciliation that does not state "
+                            "what the corpus leaves open has decided it in silence"
+                            % label)
+            continue
+        if name not in why:
+            problems.append("%s: the rule must name %r verbatim, so the judgement can be "
+                            "read back without the code" % (label, name))
+            continue
+        biz = businesses[bkey]
+        held = {}
+        for r in biz["placement_readings"]:
+            if placement_rank(r.get("placement")) > 0:
+                held.setdefault(r["anchor"], []).append(r)
+        unknown = [r for r in readings if r not in held]
+        if unknown:
+            problems.append(
+                "%s: %s is not an anchor any printing of this house carries (it reads "
+                "%s) — a reconciliation may only group readings the corpus already made"
+                % (label, ", ".join(repr(u) for u in unknown),
+                   ", ".join(repr(a) for a in sorted(held, key=lambda x: x or ""))))
+            continue
+        left = [a for a in held if a not in set(readings)]
+        if left:
+            problems.append("%s: %s is printed for this house and the reconciliation does "
+                            "not name it — a reading left out is a printing silently "
+                            "dropped, which is what this mechanism exists to end"
+                            % (label, ", ".join(repr(a) for a in sorted(left,
+                                                                       key=lambda x: x or ""))))
+            continue
+        if name not in readings:
+            problems.append("%s: the anchor kept, %r, is not one of the readings it "
+                            "groups — an anchor this file composed is an anchor no "
+                            "printing carries" % (label, name))
+            continue
+        copy_dates = sorted(set(biz["evidence"].get("copy_dates") or []))
+        if len(copy_dates) != 1:
+            problems.append("%s: this house carries %d advertisement copy date(s) (%s) and "
+                            "a reconciliation needs exactly one — two copy dates are two "
+                            "cards, and two cards are not one sentence read twice"
+                            % (label, len(copy_dates),
+                               ", ".join(copy_dates) or "none"))
+            continue
+        kept = min(held[name], key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(biz.get("placement") or {"class": "none"})
+        biz["placement"] = kept["placement"]
+        biz["anchor_reading"] = {
+            "rule": why,
+            "cannot_say": cannot,
+            "anchor": name,
+            "copy_date": copy_dates[0],
+            "kept": {"first_issue": kept["first_issue"],
+                     "claims": sorted(kept["claims"])},
+            "superseded": {"class": superseded.get("class") or "none",
+                           "anchor": superseded.get("anchor")},
+            "readings": sorted(
+                ({"anchor": r["anchor"], "class": r["class"],
+                  "first_issue": r["first_issue"], "last_issue": r["last_issue"],
+                  "claims": sorted(r["claims"]), "placement": r["placement"],
+                  "kept": r is kept}
+                 for rs in held.values() for r in rs),
+                key=lambda r: (r["first_issue"], r["anchor"] or "")),
+        }
+        # The street goes with it, for T-0773's reason: `compile_register` adopts a
+        # street face off `street` and not off the placement, so a reconciliation that
+        # leaves the field behind moves the anchor and not the frontage. Only where the
+        # kept reading names ONE street — a corner names two, and a `street` holding
+        # both is not a street this town can adopt against.
+        kept_street = (kept["placement"] or {}).get("street")
+        if kept_street and " and " not in kept_street and kept_street != "unstated":
+            biz["street"] = kept_street
+
     # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
     # and had nowhere to live until now. `firm_surnames()` groups the register on the
     # partner surname alone, so it puts together houses that are not one house — the two

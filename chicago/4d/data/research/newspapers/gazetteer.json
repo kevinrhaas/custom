@@ -68285,9 +68285,9 @@
       "street": "Dearborn Street",
       "placement": {
         "class": "relative",
-        "anchor": "three doors north of an unread anchor, in Dearborn Street",
-        "offset_text": "a tue abuve business three doors worth of i,",
-        "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
+        "anchor": "the Tremont House",
+        "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
+        "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
         "street": "Dearborn Street"
       },
       "evidence": {
@@ -68354,6 +68354,75 @@
           }
         }
       ],
+      "anchor_reading": {
+        "rule": "THREE IMPRESSIONS OF ONE SENTENCE, AND ONLY THE LAST OF THEM SETS THE LANDMARK. Tuthill King's New York Clothing Store advertisement runs in the Chicago American under a single copy date — 'June 8, 1835' on 1835-06-20 and 'Chicago, [June] 8, 183[5]' on 1835-07-04, with the 1835-06-08 issue carrying the copy itself — and the rest of the card does not change with the impressions: the same 'subscriber having established himself in the above business', the same Bombazine frock coats, Cassimere and Drill pantaloons, Valencia and Marseilles vests, moleskin hunting coats and Bangup cords, the same 'Country Merchants would do well to call and examine the above stock', the same TUTHILL KING beneath it. What differs is what the type left legible in one clause of one sentence:\n\n  1835-06-08 c014  'a tue abuve business three doors worth of i,'\n  1835-06-20 c007  '1 above business thrve doors north o at House, in Dearborn street,'\n  1835-07-04 c003  'the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,'\n\nThe first is set inside line 409 of its page, an 8,024-character blob that interleaves at least two other notices, and the landmark is cut out of it entirely — the reading pass recorded the offset and named the anchor unread, which is the honest thing to have done. The second keeps the bare word 'House' and the street, and the reading pass called it 'an unnamed House'. The third sets '‘fremont House' over a doubled 'of of]', which is the Tremont House with an initial T mis-recognised as an opening quotation mark — the same recognition class as 'threw' for 'three' and 'abova' for 'above' in the same line. Read together they are three impressions of 'the above business three doors north of the Tremont House, in Dearborn street': every one counts THREE DOORS, every one counts them NORTH, two of the three name Dearborn Street, and the two that carry any of the landmark at all agree on the word House. The anchor kept is the Tremont House, which is the reading the 1835-07-04 impression actually carries; nothing here is composed. This is the same grouping the `Graves' Tavern` anchor inside the Matthias Mason rule already makes — readings of one landmark 'differing only in how much of the sentence the reading pass carried into the anchor field and, once, in what the ink left legible' — and it is stated separately only because this house has no second anchor beside it to make an `anchor_changes` rule legal. The town holds the landmark: `tremont_house_1`, the first Tremont House, at the north-west corner of Lake and Dearborn, which is already the anchor of G. Spring's office, H. C. Bennett's and Andrews & Eells's.",
+        "cannot_say": "WHICH SIDE OF DEARBORN STREET, AND HOW FAR THREE DOORS IS. Neither is printed. The sentence gives a street, a direction and a count of premises, and this project's own arithmetic supplies every metre between them — the door-gap rule at L215, not a measurement — exactly as it does for the corner ordinals under docs/CORNER-ORDINAL.md. NOR DOES THIS RULE SAY THE SHOP STOOD ON 4 JULY 1835. It says the sentence set on that date is the sentence copy-dated 8 June 1835, which is the only copy date the house carries; the impression is late and the copy is not. AND IT DOES NOT SAY THE FIRST TWO READINGS WERE WRONG. They were right about everything they could see, and each is kept here with its own dates and claims so a later pass can still read what the type actually gave. What is refused is only their standing to place a shop by a landmark they do not name.",
+        "anchor": "the Tremont House",
+        "copy_date": "1835-06-08",
+        "kept": {
+          "first_issue": "1835-07-04",
+          "claims": [
+            "chicago_american_1835_07_04#c003"
+          ]
+        },
+        "superseded": {
+          "class": "relative",
+          "anchor": "three doors north of an unread anchor, in Dearborn Street"
+        },
+        "readings": [
+          {
+            "anchor": "three doors north of an unread anchor, in Dearborn Street",
+            "class": "relative",
+            "first_issue": "1835-06-08",
+            "last_issue": "1835-06-08",
+            "claims": [
+              "chicago_american_1835_06_08#c014"
+            ],
+            "placement": {
+              "class": "relative",
+              "anchor": "three doors north of an unread anchor, in Dearborn Street",
+              "offset_text": "a tue abuve business three doors worth of i,",
+              "offset_normalized": "the above business three doors [n]orth of [uncertain: …]",
+              "street": "Dearborn Street"
+            },
+            "kept": false
+          },
+          {
+            "anchor": "an unnamed House, three doors south, in Dearborn Street",
+            "class": "relative",
+            "first_issue": "1835-06-20",
+            "last_issue": "1835-06-20",
+            "claims": [
+              "chicago_american_1835_06_20#c007"
+            ],
+            "placement": {
+              "class": "relative",
+              "anchor": "an unnamed House, three doors south, in Dearborn Street",
+              "offset_text": "1 above business thrve doors north o at House, in Dearborn street,",
+              "offset_normalized": "the above business three doors north o[f the … ] House, in Dearborn street",
+              "street": "Dearborn Street"
+            },
+            "kept": false
+          },
+          {
+            "anchor": "the Tremont House",
+            "class": "relative",
+            "first_issue": "1835-07-04",
+            "last_issue": "1835-07-04",
+            "claims": [
+              "chicago_american_1835_07_04#c003"
+            ],
+            "placement": {
+              "class": "relative",
+              "anchor": "the Tremont House",
+              "offset_text": "the abova business threw doors north of of] ‘fremont House, in Dearborn atteal,",
+              "offset_normalized": "the above business thre[e] doors north of [the T]remont House, in Dearborn [s]t[r]e[et]",
+              "street": "Dearborn Street"
+            },
+            "kept": true
+          }
+        ]
+      },
       "refused_merges": [
         {
           "with": "Peter Cohen's store",

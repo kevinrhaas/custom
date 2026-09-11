@@ -72,7 +72,7 @@ LIBERTIES = ROOT / "data" / "liberties.json"
 LOTS = ROOT / "data" / "traces" / "vectors" / "thompson_lots.json"
 DATUM = ROOT / "data" / "datum.json"
 
-PLACEMENT_RULES = ("corner_ordinal",)
+PLACEMENT_RULES = ("corner_ordinal", "landmark_ordinal")
 # A field whose NAME says lot, anywhere in a declaring record, other than the declaration's
 # own `lot: null`. The adoptions' gate guards the same way and for the same reason.
 LOT_NAMED = re.compile(r"lot", re.I)
@@ -94,8 +94,28 @@ def declaring(recs: dict[str, dict]) -> dict[str, dict]:
 
 
 def ordinal_businesses(register: dict) -> list[dict]:
+    """Every business the register places by a COUNT OF DOORS, off either thing.
+
+    Two shapes, one limit. `corner_ordinal` counts from a crossing and is the shape the
+    owner ruled on in T-0384. A `structure` anchor carrying an `ordinal` block counts
+    from a committed landmark — "three doors north of the Tremont House" — and its kind
+    stays `structure` because the landmark is what resolves it; the count rides along in
+    a field so this gate can read it without parsing prose. The limit
+    `docs/CORNER-ORDINAL.md` states is the same for both and for the same reason: a
+    count of premises fixes a position in a sequence along a face, and a face is not a
+    plat. T-0385 is the ticket that put the second shape on the ground.
+    """
     return [b for b in register["businesses"]
-            if b["anchor"]["kind"] == "corner_ordinal"]
+            if b["anchor"]["kind"] == "corner_ordinal"
+            or (b["anchor"]["kind"] == "structure" and b["anchor"].get("ordinal"))]
+
+
+def counted_from(business: dict) -> str:
+    """'a corner' or 'the landmark <id>' — what this business's doors are counted from."""
+    anchor = business["anchor"]
+    if anchor["kind"] == "corner_ordinal":
+        return "a corner"
+    return "the landmark %s" % anchor["target"]
 
 
 # ---------------------------------------------------------------- the four assertions
@@ -114,16 +134,17 @@ def linkage_faults(ordinals: list[dict], declared: set[str],
             placed.add(target)
             if target not in declared:
                 faults.append(
-                    "%s is placed by an ordinal off a corner and stands as %s, and that "
+                    "%s is placed by an ordinal off %s and stands as %s, and that "
                     "record declares no `lot_claim` — an ordinal names no lot and the "
-                    "record has to say so (docs/CORNER-ORDINAL.md)" % (b["id"], target))
+                    "record has to say so (docs/CORNER-ORDINAL.md)"
+                    % (b["id"], counted_from(b), target))
         else:
-            waiting.append("%s reads as an ordinal off a corner and is not built yet "
-                           "(action %s)" % (b["id"], b["action"]))
+            waiting.append("%s reads as an ordinal off %s and is not built yet "
+                           "(action %s)" % (b["id"], counted_from(b), b["action"]))
     for rid in sorted(declared - placed):
         faults.append(
             "%s declares `lot_claim` and no register business places it by an ordinal off "
-            "a corner — the declaration has stopped meaning anything" % rid)
+            "a corner or a landmark — the declaration has stopped meaning anything" % rid)
     return faults, waiting
 
 
@@ -213,11 +234,13 @@ def admission_faults(declared: set[str], recs: dict[str, dict],
             if grade == "attested":
                 out.append(
                     "%s/%s: the position is graded `attested`, and how far one door is "
-                    "from a corner is this project's arithmetic and never the paper's"
+                    "from a corner or a landmark is this project's arithmetic and never "
+                    "the paper's"
                     % (rid, phase["id"]))
         if rid not in covered:
             out.append("%s: no liberty covers this record, so the metres between its door "
-                       "and the corner are admitted nowhere a visitor can read them" % rid)
+                       "and the thing it is counted from are admitted nowhere a visitor "
+                       "can read them" % rid)
     return out
 
 
@@ -335,7 +358,7 @@ def gate(quiet: bool = False) -> int:
     faults += admission_faults(declared, recs, load(LIBERTIES))
 
     if not quiet or faults:
-        print("   %d business(es) read as an ordinal off a corner; %d record(s) declare "
+        print("   %d business(es) read as an ordinal off a corner or a landmark; %d record(s) declare "
               "`lot_claim`" % (len(ordinals), len(declared)))
         for line in waiting + conceded:
             print("   note: %s" % line)
@@ -424,11 +447,15 @@ def self_test() -> int:
 
     fires("an ordinal placement whose record declares nothing",
           linkage_faults([{"id": "b", "action": "enrich_existing",
-                           "action_target": "x"}], set(), {"x"})[0])
+                           "action_target": "x",
+                           "anchor": {"kind": "corner_ordinal"}}], set(), {"x"})[0])
     fires("a declaration no ordinal reading places",
           linkage_faults([], {"orphan"}, {"orphan"})[0])
     unbuilt = linkage_faults([{"id": "b", "action": "new_building",
-                               "action_target": "a+b"}], set(), {"x"})
+                               "action_target": "a+b",
+                               "anchor": {"kind": "structure",
+                                          "target": "a+b",
+                                          "ordinal": {"count": 2}}}], set(), {"x"})
     fires("…and a business not built yet is reported, not failed",
           unbuilt[0] == [] and len(unbuilt[1]) == 1)
 
