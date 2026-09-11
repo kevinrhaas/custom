@@ -105,8 +105,6 @@
 # --- see a resident_crosswalk in every domain, so "1,282 of 1,282" may be an undercount of what
 # --- is still unwritten. Run it, then spend whatever it exposes, here.
 
-
-
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
@@ -318,6 +316,14 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 # --- EPIC: THE NEWBERRY INDEX — 4,199 of 6,658 cards unread at a measured 0.0% match rate.
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
+
+# --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs of town cards a FUZZY candidate test proposes
+# --- and no page has been read for. T-1002 ruled three of them (Madore/Medore Beaubien,
+# --- Clybourn/Clybourne Archibald, Russel/Russell E. Heacock) under a new rule C10 and then
+# --- counted the class: tools/measure_card_fold.py prints the list. It is a WORKLIST and not
+# --- 68 duplicates — some are one man, some are two, and 'Mary Noble' against 'Mark Noble' is
+# --- the shape a mechanical fold would get wrong. A page per pair, so more than five tickets.
+T-1028 — EPIC — the 68 one-letter card pairs a fuzzy candidate test proposes and nobody has read a page for: 62 whose surname is a letter apart, 6 whose forename is
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
