@@ -11212,3 +11212,65 @@ house and the shop, the same plate and the same grade) · **L1** (no figure is d
 (the sheet's other buildings).
 **Covers:** `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_type`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_pitch_deg`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.wall_height_m`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.chimneys`.
 **Recorded:** 2026-09-11 (T-1036).
+
+### L232 — The fort's well is placed by two witnesses and every inch of its curb is ours
+
+**Decision:** the fort's well stands in the scene — `data/wells/fort_dearborn_well.json`,
+drawn by `renderers/web/js/wells.js` at local east 1152.50, north 139.53, which is UTM
+448225.20 E, 4637535.33 N: due south of Fort Dearborn's enclosure centre, outside the pickets
+and inside the outer fence. What is drawn there is **a curb and nothing else** — a round
+timber rim 1.10 m across the outside, 0.60 m high and 0.10 m thick, over a 0.90 m opening
+closed 0.25 m down by a dark disc so the ring reads as a shaft rather than as timber laid on
+sward. **Plan, diameter, height, thickness and material are all five invented**, and every
+vertex of the curb is graded `reconstructed`, so hiding that tier removes the whole well and
+the fort's outer ground goes honestly blank again.
+**Why:** the place is as well attested as anything at this fort and the project had no way to
+draw it. The 1830 Harrison plan letters a small ring `Well`; Gurdon Hubbard, from memory and
+not from the plate, puts it *"in the outer inclosure and near the south gate"*. T-0881 measured
+the ring and then could do nothing with the measurement, because
+`data/structures.schema.json` offers twelve archetypes and none of them is a well — the
+nearest, `outbuilding`, builds a walled and roofed shed — and **a structure record with no
+buildable form does not validate**, so the well could not be carried even as an evidence
+record. The reading sat in `docs/RESEARCH/wells.md` § 5 with nothing to attach it to. The
+choice was therefore between a curb whose every dimension is invented and a measured place
+that stays invisible, and this project's standing ruling on that choice is to draw it and
+label it (AGENTS.md § RECONSTRUCTED IS A TIER), which is the same trade **L60** made for the
+pound's fence and **L229** for the grave's pickets.
+**What bounds the invention:** the USE, and nothing else — no source reached gives this well
+a dimension, a plan or a material. A shaft has to take a man down it to dig and to clean, so
+it is about three feet across (0.91 m, recorded converted); a curb exists to stop a child or
+a beast walking into it in the dark and to turn the surface wash, so it is past stepping over
+unawares and low enough to draw a full bucket over, which is 2 ft; the rim is then the
+difference between the two diameters rather than a third guess. The material is timber
+because this fort is built of timber throughout and stone had to be fetched to Chicago.
+**What is REFUSED, and each refusal is the larger half of this entry.** (1) **No dimension
+comes off the plate.** The ring's outer diameter is about 14 px, which at this sheet's
+0.33528 m/px is 4.7 m; no well at Fort Dearborn was four and a half metres across. It is the
+engraver's POINT MARKER, it fixes a place and says nothing about a size, and the record says
+so in its own `plate_symbol` block. (2) **No lifting gear.** A sweep, a windlass and a bucket
+on a rope look completely different from one another, a sweep in particular dominating the
+ground around it, and nothing says which stood here — so the most visible thing in the scene
+would have been its largest invention. A visitor sees a well head with no way to draw from it,
+which is the honest shape of what is known. (3) **No ground treatment.** A working well has a
+trodden, slopped apron and this lays none: the fenced-ground layer treats the inside of a
+closed perimeter and a well has no perimeter, so the apron's extent would be the one dimension
+here that nothing whatever bounds. (4) **No second well, anywhere.** **T-0592** refused a well
+CLASS for the town — wells attach to houses everywhere, so one unplaced well is a claim about
+all the others — and that refusal stands in full. This layer draws a PLACE, and `wells.js`
+enforces it mechanically rather than by good intentions: a well whose position is not graded
+`documented` or `attested` is not drawn, and the refusal is recorded as a problem.
+**And the two witnesses disagree, which is recorded rather than smoothed.** The ring is 52.6 m
+south of the southern extent of the stockade's ink, with the plate's `Gate` lettered further
+south again — so it is nearer the stockade than Hubbard's *"near the south gate"* would put
+it. The plate is preferred because it is a measurement and the sentence is a memory, exactly
+as the wash house record prefers the plate over Hubbard's beach.
+**How to resolve:** a post return, quartermaster's estimate or engineer's report specifying
+the well — such a document carries a depth, a curb specification and often the lifting gear,
+and would settle four of this entry's five inventions at once; the 1835 pre-emption case
+papers over the reservation; or any second plan of this ground drawn to a scale.
+Related: **L60** (the pound, the same trade between an invented fabric and an invisible
+place) · **L229** (the grave's fence, a hand-authored record of one small thing) · **L146**
+(the boats, the layer this one's card and refusals are modelled on) · **L1** (no figure is
+drawn, which is why nobody stands at the curb) · tickets **T-0887** (this), **T-0881** (the
+measurement), **T-0592** (the class this refuses to mint).
+**Recorded:** 2026-09-11 (T-0887).
