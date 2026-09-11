@@ -1,5 +1,5 @@
 ---
-id: T-1014
+id: T-1018
 title: The letters-waiting count on a letter-list line is read as a middle initial on the cards minted from transcriptions: 'Eliphalet Atkins 2' holds surname 'eliphalet' and shows 'Atkins [?] Eliphalet'
 state: open
 epic: META

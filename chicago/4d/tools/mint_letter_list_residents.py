@@ -717,7 +717,7 @@ def split_letters_waiting(as_printed: str) -> tuple[str, int | None]:
     marks them". Only a TRAILING run of digits is taken, and only off a roster line —
     the transcriptions this pass has always read carry the same digits with no
     statement of what they mean, so the cards minted from them are untouched here and
-    the reading they got is a finding of its own (T-1014).
+    the reading they got is a finding of its own (T-1018).
     """
     m = LETTERS_WAITING.search(as_printed)
     if not m:
@@ -1142,7 +1142,7 @@ def build(preload: dict | None = None, only_roster: bool = False):
     the card's ladder rule. T-1011 adds names and must not rewrite anybody, so this mode
     writes the records the ROSTER pool reached and nothing else: every card already
     committed is left exactly as it stands, and so is every name the register pool
-    reaches that the tree does not yet carry (46 of those, a gap of its own — T-1015).
+    reaches that the tree does not yet carry (46 of those, a gap of its own — T-1019).
 
     Candidate order and id allocation are unaffected by the mode: every accepted
     candidate is still built, in the same order, against the same `seen` set, so the

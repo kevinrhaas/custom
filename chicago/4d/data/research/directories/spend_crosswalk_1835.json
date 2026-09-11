@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 581,
-  "carried": 198,
-  "matched": 397,
+  "rulings": 579,
+  "carried": 209,
+  "matched": 395,
   "refused": 184,
-  "distinct_people": 286,
-  "distinct_claims": 641
+  "distinct_people": 285,
+  "distinct_claims": 639
  },
  "rulings": [
   {
@@ -35,6 +35,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Abell' folds to the same string as the 1843 entry's, and the given name of both begins S.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -78,6 +79,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Adams' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -122,7 +124,8 @@
    "rule": "Surname 'Adams' folds to the same string as the card's, and the given name of both begins W.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -187,7 +190,9 @@
    "match_status": "single_entry",
    "rule": "Surname 'Allen' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -231,7 +236,8 @@
    "rule": "Surname 'Allen' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -431,7 +437,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -859,7 +867,8 @@
    "rule": "Surname 'Bishop' folds to the same string as the card's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -880,6 +889,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Blair' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -949,7 +959,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -1036,7 +1048,8 @@
    "rule": "Surname 'Blanchard' folds to the same string as the 1843 entry's, and the given name of both begins F.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -1365,7 +1378,8 @@
    "rule": "Surname 'Boyer' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -1385,7 +1399,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Bradley' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -1473,6 +1489,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Bristol' folds to the same string as the 1843 entry's, and the given name of both begins R.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -1584,7 +1601,8 @@
    "rule": "Surname 'Brown' folds to the same string as the card's, and the given name of both begins H.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -1857,6 +1875,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Burton' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -1926,7 +1945,8 @@
    "rule": "Surname 'Burton' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -1971,7 +1991,8 @@
    "rule": "Surname 'Calhoun' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -2209,7 +2230,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Cary' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -2538,7 +2561,8 @@
    "rule": "Surname 'Christy' folds to the same string as the 1843 entry's, and the given name of both begins N.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -2967,7 +2991,8 @@
    "rule": "Surname 'Clarke' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -3035,7 +3060,8 @@
    "rule": "Surname 'Clybourn' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -3207,7 +3233,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -3508,7 +3536,9 @@
    "match_status": "single_entry",
    "rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins T.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -3671,7 +3701,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Courtney' folds to the same string as the 1843 entry's, and the given name of both begins H.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -3712,6 +3744,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Curtis' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -3891,7 +3924,8 @@
    "rule": "Surname 'Davis' folds to the same string as the 1843 entry's, and the given name of both begins G.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -3996,7 +4030,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Dean' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -4258,7 +4294,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Eldridge' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [
     "address"
    ],
@@ -4282,7 +4320,8 @@
    "rule": "Surname 'Eldridge' folds to the same string as the card's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -4455,6 +4494,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Fitzgerald' folds to the same string as the 1843 entry's, and the given name of both begins T.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -4500,6 +4540,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Fitzsimmons' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -4632,6 +4673,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Foster' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -4698,7 +4740,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Foster' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [
     "address"
    ],
@@ -4878,7 +4922,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -4897,7 +4943,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Gage' folds to the same string as the 1843 entry's, and the given name of both begins E.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -5113,6 +5161,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Gould' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -5447,6 +5496,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Hayward' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -5878,6 +5928,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -6035,7 +6086,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -6378,7 +6431,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Johnson' folds to the same string as the 1843 entry's, and the given name of both begins L.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -6421,6 +6476,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Johnson' folds to the same string as the 1843 entry's, and the given name of both begins S.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -6640,7 +6696,8 @@
    "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins D.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -6808,6 +6865,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Jordan' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -6854,7 +6912,8 @@
    "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -7224,7 +7283,8 @@
    "rule": "Surname 'King' folds to the same string as the 1843 entry's, and the given name of both begins T.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -7420,51 +7480,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "lacey_j_s",
-   "household_id": "hh_lacey_j_s",
-   "resident": "J. S. Lacey",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1527",
-   "claim_ids": [
-    "f1843_e1527"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Lacey' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "lacey_j_s",
-   "household_id": "hh_lacey_j_s",
-   "resident": "J. S. Lacey",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1054",
-   "claim_ids": [
-    "n1844_e1054"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Lacey' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
-   ],
-   "why_refused": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-  },
-  {
-   "outcome": "matched",
    "person_id": "lamb_a",
    "household_id": "hh_lamb_a",
    "resident": "A. Lamb",
@@ -7480,6 +7495,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Lamb' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -7524,7 +7540,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Lawrence' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -7659,7 +7677,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -7724,7 +7744,8 @@
    "rule": "Surname 'Loyd' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -7764,7 +7785,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Ludby' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -8078,6 +8101,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Merrill' folds to the same string as the 1843 entry's, and the given name of both begins G.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -8203,6 +8227,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Mills' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -8225,6 +8250,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Mills' folds to the same string as the 1843 entry's, and the given name of both begins S.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -8447,7 +8473,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -8511,6 +8539,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Morrison' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -8783,6 +8812,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Murray' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -8895,7 +8925,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -9025,7 +9057,8 @@
    "rule": "Surname 'Ogden' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -9113,7 +9146,8 @@
    "rule": "Surname 'Osborn' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -9133,7 +9167,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Paine' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -9178,7 +9214,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -9265,7 +9303,8 @@
    "rule": "Surname 'Peacock' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -9461,7 +9500,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -9594,7 +9635,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -9748,6 +9791,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Reed' folds to the same string as the 1843 entry's, and the given name of both begins S.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -9815,6 +9859,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Reed' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -10071,7 +10116,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -10115,7 +10162,8 @@
    "rule": "Surname 'Rogers' folds to the same string as the card's, and the given name of both begins E.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -10157,6 +10205,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Rue' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -10248,7 +10297,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -10447,7 +10498,8 @@
    "rule": "Surname 'Sherwood' folds to the same string as the card's, and the given name of both begins S.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -10492,7 +10544,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -10512,6 +10566,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Simpson' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -10601,7 +10656,9 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -10641,6 +10698,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -10970,7 +11028,9 @@
    "match_status": "single_entry",
    "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins M.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -11242,7 +11302,9 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Stevens' folds to the same string as the 1843 entry's, and the given name of both begins I.",
-   "carried": [],
+   "carried": [
+    "occupation"
+   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -11958,7 +12020,9 @@
    "match_status": "single_entry",
    "rule": "Surname 'Tucker' folds to the same string as the 1843 entry's, and the given name of both begins H.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -12061,6 +12125,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Wesencraft' folds to the same string as the 1843 entry's, and the given name of both begins C.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -12193,7 +12258,8 @@
    "rule": "Surname 'Williams' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },
@@ -12258,7 +12324,9 @@
    "match_status": "single_entry",
    "rule": "Surname 'Williams' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [],
-   "refused_to_carry": [],
+   "refused_to_carry": [
+    "occupation"
+   ],
    "why_refused": null
   },
   {
@@ -12386,7 +12454,8 @@
    "rule": "Surname 'Wolcott' folds to the same string as the 1843 entry's, and the given name of both begins A.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": null
   },

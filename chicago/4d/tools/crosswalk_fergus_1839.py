@@ -32,6 +32,9 @@ the number does not, and `address_is_street_only` says which rows are which.
 import json, os, re, sys
 from collections import defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import trade_recorded     # "does the layer hold a trade?" (T-0867), imported not restated
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1839_directory_entries.json")
 HH = os.path.join(ROOT, "data/residents/households")
@@ -183,8 +186,10 @@ def main():
     # carry that — an absent trade is the field's most common value, not a null.
     for m in res_matched:
         carries = []
-        has_trade = m["occupation_1835"] not in (None, "", "none_recorded", "unknown")
-        if not has_trade and any(x["occupation_1839"] for x in m["entries_1839"]):
+        # This file had the predicate right from the start and two of its four
+        # siblings did not, so it is stated once now and imported (T-0867).
+        if trade_recorded.absent(m["occupation_1835"]) and any(
+                x["occupation_1839"] for x in m["entries_1839"]):
             carries.append("occupation")
         if any(x["streets_1839"] for x in m["entries_1839"]):
             carries.append("street_1839")
