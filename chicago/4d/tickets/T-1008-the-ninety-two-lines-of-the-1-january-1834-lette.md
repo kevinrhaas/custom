@@ -1,7 +1,7 @@
 ---
 id: T-1008
 title: The ninety-two lines of the 1 January 1834 letter list the crops never carried are read but unminted, and the 97 residents minted from it are a floor of a 170-name return
-state: claimed
+state: split
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
+closed: 2026-09-10
 pr: null
 claimed_by: run 9/10/2026, 7:08:32 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T00:17:59.827Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34544959894
 ---
 
