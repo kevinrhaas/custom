@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nine buyers of town lots, and who the register actually meant', kind: 'fix', ts: '',
+  { v: 745, title: 'Nine buyers of town lots, and who the register actually meant', kind: 'fix', ts: '2026-09-11T22:48:59.946Z', date: 'Sep 11, 2026, 5:48 PM CT',
     items: [
       'The town sold its own lots in 1830 and again in the boom of June 1836, and a clerk wrote each buyer\u2019s name in a ledger. Joining one of those names to a person this reconstruction holds is a guess until somebody argues it. This is the third batch of arguments \u2014 nine names, six accepted, three sent back.',
       'The nine all had the same difficulty: the town held more than one person of the surname, and only the forename chose between them. The lesson of the batch is where you look to settle that. The list of townspeople this project has assembled is a reconstruction \u2014 it holding exactly one Amos Bailey proves nothing about how many the town had. The directories and the newspapers are what the town actually printed, and they answer: six Baileys and one Amos, six Hugunins and one beginning with H, thirteen Kings and one Tuthill.',
