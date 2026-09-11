@@ -595,6 +595,11 @@ the Thompson initial above; **T-1017**, whether buying at the town's OWN school-
 itself a check on a town-side name — the question SKINNER JOSEPH and RUSSELL SAMUEL both turn
 on, filed rather than decided because answering it would reopen rulings already made.
 
+**A FIFTH DERIVED FILE MOVES BEHIND A REFUSAL.** C2 named `export_resident_audit.py --build`,
+`compile_scene.py --all` and `consolidate_resident_evidence.py --build`; a retraction also moves
+`data/research/residents/town_card_candidates.json`, so `tools/consolidate_town_cards.py --apply`
+belongs in the same pass. The gate reports them one failing step at a time.
+
 **Nothing is left unruled.** `resident_crosswalk.json` → `ruled` reads
 `upheld 89, named 1, refused 48, unruled 0`. Every proposal T-0697 added when the surname rule
 widened has been adjudicated by hand, and T-0990 closes on that number rather than on an

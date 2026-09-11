@@ -263,6 +263,13 @@ town. Three George Smiths are printed in this corpus and no volume prints a Jere
 rival card carries it.* THOMPSON JOHN L went to `thompson_john`, which holds no middle initial,
 while the layer holds `thompson_lieut_j_l`. Filed as T-1016.
 
+*C2 named four derived files that move behind a refusal; there is a FIFTH.* Beside
+`export_resident_audit.py --build`, `compile_scene.py --all` and
+`consolidate_resident_evidence.py --build`, a retraction changes a card's `sources` and so
+moves `data/research/residents/town_card_candidates.json` — run
+`tools/consolidate_town_cards.py --apply` in the same pass. The gate reports them one failing
+step at a time, so all five in one go saves a lap each.
+
 *And the Residence column cannot choose between two townsmen.* TAYLOR CHARLES states COOK on one
 row and the poll lists are the town-side partner cohort B requires — but BOTH printed Charles
 Taylors are Chicago men, so a county name discriminates no better than the bare forename does.
