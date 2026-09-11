@@ -2651,7 +2651,6 @@
       "quote": "J. W. Anderson\nConstant Abbott\nWm. G. Austin\nAlmond Axtell 2\nMyron K. Brownson\nTimothy Burnett\nB. H. Bertrand\nCyntha Burbee\nJoseph Babeu\nAnthony Beers\nJ. K. Blodgett\nAarri[?]t Bradford\nErastus Bowen\nChas. Babcock\nAaron Bemis\nO. P. Catran\nD. P. Clevinger\nE. W. Center\nAlfred Clarke\nDaniel B. Clevinger 4\nHenry B. Clarke 2\nAlfred Churchill\nGustavus Clark\nBenj. Chapman\nSamuel Eberiden\nH. K. Fay\nAaron Friend\nJane Forrister\nP. Field\nEbenezer Goodrich\ndane Gray\nWilliam Gooding 2\nJos. A. Gooding\nO. Grant\nPomeroy Goodrich\nLuther Hatch\nReuben Hart\nWooster Harrison [?]\nBenj. Harrison\nJ. P. Harkness\nIsaac Hays\nLevi Hills 2\nH. B. Hoffman\nJ. S. Lacey\nJacob Loose\nJoseph Meeker\nJames Makio\nF. B. Northrop\nLauretta Plympton 2\nT. E. Parsons 2\nRob't. Robinson\nAxtel & Steele\nB. P. Stafford\nH. S. Steele 2",
       "normalized": "J. W. Anderson; Constant Abbott; Wm. G. Austin; Almond Axtell 2; Myron K. Brownson; Timothy Burnett; B. H. Bertrand; Cyntha Burbee; Joseph Babeu; Anthony Beers; J. K. Blodgett; Aarri[?]t Bradford; Erastus Bowen; Chas. Babcock; Aaron Bemis; O. P. Catran; D. P. Clevinger; E. W. Center; Alfred Clarke; Daniel B. Clevinger 4; Henry B. Clarke 2; Alfred Churchill; Gustavus Clark; Benj. Chapman; Samuel Eberiden; H. K. Fay; Aaron Friend; Jane Forrister; P. Field; Ebenezer Goodrich; dane Gray; William Gooding 2; Jos. A. Gooding; O. Grant; Pomeroy Goodrich; Luther Hatch; Reuben Hart; Wooster Harrison [?]; Benj. Harrison; J. P. Harkness; Isaac Hays; Levi Hills 2; H. B. Hoffman; J. S. Lacey; Jacob Loose; Joseph Meeker; James Makio; F. B. Northrop; Lauretta Plympton 2; T. E. Parsons 2; Rob't. Robinson; Axtel & Steele; B. P. Stafford; H. S. Steele 2.",
       "locator": {
-        "artifact_role": "primary",
         "issue_page": 4,
         "column": 2,
         "printed_lines_of_the_return": [
@@ -2710,7 +2709,13 @@
           133,
           136
         ],
-        "lifted_from": "data/research/newspapers/letter_list_1834_01_01_printed.json"
+        "read_at_image": {
+          "roster": "chicago/4d/data/research/newspapers/letter_list_1834_01_01_printed.json",
+          "internet_archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+          "file": "Jan1834-Mar1834.pdf",
+          "file_sha256": "9fdfe5762de29a2581dcffb0a2b2140a15eb04b1811747aa37d78bbda92022d3",
+          "jp2_page": "Jan1834-Mar1834_jp2/Jan1834-Mar1834_0019.jp2"
+        }
       },
       "letter_list_only": true,
       "notes": "THE LINES THE CROPS LOST, LIFTED FROM THE PAGE IMAGE (T-1011, out of T-1008). Claims c026 and c027 of this issue are the two crops the segmenter cut from page 4's second printed column, and an advertisement stands down the middle of that column: between them they carry 78 of the return's 170 printed lines. T-0424 read the whole column at the scan and set every line down in `data/research/newspapers/letter_list_1834_01_01_printed.json`; T-1010 counted what each line reaches and found 54 that reach nothing at all — not refused by any rule, merely never read into a claim. This claim is those 54 lines, in printed order, from the same impression, the same page and the same column as the crops beside it. It is a LIFT of a reading already made and gated, not a second reading: `as_printed` is the type's own setting, unamended, and each entity's `normalized` is identical to it because at the image there is nothing left to resolve. RULING 1 APPLIES, as it does to c026 and c027: this is Chicago's own office, so a listed name mints a resident candidate, flagged `letter_list_only` — and the minting pass's own refusals decide which of them the town keeps. Nothing here is hand-picked: `tools/lift_letter_list_1834_unread.py --check` re-derives the set of lines from the other five claims and fails if it has moved.",

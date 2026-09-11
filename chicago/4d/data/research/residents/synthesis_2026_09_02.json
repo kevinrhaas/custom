@@ -207,7 +207,6 @@
       "hatch_luther",
       "hays_isaac",
       "hoffman_h_b",
-      "lacey_j_s",
       "lauretta_plympton_2",
       "levi_hills_2",
       "loose_jacob",
@@ -244,6 +243,7 @@
       "gould_a_b",
       "hopkins_henry",
       "jordan_j_b",
+      "lacey_j_s",
       "lamb_a",
       "lansing_andrew",
       "lawrence_james_r",
@@ -1019,11 +1019,11 @@
   "after": {
     "households": 1353,
     "persons": 1377,
-    "attested": 490,
-    "inferred": 887,
+    "attested": 491,
+    "inferred": 886,
     "reconstructed": 0,
     "letter_list_only": 747,
-    "projected_residents": 732,
+    "projected_residents": 731,
     "census_1840_linked": 3
   },
   "retirement": {

@@ -79,6 +79,7 @@ CLAIM_ID = "c033"
 QUALIFIED = f"{ISSUE}#{CLAIM_ID}"
 ROLE = "named in the Chicago post-office letter list printed 1834-03-04"
 ROSTER_PATH = "data/research/newspapers/letter_list_1834_01_01_printed.json"
+REPO_ROSTER_PATH = "chicago/4d/" + ROSTER_PATH
 
 NOTES = (
     "THE LINES THE CROPS LOST, LIFTED FROM THE PAGE IMAGE (T-1011, out of T-1008). "
@@ -120,6 +121,18 @@ def unread_lines() -> list[dict]:
     return [r for r in rows if r["n"] not in tied]
 
 
+def image_record() -> dict:
+    """The deposit record of the scan this reading was made at, from the roster itself."""
+    img = load(ROSTER)["image"]
+    return {
+        "roster": REPO_ROSTER_PATH,
+        "internet_archive_item": img["internet_archive_item"],
+        "file": img["file"],
+        "file_sha256": img["file_sha256"],
+        "jp2_page": img["jp2_page"],
+    }
+
+
 def entity(row: dict) -> dict:
     return {
         "as_printed": row["as_printed"],
@@ -145,11 +158,14 @@ def claim(rows: list[dict]) -> dict:
         "quote": text,
         "normalized": "; ".join(r["as_printed"] for r in rows) + ".",
         "locator": {
-            "artifact_role": "primary",
             "issue_page": 4,
             "column": 2,
             "printed_lines_of_the_return": [r["n"] for r in rows],
-            "lifted_from": ROSTER_PATH,
+            # NOT the transcription. This claim's artifact is the page image, and the
+            # deposit record below is re-read from the roster the reading was made in
+            # rather than restated here, so the two cannot drift apart. The compiler
+            # refuses a page-image locator whose record does not match its roster's.
+            "read_at_image": image_record(),
         },
         "letter_list_only": True,
         "notes": NOTES,

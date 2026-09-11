@@ -131,7 +131,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1352
+   "n": 1374
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -141,7 +141,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2554
+   "n": 2597
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -158,13 +158,13 @@
   "residents_ambiguous": 11,
   "residents_ambiguous_same_man_reprinted": 7,
   "residents_contested": 2,
-  "residents_surname_only_refused": 54,
+  "residents_surname_only_refused": 55,
   "voters_matched_one_entry": 14,
   "voters_ambiguous": 9,
   "voters_surname_only_refused": 21,
-  "letter_list_matched_one_entry": 32,
+  "letter_list_matched_one_entry": 34,
   "letter_list_ambiguous": 18,
-  "letter_list_surname_only_refused": 151,
+  "letter_list_surname_only_refused": 152,
   "heads_1840_matched_one_entry": 21,
   "heads_1840_ambiguous": 9,
   "heads_1840_surname_only_refused": 67
@@ -313,7 +313,7 @@
     "reaches_scene": [],
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
    },
    {
@@ -1480,6 +1480,11 @@
     "name": "air. Bowen",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Bowen' stands on printed pages 38-39 and no man under it carries the initial 'A' of 'air. Bowen'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "dane Gray",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Gray' stands on printed pages 38-39 and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
    }
   ]
  },
@@ -2369,6 +2374,31 @@
     "reaches_scene": []
    },
    {
+    "name": "Axtel & Steele",
+    "same_man_reprinted": false,
+    "rule": "Surname 'Steele' folds to the same string as the register entry's, and the given name of both begins A.",
+    "entries_1839": [
+     {
+      "claim": "f1839_r0092",
+      "as_printed": "Ashbel Steele",
+      "printed_page": 39,
+      "role": "sheriff_of_cook_county",
+      "office": "sheriff_of_cook_county",
+      "body": "cook_county",
+      "ward_1839": null,
+      "year": 1840,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     }
+    ],
+    "offices": [
+     "sheriff_of_cook_county"
+    ],
+    "reaches_scene": []
+   },
+   {
     "name": "Brown, William",
     "same_man_reprinted": false,
     "rule": "Surname 'Brown' folds to the same string as the register entry's, and the given name of both begins W.",
@@ -2465,6 +2495,31 @@
     ],
     "offices": [
      "school_inspector"
+    ],
+    "reaches_scene": []
+   },
+   {
+    "name": "Erastus Bowen",
+    "same_man_reprinted": false,
+    "rule": "Surname 'Bowen' folds to the same string as the register entry's, and the given name of both begins E.",
+    "entries_1839": [
+     {
+      "claim": "f1839_r0004",
+      "as_printed": "Erast us Bowen",
+      "printed_page": 38,
+      "role": "collector",
+      "office": "collector",
+      "body": "city_of_chicago",
+      "ward_1839": null,
+      "year": null,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     }
+    ],
+    "offices": [
+     "collector"
     ],
     "reaches_scene": []
    },
@@ -4623,6 +4678,11 @@
     "name": "[uncertain: Skiler Brown]",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Brown]' stands on printed pages 38-39 and no man under it carries the initial 'U' of '[uncertain: Skiler Brown]'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "dane Gray",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Gray' stands on printed pages 38-39 and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
    }
   ]
  },
