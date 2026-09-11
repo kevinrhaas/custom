@@ -40,6 +40,82 @@ FIRM = re.compile(r"^[^,]{0,40}\s&\s|&\s*Co\b|\bBrothers\b", re.I)
 TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "sr", "sen"}
 PLACE = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
 
+# FIRM OR PERSON IS DECIDED ON THE LEADING TOKENS, NOT ON THE FIRST COMMA (T-1013).
+#
+# The first version of this test read `FIRM` against the text before the first
+# comma. That catches the style with no comma in it — `Sicar & Co. groceries and
+# boarding house` — and misses the INVERTED style this volume uses constantly,
+# where the surname is set first so the firm files under its alphabet:
+#
+#     Jones, B. & Co. dry goods and groceries, S. Water, b Clark and Dearborn
+#
+# Before the comma stands `Jones`, so thirty entries of that shape were read as
+# people, and the firm filter in `crosswalk_norris_1844.py` — which exists so a
+# company is never matched to a resident of 1835 — never saw them.
+#
+# THE RULE IS NOT "THE LINE CONTAINS `& Co.`". 124 entries carry that string and
+# most of them are people: `Bradley, Joseph, clerk, at W. H. Adams & Co.'s` is a
+# clerk naming his employer, and `Burley, A. G. of A. G. B. & Co.` is a partner
+# giving his residence. What separates them is WHERE the marker stands. Norris
+# sets the name first and the trade after it, so walk the leading tokens and stop
+# at the first plain lower-case word (the trade has started) or at `of` (the
+# partnership preposition, which can only follow a man's own name). A firm marker
+# inside that prefix is a firm; the same marker after it belongs to somebody
+# else's firm.
+#
+# The prefix is also the firm's NAME, so the two readings cannot disagree.
+OF_STOP = re.compile(r"(?:^|[^A-Za-z])of(?![A-Za-z0-9])", re.I)
+# Lower-case words that are still part of a name, not the start of a trade.
+NAME_PARTICLES = {"and", "the", "de", "du", "van"}
+
+
+def firm_name(prefix):
+    """A firm's name ends where its marker does: the ampersand and the partner
+    after it. Norris sets the address straight on — `Clyburn & Hovey, Clark st.
+    b Lake and Water` — so a name that ran to the end of the prefix would take
+    the street with it."""
+    for i, tok in enumerate(prefix):
+        if tok.startswith("&"):
+            return prefix[:i + 2]
+    return prefix
+
+
+def name_prefix(head):
+    """The leading run Norris sets before the trade — the name, however styled."""
+    keep = []
+    for tok in head.split():
+        if OF_STOP.search(tok):
+            break
+        bare = tok.strip(".,'\"")
+        if bare.islower() and bare not in NAME_PARTICLES:
+            break
+        keep.append(tok)
+    return keep
+
+
+# THE SCANNER WELDS `of` ONTO ITS NEIGHBOUR, AND THEN THE STOP WORD IS NOT A WORD.
+#
+# Three entries of the partner-residence shape lost the space around `of`, so the
+# prefix walk above would run straight past the preposition, reach the firm marker
+# and read a man as his own company. Two of them the boundary-insensitive OF_STOP
+# catches on its own, because what follows `of` is not a letter:
+#
+#     Eddy, Ira B.-of Eddy & Co. res Michigan avenue
+#     Smith, George, of'G. S. & Co. res City Hotel
+#
+# The third is character damage rather than a lost space — `ofJ5.` for `of B.` —
+# and no rule about word boundaries can see it. It is repaired here on the same
+# terms as the forename repairs below (T-0695): the reading moves, the quote and
+# `as_printed` keep the damage, and the row cites the second hand that read the
+# same line off the printed page. Widening OF_STOP to swallow `ofJ5` would also
+# swallow every real word beginning in those two letters, which is why this is a
+# table of named entries and not a looser regex.
+WELDED_OF = [
+    {"surname": "Raymond", "as_read": "ofJ5.", "reading": "of B.",
+     "second_reading": "Raymond, B.W. of B.W.R. & Co., h Wash. b Clark & Lasalle",
+     "file": "1844dir2.txt", "line": 350},
+]
+
 
 def header_like(line: str) -> bool:
     """A running head: short, and either shouting or mostly scanner noise."""
@@ -70,8 +146,9 @@ def clean_head(text: str) -> str:
 
 def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
-    head = clean_head(text)
-    firm = bool(FIRM.search(head.split(",")[0] + ","))
+    head, head_repair = repair_welded_of(clean_head(text))
+    prefix = name_prefix(head)
+    firm = bool(FIRM.search(" ".join(prefix) + ","))
     if "," in head:
         surname, rest = head.split(",", 1)
     else:
@@ -94,17 +171,17 @@ def split_entry(text: str):
     if not occupation and address:
         occupation, address = "", address
     if firm:
-        # A firm's name runs until the trade starts, and the trade starts at the
-        # first plain lower-case word: "Sicar & Co. groceries and boarding house".
-        keep = []
-        for tok in head.split(",")[0].split():
-            if tok.islower() and tok.strip(".") not in ("and", "of", "the", "de", "du", "van"):
-                break
-            keep.append(tok)
-        printed = " ".join(keep).strip(" ,.") or head.split(",")[0].strip()
+        # A firm's name is the very run the test was decided on, and its trade is
+        # what follows: "Sicar & Co. | groceries and boarding house".
+        name = " ".join(firm_name(prefix))
+        printed = name.strip(" ,.") or head.split(",")[0].strip()
+        tail = head[len(name):].strip(" ,.")
+        m = PLACE.search(tail)
+        occupation = (tail[:m.start()] if m else tail).strip(" ,.")
+        address = (tail[m.start():] if m else "").strip(" ,.")
     else:
         printed = surname + (", " + given_s if given_s else "")
-    return {
+    out = {
         "printed_name": printed,
         "surname": None if firm else surname,
         "given": None if firm else (given_s or None),
@@ -112,6 +189,9 @@ def split_entry(text: str):
         "occupation": occupation or None,
         "address": address or None,
     }
+    if head_repair:
+        out["head_repair"] = head_repair
+    return out
 
 
 # GARBLED FORENAMES, REPAIRED (T-0695)
@@ -272,6 +352,29 @@ REPAIR_SOURCE = ("Kim Torp's transcription of Norris 1844 for genealogytrails.co
                  "(\u00a9 2002), cached at data/research/genealogytrails/text/ by "
                  "tools/read_genealogytrails.py --fetch. An independent hand, typed "
                  "from a different copy of the same printed book.")
+
+
+def repair_welded_of(head):
+    """Lift a `of` the scanner welded into its neighbour, so the prefix walk can
+    see the stop word. Returns (head, repair record or None) — the caller keeps
+    the damaged text in `quote` and `as_printed`."""
+    for row in WELDED_OF:
+        if head.startswith(row["surname"]) and row["as_read"] in head:
+            return head.replace(row["as_read"], row["reading"], 1), {
+                "as_read": row["as_read"],
+                "reading": row["reading"],
+                "why": "The scanner welded the partnership `of` into the token beside "
+                       "it, so the entry read as its own firm rather than as a partner "
+                       "giving his residence; the quote keeps the damage.",
+                "evidence": {
+                    "source": REPAIR_SOURCE,
+                    "file": "data/research/genealogytrails/text/" + row["file"],
+                    "line": row["line"],
+                    "reads": row["second_reading"],
+                },
+                "ticket": "T-1013",
+            }
+    return head, None
 
 
 def apply_repair(norm):
@@ -513,6 +616,49 @@ def self_test():
         if norm.get("given") and na.garbled(as_read or "") and (norm["surname"], as_read) not in known:
             fired.append("%s reads a garbled forename %r with no row in REPAIRS or "
                          "UNREPAIRED" % (c["id"], as_read))
+    # T-1013. THE FIRM TEST, AND THE THREE ENTRIES THAT LOOK LIKE FIRMS AND ARE NOT.
+    #
+    # `& Co.` appears in 124 entries and most of them are people naming somebody
+    # else's firm, so the test rests entirely on the marker standing INSIDE the
+    # leading name run. Three partner-residence entries lost the space around the
+    # `of` that ends that run — two to a boundary OF_STOP still sees, one to
+    # character damage WELDED_OF lifts — and each would read as its own company
+    # if the walk ran past the preposition. They are asserted by their printed
+    # text, so a re-read that moves a line fails here instead of quietly minting
+    # four men as firms.
+    by_printed = {}
+    for c in claims:
+        by_printed.setdefault(c["normalized"]["as_printed"], []).append(c)
+    for printed in ("Eddy, Ira B.-of Eddy & Co. res Michigan avenue",
+                    "Smith, George, of'G. S. & Co. res City Hotel",
+                    "Raymond, B. W. ofJ5. W. R. & Co. h Wash, b Clark and Lasalle"):
+        hits = by_printed.get(printed, [])
+        if len(hits) != 1:
+            fired.append("the welded-`of` entry %r is in the reading %d times, not 1 — "
+                         "the text moved under the test" % (printed[:40], len(hits)))
+        elif hits[0]["normalized"]["firm"]:
+            fired.append("%s reads %r as a firm: the walk ran past the partnership "
+                         "`of` and made a man his own company"
+                         % (hits[0]["id"], printed[:40]))
+    for row in WELDED_OF:
+        hits = [c for c in claims
+                if c["normalized"].get("head_repair", {}).get("as_read") == row["as_read"]]
+        if len(hits) != 1:
+            fired.append("welded-`of` repair %r fired on %d entries, not 1"
+                         % (row["as_read"], len(hits)))
+            continue
+        if row["as_read"] not in hits[0]["quote"]:
+            fired.append("welded-`of` repair %r tidied the quote — the damage must "
+                         "stand there" % row["as_read"])
+        if OF_STOP.search(row["as_read"]):
+            fired.append("welded-`of` repair %r repairs a token OF_STOP already sees, "
+                         "so the table is doing the regex's work" % row["as_read"])
+    # The two readings of a firm cannot disagree: the name is the run the test was
+    # decided on, so a business whose name carries no firm marker is a contradiction.
+    for c in claims:
+        if c["normalized"]["firm"] and not FIRM.search(c["normalized"]["printed_name"] + ","):
+            fired.append("%s is read as a business but its name %r carries no firm "
+                         "marker" % (c["id"], c["normalized"]["printed_name"]))
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
