@@ -163,8 +163,8 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
-### L218 — Fifteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 15 businesses
+### L218 — Eighteen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 18 businesses
 **Decision:** where the 1835 record attests a trade and no source of the scene year says
 where it stood, a **street** printed against that person in Fergus's Chicago directory of
 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
@@ -177,16 +177,17 @@ doors are all later than the scene, so the choice was a stated back-projection o
 position at all — the same choice L60 records for the estray pen, decided the same way:
 an absent placement is invisible while a graded one is legible and correctable.
 **Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Fifteen businesses therefore stand
+frontage and numbered its streets for the first time. Eighteen businesses therefore stand
 on a face on the authority of a volume printed four to nine years after the scene, and
 nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names and the rest have no point at all. A reader who thinks that is too far to
-carry a shop is reading the `reconstructed` chip exactly as intended.
+directory names, one stands on a corner the volume prints, and the other fifteen have no
+point at all. A reader who thinks that is too far to carry a shop is reading the
+`reconstructed` chip exactly as intended.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
 dealing a business to one roof on a face is an allocation and not a reading; stacking
 that allocation on an address already read back would be two inventions under one chip.
-The refusals and stand-offs are on the record beside the fifteen, so the arithmetic
+The refusals and stand-offs are on the record beside the eighteen, so the arithmetic
 is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer, and made in the same words
@@ -217,6 +218,21 @@ own ruling, the surname reaches one person again, and the face comes back on the
 authority it was withdrawn under. Nothing was regraded and no placement was invented; the
 crosswalk's own uniqueness test simply stopped being confused by a man the town held four
 times. T-0670's weakness is unchanged and still open — this repaired one instance of it.
+**Restated:** 2026-09-11 (T-0987), from fifteen to eighteen, and the reason is the rule the two
+restatements above both point at. T-0670 — named in the 09-04 entry as "the surname-uniqueness
+weakness that caused it" — had never been applied to the Fergus 1839 crosswalk, only to 1843's
+and Norris's. T-0987's second stretch applied it: 75 of that volume's resident matches print a
+full forename that disagrees with the 1835 name and are now refused, which took the ties from
+73 to 34 and left 22 residents holding the one printed line that actually names them. Three of
+those carry a street this pass can read. **Mark Beaubien** reaches Lake Street off `Beaubien,
+Mark, hotel-keeper, Lake st`; **James Kinzie** reaches Canal Street off `North Canal street`;
+and **Richard J. Hamilton**, clerk of the circuit court, reaches the Clark and Randolph corner
+the volume itself prints — the one corner in the set, under the same clause the two crossings
+stand on. All three are carried four years, the narrowest gap in the set, and all three had
+been sitting in the tie pool because the rule that would have cleared them was not run here.
+Nothing was regraded and no placement was invented. The same pass withdrew two residence faces
+under **L223**, which is the other half of the measurement: the rule gives where the printed
+name is the man's and takes where it is not.
 
 ---
 

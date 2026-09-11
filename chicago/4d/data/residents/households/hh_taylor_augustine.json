@@ -127,14 +127,14 @@
      "outcome": "already_better_placed",
      "clause": "2",
      "value": null,
-     "describes_date": 1843,
-     "read_back_years": 8,
+     "describes_date": 1839,
+     "read_back_years": 4,
      "placement": null,
      "position_local_enu_m": null,
      "sources": [
-      "fergus_chicago_directory_1843"
+      "fergus_chicago_directory_1839"
      ],
-     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1843 prints an address against this name in 1843, and it is left where it is. An 1835 placement already stands: this household works at `st_marys_church`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later. The later address stays on the record as 1843's evidence and moves nothing."
+     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1839 prints an address against this name in 1839, and it is left where it is. An 1835 placement already stands: this household works at `st_marys_church`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later. The later address stays on the record as 1839's evidence and moves nothing."
     }
    }
   ]
