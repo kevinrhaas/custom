@@ -754,7 +754,7 @@ from it. The 2,785 fall into three groups and the answer differs for each:
 |---|---|---|---|
 | inside the seven declared townships | 953 | **953** | the by-section sweep is read whole — **nothing is missing** |
 | sectioned, outside the seven | 1,213 | 0 | outside what the deposits declare; not a hole in them |
-| **no section at all** | **619** | **0** | no section query can return these |
+| **no section at all** | **619** | **0** | no section query can return these — all 619 are now read, at their own detail pages, in a deposit of their own (next section) |
 
 So **both halves of the answer are worth having**. The declaration this domain has been
 making is exactly true: an independent whole-county walk finds all 953 of its rows and
@@ -764,7 +764,58 @@ land rush reached the plat. 618 carry a town code and one is a bare `L6BL17`.
 
 **Nothing here mints, grades or moves a resident.** George Dalton's residence reads
 UNKNOWN on all five rows; a purchase is a transaction and never a home, which is this
-domain's first discipline. **T-1028** is the ticket that reads the 619.
+domain's first discipline. Reading the 619 is the next section.
+
+## The 619 read: every one of them a canal sale (T-1030)
+
+The section above COUNTS the sectionless rows from the county's list page. This one
+READS them. `harvest_land_sales.py --sectionless COOK` takes the rows of that committed
+list whose Section column is empty and asks each one's own detail page for the eight
+columns a list page never prints — residence, social status, acres, price per acre,
+total price, type of sale, volume and page. All 619 were read; the deposit is
+`text/isa_land_tract_sales_cook_sectionless_through_1836.tsv`, in the sweep's own
+seventeen columns, and `coverage.json § completeness_probe.sectionless_harvest` derives
+the measurement below from it.
+
+**The purchaser and the date are cross-checked against the list row and never silently
+corrected.** A disagreement would make the harvest exit non-zero after writing what it
+read, because a register that says two different things about one purchase is a reading
+to rule on and not a row to drop. There were none: all 619 agree, letter for letter.
+
+**What the detail pages say, and it is one thing throughout.**
+
+| | |
+|---|---|
+| type of sale | **CN on all 619** — canal sales, without exception |
+| section on the detail page | **blank on all 619** |
+| residence stated | **0** — every row reads UNKNOWN |
+| rows carrying acreage | **0** — every row reads `0000.00` |
+| total price | **$1,399,066.33** across the 619; 25 are priced at nothing |
+| social status | 215 `I`, 3 `A`, 1 `F`, 400 blank |
+| distinct purchaser spellings | 255 |
+
+Three of those readings are worth more than their line.
+
+**Every one is type `CN`.** These are not the land office's quarter sections at all —
+they are the canal commissioners' lots, sold under the canal grant. That is why the
+register describes them by lot and block in a platted town and gives them no section:
+a canal lot has no aliquot part to give. The by-section sweep was not merely unlucky in
+its query; it was asking a question that this whole class of sale cannot answer.
+
+**The section is blank on the DETAIL page too**, not only on the results list. So the
+emptiness is the register's own and not an artefact of the search form — there is no
+hidden section to be recovered by asking a different way.
+
+**Acres is `0000.00` on every row, so the price is the whole of the quantity.** A lot is
+not measured in acres in this register, and any per-acre arithmetic over these rows would
+be arithmetic over a zero the register never intended as one.
+
+**Nothing here is placed, and nothing here mints a resident.** `in_the_domain_entries` is
+**0**: these rows are read, not joined. A lot and block in a named town is not ground
+until `tract()` either resolves it against a plat or refuses it with a stated reason, and
+this project still does not expand the town codes. That join — and the re-derivation of
+`complete_for_1836_cook_county` that depends on it — is **T-1031**. A purchase is a
+transaction and never a home; the harvest grades nobody.
 
 ## The join to the ground, and the four tracts the town stands on
 

@@ -96,6 +96,47 @@ def declared_townships() -> frozenset:
     return frozenset(("%dN" % tw, "%dE" % rg) for dep in DEPOSITS for tw, rg in dep["pairs"])
 
 
+# The sectionless harvest (T-1030). The probe above COUNTS the rows the register gives
+# no section; this deposit is those same rows READ, one detail page each, in the sweep's
+# own seventeen columns. It is not a third by-section deposit and it declares no ground:
+# a lot and block in a named town is not a section, and joining it to the plat is T-1031.
+# What it adds to the probe's nine columns is the eight a list page never prints —
+# residence, social status, acres, price per acre, total price, type of sale, volume and
+# page — which is what makes a row a SALE rather than a name against a plat.
+SECTIONLESS = {"tsv": "isa_land_tract_sales_cook_sectionless_through_1836.tsv",
+               "ticket": "T-1030", "county": "COOK", "through_year": 1836}
+SECTIONLESS_COLS = ["purchase_no", "purchaser", "residence", "social_status",
+                    "aliquot_or_lot", "section", "township", "range", "meridian",
+                    "county", "acres", "price_per_acre", "total_price", "type_of_sale",
+                    "date_purchased", "volume", "page"]
+
+
+def read_sectionless(domain: Path) -> list:
+    """The sectionless deposit's rows, or [] when it is not committed."""
+    path = domain / "text" / SECTIONLESS["tsv"]
+    if not path.exists():
+        return []
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if lines[0].split("\t") != SECTIONLESS_COLS:
+        raise SystemExit("land_sales: the sectionless deposit's header is not the "
+                         "harvest's detail header")
+    out = []
+    for n, line in enumerate(lines[1:], start=2):
+        if not line.strip():
+            continue
+        cells = line.split("\t")
+        if len(cells) != len(SECTIONLESS_COLS):
+            raise SystemExit("land_sales: %s line %d has %d cells, not %d"
+                             % (SECTIONLESS["tsv"], n, len(cells), len(SECTIONLESS_COLS)))
+        row = dict(zip(SECTIONLESS_COLS, cells))
+        if row["section"].strip():
+            raise SystemExit("land_sales: %s holds %s, which HAS a section (%s) — that "
+                             "row belongs to the by-section sweep, not here"
+                             % (SECTIONLESS["tsv"], row["purchase_no"], row["section"]))
+        out.append(row)
+    return out
+
+
 def read_probe(domain: Path) -> list:
     """The probe's rows, or [] when it is not committed. Header checked like a deposit."""
     path = domain / "text" / PROBE["tsv"]
@@ -116,7 +157,78 @@ def read_probe(domain: Path) -> list:
     return out
 
 
-def build_probe(rows: list, probe: list) -> dict:
+def build_sectionless(sectionless: list, detail: list) -> dict:
+    """What the detail pages say about the rows the list page could only count.
+
+    The probe beside this one says there are N rows with no section. This says how many
+    of them have been READ, and what the reading found that the list page could not
+    print. It asserts nothing about where they stand: a lot and block in a named town is
+    not ground until T-1031 resolves or refuses it, and `in_the_domain_entries` is 0
+    until it does.
+    """
+    if not sectionless:
+        return {}
+    counted = {r["purchase_no"] for r in sectionless}
+    stray = sorted(r["purchase_no"] for r in detail if r["purchase_no"] not in counted)
+    if stray:
+        raise SystemExit("land_sales: %s holds %d row(s) the county list does not count "
+                         "as sectionless: %s" % (SECTIONLESS["tsv"], len(stray),
+                                                 ", ".join(stray[:5])))
+    def tally(key, blank="(blank)"):
+        out = {}
+        for r in detail:
+            k = r[key].strip() or blank
+            out[k] = out.get(k, 0) + 1
+        return dict(sorted(out.items(), key=lambda kv: (-kv[1], kv[0])))
+    def money(v):
+        try:
+            return float(v)
+        except ValueError:
+            return 0.0
+    prices = [money(r["total_price"]) for r in detail]
+    acres = [money(r["acres"]) for r in detail]
+    named = [r for r in detail if r["residence"].strip() not in ("", "UNKNOWN")]
+    unread = len(counted) - len(detail)
+    return {
+        "ticket": SECTIONLESS["ticket"],
+        "deposit": SECTIONLESS["tsv"],
+        "query": "one detail page per sectionless row of %s, by purchase number"
+                 % PROBE["tsv"],
+        "why": "The list page prints nine columns and the detail page seventeen. The "
+               "eight it adds — residence, social status, acres, price per acre, total "
+               "price, type of sale, volume and page — are what make a row a sale rather "
+               "than a name against a plat, and no section query can reach them.",
+        "counted_by_the_probe": len(counted),
+        "read_at_their_detail_pages": len(detail),
+        "still_unread": unread,
+        "by_type_of_sale": tally("type_of_sale"),
+        "by_social_status": tally("social_status"),
+        "residence_stated": len(named),
+        "rows_with_acreage": sum(1 for a in acres if a),
+        "total_price_dollars": round(sum(prices), 2),
+        "priced_at_nothing": sum(1 for v in prices if not v),
+        "distinct_purchaser_spellings": len({r["purchaser"].strip() for r in detail}),
+        "in_the_domain_entries": 0,
+        "reading": "All %d rows the probe counts are now read at their own detail pages, "
+                   "and the reading is one thing throughout: every one is type %s, a "
+                   "canal sale — these are the canal commissioners' lots, not the land "
+                   "office's quarter sections. Not one carries a section on its detail "
+                   "page either, so the blank the list page shows is the register's and "
+                   "not the search form's. %d state a residence; the rest say UNKNOWN. "
+                   "%d carry acreage, because a lot is not measured in acres here — the "
+                   "price is the whole of the quantity, $%s across the %d rows, and %d "
+                   "of them are priced at nothing. %d distinct purchaser spellings. "
+                   "NONE of this is in `entries.json`: these rows are read, not placed, "
+                   "and resolving or refusing a lot-and-block-in-a-named-town against "
+                   "the plat is T-1031. No resident is minted or regraded by a harvest."
+                   % (len(detail), ", ".join(tally("type_of_sale")), len(named),
+                      sum(1 for a in acres if a), format(round(sum(prices), 2), ",.2f"),
+                      len(detail), sum(1 for v in prices if not v),
+                      len({r["purchaser"].strip() for r in detail})),
+    }
+
+
+def build_probe(rows: list, probe: list, detail: list) -> dict:
     """What the whole-county list says about the by-section sweep beside it.
 
     Three disjoint groups, and the answer is different for each: a row inside the seven
@@ -166,12 +278,15 @@ def build_probe(rows: list, probe: list) -> dict:
                    "description would go, and %d is a bare lot and block with no code at "
                    "all. Their dates are the register's own and are carried unsmoothed, "
                    "including the four this project does not believe. They are counted "
-                   "here and they are NOT in the deposit; reading them is T-1028."
+                   "here and they are NOT in the by-section deposit. Reading them is "
+                   "T-1030, whose harvest is `sectionless_harvest` below; joining them "
+                   "to the plat is T-1031."
                    % (len(inside), PROBE["through_year"], PROBE["through_year"],
                       len(sectionless),
                       sum(n for c, n in codes.items() if c.startswith("CHI")),
                       ", ".join(sorted(c for c in codes if c.startswith("CHI"))),
                       sum(n for c, n in codes.items() if not c.startswith("CHI"))),
+        "sectionless_harvest": build_sectionless(sectionless, detail),
     }
 
 
@@ -379,7 +494,7 @@ def build_records(rows: list, start: int = 1) -> dict:
     }
 
 
-def build_coverage(rows: list, probe: list) -> dict:
+def build_coverage(rows: list, probe: list, detail: list) -> dict:
     # A DECLARATION is a promise that something in the domain reaches the item, and the
     # gate is right to call a declared item nothing reaches a hole. Every section of
     # every township in DEPOSITS was queried; only the ones that returned a sale through
@@ -431,7 +546,7 @@ def build_coverage(rows: list, probe: list) -> dict:
                 % (36 * sum(len(d["pairs"]) for d in DEPOSITS), townships),
         "declarations": declarations,
         "queried_no_sales_through_1836": empty,
-        "completeness_probe": build_probe(rows, probe),
+        "completeness_probe": build_probe(rows, probe, detail),
         "not_read": {
             "ticket": "T-0676",
             "truncated_at_the_150_row_ceiling": truncated,
@@ -448,7 +563,10 @@ def build_coverage(rows: list, probe: list) -> dict:
                     "`completeness_probe` above: the sweep is complete for every section "
                     "it declares, and Cook County's register also holds sales with NO "
                     "section — town lots described by their plat — which no section "
-                    "query can return. Those are counted, not read; T-1028 reads them.",
+                    "query can return. T-1030 has now read every one of those at its "
+                    "own detail page, into a deposit of its own that declares no ground; "
+                    "what is still outstanding is not the reading but the placing, which "
+                    "is T-1031.",
         },
     }
 
@@ -1072,7 +1190,7 @@ def derive(domain: Path) -> dict:
         ordered += recs["records"]
     ids = {row["purchase_no"]: rec["id"] for row, rec in zip(rows, ordered)}
     out["entries.json"] = build_entries(rows, ordered)
-    out["coverage.json"] = build_coverage(rows, read_probe(domain))
+    out["coverage.json"] = build_coverage(rows, read_probe(domain), read_sectionless(domain))
     out["crosswalk.json"] = build_crosswalk(rows, ids)
     out["resident_crosswalk.json"] = build_resident_crosswalk(rows, ids, domain)
     return out
