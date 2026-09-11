@@ -128,7 +128,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- dev and withdrawn today: check.sh's negative-control self-tests print FAIL lines that
 # --- look exactly like a failing step.
 T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
-T-0763 — check.sh self-tests print FAIL lines that are indistinguishable from a failing step, and three tickets misdiagnosed dev's red on them
 
 # --- ==========================================================================
 # --- 3. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
