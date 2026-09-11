@@ -942,7 +942,7 @@
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
-   "placement_class": "street_only",
+   "placement_class": "relative",
    "cites": [
     "chicago_american_1835_06_13#c017",
     "chicago_american_1835_06_20#c008",

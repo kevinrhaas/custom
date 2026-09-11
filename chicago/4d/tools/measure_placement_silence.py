@@ -51,6 +51,16 @@ THE TWO POPULATIONS, AND ONLY ONE OF THEM IS THIS PASS'S TO FIX.
     could prefer that address without placing the house on the strength of an
     advertisement that had not run yet.
 
+AND A THIRD, SINCE T-0948, WHICH IS NEITHER OF THOSE: **A STREET NAMED, NARROWED BY
+AN ANCHOR ON THAT SAME STREET.** A house printing "South Water street" one week and
+"on South Water street, at the stand formerly occupied by Clark & Co." the next has
+not contradicted itself and was never silent; it said less and then said more about
+one frontage. `compile_gazetteer` takes the narrower reading, bounded to the SAME
+street and to the scene date, and this report prints those houses in their own
+section rather than under "silent when minted" — which the counts above exist to
+state exactly. An anchor on ANOTHER street stays `anchor_changes`' to declare and is
+counted in the second population, where it belongs.
+
 The rank is `compile_gazetteer.placement_rank`, read from that module rather than
 retyped, so this report and the compiler cannot disagree about what outranks what.
 """
@@ -164,14 +174,30 @@ def report() -> int:
           "(the scene-date bound, working)" % (SCENE_DATE.isoformat(), len(after_scene)))
     print("  — no printing of theirs ever named any ground              %4d  "
           "(T-0859: nothing to place them by, and none is invented)" % len(groundless))
-    if took:
+    # TWO REPAIRS, REPORTED APART (T-0948). Both write `placement_from`, and folding
+    # them together would file a house that named its street under "silent when
+    # minted" — which is the one thing this report exists to count exactly.
+    narrowed = [b for b in took
+                if (b["placement_from"].get("rule") or "").startswith("T-0948")]
+    silent_then = [b for b in took if b not in narrowed]
+    if silent_then:
         print("\nSILENT WHEN MINTED, PLACED BY A LATER PRINTING — repaired here")
-        for b in sorted(took, key=lambda b: b["id"]):
+        for b in sorted(silent_then, key=lambda b: b["id"]):
             frm = b["placement_from"]
             street = frm.get("street_from_reading")
             print("  %-52s %-11s %s%s"
                   % (b["id"], (b.get("placement") or {}).get("class"),
                      frm["first_issue"], "  street: %s" % street if street else ""))
+    if narrowed:
+        print("\nA STREET NAMED, NARROWED BY AN ANCHOR ON THAT SAME STREET (T-0948) —\n"
+              "not silence repaired: the coarse printing said less, and the anchored one "
+              "said more\nabout the same frontage. An anchor on ANOTHER street is a move "
+              "and `anchor_changes`' alone")
+        for b in sorted(narrowed, key=lambda b: b["id"]):
+            frm = b["placement_from"]
+            print("  %-52s %-11s %s  street: %s  bound: %s"
+                  % (b["id"], (b.get("placement") or {}).get("class"),
+                     frm["first_issue"], frm.get("street"), frm.get("bound")))
     if groundless:
         print("\nNO PRINTING OF THEIRS EVER NAMED ANY GROUND (T-0859) — a `street_only`\n"
               "carrying neither a street nor an anchor is not an address, so these are "

@@ -69936,10 +69936,10 @@
       ],
       "street": "South Water Street",
       "placement": {
-        "class": "street_only",
-        "anchor": null,
-        "offset_text": "Apply 10 < ROCKWELL, Bouth Wate ant",
-        "offset_normalized": "Apply to […] ROCKWELL, [S]outh Wate[r street]",
+        "class": "relative",
+        "anchor": "the stand formerly occupied by Clark & Co.",
+        "offset_text": "urnitere ab the stand ‘on 8 Water atreot forinerly-oceipled by Clark, Fils Go.,",
+        "offset_normalized": "[F]urniture a[t] the stand on S[outh] Water [s]tre[e]t, formerly occ[u]p[i]ed by Clark, [Fils?] [C]o.",
         "street": "South Water Street"
       },
       "evidence": {
@@ -70009,15 +70009,19 @@
         }
       ],
       "placement_from": {
-        "rule": "T-0440: the minting printing gave no address, so the house is placed by the earliest printing that did. A printing that omits the address does not contradict one that gives it. T-0859: a `street_only` naming neither a street nor an anchor is such a printing, whatever its class says.",
-        "first_issue": "1835-06-27",
+        "rule": "T-0948: the printing holding this house named a street and no anchor, so it is placed by the earliest printing that named an anchor ON THAT SAME STREET. A printing that names a street and no landmark has said less, not something else, and the narrower reading contradicts none of it. An anchor on another street is a move and `anchor_changes`' alone.",
+        "first_issue": "1835-07-04",
         "claims": [
-          "chicago_american_1835_06_27#c002"
+          "chicago_american_1835_07_04#c004"
         ],
+        "bound": "dateline",
+        "street": "South Water Street",
         "superseded": {
-          "class": "none"
+          "class": "street_only",
+          "anchor": null,
+          "street": "South Water Street"
         },
-        "street_from_reading": "South Water Street"
+        "copy_date": "1835-06-08"
       },
       "built_at_scene_date": true,
       "trade_classes": [
