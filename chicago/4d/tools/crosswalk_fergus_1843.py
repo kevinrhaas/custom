@@ -171,7 +171,14 @@ def main():
             "entries_1843": rows,
         }
         carries = []
-        if not r["occupation"] and any(x["occupation_1843"] for x in rows):
+        # `none_recorded` IS NO OCCUPATION, and it is the residents layer's most
+        # common value for the field — not a null. The truthiness test this line
+        # used to make read every one of those people as already having a trade,
+        # so `could_carry_occupation` reported 0 against Norris's 63 on the same
+        # residents and the same rule. The predicate is tiebreak's, which this
+        # file already imports for the discriminator (T-0867).
+        if not tiebreak.is_trade(r["occupation"]) and any(
+                x["occupation_1843"] for x in rows):
             carries.append("occupation")
         if not r["lives_at"] and any(x["address_1843"] for x in rows):
             carries.append("address")

@@ -87,11 +87,6 @@ def residents():
     return out
 
 
-def blank_occupation(value) -> bool:
-    """True where the 1835 layer records a trade. `none_recorded` records none."""
-    return bool(value) and value != "none_recorded"
-
-
 def main():
     entries = json.load(open(ENTRIES, encoding="utf-8"))["claims"]
     by_key = defaultdict(list)
@@ -162,8 +157,11 @@ def main():
         # test this line used to make read 23 of the 48 matched people as
         # already having a trade and reported `could_carry_occupation: 0` — a
         # nil that looked like a finding and was a bug. Twenty-one of them have
-        # a trade printed against their name in 1844 (T-0569).
-        if not blank_occupation(r["occupation"]) and any(x["occupation_1844"] for x in rows):
+        # a trade printed against their name in 1844 (T-0569). The predicate is
+        # tiebreak's, ONE copy for all three directory crosswalks: this file
+        # carried its own and Fergus 1843 carried none at all, which is how the
+        # same bug was live in 1843 a month after it was fixed here (T-0867).
+        if not tiebreak.is_trade(r["occupation"]) and any(x["occupation_1844"] for x in rows):
             carries.append("occupation")
         if not r["lives_at"] and any(x["address_1844"] for x in rows):
             carries.append("address")

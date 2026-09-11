@@ -13,8 +13,8 @@
  "reading_note": "transcription_mediated throughout: this is archive.org's OCR of the printed page, machine-read and not checked against the image by eye. The damage is left in every quote on purpose — 'Win.' for 'Wm.', 'ISickalls' for 'Nickalls' — because a tidied quote cannot be found again. The repair, where one is safe, is in normalized. A forename the scanner garbled beyond a compositor's alphabet is repaired against Kim Torp's independent transcription of the same directory, and the repaired entry carries normalized.given_repair with both readings and the citation (T-0695); where that second hand cannot read the token either, the damage stands.",
  "counts": {
   "claims": 2073,
-  "person": 2008,
-  "business": 65,
+  "person": 1968,
+  "business": 105,
   "given_repairs": 15
  },
  "claims": [
@@ -321,15 +321,15 @@
   },
   {
    "id": "n1844_e0010",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Adams, W. H. & Co. boot and shoe dealers, 138 Lake st (See card)",
    "normalized": {
-    "printed_name": "Adams, W. H",
-    "surname": "Adams",
-    "given": "W. H",
-    "firm": false,
-    "occupation": "& Co. boot and shoe dealers, 138 Lake st (See card)",
+    "printed_name": "Adams, W. H. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "boot and shoe dealers, 138 Lake st (See card)",
     "address": null,
     "as_printed": "Adams, W. H. & Co. boot and shoe dealers, 138 Lake st (See card)",
     "section": "directory"
@@ -345,7 +345,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Adams, W. H"
+    "Adams, W. H. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -538,15 +538,15 @@
   },
   {
    "id": "n1844_e0017",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Allen, J. P. & Co. lumber merchants en Canal street, 3d Ward",
    "normalized": {
-    "printed_name": "Allen, J. P",
-    "surname": "Allen",
-    "given": "J. P",
-    "firm": false,
-    "occupation": "& Co. lumber merchants en Canal street, 3d Ward",
+    "printed_name": "Allen, J. P. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "lumber merchants en Canal street, 3d Ward",
     "address": null,
     "as_printed": "Allen, J. P. & Co. lumber merchants en Canal street, 3d Ward",
     "section": "directory"
@@ -562,7 +562,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Allen, J. P"
+    "Allen, J. P. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -2460,15 +2460,15 @@
   },
   {
    "id": "n1844_e0079",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Barrows, D, A. & Co. confectioners, 147 Lake street (Sec card)",
    "normalized": {
-    "printed_name": "Barrows, D, A",
-    "surname": "Barrows",
-    "given": "D, A",
-    "firm": false,
-    "occupation": "& Co. confectioners, 147 Lake street (Sec card)",
+    "printed_name": "Barrows, D, A. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "confectioners, 147 Lake street (Sec card)",
     "address": null,
     "as_printed": "Barrows, D, A. & Co. confectioners, 147 Lake street (Sec card)",
     "section": "directory"
@@ -2484,7 +2484,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Barrows, D, A"
+    "Barrows, D, A. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -7630,15 +7630,15 @@
   },
   {
    "id": "n1844_e0245",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Burley, A. G. & Co. crockery store, 105 Lake st (See card)",
    "normalized": {
-    "printed_name": "Burley, A. G",
-    "surname": "Burley",
-    "given": "A. G",
-    "firm": false,
-    "occupation": "& Co. crockery store, 105 Lake st (See card)",
+    "printed_name": "Burley, A. G. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "crockery store, 105 Lake st (See card)",
     "address": null,
     "as_printed": "Burley, A. G. & Co. crockery store, 105 Lake st (See card)",
     "section": "directory"
@@ -7654,7 +7654,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Burley, A. G"
+    "Burley, A. G. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -9335,15 +9335,15 @@
   },
   {
    "id": "n1844_e0300",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "''Carter, T. B. & Co. dry goods and groceries, us Lake st",
    "normalized": {
-    "printed_name": "Carter, T. B",
-    "surname": "Carter",
-    "given": "T. B",
-    "firm": false,
-    "occupation": "& Co. dry goods and groceries, us Lake st",
+    "printed_name": "Carter, T. B. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, us Lake st",
     "address": null,
     "as_printed": "''Carter, T. B. & Co. dry goods and groceries, us Lake st",
     "section": "directory"
@@ -9359,7 +9359,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Carter, T. B"
+    "Carter, T. B. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -10048,15 +10048,15 @@
   },
   {
    "id": "n1844_e0323",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Chapin, J. P. & Co. forwarding and commission merchants South\n  Water st",
    "normalized": {
-    "printed_name": "Chapin, J. P",
-    "surname": "Chapin",
-    "given": "J. P",
-    "firm": false,
-    "occupation": "& Co. forwarding and commission merchants South Water st",
+    "printed_name": "Chapin, J. P. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "forwarding and commission merchants South Water st",
     "address": null,
     "as_printed": "Chapin, J. P. & Co. forwarding and commission merchants South Water st",
     "section": "directory"
@@ -10072,7 +10072,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Chapin, J. P"
+    "Chapin, J. P. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -12094,15 +12094,15 @@
   },
   {
    "id": "n1844_e0389",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Collins, S. B. & Co. boot, shoe, and leather store, 140 Lake st",
    "normalized": {
-    "printed_name": "Collins, S. B",
-    "surname": "Collins",
-    "given": "S. B",
-    "firm": false,
-    "occupation": "& Co. boot, shoe, and leather store, 140 Lake st",
+    "printed_name": "Collins, S. B. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "boot, shoe, and leather store, 140 Lake st",
     "address": null,
     "as_printed": "Collins, S. B. & Co. boot, shoe, and leather store, 140 Lake st",
     "section": "directory"
@@ -12118,7 +12118,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Collins, S. B"
+    "Collins, S. B. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -16354,15 +16354,15 @@
   },
   {
    "id": "n1844_e0525",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Dow, J. I. & Co. painters, Clark st. b Lake & Ran sts (See card)",
    "normalized": {
-    "printed_name": "Dow, J. I",
-    "surname": "Dow",
-    "given": "J. I",
-    "firm": false,
-    "occupation": "& Co. painters, Clark st",
+    "printed_name": "Dow, J. I. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "painters, Clark st",
     "address": "b Lake & Ran sts (See card)",
     "as_printed": "Dow, J. I. & Co. painters, Clark st. b Lake & Ran sts (See card)",
     "section": "directory"
@@ -16378,7 +16378,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Dow, J. I"
+    "Dow, J. I. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -20260,15 +20260,15 @@
   },
   {
    "id": "n1844_e0651",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Frink, Walker, & Co. stage proprietors, corner of Lake and Dear-\n  born sts",
    "normalized": {
-    "printed_name": "Frink, Walker",
-    "surname": "Frink",
-    "given": "Walker",
-    "firm": false,
-    "occupation": "& Co. stage proprietors, corner of Lake and Dear born sts",
+    "printed_name": "Frink, Walker, & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "stage proprietors, corner of Lake and Dear born sts",
     "address": null,
     "as_printed": "Frink, Walker, & Co. stage proprietors, corner of Lake and Dear born sts",
     "section": "directory"
@@ -20284,7 +20284,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Frink, Walker"
+    "Frink, Walker, & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -20861,15 +20861,15 @@
   },
   {
    "id": "n1844_e0670",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "\" « Gale, Stephen F. & Co. book store, 106 Lake st",
    "normalized": {
-    "printed_name": "Gale, Stephen F",
-    "surname": "Gale",
-    "given": "Stephen F",
-    "firm": false,
-    "occupation": "& Co. book store, 106 Lake st",
+    "printed_name": "Gale, Stephen F. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "book store, 106 Lake st",
     "address": null,
     "as_printed": "\" « Gale, Stephen F. & Co. book store, 106 Lake st",
     "section": "directory"
@@ -20885,7 +20885,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Gale, Stephen F"
+    "Gale, Stephen F. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -21574,15 +21574,15 @@
   },
   {
    "id": "n1844_e0693",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Gilbert, Ashley, & Co. dry goods and groceries, S. Water st",
    "normalized": {
-    "printed_name": "Gilbert, Ashley",
-    "surname": "Gilbert",
-    "given": "Ashley",
-    "firm": false,
-    "occupation": "& Co. dry goods and groceries, S. Water st",
+    "printed_name": "Gilbert, Ashley, & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, S. Water st",
     "address": null,
     "as_printed": "Gilbert, Ashley, & Co. dry goods and groceries, S. Water st",
     "section": "directory"
@@ -21598,7 +21598,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Gilbert, Ashley"
+    "Gilbert, Ashley, & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -22287,15 +22287,15 @@
   },
   {
    "id": "n1844_e0716",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Goss, S. W. & Co. dry goods, &c. !J8 Lake st",
    "normalized": {
-    "printed_name": "Goss, S. W",
-    "surname": "Goss",
-    "given": "S. W",
-    "firm": false,
-    "occupation": "& Co. dry goods, &c. !J8 Lake st",
+    "printed_name": "Goss, S. W. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods, &c. !J8 Lake st",
     "address": null,
     "as_printed": "Goss, S. W. & Co. dry goods, &c. !J8 Lake st",
     "section": "directory"
@@ -22311,7 +22311,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Goss, S. W"
+    "Goss, S. W. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -27250,15 +27250,15 @@
   },
   {
    "id": "n1844_e0875",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Holden, C. N. & Co. dry goods and groceries, corner of Clark and\n  South Water sts (See card)",
    "normalized": {
-    "printed_name": "Holden, C. N",
-    "surname": "Holden",
-    "given": "C. N",
-    "firm": false,
-    "occupation": "& Co. dry goods and groceries, corner of Clark and South Water sts (See card)",
+    "printed_name": "Holden, C. N. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, corner of Clark and South Water sts (See card)",
     "address": null,
     "as_printed": "Holden, C. N. & Co. dry goods and groceries, corner of Clark and South Water sts (See card)",
     "section": "directory"
@@ -27274,7 +27274,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Holden, C. N"
+    "Holden, C. N. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -28955,15 +28955,15 @@
   },
   {
    "id": "n1844_e0930",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Irvin, J. B. & Co. dry goods, groceries, Dearborn, b Lake and S.\n  Water (Sec card)",
    "normalized": {
-    "printed_name": "Irvin, J. B",
-    "surname": "Irvin",
-    "given": "J. B",
-    "firm": false,
-    "occupation": "& Co. dry goods, groceries, Dearborn",
+    "printed_name": "Irvin, J. B. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods, groceries, Dearborn",
     "address": "b Lake and S. Water (Sec card)",
     "as_printed": "Irvin, J. B. & Co. dry goods, groceries, Dearborn, b Lake and S. Water (Sec card)",
     "section": "directory"
@@ -28979,7 +28979,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Irvin, J. B"
+    "Irvin, J. B. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -29141,15 +29141,15 @@
   },
   {
    "id": "n1844_e0936",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Jacobus, D. & A. L. looking glass store, 10 Clark street",
    "normalized": {
-    "printed_name": "Jacobus, D",
-    "surname": "Jacobus",
-    "given": "D",
-    "firm": false,
-    "occupation": "& A. L. looking glass store, 10 Clark street",
+    "printed_name": "Jacobus, D. & A. L.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "looking glass store, 10 Clark street",
     "address": null,
     "as_printed": "Jacobus, D. & A. L. looking glass store, 10 Clark street",
     "section": "directory"
@@ -29165,7 +29165,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Jacobus, D"
+    "Jacobus, D. & A. L."
    ],
    "town_finding": false,
    "notes": null
@@ -29792,15 +29792,15 @@
   },
   {
    "id": "n1844_e0957",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Johnson, J. & A. grocers, Dearborn street",
    "normalized": {
-    "printed_name": "Johnson, J",
-    "surname": "Johnson",
-    "given": "J",
-    "firm": false,
-    "occupation": "& A. grocers, Dearborn street",
+    "printed_name": "Johnson, J. & A.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "grocers, Dearborn street",
     "address": null,
     "as_printed": "Johnson, J. & A. grocers, Dearborn street",
     "section": "directory"
@@ -29816,7 +29816,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Johnson, J"
+    "Johnson, J. & A."
    ],
    "town_finding": false,
    "notes": null
@@ -29854,15 +29854,15 @@
   },
   {
    "id": "n1844_e0959",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Johnson, J. & Co., barbers and hair dressers, Clark street",
    "normalized": {
-    "printed_name": "Johnson, J",
-    "surname": "Johnson",
-    "given": "J",
-    "firm": false,
-    "occupation": "& Co., barbers and hair dressers, Clark street",
+    "printed_name": "Johnson, J. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "barbers and hair dressers, Clark street",
     "address": null,
     "as_printed": "Johnson, J. & Co., barbers and hair dressers, Clark street",
     "section": "directory"
@@ -29878,7 +29878,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Johnson, J"
+    "Johnson, J. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -30164,15 +30164,15 @@
   },
   {
    "id": "n1844_e0969",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Johonnott, Wells & Co. leather store, c Lasalle and Lake (See card)",
    "normalized": {
-    "printed_name": "Johonnott, Wells",
-    "surname": "Johonnott",
-    "given": "Wells",
-    "firm": false,
-    "occupation": "& Co. leather store, c Lasalle and Lake (See card)",
+    "printed_name": "Johonnott, Wells & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "leather store, c Lasalle and Lake (See card)",
     "address": null,
     "as_printed": "Johonnott, Wells & Co. leather store, c Lasalle and Lake (See card)",
     "section": "directory"
@@ -30188,7 +30188,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Johonnott, Wells"
+    "Johonnott, Wells & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -30257,15 +30257,15 @@
   },
   {
    "id": "n1844_e0972",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Jones, B. & Co. dry goods and groceries, S. Water, b Clark and\n  Dearborn (See card)",
    "normalized": {
-    "printed_name": "Jones, B",
-    "surname": "Jones",
-    "given": "B",
-    "firm": false,
-    "occupation": "& Co. dry goods and groceries, S. Water",
+    "printed_name": "Jones, B. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, S. Water",
     "address": "b Clark and Dearborn (See card)",
     "as_printed": "Jones, B. & Co. dry goods and groceries, S. Water, b Clark and Dearborn (See card)",
     "section": "directory"
@@ -30281,22 +30281,22 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Jones, B"
+    "Jones, B. & Co."
    ],
    "town_finding": false,
    "notes": null
   },
   {
    "id": "n1844_e0973",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Jones, D. A. & E. M. chair and ca&inet manufactory, Dearborn st",
    "normalized": {
-    "printed_name": "Jones, D. A",
-    "surname": "Jones",
-    "given": "D. A",
-    "firm": false,
-    "occupation": "& E. M. chair and ca&inet manufactory, Dearborn st",
+    "printed_name": "Jones, D. A. & E. M.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "chair and ca&inet manufactory, Dearborn st",
     "address": null,
     "as_printed": "Jones, D. A. & E. M. chair and ca&inet manufactory, Dearborn st",
     "section": "directory"
@@ -30312,7 +30312,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Jones, D. A"
+    "Jones, D. A. & E. M."
    ],
    "town_finding": false,
    "notes": null
@@ -34218,15 +34218,15 @@
   },
   {
    "id": "n1844_e1099",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Lessey, John F. & Co. billiard saloon, corner S. Water and Dear-\n  born sts (See card)",
    "normalized": {
-    "printed_name": "Lessey, John F",
-    "surname": "Lessey",
-    "given": "John F",
-    "firm": false,
-    "occupation": "& Co. billiard saloon, corner S. Water and Dear born sts (See card)",
+    "printed_name": "Lessey, John F. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "billiard saloon, corner S. Water and Dear born sts (See card)",
     "address": null,
     "as_printed": "Lessey, John F. & Co. billiard saloon, corner S. Water and Dear born sts (See card)",
     "section": "directory"
@@ -34242,7 +34242,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lessey, John F"
+    "Lessey, John F. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -34509,15 +34509,15 @@
   },
   {
    "id": "n1844_e1108",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Lock, Wm. & Co. clothing store. Saloon Build. (See card)",
    "normalized": {
-    "printed_name": "Lock, Wm",
-    "surname": "Lock",
-    "given": "Wm",
-    "firm": false,
-    "occupation": "& Co. clothing store. Saloon Build. (See card)",
+    "printed_name": "Lock, Wm. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "clothing store. Saloon Build. (See card)",
     "address": null,
     "as_printed": "Lock, Wm. & Co. clothing store. Saloon Build. (See card)",
     "section": "directory"
@@ -34533,7 +34533,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lock, Wm"
+    "Lock, Wm. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -35129,15 +35129,15 @@
   },
   {
    "id": "n1844_e1128",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Lloyd, Blakesly & Co. dry goods and gro, 101 Lake st (Sec card)",
    "normalized": {
-    "printed_name": "Lloyd, Blakesly",
-    "surname": "Lloyd",
-    "given": "Blakesly",
-    "firm": false,
-    "occupation": "& Co. dry goods and gro, 101 Lake st (Sec card)",
+    "printed_name": "Lloyd, Blakesly & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and gro, 101 Lake st (Sec card)",
     "address": null,
     "as_printed": "Lloyd, Blakesly & Co. dry goods and gro, 101 Lake st (Sec card)",
     "section": "directory"
@@ -35153,7 +35153,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lloyd, Blakesly"
+    "Lloyd, Blakesly & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -37578,15 +37578,15 @@
   },
   {
    "id": "n1844_e1207",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Magie, H. H. & Co. dry goods and groceries, 130 Lake street",
    "normalized": {
-    "printed_name": "Magie, H. H",
-    "surname": "Magie",
-    "given": "H. H",
-    "firm": false,
-    "occupation": "& Co. dry goods and groceries, 130 Lake street",
+    "printed_name": "Magie, H. H. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, 130 Lake street",
     "address": null,
     "as_printed": "Magie, H. H. & Co. dry goods and groceries, 130 Lake street",
     "section": "directory"
@@ -37602,7 +37602,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Magie, H. H"
+    "Magie, H. H. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -42259,15 +42259,15 @@
   },
   {
    "id": "n1844_e1358",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Norton, Horace & Co. forwarding and commission merchants, So.\n  Water st. (See card)",
    "normalized": {
-    "printed_name": "Norton, Horace",
-    "surname": "Norton",
-    "given": "Horace",
-    "firm": false,
-    "occupation": "& Co. forwarding and commission merchants, So. Water st. (See card)",
+    "printed_name": "Norton, Horace & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "forwarding and commission merchants, So. Water st. (See card)",
     "address": null,
     "as_printed": "Norton, Horace & Co. forwarding and commission merchants, So. Water st. (See card)",
     "section": "directory"
@@ -42283,7 +42283,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Norton, Horace"
+    "Norton, Horace & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -45600,15 +45600,15 @@
   },
   {
    "id": "n1844_e1465",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": ".Rattle, F. & Co. boots, shoes, and leather, 133 Lake st",
    "normalized": {
-    "printed_name": "Rattle, F",
-    "surname": "Rattle",
-    "given": "F",
-    "firm": false,
-    "occupation": "& Co. boots, shoes, and leather, 133 Lake st",
+    "printed_name": "Rattle, F. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "boots, shoes, and leather, 133 Lake st",
     "address": null,
     "as_printed": ".Rattle, F. & Co. boots, shoes, and leather, 133 Lake st",
     "section": "directory"
@@ -45624,7 +45624,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Rattle, F"
+    "Rattle, F. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -45693,15 +45693,15 @@
   },
   {
    "id": "n1844_e1468",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Raymond, B. W. & Co. staple goods and groceries, corner South\n  Water and State sts and 122 Lake st up stairs",
    "normalized": {
-    "printed_name": "Raymond, B. W",
-    "surname": "Raymond",
-    "given": "B. W",
-    "firm": false,
-    "occupation": "& Co. staple goods and groceries, corner South Water and State sts and 122 Lake st up stairs",
+    "printed_name": "Raymond, B. W. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "staple goods and groceries, corner South Water and State sts and 122 Lake st up stairs",
     "address": null,
     "as_printed": "Raymond, B. W. & Co. staple goods and groceries, corner South Water and State sts and 122 Lake st up stairs",
     "section": "directory"
@@ -45717,7 +45717,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Raymond, B. W"
+    "Raymond, B. W. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -47925,15 +47925,15 @@
   },
   {
    "id": "n1844_e1540",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Ryer, G. & Co. tailors, Clark street, next door to Post Office",
    "normalized": {
-    "printed_name": "Ryer, G",
-    "surname": "Ryer",
-    "given": "G",
-    "firm": false,
-    "occupation": "& Co. tailors, Clark street, next door to Post Office",
+    "printed_name": "Ryer, G. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "tailors, Clark street, next door to Post Office",
     "address": null,
     "as_printed": "Ryer, G. & Co. tailors, Clark street, next door to Post Office",
     "section": "directory"
@@ -47949,7 +47949,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ryer, G"
+    "Ryer, G. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -48359,15 +48359,15 @@
   },
   {
    "id": "n1844_e1554",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Sanger, L. P. & Co. hat, cap, and fur store, 110 Lake st",
    "normalized": {
-    "printed_name": "Sanger, L. P",
-    "surname": "Sanger",
-    "given": "L. P",
-    "firm": false,
-    "occupation": "& Co. hat, cap, and fur store, 110 Lake st",
+    "printed_name": "Sanger, L. P. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "hat, cap, and fur store, 110 Lake st",
     "address": null,
     "as_printed": "Sanger, L. P. & Co. hat, cap, and fur store, 110 Lake st",
     "section": "directory"
@@ -48383,7 +48383,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Sanger, L. P"
+    "Sanger, L. P. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -48452,15 +48452,15 @@
   },
   {
    "id": "n1844_e1557",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Sauter, Charles & J. shoemakers, 212 Lake st. (See card)",
    "normalized": {
-    "printed_name": "Sauter, Charles",
-    "surname": "Sauter",
-    "given": "Charles",
-    "firm": false,
-    "occupation": "& J. shoemakers, 212 Lake st. (See card)",
+    "printed_name": "Sauter, Charles & J.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "shoemakers, 212 Lake st. (See card)",
     "address": null,
     "as_printed": "Sauter, Charles & J. shoemakers, 212 Lake st. (See card)",
     "section": "directory"
@@ -48476,7 +48476,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Sauter, Charles"
+    "Sauter, Charles & J."
    ],
    "town_finding": false,
    "notes": null
@@ -51242,15 +51242,15 @@
   },
   {
    "id": "n1844_e1647",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Smith, George & Co. private banker* and exchange brokers, Bank\n  Buildings (See card)",
    "normalized": {
-    "printed_name": "Smith, George",
-    "surname": "Smith",
-    "given": "George",
-    "firm": false,
-    "occupation": "& Co. private banker* and exchange brokers, Bank Buildings (See card)",
+    "printed_name": "Smith, George & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "private banker* and exchange brokers, Bank Buildings (See card)",
     "address": null,
     "as_printed": "Smith, George & Co. private banker* and exchange brokers, Bank Buildings (See card)",
     "section": "directory"
@@ -51266,7 +51266,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Smith, George"
+    "Smith, George & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -51304,15 +51304,15 @@
   },
   {
    "id": "n1844_e1649",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Smith, H. & E. dry goods and groceries, 146 Lake st (See card)",
    "normalized": {
-    "printed_name": "Smith, H",
-    "surname": "Smith",
-    "given": "H",
-    "firm": false,
-    "occupation": "& E. dry goods and groceries, 146 Lake st (See card)",
+    "printed_name": "Smith, H. & E.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, 146 Lake st (See card)",
     "address": null,
     "as_printed": "Smith, H. & E. dry goods and groceries, 146 Lake st (See card)",
     "section": "directory"
@@ -51328,7 +51328,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Smith, H"
+    "Smith, H. & E."
    ],
    "town_finding": false,
    "notes": null
@@ -55644,15 +55644,15 @@
   },
   {
    "id": "n1844_e1789",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Turner, J. & L. livery stable, Wolcott st. near North Water st",
    "normalized": {
-    "printed_name": "Turner, J",
-    "surname": "Turner",
-    "given": "J",
-    "firm": false,
-    "occupation": "& L. livery stable, Wolcott st. near North Water st",
+    "printed_name": "Turner, J. & L.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "livery stable, Wolcott st. near North Water st",
     "address": null,
     "as_printed": "Turner, J. & L. livery stable, Wolcott st. near North Water st",
     "section": "directory"
@@ -55668,7 +55668,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Turner, J"
+    "Turner, J. & L."
    ],
    "town_finding": false,
    "notes": null
@@ -55737,15 +55737,15 @@
   },
   {
    "id": "n1844_e1792",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Turner, R. L. & C. wheelrights, Wolcott st. near North Water at",
    "normalized": {
-    "printed_name": "Turner, R. L",
-    "surname": "Turner",
-    "given": "R. L",
-    "firm": false,
-    "occupation": "& C. wheelrights, Wolcott st. near North Water at",
+    "printed_name": "Turner, R. L. & C.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "wheelrights, Wolcott st. near North Water at",
     "address": null,
     "as_printed": "Turner, R. L. & C. wheelrights, Wolcott st. near North Water at",
     "section": "directory"
@@ -55761,7 +55761,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Turner, R. L"
+    "Turner, R. L. & C."
    ],
    "town_finding": false,
    "notes": null
@@ -55892,15 +55892,15 @@
   },
   {
    "id": "n1844_e1797",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Tuttle, N. & F. dry goods and groceries, 68 Lake st",
    "normalized": {
-    "printed_name": "Tuttle, N",
-    "surname": "Tuttle",
-    "given": "N",
-    "firm": false,
-    "occupation": "& F. dry goods and groceries, 68 Lake st",
+    "printed_name": "Tuttle, N. & F.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, 68 Lake st",
     "address": null,
     "as_printed": "Tuttle, N. & F. dry goods and groceries, 68 Lake st",
     "section": "directory"
@@ -55916,7 +55916,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Tuttle, N"
+    "Tuttle, N. & F."
    ],
    "town_finding": false,
    "notes": null
@@ -56853,15 +56853,15 @@
   },
   {
    "id": "n1844_e1828",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Walker, C. & Co. dry goods, gro. leather, &c. S. Water st. b State\n  and Dearborn sts (See card)",
    "normalized": {
-    "printed_name": "Walker, C",
-    "surname": "Walker",
-    "given": "C",
-    "firm": false,
-    "occupation": "& Co. dry goods, gro. leather, &c. S. Water st",
+    "printed_name": "Walker, C. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods, gro. leather, &c. S. Water st",
     "address": "b State and Dearborn sts (See card)",
     "as_printed": "Walker, C. & Co. dry goods, gro. leather, &c. S. Water st. b State and Dearborn sts (See card)",
     "section": "directory"
@@ -56877,7 +56877,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Walker, C"
+    "Walker, C. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -58384,15 +58384,15 @@
   },
   {
    "id": "n1844_e1877",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Wheeler, Wm. & Co. hardwaid, &c. 145 Lake st. (See card)",
    "normalized": {
-    "printed_name": "Wheeler, Wm",
-    "surname": "Wheeler",
-    "given": "Wm",
-    "firm": false,
-    "occupation": "& Co. hardwaid, &c. 145 Lake st. (See card)",
+    "printed_name": "Wheeler, Wm. & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "hardwaid, &c. 145 Lake st. (See card)",
     "address": null,
     "as_printed": "Wheeler, Wm. & Co. hardwaid, &c. 145 Lake st. (See card)",
     "section": "directory"
@@ -58408,7 +58408,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wheeler, Wm"
+    "Wheeler, Wm. & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -58663,15 +58663,15 @@
   },
   {
    "id": "n1844_e1886",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Whit'mc, Magill & Co. forwarding and, commission merchants, N\n  Water street (See card)",
    "normalized": {
-    "printed_name": "Whit'mc, Magill",
-    "surname": "Whit'mc",
-    "given": "Magill",
-    "firm": false,
-    "occupation": "& Co. forwarding and, commission merchants, N Water street (See card)",
+    "printed_name": "Whit'mc, Magill & Co.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "forwarding and, commission merchants, N Water street (See card)",
     "address": null,
     "as_printed": "Whit'mc, Magill & Co. forwarding and, commission merchants, N Water street (See card)",
     "section": "directory"
@@ -58687,7 +58687,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Whit'mc, Magill"
+    "Whit'mc, Magill & Co."
    ],
    "town_finding": false,
    "notes": null
@@ -60442,15 +60442,15 @@
   },
   {
    "id": "n1844_e1943",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Wurts, M. & M. A. dry goods and groceries, 99 Lake st [See card)",
    "normalized": {
-    "printed_name": "Wurts, M",
-    "surname": "Wurts",
-    "given": "M",
-    "firm": false,
-    "occupation": "& M. A. dry goods and groceries, 99 Lake st [See card)",
+    "printed_name": "Wurts, M. & M. A.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "dry goods and groceries, 99 Lake st [See card)",
     "address": null,
     "as_printed": "Wurts, M. & M. A. dry goods and groceries, 99 Lake st [See card)",
     "section": "directory"
@@ -60466,7 +60466,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wurts, M"
+    "Wurts, M. & M. A."
    ],
    "town_finding": false,
    "notes": null
@@ -60783,15 +60783,15 @@
   },
   {
    "id": "n1844_e1954",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Young, W. & E. store South Water st",
    "normalized": {
-    "printed_name": "Young, W",
-    "surname": "Young",
-    "given": "W",
-    "firm": false,
-    "occupation": "& E. store South Water st",
+    "printed_name": "Young, W. & E.",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "store South Water st",
     "address": null,
     "as_printed": "Young, W. & E. store South Water st",
     "section": "directory"
@@ -60807,7 +60807,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Young, W"
+    "Young, W. & E."
    ],
    "town_finding": false,
    "notes": null

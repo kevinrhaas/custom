@@ -32,6 +32,9 @@ the number does not, and `address_is_street_only` says which rows are which.
 import json, os, re, sys
 from collections import defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import tiebreak  # the one `none_recorded` predicate the three crosswalks share (T-0867)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1839_directory_entries.json")
 HH = os.path.join(ROOT, "data/residents/households")
@@ -183,7 +186,7 @@ def main():
     # carry that — an absent trade is the field's most common value, not a null.
     for m in res_matched:
         carries = []
-        has_trade = m["occupation_1835"] not in (None, "", "none_recorded", "unknown")
+        has_trade = tiebreak.is_trade(m["occupation_1835"])
         if not has_trade and any(x["occupation_1839"] for x in m["entries_1839"]):
             carries.append("occupation")
         if any(x["streets_1839"] for x in m["entries_1839"]):

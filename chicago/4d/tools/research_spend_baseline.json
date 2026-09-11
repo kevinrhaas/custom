@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1025
+   "spent": 1030
   },
   "newberry_index": {
    "read": 7005,
@@ -448,6 +448,14 @@
    "to": 203,
    "date": "2026-09-10",
    "why": "T-0961 transcribed all 36 rows of Moses and Kirkland's LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (vol. 1, printed pages 78-79) and adjudicated every one of them against data/residents/ in the same pass: 12 merges, 16 refusals and 8 ABSENCES. The +8 is the absences, and they are the one shape this hop cannot count. An absence is a completed verdict — the residents layer holds no card of that surname at all, so there is no second spelling to put in a merge or a refusal, and books/crosswalk.json files them under the pass's own absences[] with a record_id and a reason apiece. They are not a bridge unbuilt; they are eight men the reconstruction does not have and now knows it does not have: Edward G. Ament, James Galloway, Charles Jouett, John Crafts, Henry Kelly, Antoine Ouilmette, Joseph Pothier and William See. Two of them are holes worth a later pass — Pothier stands one letter from the 'Joseph Porthier' Andreas names as striker beside David McKee, whom this pass merged; the four Laframboise rows beside them were refusable only because the layer holds Josette."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 255,
+   "to": 260,
+   "date": "2026-09-11",
+   "why": "T-0867/T-0868. Forty of Norris 1844's firm entries were read as people because the volume inverts a firm under its first partner and the firm marker fell past the comma — 'Jones, B. & Co. dry goods and groceries'. Filing them as firms took five real men out of AMBIGUOUS and into a single-entry match: W. H. Adams, Stephen F. Gale, Benjamin Jones, D. A. Jones and George Smith. All five match the line that states their PARTNERSHIP, whose parse the spend pass already refuses to cross under its rule 3, so five more rulings reach a person whose card correctly learns nothing. The ceiling moves by exactly those five."
   }
  ],
  "lowered": [
@@ -494,7 +502,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 255,
+  "directories": 260,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 0

@@ -37,6 +37,45 @@ SKIP = {
 ADDENDA_FROM = (72, 28)
 
 FIRM = re.compile(r"^[^,]{0,40}\s&\s|&\s*Co\b|\bBrothers\b", re.I)
+
+# THE FIRM MARKER THAT LANDS PAST THE COMMA (T-0868).
+#
+# `FIRM` reads the head's first comma-separated field, because the volume
+# alphabetises a firm under its first partner — "Sicar & Co. groceries" — and an
+# ampersand deeper in the line is usually a trade's ("dry goods, &c.") or an
+# employer's ("at Perkins & Fenton's"). But the volume ALSO inverts a firm the
+# way it inverts a person, and then the marker falls on the far side of that
+# comma: "Jones, B. & Co. dry goods and groceries, S. Water" is the firm
+# B. Jones & Co., and the person split reads "& Co." as the start of its trade.
+# Forty entries read as people that way and the firm filter never saw one of
+# them, so forty businesses were absent from every pass that asks for firms and
+# forty phantom people stood in the directory crosswalks' surname index.
+#
+# The shape is exact: the trade begins with the ampersand, immediately after the
+# forename run. The discriminator against the membership entry — "Eddy, Ira B.
+# of Eddy & Co.", "Walker. Martin O. of Frink, Walker & Co." — is that a man who
+# is OF a firm, or AT one, prints that connective ahead of the ampersand, inside
+# what the split read as his name. Two entries are held back by it, and both are
+# men.
+SEVERED_FIRM = re.compile(r"^&\s*(?:(?:Co|Cos|Son|Sons|Bro|Bros|Brothers?)\b|[A-Z]\.)")
+NOT_A_FIRM_HEAD = re.compile(
+    r"\b(of|at|to|late|clerk|with|for|res|residence|house|boards?|bds)\b", re.I)
+
+
+def firm_tail(trade: str):
+    """The partner tail at the front of a trade, and the trade without it.
+
+    Same stop rule as the firm branch below: the name runs until the first plain
+    lower-case word. "& Co. boot and shoe dealers" is ("& Co.", "boot and shoe
+    dealers"); "& A. L. looking glass store" is ("& A. L.", "looking glass store").
+    """
+    keep = []
+    for tok in trade.split():
+        if tok.islower() and tok.strip(".") not in ("and", "of", "the", "de", "du", "van"):
+            break
+        keep.append(tok)
+    tail = " ".join(keep).strip().rstrip(" ,")
+    return tail, " ".join(trade.split()[len(keep):]).strip(" ,.")
 TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "sr", "sen"}
 PLACE = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
 
@@ -104,6 +143,13 @@ def split_entry(text: str):
         printed = " ".join(keep).strip(" ,.") or head.split(",")[0].strip()
     else:
         printed = surname + (", " + given_s if given_s else "")
+        if SEVERED_FIRM.match(occupation) and not NOT_A_FIRM_HEAD.search(printed):
+            tail, occupation = firm_tail(occupation)
+            # The firm's name is taken from the printed head rather than rebuilt
+            # from the split, so "Adams, W. H. & Co." keeps the compositor's own
+            # punctuation instead of the forename run's stripped "W. H".
+            printed = (head[:head.index("&")] + tail).strip()
+            firm = True
     return {
         "printed_name": printed,
         "surname": None if firm else surname,
@@ -503,6 +549,45 @@ def self_test():
         if SCANNER_W in (norm.get("given") or ""):
             fired.append("%s still reads the scanner's %r after repair"
                          % (c["id"], SCANNER_W))
+
+    # T-0868. THE FIRM MARKER PAST THE COMMA, held over the split rather than over
+    # the volume, because the volume is what it is wrong about. Each row is a line
+    # the book prints; a row that stops parsing the way it says here is a
+    # regression in `SEVERED_FIRM` / `NOT_A_FIRM_HEAD` and not a reading moving.
+    for line, want_firm, want_name, want_trade in (
+            # a firm inverted under its first partner — the marker falls past the comma
+            ("Jones, B. & Co. dry goods and groceries, S. Water",
+             True, "Jones, B. & Co.", "dry goods and groceries, S. Water"),
+            # two partners sharing a surname, so the tail is initials and not "& Co."
+            ("Jacobus, D. & A. L. looking glass store, 10 Clark street",
+             True, "Jacobus, D. & A. L.", "looking glass store, 10 Clark street"),
+            # the compositor's comma after the tail must not swallow the trade
+            ("Johnson, J. & Co., barbers and hair dressers, Clark street",
+             True, "Johnson, J. & Co.", "barbers and hair dressers, Clark street"),
+            # a MAN of a firm is a man: the connective stands ahead of the ampersand
+            ("Eddy, Ira B.-of Eddy & Co", False, "Eddy, Ira B.-of Eddy", "& Co"),
+            ("Walker. Martin O. of Frink, Walker & Co", False,
+             "Walker. Martin O. of Frink, Walker", "& Co"),
+            # a man who works AT a firm, likewise — and the ampersand is not at the front
+            ("Anderson, Wm. blacksmith, at Perkins & Fenton's", False,
+             "Anderson, Wm", "blacksmith, at Perkins & Fenton's"),
+            # the shape the original FIRM test already saw must keep reading as it did
+            ("Sicar & Co. groceries and boarding house", True, "Sicar & Co", None),
+    ):
+        got = split_entry(line)
+        if got["firm"] is not want_firm:
+            fired.append("severed firm: %r reads firm=%s, wanted %s"
+                         % (line, got["firm"], want_firm))
+        if got["printed_name"] != want_name:
+            fired.append("severed firm: %r names %r, wanted %r"
+                         % (line, got["printed_name"], want_name))
+        if want_trade is not None and got["occupation"] != want_trade:
+            fired.append("severed firm: %r trades %r, wanted %r"
+                         % (line, got["occupation"], want_trade))
+        if got["firm"] and (got["surname"] or got["given"]):
+            fired.append("severed firm: %r is filed as a firm and still carries a "
+                         "surname or a forename, which would put it back in the "
+                         "crosswalks' person index" % line)
 
     known = {(r["surname"], r["as_read"]) for r in REPAIRS}
     known |= {(r["surname"], r["as_read"]) for r in IMAGE_REPAIRS}
