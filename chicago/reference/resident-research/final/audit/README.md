@@ -38,8 +38,8 @@ Each line is *how many of the 1373 people carry at least one record of that kind
 | audit result | people | % |
 | --- | ---: | ---: |
 | `corroborated_across_categories` | 464 | 33.8% |
-| `two_or_more_sources_one_category` | 17 | 1.2% |
-| `one_source` | 318 | 23.2% |
+| `two_or_more_sources_one_category` | 16 | 1.2% |
+| `one_source` | 319 | 23.2% |
 | `the_letter_lists_alone` | 571 | 41.6% |
 | `no_source` | 3 | 0.2% |
 
@@ -323,7 +323,7 @@ defect in this export.
 | no census linkage | 1324 | no 1840 census row is bridged to this person |
 | no address | 1297 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1277 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 889 | one source id on the card and no second category to check it against |
+| rests on one source | 890 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 571 | known only from the post office's uncalled-for lists |
 | no research row | 533 | no cohort ticket has reviewed this person; the programme reached 840 of 1373 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |

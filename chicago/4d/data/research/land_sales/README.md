@@ -1080,17 +1080,100 @@ see `resident_crosswalk.json`, so twenty-four judgements move the meter by one. 
 T-0962's blind spot, alive in this domain for the second cohort running; the crosswalk's own
 `ruled` block is the number to read.
 
+### Cohort C1: the nine with a namesake, surnames A–K, of the town lots (T-1034)
+
+Cohort C is the last shape the town-lot harvest left: every remaining proposal has a
+namesake, so the mechanical rule fired on a surname the layer holds several of and the
+forename alone chose among them. Twenty-eight is more than one run can argue, so C1 takes
+the first surname block — **A to K, nine spellings. Six upheld, three refused.** `ruled`
+118/1/63/28 → **124/1/66/19**; matched 147 → 144, **three cards retracted** carrying
+thirty-three register rows and $9,597 of stated purchase money, 25 of those rows off one
+card. No acres move: all thirty-three are town lots and the register prints `0000.00` in
+the acres column for every one of the 619.
+
+| upheld | refused |
+|---|---|
+| BAILEY AMOS, GRANT JAMES, HUBBARD H G, HUGUNIN H, HUGUNIN HIRAM, KING TUTHILL | COBB L B, FOSTER AMOS, KINZIE JOHN |
+
+**ASK THE PRINTED RECORD HOW MANY MEN THE FORENAME COULD BE, NOT THE LAYER.** This is the
+one lesson C1 carries and it decides seven of the nine. A `rivals[]` list is the LAYER's
+census of the surname, and the layer is a reconstruction; the BROWN WM rule was written
+because a thin layer holding one William Brown said nothing about a town that printed three.
+The mirror of it is true and this block is where it shows: Fergus 1839, Fergus 1843, Norris
+1844 and the newspaper run print **six** Baileys and one Amos, **six** Hugunins and one whose
+name begins H, **thirteen** Kings and one Tuthill, **eight** Hubbards and one H. G. Where
+the fullest record the town has holds the forename once, the namesake is a namesake and not
+a rival, and the proposal stands on a token rather than on a gap.
+
+**AN INITIAL-ONLY SPELLING IS NOT AUTOMATICALLY THE BROWN WM SHAPE — HUGUNIN H IS WHERE THE
+LINE FALLS.** A bare H looks like a spelling with no discriminating token until two questions
+are asked of the page. Is the initial unique in the printed record of the surname? Six
+Hugunins are printed — Capt. Robert, Daniel, Hiram, James R., John C., Leonard C. — and one
+begins with H. Does the TOWN use that abbreviation for that man? The Democrat of 20 May 1835
+sets 'H. HUGUNIN' as chairman of the town meeting, and the same run prints him in full as
+'Capt. HIRAM HUGUNIN, Agent, Chicago' for the North Western Fire and Marine of Oswego four
+weeks later. An initial the town itself uses for one man is a token, not the absence of one.
+
+**AND COBB L B IS THE SAME QUESTION ANSWERED THE OTHER WAY, WHICH IS WHY THE TWO BELONG IN
+ONE COHORT.** Two initials look like twice the discriminator and are not, because the rival
+carries the same middle one: the town's documented Cobb is S. B. Cobb — the saddle, harness
+and trunk manufactory at the corner of Lake, out of the dissolution of Goss & Cobb, in the
+American of 8 and 13 June 1835, 'Silas Cobb' in the Democrat's letter list of 1 April 1834,
+'Cobb, Silas B.' at 171 Lake in Fergus 1839 — and only the FORENAME initial separates him
+from the proposal. That letter is read once on the poll list and once in the register and
+printed nowhere else in the corpus. A $9,000 lot is a large thing to hang on it.
+
+**A CARD CAN LOOK LIKE THREE DOMAINS AND BE ONE READING.** FOSTER AMOS is the cohort's
+largest retraction — 25 rows of the first town sale, 27 and 28 September 1830 — and its card
+appeared to carry directories as well as the 1833 poll list. Those directory readings are
+'Foster, A. H. (Jennings & F.)' and 'Foster, A. H. of Jennings & F.', folded on by the
+crosswalk's own forename rule, *the given name of both begins A*: agreement on one letter and
+disagreement on the H after it, on a man who boards the American Temperance House in both
+years. Strip the fold and no Amos Foster is printed anywhere — not in Fergus 1839, 1843 or
+Norris 1844, which give John Herbert, Edward, George Franklin and A. H.; not in the letter
+lists, which give Caleb four times, Alburn, Jacob P. and a J. H. **Count a card's readings
+before counting its domains.** The fold itself is the shape T-1035 is open on and the finding
+is added there.
+
+**THE ARGUMENT NOT TAKEN, AND WHY IT IS WRITTEN DOWN.** KINZIE JOHN is refused although
+chronology would carry it: the register prints JOHN bare on seven rows of 27 September 1830,
+and of the three John Kinzies the printed record holds, the elder died in 1828 and cannot buy,
+while Fergus 1843's 'John Harris, jr., killed … a. 33' in 1862 puts the junior at about one
+year old that month. That leaves John Harris by elimination — which is not a token on the
+page, and **this project has already refused the identical string**: T-0501 met 'John Kinzie'
+in McIlvaine's list of the 1834 trustees and refused it, saying in terms that the
+identification is probable and was not that pass's to make. HARMON ISAAC declined the same
+shape of argument for the same reason. Two domains reading one name the same way is worth
+more than seven lots and $129. The evidence is recorded here so a later run can weigh the
+overturn rather than rediscover it.
+
+**THE CEILING DID NOT MOVE AT ALL THIS TIME, AND THE TOOL SAYS SO ITSELF.** Cohorts A and B
+each moved it by one, 869 → 868 → 867; `measure_research_spend.py --tighten land_sales` now
+answers *every ceiling already sits at what its domain reads — nothing to reclaim*, and 867
+stands. The reason is unchanged and is T-0962's blind spot: the meter anchors rulings through
+a domain's `crosswalk.json` and cannot see `resident_crosswalk.json`, so nine judgements are
+invisible to it. **The crosswalk's own `ruled` block is the number to read**, third cohort
+running.
+
+Filed on the way past: nothing new. The A. H. Foster fold was ADDED to **T-1035**, which
+already owns the question of a continuity route joining on one shared initial. One caution is
+recorded in the GRANT JAMES ruling rather than filed — the card carries 'J. GRANT, Jr.',
+regimental adjutant, from the Democrat of 3 September 1834, and a *Jr.* is the one suffix that
+says a town held two men of a name. It is a card-merge question and it does not touch the
+purchaser, who is printed JAMES in full.
+
 ### NEXT
 
-**Cohort C — the twenty-eight remaining proposals, every one of them with a NAMESAKE**
-(`rivals[]` non-empty). The crosswalk's `ruled` block reads **28 unruled**, and after cohort
-B every one of them is of this shape: the layer holds a namesake of the surname and the
-forename alone chose between them, which is where T-0990's cohorts C1–C3 found their
-refusals. Take them **by surname block** as T-0990 did rather than all at once — twenty-eight
-is more than one run can argue honestly, and a run that closes a block names the next here
-before it closes. The BROWN WM rule of C1 is the one to read first: a spelling with no
-discriminating token is its own proposal however well a fuller spelling of the same name did.
-This ticket closes when `ruled` reads zero unruled, and says so with the count.
+**Cohort C2 — the nine remaining proposals whose surname falls in L–M**: LEE GEORGE W, LEE
+WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL, MONTGOMERY WILLIAM, MORRIS B S,
+MORRISON J M. It is the block where the BROWN WM rule should bite hardest — three Millers on
+a surname the directories print many of — and where C1's first lesson has the most to prove:
+read Fergus 1839, Fergus 1843, Norris 1844 and the newspaper run for the surname BEFORE
+weighing the layer's `rivals[]`. **C3 is then the last ten, surnames S–Z**: SMITH JAMES A,
+STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES,
+WILLIAMS ELI B, WOODWORTH J H, WRIGHT A — and its two WALKER spellings are one person under
+two readings, to be ruled together as cohort A ruled its pairs. **19 unruled.** This ticket
+closes when `ruled` reads zero unruled, and says so with the count.
 
 ## A row is not a parcel, asked of the town lots — and answered the other way (T-1039)
 

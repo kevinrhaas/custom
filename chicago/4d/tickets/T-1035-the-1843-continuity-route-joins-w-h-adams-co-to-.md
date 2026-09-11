@@ -51,3 +51,24 @@ trust less, not a record to correct.
   eight exact pairings T-1020 opened all stand.
 - `firms_also_printed_in_fergus_1843` is stated before and after. `bash tools/check.sh`
   green. No bake.
+
+---
+
+## Added on the way past by T-1034 cohort C1 (2026-09-11): the same floor, on a PERSON
+
+The rule this ticket is opened on is not only the firm route's. `foster_amos` carries two
+directory readings — `Foster, A. H. (Jennings & F.), bds American Temperance House`
+(Fergus 1843) and `Foster, A. H. of Jennings & F. res American Temperance House` (Norris
+1844) — folded onto an **Amos** Foster whose whole town record is one line of the 1833 poll
+list. The crosswalk's stated forename rule is *"the given name of both begins A"*: agreement
+on one letter, and silence about the H that follows it. A. H. Foster boards the American
+Temperance House in both books and is a partner in Jennings & Foster; nothing ties him to an
+Amos, and no Amos Foster is printed in Fergus 1839, Fergus 1843, Norris 1844 or the newspaper
+run at all.
+
+**Why it belongs here rather than in its own ticket:** it is the same question — how much
+initial agreement a join needs when one side prints more than the other — asked of the person
+route instead of the firm route, and whatever rule this ticket states should be tested against
+this pair too. The cost is already visible: the fold made a one-reading card look like a
+three-domain one, which is the kind of thickness a land-sale ruling reads as corroboration.
+T-1034's cohort C1 refused FOSTER AMOS after stripping it (25 register rows, $468).

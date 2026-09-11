@@ -133,12 +133,56 @@ purchasers turned up a lot entered twice or three times in paired and doubled pr
 HEACOCK uphold was ADDED to **T-0884** rather than filed, per the queue's FILING RULE — it
 settles the identity half of that ticket and leaves it the geometry.
 
+**Cohort C1 — the nine with a namesake, surnames A–K.** Ruled 2026-09-11. **Six upheld,
+three refused** — `ruled` 118/1/63/28 → **124/1/66/19**; matched 147 → 144, three cards
+retracted with thirty-three register rows and $9,597 of stated purchase money, 25 of those
+rows off one card. No acres move: all thirty-three are town lots.
+
+| upheld | refused |
+|---|---|
+| BAILEY AMOS, GRANT JAMES, HUBBARD H G, HUGUNIN H, HUGUNIN HIRAM, KING TUTHILL | COBB L B, FOSTER AMOS, KINZIE JOHN |
+
+**What the cohort taught, in one line each** (the argument is in the domain README):
+
+*Ask the PRINTED record how many men the forename could be, not the layer.* `rivals[]` is the
+layer's census of a surname and the layer is a reconstruction; the directories and the
+newspaper run print six Baileys and one Amos, six Hugunins and one beginning H, thirteen Kings
+and one Tuthill, eight Hubbards and one H. G. Seven of the nine turn on that count.
+
+*An initial-only spelling is not automatically the BROWN WM shape.* HUGUNIN H survives two
+questions: the initial is unique in the printed record of the surname, and the town itself
+uses it for that man — 'H. HUGUNIN' chairs the town meeting of 20 May 1835 in the Democrat,
+and the same run prints 'Capt. HIRAM HUGUNIN, Agent, Chicago' four weeks later.
+
+*Two initials can be worth less than one.* COBB L B is refused because the rival carries the
+same middle initial — S. B. Cobb, the saddler at the corner of Lake, printed over and over —
+so only the forename letter separates them, and it is read once on each side and nowhere else.
+
+*A card can look like three domains and be one reading.* FOSTER AMOS's two directory readings
+are 'Foster, A. H.' folded on by *the given name of both begins A*. Strip the fold and no Amos
+Foster is printed anywhere. Count a card's readings before counting its domains.
+
+*The argument not taken is written down.* KINZIE JOHN would carry on chronology — the elder
+died in 1828, the junior's printed age puts him at one year old in 1830 — but that is
+elimination, not a token, and T-0501 already refused the identical string.
+
+*The ceiling did not move at all*, third cohort running: `--tighten land_sales` answers
+*nothing to reclaim* and 867 stands, because the meter cannot see `resident_crosswalk.json`.
+T-0962's blind spot; read the crosswalk's own `ruled` block.
+
+Filed on the way past: nothing new. The A. H. Foster fold was ADDED to **T-1035**, which owns
+the one-shared-initial question. The 'J. GRANT, Jr.' caution is recorded in the GRANT JAMES
+ruling rather than filed — it is a card-merge question, not a purchaser one.
+
 ### NEXT
 
-**Cohort C — the twenty-eight left, and every one of them now has a NAMESAKE** (`rivals[]`
-non-empty). Cohort B emptied the no-namesake shape, so what remains is where T-0990's C1–C3
-found their refusals: the layer holds a namesake and the forename alone chose. Take them **by
-surname block**, as T-0990 did — twenty-eight is more than one run can argue honestly — and
-read C1's BROWN WM rule first: a spelling with no discriminating token is its own proposal
-however well a fuller spelling of the same name did. The run that closes a block names the
-next one here. 28 unruled.
+**Cohort C2 — the nine whose surname falls in L–M**: LEE GEORGE W, LEE WILLIAM, LOOMIS H G,
+MILLER GEORGE, MILLER J, MILLER SAMUEL, MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M. The
+block where the BROWN WM rule should bite hardest — three Millers on a surname the directories
+print many of — and where C1's first lesson has the most to prove: read Fergus 1839, Fergus
+1843, Norris 1844 and the newspaper run for the surname BEFORE weighing `rivals[]`. **C3 is
+then the last ten, surnames S–Z**: SMITH JAMES A, STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G,
+WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H, WRIGHT A — and its
+two WALKER spellings are one person under two readings, to be ruled together as cohort A ruled
+its pairs. **19 unruled.** The run that closes a block names the next one here. This ticket
+closes when the crosswalk's `ruled` block reads zero unruled, and says so WITH the count.
