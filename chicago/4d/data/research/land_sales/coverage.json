@@ -314,7 +314,7 @@
     },
     "the_seven_townships_are_read_whole": true,
     "complete_for_1836_cook_county": false,
-    "reading": "The by-section sweep is READ WHOLE for the ground it declares: every one of the 953 rows the county lists inside the seven declared townships through 1836 is in the deposit, and none is missing. It is NOT the whole of 1836 Cook County, and the shortfall is not a section it failed to walk — it is 619 rows that have no section to walk. Every one of those is a lot and block: 618 of them carry a town code (CHI, CHIOT, CHIOTV, CHIOTVO, CHIV) where a legal description would go, and 1 is a bare lot and block with no code at all. Their dates are the register's own and are carried unsmoothed, including the four this project does not believe. They are counted here and they are NOT in the deposit; reading them is T-1028."
+    "reading": "The by-section sweep is READ WHOLE for the ground it declares: every one of the 953 rows the county lists inside the seven declared townships through 1836 is in the deposit, and none is missing. It is NOT the whole of 1836 Cook County, and the shortfall is not a section it failed to walk — it is 619 rows that have no section to walk. Every one of those is a lot and block: 618 of them carry a town code (CHI, CHIOT, CHIOTV, CHIOTVO, CHIV) where a legal description would go, and 1 is a bare lot and block with no code at all. Their dates are the register's own and are carried unsmoothed, including the four this project does not believe. They are counted here and they are NOT in this deposit. Their detail pages ARE now committed, one per row, as isa_land_tract_sales_cook_town_lots_through_1836.tsv (T-1032); reading those into records is T-1033."
   },
   "not_read": {
     "ticket": "T-0676",
