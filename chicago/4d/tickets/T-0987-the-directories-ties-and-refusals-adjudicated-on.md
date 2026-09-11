@@ -1,7 +1,7 @@
 ---
 id: T-0987
 title: The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-state: open
+state: claimed
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 7:37:44 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34599438377
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
