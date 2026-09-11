@@ -472,6 +472,31 @@ SIGN_WORDING = {
             "people, and the record's own note says so. Reconstructed."
         ),
     },
+    "new_york_clothing_store": {
+        "name": "TUTHILL KING", "trade": "New York Clothing Store",
+        "trade_short": "Clothing Store", "place": "Wholesale & Retail",
+        "identity": "Clothing Store", "grade": "inferred",
+        "sources": ["chicago_american_1835"],
+        "why": (
+            "THE WORDING IS THE ADVERTISEMENT'S OWN HEAD, AND THREE IMPRESSIONS SET IT. "
+            "The Chicago American heads the column \"New York Clothing Store\" over "
+            "\"WHOLESALE AND RETAIL\" and signs it TUTHILL KING — 1835-06-08 c014, "
+            "1835-06-20 c007 ('TUTAILL ‘UNG') and 1835-07-04 c003 ('TUTUILL KIN'), all "
+            "of one card copy-dated 8 June 1835. Man, then trade, which is the register "
+            "T-0130 fixed this table in, and the words are his own rather than this "
+            "project's label for them. THE THIRD LINE IS THE TERMS AND NOT THE STREET: "
+            "every impression sets WHOLESALE AND RETAIL in its own head, and it is what a "
+            "Country Merchant passing the door needed to know. THE COUNT OF DOORS IS "
+            "DELIBERATELY NOT ON THE BOARD — 'three doors north of the Tremont House' is "
+            "how a newspaper reader FINDS the shop, and a customer standing in front of "
+            "the board has already found it (T-0385, and the same reasoning "
+            "john_holbrook_store's entry gives). THE READING IS TRANSCRIPTION-MEDIATED, "
+            "flagged under the owner's ruling of 2026-08-28, with the brackets left in. "
+            "WHAT KEEPS THIS `inferred` RATHER THAN BETTER is that a transcription is not "
+            "a page image; UPGRADE IT TO `attested` when the American's scans are "
+            "committed as a source record and this note can cite the plate."
+        ),
+    },
     "john_holbrook_store": {
         "name": "JOHN HOLBROOK", "trade": "Clothing, Boots & Shoes",
         "trade_short": "Clothing & Boots", "place": "Wholesale & Retail",

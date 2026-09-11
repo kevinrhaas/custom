@@ -27,7 +27,7 @@
     ],
     "confidence": "derived",
     "counts": {
-      "runs_joined_to_a_household": 50,
+      "runs_joined_to_a_household": 51,
       "runs_bounding_structures_only": 241,
       "households_that_gained_a_fence": 24,
       "lots_named": 118,
