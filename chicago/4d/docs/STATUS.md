@@ -1,5 +1,56 @@
 # STATUS
 
+## T-0385 — the New York Clothing Store stands against the Tremont House
+
+Tuthill King's card — American 1835-06-08 c014, 1835-06-20 c007, 1835-07-04 c003,
+one dateline of 8 June 1835 — places the shop *three doors north of the Tremont
+House, in Dearborn Street*. The register read it as `street_only` on `dearborn`
+because the gazetteer mints a house's live placement from its EARLIEST printing,
+and the earliest of these three falls inside an 8,024-character blob with the
+hotel's name cut away. The second impression loses "of the" and the name and keeps
+only "House". Only the third prints "[the T]remont House".
+
+The `match_landmarks` blocker the ticket names is no longer one: `tremont_house_1`
+carries the plain aka `Tremont House` and `{tremont, house}` resolves to it today.
+The live blocker was the second one the ticket's prior attempt found, and it is
+what this ships.
+
+**The rule.** A reading that declares its own anchor UNREAD does not hold a house's
+placement against a reading of the same advertisement that names it. It is stated
+in `compile_gazetteer.py` beside the T-0440 pass, in prose and not only in code.
+`anchor_unread` is an authored field on the placement — the pass that could not read
+the word is the one that says so — and `claim_problems` now refuses an anchor whose
+prose says it was unread and whose field does not. Six placements in the corpus
+carry the flag.
+
+**The bounds, and they are what stop it becoming a judgement it may not make.**
+Same class; same street where the unread reading names one; ONE dateline at or
+before the scene date, which is what makes the impressions one card — and it has to
+be the dateline rather than T-0440's issue-date bound, because the legible
+impression of King's card is 3 July and the scene date is 1 July. That impression
+is not an address first printed after the scene date: the address ran on 06-08 and
+06-20 and all that is gained on 07-04 is the ability to read it. Two datelines are
+refused and left to `anchor_changes`. The pass never reorders two anchors both of
+which were read.
+
+**What moved.** One business. `business_new_york_clothing_store` resolves to
+`structure tremont_house_1` and its register row goes `street_only` → `new_building`
+(`street_only` 60 → 59, `new_building` 28 → 29). It leaves the street-face adoption
+deal (40 → 39 adopted), so `recon_1835_blk_randolph_clark_d6_04` passes to Fullerton
+& Botsford and three other Dearborn roofs re-allocate. The two remaining unread
+anchors — `business_hubbard_co`, `business_s_b_cobb_saddle_harness_and_trunk_manufactory`
+— keep theirs: neither has a second impression to be read against.
+
+**What is NOT shipped.** No geometry. `new_building` is a finding and no tool in this
+project builds from one; all 29 rows are in that position. A roof three doors north
+of the Tremont House is owed and does not stand, and T-0306's remaining pieces carry
+it. The ticket was filed `needs_bake: true` and needed no bake: nothing staled
+(`validate.py --stale`: 380 assets match their inputs, 0 stale).
+
+**Verified.** `tools/check.sh` green, 304 steps, none red; gazetteer self-test 132
+cases (9 new, each proved by disabling the pass and watching it fail). Renderer smoke
+per `smoke_budget.mjs --for-diff`, recorded in the PR.
+
 ## T-0983 — continuation FS closes at 125 over twenty-seven households
 
 Image 58 is now recorded in `pages/33SQ-GYYJ-FS.json`, with every visible
