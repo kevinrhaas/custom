@@ -1,7 +1,7 @@
 ---
 id: T-1010
 title: The 1 January 1834 return, tied line by line: which of the 170 printed lines reaches a claim and a card, and the two residues named in full
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1008
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-10
+pr: 1096
 claimed_by: run 9/10/2026, 7:13:31 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T00:46:15.381Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34544839640
 ---
 
