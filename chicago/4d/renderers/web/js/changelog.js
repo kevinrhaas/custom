@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 726, title: 'The checks cried wolf fourteen times a run, and were believed', kind: 'chore', ts: '2026-09-11T14:27:11.712Z', date: 'Sep 11, 2026, 9:27 AM CT',
+    items: [
+      'Everything in this reconstruction is held by a suite of checks that runs before every change lands \u2014 three hundred and four of them, covering the sources, the dates, the licences, the ground and the geometry. A third of those checks are checks ON the checks: they deliberately break a derivation and require the right alarm to sound, because a gate nobody has ever seen fire is a gate nobody knows works.',
+      'An alarm that sounds on purpose prints the same word as an alarm that sounds because something is wrong. So a run in which NOTHING was wrong still printed fourteen lines reading FAIL, and one that announced two checks FAILED before reporting itself in order. There was no way to tell the two apart without already knowing which of the three hundred and four steps were the self-tests.',
+      'It cost real work. One piece of work was written against six of those lines and sent the next round of it at terrain and street geometry that were perfectly fine; three more reported the project broken on a day it was not. That is the failure mode of a cluttered alarm panel, and it is the project\u2019s own time it spends.',
+      'Every line a self-test prints now carries a mark at the front of it saying so, with the wording of the alarm kept intact underneath \u2014 nothing was quietened to make the log look clean. And the suite now ends by naming the checks that actually failed, once each, by name, where a reader is already looking. A run that passes says so in a sentence with no alarm word in it at all.',
+      'A new check holds that in place: if a self-test is ever wired back in as an ordinary check, where its alarms would print unmarked again, the suite refuses the change.'
+    ] },
   { v: 725, title: 'Seventy-five men the directory was never printing', kind: 'fix', ts: '2026-09-11T13:52:23.797Z', date: 'Sep 11, 2026, 8:52 AM CT',
     items: [
       'Fergus\u2019s Chicago directory of 1839 is one of the few books that can say whether somebody standing in this town in 1835 was still here four years later, and what trade and street he had by then. It is matched to this town\u2019s people on a deliberately blunt rule: the surname must agree, and so must the first initial of the forename. The book lists forty-one Smiths, so a surname alone is never enough.',

@@ -2,6 +2,68 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 237,
+      "takenAt": "2026-09-11T14:22:29.016Z",
+      "ref": "steward/t-0763-selftest-fail-lines",
+      "commit": "b7bd79ad2f73",
+      "devCommit": "b2e95059d031",
+      "treeHash": "sha256:b8a09f23802acdf3",
+      "treeDirty": false,
+      "changelogHash": "sha256:89124b44f4ee4120",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3.5,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_d12.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 137,
+      "takenAt": "2026-09-11T14:22:28.920Z",
+      "ref": "steward/t-0763-selftest-fail-lines",
+      "commit": "b7bd79ad2f73",
+      "devCommit": "b2e95059d031",
+      "treeHash": "sha256:b8a09f23802acdf3",
+      "treeDirty": false,
+      "changelogHash": "sha256:89124b44f4ee4120",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          3.5,
+          2
+        ]
+      },
+      "source": "/tmp/smoke_m12.txt"
+    },
+    {
       "viewport": "mobile",
       "stage": "3,12-13",
       "parts": [
@@ -1334,70 +1396,6 @@
         ]
       },
       "source": "/tmp/smoke-d1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 239,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 375,
-      "takenAt": "2026-09-11T03:42:07.999Z",
-      "ref": "steward/t-0901-dotless-i-garbled-forename",
-      "commit": "ad6505033a7b",
-      "devCommit": "d7f52e78fc42",
-      "treeHash": "sha256:47a72024fafac04e",
-      "treeDirty": false,
-      "changelogHash": "sha256:0fdc52cf84d671cd",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke-mobile.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 206,
-      "takenAt": "2026-09-11T03:05:30.320Z",
-      "ref": "steward/t-1011-letter-list-1834-mint-unread",
-      "commit": "500b93177d04",
-      "devCommit": "cef6a46b9101",
-      "treeHash": "sha256:bb66dc22f446a8c9",
-      "treeDirty": false,
-      "changelogHash": "sha256:7db808bd82f94c63",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          4.2,
-          3.6
-        ]
-      },
-      "source": "/tmp/s2_d12.log"
     },
     {
       "viewport": "desktop",
