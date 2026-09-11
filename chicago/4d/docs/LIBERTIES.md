@@ -10729,8 +10729,8 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
 **Recorded:** 2026-09-04.
 
-### L223 — Seven houses stand on a street a directory printed eight years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 7 households
+### L223 — Eight houses stand on a street a directory printed eight years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 8 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds` — in
 Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
@@ -10742,11 +10742,16 @@ absorbed. The argument is that a home is not a shop in two places. A residence n
 attested trade**, where a business does — everybody the town holds lived somewhere in it,
 so an absent occupation says nothing about whether a man had a house — and that departure
 is most of the yield: 44 of the 48 residence addresses on the layer belong to people the
-1835 papers give no trade, and five of these seven placements are such people. Against
+1835 papers give no trade, and five of these eight placements are such people. Against
 that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
 into one street's trade and a lodging is a month's rent.
-**Consequence:** seven households stand on a face on the authority of a volume printed
-four or eight years after the scene. Twenty of 825 households carried a real `lives_at`
+**Consequence:** eight households stand on a face on the authority of a volume printed
+four or eight years after the scene. The eighth arrived without anybody aiming the clause at
+it: T-1011 minted J. S. Lacey off line 100 of the 1 January 1834 post-office return, a name no
+transcription of that return carries, and Fergus's volume prints a J. S. Lacey at home in North
+Water Street. A name that reached no card at all on the morning of 2026-09-11 now stands on a
+street face — which is the clearest thing anybody could say for reading the roster, and is also
+exactly why this entry counts its placements. Twenty of 825 households carried a real `lives_at`
 before this pass and twenty carry one after — the faces are text on a card and not a
 placement of anybody in the town.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
@@ -10754,7 +10759,7 @@ count, **no `lives_at`**, and — unlike L218 — **no point, ever**, not even w
 volume prints a corner. Every residence entry that prints one prints it against a street
 NUMBER from a grid Chicago did not have in 1835, so the corner is how an 1843 volume tells
 its reader which of two hundred Clark Street doors it means, and reading it back would be
-reading a finding aid as a survey. The 41 refusals are on the record beside the seven, so
+reading a finding aid as a survey. The 39 refusals are on the record beside the eight, so
 the arithmetic is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer.

@@ -8,12 +8,12 @@
     "upheld": 72,
     "named": 1,
     "refused": 37,
-    "unruled": 28
+    "unruled": 29
   },
   "counts": {
     "purchasers": 431,
-    "matched": 101,
-    "refused": 330,
+    "matched": 102,
+    "refused": 329,
     "firms": 2
   },
   "matches": [
@@ -5181,6 +5181,23 @@
       "evidence_grade": "inferred",
       "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "FAY HARRISON K",
+      "record_ids": [
+        "ls0902"
+      ],
+      "resident_id": "fay_h_k",
+      "resident_name": "H. K. Fay",
+      "household_id": "hh_fay_h_k",
+      "match": "initial_agrees",
+      "rule": "FAY HARRISON K matches H. K. Fay: the forename names H. K. Fay of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
+      "rivals": [],
+      "residence_column": "COOK",
+      "evidence_grade": "documented",
+      "ruling": null,
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
       "purchaser_as_read": "DILL FRANK",
@@ -10973,8 +10990,19 @@
     },
     {
       "a": "HATCH JUNIUS H",
-      "b": "0 residents named Hatch",
-      "rule": "HATCH JUNIUS H is refused against 0 residents named Hatch: the residents layer holds nobody of the surname.",
+      "b": "Luther Hatch",
+      "rule": "HATCH JUNIUS H is refused against Luther Hatch: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "hatch_luther",
+          "name": "Luther Hatch",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "H",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls0679"
       ],
@@ -11884,8 +11912,19 @@
     },
     {
       "a": "BEERS CYRENIUS",
-      "b": "0 residents named Beers",
-      "rule": "BEERS CYRENIUS is refused against 0 residents named Beers: the residents layer holds nobody of the surname.",
+      "b": "Anthony Beers",
+      "rule": "BEERS CYRENIUS is refused against Anthony Beers: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "beers_anthony",
+          "name": "Anthony Beers",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls0814"
       ],
@@ -12632,21 +12671,21 @@
     },
     {
       "a": "FAY H R",
-      "b": "0 residents named Fay",
-      "rule": "FAY H R is refused against 0 residents named Fay: the residents layer holds nobody of the surname.",
+      "b": "H. K. Fay",
+      "rule": "FAY H R is refused against H. K. Fay: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "fay_h_k",
+          "name": "H. K. Fay",
+          "forename_agrees": true,
+          "why": "the forenames agree and the middle initials do not — R against K (rule 2)",
+          "middle_initial": "K",
+          "reading_middle_initial": "R",
+          "outcome": "refused_on_the_middle_initial"
+        }
+      ],
       "record_ids": [
         "ls0901"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "FAY HARRISON K",
-      "b": "0 residents named Fay",
-      "rule": "FAY HARRISON K is refused against 0 residents named Fay: the residents layer holds nobody of the surname.",
-      "record_ids": [
-        "ls0902"
       ],
       "evidence": [
         "data/residents/index.json"

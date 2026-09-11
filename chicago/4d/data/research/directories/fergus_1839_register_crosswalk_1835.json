@@ -131,7 +131,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1352
+   "n": 1376
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -158,7 +158,7 @@
   "residents_ambiguous": 11,
   "residents_ambiguous_same_man_reprinted": 7,
   "residents_contested": 2,
-  "residents_surname_only_refused": 54,
+  "residents_surname_only_refused": 55,
   "voters_matched_one_entry": 14,
   "voters_ambiguous": 9,
   "voters_surname_only_refused": 21,
@@ -1480,6 +1480,11 @@
     "name": "air. Bowen",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Bowen' stands on printed pages 38-39 and no man under it carries the initial 'A' of 'air. Bowen'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "dane Gray",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Gray' stands on printed pages 38-39 and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
    }
   ]
  },

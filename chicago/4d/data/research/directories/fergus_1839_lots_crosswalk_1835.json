@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1352
+   "n": 1376
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -43,7 +43,7 @@
   "residents_matched_one_bidder": 17,
   "residents_ambiguous": 1,
   "residents_contested": 11,
-  "residents_surname_only_refused": 86,
+  "residents_surname_only_refused": 87,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
   "voters_surname_only_refused": 43,
@@ -1666,6 +1666,11 @@
     "name": "Anson H. Taylor",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Taylor' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'A' of 'Anson H. Taylor'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Anthony Beers",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Beers' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'A' of 'Anthony Beers'. A surname-only agreement is a refusal."
    },
    {
     "name": "Augustine Deodat Taylor",

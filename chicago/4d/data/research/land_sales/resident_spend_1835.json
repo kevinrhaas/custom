@@ -12,12 +12,12 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 101,
-  "people_written": 88,
-  "households_touched": 85,
+  "matched_rulings": 102,
+  "people_written": 89,
+  "households_touched": 86,
   "grades_changed": 0,
-  "entries_carried": 323,
-  "acres_carried": 15896.39,
+  "entries_carried": 324,
+  "acres_carried": 15976.39,
   "school_section_parcels_carried": 152,
   "matched_more_than_once": 11
  },
@@ -25,7 +25,7 @@
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 330
+   "rulings": 329
   },
   {
    "rule": "L2",
@@ -7976,6 +7976,51 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “FRAME DAVID P”, 1835-06-13: 1 federal land entry — E2NE sec 24 T39N R13E, 80.00 acres stated in all, for $100.00 (ls0829). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: FRAME DAVID P matches David P. Frame: the forename names David P. Frame of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_fay_h_k",
+   "person_id": "fay_h_k",
+   "name": "H. K. Fay",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "FAY HARRISON K"
+   ],
+   "rules": [
+    "FAY HARRISON K matches H. K. Fay: the forename names H. K. Fay of the 1 person of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 80.0,
+    "dollars": 100.0,
+    "first_purchase": "1834-11-04",
+    "last_purchase": "1834-11-04",
+    "tracts": [
+     "SE sec 11 T40N R13E"
+    ],
+    "school_section": [],
+    "residence_as_read": [
+     "COOK"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0902",
+     "as_read": "FAY HARRISON K",
+     "date_purchased": "1834-11-04",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "COOK",
+     "county": "COOK",
+     "tract": "SE sec 11 T40N R13E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0194506",
+     "volume": "236",
+     "page": "041"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “FAY HARRISON K”, 1834-11-04: 1 federal land entry — SE sec 11 T40N R13E, 80.00 acres stated in all, for $100.00 (ls0902). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: FAY HARRISON K matches H. K. Fay: the forename names H. K. Fay of the 1 person of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_dill_frank",
