@@ -1092,6 +1092,102 @@ before it closes. The BROWN WM rule of C1 is the one to read first: a spelling w
 discriminating token is its own proposal however well a fuller spelling of the same name did.
 This ticket closes when `ruled` reads zero unruled, and says so with the count.
 
+## A row is not a parcel, asked of the town lots — and answered the other way (T-1039)
+
+T-0885 asked this of the October 1833 school-section auction and found duplication it could
+not resolve: 38 parcels entered twice, 26 of them one pair of names. **Volume L5A was never
+asked.** T-1034's cohort B, reading the register's neighbours to test a sequence argument,
+turned up four lots entered two and three times over in paired and doubled prices, and filed
+the question. The answer is not the school section's.
+
+**THE COUNT FIRST, because the ticket asked for the shape counted and not asserted.** 616 of
+the 619 parse to a lot and a block. Taking a parcel as the town code, the block, the lot and
+the fraction exactly as the clerk wrote them, **those 616 rows name 559 parcels**. Forty-seven
+parcels carry more than one row, 104 rows between them. Forty of the 47 are one day and one
+page; **seven are the same ground entered again weeks or years later**, which is two
+transactions rather than two writings of one — lot 4 of block 19 goes to James Walker for $36
+on 4 October 1830 and to J. H. Woodworth for $14,000 on 21 June 1836, across the boom.
+
+**ONE COUNT SETTLES THE DUPLICATION QUESTION: not one of the 40 same-day groups repeats a
+purchaser's NAME.** Forty of forty are two, three or four different men. A clerk's duplicate
+writes the same name twice; in 616 rows this register never does it once. Whatever these
+repeats are, they are not the school section's shape.
+
+**WHAT THEY ARE IS A CO-PURCHASE ENTERED ONE ROW PER BUYER, EACH ROW CARRYING THAT BUYER'S
+SHARE OF THE PRICE** — not the parcel's price repeated. Three groups prove it, because in
+three the price does not divide evenly and the register had to put the remainder somewhere:
+
+| the parcel | the day | the shares as read | they sum to |
+|---|---|---|---|
+| lot 1 of block 51, `CHIOTV`, page 019 | 27 June 1836 | $1,916.66 · $1,916.67 · $1,916.67 | **$5,750.00** |
+| lot 3 of block 51, `CHIOTV`, page 019 | 27 June 1836 | $686.66 · $686.67 · $686.67 | **$2,060.00** |
+| lot 8 of block 38, `CHIOT`, page 014 | 22 June 1836 | $1,166.00 · $1,166.00 · $1,168.00 | **$3,500.00** |
+
+A remainder spread across the rows is a division; one price written twice is not. The third
+is the same act rounded to whole dollars instead of cents, which is why a test written for
+cents alone would have missed it. **The other 37 groups divide evenly and cannot be settled
+that way on their own**, so two things lean and neither is proof:
+
+- **The same three men.** D. B. Brown, N. J. Brown and A. Garnett carry the proven thirds on
+  lots 1 and 3 of block 51 — and $1,000 apiece on **lot 5 of the same block**, the same day,
+  the same page, between the two. Whatever the proven pair are, lot 5 is. The shape recurs
+  elsewhere: four parcels for Goodhue and Thompson, two for Richards and Stone, two for Smith
+  and Taylor.
+- **The roundness falls where a fraction would put it.** 87.5% of the 40 group SUMS land on a
+  round ten, against 78.1% of the 512 rows that stand alone — while the 89 repeated rows' own
+  prices land there only **56.2%** of the time. A share of a round price is less round than a
+  price. That is a tendency over 40 groups, not a proof over any one.
+
+**SO THE MONEY IS UNTOUCHED AND THE GROUND IS NOT.** $1,387,606.33 stands over the 616 placed
+rows and $1,399,066.33 over all 619, exactly as T-1032 printed them and exactly as the cards
+carry them, **because no row here repeats another's money** — each is a share, and the shares
+add to the parcel's price. Nothing a card says about a man's spend moves. What shrinks is the
+ground under the rows: **616 rows, 559 parcels**, and the report prints the two numbers beside
+each other so neither can be read as the other by accident.
+
+### And eight lots say the town code is not the plat
+
+Eleven families of rows — one block, one lot, one day, one page — carry fractions that are
+**disjoint and exhaustive of a whole lot** and agree, to the cent, on a single price per lot.
+**Eight of the eleven spell the town code differently on different fractions of that one
+lot.**
+
+| the lot | the day | the rows | one lot at |
+|---|---|---|---|
+| block 54 lot 4 | 23 June 1836 | `N2L4B54CHIV` $1,755 · `S2L4B54CHIOT` $1,755 | $3,510.00 |
+| block 9 lot 5 | 29 June 1836 | `N2L5BL9CHI` $1,310 · `S2L5BL9CHIV` $1,310 | $2,620.00 |
+| block 5 lot 9 | 28 June 1836 | `N2L9BL5CHI` $1,350 · `S2L9BL5CHIV` $1,350 | $2,700.00 |
+| block 50 lot 1 | 27 June 1836 | `N2L1B50CHIV` $1,325 · `S2L1B50CHIOT` $1,325 | $2,650.00 |
+| block 48 lot 3 | 27 June 1836 | `N2L3B48CHIOT` $500 · `S2L3B48CHIV` $500 | $1,000.00 |
+
+Complementary halves, at one rate, on one page, on one day, eight times over, are not two
+additions that happened to match. **This does not decode the codes and it does not merge
+them.** It says a row's town code cannot be read as naming which plat the lot sits on — which
+is the refusal T-0830 and T-1033 already make, for the different reason that the Archives'
+key to the abbreviations is not reachable from here. `plat` stays null. The refusal now has
+arithmetic behind it as well as an absence.
+
+### Three of the eleven need a bare row read as a fraction, and get it only as arithmetic
+
+Lot 8 of block 53 is A. Garrett's, all three rows, 23 June 1836, page 020: **$940 on a bare
+`L8B53CHIOTV`, $940 on `N2S2L8B53CHI`, $1,880 on `N2L8B53CHIOT`.** Read the bare row as the
+whole lot and a quarter of it costs what the whole does. Read it as the quarter the other two
+leave — the south half of the south half — and all three stand at **$3,760 the lot**. Lot 1 of
+block 46 and lot 2 of block 53 do the same, at $2,750 and $2,980. Those, and not halves of a
+parcel, are the doubled prices T-1034 saw.
+
+**THE PARSER IS NOT CHANGED AND NO FRACTION IS WRITTEN ONTO A ROW.** `lot_fraction` stays null
+on all three, because the clerk wrote none and inferring ground from a price would be this
+project inventing the thing it most refuses to invent. The arithmetic is recorded in
+`ground.json` under `counts.town_lots`, where a later reading of the plat can test it.
+
+**Nothing here merges a name, drops a row, or writes a fraction.** T-0885's rule holds
+unchanged: whether the men on one parcel are partners, a trustee and his principal, or
+strangers is an IDENTITY ruling, and `resident_crosswalk.json` is where this domain makes
+those. `tools/resolve_land_tracts.py --report` prints the counts and `--self-test` holds the
+arithmetic — the disjointness on a 4×4 grid rather than an area sum, so that `E2W2` and
+`W2E2` cannot quietly be the same quarter, and `N2S2` is a quarter rather than a half.
+
 ## The join to the ground, and the four tracts the town stands on
 
 `tools/resolve_land_tracts.py --build` derives `ground.json`: one row per sale, carrying

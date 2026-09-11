@@ -82,6 +82,7 @@ import json
 import math
 import re
 import sys
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -626,6 +627,256 @@ def school_section_parcels(placed, entries):
     }
 
 
+
+# A LOT ON A 4x4 GRID, so the register's two levels of halving are exact and disjointness
+# is a set operation rather than an area sum. `N2S2` — the north half of the south half —
+# is a quarter that no four-cell grid can hold and this one can; `E2W2` and `W2E2` are
+# different quarters that an area sum would have called the same size and let overlap.
+# Read RIGHT TO LEFT, as the clerk wrote it: the rightmost fraction is taken of the lot
+# and each one to its left is taken of that.
+def _cells(fraction):
+    cols = rows = (0, 1, 2, 3)
+    for word in reversed(re.findall("[NSEW]2", fraction or "")):
+        hand = word[0]
+        half = len(cols if hand in "EW" else rows) // 2
+        if hand == "E":
+            cols = cols[half:]
+        elif hand == "W":
+            cols = cols[:half]
+        elif hand == "N":
+            rows = rows[half:]
+        else:
+            rows = rows[:half]
+    return frozenset((c, r) for c in cols for r in rows)
+
+
+WHOLE_LOT = _cells(None)
+
+
+def town_lot_parcels(entries):
+    """A ROW IS NOT A PARCEL, asked of the town lots — and the answer is not the school
+    section's (T-1039).
+
+    T-0885 asked this of the October 1833 school-section auction and found 38 parcels
+    entered twice, 26 of them one pair of names it could not separate. The 619 town lots
+    of volume L5A were never asked. They were read by T-1032 and joined by T-1033, and
+    T-1034's cohort B turned up four lots entered two and three times over, in paired and
+    doubled prices, which is what set this question.
+
+    THE COUNT FIRST. 616 of the 619 parse to a lot and a block. Taking a parcel as the
+    town code, the block, the lot and the fraction exactly as the clerk wrote them, those
+    616 rows name 559 of them; 47 keys carry more than one row, 104 rows in all.
+
+    THE ANSWER IS NOT DUPLICATION, AND ONE COUNT SETTLES IT: not one of the 40 same-day
+    repeat groups repeats a purchaser's NAME. Forty of forty are two, three or four
+    different men. A clerk's duplicate writes the same name twice; this register never
+    does it once in 616 rows.
+
+    WHAT THEY ARE IS A CO-PURCHASE ENTERED ONE ROW PER BUYER, EACH ROW CARRYING THAT
+    BUYER'S SHARE OF THE PRICE — not the parcel's price repeated. Three groups prove it,
+    because in three the price does not divide evenly and the register had to round:
+
+      * lot 1 of block 51, `CHIOTV`, 27 June 1836 — $1,916.66, $1,916.67, $1,916.67,
+        which is $5,750.00 in three;
+      * lot 3 of the same block, same day, same page — $686.66, $686.67, $686.67, which
+        is $2,060.00 in three;
+      * lot 8 of block 38, `CHIOT`, 22 June 1836 — $1,166.00, $1,166.00, $1,168.00,
+        which is $3,500.00 in three, rounded to whole dollars instead of cents.
+
+    A remainder spread across the rows is a division; one price written twice is not.
+    The other 37 groups divide evenly and cannot be settled that way on their own, so two
+    things lean and neither is proof:
+
+      * THE SAME THREE MEN. D. B. Brown, N. J. Brown and A. Garnett carry the proven
+        thirds on lots 1 and 3 of block 51, and $1,000 apiece on lot 5 of it — the same
+        day, the same page, between the two. Whatever the pair of proven lots are, lot 5
+        is; and the shape recurs elsewhere, four lots for Goodhue and Thompson, two for
+        Richards and Stone, two for Smith and Taylor.
+      * THE ROUNDNESS FALLS WHERE A FRACTION WOULD PUT IT. 87.5% of the 40 group SUMS
+        land on a round ten, against 78.1% of the 512 rows that stand alone — while the
+        89 repeated rows' OWN prices land there only 56.2% of the time. A share of a
+        round price is less round than a price; that is the whole of the argument, and it
+        is a tendency over 40 groups rather than a proof over any one of them.
+
+    SO THE MONEY IS UNTOUCHED AND THE GROUND IS NOT. $1,387,606.33 stands over the 616
+    placed rows and $1,399,066.33 over all 619, exactly as T-1032 printed them, because
+    no row here repeats another's money — each is a share of a parcel's price, and the
+    shares add to it. What shrinks is the ground: 616 rows, 559 parcels.
+
+    AND EIGHT LOTS SAY THE TOWN CODE IS NOT THE PLAT. Eleven families of rows — one
+    block, one lot, one day, one page — carry fractions that are DISJOINT and EXHAUSTIVE
+    of a whole lot and agree, to the cent, on a single price per lot. Eight of the eleven
+    spell the town code differently on different fractions of that one lot: the north
+    half of lot 4 of block 54 is `CHIV` and the south half `CHIOT`, both at $1,755 on
+    23 June 1836, page 021. Complementary halves at one rate on one page are not two
+    additions that happened to match. This does not decode the codes and it does not
+    merge them — it says that a row's town code cannot be read as naming which plat the
+    lot sits on, which is the refusal T-0830 and T-1033 already make for a different
+    reason. The count is carried so the refusal now has arithmetic behind it.
+
+    THREE OF THE ELEVEN NEED A READING OF A BARE ROW AND GET ONE ONLY AS ARITHMETIC.
+    Lot 8 of block 53 is Garrett's, all three rows, 23 June, page 020: $940 on a bare
+    `L8B53CHIOTV`, $940 on `N2S2L8B53CHI`, $1,880 on `N2L8B53CHIOT`. Read the bare row as
+    the whole lot and a quarter costs what the whole does. Read it as the quarter the
+    other two leave — the south half of the south half — and all three stand at $3,760
+    the lot. Lot 1 of block 46 and lot 2 of block 53 do the same. THE PARSER IS NOT
+    CHANGED AND NO FRACTION IS WRITTEN ONTO A ROW: `lot_fraction` stays null on all three,
+    because the clerk did not write one and inferring ground from a price would be this
+    project inventing the very thing it refuses to invent. The arithmetic is recorded
+    here, where a later reading of the plat can test it.
+
+    SEVEN REPEATS ARE NOT CO-PURCHASES AT ALL — the day disagrees, so they are the same
+    ground entered twice, weeks or years apart. Lot 4 of block 19 goes to James Walker for
+    $36 on 4 October 1830 and to J. H. Woodworth for $14,000 on 21 June 1836. Those are
+    two transactions and are counted as one parcel and two rows, which is what they are.
+
+    NOTHING HERE MERGES A NAME, DROPS A ROW, OR WRITES A FRACTION. T-0885's rule holds
+    unchanged: whether the men on one parcel are partners, a trustee and his principal or
+    strangers is an IDENTITY ruling, and `resident_crosswalk.json` is where this domain
+    makes those.
+    """
+    lots = [e for e in entries
+            if not (e["section"] or "").strip()
+            and e["tract"]["resolves"] == "town_plat_lot"]
+    no_section = [e for e in entries if not (e["section"] or "").strip()]
+
+    def keyed(e, with_code):
+        t = e["tract"]
+        return ((t["town_code"],) if with_code else ()) + (
+            t["block"], t["lot"], t["lot_fraction"])
+
+    with_code, without_code = {}, {}
+    for e in lots:
+        with_code.setdefault(keyed(e, True), []).append(e)
+        without_code.setdefault(keyed(e, False), []).append(e)
+    repeated = {k: v for k, v in with_code.items() if len(v) > 1}
+
+    # A co-purchase is one day and one page; anything else is the ground entered again.
+    same_day, later_entry = {}, []
+    for key, rows in sorted(repeated.items(), key=lambda kv: str(kv[0])):
+        if len({r["date_purchased"] for r in rows}) == 1:
+            same_day[key] = rows
+        else:
+            later_entry.append({
+                "town_code": key[0], "block": key[1], "lot": key[2],
+                "lot_fraction": key[3],
+                "rows": [{"record_id": r["record_id"], "date": r["date_purchased"],
+                          "total_price": r["total_price"],
+                          "purchaser_as_read": r["purchaser_as_read"]}
+                         for r in sorted(rows, key=lambda r: r["date_purchased"])],
+                "reading": "One parcel, entered again on a later day at a different "
+                           "price. Two transactions, not two writings of one."})
+
+    # The division the price proves: a total that does not divide by the number of
+    # buyers leaves a remainder ON THE ROWS, and a remainder cannot be a duplicate.
+    divisions, name_repeated, syndicates = [], [], {}
+    for key, rows in same_day.items():
+        names = sorted(r["purchaser_as_read"] for r in rows)
+        if len(set(names)) != len(names):
+            name_repeated.append({"key": [str(p) for p in key], "names": names})
+        syndicates.setdefault(tuple(names), []).append(
+            f"lot {key[2]} of block {key[1]}{' ' + key[3] if key[3] else ''} ({key[0]})")
+        cents = [round(float(r["total_price"]) * 100) for r in rows]
+        # The signature of a DIVISION rather than a repetition: the shares disagree,
+        # not one of them lands on a round ten, and together they do. A clerk writing
+        # one price twice writes it twice; a clerk dividing one has to put the
+        # remainder somewhere, and it shows up here.
+        if len(set(cents)) > 1 and sum(cents) % 1000 == 0 \
+                and not any(c % 1000 == 0 for c in cents):
+            divisions.append({
+                "town_code": key[0], "block": key[1], "lot": key[2],
+                "date": rows[0]["date_purchased"], "page": rows[0]["page"],
+                "shares_as_read": sorted(r["total_price"] for r in rows),
+                "they_sum_to": f"{sum(cents) / 100:.2f}",
+                "the_shares_spread_by": f"{(max(cents) - min(cents)) / 100:.2f}",
+                "reading": f"The rounding remainder is spread across the {len(rows)} "
+                           "rows, so the rows are SHARES of one price and not one price "
+                           "written more than once."})
+
+    # Fractions that partition ONE lot: disjoint quarters, all four covered, and one
+    # price per lot to the cent. A bare row is read as what the others leave, AND THAT
+    # READING IS NOT WRITTEN BACK ONTO THE ROW.
+    families, partitions = {}, []
+    for e in lots:
+        families.setdefault((e["tract"]["block"], e["tract"]["lot"],
+                             e["date_purchased"], e["page"]), []).append(e)
+    for key, rows in sorted(families.items(), key=lambda kv: str(kv[0])):
+        by_desc = {}
+        for r in rows:
+            by_desc.setdefault(r["aliquot_or_lot_as_read"], []).append(r)
+        if len(by_desc) < 2:
+            continue
+        parts, bare, covered, ok = [], [], set(), True
+        for desc, rs in by_desc.items():
+            frac = rs[0]["tract"]["lot_fraction"]
+            price = sum(float(r["total_price"]) for r in rs)
+            part = {"as_read": desc, "lot_fraction": frac, "price": price,
+                    "rows": len(rs), "town_code": rs[0]["tract"]["town_code"]}
+            (bare if frac is None else parts).append(part)
+        for p in parts:
+            cells = _cells(p["lot_fraction"])
+            if cells & covered:
+                ok = False
+            covered |= cells
+        if not ok or len(bare) > 1:
+            continue
+        residual = WHOLE_LOT - covered
+        if bare and not residual:
+            continue
+        if not bare and residual:
+            continue
+        if bare:
+            bare[0]["read_as_the_residual"] = f"{Fraction(len(residual), len(WHOLE_LOT))} of the lot"
+            parts = parts + bare
+        rates = {round(p["price"] * len(WHOLE_LOT)
+                       / len(residual if p["lot_fraction"] is None
+                             else _cells(p["lot_fraction"])), 2)
+                 for p in parts}
+        if len(rates) != 1:
+            continue
+        codes = sorted({p["town_code"] for p in parts})
+        partitions.append({
+            "block": key[0], "lot": key[1], "date": key[2], "page": key[3],
+            "one_price_per_lot": f"{rates.pop():.2f}",
+            "town_codes_on_this_one_lot": codes,
+            "spans_more_than_one_town_code": len(codes) > 1,
+            "needs_the_bare_row_read_as_a_fraction": bool(bare),
+            "parts": sorted(parts, key=lambda p: p["as_read"])})
+
+    money = sum(float(e["total_price"]) for e in lots)
+    all_money = sum(float(e["total_price"]) for e in no_section)
+    shared = sum(1 for k, v in without_code.items()
+                 if len({e["tract"]["town_code"] for e in v}) > 1)
+    return {
+        "rows_read": len(no_section),
+        "rows_that_parse_to_a_lot": len(lots),
+        "distinct_parcels": len(with_code),
+        "distinct_parcels_if_the_town_code_is_not_the_plat": len(without_code),
+        "parcels_entered_more_than_once": len(repeated),
+        "of_those_on_one_day_and_one_page": len(same_day),
+        "of_those_entered_again_on_a_later_day": len(later_entry),
+        "rows_in_a_repeated_parcel": sum(len(v) for v in repeated.values()),
+        "same_day_groups_repeating_a_purchaser_name": name_repeated,
+        "divisions_the_rounding_proves": divisions,
+        "co_purchaser_sets": [
+            {"purchasers": list(names), "parcels": len(where), "where": sorted(where)}
+            for names, where in sorted(syndicates.items(),
+                                       key=lambda kv: (-len(kv[1]), kv[0]))],
+        "lots_whose_fractions_partition_them": partitions,
+        "of_those_spanning_more_than_one_town_code":
+            sum(1 for p in partitions if p["spans_more_than_one_town_code"]),
+        "block_and_lot_pairs_under_more_than_one_town_code": shared,
+        "purchase_money_over_the_parsed_rows": f"{money:.2f}",
+        "purchase_money_over_every_row": f"{all_money:.2f}",
+        "what_this_is_not": "Not a merge, not a refusal and not a re-parse. Every row "
+                            "stands, every name stands, and `lot_fraction` stays null "
+                            "on every row the clerk left bare. This counts the ground "
+                            "under the rows so that a row count is never read as a "
+                            "parcel count, and records the arithmetic that says the "
+                            "repeats are SHARES rather than duplicates. Identity is "
+                            "ruled on in resident_crosswalk.json.",
+    }
+
 def school_section_counts(rows, entries):
     """Who bought the south, counted off the rows that landed on the plat.
 
@@ -791,6 +1042,7 @@ def derive():
             for grade in ("inferred", "reconstructed")},
         "structures_unreached_by_section": {k: len(v) for k, v in sorted(unreached.items())},
         "school_section": school_section_counts(rows, entries),
+        "town_lots": town_lot_parcels(entries),
     }
 
     doc = {
@@ -953,6 +1205,43 @@ def report():
               f"{' and '.join('$' + v for v in bad['prices_as_read'])}"
               f" ({', '.join(bad['rows'])})")
 
+    tl = counts["town_lots"]
+    print("\nTHE TOWN'S OWN LOTS — and here too a row is not a parcel (T-1039)")
+    print(f"  rows read                    {tl['rows_read']}")
+    print(f"  parsing to a lot and a block {tl['rows_that_parse_to_a_lot']}")
+    print(f"  distinct parcels             {tl['distinct_parcels']}"
+          f" — {tl['distinct_parcels_if_the_town_code_is_not_the_plat']}"
+          " if the town code does not name a plat")
+    print(f"  entered more than once       {tl['parcels_entered_more_than_once']}"
+          f" ({tl['rows_in_a_repeated_parcel']} rows):"
+          f" {tl['of_those_on_one_day_and_one_page']} on one day and one page,"
+          f" {tl['of_those_entered_again_on_a_later_day']} entered again later")
+    print(f"  repeating a purchaser's name "
+          f"{len(tl['same_day_groups_repeating_a_purchaser_name'])}"
+          " — so no repeat here is a duplicated row")
+    print("  the rounding proves a division on:")
+    for d in tl["divisions_the_rounding_proves"]:
+        print(f"    block {d['block']} lot {d['lot']}, {d['date']} — "
+              f"{', '.join('$' + v for v in d['shares_as_read'])}"
+              f" = ${d['they_sum_to']}")
+    print("  the co-purchasers on more than one parcel:")
+    for sset in tl["co_purchaser_sets"]:
+        if sset["parcels"] > 1:
+            print(f"    {' and '.join(sset['purchasers']):<44} {sset['parcels']} parcel(s)")
+    print(f"  lots their own fractions partition at one price"
+          f"        {len(tl['lots_whose_fractions_partition_them'])}")
+    print(f"    of those, spelling the town code more than one way"
+          f"  {tl['of_those_spanning_more_than_one_town_code']}")
+    for lot in tl["lots_whose_fractions_partition_them"]:
+        if not lot["spans_more_than_one_town_code"]:
+            continue
+        parts = ", ".join(f"{q['as_read']} ${q['price']:,.2f}" for q in lot["parts"])
+        print(f"      block {lot['block']} lot {lot['lot']}, {lot['date']} — {parts}"
+              f"  = ${float(lot['one_price_per_lot']):,.2f} the lot")
+    print(f"  purchase money                $" + tl["purchase_money_over_the_parsed_rows"]
+          + " over the parsed rows, $" + tl["purchase_money_over_every_row"] + " over all"
+          " — unchanged, because a share is not a repetition")
+
     print("\nTHE GROUND UNDER THE TOWN")
     by_tract = {}
     for sid, block in blocks.items():
@@ -1090,6 +1379,72 @@ def self_test():
     assert ss["put_on_a_block"] == len(landed)
     assert ss["distinct_purchasers"] == len({r["purchaser_normalized"] for r in landed})
     checks.append("counting parcels changed no row count and merged no spelling")
+
+    # A ROW IS NOT A PARCEL, ASKED OF THE TOWN LOTS (T-1039) — and answered the other
+    # way. The school section's repeats are duplicates this project cannot separate; the
+    # town lots' repeats are CO-PURCHASES, and the one count that says so is held first.
+    tl = doc["counts"]["town_lots"]
+    all_entries = load(DOMAIN / "entries.json")["entries"]
+    lots = [e for e in all_entries if not (e["section"] or "").strip()
+            and e["tract"]["resolves"] == "town_plat_lot"]
+    assert tl["rows_that_parse_to_a_lot"] == len(lots)
+    assert tl["rows_read"] == sum(1 for e in all_entries
+                                  if not (e["section"] or "").strip())
+    assert tl["same_day_groups_repeating_a_purchaser_name"] == [], tl
+    checks.append(f"not one of the {tl['of_those_on_one_day_and_one_page']} same-day "
+                  "town-lot repeats repeats a purchaser's NAME, which is what a "
+                  "duplicated row would do")
+
+    # The rounding is the proof, so the arithmetic behind each division is re-done here
+    # rather than trusted: shares that sum to a round ten while not one of them is one.
+    assert len(tl["divisions_the_rounding_proves"]) == 3, tl
+    for div in tl["divisions_the_rounding_proves"]:
+        cents = [round(float(v) * 100) for v in div["shares_as_read"]]
+        assert len(set(cents)) > 1, div
+        assert sum(cents) == round(float(div["they_sum_to"]) * 100), div
+        assert sum(cents) % 1000 == 0 and not any(c % 1000 == 0 for c in cents), div
+        assert max(cents) - min(cents) == round(float(div["the_shares_spread_by"]) * 100)
+    checks.append("three town-lot groups carry a rounding remainder across their rows: "
+                  "$5,750.00, $2,060.00 and $3,500.00, each in three")
+
+    # The fractions that partition a lot, re-derived off the grid rather than read back.
+    assert len(WHOLE_LOT) == 16
+    assert _cells("N2S2") != _cells("S2") and len(_cells("N2S2")) == 4
+    assert _cells("E2W2") & _cells("W2E2") == frozenset(), "two different quarters"
+    assert _cells("N2") | _cells("S2") == WHOLE_LOT
+    for lot in tl["lots_whose_fractions_partition_them"]:
+        named = [q for q in lot["parts"] if q["lot_fraction"] is not None]
+        covered = set()
+        for part in named:                                 # the written fractions first
+            cells = _cells(part["lot_fraction"])
+            assert not (cells & covered), lot              # disjoint
+            covered |= cells
+        residual = WHOLE_LOT - covered                     # then what they leave
+        assert len(covered) + len(residual) == len(WHOLE_LOT)
+        assert bool(residual) == lot["needs_the_bare_row_read_as_a_fraction"], lot
+        rates = {round(q["price"] * len(WHOLE_LOT)
+                       / len(residual if q["lot_fraction"] is None
+                             else _cells(q["lot_fraction"])), 2)
+                 for q in lot["parts"]}
+        assert len(rates) == 1 and f"{rates.pop():.2f}" == lot["one_price_per_lot"], lot
+    assert tl["of_those_spanning_more_than_one_town_code"] == 8, tl
+    checks.append(f"{len(tl['lots_whose_fractions_partition_them'])} town lots are "
+                  "partitioned by their own rows at one price per lot, and 8 of them "
+                  "spell the town code more than one way while doing it")
+
+    # AND NOTHING WAS WRITTEN BACK. The three bare rows the arithmetic reads as a
+    # residual quarter still carry no fraction, because the clerk wrote none.
+    bare = [q for lot in tl["lots_whose_fractions_partition_them"]
+            for q in lot["parts"] if q["lot_fraction"] is None]
+    assert len(bare) == 3 and all(q["read_as_the_residual"] == "1/4 of the lot"
+                                  for q in bare), bare
+    assert all(e["tract"]["lot_fraction"] is None for e in lots
+               if e["aliquot_or_lot_as_read"] in {q["as_read"] for q in bare})
+    assert tl["distinct_parcels"] > tl["distinct_parcels_if_the_town_code_is_not_the_plat"]
+    assert float(tl["purchase_money_over_the_parsed_rows"]) == round(
+        sum(float(e["total_price"]) for e in lots), 2)
+    checks.append("the residual-quarter reading stays arithmetic: no row gained a "
+                  "fraction, and the town lots' purchase money is the sum of the rows")
 
     for line in checks:
         print("  ok  " + line)
