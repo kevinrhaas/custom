@@ -26,7 +26,17 @@ school_section_block_numbering.json   All 142 of the School Section's, read off 
                                       tools/read_school_section_numerals.py and
                                       re-derived by check.sh; the ground they are
                                       spent onto is T-0876's, not this file's.
+harrison_1830_fort_burial_ground.json The Fort Cemetery parcel and Mrs Jouett's grave,
+                                      off the 1830 Harrison plate (T-0882). Builds the
+                                      grave's fence; refuses the parcel as fabric.
+harrison_1830_us_factors_house.json   Where the same plate letters 'U.S. Factor's House'
+                                      (T-0894) — the reading that put 140 m between it and
+                                      jb_beaubien_homestead. Authors no fabric.
 ```
+
+Two of those four are readings of ONE plate by ONE transform, stated in each file and
+derived on neither: T-0883 fitted it, and a later reading spends it rather than re-fitting
+it, so two readings of that sheet can be subtracted from each other.
 
 Large rasters are deliberately NOT committed. Each GCP file records the exact
 IIIF endpoint and the sha256 of the working copy, so the raster is re-fetchable

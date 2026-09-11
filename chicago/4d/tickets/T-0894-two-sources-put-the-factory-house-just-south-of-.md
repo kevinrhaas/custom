@@ -1,7 +1,7 @@
 ---
 id: T-0894
 title: Two sources put the Factory House just SOUTH of Fort Dearborn and jb_beaubien_homestead stands north of it: that bearing is all that is left of the identity question, and form.stories waits on it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1139
+claimed_by: run 9/11/2026, 11:31:12 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T17:07:53.348Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34622170176
 ---
 
 Two sources put the Factory House just SOUTH of Fort Dearborn and jb_beaubien_homestead stands north of it: that bearing is all that is left of the identity question, and form.stories waits on it.

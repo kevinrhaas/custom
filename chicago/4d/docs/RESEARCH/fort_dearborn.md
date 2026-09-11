@@ -270,6 +270,17 @@ carries the `geometry:` declaration and a liberty:
   slice and each would be almost entirely invention today — the plan gives a symbol and a
   label and no form. The Fort Cemetery left this list on 2026-09-06 (T-0882) and the Out
   Buildings on the same day (T-0881); both are two bullets down.
+- **The U.S. Factor's House is now READ, and still not built** — 2026-09-11, T-0894. The
+  plate letters it against **three** solid blocks 152 m south of the palisade's nearest
+  corner, east of the road and off the garrison garden's southern corner, ink-weighted
+  centre local ENU **(1145.6, 38.7)**; `data/traces/harrison_1830_us_factors_house.json`
+  carries the per-block pixels, sizes and bearings and three checks against records already
+  placed off this sheet. It was read to answer a question about a *different* record —
+  `jb_beaubien_homestead` claimed to BE this building and stands 140 m north of it, an alias
+  that came off on the same ticket — so the fabric is deliberately left unauthored: the plate
+  gives arrangement and a ±20 % size and no material, no roof, no opening, and no way to say
+  which of the three blocks carries `bk_hub_063`'s two storeys. The reading makes it a ticket
+  someone can size.
 - **Two more of that list are now built, and the list was wrong about one of them** —
   2026-09-06, T-0881: `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b`.
   The plate letters *Out Buildings* against a PAIR of solid blocks about 160 m south of
