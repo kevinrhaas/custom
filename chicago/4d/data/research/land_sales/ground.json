@@ -35,14 +35,14 @@
       "block_not_on_the_sheet": 0,
       "description_not_read": 3
     },
-    "structures_placed": 383,
+    "structures_placed": 384,
     "structures_reached": 68,
     "structures_reached_by_grade": {
       "inferred": 17,
       "reconstructed": 51
     },
     "structures_unreached_by_section": {
-      "09": 313,
+      "09": 314,
       "10": 1,
       "16": 1
     },
@@ -38837,6 +38837,7 @@
       "mason_blacksmith_shop",
       "miller_house",
       "miller_tannery",
+      "new_york_clothing_store",
       "new_york_house",
       "newberry_dole_slaughterhouse_south_branch",
       "newberry_dole_warehouse",

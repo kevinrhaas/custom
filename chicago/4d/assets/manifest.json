@@ -810,6 +810,15 @@
       "phase_id": "log_1831",
       "structure_id": "miller_tannery"
     },
+    "new_york_clothing_store__frame_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 45516,
+      "inputs_sha256": "206a97c8fa27a57327499514a4e35f731af2771de5c1cb0d45a25aecd44a448d",
+      "kind": "generated",
+      "phase_id": "frame_1835",
+      "structure_id": "new_york_clothing_store"
+    },
     "new_york_house__frame_1834.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
@@ -957,8 +966,8 @@
     "pruyne_kimball_drugstore__frame_1830s.glb": {
       "archetype": "frame_storefront",
       "baked_ao": false,
-      "bytes": 43964,
-      "inputs_sha256": "31e4096184ad3aa94bae086b30da5ab721530812ceacaa9ad2d4297e2fc2b41c",
+      "bytes": 45524,
+      "inputs_sha256": "90f582593f708557017ec3a04511e486d566c21e5856dc65f2abc7f5d9170c1f",
       "kind": "generated",
       "phase_id": "frame_1830s",
       "structure_id": "pruyne_kimball_drugstore"

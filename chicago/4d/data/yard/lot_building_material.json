@@ -14,14 +14,14 @@
       "timber": 3,
       "stone": 2
     },
-    "refused": 14
+    "refused": 15
   },
   "census": {
-    "standing": 382,
+    "standing": 383,
     "anonymous_refused": 284,
-    "named_examined": 98,
-    "named_with_1835_start_refused": 14,
-    "state_not_stated_refused": 97,
+    "named_examined": 99,
+    "named_with_1835_start_refused": 15,
+    "state_not_stated_refused": 98,
     "qualified": 1
   },
   "existence": {
@@ -310,6 +310,13 @@
       "name": "Matthias Mason & Co.'s Blacksmith Shop",
       "function": "blacksmith_shop",
       "documented_range_from": "1835-01-01",
+      "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
+    },
+    {
+      "structure_id": "new_york_clothing_store",
+      "name": "New York Clothing Store",
+      "function": "store",
+      "documented_range_from": "1835-06-08",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
     },
     {
