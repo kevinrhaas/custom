@@ -8,21 +8,21 @@
  "the_three_routes": "SKETCH. The 65 town findings read out of Norris's own Historical Sketch and\n  Statistical Account (T-0567) carry a `describes_date`. A finding dated at or\n  before 1835 whose PRINTED QUOTE names every significant word of a firm's name is\n  a candidate dating; the reader's `normalized` gloss is deliberately NOT searched,\n  because it is this project's prose and finding this project's own words in it\n  would date nothing.\n  OWN CARD. A card in the Advertising Directory (T-0568) may print its own\n  founding — \"established 18xx\", \"since 18xx\", \"commenced business in 18xx\". The\n  card's `dated_statement`, and a scan of the card's printed text for founding\n  language beside a year, are both taken.\n  FERGUS 1843. Fergus's 1843 directory (T-0571) is a year nearer the scene and its\n  business entries are advertisements too. A Fergus entry matched to the firm and\n  carrying founding language beside a year at or before 1835 is a dating; a Fergus\n  entry with no such year is PRESENCE IN 1843 and is not one. Being in print in\n  1843 is not being in business in 1835, and this file never treats it as though\n  it were.",
  "continuity_rule": "A firm the 1835\nnewspapers already carry — the 206 businesses of `gazetteer.json` — and Norris\nstill prints in 1844 is corroborated as having survived nine years. That is\nCONTINUITY: it confirms a business the town already holds and it adds none, it\ncarries no founding date, and it moves no grade. It is recorded here because the\nowner's ask was to validate and confirm as well as to add, and because a reader\nwho finds Newberry & Dole in both volumes should be able to see that this project\nnoticed. The rule is the standing one, adapted from names to firm styles:\n  A firm printing and an 1835 business agree when the SET of surnames printed in\n  the firm style is equal on both sides, and no given-name initial printed on both\n  sides for a shared surname contradicts. A ONE-surname firm additionally REQUIRES\n  an initial printed on both sides and agreeing — \"B. Jones & Co.\" against a town\n  that holds a Jones is the eleven-Smiths refusal, however good it looks. Where a\n  firm meets more than one 1835 business on that rule the match is AMBIGUOUS and\n  is filed as such, not resolved.",
  "counts": {
-  "firm_printings_read": 222,
-  "firms_read": 207,
-  "firms_in_the_directory_proper": 65,
+  "firm_printings_read": 246,
+  "firms_read": 231,
+  "firms_in_the_directory_proper": 89,
   "firms_in_the_advertising_directory": 157,
   "sketch_findings_dated_at_or_before_1835": 25,
   "sketch_candidate_namings": 0,
   "advertising_cards_carrying_any_date": 7,
-  "firms_also_printed_in_fergus_1843": 153,
+  "firms_also_printed_in_fergus_1843": 154,
   "fergus_1843_entries_with_founding_language": 1,
   "firms_dated_at_or_before_1835": 0,
   "firms_written": 0,
-  "firms_refused_as_1844_evidence_only": 207,
+  "firms_refused_as_1844_evidence_only": 231,
   "continuity_with_a_business_the_town_already_holds": 2,
   "continuity_ambiguous": 1,
-  "continuity_refused_on_a_surname_alone": 7
+  "continuity_refused_on_a_surname_alone": 9
  },
  "written": {
   "firms_written_to_the_businesses_layer": 0,
@@ -129,6 +129,23 @@
    "surname": "johnson",
    "meets_on_surname_alone": [
     "business_lathrop_johnson_co_livery"
+   ],
+   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+  },
+  {
+   "firm_1844": "Johnson, J. & Co",
+   "surname": "johnson",
+   "meets_on_surname_alone": [
+    "business_lathrop_johnson_co_livery"
+   ],
+   "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
+  },
+  {
+   "firm_1844": "Jones, B. & Co",
+   "surname": "jones",
+   "meets_on_surname_alone": [
+    "business_b_jones_grocery_and_provision_store",
+    "business_b_jones_storage_and_forwarding"
    ],
    "rule": "One surname, and no initial printed on both sides agrees. Refused — the eleven-Smiths rule."
   },
@@ -360,6 +377,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Adams, W. H. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0010",
+     "section": "directory",
+     "printed_page": 21
+    }
+   ],
+   "trade": "boot and shoe dealers, 138 Lake st (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Aetna Insurance Co. of Hartford, Conn. — Chicago agency",
    "printed_in": [
     {
@@ -475,6 +520,34 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Allen, J. P. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0017",
+     "section": "directory",
+     "printed_page": 21
+    }
+   ],
+   "trade": "lumber merchants en Canal street, 3d Ward",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -612,34 +685,6 @@
    "continuity_with_1835": null
   },
   {
-   "firm": "AVorcester. D. L",
-   "printed_in": [
-    {
-     "printing": "n1844_e1936",
-     "section": "directory",
-     "printed_page": 61
-    }
-   ],
-   "trade": null,
-   "sketch": {
-    "candidates": [],
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "own_card": {
-    "dated_statements": [],
-    "founding_years_printed": [],
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "verdict": "1844_evidence_only",
-   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
-   "continuity_with_1835": null
-  },
-  {
    "firm": "B. F. Sherman",
    "printed_in": [
     {
@@ -769,6 +814,34 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Barrows, D, A. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0079",
+     "section": "directory",
+     "printed_page": 23
+    }
+   ],
+   "trade": "confectioners, 147 Lake street (Sec card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -982,6 +1055,34 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Burley, A. G. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0245",
+     "section": "directory",
+     "printed_page": 27
+    }
+   ],
+   "trade": "crockery store, 105 Lake st (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -1248,6 +1349,62 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Carter, T. B. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0300",
+     "section": "directory",
+     "printed_page": 28
+    }
+   ],
+   "trade": "dry goods and groceries, us Lake st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Chapin, J. P. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0323",
+     "section": "directory",
+     "printed_page": 28
+    }
+   ],
+   "trade": "forwarding and commission merchants South Water st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -1522,7 +1679,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "manufacturers of lard oil and candles, 102 Lake st. Indiana st",
+   "trade": "druggists, manufacturers of lard oil and candles, 102 Lake st. Indiana st",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1618,6 +1775,34 @@
     }
    ],
    "trade": "Clark st and western markets",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Collins, S. B. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0389",
+     "section": "directory",
+     "printed_page": 30
+    }
+   ],
+   "trade": "boot, shoe, and leather store, 140 Lake st",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2150,6 +2335,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Dow, J. I. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0525",
+     "section": "directory",
+     "printed_page": 33
+    }
+   ],
+   "trade": "painters, Clark st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Dr. Benjamin F. Hale",
    "printed_in": [
     {
@@ -2225,7 +2438,7 @@
      "printed_page": 89
     }
    ],
-   "trade": "103 Lake st (See card)",
+   "trade": "dry goods and groceries, 103 Lake st (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2298,7 +2511,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "stoves, and hardware, 96 Lake st",
+   "trade": "dealers in iron, stoves, and hardware, 96 Lake st",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2475,6 +2688,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Frink, Walker, & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0651",
+     "section": "directory",
+     "printed_page": 35
+    }
+   ],
+   "trade": "stage proprietors, corner of Lake and Dear born sts",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Fuller & Squires",
    "printed_in": [
     {
@@ -2546,6 +2787,34 @@
    "verdict": "1844_evidence_only",
    "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
    "continuity_with_1835": "business_hubbard_co"
+  },
+  {
+   "firm": "Gale, Stephen F. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0670",
+     "section": "directory",
+     "printed_page": 36
+    }
+   ],
+   "trade": "book store, 106 Lake st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
   },
   {
    "firm": "Garrett & Seaman",
@@ -2722,6 +2991,62 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Gilbert, Ashley, & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0693",
+     "section": "directory",
+     "printed_page": 36
+    }
+   ],
+   "trade": "dry goods and groceries, S. Water st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Goss, S. W. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0716",
+     "section": "directory",
+     "printed_page": 37
+    }
+   ],
+   "trade": "dry goods, &c. !J8 Lake st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -3285,6 +3610,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Holden, C. N. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0875",
+     "section": "directory",
+     "printed_page": 40
+    }
+   ],
+   "trade": "dry goods and groceries, corner of Clark and South Water sts (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Hood & Gallagher",
    "printed_in": [
     {
@@ -3468,6 +3821,34 @@
     }
    ],
    "trade": "hotel",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Irvin, J. B. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0930",
+     "section": "directory",
+     "printed_page": 41
+    }
+   ],
+   "trade": "dry goods, groceries, Dearborn",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4300,6 +4681,62 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Johnson, J. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0959",
+     "section": "directory",
+     "printed_page": 42
+    }
+   ],
+   "trade": "barbers and hair dressers, Clark street",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Johonnott, Wells & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0969",
+     "section": "directory",
+     "printed_page": 42
+    }
+   ],
+   "trade": "leather store, c Lasalle and Lake (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Johonnott, Wells & Co.",
    "printed_in": [
     {
@@ -4309,6 +4746,34 @@
     }
    ],
    "trade": "general dealers in leather, hides, findings and oil; cash paid for hides",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Jones, B. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e0972",
+     "section": "directory",
+     "printed_page": 42
+    }
+   ],
+   "trade": "dry goods and groceries, S. Water",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4526,6 +4991,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Lessey, John F. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1099",
+     "section": "directory",
+     "printed_page": 45
+    }
+   ],
+   "trade": "billiard saloon, corner S. Water and Dear born sts (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Linseed Oil — S. W. Peck and L. M. Boyce",
    "printed_in": [
     {
@@ -4535,6 +5028,62 @@
     }
    ],
    "trade": "linseed oil mill; oil exchanged or cash paid for flax seed",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Lloyd, Blakesly & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1128",
+     "section": "directory",
+     "printed_page": 45
+    }
+   ],
+   "trade": "dry goods and gro, 101 Lake st (Sec card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Lock, Wm. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1108",
+     "section": "directory",
+     "printed_page": 45
+    }
+   ],
+   "trade": "clothing store. Saloon Build. (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4643,6 +5192,34 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Magie, H. H. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1207",
+     "section": "directory",
+     "printed_page": 47
+    }
+   ],
+   "trade": "dry goods and groceries, 130 Lake street",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -5170,15 +5747,15 @@
    "continuity_with_1835": null
   },
   {
-   "firm": "Norton. C. C. of N. & Case",
+   "firm": "Norton, Horace & Co",
    "printed_in": [
     {
-     "printing": "n1844_e1354",
+     "printing": "n1844_e1358",
      "section": "directory",
      "printed_page": 50
     }
    ],
-   "trade": null,
+   "trade": "forwarding and commission merchants, So. Water st. (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5191,9 +5768,9 @@
    "fergus_1843": {
     "entries": [
      {
-      "claim": "f1843_e1913",
+      "claim": "f1843_e0077",
       "founding_year_printed": null,
-      "quote": "Norton & Case, dry goods and groceries, 80 Lake"
+      "quote": "HORACE NORTON & CO., storage, forwarding, and commission merchants, dealers in produce, iron, coal, etc., Chicago,\nIll.; liberal advances made on produce. Horace Norton, Joel C. Walter, Edward Kendall"
      }
     ],
     "present_in_1843": true,
@@ -5550,7 +6127,7 @@
      "printed_page": 51
     }
    ],
-   "trade": "Clark st",
+   "trade": "bakers, Clark st",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5677,6 +6254,62 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Rattle, F. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1465",
+     "section": "directory",
+     "printed_page": 52
+    }
+   ],
+   "trade": "boots, shoes, and leather, 133 Lake st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Raymond, B. W. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1468",
+     "section": "directory",
+     "printed_page": 52
+    }
+   ],
+   "trade": "staple goods and groceries, corner South Water and State sts and 122 Lake st up stairs",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Rew & Russell",
    "printed_in": [
     {
@@ -5773,15 +6406,15 @@
    "continuity_with_1835": null
   },
   {
-   "firm": "Russell. C. G. of Rew & Russell",
+   "firm": "Ryer, G. & Co",
    "printed_in": [
     {
-     "printing": "n1844_e1533",
+     "printing": "n1844_e1540",
      "section": "directory",
      "printed_page": 53
     }
    ],
-   "trade": null,
+   "trade": "tailors, Clark street, next door to Post Office",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5792,14 +6425,8 @@
     "dates_the_founding_at_or_before_1835": false
    },
    "fergus_1843": {
-    "entries": [
-     {
-      "claim": "f1843_e2088",
-      "founding_year_printed": null,
-      "quote": "Rew & Russell, grocery and ball-alley, 77 South Water"
-     }
-    ],
-    "present_in_1843": true,
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -6046,6 +6673,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Sanger, L. P. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1554",
+     "section": "directory",
+     "printed_page": 54
+    }
+   ],
+   "trade": "hat, cap, and fur store, 110 Lake st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Sauganash Hotel",
    "printed_in": [
     {
@@ -6196,7 +6851,7 @@
      "printed_page": 55
     }
    ],
-   "trade": "and boarding house, N. Water st. n Dcarb",
+   "trade": "groceries, and boarding house, N. Water st. n Dcarb",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6284,6 +6939,45 @@
       "claim": "f1843_e2314",
       "founding_year_printed": null,
       "quote": "Smith & Ballingall, attorneys at law, 6 Clark"
+     }
+    ],
+    "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Smith, George & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1647",
+     "section": "directory",
+     "printed_page": 56
+    }
+   ],
+   "trade": "private banker* and exchange brokers, Bank Buildings (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [
+     {
+      "claim": "f1843_e0023",
+      "founding_year_printed": null,
+      "quote": "GEORGE SMITH & CO., bankers and insurance brokers, (bank building),. LaSalle Street, Chicago, Ill."
+     },
+     {
+      "claim": "f1843_e0113",
+      "founding_year_printed": null,
+      "quote": "GEORGE SMITH & CO., bankers and insurance brokers, (bank building), LaSalle Street, Chicago, Ill."
      }
     ],
     "present_in_1843": true,
@@ -6813,6 +7507,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Walker, C. & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1828",
+     "section": "directory",
+     "printed_page": 59
+    }
+   ],
+   "trade": "dry goods, gro. leather, &c. S. Water st",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Walter & Keilinan",
    "printed_in": [
     {
@@ -6903,15 +7625,15 @@
    "continuity_with_1835": null
   },
   {
-   "firm": "Wells. Andrew S. of Johoimett W. & Co",
+   "firm": "Weseott & Steel",
    "printed_in": [
     {
-     "printing": "n1844_e1868",
+     "printing": "n1844_e1874",
      "section": "directory",
      "printed_page": 60
     }
    ],
-   "trade": null,
+   "trade": "Western Coffee House, <rDear. artdr-S. Water sts",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6931,15 +7653,49 @@
    "continuity_with_1835": null
   },
   {
-   "firm": "Weseott & Steel",
+   "firm": "Wheeler, Wm. & Co",
    "printed_in": [
     {
-     "printing": "n1844_e1874",
+     "printing": "n1844_e1877",
      "section": "directory",
      "printed_page": 60
     }
    ],
-   "trade": "Western Coffee House, <rDear. artdr-S. Water sts",
+   "trade": "hardwaid, &c. 145 Lake st. (See card)",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [
+     {
+      "claim": "f1843_e0170",
+      "founding_year_printed": null,
+      "quote": "WM. WHEELER & CO., dealers in stoves, hardware, cutlery, tin, sheet-iron, and copper ware; agents for the Hazard\nCompany's various sorts of powder; 145 Lake Street, Chicago, Ill.; cash paid for furs a"
+     }
+    ],
+    "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Whit'mc, Magill & Co",
+   "printed_in": [
+    {
+     "printing": "n1844_e1886",
+     "section": "directory",
+     "printed_page": 60
+    }
+   ],
+   "trade": "forwarding and, commission merchants, N Water street (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6995,7 +7751,7 @@
      "printed_page": 61
     }
    ],
-   "trade": "94 Lake st.(See card)",
+   "trade": "dry goods and groceries, 94 Lake st.(See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7014,62 +7770,6 @@
      }
     ],
     "present_in_1843": true,
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "verdict": "1844_evidence_only",
-   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
-   "continuity_with_1835": null
-  },
-  {
-   "firm": "Wicker. C. G. of C. G. Wicker & Go",
-   "printed_in": [
-    {
-     "printing": "n1844_e1891",
-     "section": "directory",
-     "printed_page": 61
-    }
-   ],
-   "trade": null,
-   "sketch": {
-    "candidates": [],
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "own_card": {
-    "dated_statements": [],
-    "founding_years_printed": [],
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "verdict": "1844_evidence_only",
-   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
-   "continuity_with_1835": null
-  },
-  {
-   "firm": "Wicker. J. H",
-   "printed_in": [
-    {
-     "printing": "n1844_e1893",
-     "section": "directory",
-     "printed_page": 61
-    }
-   ],
-   "trade": null,
-   "sketch": {
-    "candidates": [],
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "own_card": {
-    "dated_statements": [],
-    "founding_years_printed": [],
-    "dates_the_founding_at_or_before_1835": false
-   },
-   "fergus_1843": {
-    "entries": [],
-    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -7119,7 +7819,7 @@
      "printed_page": 59
     }
    ],
-   "trade": "113 Lake st (See card)",
+   "trade": "dry goods and groceries, 113 Lake st (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
