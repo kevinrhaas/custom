@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The checks cried wolf fourteen times a run, and were believed', kind: 'chore', ts: '',
+  { v: 726, title: 'The checks cried wolf fourteen times a run, and were believed', kind: 'chore', ts: '2026-09-11T14:27:11.712Z', date: 'Sep 11, 2026, 9:27 AM CT',
     items: [
       'Everything in this reconstruction is held by a suite of checks that runs before every change lands \u2014 three hundred and four of them, covering the sources, the dates, the licences, the ground and the geometry. A third of those checks are checks ON the checks: they deliberately break a derivation and require the right alarm to sound, because a gate nobody has ever seen fire is a gate nobody knows works.',
       'An alarm that sounds on purpose prints the same word as an alarm that sounds because something is wrong. So a run in which NOTHING was wrong still printed fourteen lines reading FAIL, and one that announced two checks FAILED before reporting itself in order. There was no way to tell the two apart without already knowing which of the three hundred and four steps were the self-tests.',
