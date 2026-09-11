@@ -1,7 +1,7 @@
 ---
 id: T-0948
 title: A printing that named a street and no anchor, superseded by one of the same house that names one: T-0440 one rank up
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1149
 claimed_by: run 9/11/2026, 3:42:58 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-11T21:29:52.735Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34645423891
 ---
 
