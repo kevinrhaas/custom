@@ -8,12 +8,12 @@
     "upheld": 89,
     "named": 1,
     "refused": 48,
-    "unruled": 0
+    "unruled": 1
   },
   "counts": {
     "purchasers": 431,
-    "matched": 90,
-    "refused": 341,
+    "matched": 91,
+    "refused": 340,
     "firms": 2
   },
   "matches": [
@@ -4771,6 +4771,23 @@
         "reasoning": "The town's record is a single post-office letter list — the weakest it accepts — and by the ruling rule that alone would refuse. It does not, because the list did not print a bare name: the Democrat of 28 January 1834 prints 'David P.Frame' and the register writes FRAME DAVID P. All three tokens agree, and a middle initial is exactly the second discriminator T-0696 says the crosswalks want. Upheld on the initial, and on nothing else: the entry proposes no residence, and the identity remains inferred."
       },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "FAY HARRISON K",
+      "record_ids": [
+        "ls0902"
+      ],
+      "resident_id": "fay_h_k",
+      "resident_name": "H. K. Fay",
+      "household_id": "hh_fay_h_k",
+      "match": "initial_agrees",
+      "rule": "FAY HARRISON K matches H. K. Fay: the forename names H. K. Fay of the 1 person of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
+      "rivals": [],
+      "residence_column": "COOK",
+      "evidence_grade": "documented",
+      "ruling": null,
+      "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
       "purchaser_as_read": "DILL FRANK",
@@ -10713,8 +10730,19 @@
     },
     {
       "a": "HATCH JUNIUS H",
-      "b": "0 residents named Hatch",
-      "rule": "HATCH JUNIUS H is refused against 0 residents named Hatch: the residents layer holds nobody of the surname.",
+      "b": "Luther Hatch",
+      "rule": "HATCH JUNIUS H is refused against Luther Hatch: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "hatch_luther",
+          "name": "Luther Hatch",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "H",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls0679"
       ],
@@ -12386,21 +12414,21 @@
     },
     {
       "a": "FAY H R",
-      "b": "0 residents named Fay",
-      "rule": "FAY H R is refused against 0 residents named Fay: the residents layer holds nobody of the surname.",
+      "b": "H. K. Fay",
+      "rule": "FAY H R is refused against H. K. Fay: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "fay_h_k",
+          "name": "H. K. Fay",
+          "forename_agrees": true,
+          "why": "the forenames agree and the middle initials do not — R against K (rule 2)",
+          "middle_initial": "K",
+          "reading_middle_initial": "R",
+          "outcome": "refused_on_the_middle_initial"
+        }
+      ],
       "record_ids": [
         "ls0901"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
-      "a": "FAY HARRISON K",
-      "b": "0 residents named Fay",
-      "rule": "FAY HARRISON K is refused against 0 residents named Fay: the residents layer holds nobody of the surname.",
-      "record_ids": [
-        "ls0902"
       ],
       "evidence": [
         "data/residents/index.json"
