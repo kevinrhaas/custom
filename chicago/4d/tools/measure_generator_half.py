@@ -134,13 +134,18 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # adds nothing here: it is measured to a coordinate and deliberately not built, because this
 # project has no well archetype (docs/RESEARCH/wells.md section 5, T-0887).
 #
+# 380 -> 381 and 378 -> 379 on 2026-09-11 (T-0385): the New York Clothing Store, Tuthill
+# King's shop three doors north of the Tremont House in Dearborn Street. One new record,
+# so one more committed asset and one more mesh a change to the shared generator modules
+# or to build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+#
 STATED = {
-    "assets": 380,
+    "assets": 381,
     "restales": {
-        "generators/common/*.py": 380,
+        "generators/common/*.py": 381,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 378,
+        "generators/build.py": 379,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },

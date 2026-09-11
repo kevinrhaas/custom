@@ -9779,6 +9779,11 @@
       "why": "mason_blacksmith_shop is a blacksmith_shop — a works and a warehouse took carts and drays at a yard gate, not riders at a post, which is the same distinction that hangs a board over a footway at a counter and paints a firm's name on a works front. No hitching post is set."
     },
     {
+      "structure_id": "new_york_clothing_store",
+      "wall": "blk_south_water_clark south face, lot 7",
+      "why": "new_york_clothing_store faces 90.0deg and this platted face looks 180.5deg — 90.5deg apart, over the 45.0deg this layer allows. The lot fronts Lake Street and the building's door does not, so a post here would serve a street the trade does not open onto. No post is set."
+    },
+    {
       "structure_id": "old_bank_building",
       "wall": "blk_lake_lasalle north face, lot 0",
       "why": "old_bank_building is a packing_house — a works and a warehouse took carts and drays at a yard gate, not riders at a post, which is the same distinction that hangs a board over a footway at a counter and paints a firm's name on a works front. No hitching post is set."

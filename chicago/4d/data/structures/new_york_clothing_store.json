@@ -94,9 +94,9 @@
           "note": "The archetype's default, and the one form decision this record has an argument for. The notice is a RETAIL advertisement — “WHOLESALE AND [RE]TAIL”, an itemised list of coats, vests and pantaloons, and an invitation to “call and examine the above stock” — which describes goods shown to somebody who has walked in off Dearborn Street. That argues a shopfront on the street rather than a warehouse door; it does not describe one, and the composed opening the archetype builds is the archetype's invention and not the paper's."
         },
         "siding_exposure_m": {
-          "value": 0.127,
+          "value": 0.152,
           "confidence": "reconstructed",
-          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 5 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
+          "note": "INVENTED WITHIN A STOCK SET, NOT DERIVED. No source states the exposed face of any Chicago building's siding. The value is one of four period mill sidings — 4.5, 5, 5.5 or 6 in to the weather; this record wears 6 in — dealt by tools/deal_siding_stock.py: keyed to the phase's construction season, because buildings sided from the same season's shipments of St Joseph sawn lumber tend toward one stock, then advanced so no frame building within 60 m shares this one's. The separation is the surface variety T-0049 reconstructs, not a claim about 1835. docs/LIBERTIES.md L148 owns the invention."
         }
       },
       "change_note": "One state, and the evidence supports no other. The American's three printings run four weeks over one copy date and describe no alteration; nothing reached says when the shell was built or what became of it. The phase is bounded by the printings so that the record claims the weeks it can cite and not a year either side of them."

@@ -810,6 +810,15 @@
       "phase_id": "log_1831",
       "structure_id": "miller_tannery"
     },
+    "new_york_clothing_store__frame_1835.glb": {
+      "archetype": "frame_storefront",
+      "baked_ao": false,
+      "bytes": 48532,
+      "inputs_sha256": "f4b4b79afcb1ad78d4dbc6b4fc4946b6bb6a07a0a0f404fcc613837f014f30bc",
+      "kind": "generated",
+      "phase_id": "frame_1835",
+      "structure_id": "new_york_clothing_store"
+    },
     "new_york_house__frame_1834.glb": {
       "archetype": "frame_tavern",
       "baked_ao": false,
