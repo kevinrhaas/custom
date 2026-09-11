@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two answers for one hotel, and the rule nobody wrote down', kind: 'fix', ts: '',
+  { v: 739, title: 'Two answers for one hotel, and the rule nobody wrote down', kind: 'fix', ts: '2026-09-11T20:50:04.503Z', date: 'Sep 11, 2026, 3:50 PM CT',
     items: [
       'The Steamboat Hotel stood on North Water Street near Kinzie, kept by John Davis. Nobody says which corner, so this reconstruction has to decide how far back from the street a building stands. Five days ago two separate passes made that decision within hours of each other, ruled the same way about Kinzie Street, and then put the hotel in two different places thirty-seven metres apart. One of them was published. Nothing noticed.',
       'Nothing noticed because there was no rule to check against. South of the river the town is a plat: James Thompson ruled the streets in 1830 at eighty feet, and eleven of those corridors have been measured off the 1834 surveys, so a building there can be set out from a figure the sheets carry. None of those eleven is north of the river, and the model gives no north-bank street a platted corridor at all. The first pass borrowed the eighty-foot figure across the river anyway and set the hotel back twelve metres. Every other building on that bank stands between nothing and five metres from the same line.',
