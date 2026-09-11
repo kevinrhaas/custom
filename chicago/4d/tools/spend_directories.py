@@ -74,6 +74,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -664,13 +665,47 @@ def self_test() -> int:
     check("a ruling carries no anchor the spend measure can read",
           all(r["person_id"] and r["claim_ids"] for r in led["rulings"]))
 
+    # THE ONCE-EACH RULE (T-0846), WHICH THIS PASS HOLDS STRUCTURALLY AND NOT BY A GATE.
+    # The four append-style passes write with `if MARKER not in note: note += paragraph`,
+    # so an older version of the pass — differently worded, still pushed on a branch —
+    # appends a second paragraph about the same source and `gaps`/`strays` see nothing.
+    # T-0677 closed that in `spend_land_sales.py` with a `doubles()` gate and T-0846 gave
+    # the rule to `spend_once_each.py`. This pass CANNOT double a paragraph: it pops the
+    # whole `directories` block and rebuilds it from the crosswalks, and `--check`
+    # compares the resulting BYTES. Carrying a `doubles()` here would be a gate that can
+    # never fire. What is worth pinning is the structure the immunity rests on, so a later
+    # rewrite to append-style cannot take it away silently — so the rule is demonstrated
+    # against a staged doubled card, in a temp tree, and the rebuild must undo it.
+    global HOUSEHOLDS
+    real, hid = HOUSEHOLDS, next(iter(sorted(card)))
+    with tempfile.TemporaryDirectory() as tmp:
+        staged = json.loads((real / f"{hid}.json").read_text(encoding="utf-8"))
+        people = (staged.get("directories") or {}).get("people") or []
+        block = next((p for p in people
+                      if any(p.get(f) for f in ("occupation_later", "address_later"))),
+                     people[0] if people else None)
+        check("the staged card carries no directories person to double", block is not None)
+        if block is not None:
+            field = next(f for f in ("occupation_later", "address_later") if block.get(f))
+            block[field]["note"] = block[field]["note"] * 2
+            doubled = dumps(staged)
+            (Path(tmp) / f"{hid}.json").write_text(doubled, encoding="utf-8")
+            HOUSEHOLDS = Path(tmp)
+            try:
+                rebuilt = household_text(hid, card[hid])
+            finally:
+                HOUSEHOLDS = real
+            check("a doubled directories note survives the rebuild", rebuilt != doubled)
+            check("the rebuild does not restore the byte the check compares",
+                  rebuilt == (real / f"{hid}.json").read_text(encoding="utf-8"))
+
     if failures:
         for f in failures[:10]:
             print("   assertion did not hold: %s" % f, file=sys.stderr)
         print("   %d assertion(s) failed" % len(failures), file=sys.stderr)
         return 1
     print("   OK: %d assertions over %d people and %d rulings"
-          % (5 + len(rows) * 3 + len(card), len(rows), len(led["rulings"])))
+          % (8 + len(rows) * 3 + len(card), len(rows), len(led["rulings"])))
     return 0
 
 

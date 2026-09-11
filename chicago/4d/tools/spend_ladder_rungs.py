@@ -409,6 +409,32 @@ def self_test() -> int:
         print("  FAIL a rung was spent onto a person with no ruling")
         ok = False
 
+    # THE ONCE-EACH RULE (T-0846), WHICH THIS PASS HOLDS STRUCTURALLY AND NOT BY A GATE.
+    # The append-style spend passes write `if MARKER not in note: note += paragraph`, so an
+    # older version of one — differently worded, still pushed on a branch — appends a
+    # second paragraph about the same source and neither `gaps` nor `strays` can see it.
+    # T-0677 closed that in `spend_land_sales.py` and T-0846 gave the rule to
+    # `spend_once_each.py`. This pass writes no paragraph at all: `with_rung` strips any
+    # `ladder_rule` already on the person and re-inserts exactly one immediately after
+    # `grade`, and `build` emits the WHOLE file, so a second rung cannot survive a run.
+    # Carrying a `doubles()` here would be a gate that can never fire; what is pinned
+    # instead is the structure the immunity rests on.
+    already = {"id": "probe", "grade": "projected_resident", "ladder_rule": "G5",
+               "note": "Existing sentence."}
+    once = with_rung(already, "G3")
+    if (dumps(once).count('"ladder_rule"') == 1 and once["ladder_rule"] == "G3"
+            and with_rung(once, "G3") == once):
+        print("  ok    a card already carrying a rung is left carrying exactly one")
+    else:
+        print("  FAIL a second ladder_rule survived the write")
+        ok = False
+
+    if list(once).index("ladder_rule") == list(once).index("grade") + 1:
+        print("  ok    the rung keeps its fixed position, so two writers agree on the bytes")
+    else:
+        print("  FAIL the rung was appended rather than placed after grade")
+        ok = False
+
     return 0 if ok else 1
 
 

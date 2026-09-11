@@ -61,7 +61,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from spend_once_each import doubles_over as _doubles_over_shared, doubles as _doubles, \
+    self_test_lines  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 LAND_SALES = ROOT / "data" / "research" / "land_sales"
@@ -517,17 +522,7 @@ def strays(rows: list) -> list:
 
 def _doubles_over(household_id: str, person: dict) -> list:
     """doubles() for one already-loaded person — what the self-test needs and the gate reuses."""
-    note = person.get("note") or ""
-    out = []
-    if note.count(MARKER) > 1:
-        out.append("%s/%s — carries this pass's paragraph %d times; the register is written "
-                   "onto a card once" % (household_id, person.get("id"), note.count(MARKER)))
-    for old in SUPERSEDED_MARKERS:
-        if old in note:
-            out.append("%s/%s — carries a superseded tract-sales paragraph beside this one; "
-                       "the register is written onto a card once"
-                       % (household_id, person.get("id")))
-    return out
+    return _doubles_over_shared(household_id, person, MARKER, SUPERSEDED_MARKERS, "register")
 
 
 def doubles() -> list:
@@ -535,14 +530,11 @@ def doubles() -> list:
 
     Two ways a card ends up saying it twice and both are silent to the two gates above:
     this pass's own paragraph appended a second time, or a superseded pass's paragraph
-    left standing beside it.
+    left standing beside it. T-0677 wrote the rule here and deliberately did not
+    generalise ahead of the second case; T-0846 found three more and moved it to
+    `tools/spend_once_each.py`, which this is now the first caller of.
     """
-    bad = []
-    for path in sorted(HOUSEHOLDS.glob("*.json")):
-        hh = load(path)
-        for person in hh.get("persons") or []:
-            bad.extend(_doubles_over(hh.get("id"), person))
-    return bad
+    return _doubles(HOUSEHOLDS, MARKER, SUPERSEDED_MARKERS, "register")
 
 
 def check(quiet: bool = False) -> int:
@@ -708,6 +700,12 @@ def self_test() -> int:
     rival["note"] = rival["note"] + " " + SUPERSEDED_MARKERS[0] + " …"
     want("doubles must fire on a superseded tract-sales paragraph left standing",
          any("superseded" in d for d in _doubles_over("hh_x", rival)))
+
+    # …and the shared rule must say the same thing about this pass as the three lines
+    # above say directly, which is what makes moving it out of here safe (T-0846).
+    for label, held in self_test_lines(MARKER, paragraph(rows[0]), SUPERSEDED_MARKERS,
+                                       "register"):
+        want(label, held)
 
     # T-0697. `tools/mint_placed_residents.py` rebuilds some of the cards this pass writes
     # — J. K. Boyer since the crosswalk stopped counting namesakes — and re-attaches this

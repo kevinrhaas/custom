@@ -68,6 +68,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from spend_once_each import doubles_over, doubles as _doubles, self_test_lines  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 CIVIC = ROOT / "data" / "research" / "civic"
 CROSSWALK = CIVIC / "voter_crosswalk.json"
@@ -86,6 +89,14 @@ SOURCE_ID = "chicago_voter_lists_1833_1835_irad"
 # The sentence that says a paragraph is this pass's, so re-running it is idempotent and
 # `--check` can find its own work without guessing.
 MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE."
+
+# THE SAME ROLLS, IN A PASS THIS ONE SUPERSEDED (T-0846). `gaps` asks only whether the
+# marker is PRESENT and `strays` only whether an unruled card carries one, so neither can
+# see a card saying this twice — nor one carrying an earlier version's differently worded
+# paragraph about the same rolls beside the current one. This pass has been written once
+# (T-0634) and so has nothing to list yet; the tuple is where a rewrite states its old
+# wording, and `doubles()` below is the rule that reads it.
+SUPERSEDED_MARKERS: tuple = ()
 
 LADDER_LIMIT = (
     "Under the ratified ladder (T-0513) the 1835 poll with a second independent source is "
@@ -306,6 +317,11 @@ def strays(rows: list) -> list:
     return bad
 
 
+def doubles() -> list:
+    """…and a card says these rolls ONCE, however many passes have written them (T-0846)."""
+    return _doubles(HOUSEHOLDS, MARKER, SUPERSEDED_MARKERS, "roll")
+
+
 def check(quiet: bool = False) -> int:
     faults = []
     rows = matches()
@@ -317,13 +333,15 @@ def check(quiet: bool = False) -> int:
         faults.append("%s is missing — run tools/spend_civic_voter_lists.py" % LEDGER.name)
     faults += gaps(rows)
     faults += strays(rows)
+    faults += doubles()
     if faults:
         print("civic voter-list spend: %d fault(s)" % len(faults))
         for f in faults[:40]:
             print("   " + f)
         return 1
     if not quiet:
-        print("civic voter-list spend: %d ruling(s) on %d card(s), all written, no strays"
+        print("civic voter-list spend: %d ruling(s) on %d card(s), all written, no "
+              "strays, none written twice"
               % (sum(len(r["entries"]) for r in rows), len(rows)))
     return 0
 
@@ -405,12 +423,19 @@ def self_test() -> int:
     want("the placed mint must carry this pass's marker",
          'CIVIC_ROLLS_MARKER = "%s"' % MARKER in mint)
 
+    # 8. The once-each rule, both directions (T-0846). The shared driver builds the two
+    # cards — the one the applier writes, and the same one with the paragraph appended a
+    # second time — so the passes that hold this rule cannot drift apart on what it means.
+    for label, held in self_test_lines(MARKER, paragraph(rows[0]), SUPERSEDED_MARKERS,
+                                       "roll"):
+        want(label, held)
+
     if failures:
         print("spend_civic_voter_lists self-test: %d assertion(s) did not fire" % len(failures))
         for f in failures:
             print("   " + f)
         return 1
-    print("spend_civic_voter_lists self-test: %d assertion(s) hold" % 11)
+    print("spend_civic_voter_lists self-test: %d assertion(s) hold" % 13)
     return 0
 
 

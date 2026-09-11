@@ -67,7 +67,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from spend_once_each import doubles as _doubles, self_test_lines  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = ROOT / "data" / "research" / "directories"
@@ -86,6 +90,16 @@ SOURCE_ID = "fergus_chicago_directory_1839"
 # the later-lists pass's marker: the two passes meet on the same cards.
 MARKER = ("FERGUS 1839'S FORT DEARBORN ADDITION LOT SALE — JUNE 1839 EVIDENCE, "
           "NEVER AN 1835 FACT.")
+
+# THE SAME SALE, IN A PASS THIS ONE SUPERSEDED (T-0846). `gaps` asks only whether the
+# marker is PRESENT and `strays` only whether an unruled card carries one, so neither can
+# see a card saying this twice — nor one carrying an earlier version's differently worded
+# paragraph about the same sale beside the current one. This pass has been written once and
+# so has nothing to list yet; the tuple is where a rewrite states its old wording, and
+# `doubles()` below is the rule that reads it. The later-lists pass reads the same BOOK and
+# is not superseded by this one: it spends the 1837 poll and the 1839 register under its
+# own marker, and the two paragraphs stand side by side by design.
+SUPERSEDED_MARKERS: tuple = ()
 
 LADDER_LIMIT = (
     "This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a "
@@ -443,6 +457,11 @@ def strays(rows: list) -> list:
     return bad
 
 
+def doubles() -> list:
+    """…and a card says this sale ONCE, however many passes have written it (T-0846)."""
+    return _doubles(HOUSEHOLDS, MARKER, SUPERSEDED_MARKERS, "sale")
+
+
 def check(quiet: bool = False) -> int:
     rows = matches()
     if not LEDGER.exists():
@@ -452,7 +471,7 @@ def check(quiet: bool = False) -> int:
         print("   %s no longer re-derives from the crosswalk — re-run the tool"
               % LEDGER.relative_to(ROOT))
         return 1
-    bad = gaps(rows) + strays(rows)
+    bad = gaps(rows) + strays(rows) + doubles()
     if bad:
         for line in bad[:20]:
             print("   %s" % line)
@@ -460,7 +479,8 @@ def check(quiet: bool = False) -> int:
             print("   …and %d more" % (len(bad) - 20))
         return 1
     if not quiet:
-        print("fergus 1839 lot sale: %d lot row(s) on %d card(s), no strays"
+        print("fergus 1839 lot sale: %d lot row(s) on %d card(s), no strays, none "
+              "written twice"
               % (sum(len(r["entries"]) for r in rows), len(rows)))
     return 0
 
@@ -543,6 +563,11 @@ def self_test() -> int:
     silent["note"] = "Existing sentence."
     want("gaps must fire on a card that carries no paragraph",
          any("no paragraph" in g for g in _gaps_over(rows[0], silent)))
+
+    # …and the third gate must fire on each way a card comes to say it twice (T-0846).
+    for label, held in self_test_lines(MARKER, paragraph(rows[0]), SUPERSEDED_MARKERS,
+                                       "sale"):
+        want(label, held)
 
     for line in fails:
         print("   %s" % line)

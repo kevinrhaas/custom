@@ -65,6 +65,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from spend_once_each import doubles as _doubles, self_test_lines  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = ROOT / "data" / "research" / "directories"
 ELECTION = DIRECTORIES / "fergus_1839_election_crosswalk_1835.json"
@@ -81,6 +84,16 @@ SOURCE_ID = "fergus_chicago_directory_1839"
 # The sentence that says a paragraph is this pass's, so re-running it is idempotent and
 # `--check` can find its own work without guessing.
 MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
+
+# THE SAME VOLUME, IN A PASS THIS ONE SUPERSEDED (T-0846). `gaps` asks only whether the
+# marker is PRESENT and `strays` only whether an unruled card carries one, so neither can
+# see a card saying this twice — nor one carrying an earlier version's differently worded
+# paragraph about the same volume beside the current one. This pass has been written once
+# (T-0635) and so has nothing to list yet; the tuple is where a rewrite states its old
+# wording, and `doubles()` below is the rule that reads it. `spend_fergus_1839_lot_sale.py`
+# reads the SAME book and is not superseded by this one: it spends the June 1839 lot sale
+# under its own marker, and the two paragraphs stand side by side by design.
+SUPERSEDED_MARKERS: tuple = ()
 
 LADDER_LIMIT = (
     "This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a "
@@ -392,6 +405,12 @@ def strays(rows: list) -> list:
     return bad
 
 
+def doubles() -> list:
+    """…and a card says this volume's later lists ONCE, however many passes have written
+    them (T-0846)."""
+    return _doubles(HOUSEHOLDS, MARKER, SUPERSEDED_MARKERS, "volume")
+
+
 def check(quiet: bool = False) -> int:
     rows = matches()
     if not LEDGER.exists():
@@ -401,7 +420,7 @@ def check(quiet: bool = False) -> int:
         print("   %s no longer re-derives from the two crosswalks — re-run the tool"
               % LEDGER.relative_to(ROOT))
         return 1
-    bad = gaps(rows) + strays(rows)
+    bad = gaps(rows) + strays(rows) + doubles()
     if bad:
         for line in bad[:20]:
             print("   %s" % line)
@@ -409,7 +428,8 @@ def check(quiet: bool = False) -> int:
             print("   …and %d more" % (len(bad) - 20))
         return 1
     if not quiet:
-        print("fergus 1839 later lists: %d ruling(s) on %d card(s), no strays"
+        print("fergus 1839 later lists: %d ruling(s) on %d card(s), no strays, none "
+              "written twice"
               % (sum(len(r["entries"]) for r in rows), len(rows)))
     return 0
 
@@ -470,6 +490,13 @@ def self_test() -> int:
     silent["note"] = "Existing sentence."
     want("gaps must fire on a card that carries no paragraph",
          any("no paragraph" in g for g in _gaps_over(rows[0], silent)))
+
+    # …and the third gate must fire on each way a card comes to say it twice (T-0846).
+    # The shared driver builds both cards, so the passes holding this rule cannot drift
+    # apart on what it means.
+    for label, held in self_test_lines(MARKER, paragraph(rows[0]), SUPERSEDED_MARKERS,
+                                       "volume"):
+        want(label, held)
 
     for line in fails:
         print("   %s" % line)
