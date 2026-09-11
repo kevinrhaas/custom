@@ -10,11 +10,11 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 579,
+  "rulings": 578,
   "carried": 209,
   "matched": 403,
-  "refused": 176,
-  "distinct_people": 283,
+  "refused": 175,
+  "distinct_people": 282,
   "distinct_claims": 639
  },
  "rulings": [
@@ -652,27 +652,6 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "beaubien_medard",
-   "household_id": "hh_beaubien_medard",
-   "resident": "Medard Beaubien",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1839_e0083",
-    "f1839_e0084"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },

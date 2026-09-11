@@ -72,7 +72,7 @@
         "E. S. Kimberly"
       ],
       "town_finding": true,
-      "notes": "Twenty-six votes of twenty-eight (Andreas) or of thirty (the list) is a near-unanimous town. 'Beaubien, Medard' and Andreas's 'Madore B. Beaubien' are the same man under two spellings; the merge is not made here."
+      "notes": "Twenty-six votes of twenty-eight (Andreas) or of thirty (the list) is a near-unanimous town. 'Beaubien, Medard' and Andreas's 'Madore B. Beaubien' are the same man under two spellings, AND THE MERGE IS NOW MADE: T-1026 folds `beaubien_medard` onto `beaubien_madore` in data/residents/card_merge_rulings.json, cluster `beaubien-medard`, under rule C12 — two spellings on one closed roll, resolved by exhaustion over the roll. This claim's own internal check is that ruling's first leg: all five trustees stand on the poll list, and the only unaccounted Beaubien among its thirty names is Medard. The note that used to end 'the merge is not made here' is what T-1026 was filed to answer."
     },
     {
       "id": "c004",

@@ -45,7 +45,7 @@
   }
  ],
  "counts": {
-  "people_shown": 283,
+  "people_shown": 282,
   "people_met_by_more_than_one_volume": 169,
   "carrying_an_occupation": 137,
   "carrying_an_address": 152,
@@ -53,9 +53,9 @@
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 232,
+    "people": 231,
     "single_entry": 158,
-    "ambiguous": 45,
+    "ambiguous": 44,
     "contested": 29
    },
    "fergus_1843": {
@@ -1319,49 +1319,6 @@
    "sources": [
     "fergus_chicago_directory_1839",
     "fergus_chicago_directory_1843"
-   ]
-  },
-  {
-   "person_id": "beaubien_medard",
-   "household_id": "hh_beaubien_medard",
-   "resident": "Medard Beaubien",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "fergus_1839",
-     "title": "Fergus's Chicago directory of 1839",
-     "year": 1839,
-     "source_id": "fergus_chicago_directory_1839",
-     "match_status": "ambiguous",
-     "match_rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "f1839_e0083",
-       "printed_page": 6,
-       "as_printed": "Beaubien, Mark, hotel-keeper, Lake st"
-      },
-      {
-       "claim_id": "f1839_e0084",
-       "printed_page": 6,
-       "as_printed": "Beaubien, Medard B. , merchant, South Water street"
-      }
-     ],
-     "holds": [],
-     "parse_carries": true,
-     "sources": [
-      "fergus_chicago_directory_1839"
-     ]
-    }
-   ],
-   "occupation_later": null,
-   "address_later": null,
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "fergus_chicago_directory_1839"
    ]
   },
   {

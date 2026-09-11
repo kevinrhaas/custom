@@ -11,7 +11,7 @@
   "directories": 7251,
   "newberry_index": 4914,
   "land_sales": 456,
-  "old_settlers": 442
+  "old_settlers": 443
  },
  "witness": {
   "civic": {
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 652
+   "spent": 651
   }
  },
  "raised": [
@@ -496,6 +496,14 @@
    "to": 264,
    "date": "2026-09-11",
    "why": "T-1018 repaired 46 Norris 1844 entries whose name ran past the end of the name into the trade and the street. The crosswalk now reaches 936 town people where it reached 928, and 672 cards carry a directory line where 668 did: every one of the four new MATCHES was spent onto a card in the same pass (Charles L. Harmon, Leonard C. Hugunin, Edmund S. Kimberly, John H. Kinzie). The residue of four is the new REFUSALS the repair made visible — a surname now legible with no agreeing initial, or two full forenames that disagree — and a refusal is not a card's to carry. No ruling went unspent for want of spending it."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 442,
+   "to": 443,
+   "date": "2026-09-11",
+   "why": "T-1026 folded beaubien_medard onto beaubien_madore, so the town carries one card fewer for the old-settlers pool to be ruled onto and the unspent count rose by exactly one, 442 to 443, with nothing newly read. The ceiling tracks how far ahead of the town a domain has read; a fold moves it without any reading having happened."
   }
  ],
  "lowered": [

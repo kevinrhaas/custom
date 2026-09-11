@@ -152,6 +152,23 @@
   },
   {
    "outcome": "merged",
+   "person_id": "beaubien_madore",
+   "folded_person_id": "beaubien_medard",
+   "rule": "C12",
+   "cluster": "beaubien-medard",
+   "record_ids": [
+    "poll_1833_005"
+   ],
+   "domains": [
+    "civic"
+   ],
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence": "T-1026: 'beaubien_medard' and 'beaubien_madore' are one person under rule C12; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'beaubien-medard'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "blanchard_f_gantry",
    "folded_person_id": "blanchard_gantry",
    "rule": "C8",

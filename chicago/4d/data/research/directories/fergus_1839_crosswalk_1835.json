@@ -16,7 +16,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1371
+   "n": 1370
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -36,7 +36,7 @@
  ],
  "counts": {
   "residents_matched_one_entry": 158,
-  "residents_ambiguous": 45,
+  "residents_ambiguous": 44,
   "residents_contested": 29,
   "residents_surname_only_refused": 277,
   "voters_matched_one_entry": 123,
@@ -6070,39 +6070,6 @@
     "person_id": "noble_mary",
     "household_id": "hh_noble_mary",
     "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "lives_at_1835": null
-   },
-   {
-    "name": "Medard Beaubien",
-    "rule": "Surname 'Beaubien' folds to the same string as the 1839 entry's, and the given name of both begins M.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0083",
-      "as_printed": "Beaubien, Mark, hotel-keeper, Lake st",
-      "printed_page": 6,
-      "occupation_1839": "hotel-keeper",
-      "address_1839": "Lake st",
-      "streets_1839": [
-       "Lake st"
-      ],
-      "address_is_street_only": false
-     },
-     {
-      "claim": "f1839_e0084",
-      "as_printed": "Beaubien, Medard B. , merchant, South Water street",
-      "printed_page": 6,
-      "occupation_1839": "merchant",
-      "address_1839": "South Water street",
-      "streets_1839": [
-       "South Water street"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "beaubien_medard",
-    "household_id": "hh_beaubien_medard",
-    "grade_1835": "inferred",
     "occupation_1835": "none_recorded",
     "lives_at_1835": null
    },
