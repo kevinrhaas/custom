@@ -1,7 +1,7 @@
 ---
 id: T-0987
 title: The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-state: claimed
+state: open
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/11/2026, 3:13:37 AM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34577916259
+claimed_run: null
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -120,3 +120,62 @@ lost by the change; what was lost had already been lost, and was being reported 
 
 A stretch that lands under clause 3 should quote the 255 before and after, the same way
 clause 4 quotes the pool sizes.
+
+## Stretch 1, 2026-09-11 — the write debt, paid in full: 263 → 0
+
+**The stretch:** not a pool of ties but clause 3 itself. The 255 T-0989 exposed had grown
+to **263** by the time this run measured it, and every other stretch's acceptance runs
+through that number: clause 3 asks for the directories' `unwritten` column at 0 *after*
+the stretch lands, and no stretch of ties could have reached 0 while 263 rulings that had
+nothing to do with it sat unwritten. So the debt was taken first, as one unit.
+
+**What the 263 were.** All of them, in all four files, were the same defect and none of
+them was a reading:
+
+```
+  158  fergus_1839_crosswalk_1835.json             matches   card lacks the subject
+   49  fergus_1843_crosswalk_1835.json             matches   card lacks the subject
+   39  norris_1844_crosswalk_1835.json             matches   card lacks the subject
+   17  norris_1844_advertiser_crosswalk_1835.json  matches   card lacks the subject
+```
+
+`tools/spend_directories.py` wrote the volume into the card's `directories.sources` and
+the printed line into a note — but never the ENTRY ID. `card_block` is documented as
+"deliberately thinner than the layer" and dropped the `claim_id` that `graded()` had
+already computed; and for the 92 people the pass rules on and carries nothing for
+(ambiguous or contested: no graded value, so no note at all) the card said only that
+some volume had met somebody of the name. So the citation was doing the work of a
+reading, exactly as T-0989 described for `hh_garrett_a`.
+
+**The fix, in one place.** The block's own `note` now ends by naming, per person and per
+volume, the printed entries this pass ruled onto that household and the status it ruled
+them at. `hh_garrett_a` now reads:
+
+> … garrett_a, Fergus's Chicago directory of 1839 — f1839_e0527 (a single entry);
+> garrett_a, Fergus's Chicago directory of 1843 — f1843_e0109, f1843_e0110, f1843_e1051
+> (ambiguous, so nothing crossed); garrett_a, Norris's Chicago directory of 1844 —
+> n1844_e0679 (a single entry); garrett_a, the advertising cards in Norris's directory of
+> 1844 — n1844_ad0110, n1844_ad0111, n1844_ad0112 (ambiguous, so nothing crossed).
+
+It went into the NOTE rather than a new leaf on purpose: the note is already rendered
+whole by `residents.js` and already declared `shown` in `measure_layer_reads.py`, so the
+entry a reader would go back to arrives in front of that reader instead of into a field
+nothing opens — and it is the only place that can speak for the 92 silent rows.
+
+**Measured, before and after** (`tools/measure_research_spend.py`, whole town):
+
+| | before | after |
+|---|---|---|
+| directories, on a card | 669 of 932 | **932 of 932** |
+| directories, unwritten | **263** | **0** |
+| town total, unwritten | 263 | **0** |
+| on the file's word (the softer door) | 266 | 529 |
+
+`unwritten_ceiling.directories` is tightened 264 → 0 in the same commit, so it cannot
+regrow. **Every domain in the town now reads 0 unwritten**, and clause 3 is a gate a
+stretch can actually pass rather than a debt it inherits.
+
+**The pools are untouched and are what stretch 2 takes** — the ~196 ties first, as this
+ticket orders them. No successor ticket is filed: `tickets/README.md` puts the succession
+on the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for
+fewer tickets, not one per stretch. This ticket stays open and is its own cursor.
