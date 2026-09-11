@@ -1645,6 +1645,18 @@ step "the letter-list collision report still describes the tree" \
 step "…and its two readings of a printed name are still two" \
   python3 tools/report_letter_list_collisions.py --self-test
 
+# T-1008. The cohort the town holds is a FLOOR of the return, and the crosswalk is what
+# says by how much. Its two residues are the finding — 57 printed lines no claim of this
+# return reaches, and 14 cards of the cohort no printed line reaches — so the number that
+# must not rot is the residue itself: a later pass that ties a line to the wrong entity,
+# or quietly drops one, moves both counts and nothing about any single record looks
+# wrong. --check re-derives the whole table from the roster and the claims and diffs it.
+step "the 1 January 1834 crosswalk still ties the lines it derives" \
+  python3 tools/letter_list_1834_01_01_crosswalk.py --check
+
+step "…and its three tie instruments still refuse to guess" \
+  python3 tools/letter_list_1834_01_01_crosswalk.py --self-test
+
 # And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
 # owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
 # into a proposal; nothing in that proposal had ever been written onto a card, and only 37

@@ -109,7 +109,9 @@
 
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
-T-1008 — The ninety-two lines of the 1 January 1834 letter list the crops never carried are read but unminted, and the 97 residents minted from it are a floor of a 170-name return
+T-1010 — The 1 January 1834 return, tied line by line: which of the 170 printed lines reaches a claim and a card, and the two residues named in full
+T-1011 — Mint the 57 printed lines of the 1 January 1834 return no claim reaches, and reconcile the 14 cohort cards no printed line reaches
+T-1012 — The firm rule reads an ampersand as a partnership, so it refuses Lamira & Laura Carrier: two residents the owner's ruling 1 admits and the mint pass cannot hold
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry

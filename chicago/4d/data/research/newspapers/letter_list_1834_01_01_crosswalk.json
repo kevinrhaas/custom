@@ -1,0 +1,2359 @@
+{
+ "schema": 1,
+ "_doc": "EVERY PRINTED LINE OF THE 1 JANUARY 1834 RETURN, TIED TO THE CLAIM ENTITY AND THE MINTED CARD THAT HOLD IT (T-1008). Derived by tools/letter_list_1834_01_01_crosswalk.py from the roster T-0424 read at the scan and from every letter-list claim of the return's nine impressions. Three exact instruments may tie a line and none of them guesses; a line no instrument reaches is reported untied. The tool's docstring carries the reasoning, including the fourth tier that was measured and refused.",
+ "generated_by": "tools/letter_list_1834_01_01_crosswalk.py --write",
+ "return": {
+  "date": "1834-01-01",
+  "said": "the return of 1 January 1834",
+  "printings": [
+   "1834-01-07",
+   "1834-01-14",
+   "1834-01-21",
+   "1834-01-28",
+   "1834-02-04",
+   "1834-02-11",
+   "1834-02-18",
+   "1834-02-25",
+   "1834-03-04"
+  ]
+ },
+ "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+ "counts": {
+  "printed_lines": 170,
+  "firm_lines": 2,
+  "two_people_lines": 1,
+  "tied": {
+   "image": 76,
+   "exact": 32,
+   "surname": 5
+  },
+  "tied_total": 113,
+  "untied_lines": 57,
+  "claim_entities": 177,
+  "entities_tied_to_no_line": 64,
+  "lines_reaching_a_card": 33,
+  "lines_reaching_no_card": 137,
+  "lines_a_surname_cannot_decide": 2,
+  "cohort_cards": 47,
+  "cards_no_printed_line_reached": 14,
+  "name_conflicts": 2
+ },
+ "lines_a_surname_cannot_decide": [
+  64,
+  149
+ ],
+ "cards_no_printed_line_reached": [
+  {
+   "household": "hh_conte_e_w",
+   "person": "conte_e_w",
+   "name": "E. W. Conte",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_crisey_william",
+   "person": "crisey_william",
+   "name": "William Crisey",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_elliot_william",
+   "person": "elliot_william",
+   "name": "William Elliot",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_forster_jane",
+   "person": "forster_jane",
+   "name": "Jane Forster",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_fraser_wm_h",
+   "person": "fraser_wm_h",
+   "name": "Wm. H. Fraser",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_heere_anthony",
+   "person": "heere_anthony",
+   "name": "Anthony Heere",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_hutchins_nathan",
+   "person": "hutchins_nathan",
+   "name": "Nathan Hutchins",
+   "returns": [
+    "1834-01-28",
+    "1835-05-20"
+   ]
+  },
+  {
+   "household": "hh_provis_joshua",
+   "person": "provis_joshua",
+   "name": "Joshua Provis",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_rutherford_salmon",
+   "person": "rutherford_salmon",
+   "name": "Salmon Rutherford",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_stearns_palmer",
+   "person": "stearns_palmer",
+   "name": "Palmer Stearns",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_vandino_john",
+   "person": "vandino_john",
+   "name": "John Vandino",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_vandorwerk_adam",
+   "person": "vandorwerk_adam",
+   "name": "Adam Vandorwerk",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_wilson_john",
+   "person": "wilson_john",
+   "name": "John Wilson",
+   "returns": [
+    "1834-01-28"
+   ]
+  },
+  {
+   "household": "hh_winn_jesse_b",
+   "person": "winn_jesse_b",
+   "name": "Jesse B. Winn",
+   "returns": [
+    "1834-01-28"
+   ]
+  }
+ ],
+ "name_conflicts": [
+  {
+   "n": 119,
+   "printed_at_image": "S. F. Plumer",
+   "card_name": "F. Plumer",
+   "household": "hh_plumer_f",
+   "person": "plumer_f"
+  },
+  {
+   "n": 121,
+   "printed_at_image": "C. H. Pease",
+   "card_name": "H. Pease",
+   "household": "hh_pease_h",
+   "person": "pease_h"
+  }
+ ],
+ "lines": [
+  {
+   "n": 1,
+   "column": "left",
+   "as_printed": "Eliphalet Atkins 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Atkina 2",
+    "normalized": "Eliphalet Atkins 2"
+   }
+  },
+  {
+   "n": 2,
+   "column": "left",
+   "as_printed": "J. W. Anderson",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 3,
+   "column": "left",
+   "as_printed": "Constant Abbott",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 4,
+   "column": "left",
+   "as_printed": "Wm. G. Austin",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 5,
+   "column": "left",
+   "as_printed": "Almond Axtell 2",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 6,
+   "column": "left",
+   "as_printed": "Myron K. Brownson",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 7,
+   "column": "left",
+   "as_printed": "Timothy Burnett",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 8,
+   "column": "left",
+   "as_printed": "B. H. Bertrand",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 9,
+   "column": "left",
+   "as_printed": "Cyntha Burbee",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 10,
+   "column": "left",
+   "as_printed": "Joseph Babeu",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 11,
+   "column": "left",
+   "as_printed": "Hiram Bennett",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Hiram Bennett",
+    "normalized": "Hiram Bennett"
+   }
+  },
+  {
+   "n": 12,
+   "column": "left",
+   "as_printed": "Anthony Beers",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 13,
+   "column": "left",
+   "as_printed": "Thomas Bennett",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "as Bennett",
+    "normalized": "Thomas Bennett"
+   }
+  },
+  {
+   "n": 14,
+   "column": "left",
+   "as_printed": "J. K. Blodgett",
+   "kind": "person",
+   "tie": "surname",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "IK. Blodgett",
+    "normalized": "I. K. Blodgett"
+   }
+  },
+  {
+   "n": 15,
+   "column": "left",
+   "as_printed": "Jos. Britton",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Jos. Britton",
+    "normalized": "Jos. Britton"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_britton_jos",
+    "person": "britton_jos",
+    "name": "Jos. Britton",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 16,
+   "column": "left",
+   "as_printed": "Mary Barrows",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Mary Barrows",
+    "normalized": "Mary Barrows"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_barrows_mary",
+    "person": "barrows_mary",
+    "name": "Mary Barrows",
+    "returns": [
+     "1834-01-28",
+     "1835-05-20"
+    ]
+   }
+  },
+  {
+   "n": 17,
+   "column": "left",
+   "as_printed": "A. P. Benton",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": ".E. Bonton",
+    "normalized": "A. P. Benton"
+   }
+  },
+  {
+   "n": 18,
+   "column": "left",
+   "as_printed": "Avice Blodget",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Avice Blodget",
+    "normalized": "Avice Blodget"
+   }
+  },
+  {
+   "n": 19,
+   "column": "left",
+   "as_printed": "H. S. Bennett 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Bennettra",
+    "normalized": "H. S. Bennett 2"
+   }
+  },
+  {
+   "n": 20,
+   "column": "left",
+   "as_printed": "Aarri[?]t Bradford",
+   "kind": "person",
+   "tie": "surname",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Astist Bradford",
+    "normalized": "[uncertain: Astist] Bradford"
+   }
+  },
+  {
+   "n": 21,
+   "column": "left",
+   "as_printed": "Russell Baldwin",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "ell Baldwin",
+    "normalized": "Russell Baldwin"
+   }
+  },
+  {
+   "n": 22,
+   "column": "left",
+   "as_printed": "Hiram Bowen",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Hiram Bowen",
+    "normalized": "Hiram Bowen"
+   }
+  },
+  {
+   "n": 23,
+   "column": "left",
+   "as_printed": "Erastus Bowen",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 24,
+   "column": "left",
+   "as_printed": "Chas. Babcock",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 25,
+   "column": "left",
+   "as_printed": "Aaron Bemis",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 26,
+   "column": "left",
+   "as_printed": "A. O. T. Breed",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "A.O.T. Breed",
+    "normalized": "A. O. T. Breed"
+   }
+  },
+  {
+   "n": 27,
+   "column": "left",
+   "as_printed": "James Burk",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "james Burk",
+    "normalized": "James Burk"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_burk_james",
+    "person": "burk_james",
+    "name": "James Burk",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 28,
+   "column": "left",
+   "as_printed": "T. R. Covell 2",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "T, R. Covell 2",
+    "normalized": "T. R. Covell"
+   }
+  },
+  {
+   "n": 29,
+   "column": "left",
+   "as_printed": "Wm. P. Cleaveland",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Wm. P. Cloaveland",
+    "normalized": "Wm. P. Cleaveland"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_cleaveland_wm_p",
+    "person": "cleaveland_wm_p",
+    "name": "Wm. P. Cleaveland",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 30,
+   "column": "left",
+   "as_printed": "Thomas Conger",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Ca Conger",
+    "normalized": "Thomas Conger"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_conger_thomas",
+    "person": "conger_thomas",
+    "name": "Thomas Conger",
+    "returns": [
+     "1834-03-04",
+     "1834-07-09"
+    ]
+   }
+  },
+  {
+   "n": 31,
+   "column": "left",
+   "as_printed": "O. P. Catran",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 32,
+   "column": "left",
+   "as_printed": "D. P. Clevinger",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 33,
+   "column": "left",
+   "as_printed": "E. W. Center",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 34,
+   "column": "left",
+   "as_printed": "Geo. H. Clark",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Geo. H. Clark",
+    "normalized": "Geo. H. Clark"
+   }
+  },
+  {
+   "n": 35,
+   "column": "left",
+   "as_printed": "Alfred Clarke",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 36,
+   "column": "left",
+   "as_printed": "Lamira & Laura Carrier",
+   "kind": "two_people",
+   "tie": "image",
+   "mint_refuses_as_firm": true,
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Lamira. Laura Carrier C.",
+    "normalized": "Lamira & Laura Carrier"
+   }
+  },
+  {
+   "n": 37,
+   "column": "left",
+   "as_printed": "J. P. Converse",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "J.P. Converse",
+    "normalized": "J. P. Converse"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_converse_j_p",
+    "person": "converse_j_p",
+    "name": "J. P. Converse",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 38,
+   "column": "left",
+   "as_printed": "Daniel B. Clevinger 4",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 39,
+   "column": "left",
+   "as_printed": "Henry B. Clarke 2",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 40,
+   "column": "left",
+   "as_printed": "Alfred Churchill",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 41,
+   "column": "left",
+   "as_printed": "James Childress",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 42,
+   "column": "left",
+   "as_printed": "William Crissy",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Willism Crisey",
+    "normalized": "William Crissy"
+   }
+  },
+  {
+   "n": 43,
+   "column": "left",
+   "as_printed": "Gustavus Clark",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 44,
+   "column": "left",
+   "as_printed": "Benj. Chapman",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 45,
+   "column": "left",
+   "as_printed": "Loring Delano",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "& Delano",
+    "normalized": "Loring Delano"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_delano_loring",
+    "person": "delano_loring",
+    "name": "Loring Delano",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 46,
+   "column": "left",
+   "as_printed": "Samuel Devoe",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "nel Devoe",
+    "normalized": "Samuel Devoe"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_devoe_samuel",
+    "person": "devoe_samuel",
+    "name": "Samuel Devoe",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 47,
+   "column": "left",
+   "as_printed": "Noel Dagenet",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 48,
+   "column": "left",
+   "as_printed": "E. Dimmick",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "E. Dimmick",
+    "normalized": "E. Dimmick"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_dimmick_e",
+    "person": "dimmick_e",
+    "name": "E. Dimmick",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 49,
+   "column": "left",
+   "as_printed": "David Dickson",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "David Dickson.",
+    "normalized": "David Dickson"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_dickson_david",
+    "person": "dickson_david",
+    "name": "David Dickson",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 50,
+   "column": "left",
+   "as_printed": "William Elliot 3",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Elliot 3",
+    "normalized": "William Elliot 3"
+   }
+  },
+  {
+   "n": 51,
+   "column": "left",
+   "as_printed": "G. W. Ewing",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 52,
+   "column": "left",
+   "as_printed": "Samuel Eberiden",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 53,
+   "column": "left",
+   "as_printed": "Dean Farren",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "‘Dean Farren",
+    "normalized": "Dean Farren"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_farren_dean",
+    "person": "farren_dean",
+    "name": "Dean Farren",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 54,
+   "column": "left",
+   "as_printed": "A. W. Flint 2",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "‘A. W. Flint",
+    "normalized": "A. W. Flint"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_flint_a_w",
+    "person": "flint_a_w",
+    "name": "A. W. Flint",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 55,
+   "column": "left",
+   "as_printed": "Wm. H. Frazer",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "il. Frazer",
+    "normalized": "Wm. H. Frazer"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_frazer_wm_h",
+    "person": "frazer_wm_h",
+    "name": "Wm. H. Frazer",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 56,
+   "column": "left",
+   "as_printed": "H. K. Fay",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 57,
+   "column": "left",
+   "as_printed": "Aaron Friend",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 58,
+   "column": "left",
+   "as_printed": "David P. Frame",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "David P.Frame",
+    "normalized": "David P. Frame"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_frame_david_p",
+    "person": "frame_david_p",
+    "name": "David P. Frame",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 59,
+   "column": "left",
+   "as_printed": "Jane Forrister",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 60,
+   "column": "left",
+   "as_printed": "Caleb Foster",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Caleb Foster",
+    "normalized": "Caleb Foster"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_foster_caleb",
+    "person": "foster_caleb",
+    "name": "Caleb Foster",
+    "returns": [
+     "1834-01-28",
+     "1835-05-20"
+    ]
+   }
+  },
+  {
+   "n": 61,
+   "column": "left",
+   "as_printed": "Rob't. Fisher",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "Rob't.",
+    "normalized": "Rob't. Fisher"
+   }
+  },
+  {
+   "n": 62,
+   "column": "left",
+   "as_printed": "P. Field",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 63,
+   "column": "left",
+   "as_printed": "Alva Fowler",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Alva Fowler",
+    "normalized": "Alva Fowler"
+   }
+  },
+  {
+   "n": 64,
+   "column": "left",
+   "as_printed": "Alburn Foster",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c026",
+    "as_printed": "no Poeter",
+    "normalized": "Alburn Foster"
+   },
+   "card": null,
+   "cards_sharing_the_surname": [
+    "hh_foster_caleb"
+   ]
+  },
+  {
+   "n": 65,
+   "column": "left",
+   "as_printed": "Jacob Fake",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Jacob Fake.",
+    "normalized": "Jacob Fake"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_fake_jacob",
+    "person": "fake_jacob",
+    "name": "Jacob Fake",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 66,
+   "column": "left",
+   "as_printed": "Ebenezer Goodrich",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 67,
+   "column": "left",
+   "as_printed": "Orinda Garyl",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 68,
+   "column": "left",
+   "as_printed": "dane Gray",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 69,
+   "column": "left",
+   "as_printed": "William Gooding 2",
+   "kind": "person",
+   "tie": "surname",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "William Cr",
+    "normalized": "William Cr[…]"
+   }
+  },
+  {
+   "n": 70,
+   "column": "left",
+   "as_printed": "Jos. A. Gooding",
+   "kind": "person",
+   "tie": "surname",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Gooding",
+    "normalized": "[?] Gooding"
+   }
+  },
+  {
+   "n": 71,
+   "column": "left",
+   "as_printed": "David Groover",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "David Groover",
+    "normalized": "David Groover"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_groover_david",
+    "person": "groover_david",
+    "name": "David Groover",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 72,
+   "column": "left",
+   "as_printed": "Eben Griswold",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Eben Griswold",
+    "normalized": "Eben Griswold"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_griswold_eben",
+    "person": "griswold_eben",
+    "name": "Eben Griswold",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 73,
+   "column": "left",
+   "as_printed": "Wm. B. Green",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "‘Win. B. Green.",
+    "normalized": "Wm. B. Green"
+   }
+  },
+  {
+   "n": 74,
+   "column": "left",
+   "as_printed": "O. Grant",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 75,
+   "column": "left",
+   "as_printed": "J. P. Gobb",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 76,
+   "column": "left",
+   "as_printed": "Pomeroy Goodrich",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 77,
+   "column": "left",
+   "as_printed": "Luther Hatch",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 78,
+   "column": "left",
+   "as_printed": "Nathan Hopkins",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Nathan Hopkine",
+    "normalized": "Nathan Hopkins"
+   }
+  },
+  {
+   "n": 79,
+   "column": "left",
+   "as_printed": "Reuben Hart",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 80,
+   "column": "left",
+   "as_printed": "Nathan Huchins",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 81,
+   "column": "left",
+   "as_printed": "Warren Hanks",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 82,
+   "column": "left",
+   "as_printed": "Philip Howard",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Philip Howard",
+    "normalized": "Philip Howard"
+   }
+  },
+  {
+   "n": 83,
+   "column": "left",
+   "as_printed": "Wooster Harrison [?]",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 84,
+   "column": "left",
+   "as_printed": "Benj. Harrison",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 85,
+   "column": "left",
+   "as_printed": "J. P. Harkness",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 86,
+   "column": "right",
+   "as_printed": "Isaac Hays",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 87,
+   "column": "right",
+   "as_printed": "Levi Hills 2",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 88,
+   "column": "right",
+   "as_printed": "H. B. Hoffman",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 89,
+   "column": "right",
+   "as_printed": "A. H. Howard",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "HT. Howard",
+    "normalized": "A. H. Howard"
+   }
+  },
+  {
+   "n": 90,
+   "column": "right",
+   "as_printed": "D. S. Haight",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "3, Haight",
+    "normalized": "D. S. Haight"
+   }
+  },
+  {
+   "n": 91,
+   "column": "right",
+   "as_printed": "Edward Hill",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "ward",
+    "normalized": "Edward Hill"
+   }
+  },
+  {
+   "n": 92,
+   "column": "right",
+   "as_printed": "Geo. Johnson",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "». Johnson",
+    "normalized": "Geo. Johnson"
+   }
+  },
+  {
+   "n": 93,
+   "column": "right",
+   "as_printed": "Isaac Killigoss",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "c Killigoss",
+    "normalized": "Isaac Killigoss"
+   }
+  },
+  {
+   "n": 94,
+   "column": "right",
+   "as_printed": "Ira O. Knapp",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "QO. Knapp.",
+    "normalized": "Ira O. Knapp"
+   }
+  },
+  {
+   "n": 95,
+   "column": "right",
+   "as_printed": "J. H. Kinzie",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "|. Kinzie",
+    "normalized": "J. H. Kinzie"
+   }
+  },
+  {
+   "n": 96,
+   "column": "right",
+   "as_printed": "Lewis Kerchevel",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Kerchevel",
+    "normalized": "Lewis Kerchevel"
+   }
+  },
+  {
+   "n": 97,
+   "column": "right",
+   "as_printed": "Lewis Lafton",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "‘is Lafton",
+    "normalized": "Lewis Lafton"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_lafton_lewis",
+    "person": "lafton_lewis",
+    "name": "Lewis Lafton",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 98,
+   "column": "right",
+   "as_printed": "Lewis Lake",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Lake",
+    "normalized": "Lewis Lake"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_lake_lewis",
+    "person": "lake_lewis",
+    "name": "Lewis Lake",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 99,
+   "column": "right",
+   "as_printed": "J. W. Lewis 2",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "J. Wi Lewis 2",
+    "normalized": "J. W. Lewis"
+   }
+  },
+  {
+   "n": 100,
+   "column": "right",
+   "as_printed": "J. S. Lacey",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 101,
+   "column": "right",
+   "as_printed": "Jacob Loose",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 102,
+   "column": "right",
+   "as_printed": "Miranda Miner 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "nda Miner 2",
+    "normalized": "Miranda Miner 2"
+   }
+  },
+  {
+   "n": 103,
+   "column": "right",
+   "as_printed": "A. M'Daniel",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "1\" Daniel",
+    "normalized": "A. M'Daniel"
+   }
+  },
+  {
+   "n": 104,
+   "column": "right",
+   "as_printed": "Chas. Miller",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "s, Miller",
+    "normalized": "Chas. Miller"
+   }
+  },
+  {
+   "n": 105,
+   "column": "right",
+   "as_printed": "Mary Meriams",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "y Meriams",
+    "normalized": "Mary Meriams"
+   }
+  },
+  {
+   "n": 106,
+   "column": "right",
+   "as_printed": "James Mackel",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "és Machel",
+    "normalized": "James Mackel"
+   }
+  },
+  {
+   "n": 107,
+   "column": "right",
+   "as_printed": "Joseph Meeker",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 108,
+   "column": "right",
+   "as_printed": "James Makio",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 109,
+   "column": "right",
+   "as_printed": "N. M'Carty",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "M'Carty",
+    "normalized": "N. M'Carty"
+   }
+  },
+  {
+   "n": 110,
+   "column": "right",
+   "as_printed": "Chester Marshall 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "stor Marshall 2",
+    "normalized": "Chester Marshall 2"
+   }
+  },
+  {
+   "n": 111,
+   "column": "right",
+   "as_printed": "John Monreou",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "| Monreou",
+    "normalized": "John Monreou"
+   }
+  },
+  {
+   "n": 112,
+   "column": "right",
+   "as_printed": "F. T. Miner",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "'. Miner",
+    "normalized": "F. T. Miner"
+   }
+  },
+  {
+   "n": 113,
+   "column": "right",
+   "as_printed": "F. B. Northrop",
+   "kind": "person",
+   "tie": "surname",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "¥..B Northrop",
+    "normalized": "[?] B. Northrop"
+   }
+  },
+  {
+   "n": 114,
+   "column": "right",
+   "as_printed": "J. V. Natta",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Nats",
+    "normalized": "J. V. Natta"
+   }
+  },
+  {
+   "n": 115,
+   "column": "right",
+   "as_printed": "Lauretta Plympton 2",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 116,
+   "column": "right",
+   "as_printed": "T. E. Parsons 2",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 117,
+   "column": "right",
+   "as_printed": "Julius Perrin 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "is Pestin 2",
+    "normalized": "Julius Perrin 2"
+   }
+  },
+  {
+   "n": 118,
+   "column": "right",
+   "as_printed": "Joshua Pruvis",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "ua Pruvis",
+    "normalized": "Joshua Pruvis"
+   }
+  },
+  {
+   "n": 119,
+   "column": "right",
+   "as_printed": "S. F. Plumer",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Plumer",
+    "normalized": "S. F. Plumer"
+   },
+   "card": {
+    "held_by": "surname",
+    "household": "hh_plumer_f",
+    "person": "plumer_f",
+    "name": "F. Plumer",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 120,
+   "column": "right",
+   "as_printed": "Green Poel",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "in Poel",
+    "normalized": "Green Poel"
+   }
+  },
+  {
+   "n": 121,
+   "column": "right",
+   "as_printed": "C. H. Pease",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "1. Pease",
+    "normalized": "C. H. Pease"
+   },
+   "card": {
+    "held_by": "surname",
+    "household": "hh_pease_h",
+    "person": "pease_h",
+    "name": "H. Pease",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 122,
+   "column": "right",
+   "as_printed": "Noah Phelps",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "1 Phelps",
+    "normalized": "Noah Phelps"
+   }
+  },
+  {
+   "n": 123,
+   "column": "right",
+   "as_printed": "Rob't. Robinson",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 124,
+   "column": "right",
+   "as_printed": "Thos. H. Richey",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": ". H. Riche:",
+    "normalized": "Thos. H. Richey"
+   }
+  },
+  {
+   "n": 125,
+   "column": "right",
+   "as_printed": "Mr. Roult 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Rouit 2",
+    "normalized": "Mr. Roult 2"
+   }
+  },
+  {
+   "n": 126,
+   "column": "right",
+   "as_printed": "Salmon Rutherford 3",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "on Rutherford 3",
+    "normalized": "Salmon Rutherford 3"
+   }
+  },
+  {
+   "n": 127,
+   "column": "right",
+   "as_printed": "James H. Rinhart",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "James H. Rinhart",
+    "normalized": "James H. Rinhart"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_rinhart_james_h",
+    "person": "rinhart_james_h",
+    "name": "James H. Rinhart",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 128,
+   "column": "right",
+   "as_printed": "S. W. Smith",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "8.W. Smith",
+    "normalized": "S. W. Smith"
+   }
+  },
+  {
+   "n": 129,
+   "column": "right",
+   "as_printed": "Isaac Scarritt",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Teanc Scarritt",
+    "normalized": "Isaac Scarritt"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_scarritt_isaac",
+    "person": "scarritt_isaac",
+    "name": "Isaac Scarritt",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 130,
+   "column": "right",
+   "as_printed": "S. Scott",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "§. Scott",
+    "normalized": "S. Scott"
+   }
+  },
+  {
+   "n": 131,
+   "column": "right",
+   "as_printed": "Axtel & Steele",
+   "kind": "firm",
+   "tie": "untied",
+   "mint_refuses_as_firm": true
+  },
+  {
+   "n": 132,
+   "column": "right",
+   "as_printed": "D. Sprague",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 133,
+   "column": "right",
+   "as_printed": "B. P. Stafford",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 134,
+   "column": "right",
+   "as_printed": "Chester Smith",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "‘Chester Smith",
+    "normalized": "Chester Smith"
+   }
+  },
+  {
+   "n": 135,
+   "column": "right",
+   "as_printed": "H. C. Smith",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "H.C. Sith",
+    "normalized": "H. C. Smith"
+   }
+  },
+  {
+   "n": 136,
+   "column": "right",
+   "as_printed": "H. S. Steele 2",
+   "kind": "person",
+   "tie": "untied"
+  },
+  {
+   "n": 137,
+   "column": "right",
+   "as_printed": "James Steward",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "a Bteward",
+    "normalized": "James Steward"
+   }
+  },
+  {
+   "n": 138,
+   "column": "right",
+   "as_printed": "S. C. Stimson 2",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "8. C. Stimaon 2",
+    "normalized": "S. C. Stimson"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_stimson_s_c",
+    "person": "stimson_s_c",
+    "name": "S. C. Stimson",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 139,
+   "column": "right",
+   "as_printed": "Palmer Stearns 2",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Palmer. Stearns",
+    "normalized": "Palmer Stearns"
+   }
+  },
+  {
+   "n": 140,
+   "column": "right",
+   "as_printed": "David Sprague",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "d Sprague",
+    "normalized": "David Sprague"
+   }
+  },
+  {
+   "n": 141,
+   "column": "right",
+   "as_printed": "S. I. Scott",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Scott",
+    "normalized": "S. I. Scott"
+   }
+  },
+  {
+   "n": 142,
+   "column": "right",
+   "as_printed": "Ralph Stowell",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "h Stowell",
+    "normalized": "Ralph Stowell"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_stowell_ralph",
+    "person": "stowell_ralph",
+    "name": "Ralph Stowell",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 143,
+   "column": "right",
+   "as_printed": "Samuel Stout",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "uel Stout",
+    "normalized": "Samuel Stout"
+   }
+  },
+  {
+   "n": 144,
+   "column": "right",
+   "as_printed": "J. F. Schermerhorn",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Schermerhorn",
+    "normalized": "J. F. Schermerhorn"
+   }
+  },
+  {
+   "n": 145,
+   "column": "right",
+   "as_printed": "Wm. Shier",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": ", Shier",
+    "normalized": "Wm. Shier"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_shier_wm",
+    "person": "shier_wm",
+    "name": "Wm. Shier",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 146,
+   "column": "right",
+   "as_printed": "John Sewell",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Sewell",
+    "normalized": "John Sewell"
+   }
+  },
+  {
+   "n": 147,
+   "column": "right",
+   "as_printed": "Stephen Sherwood",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "hen Sherwood",
+    "normalized": "Stephen Sherwood"
+   }
+  },
+  {
+   "n": 148,
+   "column": "right",
+   "as_printed": "H. C. Shearman",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": ". Shearman",
+    "normalized": "H. C. Shearman"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_shearman_h_c",
+    "person": "shearman_h_c",
+    "name": "H. C. Shearman",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 149,
+   "column": "right",
+   "as_printed": "Alden Tuller",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "n Tuller",
+    "normalized": "Alden Tuller"
+   },
+   "card": null,
+   "cards_sharing_the_surname": [
+    "hh_tuller_elam"
+   ]
+  },
+  {
+   "n": 150,
+   "column": "right",
+   "as_printed": "Elam Tuller",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Elam Tuller",
+    "normalized": "Elam Tuller"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_tuller_elam",
+    "person": "tuller_elam",
+    "name": "Elam Tuller",
+    "returns": [
+     "1834-01-28",
+     "1834-04-16"
+    ]
+   }
+  },
+  {
+   "n": 151,
+   "column": "right",
+   "as_printed": "A. H. Taylor",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": ". Taylor",
+    "normalized": "A. H. Taylor"
+   }
+  },
+  {
+   "n": 152,
+   "column": "right",
+   "as_printed": "John Thompson",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Thompaon",
+    "normalized": "John Thompson"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_thompson_john",
+    "person": "thompson_john",
+    "name": "John Thompson",
+    "returns": [
+     "1834-03-04",
+     "1835-05-20"
+    ]
+   }
+  },
+  {
+   "n": 153,
+   "column": "right",
+   "as_printed": "William Teal",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "jam Teal",
+    "normalized": "William Teal"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_teal_william",
+    "person": "teal_william",
+    "name": "William Teal",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 154,
+   "column": "right",
+   "as_printed": "Platt Thorn",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Thorn",
+    "normalized": "Platt Thorn"
+   }
+  },
+  {
+   "n": 155,
+   "column": "right",
+   "as_printed": "Peter Temple 3",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Temple 3",
+    "normalized": "Peter Temple 3"
+   }
+  },
+  {
+   "n": 156,
+   "column": "right",
+   "as_printed": "Lewis Temple",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "is Temple",
+    "normalized": "Lewis Temple"
+   }
+  },
+  {
+   "n": 157,
+   "column": "right",
+   "as_printed": "W. Vanzandt 2",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "fanzandt 2",
+    "normalized": "W. Vanzandt 2"
+   }
+  },
+  {
+   "n": 158,
+   "column": "right",
+   "as_printed": "John Vandine",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Vandine",
+    "normalized": "John Vandine"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_vandine_john",
+    "person": "vandine_john",
+    "name": "John Vandine",
+    "returns": [
+     "1834-03-04"
+    ]
+   }
+  },
+  {
+   "n": 159,
+   "column": "right",
+   "as_printed": "Adam Vanderwerker",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "n Vanderwerker,",
+    "normalized": "Adam Vanderwerker"
+   }
+  },
+  {
+   "n": 160,
+   "column": "right",
+   "as_printed": "John Wilson 4",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Wilson 6 *",
+    "normalized": "John Wilson 4"
+   }
+  },
+  {
+   "n": 161,
+   "column": "right",
+   "as_printed": "Wm. Winson",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "_ Winson",
+    "normalized": "Wm. Winson"
+   },
+   "card": {
+    "held_by": "exact",
+    "household": "hh_winson_wm",
+    "person": "winson_wm",
+    "name": "Wm. Winson",
+    "returns": [
+     "1834-01-28"
+    ]
+   }
+  },
+  {
+   "n": 162,
+   "column": "right",
+   "as_printed": "Philip Willaee",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "p Willece",
+    "normalized": "Philip Willaee"
+   }
+  },
+  {
+   "n": 163,
+   "column": "right",
+   "as_printed": "Jesse B. Winn & Co.",
+   "kind": "firm",
+   "tie": "image",
+   "mint_refuses_as_firm": true,
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "» B. Winn & Co.",
+    "normalized": "Jesse B. Winn & Co."
+   }
+  },
+  {
+   "n": 164,
+   "column": "right",
+   "as_printed": "Daniel Warren",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "el Warren",
+    "normalized": "Daniel Warren"
+   }
+  },
+  {
+   "n": 165,
+   "column": "right",
+   "as_printed": "Sally Weed",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "Weed",
+    "normalized": "Sally Weed"
+   }
+  },
+  {
+   "n": 166,
+   "column": "right",
+   "as_printed": "Aaron Whitcomb",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "n Whitcomb",
+    "normalized": "Aaron Whitcomb"
+   }
+  },
+  {
+   "n": 167,
+   "column": "right",
+   "as_printed": "Delaney Wells",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "ney Wells",
+    "normalized": "Delaney Wells"
+   }
+  },
+  {
+   "n": 168,
+   "column": "right",
+   "as_printed": "Thomas H. Wrickey",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "nas H. Wrickey",
+    "normalized": "Thomas H. Wrickey"
+   }
+  },
+  {
+   "n": 169,
+   "column": "right",
+   "as_printed": "Loiza Webb",
+   "kind": "person",
+   "tie": "image",
+   "entity": {
+    "issue": "1834-03-04",
+    "claim": "c027",
+    "as_printed": "» Webb",
+    "normalized": "Loiza Webb"
+   }
+  },
+  {
+   "n": 170,
+   "column": "right",
+   "as_printed": "Samuel Wright",
+   "kind": "person",
+   "tie": "exact",
+   "entity": {
+    "issue": "1834-01-28",
+    "claim": "c001",
+    "as_printed": "Samuel Wright",
+    "normalized": "Samuel Wright"
+   }
+  }
+ ]
+}
