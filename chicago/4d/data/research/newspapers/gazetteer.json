@@ -57,7 +57,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1833_11_26.json",
-      "sha256": "1b4eb735c7a7a25c9d8d80d1b2d7bbc85a1efb2cfac3b6fac90038b9931fba0e"
+      "sha256": "9c65d5ab7812cdf291250480d940b31581ae60aa6d8123bbe4f17705b657fb6c"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1833_12_03.json",
@@ -177,11 +177,11 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_02.json",
-      "sha256": "b1ae4305156426b0f32d39eb8c738fd0eef2e65747fba77e571878e2915de152"
+      "sha256": "4025ff9fb3d55df268971ba09b1c90f1085c1ab53db2c2598e26b97875a46088"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_09.json",
-      "sha256": "f00dce7e4772203966a0cd72fee3cb5e9aca3371b2087ad398ee88b368285193"
+      "sha256": "87c0035e501326128a02c01fa1d9c7e09572b12f1c95ef8decdf51bfbe6c6865"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_07_16.json",
@@ -197,7 +197,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_08_06.json",
-      "sha256": "36881119df2f26c76d54223e23c03e38f584e6a1a252a21aee5b9779b6645973"
+      "sha256": "9efa829877de98ad205740d088f80f3cda052e46b7dc5fdcbf7fcb67ac860c17"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_08_13.json",
@@ -313,7 +313,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_01.json",
-      "sha256": "5b6e67a310754526008c0ec72cfd224208057e23bdc6979324e763ade793d4bf"
+      "sha256": "e9e51d853c9fbe21a50a868c5ee3683a5a3d5fad3a2cf7a59ce08fa0c75b7246"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1835_07_08.json",
@@ -1360,11 +1360,11 @@
       ]
     },
     {
-      "id": "person_adains_will_si",
-      "name": "Adains, Willısi",
+      "id": "person_adains_willisi",
+      "name": "Adains, Willisi",
       "variants": [
         {
-          "as_printed": "Adains, Willısi",
+          "as_printed": "Adains, Willisi",
           "claim": "chicago_democrat_1835_07_01#c004"
         }
       ],
@@ -3963,11 +3963,11 @@
       ]
     },
     {
-      "id": "person_bandle_will_nm",
-      "name": "Bandle, Willınm",
+      "id": "person_bandle_willinm",
+      "name": "Bandle, Willinm",
       "variants": [
         {
-          "as_printed": "Bandle, Willınm",
+          "as_printed": "Bandle, Willinm",
           "claim": "chicago_democrat_1835_07_01#c004"
         }
       ],
@@ -5049,7 +5049,7 @@
           "claim": "chicago_democrat_1834_07_02#c033"
         },
         {
-          "as_printed": "Benjamın swena",
+          "as_printed": "Benjamin swena",
           "claim": "chicago_democrat_1834_07_09#c009"
         },
         {
@@ -5068,10 +5068,6 @@
       "occupations": [],
       "associated_places": [],
       "merged": [
-        {
-          "from": "Benjamın Swena",
-          "merge_rule": "\"Benjamin Swena\" and \"Benjamın Swena\" are one entry of the list of letters remaining in the Post Office at Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and 1834-07-16. They stand at the same place in the list in each of the printings that carry them (1834-07-09 and 1834-07-16), and the reading kept here is the one 1834-07-16 prints. The readings differ by Benjamın against Benjamin: a recognition-class difference in one printing's type, not two names."
-        },
         {
           "from": "[uncertain: Benjamin Swena]",
           "merge_rule": "\"Benjamin Swena\" and \"[uncertain: Benjamin Swena]\" are one entry of the list of letters remaining in the Post Office at Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and 1834-07-16. They stand at the same place in the list in each of the printings that carry them (1834-07-02 and 1834-07-16), and the reading kept here is the one 1834-07-16 prints. Both readings carry the same letters — Benjamin Swena — and differ only in which of them the transcriber bracketed as supplied."
@@ -28397,7 +28393,7 @@
           "claim": "chicago_democrat_1834_08_06#c006"
         },
         {
-          "as_printed": "JOHN H. KİNZIE.",
+          "as_printed": "JOHN H. KINZIE.",
           "claim": "chicago_democrat_1834_08_06#c015"
         },
         {
@@ -39053,7 +39049,7 @@
       "name": "Oliver Raym[o]nd",
       "variants": [
         {
-          "as_printed": "Oliver Rayınand",
+          "as_printed": "Oliver Rayinand",
           "claim": "chicago_democrat_1834_07_02#c031"
         },
         {
@@ -49090,11 +49086,11 @@
       ]
     },
     {
-      "id": "person_swena_benjam_n_jr",
-      "name": "Swena, Benjamın Jr.",
+      "id": "person_swena_benjamin_jr",
+      "name": "Swena, Benjamin Jr.",
       "variants": [
         {
-          "as_printed": "Swena, Benjamın Jr.",
+          "as_printed": "Swena, Benjamin Jr.",
           "claim": "chicago_democrat_1835_07_01#c006"
         }
       ],
@@ -58156,7 +58152,7 @@
       "name": "Wright, John",
       "variants": [
         {
-          "as_printed": "JOHN WRIĞHT",
+          "as_printed": "JOHN WRIGHT",
           "claim": "chicago_democrat_1833_11_26#c009"
         },
         {

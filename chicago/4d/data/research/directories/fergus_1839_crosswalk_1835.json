@@ -4014,7 +4014,7 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
-    "name": "Willınm Bandle",
+    "name": "Willinm Bandle",
     "rule": "Surname 'Bandle' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
      {
@@ -11787,7 +11787,7 @@
     ]
    },
    {
-    "name": "Bandle, Willınm",
+    "name": "Bandle, Willinm",
     "rule": "Surname 'Bandle' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
      {

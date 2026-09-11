@@ -109,7 +109,6 @@
 
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-1013 — Norris prints a firm as 'Jones, B. & Co.' and the firm test only looks before the comma, so 33 firm entries are read as people
-T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
 T-0826 — Moses and Kirkland's History of Chicago volume 2 is neither held nor read, and every ABSENT verdict T-0581 recorded is an absence from volume 1 only
 T-0910 — Block 4's lot 40 is inside C. Walker's brace on printed page 47 and reaches the reading with no bidder at all
 T-0846 — The four other spend passes can write the same paragraph onto a card twice, and their gates cannot see it
@@ -335,4 +334,3 @@ T-1014 — The card for Nehemiah King gathers every 'N. King' reading in the cor
 T-1015 — The card for Anson H. Taylor carries a press reading of 'Anson W. Taylor' and an 'A. W. Taylor' militia row, against an Anson H. everywhere else
 T-1016 — THOMPSON JOHN L was proposed onto a card with no middle initial while the layer holds Lieut J L Thompson, and the same card carries a death notice for Gen. John Leverett Thompson
 T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
-

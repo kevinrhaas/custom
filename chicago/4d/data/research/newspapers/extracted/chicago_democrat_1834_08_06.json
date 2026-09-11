@@ -861,7 +861,7 @@
     },
     {
       "kind": "building",
-      "normalized": "LOTS. FOR sale the [s]outh half of Lots No. 5 and [6 …] [in] Chicago, fronting on Ran[dolph street …] [for] cash. […] the property of Dr. Fin[ley …] JOHN H. KİNZIE. Ja[n]e 18, 1[834].",
+      "normalized": "LOTS. FOR sale the [s]outh half of Lots No. 5 and [6 …] [in] Chicago, fronting on Ran[dolph street …] [for] cash. […] the property of Dr. Fin[ley …] JOHN H. KINZIE. Ja[n]e 18, 1[834].",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
@@ -883,7 +883,7 @@
       },
       "entities": [
         {
-          "as_printed": "JOHN H. KİNZIE.",
+          "as_printed": "JOHN H. KINZIE.",
           "normalized": "John H. Kinzie",
           "role": "agent for the sale",
           "occupations": [
