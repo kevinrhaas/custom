@@ -2114,6 +2114,100 @@
         ]
       },
       "source": "/tmp/smoke_d_310.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 338,
+      "takenAt": "2026-09-11T08:44:27.065Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "a4ad0084b1ae",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeDirty": false,
+      "changelogHash": "sha256:4e29639f2d036d16",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.8,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 250,
+      "takenAt": "2026-09-11T08:44:26.971Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "a4ad0084b1ae",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeDirty": false,
+      "changelogHash": "sha256:4e29639f2d036d16",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.8,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 168,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 306,
+      "takenAt": "2026-09-11T08:44:26.878Z",
+      "ref": "steward/t-0830-dalton-cook-1836",
+      "commit": "a4ad0084b1ae",
+      "devCommit": "45cb6cc958f1",
+      "treeHash": "sha256:3121cd5f0bfec7ae",
+      "treeDirty": false,
+      "changelogHash": "sha256:4e29639f2d036d16",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.8,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_m1213.log"
     }
   ]
 }
