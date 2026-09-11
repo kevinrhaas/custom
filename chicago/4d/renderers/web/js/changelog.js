@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The oldest house in town loses a name it could not keep', kind: 'fix', ts: '',
+  { v: 731, title: 'The oldest house in town loses a name it could not keep', kind: 'fix', ts: '2026-09-11T17:17:39.092Z', date: 'Sep 11, 2026, 12:17 PM CT',
     items: [
       'Nothing you can see in the scene changed today: no building moved, was raised or was redrawn. What changed is a claim on a card. Col. Jean Baptiste Beaubien\u2019s homestead \u2014 the oldest building in this reconstruction \u2014 has always told visitors it was also \u2018the American Fur Company factory building\u2019. It no longer does, because it is not.',
       'Two accounts put that factory building just south of Fort Dearborn, while this house stands on the corner of South Water Street and Michigan Avenue, and for a week the two could not be reconciled: they are locators in two different frames with nothing in common. The 1830 survey of the river mouth has both. It is the plan this project\u2019s fort, its garden, its outbuildings and one fenced grave are all drawn from, and it letters \u2018U.S. Factor\u2019s House\u2019 against three solid blocks on the fort\u2019s own ground.',
