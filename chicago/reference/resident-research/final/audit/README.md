@@ -37,10 +37,10 @@ Each line is *how many of the 1373 people carry at least one record of that kind
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 465 | 33.9% |
+| `corroborated_across_categories` | 464 | 33.8% |
 | `two_or_more_sources_one_category` | 17 | 1.2% |
 | `one_source` | 318 | 23.2% |
-| `the_letter_lists_alone` | 570 | 41.5% |
+| `the_letter_lists_alone` | 571 | 41.6% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -56,7 +56,7 @@ record agree; two newspaper notices of the same name are
 | census | 49 |
 | church | 46 |
 | book | 259 |
-| directory | 235 |
+| directory | 234 |
 | secondary | 80 |
 
 The category of a source id is the audit's one judgement, and it is a written
@@ -323,8 +323,8 @@ defect in this export.
 | no census linkage | 1324 | no 1840 census row is bridged to this person |
 | no address | 1297 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1277 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 888 | one source id on the card and no second category to check it against |
-| rests on the letter lists alone | 570 | known only from the post office's uncalled-for lists |
+| rests on one source | 889 | one source id on the card and no second category to check it against |
+| rests on the letter lists alone | 571 | known only from the post office's uncalled-for lists |
 | no research row | 533 | no cohort ticket has reviewed this person; the programme reached 840 of 1373 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |

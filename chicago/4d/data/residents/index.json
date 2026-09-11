@@ -11769,7 +11769,8 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
-   "review_required": false
+   "review_required": false,
+   "projected_resident": true
   },
   {
    "id": "hh_langer_jacob",
@@ -17298,8 +17299,7 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_shielde_willam",
