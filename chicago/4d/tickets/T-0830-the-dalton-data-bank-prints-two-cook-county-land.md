@@ -1,7 +1,7 @@
 ---
 id: T-0830
 title: The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1117
+claimed_by: run 9/11/2026, 3:11:02 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T08:44:26.736Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34577554986
 ---
 
 The Dalton Data Bank prints two Cook County land purchases of June 1836 that the tract-sales sweep does not hold.
