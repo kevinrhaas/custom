@@ -65139,6 +65139,76 @@
           }
         }
       ],
+      "anchor_refusal": {
+        "kind": "printed_in_the_same_weeks",
+        "refused_because": "T-0324 read every printing of both of this house's addresses and settled them: \"next door to Graves' Tavern\" and \"the corner of Dearborn and Lake streets\" are ONE frontage — not two premises, and not a move. Both run in a single issue, 1834-04-01 c009 and c010, six weeks after the move a reordering would have to record; and through that whole stretch the corner card is being re-set with fresh date lines, Feb 4 then Feb 24 then Apr 22, while the tavern card keeps running, which is not what a man does with an advertisement he has forgotten to pull. Graves' Tavern is itself that corner: it is the Mansion House, held in this reconstruction since 2026-08-11 on the north side of Lake Street just east of Dearborn. So these anchors have no before and no after to be put in, and a rule may only be written where one anchor stops before the next starts — any dates such a rule stated here would be false whatever it said about the ground. docs/RESEARCH/botsford_graves_1834.md is the reading and its table is the evidence.",
+        "live_anchor": "Graves' Tavern",
+        "live_class": "relative",
+        "outranked_by": [
+          {
+            "anchor": "Dearborn Street and Lake Street",
+            "class": "corner",
+            "first_issue": "1834-02-25",
+            "last_issue": "1834-02-25",
+            "claims": [
+              "chicago_democrat_1834_02_25#c001"
+            ]
+          },
+          {
+            "anchor": "the corner of Dearborn and Lake streets",
+            "class": "corner",
+            "first_issue": "1834-03-04",
+            "last_issue": "1834-12-03",
+            "claims": [
+              "chicago_democrat_1834_03_04#c005",
+              "chicago_democrat_1834_09_24#c009",
+              "chicago_democrat_1834_12_03#c019"
+            ]
+          },
+          {
+            "anchor": "corner of Dearborn and Lake-sts.",
+            "class": "corner",
+            "first_issue": "1834-04-01",
+            "last_issue": "1834-04-30",
+            "claims": [
+              "chicago_democrat_1834_04_01#c010",
+              "chicago_democrat_1834_04_23#c002",
+              "chicago_democrat_1834_04_23#c008",
+              "chicago_democrat_1834_04_30#c005"
+            ]
+          },
+          {
+            "anchor": "corner of Dearborn and Lake streets",
+            "class": "corner",
+            "first_issue": "1834-04-23",
+            "last_issue": "1834-10-01",
+            "claims": [
+              "chicago_democrat_1834_04_23#c003",
+              "chicago_democrat_1834_06_04#c018",
+              "chicago_democrat_1834_10_01#c006"
+            ]
+          },
+          {
+            "anchor": "CORNER OF DEARBORN AND LAKE-STREETS",
+            "class": "corner",
+            "first_issue": "1834-07-02",
+            "last_issue": "1834-07-09",
+            "claims": [
+              "chicago_democrat_1834_07_02#c058",
+              "chicago_democrat_1834_07_09#c026"
+            ]
+          },
+          {
+            "anchor": "Dearborn and Lake streets",
+            "class": "corner",
+            "first_issue": "1834-11-12",
+            "last_issue": "1834-11-12",
+            "claims": [
+              "chicago_democrat_1834_11_12#c006"
+            ]
+          }
+        ]
+      },
       "proprietors_merged": [
         {
           "into": "J. K. Botsford",
@@ -70720,6 +70790,23 @@
           }
         }
       ],
+      "anchor_refusal": {
+        "kind": "after_the_scene_date",
+        "refused_because": "Every printing this house has runs after the scene date, the earliest on 1835-07-22, and the one that outranks the rest is the last of them: 1835-08-12 reads 'call at [h]i[s] room [in] South [Wa]ter street, (A. Garrett's Auction Room)'. So the narrower address is six weeks outside the scene, and AGENTS.md rule 3 refuses it there for the same reason it refuses the address that would have placed Jones, King & Co. The South Water Street of the 1835-07-22 card is what the house keeps. T-0948 reached this house and declined it too, on two grounds of its own — two datelines are two advertisements, and the 08-12 reading names no street to be narrowing one — so what is missing here is not a judgement between two printed addresses. It is a printing inside the scene.",
+        "live_anchor": null,
+        "live_class": "street_only",
+        "outranked_by": [
+          {
+            "anchor": "A. Garrett's Auction Room",
+            "class": "relative",
+            "first_issue": "1835-08-12",
+            "last_issue": "1835-08-12",
+            "claims": [
+              "chicago_democrat_1835_08_12#c005"
+            ]
+          }
+        ]
+      },
       "built_at_scene_date": true,
       "trade_classes": [
         "other",
