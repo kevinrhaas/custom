@@ -2,6 +2,101 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 103,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 261,
+      "takenAt": "2026-09-11T03:49:12.339Z",
+      "ref": "steward/t-1011-letter-list-1834-mint",
+      "commit": "d93e5ce589a1",
+      "devCommit": "cef6a46b9101",
+      "treeHash": "sha256:79bd02a09b3b8165",
+      "treeDirty": false,
+      "changelogHash": "sha256:e036a9498bac0d72",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.8,
+          3.8
+        ]
+      },
+      "source": "/tmp/s2_m310.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12,13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 168,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 300,
+      "takenAt": "2026-09-11T03:49:12.250Z",
+      "ref": "steward/t-1011-letter-list-1834-mint",
+      "commit": "d93e5ce589a1",
+      "devCommit": "cef6a46b9101",
+      "treeHash": "sha256:79bd02a09b3b8165",
+      "treeDirty": false,
+      "changelogHash": "sha256:e036a9498bac0d72",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.8,
+          3.8
+        ]
+      },
+      "source": "/tmp/s2_m1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 110,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 329,
+      "takenAt": "2026-09-11T03:49:12.163Z",
+      "ref": "steward/t-1011-letter-list-1834-mint",
+      "commit": "d93e5ce589a1",
+      "devCommit": "cef6a46b9101",
+      "treeHash": "sha256:79bd02a09b3b8165",
+      "treeDirty": false,
+      "changelogHash": "sha256:e036a9498bac0d72",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.8,
+          3.8,
+          3.8
+        ]
+      },
+      "source": "/tmp/s2_d13.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1210,102 +1305,6 @@
         ]
       },
       "source": "/tmp/f1.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 138,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 396,
-      "takenAt": "2026-09-10T16:50:43.074Z",
-      "ref": "steward/t-0951-husband-name-printings",
-      "commit": "176f6b7192e6",
-      "devCommit": "0e27b87a0f70",
-      "treeHash": "sha256:4a2bc14998874ce0",
-      "treeDirty": false,
-      "changelogHash": "sha256:0bb44ddd81360e7a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/s_d2.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 239,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 365,
-      "takenAt": "2026-09-10T16:50:42.985Z",
-      "ref": "steward/t-0951-husband-name-printings",
-      "commit": "176f6b7192e6",
-      "devCommit": "0e27b87a0f70",
-      "treeHash": "sha256:4a2bc14998874ce0",
-      "treeDirty": false,
-      "changelogHash": "sha256:0bb44ddd81360e7a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/s_m.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 110,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 322,
-      "takenAt": "2026-09-10T16:50:42.895Z",
-      "ref": "steward/t-0951-husband-name-printings",
-      "commit": "176f6b7192e6",
-      "devCommit": "0e27b87a0f70",
-      "treeHash": "sha256:4a2bc14998874ce0",
-      "treeDirty": false,
-      "changelogHash": "sha256:0bb44ddd81360e7a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.3,
-          3.6
-        ]
-      },
-      "source": "/tmp/s13d.log"
     },
     {
       "viewport": "desktop",

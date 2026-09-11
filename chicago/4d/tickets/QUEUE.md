@@ -108,7 +108,6 @@
 
 
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
-T-1011 — Mint the 54 lines of the 1 January 1834 return that reach no card at all, under ruling 1 and carrying letter_list_only, with the roster line as the source
 T-1018 — The letters-waiting count on a letter-list line is read as a middle initial on the cards minted from transcriptions: 'Eliphalet Atkins 2' holds surname 'eliphalet' and shows 'Atkins [?] Eliphalet'
 T-1019 — 46 names the letter-list mint admits have no card at all: the committed tree is 46 households short of what mint_letter_list_residents.py derives from the register pool
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
