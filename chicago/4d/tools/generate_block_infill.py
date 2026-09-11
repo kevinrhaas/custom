@@ -79,6 +79,7 @@ from inferred_occupancy import occupancy  # noqa: E402
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, exclusive_lots, footprints  # noqa: E402
+from plat_occupancy import lot_holders  # noqa: E402
 import lot_addresses  # noqa: E402
 
 # The face of a committed block — the line a party-line street row stands on, the way
@@ -1445,10 +1446,55 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # A lot the owner's business-front clause admits is NOT its own class: it is built
     # on by this parcel — the run stands over it — and it also carries a documented
     # store at the street. `occupied` is `exclusive_lots` above, so the clause has
-    # already taken it out of "already carrying a roof" and the four classes stay
-    # disjoint, which is the only property this check has ever needed of them.
+    # already taken it out of "already carrying a roof".
+    #
+    # T-0432. THE TWO DEALS MAY MEET ON ONE LOT, and until this block nothing had asked
+    # them to. The four sets above were held pairwise disjoint, which made "built on by
+    # another deal" a PROHIBITION as well as an account: a lot the first deal's run
+    # stood over could never be dealt again. That was true of every block so far only
+    # because no second deal had come back to one — `blk_south_water_clark`'s two deals
+    # took lots 4 and 2, and never met. It is not true here. The first deal on this
+    # block declared a run over lots 0, 2 and 4 in August, under the ceiling of one
+    # principal roof per lot; T-0079 retired that ceiling, and this block's whole
+    # remaining headroom stands on lot 2 — its one free business front, the other free
+    # lot being the corner the schedule's own sizing reserves. Refusing it would have
+    # been the OLD ceiling enforcing itself through an accounting rule, a run at a time,
+    # after the standard that retired it had already been written down.
+    #
+    # So the overlap is admitted and BOUNDED, and the bound is the density standard's
+    # own, counted across deals rather than inside one: `ROW_UNITS_PER_LOT` roofs may
+    # stand on a lot, and the roofs already standing on it are read off the committed
+    # ground by the same module the rest of this gate asks. Nothing else relaxes — the
+    # lot margin, the corridor, the three-metre separation and the run's own strip all
+    # still refuse what they always refused, and on this lot the metres bind first: the
+    # frontage clear of Frederick Thomas's shop takes two roofs and the ceiling takes
+    # two, which is two reasons agreeing rather than one rule doing the work.
+    shared_with_sibling = set(used) & set(sibling_lots)
+    if shared_with_sibling:
+        standing = lot_holders({"blocks": [grid]}, datum, exclude=mine_ids)
+        standing = standing.get(block["block_id"], {})
+        placed = {sid: poly for sid, poly in mine}
+        for index in sorted(shared_with_sibling):
+            already = len(standing.get(index, ()))
+            # Where a row unit STANDS, not which lots its run was dealt. A run is one
+            # stretch of frontage across several lots and its units fall where the
+            # chain of party walls puts them — the first deal on this block declared
+            # lots 0, 2 and 4 and stood all three of its units on lot 4 — so counting a
+            # run's whole length against every lot it was dealt would refuse a lot that
+            # carries none of it.
+            lot = frames[index]["polygon"]
+            adding = sum(
+                1 for r in records
+                if r["reconstruction"]["inventory_class"] == "principal_functional"
+                and any(point_in_polygon(pt, lot) for pt in placed[r["id"]]))
+            if already + adding > ROW_UNITS_PER_LOT:
+                raise SystemExit(
+                    f"{block['block_id']}: lot {index} already carries {already} roof(s) "
+                    f"and this deal adds {adding}, past the {ROW_UNITS_PER_LOT} units a "
+                    f"lot of this grid holds at the row's own measured spacing. A second "
+                    f"deal on a lot is denser than the first, not unbounded by it")
     classes = {"built on by this parcel": set(used),
-               "built on by another deal on this block": set(sibling_lots),
+               "built on by another deal on this block": set(sibling_lots) - set(used),
                "already carrying a roof": set(occupied) - set(sibling_lots),
                "named open in the recipe": set(named_open)}
     for name, indices in classes.items():
