@@ -1,7 +1,7 @@
 ---
 id: T-0836
 title: The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1118
+claimed_by: run 9/11/2026, 3:25:02 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T09:03:02.370Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34578744716
 ---
 
 The town's wagons stand on 6 distinct headings and the smoke asks for 8, so dev is red at both viewports on a layer no branch has touched.
