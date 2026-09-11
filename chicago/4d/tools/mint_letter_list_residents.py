@@ -717,7 +717,7 @@ def split_letters_waiting(as_printed: str) -> tuple[str, int | None]:
     marks them". Only a TRAILING run of digits is taken, and only off a roster line —
     the transcriptions this pass has always read carry the same digits with no
     statement of what they mean, so the cards minted from them are untouched here and
-    the reading they got is a finding of its own (T-1013).
+    the reading they got is a finding of its own (T-1014).
     """
     m = LETTERS_WAITING.search(as_printed)
     if not m:
@@ -738,13 +738,23 @@ def roster_pool() -> tuple[list[dict], dict]:
     Returns (candidates, gazetteer-shaped entries), the same two shapes
     `letter_list_pool` and `gazetteer.json` hand the refusals, so the rules below do
     not learn that a second pool exists.
+
+    THE POOL IS THE CONCORDANCE'S `tie`, NOT ITS `reaches`, AND THAT IS THE WHOLE REASON
+    THE TWO FILES DO NOT CHASE EACH OTHER. `reaches` is the concordance's report of what
+    THIS pass decided, so reading it here would make the pool a function of its own
+    output: the first run would mint, the ledger would stop saying `unread`, and the
+    second run would find an empty pool and unmint everybody. `tie` is derived from the
+    roster and the extractions alone — the concordance never consults the mint to set it
+    — so `tie is None` means exactly "no claim this project has extracted from any of
+    the nine impressions carries this line", which is the pool this ticket was opened
+    about, and it says the same thing on every run.
     """
     conc = load(CONCORDANCE)
     roster_date = load(ROSTER)["printing_read"]["date"]
     cands: list[dict] = []
     gaz: dict[str, dict] = {}
     for line in conc["lines"]:
-        if (line.get("reaches") or {}).get("kind") != "unread":
+        if line.get("tie") is not None:
             continue
         printed = line["as_printed"]
         name, waiting = split_letters_waiting(printed)
@@ -1132,7 +1142,7 @@ def build(preload: dict | None = None, only_roster: bool = False):
     the card's ladder rule. T-1011 adds names and must not rewrite anybody, so this mode
     writes the records the ROSTER pool reached and nothing else: every card already
     committed is left exactly as it stands, and so is every name the register pool
-    reaches that the tree does not yet carry (46 of those, a gap of its own — T-1014).
+    reaches that the tree does not yet carry (46 of those, a gap of its own — T-1015).
 
     Candidate order and id allocation are unaffected by the mode: every accepted
     candidate is still built, in the same order, against the same `seen` set, so the

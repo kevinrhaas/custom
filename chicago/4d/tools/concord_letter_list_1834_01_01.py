@@ -17,7 +17,8 @@ and it could not say WHICH LINES THOSE PEOPLE ARE — nor, therefore, how many o
 170 reach no card at all.
 
 That is the measurement this pass makes, and it makes it as a ledger with one row per
-printed line. It MINTS NOBODY. Minting is a different decision from reading (T-0424's
+printed line. It MINTS NOBODY — including since T-1011, which taught the MINT to read
+the roster: this file still only reports what that pass decided. Minting is a different decision from reading (T-0424's
 own words) and a different decision again from counting, and the ticket that owns the
 mint is the one this file's counts are for.
 
@@ -52,7 +53,13 @@ from the pass it describes:
   `refused`       the name was in the mint's pool and a named refusal turned it away.
                   Not a gap: a ruling.
   `unread`        nothing the project has extracted from any of the nine impressions
-                  carries this line. THIS is the gap the cohort's floor is made of.
+                  carries this line, AND the mint's roster pool does not reach it
+                  either. This was the gap the cohort's floor was made of; T-1011
+                  closed it by making the printed line a pool of its own, so a line
+                  no extraction carries now reaches `minted` or `refused` on the
+                  roster's own evidence and this outcome stands empty. It is kept
+                  because a tenth impression, or a re-read of the roster, could
+                  reopen it.
 
 THE THREE LINES THAT ARE NOT A PERSON are marked as what they are, from the roster's
 own reading rather than from a rule here: `Axtel & Steele` and `Jesse B. Winn & Co.`
@@ -470,12 +477,35 @@ def build() -> dict:
         readings = tied.get(row["n"]) or []
         out = dict(row)
         if not readings:
+            # T-1011. `tie` stays null — no extraction carries this line, which is the
+            # measurement T-1010 made and it has not changed. What HAS changed is that a
+            # line no extraction carries is no longer a line nothing reaches: the mint
+            # now takes the printed roster as a pool of its own, so the same two
+            # outcomes the rest of this ledger reports are available here, keyed on the
+            # printed line number instead of on a claim.
             out["tie"] = None
-            out["reaches"] = {
-                "kind": "unread",
-                "why": "no claim this project has extracted from any of the nine "
-                       "impressions of this return carries this line",
-            }
+            key = f"roster_line_{row['n']:03d}"
+            if key in minted:
+                hid = minted[key]
+                out["reaches"] = {
+                    "kind": "minted", "person": None, "household": hid,
+                    "card_name": card_by_household.get(hid),
+                    "via": "the printed line itself, as the mint's roster pool",
+                    "by": "tools/mint_letter_list_residents.py",
+                }
+            elif key in refused:
+                out["reaches"] = {
+                    "kind": "refused", "person": None, "reason": refused[key],
+                    "via": "the printed line itself, as the mint's roster pool",
+                    "by": "tools/mint_letter_list_residents.py",
+                }
+            else:
+                out["reaches"] = {
+                    "kind": "unread",
+                    "why": "no claim this project has extracted from any of the nine "
+                           "impressions of this return carries this line, and the "
+                           "mint's roster pool does not reach it either",
+                }
             lines.append(out)
             continue
 

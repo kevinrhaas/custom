@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "generated_by": "tools/concord_letter_list_1834_01_01.py",
- "_doc": "What each of the 170 printed lines of the 1 January 1834 return reaches (T-1010, out of T-1008).\n\n    python3 tools/concord_letter_list_1834_01_01.py            write\n    python3 tools/concord_letter_list_1834_01_01.py --check    re-derive and diff\n    python3 tools/concord_letter_list_1834_01_01.py --report   the ledger, read out\n    python3 tools/concord_letter_list_1834_01_01.py --self-test the assertions, broken\n\nWHAT THIS IS FOR.\n\nT-0424 read the ninth printing of the Chicago post office's 1 January 1834 return at\nthe page image and counted it: 170 printed lines, set down in printed order in\n`data/research/newspapers/letter_list_1834_01_01_printed.json`. T-0310 minted a cohort\nof residents out of the SAME return, a year of loop-runs earlier, from the\ntranscriptions of two of its nine impressions. Nobody had ever put the two beside each\nother, so the project could say how long the list is and it could say who it minted,\nand it could not say WHICH LINES THOSE PEOPLE ARE — nor, therefore, how many of the\n170 reach no card at all.\n\nThat is the measurement this pass makes, and it makes it as a ledger with one row per\nprinted line. It MINTS NOBODY. Minting is a different decision from reading (T-0424's\nown words) and a different decision again from counting, and the ticket that owns the\nmint is the one this file's counts are for.\n\nHOW A PRINTED LINE IS TIED TO A NAME THE PROJECT EXTRACTED, in four rules, strongest\nfirst, each recorded on the row as `tied_by` so that a tie can be argued with:\n\n  `image`     the extraction's own entity carries `read_at_image.printed_line`. That\n              tie was made at the scan by T-0424 and is simply read back here.\n  `text`      the entity's normalized name and the printed line agree exactly, once\n              both are folded (case, punctuation, the trailing letter-count digit and\n              any [bracketed] illegible glyph dropped). Unique matches only.\n  `spelling`  the two surnames are within one edit of each other and the forenames do\n              not contradict — one initial against the same initial, or a forename\n              against nothing. Two settings of ONE return differ by exactly this much\n              (`Hutchins`/`Huchins`, `Forster`/`Forrister`), and a rule narrower than\n              this leaves those lines looking unread when they are merely respelt.\n  untied      everything else, INCLUDING every ambiguity. A line two entities could\n              equally be, or an entity two lines could equally be, is left untied and\n              listed, because a concordance that guesses is worse than one that counts\n              its own gaps.\n\nWHAT A ROW SAYS THE LINE REACHES. The four outcomes are the four things that can have\nhappened to a name on this list, and the pass derives all four rather than asserting\nany of them — `minted` and `refused` come out of `mint_letter_list_residents.py`'s own\n`mint()`, through the refusals as that pass applies them, so this ledger cannot drift\nfrom the pass it describes:\n\n  `minted`        the letter-list pass minted a household for it, named here.\n  `held_already`  the register ties the name to somebody the town ALREADY holds on\n                  other evidence, so the line reaches a card that is not this cohort's.\n                  A line that reaches Lewis Kercheval reaches Lewis Kercheval.\n  `refused`       the name was in the mint's pool and a named refusal turned it away.\n                  Not a gap: a ruling.\n  `unread`        nothing the project has extracted from any of the nine impressions\n                  carries this line. THIS is the gap the cohort's floor is made of.\n\nTHE THREE LINES THAT ARE NOT A PERSON are marked as what they are, from the roster's\nown reading rather than from a rule here: `Axtel & Steele` and `Jesse B. Winn & Co.`\nare firms, and `Lamira & Laura Carrier` names two people on one line. The printed\nlength is 170 LINES either way; what they are worth in PEOPLE is a different number,\nand `counts.people_named` states it.\n\nWHERE THE TWO READINGS OF A NAME DISAGREE, the row carries both (`printed_as` against\n`extracted_as`) under `name_differs`, and where the line reached a card the card's own\nspelling stands beside them. A corrected claim over an uncorrected card is worse than\nneither (T-1008), and this is the list of the places where that could be true.",
+ "_doc": "What each of the 170 printed lines of the 1 January 1834 return reaches (T-1010, out of T-1008).\n\n    python3 tools/concord_letter_list_1834_01_01.py            write\n    python3 tools/concord_letter_list_1834_01_01.py --check    re-derive and diff\n    python3 tools/concord_letter_list_1834_01_01.py --report   the ledger, read out\n    python3 tools/concord_letter_list_1834_01_01.py --self-test the assertions, broken\n\nWHAT THIS IS FOR.\n\nT-0424 read the ninth printing of the Chicago post office's 1 January 1834 return at\nthe page image and counted it: 170 printed lines, set down in printed order in\n`data/research/newspapers/letter_list_1834_01_01_printed.json`. T-0310 minted a cohort\nof residents out of the SAME return, a year of loop-runs earlier, from the\ntranscriptions of two of its nine impressions. Nobody had ever put the two beside each\nother, so the project could say how long the list is and it could say who it minted,\nand it could not say WHICH LINES THOSE PEOPLE ARE — nor, therefore, how many of the\n170 reach no card at all.\n\nThat is the measurement this pass makes, and it makes it as a ledger with one row per\nprinted line. It MINTS NOBODY — including since T-1011, which taught the MINT to read\nthe roster: this file still only reports what that pass decided. Minting is a different decision from reading (T-0424's\nown words) and a different decision again from counting, and the ticket that owns the\nmint is the one this file's counts are for.\n\nHOW A PRINTED LINE IS TIED TO A NAME THE PROJECT EXTRACTED, in four rules, strongest\nfirst, each recorded on the row as `tied_by` so that a tie can be argued with:\n\n  `image`     the extraction's own entity carries `read_at_image.printed_line`. That\n              tie was made at the scan by T-0424 and is simply read back here.\n  `text`      the entity's normalized name and the printed line agree exactly, once\n              both are folded (case, punctuation, the trailing letter-count digit and\n              any [bracketed] illegible glyph dropped). Unique matches only.\n  `spelling`  the two surnames are within one edit of each other and the forenames do\n              not contradict — one initial against the same initial, or a forename\n              against nothing. Two settings of ONE return differ by exactly this much\n              (`Hutchins`/`Huchins`, `Forster`/`Forrister`), and a rule narrower than\n              this leaves those lines looking unread when they are merely respelt.\n  untied      everything else, INCLUDING every ambiguity. A line two entities could\n              equally be, or an entity two lines could equally be, is left untied and\n              listed, because a concordance that guesses is worse than one that counts\n              its own gaps.\n\nWHAT A ROW SAYS THE LINE REACHES. The four outcomes are the four things that can have\nhappened to a name on this list, and the pass derives all four rather than asserting\nany of them — `minted` and `refused` come out of `mint_letter_list_residents.py`'s own\n`mint()`, through the refusals as that pass applies them, so this ledger cannot drift\nfrom the pass it describes:\n\n  `minted`        the letter-list pass minted a household for it, named here.\n  `held_already`  the register ties the name to somebody the town ALREADY holds on\n                  other evidence, so the line reaches a card that is not this cohort's.\n                  A line that reaches Lewis Kercheval reaches Lewis Kercheval.\n  `refused`       the name was in the mint's pool and a named refusal turned it away.\n                  Not a gap: a ruling.\n  `unread`        nothing the project has extracted from any of the nine impressions\n                  carries this line, AND the mint's roster pool does not reach it\n                  either. This was the gap the cohort's floor was made of; T-1011\n                  closed it by making the printed line a pool of its own, so a line\n                  no extraction carries now reaches `minted` or `refused` on the\n                  roster's own evidence and this outcome stands empty. It is kept\n                  because a tenth impression, or a re-read of the roster, could\n                  reopen it.\n\nTHE THREE LINES THAT ARE NOT A PERSON are marked as what they are, from the roster's\nown reading rather than from a rule here: `Axtel & Steele` and `Jesse B. Winn & Co.`\nare firms, and `Lamira & Laura Carrier` names two people on one line. The printed\nlength is 170 LINES either way; what they are worth in PEOPLE is a different number,\nand `counts.people_named` states it.\n\nWHERE THE TWO READINGS OF A NAME DISAGREE, the row carries both (`printed_as` against\n`extracted_as`) under `name_differs`, and where the line reached a card the card's own\nspelling stands beside them. A corrected claim over an uncorrected card is worse than\nneither (T-1008), and this is the list of the places where that could be true.",
  "return": {
   "office": "Chicago, Illinois",
   "remaining_as_of": "1834-01-01",
@@ -30,17 +30,16 @@
    "spelling": 14
   },
   "reaches": {
-   "minted": 64,
-   "unread": 54,
-   "held_already": 5,
-   "refused": 47
+   "minted": 88,
+   "refused": 77,
+   "held_already": 5
   },
-  "reaches_a_card": 69,
+  "reaches_a_card": 93,
   "refused_by_reason": {
-   "the town already names that family": 21,
-   "surname already minted": 15,
-   "a firm, not a person": 1,
-   "garbled": 10
+   "surname already minted": 26,
+   "the town already names that family": 37,
+   "garbled": 12,
+   "a firm, not a person": 2
   },
   "readings_that_disagree": 19,
   "extracted_names_no_line_carries": 28,
@@ -80,8 +79,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -91,8 +93,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Abbott",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -102,8 +107,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Austin",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -113,8 +121,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_axtell_almond",
+    "card_name": "Almond Axtell",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -124,8 +136,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_brownson_myron_k",
+    "card_name": "Myron K. Brownson",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -135,8 +151,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_burnett_timothy",
+    "card_name": "Timothy Burnett",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -146,8 +166,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_bertrand_b_h",
+    "card_name": "B. H. Bertrand",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -157,8 +181,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -168,8 +195,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_babeu_joseph",
+    "card_name": "Joseph Babeu",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -201,8 +232,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_beers_anthony",
+    "card_name": "Anthony Beers",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -238,8 +273,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Blodgett",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -360,8 +398,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "garbled",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -417,8 +458,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Bowen",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -428,8 +472,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_babcock_chas",
+    "card_name": "Chas. Babcock",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -439,8 +487,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -565,8 +616,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_catran_o_p",
+    "card_name": "O. P. Catran",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -576,8 +631,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_clevinger_d_p",
+    "card_name": "D. P. Clevinger",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -587,8 +646,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_center_e_w",
+    "card_name": "E. W. Center",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -618,8 +681,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Clarke",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -670,8 +736,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -681,8 +750,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Clarke",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -692,8 +764,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -745,8 +820,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Clark",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -756,8 +834,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Chapman",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -933,8 +1014,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_eberiden_samuel",
+    "card_name": "Samuel Eberiden",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1017,8 +1102,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_fay_h_k",
+    "card_name": "H. K. Fay",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1028,8 +1117,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1060,8 +1152,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_forrister_jane",
+    "card_name": "Jane Forrister",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1123,8 +1219,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Field",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1203,8 +1302,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Goodrich",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1235,8 +1337,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_gray_dane",
+    "card_name": "dane Gray",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1246,8 +1352,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1257,8 +1366,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1330,8 +1442,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Grant",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1362,8 +1477,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Goodrich",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1373,8 +1491,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_hatch_luther",
+    "card_name": "Luther Hatch",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1404,8 +1526,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1478,8 +1603,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "garbled",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1489,8 +1617,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1500,8 +1631,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_harkness_j_p",
+    "card_name": "J. P. Harkness",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1511,8 +1646,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_hays_isaac",
+    "card_name": "Isaac Hays",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1522,8 +1661,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_hills_levi",
+    "card_name": "Levi Hills",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1533,8 +1676,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_hoffman_h_b",
+    "card_name": "H. B. Hoffman",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1793,8 +1940,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_lacey_j_s",
+    "card_name": "J. S. Lacey",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1804,8 +1955,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_loose_jacob",
+    "card_name": "Jacob Loose",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1919,8 +2074,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Meeker",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -1930,8 +2088,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_makio_james",
+    "card_name": "James Makio",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2024,8 +2186,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "surname already minted",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2056,8 +2221,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_plympton_lauretta",
+    "card_name": "Lauretta Plympton",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2067,8 +2236,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Parsons",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2219,8 +2391,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Robinson",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2384,8 +2559,11 @@
    "addressee": "a firm, not a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "a firm, not a person",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2416,8 +2594,12 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "minted",
+    "person": null,
+    "household": "hh_stafford_b_p",
+    "card_name": "B. P. Stafford",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {
@@ -2467,8 +2649,11 @@
    "addressee": "a person",
    "tie": null,
    "reaches": {
-    "kind": "unread",
-    "why": "no claim this project has extracted from any of the nine impressions of this return carries this line"
+    "kind": "refused",
+    "person": null,
+    "reason": "the town already names a Steele",
+    "via": "the printed line itself, as the mint's roster pool",
+    "by": "tools/mint_letter_list_residents.py"
    }
   },
   {

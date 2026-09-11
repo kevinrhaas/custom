@@ -110,6 +110,9 @@
 T-0990 — The land-sale proposals T-0697 added when the surname rule widened are unruled: rule them one cohort per run, and the run that closes a cohort files the next
 T-1002 — Three duplicate-card pairs the candidate test cannot see, because each differs by ONE letter: Madore/Medore Beaubien, Clybourn/Clybourne Archibald, Russel/Russell E. Heacock
 T-1011 — Mint the 54 lines of the 1 January 1834 return that reach no card at all, under ruling 1 and carrying letter_list_only, with the roster line as the source
+T-1014 — The letters-waiting count on a letter-list line is read as a middle initial on the cards minted from transcriptions: 'Eliphalet Atkins 2' holds surname 'eliphalet' and shows 'Atkins [?] Eliphalet'
+T-1016 — Three addressees of the 1 January 1834 return now hold two cards each — Beers/Heere, Center/Conte, Forrister/Forster — one minted from the scan-read roster and one from a transcription of the same return whose letters differ by more than the tie rules admit
+T-1015 — 46 names the letter-list mint admits have no card at all: the committed tree is 46 households short of what mint_letter_list_residents.py derives from the register pool
 T-0841 — The keeper of the St Cyr register is graded G5, not G2c: may the officiant of a parish register be graded on it?
 T-0867 — The Fergus 1843 crosswalk reads 'none_recorded' as a trade, so could_carry_occupation is 0 where Norris's fixed twin reports 63
 T-0901 — A garbled forename on the 1835 side, not the printed one: 'Willınm Bandle' carries a dotless i and refuses its own Fergus 1843 entry
@@ -331,4 +334,3 @@ T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller r
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
 T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-

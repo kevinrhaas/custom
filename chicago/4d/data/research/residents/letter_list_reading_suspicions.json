@@ -4,9 +4,9 @@
  "generated_by": "tools/register_letter_list_suspicions.py",
  "ticket": "T-0638",
  "counts": {
-  "rows": 16,
-  "households": 15,
-  "with_a_suspected_reading": 9,
+  "rows": 19,
+  "households": 18,
+  "with_a_suspected_reading": 12,
   "declining_to_guess": 7
  },
  "rows": [
@@ -77,6 +77,40 @@
    "suspected_reading": "Conklin"
   },
   {
+   "household": "hh_conte_e_w",
+   "person": "conte_e_w",
+   "held_as": "E. W. Conte",
+   "printed": "Conte",
+   "printings": [
+    "EW. Conte"
+   ],
+   "claims": [
+    "chicago_democrat_1834_01_28#c001"
+   ],
+   "status": "suspicion",
+   "grade": null,
+   "acted_on": false,
+   "suspected_reading": "Center",
+   "note": "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 33 of the same return reads 'E. W. Center' at the scan (T-0424), minted by T-1011 as hh_center_e_w. A SUSPECTED DUPLICATE, not a correction: see T-1016."
+  },
+  {
+   "household": "hh_forster_jane",
+   "person": "forster_jane",
+   "held_as": "Jane Forster",
+   "printed": "Forster",
+   "printings": [
+    "Jane Forster"
+   ],
+   "claims": [
+    "chicago_democrat_1834_01_28#c001"
+   ],
+   "status": "suspicion",
+   "grade": null,
+   "acted_on": false,
+   "suspected_reading": "Forrister",
+   "note": "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 59 of the same return reads 'Jane Forrister' at the scan (T-0424), minted by T-1011 as hh_forrister_jane. A SUSPECTED DUPLICATE, not a correction: see T-1016."
+  },
+  {
    "household": "hh_gabbs_james_i1",
    "person": "gabbs_james_i1",
    "held_as": "James [?] Gabbs",
@@ -92,6 +126,23 @@
    "acted_on": false,
    "suspected_reading": null,
    "note": "A letter and a digit standing where a single initial goes."
+  },
+  {
+   "household": "hh_heere_anthony",
+   "person": "heere_anthony",
+   "held_as": "Anthony Heere",
+   "printed": "Heere",
+   "printings": [
+    "Anthony Heere"
+   ],
+   "claims": [
+    "chicago_democrat_1834_01_28#c001"
+   ],
+   "status": "suspicion",
+   "grade": null,
+   "acted_on": false,
+   "suspected_reading": "Beers",
+   "note": "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 12 of the same return reads 'Anthony Beers' at the scan (T-0424), and T-1011 minted it as hh_beers_anthony because no extraction of any impression carries that line. Two edits separate the surnames, one more than the concordance's `spelling` rule admits, so nothing tied them and the town holds the addressee twice. A SUSPECTED DUPLICATE, not a correction: see T-1016."
   },
   {
    "household": "hh_hhelps_theodore_e",

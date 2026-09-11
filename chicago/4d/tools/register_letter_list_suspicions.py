@@ -23,6 +23,14 @@ households; if the impression settles the letters, that pass changes the reading
 the source (the extracted column, then the register, then the mint) and deletes the
 row from here.
 
+AND SINCE T-1011, THREE ROWS THE PAGE IMAGE SUPPLIED. The rest of this file guesses a
+reading from what the town already holds; those three read it off the scan of the
+printed line itself, which is why their right-hand side is the strongest here — and why
+they say something worse than a misread letter. Each stands beside a SECOND card for
+what is very likely one addressee, and the repair is an identity question (T-1016), so
+they are registered on the same terms as everything else: graded nothing, acted on
+nowhere.
+
 REPRODUCIBLE. The printings and the claim ids are read out of the gazetteer, so this
 file cannot drift from the corpus. The suspicions themselves are AUTHORED — they are
 the ticket's own list, quoted, and they are the one thing here a machine did not
@@ -62,6 +70,19 @@ SUSPICIONS: tuple[tuple[str, str, str | None], ...] = (
     ("hh_gabbs_james_i1", "I1.", None),
     ("hh_abbot_8_g", "8.", None),
     ("hh_preston_stephen_ii", "II.", None),
+    # T-1011, AND THE ONLY THREE ROWS HERE A PAGE IMAGE SUPPLIED RATHER THAN AN AUTHOR.
+    # T-0424 read the ninth impression of the 1 January 1834 return at the scan; 54 of
+    # its 170 printed lines reach no extraction at all, and T-1011 put them through the
+    # mint's refusals. Three of the 24 it admitted now stand beside a card minted from a
+    # TRANSCRIPTION of the same return whose letters differ by more than the tie rules
+    # admit (two edits, where `spelling` allows one), so the town almost certainly holds
+    # one addressee twice. The right-hand side below is therefore not a guess: it is what
+    # the page image sets on the line. It is still registered rather than applied —
+    # repairing it means changing the reading at the extracted column and retiring one of
+    # the two cards, which is T-1016's question and not this file's.
+    ("hh_heere_anthony", "Heere", "Beers"),
+    ("hh_conte_e_w", "Conte", "Center"),
+    ("hh_forster_jane", "Forster", "Forrister"),
 )
 
 WHY_NULL = ("the letters cannot be read with confidence from the impressions this "
@@ -85,6 +106,21 @@ NOTES = {
         "A letter and a digit standing where a single initial goes.",
     ("hh_preston_stephen_ii", "II."):
         "A two-character cluster standing where a middle initial goes.",
+    ("hh_heere_anthony", "Heere"):
+        "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 12 of the "
+        "same return reads 'Anthony Beers' at the scan (T-0424), and T-1011 minted it as "
+        "hh_beers_anthony because no extraction of any impression carries that line. "
+        "Two edits separate the surnames, one more than the concordance's `spelling` "
+        "rule admits, so nothing tied them and the town holds the addressee twice. A "
+        "SUSPECTED DUPLICATE, not a correction: see T-1016.",
+    ("hh_conte_e_w", "Conte"):
+        "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 33 of the "
+        "same return reads 'E. W. Center' at the scan (T-0424), minted by T-1011 as "
+        "hh_center_e_w. A SUSPECTED DUPLICATE, not a correction: see T-1016.",
+    ("hh_forster_jane", "Forster"):
+        "THE PAGE IMAGE SETS THE OTHER READING, AND BOTH ARE NOW CARDS. Line 59 of the "
+        "same return reads 'Jane Forrister' at the scan (T-0424), minted by T-1011 as "
+        "hh_forrister_jane. A SUSPECTED DUPLICATE, not a correction: see T-1016.",
 }
 
 
