@@ -107,10 +107,6 @@
 
 
 
-
-
-
-
 T-1020 — date_norris_1844_businesses reads Norris's alphabetising comma as a partner separator, so 'Jones, B. & Co' loses its initial and the continuity test refuses B. Jones on a surname alone
 T-1034 — The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
@@ -130,7 +126,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- repair; they are one run. T-0763 is why eight "dev is red" tickets were filed on a green
 # --- dev and withdrawn today: check.sh's negative-control self-tests print FAIL lines that
 # --- look exactly like a failing step.
-T-0688 — The wagon-variety gate counts street bearings, so re-deriving a street took it from 9 buckets to 7 and it is at its floor of 8
 
 # --- ==========================================================================
 # --- 3. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
@@ -317,9 +312,6 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-
 # --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
 # --- by tools/measure_card_fuzzy_candidates.py after T-1002 ruled its three. Each needs a page
 # --- of its own: the list mixes real printed spelling variations (Foot/Foote, Lloyd/Loyd,
@@ -328,15 +320,15 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- against John Vale, Mark Noble against Mary Noble. No distance separates the first kind from
 # --- the last, which is T-1001's answer over the land register reached again over the cards.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
 T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
 T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
 T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1014 — The card for Nehemiah King gathers every 'N. King' reading in the corpus, and Fergus 1839 prints a Nathaniel King clerking for Tuthill King
 T-1015 — The card for Anson H. Taylor carries a press reading of 'Anson W. Taylor' and an 'A. W. Taylor' militia row, against an Anson H. everywhere else
 T-1016 — THOMPSON JOHN L was proposed onto a card with no middle initial while the layer holds Lieut J L Thompson, and the same card carries a death notice for Gen. John Leverett Thompson
@@ -347,11 +339,6 @@ T-1017 — Is buying at the town's OWN school-section sale a check on a town-sid
 T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
 T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
+
