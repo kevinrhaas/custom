@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 230,
+  "count": 231,
   "liberties": [
     {
       "id": "L1",
@@ -14374,6 +14374,72 @@
         {
           "label": "Recorded",
           "text": "2026-09-11 (T-0836)."
+        }
+      ]
+    },
+    {
+      "id": "L231",
+      "title": "The Factor House's fabric is read and its roof is invented, and the fence it is attested to have had is not drawn",
+      "section": "per_subject",
+      "subjects": [
+        "fort_dearborn_us_factors_house"
+      ],
+      "covers": [
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_us_factors_house",
+          "phase": "us_factors_house_1818",
+          "aspect": "form.chimneys"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_us_factors_house",
+          "phase": "us_factors_house_1818",
+          "aspect": "form.roof_pitch_deg"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_us_factors_house",
+          "phase": "us_factors_house_1818",
+          "aspect": "form.roof_type"
+        },
+        {
+          "domain": "structure",
+          "structure": "fort_dearborn_us_factors_house",
+          "phase": "us_factors_house_1818",
+          "aspect": "form.wall_height_m"
+        }
+      ],
+      "recorded": "2026-09-11",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`fort_dearborn_us_factors_house` stands 152 m south of Fort Dearborn's pickets, east of the road, where the 1830 Harrison plan letters **U.S. Factor's House** against three solid blocks. It is built as **one** of those three — block A, the one the label touches — 20.4 × 7.9 m, two storeys, squared log. **Where it stands, how big it is and how it is turned is read off the plate; that it is log and that it has two storeys is read off Gurdon Hubbard; its roof, that roof's pitch, its eave height, its chimney and which of its two long walls is the front are invented**, and every one of those five is graded `reconstructed`, so a visitor turning the reconstructed tier off is left with a two-storey log box on measured ground."
+        },
+        {
+          "label": "Why",
+          "text": "T-0894 measured this plate and deliberately built nothing, because the sheet gives arrangement and a ±20 % size and no material, no roof, no opening and no way to say which of three blocks carries Hubbard's two storeys. T-1036 is that refusal re-examined with the prose read *alongside* the plate instead of after it, and two of those four gaps close on one clause — `bk_hub_063`, *\"a two-story, squared-log structure\"*. That makes this the only building on the Fort Dearborn reservation whose `construction` is **attested** rather than defaulted: the two out buildings 130 m north carry `log` as pure invention at **L228**, and the difference between those two records and this one is a word in a witness. **What was invented, item by item.** A gable roof; 35° of pitch; a 5.2 m eave, which is two storeys of about 8 ft 6 in in the clear; one chimney; and `rotation_deg` 320, which faces the facade north-west onto the road. None is attested for this building or for any building at this post. The opposite facade choice, 140, gives the identical footprint and moves only the openings — the long axis itself, bearing 50°, is measured off the drawn bar and is not a liberty. The chimney count is the archetype's default and the smallest claim available for a heated two-storey dwelling; a 20 m building could as easily have carried two, and the record does not guess upward. THE FACADE CHOICE IS NOT IN THE **Covers** LIST BELOW, and that is the register's rule rather than an oversight: `rotation_deg` lives inside `position`, which is graded `inferred` as a whole and owes a stated reasoning rather than an admission — `tools/validate.py` counts only `reconstructed` values as owed one. It is written out here because a reader of this entry should know it, and the record's own `position.note` states it where the machinery can see it."
+        },
+        {
+          "label": "What is read and is NOT invented",
+          "text": "the position (block A's own ink centre, local ENU 1152.2, 36.4), the size (its principal extents, a ceiling read off a heavy outlined bar whose fill has broken up on this impression), the bearing, the log, and the two storeys — the last of those carried one step, from a label that names a building to the block that label touches. That step is `inferred` and the record writes out the two grounds for it: the label's first letter stands about 2 m clear of A's north-east end and touches no other block, and A is the only one of the three a two-storey dwelling-and-store will fit. **And the split-picket fence is attested and NOT drawn, which is the half of this entry that had to argue with L229.** Hubbard gives the house *\"a neat split-picket fence\"* in the same sentence that gives Mrs Jouett's grave its picket enclosure 50 m away, and **L229** built that one. Three things separate the cases. FIRST, the plate's silence means something here and meant nothing there: this sheet DRAWS these three blocks and draws no enclosure round any of them, while it draws the garrison garden's zigzag fence and John Crafts's Lot's property lines — at the grave it drew a name and nothing else. SECOND, a grave plot has a size and a house yard does not: L229 invented 10 × 8 ft around a burial, which is the size a burial is, whereas the extent of a yard round a 20 m building is bounded by nothing, so the invention would have been the largest single dimension on this ticket rather than its smallest. THIRD, Hubbard is describing 1818 — the fence is a government establishment's, and the house had been thirteen years in private hands by the scene date. **This is not a judgement that there was no fence**; it is a statement that this project cannot say where it ran. **And blocks B and C are drawn, unlettered and not built.** 16.6 × 5.1 m set across A 12 m to the north-west, and 6.7 × 5.0 m 15 m to the south-west. A government factory had a store, a warehouse, a stable and a smith about it; the sheet says something stood on those footprints and cannot say which of those things either was, and two invented buildings hung on one label is the shape `docs/RESEARCH/fort_dearborn.md` refuses for the Well and the Cultivated Field. Their pixels, sizes and bearings stay in `data/traces/harrison_1830_us_factors_house.json`."
+        },
+        {
+          "label": "Consequence",
+          "text": "a visitor walking south from the fort's gate now passes the two small log out buildings and then meets a long two-storey log house standing alone on the reservation, east of the road, with open ground round it and no yard fence. The confidence view tells them the difference: the walls and the storeys read `attested` and `inferred`, the roof above them reads `reconstructed`, and the ground beside the house is empty because the sheet that drew the house drew nothing there."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a factory return or an Office of Indian Trade inventory for Chicago 1805–1822; a post return naming the building; the 1835 pre-emption case papers over the reservation; or any second plan of this ground. Any one of those turns the roof into a reading, and a plat that draws the yard turns the fence into an enclosure record beside the grave's. Related: **L228** (the two out buildings, the same sheet and the same transform, and the record of what `log` costs when no witness says it) · **L229** (the grave's fence, built off the same Hubbard sentence, and the case this entry had to distinguish) · **L226** (the wash house and the shop, the same plate and the same grade) · **L1** (no figure is drawn) · tickets **T-1036** (this), **T-0894** (the reading that refused), **T-0881**, **T-0882**, **T-0883** (the sheet's other buildings)."
+        },
+        {
+          "label": "Covers",
+          "text": "`fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_type`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_pitch_deg`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.wall_height_m`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.chimneys`."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-11 (T-1036)."
         }
       ]
     },
