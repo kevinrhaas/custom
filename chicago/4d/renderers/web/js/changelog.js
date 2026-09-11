@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A shop named its street, then named the stand on it', kind: 'fix', ts: '',
+  { v: 741, title: 'A shop named its street, then named the stand on it', kind: 'fix', ts: '2026-09-11T21:30:29.903Z', date: 'Sep 11, 2026, 4:30 PM CT',
     items: [
       'Nothing you can see changed today. A furniture warehouse\u2019s record now says where on South Water Street it stood; the town looks exactly as it did this morning, and this entry says so rather than dressing a rule as a building.',
       'Rockwell\u2019s cabinet furniture warehouse advertised in the Chicago American four weeks running in the summer of 1835, under one date at the foot of the card: 8 June. The first two printings give no address at all. The third, on 27 June, is legible enough to read \u2018apply to \u2026 Rockwell, South Water street\u2019. The fourth, on 4 July, prints more of the same card: \u2018furniture at the stand on South Water street, formerly occupied by Clark, Co.\u2019',
