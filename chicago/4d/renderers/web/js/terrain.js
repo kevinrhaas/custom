@@ -597,6 +597,44 @@ async function loadGlbMesh(url) {
 }
 
 /**
+ * The apron's termination reading, as one array per edge indexed the way the
+ * boundary is.
+ *
+ * `heightfield.json` publishes it as runs — the sand bar is 34 consecutive
+ * columns of the south edge — because that is how the generator found it and a
+ * run states which landform it belongs to. A per-vertex loop wants a lookup, so
+ * it is widened once here rather than searched 300,000 times. Where two runs
+ * overlap (two landforms truncated at the same vertex, which no epoch has yet)
+ * the shorter taper wins, matching the generator's own corner rule.
+ *
+ * @returns {{[edge: string]: {extent: Float32Array, baseY: Float32Array}}|null}
+ *          null when the epoch truncates no landform, which is the mesh the
+ *          skirt has always been.
+ */
+function skirtTerminations(hf) {
+  const runs = hf?.meta?.skirt?.terminations;
+  if (!runs) return null;
+  const out = {};
+  for (const [edge, list] of Object.entries(runs)) {
+    if (!list?.length) continue;
+    const count = (edge === 'south' || edge === 'north') ? hf.cols : hf.rows;
+    const extent = new Float32Array(count);
+    const baseY = new Float32Array(count);
+    for (const run of list) {
+      for (let k = 0; k < run.extent_m.length; k += 1) {
+        const i = run.index0 + k;
+        if (i < 0 || i >= count) continue;
+        if (extent[i] > 0 && extent[i] <= run.extent_m[k]) continue;
+        extent[i] = run.extent_m[k];
+        baseY[i] = run.base_y[k];
+      }
+    }
+    out[edge] = { extent, baseY };
+  }
+  return Object.keys(out).length ? out : null;
+}
+
+/**
  * Put the ground mesh's heights back on the heightfield the town is anchored to.
  *
  * THE MESH THAT SHIPS IS NOT THE MESH THE GENERATOR CHECKED. `terrain_gen.py`
@@ -634,6 +672,24 @@ async function loadGlbMesh(url) {
  * boundary vertex outward, keeping its own height" — so the seam at the box edge
  * closes exactly.
  *
+ * EXCEPT WHERE THE BOUNDARY IS A SECTION OF SOMETHING THAT ENDS (T-0939).
+ * Carrying is right for ground that continues past the box, and the mainland's
+ * does — its traced shore runs stop at the edge of the tracing window, which is
+ * where the reading stopped and not where the land did. It is wrong for a
+ * landform the box has CUT: the 1834 sand bar left the south edge at a constant
+ * +1.21 m and was extruded 1.55 km south as a straight ribbon, three and a half
+ * times longer than the 660 m island it is a section of, running to the haze
+ * without a taper or an end. The only evidence that can say a landform ends is a
+ * closed traced outline the box truncates, so `generators/terrain_gen.py`
+ * publishes that reading into `heightfield.json` — per boundary vertex, how far
+ * out its landform actually reaches (`extent_m`, off the ring) and the height of
+ * the water it stands in (`base_y`). Here the ground falls from the boundary
+ * height to `base_y` across `extent_m` and holds it beyond, which is the same
+ * arithmetic the generator placed its vertices with. The factor is 1.0 at zero
+ * outward distance, so the seam still closes exactly, and an epoch whose spec
+ * truncates no landform publishes no terminations and is conformed exactly as
+ * before.
+ *
  * WHY READING BACK ONLY Y IS ENOUGH, WHICH IT WAS NOT UNTIL 2026-08-23. A height
  * is read at the vertex's SHIPPED (E, N), so a vertex the quantiser moved in
  * plan gets the field's answer for the wrong place — and the cost of that is
@@ -660,14 +716,39 @@ export function conformGroundToField(geometry, hf) {
   const eMax = hf.originE + hf.widthM;
   const nMin = hf.originN;
   const nMax = hf.originN + hf.depthM;
+  const term = skirtTerminations(hf);
   let moved = 0;
   let worst = 0;
   for (let i = 0; i < pos.count; i += 1) {
     // glTF is Y-up with +Z south, so ENU north is -z. Clamped into the box: see
     // the skirt note above.
-    const e = Math.min(eMax, Math.max(eMin, pos.getX(i)));
-    const n = Math.min(nMax, Math.max(nMin, -pos.getZ(i)));
-    const y = hf.sample(e, n);
+    const outE = pos.getX(i);
+    const outN = -pos.getZ(i);
+    const e = Math.min(eMax, Math.max(eMin, outE));
+    const n = Math.min(nMax, Math.max(nMin, outN));
+    let y = hf.sample(e, n);
+    if (term) {
+      // How far this vertex stands outside each edge, and where along that edge
+      // it sits. A corner is outside two of them; the deepest taper wins, which
+      // is the landform that has ended by the furthest margin.
+      const col = Math.round((e - eMin) / hf.cellM);
+      const row = Math.round((n - nMin) / hf.cellM);
+      let f = 0;
+      let base = 0;
+      const take = (side, idx, d) => {
+        const t = term[side];
+        if (!t || d <= 0 || idx < 0 || idx >= t.extent.length) return;
+        const extent = t.extent[idx];
+        if (!(extent > 0)) return;
+        const g = Math.min(1, d / extent);
+        if (g > f) { f = g; base = t.baseY[idx]; }
+      };
+      take('south', col, nMin - outN);
+      take('north', col, outN - nMax);
+      take('west', row, eMin - outE);
+      take('east', row, outE - eMax);
+      if (f > 0) y += (base - y) * f;
+    }
     const d = Math.abs(y - pos.getY(i));
     if (d > 0) {
       moved += 1;
