@@ -174,15 +174,55 @@ Filed on the way past: nothing new. The A. H. Foster fold was ADDED to **T-1035*
 the one-shared-initial question. The 'J. GRANT, Jr.' caution is recorded in the GRANT JAMES
 ruling rather than filed — it is a card-merge question, not a purchaser one.
 
+**Cohort C2 — the nine with a namesake, surnames L–M.** Ruled 2026-09-11. **Three upheld,
+six refused** — the first cohort here to refuse most of what it read. `ruled` 124/1/66/19 →
+**127/1/72/10**; matched 144 → 138, six cards retracted with twenty-four register rows and
+$30,708 of stated purchase money. No acres move: all twenty-four are town lots.
+
+| upheld | refused |
+|---|---|
+| MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M | LEE GEORGE W, LEE WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL |
+
+**What the cohort taught, in one line each** (the argument is in the domain README):
+
+*Ask the REGISTER for a rival before you ask the town, and it answers four of the nine.*
+LOOMIS H G is refused because the same book enters LOOMIS HORATIO G — one man, two
+spellings — and MONTGOMERY WILLIAM and MORRISON J M are upheld because the book enters
+LOTON WM, LOTON W, EZEKIEL, ORSEMUS, EPHRAIM and THOS M under their own names, so neither
+proposal is a clipped reading of a purchaser it already holds.
+
+*The printed record decides which man an initial pair names.* Chicago has exactly two
+Loomises: Henry the lumber merchant, who carries no middle initial in any printing, and
+Horatio Gates Loomis of Harmon & Loomis, printed 'Horatio G.' in Fergus 1839 and 'H. G.'
+in Norris 1844 — the register's two initials exactly.
+
+*A domain count is not evidence; the sentence the name stands in is.* MILLER SAMUEL's two
+non-letter-list newspaper readings are one advertisement printed twice, and it closes 'Col.
+Samuel Miller, Michigan City, are his Agents'. The Colonel is Carver's Indiana agent.
+
+*A middle initial can DISAGREE rather than be absent.* LEE GEORGE W meets a card whose only
+middle initial is the S of a St. Cyr 'G. S. Lee', against the register's W.
+
+*C1's first lesson held under the hardest surname in the queue.* The printed record carries
+twenty-five readings of MILLER and not one George; four distinct printed forenames begin
+with J.
+
+*The ceiling did not move, fourth cohort running* — `--tighten land_sales` answers *nothing
+to reclaim* and 867 stands. T-0962's blind spot; read the crosswalk's own `ruled` block.
+
+Filed on the way past: **T-1040**, carrying both card-level findings — the Michigan City
+Colonel on `miller_samuel`, and `person_w_montgomery` holding Loton W.'s `boot and shoe
+maker` beside the auctioneer's own trades. A ruling refuses a purchase and does not rewrite
+a person, so neither was repaired here.
+
 ### NEXT
 
-**Cohort C2 — the nine whose surname falls in L–M**: LEE GEORGE W, LEE WILLIAM, LOOMIS H G,
-MILLER GEORGE, MILLER J, MILLER SAMUEL, MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M. The
-block where the BROWN WM rule should bite hardest — three Millers on a surname the directories
-print many of — and where C1's first lesson has the most to prove: read Fergus 1839, Fergus
-1843, Norris 1844 and the newspaper run for the surname BEFORE weighing `rivals[]`. **C3 is
-then the last ten, surnames S–Z**: SMITH JAMES A, STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G,
-WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H, WRIGHT A — and its
-two WALKER spellings are one person under two readings, to be ruled together as cohort A ruled
-its pairs. **19 unruled.** The run that closes a block names the next one here. This ticket
-closes when the crosswalk's `ruled` block reads zero unruled, and says so WITH the count.
+**Cohort C3 — the last ten, surnames S–Z**: SMITH JAMES A, STEWART ROYAL, TAYLOR A D,
+TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H,
+WRIGHT A. WALKER G H and WALKER GEORGE H are one person under two readings and are to be
+ruled together, as cohort A ruled its pairs. Two carry a rival the layer has already flagged
+on the MIDDLE initial — TAYLOR A D against Anson H. Taylor, WALKER G H against George E.
+Walker — so rule 2 is live in this block rather than academic. And ask the register first:
+C2's four decisions came from the book's own other spellings. **10 unruled.** This is the
+LAST block; the run that finishes it closes this ticket WITH the count, never on 'there was
+nothing left'.
