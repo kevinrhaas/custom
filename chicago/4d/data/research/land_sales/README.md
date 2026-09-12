@@ -1162,18 +1162,111 @@ regimental adjutant, from the Democrat of 3 September 1834, and a *Jr.* is the o
 says a town held two men of a name. It is a card-merge question and it does not touch the
 purchaser, who is printed JAMES in full.
 
+### Cohort C2: the nine with a namesake, surnames L–M, of the town lots (T-1034)
+
+C1 left the middle block. **L to M, nine spellings. Three upheld, six refused** — the first
+cohort of this ticket to refuse most of what it read. `ruled` 124/1/66/19 → **127/1/72/10**;
+matched 144 → 138, **six cards retracted** carrying twenty-four register rows and $30,708 of
+stated purchase money. No acres move: all twenty-four are town lots, and the register prints
+`0000.00` in the acres column for every one of the 619.
+
+| upheld | refused |
+|---|---|
+| MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M | LEE GEORGE W, LEE WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL |
+
+**THE REGISTER SORTS ITS OWN NAMES BEFORE THE TOWN IS ASKED, AND IT DECIDES FOUR OF THE
+NINE.** Cohort B found this once, in PEARSON HIRAM against the PEARSONS HIRAM the same
+volume enters forty-four times, and named it as the thing to look for next. It is here
+twice over, and both times it is the FIRST question to ask rather than the last:
+
+- **LOOMIS H G is refused because the register also enters LOOMIS HORATIO G** — ls0595, a
+  federal 80-acre half-quarter section on 27 June 1835, a year before the five town lots.
+  One man, two spellings, one book. The printed record then says which man: Chicago has
+  exactly two Loomises, and the directories separate them cleanly — 'Loomis, Henry, lumber
+  merchant, cor West Water and Randolph', who carries no middle initial in any printing,
+  and Horatio Gates Loomis of Harmon & Loomis, printed 'Horatio G.' by Fergus 1839 and
+  'H. G.' by Norris 1844, the register's two initials exactly. The residents layer holds no
+  card for Horatio Gates, which is why the mechanical rule could only offer Henry.
+- **MONTGOMERY WILLIAM is UPHELD for the same reason inverted.** The book holds four
+  Montgomerys: LOTON WM and LOTON W, both upheld to the shoemaker under T-0990; JOHN, whose
+  Residence column reads MCLEAN; and WILLIAM. The man who signs 'L. W. MONTGOMERY' in the
+  Democrat is therefore in the register under his own forename and is not this purchaser.
+- **MORRISON J M likewise**: the register enters EZEKIEL, ORSEMUS three times, EPHRAIM and
+  THOS M under their own names, so J M is not a clipped reading of a Morrison the book
+  already holds otherwise.
+
+**C1'S LESSON HELD, AND ITS SHARPEST TEST WAS THE SURNAME MILLER.** The layer holds four
+Millers; the printed record holds twenty-five readings of the surname and not one George.
+Fergus 1839, Fergus 1843 and Norris 1844 print Bernhart, Capt. Harry, Charles/Chas., Daniel,
+David, H., Henry, Jacob, John, John Newhouse, Peter, Porter, Robert, S. T. and William; the
+Democrat and the American of 1833–35 add Col. Samuel, F. W., Henry F., Jacob V., Jesse,
+Jesse F., Lorin, Marshall, Matthias B. and an uncertain L. P.; the first city election of
+2 May 1837 polls a Daniel and a John B. MILLER GEORGE rests on one line of the 1833 tax
+list against all of that, and is refused. MILLER J is the BROWN WM shape at its plainest —
+four distinct printed forenames begin with J, and the card the initial was made to choose
+is itself name-only in all five of its readings.
+
+**READ THE ADVERTISEMENT, NOT THE OCCUPATION FIELD.** MILLER SAMUEL looked like the
+cohort's best-attested refusal candidate and nearly survived on it: five readings, three
+domains, and two of them newspaper readings that are *not* letter lists, one carrying the
+occupation `agent`. At the page they are one advertisement printed twice — David Carver's
+storage, commission and lumber notice of 25 February and 4 March 1834 — and its closing
+sentence reads *'Calvin Britain esq. at St. Joseph, and Col. Samuel Miller, Michigan City,
+are his Agents, who will immediately forward any article directed to him.'* The Colonel is
+Carver's agent in INDIANA, named in a Chicago paper because Chicago readers shipped through
+him. Strip the fold and the Chicago Samuel Miller is two bare names, a tax line and an 1832
+Black Hawk enrollment. **A domain count is not evidence; the sentence the name stands in
+is.**
+
+**AND A MIDDLE INITIAL CAN DISAGREE RATHER THAN AGREE.** LEE GEORGE W is refused not for
+silence but for contradiction: the only middle initial the town holds for a George Lee is
+the S of 'G. S. Lee', a St. Cyr marriage of 1 October 1835 folded onto the card by the
+forename initial alone, against the register's W. The rest of the card is one uncalled-for
+letter of 20 May 1835, flagged `letter_list_only` by the newspapers layer itself, and the
+three directories print seven Lees with no George among them. LEE WILLIAM is the STANLEY
+JOSEPH shape unaltered — one line of the 1833 tax list, against three lots of the ORIGINAL
+sale of 28 September 1830, three years earlier.
+
+**THE UPHOLDS ARE WHAT A TOKEN LOOKS LIKE WHEN IT IS REALLY THERE.** MORRIS B S is the
+least doubtful ruling of the ticket so far: both initials, the Democrat's 'B. S. Morris' of
+17 June 1835 and the firm 'Casey & Morris, attorneys at law' in the same run, Fergus 1843's
+'Morris, Buckner Smith, attorney, 59 Clark' and his own advertising card, and no rival Morris
+in the layer who could take a B. MONTGOMERY WILLIAM has a trade that IS the purchase — ten
+printings of 'W. MONTGOMERY' between 28 January 1834 and 12 August 1835 signing as
+auctioneer, agent and commission merchant on South Water Street — and Fergus 1839 prints
+'Wm. Montgomery' voting in the First Ward at the first city election, the only Montgomery
+polled in the book. MORRISON J M agrees letter for letter with the poll of 1834's
+'Morrison, J. M.', and exactly one of the ten printed Morrisons carries M as a middle
+initial. **The price is never the argument**: $9,820 of town lots on a carpenter says
+nothing about which man the letters name, and the ruling says so in terms.
+
+**The ceiling did not move, fourth cohort running.** `--tighten land_sales` answers *every
+ceiling already sits at what its domain reads* and 867 stands, because
+`measure_research_spend.py` anchors rulings through `crosswalk.json` and
+`resident_crosswalk.json` is invisible to it. **The crosswalk's own `ruled` block is the
+number to read** — T-0962's blind spot, and this cohort does not pretend otherwise.
+
+Filed on the way past: **T-1040**, carrying both card-level findings this cohort turned up
+and repaired neither, because a ruling refuses a purchase and does not rewrite a person —
+the Michigan City Colonel on `miller_samuel`, and `person_w_montgomery` carrying Loton W.'s
+`boot and shoe maker` beside the auctioneer's own trades. The 'G. S. Lee' fold is recorded
+in the LEE GEORGE W ruling rather than filed: the refusal does not turn on it — an initial
+that disagrees and an initial that is absent refuse the same proposal — and a card-merge
+question filed off a purchase ruling is the kind of ticket the queue's FILING RULE asks the
+loop to stop opening.
+
 ### NEXT
 
-**Cohort C2 — the nine remaining proposals whose surname falls in L–M**: LEE GEORGE W, LEE
-WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL, MONTGOMERY WILLIAM, MORRIS B S,
-MORRISON J M. It is the block where the BROWN WM rule should bite hardest — three Millers on
-a surname the directories print many of — and where C1's first lesson has the most to prove:
-read Fergus 1839, Fergus 1843, Norris 1844 and the newspaper run for the surname BEFORE
-weighing the layer's `rivals[]`. **C3 is then the last ten, surnames S–Z**: SMITH JAMES A,
-STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES,
-WILLIAMS ELI B, WOODWORTH J H, WRIGHT A — and its two WALKER spellings are one person under
-two readings, to be ruled together as cohort A ruled its pairs. **19 unruled.** This ticket
-closes when `ruled` reads zero unruled, and says so with the count.
+**Cohort C3 — the last ten, surnames S–Z**: SMITH JAMES A, STEWART ROYAL, TAYLOR A D,
+TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H,
+WRIGHT A. Two of them, WALKER G H and WALKER GEORGE H, are one person under two readings and
+are to be ruled together as cohort A ruled its pairs. Two more carry a rival the layer has
+already flagged on the middle initial — TAYLOR A D against Anson H. Taylor, WALKER G H
+against George E. Walker — so rule 2 is live in this block rather than academic. And ask the
+register first: C2's four decisions came from the book's own other spellings, and the
+register holds a WALKER JAMES row and a WOODWORTH J H row on ground it also sells twice
+(T-1039's lot 4 of block 19 is exactly that pair). **10 unruled.** This is the last block;
+the run that finishes it closes the ticket WITH the count.
 
 ## A row is not a parcel, asked of the town lots — and answered the other way (T-1039)
 
