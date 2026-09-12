@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Wright\u2019s ruler was three per cent long, and nobody had checked', kind: 'change', ts: '',
+  { v: 803, title: 'Wright\u2019s ruler was three per cent long, and nobody had checked', kind: 'change', ts: '2026-09-12T23:16:33.854Z', date: 'Sep 12, 2026, 6:16 PM CT',
     items: [
       'Wright\u2019s 1834 survey is the sheet most of the town outside the Original Town is read off, and reading it means pinning the drawing to the modern ground at points that exist on both. Eight street crossings do that. Every one of them stands in the top half of the sheet \u2014 so everything Wright drew below Madison Street was placed by carrying a measurement made at the top of the paper down to the bottom, and nobody had asked the cost.',
       'There was a ruler lying right there. The School Section \u2014 the mile square the state sold in 1833, bounded by Madison, State, Twelfth and Halsted \u2014 is drawn on the same sheet, and a mile is a mile. Through the pinning it comes out 1603 m across and 1659 m down. Sideways, right to four tenths of one per cent. Downwards, three per cent long: forty-nine metres, wider than any block in town.',
