@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The sheet every block number is read off now has a gate', kind: 'fix', ts: '',
+  { v: 802, title: 'The sheet every block number is read off now has a gate', kind: 'fix', ts: '2026-09-12T22:57:23.959Z', date: 'Sep 12, 2026, 5:57 PM CT',
     items: [
       'Almost everything this project has read in September \u2014 the block numerals of the Original Town, the Kinzie Addition\u2019s streets, the School Section\u2019s tiers \u2014 is read off one photograph: the National Archives facsimile of Wright\u2019s 1834 survey, at 600 dpi, where the ink resolves and the older scan\u2019s does not. Turning a spot on that photograph into a place on the ground is done by a registration: eight crossings whose modern position is known, and the arithmetic fitted through them.',
       'That registration had nothing checking it. A single digit changed in one of its six coefficients \u2014 by a slip, by a bad merge, by an agent tidying a file \u2014 would have moved every reading taken through it, and passed every test this project runs. The file says how far off each of its eight crossings is; nothing re-measured that. It says the scan is 5050 by 6628 pixels and carries a checksum for the photograph; nothing compared either against the photograph.',
