@@ -1,7 +1,7 @@
 ---
 id: T-0411
 title: A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 7:10:35 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34660588722
 ---
 
 **Found by T-0402**, which was asked to judge 'the Chicago Democrat against the Chicago
