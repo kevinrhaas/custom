@@ -226,6 +226,18 @@ step "Kinzie's Addition's block numerals re-derive from the reading and the run"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_kinzie_addition_numerals.py --self-test
 
+# WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
+# The cheap half re-derives every metre of the seven corridors from the pixels committed
+# beside them, through the same NA affine, and re-derives the module and the Kinzie
+# cross-check from those metres — so a hand-typed corridor width, a street moved out of
+# Wright's north-to-south order, or a corridor centre that has wandered outside the crop
+# its name was read in fails here. The raster half is `--check-sheet` and the PR runs it.
+step "Wabansia's street reading re-derives from its own pixels" \
+  python3 tools/read_wabansia_streets.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_streets.py --self-test
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled
@@ -2715,6 +2727,18 @@ step "the final resident audit still re-derives from the residents layer" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/export_resident_audit.py --self-test
+
+# T-1065. The lighthouse's coordinate is a reading of one glyph on Wright's 1834 sheet, and
+# the pixel it was picked at lives in a different file from the metres it produced. Two files
+# hold one statement, so the gate recomputes the metres from the pixel every run: a later pass
+# that nudges the record for an unrelated reason would otherwise detach the number from the
+# evidence its own note goes on citing. The PICK cannot be gated — it is an eyeball reading of
+# a raster — which is exactly why the pixel is committed rather than only the result.
+step "the lighthouse still stands on the glyph Wright drew for it" \
+  python3 tools/measure_wright_lighthouse.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_wright_lighthouse.py --self-test
 
 check_summary
 exit $CHECK_FAILED

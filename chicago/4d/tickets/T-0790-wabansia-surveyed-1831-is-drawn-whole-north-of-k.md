@@ -1,7 +1,7 @@
 ---
 id: T-0790
 title: Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-12
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 6:19:24 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T11:31:27.773Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34690549976
 ---
 
 **The source, 2026-09-05.** The owner added a second copy of J. S. Wright's manuscript survey of
