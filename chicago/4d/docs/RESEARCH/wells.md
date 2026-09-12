@@ -193,7 +193,7 @@ a well layer now — `data/wells/`, drawn by `renderers/web/js/wells.js` — bui
 argument `renderers/web/js/enclosures.js` makes for the pound's fence: no bake, no archetype, no
 `assets/`, and the geometry derived at load from committed numbers. The fort's well stands at the
 coordinate above, **inherited from this section rather than re-read from the plate**, and the four
-inventions the paragraph above lists are what the layer draws and what `docs/LIBERTIES.md` **L232**
+inventions the paragraph above lists are what the layer draws and what `docs/LIBERTIES.md` **L234**
 claims: a round timber curb 1.10 m across the outside, 0.60 m high and 0.10 m thick, over a 0.90 m
 opening. Three of the refusals in this section are carried into the record and one into the code.
 **No dimension is taken from the ring** — the record's own `plate_symbol` block restates the 4.7 m

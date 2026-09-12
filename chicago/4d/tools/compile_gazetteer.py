@@ -1151,6 +1151,33 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         # other's reading stands; where both speak, the merge keeps the one that can put
         # more of the firm on the ground, and every trade either side printed is kept in
         # `trade_variants` so the merge cannot quietly narrow what the papers said.
+        #
+        # AND THE CHOICE BELOW IS PROVISIONAL, NOT A JUDGEMENT ABOUT A MOVE (T-0403).
+        # `placement_rank` reads the CLASS and is blind to the date, deliberately: it
+        # measures how much ground a reading can put a storefront on, which is a property
+        # of the sentence and not of the week it was set. So this line can hand the
+        # surviving record an address the firm had already left — the Chicago Democrat's
+        # printing office is the case, merged from a colophon that reads "over Messrs.
+        # Jones & King['s] Hard[ware store]" on 1835-05-20 into one that reads the corner
+        # of South Water and Clark streets on 1834-01-07, and the corner wins here because
+        # a corner outranks a relative offset.
+        #
+        # THAT IS NOT A DEFECT IN THIS LINE AND IT IS NOT FIXED HERE. Making the rank
+        # date-aware would put the merge in the business of deciding that a house MOVED,
+        # which is the one judgement this project reserves for an authored, guarded and
+        # dated declaration: `anchor_changes`, below, which runs after every merge and
+        # overwrites what this decides. A merge that preferred the later reading would
+        # make that declaration silently, for all 40 firm merges at once, out of nothing
+        # but the order two printings happen to sit in — and it would be wrong wherever a
+        # standing advertisement simply stopped repeating an address it had already given,
+        # which is the population T-0440 exists for.
+        #
+        # WHAT MAKES THE DEFERRAL SAFE is that `absorb_reading` above has already carried
+        # EVERY reading of both sides onto the survivor (T-0345). The merge therefore
+        # narrows nothing: whichever placement this line picks, the other is still in
+        # `placement_readings` with its own dates and claims, which is precisely what an
+        # `anchor_changes` rule needs in order to be writable at all. The choice here is
+        # a default standing until somebody reads the printings, not an answer.
         dst["street"] = dst.get("street") or src.get("street")
         if placement_rank(src.get("placement")) > placement_rank(dst.get("placement")):
             dst["placement"] = src.get("placement")
@@ -2775,7 +2802,16 @@ def record_reading(business, placement, issue_date, key):
 
 
 def placement_rank(placement):
-    """How much of the ground a placement can actually put a storefront on."""
+    """How much of the ground a placement can actually put a storefront on.
+
+    A PROPERTY OF THE SENTENCE, NEVER OF ITS DATE (T-0403, settled). It is asked in five
+    places and none of them wants to know which printing is the later one; making it
+    date-aware would mean the firm merge, the T-0440 silence pass and
+    `measure_placement_silence.py` all started deciding that houses MOVED, silently and
+    in bulk. The one thing in this project that may order two printed addresses in time
+    is an authored `anchor_changes` declaration, which runs after all of them and
+    overwrites what they decide. See the merge's own note above for the case that asked.
+    """
     order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
     cls = (placement or {}).get("class")
     return order.index(cls) if cls in order else -1

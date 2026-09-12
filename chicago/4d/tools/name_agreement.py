@@ -42,8 +42,42 @@ Run it directly for its self-test: `python3 tools/name_agreement.py --self-test`
 import re
 import sys
 
-TITLES = ("mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj")
-SUFFIXES = ("jr", "sr", "jun", "sen", "esq", "2d")
+# THE TITLES, and they are a VOCABULARY rather than a list of abbreviations
+# (T-0987 stretch 8). A title is not a name, and a rule that reads one as a
+# forename decides on a word that names nobody. The abbreviations below were
+# written when the four crosswalks each carried their own copy; the FULL
+# SPELLINGS are what those copies all missed, and the volumes print them:
+#
+#   Fergus 1843  DOCTOR BLANEY · DOCTOR EGAN · DOCTOR D. S. SMITH  and four more
+#   Fergus 1839  Campbell, Major James B · McClure, Judge Samuel ·
+#                Tew, Prof. Geo. C · Handy, Major · Noble, Major · Mulford, Major E. H
+#   Norris 1844  none, in the roll or the advertising cards
+#
+# Thirteen printings in all, and the residents layer prints the same ranks on
+# the other side of every comparison — Judge Sidney Breese, Major John Greene,
+# Lieut. James Allen, Judge Silver, Major Handy, Lieut J L Thompson. Under the
+# old list `Major Handy` met `Handy, Major` on the shared initial `m`, which is
+# the M of Major on BOTH sides: a match made on a rank and not on a man.
+#
+# Each rank is written with its abbreviation AND its full spelling, so the pair
+# cannot drift apart again, and `judge` is here because these volumes print the
+# office with no abbreviation at all. Nothing is here that the corpus does not
+# print: no token below stands as a forename anywhere in the residents layer or
+# in the four transcribed volumes (measured, T-0987 stretch 8).
+TITLES = (
+    "mrs", "mistress", "miss", "mr", "mister",
+    "dr", "doctor",
+    "capt", "captain",
+    "col", "colonel",
+    "rev", "reverend",
+    "gen", "general",
+    "maj", "major",
+    "lieut", "lieutenant",
+    "hon", "honorable",
+    "prof", "professor",
+    "judge",
+)
+SUFFIXES = ("jr", "sr", "jun", "sen", "esq", "esquire", "2d")
 
 # The surname fold, plus the one confusion that shows up in the GIVEN names of
 # these two volumes and not in the surnames: an `m` scanned as two strokes and
@@ -79,6 +113,20 @@ def fold(name):
     for pat, rep in FOLD:
         s = re.sub(pat, rep, s)
     return s
+
+
+def no_forename_refusal(name, surname, volume, candidates):
+    """The refusal for a pool row that prints NO forename at all (T-0987 stretch 8).
+
+    `Major Handy`, `Judge Silver`, `Jun Marknoble`, `Sen Marknoble`: a rank or a
+    suffix, and a surname. The surname-plus-initial rule has no initial to work
+    with, so it refuses — and the refusal says why, rather than reporting a
+    missing initial `-` as though a name had been read and had failed. Written
+    here, once, because three crosswalks file it."""
+    return ("%r carries no forename — a rank or a suffix stands where the given name "
+            "would be — so there is no initial to carry the surname %r to. %s prints "
+            "%d entr%s under that surname and the rule cannot choose between them."
+            % (name, surname, volume, candidates, "y" if candidates == 1 else "ies"))
 
 
 def tokens(given):

@@ -107,11 +107,6 @@
 
 
 
-
-
-
-
-T-1049 — With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance in read_newspapers(), record the refusal in its own class, and re-derive every card that loses a press reading
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
@@ -144,12 +139,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- ruling and landed on 2026-09-11 as three (PR #1135): the metres of lot 2 took two roofs
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
-T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
-T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
-T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
-T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 
 # --- ==========================================================================
 # --- 4. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -159,17 +148,11 @@ T-0834 — The 665 schedule sizes a block's principal room in party-line units a
 # --- height, T-0939 stops it running to the horizon, T-0940 makes its surface sand; T-0799 runs
 # --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
-T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
-T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
-T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
-T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
-T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
-T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
-T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
-T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
-T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
-T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
-T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
+
+
+T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
+T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
+T-1086 — Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
@@ -177,7 +160,9 @@ T-0877 — The School Section's twelve north-south lines are read and not commit
 T-0959 — The School Section's tier lines are level and 4th on dev and skewed and 5th on the rival reading: settle the ordinal and the skew against Wright's sheet
 T-0878 — Wright's 1834 registration is three per cent long in y: the School Section's mile measures 1658.65 m north-south and 1603.04 m east-west on the same fit
 T-0862 — The Wright NARA registration that every Wright-band ticket is built on has no gate: nothing verifies its raster, its checksum or its fit
+T-1083 — check.sh steps that need numpy pass in CI by skipping: the Chappel gate is red on a 65 m baseline drift and the dev gate has never seen it
 T-0792 — The legend's nine coloured tracts are the town's survey history — who surveyed what ground, when, for whom — and the project has no tract layer
+T-1082 — The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
 T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
@@ -330,7 +315,15 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
+T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
+T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
+T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph moved sauganash_range_m 1066.3 to 1001.2 and the Chappel baseline was never re-banked
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week

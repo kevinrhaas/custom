@@ -5,14 +5,14 @@
  "head": "jones_william",
  "source_pass": "civic",
  "arrival": {
-  "value": "1834-07-02",
+  "value": "1834-09-03",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835",
    "fergus_chicago_directory_1843",
    "norris_directory_1844"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 2 July 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
+  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 3 September 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -77,7 +77,7 @@
     "fergus_chicago_directory_1843",
     "norris_directory_1844"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from directory_1843, directory_1844, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 2 July 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from directory_1843, directory_1844, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 3 September 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "book_evidence": [
     {
      "list": "directory_1843",
@@ -99,15 +99,6 @@
     }
    ],
    "press_evidence": [
-    {
-     "list": "newspaper_1833_1835",
-     "as_read": "Wm. Jones",
-     "locator": "chicago_democrat_1834_07_02#c028",
-     "record_id": "person_wm_jones",
-     "describes_date": "1834-07-02",
-     "source": "chicago_democrat_1833_1835",
-     "rule": "G1b"
-    },
     {
      "list": "newspaper_1833_1835",
      "as_read": "Jones, Wm.",

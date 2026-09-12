@@ -47,14 +47,14 @@
             108.06
           ],
           "windows_disagree_m": 0.15,
-          "vertices_appended": 55,
+          "vertices_appended": 61,
           "joined_at": "tail"
         },
-        "vertices": 82,
-        "length_m": 2416.8,
+        "vertices": 88,
+        "length_m": 2932.6,
         "local_e_range_m": [
           -128.8,
-          1463.8
+          1409.6
         ]
       },
       {
@@ -78,7 +78,7 @@
             "id": "south_shore_harbor_reach",
             "from": "data/terrain/epochs/e1834_harbor_cut/shoreline.geojson",
             "traced_by": "tools/trace_shoreline.py",
-            "name": "South shore of the harbour reach: south bank of the main stem east of the forks box, the Fort Dearborn reservation's lake shore, and the west bank of the old southward channel behind the bar",
+            "name": "South shore of the harbour reach and the lake shore south of it: south bank of the main stem east of the forks box, the Fort Dearborn reservation's lake shore, the west bank of the old southward channel behind the bar, and the east edge of Fractional Section 15 to the foot of the sheet",
             "confidence": "inferred",
             "sources": [
               "wright_1834"
@@ -91,14 +91,14 @@
             42.85
           ],
           "windows_disagree_m": 0.77,
-          "vertices_appended": 91,
+          "vertices_appended": 135,
           "joined_at": "head"
         },
-        "vertices": 108,
-        "length_m": 2929.0,
+        "vertices": 152,
+        "length_m": 4429.5,
         "local_e_range_m": [
           35.9,
-          1257.4
+          1458.9
         ]
       },
       {

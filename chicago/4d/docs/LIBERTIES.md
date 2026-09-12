@@ -1095,6 +1095,30 @@ with it — 18.35 km² against 17.46** — and the same admission as 2026-08-11 
 prairie and lake nobody looks at. And it still costs 2 256 vertices, because the ring is the same
 ring; only its outer rectangle moved.
 
+**Revised 2026-09-12 — the apron is no longer carried everywhere, and the exception is evidence
+rather than taste (T-0939).** Carrying a boundary vertex outward at its own height assumes the
+boundary is a cross-section of ground that CONTINUES, and for the mainland it is: its traced shore
+runs stop at the edge of the tracing window, which is where the reading stopped and not where the
+land did. It is false for a landform the box has CUT. The 1834 sand bar is an island about 660 m
+long whose southern hook reaches 36 m past N −400; 85 m of it stood on the boundary row at a
+dead-constant +1.21 m, and the apron extruded that section 1.55 km south as a straight ribbon three
+and a half times longer than the island, running to the haze without a taper or an end. The owner
+photographed it from the water and called it the forever sandy stretch.
+
+So the apron now asks the one kind of evidence that can say a landform ends — a CLOSED traced
+outline the box truncates, which is exactly what the terrain spec's `islands` are — and over such a
+run it falls from the boundary height to the height of the water beside it, reaching it at the
+distance that vertex's own line through the traced ring gives: 1.4 m at the bar's western edge,
+35.9 m at its tip, 2.0 m at its eastern, which is the hook Wright drew.
+
+What is INVENTED here, and is the reason this paragraph is in this file rather than only in the
+ticket, is the SHAPE of that fall: the trace gives a length and no profile, and the ground is taken
+down linearly. It is the same standing of claim as the rest of the apron — geometry for the
+horizon, nothing outside the box modelled, sampled or claimed, and the walker's own sampler still
+answering its fallback out there. What has not changed: the heightfield is byte-identical, every
+surviving apron vertex outside the bar's 85 m carries its old height exactly, and the ring is still
+the same ring — it gains one more, at 2 256 vertices, which is what the taper is drawn with.
+
 ### L18 — Sauganash Hotel: the 1829 cabin's height and its roof are placeholders
 **Decision:** the `log_1829` phase is built 2.4 m to the plate under a gable roof, both tagged
 `conjectural`, both carrying the word PLACEHOLDER in their own notes.
@@ -1398,6 +1422,23 @@ communities is the record's and is no longer a liberty**. What remains one is ex
 this entry was always about: the absolute figure, and the choice that full recorded cover
 saturates the lattice at 7.3 tufts per square metre. A community recording full cover is drawn
 exactly as it was before this revision, and no community can ask for more.
+**Revised:** 2026-09-12 (T-1056) — and the revision is a REFUSAL, recorded so the next parcel
+finds it instead of re-deciding. The sentence above is about `cover.matrix_fraction`, and it
+stops there. `cover.bare_soil_fraction`, which sits beside it in every zone record and which
+the paragraph above names twice, gates NOTHING and will not be made to. `matrix_fraction` is
+an areal cover fraction, so reading it as the chance a lattice slot carries a tuft is
+unit-correct; `bare_soil_fraction` is the complement of cover by every stratum and by litter,
+and the herb and woody strata are recorded as COUNTS — stems per square metre, clumps per
+hectare. Thinning a count by an area fraction adds an area to a number of plants, which is
+precisely the unit error ROADMAP K49(a) and K55 spent two parcels removing one level up; and a
+shrub stands OVER the herb layer rather than instead of it (K54), so bare soil under a sand
+cherry is not ground the sand cherry failed to take. So a zone recording 55 % bare soil on the
+lakeshore is drawn with its full recorded shrub density, and that is not the liberty it looks
+like: what was wrong on the sand bar was never a density, it was that a bar had inherited a
+back-dune's species list over every square metre of a `kind: "everywhere"` box. That is fixed
+by an elevation bound in the unit an elevation is in — `woody_stratum`, **L233** — not by
+borrowing a fraction. The refusal is written in three places a reader might start from:
+`data/flora/index.json`'s `_doc`, the read site in `renderers/web/js/flora.js`, and here.
 
 ### L33 — Beyond about ten metres the prairie is a canopy surface, not plants
 **Decision:** vegetation is drawn as individual geometry only within about 27 m of the
@@ -1796,14 +1837,23 @@ October 1831. So the shape everybody repeats about this lighthouse is a descript
 that fell down. The record grades the material `inferred` on a real argument (Samuel Jackson
 built both towers under the same appropriation on the same site, and the first was masonry) and
 the shape `conjectural`, and the taper this archetype builds is admitted here.
-**Consequence:** the most distinctive small object at the river mouth is a shape we chose. Its
-position is worse: adjacency to the fort is documented three ways and the offset is a bearing and
-a distance we picked.
+**Consequence:** the most distinctive small object at the river mouth is a shape we chose.
+**Its position no longer is, and that half of this entry is retired — T-1065, 2026-09-12.**
+Wright's 1834 sheet draws a ring with *L. House* lettered round it, west of the fort at the
+inside of the bend, and the tower now stands where that glyph does: local E +1055.6, N +172.5,
+graded `inferred` on the sheet, 75.3 m south-west of the bearing-and-distance we had picked and
+3.4 times the reading's own uncertainty away from it. The reading is committed at
+`data/traces/wright_1834_lighthouse_glyph.json` and `tools/measure_wright_lighthouse.py` holds
+the coordinate to it on every gate. What the sheet does not supply is the tower itself — a
+twenty-metre ring for a forty-foot tower locates the thing and does not measure it — so the
+shape, the taper, the cap, the finish and the footprint are still ours, and that is what remains
+of this entry.
 **How to resolve:** the Light-House Board's annual reports, a keeper's return, or any of the
 several 1840s and 1850s views of the fort — the tower stands in the 1850 daguerreotype and the
 1855 photograph, and a measured reading of either would settle the shape at once.
-**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.position`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
+**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
 **Recorded:** 2026-08-11.
+**Revised:** 2026-09-12 (T-1065) — `chicago_lighthouse_1832.tower_1832.position` removed from the covers list, because it stopped being a liberty. The entry is not moved to Resolved: three of its four values are still invented and the shape, which is what it was written about, is one of them.
 
 ### L45 — The garrison garden: a fence read from a drawing convention, and a planting not drawn
 **Decision:** `fort_dearborn_garrison_garden` is built as a worm rail fence round a square of
@@ -10428,9 +10478,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 479 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 479 people
+**Scope:** `residents.persons[civic_mint]` — 401 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10516,7 +10566,23 @@ middle initial B the poll does not print — in a book that holds no Madore. AND
 IS RECORDED RATHER THAN DROPPED: the ticket asked for the St Cyr and St Mary's registers to be read
 for a Médard baptism, because that is where a baptismal forename would be printed if it is one, and
 they hold none — no Médard, no Madore, no Medore, as principal, parent, sponsor or decedent — so
-the philological argument has no page here and the ruling does not rest on it. The number
+the philological argument has no page here and the ruling does not rest on it. T-1049 took it to 401 on 2026-09-12, and that is the largest fall this entry
+records by a factor of twenty-five — 78 containers at once, and not one of them a fold. The
+earlier falls were two cards for one man; this one is a card for a man who was never at this
+town. The press evidence these 78 stood on was a reading of two CHICAGO papers, and a Chicago
+paper prints men who are not at Chicago: its agents, its correspondents, the eastern houses
+whose advertisements it carries. `read_newspapers()` handed every gazetteer person to the
+identity pool as a Chicago appearance without ever looking at `associated_places`, so
+`Wm. H. Ashley, St. Louis` and `A. A. Barber, Green Bay` were minted into the town on rung
+G1b — attested, the ladder's highest — each on a notice that says in the same breath where
+the man was. T-1048 resolved the vocabulary those places are printed in against the committed
+town first, so that a guard could tell `Michigan City` from `Fort Dearborn` and from `the
+corner of Water and Franklin streets, Chicago`; this ticket spends it. The 78 are the
+identities whose ONLY evidence inside the scene window was such a reading: with it refused
+the ladder reaches nothing, and a container the ladder cannot reach is not minted. The
+refusals are not dropped — each is carried in `identity_master.json` under evidence class
+`newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
+record and a later page that puts one of these men at Chicago after all can overturn it. The number
 this liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 
@@ -10799,7 +10865,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 14 households
+**Scope:** `residence_back_projection.positions[placed]` — 12 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -10836,6 +10902,33 @@ and two of the eight were standing on a reading that rule refuses:
   back eight. Fergus 1839 does not mark an address `res` or `bds`, so it never says the
   street was his HOME, and this pass may not say it for him. A nearer reading that says less
   replaced a further one that said more, and the face goes with the claim.
+
+**Restated to thirteen on 2026-09-12 (T-1049), and the reading did not move — the town did.**
+`hh_mills_samuel` was minted on one press notice, `S. Mills`, printed against `Jefferson,
+Ohio`; the resolved place vocabulary refuses it as a Chicago appearance, the ladder then
+reaches nothing for that identity, and the container goes with it. His Norris 1844 residence
+had nothing left to carry. The same pass took `hh_murray_james_h` — `James H. Murray`, printed
+against `New York` — out of the 47 refusals, which is why the adjudicated total falls by two
+and the placed count by one. This is the shape the paragraph above asks to be read for: the
+count moves when the TOWN shrinks as well as when it grows, and neither move is a new liberty.
+
+**Restated to twelve on 2026-09-12 (T-0987 stretch 7), and again the town moved as well as
+the reading.** Two changes land together and they pull the same way. The town lost a card:
+`hh_smith_d_a` was minted on a press notice printed against `Courtland, Alabama`, T-1049's
+resolved place vocabulary refuses it as a Chicago appearance, and the container went with
+the identity — so Fergus 1843's `Doctor D. S. Smith … residence La Salle street, opposite
+the First Baptist Church`, a residence clause this stretch's `split_home()` reads for the
+first time, has no 1835 person left to reach. La Salle Street is therefore NOT a face this
+entry claims, and the stretch that found the clause records the finding rather than the
+placement. The reading also refused one it had been carrying: `harmon_charles_l` came off
+Dearborn Street, because Fergus spells out `bet Washington and Madison` where Norris's
+`b Wash and Mad sts` hid Madison — a street the 1835 layer does not carry — so clause R4's
+qualifier now fires four years nearer the scene and declines the face. A nearer reading
+that says less replaced a further one that said more, which is the same shape as
+`morrison_james_m` above. The twelve stand six on Fergus's directory of 1843 and six on
+Norris's of 1844; eight of them are people the 1835 papers give no trade, which is still
+where most of the yield is; and the pass adjudicates 60 with 48 refusals on the record
+beside them.
 
 Twenty of 825 households carried a real `lives_at` before this pass and twenty carry one
 after — the faces are text on a card and not a placement of anybody in the town.
@@ -11264,7 +11357,153 @@ house and the shop, the same plate and the same grade) · **L1** (no figure is d
 **Covers:** `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_type`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_pitch_deg`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.wall_height_m`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.chimneys`.
 **Recorded:** 2026-09-11 (T-1036).
 
-### L232 — The fort's well is placed by two witnesses and every inch of its curb is ours
+### L232 — 26 documented businesses stand on 1 July 1835 because the only paper that names them was printed afterwards
+**Decision:** every business the newspaper register flags `backdating_liberty_required` is
+treated as standing at the scene date. Its existence is documented — a dated advertisement or
+notice in the *Chicago Democrat* or the *Chicago American* — but the earliest surviving
+printing of it is LATER than 1835-07-01, and its presence on that day is assumed. This is the
+forward twin of **L211**, and it is attached the same way: the register carries the flag, this
+entry carries the liberty, and no business record is graded `documented` for a presence
+nothing witnessed. The owner ruled the class permitted on 2026-09-10, while reading the
+December 1835 State census — *"I think we are ok to populate some of those and create them
+even though the scene date is not perfect. or at least head in that direction based on your
+reasonable inferences. We are making a reconstruction and it won't be perfect but we have
+good inferences like this."*
+**Why:** the alternative is the proxy T-0356 retired, which excluded a business whose first
+SURVIVING issue postdated the scene date — and the absence of an earlier printing is not
+evidence of absence. The Chicago run is broken: the papers that would have carried these
+houses in June are not all extant, and an advertisement is a STANDING one, repeated week on
+week, so the issue a reader happens to have is almost never the issue an advertisement began
+in. Wm. H. Taylor's boot, shoe and leather store is the case that proves it: the register
+first meets him on 5 August 1835, and the advertisement's own dateline is **8 July 1834**, a
+year and a day before the scene date. The proxy had excluded from the July town a man who
+demonstrably stood in it. What is left after that reading is made everywhere it can be made
+is this class: documented houses whose standing on 1 July 1835 rests on ruling 3 — a
+documented business is built at the scene date unless contradicted — and on nothing else.
+**Scope:** `register_1835.businesses[backdating_liberty_required]` — 26 businesses, enumerated
+by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
+`tools/compile_liberties.py` on every compile. The number cannot drift from the register
+without `check.sh` saying so, which is the point of writing it down. **It is a measurement and
+not the figure this entry's ticket quoted:** T-0404 was filed at *33* on 2026-08-29, before the
+flag it names was computed; the register's own summary has read 30 (T-0356, which minted it),
+then 28 (T-0402), 27 (T-0340) and 26 (T-0413). Every one of those movements is an identity
+pass judging two printed styles to be one house — not one business leaving Chicago.
+**How the class is bounded, and how it is cleared.** 27 businesses stand in the July town whose
+first surviving issue postdates the scene date. **One** of them owes no liberty, and the
+mechanism is the one that makes the other 26 honest: an opening notice dated on or before
+1835-07-01 is positive evidence the house stood, so `compile_register.py` clears the flag —
+Taylor's `effected` dateline of 8 July 1834 is that notice. (John Holbrook's *"is now
+opening"* of 10 June 1835 is the same kind of reading, and he never needed it: his own first
+printing is June, before the scene date.) The register also refuses in the other direction
+before this liberty is reached at all: **4** businesses are excluded outright by an opening
+the paper STATES for a date after the scene date — Cromelien, Brothers & Co.'s wine branch,
+Hiram Everts's high school for young gentlemen, Charles Hunt's for young ladies, and William
+F. Lyon's wholesale grocery — and **13** more by a claim that contradicts them earlier. So
+this covers what is left after the evidence has spoken, not instead of it.
+**What this liberty does NOT license, and the worked refusal.** **It covers a DATE and never an
+ABSENCE.** It carries a documented house across a gap in the surviving record; it does not
+license a business the sources do not name, and it does not overturn a positive refusal. The
+bank is the worked example. The December 1835 State census counts one in Chicago, and this
+reconstruction builds none: `chicago_american_1835_06_27` c001 — **five days before the scene
+date** — prints the State Bank of Illinois's officers with the directors having *determined*
+to establish a Chicago branch and "the officers of those institutions have not been made
+known", and Hubbard's branch took a corner of his warehouse in **1836**. On 26 June 1835 the
+branch is a decision, not a counter. A liberty about dates may never outrank a notice that
+says the thing did not yet exist. The Chicago Lyceum and the Chicago Reading Room are the
+second shape of refusal — institutions without premises, both meeting in the town and neither
+owning a room. The Reading Room's directors met at the **Tremont House on 6 July 1835** to
+raise $2,500–3,000 for a building by joint stock (`chicago_american_1835_07_11` c001), and
+seven weeks later its books were still "for the present deposited at [?] House"
+(`..._08_22` c005). That sequence is documented and negative: anything this project put on
+the Public Square for a reading room at the scene date would be wrong. Neither adds a roof;
+both add links.
+**Consequence:** **20 of the 26 reach something a visitor can see** — 14 take a street face, 3
+enrich a house already standing, and 3 resolve against the committed town well enough to ask
+for a building; the remaining **6** are recorded and unplaceable. Two of the three placeable
+ones are L. G. Curtiss, deputy surveyor of Cook County, at the Mansion House, and Henry
+Moore, attorney, by Kinzie's forwarding store — and Moore is also the man who signed the
+Reading Room's notices as secretary, which is how close the licence and the refusal sit in
+this corpus. The three enrichments are John Wright's building and, twice, John Dean Caton's
+law office in Temple's Lake Street building. Every one of the 20 puts a trade sign, a card or
+an occupant into July 1835 on an inference, and **a business restored on this liberty still
+reads as restored on an assumption**: the Evidence panel carries this entry so that sentence
+is available to a visitor, because the per-attribute chips cannot say it — the thing assumed
+is not an attribute but a presence on a particular day.
+**What is NOT invented:** the business, its trade, its proprietors, its street and its
+advertisement are all documented and cited. Only the backdating of the concern from its first
+surviving printing to 1835-07-01 is assumed. None of the 26 also owes **L211** — the two
+classes cannot overlap, because one is a house last printed before 1835 and the other a house
+first printed after the scene date — so a reader meets exactly one of these two admissions per
+business, never both.
+**How to resolve:** find the earlier printing, or the opening. A business re-printed in a
+surviving issue dated on or before the scene date, or carrying an `effected` opening notice
+dated then, loses the flag when `tools/compile_register.py` re-derives — with no edit to this
+file and none to its record. So this liberty shrinks by itself as the corpus grows, and the
+count above is restated each time it does. It reaches zero only if the first half of the 1835
+run turns out to hold every one of these houses, and it stops at whatever number the surviving
+issues cannot reach.
+**Ticket:** T-0404. **Related:** **L211** (the survival class, the same admission running
+backwards, and the rule this entry's attachment had to agree with), **L212** (the street faces
+14 of these businesses are seated on), T-0356 (the proxy this replaced), T-0988 (the census
+reading the owner ruled from).
+**Recorded:** 2026-09-12 (T-0404).
+
+### L233 — The woody stratum's establishment band has two recorded ends and an invented shape
+**Decision:** `data/flora/zones/z08_lakeshore.json` and `z09_sand_prairie.json` carry a
+`woody_stratum.establishes_m` of **[1.22, 2.32]** metres above the summer-1835 water surface,
+and both renderers thin their woody roles across it with a **smooth Hermite ramp** — nothing
+below 1.22 m, the full recorded density at and above 2.32 m, `t²(3−2t)` between. **The two
+ends are recorded. The shape between them is this project's.** No source states either a step
+or a ramp, or any establishment elevation for lake sand at all.
+**Why:** Andreas excepts "the sandy hills near the lake" from the North Division timber, and
+the exception is to the HILLS. `chicagology_prefire274` describes "the white sand hills both to
+the north and south" and, as a separate feature, the long low sandy barrier ridge that
+deflected the river south — two landforms in one paragraph. Until T-1056 the renderers knew
+only the first: `z08_lakeshore` and `z09_sand_prairie` are `kind: "everywhere"` boxes whose own
+notes say "the north-south bounds are the scene's own, not the belt's", the sand bar falls
+inside both, and the shrub pass deals from `shrubShare` on a uniform lattice over the whole
+extent. So the bar across the river mouth was planted with a stabilised back-dune's scrub —
+sand cherry, *Salix cordata*, red-osier, juniper, and z09's fire-set-back black-oak grubs —
+and with the dune's three poplars, at the recorded density, evenly. Measured on the committed
+`e1834_harbor_cut` heightfield at 5 m spacing: **849 woody clumps on 8.5 ha of bar**, on a
+surface Fort Dearborn work parties trenched with hand tools between 1816 and 1828 and a
+February 1834 storm breached outright.
+**The ends:** 2.32 m is +7.6 ft, the floor of the relict-ridge belt as `z09_sand_prairie`'s own
+extent note records it (+7.6 to +9.5 ft above the water) — the elevation of the ground the
+sources call a hill. 1.22 m is +4 ft, the bar crest
+`data/terrain/epochs/e1834_harbor_cut/terrain_spec.json` `islands[0]` argues for at length from
+the trenching and the breach, and flags as the one chosen land surface in the box. Cowles 1901
+reads this shore landform by landform and puts woody growth on the STABILISED dune, with none
+on the active strand. Ground the lake still reworks does not hold a sand cherry.
+**What is invented:** only the interpolation. A step at either end would have been an equally
+unsourced choice and a more confident-looking one; the ramp says "somewhere in here" in the
+shape of the thing it is uncertain about. `tools/validate.py` refuses a
+`woody_stratum.establishes_m` whose two ends are equal, so the band cannot be quietly
+collapsed into the step it is not.
+**Consequence, measured on the committed heightfield at 5 m spacing:** the bar loses its woody
+stratum entirely — 584 clumps from z08 and 265 from z09 at their recorded midpoints, to a mean
+retained factor of 0.00007, because the modelled bar is dead flat within 2 cm of its own argued
+crest and therefore sits at the very bottom of the band. Its beach grass is untouched: marram
+at 30–60 % cover thinned by z08's own `matrix_fraction` of 0.35, sand reed, little bluestem,
+the foredune forbs, and 8a's two prostrate mats. **The sand prairie's ridges keep their grubs**
+— 11,741 land samples at a mean factor of 0.806, 1,419 of 1,761 clumps — and what thins is the
+low ground between the ridges, which is that record's own claim applied rather than a new one.
+**Nothing outside the two sand zones moves at all:** the other eight communities carry no
+`woody_stratum` block, and their factor is exactly 1.000 at every sample.
+**What this does NOT deliver:** "low scrub in pockets" on the bar. The mechanism is there and
+needs no exclusion polygon — wherever the bar's surface rises into the band, scrub returns by
+itself — but the committed bar is a flat plate at its crest, so there is no higher ground for a
+pocket to stand on. If the crest is ever re-argued upward, which `islands[0]`'s note explicitly
+invites, the scrub comes back without an edit to this file or to either renderer.
+**How to resolve:** a source giving an establishment elevation, a modern remnant survey of a
+comparable Lake Michigan foredune adopted as a proxy and recorded as such, or a bar surface
+with relief on it. Any of the three replaces the ramp with something argued.
+**Ticket:** T-1056. **Related:** **L32** (the density reading whose companion field this
+entry refuses to press into service), T-0940 (the parent ask this bound is the second half of),
+T-1055 (the ground-colour half of the same defect).
+**Recorded:** 2026-09-12 (T-1056).
+
+### L234 — The fort's well is placed by two witnesses and every inch of its curb is ours
 
 **Decision:** the fort's well stands in the scene — `data/wells/fort_dearborn_well.json`,
 drawn by `renderers/web/js/wells.js` at local east 1152.50, north 139.53, which is UTM
@@ -11324,4 +11563,4 @@ place) · **L229** (the grave's fence, a hand-authored record of one small thing
 (the boats, the layer this one's card and refusals are modelled on) · **L1** (no figure is
 drawn, which is why nobody stands at the curb) · tickets **T-0887** (this), **T-0881** (the
 measurement), **T-0592** (the class this refuses to mint).
-**Recorded:** 2026-09-11 (T-0887).
+**Recorded:** 2026-09-12 (T-0887).

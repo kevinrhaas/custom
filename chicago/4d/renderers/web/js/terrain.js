@@ -47,6 +47,7 @@
  */
 
 import * as THREE from 'three';
+import { PRAIRIE_TILE_PX, prairieTilePixels, prairieTileMeanLuma } from './prairie-tile.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { HORIZON_HAZE } from './world.js';
 import { loadMeshoptDecoder } from './scene-loader.js';
@@ -249,7 +250,7 @@ export async function createTerrain({
 
   // ---- the ground -------------------------------------------------------- //
 
-  const groundMat = groundMaterial();
+  const groundMat = groundMaterial(await substrateZones(dataBase, problems));
   // `.map` is null here — the prairie tile is bound as a shader uniform, not as
   // the standard material map, so disposing `.map` disposed nothing and leaked
   // the canvas texture on every epoch change.
@@ -596,6 +597,44 @@ async function loadGlbMesh(url) {
 }
 
 /**
+ * The apron's termination reading, as one array per edge indexed the way the
+ * boundary is.
+ *
+ * `heightfield.json` publishes it as runs — the sand bar is 34 consecutive
+ * columns of the south edge — because that is how the generator found it and a
+ * run states which landform it belongs to. A per-vertex loop wants a lookup, so
+ * it is widened once here rather than searched 300,000 times. Where two runs
+ * overlap (two landforms truncated at the same vertex, which no epoch has yet)
+ * the shorter taper wins, matching the generator's own corner rule.
+ *
+ * @returns {{[edge: string]: {extent: Float32Array, baseY: Float32Array}}|null}
+ *          null when the epoch truncates no landform, which is the mesh the
+ *          skirt has always been.
+ */
+function skirtTerminations(hf) {
+  const runs = hf?.meta?.skirt?.terminations;
+  if (!runs) return null;
+  const out = {};
+  for (const [edge, list] of Object.entries(runs)) {
+    if (!list?.length) continue;
+    const count = (edge === 'south' || edge === 'north') ? hf.cols : hf.rows;
+    const extent = new Float32Array(count);
+    const baseY = new Float32Array(count);
+    for (const run of list) {
+      for (let k = 0; k < run.extent_m.length; k += 1) {
+        const i = run.index0 + k;
+        if (i < 0 || i >= count) continue;
+        if (extent[i] > 0 && extent[i] <= run.extent_m[k]) continue;
+        extent[i] = run.extent_m[k];
+        baseY[i] = run.base_y[k];
+      }
+    }
+    out[edge] = { extent, baseY };
+  }
+  return Object.keys(out).length ? out : null;
+}
+
+/**
  * Put the ground mesh's heights back on the heightfield the town is anchored to.
  *
  * THE MESH THAT SHIPS IS NOT THE MESH THE GENERATOR CHECKED. `terrain_gen.py`
@@ -633,6 +672,24 @@ async function loadGlbMesh(url) {
  * boundary vertex outward, keeping its own height" — so the seam at the box edge
  * closes exactly.
  *
+ * EXCEPT WHERE THE BOUNDARY IS A SECTION OF SOMETHING THAT ENDS (T-0939).
+ * Carrying is right for ground that continues past the box, and the mainland's
+ * does — its traced shore runs stop at the edge of the tracing window, which is
+ * where the reading stopped and not where the land did. It is wrong for a
+ * landform the box has CUT: the 1834 sand bar left the south edge at a constant
+ * +1.21 m and was extruded 1.55 km south as a straight ribbon, three and a half
+ * times longer than the 660 m island it is a section of, running to the haze
+ * without a taper or an end. The only evidence that can say a landform ends is a
+ * closed traced outline the box truncates, so `generators/terrain_gen.py`
+ * publishes that reading into `heightfield.json` — per boundary vertex, how far
+ * out its landform actually reaches (`extent_m`, off the ring) and the height of
+ * the water it stands in (`base_y`). Here the ground falls from the boundary
+ * height to `base_y` across `extent_m` and holds it beyond, which is the same
+ * arithmetic the generator placed its vertices with. The factor is 1.0 at zero
+ * outward distance, so the seam still closes exactly, and an epoch whose spec
+ * truncates no landform publishes no terminations and is conformed exactly as
+ * before.
+ *
  * WHY READING BACK ONLY Y IS ENOUGH, WHICH IT WAS NOT UNTIL 2026-08-23. A height
  * is read at the vertex's SHIPPED (E, N), so a vertex the quantiser moved in
  * plan gets the field's answer for the wrong place — and the cost of that is
@@ -659,14 +716,39 @@ export function conformGroundToField(geometry, hf) {
   const eMax = hf.originE + hf.widthM;
   const nMin = hf.originN;
   const nMax = hf.originN + hf.depthM;
+  const term = skirtTerminations(hf);
   let moved = 0;
   let worst = 0;
   for (let i = 0; i < pos.count; i += 1) {
     // glTF is Y-up with +Z south, so ENU north is -z. Clamped into the box: see
     // the skirt note above.
-    const e = Math.min(eMax, Math.max(eMin, pos.getX(i)));
-    const n = Math.min(nMax, Math.max(nMin, -pos.getZ(i)));
-    const y = hf.sample(e, n);
+    const outE = pos.getX(i);
+    const outN = -pos.getZ(i);
+    const e = Math.min(eMax, Math.max(eMin, outE));
+    const n = Math.min(nMax, Math.max(nMin, outN));
+    let y = hf.sample(e, n);
+    if (term) {
+      // How far this vertex stands outside each edge, and where along that edge
+      // it sits. A corner is outside two of them; the deepest taper wins, which
+      // is the landform that has ended by the furthest margin.
+      const col = Math.round((e - eMin) / hf.cellM);
+      const row = Math.round((n - nMin) / hf.cellM);
+      let f = 0;
+      let base = 0;
+      const take = (side, idx, d) => {
+        const t = term[side];
+        if (!t || d <= 0 || idx < 0 || idx >= t.extent.length) return;
+        const extent = t.extent[idx];
+        if (!(extent > 0)) return;
+        const g = Math.min(1, d / extent);
+        if (g > f) { f = g; base = t.baseY[idx]; }
+      };
+      take('south', col, nMin - outN);
+      take('north', col, outN - nMax);
+      take('west', row, eMin - outE);
+      take('east', row, outE - eMax);
+      if (f > 0) y += (base - y) * f;
+    }
     const d = Math.abs(y - pos.getY(i));
     if (d > 0) {
       moved += 1;
@@ -743,6 +825,163 @@ const WORLD_POS_VERT = /* glsl */`
 `;
 
 /**
+ * THE SUBSTRATE ZONES — the flora records the ground mesh is allowed to read.
+ *
+ * `groundMaterial` below documented its own limit and predicted this function:
+ * "there is no plant-community record in `data/` for it to read yet ... When
+ * those records land, the zone a point falls in belongs here — and the ground
+ * stops being one green." The records landed. Every zone in `data/flora` carries
+ * `ground.rgb` and `ground.wet_rgb`, and nothing was reading them for the mesh —
+ * `data/flora/index.json`'s own `_doc` records the measurement, "ROADMAP K42
+ * measured that no renderer file fetches this manifest for the ground at all:
+ * terrain.js never opens data/flora." So the beach and the sand bar have been
+ * drawn in the prairie's green for as long as they have had ground under them,
+ * and the 2026-08-11 priority raise on z08/z09 could never have moved it:
+ * priority decides which community PLANTS, and the mesh was not asking.
+ *
+ * ONLY BOX EXTENTS, AND THE REASON IS THE FRAGMENT SHADER. A zone's extent is a
+ * box, a polygon, a water buffer or an elevation band. A box is the only one of
+ * the four a per-fragment test evaluates exactly and in a handful of
+ * instructions, and this shader runs over most of the screen — the file's own
+ * one-texture-fetch rule is the same budget. The elevation bands are already
+ * what the procedural path paints, keyed on the same height. THE LIMIT THIS
+ * LEAVES, written down rather than discovered later: where a higher-priority
+ * polygon or buffer zone overlaps a box — z04_marsh (70) reaches 8 m inland of
+ * every waterline, including the beach inside z08 — the sward plants the marsh
+ * and the mesh still shows the sand. That ground is a strip a few metres wide at
+ * the harbour mouth; carrying the other three extent kinds is a separate piece
+ * of work and not a silent omission.
+ *
+ * Read off the manifest rather than the ten zone records: the manifest
+ * denormalises `extent`, `priority`, `ground_rgb`, `ground_wet_rgb` and
+ * `plantable_in_scene`, and `tools/validate.py` fails the build if a copy
+ * disagrees with the record it came from. One fetch, gated.
+ *
+ * Degrades to today's behaviour: no manifest, no zones, and the ground is the
+ * prairie everywhere, with the problem recorded.
+ */
+async function substrateZones(dataBase, problems) {
+  if (!dataBase) return [];
+  let index = null;
+  try {
+    index = await (await fetchOk(new URL('flora/index.json', dataBase))).json();
+  } catch (err) {
+    problems.push(`terrain: no flora manifest (${err.message}) — the ground is `
+      + 'the prairie tile everywhere, including the sand belt and the bar');
+    return [];
+  }
+  const out = [];
+  for (const z of index.zones || []) {
+    const box = z.extent?.kind === 'everywhere' ? z.extent.box : null;
+    if (!box) continue;
+    // A community the scene does not plant does not paint the ground it does not
+    // stand on either. z07_bur_oak_savanna is the one, 5.6 km SSW of the forks.
+    if (z.plantable_in_scene === false) continue;
+    if (!Array.isArray(z.ground_rgb) || !Array.isArray(z.ground_wet_rgb)) {
+      problems.push(`terrain: flora zone ${z.id} has a box extent but records no `
+        + 'ground colour — the mesh leaves it as prairie');
+      continue;
+    }
+    out.push({
+      id: z.id,
+      priority: z.extent?.priority ?? z.priority ?? 0,
+      e0: box.e[0], e1: box.e[1], n0: box.n[0], n1: box.n[1],
+      // The records state sRGB 0-255; the shader works in the renderer's linear
+      // space and `chiTex` arrives there already (the tile is SRGBColorSpace).
+      // Converted explicitly rather than by a string parse, so the colour space
+      // of a recorded triple is visible at the place it is read.
+      dry: new THREE.Color().setRGB(...z.ground_rgb.map((v) => v / 255), THREE.SRGBColorSpace),
+      wet: new THREE.Color().setRGB(...z.ground_wet_rgb.map((v) => v / 255), THREE.SRGBColorSpace),
+    });
+  }
+  // Ascending, so the shader mixes the higher-priority zone in last and it wins
+  // where two boxes overlap — the same order the sward resolves them in.
+  out.sort((a, b) => a.priority - b.priority);
+  return out;
+}
+
+/**
+ * How far a zone's declared colour reaches past its own box edge, metres.
+ *
+ * Not zero, and the zone records say why: "No survey drew these lines" (z01),
+ * "It is a reading of the terrain, not evidence, and a critic should treat the
+ * line as ours" (z02), "The north-south bounds are the scene's own, not the
+ * belt's" (z08, z09). A hard edge on the mesh would draw those admissions as a
+ * surveyed boundary. The width is the terrain spec's own transition: z09's note
+ * places the State Street break-of-slope band "between E +780 and +880", a 100 m
+ * ramp whose midpoint is 830 — ten metres off this zone's own west edge at 840.
+ * So the ramp across a box edge is that band's width, and at the one edge where
+ * the sand meets the prairie it lands on the break of slope the terrain already
+ * builds there.
+ */
+const ZONE_EDGE_RAMP_M = 50;
+
+/**
+ * The substrate zones as fragment code, generated from the records at material
+ * build time rather than carried as uniforms.
+ *
+ * Ten zones is a scene constant, and the ones with box extents are two. Baking
+ * them into the source costs the frame four smoothsteps per zone and no uniform
+ * fetch, and — the reason that matters here — it costs EXACTLY NOTHING when
+ * there are none: this returns an empty string, the prairie statements above are
+ * the whole function, and the compiled shader is the one this file shipped
+ * before the zones were read.
+ *
+ * WHAT A ZONE IS ALLOWED TO CHANGE. Its `ground.rgb` and `ground.wet_rgb`, and
+ * nothing else. The grain is the prairie tile's, taken as LUMINANCE and divided
+ * by the tile's own mean, so the sand carries the same texture relief at the
+ * same relative strength and none of the tile's hue: a beach is mottled in tone,
+ * not in colour, and the tile's khaki thatch is a prairie's dead litter. Because
+ * the divisor is the tile's measured mean, the mean albedo inside a zone is the
+ * recorded triple itself — the record is not scaled, tinted or approached, it is
+ * what the ground averages.
+ *
+ * The community mosaic (`chiPatch`) is deliberately NOT carried onto a zone: its
+ * own comment calls it "a swale-and-rise business at tens of metres", which is a
+ * statement about prairie relief and not about sand.
+ *
+ * Clamped at 1.0 because an albedo cannot exceed it — a GUARD, and on the
+ * committed records it never binds: the tile's brightest texel is 1.378 times
+ * its mean and z08_lakeshore is the brightest zone, which puts the largest
+ * product any channel reaches at 0.778. So the clamp costs the picture nothing
+ * today and stops a future record whose triple is brighter from turning into a
+ * flat white patch instead of an obviously-too-bright one. `tools/
+ * measure_ground_albedo.mjs --gate` runs this same arithmetic over the same
+ * pixels and holds every zone's mean to within one sRGB unit of its record;
+ * it currently reports 0.00 on all four triples.
+ */
+function zoneGlsl(zones) {
+  if (!zones.length) return '';
+  const F = ZONE_EDGE_RAMP_M.toFixed(1);
+  const f = (v) => (Number.isInteger(v) ? v.toFixed(1) : String(v));
+  const v3 = (c) => `vec3(${c.r.toFixed(6)}, ${c.g.toFixed(6)}, ${c.b.toFixed(6)})`;
+  const blocks = zones.map((z) => `
+  // ${z.id} — priority ${z.priority}, e ${z.e0}..${z.e1}, n ${z.n0}..${z.n1}
+  {
+    float w = smoothstep(${f(z.e0 - ZONE_EDGE_RAMP_M)}, ${f(z.e0 + ZONE_EDGE_RAMP_M)}, chiE)
+            * (1.0 - smoothstep(${f(z.e1 - ZONE_EDGE_RAMP_M)}, ${f(z.e1 + ZONE_EDGE_RAMP_M)}, chiE))
+            * smoothstep(${f(z.n0 - ZONE_EDGE_RAMP_M)}, ${f(z.n0 + ZONE_EDGE_RAMP_M)}, chiN)
+            * (1.0 - smoothstep(${f(z.n1 - ZONE_EDGE_RAMP_M)}, ${f(z.n1 + ZONE_EDGE_RAMP_M)}, chiN));
+    vec3 c = mix(${v3(z.dry)}, ${v3(z.wet)}, chiWet);
+    chiPrairie = mix(chiPrairie, diffuseColor.rgb * min(vec3(1.0), c * chiGrain), w);
+  }`).join('\n');
+  return `
+  // ---- the substrate zones (${zones.map((z) => z.id).join(', ')}) ---------- //
+  // Scene coordinates off world position: the ground is built at x = e and
+  // z = -n (see gridGeometry), so this is the same frame the records use.
+  float chiE = vChiWorld.x;
+  float chiN = -vChiWorld.z;
+  // The tile's relief as a scalar, normalised by its own measured mean, so a
+  // zone's mean albedo is exactly what its record states. Mixed in ASCENDING
+  // priority — the last zone written wins where two boxes overlap, which is the
+  // order the sward resolves them in. The edges ramp over ${ZONE_EDGE_RAMP_M} m
+  // because no survey drew them; see ZONE_EDGE_RAMP_M.
+  float chiGrain = dot(chiTex, vec3(0.2126, 0.7152, 0.0722)) / max(uPrairieLuma, 1e-6);
+${blocks}
+`;
+}
+
+/**
  * Ground: a procedural prairie sampled in WORLD space, darkening to wet mud as
  * the surface approaches the water.
  *
@@ -775,24 +1014,27 @@ const WORLD_POS_VERT = /* glsl */`
  * prairie would be filling a gap silently. When those records land, the zone a
  * point falls in belongs here — and the ground stops being one green.
  */
-function groundMaterial() {
+function groundMaterial(zones = []) {
   const mat = new THREE.MeshStandardMaterial({
     color: 0xffffff, roughness: 1, metalness: 0,
   });
   const tex = prairieTexture();
   mat.map = null;
   mat.userData.groundTex = tex;
+  mat.userData.substrateZones = zones.map((z) => z.id);
 
   const prior = mat.onBeforeCompile;
   mat.onBeforeCompile = (shader, renderer) => {
     if (typeof prior === 'function') prior(shader, renderer);
     shader.uniforms.uGround = { value: tex };
+    shader.uniforms.uPrairieLuma = { value: tex.userData.meanLinearLuma };
     shader.vertexShader = 'varying vec3 vChiWorld;\n' + shader.vertexShader.replace(
       '#include <begin_vertex>', '#include <begin_vertex>' + WORLD_POS_VERT,
     );
     shader.fragmentShader = `
 varying vec3 vChiWorld;
 uniform sampler2D uGround;
+uniform float uPrairieLuma;
 ` + shader.fragmentShader.replace('#include <map_fragment>', /* glsl */`
   // ONE texture fetch, deliberately. The ground covers most of the screen, so
   // every instruction here is paid a million times a frame; a second octave
@@ -814,25 +1056,34 @@ uniform sampler2D uGround;
   // the pattern competes with the sward instead of sitting under it.
   float chiPatch = sin(vChiWorld.x * 0.1496 + 1.7) * sin(vChiWorld.z * 0.1309)
                  + 0.6 * sin(vChiWorld.x * 0.3307 - vChiWorld.z * 0.2712 + 4.1);
-  diffuseColor.rgb *= chiTex * (1.0 + 0.088 * chiPatch);
-
   // Wet ground: the marshy shore strip, keyed on height above the datum.
   // Dossier zone 11 puts that strip at +0.5 to +2.0 ft and the heightfield puts
   // it at +1.25 ft, so elevation is the honest driver — it paints the mud wide
   // on the low South Division shore and narrow on the higher north and west
   // banks, which is what the sources say. The top of the band is pulled in to
   // 0.70 m so it stops at the foot of the plain (p25 of the land is 0.83 m)
-  // instead of tinting it.
+  // instead of tinting it. It keys the SUBSTRATE zones too, between their own
+  // two declared colours, so the reading is one rule and not two.
   float chiWet = 1.0 - smoothstep(0.05, 0.70, vChiWorld.y);
-  diffuseColor.rgb = mix(diffuseColor.rgb,
-                         diffuseColor.rgb * vec3(0.46, 0.42, 0.30) + vec3(0.042, 0.034, 0.020),
-                         chiWet);
 
+  // THE PRAIRIE PATH, arithmetically what it has always been — the three
+  // statements below are the previous revision's, moved onto a local so the
+  // substrate can be mixed against them. Where no zone covers a fragment the
+  // weight is 0.0, and mix(a, b, 0.0) is a exactly, so "nothing outside the
+  // zones moves" is a property of the code rather than a claim about a
+  // screenshot. (No backticks in here: this is a JS template literal.)
+  vec3 chiPrairie = diffuseColor.rgb * chiTex * (1.0 + 0.088 * chiPatch);
+  chiPrairie = mix(chiPrairie,
+                   chiPrairie * vec3(0.46, 0.42, 0.30) + vec3(0.042, 0.034, 0.020),
+                   chiWet);
   // Drier mesic prairie on the rises. A July shift, not a September one: a few
   // per cent lighter and a few per cent less blue, so the crown of the plain
   // reads finer and yellower than the swale beside it and still reads green.
-  diffuseColor.rgb *= mix(vec3(1.0), vec3(1.05, 1.03, 0.92),
-                          smoothstep(0.95, 1.28, vChiWorld.y));
+  chiPrairie *= mix(vec3(1.0), vec3(1.05, 1.03, 0.92),
+                    smoothstep(0.95, 1.28, vChiWorld.y));
+
+${zoneGlsl(zones)}
+  diffuseColor.rgb = chiPrairie;
 `);
   };
   mat.needsUpdate = true;
@@ -946,58 +1197,20 @@ uniform vec3 uSky;
  * covers the screen. Detail here is bought in octaves, not in pixels.
  */
 function prairieTexture() {
-  const S = 256;
+  const S = PRAIRIE_TILE_PX;
   const c = document.createElement('canvas');
   c.width = c.height = S;
   const ctx = c.getContext('2d');
-  const img = ctx.createImageData(S, S);
-  let seed = 20260809;
-  const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
-
-  /** A tiling value-noise octave: `n` cells across the tile, smoothstepped. */
-  const octave = (n) => {
-    const g = new Float32Array(n * n);
-    for (let i = 0; i < g.length; i++) g[i] = rnd();
-    const at = (x, y) => g[(((y % n) + n) % n) * n + (((x % n) + n) % n)];
-    return (x, y) => {
-      const gx = x * n / S, gy = y * n / S;
-      const x0 = Math.floor(gx), y0 = Math.floor(gy);
-      const fx = gx - x0, fy = gy - y0;
-      const sx = fx * fx * (3 - 2 * fx), sy = fy * fy * (3 - 2 * fy);
-      return (at(x0, y0) * (1 - sx) + at(x0 + 1, y0) * sx) * (1 - sy)
-           + (at(x0, y0 + 1) * (1 - sx) + at(x0 + 1, y0 + 1) * sx) * sy;
-    };
-  };
-  const o16 = octave(16);   // ~0.7 m — clump scale
-  const o32 = octave(32);   // ~0.35 m — tussock
-  const o64 = octave(64);   // ~0.17 m — leaf mass
-  const oThatch = octave(48);
-
-  // The July ramp. Dark = shaded green between the clumps; light = sunlit blade,
-  // which is also the yellower of the two. Their midpoint plus the thatch below
-  // is the (95,107,62) mean quoted above.
-  const DARK = [68, 87, 49];
-  const LIGHT = [118, 125, 72];
-  // Last year's litter. Kept to a minority on purpose — this is the one colour
-  // in the tile that, given its head, would turn the render into October.
-  const THATCH = [138, 134, 94];
-
-  for (let y = 0; y < S; y++) {
-    for (let x = 0; x < S; x++) {
-      const v = 0.42 * o16(x, y) + 0.26 * o32(x, y) + 0.18 * o64(x, y) + 0.14 * rnd();
-      // Thatch shows only where the litter octave peaks and the sward is thin.
-      const t = Math.max(0, oThatch(x, y) - 0.62) * (1.6 - v) * 0.9;
-      const i = (y * S + x) * 4;
-      for (let ch = 0; ch < 3; ch++) {
-        const green = DARK[ch] + (LIGHT[ch] - DARK[ch]) * v;
-        img.data[i + ch] = green + (THATCH[ch] - green) * Math.min(0.5, t);
-      }
-      img.data[i + 3] = 255;
-    }
-  }
+  // The pixels are `prairie-tile.js`'s, so the tile a tool measures from Node is
+  // the tile drawn here, texel for texel. The colour argument above is why they
+  // are those pixels; that module only fills the buffer.
+  const img = new ImageData(prairieTilePixels(), S, S);
   ctx.putImageData(img, 0, 0);
 
   const tex = new THREE.CanvasTexture(c);
+  // The divisor that makes a substrate zone average exactly the triple its flora
+  // record states — see zoneGlsl. Measured from the pixels, not a constant.
+  tex.userData.meanLinearLuma = prairieTileMeanLuma(img.data);
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   // Anisotropy stays at 4. Eight taps on a 512 px tile looked slightly cleaner
   // on the grazing mid-field and cost the software rasteriser half its frame

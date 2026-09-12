@@ -99,6 +99,10 @@ const TIMBER_ZONES = [
  * answer is null and no dune is planted — the safe direction.
  */
 const DUNE_ZONE = 'z08_lakeshore';
+/** The roles THIS file draws out of a zone's woody list, so a `woody_stratum`
+ *  block that binds only `shrub_low` (flora.js's stratum) does not silently
+ *  thin the timber this loop plants. T-1056. */
+const DUNE_WOODY_ROLES = ['tree', 'thicket'];
 
 /* -------------------------------------------------------------------------- */
 /* the physical constants this file reasons with                               */
@@ -1061,6 +1065,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const byZone = {};
   const shrubByZone = {};
   const bands = {};
+  const woody = {};
   const unimplemented = new Set();
   const zonesRead = [];
   const heads = [];
@@ -1070,6 +1075,12 @@ async function loadTimberZones(dataBase, problems = []) {
     const rec = await fetchOk(new URL(entry.file, manifestUrl));
     zonesRead.push(id);
     bands[id] = {};
+    // T-1056 — THE SAME WOODY BOUND `flora.js` READS, OFF THE SAME RECORD.
+    // A zone that states where woody growth establishes states it for every
+    // woody role it lists, and the poplars this file plants on the dune are
+    // three of them. Reading the block here rather than restating the numbers
+    // is the whole point: two renderers, one claim, gated once in validate.py.
+    if (rec.woody_stratum) woody[id] = rec.woody_stratum;
     for (const sp of rec.species ?? []) {
       // A DOORYARD SHRUB (T-0074). `shrub_low` is flora.js's stratum — dealt on
       // its own lattice at the zone's recorded density — and it stays that way:
@@ -1172,7 +1183,7 @@ async function loadTimberZones(dataBase, problems = []) {
   for (const entry of manifest.plantings ?? []) {
     plantings.push(await fetchOk(new URL(entry.file, manifestUrl)));
   }
-  return { specs, byZone, shrubByZone, bands, unimplemented: [...unimplemented],
+  return { specs, byZone, shrubByZone, bands, woody, unimplemented: [...unimplemented],
     zonesRead, heads, plantings };
 }
 
@@ -1929,6 +1940,9 @@ export async function createTrees({
     // somebody kept in a yard answers to no density at all.
     planted: 0, plantedStems: [],
     zoneRecords: [], unimplementedForms: [], speciesFromRecord: 0,
+    /** T-1056. Stems the dune's recorded woody band refused, so the count is
+     *  reportable rather than a difference somebody has to notice. */
+    rejectedBelowWoodyBand: 0,
     rejectedBelowWaterline: 0, lowestStationY: null,
     // ROADMAP K45(c). `headSpecies` is which records carry a July
     // inflorescence this file draws; `headStems` is how many stems actually
@@ -2564,6 +2578,34 @@ export async function createTrees({
       if (gy < dryFloorY) { stats.rejectedBelowWaterline++; continue; }
       const comm = communityAt(px, pz);
       if (!comm) continue;
+      // T-1056 — THE DUNE'S POPLARS STAND ON THE SANDY HILLS, NOT ON THE BAR.
+      //
+      // `communityAt` answers 'dune' for the whole of z08_lakeshore's box, and
+      // measured on the committed e1834_harbor_cut field 1,650 of the 1,653
+      // land samples that zone actually WINS are the traced sand bar, none
+      // higher than 1.58 m. So every dune cottonwood, aspen and balsam poplar
+      // this loop planted stood on a surface the lake reworks — the even
+      // scatter of woody growth T-1056 was opened against, the half of it that
+      // is this file's rather than flora.js's.
+      //
+      // The bound is the zone record's `woody_stratum`, read at load and
+      // interpolated here exactly as `flora.js` interpolates it for the shrub
+      // stratum: below the band nothing woody stands, across it the chance
+      // ramps, above it the community is untouched. `noise2` makes the survivors
+      // POCKETS rather than an even thinning, on the same 8 m grain the rest of
+      // this loop's ecology already uses. No zone without the block moves.
+      if (comm === 'dune') {
+        const w = records.woody?.[DUNE_ZONE];
+        const band = w?.establishes_m;
+        if (band && DUNE_WOODY_ROLES.some((r) => (w.applies_to_roles ?? []).includes(r))) {
+          const t = smoothstep(band[0], band[1], gy);
+          if (t <= 0) { stats.rejectedBelowWoodyBand++; continue; }
+          if (t < 1 && noise2(px, pz, 8, 41) >= t) {
+            stats.rejectedBelowWoodyBand++;
+            continue;
+          }
+        }
+      }
 
       const i = cellAt(px, pz);
       const y = data[i];

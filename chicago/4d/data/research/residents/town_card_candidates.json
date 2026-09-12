@@ -4,7 +4,7 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1373,
+  "town_people": 1295,
   "open_clusters": 15,
   "cards_in_open_clusters": 33,
   "rulings": {
@@ -1008,7 +1008,7 @@
      "sources": [
       "chicago_democrat_1833_1835",
       "fergus_chicago_directory_1843",
-      "second_presbyterian_chicago_1892"
+      "norris_directory_1844"
      ],
      "ruling": "undecided",
      "ruled_in": "thompson"

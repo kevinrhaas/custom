@@ -82,12 +82,33 @@ selftest "…and its own assertions still fire when broken" \
 step "the traced forks still carry what their generator writes" \
   python3 tools/trace_river.py --check-properties
 
+# The same half-gate for the South Branch south of the forks window (T-1071).
+step "the traced South Branch still carries what its generator writes" \
+  python3 tools/trace_south_branch.py --check-properties
+
+# ...and for the North Branch north of it (T-1072). Two tools write one
+# branches.geojson through tools/branches_file.py, and each of these two steps
+# also holds the collection's shared fields and its declared feature order, so
+# a writer that dropped the other's reach is caught by BOTH of them.
+step "the traced North Branch still carries what its generator writes" \
+  python3 tools/trace_north_branch.py --check-properties
+
+# T-1078. The North Branch's east bank was short of Wright's inked bank by up to
+# 32.7 m at the splice row, because a dry seam cut 402 px of bank wash off the
+# channel and the speckle floor threw it away. `tr.seam_wash` puts it back, and
+# the repair is only safe in one direction: it must not have bought back the 93 m
+# leak into Wabansia's platted lots that `hue_tol` 7 exists to prevent. This holds
+# the committed measurement to that — 0 rows west of the inked west bank — and to
+# the two trace windows agreeing on the channel's drafted width across the line
+# they are spliced on, which is what independently says the repair is right.
+step "the North Branch's repaired east bank has not leaked the west one" \
+  python3 tools/measure_north_branch_banks.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
 # the mirror and PROMOTED TO PRODUCTION, where a visitor opening L180 or L181
-# read `<<<<<<< HEAD` in the Evidence panel. Every structural gate passed it:
-# the liberties gate asks whether the markdown and the compiled JSON agree, and
+# read `# the liberties gate asks whether the markdown and the compiled JSON agree, and
 # they agreed perfectly — both carried the same garbage.
 step "no committed file carries a conflict marker" \
   python3 tools/test_no_conflict_markers.py
@@ -199,12 +220,141 @@ step "North Division initial parcel matches its reviewed recipe" \
 step "West Division approaches parcel matches its recipe" \
   python3 tools/generate_west_infill.py --check
 
+# KINZIE'S ADDITION'S STREET GRID, in two halves for the reason tools/trace_river.py
+# is in two halves: the reading's own re-read opens a 5050 x 6628 raster and costs
+# about half a minute, which a per-commit gate may not spend. What runs here is the
+# cheap half — every metre committed in the trace re-derives from the pixels
+# committed beside it, through the committed affine, and the eleven street lines
+# re-derive from the module that trace measures. The raster half is
+# `--check-sheet` and the PR runs it.
+step "Kinzie's Addition's street reading re-derives from its own pixels" \
+  python3 tools/read_kinzie_addition_streets.py --check
+
+step "Kinzie's Addition's street lines re-derive from the module they are seated on" \
+  python3 tools/seat_kinzie_addition_streets.py --check
+
+# And the numbers in the cells those streets leave. The reading is a table of 52
+# figures and a table is a list somebody typed, so this re-derives it twice over: the
+# cell boxes come from the street trace above rather than from numbers of their own,
+# and the run itself is re-derived from the boustrophedon rule, written independently
+# of the table it checks. The raster half is `--check-sheet` and the PR runs it (T-1061).
+step "Kinzie's Addition's block numerals re-derive from the reading and the run" \
+  python3 tools/read_kinzie_addition_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_kinzie_addition_numerals.py --self-test
+
+# WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
+# The cheap half re-derives every metre of the seven corridors from the pixels committed
+# beside them, through the same NA affine, and re-derives the module and the Kinzie
+# cross-check from those metres — so a hand-typed corridor width, a street moved out of
+# Wright's north-to-south order, or a corridor centre that has wandered outside the crop
+# its name was read in fails here. The raster half is `--check-sheet` and the PR runs it.
+step "Wabansia's street reading re-derives from its own pixels" \
+  python3 tools/read_wabansia_streets.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_streets.py --self-test
+
+# AND THE FIGURES IN THE CELLS THOSE CORRIDORS LEAVE (T-1074). Wabansia's tiers come
+# from the street trace above and its COLUMNS are measured by the numeral reading itself,
+# because Wright letters no north-south street here. So this re-derives the reading twice
+# over, as T-1061 does for the Addition: every cell box is built from the committed
+# corridors and column rules rather than typed, and the run 59-79 is re-derived from the
+# boustrophedon rule written independently of the table it checks. A hand-typed figure, a
+# crop that has left its own cell, a lot divider that has drifted far enough off a block's
+# midpoint to be a street, or a closed gap where blocks 55-58 are unaccounted for all fail
+# here. The raster half is `--check-sheet` and the PR runs it.
+step "Wabansia's block numerals re-derive from the reading and the run" \
+  python3 tools/read_wabansia_block_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_block_numerals.py --self-test
+
+# AND THE STRIP BETWEEN THAT GRID AND THE WATER (T-1077). The water-lot tract is a wedge,
+# not a grid: its lot rules run with the river and its west boundary runs north-south, so
+# a rank exists only south of the y where the two have drawn far enough apart for one.
+# This re-derives that — every rank's north tip is solved for from the committed rules
+# rather than typed — along with the run 1-22 the sheet closes, the two-figure gap it does
+# NOT close, the lot module measured independently in three ranks, and the two named
+# corridors that cross the strip rather than front the river. A figure guessed into the
+# obliterated corner, a rank rule taken off a lot line, a refused figure quietly placed or
+# a pinched figure upgraded to `documented` all fail here. The raster half is
+# `--check-sheet` and the PR runs it.
+step "Wabansia's water-lot strip re-derives from its rules and the run" \
+  python3 tools/read_wabansia_water_lots.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_water_lots.py --self-test
+
+# AND THE SEATING OF ALL THREE (T-1070). The three readings above are pixel statements
+# and each says in its own words that it authors no ground; this is the step that does.
+# It re-derives every committed Wabansia street line, and the block grid's outline, from
+# those pixels and the committed `kinzie` line — so a hand-nudged endpoint, a corridor
+# moved off its rule, a changed corridor width or a street quietly carried east into the
+# committed water all fail here. The seating is a translation north and not a fit: no
+# control point stands within 900 m of this tract and none is invented.
+step "Wabansia's streets re-derive from the readings and the committed Kinzie line" \
+  python3 tools/seat_wabansia_streets.py --check
+
+# T-1085, and it is the seam that step above hangs from. `kinzie` is committed off the
+# Thompson plat and stops at the town's west line; Wright rules and letters the same
+# street across the whole of Wabansia, so the reach west of local east -320 is carried as
+# its own record — a different claim about wear, about traffic and about what attests the
+# geometry, on the same line. This holds the reach to its two readings AND to the two
+# things that would quietly invalidate the seating above: that it still meets `kinzie` at
+# the seam, and that it adds no bend to the plat line. A bend there moves platted lot
+# lines the whole length of the street and re-scores the corridor-intrusion count, which
+# is why the carry is a record beside the line and never a vertex inside it.
+step "Kinzie Street's Wabansia reach re-derives, meets the committed line and bends nothing" \
+  python3 tools/carry_kinzie_west.py --check
+
+# THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
+# re-derives the block's ground from the four committed streets, the lot-rule
+# counts from the peaks committed beside them, the answer about the modelled
+# ground from the committed heightfield meta, and the phrase search over the
+# committed research corpus — so a hand-edited count or a page that starts
+# saying "Kinzie Block" fails here. The raster half is `--check-sheet`.
+step "the Kinzie Block's reading re-derives from its own pixels and the corpus" \
+  python3 tools/read_kinzie_block_name.py --check
+
+# THE MICHIGAN ST TRACT north of Kinzie Street, split the same way for the same reason
+# (T-0796). The cheap half re-derives every metre, every corridor, both identifications
+# and the section arithmetic from the pixels and RGB triples committed beside them,
+# through the committed affine — so a hand-edited number, a moved border or a retouched
+# swatch fails here. The raster half is `--check-sheet` and the PR runs it.
+step "the Michigan St tract's reading re-derives from its own pixels" \
+  python3 tools/read_michigan_st_tract.py --check
+
+# ...and the SEATING of that reading (T-1075). The reading is in the sheet's own fit; the
+# four street lines and the polygon this project committed are that ladder hung on
+# `michigan_north` and `market_north`. Two files hold one statement again, and this one has
+# a standing temptation behind it: the seating stands 38.5 m north of where the sheet draws
+# the tract, so a later pass that "corrects" a line back toward the drawn position, or
+# nudges either datum street for an unrelated reason, would silently detach the tract from
+# the argument its own notes go on making. The gate recomputes all of it every run.
+step "the Michigan St tract is still seated on the two committed lines it was hung from" \
+  python3 tools/seat_michigan_st_tract.py --check
+
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
 # lot polygons, so a hand-nudged building would show up here as drift rather than as a
 # plausible-looking number sitting beside a derived grid.
 step "platted block parcels match their recipe and the committed lots" \
   python3 tools/generate_block_infill.py --check
+
+# A frontage entry declares the lots its party-line run stands across, and until T-0429
+# nothing measured whether it did. That entry's run was anchored on the east end of its
+# own strip and packed back west until the roofs ran out, which happened two lots short
+# of the west end it had declared — and the declaration is read by three different files
+# for three different purposes, so an untrue one is not inert. This re-derives the reach
+# of every run in the town off the committed footprints and the committed plat, and the
+# three South Water entries it cannot correct without moving a roof are conceded BY NAME
+# in the tool with the measurement that found them (T-0449).
+step "every frontage run stands across the lots its recipe declares" \
+  python3 tools/measure_frontage_declaration.py --check
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_frontage_declaration.py --self-test
 
 # The residents manifest is DERIVED, and now it is gated like one (T-0715). Four
 # minting passes and four rewriting passes each rebuilt the SLICE of
@@ -347,6 +497,17 @@ step "the planted poplar rows re-derive from the rule that chose their greens" \
 # this frontage" (ROADMAP K5 (b), T-0039).
 step "the business signboards re-derive from the rule that chose their frontages" \
   python3 tools/generate_business_signboards.py --check
+
+# ...AND THE RULE IS LOCAL (T-0405). "Re-derives" only says the committed file matches the
+# rule; it says nothing about how far one frontage reaches. Until T-0405 the mounting was
+# dealt from a counter walked down the town in id order, so admitting one frontage in the
+# middle of the alphabet re-dealt every frontage after it — 103 of 109 consequences landed
+# outside the 40 m the rule is about, the furthest 1,163 m off, and because the mounting
+# decides how many lines a board has room for, some of them changed what the board SAID.
+# This withholds each board in turn, re-derives the town without it, and holds every
+# consequence against the distance from the board withheld. ~4 s.
+step "admitting one signboard reaches no board further off than the rule's own 40 m" \
+  python3 tools/generate_business_signboards.py --prove-locality
 
 # The yard goods are the third record of this shape and the first whose evidence is an
 # ORDINANCE: the village corporation legislated in November 1833 about timber, stone,
@@ -702,11 +863,25 @@ selftest "West Water still stands one half-corridor off the bank, and the two re
 # goes stale silently: move a South Division centreline and its northern half no longer lies
 # on it, re-grade one and the North Division line keeps an attestation the parent lost. This
 # holds the collinearity to 2 cm, holds each line's ends on North Water and Kinzie, holds the
-# one line graded lower than the rest at `inferred`, and holds the sheet reading that says the
-# plat letters no name in any North Division corridor. It needs no image library; the reading
+# residual T-0827 left on the one line that still reads worst, and holds the sheet reading
+# that says the plat letters no name in any North Division corridor. It needs no image library; the reading
 # is committed data and `--reread` is what goes back to the 7 MB sheet.
 selftest "the North Division lines still lie on the streets they continue, and say what names them" \
   python3 tools/measure_north_division_streets.py --self-test
+
+# T-0827, the ticket the reading above could only name. `market` is the one street on this
+# grid no sheet fixes directly — its west side is the river bank its whole length — and until
+# this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a
+# bearing. It is now Franklin stepped one module west, and the whole case is a pitch that
+# two independently measured sheets bracket and the superseded line missed. That makes it
+# exactly the kind of derivation that rots: the committed vertices are arithmetic on
+# `franklin`, so moving Franklin, or the module, or re-fitting either sheet, silently leaves
+# Market standing on a sum nobody made. This holds the re-fit to the centimetre against
+# `franklin`, holds the line this replaced against the junction it was fitted to, holds the
+# Wright ladder at five lines with no alley-width gap among them, and holds the bracket the
+# argument rests on.
+selftest "Market still stands one module west of Franklin, and the sheets still bracket it" \
+  python3 tools/measure_market_line.py --self-test
 
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the
@@ -1124,6 +1299,17 @@ check_js() {
   return $bad
 }
 step "renderer modules parse" check_js
+
+# T-1055. The ground mesh paints the two flora zones with box extents their own
+# recorded `ground.rgb`, by multiplying the July tile's luminance through the
+# record after dividing it by the tile's own mean. That construction is what
+# makes the mean albedo inside a zone the recorded triple EXACTLY rather than
+# approximately, and it is quiet when it breaks: retune the tile, or record a
+# brighter triple that clips against the albedo ceiling, and the ground drifts
+# off the record with nothing to say so. This runs the shader's arithmetic over
+# the same deterministic pixels and holds all four triples to one sRGB unit.
+step "the ground averages the colour each flora zone records" \
+  node tools/measure_ground_albedo.mjs --gate
 
 # The ground the town is ANCHORED to and the ground it is DRAWN as, compared on
 # the committed bytes. `generators/terrain_gen.py` refuses to export a mesh more
@@ -2655,6 +2841,18 @@ step "the final resident audit still re-derives from the residents layer" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/export_resident_audit.py --self-test
+
+# T-1065. The lighthouse's coordinate is a reading of one glyph on Wright's 1834 sheet, and
+# the pixel it was picked at lives in a different file from the metres it produced. Two files
+# hold one statement, so the gate recomputes the metres from the pixel every run: a later pass
+# that nudges the record for an unrelated reason would otherwise detach the number from the
+# evidence its own note goes on citing. The PICK cannot be gated — it is an eyeball reading of
+# a raster — which is exactly why the pixel is committed rather than only the result.
+step "the lighthouse still stands on the glyph Wright drew for it" \
+  python3 tools/measure_wright_lighthouse.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_wright_lighthouse.py --self-test
 
 check_summary
 exit $CHECK_FAILED

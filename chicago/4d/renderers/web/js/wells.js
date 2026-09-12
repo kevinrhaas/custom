@@ -39,7 +39,7 @@
  *    invention on the record and the most visible thing in the scene. The
  *    residual is stated on the record (`lifting_gear`) rather than hidden.
  *  * THE CURB ITSELF IS INVENTED, all of it — plan, diameter, height, thickness
- *    and material — and `docs/LIBERTIES.md` L232 claims it. The plate's ring is
+ *    and material — and `docs/LIBERTIES.md` L234 claims it. The plate's ring is
  *    a POINT SYMBOL: its 14 px would be 4.7 m, no well at this fort was four and
  *    a half metres across, and the record refuses to take any dimension from it.
  *  * IT DRAPES. The rim's ground line is `terrain.surfaceHeight()` at the well's

@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1370
+   "n": 1293
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -28,29 +28,29 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2596
+   "n": 2620
   },
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 949
+   "n": 954
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 91,
-  "residents_ambiguous": 32,
+  "residents_matched_one_entry": 90,
+  "residents_ambiguous": 31,
   "residents_contested": 21,
-  "residents_surname_only_refused": 225,
+  "residents_surname_only_refused": 217,
   "residents_letter_list_bucket_refused": 1,
-  "voters_matched_one_entry": 82,
+  "voters_matched_one_entry": 81,
   "voters_ambiguous": 38,
-  "voters_surname_only_refused": 85,
-  "letter_list_matched_one_entry": 191,
+  "voters_surname_only_refused": 86,
+  "letter_list_matched_one_entry": 192,
   "letter_list_ambiguous": 62,
-  "letter_list_surname_only_refused": 534,
+  "letter_list_surname_only_refused": 541,
   "heads_1840_matched_one_entry": 86,
   "heads_1840_ambiguous": 21,
-  "heads_1840_surname_only_refused": 202
+  "heads_1840_surname_only_refused": 205
  },
  "residents": {
   "matches": [
@@ -271,28 +271,6 @@
     ],
     "person_id": "chapman_chas_h",
     "household_id": "hh_chapman_chas_h",
-    "grade_1835": "attested",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
-    "name": "D A Smith",
-    "rule": "Surname 'Smith' folds to the same string as the 1837 entry's, and the given name of both begins D.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0067",
-      "as_printed": "David S. Smith,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "smith_d_a",
-    "household_id": "hh_smith_d_a",
     "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
@@ -1353,6 +1331,28 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
+    "name": "Lieut. James Allen",
+    "rule": "Surname 'Allen' folds to the same string as the 1837 entry's, and the given name of both begins J.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0568",
+      "as_printed": "John Allen",
+      "printed_page": 45,
+      "role": "voter",
+      "ward_1837": 6,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "allen_lieut_james",
+    "household_id": "hh_allen_lieut_james",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
     "name": "M Jones",
     "rule": "Surname 'Jones' folds to the same string as the 1837 entry's, and the given name of both begins M.",
     "entries_1837": [
@@ -1372,28 +1372,6 @@
     "person_id": "jones_m",
     "household_id": "hh_jones_m",
     "grade_1835": "attested",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
-    "name": "Major L Shapley",
-    "rule": "Surname 'Shapley' folds to the same string as the 1837 entry's, and the given name of both begins M.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0632",
-      "as_printed": "Morgan Shapley",
-      "printed_page": 45,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "shapley_major_l",
-    "household_id": "hh_shapley_major_l",
-    "grade_1835": "inferred",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -3126,51 +3104,6 @@
     "grade_1835": "attested"
    },
    {
-    "name": "James Smith",
-    "rule": "Surname 'Smith' folds to the same string as the 1837 entry's, and the given name of both begins J.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0042",
-      "as_printed": "John Smith,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0097",
-      "as_printed": "J. M. Smith,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     },
-     {
-      "claim": "f1839_v0135",
-      "as_printed": "James A Smith,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested"
-   },
-   {
     "name": "James Walker",
     "rule": "Surname 'Walker' folds to the same string as the 1837 entry's, and the given name of both begins J.",
     "entries_1837": [
@@ -3734,11 +3667,6 @@
     "rule": "The surname 'Funk' stands in the 1837 poll and no man under it carries the initial 'A' of 'Absolom Funk'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Al Barber",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Barber' stands in the 1837 poll and no man under it carries the initial 'A' of 'Al Barber'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Alex. M. Kent",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Kent' stands in the 1837 poll and no man under it carries the initial 'A' of 'Alex. M. Kent'. A surname-only agreement is a refusal."
@@ -3784,11 +3712,6 @@
     "rule": "The surname 'Beaubien' stands in the 1837 poll and no man under it carries the initial 'B' of 'B Beaubien'. A surname-only agreement is a refusal."
    },
    {
-    "name": "B Hubbard",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Hubbard' stands in the 1837 poll and no man under it carries the initial 'B' of 'B Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Benjamin Jones",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Jones' stands in the 1837 poll and no man under it carries the initial 'B' of 'Benjamin Jones'. A surname-only agreement is a refusal."
@@ -3827,11 +3750,6 @@
     "name": "C H Bennett",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Bennett' stands in the 1837 poll and no man under it carries the initial 'C' of 'C H Bennett'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "C Harrington",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Harrington' stands in the 1837 poll and no man under it carries the initial 'C' of 'C Harrington'. A surname-only agreement is a refusal."
    },
    {
     "name": "C. George",
@@ -4049,11 +3967,6 @@
     "rule": "The surname 'Spalding' stands in the 1837 poll and no man under it carries the initial 'F' of 'Franklin Spalding'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Fred Miller",
-    "candidates_under_that_surname": 4,
-    "rule": "The surname 'Miller' stands in the 1837 poll and no man under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Gardner Brooks",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Brooks' stands in the 1837 poll and no man under it carries the initial 'G' of 'Gardner Brooks'. A surname-only agreement is a refusal."
@@ -4209,11 +4122,6 @@
     "rule": "The surname 'Stevens' stands in the 1837 poll and no man under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
    },
    {
-    "name": "J Y Jackson",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Jackson' stands in the 1837 poll and no man under it carries the initial 'J' of 'J Y Jackson'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "J. A. Marshall",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Marshall' stands in the 1837 poll and no man under it carries the initial 'J' of 'J. A. Marshall'. A surname-only agreement is a refusal."
@@ -4272,6 +4180,11 @@
     "name": "John A Clark",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Clark' stands in the 1837 poll and no man under it carries the initial 'J' of 'John A Clark'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "John Bates Jr.",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Bates' stands in the 1837 poll and no man under it carries the initial 'J' of 'John Bates Jr.'. A surname-only agreement is a refusal."
    },
    {
     "name": "John Davis",
@@ -4337,11 +4250,6 @@
     "name": "Joseph Bradley",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Bradley' stands in the 1837 poll and no man under it carries the initial 'J' of 'Joseph Bradley'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Joseph Duncan",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Duncan' stands in the 1837 poll and no man under it carries the initial 'J' of 'Joseph Duncan'. A surname-only agreement is a refusal."
    },
    {
     "name": "Joseph Lafrombois",
@@ -4431,12 +4339,7 @@
    {
     "name": "Lieut J L Thompson",
     "candidates_under_that_surname": 2,
-    "rule": "The surname 'Thompson' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Lieut. James Allen",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Thompson' stands in the 1837 poll and no man under it carries the initial 'J' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Luther Hatch",
@@ -4447,6 +4350,11 @@
     "name": "M D Harmon",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Harmon' stands in the 1837 poll and no man under it carries the initial 'M' of 'M D Harmon'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Major L Shapley",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Shapley' stands in the 1837 poll and no man under it carries the initial 'L' of 'Major L Shapley'. A surname-only agreement is a refusal."
    },
    {
     "name": "Mary Baxley",
@@ -4487,11 +4395,6 @@
     "name": "Mrs. H. Sherman",
     "candidates_under_that_surname": 5,
     "rule": "The surname 'Sherman' stands in the 1837 poll and no man under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "N Bird",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Bird' stands in the 1837 poll and no man under it carries the initial 'N' of 'N Bird'. A surname-only agreement is a refusal."
    },
    {
     "name": "N Murphy",
@@ -4634,11 +4537,6 @@
     "rule": "The surname 'Miller' stands in the 1837 poll and no man under it carries the initial 'S' of 'Samuel Miller'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Samuel Mills",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Mills' stands in the 1837 poll and no man under it carries the initial 'S' of 'Samuel Mills'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Samuel Russell",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Russell' stands in the 1837 poll and no man under it carries the initial 'S' of 'Samuel Russell'. A surname-only agreement is a refusal."
@@ -4682,11 +4580,6 @@
     "name": "Thomas Andrews",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Andrews' stands in the 1837 poll and no man under it carries the initial 'T' of 'Thomas Andrews'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Thomas D Grant",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Grant' stands in the 1837 poll and no man under it carries the initial 'T' of 'Thomas D Grant'. A surname-only agreement is a refusal."
    },
    {
     "name": "Thomas Dailey",
@@ -5715,24 +5608,6 @@
       "printed_page": 41,
       "role": "voter",
       "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ]
-   },
-   {
-    "name": "Major L. Shapley",
-    "rule": "Surname 'Shapley' folds to the same string as the 1837 entry's, and the given name of both begins M.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0632",
-      "as_printed": "Morgan Shapley",
-      "printed_page": 45,
-      "role": "voter",
-      "ward_1837": 6,
       "voted_for": "William B. Ogden",
       "party": null,
       "office": null,
@@ -7886,6 +7761,11 @@
     "rule": "The surname 'Harmon' stands in the 1837 poll and no man under it carries the initial 'M' of 'M. D. Harmon'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Major L. Shapley",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Shapley' stands in the 1837 poll and no man under it carries the initial 'L' of 'Major L. Shapley'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Mark Noble",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Noble' stands in the 1837 poll and no man under it carries the initial 'M' of 'Mark Noble'. A surname-only agreement is a refusal."
@@ -9823,24 +9703,6 @@
     ]
    },
    {
-    "name": "John Bates, jr.",
-    "rule": "Surname 'John Bates' folds to the same string as the 1837 entry's, and the given name of both begins J.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0413",
-      "as_printed": "John Bates, Jr.",
-      "printed_page": 44,
-      "role": "voter",
-      "ward_1837": 3,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ]
-   },
-   {
     "name": "John Calhoun",
     "rule": "Surname 'Calhoun' folds to the same string as the 1837 entry's, and the given name of both begins J.",
     "entries_1837": [
@@ -10246,6 +10108,42 @@
       "printed_page": 41,
       "role": "voter",
       "ward_1837": 1,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
+    "name": "Lieut. J. Allen",
+    "rule": "Surname 'Allen' folds to the same string as the 1837 entry's, and the given name of both begins J.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0568",
+      "as_printed": "John Allen",
+      "printed_page": 45,
+      "role": "voter",
+      "ward_1837": 6,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
+    "name": "Lieut. James Allen",
+    "rule": "Surname 'Allen' folds to the same string as the 1837 entry's, and the given name of both begins J.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0568",
+      "as_printed": "John Allen",
+      "printed_page": 45,
+      "role": "voter",
+      "ward_1837": 6,
       "voted_for": "William B. Ogden",
       "party": null,
       "office": null,
@@ -14716,6 +14614,11 @@
     "rule": "The surname 'Anderson' stands in the 1837 poll and no man under it carries the initial 'J' of 'John Anderson'. A surname-only agreement is a refusal."
    },
    {
+    "name": "John Bates, jr.",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'John Bates' stands in the 1837 poll and no man under it carries the initial '-' of 'John Bates, jr.'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "John C. Williams",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Williams' stands in the 1837 poll and no man under it carries the initial 'J' of 'John C. Williams'. A surname-only agreement is a refusal."
@@ -14993,22 +14896,12 @@
    {
     "name": "Lieut. Allen",
     "candidates_under_that_surname": 3,
-    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut. Allen'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Lieut. J. Allen",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut. J. Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial '-' of 'Lieut. Allen'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lieut. J. L. Thompson",
     "candidates_under_that_surname": 2,
-    "rule": "The surname 'Thompson' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut. J. L. Thompson'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Lieut. James Allen",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Allen' stands in the 1837 poll and no man under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Thompson' stands in the 1837 poll and no man under it carries the initial 'J' of 'Lieut. J. L. Thompson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lincoln, Edwin A.",
@@ -15099,6 +14992,36 @@
     "name": "Moore, Henry",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Moore' stands in the 1837 poll and no man under it carries the initial 'H' of 'Moore, Henry'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Carpenter",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Carpenter' stands in the 1837 poll and no man under it carries the initial '-' of 'Mr. Carpenter'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Graves",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Graves' stands in the 1837 poll and no man under it carries the initial '-' of 'Mr. Graves'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Moore",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Moore' stands in the 1837 poll and no man under it carries the initial '-' of 'Mr. Moore'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Peck",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Peck' stands in the 1837 poll and no man under it carries the initial '-' of 'Mr. Peck'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Russell",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Russell' stands in the 1837 poll and no man under it carries the initial '-' of 'Mr. Russell'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Smith",
+    "candidates_under_that_surname": 11,
+    "rule": "The surname 'Smith' stands in the 1837 poll and no man under it carries the initial '-' of 'Mr. Smith'. A surname-only agreement is a refusal."
    },
    {
     "name": "Mr. [Dexter] Graves",
@@ -15284,6 +15207,16 @@
     "name": "Reid Lewis",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Lewis' stands in the 1837 poll and no man under it carries the initial 'R' of 'Reid Lewis'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Rev. Mr. Freeman",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Freeman' stands in the 1837 poll and no man under it carries the initial '-' of 'Rev. Mr. Freeman'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Rev. Mr. Truman",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Truman' stands in the 1837 poll and no man under it carries the initial '-' of 'Rev. Mr. Truman'. A surname-only agreement is a refusal."
    },
    {
     "name": "Rev. N. C. Clark",
@@ -18557,6 +18490,11 @@
     "rule": "The surname 'West' stands in the 1837 poll and no man under it carries the initial 'C' of 'Chas. West'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Col. Taylor",
+    "candidates_under_that_surname": 7,
+    "rule": "The surname 'Taylor' stands in the 1837 poll and no man under it carries the initial '-' of 'Col. Taylor'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Cornelius Norton",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Norton' stands in the 1837 poll and no man under it carries the initial 'C' of 'Cornelius Norton'. A surname-only agreement is a refusal."
@@ -18665,6 +18603,11 @@
     "name": "H. M. Merrill",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Merrill' stands in the 1837 poll and no man under it carries the initial 'H' of 'H. M. Merrill'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "H. R. Clark Jr.",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Clark' stands in the 1837 poll and no man under it carries the initial 'H' of 'H. R. Clark Jr.'. A surname-only agreement is a refusal."
    },
    {
     "name": "Henry Bowen",
@@ -19120,6 +19063,11 @@
     "name": "Sm[?]ad W. Freeman",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Freeman' stands in the 1837 poll and no man under it carries the initial 'S' of 'Sm[?]ad W. Freeman'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Stephen Brown Jr.",
+    "candidates_under_that_surname": 7,
+    "rule": "The surname 'Brown' stands in the 1837 poll and no man under it carries the initial 'S' of 'Stephen Brown Jr.'. A surname-only agreement is a refusal."
    },
    {
     "name": "Stephen Turner",
