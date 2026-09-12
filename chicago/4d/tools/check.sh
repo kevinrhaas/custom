@@ -2716,5 +2716,17 @@ step "the final resident audit still re-derives from the residents layer" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/export_resident_audit.py --self-test
 
+# T-1065. The lighthouse's coordinate is a reading of one glyph on Wright's 1834 sheet, and
+# the pixel it was picked at lives in a different file from the metres it produced. Two files
+# hold one statement, so the gate recomputes the metres from the pixel every run: a later pass
+# that nudges the record for an unrelated reason would otherwise detach the number from the
+# evidence its own note goes on citing. The PICK cannot be gated — it is an eyeball reading of
+# a raster — which is exactly why the pixel is committed rather than only the result.
+step "the lighthouse still stands on the glyph Wright drew for it" \
+  python3 tools/measure_wright_lighthouse.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_wright_lighthouse.py --self-test
+
 check_summary
 exit $CHECK_FAILED

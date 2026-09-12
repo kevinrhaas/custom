@@ -151,10 +151,8 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 # --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
-T-1065 — The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
-T-1056 — The woody stratum scatters evenly over the sand bar, because nothing keys it to the sandy HILLS Andreas excepts
 T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
 T-1072 — The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
 T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
@@ -330,3 +328,4 @@ T-1052 — In the frontage layer a confidence grade is the only thing keeping st
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
+
