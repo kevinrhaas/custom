@@ -1,7 +1,7 @@
 ---
 id: T-0391
 title: Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 10:53:50 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34671336778
 ---
 
 Two names in the gazetteer's `places` table look like one hotel and are held apart because
