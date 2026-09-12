@@ -36,9 +36,9 @@
       "stems": 4,
       "height_m": 12,
       "seasons_standing": 11.5,
-      "green_m": 33.1,
-      "stands_out_m": 22.2,
-      "bearing_to_water_deg": 245.0
+      "green_m": 34.1,
+      "stands_out_m": 22.8,
+      "bearing_to_water_deg": 246.0
     },
     {
       "at": "cobweb_castle",
@@ -64,45 +64,45 @@
       "id": "clybourn_cabins_poplar_1",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        -33.58,
-        273.07
+        -33.96,
+        273.19
       ],
       "height_m": 12,
       "confidence": "reconstructed",
-      "note": "STEM 1 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.2 m out from the house across a green 33.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
+      "note": "STEM 1 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.8 m out from the house across a green 34.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
     },
     {
       "id": "clybourn_cabins_poplar_2",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        -33.57,
-        276.57
+        -34.17,
+        276.68
       ],
       "height_m": 12,
       "confidence": "reconstructed",
-      "note": "STEM 2 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.2 m out from the house across a green 33.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
+      "note": "STEM 2 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.8 m out from the house across a green 34.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
     },
     {
       "id": "clybourn_cabins_poplar_3",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        -33.57,
-        280.07
+        -34.38,
+        280.17
       ],
       "height_m": 12,
       "confidence": "reconstructed",
-      "note": "STEM 3 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.2 m out from the house across a green 33.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
+      "note": "STEM 3 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.8 m out from the house across a green 34.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
     },
     {
       "id": "clybourn_cabins_poplar_4",
       "species": "populus_nigra_italica",
       "at_local_enu_m": [
-        -33.56,
-        283.57
+        -34.59,
+        283.67
       ],
       "height_m": 12,
       "confidence": "reconstructed",
-      "note": "STEM 4 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.2 m out from the house across a green 33.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
+      "note": "STEM 4 OF 4 IN clybourn_cabins's ROW, dealt by the rule in tools/generate_planted_rows.py. The row stands 22.8 m out from the house across a green 34.1 m deep, on the water side of it, parallel to the waterline the committed heightfield draws there — Wau-Bun's \"broad green space ... inclosed between it and the river, and shaded by a row of Lombardy poplars\". 3.5 m between stems is the 0.195 of a grown row's height that five committed plates agree on, taken against this species' 18 m ceiling because a row is planted once at the spacing it will need. 12 m is 1.0 m for each of this house's 11.5 growing seasons since its own documented_range begins, held inside the species' recorded 12-18 m band. The position is invented."
     },
     {
       "id": "cobweb_castle_poplar_1",

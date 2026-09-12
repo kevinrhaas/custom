@@ -7,17 +7,17 @@
  "scale": 0.005,
  "offset": 0.0,
  "cols": 809,
- "rows": 321,
+ "rows": 373,
  "cell_m": 2.5,
  "origin_e": -320.0,
- "origin_n": -400.0,
+ "origin_n": -530.0,
  "box_local_enu_m": {
   "e": [
    -320.0,
    1700.0
   ],
   "n": [
-   -400.0,
+   -530.0,
    400.0
   ]
  },
@@ -25,7 +25,7 @@
  "max_m": 3.7446,
  "quantisation_error_m": 0.0025,
  "water_surface_m": 0.0,
- "water_fraction": 0.2538,
+ "water_fraction": 0.2559,
  "relief_ft": {
   "land_min": -1.978,
   "land_max": 12.285,
@@ -38,12 +38,12 @@
    62.5
   ],
   "marsh_exclusion_m": 48.0,
-  "plain_cells_audited": 118768,
-  "plain_block_max": 0.468,
-  "plain_block_mean": 0.1288,
+  "plain_cells_audited": 142958,
+  "plain_block_max": 0.467,
+  "plain_block_mean": 0.1202,
   "passes": true,
   "plain_cell_roughness_max": 55.913,
-  "shore_and_swale_cell_max": 188.858,
+  "shore_and_swale_cell_max": 404.523,
   "relief_zones_ft_per_300ft": {
    "approach_dearborn_north": {
     "cells": 23,
@@ -63,11 +63,11 @@
    },
    "approach_north_branch_east": {
     "cells": 21,
-    "cell_max": 185.129
+    "cell_max": 132.678
    },
    "approach_north_branch_west": {
-    "cells": 24,
-    "cell_max": 158.047
+    "cells": 25,
+    "cell_max": 151.887
    },
    "approach_slough_east": {
     "cells": 15,
@@ -79,22 +79,22 @@
    },
    "approach_south_branch_east": {
     "cells": 37,
-    "cell_max": 135.898
+    "cell_max": 135.804
    },
    "approach_south_branch_west": {
     "cells": 29,
     "cell_max": 171.698
    },
    "bank_face": {
-    "cells": 27279,
-    "cell_max": 188.858
+    "cells": 29087,
+    "cell_max": 378.472
    },
    "fort_dearborn_mound": {
     "cells": 2251,
     "cell_max": 188.858
    },
    "marsh_strip": {
-    "cells": 5056,
+    "cells": 5670,
     "cell_max": 148.58
    },
    "north_sand_ridge": {
@@ -102,20 +102,20 @@
     "cell_max": 66.005
    },
    "sand_bar_1834": {
-    "cells": 15252,
+    "cells": 15550,
     "cell_max": 51.64
    },
    "south_sand_ridge": {
-    "cells": 21389,
-    "cell_max": 188.858
+    "cells": 22382,
+    "cell_max": 404.523
    },
    "state_street_break": {
-    "cells": 8401,
+    "cells": 10949,
     "cell_max": 116.863
    },
    "swales": {
-    "cells": 21434,
-    "cell_max": 158.047
+    "cells": 21733,
+    "cell_max": 151.887
    }
   },
   "rule": "docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones that earn relief, hold local gradients under 0.5 ft per 300 ft"
@@ -124,90 +124,11 @@
   "_doc": "The apron outside the modelled box. It carries each boundary vertex outward at its own height, EXCEPT over a landform whose traced outline ends inside the apron: there the ground falls from the boundary height to base_y, reaching it at extent_m and holding it beyond. Indices run along the named edge \u2014 columns from the west on south/north, rows from the south on west/east. See generators/terrain_gen.skirt_terminations and T-0939.",
   "margin_m": 1549.921875,
   "position_rung_m": 0.078125,
-  "terminations": {
-   "south": [
-    {
-     "landform": "sand_bar_1834",
-     "index0": 654,
-     "extent_m": [
-      1.40625,
-      9.21875,
-      14.609375,
-      19.921875,
-      22.578125,
-      25.3125,
-      27.96875,
-      30.703125,
-      31.875,
-      32.734375,
-      33.59375,
-      34.453125,
-      35.3125,
-      35.859375,
-      35.234375,
-      34.6875,
-      34.140625,
-      33.515625,
-      32.96875,
-      32.421875,
-      31.40625,
-      29.0625,
-      26.71875,
-      24.453125,
-      22.109375,
-      19.765625,
-      17.5,
-      15.15625,
-      12.8125,
-      10.546875,
-      8.203125,
-      6.09375,
-      4.0625,
-      1.953125
-     ],
-     "base_y": [
-      -0.072962,
-      -0.070858,
-      -0.068754,
-      -0.06665,
-      -0.064546,
-      -0.062442,
-      -0.060338,
-      -0.058234,
-      -0.05613,
-      -0.054026,
-      -0.051922,
-      -0.049819,
-      -0.047715,
-      -0.045611,
-      -0.043507,
-      -0.041403,
-      -0.039299,
-      -0.037195,
-      -0.035091,
-      -0.032987,
-      -0.030883,
-      -0.028779,
-      -0.026675,
-      -0.024572,
-      -0.022468,
-      -0.020364,
-      -0.01826,
-      -0.016156,
-      -0.014052,
-      -0.011948,
-      -0.009844,
-      -0.00774,
-      -0.005636,
-      -0.003532
-     ]
-    }
-   ]
-  }
+  "terminations": {}
  },
  "glb": {
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "0f716445c9d2758c3c3d72d3220eae2e4d0d5cb2a7882cd20fa6b196063e3078"
+ "inputs_sha256": "3294ed44c12330b066ca4274ff5a075ce7a693712940f514c5f2433ed8717cb9"
 }

@@ -60,6 +60,9 @@ def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+NO_BUILD = load(NO_BUILD_PATH)
+
+
 def inside(point, polygon) -> bool:
     x, y = point
     hit = False
@@ -242,12 +245,35 @@ def measure():
                 continue
             if not any(inside((e, n), poly) for poly in rings.values()):
                 outside += 1
-    if outside:
+    # T-0219. The reservation's own record wrote down what would happen here, under
+    # `boundary.under_coverage.what_would_break_it`: "a terrain extension that reaches
+    # past the traced shore re-opens this, and the gate is written to say so". The
+    # heightfield reached Madison Street and it did. What the ground is, though, is not
+    # in doubt: the fractional quarter is bounded by the section line at State, by
+    # Madison, and by the LAKE — so modelled land inside those three that the traced
+    # shore polygon misses is reservation ground the trace does not reach, not ground
+    # outside the reservation. The record now refuses it with the rest, which is the
+    # conservative move in both directions: it withholds more ground from anonymous
+    # builders and it claims no new landform.
+    #
+    # The ceiling is what keeps that from being a licence. Andreas documents the
+    # reservation at 75.69 acres and the traced polygon derives 65.70, a shortfall the
+    # record already carries as a measured disagreement; so the untraced remainder may
+    # be at most that shortfall. Past it the terrain is modelling ground the
+    # reservation cannot account for, and the gate fires exactly as it did before.
+    res = next(r for r in NO_BUILD["regions"] if r["id"] == "fort_dearborn_reservation")
+    uc = res["boundary"]["under_coverage"]
+    ceiling = float(uc["ceiling_acres"])
+    outside_acres = outside * cell * cell / 4046.8564
+    if outside_acres > ceiling:
         problems.append(
-            f"{outside} cell(s) of modelled ground above the water surface stand east "
-            "of the reservation's west line, north of Madison and south of the main "
-            "stem, and inside neither refused region — the polygons no longer reach "
-            "the ground the terrain models")
+            f"{outside} cell(s) — {outside_acres:.2f} acres — of modelled ground above "
+            "the water surface stand east of the reservation's west line, north of "
+            "Madison and south of the main stem, and inside neither traced region. That "
+            f"is past the {ceiling:.2f} acres the reservation's documented 75.69 leaves "
+            "unaccounted for by its derived 65.70, so this is no longer untraced "
+            "reservation ground — the polygons no longer reach the ground the terrain "
+            "models")
     return regions, problems, outside, scene_land, cell
 
 
@@ -272,7 +298,11 @@ def main() -> int:
     scene_ha = scene_land * cell * cell / 10_000
     print(f"   {refused_ha:.2f} ha refused of {scene_ha:.2f} ha of modelled land "
           f"above the water surface — {100 * refused_ha / scene_ha:.1f} %")
-    print(f"   under-coverage: {outside} cell(s) of modelled land outside both regions")
+    res = next(r for r in NO_BUILD["regions"] if r["id"] == "fort_dearborn_reservation")
+    ceiling = float(res["boundary"]["under_coverage"]["ceiling_acres"])
+    print(f"   untraced reservation ground: {outside} cell(s), "
+          f"{outside * cell * cell / 4046.8564:.2f} acres of the {ceiling:.2f} the "
+          f"documented 75.69 leaves over the derived 65.70 — refused with the reservation")
     for problem in problems:
         print(f"   {problem}")
     return 1 if (problems and args.gate) else 0

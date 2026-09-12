@@ -530,6 +530,75 @@ def east_stations(is_water, e_from, anchor):
     return out, e_meet
 
 
+# How far a terminus vertex may be raised to make the derivation satisfy its own
+# floor, and in what step. The cap is a bound and not a tolerance, and it is set
+# from a measurement rather than from taste: T-0219's re-trace moved the committed
+# geometry by at most 2.20 m anywhere north of the old field edge
+# (`tools/trace_river.py --check-north`, which reports that number and holds it to
+# 20 m), so 2.5 m is the largest lift that can still be a RE-TRACE being absorbed.
+# A vertex needing more than that is not being nudged by a re-fit of the same bank;
+# something has moved the water, and a street terminus is the wrong place to find
+# that out quietly. The tool stops instead — see the refusal below.
+END_LIFT_MAX_M = 2.5
+END_LIFT_STEP_M = 0.1
+
+
+def lift_exempt_ends(is_water, pts, w_end, e_end):
+    """Raise a fitted vertex inside an exempt window until it clears END_FLOOR_M.
+
+    T-0219. The centreline requirement `stations` fits to is the bank's offset curve
+    at SETBACK_M, and `fit_reach` is allowed to sit BELOW_M under it — which is what
+    makes the open reach's floor 11.5 m rather than 12.192. At the two EXEMPT ends
+    there is no offset curve to be under: the street meets the water on purpose, so
+    the only thing holding those vertices off it is END_FLOOR_M, and until now that
+    floor was stated in the module docstring and enforced only by `clearance_gate`
+    — which runs AFTER the derivation and can therefore only report that the
+    derivation broke it.
+
+    That gap was invisible while the committed bank held the terminus at 5.5 m from
+    water. T-0219's re-trace carried the `upsample` correction through the whole
+    sheet, the north bank at the fork moved about 1.5 m south with it, and the fitted
+    terminus landed between 4.5 and 5.0 m from the water — a line the same file's own
+    gate then refused. The derivation is the thing that should hold the rule, so it
+    holds it here: the same floor, applied where the vertex is chosen.
+
+    Only the TERMINUS window is touched. Everywhere else the offset curve already
+    stands 12.192 m off the bank and `clearance_gate` measures against the open
+    reach's higher floor, so a lift here can never paper over a breach out on the
+    reach — that one still fails, as it should.
+    """
+    out = []
+    for e, n in pts:
+        # THE TERMINUS ONLY, and the distinction is the whole correctness of this.
+        # `end_exemption` names TWO windows, and they are exempt for opposite
+        # reasons. The terminus is exempt because the street runs out at the fork
+        # and `clearance_gate` still probes it against END_FLOOR_M — so a floor is
+        # meaningful there and the derivation can hold it. The crossing's approaches
+        # are exempt because the vertex IS the deck's abutment, imposed by
+        # `stations`' anchor; `clearance_probes` never probes the deck span at all,
+        # and the abutments of a stream crossing stand 1-3 m from water at every
+        # easting the deck could occupy — measured, not assumed. Lifting one to a 5 m
+        # floor would stand the street off the bridge it is anchored to, which is the
+        # exact fault the anchor exists to prevent (see `stations`, and the module
+        # docstring's "never reach the bridge").
+        if end_exemption(e, w_end, e_end) != "the west terminus at the North Branch":
+            out.append((e, n))
+            continue
+        lift = 0.0
+        while (clearance_short_of(is_water, e, n + lift, END_FLOOR_M) is not None
+               and lift < END_LIFT_MAX_M - 1e-9):
+            lift += END_LIFT_STEP_M
+        if clearance_short_of(is_water, e, n + lift, END_FLOOR_M) is not None:
+            raise SystemExit(
+                "the exempt vertex at E %+.1f N %.1f is still inside the %.1f m end "
+                "floor after the whole %.1f m of lift this tool allows. That is not a "
+                "re-trace moving the bank a metre; something has moved the water, and "
+                "the street's terminus is not the place to absorb it."
+                % (e, n, END_FLOOR_M, END_LIFT_MAX_M))
+        out.append((e, round(n + lift, 1)))
+    return out
+
+
 def derive():
     is_water = load_field()
     w_end, e_end, n_deck = deck()
@@ -540,6 +609,8 @@ def derive():
     # purpose: R-BUG4 drops a panel whose centreline endpoint is wet, so the two panels
     # that reach the abutments go with it and the deck is what a visitor crosses on.
     mid = [round(0.5 * (w_end + e_end), 1), round(n_deck, 1)]
+    west = lift_exempt_ends(is_water, west, w_end, e_end)
+    east = lift_exempt_ends(is_water, east, w_end, e_end)
     return west + [mid] + east, st_w + st_e, is_water
 
 

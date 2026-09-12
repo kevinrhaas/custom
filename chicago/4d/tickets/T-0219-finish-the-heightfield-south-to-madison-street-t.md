@@ -74,3 +74,55 @@ traced water reaches the guard. It also filed **T-0253** for a 5.1 m regression 
 `blk_south_water_franklin`'s north face.
 
 Its branch could NOT be deleted from the session that closed it — this environment's proxy refuses a ref delete over both git and the REST API (HTTP 403) — so `ticket.mjs claim` **will see it as a rival branch and refuse**. That refusal is a false stop: the PR is closed and the branch is abandoned. `claim T-0219 --force` is correct here. `ticket.mjs inflight` reads it as COLD, which is the honest signal.
+
+## FINDING, 2026-09-12: this is an L, and the blast radius is the NORTH bank
+
+Attempted on `steward/t-0219-heightfield-madison`, parked on `hold`. The SOUTH half of
+this ticket is done and measured; what it cannot carry inside one run is a cascade nobody
+had costed, and the cascade is at the other end of the box.
+
+**What is finished and green.** The window is 280 px taller, both South Branch banks come
+south with it, `n_min` is Madison's line at N -530, the heightfield is 809 x 373 and the
+terrain and water GLBs are baked from it (ground mesh vs heightfield max 3 mm, rms 0.2 mm
+over 33,750 rays). Every acceptance clause about the south is met:
+`measure_southern_ground.py` reports **24 of 24** tier boundary points on modelled ground
+against the 0 of 24 this ticket was filed for, Washington's corridor is wholly on the
+field, and `reconcile_665.py` moved the South balance's `waiting_on` off TERRAIN to
+STREET CONTROL of its own accord. `tools/validate.py --all` is **green, 0 errors**.
+
+**Why it is an L.** The window cannot be widened without also fixing how the local paper
+background is measured (`upsample` read the block grid against the image height, so the
+background under every pixel depended on how tall the window happened to be). That fix is
+not optional and it is not local: it moves the WHOLE trace by up to 2.20 m — measured, by
+the `--check-north` this attempt implemented because the comment claiming it had named a
+flag that never existed. The north bank moves with everything else, and a great deal of
+the town is placed against the north bank. Re-deriving what follows is the real cost:
+
+  * done here — the four dooryard/planted-row/yard-goods/river-wharf derivations, the
+    frontage works, the Kinzie Block reading, the planting-reach baseline, the north-bank
+    frontage baseline, `compile_scene`, and North Water Street itself, which needed a real
+    repair: its derivation targets the bank's offset curve and lets the fit sit below it,
+    so at the exempt terminus the fitted vertex landed inside the 5.0 m end floor that
+    `clearance_gate` enforces AFTER the fact. The floor is now held where the vertex is
+    chosen. Only the terminus — the crossing's approaches are anchored to the deck by
+    design and the gate never probes the deck span.
+  * NOT done, and this is the second run's work — `measure_west_division_streets` and
+    `measure_north_division_streets` fail their self-tests: west_water's committed path is
+    supposed to BE the derived bank offset to the centimetre, and the five North Division
+    streets are supposed to meet North Water Street within 0.05 m. Both moved. **Neither
+    tool has a writer** — those paths are hand-committed and asserted against a rule, so
+    six street records have to be re-derived by hand and re-argued. Two structures drift
+    with them (`steamboat_hotel` -0.09 m off its declared 5.00 m frontage,
+    `north_bank_shed_dearborn_e3` -0.284 m off its on_rule figure), and re-seating a
+    building against a moved street is a provenance judgement, not arithmetic — two
+    attempts at it in this run were 15 and 16 m out because the front face is the
+    max-v edge and the measurement is validate's frame, not the raw centreline.
+
+**So the split is not south-then-north; it is terrain-then-north-bank-fabric, and the two
+cannot merge separately** — `tools/check.sh` is one gate and the terrain change is what
+makes the north-bank records stale. Whoever takes this needs one run that carries BOTH,
+or the owner's ruling that the north-bank street fabric may be re-derived in a preparatory
+run of its own while the field still ends at N -400.
+
+**Pre-existing red, not caused by this work:** the Chappel shore gate. Clean `origin/dev`
+fails `tools/check.sh` on exactly that step and nothing else, which is T-1083's point.

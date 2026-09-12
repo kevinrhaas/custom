@@ -32,7 +32,7 @@
         "note": "Asked for by the owner at the slough mouth, 2026-08-20: 'the pedestrian plank sidewalk bridge crossing it close to the river should exist and run along the river towards the town.' No 1835 source describes a walk on this bank; the crossing it rides is the documented Slough Log Bridge."
       },
       "run_m": {
-        "value": 424.6,
+        "value": 433.8,
         "confidence": "reconstructed",
         "sources": [],
         "note": "The whole run, crossing footway and Dearborn boards included, bounded by the bridge's committed deck ends and Jones's committed landing — nothing measured, everything derived or invented and audited."
@@ -223,7 +223,7 @@
           40.2
         ],
         [
-          392.29,
+          391.54,
           40.21
         ]
       ],
@@ -241,11 +241,11 @@
       "confidence": "reconstructed",
       "centreline_local_enu_m": [
         [
-          383.3,
-          40.23
+          388.79,
+          40.22
         ],
         [
-          362.6,
+          359.7,
           40.29
         ]
       ],
@@ -261,13 +261,13 @@
   "refused": [
     {
       "structure_id": "river_plank_walk",
-      "wall": "the landing at Philo Carpenter's South Water Street Store (E +383 to +392)",
-      "why": "the landing at Philo Carpenter's South Water Street Store comes ashore across the walk's authored line, and 8.6 m of boards are refused rather than laid under it. The deck ties 2.0 m back into this bank (L132) and its boarding stair steps down landward of that heel onto the same ground; a walk laid through them ran under a slab standing half a metre over the planks, with 0.36 m of daylight between, and since T-0058 put a floor on that slab it also stood a 0.50 m riser across the walker's path — over the 0.35 m step-up rule, so refused. What a walker meets here is the landing: its deck is the walking surface and its boarding stair is the way up. T-0228."
+      "wall": "the landing at Philo Carpenter's South Water Street Store (E +389 to +391)",
+      "why": "the landing at Philo Carpenter's South Water Street Store comes ashore across the walk's authored line, and 2.3 m of boards are refused rather than laid under it. The deck ties 2.0 m back into this bank (L132) and its boarding stair steps down landward of that heel onto the same ground; a walk laid through them ran under a slab standing half a metre over the planks, with 0.36 m of daylight between, and since T-0058 put a floor on that slab it also stood a 0.50 m riser across the walker's path — over the 0.35 m step-up rule, so refused. What a walker meets here is the landing: its deck is the walking surface and its boarding stair is the way up. T-0228."
     },
     {
       "structure_id": "river_plank_walk",
-      "wall": "the landing at Jones's Grocery and Provision Store (E +358 to +362)",
-      "why": "the landing at Jones's Grocery and Provision Store comes ashore across the walk's authored line, and 4.9 m of boards are refused rather than laid under it. The deck ties 2.0 m back into this bank (L132) and its boarding stair steps down landward of that heel onto the same ground; a walk laid through them ran under a slab standing half a metre over the planks, with 0.36 m of daylight between, and since T-0058 put a floor on that slab it also stood a 0.50 m riser across the walker's path — over the 0.35 m step-up rule, so refused. What a walker meets here is the landing: its deck is the walking surface and its boarding stair is the way up. T-0228."
+      "wall": "the landing at Jones's Grocery and Provision Store (E +358 to +359)",
+      "why": "the landing at Jones's Grocery and Provision Store comes ashore across the walk's authored line, and 2.0 m of boards are refused rather than laid under it. The deck ties 2.0 m back into this bank (L132) and its boarding stair steps down landward of that heel onto the same ground; a walk laid through them ran under a slab standing half a metre over the planks, with 0.36 m of daylight between, and since T-0058 put a floor on that slab it also stood a 0.50 m riser across the walker's path — over the 0.35 m step-up rule, so refused. What a walker meets here is the landing: its deck is the walking surface and its boarding stair is the way up. T-0228."
     },
     {
       "structure_id": "river_plank_walk",
