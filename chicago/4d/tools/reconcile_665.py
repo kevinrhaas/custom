@@ -664,6 +664,61 @@ def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
     return principal, max(0, ancillary)
 
 
+def lot_ceiling_principal(free_lots: int) -> int:
+    """The principal roofs a block can carry with NO party-line row on it (T-0834).
+
+    One principal roof per lot is what `tools/generate_block_infill.py` admits of an
+    ordinary roof — it stands ON a lot, carries that lot's `lot_index`, and the gate
+    that refuses two roofs on one lot is the same one T-0105 wrote — and the block
+    keeps one lot open, clause 3 of `block_rooms`. So a block with no frontage run can
+    hold `free_lots - 1` principal roofs and not one more.
+    """
+    return max(0, free_lots - 1)
+
+
+def row_lots_required(free_lots: int, principal: int) -> int:
+    """The fewest lots of FRONTAGE a block's run must be dealt for the principal roofs
+    it was dealt to have anywhere to stand (T-0834).
+
+    THE TWO SIZINGS THIS RECONCILES, because for a year they were two numbers in two
+    files with nothing tying them together. `block_rooms` sizes principal room at
+    `ROW_UNITS_PER_LOT` party-line units per free lot; the generator places by whole
+    LOTS and admits the party-line density only along a frontage run the recipe names
+    and gates at `ROW_UNITS_PER_LOT * len(frontage["lots"])`. A block that gives its
+    run k of its free lots therefore holds
+
+        (free_lots - k - 1)  +  ROW_UNITS_PER_LOT * k
+            =  free_lots - 1  +  k * (ROW_UNITS_PER_LOT - 1)
+
+    principal roofs — one on each free lot the run did not take, less the lot the block
+    keeps open, plus the run's own units — and `principal_room` is exactly that
+    expression at k = free_lots - 1, its maximum. So the schedule was never wrong about
+    the metres and never said what it was assuming: its sizing is CONDITIONAL on a row
+    across nearly the whole block, and until T-0834 the condition lived only in the
+    prose of whichever recipe happened to meet it. On `blk_south_water_clark`'s second
+    deal — the block that found this, T-0431 — 2 free lots sized 3 principal roofs, the
+    deal gave it 1, and the run it named was headroom rather than necessity: k_min is 0
+    there. On `blk_south_water_franklin`'s second deal the same 2 free lots were dealt
+    3, so k_min is 1 and the run it named was the only ground those roofs had. Two
+    parcels that read identically in the ledger, told apart by a number.
+
+    Inverting the expression for the smallest k that holds `principal`:
+
+        k >= (principal - free_lots + 1) / (ROW_UNITS_PER_LOT - 1)
+
+    Returns 0 where the lots alone suffice. A block whose k_min exceeds its free lots
+    less one has been dealt more than any arrangement of it can stand, which is the
+    over-deal `block_rooms` already refuses upstream; this states it rather than
+    trusting that it cannot happen.
+    """
+    if ROW_UNITS_PER_LOT <= 1:
+        return 0
+    short = principal - lot_ceiling_principal(free_lots)
+    if short <= 0:
+        return 0
+    return -(-short // (ROW_UNITS_PER_LOT - 1))
+
+
 def standing_roofs(grid, datum, taken):
     """Every committed structure record, with the physical roofs it puts in the scene and
     the platted block it stands in, where the grid reaches it.
@@ -1154,6 +1209,22 @@ def programme_document():
     waterside = waterside_families()
     waterside_term = keep_the_waterside_off_the_plat(units, waterside, trade_shares, traffic)
 
+    # T-0834. WHAT THE SIZING WAS ASSUMING, written where a gate can read it. Both terms
+    # above are permutations and neither moves a unit's principal count, so this runs
+    # last and reads the counts as dealt. Every unit that has lots states two numbers:
+    # what it can carry on its lots alone, and the fewest lots of frontage a party-line
+    # run must be dealt for the roofs it WAS dealt to have ground under them. Until now
+    # the difference between those two was absorbed silently — the programme said roofs
+    # were dealt, the ground said they were not placed, and the only place the two met
+    # was a sentence in whichever recipe happened to notice.
+    # `tools/generate_block_infill.py` refuses a parcel that does not meet the condition.
+    for unit in units:
+        if "free_lots" not in unit:
+            continue
+        unit["lot_ceiling_principal"] = lot_ceiling_principal(unit["free_lots"])
+        unit["row_lots_required"] = row_lots_required(unit["free_lots"],
+                                                      unit.get("principal", 0))
+
     schedulable = sum(u["roofs"] for u in units if u["state"] == "open")
     gated = sum(u["roofs"] for u in units if u["state"] == "gated")
 
@@ -1196,6 +1267,20 @@ def programme_document():
                         "not. It replaces one roof per lot, which five of the twelve core "
                         "blocks already stood above. Capacity is a ceiling; `block_rooms` "
                         "carries the restraint.",
+            "lot_ceiling": "T-0834. `principal_room` is party-line units counted "
+                           "against whole lots, and the generator places by lots: an "
+                           "ordinary principal roof stands ON a free lot, one to a lot, "
+                           "and only a frontage run the recipe NAMES carries "
+                           f"{ROW_UNITS_PER_LOT} of them. So every open unit states both "
+                           "numbers — `lot_ceiling_principal`, what it holds with no run "
+                           "on it (its free lots, less the one it keeps open), and "
+                           "`row_lots_required`, the fewest lots of frontage a run must "
+                           "be dealt for the principal roofs it WAS dealt to stand at "
+                           "all. Where the second is above zero the sizing is conditional "
+                           "and says so, instead of leaving the difference to be absorbed "
+                           "into the district balance unremarked; "
+                           "tools/generate_block_infill.py refuses a parcel that does not "
+                           "meet it.",
             "overrun": "Where evidence has put more roofs into a family than the target "
                        "allows, the excess is reported and the remainder is reduced in the "
                        "families with the most slack. A documented roof is never removed "

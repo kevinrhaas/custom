@@ -206,6 +206,19 @@ step "West Division approaches parcel matches its recipe" \
 step "platted block parcels match their recipe and the committed lots" \
   python3 tools/generate_block_infill.py --check
 
+# A frontage entry declares the lots its party-line run stands across, and until T-0429
+# nothing measured whether it did. That entry's run was anchored on the east end of its
+# own strip and packed back west until the roofs ran out, which happened two lots short
+# of the west end it had declared — and the declaration is read by three different files
+# for three different purposes, so an untrue one is not inert. This re-derives the reach
+# of every run in the town off the committed footprints and the committed plat, and the
+# three South Water entries it cannot correct without moving a roof are conceded BY NAME
+# in the tool with the measurement that found them (T-0449).
+step "every frontage run stands across the lots its recipe declares" \
+  python3 tools/measure_frontage_declaration.py --check
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_frontage_declaration.py --self-test
+
 # The residents manifest is DERIVED, and now it is gated like one (T-0715). Four
 # minting passes and four rewriting passes each rebuilt the SLICE of
 # data/residents/index.json they owned and left the rest verbatim, so a household no
