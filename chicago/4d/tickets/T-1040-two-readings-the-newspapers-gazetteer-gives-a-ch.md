@@ -1,7 +1,7 @@
 ---
 id: T-1040
 title: Two readings the newspapers gazetteer gives a Chicago person belong to somebody else: 'Col. Samuel Miller, Michigan City' is Carver's Indiana agent and sits on a Chicago resident card, and person_w_montgomery carries Loton W.'s shoemaking beside the auctioneer's own trade
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
+closed: 2026-09-11
 pr: null
 claimed_by: run 9/11/2026, 8:48:51 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T01:58:17.447Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34665784850
 ---
 
