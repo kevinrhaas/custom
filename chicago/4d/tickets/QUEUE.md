@@ -328,3 +328,6 @@ T-1041 — A house's agency reaches no card: the walkthrough shows trades and pr
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
 T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
+
+
+T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover

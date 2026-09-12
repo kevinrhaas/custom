@@ -86,8 +86,7 @@ step "the traced forks still carry what their generator writes" \
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
 # the mirror and PROMOTED TO PRODUCTION, where a visitor opening L180 or L181
-# read `<<<<<<< HEAD` in the Evidence panel. Every structural gate passed it:
-# the liberties gate asks whether the markdown and the compiled JSON agree, and
+# read `# the liberties gate asks whether the markdown and the compiled JSON agree, and
 # they agreed perfectly — both carried the same garbage.
 step "no committed file carries a conflict marker" \
   python3 tools/test_no_conflict_markers.py
@@ -222,6 +221,15 @@ step "Kinzie's Addition's block numerals re-derive from the reading and the run"
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_kinzie_addition_numerals.py --self-test
+
+# THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
+# re-derives the block's ground from the four committed streets, the lot-rule
+# counts from the peaks committed beside them, the answer about the modelled
+# ground from the committed heightfield meta, and the phrase search over the
+# committed research corpus — so a hand-edited count or a page that starts
+# saying "Kinzie Block" fails here. The raster half is `--check-sheet`.
+step "the Kinzie Block's reading re-derives from its own pixels and the corpus" \
+  python3 tools/read_kinzie_block_name.py --check
 
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
