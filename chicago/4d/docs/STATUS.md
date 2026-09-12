@@ -1903,12 +1903,18 @@ Randolph took 1.
   advertisement's street is where the door is and a gable end reaching a street is not a doorway.
   **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
   the number an owner ruling would change is one number, not a rewrite.
-- **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
-  Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
-  spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
-  matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
-  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
-  the remedy.
+- **Two Lake Street roofs are probably one house, and the corpus cannot say so.** Wm. G. Branchaud,
+  W. G. Blanchard, G. Blanshard and F. G. Blanshard advertised one trade at one door within five
+  months under four transcribed spellings; T-0413 joined the two Blanshards and **T-0408** read the
+  whole run behind the other two and joined them, so the group takes two roofs now instead of four.
+  'Branchaud' turned out to be a supply made from the only two columns of that card the
+  transcription flags as Tesseract fallbacks — the impressions of 1834-07-16 and 1834-09-17, whose
+  columns are independent Vision readings, set BLANCHARD — so the reading was repaired and an
+  `identity.json` firm merge joined 'Wm. G. Blanchard' to 'W. G. Blanchard'. The LAST join is
+  refused and the refusal is declared: 'W. G. Blanchard' and 'G. Blanshard' stand in the same
+  doorway opposite Dr. Temple's, in consecutive cards that never ran in the same weeks, and **no
+  printing in the corpus sets both spellings** — so `refused_firm_merges` holds them apart as
+  `not_joined` and says what would settle it. Very probably one man; the papers do not say it.
 - **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.
 - **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage

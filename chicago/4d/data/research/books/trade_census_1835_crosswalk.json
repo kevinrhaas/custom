@@ -410,8 +410,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 79,
-      "town_records_at_scene_date": 73,
+      "town_records_in_town": 78,
+      "town_records_at_scene_date": 72,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -489,7 +489,6 @@
         "business_w_reed",
         "business_whitehead_co",
         "business_william_clay",
-        "business_wm_g_branchaud",
         "business_wm_h_kennicott",
         "business_wm_h_kennicott_surgeon_dentist",
         "business_wm_h_taylor"
@@ -520,11 +519,11 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 197,
-    "in_town": 194,
+    "businesses_in_register": 196,
+    "in_town": 193,
     "outside_town": 3,
-    "at_scene_date": 181,
-    "carrying_no_enumerated_class": 74,
+    "at_scene_date": 180,
+    "carrying_no_enumerated_class": 73,
     "not_stated": 5,
     "census_enumerated_total": 118,
     "town_enumerated_total_at_scene_date": 118
@@ -2849,18 +2848,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "groceries, one of the census's own three lines",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_wm_g_branchaud",
-      "name": "Wm. G. Branchaud",
-      "trade": "house and land agent",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a service the enumeration counts nowhere (B2)",
       "built_at_scene_date": true
     },
     {

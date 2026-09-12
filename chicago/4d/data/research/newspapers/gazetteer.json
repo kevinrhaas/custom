@@ -165,7 +165,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_06_11.json",
-      "sha256": "1d3b937b2bbe6e17e01224548add6888c014608bc31fce1482f81b67a2dc9f1e"
+      "sha256": "db95cbe011801da6ba00952746e04c398de83c6c601855be9685c8594258927f"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_06_18.json",
@@ -352,7 +352,7 @@
     "claims": 1169,
     "persons": 2665,
     "places": 3,
-    "businesses": 197,
+    "businesses": 196,
     "agencies": 1
   },
   "persons": [
@@ -62967,6 +62967,19 @@
           "merge_rule": "'F. G. Blanshard' is 'G. Blanshard' with the first initial printed, and the two styles are one standing advertisement read twice five weeks apart in one paper. The anchor is the same sentence both times: 'G. Blanshard' stands “opposite Dr. Temple's, Lake-st.” at 1834-10-08 c004, and 'F. G. Blanshard' stands “_eppasite Dr, Temple's, Hake,” at 1834-11-12 c012 — the same words through a damaged column. One trade, and it is not a trade two men would be printed in five weeks apart on one street: houses and lots for sale or to let. Merged INTO 'G. Blanshard' because that impression gives the anchor whole, with the street on it, while the November setting has to be read through the damage; the direction is which record can be placed, not which spelling is truer."
         }
       ],
+      "refused_merges": [
+        {
+          "with": "W. G. Blanchard",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1834_06_11#c008",
+            "chicago_democrat_1834_07_09#c025",
+            "chicago_democrat_1834_10_08#c004",
+            "chicago_democrat_1834_11_12#c012"
+          ],
+          "refused_because": "'W. G. Blanchard' and 'G. Blanshard' are one trade at one door and NO PRINTING IN THIS CORPUS SETS BOTH SPELLINGS, so the corpus cannot join them and this file will not join them on a resemblance. WHAT THE PAPER ACTUALLY SHOWS, and it is a great deal. Two land-agency cards run in the Chicago Democrat in 1834, one after the other and never in the same weeks: 'W. G. Blanchard' advertises “House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. […] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's” (1834-06-11 c008, 1834-07-09 c025), and 'G. Blanshard' advertises “[HO]USES for [s]ale or to let. Also, a lot on the [cor]ner of Randolph and Wells streets, and [lots on the school section, which] will be sold [for cash. For particulars en]quire of [G. BLANSHARD], opposite Dr. Temple's, Lake-st.” (1834-10-08 c004, 1834-11-12 c012). The same landmark, the same street, the same business of selling town and school-section lots, and a gap between the two runs rather than an overlap. On the face of it that is one agent who changed his copy in the autumn, and this refusal says so rather than pretending the question is open. WHY IT IS STILL A REFUSAL. Both spellings are READ off the type and neither is a supply: 'BLANCHARD' is set in two columns the transcription does NOT flag as Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and 'BLANSHARD' is set whole in four impressions of its own card and again in the stray-horse reward notice of 1 October 1834 that runs beside it. So there is no misreading to repair, the way T-0408 repaired 'Branchaud' out of two fallback columns; there are two spellings the paper holds to, five weeks apart, and a forename initial that reads W in one card and F in the other. A shared anchor is two printings agreeing about a door, not one printing joining two styles — the distinction this section's `not_joined` kind exists to record, and the one C11 states for the town cards when it says a trade two men can share and a street two men can live on cannot carry an identification. The residents layer has already ruled the same way on the same initial: T-0993 holds `blanchard_w_g` distinct from `blanchard_f_gantry` under D1, noting that the Illinois land tract register carries no W. G. Blanchard at all. AND THE MACHINERY COULD NOT CARRY THE MERGE IN ANY CASE: `firm_surnames()` reads {blanchard} against {blanshard} and the partner guard refuses that with or without a rule, which is T-0407's question and not this one's. WHAT WOULD SETTLE IT: one printing that sets both spellings — the Democrat is caught doing exactly that for Blanshard, setting 'G. BLANSHARD' on 1834-10-01 and 'F. G. BLANSHARD' on 1834-10-22 in one standing notice — or a directory, poll or land-register entry that puts a W. G. Blanchard at the Lake Street office opposite Dr. Temple's."
+        }
+      ],
       "proprietors_merged": [
         {
           "into": "G. Blanshard",
@@ -73243,10 +73256,12 @@
       "id": "business_w_g_blanchard",
       "name": "W. G. Blanchard",
       "proprietors": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
       "partners": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
       "firm_styles": [],
       "trade": "house and land agent",
@@ -73260,16 +73275,33 @@
         "street": "Lake Street"
       },
       "evidence": {
-        "first_issue": "1834-07-09",
+        "first_issue": "1834-06-11",
         "last_issue": "1834-07-09",
         "copy_dates": []
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
+        "chicago_democrat_1834_06_11#c008",
         "chicago_democrat_1834_07_09#c025"
       ],
       "placement_readings": [
+        {
+          "anchor": "opposite Dr. Temple's",
+          "class": "relative",
+          "first_issue": "1834-06-11",
+          "last_issue": "1834-06-11",
+          "claims": [
+            "chicago_democrat_1834_06_11#c008"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "opposite Dr. Temple's",
+            "offset_text": "§q Houses to Let. Pugnire at\nLake st. opposite Dr. Temple's.",
+            "offset_normalized": "Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's",
+            "street": "Lake Street"
+          }
+        },
         {
           "anchor": "Dr. Temple's",
           "class": "relative",
@@ -73285,6 +73317,25 @@
             "offset_normalized": "Enquire at the Office [on] Lake st. opposite Dr. Temple's",
             "street": "Lake Street"
           }
+        }
+      ],
+      "merged": [
+        {
+          "from": "Wm. G. Blanchard",
+          "merge_rule": "'Wm. G. Blanchard' is 'W. G. Blanchard' with the forename supplied whole out of a column that could not carry it, and the two are ONE standing advertisement read twice. The card is the same word for word in both impressions — “House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. […] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's” at 1834-06-11 c008, and the same sentences with the same anchor at 1834-07-09 c025 — one trade, house and land agent, one street, one door. The surname was the thing that kept them apart and the corpus has now settled it against the reading: 1834-06-11 stood as 'Wm. G. Branchaud' on a supply made from two Tesseract-fallback columns, and T-0408 repaired that reading on the two impressions of this card whose columns are NOT fallbacks — 1834-07-16 line 5527 '1* G. BLANCHARD,' and 1834-09-17 line 3292 '[uncertain: BLALYCHARD,]'. What is LEFT is the forename form, 'Wm. G.' against 'W. G.', and that is the class this policy has always joined by declaration rather than by string: the firm rule holds a house to its PARTNER SURNAMES, which are the same one here, and T-0400 merged eight groups of exactly this shape. Merged INTO 'W. G. Blanchard' because that impression reads the anchor with its entity — Dr. Temple named and normalized — while the June setting survives through a fallback column that lost the proprietor line altogether; the direction is which record can be placed, not which spelling is truer."
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "G. Blanshard",
+          "kind": "not_joined",
+          "witnesses": [
+            "chicago_democrat_1834_06_11#c008",
+            "chicago_democrat_1834_07_09#c025",
+            "chicago_democrat_1834_10_08#c004",
+            "chicago_democrat_1834_11_12#c012"
+          ],
+          "refused_because": "'W. G. Blanchard' and 'G. Blanshard' are one trade at one door and NO PRINTING IN THIS CORPUS SETS BOTH SPELLINGS, so the corpus cannot join them and this file will not join them on a resemblance. WHAT THE PAPER ACTUALLY SHOWS, and it is a great deal. Two land-agency cards run in the Chicago Democrat in 1834, one after the other and never in the same weeks: 'W. G. Blanchard' advertises “House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. […] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's” (1834-06-11 c008, 1834-07-09 c025), and 'G. Blanshard' advertises “[HO]USES for [s]ale or to let. Also, a lot on the [cor]ner of Randolph and Wells streets, and [lots on the school section, which] will be sold [for cash. For particulars en]quire of [G. BLANSHARD], opposite Dr. Temple's, Lake-st.” (1834-10-08 c004, 1834-11-12 c012). The same landmark, the same street, the same business of selling town and school-section lots, and a gap between the two runs rather than an overlap. On the face of it that is one agent who changed his copy in the autumn, and this refusal says so rather than pretending the question is open. WHY IT IS STILL A REFUSAL. Both spellings are READ off the type and neither is a supply: 'BLANCHARD' is set in two columns the transcription does NOT flag as Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and 'BLANSHARD' is set whole in four impressions of its own card and again in the stray-horse reward notice of 1 October 1834 that runs beside it. So there is no misreading to repair, the way T-0408 repaired 'Branchaud' out of two fallback columns; there are two spellings the paper holds to, five weeks apart, and a forename initial that reads W in one card and F in the other. A shared anchor is two printings agreeing about a door, not one printing joining two styles — the distinction this section's `not_joined` kind exists to record, and the one C11 states for the town cards when it says a trade two men can share and a street two men can live on cannot carry an identification. The residents layer has already ruled the same way on the same initial: T-0993 holds `blanchard_w_g` distinct from `blanchard_f_gantry` under D1, noting that the Illinois land tract register carries no W. G. Blanchard at all. AND THE MACHINERY COULD NOT CARRY THE MERGE IN ANY CASE: `firm_surnames()` reads {blanchard} against {blanshard} and the partner guard refuses that with or without a rule, which is T-0407's question and not this one's. WHAT WOULD SETTLE IT: one printing that sets both spellings — the Democrat is caught doing exactly that for Blanshard, setting 'G. BLANSHARD' on 1834-10-01 and 'F. G. BLANSHARD' on 1834-10-22 in one standing notice — or a directory, poll or land-register entry that puts a W. G. Blanchard at the Lake Street office opposite Dr. Temple's."
         }
       ],
       "built_at_scene_date": true,
@@ -74138,61 +74189,6 @@
       ],
       "trade_class_scope": "in_town",
       "survival_liberty_required": false
-    },
-    {
-      "id": "business_wm_g_branchaud",
-      "name": "Wm. G. Branchaud",
-      "proprietors": [
-        "Wm. G. Branchaud"
-      ],
-      "partners": [
-        "Wm. G. Branchaud"
-      ],
-      "firm_styles": [],
-      "trade": "house and land agent",
-      "goods": [],
-      "street": "Lake Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "opposite Dr. Temple's",
-        "offset_text": "§q Houses to Let. Pugnire at\nLake st. opposite Dr. Temple's.",
-        "offset_normalized": "Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's",
-        "street": "Lake Street"
-      },
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_06_11#c008"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "opposite Dr. Temple's",
-          "class": "relative",
-          "first_issue": "1834-06-11",
-          "last_issue": "1834-06-11",
-          "claims": [
-            "chicago_democrat_1834_06_11#c008"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "opposite Dr. Temple's",
-            "offset_text": "§q Houses to Let. Pugnire at\nLake st. opposite Dr. Temple's.",
-            "offset_normalized": "Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's",
-            "street": "Lake Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "other"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": true
     },
     {
       "id": "business_wm_h_kennicott",
