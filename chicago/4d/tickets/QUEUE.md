@@ -143,7 +143,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
-T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
 T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 
