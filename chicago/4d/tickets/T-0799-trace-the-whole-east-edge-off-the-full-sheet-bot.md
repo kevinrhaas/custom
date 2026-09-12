@@ -1,7 +1,7 @@
 ---
 id: T-0799
 title: Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0793
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1180
+claimed_by: run 9/12/2026, 2:06:46 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T07:46:39.864Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34679676889
 ---
 
 Piece 1 of 2 of **T-0793** — read it for the owner's words and the trace's own admissions. This

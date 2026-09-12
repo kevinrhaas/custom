@@ -1151,6 +1151,17 @@ check_js() {
 }
 step "renderer modules parse" check_js
 
+# T-1055. The ground mesh paints the two flora zones with box extents their own
+# recorded `ground.rgb`, by multiplying the July tile's luminance through the
+# record after dividing it by the tile's own mean. That construction is what
+# makes the mean albedo inside a zone the recorded triple EXACTLY rather than
+# approximately, and it is quiet when it breaks: retune the tile, or record a
+# brighter triple that clips against the albedo ceiling, and the ground drifts
+# off the record with nothing to say so. This runs the shader's arithmetic over
+# the same deterministic pixels and holds all four triples to one sRGB unit.
+step "the ground averages the colour each flora zone records" \
+  node tools/measure_ground_albedo.mjs --gate
+
 # The ground the town is ANCHORED to and the ground it is DRAWN as, compared on
 # the committed bytes. `generators/terrain_gen.py` refuses to export a mesh more
 # than 30 mm from the heightfield — inside a Blender run this gate cannot make,

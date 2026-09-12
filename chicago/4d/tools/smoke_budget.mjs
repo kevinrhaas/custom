@@ -220,6 +220,9 @@ const COVERAGE = [
   // --- PART 3: the ground you stand on, and the card that says why
   ['renderers/web/js/ground.js', [3], 'the ground faces the sky (R-BUG3c)'],
   ['renderers/web/js/terrain.js', [3], 'the ground the town stands on'],
+  // T-1055. terrain.js's ground tile, lifted into its own module so a tool can
+  // measure it without a browser. Same part as the file it was lifted out of.
+  ['renderers/web/js/prairie-tile.js', [3], 'the ground tile the prairie is painted from'],
   ['renderers/web/js/citations.js', [3], 'pick -> provenance, and what kind of source'],
   ['renderers/web/js/liberties.js', [3, 13], 'the liberties on the card, and in the panel'],
   ['renderers/web/js/residents.js', [3, 13], 'who was here, and the people in the panel'],
