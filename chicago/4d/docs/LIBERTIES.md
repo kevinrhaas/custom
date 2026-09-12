@@ -1398,6 +1398,23 @@ communities is the record's and is no longer a liberty**. What remains one is ex
 this entry was always about: the absolute figure, and the choice that full recorded cover
 saturates the lattice at 7.3 tufts per square metre. A community recording full cover is drawn
 exactly as it was before this revision, and no community can ask for more.
+**Revised:** 2026-09-12 (T-1056) — and the revision is a REFUSAL, recorded so the next parcel
+finds it instead of re-deciding. The sentence above is about `cover.matrix_fraction`, and it
+stops there. `cover.bare_soil_fraction`, which sits beside it in every zone record and which
+the paragraph above names twice, gates NOTHING and will not be made to. `matrix_fraction` is
+an areal cover fraction, so reading it as the chance a lattice slot carries a tuft is
+unit-correct; `bare_soil_fraction` is the complement of cover by every stratum and by litter,
+and the herb and woody strata are recorded as COUNTS — stems per square metre, clumps per
+hectare. Thinning a count by an area fraction adds an area to a number of plants, which is
+precisely the unit error ROADMAP K49(a) and K55 spent two parcels removing one level up; and a
+shrub stands OVER the herb layer rather than instead of it (K54), so bare soil under a sand
+cherry is not ground the sand cherry failed to take. So a zone recording 55 % bare soil on the
+lakeshore is drawn with its full recorded shrub density, and that is not the liberty it looks
+like: what was wrong on the sand bar was never a density, it was that a bar had inherited a
+back-dune's species list over every square metre of a `kind: "everywhere"` box. That is fixed
+by an elevation bound in the unit an elevation is in — `woody_stratum`, **L233** — not by
+borrowing a fraction. The refusal is written in three places a reader might start from:
+`data/flora/index.json`'s `_doc`, the read site in `renderers/web/js/flora.js`, and here.
 
 ### L33 — Beyond about ten metres the prairie is a canopy surface, not plants
 **Decision:** vegetation is drawn as individual geometry only within about 27 m of the
@@ -11379,3 +11396,58 @@ backwards, and the rule this entry's attachment had to agree with), **L212** (th
 14 of these businesses are seated on), T-0356 (the proxy this replaced), T-0988 (the census
 reading the owner ruled from).
 **Recorded:** 2026-09-12 (T-0404).
+
+### L233 — The woody stratum's establishment band has two recorded ends and an invented shape
+**Decision:** `data/flora/zones/z08_lakeshore.json` and `z09_sand_prairie.json` carry a
+`woody_stratum.establishes_m` of **[1.22, 2.32]** metres above the summer-1835 water surface,
+and both renderers thin their woody roles across it with a **smooth Hermite ramp** — nothing
+below 1.22 m, the full recorded density at and above 2.32 m, `t²(3−2t)` between. **The two
+ends are recorded. The shape between them is this project's.** No source states either a step
+or a ramp, or any establishment elevation for lake sand at all.
+**Why:** Andreas excepts "the sandy hills near the lake" from the North Division timber, and
+the exception is to the HILLS. `chicagology_prefire274` describes "the white sand hills both to
+the north and south" and, as a separate feature, the long low sandy barrier ridge that
+deflected the river south — two landforms in one paragraph. Until T-1056 the renderers knew
+only the first: `z08_lakeshore` and `z09_sand_prairie` are `kind: "everywhere"` boxes whose own
+notes say "the north-south bounds are the scene's own, not the belt's", the sand bar falls
+inside both, and the shrub pass deals from `shrubShare` on a uniform lattice over the whole
+extent. So the bar across the river mouth was planted with a stabilised back-dune's scrub —
+sand cherry, *Salix cordata*, red-osier, juniper, and z09's fire-set-back black-oak grubs —
+and with the dune's three poplars, at the recorded density, evenly. Measured on the committed
+`e1834_harbor_cut` heightfield at 5 m spacing: **849 woody clumps on 8.5 ha of bar**, on a
+surface Fort Dearborn work parties trenched with hand tools between 1816 and 1828 and a
+February 1834 storm breached outright.
+**The ends:** 2.32 m is +7.6 ft, the floor of the relict-ridge belt as `z09_sand_prairie`'s own
+extent note records it (+7.6 to +9.5 ft above the water) — the elevation of the ground the
+sources call a hill. 1.22 m is +4 ft, the bar crest
+`data/terrain/epochs/e1834_harbor_cut/terrain_spec.json` `islands[0]` argues for at length from
+the trenching and the breach, and flags as the one chosen land surface in the box. Cowles 1901
+reads this shore landform by landform and puts woody growth on the STABILISED dune, with none
+on the active strand. Ground the lake still reworks does not hold a sand cherry.
+**What is invented:** only the interpolation. A step at either end would have been an equally
+unsourced choice and a more confident-looking one; the ramp says "somewhere in here" in the
+shape of the thing it is uncertain about. `tools/validate.py` refuses a
+`woody_stratum.establishes_m` whose two ends are equal, so the band cannot be quietly
+collapsed into the step it is not.
+**Consequence, measured on the committed heightfield at 5 m spacing:** the bar loses its woody
+stratum entirely — 584 clumps from z08 and 265 from z09 at their recorded midpoints, to a mean
+retained factor of 0.00007, because the modelled bar is dead flat within 2 cm of its own argued
+crest and therefore sits at the very bottom of the band. Its beach grass is untouched: marram
+at 30–60 % cover thinned by z08's own `matrix_fraction` of 0.35, sand reed, little bluestem,
+the foredune forbs, and 8a's two prostrate mats. **The sand prairie's ridges keep their grubs**
+— 11,741 land samples at a mean factor of 0.806, 1,419 of 1,761 clumps — and what thins is the
+low ground between the ridges, which is that record's own claim applied rather than a new one.
+**Nothing outside the two sand zones moves at all:** the other eight communities carry no
+`woody_stratum` block, and their factor is exactly 1.000 at every sample.
+**What this does NOT deliver:** "low scrub in pockets" on the bar. The mechanism is there and
+needs no exclusion polygon — wherever the bar's surface rises into the band, scrub returns by
+itself — but the committed bar is a flat plate at its crest, so there is no higher ground for a
+pocket to stand on. If the crest is ever re-argued upward, which `islands[0]`'s note explicitly
+invites, the scrub comes back without an edit to this file or to either renderer.
+**How to resolve:** a source giving an establishment elevation, a modern remnant survey of a
+comparable Lake Michigan foredune adopted as a proxy and recorded as such, or a bar surface
+with relief on it. Any of the three replaces the ramp with something argued.
+**Ticket:** T-1056. **Related:** **L32** (the density reading whose companion field this
+entry refuses to press into service), T-0940 (the parent ask this bound is the second half of),
+T-1055 (the ground-colour half of the same defect).
+**Recorded:** 2026-09-12 (T-1056).
