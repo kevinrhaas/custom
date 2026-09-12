@@ -3,6 +3,38 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 497,
+      "takenAt": "2026-09-12T12:06:05.814Z",
+      "ref": "steward/t-1065-piers-and-lighthouse",
+      "commit": "a6cd6f00db76",
+      "devCommit": "578d95d09268",
+      "treeHash": "sha256:4b1da378e63792d8",
+      "treeDirty": false,
+      "changelogHash": "sha256:abdb5a23c2a2bb20",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.8,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d1112b.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "1",
       "parts": [
         1
@@ -1624,37 +1656,6 @@
         ]
       },
       "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 80,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 80,
-      "takenAt": "2026-09-12T02:51:50.287Z",
-      "ref": "steward/t-1040-out-of-town-readings",
-      "commit": "d7968a2e4cd4",
-      "devCommit": "2ae64236e2f5",
-      "treeHash": "sha256:32511dd34a58dd56",
-      "treeDirty": false,
-      "changelogHash": "sha256:072acec28f290494",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4.1,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke_m3.log"
     },
     {
       "viewport": "desktop",
