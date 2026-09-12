@@ -1,7 +1,7 @@
 ---
 id: T-0877
 title: The School Section's twelve north-south lines are read and not committed: Des Plaines, Jefferson, Clinton, Canal, Market, Wells and Clark run south of Madison and five more tiers carry no name
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1212
 claimed_by: run 9/12/2026, 4:36:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T22:32:17.308Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34720157159
 ---
 
