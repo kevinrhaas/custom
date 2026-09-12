@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Wabansia, the oldest addition at Chicago, gets its streets read', kind: 'change', ts: '', date: '',
+  { v: 778, title: 'Wabansia, the oldest addition at Chicago, gets its streets read', kind: 'change', ts: '2026-09-12T12:25:03.349Z', date: 'Sep 12, 2026, 7:25 AM CT',
     items: [
       'West of the north branch and north of Kinzie Street, J. S. Wright\u2019s 1834 survey draws a whole platted town this reconstruction has never carried one line of: Wabansia, laid out in 1831 on the Kinzie family\u2019s claim \u2014 two years before Kinzie\u2019s Addition, and the earliest speculative subdivision at Chicago. Eight streets, some seventy-nine numbered blocks, and a wedge of narrow river-front lots between the grid and the water.',
       'Its east-west streets are now read: Free, Trade, Sailors, Hight, Owen, Hubbard, and Kinzie Street as the tract\u2019s south line. Each is a pair of ruled lines found by projecting the ink of a window of the sheet onto one axis and taking the sharp narrow peaks, and each is recorded with the exact rectangle of the sheet it was read in.',
