@@ -1796,14 +1796,23 @@ October 1831. So the shape everybody repeats about this lighthouse is a descript
 that fell down. The record grades the material `inferred` on a real argument (Samuel Jackson
 built both towers under the same appropriation on the same site, and the first was masonry) and
 the shape `conjectural`, and the taper this archetype builds is admitted here.
-**Consequence:** the most distinctive small object at the river mouth is a shape we chose. Its
-position is worse: adjacency to the fort is documented three ways and the offset is a bearing and
-a distance we picked.
+**Consequence:** the most distinctive small object at the river mouth is a shape we chose.
+**Its position no longer is, and that half of this entry is retired — T-1065, 2026-09-12.**
+Wright's 1834 sheet draws a ring with *L. House* lettered round it, west of the fort at the
+inside of the bend, and the tower now stands where that glyph does: local E +1055.6, N +172.5,
+graded `inferred` on the sheet, 75.3 m south-west of the bearing-and-distance we had picked and
+3.4 times the reading's own uncertainty away from it. The reading is committed at
+`data/traces/wright_1834_lighthouse_glyph.json` and `tools/measure_wright_lighthouse.py` holds
+the coordinate to it on every gate. What the sheet does not supply is the tower itself — a
+twenty-metre ring for a forty-foot tower locates the thing and does not measure it — so the
+shape, the taper, the cap, the finish and the footprint are still ours, and that is what remains
+of this entry.
 **How to resolve:** the Light-House Board's annual reports, a keeper's return, or any of the
 several 1840s and 1850s views of the fort — the tower stands in the 1850 daguerreotype and the
 1855 photograph, and a measured reading of either would settle the shape at once.
-**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.position`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
+**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
 **Recorded:** 2026-08-11.
+**Revised:** 2026-09-12 (T-1065) — `chicago_lighthouse_1832.tower_1832.position` removed from the covers list, because it stopped being a liberty. The entry is not moved to Resolved: three of its four values are still invented and the shape, which is what it was written about, is one of them.
 
 ### L45 — The garrison garden: a fence read from a drawing convention, and a planting not drawn
 **Decision:** `fort_dearborn_garrison_garden` is built as a worm rail fence round a square of

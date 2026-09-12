@@ -49,12 +49,30 @@ The exclusions entry has been amended. The record grades:
   contractor built both towers under the same appropriation on the same site, and the
   first had three-foot walls, which is masonry. That the second was masonry too is
   likely; that it was any particular stone is not claimed;
-- **shape, taper, cap, finish, diameter, footprint, position** — `conjectural`. **L44**
-  owns them.
+- **shape, taper, cap, finish, diameter, footprint** — `conjectural`. **L44** owns them.
+- **position** — `inferred` since 2026-09-12, on Wright 1834. It left L44 that day; see § 3.
 
 ## 3. Position
 
-Adjacency is documented three ways and the offset is invented.
+**Read off Wright's sheet, 2026-09-12 (T-1065).** Wright's 1834 map draws a ring with
+*L. House* lettered round it, on the south bank west of the fort at the inside of the bend.
+Its centre reads at resource pixel **(2941, 1604)** on the BPL master scan, which through this
+project's fitted affine is **local E +1055.6, N +172.5** — 107.9 m from the fort's centre on a
+bearing of 243°. That is the first independent witness this placement has ever had. The
+reading, its two independent picks, its uncertainty budget and its crops are committed at
+`data/traces/wright_1834_lighthouse_glyph.json`, and `tools/measure_wright_lighthouse.py`
+recomputes the record's coordinate from that pixel on every gate.
+
+**It moved the tower 75.3 m south-west.** The reading's combined uncertainty is 22.4 m — 1.4 m
+picking, 10 m for the half-width of a ring drawn twenty metres across for a forty-foot tower,
+20 m for the affine here — so the disagreement is 3.4σ. The point it replaced was invented; the
+grade goes `reconstructed` → `inferred` and the quadrant goes west-north-west → west-south-west.
+Two things corroborate rather than argue: the new point stands on dry modelled ground at +2.48 m
+(the old one had to be nudged onto the bank top in August 2026 after the heightfield finally
+reached this far east and found the first pick standing in the channel), and it sits 40.9 m
+inside the derived reservation tract where the old point sat 20.8 m inside it.
+
+Before that reading, adjacency was documented three ways and the offset was invented.
 
 - Andreas: "Fort Dearborn and the light-house are placed at the angle thus formed" — the
   bend where the river turned south.
@@ -64,9 +82,16 @@ Adjacency is documented three ways and the offset is invented.
 - Fergus, of the 1850 view: River Street runs between the block-house and the
   light-keeper's.
 
-All of that says *close*, and *north or west*, and *near the water*. The record puts it
-about **65 m north-west of the fort's centre** on the river bank, `conjectural`, with the
-uncertainty stated at nearer 60 m than the 20 m the rest of the complex carries.
+All of that says *close*, and *north or west*, and *near the water*, and the record turned it
+into a bearing and a distance of our own.
+
+**How the three fare against Wright.** Andreas agrees, and better than he did: the ring is at
+the inside of the very bend he names. Fergus's 1850 note is about a keeper's dwelling that is
+not modelled and a street of 1850, so it neither confirms nor refuses. **Wentworth disagrees** —
+lots near the Rush Street bridge are north of the river and the ring is south of it. A sheet
+surveyed a year before the scene is preferred to a recollection written five years after it
+about which lots a disposal covered, but nothing here shows Wentworth wrong. If his lots are
+ever plotted, this reading is the thing they test.
 
 ## 4. Keepers
 
@@ -80,4 +105,6 @@ dwelling is modelled — a small house beside the tower is plausible and unattes
 
 The Light-House Board's annual reports; a keeper's return; or a measured reading of the
 1850 von Schneidau daguerreotype or the 1855 Hesler photograph, in both of which the tower
-stands. Any of those settles the shape at once and would move most of L44 to Resolved.
+stands. Any of those settles the **shape** at once and would move the rest of L44 to Resolved —
+the position left it on 2026-09-12. For the position, what is left to want is a second
+contemporary sheet, or Wentworth's 1839 lots plotted against this point.
