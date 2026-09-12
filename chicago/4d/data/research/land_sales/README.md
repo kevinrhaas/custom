@@ -1375,6 +1375,71 @@ seventy-two have been ruled: 46 upheld, 26 refused, across five cohorts.** The c
 `ruled` block reads **135 upheld, 1 named, 74 refused, 0 unruled** for the domain entire.
 T-1034 closes on that count and not on 'there was nothing left'.
 
+## The two Newberrys the register writes (T-0396)
+
+**The question.** T-1034 upheld `NEWBERRY W L` and `NEWBERRY WALTER L` onto
+`newberry_walter_loomis` on the middle initial, and deliberately did not rule on the S
+side of the same surname — the register also writes **WALTER S** and **W S**, and no
+volume of this corpus prints a Walter S. Newberry. Fergus 1839, Fergus 1843 and Norris
+1844 print `Newberry, Walter L.` and `Newberry, Walter Loomis` and no other forename of
+that surname at all. So either the register holds a purchaser the town never printed, or
+the S is a misreading of the L. **$11,950 of the town's own ground turns on it** — lot 1
+of block 3 of the original town, the second largest of the 619.
+
+**What the S rows actually are, counted as entry events and not as rows.** The twelve
+rows are not twelve witnesses:
+
+| the reading | rows | where | when | money |
+|---|---|---|---|---|
+| `NEWBERRY WALTER S` | ls0288–ls0293, purchase nos **0371964–0371969, consecutive** | one page — vol 818 p 010, sec 16 T39N R14E | the school-section auction, 22–24 Oct 1833 | $809.00 |
+| `NEWBERRY W S` | ls1392, purchase no 0365409 | vol L5A p 001, lot 1 of block 3, code `CHIOT` | 20 June 1836, canal sale | $11,950.00 |
+| `NEWBERRY WALTER L` | ls0596, ls0823, ls0850, ls0851, ls0871, ls0872 | vol 687 pp 188–189, 260, the ring townships | 26–27 June 1835, federal cash entries | $644.00 |
+| `NEWBERRY W L` | ls1391, purchase no 0365410 | vol L5A p 002, lot 8 of block 3, code `CHIOTVO` | 20 June 1836, canal sale | $8,290.00 |
+
+The six 1833 rows are **six consecutive purchase numbers on one page of one volume**, and
+`ls0287` — purchase no 0371963, the bare surname `NEWBERRY`, $163.50 for block 106 — sits
+immediately above them in the same run, on the same page, in the same auction. That is
+**one act of entry**, whoever made it, and seven consecutive rows of it give the forename
+six times and omit it once. The 1836 row is a second act, on another volume and another
+kind of sale. So the register's S is attested **twice independently**, not twelve times —
+and twice is enough to refuse a transcription accident and nowhere near enough to mint a
+man.
+
+**What the deposit can and cannot settle.** `NEWBERRY WALTER S` appears in
+`isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv` and again in
+`isa_land_tract_sales_cook_county_list_through_1836.tsv`; `NEWBERRY W S` in the town-lot
+deposit and the county list. Those are two separately-run queries, so **the S is the
+Illinois State Archives' own field value and not this project's misreading of a page** —
+this domain reads a database, not a manuscript, and there is no page image here for a
+run to go back to. What two queries of one database cannot do is corroborate the
+ARCHIVES' reading of the ledger. The letters this register's own transcribers confuse are
+recorded nowhere in the deposit, so a preference for L over S would be a palaeographic
+claim made without the palaeography.
+
+**The 1836 pair is the sharpest form of the question and it does not answer it.** Lots 1
+and 8 of block 3 were entered on one morning at **adjacent purchase numbers** (0365409,
+0365410) on consecutive pages of vol L5A. Either the register wrote one man's middle
+initial two ways in two consecutive entries, or two Newberrys bought lots in one block on
+one day. Both are ordinary. The town codes differ too — `CHIOT` against `CHIOTVO`, whose
+trailing letters T-1033 could not tell from a void marker — which is a second respect in
+which two adjacent rows disagree, and it argues the same way: this is a page that would
+repay being looked at.
+
+**The ruling: the mechanical refusal stands, and it is a refusal and not a finding of
+absence.** `resident_crosswalk.json` already refuses `NEWBERRY WALTER S` and `NEWBERRY
+W S` against Walter Loomis Newberry `refused_on_the_middle_initial`, and nothing found
+here overturns it: the S is the source's own, the project does not correct a clerk, and
+upholding it would take the middle initial — the very token that carried the L rows in
+T-0700 and T-1034 — and discard it the moment it became inconvenient. That is the
+WENTWORTH test, and it has to fail as readily as it passes. **So the school section's
+$809 and lot 1 of block 3's $11,950 attach to nobody this town holds**, and they are
+carried that way rather than quietly folded onto the one Newberry the layer has.
+
+**What would resolve it, and it is not in this corpus.** The register volumes themselves
+— vol 818 p 010 and vol L5A p 001 — at the Illinois State Archives. No printed Chicago
+directory or newspaper of 1835–1844 can, because the whole difficulty is that none of
+them prints the name.
+
 ## A row is not a parcel, asked of the town lots — and answered the other way (T-1039)
 
 T-0885 asked this of the October 1833 school-section auction and found duplication it could
