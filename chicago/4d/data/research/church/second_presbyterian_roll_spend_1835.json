@@ -10,12 +10,12 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.",
  "counts": {
-  "roll_records": 937,
-  "matched": 81,
-  "ambiguous_not_spent": 35,
-  "refused_not_spent": 316,
-  "people_written": 81,
-  "households_touched": 80,
+  "roll_records": 941,
+  "matched": 80,
+  "ambiguous_not_spent": 36,
+  "refused_not_spent": 320,
+  "people_written": 80,
+  "households_touched": 79,
   "married_womens_entries": 32,
   "grades_changed": 0
  },
@@ -559,12 +559,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Holbrook' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0601, printed page 189"
+    "second_presb_0603, printed page 189"
    ],
    "as_read": [
     "Holbrook, Miss Julia T. | Profession. | May 2, 1858. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Holbrook, Miss Julia T. | Profession. | May 2, 1858. | Dismissed.” (second_presb_0601, printed page 189), admitted 1858-05-02 by profession. Under the rule that decided it: Surname 'Holbrook' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Holbrook, Miss Julia T. | Profession. | May 2, 1858. | Dismissed.” (second_presb_0603, printed page 189), admitted 1858-05-02 by profession. Under the rule that decided it: Surname 'Holbrook' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "howe_sarah_d",
@@ -573,12 +573,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Howe' folds to the same string as the roll line's, and the given name of both begins S.",
    "roll_lines": [
-    "second_presb_0615, printed page 190"
+    "second_presb_0617, printed page 190"
    ],
    "as_read": [
     "Howe, Mrs. Susan N. | Letter. | May I, 1859. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Howe, Mrs. Susan N. | Letter. | May I, 1859. | Dismissed.” (second_presb_0615, printed page 190), admitted 1859-05-01 by letter. Under the rule that decided it: Surname 'Howe' folds to the same string as the roll line's, and the given name of both begins S. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Howe, Mrs. Susan N. | Letter. | May I, 1859. | Dismissed.” (second_presb_0617, printed page 190), admitted 1859-05-01 by letter. Under the rule that decided it: Surname 'Howe' folds to the same string as the roll line's, and the given name of both begins S. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "hunter_edward_e",
@@ -587,12 +587,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins E.",
    "roll_lines": [
-    "second_presb_0637, printed page 191"
+    "second_presb_0639, printed page 191"
    ],
    "as_read": [
     "Hunter, Mrs. Electa | Letter. | November 3, 1848. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Hunter, Mrs. Electa | Letter. | November 3, 1848. | Dismissed.” (second_presb_0637, printed page 191), admitted 1848-11-03 by letter. Under the rule that decided it: Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Hunter, Mrs. Electa | Letter. | November 3, 1848. | Dismissed.” (second_presb_0639, printed page 191), admitted 1848-11-03 by letter. Under the rule that decided it: Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "hunter_robert",
@@ -601,12 +601,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins R.",
    "roll_lines": [
-    "second_presb_0639, printed page 191"
+    "second_presb_0641, printed page 191"
    ],
    "as_read": [
     "Hunter, Robert | Letter. | December 27, 1843. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Hunter, Robert | Letter. | December 27, 1843. | Dismissed.” (second_presb_0639, printed page 191), admitted 1843-12-27 by letter. Under the rule that decided it: Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins R. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Hunter, Robert | Letter. | December 27, 1843. | Dismissed.” (second_presb_0641, printed page 191), admitted 1843-12-27 by letter. Under the rule that decided it: Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins R. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "johnson_lathrop",
@@ -629,12 +629,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Jordan' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0647, printed page 191"
+    "second_presb_0649, printed page 191"
    ],
    "as_read": [
     "Jordan, James O. | Letter. | October 30, 1872. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Jordan, James O. | Letter. | October 30, 1872. | Dismissed.” (second_presb_0647, printed page 191), admitted 1872-10-30 by letter. Under the rule that decided it: Surname 'Jordan' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Jordan, James O. | Letter. | October 30, 1872. | Dismissed.” (second_presb_0649, printed page 191), admitted 1872-10-30 by letter. Under the rule that decided it: Surname 'Jordan' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "knox_archibald",
@@ -657,12 +657,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Lawrence' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0668, printed page 192"
+    "second_presb_0670, printed page 192"
    ],
    "as_read": [
     "Lawrence, James A. | Profession. | September 2, 1874. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Lawrence, James A. | Profession. | September 2, 1874. | Dismissed.” (second_presb_0668, printed page 192), admitted 1874-09-02 by profession. Under the rule that decided it: Surname 'Lawrence' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Lawrence, James A. | Profession. | September 2, 1874. | Dismissed.” (second_presb_0670, printed page 192), admitted 1874-09-02 by profession. Under the rule that decided it: Surname 'Lawrence' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "marshall_j_a",
@@ -671,12 +671,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Marshall' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0684, printed page 193"
+    "second_presb_0686, printed page 193"
    ],
    "as_read": [
     "Marshall, Mrs. J. A. | Letter. | June 30, 1848. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Marshall, Mrs. J. A. | Letter. | June 30, 1848. | Dismissed.” (second_presb_0684, printed page 193), admitted 1848-06-30 by letter. Under the rule that decided it: Surname 'Marshall' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Marshall, Mrs. J. A. | Letter. | June 30, 1848. | Dismissed.” (second_presb_0686, printed page 193), admitted 1848-06-30 by letter. Under the rule that decided it: Surname 'Marshall' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "merrill_george_w",
@@ -685,12 +685,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Merrill' folds to the same string as the roll line's, and the given name of both begins G.",
    "roll_lines": [
-    "second_presb_0702, printed page 194"
+    "second_presb_0704, printed page 194"
    ],
    "as_read": [
     "Merrill, George W. | Letter. | June I, 1842. | Deceased,"
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Merrill, George W. | Letter. | June I, 1842. | Deceased,” (second_presb_0702, printed page 194), admitted 1842-06-01 by letter. Under the rule that decided it: Surname 'Merrill' folds to the same string as the roll line's, and the given name of both begins G. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Merrill, George W. | Letter. | June I, 1842. | Deceased,” (second_presb_0704, printed page 194), admitted 1842-06-01 by letter. Under the rule that decided it: Surname 'Merrill' folds to the same string as the roll line's, and the given name of both begins G. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "miller_samuel",
@@ -699,12 +699,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S.",
    "roll_lines": [
-    "second_presb_0708, printed page 195"
+    "second_presb_0710, printed page 195"
    ],
    "as_read": [
     "Miller, Mrs. Sarah | Profession. | February 25, 1874. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Miller, Mrs. Sarah | Profession. | February 25, 1874. | Dismissed.” (second_presb_0708, printed page 195), admitted 1874-02-25 by profession. Under the rule that decided it: Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Miller, Mrs. Sarah | Profession. | February 25, 1874. | Dismissed.” (second_presb_0710, printed page 195), admitted 1874-02-25 by profession. Under the rule that decided it: Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "montgomery_l_w",
@@ -713,12 +713,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins L.",
    "roll_lines": [
-    "second_presb_0718, printed page 195"
+    "second_presb_0720, printed page 195"
    ],
    "as_read": [
     "Montgomery, Mrs. Laura A. | . Letter. | January 3, 1851. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Montgomery, Mrs. Laura A. | . Letter. | January 3, 1851. | Dismissed.” (second_presb_0718, printed page 195), admitted 1851-01-03 by letter. Under the rule that decided it: Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins L. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Montgomery, Mrs. Laura A. | . Letter. | January 3, 1851. | Dismissed.” (second_presb_0720, printed page 195), admitted 1851-01-03 by letter. Under the rule that decided it: Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins L. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "montgomery_w",
@@ -727,12 +727,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins W.",
    "roll_lines": [
-    "second_presb_0721, printed page 195"
+    "second_presb_0723, printed page 195"
    ],
    "as_read": [
     "Montgomery, William P. | Letter. | December 29, 1852. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Montgomery, William P. | Letter. | December 29, 1852. | Dismissed.” (second_presb_0721, printed page 195), admitted 1852-12-29 by letter. Under the rule that decided it: Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins W. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Montgomery, William P. | Letter. | December 29, 1852. | Dismissed.” (second_presb_0723, printed page 195), admitted 1852-12-29 by letter. Under the rule that decided it: Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins W. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "moore_henry",
@@ -769,12 +769,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Nelson' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0748, printed page 196"
+    "second_presb_0750, printed page 196"
    ],
    "as_read": [
     "Nelson, Miss Jane | Profession. | September 30, 1870. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Nelson, Miss Jane | Profession. | September 30, 1870. | Dismissed.” (second_presb_0748, printed page 196), admitted 1870-09-30 by profession. Under the rule that decided it: Surname 'Nelson' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Nelson, Miss Jane | Profession. | September 30, 1870. | Dismissed.” (second_presb_0750, printed page 196), admitted 1870-09-30 by profession. Under the rule that decided it: Surname 'Nelson' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "ogden_w_b",
@@ -811,12 +811,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Price' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0783, printed page 198"
+    "second_presb_0785, printed page 198"
    ],
    "as_read": [
     "Price, Jeremiah | Letter. | August 7, 1843. | Deceased."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Price, Jeremiah | Letter. | August 7, 1843. | Deceased.” (second_presb_0783, printed page 198), admitted 1843-08-07 by letter. Under the rule that decided it: Surname 'Price' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Price, Jeremiah | Letter. | August 7, 1843. | Deceased.” (second_presb_0785, printed page 198), admitted 1843-08-07 by letter. Under the rule that decided it: Surname 'Price' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "reynolds_joseph",
@@ -825,12 +825,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Reynolds' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0788, printed page 199"
+    "second_presb_0790, printed page 199"
    ],
    "as_read": [
     "Reynolds. Mrs. J. E. | Profession. | March 2, 1844. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Reynolds. Mrs. J. E. | Profession. | March 2, 1844. | Dismissed.” (second_presb_0788, printed page 199), admitted 1844-03-02 by profession. Under the rule that decided it: Surname 'Reynolds' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Reynolds. Mrs. J. E. | Profession. | March 2, 1844. | Dismissed.” (second_presb_0790, printed page 199), admitted 1844-03-02 by profession. Under the rule that decided it: Surname 'Reynolds' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "roberts_edmund",
@@ -839,12 +839,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Roberts' folds to the same string as the roll line's, and the given name of both begins E.",
    "roll_lines": [
-    "second_presb_0792, printed page 199"
+    "second_presb_0794, printed page 199"
    ],
    "as_read": [
     "Roberts, Mrs. Eveline | Profession. | May 4, 1858. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Roberts, Mrs. Eveline | Profession. | May 4, 1858. | Dismissed.” (second_presb_0792, printed page 199), admitted 1858-05-04 by profession. Under the rule that decided it: Surname 'Roberts' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Roberts, Mrs. Eveline | Profession. | May 4, 1858. | Dismissed.” (second_presb_0794, printed page 199), admitted 1858-05-04 by profession. Under the rule that decided it: Surname 'Roberts' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "rogers_edward_a",
@@ -853,12 +853,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Rogers' folds to the same string as the roll line's, and the given name of both begins E.",
    "roll_lines": [
-    "second_presb_0797, printed page 199"
+    "second_presb_0799, printed page 199"
    ],
    "as_read": [
     "Rogers, Edward J. | Profession. | January 12, 1877. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Rogers, Edward J. | Profession. | January 12, 1877. | Dismissed.” (second_presb_0797, printed page 199), admitted 1877-01-12 by profession. Under the rule that decided it: Surname 'Rogers' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Rogers, Edward J. | Profession. | January 12, 1877. | Dismissed.” (second_presb_0799, printed page 199), admitted 1877-01-12 by profession. Under the rule that decided it: Surname 'Rogers' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "scott_john",
@@ -895,12 +895,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins H.",
    "roll_lines": [
-    "second_presb_0810, printed page 200"
+    "second_presb_0812, printed page 200"
    ],
    "as_read": [
     "Sherman, Howard | Letter. | December 29, 1852. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Sherman, Howard | Letter. | December 29, 1852. | Dismissed.” (second_presb_0810, printed page 200), admitted 1852-12-29 by letter. Under the rule that decided it: Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins H. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Sherman, Howard | Letter. | December 29, 1852. | Dismissed.” (second_presb_0812, printed page 200), admitted 1852-12-29 by letter. Under the rule that decided it: Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins H. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "simmons_marion",
@@ -937,12 +937,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Skinner' folds to the same string as the roll line's, and the given name of both begins H.",
    "roll_lines": [
-    "second_presb_0823, printed page 201"
+    "second_presb_0825, printed page 201"
    ],
    "as_read": [
     "Skinner, HoUis R. | Letter. | October 29, 1856. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Skinner, HoUis R. | Letter. | October 29, 1856. | Dismissed.” (second_presb_0823, printed page 201), admitted 1856-10-29 by letter. Under the rule that decided it: Surname 'Skinner' folds to the same string as the roll line's, and the given name of both begins H. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Skinner, HoUis R. | Letter. | October 29, 1856. | Dismissed.” (second_presb_0825, printed page 201), admitted 1856-10-29 by letter. Under the rule that decided it: Surname 'Skinner' folds to the same string as the roll line's, and the given name of both begins H. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "skinner_joseph",
@@ -993,12 +993,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Starkweather' folds to the same string as the roll line's, and the given name of both begins R.",
    "roll_lines": [
-    "second_presb_0855, printed page 202"
+    "second_presb_0857, printed page 202"
    ],
    "as_read": [
     "Starkweather, Ralph E. | Profession. | April 27, 1859. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Starkweather, Ralph E. | Profession. | April 27, 1859. | Dismissed.” (second_presb_0855, printed page 202), admitted 1859-04-27 by profession. Under the rule that decided it: Surname 'Starkweather' folds to the same string as the roll line's, and the given name of both begins R. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Starkweather, Ralph E. | Profession. | April 27, 1859. | Dismissed.” (second_presb_0857, printed page 202), admitted 1859-04-27 by profession. Under the rule that decided it: Surname 'Starkweather' folds to the same string as the roll line's, and the given name of both begins R. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "steel_richard",
@@ -1007,12 +1007,12 @@
    "grade_left_alone": "inferred",
    "rule": "Surname 'Steel' folds to the same string as the roll line's, and the given name of both begins R.",
    "roll_lines": [
-    "second_presb_0859, printed page 202"
+    "second_presb_0861, printed page 202"
    ],
    "as_read": [
     "Steel, Mrs. Rebecca A. | Profession. | April 30, 1847. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Steel, Mrs. Rebecca A. | Profession. | April 30, 1847. | Dismissed.” (second_presb_0859, printed page 202), admitted 1847-04-30 by profession. Under the rule that decided it: Surname 'Steel' folds to the same string as the roll line's, and the given name of both begins R. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Steel, Mrs. Rebecca A. | Profession. | April 30, 1847. | Dismissed.” (second_presb_0861, printed page 202), admitted 1847-04-30 by profession. Under the rule that decided it: Surname 'Steel' folds to the same string as the roll line's, and the given name of both begins R. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "stewart_james",
@@ -1063,12 +1063,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C.",
    "roll_lines": [
-    "second_presb_0873, printed page 203"
+    "second_presb_0875, printed page 203"
    ],
    "as_read": [
     "Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.” (second_presb_0873, printed page 203), admitted 1843 by letter. Under the rule that decided it: Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.” (second_presb_0875, printed page 203), admitted 1843 by letter. Under the rule that decided it: Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "taylor_charles",
@@ -1077,12 +1077,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C.",
    "roll_lines": [
-    "second_presb_0873, printed page 203"
+    "second_presb_0875, printed page 203"
    ],
    "as_read": [
     "Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.” (second_presb_0873, printed page 203), admitted 1843 by letter. Under the rule that decided it: Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.” (second_presb_0875, printed page 203), admitted 1843 by letter. Under the rule that decided it: Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "thacker_ailen_d",
@@ -1099,32 +1099,18 @@
    "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Thacker, Mrs. Anna Rommeiss | Letter. | March 21, 1888.” (second_presb_0328, printed page 172), admitted 1888-03-21 by letter. Under the rule that decided it: Surname 'Thacker' folds to the same string as the roll line's, and the given name of both begins A. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
-   "person_id": "thompson_lieut_j_l",
-   "household_id": "hh_thompson_lieut_j_l",
-   "resident_name": "Lieut J L Thompson",
-   "grade_left_alone": "attested",
-   "rule": "Surname 'Thompson' folds to the same string as the roll line's, and the given name of both begins L.",
-   "roll_lines": [
-    "second_presb_0335, printed page 173"
-   ],
-   "as_read": [
-    "Thompson, Leveret | Profession. | November 29, 1889."
-   ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Thompson, Leveret | Profession. | November 29, 1889.” (second_presb_0335, printed page 173), admitted 1889-11-29 by profession. Under the rule that decided it: Surname 'Thompson' folds to the same string as the roll line's, and the given name of both begins L. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
-  },
-  {
    "person_id": "wight_j_ambrose",
    "household_id": "hh_wight_j_ambrose",
    "resident_name": "J Ambrose Wight",
    "grade_left_alone": "attested",
    "rule": "Surname 'Wight' folds to the same string as the roll line's, and the given name of both begins J.",
    "roll_lines": [
-    "second_presb_0910, printed page 205"
+    "second_presb_0914, printed page 205"
    ],
    "as_read": [
     "Wight, J. Ambrose | Letter. | October 28, 1843. Ordained | to Miniitry"
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Wight, J. Ambrose | Letter. | October 28, 1843. Ordained | to Miniitry” (second_presb_0910, printed page 205), admitted 1843-10-28 by letter. Under the rule that decided it: Surname 'Wight' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Wight, J. Ambrose | Letter. | October 28, 1843. Ordained | to Miniitry” (second_presb_0914, printed page 205), admitted 1843-10-28 by letter. Under the rule that decided it: Surname 'Wight' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   },
   {
    "person_id": "williams_charles_c",
@@ -1147,12 +1133,12 @@
    "grade_left_alone": "attested",
    "rule": "Surname 'Williams' folds to the same string as the roll line's, and the given name of both begins E.",
    "roll_lines": [
-    "second_presb_0914, printed page 205"
+    "second_presb_0918, printed page 205"
    ],
    "as_read": [
     "Williams, Edward M. | Profession. | April 30, 1852. | Dismissed."
    ],
-   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Williams, Edward M. | Profession. | April 30, 1852. | Dismissed.” (second_presb_0914, printed page 205), admitted 1852-04-30 by profession. Under the rule that decided it: Surname 'Williams' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
+   "told": "THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Williams, Edward M. | Profession. | April 30, 1852. | Dismissed.” (second_presb_0918, printed page 205), admitted 1852-04-30 by profession. Under the rule that decided it: Surname 'Williams' folds to the same string as the roll line's, and the given name of both begins E. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once."
   }
  ]
 }

@@ -68,7 +68,10 @@ OUT = os.path.join(ROOT, "data/research/directories/fergus_1839_crosswalk_1835.j
 
 FOLD = [(r"[^a-z]", ""), (r"^mc", "mac"), (r"^m$", ""), (r"ii", "n"), (r"rn", "m"),
         (r"vv", "w"), (r"1", "l"), (r"0", "o")]
-TITLES = ("mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "hon", "esq")
+# The titles are name_agreement's vocabulary, imported rather than restated
+# (T-0987 stretch 8): four crosswalks each carried their own copy, the copies
+# drifted, and not one of them held a rank spelled out in full.
+TITLES = na.TITLES + na.SUFFIXES
 
 
 def fold(name: str) -> str:
@@ -89,16 +92,29 @@ def initial(given: str) -> str:
 
 
 def split_name(name: str):
-    """A pool name as surname + given. 'W. H. Adams' and 'Adams, W. H.' both work."""
+    """A pool name as surname + given. 'W. H. Adams' and 'Adams, W. H.' both work.
+
+    A name that is a RANK and a surname and NOTHING ELSE — `Major Handy`,
+    `Judge Silver`, `Jun Marknoble` — returns an EMPTY given (T-0987 stretch 8).
+    It used to return the rank AS the given, so the pool keyed Major Handy on the
+    M of Major and met `Handy, Major` on it: a match made on a rank on both sides
+    and not on a man. It must not swing to returning nothing at all either, which
+    is what the old `len(parts) < 2` would now do — a row dropped here is a row no
+    refusal is ever filed for, and clause 1 of this programme asks that nothing be
+    left silent. So the surname is kept and the given is empty, and the caller
+    files the refusal that names the missing forename.
+    """
     name = (name or "").strip()
     if "," in name:
         surname, given = name.split(",", 1)
         return surname.strip(" ."), given.strip(" .")
     parts = [p for p in name.replace(".", ". ").split() if p]
-    parts = [p for p in parts if p.strip(".,").lower() not in TITLES]
-    if len(parts) < 2:
+    kept = [p for p in parts if p.strip(".,").lower() not in TITLES]
+    if len(kept) == 1 and len(parts) > 1:
+        return kept[0].strip(" ."), ""
+    if len(kept) < 2:
         return "", ""
-    return parts[-1].strip(" ."), " ".join(parts[:-1])
+    return kept[-1].strip(" ."), " ".join(kept[:-1])
 
 
 def residents():
@@ -113,7 +129,7 @@ def residents():
             if not name or (p.get("id") or "").endswith("_household"):
                 continue
             surname, given = split_name(name)
-            if not surname or not given:
+            if not surname:
                 continue
             out.append({
                 "name": name, "surname": surname, "given": given,
@@ -133,7 +149,7 @@ def list_pool(path, key, name_of, label_of):
     for row in doc.get(key) or []:
         name = name_of(row)
         surname, given = split_name(name)
-        if not surname or not given:
+        if not surname:
             continue
         out.append({"name": name, "surname": surname, "given": given,
                     "label": label_of(row)})
@@ -191,9 +207,10 @@ def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
                 refused.append({
                     "name": r["name"],
                     "candidates_under_that_surname": len(surnames[f]),
-                    "rule": "The surname %r is in Fergus 1839 and no entry under it carries "
+                    "rule": na.no_forename_refusal(r["name"], r["surname"], "Fergus 1839", len(surnames[f])) if not i else
+                            "The surname %r is in Fergus 1839 and no entry under it carries "
                             "the initial %r of %r. A surname-only agreement is a refusal."
-                            % (r["surname"], (i or "-").upper(), r["name"]),
+                            % (r["surname"], i.upper(), r["name"]),
                 })
             continue
         # T-1038. The card prints an INITIAL that the post office's returns also

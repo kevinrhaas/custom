@@ -8,14 +8,14 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 60,
-  "printed_as_a_residence": 46,
+  "addresses_adjudicated": 61,
+  "printed_as_a_residence": 47,
   "printed_as_a_lodging": 14,
   "placed": 12,
   "placed_as_a_face": 12,
   "placed_with_no_1835_trade": 8,
   "already_better_placed": 0,
-  "refused": 48,
+  "refused": 49,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
@@ -1296,6 +1296,28 @@
     "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "attorney",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "Adams Street is south of Madison, outside the platted town of 1835.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_thompson_lieut_j_l",
+   "person_id": "thompson_lieut_j_l",
+   "person": "Lieut J L Thompson",
+   "address_as_printed": "res Adams, bet Clark and LaSalle",
+   "address_read_as_the_home": null,
+   "kind": "resides",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": null,
    "trade_not_required": true,
    "lives_at_1835": null,
    "outcome": "refused",
