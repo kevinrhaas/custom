@@ -17,7 +17,7 @@
       1.22,
       2.32
     ],
-    "datum": "metres above the summer-1835 water surface, as data/terrain/epochs/*/meta.json emits it",
+    "measured_from": "metres above the summer-1835 water surface, as data/terrain/epochs/*/meta.json emits it",
     "applies_to_roles": [
       "shrub_low",
       "thicket",

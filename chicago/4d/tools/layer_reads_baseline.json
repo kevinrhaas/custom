@@ -58,6 +58,10 @@
     "flora/zone:species[].july.inflorescence.fruit": {
       "records": 31
     },
+    "flora/zone:woody_stratum.measured_from": {
+      "records": 2,
+      "refused_because": "A units declaration, not a figure. It states what woody_stratum.establishes_m's metres are measured from, for a reader of the record and for tools/validate.py, which requires it. A renderer that read it would be a renderer able to convert between datums; if it ever disagreed with the heightfield's own, the right outcome is this gate failing rather than a silent conversion. T-1056."
+    },
     "residents/household:division": {
       "records": 1338,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."

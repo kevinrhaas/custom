@@ -3987,8 +3987,13 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
                     if not bound:
                         rep.error(where, "woody_stratum binds roles this zone records no "
                                          "species in, so the band is unreachable")
-                if not ws.get("datum"):
-                    rep.error(where, "woody_stratum.datum must say what the metres are "
+                # `measured_from` and not `datum`: the token `datum` occurs in nine
+                # renderer files (data/datum.json is the scene's horizontal origin),
+                # and tools/measure_layer_reads.py matches a figure's name against
+                # the renderer text — so a field called `datum` reads as one the
+                # renderers access, which is the opposite of true here.
+                if not ws.get("measured_from"):
+                    rep.error(where, "woody_stratum.measured_from must say what the metres are "
                                      "measured from; an elevation with no datum is a number")
                 check_attested(where, "woody_stratum", ws, source_ids, rep)
                 if ws.get("confidence") == "attested":
