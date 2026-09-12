@@ -1,7 +1,7 @@
 ---
 id: T-0407
 title: The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
-state: claimed
+state: done
 epic: PAPERS
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1171
 claimed_by: run 9/11/2026, 11:12:19 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T05:07:45.429Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34672201367
 ---
 
