@@ -270,6 +270,16 @@ step "the Kinzie Block's reading re-derives from its own pixels and the corpus" 
 step "the Michigan St tract's reading re-derives from its own pixels" \
   python3 tools/read_michigan_st_tract.py --check
 
+# ...and the SEATING of that reading (T-1075). The reading is in the sheet's own fit; the
+# four street lines and the polygon this project committed are that ladder hung on
+# `michigan_north` and `market_north`. Two files hold one statement again, and this one has
+# a standing temptation behind it: the seating stands 38.5 m north of where the sheet draws
+# the tract, so a later pass that "corrects" a line back toward the drawn position, or
+# nudges either datum street for an unrelated reason, would silently detach the tract from
+# the argument its own notes go on making. The gate recomputes all of it every run.
+step "the Michigan St tract is still seated on the two committed lines it was hung from" \
+  python3 tools/seat_michigan_st_tract.py --check
+
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
 # lot polygons, so a hand-nudged building would show up here as drift rather than as a
