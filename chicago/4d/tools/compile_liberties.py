@@ -194,6 +194,19 @@ def _register_survival_liberty_count() -> int:
                if b.get("present_at_scene_date") and b.get("survival_liberty_required"))
 
 
+def _register_backdating_liberty_count() -> int:
+    """Businesses standing at the scene date documented only after it.
+
+    The forward twin of `_register_survival_liberty_count`, and counted the same
+    way and for the same reason: `present_at_scene_date` is asserted here as well
+    as the flag, so this number cannot quietly widen if `compile_register.py` ever
+    carries the flag on a business its own evidence excludes.
+    """
+    doc = json.loads(REGISTER_1835.read_text())
+    return sum(1 for b in doc.get("businesses", [])
+               if b.get("present_at_scene_date") and b.get("backdating_liberty_required"))
+
+
 RESIDENTS_HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
 
@@ -286,6 +299,10 @@ def _land_owner_count() -> int:
 SCOPE_SOURCES = {
     "register_1835.businesses[survival_liberty_required]": (
         _register_survival_liberty_count,
+        "data/research/newspapers/register_1835.json, itself re-derived by "
+        "tools/compile_register.py --check"),
+    "register_1835.businesses[backdating_liberty_required]": (
+        _register_backdating_liberty_count,
         "data/research/newspapers/register_1835.json, itself re-derived by "
         "tools/compile_register.py --check"),
     "residents.persons[letter_list_only]": (
