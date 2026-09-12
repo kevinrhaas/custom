@@ -247,6 +247,14 @@ selftest "…and its own assertions still fire when broken" \
 step "the Kinzie Block's reading re-derives from its own pixels and the corpus" \
   python3 tools/read_kinzie_block_name.py --check
 
+# THE MICHIGAN ST TRACT north of Kinzie Street, split the same way for the same reason
+# (T-0796). The cheap half re-derives every metre, every corridor, both identifications
+# and the section arithmetic from the pixels and RGB triples committed beside them,
+# through the committed affine — so a hand-edited number, a moved border or a retouched
+# swatch fails here. The raster half is `--check-sheet` and the PR runs it.
+step "the Michigan St tract's reading re-derives from its own pixels" \
+  python3 tools/read_michigan_st_tract.py --check
+
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
 # lot polygons, so a hand-nudged building would show up here as drift rather than as a
