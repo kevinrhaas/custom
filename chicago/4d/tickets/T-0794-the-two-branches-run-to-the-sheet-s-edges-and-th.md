@@ -1,7 +1,7 @@
 ---
 id: T-0794
 title: The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: run 9/12/2026, 7:02:24 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-12T12:13:45.458Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34692358283
 ---
 
