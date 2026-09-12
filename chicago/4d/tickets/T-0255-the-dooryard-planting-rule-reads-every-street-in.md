@@ -1,7 +1,7 @@
 ---
 id: T-0255
 title: The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 1:57:25 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34712445241
 ---
 
 `tools/generate_dooryard_plantings.py` seats a house's stems *away from the nearest street* — the
