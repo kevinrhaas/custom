@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The Newberry who was never in Newberry & Dole', kind: 'fix', ts: '',
+  { v: 756, title: 'The Newberry who was never in Newberry & Dole', kind: 'fix', ts: '2026-09-12T03:55:22.597Z', date: 'Sep 11, 2026, 10:55 PM CT',
     items: [
       'Two buildings in this town belong to the forwarding house of Newberry & Dole \u2014 the commission warehouse on the river and the packing plant out on the South Branch \u2014 and both of them named the wrong Newberry. Both said Oliver Newberry, of Detroit, on the authority of a historian writing in 1884. The firm\u2019s own advertisement says otherwise, and it had been in the file all along.',
       'Every printing of the firm\u2019s paid card that mentions Oliver Newberry puts him in its list of REFERENCES, under Detroit \u2014 one correspondent per port, beside Barker & Holt of Buffalo, Calvin Britain at the mouth of the St Joseph and James B. Campbell at Ottawa. A house does not print its own partner as the man to write to in another city.',
