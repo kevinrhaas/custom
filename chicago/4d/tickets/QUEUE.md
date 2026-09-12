@@ -153,7 +153,8 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
-T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
+T-1069 — Wabansia's blocks numbered and its river-front water lots recorded as a lot strip, off Wright's sheet
+T-1070 — Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835
 T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
 T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
