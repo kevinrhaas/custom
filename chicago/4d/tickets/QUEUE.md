@@ -156,7 +156,6 @@ T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, th
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
-T-1060 — Kinzie's Addition's thirteen streets, measured off Wright's sheet and seated on the committed grid
 T-1061 — Kinzie's Addition blocks 1-54, numbered off Wright's sheet with every numeral's crop cited
 T-1062 — The Kinzie Block named off the sheet, and the phrase searched in the newspaper and directory corpus
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
