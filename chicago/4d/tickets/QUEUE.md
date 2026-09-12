@@ -144,7 +144,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
-T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
 T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
 T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
 T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
