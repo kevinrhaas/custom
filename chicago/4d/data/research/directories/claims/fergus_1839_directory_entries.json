@@ -1048,11 +1048,11 @@
    "reading": "transcription_mediated",
    "quote": "Archdale,  jr. ,  John,  contractor,  bds.  John  Archdale",
    "normalized": {
-    "printed_name": "Archdale, jr",
+    "printed_name": "Archdale, jr., John",
     "surname": "Archdale",
-    "given": "jr",
+    "given": "jr., John",
     "firm": false,
-    "occupation": "John, contractor",
+    "occupation": "contractor",
     "address": "bds. John Archdale",
     "streets": [],
     "number_is_1876": false,
@@ -1069,7 +1069,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Archdale, jr"
+    "Archdale, jr., John"
    ],
    "town_finding": false,
    "notes": null
@@ -7086,11 +7086,11 @@
    "reading": "transcription_mediated",
    "quote": "Butterfield,  jr. ,  Justin,  law  student,  Butterfield  &  Collins",
    "normalized": {
-    "printed_name": "Butterfield, jr",
+    "printed_name": "Butterfield, jr., Justin",
     "surname": "Butterfield",
-    "given": "jr",
+    "given": "jr., Justin",
     "firm": false,
-    "occupation": "Justin, law student, Butterfield & Collins",
+    "occupation": "law student, Butterfield & Collins",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -7107,7 +7107,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Butterfield, jr"
+    "Butterfield, jr., Justin"
    ],
    "town_finding": false,
    "notes": null
@@ -16632,11 +16632,11 @@
    "reading": "transcription_mediated",
    "quote": "Frink,  jr. ,  John,  clerk,  Frink  &  Walker",
    "normalized": {
-    "printed_name": "Frink, jr",
+    "printed_name": "Frink, jr., John",
     "surname": "Frink",
-    "given": "jr",
+    "given": "jr., John",
     "firm": false,
-    "occupation": "John, clerk, Frink & Walker",
+    "occupation": "clerk, Frink & Walker",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -16653,7 +16653,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Frink, jr"
+    "Frink, jr., John"
    ],
    "town_finding": false,
    "notes": null
@@ -26569,11 +26569,11 @@
    "reading": "transcription_mediated",
    "quote": "Johnston,  jr. ,  Seth,  student,  Dr.  Stuart",
    "normalized": {
-    "printed_name": "Johnston, jr",
+    "printed_name": "Johnston, jr., Seth",
     "surname": "Johnston",
-    "given": "jr",
+    "given": "jr., Seth",
     "firm": false,
-    "occupation": "Seth, student, Dr. Stuart",
+    "occupation": "student, Dr. Stuart",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -26590,7 +26590,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Johnston, jr"
+    "Johnston, jr., Seth"
    ],
    "town_finding": false,
    "notes": null
@@ -28164,11 +28164,11 @@
    "reading": "transcription_mediated",
    "quote": "King,  jr. ,  John,  merchant,  bds.  Lake  House",
    "normalized": {
-    "printed_name": "King, jr",
+    "printed_name": "King, jr., John",
     "surname": "King",
-    "given": "jr",
+    "given": "jr., John",
     "firm": false,
-    "occupation": "John, merchant",
+    "occupation": "merchant",
     "address": "bds. Lake House",
     "streets": [],
     "number_is_1876": false,
@@ -28185,7 +28185,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "King, jr"
+    "King, jr., John"
    ],
    "town_finding": false,
    "notes": null
@@ -30892,11 +30892,11 @@
    "reading": "transcription_mediated",
    "quote": "Ludwig,  jr. ,  Simon,  cooper,  Simon  Ludwig",
    "normalized": {
-    "printed_name": "Ludwig, jr",
+    "printed_name": "Ludwig, jr., Simon",
     "surname": "Ludwig",
-    "given": "jr",
+    "given": "jr., Simon",
     "firm": false,
-    "occupation": "Simon, cooper, Simon Ludwig",
+    "occupation": "cooper, Simon Ludwig",
     "address": null,
     "streets": [],
     "number_is_1876": false,
@@ -30913,7 +30913,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Ludwig, jr"
+    "Ludwig, jr., Simon"
    ],
    "town_finding": false,
    "notes": null

@@ -9,8 +9,8 @@
   "entries": 1655,
   "entries_with_an_address": 979,
   "distinct_streets": 86,
-  "distinct_trades": 960,
-  "trades_the_vocabulary_cannot_say": 466,
+  "distinct_trades": 957,
+  "trades_the_vocabulary_cannot_say": 465,
   "entries_under_a_trade_the_vocabulary_cannot_say": 728,
   "firms_with_an_address": 59
  },
@@ -3836,12 +3836,12 @@
    "n": 10
   },
   {
-   "trade": "gardener",
+   "trade": "merchant",
    "n": 9
   },
   {
-   "trade": "merchant",
-   "n": 8
+   "trade": "gardener",
+   "n": 9
   },
   {
    "trade": "school-teacher",
@@ -3864,6 +3864,10 @@
    "n": 6
   },
   {
+   "trade": "contractor",
+   "n": 6
+  },
+  {
    "trade": "dry goods and groceries",
    "n": 6
   },
@@ -3873,10 +3877,6 @@
   },
   {
    "trade": "speculator",
-   "n": 5
-  },
-  {
-   "trade": "contractor",
    "n": 5
   },
   {
@@ -4061,6 +4061,10 @@
   },
   {
    "trade": "ship carpenter",
+   "n": 3
+  },
+  {
+   "trade": "cooper, Simon Ludwig",
    "n": 3
   },
   {
@@ -4352,10 +4356,6 @@
    "n": 2
   },
   {
-   "trade": "cooper, Simon Ludwig",
-   "n": 2
-  },
-  {
    "trade": "bookkeeper, Seth T. Otis & Co",
    "n": 2
   },
@@ -4461,10 +4461,6 @@
   },
   {
    "trade": "contractor, s. -west cor. Randolph and LaSalle",
-   "n": 1
-  },
-  {
-   "trade": "John, contractor",
    "n": 1
   },
   {
@@ -4804,7 +4800,7 @@
    "n": 1
   },
   {
-   "trade": "Justin, law student, Butterfield & Collins",
+   "trade": "law student, Butterfield & Collins",
    "n": 1
   },
   {
@@ -5316,7 +5312,7 @@
    "n": 1
   },
   {
-   "trade": "John, clerk, Frink & Walker",
+   "trade": "clerk, Frink & Walker",
    "n": 1
   },
   {
@@ -5924,7 +5920,7 @@
    "n": 1
   },
   {
-   "trade": "Seth, student, Dr. Stuart",
+   "trade": "student, Dr. Stuart",
    "n": 1
   },
   {
@@ -6001,10 +5997,6 @@
   },
   {
    "trade": "Jones, King & Co",
-   "n": 1
-  },
-  {
-   "trade": "John, merchant",
    "n": 1
   },
   {
@@ -6149,10 +6141,6 @@
   },
   {
    "trade": "cooper, cor. Pearsons and",
-   "n": 1
-  },
-  {
-   "trade": "Simon, cooper, Simon Ludwig",
    "n": 1
   },
   {
@@ -7649,11 +7637,11 @@
     "n": 7
    },
    {
-    "trade": "speculator",
-    "n": 5
+    "trade": "contractor",
+    "n": 6
    },
    {
-    "trade": "contractor",
+    "trade": "speculator",
     "n": 5
    },
    {
@@ -7914,10 +7902,6 @@
    },
    {
     "trade": "contractor, s. -west cor. Randolph and LaSalle",
-    "n": 1
-   },
-   {
-    "trade": "John, contractor",
     "n": 1
    },
    {
@@ -8281,7 +8265,7 @@
     "n": 1
    },
    {
-    "trade": "John, clerk, Frink & Walker",
+    "trade": "clerk, Frink & Walker",
     "n": 1
    },
    {
@@ -8629,7 +8613,7 @@
     "n": 1
    },
    {
-    "trade": "Seth, student, Dr. Stuart",
+    "trade": "student, Dr. Stuart",
     "n": 1
    },
    {
