@@ -24,6 +24,16 @@ mark them as such."* So this record now carries, for every board:
     combinations the trade actually used, assigned so that no two boards within
     `NEIGHBOUR_M` of each other share a mounting, a style or a ground colour.
 
+THAT LAST PROMISE IS LOCAL, AND SINCE T-0405 SO IS THE RULE THAT KEEPS IT. Both the
+mounting and the style now enter their tables at a point derived from the board's OWN
+structure id, and the only thing that can move a board off that point is a board within
+`NEIGHBOUR_M` of it. It used to be the frontage's position in its trade class, dealt out
+as the walk went down the town in id order, so admitting one frontage in the middle of
+the alphabet re-dealt every frontage after it — eleven boards, the furthest 904 m off,
+four of them changing what they SAID, when `frederick_thomas_shop` was admitted (T-0263).
+The promise is now asserted rather than assumed (`_neighbours_differ`, every build) and
+the locality is provable (`--prove-locality`, which withholds each board in turn).
+
 `docs/LIBERTIES.md` **L159** is the claim for the mounting and the style, and **L169**
 for the wording.
 
@@ -1004,6 +1014,149 @@ DEFAULT_WALL_M = {1: 2.5, None: 2.5}
 DEFAULT_WALL_MULTI_M = 4.6
 
 
+def _separation(signs: list) -> list:
+    """Every pair of boards within `NEIGHBOUR_M` that shares a mounting, a style or a
+    ground colour — the promise at the head of this file, MEASURED (T-0405).
+
+    It used to be assumed. The de-confliction loop below walks a cycle and takes the
+    first mounting a neighbour has not taken, and there are two ways that can still
+    land on a repeat: a class whose cycle is ONE mounting long (a works paints its
+    front and hangs nothing, so two works on one corner must both be painted), and a
+    cycle whose every entry a wall refused, where the loop's last step is taken anyway.
+    The first is the rule working; the second is the rule failing. Returning the pairs
+    rather than a bare true/false is what lets `_neighbours_differ` tell them apart and
+    the record carry the permitted ones by name.
+    """
+    pairs = []
+    for i, a in enumerate(signs):
+        for b in signs[i + 1:]:
+            gap = math.hypot(a["anchor_local_enu_m"][0] - b["anchor_local_enu_m"][0],
+                             a["anchor_local_enu_m"][1] - b["anchor_local_enu_m"][1])
+            if gap > NEIGHBOUR_M:
+                continue
+            shares = []
+            if a["mounting"] == b["mounting"]:
+                shares.append(("mounting", a["mounting"]))
+            if a["style"]["id"] == b["style"]["id"]:
+                shares.append(("style", a["style"]["id"]))
+            if a["style"]["ground"] == b["style"]["ground"]:
+                shares.append(("ground", a["style"]["ground"]))
+            for what, value in shares:
+                only = min(len(MOUNTING_CYCLE[a["trade_class"]]),
+                           len(MOUNTING_CYCLE[b["trade_class"]]))
+                pairs.append({
+                    "a": a["structure_id"], "b": b["structure_id"],
+                    "gap_m": _round(gap, 1), "share": what, "value": value,
+                    "allowed": what == "mounting" and only == 1,
+                    "why": ("one of these two trades is a %s, and the %s cycle is a "
+                            "single mounting — a works paints its front and hangs "
+                            "nothing at all, so two of them inside "
+                            "%.0f m cannot differ and this project would rather say so "
+                            "than hang a plank on a works to make a rule come out."
+                            % (min((a, b), key=lambda s: len(MOUNTING_CYCLE[s["trade_class"]]))["trade_class"],
+                               min((a, b), key=lambda s: len(MOUNTING_CYCLE[s["trade_class"]]))["trade_class"],
+                               NEIGHBOUR_M)
+                           if what == "mounting" and only == 1 else
+                           "NOT ALLOWED — the cycle had somewhere else to go."),
+                })
+    return sorted(pairs, key=lambda p: (p["a"], p["b"], p["share"]))
+
+
+def _wordings_differ(signs: list) -> None:
+    """NO TWO BOARDS IN THE TOWN MAY LETTER THE SAME THING (T-0405).
+
+    The mounting decides how many lines a board has room for, so a board's TEXT is a
+    tier of its SIGN_WORDING entry rather than the whole of it — and a re-deal that
+    drops a line can therefore erase a distinction the table argued for. T-0130 is the
+    case: Philo Carpenter's log shop is worded "Drugs and Medicines" and his South
+    Water store "Wholesale & Retail Druggist" precisely so a walker can tell the two
+    shops of one druggist apart, and both entries shorten to "Druggist". At two lines
+    each, the two boards would read `PHILO CARPENTER / Druggist` and `PHILO CARPENTER /
+    Druggist`, and the argument would be gone with nothing in the record saying it had
+    been. The wording tiers are a decision of the table; the deal must not be able to
+    undo one in silence, so it is refused here instead.
+    """
+    seen: dict[str, str] = {}
+    for s in sorted(signs, key=lambda s: s["structure_id"]):
+        first = seen.get(s["sign_text"])
+        if first is not None:
+            raise SystemExit(
+                "SIGN WORDING COLLAPSED: %s and %s both letter %r. The mounting each "
+                "was dealt has room for fewer lines than its SIGN_WORDING entry "
+                "carries, and the tier they fall back to is the same one — so two "
+                "boards the table deliberately words apart would read alike. Word the "
+                "shorter tiers apart, or argue in the entry's own `why` why these two "
+                "trades may say the same thing."
+                % (first, s["structure_id"], s["sign_text"]))
+        seen[s["sign_text"]] = s["structure_id"]
+
+
+def _neighbours_differ(signs: list) -> list:
+    """Assert the separation, and hand the permitted exceptions back for the record."""
+    pairs = _separation(signs)
+    broken = [p for p in pairs if not p["allowed"]]
+    if broken:
+        raise SystemExit(
+            "SIGN SEPARATION: the rule at the head of this file promises that no two "
+            "boards within %.0f m share a mounting, a style or a ground colour, and "
+            "%d pair(s) do:\n%s"
+            % (NEIGHBOUR_M, len(broken),
+               "\n".join("  %s / %s at %.1f m share a %s (%s)"
+                          % (p["a"], p["b"], p["gap_m"], p["share"], p["value"])
+                          for p in broken)))
+    return pairs
+
+
+def _prove_locality() -> int:
+    """ADMITTING ONE FRONTAGE MUST REACH ONLY ITS NEIGHBOURS (T-0405).
+
+    The claim this file makes since T-0405 is that a board's deal is a function of its
+    own id and of the boards it can SEE, so admitting a frontage in the middle of the
+    town changes that frontage and any board whose `NEIGHBOUR_M` separation actually
+    required a different deal — and no others. This proves it the only way a claim like
+    that can be proved: every board in turn is withheld, the town is re-derived without
+    it, and every difference is held against the distance from the board that was
+    withheld. A difference further off than `NEIGHBOUR_M` is the defect T-0405 records.
+
+    It was measured before the fix on the insertion the ticket names: admitting
+    `frederick_thomas_shop` re-dealt eleven other boards, the furthest 904.4 m away,
+    and four of them changed what they said.
+    """
+    base = build_record()[0]
+    by_id = {s["structure_id"]: s for s in base}
+    original = _candidates
+    far = 0
+    print("locality: withholding each of the %d boards in turn" % len(base))
+    for sid in sorted(by_id):
+        globals()["_candidates"] = lambda: (
+            [c for c in original()[0] if c["sid"] != sid], original()[1])
+        try:
+            without = {s["structure_id"]: s for s in build_record()[0]}
+        finally:
+            globals()["_candidates"] = original
+        anchor = by_id[sid]["anchor_local_enu_m"]
+        for other, was in sorted(without.items()):
+            now = by_id.get(other)
+            if now is None:
+                continue
+            if (now["mounting"], now["sign_text"], now["style"]["id"]) == \
+                    (was["mounting"], was["sign_text"], was["style"]["id"]):
+                continue
+            gap = math.hypot(now["anchor_local_enu_m"][0] - anchor[0],
+                             now["anchor_local_enu_m"][1] - anchor[1])
+            mark = "  " if gap <= NEIGHBOUR_M else "FAR"
+            if gap > NEIGHBOUR_M:
+                far += 1
+            print("  %s %-30s reaches %-30s at %8.1f m%s"
+                  % (mark, sid, other, gap,
+                     "" if gap <= NEIGHBOUR_M else "  <-- OUTSIDE %.0f m" % NEIGHBOUR_M))
+    if far:
+        print("LOCALITY FAILED: %d reach(es) outside %.0f m" % (far, NEIGHBOUR_M))
+        return 1
+    print("locality: every reach is inside %.0f m" % NEIGHBOUR_M)
+    return 0
+
+
 def _load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -1548,17 +1701,31 @@ def _reach(mounting: str, w: float, geom: dict) -> float:
     return math.hypot(out, along) + 0.12
 
 
-def build_record() -> tuple[list, list]:
+def build_record() -> tuple[list, list, list]:
     picked, refused = _candidates()
     streets = _streets()
     walled = _frontage_walled()
 
-    # Clause 2's cycle index: a frontage's rank inside its own trade class, in id
-    # order, so the cycle advances down a class rather than down the town.
-    class_rank: dict[str, int] = {}
+    # WHERE A FRONTAGE ENTERS ITS CLASS'S CYCLE, and it is the frontage's OWN id that
+    # decides (T-0405). It used to be the frontage's POSITION in the class — a counter
+    # dealt out as the walk went down the town in id order — and a counter dealt down a
+    # list has the property that inserting one frontage in the middle of it advances
+    # every frontage after it by one. Measured on T-0263's diff: admitting
+    # `frederick_thomas_shop` re-dealt ELEVEN other boards, the furthest 904 m away,
+    # and four of them changed what they SAID, because the mounting decides how many
+    # lines a board has room for. The rule this file states is LOCAL — no two boards
+    # within `NEIGHBOUR_M` hang alike — and a local rule must not renumber the town to
+    # admit one frontage in the middle of the alphabet.
+    #
+    # `_rank` is the same stable per-id device the style preference order already uses:
+    # a board's entry point is a function of its own id and nothing else, so a board's
+    # deal can only move when a board it can actually SEE moves. The de-confliction
+    # below is what still separates neighbours, and it is the only thing that should:
+    # it reads `signs`, so an insertion reaches a board when — and only when — the new
+    # board lands within `NEIGHBOUR_M` of it. `_insertion_is_local` asserts exactly
+    # that, and `_neighbours_differ` asserts the separation still holds.
     for cand in picked:
-        cand["rank"] = class_rank.get(cand["cls"], 0)
-        class_rank[cand["cls"]] = cand["rank"] + 1
+        cand["rank"] = _rank(cand["sid"], len(MOUNTING_CYCLE[cand["cls"]]))
 
     signs: list[dict] = []
     for cand in picked:
@@ -1848,7 +2015,14 @@ def build_record() -> tuple[list, list]:
             sign["sign_device"] = word["device"]
         signs.append(sign)
 
-    return signs, refused
+    # THE PROMISE, CHECKED (T-0405). The head of this file says no two boards within
+    # `NEIGHBOUR_M` hang alike; the loop above only ever TRIES to make that true, and
+    # until now nothing read back whether it had. This refuses to build when it has not,
+    # and hands the permitted exceptions on so the record can carry them by name.
+    separation = _neighbours_differ(signs)
+    _wordings_differ(signs)
+
+    return signs, refused, separation
 
 
 def _opening_sweep(signs: list) -> dict:
@@ -1895,7 +2069,7 @@ def _opening_sweep(signs: list) -> dict:
     }
 
 
-def record(signs: list, refused: list) -> dict:
+def record(signs: list, refused: list, separation: list) -> dict:
     mounts: dict[str, int] = {}
     tiers: dict[str, int] = {}
     for s in signs:
@@ -2047,6 +2221,33 @@ def record(signs: list, refused: list) -> dict:
             "lines_by_mounting": LINES_BY_MOUNTING,
             "styles": [s["id"] for s in STYLES],
             "neighbour_m": NEIGHBOUR_M,
+            "cycle_entry": (
+                "WHERE A FRONTAGE ENTERS ITS CLASS'S CYCLE is a function of its own "
+                "structure id — `_rank`, the same stable per-id device the style "
+                "preference order uses — and of nothing else (T-0405). It used to be "
+                "the frontage's POSITION in its class, a counter dealt out as the walk "
+                "went down the town in id order, and a counter dealt down a list has "
+                "the property that admitting one frontage in the middle of it advances "
+                "every frontage after it by one: admitting `frederick_thomas_shop` "
+                "re-dealt eleven other boards, the furthest 904 m away, and four of "
+                "them changed what they SAID, because the mounting decides how many "
+                "lines a board has room for. The rule this layer states is LOCAL, so "
+                "its deal is local: a board's mounting can only move when a board it "
+                "can SEE moves. `--prove-locality` withholds each board in turn and "
+                "holds every consequence against the distance from it."),
+            "separation": {
+                "note": (
+                    "The promise above, MEASURED rather than assumed, every build: "
+                    "every pair of boards within "
+                    f"{NEIGHBOUR_M:.0f} m that shares a mounting, a style or a ground "
+                    "colour. The generator REFUSES TO BUILD on any pair not listed "
+                    "here as allowed. A mounting may be shared only where one of the "
+                    "two trades belongs to a class whose cycle is a single mounting — "
+                    "a works paints its front and hangs nothing at all, so two works "
+                    "on one corner cannot differ, and this project would rather say so "
+                    "than hang a plank on a works to make a rule come out."),
+                "pairs_within_neighbour_m_sharing_something": separation,
+            },
             "wording_note": (
                 "WHAT A BOARD MAY SAY, and it is a rule rather than a list somebody "
                 "liked. Every board is worded from SIGN_WORDING in "
@@ -2132,9 +2333,15 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
+    ap.add_argument("--prove-locality", action="store_true",
+                    help="withhold each board in turn and prove that admitting one "
+                         "frontage reaches no board further off than NEIGHBOUR_M")
     args = ap.parse_args()
-    signs, refused = build_record()
-    text = json.dumps(record(signs, refused), indent=2, ensure_ascii=False) + "\n"
+    if args.prove_locality:
+        return _prove_locality()
+    signs, refused, separation = build_record()
+    text = json.dumps(record(signs, refused, separation), indent=2,
+                      ensure_ascii=False) + "\n"
     if args.check:
         if not OUT.exists():
             print(f"SIGNBOARD DRIFT\n  - {OUT.relative_to(ROOT)} is missing")

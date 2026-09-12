@@ -348,6 +348,17 @@ step "the planted poplar rows re-derive from the rule that chose their greens" \
 step "the business signboards re-derive from the rule that chose their frontages" \
   python3 tools/generate_business_signboards.py --check
 
+# ...AND THE RULE IS LOCAL (T-0405). "Re-derives" only says the committed file matches the
+# rule; it says nothing about how far one frontage reaches. Until T-0405 the mounting was
+# dealt from a counter walked down the town in id order, so admitting one frontage in the
+# middle of the alphabet re-dealt every frontage after it — 103 of 109 consequences landed
+# outside the 40 m the rule is about, the furthest 1,163 m off, and because the mounting
+# decides how many lines a board has room for, some of them changed what the board SAID.
+# This withholds each board in turn, re-derives the town without it, and holds every
+# consequence against the distance from the board withheld. ~4 s.
+step "admitting one signboard reaches no board further off than the rule's own 40 m" \
+  python3 tools/generate_business_signboards.py --prove-locality
+
 # The yard goods are the third record of this shape and the first whose evidence is an
 # ORDINANCE: the village corporation legislated in November 1833 about timber, stone,
 # brick, boxes and barrels stacked in the streets, which attests the treatment and not one
