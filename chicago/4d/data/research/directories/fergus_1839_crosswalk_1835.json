@@ -24,7 +24,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1370
+   "n": 1292
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -43,10 +43,10 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 157,
+  "residents_matched_one_entry": 153,
   "residents_ambiguous": 22,
   "residents_contested": 12,
-  "residents_surname_only_refused": 277,
+  "residents_surname_only_refused": 257,
   "voters_matched_one_entry": 123,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 74,
@@ -56,9 +56,9 @@
   "heads_1840_matched_one_entry": 169,
   "heads_1840_ambiguous": 56,
   "heads_1840_surname_only_refused": 220,
-  "residents_initial_agreed_forenames_disagreed_refused": 75,
+  "residents_initial_agreed_forenames_disagreed_refused": 69,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_entry_by_that_refusal": 39,
+  "residents_left_with_no_entry_by_that_refusal": 38,
   "residents_letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
   "residents_ties_narrowed_by_a_trade": 4,
@@ -66,8 +66,8 @@
   "of_those_ambiguous": 4,
   "residents_narrowings_withdrawn_as_a_collision": 0,
   "residents_ties_left_standing": 30,
-  "residents_could_carry_occupation": 89,
-  "residents_could_carry_street": 95
+  "residents_could_carry_occupation": 85,
+  "residents_could_carry_street": 93
  },
  "residents": {
   "matches": [
@@ -663,31 +663,6 @@
     "could_carry": [
      "occupation",
      "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "D A Smith",
-    "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins D.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e1359",
-      "as_printed": "Smith, Dr. D. S., over Clark’s drug store, coi'. Lake and Clark",
-      "printed_page": 31,
-      "occupation_1839": "over Clark’s drug store, coi'. Lake and Clark",
-      "address_1839": null,
-      "streets_1839": [],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "smith_d_a",
-    "household_id": "hh_smith_d_a",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
@@ -1967,59 +1942,6 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
-    "name": "J Ellis",
-    "rule": "Surname 'Ellis' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0449",
-      "as_printed": "Ellis, Joel, butcher, Funk’s Fulton market, 95 Lake street",
-      "printed_page": 13,
-      "occupation_1839": "butcher, Funk’s Fulton market",
-      "address_1839": "95 Lake street",
-      "streets_1839": [
-       "Lake street"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "ellis_j",
-    "household_id": "hh_ellis_j",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "J Y Jackson",
-    "rule": "Surname 'Jackson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0774",
-      "as_printed": "Jackson, John, butcher,",
-      "printed_page": 20,
-      "occupation_1839": "butcher",
-      "address_1839": null,
-      "streets_1839": [],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "jackson_j_y",
-    "household_id": "hh_jackson_j_y",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
     "name": "J. A. Marshall",
     "rule": "Surname 'Marshall' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -2320,34 +2242,6 @@
     "person_id": "morrison_james_m",
     "household_id": "hh_morrison_james_m",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "James Smith",
-    "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e1366",
-      "as_printed": "Smith, James M., constable, Lake street",
-      "printed_page": 31,
-      "occupation_1839": "constable",
-      "address_1839": "Lake street",
-      "streets_1839": [
-       "Lake street"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",
     "lives_at_1835": null,
@@ -6025,11 +5919,6 @@
     "rule": "The surname 'Hubbard' is in Fergus 1839 and no entry under it carries the initial 'A' of 'Ahira Hubbard'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Al Barber",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Barber' is in Fergus 1839 and no entry under it carries the initial 'A' of 'Al Barber'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Alanson B. Vaughan",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Vaughan' is in Fergus 1839 and no entry under it carries the initial 'A' of 'Alanson B. Vaughan'. A surname-only agreement is a refusal."
@@ -6130,11 +6019,6 @@
     "rule": "The surname 'Beaubien' is in Fergus 1839 and no entry under it carries the initial 'B' of 'B Beaubien'. A surname-only agreement is a refusal."
    },
    {
-    "name": "B Hubbard",
-    "candidates_under_that_surname": 4,
-    "rule": "The surname 'Hubbard' is in Fergus 1839 and no entry under it carries the initial 'B' of 'B Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Ben Butterfield",
     "candidates_under_that_surname": 6,
     "rule": "The surname 'Butterfield' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal."
@@ -6163,11 +6047,6 @@
     "name": "C H Bennett",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Bennett' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C H Bennett'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "C Harrington",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Harrington' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C Harrington'. A surname-only agreement is a refusal."
    },
    {
     "name": "C. George",
@@ -6375,11 +6254,6 @@
     "rule": "The surname 'Gage' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Eli Gage'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Elijah Wentworth",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Wentworth' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Elijah Wentworth'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Elisha S. Page",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Page' is in Fergus 1839 and no entry under it carries the initial 'E' of 'Elisha S. Page'. A surname-only agreement is a refusal."
@@ -6433,11 +6307,6 @@
     "name": "Francis Walter",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Walter' is in Fergus 1839 and no entry under it carries the initial 'F' of 'Francis Walter'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Fred Miller",
-    "candidates_under_that_surname": 7,
-    "rule": "The surname 'Miller' is in Fergus 1839 and no entry under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
    },
    {
     "name": "Frederick Thomas",
@@ -6505,11 +6374,6 @@
     "rule": "The surname 'Miller' is in Fergus 1839 and no entry under it carries the initial 'G' of 'George Miller'. A surname-only agreement is a refusal."
    },
    {
-    "name": "George Reed",
-    "candidates_under_that_surname": 4,
-    "rule": "The surname 'Reed' is in Fergus 1839 and no entry under it carries the initial 'G' of 'George Reed'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "George W. Snow",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Snow' is in Fergus 1839 and no entry under it carries the initial 'G' of 'George W. Snow'. A surname-only agreement is a refusal."
@@ -6528,16 +6392,6 @@
     "name": "Gurdon Saltonstall Hubbard",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Hubbard' is in Fergus 1839 and no entry under it carries the initial 'G' of 'Gurdon Saltonstall Hubbard'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "H C Swift",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Swift' is in Fergus 1839 and no entry under it carries the initial 'H' of 'H C Swift'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "H E Wentworth",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Wentworth' is in Fergus 1839 and no entry under it carries the initial 'H' of 'H E Wentworth'. A surname-only agreement is a refusal."
    },
    {
     "name": "H Haddock",
@@ -6615,11 +6469,6 @@
     "rule": "The surname 'Pearson' is in Fergus 1839 and no entry under it carries the initial 'H' of 'Hiram Pearson'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Hugh Robinson",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Robinson' is in Fergus 1839 and no entry under it carries the initial 'H' of 'Hugh Robinson'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Ira Kimberly",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Kimberly' is in Fergus 1839 and no entry under it carries the initial 'I' of 'Ira Kimberly'. A surname-only agreement is a refusal."
@@ -6648,11 +6497,6 @@
     "name": "J K Palmer",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Palmer' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J K Palmer'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "J R Westcott",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Westcott' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J R Westcott'. A surname-only agreement is a refusal."
    },
    {
     "name": "J. B. Tuttle",
@@ -6700,11 +6544,6 @@
     "rule": "The surname 'Gilbert' is in Fergus 1839 and no entry under it carries the initial 'J' of 'James Gilbert'. A surname-only agreement is a refusal."
    },
    {
-    "name": "James H Murray",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Murray' is in Fergus 1839 and no entry under it carries the initial 'J' of 'James H Murray'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "James H. Woodworth",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Woodworth' is in Fergus 1839 and no entry under it carries the initial 'J' of 'James H. Woodworth'. A surname-only agreement is a refusal."
@@ -6718,11 +6557,6 @@
     "name": "James R. Lawrence",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Lawrence' is in Fergus 1839 and no entry under it carries the initial 'J' of 'James R. Lawrence'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "James Sheldon",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Sheldon' is in Fergus 1839 and no entry under it carries the initial 'J' of 'James Sheldon'. A surname-only agreement is a refusal."
    },
    {
     "name": "James W Stephenson",
@@ -6760,11 +6594,6 @@
     "rule": "The surname 'Nelson' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John M. Nelson'. A surname-only agreement is a refusal."
    },
    {
-    "name": "John Mann",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Mann' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Mann'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "John Thompson",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Thompson' is in Fergus 1839 and no entry under it carries the initial 'J' of 'John Thompson'. A surname-only agreement is a refusal."
@@ -6778,11 +6607,6 @@
     "name": "Joseph Bradley",
     "candidates_under_that_surname": 5,
     "rule": "The surname 'Bradley' is in Fergus 1839 and no entry under it carries the initial 'J' of 'Joseph Bradley'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Joseph Duncan",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Duncan' is in Fergus 1839 and no entry under it carries the initial 'J' of 'Joseph Duncan'. A surname-only agreement is a refusal."
    },
    {
     "name": "Joseph Reynolds",
@@ -6805,19 +6629,9 @@
     "rule": "The surname 'Andrews' is in Fergus 1839 and no entry under it carries the initial 'J' of 'Julian Andrews'. A surname-only agreement is a refusal."
    },
    {
-    "name": "K Henry",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Henry' is in Fergus 1839 and no entry under it carries the initial 'K' of 'K Henry'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "L B Cobb",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Cobb' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "L Baldwin",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Baldwin' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L Baldwin'. A surname-only agreement is a refusal."
    },
    {
     "name": "L G Curtiss",
@@ -6928,11 +6742,6 @@
     "name": "Mrs. H. Sherman",
     "candidates_under_that_surname": 8,
     "rule": "The surname 'Sherman' is in Fergus 1839 and no entry under it carries the initial 'H' of 'Mrs. H. Sherman'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "N Bird",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Bird' is in Fergus 1839 and no entry under it carries the initial 'N' of 'N Bird'. A surname-only agreement is a refusal."
    },
    {
     "name": "N Murphy",
@@ -7055,11 +6864,6 @@
     "rule": "The surname 'Stowell' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Ralph Stowell'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Ralph Wadhams",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Wadhams' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Ralph Wadhams'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Rebecca Sherman",
     "candidates_under_that_surname": 8,
     "rule": "The surname 'Sherman' is in Fergus 1839 and no entry under it carries the initial 'R' of 'Rebecca Sherman'. A surname-only agreement is a refusal."
@@ -7175,11 +6979,6 @@
     "rule": "The surname 'Miller' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Samuel Miller'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Samuel Mills",
-    "candidates_under_that_surname": 2,
-    "rule": "The surname 'Mills' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Samuel Mills'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Samuel Russell",
     "candidates_under_that_surname": 8,
     "rule": "The surname 'Russell' is in Fergus 1839 and no entry under it carries the initial 'S' of 'Samuel Russell'. A surname-only agreement is a refusal."
@@ -7253,11 +7052,6 @@
     "name": "Thomas Andrus",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Andrus' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas Andrus'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Thomas D Grant",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Grant' is in Fergus 1839 and no entry under it carries the initial 'T' of 'Thomas D Grant'. A surname-only agreement is a refusal."
    },
    {
     "name": "Thomas Lewis",
@@ -7873,28 +7667,6 @@
     "lives_at_1835": null
    },
    {
-    "name": "Henry Loomis",
-    "entry_1839": {
-     "claim": "f1839_e0919",
-     "as_printed": "Loomis, Horatio G. , (Harmon & Loomis)",
-     "printed_page": 22,
-     "occupation_1839": "(Harmon & Loomis)",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "Henry",
-     "forename_printed": "Horatio",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'Henry' against 'Horatio'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "loomis_henry",
-    "household_id": "hh_loomis_henry",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
     "name": "Henry Mitchell",
     "entry_1839": {
      "claim": "f1839_e1043",
@@ -8056,116 +7828,6 @@
     "person_id": "morrison_james_m",
     "household_id": "hh_morrison_james_m",
     "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "James Smith",
-    "entry_1839": {
-     "claim": "f1839_e1367",
-     "as_printed": "Smith, John E., clei'k, Sherman & Pitkin",
-     "printed_page": 31,
-     "occupation_1839": "clei'k, Sherman & Pitkin",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "James",
-     "forename_printed": "John",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "James Smith",
-    "entry_1839": {
-     "claim": "f1839_e1368",
-     "as_printed": "Smith, John M., James A. Smith & Co., 127 Lake sti'eet",
-     "printed_page": 31,
-     "occupation_1839": "James A. Smith & Co., 127 Lake sti'eet",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "James",
-     "forename_printed": "John",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "James Smith",
-    "entry_1839": {
-     "claim": "f1839_e1369",
-     "as_printed": "Smith, John L. , clerk,",
-     "printed_page": 31,
-     "occupation_1839": "clerk",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "James",
-     "forename_printed": "John",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "James Smith",
-    "entry_1839": {
-     "claim": "f1839_e1370",
-     "as_printed": "Smith, Dr. John Mark, Harmon & Loomis’s store",
-     "printed_page": 31,
-     "occupation_1839": "Harmon & Loomis’s store",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "James",
-     "forename_printed": "John",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "James Smith",
-    "entry_1839": {
-     "claim": "f1839_e1371",
-     "as_printed": "Smith, Joseph F., clerk, Mansion House",
-     "printed_page": 31,
-     "occupation_1839": "clerk, Mansion House",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "James",
-     "forename_printed": "Joseph",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'James' against 'Joseph'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",
     "lives_at_1835": null

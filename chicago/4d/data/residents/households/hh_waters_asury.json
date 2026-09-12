@@ -72,15 +72,6 @@
      "describes_date": "1835-06-20",
      "source": "chicago_american_1835",
      "rule": "G1b"
-    },
-    {
-     "list": "newspaper_1833_1835",
-     "as_read": "Asury Waters",
-     "locator": "chicago_american_1835_06_20#c011",
-     "record_id": "person_asury_waters",
-     "describes_date": "1835-06-20",
-     "source": "chicago_american_1835",
-     "rule": "G1b"
     }
    ]
   }
