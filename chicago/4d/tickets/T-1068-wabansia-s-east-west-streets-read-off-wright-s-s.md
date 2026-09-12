@@ -1,7 +1,7 @@
 ---
 id: T-1068
 title: Wabansia's east-west streets, read off Wright's sheet: the seven corridors, the plat's module, and the Hight/Kain names settled
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0790
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1191
 claimed_by: run 9/12/2026, 6:31:30 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T12:12:15.433Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34690549976
 ---
 
