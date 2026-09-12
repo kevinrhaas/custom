@@ -38,15 +38,15 @@
   "arrival_at_or_before_1835": 70,
   "OS1": 39,
   "OS2A": 7,
-  "OS2": 2,
-  "OS3": 115,
-  "OS4": 10,
-  "OS5": 154,
+  "OS2": 1,
+  "OS3": 117,
+  "OS4": 7,
+  "OS5": 156,
   "merged": 46,
-  "probable": 2,
-  "candidate": 10,
-  "refused": 115,
-  "unmatched": 154
+  "probable": 1,
+  "candidate": 7,
+  "refused": 117,
+  "unmatched": 156
  },
  "people": [
   {
@@ -279,7 +279,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 2 bearer(s) of 'baldwin', none with the forename initial 'w'; same surname, different forename initial never merges"
+    "why": "the residents layer has 1 bearer(s) of 'baldwin', none with the forename initial 'w'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -3062,13 +3062,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "candidates": [
-     "loomis_henry"
-    ],
-    "why": "1 bearers of 'loomis' share the forename initial 'h'; the roster does not discriminate between them"
+    "why": "the residents layer has 1 bearer(s) of 'loomis', none with the forename initial 'h'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -3434,7 +3431,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'murray', none with the forename initial 'r'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'murray', none with the forename initial 'r'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4534,13 +4531,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "candidates": [
-     "smith_d_a"
-    ],
-    "why": "1 bearers of 'smith' share the forename initial 'd'; the roster does not discriminate between them"
+    "why": "the residents layer has 9 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -5002,10 +4996,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS3",
-    "outcome": "refused",
+    "rule": "OS5",
+    "outcome": "unmatched",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'wadhams', none with the forename initial 's'; same surname, different forename initial never merges"
+    "why": "no bearer of the surname 'wadhams' in the residents layer"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -5142,7 +5136,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
+    "why": "the residents layer has 1 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -6418,18 +6412,14 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS2",
-    "outcome": "probable",
+    "rule": "OS5",
+    "outcome": "unmatched",
     "person_id": null,
-    "probable_person_id": "ellis_j",
-    "household_id": "hh_ellis_j",
-    "resident_name": "J Ellis",
-    "resident_grade": "attested",
-    "why": "one bearer of the surname in the whole residents layer and the forename initial agrees, but neither side spells the forename out and nothing discriminates. PROBABLE, NOT MERGED: no record is written on it"
+    "why": "no bearer of the surname 'ellis' in the residents layer"
    },
    "proposed": {
-    "rung": "no_change",
-    "reason": "a probable identity is not an identity. The row is a proposal for the cross-source identity master (T-0513); nothing is written on a resident record from it."
+    "rung": "not_a_resident_on_this_evidence",
+    "reason": "the club's criterion is residence in Chicago prior to 1 January 1840 and majority by then — which does not place the person in the town on 1 July 1835. '1839/1840 alone is never a 1835 resident (later evidence only)'; a reception roster of 1882 is weaker still. Minting waits on a contemporary source (T-0514)."
    }
   },
   {
@@ -8229,13 +8219,10 @@
    "places_in_1835": false,
    "places_in_1835_why": "the roster's only claim about time is the club's criterion: resident before 1 January 1840 and of age by then.",
    "residents_layer": {
-    "rule": "OS4",
-    "outcome": "candidate",
+    "rule": "OS3",
+    "outcome": "refused",
     "person_id": null,
-    "candidates": [
-     "smith_d_a"
-    ],
-    "why": "1 bearers of 'smith' share the forename initial 'd'; the roster does not discriminate between them"
+    "why": "the residents layer has 9 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -8264,10 +8251,9 @@
     "outcome": "candidate",
     "person_id": null,
     "candidates": [
-     "smith_james",
      "smith_jeremiah"
     ],
-    "why": "2 bearers of 'smith' share the forename initial 'j'; the roster does not discriminate between them"
+    "why": "1 bearers of 'smith' share the forename initial 'j'; the roster does not discriminate between them"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -8862,7 +8848,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
+    "why": "the residents layer has 1 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",

@@ -7,13 +7,13 @@
   "ruled": {
     "upheld": 135,
     "named": 1,
-    "refused": 74,
-    "unruled": 0
+    "refused": 70,
+    "unruled": 1
   },
   "counts": {
     "purchasers": 647,
-    "matched": 136,
-    "refused": 511,
+    "matched": 137,
+    "refused": 510,
     "firms": 2,
     "bodies": 3
   },
@@ -1749,7 +1749,7 @@
       "resident_name": "Gurdon Saltonstall Hubbard",
       "household_id": "hh_hubbard_gurdon",
       "match": "forename_agrees",
-      "rule": "HUBBARD GURDON S matches Gurdon Saltonstall Hubbard: the forename names Gurdon Saltonstall Hubbard of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "HUBBARD GURDON S matches Gurdon Saltonstall Hubbard: the forename names Gurdon Saltonstall Hubbard of the 5 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -1757,15 +1757,6 @@
           "name": "Ahira Hubbard",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "S",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
           "middle_initial": null,
           "reading_middle_initial": "S",
           "outcome": "refused_on_the_forename"
@@ -2421,7 +2412,7 @@
       "resident_name": "J. W. Reed",
       "household_id": "hh_inf_joiner_north_02",
       "match": "initial_agrees",
-      "rule": "REED JAMES W matches J. W. Reed: the forename names J. W. Reed of the 5 people of this surname, and the forename agrees as an initial only.",
+      "rule": "REED JAMES W matches J. W. Reed: the forename names J. W. Reed of the 4 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2432,15 +2423,6 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
-        },
-        {
-          "key": "reed_george",
-          "name": "George Reed",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "W",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "reed_s_w",
@@ -3324,6 +3306,106 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
+      "purchaser_as_read": "SMITH J",
+      "record_ids": [
+        "ls0485",
+        "ls0486"
+      ],
+      "resident_id": "smith_jeremiah",
+      "resident_name": "Jeremiah Smith",
+      "household_id": "hh_smith_jeremiah",
+      "match": "initial_agrees",
+      "rule": "SMITH J matches Jeremiah Smith: the forename names Jeremiah Smith of the 9 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "smith_e_kirby",
+          "name": "E Kirby Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "K",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_elded",
+          "name": "Elded Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_george",
+          "name": "George Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_jeremiah",
+          "name": "Jeremiah Smith",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "smith_l_w",
+          "name": "L W Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "W",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_lawrence",
+          "name": "Lawrence Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_matthias",
+          "name": "Matthias Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_william",
+          "name": "William Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_william_v",
+          "name": "William V Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "V",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
       "purchaser_as_read": "SMITH JEREMIAH",
       "record_ids": [
         "ls0488",
@@ -3335,18 +3417,9 @@
       "resident_name": "Jeremiah Smith",
       "household_id": "hh_smith_jeremiah",
       "match": "forename_agrees",
-      "rule": "SMITH JEREMIAH matches Jeremiah Smith: the forename names Jeremiah Smith of the 11 people of this surname, and the forename agrees in full.",
+      "rule": "SMITH JEREMIAH matches Jeremiah Smith: the forename names Jeremiah Smith of the 9 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -3368,15 +3441,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -3682,7 +3746,7 @@
       "resident_name": "Thomas Reed",
       "household_id": "hh_reed_thomas",
       "match": "forename_agrees",
-      "rule": "REED THOMAS matches Thomas Reed: the forename names Thomas Reed of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "REED THOMAS matches Thomas Reed: the forename names Thomas Reed of the 4 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -3691,15 +3755,6 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "reed_george",
-          "name": "George Reed",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -4225,7 +4280,7 @@
       "resident_name": "Elijah Kent Hubbard",
       "household_id": "hh_hubbard_elijah_kent",
       "match": "forename_agrees",
-      "rule": "HUBBARD ELIJAH K matches Elijah Kent Hubbard: the forename names Elijah Kent Hubbard of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "HUBBARD ELIJAH K matches Elijah Kent Hubbard: the forename names Elijah Kent Hubbard of the 5 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -4233,15 +4288,6 @@
           "name": "Ahira Hubbard",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "K",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
           "middle_initial": null,
           "reading_middle_initial": "K",
           "outcome": "refused_on_the_forename"
@@ -5418,28 +5464,9 @@
       "resident_name": "James Grant",
       "household_id": "hh_grant_james",
       "match": "forename_agrees",
-      "rule": "GRANT JAMES matches James Grant: the forename names James Grant of the 2 people of this surname, and the forename agrees in full.",
+      "rule": "GRANT JAMES matches James Grant: the forename names James Grant of the 1 person of this surname, and the forename agrees in full.",
       "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "grant_james",
-          "name": "James Grant",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "grant_thomas_d",
-          "name": "Thomas D Grant",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "rivals": [],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
       "ruling": {
@@ -5527,21 +5554,12 @@
       "resident_name": "Elijah Kent Hubbard",
       "household_id": "hh_hubbard_elijah_kent",
       "match": "initial_agrees",
-      "rule": "HUBBARD E K matches Elijah Kent Hubbard: the forename names Elijah Kent Hubbard of the 6 people of this surname, and the forename agrees as an initial only.",
+      "rule": "HUBBARD E K matches Elijah Kent Hubbard: the forename names Elijah Kent Hubbard of the 5 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
           "key": "hubbard_ahira",
           "name": "Ahira Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "K",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
@@ -5613,7 +5631,7 @@
       "resident_name": "Gurdon Saltonstall Hubbard",
       "household_id": "hh_hubbard_gurdon",
       "match": "forename_agrees",
-      "rule": "HUBBARD GORDON S matches Gurdon Saltonstall Hubbard: the forename names Gurdon Saltonstall Hubbard of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "HUBBARD GORDON S matches Gurdon Saltonstall Hubbard: the forename names Gurdon Saltonstall Hubbard of the 5 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -5621,15 +5639,6 @@
           "name": "Ahira Hubbard",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "S",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
           "middle_initial": null,
           "reading_middle_initial": "S",
           "outcome": "refused_on_the_forename"
@@ -5706,21 +5715,12 @@
       "resident_name": "Henry G Hubbard",
       "household_id": "hh_hubbard_henry_g",
       "match": "initial_agrees",
-      "rule": "HUBBARD H G matches Henry G Hubbard: the forename names Henry G Hubbard of the 6 people of this surname, and the forename agrees as an initial only.",
+      "rule": "HUBBARD H G matches Henry G Hubbard: the forename names Henry G Hubbard of the 5 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
           "key": "hubbard_ahira",
           "name": "Ahira Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
@@ -7831,18 +7831,9 @@
     },
     {
       "a": "SMITH JEDUTHOM",
-      "b": "11 residents named Smith",
-      "rule": "SMITH JEDUTHOM is refused against 11 residents named Smith: the forename names 0 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH JEDUTHOM is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -7864,15 +7855,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -7943,18 +7925,9 @@
     },
     {
       "a": "SMITH JEDUTHON",
-      "b": "11 residents named Smith",
-      "rule": "SMITH JEDUTHON is refused against 11 residents named Smith: the forename names 0 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH JEDUTHON is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -7976,15 +7949,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -8719,7 +8683,7 @@
       ],
       "ruled_on": "2026-09-10",
       "ruled_under": "T-0990",
-      "was_proposed_as": "JACKSON SAMUEL matches Samuel Jackson: the forename names Samuel Jackson of the 2 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "JACKSON SAMUEL matches Samuel Jackson: the forename names Samuel Jackson of the 1 person of this surname, and the forename agrees in full."
     },
     {
       "a": "JAMIESON STLOUIS T",
@@ -9921,19 +9885,8 @@
     },
     {
       "a": "HARRINGTON JAMES JR",
-      "b": "C Harrington",
-      "rule": "HARRINGTON JAMES JR is refused against C Harrington: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "harrington_c",
-          "name": "C Harrington",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "b": "0 residents named Harrington",
+      "rule": "HARRINGTON JAMES JR is refused against 0 residents named Harrington: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0437"
       ],
@@ -10342,28 +10295,8 @@
     },
     {
       "a": "WENTWORTH ZEBIAH W",
-      "b": "2 residents named Wentworth",
-      "rule": "WENTWORTH ZEBIAH W is refused against Elijah Wentworth and H E Wentworth: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "wentworth_elijah",
-          "name": "Elijah Wentworth",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "W",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "wentworth_h_e",
-          "name": "H E Wentworth",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "E",
-          "reading_middle_initial": "W",
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "b": "0 residents named Wentworth",
+      "rule": "WENTWORTH ZEBIAH W is refused against 0 residents named Wentworth: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0467",
         "ls0894"
@@ -10442,8 +10375,8 @@
     },
     {
       "a": "GRANT ZACHARIAH",
-      "b": "2 residents named Grant",
-      "rule": "GRANT ZACHARIAH is refused against James Grant and Thomas D Grant: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "James Grant",
+      "rule": "GRANT ZACHARIAH is refused against James Grant: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "grant_james",
@@ -10451,15 +10384,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "grant_thomas_d",
-          "name": "Thomas D Grant",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
@@ -10473,19 +10397,8 @@
     },
     {
       "a": "ELLIS SAMUEL",
-      "b": "J Ellis",
-      "rule": "ELLIS SAMUEL is refused against J Ellis: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "ellis_j",
-          "name": "J Ellis",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "b": "0 residents named Ellis",
+      "rule": "ELLIS SAMUEL is refused against 0 residents named Ellis: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0481"
       ],
@@ -10612,132 +10525,10 @@
       ]
     },
     {
-      "a": "SMITH J",
-      "b": "11 residents named Smith",
-      "rule": "SMITH J is refused against 11 residents named Smith: the forename names 2 of the 11 people of this surname, and a reading is named onto exactly one or onto none (R3).",
-      "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_e_kirby",
-          "name": "E Kirby Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "K",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_elded",
-          "name": "Elded Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_george",
-          "name": "George Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "smith_jeremiah",
-          "name": "Jeremiah Smith",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "smith_l_w",
-          "name": "L W Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "W",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_lawrence",
-          "name": "Lawrence Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_matthias",
-          "name": "Matthias Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_william",
-          "name": "William Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_william_v",
-          "name": "William V Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "V",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0485",
-        "ls0486"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "SMITH JEBUTHOM",
-      "b": "11 residents named Smith",
-      "rule": "SMITH JEBUTHOM is refused against 11 residents named Smith: the forename names 0 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH JEBUTHOM is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -10759,15 +10550,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -10962,7 +10744,7 @@
       ],
       "ruled_on": "2026-09-11",
       "ruled_under": "T-0990",
-      "was_proposed_as": "SMITH GEORGE matches George Smith: the forename names George Smith of the 11 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "SMITH GEORGE matches George Smith: the forename names George Smith of the 9 people of this surname, and the forename agrees in full."
     },
     {
       "a": "BRITTON HIRAM Z",
@@ -11613,8 +11395,8 @@
     },
     {
       "a": "ROBINSON ROBERT",
-      "b": "3 residents named Robinson",
-      "rule": "ROBINSON ROBERT is refused against Catherine Chevalier Robinson and D O Robinson and Hugh Robinson: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "2 residents named Robinson",
+      "rule": "ROBINSON ROBERT is refused against Catherine Chevalier Robinson and D O Robinson: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "robinson_catherine",
@@ -11631,15 +11413,6 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "O",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "robinson_hugh",
-          "name": "Hugh Robinson",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
@@ -11952,22 +11725,13 @@
       ],
       "ruled_on": "2026-09-10",
       "ruled_under": "T-0990",
-      "was_proposed_as": "SMITH LIMAN matches L W Smith: the forename names L W Smith of the 11 people of this surname, and the forename agrees as an initial only."
+      "was_proposed_as": "SMITH LIMAN matches L W Smith: the forename names L W Smith of the 9 people of this surname, and the forename agrees as an initial only."
     },
     {
       "a": "SMITH SIMAN",
-      "b": "11 residents named Smith",
-      "rule": "SMITH SIMAN is refused against 11 residents named Smith: the forename names 0 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH SIMAN is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -11989,15 +11753,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -12068,17 +11823,14 @@
     },
     {
       "a": "WENTWORTH ELIJAH",
-      "b": "Elijah Wentworth",
-      "rule": "THE REGISTER ITSELF PROVES THE SECOND MAN, and that is the lesson this cohort adds to the Brown rule: the discriminating evidence need not be in the town's printed record when the REGISTER discriminates on its own paper. It sells to WENTWORTH ELIJAH, WENTWORTH ELIJAH SEN, WENTWORTH ELIJAH W and WENTWORTH ELIJAM SEN — at least two Elijah Wentworths, a senior and one who is not, and this layer holds ONE, with no middle initial and no “Sen”. A card that can meet none of the register's own distinctions cannot be given a row the register took the trouble to distinguish. The town's side is thin besides: the only contemporary reading is “E. Wentworth”, Democrat of 7 January 1834 — an INITIAL, which the layer's own H. E. Wentworth answers to as readily — and the forename is printed whole only in an 1863 death notice and the census of 1840. No trade, no street, no civic roll, no directory line, UNKNOWN in the Residence column. Refused; eighty acres and $100.00 come back off the card.",
+      "b": "0 residents named Wentworth",
+      "rule": "WENTWORTH ELIJAH is refused against 0 residents named Wentworth: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0574"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-11",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "WENTWORTH ELIJAH matches Elijah Wentworth: the forename names Elijah Wentworth of the 2 people of this surname, and the forename agrees in full."
+        "data/residents/index.json"
+      ]
     },
     {
       "a": "CARNEY MICHAEL",
@@ -12217,8 +11969,8 @@
     },
     {
       "a": "REED ROBERT",
-      "b": "5 residents named Reed",
-      "rule": "REED ROBERT is refused against 5 residents named Reed: the forename names 0 of the 5 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Reed",
+      "rule": "REED ROBERT is refused against 4 residents named Reed: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "inf_joiner_north_02",
@@ -12226,15 +11978,6 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "reed_george",
-          "name": "George Reed",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -12348,23 +12091,14 @@
     },
     {
       "a": "HUBBARD THOMAS R",
-      "b": "6 residents named Hubbard",
-      "rule": "HUBBARD THOMAS R is refused against 6 residents named Hubbard: the forename names 0 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "5 residents named Hubbard",
+      "rule": "HUBBARD THOMAS R is refused against 5 residents named Hubbard: the forename names 0 of the 5 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "hubbard_ahira",
           "name": "Ahira Hubbard",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "R",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
           "middle_initial": null,
           "reading_middle_initial": "R",
           "outcome": "refused_on_the_forename"
@@ -12420,21 +12154,12 @@
     },
     {
       "a": "LOOMIS HORATIO G",
-      "b": "2 residents named Loomis",
-      "rule": "LOOMIS HORATIO G is refused against Amelizo Loomis and Henry Loomis: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "Amelizo Loomis",
+      "rule": "LOOMIS HORATIO G is refused against Amelizo Loomis: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "loomis_amelizo",
           "name": "Amelizo Loomis",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "loomis_henry",
-          "name": "Henry Loomis",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -12622,18 +12347,9 @@
     },
     {
       "a": "SMITH JEDUTHAN",
-      "b": "11 residents named Smith",
-      "rule": "SMITH JEDUTHAN is refused against 11 residents named Smith: the forename names 0 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH JEDUTHAN is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -12655,15 +12371,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -12861,18 +12568,9 @@
     },
     {
       "a": "SMITH WILLIAM",
-      "b": "11 residents named Smith",
-      "rule": "SMITH WILLIAM is refused against 11 residents named Smith: the forename names 2 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH WILLIAM is refused against 9 residents named Smith: the forename names 2 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -12894,15 +12592,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -13529,8 +13218,8 @@
     },
     {
       "a": "ROBINSON RICHARD P",
-      "b": "3 residents named Robinson",
-      "rule": "ROBINSON RICHARD P is refused against Catherine Chevalier Robinson and D O Robinson and Hugh Robinson: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "2 residents named Robinson",
+      "rule": "ROBINSON RICHARD P is refused against Catherine Chevalier Robinson and D O Robinson: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "robinson_catherine",
@@ -13547,15 +13236,6 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "O",
-          "reading_middle_initial": "P",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "robinson_hugh",
-          "name": "Hugh Robinson",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
           "reading_middle_initial": "P",
           "outcome": "refused_on_the_forename"
         }
@@ -14367,8 +14047,8 @@
     },
     {
       "a": "GRANT OWEN",
-      "b": "2 residents named Grant",
-      "rule": "GRANT OWEN is refused against James Grant and Thomas D Grant: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "James Grant",
+      "rule": "GRANT OWEN is refused against James Grant: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "grant_james",
@@ -14376,15 +14056,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "grant_thomas_d",
-          "name": "Thomas D Grant",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
@@ -14421,18 +14092,9 @@
     },
     {
       "a": "SMITH JOSHUA",
-      "b": "11 residents named Smith",
-      "rule": "SMITH JOSHUA is refused against 11 residents named Smith: the forename names 0 of the 11 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH JOSHUA is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -14454,15 +14116,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
@@ -14634,28 +14287,8 @@
     },
     {
       "a": "WENTWORTH ELIJAH SEN",
-      "b": "2 residents named Wentworth",
-      "rule": "WENTWORTH ELIJAH SEN is refused against Elijah Wentworth and H E Wentworth: the reading carries the suffix SR and Elijah Wentworth carries none, and a suffix says which man of the name is meant.",
-      "rivals": [
-        {
-          "key": "wentworth_elijah",
-          "name": "Elijah Wentworth",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_suffix"
-        },
-        {
-          "key": "wentworth_h_e",
-          "name": "H E Wentworth",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "E",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "b": "0 residents named Wentworth",
+      "rule": "WENTWORTH ELIJAH SEN is refused against 0 residents named Wentworth: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0891"
       ],
@@ -14665,42 +14298,19 @@
     },
     {
       "a": "WENTWORTH ELIJAH W",
-      "b": "Elijah Wentworth",
-      "rule": "THE SAME SURNAME'S OTHER SPELLING, REFUSED FOR THE SHARPER FORM OF THE SAME REASON. Where the bare ELIJAH could not meet the register's own SEN, this one carries a middle initial W THAT THE CARD DOES NOT HAVE AND THAT NOTHING ON THE TOWN'S SIDE EVER PRINTS — not the Democrat's “E. Wentworth”, not the 1863 death notice, not the 1840 census. C2's control cuts the other way here: HARMON CHAS L was upheld because a CONTRACTION keeps the token that discriminates, and an ADDED initial is not a contraction, it is a discriminator the card cannot meet. The register's own WENTWORTH ZEBIAH W, twice, shows the W is a family's initial and not a stray. ls0892 is 80 acres in section 10 T40N R13E on 18 November 1834, UNKNOWN in the Residence column. Refused; eighty acres and $100.00 come back off the card. That both Wentworth spellings fall is stated as a finding, not a tidiness: the register holds four Elijah-or-Elijam Wentworths and this project holds one, and the honest reading is that the layer is missing men, not that one card owns them all.",
+      "b": "0 residents named Wentworth",
+      "rule": "WENTWORTH ELIJAH W is refused against 0 residents named Wentworth: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0892"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-11",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "WENTWORTH ELIJAH W matches Elijah Wentworth: the forename names Elijah Wentworth of the 2 people of this surname, and the forename agrees in full."
+        "data/residents/index.json"
+      ]
     },
     {
       "a": "WENTWORTH ELIJAM SEN",
-      "b": "2 residents named Wentworth",
-      "rule": "WENTWORTH ELIJAM SEN is refused against Elijah Wentworth and H E Wentworth: the reading carries the suffix SR and Elijah Wentworth carries none, and a suffix says which man of the name is meant.",
-      "rivals": [
-        {
-          "key": "wentworth_elijah",
-          "name": "Elijah Wentworth",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — spelling variant (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_suffix"
-        },
-        {
-          "key": "wentworth_h_e",
-          "name": "H E Wentworth",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "E",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
+      "b": "0 residents named Wentworth",
+      "rule": "WENTWORTH ELIJAM SEN is refused against 0 residents named Wentworth: the residents layer holds nobody of the surname.",
       "record_ids": [
         "ls0893"
       ],
@@ -16979,21 +16589,12 @@
     },
     {
       "a": "HUBBARD T R",
-      "b": "6 residents named Hubbard",
-      "rule": "HUBBARD T R is refused against 6 residents named Hubbard: the forename names 0 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "5 residents named Hubbard",
+      "rule": "HUBBARD T R is refused against 5 residents named Hubbard: the forename names 0 of the 5 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "hubbard_ahira",
           "name": "Ahira Hubbard",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "R",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hubbard_b",
-          "name": "B Hubbard",
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
@@ -17080,18 +16681,9 @@
     },
     {
       "a": "JACKSON AMASA",
-      "b": "2 residents named Jackson",
-      "rule": "JACKSON AMASA is refused against J Y Jackson and Samuel Jackson: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "Samuel Jackson",
+      "rule": "JACKSON AMASA is refused against Samuel Jackson: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "jackson_j_y",
-          "name": "J Y Jackson",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "Y",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "jackson_samuel",
           "name": "Samuel Jackson",
@@ -17542,8 +17134,19 @@
     },
     {
       "a": "LOOMIS H G",
-      "b": "Henry Loomis",
-      "rule": "REFUSED, and the rival is in the same volume — cohort B's PEARSON HIRAM shape, found a second time. The register itself enters LOOMIS HORATIO G (ls0595, the west half of the south-east quarter, 80 acres at $208, 27 June 1835) a year before the five town lots it enters as LOOMIS H G, so the book holds both spellings of one man, and the H G it is asked about is the man it elsewhere spells out. The printed record of the surname holds exactly two Chicago Loomises and separates them cleanly: 'Loomis, Henry, lumber merchant, cor West Water and Randolph' (Fergus 1843, Norris 1844), who carries NO middle initial in any printing; and Horatio Gates Loomis of Harmon & Loomis, printed 'Loomis, Horatio G., (Harmon & Loomis)' and 'Loomis, Horatio Gates, at C. L. Harmon's' in Fergus 1839 and 1843 and 'Loomis, H. G. at C. L. Harmon's' in Norris 1844 — the register's two initials exactly. The one 1835 reading on the Henry card is weaker still and cannot decide anything: 'H. Loomis' is a signature on the passengers' card of the steamboat Thomas Jefferson printed by the Chicago American of 20 June 1835, an initial that fits either man, and the signer gives BALLSTON SPA as his own place. The residents layer holds no card for Horatio Gates Loomis, so there is no person here to name the rows onto; the ruling refuses the match and records whose rows they are.",
+      "b": "Amelizo Loomis",
+      "rule": "LOOMIS H G is refused against Amelizo Loomis: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "loomis_amelizo",
+          "name": "Amelizo Loomis",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": "G",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls1330",
         "ls1331",
@@ -17552,11 +17155,8 @@
         "ls1334"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-11",
-      "ruled_under": "T-1034",
-      "was_proposed_as": "LOOMIS H G matches Henry Loomis: the forename names Henry Loomis of the 2 people of this surname, and the forename agrees as an initial only."
+        "data/residents/index.json"
+      ]
     },
     {
       "a": "LOYD J",
@@ -17743,7 +17343,7 @@
       ],
       "ruled_on": "2026-09-11",
       "ruled_under": "T-1034",
-      "was_proposed_as": "MILLER GEORGE matches George Miller: the forename names George Miller of the 4 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "MILLER GEORGE matches George Miller: the forename names George Miller of the 3 people of this surname, and the forename agrees in full."
     },
     {
       "a": "MILLER J",
@@ -17758,7 +17358,7 @@
       ],
       "ruled_on": "2026-09-11",
       "ruled_under": "T-1034",
-      "was_proposed_as": "MILLER J matches John Miller: the forename names John Miller of the 4 people of this surname, and the forename agrees as an initial only."
+      "was_proposed_as": "MILLER J matches John Miller: the forename names John Miller of the 3 people of this surname, and the forename agrees as an initial only."
     },
     {
       "a": "MILLER SAMUEL",
@@ -17775,7 +17375,7 @@
       ],
       "ruled_on": "2026-09-11",
       "ruled_under": "T-1034",
-      "was_proposed_as": "MILLER SAMUEL matches Samuel Miller: the forename names Samuel Miller of the 4 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "MILLER SAMUEL matches Samuel Miller: the forename names Samuel Miller of the 3 people of this surname, and the forename agrees in full."
     },
     {
       "a": "MORRISON EPHRAIM",
@@ -18265,34 +17865,105 @@
     },
     {
       "a": "SMITH JAMES A",
-      "b": "James Smith",
-      "rule": "REFUSED, and the middle initial is what refuses it rather than what carries it. The card `smith_james` holds no middle initial of its own: its one scene-window reading is `chicago_american_1835_06_20#c011`, the passengers' CARD of the steamboat Thomas Jefferson on her trip from Buffalo, sixty-three signatures each giving the place its signer calls his own, and the transcription reads the line 'Janes Stmth'. A signature on a boat's card of thanks is a name and nothing else, and it is not even a statement that the signer stayed. What the directories add is a fold, not a man: Fergus 1843 and Norris 1844 are both recorded AMBIGUOUS on this card — four printed entries (James the shoemaker at David Jay's, James Ayer the clerk at L. P. Sanger & Co., J. F. of Skinner & S., J. T. the auctioneer) meet it on 'the given name of both begins J', and the layer holds eleven Smiths. The ONE unambiguous entry the card carries goes the other way: Fergus 1839's single match is 'Smith, James M., constable, Lake street' — M where the register prints A, which is cohort C2's LEE GEORGE W shape exactly, a middle initial that DISAGREES rather than one that is absent. And the printed record's actual James A. Smith is somebody else: 'Smith, James Ayer, clerk' in Fergus 1843, 'Smith, J. A.' in Norris 1844, one of the four entries the fold could not choose among and a person the layer does not hold apart. The register is no help either — the same book enters SMITH J twice beside SMITH JAMES A's three rows, so it is not fastidious about which Smith it is naming. Three rows, $6,275: lot 3 of block 37 at $4,500 on 5 September 1836, and the two halves of lot 4 of block 5 at $887.50 apiece on 28 June. The proposal rests on the residents layer holding one card called 'James Smith', which is the layer being coarse under the commonest surname in the corpus, not two records agreeing. THE ONE FACT THAT CUTS THE OTHER WAY, SAID OUT LOUD: the 1840 federal census of Chicago does carry a head printed “James A. Smith” (33SQ-GYYJ-93G, printed page 207, line 23), and this card holds it — as a CANDIDATE under rule L7, because the name agrees and nothing independent of the name was found. It is not a token: it is the same string arriving a second time, five years after the scene and four after the purchase, and the census crosswalk has already declined to make an identity of it. A candidate on one side and a register row on the other are still two name-only readings. If that head is ever tied to a person by something other than his name, this refusal is the first ruling to revisit.",
+      "b": "9 residents named Smith",
+      "rule": "SMITH JAMES A is refused against 9 residents named Smith: the forename names 0 of the 9 people of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "smith_e_kirby",
+          "name": "E Kirby Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "K",
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_elded",
+          "name": "Elded Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_george",
+          "name": "George Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_jeremiah",
+          "name": "Jeremiah Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_l_w",
+          "name": "L W Smith",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "W",
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_lawrence",
+          "name": "Lawrence Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_matthias",
+          "name": "Matthias Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_william",
+          "name": "William Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "smith_william_v",
+          "name": "William V Smith",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "V",
+          "reading_middle_initial": "A",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls1456",
         "ls1457",
         "ls1458"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-12",
-      "ruled_under": "T-1034",
-      "was_proposed_as": "SMITH JAMES A matches James Smith: the forename names James Smith of the 11 people of this surname, and the forename agrees in full."
+        "data/residents/index.json"
+      ]
     },
     {
       "a": "SMITH W V",
-      "b": "11 residents named Smith",
-      "rule": "SMITH W V is refused against 11 residents named Smith: the forename names 2 of the 11 people of this surname, and a reading is named onto exactly one or onto none (R3).",
+      "b": "9 residents named Smith",
+      "rule": "SMITH W V is refused against 9 residents named Smith: the forename names 2 of the 9 people of this surname, and a reading is named onto exactly one or onto none (R3).",
       "rivals": [
-        {
-          "key": "smith_d_a",
-          "name": "D A Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "A",
-          "reading_middle_initial": "V",
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "smith_e_kirby",
           "name": "E Kirby Smith",
@@ -18314,15 +17985,6 @@
         {
           "key": "smith_george",
           "name": "George Smith",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "V",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "smith_james",
-          "name": "James Smith",
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
