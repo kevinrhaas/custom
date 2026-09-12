@@ -8,7 +8,7 @@
   "census_1840": 284,
   "church": 505,
   "books": 222,
-  "directories": 7305,
+  "directories": 7315,
   "newberry_index": 4914,
   "land_sales": 868,
   "old_settlers": 460
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 953
+   "spent": 943
   },
   "newberry_index": {
    "read": 7005,
@@ -560,6 +560,14 @@
    "to": 7305,
    "date": "2026-09-12",
    "why": "T-1049, second pass of the same cause: the re-derivation of the directory crosswalks against the smaller town released 20 more rulings that had been spent onto cards the place refusal un-minted. Same corpus, same reading, fewer cards to land on."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7305,
+   "to": 7315,
+   "date": "2026-09-12",
+   "why": "T-0987 stretch 9 withdrew 20 directory matches on a middle initial the rule had never compared — Edward Kendall Rogers is not Edward A. Rogers, Henry Wilcox Clarke is not H. B. Clarke — and ten printed entries stop being ruled on because the man they were ruled onto was the wrong man. The unspent count rises for a reading that got MORE careful, not for reading that outran the town: 7305 -> 7315, every one of the ten named in the crosswalks' middle_initial_refusals blocks with the letter it turned on."
   }
  ],
  "lowered": [
