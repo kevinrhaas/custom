@@ -1,7 +1,7 @@
 ---
 id: T-1075
 title: The Michigan St tract named and seated: who platted it and what the sources call it, and its street, alley, parcels and the curved road north into the town's data
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0796
 opened: 2026-09-12
-closed: null
+closed: 2026-09-12
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 9:17:07 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T14:44:33.129Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34698621597
 ---
 
 The Michigan St tract named and seated: who platted it and what the sources call it, and its street, alley, parcels and the curved road north into the town's data.
