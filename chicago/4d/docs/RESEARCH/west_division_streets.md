@@ -1,6 +1,8 @@
 # West Water seated, and Jefferson and Des Plaines refused by the ground
 
-**T-0445, piece 2 of 4 of T-0443. 2026-09-05.** Every number here is recomputed
+**T-0445, piece 2 of 4 of T-0443. 2026-09-05. Extended by T-0768, 2026-09-12,
+which carried the reach past the turn at Wolf Point and refused the rest with the
+clearance — § 1.** Every number here is recomputed
 from committed files by `tools/measure_west_division_streets.py`, which carries
 the assertions as `--self-test` and which `tools/check.sh` runs. Unlike T-0444's
 memo, this one moves something: one street is seated, and §3 says why the other
@@ -43,10 +45,12 @@ west**, so the street's *east kerb* stands on the 1834 waterline:
 | −9.58 | −205.60 | 12.228 |
 | +1.10 | −134.02 | 12.192 |
 | −0.08 | −117.10 | 12.192 |
-| −9.34 | −104.20 | 12.192 |
+| −7.92 | −106.17 | 12.192 |
+| −39.48 | −86.63 | 12.192 |
 
-The mitre joints add at most 0.101 m, so the kerb reaches the waterline and does
-not cross it. **That placement is this line's one reconstruction, and what would
+The last two vertices are **T-0768's**, and they are the same derivation carried past the
+turn — see below; the joint at −106.17 is where T-0445's line ended, mitred. The mitre joints
+add at most 0.101 m, so the kerb reaches the waterline and does not cross it. **That placement is this line's one reconstruction, and what would
 move it is stated rather than hidden:** the kerb-on-the-water reading is the
 furthest east an 80 ft street on this bank can be — the same bound T-0444's swap
 test rested on — and any wharf or landing strip between the kerb and the water
@@ -57,17 +61,96 @@ pushes the whole line west by its width. No source reached gives that width.
 re-grade of the bank cannot leave the street reading better than the thing it was
 measured from.
 
-### The reach, and why it stops short of Wolf Point
+### The reach past the turn — 39.55 m of it, and what stops the rest
 
-The seated line ends at local north −104, where the traced bank turns west into
-the junction pool. North of that turn a bank-offset line runs straight through
-the attested Wolf Point cluster — the tavern at (−77.3, −45.1), Robert Kinzie's
-store at (−68.7, −62.8), James Kinzie's house at (−46.7, −79.8), the Walker
-meeting house at (−105.0, −3.0). Those are documented placements and this line is
-a reconstruction; the reconstruction gives way. So the continuation the 1839
-directory attests — *"W. Water st north of West Lake st"* — is **left unseated
-rather than guessed**, and that is filed as its own ticket rather than settled
-here.
+**T-0768, 2026-09-12.** T-0445 ended the seated line at local north −104, where the traced
+bank turns west into the junction pool, and left the continuation Fergus 1839 attests —
+*"W. Water st north of West Lake st"* — unseated, because a bank-offset line past the turn
+runs through the Wolf Point cluster. That was the right call on the evidence and it was
+**one measurement short of the answer**: nobody had asked how far past the turn the line
+gets *first*. It gets 39.55 m, and the town was short that frontage for no reason.
+
+Two numbers say why it mattered. **West Lake Street's north kerb stands at local north
+−97.41** at the easting of the old end, and **the old end stood at −104.20 — 6.79 m SOUTH
+of it.** So the line did not merely stop short of the attested reach; it terminated *inside
+the Lake Street intersection*, and the frontage the 1839 directory prints an address on had
+zero length in this reconstruction.
+
+**What is seated here.** The same derivation, unchanged — the committed west bank offset one
+half-corridor west, east kerb on the 1834 waterline — carried along the bank's next segment,
+the junction pool's south face, and **cut where the roadway first reaches a committed
+footprint**. The cut is derived by `measure_west_division_streets.py` from the structure tree
+itself, so a building that moves moves the street's end:
+
+| | |
+|---|---|
+| the bank's Wolf Point segment | 51.94 m long |
+| the roadway is clear for | **39.55 m** of it |
+| what stops it | `james_kinzie_house` (`dwelling_1830`, `inferred`) |
+| where it enters the roadway | 39.55 m along, spanning **6.77–16.99 m** west of the bank |
+| the roadway itself | 0–24.384 m west of the bank |
+| new centreline | **37.12 m**, from [−7.92, −106.17] to [−39.48, −86.63] |
+| of which north of Lake's north kerb | **20.30 m** |
+
+James Kinzie's house does not front the street and is not clipped by its kerb: its footprint
+spans the **middle** of the roadway, 6.77 m to 16.99 m into a 24.384 m corridor. A street
+cannot be drawn through it, so the line stops at its face.
+
+Joining the two reaches mitres the vertex at the turn, which is the one committed number this
+ticket moves: **[−9.34, −104.20] now reads [−7.92, −106.17]**. It was the perpendicular end of
+the last segment and it is now the mitre joint between two; it still stands 12.192 m from the
+bank, and the self-test holds that for every vertex as before.
+
+### …and why no line fits past the cut — the refusal, as a measurement
+
+Past James Kinzie's house the answer is still no, and here is the number that refuses it.
+Every distance is from each committed footprint's nearest and furthest corner to the traced
+bank itself — not to one straightened segment, because past the junction pool the bank turns
+again and a single frame would flatter the answer.
+
+| placement | grade | nearest corner | furthest corner |
+|---|---|---|---|
+| `james_kinzie_house` | inferred | **6.77 m** | 16.99 m |
+| `robert_kinzie_store` | inferred | **8.71 m** | 17.90 m |
+| `wolf_point_tavern` | inferred | **3.76 m** | 15.99 m |
+| `wolf_point_tavern_stable` | reconstructed | 23.50 m | 34.31 m |
+| `robinson_caldwell_cabins` | reconstructed | **7.01 m** | 14.67 m |
+| `walker_meeting_house` | reconstructed | **5.46 m** | 15.08 m |
+
+**Riverward of the cluster there is at most 3.76 m of clear bank, against the 24.384 m an
+80 ft street needs — short by 20.62 m, and short even of the 12.192 m half-corridor.** That
+is the clearance this ticket could not find, and it is the answer the ask allowed: a refusal
+that names it. Five of the six placements stand *across* the roadway rather than beside it,
+which is the shape of the problem — the cluster is not a row of buildings fronting a street
+this reconstruction forgot to draw, it is a row of buildings standing where the street would
+be.
+
+Going **west of** the cluster is geometrically available and is refused for a different
+reason: the east kerb would have to stand 34.31 m west of the water to clear the tavern's
+stable, which is one and a half street widths of unplatted ground between the street and the
+river, on a line the plat draws as the *riverfront* street. Nothing reached attests a water-lot
+strip here — the one this project has read is Kinzie's Addition's, on the north bank of the
+main stem — and inventing one to make a line fit is the thing this file exists not to do.
+
+**What would reverse the refusal, and it is not more geometry.** The clearance above is not
+evidence; it is the residue of free choices. `wolf_point_tavern`'s own committed derivation
+says so in as many words — `method: not_derivable`, *"an interpolation plus a free 40 m"* —
+and its cross-bank setback was measured to the **modern** west-bank line read from
+OpenStreetMap, not to the committed 1834 trace this street is offset from. So what stands
+between West Water Street and the river at Wolf Point is a reconstruction refusing a
+reconstruction. What would settle it is a source that fixes one of the cluster to something:
+a measured description in Andreas pp. 626–631, the Braunhold retrospective view read at plate
+level, or an 1830s conveyance giving a Wolf Point frontage in feet. Any of those moves the
+cluster off its free coordinate, and this line can then be carried or refused on evidence.
+
+**One thing this reach does not deliver, and it should be said plainly.** The address that
+attests the continuation is Murphy & Titus's *"Rat's-castle Hotel, W. Water st north of West
+Lake st"* (`fergus_1839_street_faces.json`, claim `f1839_e1081`), and `wolf_point_tavern`
+carries *Rat Castle* among its aliases. If the two are the same house — this file does not
+assert it, because nothing reached ties the 1839 firm to the 1835 building — then the
+attesting address sits at 81–92 m past the turn, and the 37.12 m seated here still stops
+short of its door. The reach is real and the frontage is real; the specific hotel is not on
+it.
 
 ### What attests the street, all of it already committed here
 
