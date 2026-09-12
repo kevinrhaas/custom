@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nine more buyers of town lots, and six who were somebody else', kind: 'fix', ts: '',
+  { v: 750, title: 'Nine more buyers of town lots, and six who were somebody else', kind: 'fix', ts: '2026-09-12T01:02:24.250Z', date: 'Sep 11, 2026, 8:02 PM CT',
     items: [
       'The town sold its lots in 1830 and again in the boom of June 1836, and a clerk wrote each buyer\u2019s name in a ledger. Joining one of those names to a person this reconstruction holds is a guess until somebody argues it. Fourth batch: nine names, three kept, six sent back \u2014 the first where most failed.',
       'The lesson is where to look first: the ledger is not only the thing being checked, it is also a witness, because it holds other buyers. Five lots of 1836 entered to an \u201cH. G. Loomis\u201d had been joined to Henry Loomis, the lumber merchant at West Water and Randolph \u2014 but the same volume enters a Horatio G. Loomis a year earlier, and the directories print exactly two Loomises: Henry, who never carries a middle initial, and Horatio Gates Loomis of Harmon & Loomis, printed \u201cH. G.\u201d in 1844. The initials belong to the other man.',
