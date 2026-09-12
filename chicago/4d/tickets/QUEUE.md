@@ -156,7 +156,6 @@ T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section s
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-1056 — The woody stratum scatters evenly over the sand bar, because nothing keys it to the sandy HILLS Andreas excepts
 T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
-T-1071 — The South Branch traced off Wright from the forks window's south edge through the School Section to the sheet's south margin
 T-1072 — The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
 T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
