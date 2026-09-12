@@ -1,7 +1,7 @@
 ---
 id: T-1079
 title: The Michigan St tract seated on the committed grid: its two street reaches, its two alleys and its polygon, hung on michigan_north and market_north
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1075
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1198
 claimed_by: run 9/12/2026, 9:44:36 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T15:20:35.010Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34698621597
 ---
 
