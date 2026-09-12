@@ -140,7 +140,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- ruling and landed on 2026-09-11 as three (PR #1135): the metres of lot 2 took two roofs
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
-T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
 T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
@@ -331,3 +330,4 @@ T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house',
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
+

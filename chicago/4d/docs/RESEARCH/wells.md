@@ -250,31 +250,97 @@ heightfield east along Randolph's line: +2.62 m at east 1205, +1.09 at 1218, the
 1224.1 — about 1 in 7.3 over the last 19 m. Had the ground fallen off a bluff there, the
 reading would have had a problem to answer.
 
-### The water at the foot of Randolph is not the lake, and this is not resolved
+### The water at the foot of Randolph is not the lake, and this is the ruling (T-0886)
 
 Andreas says the watermen drove into **the lake**. Sampling the same committed line further
-east says otherwise:
+east says otherwise. Every figure in this table is read out of the committed heightfield by
+`tools/measure_watering_place.py`, which the gate runs, rather than quoted from a reading
+somebody once took:
 
 | local east | what the committed surfaces give |
 |---|---|
-| to 1224 | dry land, the south sand ridge, falling to the waterline |
-| 1224 – ~1305 | water, about -1.1 m at its deepest |
-| ~1320 – ~1470 | **the sand bar**, standing dry at about +1.23 m |
-| beyond ~1478 | the open lake, falling away steadily |
+| to 1223.8 | dry land, the south sand ridge, falling to the waterline |
+| 1224.0 – 1305.5 | water, 81.5 m of it, 1.18 m at its deepest |
+| 1305.8 – 1469.5 | **the sand bar**, 163.8 m standing dry, to +1.24 m |
+| beyond 1469.8 | the open lake, falling away steadily |
 
 So the water this cart stands at is the old southward channel behind the bar — which
 `shoreline.geojson` names in the same feature as the reservation's lake shore — and the lake
-proper is 254 m further out across dry sand. **That matters because the trade existed to
+proper is 246 m further out across dry sand. **That matters because the trade existed to
 avoid exactly that water.** The same sentence opens with the settlers casting *"longing eyes
 towards the lake, realizing that that source of water supply was the true one and not to be
 compared to the sluggish and unprepossessing river."*
 
-Three readings are open and this project picks none of them: that Andreas's *"the lake"* is
-loose for the water at the end of Randolph Street; that the old channel was closed, dry or
-fordable by July 1835 — Wright draws it narrowing and nothing in this repository dates it;
-or that the carts crossed the bar and the street name marks where they left the town rather
-than where they stood. It is filed as its own ticket rather than answered by whichever
-reading would make the record look tidiest.
+T-0759 left three readings open and picked none. T-0886 asked for one of two things — the
+channel's state on 1835-07-01 **dated from a source**, or the readings weighed and one
+adopted with the reasoning written down. **The date could not be got, and this section is the
+weighing.**
+
+**What was read, and what it would not give.** The corpus holds the harbour works from both
+ends and none of it looks at the abandoned water. The Democrat of 21 January 1834 carries the
+engineer's first-season report — almost nothing built, materials only. The Democrat of 13
+August 1834 has the North Pier *"gradually extending into the Lake"* and about to run
+*"across the sand-bar, lying opposite the mouth of the river."* The Democrat of 25 March 1835
+has $32,800 newly appropriated *"towards the completion of our harbor."* The American of 5
+August 1835 prints Lieut. Brown's soundings — thirteen feet between the piers where the
+channel is six hundred feet wide. Every one of them is about the **new** cut. Hubbard tells
+how the mouth came to work south to Madison Street in the first place, and Moses's footnote
+tells what the North Pier did to the shore below it afterwards; neither dates a July. The
+project's own hydrology dossier already says so in as many words: row 26, the abandoned old
+channel, **`conjectural` for 1835**. Nothing dates it, so nothing here pretends to.
+
+**The reading adopted: Andreas's phrase names a stretch of bank, and the stretch reaches the
+lake.** His own word is *"generally at the foot of Randolph Street"* — a sentence written in
+1884 about a trade nobody minuted, naming a reach of shore rather than a point. The trace
+gives that reach an end. The sand bar is an island with a drawn **south tip** at local north
+-436.0, east 1346.9: 173.5 m south of the cart, and 153 m north of the trace's own southern
+limit at north -589.2, so it is a terminus the draughtsman drew and not one the window cut.
+South of that tip the water at the bank is continuous with the open lake. Along the committed
+south shore the walk from the cart to that latitude is **167.0 m** — shorter than the 245.5 m
+of channel and bar a cart would have to cross on the transect to reach the same water. A
+waterman working a stretch of shore a newspaper never named, whose trade is described half a
+century later in one sentence, is inside his own word at 167 m. **So the source and the
+surfaces are reconcilable without asserting one new thing about the ground.**
+
+**Reading 2, that the channel was closed, dry or fordable, is refused.** It is the tidiest
+answer and it has no evidence at all behind it: nothing dates the channel, and the committed
+heightfield models that water at 1.18 m. Adopting it would mean overruling a derived and
+gated surface on a wish.
+
+**Reading 3, that the carts crossed the bar, is refused.** It needs 81.5 m of ford at 1.18 m
+before the sand is even reached, which is not a crossing a two-wheeled cart makes daily as a
+trade, and it asserts a route no source describes.
+
+**The cart does not move, and the refusal is the point.** The bar's south tip is a bank a cart
+could be driven down, and it is ground no source names — and ground this epoch does not model,
+since the heightfield's box stops at north -400, north of the tip. Standing the cart there
+would trade the one place Andreas *does* name for a place chosen by the model for its own
+convenience, which is the fault this whole section exists to avoid. It stays at the foot of
+Randolph; the reach it stands on is what carries the lake.
+
+**The terrain's dating file is not where this goes**, and the reason is that file's own
+contract. `data/terrain/1835_intown_water_dating.json` holds one entry per in-town water
+feature the terrain spec **defers** rather than models, and declares its set as dossier zones
+15, 16 and 17. The old channel is zone 26 and the spec **models** it, bed -2.5 ft. T-0886
+allowed for adding it *"if the answer is that the channel was open water on the scene date"*;
+the answer adopted here dates nothing, and a dating file that carried an undated feature
+would be worth less than one that does not.
+
+**One gap is left on the record rather than closed.** The dossier's narrative puts the old
+channel's natural outlet at about Madison Street, local north -525, and the trace ends the bar
+89 m north of that at -436. A wash boundary on a plat against a narrative estimate — neither a
+survey, and the same shape of gap `terrain_east_1834.md` § 8 already records for the channel's
+width. The walk measured above is the trace's figure; on the narrative's it is longer, and the
+reading does not turn on which is right.
+
+**The measurement is gated, because prose about a derived surface goes stale silently.**
+`tools/measure_watering_place.py --gate` asserts four things and `tools/check.sh` runs it: the
+cart still stands at water; the transect still gives water, then dry bar, then water, which is
+the contradiction this section is about; the bar's traced end is still south of the cart,
+still inside the traced window, and still under a quarter of a kilometre's walk away; and
+`town_water_cart.json` still quotes the same 167.0 m this file argues from. A re-carve of the
+terrain that drowns the bar or moves the waterline now fails the gate instead of leaving two
+documents describing a shore that is no longer there.
 
 ### What is refused, and why each refusal is not an absence
 
