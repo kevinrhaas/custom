@@ -153,7 +153,6 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
 T-1053 — The three over-declared South Water entries cannot be narrowed without re-lotting a yard building, because frontage.lots is also the block's declared business front
-T-1064 — The epoch re-baked on T-0799's trace, and shoreline.geojson into the terrain staleness hash so a re-trace can never leave the ground behind again
 T-1065 — The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil

@@ -1,7 +1,7 @@
 ---
 id: T-1064
 title: The epoch re-baked on T-0799's trace, and shoreline.geojson into the terrain staleness hash so a re-trace can never leave the ground behind again
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0800
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1184
 claimed_by: run 9/12/2026, 3:54:43 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-12T09:33:45.333Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34683906824
 ---
 
