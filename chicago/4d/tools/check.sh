@@ -46,6 +46,22 @@ step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-093
 # with the roll-up `check_summary` prints at the end. This holds both to it, and scans
 # check.sh for a self-test that has drifted back onto plain `step`, where it would print
 # untagged again.
+# T-1083. WHAT THIS RUN CAN ACTUALLY ASK, declared before it asks anything.
+#
+# Thirteen steps below re-read a committed raster, and each degrades politely to a
+# banked reading when the image and array libraries are absent — prints its skip and
+# exits 0. Right for a tool; wrong for a gate, which then counts the skip as a pass.
+# The dev gate installed jsonschema/pyproj/openpyxl/pypdf and had therefore never
+# re-read a sheet, which is how `sauganash_range_m` sat 65.1 m out against a 1.0 m
+# tolerance and green. CI now installs the readers and sets
+# C4D_GATE_REQUIRE_READERS=1, which makes their absence RED here rather than silent.
+# A sandbox without them gets the same enumeration as a warning and carries on.
+step "the gate can ask what it claims to ask (raster readers present)" \
+  python3 tools/check_gate_readers.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_gate_readers.py --self-test
+
 step "the gate's own output tells a fired assertion from a failure" \
   bash tools/test_check_harness.sh
 

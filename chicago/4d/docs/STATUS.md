@@ -4130,7 +4130,8 @@ are now the cage parcel's first questions, not its last.
 fault of this shape here and the first repair left only a comment behind.
 
 - `generators/ao_export.py` reads the **exported bytes**: a pure-stdlib PNG decoder and GLB reader
-  (no Blender, no numpy, no Pillow — CI installs `jsonschema` and `pyproj` and nothing else).
+  (no Blender; CI installs `jsonschema pyproj openpyxl pypdf numpy scipy Pillow` — the
+  last three since T-1083, because without them thirteen raster steps skipped in silence).
 - `generators/build.py` calls `assert_ao_survived_export()` the moment each GLB is written, and
   the manifest entry is written **only if it passes** — so `baked_ao: true` cannot outlive the
   occlusion again. It refuses a missing `occlusionTexture`, a uniform texture (whichever value it

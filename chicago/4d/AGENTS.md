@@ -374,8 +374,11 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   `resolve_id_collisions.mjs --check` (a sibling slice may have taken a ticket id
   this branch minted while you were working). It writes nothing and names the repair
   for each red. `BASE=origin/main ./tools/preflight.sh` for the hotfix path.
-- **Both gates, in the foreground, before merging**: `tools/check.sh` (needs `jsonschema` +
-  `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
+- **Both gates, in the foreground, before merging**: `tools/check.sh` (`pip install
+  jsonschema pyproj openpyxl pypdf numpy scipy Pillow` — the last three are what let
+  thirteen steps RE-READ their rasters instead of standing on a banked copy; without
+  them the gate warns and degrades, and CI, which sets `C4D_GATE_REQUIRE_READERS=1`,
+  goes red. `tools/check_gate_readers.py` holds the list, T-1083) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
   page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The
   `--published` run is the one that matters: the source tree loads uncompressed masters and
   the site loads compressed derivatives, and bugs have shipped in the gap twice.
