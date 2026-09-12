@@ -44,3 +44,27 @@ and the reach itself is left unexplained. Fourteen figures are legible and 21 ar
 The stroke detector returns 34 to 36 strokes across five reasonable settings where the
 figures require 34, so the strokes are graded `inferred` throughout and no per-lot frontage
 table is written.
+---
+
+**FOUND BY T-1061, 2026-09-12 — blocks 1 and 2 are not on the ground this plat covers, and
+the river tier is where to look for them.** The block numerals are now read cell by cell
+(`data/traces/kinzie_addition_block_numbering.json`): fifty-one figures, a boustrophedon
+that reproduces all fifty-two cells, and the run's first two numbers landing on nothing.
+The run puts 1 and 2 west of block 3 on the river tier, beyond the Addition's west boundary
+rule at NA x 2918, where Wright draws the Original Town's north division instead — two
+eight-lot blocks that carry their own bold 1 and 2 across their mid-lines at NA x 2610-2930,
+y 2140-2320, on another survey's ground. Nothing inside the Addition's boundary carries
+either figure, and T-1061 refused them in writing rather than counting them onto a cell.
+This ticket owns the river tier and the water lots, so the next look belongs here: the strip
+of numbered water lots runs 1 to about 35 along the north bank and it is the one thing drawn
+between block 3 and the river. Whether the Addition's first two blocks were taken by that
+strip, or stand west of the boundary on ground Wright letters to another plat, is the
+question — and a recorded plat of Kinzie's Addition, or a Democrat notice selling a lot in
+its block 1 or 2 with a street named beside it, would settle it.
+
+**ANSWERED IN PART BY THIS TICKET'S READING, 2026-09-12.** The strip is not blocks 1 and 2.
+Its figures are one continuous run of THIRTY-FIVE along a single axis — a lot strip's own
+series, reaching far past anything a two-block reading could carry — and the run's terminal
+figures 1 and 35 are both legible. So whatever became of the Addition's first two block
+numbers, the water lots did not take them. Where they did go is still open, and is filed as
+its own ticket rather than left in a closed one.

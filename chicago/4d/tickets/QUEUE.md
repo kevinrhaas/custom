@@ -155,8 +155,8 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 
 T-1065 — The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
-T-1061 — Kinzie's Addition blocks 1-54, numbered off Wright's sheet with every numeral's crop cited
 T-1062 — The Kinzie Block named off the sheet, and the phrase searched in the newspaper and directory corpus
+T-1067 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
 T-1056 — The woody stratum scatters evenly over the sand bar, because nothing keys it to the sandy HILLS Andreas excepts
 T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
 T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
@@ -332,4 +332,3 @@ T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
-

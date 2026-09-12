@@ -212,6 +212,17 @@ step "Kinzie's Addition's street reading re-derives from its own pixels" \
 step "Kinzie's Addition's street lines re-derive from the module they are seated on" \
   python3 tools/seat_kinzie_addition_streets.py --check
 
+# And the numbers in the cells those streets leave. The reading is a table of 52
+# figures and a table is a list somebody typed, so this re-derives it twice over: the
+# cell boxes come from the street trace above rather than from numbers of their own,
+# and the run itself is re-derived from the boustrophedon rule, written independently
+# of the table it checks. The raster half is `--check-sheet` and the PR runs it (T-1061).
+step "Kinzie's Addition's block numerals re-derive from the reading and the run" \
+  python3 tools/read_kinzie_addition_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_kinzie_addition_numerals.py --self-test
+
 # THE WATER LOTS (T-1063) take BOTH halves here, unlike the street reading above, for
 # one measured reason: the re-read costs 2.1 s rather than half a minute. It walks one
 # 930-pixel line and scans a twenty-pixel band beside it, where the street reading
