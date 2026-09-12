@@ -61,13 +61,13 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "(Horace Norton & Co.)",
-     "describes_date": 1839,
+     "value": "storage, forwarding and commission merchants; dealers in produce, iron and coal",
+     "describes_date": 1844,
      "confidence": "attested",
      "sources": [
-      "fergus_chicago_directory_1839"
+      "norris_directory_1844"
      ],
-     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1844. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1844 is evidence about 1844. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1844\" are not the same fact (T-0693)."
     },
     "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
    },
@@ -169,58 +169,43 @@
   ]
  },
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. rogers_edward_a, Fergus's Chicago directory of 1839 — f1839_e1243 (a single entry); rogers_edward_a, Fergus's Chicago directory of 1843 — f1843_e2121 (a single entry); rogers_edward_a, Norris's Chicago directory of 1844 — n1844_e1507 (a single entry); rogers_edward_a, the advertising cards in Norris's directory of 1844 — n1844_ad0076 (a single entry).",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. rogers_edward_a, the advertising cards in Norris's directory of 1844 — n1844_ad0076 (a single entry).",
   "sources": [
-   "fergus_chicago_directory_1839",
-   "fergus_chicago_directory_1843",
    "norris_directory_1844"
   ],
   "people": [
    {
     "person_id": "rogers_edward_a",
     "occupation_later": {
-     "value": "(Horace Norton & Co.)",
+     "value": "storage, forwarding and commission merchants; dealers in produce, iron and coal",
      "confidence": "attested",
-     "describes_date": 1839,
+     "describes_date": 1844,
      "sources": [
-      "fergus_chicago_directory_1839"
+      "norris_directory_1844"
      ],
-     "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Rogers, Edward K., (Horace Norton & Co.)'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+     "note": "The advertising cards in Norris's directory of 1844 prints this trade against this person, in the entry quoted on the card: 'Edw. K. Rogers'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
     },
     "address_later": {
-     "value": "res Indiana, bet Cass and Rush",
+     "value": "Chicago, Illinois",
      "confidence": "attested",
-     "describes_date": 1843,
+     "describes_date": 1844,
      "sources": [
-      "fergus_chicago_directory_1843"
+      "norris_directory_1844"
      ],
-     "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Rogers, Edward Kendall (Horace Norton & Co.), res Indiana, bet Cass and Rush [died, Eastman, Ga., May 2, 1883, aged 70]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+     "note": "The advertising cards in Norris's directory of 1844 prints this address against this person, in the entry quoted on the card: 'Edw. K. Rogers'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
     },
     "back_projection": {
      "outcome": "refused",
      "clause": "1",
      "value": null,
-     "describes_date": 1843,
-     "read_back_years": 8,
+     "describes_date": 1844,
+     "read_back_years": 9,
      "placement": null,
      "position_local_enu_m": null,
      "sources": [
-      "fergus_chicago_directory_1843"
+      "norris_directory_1844"
      ],
-     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints an address against this name in 1843 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
-    },
-    "residence_back_projection": {
-     "outcome": "refused",
-     "clause": "R4",
-     "kind": "resides",
-     "value": null,
-     "describes_date": 1843,
-     "read_back_years": 8,
-     "placement": null,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ],
-     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. Indiana Street is a north-side name the 1835 street layer does not carry. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints an address against this name in 1844 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
     }
    }
   ]

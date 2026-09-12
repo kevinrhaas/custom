@@ -96,20 +96,20 @@
     },
     {
       "id": "L218",
-      "title": "Eighteen businesses stand on a street a directory printed after 1835",
+      "title": "Seventeen businesses stand on a street a directory printed after 1835",
       "section": "standing",
       "subjects": [],
       "covers": [],
       "scope": {
         "enumeration": "address_back_projection.positions[placed]",
-        "count": 18
+        "count": 17
       },
       "recorded": "2026-09-04",
       "revised": null,
       "fields": [
         {
           "label": "Scope",
-          "text": "`address_back_projection.positions[placed]` — 18 businesses"
+          "text": "`address_back_projection.positions[placed]` — 17 businesses"
         },
         {
           "label": "Decision",
@@ -121,11 +121,11 @@
         },
         {
           "label": "Consequence",
-          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Eighteen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names, one stands on a corner the volume prints, and the other fifteen have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
+          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Seventeen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names, one stands on a corner the volume prints, and the other fourteen have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
         },
         {
           "label": "What is NOT claimed, and this is the load-bearing half",
-          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The refusals and stand-offs are on the record beside the eighteen, so the arithmetic is visible and not just the successes."
+          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The refusals and stand-offs are on the record beside the seventeen, so the arithmetic is visible and not just the successes."
         },
         {
           "label": "Where it reaches a reader",
@@ -150,6 +150,10 @@
         {
           "label": "Restated",
           "text": "2026-09-11 (T-0987), from fifteen to eighteen, and the reason is the rule the two restatements above both point at. T-0670 — named in the 09-04 entry as \"the surname-uniqueness weakness that caused it\" — had never been applied to the Fergus 1839 crosswalk, only to 1843's and Norris's. T-0987's second stretch applied it: 75 of that volume's resident matches print a full forename that disagrees with the 1835 name and are now refused, which took the ties from 73 to 34 and left 22 residents holding the one printed line that actually names them. Three of those carry a street this pass can read. **Mark Beaubien** reaches Lake Street off `Beaubien, Mark, hotel-keeper, Lake st`; **James Kinzie** reaches Canal Street off `North Canal street`; and **Richard J. Hamilton**, clerk of the circuit court, reaches the Clark and Randolph corner the volume itself prints — the one corner in the set, under the same clause the two crossings stand on. All three are carried four years, the narrowest gap in the set, and all three had been sitting in the tie pool because the rule that would have cleared them was not run here. Nothing was regraded and no placement was invented. The same pass withdrew two residence faces under **L223**, which is the other half of the measurement: the rule gives where the printed name is the man's and takes where it is not."
+        },
+        {
+          "label": "Restated",
+          "text": "2026-09-12 (T-0987 stretch 9), from eighteen to seventeen, and the loss is the whole point of the stretch. Until this date the surname-plus-initial rule compared the FIRST initial of a name and stopped, so a middle initial both readings print had never been weighed at all. **H. B. Clarke**, hardware merchant, stood on Clark Street on the authority of `Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post` — a lawyer, whose middle initial the volume prints and prints differently. The stretch refuses that match, the face goes with it, and the one 1844 line that does name H. B. Clarke puts him on the lake shore below Michigan Avenue, ground the 1835 grid does not reach. Seventeen is therefore a truer eighteen: no placement was invented to hold the count, and the prose above that reasons from the number — two anchored on a crossing, one on a corner — now reads two, one and fourteen. Thirty-two matches across four volumes were withdrawn on the same clause and this is the only one that had reached the ground."
         }
       ]
     },

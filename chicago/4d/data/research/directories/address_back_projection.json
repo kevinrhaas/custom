@@ -7,16 +7,16 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 161,
-  "placed": 18,
-  "placed_as_a_face": 15,
+  "addresses_adjudicated": 156,
+  "placed": 17,
+  "placed_as_a_face": 14,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
   "already_better_placed": 27,
-  "refused": 116,
-  "refused_clause_1_no_1835_business": 103,
+  "refused": 112,
+  "refused_clause_1_no_1835_business": 98,
   "refused_clause_2_a_residence_not_a_shop": 8,
-  "refused_clause_3_not_on_the_1835_grid": 5,
+  "refused_clause_3_not_on_the_1835_grid": 6,
   "faces_reached": [
    "Canal Street",
    "Clark Street",
@@ -94,27 +94,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_austin_w_g",
-   "person_id": "austin_w_g",
-   "person": "W G Austin",
-   "address_as_printed": "Lake street",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_bailey_bennet",
    "person_id": "bailey_bennet",
    "person": "Bennet Bailey",
@@ -150,27 +129,6 @@
    "outcome": "already_better_placed",
    "clause": "2",
    "reason": "An 1835 placement already stands: this household works at `bates_auction_room`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_beaubien_john_s",
-   "person_id": "beaubien_john_s",
-   "person": "John S Beaubien",
-   "address_as_printed": "Michigan ave., bet. Lake and So. Water sts",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -730,20 +688,20 @@
    "household_id": "hh_clarke_h_b",
    "person_id": "clarke_h_b",
    "person": "H. B. Clarke",
-   "address_as_printed": "office Clark street, opposite City Saloon",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "cor 16th Street",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "hardware_merchant",
    "works_at_1835": null,
-   "outcome": "placed",
-   "clause": "3 and 4",
-   "reason": "Clark Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt.",
-   "street_id": "clark",
-   "face": "Clark Street",
-   "placement": "face",
+   "outcome": "refused",
+   "clause": "3",
+   "reason": "The address names no street at all — it names a house or a person to board with — so there is nothing to resolve onto the 1835 grid.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
    "qualifier_as_printed": null,
    "position_local_enu_m": null
   },
@@ -1828,11 +1786,11 @@
    "household_id": "hh_jones_d_e",
    "person_id": "jones_d_e",
    "person": "D E Jones",
-   "address_as_printed": "Dearborn street",
-   "describes_date": 1839,
-   "read_back_years": 4,
+   "address_as_printed": "Dearborn street, three doors north of Tremont Buildings",
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1839"
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2077,27 +2035,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_knapp_b_s",
-   "person_id": "knapp_b_s",
-   "person": "B S Knapp",
-   "address_as_printed": "South Water street near Clark",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_knickerbacker_a_v",
    "person_id": "knickerbacker_a_v",
    "person": "A V Knickerbacker",
@@ -2312,27 +2249,6 @@
    "person_id": "merrill_george_w",
    "person": "George W Merrill",
    "address_as_printed": "cor LaSalle",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_mills_john_a",
-   "person_id": "mills_john_a",
-   "person": "John A Mills",
-   "address_as_printed": "bds American TemperanceHouse",
    "describes_date": 1843,
    "read_back_years": 8,
    "sources": [
@@ -2812,27 +2728,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_reed_s_w",
-   "person_id": "reed_s_w",
-   "person": "S W Reed",
-   "address_as_printed": "bds John Davlin",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_reed_thomas",
    "person_id": "reed_thomas",
    "person": "Thomas Reed",
@@ -2899,11 +2794,11 @@
    "household_id": "hh_rogers_edward_a",
    "person_id": "rogers_edward_a",
    "person": "Edward A. Rogers",
-   "address_as_printed": "res Indiana, bet Cass and Rush",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "address_as_printed": "Chicago, Illinois",
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
