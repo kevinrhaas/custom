@@ -1,7 +1,7 @@
 ---
 id: T-1065
 title: The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0800
 opened: 2026-09-12
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 5:44:16 AM CT
 blocked_on: null
 needs_bake: true
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34689035657
 ---
 
 Piece 2 of 2 of **T-0800 — The mouth as built**. T-1066 took its fourth ask (the re-bake, and
