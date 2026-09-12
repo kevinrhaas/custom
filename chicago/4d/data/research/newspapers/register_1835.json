@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1169,
       "persons": 2665,
-      "businesses": 197
+      "businesses": 196
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,8 +16,8 @@
   },
   "counts": {
     "businesses": {
-      "total": 197,
-      "present_at_scene_date": 180,
+      "total": 196,
+      "present_at_scene_date": 179,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
@@ -25,23 +25,23 @@
       "by_action": {
         "enrich_existing": 32,
         "new_building": 25,
-        "street_only": 61,
+        "street_only": 60,
         "unplaceable": 79
       },
       "by_placement_class": {
         "corner": 17,
         "none": 62,
-        "relative": 101,
+        "relative": 100,
         "street_only": 17
       },
       "present_by_action": {
         "enrich_existing": 32,
         "new_building": 25,
-        "street_only": 61,
+        "street_only": 60,
         "unplaceable": 62
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 96,
+      "survival_liberty_required": 95,
       "backdating_liberty_required": 26,
       "dissolved_after_scene_date": 1
     },
@@ -7950,17 +7950,19 @@
       "trade": "house and land agent",
       "occupation": "land_agent",
       "proprietors": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
       "partners": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
       "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-07-09",
+        "first_issue": "1834-06-11",
         "last_issue": "1834-07-09"
       },
       "present_at_scene_date": true,
@@ -8460,47 +8462,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_19#c015 announces this house opening on 1835-09-01, after the scene date — “will receive and offer for sale on the first of September”. Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet. No action; the record is kept so the exclusion can be argued with."
-    },
-    {
-      "id": "business_wm_g_branchaud",
-      "name": "Wm. G. Branchaud",
-      "trade": "house and land agent",
-      "occupation": "land_agent",
-      "proprietors": [
-        "Wm. G. Branchaud"
-      ],
-      "partners": [
-        "Wm. G. Branchaud"
-      ],
-      "firm_styles": [],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
     },
     {
       "id": "business_wm_h_kennicott",
