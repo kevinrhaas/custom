@@ -32,7 +32,7 @@
      "lot front"
     ],
     "in_force": false,
-    "would_seat": 31,
+    "would_seat": 30,
     "against_the_reading_in_force": -10,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
@@ -62,7 +62,7 @@
      "corner side"
     ],
     "in_force": true,
-    "would_seat": 41,
+    "would_seat": 40,
     "against_the_reading_in_force": 0,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
@@ -82,7 +82,7 @@
      "centreline band"
     ],
     "in_force": false,
-    "would_seat": 41,
+    "would_seat": 40,
     "against_the_reading_in_force": 0,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
@@ -98,8 +98,8 @@
   }
  },
  "counts": {
-  "street_only_in_register": 61,
-  "adopted": 41,
+  "street_only_in_register": 60,
+  "adopted": 40,
   "refused": 20,
   "refused_by_reason": {
    "not present at the scene date": 0,
@@ -139,8 +139,8 @@
    },
    "lake": {
     "street_name": "Lake Street",
-    "businesses_naming_it": 9,
-    "adopted": 9,
+    "businesses_naming_it": 8,
+    "adopted": 8,
     "roofs_lot_front": 51,
     "roofs_corner_side": 0,
     "roofs_on_the_adopted_face": 51,
@@ -344,7 +344,7 @@
    "first_issue": "1835-06-24",
    "last_issue": "1835-06-24",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_dearborn_d2_04",
+   "structure_id": "recon_1835_blk_south_water_clark_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -572,7 +572,7 @@
    "first_issue": "1835-08-08",
    "last_issue": "1835-08-12",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_lake_clark_d5_03",
+   "structure_id": "recon_1835_blk_lake_franklin_d1_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -671,7 +671,7 @@
    "first_issue": "1834-10-08",
    "last_issue": "1834-11-12",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_lake_clark_d3_02",
+   "structure_id": "recon_1835_blk_lake_clark_d5_03",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1425,7 +1425,7 @@
    "first_issue": "1835-08-19",
    "last_issue": "1835-08-22",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_lake_franklin_d1_02",
+   "structure_id": "recon_1835_blk_lake_franklin_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1586,10 +1586,12 @@
    "business_name": "W. G. Blanchard",
    "trade": "house and land agent",
    "proprietors": [
-    "W. G. Blanchard"
+    "W. G. Blanchard",
+    "Wm. G. Blanchard"
    ],
    "partners": [
-    "W. G. Blanchard"
+    "W. G. Blanchard",
+    "Wm. G. Blanchard"
    ],
    "firm_styles": [],
    "surnames": [
@@ -1600,12 +1602,13 @@
    "street_text": "Lake Street",
    "placement_class": "relative",
    "cites": [
+    "chicago_democrat_1834_06_11#c008",
     "chicago_democrat_1834_07_09#c025"
    ],
-   "first_issue": "1834-07-09",
+   "first_issue": "1834-06-11",
    "last_issue": "1834-07-09",
-   "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_clark_d4_02",
+   "mentions": 2,
+   "structure_id": "recon_1835_blk_lake_clark_d3_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1636,38 +1639,6 @@
    ],
    "first_issue": "1834-06-04",
    "last_issue": "1834-06-04",
-   "mentions": 1,
-   "structure_id": "recon_1835_blk_lake_franklin_d5_01",
-   "face": "lot front",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names Lake Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Lake Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
-   "business_id": "business_wm_g_branchaud",
-   "business_name": "Wm. G. Branchaud",
-   "trade": "house and land agent",
-   "proprietors": [
-    "Wm. G. Branchaud"
-   ],
-   "partners": [
-    "Wm. G. Branchaud"
-   ],
-   "firm_styles": [],
-   "surnames": [
-    "branchaud"
-   ],
-   "street_id": "lake",
-   "street_name": "Lake Street",
-   "street_text": "Lake Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_democrat_1834_06_11#c008"
-   ],
-   "first_issue": "1834-06-11",
-   "last_issue": "1834-06-11",
    "mentions": 1,
    "structure_id": "recon_1835_blk_lake_market_d4_02",
    "face": "lot front",

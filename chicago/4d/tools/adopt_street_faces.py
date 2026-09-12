@@ -162,13 +162,20 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         Nor does this reach a
                                         variant SPELLING — 'F. G. Blanshard', 'G.
                                         Blanshard', 'W. G. Blanchard' and 'Wm. G.
-                                        Branchaud' advertise the same Lake Street trade
-                                        within five months and take three roofs here
-                                        (the two exact 'Blanshard's collide and one is
-                                        refused), because the gazetteer's identity layer
-                                        has not judged them one man and this file will not
-                                        judge it either. T-0408 measures that group and is
-                                        where it is settled.
+                                        Branchaud' advertised the same Lake Street trade
+                                        within five months and took three roofs here,
+                                        because the gazetteer's identity layer had not
+                                        judged them and this file will not judge a
+                                        resemblance. T-0408 SETTLED IT WHERE IT BELONGS
+                                        and the group is now TWO roofs: 'Branchaud' was a
+                                        supply made from two Tesseract-fallback columns
+                                        and the same card's Vision columns of 1834-07-16
+                                        and 1834-09-17 set BLANCHARD, so that reading was
+                                        repaired and an `identity.json` firm merge joined
+                                        'Wm. G. Blanchard' to 'W. G. Blanchard'; and
+                                        'W. G. Blanchard' against 'G. Blanshard' is a
+                                        declared `not_joined` refusal — one door, one
+                                        trade, and no printing that sets both spellings.
 
 WHAT THIS FILE WILL NOT DO. It will not raise a structure, move one, promote one, or
 write a lot. It writes ONE derived table and nothing else; spending it — a card, a
