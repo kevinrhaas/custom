@@ -1,7 +1,7 @@
 ---
 id: T-1042
 title: A firm style's surnames are read as one name, so 'H. Doty & Co.' stands on Lake Street as a man called Co
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1172
 claimed_by: run 9/11/2026, 11:37:56 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T05:27:07.946Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34673359649
 ---
 
