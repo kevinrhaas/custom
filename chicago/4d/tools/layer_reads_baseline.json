@@ -1,5 +1,5 @@
 {
-  "_doc": "Every figure in data/flora and data/fauna that no renderer reads, as of the last deliberate change. A figure is a leaf of a record that is not identity, file routing or provenance; 'reads' is scanned against renderers/web/js/*.js with the comments stripped. This is a measurement and not a permission: tools/measure_layer_reads.py holds it exact in both directions, so a new one fails and a wired-up one has to be un-banked here in the commit that wired it. Read ROADMAP K42 before adding a line. `refused_because` is a STATED REFUSAL (T-0021): somebody decided this figure should not reach a visitor and wrote down why. It is not a permission and it does not soften any assertion \u2014 the entry is banked exactly like every other.",
+  "_doc": "Every figure in data/flora and data/fauna that no renderer reads, as of the last deliberate change. A figure is a leaf of a record that is not identity, file routing or provenance; 'reads' is scanned against renderers/web/js/*.js with the comments stripped. This is a measurement and not a permission: tools/measure_layer_reads.py holds it exact in both directions, so a new one fails and a wired-up one has to be un-banked here in the commit that wired it. Read ROADMAP K42 before adding a line. `refused_because` is a STATED REFUSAL (T-0021): somebody decided this figure should not reach a visitor and wrote down why. It is not a permission and it does not soften any assertion — the entry is banked exactly like every other.",
   "entries": {
     "flora/manifest:vocabulary.forms_unimplemented": {
       "records": 1
@@ -8,12 +8,6 @@
       "records": 1
     },
     "flora/manifest:zones[].bare_soil_fraction": {
-      "records": 10
-    },
-    "flora/manifest:zones[].ground_rgb": {
-      "records": 10
-    },
-    "flora/manifest:zones[].ground_wet_rgb": {
       "records": 10
     },
     "flora/palette:budget.instances_mid": {
@@ -236,7 +230,7 @@
     },
     "residents/household:source_pass": {
       "records": 1260,
-      "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
+      "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows — grade, letter_list_only, sources — is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
     },
     "residents/manifest:_merged_doc": {
       "records": 1
@@ -250,18 +244,18 @@
     },
     "residents/manifest:counts.projected_residents": {
       "records": 1,
-      "refused_because": "T-0782, the owner's ruling on the opening card: the aggregate is struck. It reached a visitor in one place \u2014 a parenthesis inside the gate card's inferred count \u2014 where it read as a fourth grade beside attested/inferred/reconstructed and was in fact a subtype OF the inferred, counted on a different axis. The claim itself still reaches the visitor, and better: `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected is beside the label. A bare total with nothing beside it was the poorer of the two copies. The field stays in the manifest because the mint tools derive it and validate.py holds it."
+      "refused_because": "T-0782, the owner's ruling on the opening card: the aggregate is struck. It reached a visitor in one place — a parenthesis inside the gate card's inferred count — where it read as a fourth grade beside attested/inferred/reconstructed and was in fact a subtype OF the inferred, counted on a different axis. The claim itself still reaches the visitor, and better: `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected is beside the label. A bare total with nothing beside it was the poorer of the two copies. The field stays in the manifest because the mint tools derive it and validate.py holds it."
     },
     "residents/manifest:counts.reconstructed_removed_in_2026_09_02_synthesis": {
       "records": 1
     },
     "residents/manifest:households[].head": {
       "records": 1338,
-      "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
+      "refused_because": "A foreign key into `persons[].id`, not a figure — it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
       "records": 1338,
-      "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
+      "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its value, its confidence, its reasoning and its sources — and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
       "records": 715
