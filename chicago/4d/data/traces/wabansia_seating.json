@@ -136,8 +136,8 @@
           756.15
         ]
       ],
-      "east_end_past_committed_bank_m": -49.5,
-      "refused_end_past_committed_bank_m": 69.1
+      "east_end_past_committed_bank_m": -38.5,
+      "refused_end_past_committed_bank_m": 81.6
     },
     {
       "id": "trade",
@@ -188,7 +188,7 @@
           1002.96
         ]
       ],
-      "east_end_past_committed_bank_m": -4.8,
+      "east_end_past_committed_bank_m": -5.1,
       "refused_end_past_committed_bank_m": null
     }
   ],

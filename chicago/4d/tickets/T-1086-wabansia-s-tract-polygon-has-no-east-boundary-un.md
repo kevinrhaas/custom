@@ -1,5 +1,5 @@
 ---
-id: T-1083
+id: T-1086
 title: Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
 state: open
 epic: META

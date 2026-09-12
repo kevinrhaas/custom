@@ -1,7 +1,7 @@
 ---
 id: T-1084
 title: The walkthrough presents walking speed in miles per hour and the smoke has called it red on dev since at least 2026-09-12 08:51, on both viewports
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T16:51:39.090Z
 claimed_run: null
 ---
 

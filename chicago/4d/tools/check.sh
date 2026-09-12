@@ -93,6 +93,17 @@ step "the traced South Branch still carries what its generator writes" \
 step "the traced North Branch still carries what its generator writes" \
   python3 tools/trace_north_branch.py --check-properties
 
+# T-1078. The North Branch's east bank was short of Wright's inked bank by up to
+# 32.7 m at the splice row, because a dry seam cut 402 px of bank wash off the
+# channel and the speckle floor threw it away. `tr.seam_wash` puts it back, and
+# the repair is only safe in one direction: it must not have bought back the 93 m
+# leak into Wabansia's platted lots that `hue_tol` 7 exists to prevent. This holds
+# the committed measurement to that — 0 rows west of the inked west bank — and to
+# the two trace windows agreeing on the channel's drafted width across the line
+# they are spliced on, which is what independently says the repair is right.
+step "the North Branch's repaired east bank has not leaked the west one" \
+  python3 tools/measure_north_branch_banks.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
@@ -302,6 +313,16 @@ step "the Kinzie Block's reading re-derives from its own pixels and the corpus" 
 # swatch fails here. The raster half is `--check-sheet` and the PR runs it.
 step "the Michigan St tract's reading re-derives from its own pixels" \
   python3 tools/read_michigan_st_tract.py --check
+
+# ...and the SEATING of that reading (T-1075). The reading is in the sheet's own fit; the
+# four street lines and the polygon this project committed are that ladder hung on
+# `michigan_north` and `market_north`. Two files hold one statement again, and this one has
+# a standing temptation behind it: the seating stands 38.5 m north of where the sheet draws
+# the tract, so a later pass that "corrects" a line back toward the drawn position, or
+# nudges either datum street for an unrelated reason, would silently detach the tract from
+# the argument its own notes go on making. The gate recomputes all of it every run.
+step "the Michigan St tract is still seated on the two committed lines it was hung from" \
+  python3 tools/seat_michigan_st_tract.py --check
 
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed

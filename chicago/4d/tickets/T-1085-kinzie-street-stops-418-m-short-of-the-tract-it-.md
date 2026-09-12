@@ -1,5 +1,5 @@
 ---
-id: T-1082
+id: T-1085
 title: Kinzie Street stops 418 m short of the tract it bounds: Wright draws it the length of Wabansia and the committed line is extrapolated to meet it
 state: open
 epic: META

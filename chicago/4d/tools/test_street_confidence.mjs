@@ -220,9 +220,10 @@ ok(moved.length === stands.length + trodden.filter((r) => shipped(r) === LEVEL.i
   `every street whose line outgrades its track moved — ${moved.length} of ${trodden.length}`);
 ok(trodden.every((r) => before(r) === INVENTED),
   'every trodden street still carries an invented WEAR — which is why the split was needed');
-ok(streets.length - trodden.length === 29,
+ok(streets.length - trodden.length === 33,
   `and the platted-but-unopened lines ship with no track at all — the School Section's`
-  + ` tiers, Kinzie's Addition's eleven since T-1060, and Wabansia's six since T-1070`
+  + ` tiers, Kinzie's Addition's eleven since T-1060, the Michigan St tract's two streets`
+  + ` and two alleys since T-1075, and Wabansia's six since T-1070`
   + ` — ${streets.length - trodden.length}`);
 ok(streets.filter((r) => shipped(r) === INVENTED).every((r) => r.geometry_confidence === 'reconstructed'),
   'and the only ribbons still graded invented are the ones whose LINE is invented');

@@ -44,11 +44,30 @@ across it.
 7 is the value the argument lands on and 6 is the other one that works; at 5 the
 upper reach's own bank wash starts going out with the colours and the trace
 breaks at row 764. The whole usable band is two wide, which is why this is
-argued from the pixels above rather than tuned. It is paid for on the east bank,
-which sits a median 1.4 m inside Wright's ink but is short of it by more than
-10 m on 81 of the reach's 932 rows — rows 728-779, and the last 30 rows at the
-splice. docs/RESEARCH/north_branch_wabansia.md § 5 states the trade and the
-measurement, and T-1078 carries the repair; it is filed rather than hidden.
+argued from the pixels above rather than tuned.
+
+The price on the east bank, and the half of it the sheet will pay back
+------------------------------------------------------------------------
+The tight tolerance was paid for on the east bank, which sat a median 1.4 m
+inside Wright's ink and short of it by more than 10 m on 81 of the reach's 932
+rows — rows 728-779, and the last 30 rows at the splice. T-1078 read both
+stretches off the scan and they are not one fault:
+
+  * **rows 1222-1251, the splice** — a dry band ten to fifteen pixels wide cuts
+    402 px of plain bank wash (tint 0-6, against a tolerance of 7) off the
+    channel, and it goes out with the specks. This is T-0834's South Branch
+    fault with a wider seam, and `tr.seam_wash` now puts it back: the fragment is
+    reachable from the channel across bare paper and grey wash without crossing
+    ink or a wash of another colour. The boundary at the splice row goes from
+    32.7 m inside the ink to 6.4 m, and the stretch leaves the >10 m list.
+  * **rows 728-779** — a COLOURED wash stands between the bank wash and the ink,
+    17 to 19 px of it, `dark` 26-67 and `tint` 12-61. There is no path to carry
+    the water across and no fragment to put back: reading it as bank would be
+    exactly the error `hue_tol` 7 exists to prevent. It is left short, and what
+    that colour is belongs to the tract layer (T-0792).
+
+Measured with `tools/measure_north_branch_banks.py`, whose baseline carries the
+before and after; docs/RESEARCH/north_branch_wabansia.md § 5 states the trade.
 
 North of the survey there is no river
 -------------------------------------
@@ -163,7 +182,10 @@ PROV_STATIC = {
               "to EPSG:26916 by the least-squares affine refit from "
               "data/traces/gcp/wright_1834_gcps.json. The hue tolerance is tighter than the "
               "forks trace's, so that the green wash on Wabansia's river-front lots cannot "
-              "be read as the grey wash of the bank beside it",
+              "be read as the grey wash of the bank beside it. Bank wash that a dry seam "
+              "cut off the channel is put back where bare paper or grey wash reaches it "
+              "from the channel without crossing ink or a wash of another colour "
+              "(tools/trace_river.py seam_wash, T-1078)",
     "tool": "tools/trace_north_branch.py",
     "splices_onto": "data/terrain/epochs/e1834_harbor_cut/river.geojson at BPL master row 1252",
     "uncertainty_m": 20,
@@ -171,6 +193,49 @@ PROV_STATIC = {
 }
 PROV_KEYS = ("traced_from", "method", "tool", "splices_onto", "iiif_region", "affine_rms_m",
              "map_scale_m_per_px", "simplify_tolerance_m", "uncertainty_m", "uncertainty_note")
+
+
+def configure():
+    """Point `trace_river`'s module globals at THIS window and these settings.
+
+    The shared segmentation reads its window and its settings off `trace_river`'s
+    module globals. Both this trace and `tools/measure_north_branch_banks.py`
+    call this, so the measurement measures the mask the trace publishes rather
+    than a second copy of it. The forks window is asserted first, so a change
+    there is caught here.
+    """
+    if tr.REGION[1] != SPLICE_ROW:
+        tr.die(f"the forks window's north edge is row {tr.REGION[1]}, not {SPLICE_ROW}: this "
+               "trace's splice line moved with it and must be re-argued")
+    tr.REGION = REGION
+    tr.SEEDS = SEEDS
+    tr.PARAMS.clear()
+    tr.PARAMS.update(PARAMS)
+
+
+def channel(rgb, np, ndi, quiet=False):
+    """The reach's channel mask, and the ink it was read against.
+
+    `tr.seam_wash` (T-1078) stands where `trace_river`'s own main() puts
+    `bank_wash`: between the wash threshold and the channel morphology. It is the
+    wider-seam reading of the same fault, and it is what carries the last thirty
+    rows of this reach out to Wright's pen line instead of leaving the boundary
+    32.7 m inside it at the splice. `bank_wash` itself is not used here — its
+    three-pixel seam and 1.5-pixel ink terms put nothing back on this reach at
+    all, which is measured in docs/RESEARCH/north_branch_wabansia.md § 5.
+    """
+    wash = tr.wash_mask(rgb, np)
+    ink = tr.ink_mask(rgb, np, PARAMS["ink_lum"])
+    dark, tint = tr.wash_terms(rgb, np)
+    coloured = tr.coloured_mask(dark, tint, PARAMS)
+    traced_wash, put_back = tr.seam_wash(wash, ink, coloured, SEEDS, PARAMS["close_r"],
+                                         PARAMS["open_r"], 0, np, ndi, PARAMS)
+    if put_back and not quiet:
+        print(f"   bank wash across a dry seam: {len(put_back)} fragment(s) put back, "
+              + ", ".join(f"{px} px" for px in put_back))
+    water = tr.channel_from(traced_wash, SEEDS, PARAMS["close_r"], PARAMS["open_r"], 0,
+                            np, ndi)
+    return water, ink
 
 
 def split_bank_runs(ring_px, limit_row):
@@ -280,18 +345,7 @@ def main() -> int:
         tr.die(f"SKIP: {e.name} not installed (pip install numpy scipy pillow); "
                "north branch trace not run", 0)
 
-    # The shared segmentation reads its window and its settings off trace_river's
-    # module globals. Point them at this window for the life of this process — it
-    # is one process per trace, and the alternative is a second copy of 300 lines
-    # of morphology that would then drift from the one this project has argued
-    # about. The forks window is asserted first, so a change there is caught here.
-    if tr.REGION[1] != SPLICE_ROW:
-        tr.die(f"the forks window's north edge is row {tr.REGION[1]}, not {SPLICE_ROW}: this "
-               "trace's splice line moved with it and must be re-argued")
-    tr.REGION = REGION
-    tr.SEEDS = SEEDS
-    tr.PARAMS.clear()
-    tr.PARAMS.update(PARAMS)
+    configure()
 
     datum = json.loads((ROOT / "data" / "datum.json").read_text())
     if not datum.get("verified"):
@@ -307,9 +361,7 @@ def main() -> int:
     rgb = np.asarray(Image.open(io.BytesIO(raw)).convert("RGB"))
     print(f"region {REGION} sha256 {sha[:16]}...  {rgb.shape[1]}x{rgb.shape[0]} px")
 
-    wash = tr.wash_mask(rgb, np)
-    water = tr.channel_from(wash, SEEDS, PARAMS["close_r"], PARAMS["open_r"], 0,
-                            np, ndi, speckle=PARAMS["speckle_px"])
+    water, _ink = channel(rgb, np, ndi)
     print(f"channel {int(water.sum())} px")
 
     ys, xs = np.nonzero(water)

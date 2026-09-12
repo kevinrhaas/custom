@@ -22,6 +22,17 @@ The rule, written out so it reads back without the code:
   the match is AMBIGUOUS and is filed as such, not resolved; where two 1835
   people meet one 1843 entry it is CONTESTED and no match is made.
 
+  AND THE THING COUNTED IS A PERSON, NOT A PRINTING (T-0987 stretch 7). This
+  volume is two directories bound as one, and a tradesman who paid for a notice
+  in the business directory also stands in the alphabetical roll — so Fergus
+  prints him twice, and the ambiguity test above used to read his own notice as a
+  rival for him. `tools/printed_twice.py` is the rule that folds a notice onto
+  the roll entry it can only be; where it cannot, the notice stands as its own
+  candidate exactly as before and the refusal names the clause that was silent.
+  The notice is not discarded: it is carried on the roll entry's row as
+  `also_printed`, quotable, and the whole ledger of 106 notices — attached and
+  refused — stands in `printed_twice` below.
+
 WHAT THIS DIRECTORY CARRIES THAT NORRIS'S DOES NOT is a date of death. Fergus
 compiled the volume in 1896 and set each man's death in brackets after his entry —
 "[died June 6, 1882, aged 67.]" — which, with the age, is a year of birth. Those
@@ -33,6 +44,7 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import name_agreement as na  # the forename rule, imported rather than restated
+import printed_twice as pt  # one man, two printings (T-0987 stretch 7), likewise
 import tiebreak            # the tie discriminator (T-0696), likewise
 import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
@@ -104,9 +116,9 @@ def death_note(entry):
     return None
 
 
-def row_of(entry):
+def row_of(entry, also=None):
     n = entry["normalized"]
-    return {
+    row = {
         "claim": entry["id"],
         "as_printed": n["as_printed"],
         "page": entry["locator"]["page"],
@@ -116,14 +128,33 @@ def row_of(entry):
         "address_1843": n["address"],
         "death_note_1843": death_note(entry),
     }
+    # The same man's other printing in this volume (T-0987 stretch 7). It is not
+    # a second candidate and it is not thrown away: it is his, and it is quoted.
+    for notice in (also or {}).get(entry["id"], []):
+        row.setdefault("also_printed", []).append({
+            "claim": notice["id"],
+            "as_printed": notice["normalized"]["as_printed"],
+            "page": notice["locator"]["page"],
+            "section": notice["normalized"]["section"],
+            "trade_heading": notice["normalized"]["trade_heading"],
+            "occupation_1843": notice["normalized"]["occupation"],
+            "address_1843": notice["normalized"]["address"],
+        })
+    return row
 
 
 def main():
     entries = json.load(open(ENTRIES, encoding="utf-8"))["claims"]
+    # ONE MAN, TWO PRINTINGS (T-0987 stretch 7). Fold the business directory's
+    # notices onto the roll entries they belong to FIRST, so that what is
+    # bucketed below — and so what the ambiguity and contest tests count — is a
+    # PERSON of this volume and not a printing of one.
+    also, notice_notes = pt.fold(entries, fold)
+    folded = {n["notice"] for n in notice_notes if n["attached"]}
     by_key, surnames = defaultdict(list), defaultdict(list)
     for c in entries:
         n = c["normalized"]
-        if n["firm"] or not n["surname"]:
+        if n["firm"] or not n["surname"] or c["id"] in folded:
             continue
         f = fold(n["surname"])
         if not f:
@@ -162,7 +193,7 @@ def main():
                 row.update({"resident": r["name"], "person_id": r["person_id"],
                             "household_id": r["household_id"],
                             "grade_1835": r["grade"], "record_id": h["id"],
-                            "entry_1843": row_of(h)})
+                            "entry_1843": row_of(h, also)})
                 bucket_refusals.append(row)
             continue
         kept, refused = [], []
@@ -170,7 +201,7 @@ def main():
             note = na.refusal(r["given"], h["normalized"]["given"])
             (refused if note else kept).append((h, note))
         for h, note in refused:
-            row = row_of(h)
+            row = row_of(h, also)
             row.update(note)
             forename_refusals.append({
                 "resident": r["name"], "person_id": r["person_id"],
@@ -178,7 +209,7 @@ def main():
             })
         if not kept:
             continue
-        rows = [row_of(h) for h, _ in kept]
+        rows = [row_of(h, also) for h, _ in kept]
         rec = {
             "resident": r["name"], "person_id": r["person_id"],
             "household_id": r["household_id"], "grade_1835": r["grade"],
@@ -315,6 +346,15 @@ def main():
             "could_carry_address": sum(1 for m in matches if "address" in m["could_carry"]),
             "could_carry_death_note": sum(1 for m in matches
                                           if "death_note" in m["could_carry"]),
+            "business_directory_notices_with_a_surname": len(notice_notes),
+            "notices_folded_onto_their_own_roll_entry": len(folded),
+            "notices_standing_as_their_own_candidate": len(notice_notes) - len(folded),
+            "roll_entries_carrying_a_notice": len(also),
+        },
+        "printed_twice": {
+            "rule": pt.__doc__.split("THE RULE")[1].split("WHAT THIS IS NOT")[0].strip(),
+            "what_this_is_not": pt.__doc__.split("WHAT THIS IS NOT.")[1].strip(),
+            "notes": sorted(notice_notes, key=lambda n: n["notice"]),
         },
         "matches": sorted(matches, key=lambda m: m["resident"]),
         "discriminated": sorted(discriminated, key=lambda d: (d["tie"], d["claim"])),

@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/11/2026, 5:45:27 PM CT
+claimed_by: run 9/11/2026, 10:03:36 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34655138390
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34668951592
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -701,3 +701,146 @@ they are the pool that stood first in the table before the write debt and the re
 took precedence. No successor ticket is filed: `tickets/README.md` puts the succession on
 the run that CLOSES the programme, and the owner's filing rule of 2026-09-10 asks for
 fewer tickets. This ticket stays open and is its own cursor.
+
+## Stretch 7, 2026-09-12 — Fergus 1843's ties, and the man the volume prints twice
+
+**The stretch:** the ties of `fergus_1843_crosswalk_1835.json` — 39 ambiguous and 15
+contested, 54 of the 132 ties stretch 6's table counted, and the largest single-volume tie
+pool. It is the stretch stretch 6 nominated ("stretch 7 takes the **ties**, 132 of them, as
+this ticket's own ordering asks — a tie is one page-read from a match"). Nothing was read
+off a page image: the answer was already in the transcription, in a field nobody had asked
+about.
+
+**What the ties were.** Fergus 1843 is TWO directories bound as one, and only this volume
+of the four is: a `business directory` of 174 subscribers' notices set under trade headings,
+each headed by the subscriber's name in capitals, and an `alphabetical directory` of 2,521
+lines, one to a person. **A tradesman who paid for a notice also stands in the roll, so the
+volume prints him twice** — and the crosswalk's ambiguity test counted PRINTINGS. Silas B.
+Cobb's own advertisement arrived as a rival candidate for Silas B. Cobb, and the tie could
+only ever be narrowed. Eighteen of the printings standing in the tie pool were a notice of
+that kind. The `section` field that says which is which has been in the claims file all
+along; no crosswalk had ever read it.
+
+**The rule, and it is a new module so that it is one rule and not four.**
+`tools/printed_twice.py` (self-test, 17 cases) folds a notice onto the roll entry it can
+only be, in four clauses: the folded surnames agree; the printed names are CONSISTENT —
+`name_agreement`'s first-forename rule plus every FURTHER initial both printings set; the
+notice prints a surname and TWO OR MORE initials, or the two printings name a thing in
+common (a street number, or a word of five letters or more that both set, one a prefix of
+the other, street names and the compositor's furniture struck out); and EXACTLY ONE roll
+entry in the whole volume satisfies the first three. **78 of the 106 notices fold. The
+other 28 stand as their own candidate exactly as before**, and the clause that was silent
+is written against each — all 106 notes are filed in the crosswalk's new `printed_twice`
+block, because a refusal here is a reading. A folded notice is not discarded either: it is
+carried on the roll entry's row as `also_printed`, quotable.
+
+One thing the rule had to do that the imported one cannot. `name_agreement.agrees`
+deliberately does not compare FIRST initials — the crosswalks get that from the bucket they
+look a resident up in — so `G. S. HUBBARD` read as consistent with `Hubbard, Ahira` and
+clause 4 refused every Hubbard notice for want of it. A module asking its question of two
+PRINTINGS has to ask for the initial itself. With that, `Morris, Mrs` stops standing
+between B. S. Morris and his own notice, and three more notices fold.
+
+**What landed.** Six men of 1835 gain a listing that was ambiguous: `cobb_silas_b`,
+`morris_b_s`, `hubbard_gurdon` (two notices onto one roll line), `harmon_charles_l`,
+`bishop_j_e`, `funk_absolom`. 1843's matches 119 → **125**, ambiguous 39 → **31**,
+contested 15 → **17** — and the two that became contested are the finding under the
+finding: the exchange broker's notice is **Jonas Coe** Clark (`J. COE CLARK`, exchange
+broker, Clark St.), not a candidate for either John Clark, so what is left is a true
+collision of two residents over one roll line rather than a four-way muddle. Everything
+that landed is SPENT in this run: the directories' `unwritten` column is **0** of 939
+reached (927 before), and could-carry on this volume goes 71/83/82 → **74/89/86**, each
+written.
+
+**The comma that was hiding a house** (clause 3 of this ticket, the half that is a face).
+A match carries its address through the two back-projection passes, and the nearer reading
+this stretch landed arrives in a shape neither pass could read: the crosswalks split the
+printed line on its punctuation, and where the trade's own trailing corner falls into the
+address field the field opens with the SHOP and goes on to the HOME — `cor Clark, res
+Dearborn, bet Washington and Madison`. Both passes tested the volume's residence word at
+the HEAD of the field only, which is the fault stretch 6 fixed one clause earlier (`house N
+Water st` placed as a shop face). `split_home()` now cuts the field at that word and each
+pass reads its own half; the whole field stays the quote, and the record carries
+`address_read_as_the_home` where the two differ.
+
+It pays for itself twice over. **Doctor D. S. Smith's home stands on La Salle Street** — a
+face no house had reached — off `office on Clark street … residence La Salle street,
+opposite the First Baptist Church`, a residence clause that had been invisible because the
+line opened with his office. And **Charles L. Harmon comes off Dearborn Street**, which
+looks like a loss and is a repair: he stood there on Norris's `res Dearborn st. b Wash and
+Mad sts`, where the abbreviation hid Madison — a street the 1835 layer does not carry — so
+the R4 qualifier clause never fired. Fergus spells it out four years nearer the scene, the
+clause reads it, and it refuses. **L223 is unmoved at 14** and L218 unmoved at 18; the
+residence pass adjudicates 61 → **63**, because two fields it could not see are now read.
+
+**Two findings this stretch declined to take, recorded here rather than filed, since this
+ticket owns the question.**
+
+1. **A title read as a forename.** `Doctor D. S. SMITH`, `Doctor Egan`, `Doctor Blaney` —
+   14 printings in this volume open with a doctor's title spelled in full, and `doctor` is
+   in neither `name_agreement.TITLES` nor the local `initial()` of any of the four
+   crosswalks (all of which carry `dr`). So the title is read as the forename: it sets the
+   bucket initial to `d`, and it defeats clause 2 of the fold. One ruling depends on it
+   today — `smith_d_a`'s tie, where `Doctor D. S.` cannot be shown to be `David Sheppard`
+   — and the exposure is larger than that, because a resident printed with the initial D
+   can be offered `Doctor Egan`. It is one word in a shared module and it re-derives all
+   four volumes, which is why it is stretch 8's and not this one's.
+2. **One placement still resting on an unread qualifier.** `sherman_rebecca` stands on
+   Clark Street off `h Clark st. b Mad. & Mon` — Madison and Monroe, abbreviated, and
+   `NOT_1835` keys on the words spelled out. It is the same clause this stretch just
+   applied to Harmon, escaping on a contraction. Filed as a ticket of its own because it
+   belongs to the back-projection pass and not to the directories.
+
+**The gates.** `check.sh` 310 steps green. `printed_twice --self-test` 17 cases; both
+back-projection self-tests green; the derived layer re-derived with `rederive.mjs --run`
+and both back-projections re-written. NOTE for the next run: the chain needed **two**
+passes to converge, because `mint_civic_residents` rewrites a card's note from its own
+template when the card's source list changes and `spend_land_sales`' prose — which runs
+earlier — is re-appended only on the following pass. A card can therefore be one pass short
+of its own provenance. Recorded here; it is not this ticket's.
+
+**The pools after this stretch**, re-derived from the four `counts` blocks today:
+
+```
+  ties                        34 (1839) · 48 (1843) · 33 (1844) · 11 (1844 ad)  = 126
+  initial-absent refusals    277 · 349 · 343 · 130                              = 1,099
+  forename-disagreed          75 · 90 · 51                                      = 216
+  could-carry                 closed in all four volumes (stretches 2, 4, 5, 6)
+```
+
+**Stretch 8 is the title read as a forename, and then Norris 1844's ties.** Finding 1 above
+is the first thing to do, because it is cheap, it reaches matches and not only ties, and it
+is the only known way a ruling in these four files can be made on a word that is not a
+name. Then the 33 ties of `norris_1844_crosswalk_1835.json`, where the same
+one-man-two-printings question takes a different shape: his advertising cards are a
+SEPARATE crosswalk file, so a man with a card and a roll line is counted once in each, and
+whether those two are one printing is the question this volume's fold has to answer. No
+successor ticket is filed: `tickets/README.md` puts the succession on the run that CLOSES
+the programme, and the owner's filing rule of 2026-09-10 asks for fewer tickets. This
+ticket stays open and is its own cursor.
+
+---
+
+**LAPPED ONTO `dev` 2026-09-12, and the lap moved one of this stretch's two placements.**
+Stretch 7's PR (#1167) was pushed, gated green and never merged — the run that opened it
+ended at the merge — so twelve `dev` merges landed under it before this one picked it up.
+The lap is not bookkeeping only, and the difference is recorded here rather than left in a
+diff:
+
+- **T-1049 (#1175) withdrew `hh_smith_d_a`.** The card was minted on a press notice printed
+  against `Courtland, Alabama`; T-1048's resolved place vocabulary refuses that as a Chicago
+  appearance, the ladder then reaches nothing for the identity, and the container goes with
+  it. So `Doctor D. S. Smith … residence La Salle street` — the residence clause
+  `split_home()` uncovered, and the headline placement of this stretch — has no person of
+  1835 left to reach. The clause and the reading stand; the FACE does not. Recorded, not
+  claimed.
+- **L223 therefore restates 13 → 12**, not 14: `harmon_charles_l` still comes off Dearborn
+  Street under the R4 qualifier, and `smith_d_a` cannot replace him. The twelve are six on
+  Fergus 1843 and six on Norris 1844; the pass adjudicates 60 with 48 refusals. The
+  changelog entry was corrected in the same commit — it had promised a visitor a house on
+  La Salle Street that this tree does not place.
+- The derived layer was rebuilt with `rederive.mjs --run` and both back-projections
+  re-written, twice to convergence, exactly as the note above predicted.
+
+Nothing about the `printed_twice` fold changed on the lap: 78 of 106 notices still fold and
+the six 1843 listings still land. The pool table above is re-derived and unchanged.
