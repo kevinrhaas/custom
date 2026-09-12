@@ -1,7 +1,7 @@
 ---
 id: T-0411
 title: A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1159
 claimed_by: run 9/11/2026, 7:10:35 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T00:45:31.450Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34660588722
 ---
 
