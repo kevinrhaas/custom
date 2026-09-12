@@ -1,7 +1,7 @@
 ---
 id: T-1094
 title: The Original Town's Washington-Madison tier (52-58), cut once Madison Street landed
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1089
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1217
 claimed_by: run 9/12/2026, 6:05:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T23:46:30.923Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34723880089
 ---
 
