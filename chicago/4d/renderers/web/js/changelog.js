@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The middle initial nobody had ever compared', kind: 'fix', ts: '',
+  { v: 798, title: 'The middle initial nobody had ever compared', kind: 'fix', ts: '2026-09-12T20:29:06.728Z', date: 'Sep 12, 2026, 3:29 PM CT',
     items: [
       'The rule that decides whether two records name the same person reads a surname and ONE letter \u2014 the first initial of the given name. It has never read the second. So H. B. Clarke of 1835 could be handed \u201cClarke, Henry Wilcox, attorney at law, 36 Clark\u201d and accept him, on the H they share, with the volume printing a W where the town holds a B.',
       'That one is worth following, because it is the only reading in this batch that had reached the ground. On the strength of the lawyer, H. B. Clarke\u2019s hardware business stood on Clark Street. The stretch refuses the match and the street face goes with it \u2014 and the man the initials do reach is \u201cClarke, Henry B., farmer, Michigan ave, n.e. cor 16th Street\u201d, printed a mile and a half south of where the town had put him, with Norris four years later saying the same thing in different words: \u201cfarmer, lake shore, below Michigan avenue\u201d. Ground the 1835 grid does not cover, so he is off Clark Street and nowhere else yet, which is the honest answer.',
