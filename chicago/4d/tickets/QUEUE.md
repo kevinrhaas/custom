@@ -143,7 +143,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-T-1064 — The corner building keeps the Chicago Democrat's name, board and function after the press has left it
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 
 # --- ==========================================================================
@@ -338,3 +337,4 @@ T-1052 — In the frontage layer a confidence grade is the only thing keeping st
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
+

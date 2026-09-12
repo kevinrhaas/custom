@@ -1,7 +1,7 @@
 ---
 id: T-1064
 title: The corner building keeps the Chicago Democrat's name, board and function after the press has left it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1188
+claimed_by: run 9/12/2026, 5:19:58 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T11:07:32.412Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34688023030
 ---
 
 The corner building keeps the Chicago Democrat's name, board and function after the press has left it.

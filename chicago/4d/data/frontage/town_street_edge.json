@@ -9240,7 +9240,7 @@
       "street_name": "South Water Street",
       "chunk": "blk_south_water_lasalle_north_1",
       "stands_at": "chicago_democrat_office",
-      "trade": "printing_office_and_store",
+      "trade": "store",
       "trade_confidence": "inferred",
       "at_local_enu_m": [
         554.79,
@@ -9254,7 +9254,7 @@
       "along_frontage_frac": 0.28,
       "clear_of_track_m": 3.88,
       "stands_on_m": 0.64,
-      "note": "A POST AT THE ROAD EDGE OUTSIDE The Chicago Democrat Office, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `printing_office_and_store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `inferred` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.64 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
+      "note": "A POST AT THE ROAD EDGE OUTSIDE The Chicago Democrat Office, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `inferred` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.64 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_lasalle_south_hitching_thomas_church_store",
