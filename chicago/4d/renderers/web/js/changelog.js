@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The fort had a well, and you can walk to it', kind: 'feature', ts: '',
+  { v: 760, title: 'The fort had a well, and you can walk to it', kind: 'feature', ts: '2026-09-12T05:21:51.391Z', date: 'Sep 12, 2026, 12:21 AM CT',
     items: [
       'There is a well on Fort Dearborn\u2019s outer ground \u2014 due south of the stockade, outside the pickets and inside the outer fence. Walk south from the fort and you will meet it: a low round timber curb about waist height, with the dark of the shaft inside it.',
       'Two people put it there, five years and a different kind of memory apart. The 1830 plan of the river mouth draws a small ring on the fort\u2019s outer ground and letters it Well. Gurdon Hubbard, writing from memory long afterwards and not from that plan, puts the fort\u2019s well \u2018in the outer inclosure and near the south gate\u2019.',
