@@ -1,0 +1,25 @@
+---
+id: T-1072
+title: The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
+state: open
+epic: META
+requested_by: owner
+seen: false
+effort: S
+legacy_id: null
+parent: T-0794
+opened: 2026-09-12
+closed: null
+pr: null
+claimed_by: null
+blocked_on: null
+needs_bake: false
+closed_at: null
+claimed_run: null
+---
+
+The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin.
+
+Piece 2 of 2 of **T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
+
+**Acceptance:** (state it before working — one demonstration, never weakened to pass)

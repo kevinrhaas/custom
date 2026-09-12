@@ -11,7 +11,7 @@
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
-    "streets": 40,
+    "streets": 51,
     "resident_persons": 1295
   },
   "counts": {
@@ -23,21 +23,21 @@
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 32,
-        "new_building": 25,
-        "street_only": 60,
+        "enrich_existing": 30,
+        "new_building": 26,
+        "street_only": 61,
         "unplaceable": 79
       },
       "by_placement_class": {
-        "corner": 17,
+        "corner": 16,
         "none": 62,
-        "relative": 100,
+        "relative": 101,
         "street_only": 17
       },
       "present_by_action": {
-        "enrich_existing": 32,
-        "new_building": 25,
-        "street_only": 60,
+        "enrich_existing": 30,
+        "new_building": 26,
+        "street_only": 61,
         "unplaceable": 62
       },
       "outside_the_plat": 5,
@@ -1142,7 +1142,7 @@
       "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
-      "placement_class": "corner",
+      "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-01-07",
         "last_issue": "1835-05-20"
@@ -1155,22 +1155,108 @@
       "survival_liberty_required": false,
       "backdating_liberty_required": false,
       "anchor": {
-        "kind": "corner",
+        "kind": "unresolved",
         "target": null,
-        "streets": [
-          "clark",
-          "south_water"
-        ],
+        "streets": null,
         "via": null,
-        "note": "A crossing of two platted streets: clark and south_water."
+        "note": "The anchor \"Messrs. Jones & King's hardware store\" names nothing the committed town holds."
       },
-      "anchor_change": null,
+      "anchor_change": {
+        "live_anchor": "Messrs. Jones & King's hardware store",
+        "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1835-05-20.",
+        "changes": [
+          {
+            "from": "the corner of South Water and Clark streets",
+            "to": "Messrs. Jones & King's hardware store",
+            "after": "1834-01-07",
+            "before": "1835-05-20"
+          }
+        ],
+        "rule": "THE PAPER'S OWN COLOPHON, TWICE, AND IT DOES NOT SAY THE SAME THING BOTH TIMES. 1834-01-07 c006 reads the Democrat's imprint 'in the building on the corner of South Water and Clark streets'; 1835-05-20 c007 reads the colophon of that issue 'over Messrs. Jones & King['s] Hard[ware store]', South Water street. Two different landmarks and not two spellings of one: 'the corner of South Water and Clark streets' is a platted crossing this project holds, and \"Messrs. Jones & King's hardware store\" is a house of business in the same street, carried in this corpus as business_jones_king_co. A printing office is not in a crossing and over a hardware store at the same time, so between 1834-01-07 and 1835-05-20 the office's printed address changed, and the corpus brackets the change by those two dates and no closer: no printing of this colophon between them has been read. THE CORPUS SAYS WHY, in the OTHER Democrat record rather than in this one — chicago_democrat_1834_10_08 c005 offers 'the store now occupied by W. Kimball, and as the office of the Democrat' for sale with possession in November 1834, which is a landlord's notice and not this shop's own reading, so it is cited here and claims no anchor here. The scene date is 1835-07-01, six weeks after the later colophon first ran, so the anchor live in the scene is the hardware store.",
+        "cannot_say": "WHICH HOUSE, AND WHERE IN THE STREET. \"Messrs. Jones & King's hardware store\" is an anchor this corpus cannot resolve to ground: business_jones_king_co prints South Water Street and nothing narrower, and business_jones_king prints 'their store in Water-street, near the bridge', an anchor the committed town does not hold. So this rule moves the office OFF the corner of South Water and Clark streets and does not put it anywhere in particular — South Water Street, over a store whose own address the papers never fix. That is a loss of precision and it is the honest reading: the narrower address was the older one. NOR DOES IT SAY WHAT BECAME OF THE BUILDING. data/structures/chicago_democrat_office.json stands at the corner on the 26 November 1833 imprint and on Andreas, and a building does not move when its tenant does; nothing here touches its coordinate. WHAT IT LEAVES OPEN is whether 'over Jones & King's' is a separate building at all or the same corner block under a new ground-floor tenancy — c007 says 'over', which is a floor, and no printing reached gives that store's corner. The paper itself, business_the_chicago_democrat, still stands at the crossing in this register because the only printing of the move IT carries is 1835-08-05, five weeks outside the scene; joining the two records is T-0411's and is deliberately not done here.",
+        "history": [
+          {
+            "anchor": "the corner of South Water and Clark streets",
+            "first_issue": "1834-01-07",
+            "last_issue": "1834-01-07",
+            "claims": [
+              "chicago_democrat_1834_01_07#c006"
+            ],
+            "live_at_scene_date": false,
+            "resolved": {
+              "kind": "corner",
+              "target": null,
+              "streets": [
+                "clark",
+                "south_water"
+              ],
+              "via": null,
+              "note": "A crossing of two platted streets: clark and south_water."
+            },
+            "resolved_on_reading": "the corner of South Water and Clark streets",
+            "readings": [
+              {
+                "anchor": "the corner of South Water and Clark streets",
+                "first_issue": "1834-01-07",
+                "last_issue": "1834-01-07",
+                "claims": [
+                  "chicago_democrat_1834_01_07#c006"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "clark",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: clark and south_water."
+                }
+              }
+            ]
+          },
+          {
+            "anchor": "Messrs. Jones & King's hardware store",
+            "first_issue": "1835-05-20",
+            "last_issue": "1835-05-20",
+            "claims": [
+              "chicago_democrat_1835_05_20#c007"
+            ],
+            "live_at_scene_date": true,
+            "resolved": {
+              "kind": "unresolved",
+              "target": null,
+              "streets": null,
+              "via": null,
+              "note": "The anchor \"Messrs. Jones & King's hardware store\" names nothing the committed town holds."
+            },
+            "resolved_on_reading": "Messrs. Jones & King's hardware store",
+            "readings": [
+              {
+                "anchor": "Messrs. Jones & King's hardware store",
+                "first_issue": "1835-05-20",
+                "last_issue": "1835-05-20",
+                "claims": [
+                  "chicago_democrat_1835_05_20#c007"
+                ],
+                "resolved": {
+                  "kind": "unresolved",
+                  "target": null,
+                  "streets": null,
+                  "via": null,
+                  "note": "The anchor \"Messrs. Jones & King's hardware store\" names nothing the committed town holds."
+                }
+              }
+            ]
+          }
+        ]
+      },
       "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "chicago_democrat_office",
-      "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "action": "street_only",
+      "action_target": "south_water",
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor \"Messrs. Jones & King's hardware store\" names nothing the committed town holds."
     },
     {
       "id": "business_chicago_soap_and_candle_manufactory",
@@ -6973,13 +7059,127 @@
         "via": null,
         "note": "A crossing of two platted streets: clark and south_water."
       },
-      "anchor_change": null,
+      "anchor_change": {
+        "live_anchor": "the corner of South Water and Clark streets",
+        "live_reason": "The last of these anchors first printed on or before the scene date 1835-07-01; this one was first printed 1833-11-26.",
+        "changes": [
+          {
+            "from": "the corner of South Water and Clark streets",
+            "to": "Jones & King's hardware store",
+            "after": "1834-12-03",
+            "before": "1835-08-05"
+          }
+        ],
+        "rule": "THE SAME MOVE AS THE COLOPHON'S, WITNESSED FIVE WEEKS TOO LATE TO PLACE THIS RECORD. Every reading of the paper's own imprint through 1834-12-03 gives 'the corner of South Water and Clark streets'; 1835-08-05 c026 gives \"Jones & King's hardware store\". Two different landmarks, bracketed between 1834-12-03 and 1835-08-05 — a platted crossing and a house of business in South Water Street, and a paper is not printed at both. The change is real and this rule states it. WHAT IT DOES NOT DO IS PLACE THIS RECORD ON IT. The later anchor was first printed 1835-08-05, five weeks after the scene date 1835-07-01, and AGENTS.md rule 3 refuses an address to a town that had not read it yet; the compiler computes the live anchor from the windows and leaves this record at the crossing for that reason alone, which is what `live_reason` says. This declaration exists so that the reason is IN the record: before it, this house sat at the corner with nothing to say that its own paper had printed a different address, and a reader could only find that out by reading business_chicago_democrat_printing_office.",
+        "cannot_say": "WHETHER THE SCENE BOUND IS RIGHT ABOUT THIS HOUSE, and the corpus is in two minds because it keeps the Democrat as two records. The paper's own printing office carries the same move from 1835-05-20, six weeks INSIDE the scene, and is placed on it; this record's only printing of it is 1835-08-05 and is refused. So on 1835-07-01 the register stands the office over the hardware store and the paper at the crossing, which is not two premises but two extractions of one shop — the relation the gazetteer cannot express and T-0411 is open on. Nothing here forces them together: merging on the strength of this would decide T-0411 by side effect, and weakening the scene bound to let an August printing place a July town would decide it for every house in the corpus. NOR DOES IT SAY WHICH SIDE MOVED — 1835-08-05 is a fire-insurance card and the corner readings are a masthead, so the two are not even the same kind of statement about an address, and nothing printed says whether the press moved, the building changed hands, or a compositor was handed fresh copy.",
+        "history": [
+          {
+            "anchor": "the corner of South Water and Clark streets",
+            "first_issue": "1833-11-26",
+            "last_issue": "1834-12-03",
+            "claims": [
+              "chicago_democrat_1833_11_26#c033",
+              "chicago_democrat_1834_08_27#c009",
+              "chicago_democrat_1834_09_17#c010",
+              "chicago_democrat_1834_10_08#c005",
+              "chicago_democrat_1834_12_03#c023"
+            ],
+            "live_at_scene_date": true,
+            "resolved": {
+              "kind": "corner",
+              "target": null,
+              "streets": [
+                "clark",
+                "south_water"
+              ],
+              "via": null,
+              "note": "A crossing of two platted streets: clark and south_water."
+            },
+            "resolved_on_reading": "the corner of South Water and Clark streets",
+            "readings": [
+              {
+                "anchor": "the corner of South Water and Clark streets",
+                "first_issue": "1833-11-26",
+                "last_issue": "1834-12-03",
+                "claims": [
+                  "chicago_democrat_1833_11_26#c033",
+                  "chicago_democrat_1834_08_27#c009",
+                  "chicago_democrat_1834_09_17#c010",
+                  "chicago_democrat_1834_12_03#c023"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "clark",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: clark and south_water."
+                }
+              },
+              {
+                "anchor": "corner of Clark and South Water streets",
+                "first_issue": "1834-10-08",
+                "last_issue": "1834-10-08",
+                "claims": [
+                  "chicago_democrat_1834_10_08#c005"
+                ],
+                "resolved": {
+                  "kind": "corner",
+                  "target": null,
+                  "streets": [
+                    "clark",
+                    "south_water"
+                  ],
+                  "via": null,
+                  "note": "A crossing of two platted streets: clark and south_water."
+                }
+              }
+            ]
+          },
+          {
+            "anchor": "Jones & King's hardware store",
+            "first_issue": "1835-08-05",
+            "last_issue": "1835-08-05",
+            "claims": [
+              "chicago_democrat_1835_08_05#c026"
+            ],
+            "live_at_scene_date": false,
+            "resolved": {
+              "kind": "unresolved",
+              "target": null,
+              "streets": null,
+              "via": null,
+              "note": "The anchor \"Jones & King's hardware store\" names nothing the committed town holds."
+            },
+            "resolved_on_reading": "Jones & King's hardware store",
+            "readings": [
+              {
+                "anchor": "Jones & King's hardware store",
+                "first_issue": "1835-08-05",
+                "last_issue": "1835-08-05",
+                "claims": [
+                  "chicago_democrat_1835_08_05#c026"
+                ],
+                "resolved": {
+                  "kind": "unresolved",
+                  "target": null,
+                  "streets": null,
+                  "via": null,
+                  "note": "The anchor \"Jones & King's hardware store\" names nothing the committed town holds."
+                }
+              }
+            ]
+          }
+        ]
+      },
       "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "chicago_democrat_office",
-      "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "action": "new_building",
+      "action_target": "clark+south_water",
+      "match_tier": null,
+      "match_evidence": null,
+      "action_note": "Placeable against the committed town. A crossing of two platted streets: clark and south_water."
     },
     {
       "id": "business_the_dearborn_street_auction_and_commission_rooms",
@@ -8147,8 +8347,8 @@
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_w_kimball_s_new_store",
@@ -8191,8 +8391,8 @@
       "action": "enrich_existing",
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
-      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
-      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "match_evidence": "and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "chicago_democrat_office already stands and its occupants carries kimball — \"and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_w_montgomery",

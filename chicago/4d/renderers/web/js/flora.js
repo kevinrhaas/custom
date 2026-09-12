@@ -1181,7 +1181,35 @@ export async function createFlora({
     // `nymphaea_odorata` are 0.01-0.10 m tall, so the failure was quiet — pads at
     // ankle height standing on the soil of the marsh edge rather than on water.
     if (species?.substrate === 'open_water') return null;
-    return terrain.surfaceHeight(e, n);
+    const y = terrain.surfaceHeight(e, n);
+    // T-1056 — A WOODY PLANT HAS NO STATION ON GROUND THE LAKE STILL REWORKS,
+    // and which ground that is comes off the ZONE RECORD.
+    //
+    // Andreas excepts "the sandy hills near the lake" from the North Division
+    // timber, and the exception is to the HILLS. The sand bar across the mouth
+    // is the other landform in the same sentence's neighbourhood — a surface
+    // Fort Dearborn work parties trenched with hand tools and a February 1834
+    // storm breached — and until this it inherited z08's whole 8c dune scrub
+    // and z09's black-oak grubs, dealt on a uniform lattice over every square
+    // metre of two `kind: "everywhere"` boxes that happen to contain it.
+    //
+    // The bound is `woody_stratum` on the zone record, graded `inferred` with
+    // its reasoning, and NOT a constant here: its two ends are z09's recorded
+    // +7.6 ft ridge floor and the terrain spec's argued +4 ft bar crest. This
+    // function reads the record and interpolates; it does not know the numbers.
+    // `hash3` makes the draw positional rather than per-slot, so the scrub that
+    // survives stands in POCKETS on the ground that rises toward the band
+    // instead of as an even thinning over the whole bar — the terrain is what
+    // clusters it, and no length scale is invented here to do it.
+    if (zone?.woody && zone.woody.roles.has(species?.role)) {
+      const [lo, hi] = zone.woody.establishes;
+      const t = smoothstep(lo, hi, y);
+      if (t <= 0) return null;
+      if (t < 1 && hash3(Math.round(e * 4), Math.round(n * 4), 0x5ad8a1) / 4294967296 >= t) {
+        return null;
+      }
+    }
+    return y;
   }
 
   function rebuildGround(camE, camN, cone) {
@@ -1512,6 +1540,9 @@ export async function createFlora({
     communities() {
       return zones.map((z) => ({
         id: z.id, matrixShare: z.matrixShare, bareSoil: z.bareSoil,
+        /** T-1056. The recorded woody band, so a reader of this report can see
+         *  WHY a sand zone's shrub count stands below its recorded density. */
+        woodyBand: z.woody?.establishes ?? null,
         graminoids: z.graminoids.length,
         /** ROADMAP K55. The other two strata's slot chances, which K55 moves and
          *  which nothing outside this module could read until it did — the
@@ -2055,7 +2086,49 @@ function compileZones({ index, files }, terrain, problems, stats) {
        *  `cover.matrix_fraction`. Clamped only because a fraction over 1 would
        *  be a bookkeeping error the validator already refuses. */
       matrixShare: clamp01(matrixShare),
+      /**
+       * T-1056 SETTLED WHAT THIS FIELD GATES, AND THE ANSWER IS NOTHING.
+       *
+       * `matrix_fraction` above is read as a probability because it is an AREAL
+       * cover fraction and a slot count for an areal layer is a fraction of
+       * ground. `bare_soil_fraction` is not its mirror: the herb and woody
+       * strata are recorded as COUNTS — stems per m², clumps per hectare — and
+       * thinning a count by an area fraction adds an area to a number of
+       * plants, which is K49(a)'s and K55's unit error one level up. A shrub
+       * also stands OVER the herb layer rather than instead of it (K54), so
+       * bare soil under a sand cherry is not ground the sand cherry failed to
+       * take. So this stays a record-only claim, read by the ground shader and
+       * by the drawn census and by nothing else — written here, in
+       * data/flora/index.json's `_doc` and in docs/LIBERTIES.md L32, so the
+       * next parcel to reach for it finds the refusal rather than re-deciding.
+       * The sand bar's even scatter of scrub was NOT this field's to fix: it is
+       * `woody_stratum` below, an elevation bound in the unit an elevation is
+       * in.
+       */
       bareSoil: typeof cover.bare_soil_fraction === 'number' ? cover.bare_soil_fraction : null,
+      /**
+       * T-1056 — THE ELEVATION BAND THE WOODY STRATUM ESTABLISHES ACROSS, read
+       * off the record and handed to `station` as-is.
+       *
+       * `applies_to_roles` is the record's own list and is kept as a Set rather
+       * than hard-coded to `shrub_low`, because the same band binds the roles
+       * `trees.js` draws (`tree`, `thicket`) and the two renderers have to be
+       * reading ONE claim. `tools/validate.py` gates the range, the datum, the
+       * roles against the index vocabulary and the grading, and refuses a band
+       * that binds no species this zone records — so an absent block here means
+       * the zone states no bound, never that one was dropped.
+       */
+      woody: (() => {
+        const w = rec.woody_stratum;
+        if (!w) return null;
+        const band = w.establishes_m;
+        if (!Array.isArray(band) || band.length !== 2 || !(band[0] < band[1])) {
+          problems.push(`flora: zone ${entry.id} records a woody_stratum whose `
+            + 'establishes_m is not a rising [low, high] band, so no woody bound is applied');
+          return null;
+        }
+        return { establishes: band, roles: new Set(w.applies_to_roles ?? []) };
+      })(),
       /**
        * Chance a forb lattice slot is used, from the record's own densities —
        * per side, because the legal subset is what stands there.
@@ -2568,6 +2641,15 @@ function footprintCircles(footprints) {
 /* -------------------------------------------------------------------------- */
 /* the lattice                                                                 */
 /* -------------------------------------------------------------------------- */
+
+/** Hermite ramp, 0 below `lo` and 1 at or above `hi`. The shape a recorded
+ *  elevation band is read over: see `station`'s woody bound (T-1056), and
+ *  docs/LIBERTIES.md L233 for why the shape itself is an admission. */
+function smoothstep(lo, hi, x) {
+  if (!(hi > lo)) return x >= hi ? 1 : 0;
+  const t = Math.min(1, Math.max(0, (x - lo) / (hi - lo)));
+  return t * t * (3 - 2 * t);
+}
 
 /** Deterministic hash -> a repeatable per-slot random stream, so re-centring
  *  the lattice puts every plant back exactly where it was. */

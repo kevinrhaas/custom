@@ -1,7 +1,7 @@
 ---
 id: T-0940
 title: The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
-state: open
+state: split
 epic: GROUND
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-12
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 2:42:25 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T07:46:39.446Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34681283724
 ---
 
 **OWNER-REPORTED from the walkthrough, 2026-09-07** — a second screenshot of the sand bar,
@@ -103,3 +103,24 @@ That exception is written for the far timber and needs to reach the bar's planti
 **Scope note:** this is the bar's SURFACE. Its southern tip having no ground at all is
 **T-0939**, its height is **T-0800**, and re-tracing it off the full sheet is **T-0799**.
 This ticket changes no elevation and moves no edge.
+
+## Finding from T-1056, filed here because this ticket owns the ask (2026-09-12)
+
+Acceptance 3 above is met in two of its three halves and not in the third, and the reason is
+the GROUND rather than the planting. T-1056 keyed the woody stratum to a recorded elevation
+band — `woody_stratum.establishes_m` [1.22, 2.32] m above the summer water surface, on both
+sand zones, read by `flora.js` and `trees.js` off the one record — and measured on the
+committed `e1834_harbor_cut` heightfield at 5 m spacing the bar's 849 woody clumps go to zero
+while the mainland moves by exactly nothing. So "no even scatter of woody growth" and "the
+exception carried on explicitly rather than by hand-placed exclusions" are both done.
+
+**"Low scrub in pockets" is not, and no planting change can deliver it.** The modelled bar is
+a flat plate: every one of its 3,419 land samples across the two zones stands within about
+2 cm of the +4 ft crest `terrain_spec.json` `islands[0]` argues for, so the whole bar sits at
+the very bottom of the band and there is no higher ground for a pocket to stand on. The rule
+would put scrub there the moment any part of the bar rises, and needs no exclusion polygon to
+do it. **The open question is therefore whether the bar should have relief at all** — a real
+bar has a crest line, a lee slope and wash-overs — and that is an elevation question, which
+this ticket's own scope note assigns to **T-0800** (its height) and **T-0939** (its southern
+tip). `islands[0]`'s note explicitly invites the height being re-argued; if it ever is, the
+scrub returns with no edit to either renderer. Admitted at `docs/LIBERTIES.md` **L233**.

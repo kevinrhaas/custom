@@ -215,6 +215,19 @@ FLORA_ZONE_READS: dict[str, tuple[str, str]] = {
     # Read, and its only consumer is the `zones()` accessor the smoke's sward
     # gate reads. No plant is placed or withheld by it.
     "cover.bare_soil_fraction": ("probe", "cover.bare_soil_fraction"),
+    # T-1056 — WHERE THE WOODY STRATUM ESTABLISHES. Two renderers read this one
+    # block off the same record: `flora.js`'s `station` withholds a `shrub_low`
+    # below the band, and `trees.js`'s planting loop withholds the dune poplars.
+    # Both are `mesh` — they change what stands on the ground, which is the
+    # strongest claim this map makes about a figure.
+    #
+    # `woody_stratum.measured_from` is deliberately NOT here and is banked
+    # unread: it states what the metres are measured from, for the reader and for
+    # `tools/validate.py`, and a renderer that read it would be a renderer that
+    # could convert between datums. If it ever disagreed with the heightfield's
+    # own datum the right outcome is this gate failing, not a silent conversion.
+    "woody_stratum.establishes_m": ("mesh", "const band = w.establishes_m;"),
+    "woody_stratum.applies_to_roles": ("mesh", "new Set(w.applies_to_roles ?? [])"),
     # The extent decides WHERE a community stands, which is a position and
     # therefore a vertex. `x` is the extent object inside `matchZone`.
     "extent.kind": ("mesh", "switch (x.kind)"),
@@ -280,6 +293,14 @@ FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "zones[].extent.include_polygons": ("mesh", "rec.extent ?? entry.extent"),
     "zones[].extent.priority": ("mesh", "entry.priority ?? 0"),
     "zones[].priority": ("mesh", "entry.priority ?? 0"),
+    # T-1055. The ground mesh paints a zone with box extent its own recorded
+    # colour: terrain.js `substrateZones()` takes these two copies off the
+    # manifest and `zoneGlsl()` multiplies the prairie tile's luminance
+    # through them, so the mean albedo inside the zone is the recorded
+    # triple. They were banked unread for as long as the mesh was one
+    # material, which is why the beach and the sand bar were drawn green.
+    "zones[].ground_rgb": ("mesh", "z.ground_rgb"),
+    "zones[].ground_wet_rgb": ("mesh", "z.ground_wet_rgb"),
     # Read once at boot, to report a published shape this renderer has no
     # archetype for. Nothing is drawn from the list itself.
     "vocabulary.inflorescence_shapes": ("probe", "index.vocabulary?.inflorescence_shapes"),

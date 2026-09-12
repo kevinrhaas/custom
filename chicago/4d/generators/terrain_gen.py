@@ -209,6 +209,150 @@ def check_quantisation_lattice(verts, e0, e1, n0, n1, margin_m, cell_m, k):
         f"the rung is the grid cell / {cell_m / rung:.6f}, not / {k}")
     return rung
 
+# A boundary landform's taper may not be shorter than this many publish rungs.
+# Under one rung the two ring vertices would land on the same lattice position,
+# which is a degenerate quad — `from_pydata` accepts one and the decimate
+# modifier then segfaults on it (the same trap the skirt ring's own assert
+# guards). A termination that short is also below the mesh's own resolution, so
+# nothing is lost by carrying it instead.
+SKIRT_TERMINATION_MIN_RUNGS = 4
+
+
+def ring_local(feats, ref, origin):
+    """One traced ring in local ENU metres, open (no repeated closing vertex)."""
+    o_e, o_n = origin
+    f = feats[ref["feature"]]
+    coords = f["geometry"]["coordinates"][int(ref.get("ring", 0))]
+    return [(c[0] - o_e, c[1] - o_n) for c in coords][:-1]
+
+
+def _first_exit(ring, scan_axis, scan_at, out_axis, bound, sign):
+    """Walking outward from the box edge, how far out the ring is first crossed.
+
+    The SMALLEST positive outward distance, not the largest: walking south from a
+    point inside the ring, the first boundary crossing is where the landform ends.
+    A ring that re-enters further out (a second lobe the box has cut off from the
+    first) is not attached to this boundary vertex and is not this vertex's taper.
+
+    Returns None when the ring is never crossed outward of `bound` on that line.
+    """
+    best = None
+    for i in range(len(ring)):
+        a, b = ring[i - 1], ring[i]
+        lo, hi = a[scan_axis], b[scan_axis]
+        if not ((lo <= scan_at < hi) or (hi <= scan_at < lo)):
+            continue
+        t = (scan_at - lo) / (hi - lo)
+        d = sign * (a[out_axis] + t * (b[out_axis] - a[out_axis]) - bound)
+        if d > 0 and (best is None or d < best):
+            best = d
+    return best
+
+
+def skirt_terminations(spec, feats, origin, h_m, rung_m):
+    """Which boundary vertices stand on a landform that ENDS inside the skirt.
+
+    THE RULE, AND WHY IT IS A RULE ABOUT EVIDENCE RATHER THAN ABOUT THE BAR
+    (T-0939). The apron carries each boundary vertex outward at its own height,
+    which is right when the boundary is a CROSS-SECTION of ground that continues
+    — and the mainland's is: its traced shore runs stop at the edge of the
+    tracing window, which is a place the reading stopped, not a place the land
+    did. It is wrong when the boundary cuts a landform that ENDS, because then
+    1.55 km of apron is extruded from a section of something 36 m long. The owner
+    photographed exactly that: the 1834 sand bar leaving the box at a constant
+    +1.21 m and running to the haze as a straight ribbon three and a half times
+    longer than the island it is a section of.
+
+    The only evidence that can say a landform ends is a CLOSED traced outline
+    that the box truncates, and the spec already holds those — `islands`, "land
+    the water goes round", each resolved to a ring in `shoreline.geojson`. So
+    this asks every island ring, on every one of the four edges, two questions:
+    is the boundary vertex inside the ring, and how far past the edge does the
+    ring reach on that vertex's own line? The second answer is the taper LENGTH,
+    read off the trace rather than chosen — for the sand bar it runs from 1.4 m
+    at its western edge to 35.8 m at the tip and back to 2.0 m at its eastern,
+    which is the hook Wright drew.
+
+    Where the apron arrives is the WATER the landform stands in: the boundary
+    heights either side of the run, interpolated across it. That is what the
+    skirt would have carried there had the landform not been in the way, so the
+    run's apron rejoins its neighbours' instead of ending in a wall.
+
+    Lengths are snapped to the publish step's POSITION rung, because the vertices
+    this places have to stand on that lattice like every other ground vertex
+    (see skirt_margin_m and check_quantisation_lattice). The snap is at most half
+    a rung — 39 mm against the +/-20 m the planform itself carries.
+
+    Returns {edge: [run, ...]} with each run
+    {"landform", "index0", "extent_m": [...], "base_y": [...]}, indexed along
+    that edge's own axis (columns from the west on the south and north edges,
+    rows from the south on the west and east edges). An edge with no truncated
+    landform is absent, and a box with none returns {} — which is the case where
+    this changes nothing at all.
+    """
+    g = spec["grid"]
+    cell = float(g["cell_m"])
+    e0, e1 = float(g["e_min_m"]), float(g["e_max_m"])
+    n0, n1 = float(g["n_min_m"]), float(g["n_max_m"])
+    rows, cols = h_m.shape
+    # name: (scan axis, count, coordinate along the edge, out axis, bound,
+    #        outward sign, the heightfield row/column that edge is)
+    edges = {
+        "south": (0, cols, lambda i: e0 + i * cell, 1, n0, -1, lambda i: h_m[0, i]),
+        "north": (0, cols, lambda i: e0 + i * cell, 1, n1, +1, lambda i: h_m[rows - 1, i]),
+        "west": (1, rows, lambda i: n0 + i * cell, 0, e0, -1, lambda i: h_m[i, 0]),
+        "east": (1, rows, lambda i: n0 + i * cell, 0, e1, +1, lambda i: h_m[i, cols - 1]),
+    }
+    floor_m = SKIRT_TERMINATION_MIN_RUNGS * rung_m
+    out = {}
+    for isl in spec.get("islands", []):
+        ring = ring_local(feats, isl["ring"], origin)
+        for name, (sa, count, at, oa, bound, sign, edge_h) in edges.items():
+            along = np.array([at(i) for i in range(count)], float)
+            fixed = np.full(count, bound, float)
+            E, N = (along, fixed) if sa == 0 else (fixed, along)
+            inside = point_in_ring(E, N, ring)
+            reach = {}
+            for i in range(count):
+                if not inside[i]:
+                    continue
+                d = _first_exit(ring, sa, at(i), oa, bound, sign)
+                if d is None:
+                    continue
+                snapped = round(d / rung_m) * rung_m
+                if snapped >= floor_m:
+                    reach[i] = snapped
+            if not reach:
+                continue
+            for run in _contiguous(sorted(reach)):
+                lo, hi = run[0], run[-1]
+                # The water either side of the run — the height the skirt would
+                # have carried here had the landform not been standing in it.
+                west_y = float(edge_h(max(0, lo - 1)))
+                east_y = float(edge_h(min(count - 1, hi + 1)))
+                span = max(1, hi + 1 - lo + 1)
+                base = [west_y + (east_y - west_y) * (k + 1) / span
+                        for k in range(len(run))]
+                out.setdefault(name, []).append({
+                    "landform": isl["id"],
+                    "index0": lo,
+                    "extent_m": [round(reach[i], 6) for i in run],
+                    "base_y": [round(b, 6) for b in base],
+                })
+    return out
+
+
+def _contiguous(indices):
+    """Split a sorted index list into runs of consecutive integers."""
+    runs = []
+    for i in indices:
+        if runs and i == runs[-1][-1] + 1:
+            runs[-1].append(i)
+        else:
+            runs.append([i])
+    return runs
+
+
 # How far the decimated ground mesh may depart from the heightfield the walker
 # samples. 30 mm is well under the resolution of anything a person notices on
 # foot and two orders under the relief being modelled.
@@ -756,6 +900,7 @@ def write_heightfield(out_dir: Path, h_m, meta, spec, inputs_sha: str):
             "channel_min": round(meta["min_m"] / FT, 3),
         },
         "gradient_audit_ft_per_300ft": meta.get("gradient_audit"),
+        "skirt": meta.get("skirt"),
         "glb": {
             "ground": f"gltf/terrain__{spec['epoch']}.glb",
             "water": f"gltf/water__{spec['epoch']}.glb",
@@ -792,7 +937,8 @@ def terrain_inputs_sha(ep_dir: Path) -> str:
 # meshing (bpy)
 # ---------------------------------------------------------------------------
 
-def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
+def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float,
+                 terminations=None):
     from math import radians
 
     from common.mesh import reset_scene, simple_material  # noqa: PLC0415
@@ -839,20 +985,69 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
                 + [r * cols + cols - 1 for r in range(rows - 2, -1, -1)]     # east, N->S
                 + [c for c in range(cols - 2, 0, -1)])                       # south, E->W
     assert len(set(ring_idx)) == len(ring_idx), "skirt ring visits a vertex twice"
+    # WHERE THE APRON IS A SECTION OF SOMETHING THAT ENDS (T-0939). Carrying a
+    # boundary vertex outward is right for ground that continues and wrong for a
+    # landform the box has cut: the 1834 sand bar left this edge at +1.21 m and
+    # was extruded 1.55 km south as a straight ribbon, three and a half times
+    # longer than the island it is a section of, which is what the owner
+    # photographed. skirt_terminations() reads which boundary vertices those are
+    # and how far past the edge each one's landform actually reaches, off the
+    # traced ring rather than off a number chosen to look right.
+    #
+    # The apron gains ONE more ring to say it with. Each boundary vertex has an
+    # outward distance `t` and an arrival height: over a termination, its own
+    # taper length and the water beside it; everywhere else, the deepest
+    # termination on the box and its own carried height — which makes the extra
+    # ring a subdivision of a flat strip and moves nothing. Where no landform is
+    # truncated at all there is no extra ring, and this is the mesh it has always
+    # been.
+    ends = {}
+    for name, runs in (terminations or {}).items():
+        for run in runs:
+            for k, i in enumerate(range(run["index0"], run["index0"] + len(run["extent_m"]))):
+                idx = (0, i) if name == "south" else \
+                      (rows - 1, i) if name == "north" else \
+                      (i, 0) if name == "west" else (i, cols - 1)
+                v = idx[0] * cols + idx[1]
+                # A corner belongs to two edges. The shorter taper wins: it is
+                # the one whose landform ends sooner on this vertex's own line.
+                prior = ends.get(v)
+                if prior is None or run["extent_m"][k] < prior[0]:
+                    ends[v] = (run["extent_m"][k], run["base_y"][k])
+    t_default = max((t for t, _ in ends.values()), default=0.0)
+
     outer = {}
+    mid = {}
     eps = 0.5 * cell
     for i in ring_idx:
         e, n, y = verts[i]
+        end = ends.get(i)
+        y_out = end[1] if end else y
+        if t_default > 0.0:
+            t = end[0] if end else t_default
+            mid[i] = len(verts)
+            verts.append((e0 - t if e <= e0 + eps else (e1 + t if e >= e1 - eps else e),
+                          n0 - t if n <= n0 + eps else (n1 + t if n >= n1 - eps else n),
+                          y_out))
+            confs.append(confs[i])
         oe = e0 - m if e <= e0 + eps else (e1 + m if e >= e1 - eps else e)
         on = n0 - m if n <= n0 + eps else (n1 + m if n >= n1 - eps else n)
         outer[i] = len(verts)
-        verts.append((oe, on, y))
+        verts.append((oe, on, y_out))
         confs.append(confs[i])
     # Wound so the skirt's normal points up, matching the grid above it: the
     # boundary runs clockwise from above, so the quad is a -> b -> outer_b ->
     # outer_a, not the other way round.
     for a, b in zip(ring_idx, ring_idx[1:] + ring_idx[:1]):
-        faces.append((a, b, outer[b], outer[a]))
+        if mid:
+            faces.append((a, b, mid[b], mid[a]))
+            faces.append((mid[a], mid[b], outer[b], outer[a]))
+        else:
+            faces.append((a, b, outer[b], outer[a]))
+    if ends:
+        print(f"skirt terminations: {len(ends)} boundary vertices stand on a landform the "
+              f"box truncates; tapers {min(t for t, _ in ends.values()):.3f}..{t_default:.3f} m, "
+              f"the apron elsewhere subdivided at {t_default:.3f} m and unmoved")
 
     rung = check_quantisation_lattice(verts, e0, e1, n0, n1, m, cell, lattice_k)
     print(f"skirt margin {m:.6f} m (grid cell / {lattice_k}); the publish step's "
@@ -1101,6 +1296,30 @@ def main() -> int:
                      "that earn relief, hold local gradients under 0.5 ft per 300 ft")
     meta["gradient_audit"] = audit
 
+    # The apron's rule, written where the renderer can read it. Both sides of
+    # the bake have to carry a boundary vertex outward the same way or the seam
+    # at the box edge opens, and since T-0939 that rule has a data half: which
+    # boundary vertices stand on a landform the box truncates, and how far out
+    # each one's own trace reaches. Publishing it here is what keeps
+    # renderers/web/js/terrain.js's conformGroundToField() from having to know
+    # about islands, or to drift away from this generator's answer.
+    _g = spec["grid"]
+    _margin, _k = skirt_margin_m(float(_g["e_max_m"]) - float(_g["e_min_m"]),
+                                 float(_g["cell_m"]))
+    _rung = float(_g["cell_m"]) / _k
+    meta["skirt"] = {
+        "_doc": "The apron outside the modelled box. It carries each boundary vertex "
+                "outward at its own height, EXCEPT over a landform whose traced outline "
+                "ends inside the apron: there the ground falls from the boundary height "
+                "to base_y, reaching it at extent_m and holding it beyond. Indices run "
+                "along the named edge — columns from the west on south/north, rows from "
+                "the south on west/east. See generators/terrain_gen.skirt_terminations "
+                "and T-0939.",
+        "margin_m": round(_margin, 6),
+        "position_rung_m": round(_rung, 9),
+        "terminations": skirt_terminations(spec, feats, origin, h_m, _rung),
+    }
+
     sha = terrain_inputs_sha(ep_dir)
     doc = write_heightfield(ep_dir, h_m, meta, spec, sha)
 
@@ -1130,7 +1349,8 @@ def main() -> int:
               "-- --glb")
         return 2
 
-    built = build_meshes(h_m, conf, spec, args.epoch, Path(args.out), args.decimate_deg)
+    built = build_meshes(h_m, conf, spec, args.epoch, Path(args.out),
+                         args.decimate_deg, meta.get("skirt", {}).get("terminations"))
 
     manifest_path = ROOT / "assets" / "manifest.json"
     manifest = load(manifest_path) if manifest_path.exists() else {}
