@@ -138,11 +138,17 @@ def split_entry(text: str):
     surname, rest = surname.strip(" .&"), rest.strip()
     given = []
     if not firm:
+        # `consumed` is what the loop ATE and `given` is what it KEPT: they differ by
+        # the loose comma below, which is punctuation the name does not carry but the
+        # slice at the end of the loop has to account for, or the forename's last
+        # letters are left standing at the head of the trade ("n, contractor").
+        consumed = []
         for tok in rest.split():
             bare = tok.strip(".,'\"").lower()
             if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
                     tok[:1].isupper() and len(given) < 3 and not PLACE.fullmatch(tok + " ")):
                 given.append(tok)
+                consumed.append(tok)
                 # THE PRINTED COMMA CLOSES THE NAME. Without this the loop ran on past
                 # it and took the next capitalised word for a forename, because a
                 # capital and a count of three were the whole test: `Beaubien, John B.,
@@ -156,8 +162,23 @@ def split_entry(text: str):
                 if tok.rstrip(".").endswith(",") and bare.strip(",") not in TITLES:
                     break
                 continue
+            # THE SUFFIX'S COMMA, SET OFF BY A SPACE (T-0987 stretch 8). The clause
+            # above waives the comma that a title or a suffix carries — but only when
+            # the compositor set it TIGHT, `jr.,`. Six entries in this volume set it
+            # loose, `Archdale, jr. , John, contractor`, so the comma arrives as a
+            # token of its own, matches nothing, and breaks the loop: the forename is
+            # left behind and `jr` stands as the given name. It is the same waiver and
+            # the same comma, and the forename it was losing is the whole of what the
+            # crosswalk keys a man on — `King, jr. , John` was reaching John Lyle King
+            # on the J of `jr.`, which is a letter of a suffix and not of a name.
+            if given and not tok.strip(",.") and given[-1].strip(".,'\"").lower() in TITLES:
+                consumed.append(tok)
+                # attached to the suffix, so the reading prints as the volume's own
+                # tight form does — `Archdale, jr., John`, not `Archdale, jr. John`.
+                given[-1] = given[-1] + tok
+                continue
             break
-        rest = rest[len(" ".join(given)):].strip(" ,.")
+        rest = rest[len(" ".join(consumed)):].strip(" ,.")
     given_s = " ".join(given).strip(" ,.")
     m = PLACE.search(rest)
     occupation = (rest[:m.start()] if m else rest).strip(" ,.")
