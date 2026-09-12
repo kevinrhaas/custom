@@ -328,3 +328,7 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions

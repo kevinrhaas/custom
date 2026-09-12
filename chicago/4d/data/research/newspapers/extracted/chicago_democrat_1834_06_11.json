@@ -436,7 +436,7 @@
       "kind": "business",
       "reading": "transcription_mediated",
       "quote": "Wo. @ WRAWCUA\nHouse and Land Py\nOTS parchased and Sold, or |\n22 Building Lots for sale, in thi\nSchool section.\n§q Houses to Let. Pugnire at\nLake st. opposite Dr. Temple's.",
-      "normalized": "W[m.] G. [BRANCHAUD,] House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. [… ] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's.",
+      "normalized": "W[m.] G. [BLANCHARD,] House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. [… ] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's.",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 4,
@@ -457,9 +457,9 @@
         "interleaved": true
       },
       "business": {
-        "name": "Wm. G. Branchaud",
+        "name": "Wm. G. Blanchard",
         "proprietors": [
-          "Wm. G. Branchaud"
+          "Wm. G. Blanchard"
         ],
         "trade": "house and land agent",
         "goods": [],
@@ -472,7 +472,7 @@
           "street": "Lake Street"
         }
       },
-      "notes": "THE SECOND BUSINESS IN THE MONTH PLACED 'OPPOSITE DR. TEMPLE'S' ON LAKE STREET — William Clay's hat factory is the other, at the corner of Lake and Franklin (1834-06-04 claim c012). Temple's is therefore a Lake Street landmark two advertisers expect a stranger to find, and it is not itself advertised anywhere in the month. THE PROPRIETOR'S NAME IS NOT RECOVERABLE HERE: the heading reads 'Wo. @ WRAWCUA' and on 1834-06-04 '@s DRANCRAID'; the reading 'Wm. G. Branchaud' is the best that the two mangled settings support together and it is bracketed as a supply. NO PERSON IS MINTED from it — a name this uncertain would put a fiction in the gazetteer — so the claim carries the business and no entity. 'Houses to Let' in the plural is worth its own note: there is a rental market in this town by June 1834."
+      "notes": "THE SECOND BUSINESS IN THE MONTH PLACED 'OPPOSITE DR. TEMPLE'S' ON LAKE STREET — William Clay's hat factory is the other, at the corner of Lake and Franklin (1834-06-04 claim c012). Temple's is therefore a Lake Street landmark two advertisers expect a stranger to find, and it is not itself advertised anywhere in the month. THE PROPRIETOR'S NAME IS NOT RECOVERABLE HERE: the heading reads 'Wo. @ WRAWCUA' and on 1834-06-04 '@s DRANCRAID'; the reading 'Wm. G. Branchaud' is the best that the two mangled settings support together and it is bracketed as a supply. NO PERSON IS MINTED from it — a name this uncertain would put a fiction in the gazetteer — so the claim carries the business and no entity. 'Houses to Let' in the plural is worth its own note: there is a rental market in this town by June 1834. THE SURNAME IS BLANCHARD, AND THE CORPUS SETS IT SO TWICE IN COLUMNS THIS ONE CANNOT ANSWER (T-0408). The supply above was made from the two settings the reading had in front of it — 'Wo. @ WRAWCUA' here and '@s DRANCRAID' at 1834-06-04 — and BOTH stand in columns the transcription itself flags: 'This column uses the Tesseract fallback because the independent Vision reading was unavailable or substantially incomplete.' This is one STANDING advertisement, word for word the same card, and the Democrat runs it from 1834-05-14 to at least 1834-09-17. Two of those impressions carry the name line in columns that are NOT fallbacks: 1834-07-16, issue page 4 column 5, transcription line 5527, sets '1* G. BLANCHARD,' over 'House and Lund dgent.'; and 1834-09-17, issue page 3 column 6, transcription line 3292, sets '[uncertain: BLALYCHARD,]' over 'nd Land igent.' A Vision reading of the type outranks a Tesseract guess at the same line, and nothing in the corpus prints BRANCHAUD at all. So the supplied surname is corrected to [BLANCHARD] and the house is the 'W. G. Blanchard' this register already carries from 1834-07-09 c025 — joined by an `identity.json` firm merge, because the FORENAME is still what the two impressions differ in and that is an identity judgement rather than a reading. `quote` is untouched: it is what the column sets, and it still sets nonsense."
     },
     {
       "id": "c009",
