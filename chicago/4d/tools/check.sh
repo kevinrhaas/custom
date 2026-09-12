@@ -104,6 +104,22 @@ step "the traced North Branch still carries what its generator writes" \
 step "the North Branch's repaired east bank has not leaked the west one" \
   python3 tools/measure_north_branch_banks.py --check-properties
 
+# T-0862. The NARA/Historic Urban Plans registration is the enabler the whole Wright
+# band stands on — at 600 dpi it resolves the Original Town's block numerals where the
+# BPL scan does not — and until now `grep -i nara` over this gate returned nothing but
+# unrelated Playwright comments. A hand edit to a coefficient, a residual or the
+# checksum would have passed every gate this project has, silently moving every reading
+# taken through the fit. This is the offline half, the same split trace_river.py makes:
+# each control point's residual, the RMS, the axis scales, the rotation, the scan-to-scan
+# departures, the scale bar's px-per-foot and each lacuna's ground extent, all re-derived
+# from the coefficients and the eight picked points. It re-picks nothing; re-locating the
+# correspondences off the raster stays the deliberate second tier.
+step "the Wright NARA registration still re-derives from its own control points" \
+  python3 tools/check_wright_nara_registration.py --check-properties
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_wright_nara_registration.py --self-test
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
