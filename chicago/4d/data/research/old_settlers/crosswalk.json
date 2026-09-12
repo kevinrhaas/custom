@@ -484,16 +484,6 @@
    "resident_name": "Joshua Ambrose",
    "rule": "OS2",
    "why": "one bearer of the surname in the whole residents layer and the forename initial agrees, but neither side spells the forename out and nothing discriminates. PROBABLE, NOT MERGED: no record is written on it"
-  },
-  {
-   "id": "os1882g036",
-   "as_read": "Ellis, Joel",
-   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "probable_person_id": "ellis_j",
-   "household_id": "hh_ellis_j",
-   "resident_name": "J Ellis",
-   "rule": "OS2",
-   "why": "one bearer of the surname in the whole residents layer and the forename initial agrees, but neither side spells the forename out and nothing discriminates. PROBABLE, NOT MERGED: no record is written on it"
   }
  ],
  "refusals": [
@@ -535,7 +525,7 @@
    "source_id": "calumet_club_early_chicago_1879",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 2 bearer(s) of 'baldwin', none with the forename initial 'w'; same surname, different forename initial never merges"
+   "why": "the residents layer has 1 bearer(s) of 'baldwin', none with the forename initial 'w'; same surname, different forename initial never merges"
   },
   {
    "id": "os1879r008",
@@ -1088,12 +1078,9 @@
    "id": "os1879r090",
    "as_read": "Loomis, Horatio G.",
    "source_id": "calumet_club_early_chicago_1879",
-   "rule": "OS4",
-   "outcome": "candidate",
-   "why": "1 bearers of 'loomis' share the forename initial 'h'; the roster does not discriminate between them",
-   "candidates": [
-    "loomis_henry"
-   ]
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 1 bearer(s) of 'loomis', none with the forename initial 'h'; same surname, different forename initial never merges"
   },
   {
    "id": "os1879r091",
@@ -1173,7 +1160,7 @@
    "source_id": "calumet_club_early_chicago_1879",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'murray', none with the forename initial 'r'; same surname, different forename initial never merges"
+   "why": "the residents layer has 2 bearer(s) of 'murray', none with the forename initial 'r'; same surname, different forename initial never merges"
   },
   {
    "id": "os1879r102",
@@ -1403,12 +1390,9 @@
    "id": "os1879r134",
    "as_read": "Smith, David S.",
    "source_id": "calumet_club_early_chicago_1879",
-   "rule": "OS4",
-   "outcome": "candidate",
-   "why": "1 bearers of 'smith' share the forename initial 'd'; the roster does not discriminate between them",
-   "candidates": [
-    "smith_d_a"
-   ]
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 9 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
   },
   {
    "id": "os1879r135",
@@ -1510,9 +1494,9 @@
    "id": "os1879r148",
    "as_read": "Wadhams, Seth",
    "source_id": "calumet_club_early_chicago_1879",
-   "rule": "OS3",
-   "outcome": "refused",
-   "why": "the residents layer has 1 bearer(s) of 'wadhams', none with the forename initial 's'; same surname, different forename initial never merges"
+   "rule": "OS5",
+   "outcome": "unmatched",
+   "why": "no bearer of the surname 'wadhams' in the residents layer"
   },
   {
    "id": "os1879r149",
@@ -1536,7 +1520,7 @@
    "source_id": "calumet_club_early_chicago_1879",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
+   "why": "the residents layer has 1 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1879r153",
@@ -1800,6 +1784,14 @@
    "rule": "OS3",
    "outcome": "refused",
    "why": "the residents layer has 2 bearer(s) of 'egan', none with the forename initial 'w'; same surname, different forename initial never merges"
+  },
+  {
+   "id": "os1882g036",
+   "as_read": "Ellis, Joel",
+   "source_id": "chicago_tribune_1882_05_19_fourth_reception",
+   "rule": "OS5",
+   "outcome": "unmatched",
+   "why": "no bearer of the surname 'ellis' in the residents layer"
   },
   {
    "id": "os1882g037",
@@ -2269,12 +2261,9 @@
    "id": "os1882g100",
    "as_read": "Smith, Dr. David S.",
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
-   "rule": "OS4",
-   "outcome": "candidate",
-   "why": "1 bearers of 'smith' share the forename initial 'd'; the roster does not discriminate between them",
-   "candidates": [
-    "smith_d_a"
-   ]
+   "rule": "OS3",
+   "outcome": "refused",
+   "why": "the residents layer has 9 bearer(s) of 'smith', none with the forename initial 'd'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g101",
@@ -2282,9 +2271,8 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS4",
    "outcome": "candidate",
-   "why": "2 bearers of 'smith' share the forename initial 'j'; the roster does not discriminate between them",
+   "why": "1 bearers of 'smith' share the forename initial 'j'; the roster does not discriminate between them",
    "candidates": [
-    "smith_james",
     "smith_jeremiah"
    ]
   },
@@ -2461,7 +2449,7 @@
    "source_id": "chicago_tribune_1882_05_19_fourth_reception",
    "rule": "OS3",
    "outcome": "refused",
-   "why": "the residents layer has 3 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
+   "why": "the residents layer has 1 bearer(s) of 'wentworth', none with the forename initial 'j'; same surname, different forename initial never merges"
   },
   {
    "id": "os1882g123",
@@ -2765,7 +2753,7 @@
  ],
  "counts": {
   "merges": 46,
-  "probable": 2,
-  "refusals": 279
+  "probable": 1,
+  "refusals": 280
  }
 }

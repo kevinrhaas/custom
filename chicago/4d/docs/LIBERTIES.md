@@ -10428,9 +10428,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 479 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 479 people
+**Scope:** `residents.persons[civic_mint]` — 401 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10516,7 +10516,23 @@ middle initial B the poll does not print — in a book that holds no Madore. AND
 IS RECORDED RATHER THAN DROPPED: the ticket asked for the St Cyr and St Mary's registers to be read
 for a Médard baptism, because that is where a baptismal forename would be printed if it is one, and
 they hold none — no Médard, no Madore, no Medore, as principal, parent, sponsor or decedent — so
-the philological argument has no page here and the ruling does not rest on it. The number
+the philological argument has no page here and the ruling does not rest on it. T-1049 took it to 401 on 2026-09-12, and that is the largest fall this entry
+records by a factor of twenty-five — 78 containers at once, and not one of them a fold. The
+earlier falls were two cards for one man; this one is a card for a man who was never at this
+town. The press evidence these 78 stood on was a reading of two CHICAGO papers, and a Chicago
+paper prints men who are not at Chicago: its agents, its correspondents, the eastern houses
+whose advertisements it carries. `read_newspapers()` handed every gazetteer person to the
+identity pool as a Chicago appearance without ever looking at `associated_places`, so
+`Wm. H. Ashley, St. Louis` and `A. A. Barber, Green Bay` were minted into the town on rung
+G1b — attested, the ladder's highest — each on a notice that says in the same breath where
+the man was. T-1048 resolved the vocabulary those places are printed in against the committed
+town first, so that a guard could tell `Michigan City` from `Fort Dearborn` and from `the
+corner of Water and Franklin streets, Chicago`; this ticket spends it. The 78 are the
+identities whose ONLY evidence inside the scene window was such a reading: with it refused
+the ladder reaches nothing, and a container the ladder cannot reach is not minted. The
+refusals are not dropped — each is carried in `identity_master.json` under evidence class
+`newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
+record and a later page that puts one of these men at Chicago after all can overturn it. The number
 this liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 
@@ -10799,7 +10815,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 14 households
+**Scope:** `residence_back_projection.positions[placed]` — 13 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -10836,6 +10852,15 @@ and two of the eight were standing on a reading that rule refuses:
   back eight. Fergus 1839 does not mark an address `res` or `bds`, so it never says the
   street was his HOME, and this pass may not say it for him. A nearer reading that says less
   replaced a further one that said more, and the face goes with the claim.
+
+**Restated to thirteen on 2026-09-12 (T-1049), and the reading did not move — the town did.**
+`hh_mills_samuel` was minted on one press notice, `S. Mills`, printed against `Jefferson,
+Ohio`; the resolved place vocabulary refuses it as a Chicago appearance, the ladder then
+reaches nothing for that identity, and the container goes with it. His Norris 1844 residence
+had nothing left to carry. The same pass took `hh_murray_james_h` — `James H. Murray`, printed
+against `New York` — out of the 47 refusals, which is why the adjudicated total falls by two
+and the placed count by one. This is the shape the paragraph above asks to be read for: the
+count moves when the TOWN shrinks as well as when it grows, and neither move is a new liberty.
 
 Twenty of 825 households carried a real `lives_at` before this pass and twenty carry one
 after — the faces are text on a card and not a placement of anybody in the town.

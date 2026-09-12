@@ -15,19 +15,19 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1371,
-  "matched_one_card": 19,
+  "residents_considered": 1293,
+  "matched_one_card": 18,
   "matched_more_than_one_ambiguous": 3,
   "one_printed_proprietor_contested_by_two_residents": 8,
-  "surname_present_initial_absent_refused": 130,
+  "surname_present_initial_absent_refused": 124,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
   "ties_offered_the_trade_discriminator": 11,
   "ties_narrowed_by_a_trade": 0,
   "of_those_contested": 0,
   "of_those_ambiguous": 0,
-  "could_carry_trade": 12,
-  "could_carry_place_of_business": 15
+  "could_carry_trade": 11,
+  "could_carry_place_of_business": 14
  },
  "matches": [
   {
@@ -152,32 +152,6 @@
     }
    ],
    "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "D A Smith",
-   "person_id": "smith_d_a",
-   "household_id": "hh_smith_d_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins D.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0138",
-     "proprietor_as_printed": "D. S. Smith",
-     "firm": "Doctor D. S. Smith",
-     "trade_1844": "physician",
-     "address_1844": "office on Clark street, 2 doors south of Lake, over J. B. F. Russell's Land Agency Office; residence La Salle street, opposite the First Baptist Church",
-     "printed_page": 112
-    }
-   ],
-   "could_carry": [
-    "trade",
-    "place_of_business"
-   ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
@@ -1099,13 +1073,6 @@
    "rule": "The surname 'Taylor' stands on an 1844 advertising card and no proprietor under it carries the initial 'A' of 'Augustine Deodat Taylor'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "B Hubbard",
-   "person_id": "hubbard_b",
-   "surname_on_a_card": "Hubbard",
-   "cards_under_that_surname": 2,
-   "rule": "The surname 'Hubbard' stands on an 1844 advertising card and no proprietor under it carries the initial 'B' of 'B Hubbard'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "B S Knapp",
    "person_id": "knapp_b_s",
    "surname_on_a_card": "Knapp",
@@ -1281,13 +1248,6 @@
    "rule": "The surname 'Walter' stands on an 1844 advertising card and no proprietor under it carries the initial 'F' of 'Francis Walter'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Fred Miller",
-   "person_id": "miller_fred",
-   "surname_on_a_card": "Miller",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Miller' stands on an 1844 advertising card and no proprietor under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Frederick Thomas",
    "person_id": "thomas_frederick",
    "surname_on_a_card": "Thomas",
@@ -1349,13 +1309,6 @@
    "surname_on_a_card": "Spring",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Spring' stands on an 1844 advertising card and no proprietor under it carries the initial 'G' of 'Giles Spring'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "H C Swift",
-   "person_id": "swift_h_c",
-   "surname_on_a_card": "Swift",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Swift' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'H C Swift'. A surname-only agreement is a refusal."
   },
   {
    "resident": "H. H. Comstock",
@@ -1489,20 +1442,6 @@
    "surname_on_a_card": "Phelps",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Phelps' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James H. Phelps'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "James Sheldon",
-   "person_id": "sheldon_james",
-   "surname_on_a_card": "Sheldon",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Sheldon' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James Sheldon'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "surname_on_a_card": "Smith",
-   "cards_under_that_surname": 7,
-   "rule": "The surname 'Smith' stands on an 1844 advertising card and no proprietor under it carries the initial 'J' of 'James Smith'. A surname-only agreement is a refusal."
   },
   {
    "resident": "James Walker",
@@ -1853,13 +1792,6 @@
    "surname_on_a_card": "Sherman",
    "cards_under_that_surname": 4,
    "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Silas W Sherman'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Stephen E Dow",
-   "person_id": "dow_stephen_e",
-   "surname_on_a_card": "Dow",
-   "cards_under_that_surname": 1,
-   "rule": "The surname 'Dow' stands on an 1844 advertising card and no proprietor under it carries the initial 'S' of 'Stephen E Dow'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Thomas Cook",

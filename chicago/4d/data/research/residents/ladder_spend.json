@@ -11,16 +11,16 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1373,
-  "carried_by_the_civic_mint": 479,
+  "person_records": 1295,
+  "carried_by_the_civic_mint": 401,
   "rungs_spent": 812,
   "conflicts_for_the_owner": 79,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 91,
    "G1c": 10,
-   "G2e": 49,
-   "G3": 640
+   "G2e": 47,
+   "G3": 642
   },
   "conflicts_by_kind": {
    "abstention": 45,
@@ -5646,9 +5646,9 @@
    "household_id": "hh_risley_horace",
    "name": "Horace Risley",
    "identity": "id_risley_horace",
-   "rule": "G2e",
+   "rule": "G3",
    "grade": "inferred",
-   "resident_subtype": null
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "ritchey_james",
@@ -7266,9 +7266,9 @@
    "household_id": "hh_wood_wm",
    "name": "Wm. Wood",
    "identity": "id_wood_william",
-   "rule": "G2e",
+   "rule": "G3",
    "grade": "inferred",
-   "resident_subtype": null
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "woods_john_h",

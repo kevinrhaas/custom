@@ -188,6 +188,13 @@ LETTER_LIST_CLASS = "newspaper_letter_list"
 # `data/research/civic/records/blackhawk_war_1832_chicago.json`'s own `the_ladder` field
 # so the two cannot drift apart silently. See refusal 4.
 MUSTER_CLASS = "muster_1832"
+# THE PLACE REFUSAL (T-1049), as the identity master names it. A reading the resolved
+# place vocabulary puts outside the town is not a Chicago appearance, so this pass must
+# not read one: not into `press_evidence`, not into the sources a card cites, and — the
+# one that would have been hardest to see — not into `arrival_block`, where a Michigan
+# City notice of February 1834 would otherwise have set a man's bound at Chicago. The
+# master keeps the row under its own class; this pass simply does not spend it.
+REFUSED_CLASSES = {"newspaper_out_of_town"}
 NO_DATE = "not read from this record"
 MUSTER_LADDER = ("An 1832 enrollment is EARLIER evidence and never an 1835 residence on "
                  "its own: it places the man in this town in 1832, which is why it dates "
@@ -414,7 +421,7 @@ def unattested(note: str) -> dict:
     return {"value": None, "confidence": "reconstructed", "note": note}
 
 
-def carry_over(doc: dict, prior: dict | None) -> dict:
+def carry_over(doc: dict, prior: dict | None, retracted: set | None = None) -> dict:
     """Keep what ANOTHER pass wrote onto one of this pass's cards.
 
     A minted household is not this tool's private file once it is in the tree: the
@@ -423,7 +430,23 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
     pass owns the keys it writes and re-derives them every run; everything else that is
     on the record is somebody else's finding and is preserved verbatim, at the end of the
     record and of the person, where a stable order keeps `--check` byte-identical.
+
+    TWO WAYS A CARD COULD NOT GET SMALLER, both found by T-1049 and both the same
+    mistake — "keep what is not derived" reading a key this pass DOES derive as
+    somebody else's:
+
+    * A BLOCK KEY. `{k: v for k, v in blocks.items() if v}` drops an evidence block that
+      has gone empty, and the loop below then restored it from the previous derivation,
+      so `press_evidence` could be added and never removed. The blocks are this pass's
+      own output; an absent one is an answer. They are excluded by name.
+    * A SOURCE THIS PASS RETRACTED. The union below exists because `old_settlers.py
+      --apply-citations` adds a source this pass does not derive, and dropping it would
+      break that pass's gate. But a source the card cites ONLY because of a reading this
+      pass has now REFUSED is not another pass's finding — it is this pass's own earlier
+      answer. `retracted` names those, and they are removed from the union unless the
+      derivation still cites them for some other reading.
     """
+    retracted = set(retracted or ())
     if not prior or prior.get("source_pass") != PASS_NAME:
         return doc
     for key, value in prior.items():
@@ -448,7 +471,7 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
     for person in doc["persons"]:
         old = by_id.get(person["id"]) or {}
         for key, value in old.items():
-            if key not in person:
+            if key not in person and key not in BLOCK_KEYS:
                 person[key] = value
         # Two keys this pass DOES write are also written to by other passes, and both
         # are additive there. `tools/old_settlers.py --apply-citations` puts the roll's
@@ -476,7 +499,9 @@ def carry_over(doc: dict, prior: dict | None) -> dict:
                 if key == "confidence":
                     rebuilt["later_occupation"] = pointer
             person["occupation"] = rebuilt
-        person["sources"] = sorted(set(person["sources"]) | set(old.get("sources") or []))
+        derived = set(person["sources"])
+        person["sources"] = sorted(
+            derived | (set(old.get("sources") or []) - (retracted - derived)))
         was = (old.get("note") or "")
         if was.startswith(person["note"]) and len(was) > len(person["note"]):
             person["note"] = person["note"] + was[len(person["note"]):]
@@ -646,7 +671,8 @@ def pool(docs: dict, proposal: dict, master: dict, index: dict, own: set):
     it and something else seats them.
     """
     apps = {i["id"]: [a for a in (i.get("appearances") or [])
-                      if a.get("domain") != "town_layer"]
+                      if a.get("domain") != "town_layer"
+                      and a.get("evidence_class") not in REFUSED_CLASSES]
             for i in master.get("identities", [])}
     known = town_person_ids(docs)
     excluded = excluded_ids(index)
@@ -681,12 +707,20 @@ def build(preload: dict | None = None):
                    for person in docs[path].get("persons") or []}
     accepted, refusals = pool(others, proposal, master, index, own)
 
+    # What each identity's REFUSED readings were citing, so `carry_over` can tell this
+    # pass's own retraction from another pass's addition (T-1049).
+    retracted = {i["id"]: {sid for a in (i.get("appearances") or [])
+                           if a.get("evidence_class") in REFUSED_CLASSES
+                           and (sid := source_of(a))}
+                 for i in master.get("identities", [])}
+
     files = {}
     taken: set = set()
     for row, appearances in accepted:
         doc = record(row, appearances, others, taken,
                      established.get(row.get("canonical_person_id")))
-        doc = carry_over(doc, docs.get(HOUSEHOLDS / f"{doc['id']}.json"))
+        doc = carry_over(doc, docs.get(HOUSEHOLDS / f"{doc['id']}.json"),
+                         retracted.get(row["identity"], set()))
         if doc["id"] in taken:
             raise SystemExit(f"two identities mint the same household id {doc['id']}")
         taken.add(doc["id"])
@@ -939,7 +973,8 @@ def regrade_decisions(docs: dict, proposal: dict, master: dict):
     """
     idents = {i["id"]: i for i in master.get("identities", [])}
     apps = {i["id"]: [a for a in (i.get("appearances") or [])
-                      if a.get("domain") != "town_layer"]
+                      if a.get("domain") != "town_layer"
+                      and a.get("evidence_class") not in REFUSED_CLASSES]
             for i in master.get("identities", [])}
     people = people_by_id(docs)
     applied, refusals = [], []

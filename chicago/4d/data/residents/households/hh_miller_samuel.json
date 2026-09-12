@@ -9,7 +9,6 @@
   "confidence": "inferred",
   "sources": [
    "blackhawk_war_chicago_enrollments_isa",
-   "chicago_democrat_1833_1835",
    "chicago_voter_lists_1833_1835_irad"
   ],
   "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. muster_1832 names this person at Chicago by 31 December 1832 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
@@ -45,7 +44,6 @@
   "confidence": "inferred",
   "sources": [
    "blackhawk_war_chicago_enrollments_isa",
-   "chicago_democrat_1833_1835",
    "chicago_voter_lists_1833_1835_irad"
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
@@ -68,9 +66,9 @@
    "id": "miller_samuel",
    "name": "Samuel Miller",
    "relationship": "head",
-   "grade": "attested",
+   "grade": "inferred",
    "civic_mint": true,
-   "ladder_rule": "G1b",
+   "ladder_rule": "G2b",
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
@@ -78,11 +76,10 @@
    },
    "sources": [
     "blackhawk_war_chicago_enrollments_isa",
-    "chicago_democrat_1833_1835",
     "chicago_voter_lists_1833_1835_irad",
     "second_presbyterian_chicago_1892"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from muster_1832, newspaper_1833_1835, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. muster_1832 names this person at Chicago by 31 December 1832 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Miller, Mrs. Sarah | Profession. | February 25, 1874. | Dismissed.” (second_presb_0712, printed page 195), admitted 1874-02-25 by profession. Under the rule that decided it: Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once.",
+   "note": "AN 1833 OR 1834 LIST — POLL, TAX OR MUSTER — WITH ANOTHER SOURCE. Read from muster_1832, tax_1833. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. muster_1832 names this person at Chicago by 31 December 1832 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Miller, Mrs. Sarah | Profession. | February 25, 1874. | Dismissed.” (second_presb_0708, printed page 195), admitted 1874-02-25 by profession. Under the rule that decided it: Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once.",
    "civic_evidence": [
     {
      "list": "muster_1832",
@@ -91,7 +88,7 @@
      "record_id": "blackhawk_1832_070",
      "describes_date": "1832",
      "source": "blackhawk_war_chicago_enrollments_isa",
-     "rule": "G1b"
+     "rule": "G2b"
     },
     {
      "list": "tax_1833",
@@ -100,20 +97,19 @@
      "record_id": "tax_1833_075",
      "describes_date": "1833",
      "source": "chicago_voter_lists_1833_1835_irad",
-     "rule": "G1b"
+     "rule": "G2b"
     }
    ],
-   "press_evidence": [
-    {
-     "list": "newspaper_1833_1835",
-     "as_read": "Col. Samuel Miller",
-     "locator": "chicago_democrat_1834_02_25#c003",
-     "record_id": "person_col_samuel_miller",
-     "describes_date": "1834-02-25",
-     "source": "chicago_democrat_1833_1835",
-     "rule": "G1b"
-    }
-   ]
+   "resident_research": {
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G2b",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — second_presbyterian_chicago_1892. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
+   }
   }
  ],
  "touches_removal": false,

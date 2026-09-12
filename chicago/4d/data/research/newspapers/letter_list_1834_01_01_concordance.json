@@ -37,8 +37,8 @@
   },
   "reaches_a_card": 100,
   "refused_by_reason": {
-   "surname already minted": 24,
-   "the town already names that family": 33,
+   "surname already minted": 26,
+   "the town already names that family": 31,
    "garbled": 12,
    "a firm, not a person": 1
   },
@@ -503,7 +503,7 @@
    "reaches": {
     "kind": "refused",
     "person": "person_russell_baldwin",
-    "reason": "the town already names a Baldwin",
+    "reason": "surname already minted",
     "by": "tools/mint_letter_list_residents.py"
    }
   },
@@ -886,7 +886,7 @@
    "reaches": {
     "kind": "refused",
     "person": "person_henry_b_clarke_2",
-    "reason": "the town already names a Henry",
+    "reason": "surname already minted",
     "by": "tools/mint_letter_list_residents.py"
    }
   },
