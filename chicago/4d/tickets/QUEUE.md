@@ -140,7 +140,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 
 # --- ==========================================================================
 # --- 4. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
