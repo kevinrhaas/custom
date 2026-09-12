@@ -163,8 +163,8 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
-### L218 — Eighteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 18 businesses
+### L218 — Seventeen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 17 businesses
 **Decision:** where the 1835 record attests a trade and no source of the scene year says
 where it stood, a **street** printed against that person in Fergus's Chicago directory of
 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
@@ -177,17 +177,17 @@ doors are all later than the scene, so the choice was a stated back-projection o
 position at all — the same choice L60 records for the estray pen, decided the same way:
 an absent placement is invisible while a graded one is legible and correctable.
 **Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Eighteen businesses therefore stand
+frontage and numbered its streets for the first time. Seventeen businesses therefore stand
 on a face on the authority of a volume printed four to nine years after the scene, and
 nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names, one stands on a corner the volume prints, and the other fifteen have no
+directory names, one stands on a corner the volume prints, and the other fourteen have no
 point at all. A reader who thinks that is too far to carry a shop is reading the
 `reconstructed` chip exactly as intended.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
 dealing a business to one roof on a face is an allocation and not a reading; stacking
 that allocation on an address already read back would be two inventions under one chip.
-The refusals and stand-offs are on the record beside the eighteen, so the arithmetic
+The refusals and stand-offs are on the record beside the seventeen, so the arithmetic
 is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer, and made in the same words
@@ -233,6 +233,18 @@ been sitting in the tie pool because the rule that would have cleared them was n
 Nothing was regraded and no placement was invented. The same pass withdrew two residence faces
 under **L223**, which is the other half of the measurement: the rule gives where the printed
 name is the man's and takes where it is not.
+**Restated:** 2026-09-12 (T-0987 stretch 9), from eighteen to seventeen, and the loss is the
+whole point of the stretch. Until this date the surname-plus-initial rule compared the FIRST
+initial of a name and stopped, so a middle initial both readings print had never been weighed
+at all. **H. B. Clarke**, hardware merchant, stood on Clark Street on the authority of
+`Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post` — a lawyer, whose middle
+initial the volume prints and prints differently. The stretch refuses that match, the face
+goes with it, and the one 1844 line that does name H. B. Clarke puts him on the lake shore
+below Michigan Avenue, ground the 1835 grid does not reach. Seventeen is therefore a truer
+eighteen: no placement was invented to hold the count, and the prose above that reasons from
+the number — two anchored on a crossing, one on a corner — now reads two, one and fourteen.
+Thirty-two matches across four volumes were withdrawn on the same clause and this is the only
+one that had reached the ground.
 
 ---
 

@@ -37,10 +37,11 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 90,
+  "residents_matched_one_entry": 89,
   "residents_ambiguous": 31,
-  "residents_contested": 21,
+  "residents_contested": 18,
   "residents_surname_only_refused": 217,
+  "residents_further_initial_disagreed_refused": 4,
   "residents_letter_list_bucket_refused": 1,
   "voters_matched_one_entry": 81,
   "voters_ambiguous": 38,
@@ -140,6 +141,28 @@
     "person_id": "bailey_amos",
     "household_id": "hh_bailey_amos",
     "grade_1835": "inferred",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
+    "name": "Augustine Deodat Taylor",
+    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0044",
+      "as_printed": "Augustin D. Taylor,",
+      "printed_page": 41,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "taylor_augustine",
+    "household_id": "hh_taylor_augustine",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1771,28 +1794,6 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
-    "name": "Timothy J Clark",
-    "rule": "Surname 'Clark' folds to the same string as the 1837 entry's, and the given name of both begins T.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0110",
-      "as_printed": "Thomas A. Clark,",
-      "printed_page": 42,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "clark_timothy_j",
-    "household_id": "hh_clark_timothy_j",
-    "grade_1835": "attested",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
     "name": "Truman G Wright",
     "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins T.",
     "entries_1837": [
@@ -1855,28 +1856,6 @@
     ],
     "person_id": "blodgett_tyler_k",
     "household_id": "hh_blodgett_tyler_k",
-    "grade_1835": "attested",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
-    "name": "W B Clarke",
-    "rule": "Surname 'Clarke' folds to the same string as the 1837 entry's, and the given name of both begins W.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0396",
-      "as_printed": "W. H. Clarke",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "clarke_w_b",
-    "household_id": "hh_clarke_w_b",
     "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
@@ -2037,54 +2016,6 @@
   ],
   "contested": [
    {
-    "name": "Anson H. Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0044",
-      "as_printed": "Augustin D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "taylor_anson_h",
-    "household_id": "hh_taylor_anson",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Augustine Deodat Taylor"
-    ]
-   },
-   {
-    "name": "Augustine Deodat Taylor",
-    "rule": "Surname 'Taylor' folds to the same string as the 1837 entry's, and the given name of both begins A. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0044",
-      "as_printed": "Augustin D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "taylor_augustine",
-    "household_id": "hh_taylor_augustine",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Anson H. Taylor"
-    ]
-   },
-   {
     "name": "J Wright",
     "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
@@ -2107,31 +2038,6 @@
     "contested_with": [
      "John Wright",
      "John S. Wright"
-    ]
-   },
-   {
-    "name": "J. B. Cook",
-    "rule": "Surname 'Cook' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0376",
-      "as_printed": "John P. Cook",
-      "printed_page": 43,
-      "role": "voter",
-      "ward_1837": 2,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "cook_j_b",
-    "household_id": "hh_cook_j_b",
-    "grade_1835": "attested",
-    "contested_with": [
-     "John Cook",
-     "Josiah P Cook"
     ]
    },
    {
@@ -2184,7 +2090,7 @@
    },
    {
     "name": "John Cook",
-    "rule": "Surname 'Cook' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Cook' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0376",
@@ -2203,7 +2109,6 @@
     "household_id": "hh_cook_john",
     "grade_1835": "attested",
     "contested_with": [
-     "J. B. Cook",
      "Josiah P Cook"
     ]
    },
@@ -2307,7 +2212,7 @@
    },
    {
     "name": "Josiah P Cook",
-    "rule": "Surname 'Cook' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Cook' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0376",
@@ -2326,7 +2231,6 @@
     "household_id": "hh_cook_josiah_p",
     "grade_1835": "inferred",
     "contested_with": [
-     "J. B. Cook",
      "John Cook"
     ]
    },
@@ -3276,6 +3180,7 @@
       "candidate_inferred": false
      }
     ],
+    "further_initials_declined": "A further initial refuses 1 of the 2 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
     "person_id": "brown_jesse_b",
     "household_id": "hh_brown_jesse_b",
     "grade_1835": "attested"
@@ -3465,6 +3370,7 @@
       "candidate_inferred": false
      }
     ],
+    "further_initials_declined": "A further initial refuses 2 of the 3 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
     "person_id": "kinzie_juliette",
     "household_id": "hh_kinzie_john_h",
     "grade_1835": "attested"
@@ -4720,6 +4626,120 @@
     "name": "dane Gray",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Gray' stands in the 1837 poll and no man under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
+   }
+  ],
+  "middle_initial_refusals": [
+   {
+    "name": "Anson H. Taylor",
+    "entry_1837": {
+     "claim": "f1839_v0044",
+     "as_printed": "Augustin D. Taylor,",
+     "printed_page": 41,
+     "role": "voter",
+     "ward_1837": 1,
+     "voted_for": "William B. Ogden",
+     "party": null,
+     "office": null,
+     "column_run_on": false,
+     "candidate_inferred": false,
+     "initials_1835": [
+      "A",
+      "H"
+     ],
+     "initials_printed": [
+      "A",
+      "D"
+     ],
+     "clause": "further initial",
+     "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: H against D. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+    },
+    "person_id": "taylor_anson_h",
+    "household_id": "hh_taylor_anson",
+    "grade_1835": "attested"
+   },
+   {
+    "name": "J. B. Cook",
+    "entry_1837": {
+     "claim": "f1839_v0376",
+     "as_printed": "John P. Cook",
+     "printed_page": 43,
+     "role": "voter",
+     "ward_1837": 2,
+     "voted_for": "John H. Kinzie",
+     "party": null,
+     "office": null,
+     "column_run_on": false,
+     "candidate_inferred": false,
+     "initials_1835": [
+      "J",
+      "B"
+     ],
+     "initials_printed": [
+      "J",
+      "P"
+     ],
+     "clause": "further initial",
+     "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: B against P. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+    },
+    "person_id": "cook_j_b",
+    "household_id": "hh_cook_j_b",
+    "grade_1835": "attested"
+   },
+   {
+    "name": "Timothy J Clark",
+    "entry_1837": {
+     "claim": "f1839_v0110",
+     "as_printed": "Thomas A. Clark,",
+     "printed_page": 42,
+     "role": "voter",
+     "ward_1837": 1,
+     "voted_for": "John H. Kinzie",
+     "party": null,
+     "office": null,
+     "column_run_on": false,
+     "candidate_inferred": false,
+     "initials_1835": [
+      "T",
+      "J"
+     ],
+     "initials_printed": [
+      "T",
+      "A"
+     ],
+     "clause": "further initial",
+     "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: J against A. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+    },
+    "person_id": "clark_timothy_j",
+    "household_id": "hh_clark_timothy_j",
+    "grade_1835": "attested"
+   },
+   {
+    "name": "W B Clarke",
+    "entry_1837": {
+     "claim": "f1839_v0396",
+     "as_printed": "W. H. Clarke",
+     "printed_page": 43,
+     "role": "voter",
+     "ward_1837": 2,
+     "voted_for": "John H. Kinzie",
+     "party": null,
+     "office": null,
+     "column_run_on": false,
+     "candidate_inferred": false,
+     "initials_1835": [
+      "W",
+      "B"
+     ],
+     "initials_printed": [
+      "W",
+      "H"
+     ],
+     "clause": "further initial",
+     "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: B against H. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+    },
+    "person_id": "clarke_w_b",
+    "household_id": "hh_clarke_w_b",
+    "grade_1835": "attested"
    }
   ],
   "letter_list_bucket_refusals": [
