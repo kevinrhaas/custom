@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 753, title: 'Twenty-eight shops that were listed as their own partner', kind: 'fix', ts: '2026-09-12T02:15:42.903Z', date: 'Sep 11, 2026, 9:15 PM CT',
+    items: [
+      'When a Chicago paper advertised a shop, this project wrote down who kept it. Sometimes the notice named the men; sometimes it was signed only by the firm. The Democrat of 19 August 1835 is the second kind \u2014 \u201cfor sale only by Russell & Cl[if]t (Agents for the State of I[ll]inois) at the Chicago Book Store\u201d \u2014 and there is no man in that sentence at all, so the reading recorded the firm.',
+      'Which is exactly right, and it left the bookshop with three proprietors: Aaron Russell, Benj. H. Clift, and Russell & Clift. Read as a list of people, that says the partnership was its own third partner. Twenty-eight of the town\u2019s 199 documented houses were listed that way.',
+      'Nothing was deleted to fix it, because nothing was wrong: the papers printed what they printed, and a reading in this project is never edited to make a list read better. Instead each shop\u2019s record now says which of its proprietors are people and which is the house\u2019s own trading style. Both are derived \u2014 the compiler could already recognise a firm\u2019s style, it just had never written the answer down \u2014 so there is nothing to declare by hand and nothing to keep in step.',
+      'For twelve shops the honest answer is that no man is named at all: H. Doty & Co. is the whole of what those notices signed. The record now says so rather than guessing a surname out of the style, and the pass that decides whether a printed name is a shop or a person reads the people. Before this, a firm listed among its own proprietors could vouch for itself against the very test written to catch it.'
+    ] },
   { v: 752, title: 'Six pairs of shopkeepers who were one shopkeeper all along', kind: 'fix', ts: '2026-09-12T01:50:39.037Z', date: 'Sep 11, 2026, 8:50 PM CT',
     items: [
       'Six houses left the town today and none of them closed: each was standing in this register twice, under two spellings of one name.',
