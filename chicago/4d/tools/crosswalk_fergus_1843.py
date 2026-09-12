@@ -61,6 +61,12 @@ FOLD = [(r"[^a-z]", ""), (r"^mc", "mac"), (r"^m$", ""), (r"ii", "n"), (r"rn", "m
 DEATH = re.compile(r"^(died|d\.|killed|suicide|drowned|lost)", re.I)
 
 
+# The titles are name_agreement's vocabulary, imported rather than restated
+# (T-0987 stretch 8): four crosswalks each carried their own copy, the copies
+# drifted, and not one of them held a rank spelled out in full.
+TITLES = na.TITLES + na.SUFFIXES
+
+
 def fold(name: str) -> str:
     s = (name or "").lower()
     for pat, rep in FOLD:
@@ -71,7 +77,7 @@ def fold(name: str) -> str:
 def initial(given: str) -> str:
     for tok in (given or "").split():
         bare = tok.strip(".,'\"").lower()
-        if bare in ("mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj"):
+        if bare in TITLES:
             continue
         for ch in tok:
             if ch.isalpha():
@@ -177,9 +183,11 @@ def main():
                     "resident": r["name"], "person_id": r["person_id"],
                     "surname_in_1843": r["surname"],
                     "candidates": len(surnames[f]),
-                    "rule": "The surname %r is in Fergus 1843 and no entry under it carries "
+                    "rule": na.no_forename_refusal(r["name"], r["surname"], "Fergus 1843",
+                                                   len(surnames[f])) if not i else
+                            "The surname %r is in Fergus 1843 and no entry under it carries "
                             "the initial %r of %r. A surname-only agreement is a refusal."
-                            % (r["surname"], i.upper() or "-", r["name"]),
+                            % (r["surname"], i.upper(), r["name"]),
                 })
             continue
         # T-1038. An initial the post office's returns also print in full under

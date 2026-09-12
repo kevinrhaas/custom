@@ -12,12 +12,12 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 137,
-  "people_written": 101,
-  "households_touched": 99,
+  "matched_rulings": 139,
+  "people_written": 103,
+  "households_touched": 101,
   "grades_changed": 0,
-  "entries_carried": 536,
-  "acres_carried": 15259.04,
+  "entries_carried": 538,
+  "acres_carried": 15339.04,
   "school_section_parcels_carried": 154,
   "matched_more_than_once": 31
  },
@@ -25,7 +25,7 @@
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 510
+   "rulings": 508
   },
   {
    "rule": "L2",
@@ -10045,6 +10045,53 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “MONTGOMERY LOTON WM”, “MONTGOMERY LOTON W”, 1835-06-27 to 1835-11-24: 2 federal land entries — E2SE sec 22 T38N R14E; NW sec 23 T38N R14E, 240.00 acres stated in all, for $300.00 (ls0640, ls0646). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: MONTGOMERY LOTON WM matches L. W. Montgomery: the forename names L. W. Montgomery of the 2 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
+   "household_id": "hh_breese_judge_sidney",
+   "person_id": "breese_judge_sidney",
+   "name": "Judge Sidney Breese",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "BREESE SIDNEY"
+   ],
+   "rules": [
+    "BREESE SIDNEY matches Judge Sidney Breese: the forename names Judge Sidney Breese of the 1 person of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 80.0,
+    "dollars": 100.0,
+    "first_purchase": "1835-06-27",
+    "last_purchase": "1835-06-27",
+    "tracts": [
+     "E2SE sec 24 T38N R14E"
+    ],
+    "school_section": [],
+    "town_plat_lots": [],
+    "town_plat_dollars": 0,
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0651",
+     "as_read": "BREESE SIDNEY",
+     "date_purchased": "1835-06-27",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "E2SE sec 24 T38N R14E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0002878",
+     "volume": "687",
+     "page": "263"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “BREESE SIDNEY”, 1835-06-27: 1 federal land entry — E2SE sec 24 T38N R14E, 80.00 acres stated in all, for $100.00 (ls0651). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BREESE SIDNEY matches Judge Sidney Breese: the forename names Judge Sidney Breese of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
    "household_id": "hh_campbell_james_b",
    "person_id": "campbell_james_b",
    "name": "James B Campbell",
@@ -10466,6 +10513,53 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “DILL FRANK”, 1835-04-10: 1 federal land entry — SE sec 12 T40N R13E, 320.00 acres stated in all, for $400.00 (ls0911, ls0912). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: DILL FRANK matches Frank Dill: the forename names Frank Dill of the 1 person of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_allen_lieut_james",
+   "person_id": "allen_lieut_james",
+   "name": "Lieut. James Allen",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "ALLEN JAMES"
+   ],
+   "rules": [
+    "ALLEN JAMES matches Lieut. James Allen: the forename names Lieut. James Allen of the 3 people of this surname, and the forename agrees in full."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 0.0,
+    "dollars": 1600.0,
+    "first_purchase": "1836-06-28",
+    "last_purchase": "1836-06-28",
+    "tracts": [],
+    "school_section": [],
+    "town_plat_lots": [
+     "lot 5 of block 5 in the town the register codes CHI (L5BL5CHI, as printed)"
+    ],
+    "town_plat_dollars": 1600.0,
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0954",
+     "as_read": "ALLEN JAMES",
+     "date_purchased": "1836-06-28",
+     "acres": "0000.00",
+     "total_price": "1600.00",
+     "type_of_sale": "canal land sale",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "lot 5 of block 5 in the town the register codes CHI (L5BL5CHI, as printed)",
+     "resolves": "town_plat_lot",
+     "sale_kind": "town_plat_lot",
+     "purchase_no": "0378692",
+     "volume": "L5A",
+     "page": "025"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “ALLEN JAMES”, 1836-06-28: 1 lot in the platted town — lot 5 of block 5 in the town the register codes CHI (L5BL5CHI, as printed), 0.00 acres stated in all, for $1600.00 (ls0954). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $1600.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: ALLEN JAMES matches Lieut. James Allen: the forename names Lieut. James Allen of the 3 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_bailey_amos",

@@ -11,25 +11,25 @@
  },
  "counts": {
   "residents_considered": 1293,
-  "matched_one_1843_entry": 120,
-  "matched_more_than_one_ambiguous": 27,
+  "matched_one_1843_entry": 121,
+  "matched_more_than_one_ambiguous": 28,
   "one_1843_entry_contested_by_two_residents": 17,
   "surname_present_initial_absent_refused": 323,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
-  "initial_agreed_forenames_disagreed_refused": 83,
+  "initial_agreed_forenames_disagreed_refused": 80,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1843_entry_by_that_refusal": 42,
+  "residents_left_with_no_1843_entry_by_that_refusal": 40,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 69,
-  "could_carry_address": 85,
+  "could_carry_occupation": 70,
+  "could_carry_address": 86,
   "could_carry_death_note": 84,
   "business_directory_notices_with_a_surname": 106,
-  "notices_folded_onto_their_own_roll_entry": 78,
-  "notices_standing_as_their_own_candidate": 28,
-  "roll_entries_carrying_a_notice": 74
+  "notices_folded_onto_their_own_roll_entry": 82,
+  "notices_standing_as_their_own_candidate": 24,
+  "roll_entries_carrying_a_notice": 78
  },
  "printed_twice": {
   "rule": ", written out so it reads back without the code. A notice is the same man\nas a roll entry when all four hold:\n\n  1. SURNAME. The folded surnames agree — the fold the crosswalks already use.\n  2. NAME CONSISTENT. The first forenames agree by `name_agreement` (the rule\n     T-0670 wrote and this module imports rather than restates), and every\n     FURTHER initial both printings set agrees, position by position. `Henry W.`\n     is `Henry Wilcox` and is not `Henry B.`\n  3. ENOUGH OF THE NAME, and this is the clause that keeps the rule honest. A\n     notice that prints a surname and TWO OR MORE initials — `G. S. Hubbard`,\n     `B. S. Morris` — has said enough to name one man. A notice that prints one\n     initial has not, and it must also show a THING IN COMMON with the roll\n     entry: a street number both print, or a trade word of five letters or more\n     that both print, one a prefix of the other. `A. Garrett`'s two insurance\n     notices name neither, and his tie therefore stands.\n  4. ONLY HIM. Exactly one roll entry in the WHOLE volume satisfies 1-3. Two\n     `Curtiss, James` and `Curtiss, J. W.` are both consistent with the notice\n     `JAMES CURTISS`, so the notice attaches to neither.\n\nWhere a notice attaches it is no longer a rival: it is recorded on the roll\nentry's row as `also_printed`, and the crosswalk counts PEOPLE. Where it does not\nattach it stands exactly as it did before, as its own candidate, and the note says\nWHICH clause was silent — the refusals are kept in full, as readings.",
@@ -830,7 +830,7 @@
      {
       "roll": "f1843_e0367",
       "clause": 2,
-      "why": "the first initials disagree: 'D' against 'J'"
+      "why": "one printing sets no forename at all"
      }
     ],
     "rule": "T-0987 stretch 7, clauses 2-3"
@@ -851,17 +851,10 @@
    },
    {
     "notice": "f1843_e0134",
-    "attached": false,
-    "consistent_roll_entries": [],
-    "why": "no roll entry of that surname passes clause 2 or 3",
-    "refused": [
-     {
-      "roll": "f1843_e0422",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'H'"
-     }
-    ],
-    "rule": "T-0987 stretch 7, clauses 2-3"
+    "roll": "f1843_e0422",
+    "attached": true,
+    "why": "the notice prints a surname and 2 initials",
+    "rule": "T-0987 stretch 7, clauses 1-4"
    },
    {
     "notice": "f1843_e0135",
@@ -880,43 +873,29 @@
      {
       "roll": "f1843_e0897",
       "clause": 2,
-      "why": "the first initials disagree: 'D' against 'W'"
+      "why": "one printing sets no forename at all"
      },
      {
       "roll": "f1843_e0898",
       "clause": 2,
-      "why": "the first initials disagree: 'D' against 'W'"
+      "why": "one printing sets no forename at all"
      }
     ],
     "rule": "T-0987 stretch 7, clauses 2-3"
    },
    {
     "notice": "f1843_e0137",
-    "attached": false,
-    "consistent_roll_entries": [],
-    "why": "no roll entry of that surname passes clause 2 or 3",
-    "refused": [
-     {
-      "roll": "f1843_e0900",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'J'"
-     }
-    ],
-    "rule": "T-0987 stretch 7, clauses 2-3"
+    "roll": "f1843_e0900",
+    "attached": true,
+    "why": "the notice prints a surname and 2 initials",
+    "rule": "T-0987 stretch 7, clauses 1-4"
    },
    {
     "notice": "f1843_e0138",
-    "attached": false,
-    "consistent_roll_entries": [],
-    "why": "no roll entry of that surname passes clause 2 or 3",
-    "refused": [
-     {
-      "roll": "f1843_e1179",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'B'"
-     }
-    ],
-    "rule": "T-0987 stretch 7, clauses 2-3"
+    "roll": "f1843_e1179",
+    "attached": true,
+    "why": "the notice prints a surname and 2 initials",
+    "rule": "T-0987 stretch 7, clauses 1-4"
    },
    {
     "notice": "f1843_e0139",
@@ -927,52 +906,10 @@
    },
    {
     "notice": "f1843_e0140",
-    "attached": false,
-    "consistent_roll_entries": [],
-    "why": "no roll entry of that surname passes clause 2 or 3",
-    "refused": [
-     {
-      "roll": "f1843_e2281",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'A'"
-     },
-     {
-      "roll": "f1843_e2282",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'A'"
-     },
-     {
-      "roll": "f1843_e2283",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'B'"
-     },
-     {
-      "roll": "f1843_e2284",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'B'"
-     },
-     {
-      "roll": "f1843_e2285",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'C'"
-     },
-     {
-      "roll": "f1843_e2286",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'C'"
-     },
-     {
-      "roll": "f1843_e2287",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'C'"
-     },
-     {
-      "roll": "f1843_e2288",
-      "clause": 2,
-      "why": "the first initials disagree: 'D' against 'C'"
-     }
-    ],
-    "rule": "T-0987 stretch 7, clauses 2-3"
+    "roll": "f1843_e2289",
+    "attached": true,
+    "why": "the notice prints a surname and 2 initials",
+    "rule": "T-0987 stretch 7, clauses 1-4"
    },
    {
     "notice": "f1843_e0141",
@@ -3552,7 +3489,18 @@
      "trade_heading": null,
      "occupation_1843": "physician",
      "address_1843": "res Randolph, first door west of City Hotel",
-     "death_note_1843": "died January 1, 1884, aged 75"
+     "death_note_1843": "died January 1, 1884, aged 75",
+     "also_printed": [
+      {
+       "claim": "f1843_e0137",
+       "as_printed": "DOCTOR JOHN W. ELDRIDGE, office and residence on Randolph St., first door west of City Hotel.",
+       "page": "fergus_1843_page_001",
+       "section": "business directory",
+       "trade_heading": "PHYSICIANS",
+       "occupation_1843": "office and",
+       "address_1843": "residence on Randolph St., first door west of City Hotel"
+      }
+     ]
     }
    ],
    "could_carry": [
@@ -3758,6 +3706,35 @@
    "could_carry": [
     "address",
     "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Lieut J L Thompson",
+   "person_id": "thompson_lieut_j_l",
+   "household_id": "hh_thompson_lieut_j_l",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Thompson' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2437",
+     "as_printed": "Thompson, Joseph, caulker, res Adams, bet Clark and LaSalle",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "caulker",
+     "address_1843": "res Adams, bet Clark and LaSalle",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
@@ -6787,6 +6764,77 @@
    }
   },
   {
+   "resident": "Lieut. James Allen",
+   "person_id": "allen_lieut_james",
+   "household_id": "hh_allen_lieut_james",
+   "grade_1835": "attested",
+   "occupation_1835": "army_officer",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Allen' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0194",
+     "as_printed": "Allen, James F., carpenter, res Illinois bet Pine and Sand",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "carpenter",
+     "address_1843": "res Illinois bet Pine and Sand",
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e0195",
+     "as_printed": "Allen, James Pierce (J. P A. & Co.) res 9 River [died, Allen's Grove, McHenry Co.. Ill.]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "(J. P A. & Co.)",
+     "address_1843": "res 9 River",
+     "death_note_1843": "died, Allen's Grove, McHenry Co.. Ill."
+    },
+    {
+     "claim": "f1843_e0196",
+     "as_printed": "Allen, Jas. P., & Co. [Virgil P. Walter], lumber merchants, n.-w. cor Canal and Fulton, 3d Ward",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "& Co. , lumber merchants, n.-w",
+     "address_1843": "cor Canal and Fulton, 3d Ward",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "f1843_e0194",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "f1843_e0195",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "f1843_e0196",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     }
+    ]
+   }
+  },
+  {
    "resident": "Mrs Rufus Brown",
    "person_id": "brown_mrs_rufus",
    "household_id": "hh_brown_rufus",
@@ -8149,7 +8197,7 @@
    "person_id": "noble_mark",
    "surname_in_1843": "Noble",
    "candidates": 4,
-   "rule": "The surname 'Noble' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Esq. Mark Noble'. A surname-only agreement is a refusal."
+   "rule": "The surname 'Noble' is in Fergus 1843 and no entry under it carries the initial 'M' of 'Esq. Mark Noble'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Esth R M Bailey",
@@ -8694,7 +8742,7 @@
    "resident": "John Hale",
    "person_id": "hale_john",
    "surname_in_1843": "Hale",
-   "candidates": 2,
+   "candidates": 1,
    "rule": "The surname 'Hale' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John Hale'. A surname-only agreement is a refusal."
   },
   {
@@ -8772,7 +8820,7 @@
    "person_id": "breese_judge_sidney",
    "surname_in_1843": "Breese",
    "candidates": 1,
-   "rule": "The surname 'Breese' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Judge Sidney Breese'. A surname-only agreement is a refusal."
+   "rule": "The surname 'Breese' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Judge Sidney Breese'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Julian Andrews",
@@ -8806,14 +8854,14 @@
    "resident": "L W Smith",
    "person_id": "smith_l_w",
    "surname_in_1843": "Smith",
-   "candidates": 34,
+   "candidates": 33,
    "rule": "The surname 'Smith' is in Fergus 1843 and no entry under it carries the initial 'L' of 'L W Smith'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Lawrence Smith",
    "person_id": "smith_lawrence",
    "surname_in_1843": "Smith",
-   "candidates": 34,
+   "candidates": 33,
    "rule": "The surname 'Smith' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lawrence Smith'. A surname-only agreement is a refusal."
   },
   {
@@ -8843,13 +8891,6 @@
    "surname_in_1843": "Sperry",
    "candidates": 1,
    "rule": "The surname 'Sperry' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lewis Sperry'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Lieut. James Allen",
-   "person_id": "allen_lieut_james",
-   "surname_in_1843": "Allen",
-   "candidates": 8,
-   "rule": "The surname 'Allen' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Liman Curtis",
@@ -8908,6 +8949,13 @@
    "rule": "The surname 'Jones' is in Fergus 1843 and no entry under it carries the initial 'M' of 'M Jones'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Major L Shapley",
+   "person_id": "shapley_major_l",
+   "surname_in_1843": "Shapley",
+   "candidates": 1,
+   "rule": "The surname 'Shapley' is in Fergus 1843 and no entry under it carries the initial 'L' of 'Major L Shapley'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Manson Parker",
    "person_id": "parker_manson",
    "surname_in_1843": "Parker",
@@ -8961,7 +9009,7 @@
    "person_id": "temple_mrs_john_t",
    "surname_in_1843": "Temple",
    "candidates": 1,
-   "rule": "The surname 'Temple' is in Fergus 1843 and no entry under it carries the initial '-' of 'Mrs Temple'. A surname-only agreement is a refusal."
+   "rule": "'Mrs Temple' carries no forename — a rank or a suffix stands where the given name would be — so there is no initial to carry the surname 'Temple' to. Fergus 1843 prints 1 entry under that surname and the rule cannot choose between them."
   },
   {
    "resident": "Mrs. H. Sherman",
@@ -10579,25 +10627,6 @@
    "person_id": "wilson_john",
    "grade_1835": "inferred",
    "entry_1843": {
-    "claim": "f1843_e2634",
-    "as_printed": "Wilson, jr., Adam, blacksmith. South Branch, W. Jackson, 3d ward",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "blacksmith. South Branch, W. Jackson, 3d ward",
-    "address_1843": null,
-    "death_note_1843": null,
-    "forename_1835": "John",
-    "forename_printed": "Adam",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'John' against 'Adam'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "John Wilson",
-   "person_id": "wilson_john",
-   "grade_1835": "inferred",
-   "entry_1843": {
     "claim": "f1843_e2639",
     "as_printed": "Wilson, Joseph, milk dealer, res West Lake near Union Park [died March 19, 1893, aged 83]",
     "page": "fergus_1843_page_004",
@@ -10727,25 +10756,6 @@
    }
   },
   {
-   "resident": "Lieut J L Thompson",
-   "person_id": "thompson_lieut_j_l",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2438",
-    "as_printed": "Thompson, Leonard W., carpenter, res 3d Ward, south of Jackson",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "carpenter",
-    "address_1843": "res 3d Ward, south of Jackson",
-    "death_note_1843": null,
-    "forename_1835": "Lieut",
-    "forename_printed": "Leonard",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Lieut' against 'Leonard'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
    "resident": "Madore Benjamin Beaubien",
    "person_id": "beaubien_madore",
    "grade_1835": "attested",
@@ -10762,25 +10772,6 @@
     "forename_printed": "Mark",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Madore' against 'Mark'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "Major L Shapley",
-   "person_id": "shapley_major_l",
-   "grade_1835": "inferred",
-   "entry_1843": {
-    "claim": "f1843_e2227",
-    "as_printed": "Shapley, Morgan L., ship-carpenter, res Government Reservation",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "ship-carpenter",
-    "address_1843": "res Government Reservation",
-    "death_note_1843": null,
-    "forename_1835": "Major",
-    "forename_printed": "Morgan",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Major' against 'Morgan'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {

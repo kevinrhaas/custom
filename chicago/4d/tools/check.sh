@@ -297,6 +297,18 @@ selftest "…and its own assertions still fire when broken" \
 step "Wabansia's streets re-derive from the readings and the committed Kinzie line" \
   python3 tools/seat_wabansia_streets.py --check
 
+# T-1085, and it is the seam that step above hangs from. `kinzie` is committed off the
+# Thompson plat and stops at the town's west line; Wright rules and letters the same
+# street across the whole of Wabansia, so the reach west of local east -320 is carried as
+# its own record — a different claim about wear, about traffic and about what attests the
+# geometry, on the same line. This holds the reach to its two readings AND to the two
+# things that would quietly invalidate the seating above: that it still meets `kinzie` at
+# the seam, and that it adds no bend to the plat line. A bend there moves platted lot
+# lines the whole length of the street and re-scores the corridor-intrusion count, which
+# is why the carry is a record beside the line and never a vertex inside it.
+step "Kinzie Street's Wabansia reach re-derives, meets the committed line and bends nothing" \
+  python3 tools/carry_kinzie_west.py --check
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled

@@ -75,6 +75,29 @@ OFF_THE_GROUND = {
 # street offset from them would cross the Wolf Point cluster.
 BANK_REACH = 9
 
+# T-0768 — THE REACH PAST THE TURN. T-0445 stopped at BANK_REACH because a bank-offset line
+# past the turn runs through the Wolf Point cluster. It never measured how far past the turn
+# the line gets FIRST, and that is the question this ticket answers: the corridor is carried
+# along the bank's next segment — vertices 8 -> 9, the junction pool's south face — until a
+# committed footprint enters it, and cut there. The cut distance is DERIVED from the
+# structure tree below, never typed in, so a building that moves moves the street's end.
+CONT_SEGMENT = (8, 9)
+
+# The five Wolf Point placements the continuation runs into, in the order the bank meets
+# them. They are listed so the refusal is a table and not a sentence; their clearances are
+# measured from committed files, not quoted here.
+CLUSTER = [
+    "james_kinzie_house",
+    "robert_kinzie_store",
+    "wolf_point_tavern",
+    "wolf_point_tavern_stable",
+    "robinson_caldwell_cabins",
+    "walker_meeting_house",
+]
+
+# The cross street the 1839 address is given against: "W. Water st north of West Lake st".
+CROSS_STREET = "lake"
+
 # Northings at which the west_water -> canal module is measured. All three are
 # inside the committed span of both lines.
 MODULE_PROBES = [-400.0, -300.0, -250.0, -178.0, -120.0]
@@ -96,7 +119,7 @@ def west_bank():
     for f in fc["features"]:
         if "West Division shore" in str(f["properties"].get("name", "")):
             pts = [(c[0] - oe, c[1] - on) for c in f["geometry"]["coordinates"]]
-            return pts[:BANK_REACH], f["properties"].get("confidence")
+            return pts, f["properties"].get("confidence")
     raise SystemExit("the West Division shore line is not in river.geojson")
 
 
@@ -128,6 +151,135 @@ def offset_west(path, half):
         out.append(meet(a, b))
     out.append(segs[-1][1])
     return out
+
+
+def world_polygon(phase, oe, on):
+    """A committed phase's footprint in local ENU, the GLB contract's own convention."""
+    pos, poly = phase["position"], phase["footprint"]["polygon"]
+    th = math.radians(float(pos.get("rotation_deg") or 0.0))
+    cos, sin = math.cos(th), math.sin(th)
+    e0, n0 = float(pos["utm_e"]) - oe, float(pos["utm_n"]) - on
+    return [(e0 + u * cos + v * sin, n0 - u * sin + v * cos) for u, v in poly]
+
+
+def placed_phases():
+    """(id, phase, world polygon) for every committed placed phase with a footprint."""
+    oe, on = datum()
+    out = []
+    for path in sorted((ROOT / "data" / "structures").glob("*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        for phase in record.get("phases") or []:
+            pos = phase.get("position") or {}
+            poly = (phase.get("footprint") or {}).get("polygon") or []
+            if pos.get("utm_e") is None or len(poly) < 3:
+                continue
+            out.append((record["id"], phase, world_polygon(phase, oe, on)))
+    return out
+
+
+def segment_frame(a, b):
+    """Unit along-vector and unit WEST normal of a bank segment walked south to north."""
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    L = math.hypot(dx, dy)
+    return (dx / L, dy / L), (-dy / L, dx / L), L
+
+
+def band_entry(polygon, a, along, west, width):
+    """Where a footprint first and last enters the corridor riverward of a bank segment.
+
+    The corridor is the strip 0..`width` WEST of the segment — its east kerb on the
+    waterline, which is how this street is placed. Edges are sampled rather than clipped:
+    a corner is not enough, because a wall can cross the strip between two corners.
+    """
+    hits = []
+    for i in range(len(polygon)):
+        p1, p2 = polygon[i], polygon[(i + 1) % len(polygon)]
+        for k in range(101):
+            t = k / 100.0
+            q = (p1[0] + t * (p2[0] - p1[0]), p1[1] + t * (p2[1] - p1[1]))
+            d = (q[0] - a[0], q[1] - a[1])
+            off = d[0] * west[0] + d[1] * west[1]
+            al = d[0] * along[0] + d[1] * along[1]
+            if 0.0 <= off <= width and al >= 0.0:
+                hits.append((al, off))
+    if not hits:
+        return None
+    return (min(h[0] for h in hits), max(h[0] for h in hits),
+            min(h[1] for h in hits), max(h[1] for h in hits))
+
+
+def continuation():
+    """The reach past the turn: where it may be carried, and what stops it.
+
+    Returns the derived two-vertex tail — the mitre at the turn and the cut — together
+    with the obstruction that sets the cut and the cluster clearances that refuse the rest.
+    """
+    corridor = load("data/streets/1835.json")["corridor_width_m"]
+    bank, _conf = west_bank()
+    i, j = CONT_SEGMENT
+    a, b = bank[i], bank[j]
+    along, west, seg_len = segment_frame(a, b)
+
+    rows = []
+    for sid, phase, poly in placed_phases():
+        hit = band_entry(poly, a, along, west, corridor)
+        if hit and hit[0] <= seg_len:
+            rows.append((hit[0], sid, phase["id"], hit[1], hit[2], hit[3],
+                         phase["position"].get("confidence")))
+    rows.sort()
+    cut_along = rows[0][0] if rows else seg_len
+
+    half = corridor / 2.0
+    mitre = offset_west(bank[:j + 1], half)[-2]
+    cut = (a[0] + along[0] * cut_along + west[0] * half,
+           a[1] + along[1] * cut_along + west[1] * half)
+
+    # The clearance that refuses the rest: how close the cluster stands to the traced bank,
+    # measured against the bank ITSELF rather than one straightened segment, because past
+    # the junction pool the bank turns again and a single frame would flatter the answer.
+    clearances = []
+    for sid in CLUSTER:
+        path = ROOT / "data" / "structures" / f"{sid}.json"
+        record = json.loads(path.read_text(encoding="utf-8"))
+        oe, on = datum()
+        for phase in record.get("phases") or []:
+            if (phase.get("position") or {}).get("utm_e") is None:
+                continue
+            poly = world_polygon(phase, oe, on)
+            near = min(dist_to_polyline(v, bank) for v in poly)
+            far = max(dist_to_polyline(v, bank) for v in poly)
+            clearances.append((sid, phase["id"], near, far,
+                               phase["position"].get("confidence")))
+    return dict(corridor=corridor, seg_len=seg_len, obstructions=rows,
+                cut_along=cut_along, mitre=mitre, cut=cut, clearances=clearances)
+
+
+def lake_kerb_gap(tail):
+    """How much of the reach lies north of West Lake Street's north kerb, old and new."""
+    st = streets()
+    corridor = load("data/streets/1835.json")["corridor_width_m"]
+    lake = st[CROSS_STREET]["path_local_enu_m"]
+
+    def lake_north_at(e):
+        for (x1, y1), (x2, y2) in zip(lake, lake[1:]):
+            if min(x1, x2) - 1e-9 <= e <= max(x1, x2) + 1e-9:
+                return y1 + (e - x1) / (x2 - x1) * (y2 - y1)
+        return None
+
+    kerb_at_old = lake_north_at(-9.34) + corridor / 2.0
+    old_gap = kerb_at_old - (-104.2)
+    # The new reach's length north of the kerb, walked segment by segment.
+    north = 0.0
+    path = st["west_water"]["path_local_enu_m"]
+    for (x1, y1), (x2, y2) in zip(path[-3:-1], path[-2:]):
+        for k in range(1000):
+            t0, t1 = k / 1000.0, (k + 1) / 1000.0
+            m0 = (x1 + t0 * (x2 - x1), y1 + t0 * (y2 - y1))
+            m1 = (x1 + t1 * (x2 - x1), y1 + t1 * (y2 - y1))
+            kerb = lake_north_at((m0[0] + m1[0]) / 2)
+            if kerb is not None and (m0[1] + m1[1]) / 2 > kerb + corridor / 2.0:
+                north += math.dist(m0, m1)
+    return old_gap, north
 
 
 def dist_to_polyline(p, poly):
@@ -179,9 +331,13 @@ def ground_box():
 def derive():
     st = streets()
     corridor = load("data/streets/1835.json")["corridor_width_m"]
-    bank, bank_conf = west_bank()
-    centre = offset_west(bank, corridor / 2.0)
-    clearances = [dist_to_polyline(p, bank) for p in centre]
+    traced, bank_conf = west_bank()
+    bank = traced[:BANK_REACH]
+    tail = continuation()
+    # The seated line is the South Branch reach mitred into the reach past the turn, so the
+    # joint at the turn is the mitre and not the old perpendicular end (T-0768).
+    centre = offset_west(traced[:CONT_SEGMENT[1] + 1], corridor / 2.0)[:-1] + [tail["cut"]]
+    clearances = [dist_to_polyline(p, traced) for p in centre]
     a, b, res, rms = fit_line(bank)
     box_e = ground_box()
 
@@ -195,7 +351,8 @@ def derive():
     return dict(
         corridor=corridor, bank=bank, bank_conf=bank_conf, centre=centre,
         clearances=clearances, fit=(a, b, res, rms), box_e=box_e,
-        modules=modules, streets=st,
+        modules=modules, streets=st, traced=traced, tail=tail,
+        lake=lake_kerb_gap(tail),
     )
 
 
@@ -212,6 +369,29 @@ def report(d):
           f"{d['corridor'] / 2:.3f} m west of the waterline")
     for (e, n), c in zip(d["centre"], d["clearances"]):
         print(f"   [{e:8.2f}, {n:9.2f}]   {c:.3f} m from the bank")
+    print()
+    print("== 2b. the reach past the turn, and where it stops (T-0768)")
+    tail = d["tail"]
+    print(f"   the bank's Wolf Point segment runs {tail['seg_len']:.2f} m past the turn;")
+    print(f"   the riverward corridor is clear for {tail['cut_along']:.2f} m of it")
+    for al_in, sid, pid, al_out, off_lo, off_hi, conf in tail["obstructions"]:
+        print(f"   first obstruction: {sid} ({pid}, {conf}) enters at {al_in:.2f} m and "
+              f"leaves at {al_out:.2f} m, spanning {off_lo:.2f}-{off_hi:.2f} m west of "
+              f"the bank — the roadway is 0-{d['corridor']:.2f} m")
+    print(f"   so the line is cut at [{tail['cut'][0]:.2f}, {tail['cut'][1]:.2f}] — "
+          f"{math.dist(tail['mitre'], tail['cut']):.2f} m of new centreline")
+    old_gap, north = d["lake"]
+    print(f"   the old end stood {old_gap:.2f} m SOUTH of West Lake Street's north kerb, "
+          f"so the attested reach had zero length")
+    print(f"   the new reach carries {north:.2f} m north of that kerb")
+    print()
+    print("== 2c. why no line fits past the cut — the clearance, structure by structure")
+    print(f"   an 80 ft street needs {d['corridor']:.3f} m; "
+          f"riverward of the cluster there is at most "
+          f"{min(c[2] for c in tail['clearances']):.2f} m")
+    for sid, pid, near, far, conf in tail["clearances"]:
+        print(f"   {sid:26s} {conf:13s} nearest corner {near:6.2f} m from the bank, "
+              f"furthest {far:6.2f} m")
     print()
     print("== 3. jefferson and des_plaines — refused by the modelled ground")
     print(f"   the heightfield's west edge is local east {d['box_e'][0]:.1f} m")
@@ -262,6 +442,29 @@ def self_test(quiet=False):
               "wright_1834" in ww["sources"])
         check("the plat that carries the street is cited on it",
               "thompson_plat_1830" in ww["sources"])
+
+    tail = d["tail"]
+    check("the reach past the turn is cut where a committed footprint enters the corridor",
+          bool(tail["obstructions"])
+          and abs(tail["cut_along"] - tail["obstructions"][0][0]) < 1e-9)
+    check("james_kinzie_house is what stops it, and it stands ACROSS the roadway",
+          bool(tail["obstructions"])
+          and tail["obstructions"][0][1] == "james_kinzie_house"
+          and tail["obstructions"][0][4] > 0.0
+          and tail["obstructions"][0][5] < d["corridor"])
+    check("the cut is inside the bank segment it is measured along, not past its end",
+          tail["cut_along"] < tail["seg_len"])
+    old_gap, north = d["lake"]
+    check(f"T-0445's end stood SOUTH of West Lake Street's north kerb "
+          f"({old_gap:.2f} m), so the attested reach had zero length", old_gap > 0)
+    check(f"the seated continuation carries real frontage north of that kerb "
+          f"({north:.2f} m)", north > 15.0)
+    worst = min(c[2] for c in tail["clearances"])
+    check(f"no line fits riverward of the cluster: the widest clear strip between the "
+          f"water and it is {worst:.2f} m against {d['corridor']:.3f} m",
+          worst < d["corridor"])
+    check("and the refusal is measured on every one of the cluster's placements",
+          sorted({c[0] for c in tail["clearances"]}) == sorted(CLUSTER))
 
     check("every vertex stands one half-corridor from the bank, within 0.15 m",
           all(abs(c - d["corridor"] / 2) <= 0.15 for c in d["clearances"]))
