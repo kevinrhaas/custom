@@ -79,7 +79,7 @@ from inferred_occupancy import occupancy  # noqa: E402
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, exclusive_lots, footprints  # noqa: E402
-from plat_occupancy import lot_holders  # noqa: E402
+from plat_occupancy import lot_holders, shared_business_fronts  # noqa: E402
 import lot_addresses  # noqa: E402
 
 # The face of a committed block — the line a party-line street row stands on, the way
@@ -1405,6 +1405,15 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
               if sid.startswith(f"{PREFIX}{block['block_id'][len('blk_'):]}_")}
     occupied = exclusive_lots({"blocks": [grid]}, datum,
                               exclude=mine_ids | parcel).get(block["block_id"], {})
+    # The lots the owner's clause is HOLDING OPEN on this block — a documented store at
+    # the street on a declared business-front lot, which `occupied` therefore does not
+    # report. T-1053: while every declared front lot was also ground the run was dealt,
+    # such a lot always landed in `built on by this parcel` and the class audit below
+    # never had to name it. A front that reaches past the run's own ground does, and a
+    # lot that is neither built on, occupied nor open would otherwise fail that audit
+    # for carrying a store the clause itself says does not exhaust it.
+    front_held = shared_business_fronts({"blocks": [grid]}, datum,
+                                        exclude=mine_ids | parcel).get(block["block_id"], {})
     for index in (frontage["lots"] if frontage else []):
         holder = occupied.get(index)
         if holder is not None:
@@ -1515,6 +1524,8 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     classes = {"built on by this parcel": set(used),
                "built on by another deal on this block": set(sibling_lots) - set(used),
                "already carrying a roof": set(occupied) - set(sibling_lots),
+               "carrying a documented store on this block's business front":
+                   set(front_held) - set(used) - set(sibling_lots) - set(occupied),
                "named open in the recipe": set(named_open)}
     for name, indices in classes.items():
         for other_name, other_indices in classes.items():
