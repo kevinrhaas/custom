@@ -1,7 +1,7 @@
 ---
 id: T-1056
 title: The woody stratum scatters evenly over the sand bar, because nothing keys it to the sandy HILLS Andreas excepts
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0940
 opened: 2026-09-12
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 5:53:09 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34689484029
 ---
 
 The woody stratum scatters evenly over the sand bar, because nothing keys it to the sandy HILLS Andreas excepts.
