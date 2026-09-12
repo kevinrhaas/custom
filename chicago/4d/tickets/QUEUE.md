@@ -147,7 +147,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
 T-1042 — A firm style's surnames are read as one name, so 'H. Doty & Co.' stands on Lake Street as a man called Co
-T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
 T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
 T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
@@ -334,3 +333,4 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+
