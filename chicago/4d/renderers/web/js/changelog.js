@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The river front is a lot strip, and it is read', kind: 'change', ts: '',
+  { v: 799, title: 'The river front is a lot strip, and it is read', kind: 'change', ts: '2026-09-12T21:34:51.803Z', date: 'Sep 12, 2026, 4:34 PM CT',
     items: [
       'Along the north bank of the Chicago River, between the old town\u2019s east line and the harbour, J. S. Wright\u2019s 1834 survey draws something it draws nowhere else in Kinzie\u2019s Addition: not blocks, but one run of narrow parcels laid side by side against the curve of the water, numbered straight through from 1 to 35. That is the tract\u2019s wharfage, and until today this reconstruction had never read it.',
       'It is read now, and read as what it is. Everything else north of the river is a module \u2014 a tier pitch, a column pitch, two families of parallel rules \u2014 and fitting one to this run would invent a regularity Wright did not draw. So the reading carries the run\u2019s own geometry instead: the bank it fronts on, the back line behind it, the strokes between the parcels. One seed point was picked by eye; from there a follower walks the drawn bank a pixel at a time and everything else is measured off that walk.',
