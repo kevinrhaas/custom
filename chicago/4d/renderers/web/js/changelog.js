@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Twenty-six shops the papers only got round to printing in August', kind: 'change', ts: '',
+  { v: 762, title: 'Twenty-six shops the papers only got round to printing in August', kind: 'change', ts: '2026-09-12T06:14:11.882Z', date: 'Sep 12, 2026, 1:14 AM CT',
     items: [
       'This reconstruction is set on 1 July 1835, and twenty-six of its documented businesses are known to us only from a newspaper printed after that day \u2014 some three days after, some seven weeks. They stand in the July town anyway, on an assumption, and until today the file that lists every assumption this project makes did not mention them.',
       'The assumption is worth stating plainly. A weekly advertisement is a STANDING advertisement, the same block of type reset week after week, so the issue that happens to survive is almost never the issue an advertisement began in \u2014 and Chicago\u2019s 1835 run is broken exactly where the town most needs it not to be.',
