@@ -1,7 +1,7 @@
 ---
 id: T-0939
 title: The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
-state: open
+state: claimed
 epic: GROUND
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 7:22:26 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34693070189
 ---
 
 **OWNER-REPORTED from the walkthrough, 2026-09-07 — "the forever sandy stretch".** From
