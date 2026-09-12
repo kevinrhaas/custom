@@ -1,6 +1,6 @@
 # The Michigan St tract north of Kinzie Street
 
-T-0796 · T-1076 (the reading) · T-1079 (the seating, and this note) · T-1080 (the name, and the road)
+T-0796 · T-1076 (the reading) · T-1079 (the seating) · T-1080 (the name, and the road — this note)
 
 Wright's 1834 survey draws, immediately north of Kinzie Street and east of the North
 Branch, a small platted square unlike anything around it: two block columns, two block
@@ -46,7 +46,25 @@ of *"the half of Kinzie's addition to Chicago, the whole of Wolcott's addition"*
 Arthur Bronson (line 13225), and once at line 93807 on the price of the land it was laid
 out upon. **None of the three gives a boundary.**
 
-And the size refuses it. Wolcott's Addition is **eighty acres**. This tract, seated, is
+**And the DATE refuses it, which the size argument below only made likely.** Moses &
+Kirkland set the additions in order, at line 13122 of the same volume: the canal
+commissioners' addition on fractional section 15 "was platted, under the direction of the
+commissioners, by Edward B. Talcott, assistant engineer, June 13, 1836, and the plat
+recorded July 20" — and
+
+> *"It was followed by 'Wolcott's' addition, North Branch addition and Wabansia
+> addition."*
+> — Moses & Kirkland, *History of Chicago*, vol. 1 (`moses_kirkland_history_of_chicago_v1`,
+> text line 13122)
+
+So Wolcott's Addition was laid out AFTER June 1836. Wright surveyed in 1834 and drew this
+tract already platted, two years earlier. The LAND was bought in 1830 — the same volume
+prices it at $130 at line 93807 — but the buying is not the platting, and it is the platting
+that would put lots, an alley and a street on Wright's sheet. **Wolcott's Addition is
+refused on the calendar, and the arithmetic below is now the second reason rather than the
+only one.**
+
+And the size refuses it too. Wolcott's Addition is **eighty acres**. This tract, seated, is
 200.0 m by 157.4 m — **31,486 m², or 7.78 acres**, a tenth of that. Wright draws no
 platted ground adjoining it to make up the difference: north and east of it the sheet is
 blank, unsurveyed, and carries the sheet's own title. So either this square is one corner
@@ -65,11 +83,17 @@ no trace and no polygon in this project carries the name Wolcott.
    a named addition north of Kinzie would name the tract directly. The extracted issues
    in `data/research/newspapers/extracted/` have been searched for *addition*; the hits
    are Kinzie's, Dearborn, and Carpenter's, and none is north of Kinzie Street here.
-3. **The curved road.** Wright draws a road as a curved double line leaving the
-   Kinzie/North Water corner and running north through this tract — the only road on the
-   sheet that is not a platted street apart from the fort's. It is still unread. The road
-   north from the Kinzie house toward Green Bay is the obvious candidate and the sources
-   that name that road's start would also place this ground.
+3. **The curved road — now read, and it does not name the tract either.** T-1080 traced
+   it: `data/traces/michigan_st_tract_road.json`, committed as the track
+   `michigan_st_tract_road`. It leaves the north bank of the Main Branch a little east of
+   Market Street, crosses North Water Street and Kinzie Street, bulges west, and **ends at
+   the tract's Michigan Street** — it does not run north THROUGH the tract, which was
+   T-1075's premise: both drawn strokes stop inside that street's corridor and the north
+   tier is ruled across with no road in it. That is an argument about what the road was FOR
+   — it goes to this tract and no further, from the river — and it is not an argument about
+   what the tract was called. The Green Bay road remains the obvious candidate for the
+   ground the road crosses and no source in this repository fixes where that road left the
+   bank.
 
 ## The seating, and what it cost
 
@@ -85,3 +109,20 @@ north of Kinzie Street where the sheet draws **22.0 m** — a 38.5 m disagreemen
 it Wright's compression in y at his sheet's western margin. The alternative, hanging the
 ladder on `kinzie`, would have kept the drawn frontage and committed a **second** Michigan
 Street 38 m south of the committed one, which is the one thing the reading refuses.
+
+## The road, and what it is evidence of
+
+Wright's one road north of the river is drawn, seated and committed (T-1080). What it adds
+to the tract's question is small and worth stating exactly, because it is tempting to make
+it bigger:
+
+- **The tract had traffic from the river.** A road drawn to it, from the bank, is a road
+  somebody used. The tract is not a paper plat on the sheet alone.
+- **It ends at Michigan Street.** 266 m of it, and then nothing. Whatever the tract was, the
+  road served it rather than passing through on its way somewhere north.
+- **It still does not name anything.** No lettering, no legend swatch of its own, and no
+  source in this repository describes a road on this ground. `name_1835` on that record is
+  descriptive and says so.
+
+Both halves of T-1080's question therefore close the same way: the road is read and
+committed, and the tract's name is refused — now twice over, on size and on date.

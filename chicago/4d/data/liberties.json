@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 233,
+  "count": 234,
   "liberties": [
     {
       "id": "L1",
@@ -14550,6 +14550,49 @@
         {
           "label": "Recorded",
           "text": "2026-09-12 (T-1056)."
+        }
+      ]
+    },
+    {
+      "id": "L234",
+      "title": "Wright draws one road north of the river, and its two ends, its surface and its wear are this project's",
+      "section": "per_subject",
+      "subjects": [],
+      "covers": [],
+      "recorded": "2026-09-12",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "`michigan_st_tract_road` in `data/streets/1835.json` runs 262.2 m from North Water Street to the Michigan St tract's Michigan Street. **The line is Wright's and the seating is ours.** Four things on that record are not on the sheet: the two end points, the `track_width_m` of 6.0 m, the `surface` of `light_worn_earth`, and the `traffic` of `light`."
+        },
+        {
+          "label": "Why the line is not invented",
+          "text": "the 1834 Wright sheet draws it, as a curved DOUBLE LINE that cuts diagonally across platted blocks and lot lines — which is what tells a road from a street, and apart from the fort's road on the reservation it is the only one on that sheet. `tools/read_michigan_st_tract_road.py` traces both strokes with a ridge follower whose every parameter is committed, and `--check-sheet` re-runs the identical trace against the raster. **What is invented, first: the seating.** The road spans two regimes of this sheet's fit. South of Kinzie the fit is good here — the drawn rule carrying Kinzie's south kerb falls 8.17 m from the committed kerb, inside the registration's own 16.19 m RMS. North of Kinzie the road is inside the Michigan St tract, which T-1079 seats 38 m north of where this sheet draws it. So the correction applied is ZERO at the Kinzie crossing and grows LINEARLY, in the sheet's own northing, to [-14.0, 36.45] m at Michigan Street — the tract's own committed seating offset, re-derived at this road's north end. **The linearity is the invention.** Wright's compression is real and its distribution along 100 m of one road is not recorded anywhere; a step at Kinzie would have been an equally unsourced choice and a more confident-looking one. **What is invented, second: the two ends.** The drawn strokes stop inside the Michigan Street corridor, so the north end is carried 6.0 m on to `michigan_north_tract`'s centreline; the drawn junction with the river bank falls 8.3 m south of the committed `north_water`, so the south end is trimmed back on to it. A road that stops 6 m short of the street it meets is a rendering artefact, not a finding, and both runs are stated on the record and in the trace. **What is invented, third: the surface.** No source describes this road's surface, its wear or its traffic, and none names it. The values follow `north_water`'s — the street the road ends on — because a road that ends on it carried no more traffic than it did. Both grades are `reconstructed`, the weakest the streets table carries."
+        },
+        {
+          "label": "What is NOT taken",
+          "text": "a width. The drawn corridor averages 12.22 m between stroke centres (sd 2.66 m, 7.08–18.59 m over 36 rows) and that figure is reported because the sheet measures it, not because the road was built to it. A hand-drawn double line on a manuscript sheet carries no platted width, and `corridor_width_m` is the mean of the read rather than a round module the read could be talked into."
+        },
+        {
+          "label": "What is NOT claimed",
+          "text": "a name. `name_1835` is descriptive. No source in this repository names this road, and none names the tract it ends in — see `docs/RESEARCH/michigan_st_tract.md`."
+        },
+        {
+          "label": "How to resolve",
+          "text": "a plat or a survey of the ground between Kinzie Street and the tract, which would replace the linear correction with a measured one; any account of the road north from the river toward Green Bay that fixes where it left the bank; or a description of its surface."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-1080."
+        },
+        {
+          "label": "Related",
+          "text": "**L60** (the fort road, the other drawn-and-then-reconstructed line), T-1076 (the reading this seating is hung on), T-1079 (the tract's own seating and its 38.5 m cost)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-12 (T-1080)."
         }
       ]
     },
