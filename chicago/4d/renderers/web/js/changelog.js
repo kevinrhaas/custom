@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Why the doctor\u2019s office has no sign, and never will', kind: 'change', ts: '',
+  { v: 764, title: 'Why the doctor\u2019s office has no sign, and never will', kind: 'change', ts: '2026-09-12T06:51:56.418Z', date: 'Sep 12, 2026, 1:51 AM CT',
     items: [
       'Walk down Lake Street and you pass a physician\u2019s office with nothing on the front of it \u2014 no painted board, no post at the kerb to tie a horse to \u2014 while shops either side of it carry both. That has been true for a fortnight, and until today the only explanation on offer was a grade on a data field, which is not a reason a visitor can reason about.',
       'Two frontages were flagged for this. One of them turned out to be an oversight and was already put right: Frederick Thomas\u2019s shop on South Water Street read simply \u201cshop\u201d, at the project\u2019s weakest grade, until the Chicago American of 4 July 1835 was read and printed the man\u2019s own card \u2014 druggist and apothecary, drugs, paints, perfumery and dye stuffs, restocked by lake schooner. A trade nobody had to guess lit a board and a post at a stroke, and both stand there today.',
