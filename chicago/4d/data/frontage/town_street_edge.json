@@ -3209,7 +3209,7 @@
           "ground_roll_m": 0.0
         },
         {
-          "y": 0.94,
+          "y": 0.945,
           "pts": [
             [
               696.42,
@@ -3228,7 +3228,7 @@
               -381.51
             ]
           ],
-          "ground_roll_m": 0.0
+          "ground_roll_m": 0.005
         }
       ],
       "note": "A BOARD CROSSING OVER WASHINGTON STREET. Images 6 and 8 give plank sidewalks WITH board crossings at the town's two inns, so the fact is the plates' and every dimension is invented. Its boards run the way a foot travels rather than across it, which is what a crossing is FOR — it spans the ruts instead of lying in them — and it lies lower than the walk because a wheel crosses it. WHERE is derived: the two ends are the two walks it joins, so the run is the corridor those walks stop either side of, 24.4 m of it, and the crossing exists only where both of them were laid. docs/LIBERTIES.md L160."
@@ -3848,7 +3848,7 @@
       "verge_to_track_m": 7.21,
       "footway_decks": [
         {
-          "y": 0.992,
+          "y": 1.0,
           "pts": [
             [
               708.63,
@@ -3867,10 +3867,10 @@
               -383.44
             ]
           ],
-          "ground_roll_m": 0.008
+          "ground_roll_m": 0.005
         },
         {
-          "y": 0.985,
+          "y": 0.996,
           "pts": [
             [
               729.35,
@@ -3889,10 +3889,10 @@
               -383.61
             ]
           ],
-          "ground_roll_m": 0.02
+          "ground_roll_m": 0.009
         },
         {
-          "y": 0.966,
+          "y": 0.99,
           "pts": [
             [
               750.07,
@@ -3911,10 +3911,10 @@
               -383.78
             ]
           ],
-          "ground_roll_m": 0.009
+          "ground_roll_m": 0.005
         },
         {
-          "y": 0.975,
+          "y": 1.007,
           "pts": [
             [
               770.79,
@@ -3933,7 +3933,7 @@
               -383.94
             ]
           ],
-          "ground_roll_m": 0.02
+          "ground_roll_m": 0.021
         }
       ],
       "note": "THE PLANK SIDEWALK ON THE WASHINGTON STREET FRONTAGE of blk_randolph_dearborn's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 7.21 m of verge between its outer edge and the Washington Street track. This run is the stretch from 0.0 m to 72.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
