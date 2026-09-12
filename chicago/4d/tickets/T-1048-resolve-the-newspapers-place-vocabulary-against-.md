@@ -1,7 +1,7 @@
 ---
 id: T-1048
 title: Resolve the newspapers' place vocabulary against the committed town before anything refuses on it: 193 persons carry a place that fails in_town_places(), and Fort Dearborn, the Mansion House and 'the corner of Water and Franklin streets, Chicago' are among them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1047
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1169
 claimed_by: run 9/11/2026, 10:56:31 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T04:25:12.829Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34671588034
 ---
 
