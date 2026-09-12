@@ -234,7 +234,7 @@
  "review_required": false,
  "research_note": "THE OLDEST LIVING RESIDENT, AND THE ONE HOUSEHOLD IN THE PARCEL WHOSE ARRIVAL DATE THIS PROJECT HAD TO REFUSE TO GUESS - UNTIL A SENTENCE TURNED UP. Everything about Hubbard's later Chicago life was documented here and the date he first came was a fact everyone knew and nothing in data/sources/ stated, so it was carried as a conjecture citing nothing and left visibly empty rather than quietly filled: it was the case AGENTS.md rule 1 exists for. Hurlbut's American Fur Company chapter, read for T-0575 and cited by this record since T-0594, closes it - Montreal 13 May 1818, Mackinaw 4 July, Chicago the last day of October or the first of November - and the asymmetry that was worth leaving visible is now a smaller and more interesting one. The sentence is the COMPILER'S, not the man's: it stands outside the quotation marks in which Hubbard speaks four lines later, so a date this project had no source for at all now has a source of 1881 at rung 4, and the record says both things on its face rather than letting the citation look like an attestation. WHAT T-0753 ADDED, AND THE ONE THING IT COULD NOT. The same sentence carries more than the date T-0594 spent, and the rest of it is now on the card: `origin` reads \"Windsor, Vermont, by way of Montreal\" rather than the \"Montreal\" a careless reading of the field would have written, and the person carries a `birth_year` of 1802 with the birthplace in its note, both at the inferred grade the rung-4 layer supports and both corroborated by the man's own Calumet Club register entry of 1879. THE PARENTS WERE THE PART THAT DID NOT FIT, AND T-0849 RULED WHERE THEY GO. Hurlbut names Elizur and Abigail (Sage) Hubbard, and this dataset held no structure for them: the only relationship structure it has is the household-level `kin[]` block ratified on 2026-09-05, whose rows are reciprocal between two households IN THIS DATASET, and Hubbard's parents were living in Montreal, were never in this scene, and have no household here. T-0849 set out two readings - leave parentage outside the town as evidence, or invent an external kin row with `household` null - and on 2026-09-10 chose the first, on the ground that both rules `kin[]` enforces are rules about the FAR END. The inverse must be legal; the mirror row must exist. A row with no far end is not a weaker kin row, it is one with the entire checked part removed, and a graded name with nothing checking it is a note. The second reading would also have made every genealogical name in the corpus eligible for a residents layer that reconstructs a town on one day. SO THEY ARE A NOTE, AND THEY ARE ON THE CARD: the `origin` note above names them at inferred, under this record's own Hurlbut citation, which is the idiom the `birth_year` note uses for the birthplace and hh_harmon_elijah_d and hh_porter_jeremiah use for theirs. docs/PROVENANCE.md carries the rule for the next fact that has no field, and tools/validate.py now refuses a null-household kin row in the ruling's own words rather than reporting a household that failed to resolve - a message that would send a later run off to mint a Montreal household, which is the wrong answer twice over. The evidence is unmoved, in bk_afc_004's `entities`.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. hubbard_gurdon, Fergus's Chicago directory of 1843 — f1843_e0073, f1843_e0112, f1843_e1349 (ambiguous, so nothing crossed); hubbard_gurdon, Norris's Chicago directory of 1844 — n1844_e0915 (a single entry); hubbard_gurdon, the advertising cards in Norris's directory of 1844 — n1844_ad0072, n1844_ad0108 (ambiguous, so nothing crossed).",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. hubbard_gurdon, Fergus's Chicago directory of 1843 — f1843_e1349 (a single entry); hubbard_gurdon, Norris's Chicago directory of 1844 — n1844_e0915 (a single entry); hubbard_gurdon, the advertising cards in Norris's directory of 1844 — n1844_ad0072, n1844_ad0108 (ambiguous, so nothing crossed).",
   "sources": [
    "fergus_chicago_directory_1843",
    "norris_directory_1844"
@@ -243,39 +243,39 @@
    {
     "person_id": "hubbard_gurdon",
     "address_later": {
-     "value": "h Indiana, b Cass and Rush (See card)",
+     "value": "near Clark, res 300 Indiana, near Rush",
      "confidence": "attested",
-     "describes_date": 1844,
+     "describes_date": 1843,
      "sources": [
-      "norris_directory_1844"
+      "fergus_chicago_directory_1843"
      ],
-     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+     "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
     },
     "back_projection": {
      "outcome": "already_better_placed",
      "clause": "2",
      "value": null,
-     "describes_date": 1844,
-     "read_back_years": 9,
+     "describes_date": 1843,
+     "read_back_years": 8,
      "placement": null,
      "position_local_enu_m": null,
      "sources": [
-      "norris_directory_1844"
+      "fergus_chicago_directory_1843"
      ],
-     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Norris's Chicago directory of 1844 prints an address against this name in 1844, and it is left where it is. An 1835 placement already stands: this household works at `old_bank_building`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later. The later address stays on the record as 1844's evidence and moves nothing."
+     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1843 prints an address against this name in 1843, and it is left where it is. An 1835 placement already stands: this household works at `old_bank_building`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later. The later address stays on the record as 1843's evidence and moves nothing."
     },
     "residence_back_projection": {
      "outcome": "refused",
      "clause": "R4",
      "kind": "resides",
      "value": null,
-     "describes_date": 1844,
-     "read_back_years": 9,
+     "describes_date": 1843,
+     "read_back_years": 8,
      "placement": null,
      "sources": [
-      "norris_directory_1844"
+      "fergus_chicago_directory_1843"
      ],
-     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints where this man lived in 1844 and this pass will not carry it back to 1835. Indiana Street is a north-side name the 1835 street layer does not carry. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. Indiana Street is a north-side name the 1835 street layer does not carry. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]
