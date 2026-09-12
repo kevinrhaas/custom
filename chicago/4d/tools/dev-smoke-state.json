@@ -4013,6 +4013,69 @@
         ]
       },
       "source": "/tmp/smoke_mobile.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 277,
+      "takenAt": "2026-09-12T14:50:40.154Z",
+      "ref": "steward/t-0405-local-mounting-deal",
+      "commit": "a601796333c0",
+      "devCommit": "33638aa690ca",
+      "treeHash": "sha256:9986e054937864da",
+      "treeDirty": false,
+      "changelogHash": "sha256:7e32d8a1f3daf620",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.4,
+          3.8,
+          3.3
+        ]
+      },
+      "source": "/tmp/s3_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1,12",
+      "parts": [
+        1,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 139,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 309,
+      "takenAt": "2026-09-12T14:50:40.063Z",
+      "ref": "steward/t-0405-local-mounting-deal",
+      "commit": "a601796333c0",
+      "devCommit": "33638aa690ca",
+      "treeHash": "sha256:9986e054937864da",
+      "treeDirty": false,
+      "changelogHash": "sha256:7e32d8a1f3daf620",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.4,
+          3.8,
+          3.3
+        ]
+      },
+      "source": "/tmp/s3_m.log"
     }
   ]
 }
