@@ -1,7 +1,7 @@
 ---
 id: T-0796
 title: The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: run 9/12/2026, 7:35:49 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T12:58:01.890Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34693915041
 ---
 

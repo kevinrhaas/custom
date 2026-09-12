@@ -155,7 +155,8 @@ T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section s
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
 T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
-T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
+T-1076 — The Michigan St tract read off Wright's 600 dpi sheet, its two streets identified as Market and Michigan, and the sheet's PLSS section numbering settled against the owner's fractional-16 reading
+T-1075 — The Michigan St tract named and seated: who platted it and what the sources call it, and its street, alley, parcels and the curved road north into the town's data
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
