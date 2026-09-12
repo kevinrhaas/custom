@@ -1,7 +1,7 @@
 ---
 id: T-1083
 title: check.sh steps that need numpy pass in CI by skipping: the Chappel gate is red on a 65 m baseline drift and the dev gate has never seen it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1216
 claimed_by: run 9/12/2026, 6:05:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T23:45:35.825Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34724317591
 ---
 
