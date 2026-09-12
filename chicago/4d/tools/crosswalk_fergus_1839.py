@@ -187,7 +187,7 @@ def index(entries):
 
 
 def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
-               bucket_refusals=None):
+               bucket_refusals=None, middle_initial_refusals=None):
     """One pool against the index. Returns (matched, ambiguous, refused).
 
     T-0670's forename rule is applied where the CALLER hands in a list to file
@@ -250,10 +250,31 @@ def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
             hits = kept
             if not hits:
                 continue
+            # T-0987 stretch 9. THE FURTHER INITIALS, scoped exactly as T-0670's
+            # forename rule is: this pool and no other. The bucket matched the
+            # FIRST initial and nothing had ever compared a middle one both
+            # readings print. The helper declines to fire where firing would
+            # promote a SILENT survivor over a refused rival that spoke.
+            if middle_initial_refusals is None:
+                middle_initial_refusals = []
+            survivors, mi_refused, mi_declined = na.narrow_by_further_initials(
+                r["given"], hits, lambda h: h["normalized"]["given"])
+            for h, note in mi_refused:
+                row = row_of(h)
+                row.update(note)
+                mrec = {"name": r["name"], "entry_1839": row}
+                if extra:
+                    mrec.update(extra(r))
+                middle_initial_refusals.append(mrec)
+            hits = survivors
+            if not hits:
+                continue
         rec = {"name": r["name"],
                "rule": "Surname %r folds to the same string as the 1839 entry's, and the "
                        "given name of both begins %s." % (r["surname"], i.upper()),
                "entries_1839": [row_of(h) for h in hits]}
+        if forename_refusals is not None and mi_declined:
+            rec["further_initials_declined"] = mi_declined
         if extra:
             rec.update(extra(r))
         (matched if len(hits) == 1 else ambiguous).append(rec)
@@ -267,9 +288,11 @@ def main():
     people = residents()
     res_forename_refused = []
     res_bucket_refused = []
+    res_middle_initial_refused = []
     res_matched, res_ambiguous, res_refused = match_pool(
         people, by_key, surnames,
         forename_refusals=res_forename_refused,
+        middle_initial_refusals=res_middle_initial_refused,
         bucket_refusals=res_bucket_refused,
         extra=lambda r: {"person_id": r["person_id"], "household_id": r["household_id"],
                          "grade_1835": r["grade"], "occupation_1835": r["occupation"],
@@ -478,6 +501,10 @@ def main():
             "heads_1840_matched_one_entry": len(h_matched),
             "heads_1840_ambiguous": len(h_ambiguous),
             "heads_1840_surname_only_refused": len(h_refused),
+            "residents_further_initial_disagreed_refused": len(
+                res_middle_initial_refused),
+            "residents_that_further_initial_refusal_reaches": len(
+                {f["person_id"] for f in res_middle_initial_refused}),
             "residents_initial_agreed_forenames_disagreed_refused": len(
                 res_forename_refused),
             "of_those_a_garbled_printed_forename": sum(
@@ -505,6 +532,9 @@ def main():
             "contested": sorted(contested, key=lambda m: m["name"]),
             "ambiguous": sorted(res_ambiguous, key=lambda m: m["name"]),
             "refusals": sorted(res_refused, key=lambda m: m["name"]),
+            "middle_initial_refusals": sorted(
+                res_middle_initial_refused,
+                key=lambda m: (m["name"], m["entry_1839"]["claim"])),
             "forename_refusals": sorted(res_forename_refused,
                                         key=lambda m: (m["name"], m["entry_1839"]["claim"])),
             "letter_list_bucket_refusals": sorted(

@@ -41,6 +41,7 @@ import { createFrontage } from './frontage.js';
 import { createFarMerge } from './far-merge.js';
 import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
+import { createWells } from './wells.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountPlants } from './plants.js';
@@ -708,7 +709,7 @@ const BUDGET = { drawCalls: 215, triangles: DETAIL.full.triangles };
  * names — a painted band is two triangles where a bracket board is sixty, and
  * the lettering itself is a texture atlas rather than geometry.
  */
-const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats'];
+const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats', 'wells'];
 
 /**
  * THE NEAR PLANE, AND WHY IT MOVES WITH ALTITUDE — ROADMAP R-BUG1.
@@ -1078,6 +1079,20 @@ async function boot() {
   scene3d.add(boats.group);
   api.boats = boats;
 
+  // The fort's well (T-0887) — the one well head this project can place to a
+  // coordinate, drawn renderer-side for the reason its layer's header gives at
+  // length: there is no well archetype, the nearest builds a roofed shed, and a
+  // structure record with no buildable form does not validate, so until this
+  // layer existed the measurement had nowhere to live at all. It mints no wells
+  // — T-0592's refusal of a well CLASS for the town stands, and `wells.js`
+  // enforces it by refusing any well a source does not PLACE. The curb is
+  // invented and claimed at docs/LIBERTIES.md L232; nothing else is drawn.
+  const wells = await createWells({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(wells.group);
+  api.wells = wells;
+
   /**
    * What the PLANTERS treat as built ground: the buildings' footprints plus the
    * wharf decks. A deck is a floor, and a forb growing up through the planks
@@ -1087,7 +1102,7 @@ async function boot() {
    * building itself.
    */
   const planting = footprints.concat(
-    wharves.keepOut, boats.keepOut,
+    wharves.keepOut, boats.keepOut, wells.keepOut,
     // The plank walks and crossings (T-0085/T-0124): a sidewalk is as much a
     // floor as a wharf deck, and the sward was rooting straight through it.
     frontage.keepOut,
@@ -1822,6 +1837,16 @@ async function boot() {
     const boat = boats.pickAt(ndc, camera);
     if (boat && boat.record && (!hit || boat.distance < hit.distance)) {
       hit = { ...boat };
+    }
+    /**
+     * And so can the fort's well, which is the second thing here belonging to no
+     * structure at all: a curb answers with its OWN card record, built by the
+     * well layer from data/wells/ — where it is, what two witnesses say about
+     * the place, and what was invented to draw it (T-0887).
+     */
+    const well = wells.pickAt(ndc, camera);
+    if (well && well.record && (!hit || well.distance < hit.distance)) {
+      hit = { ...well };
     }
     if (!hit) {
       popup.close();

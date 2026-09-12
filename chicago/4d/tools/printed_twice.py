@@ -76,15 +76,11 @@ WORD = re.compile(r"[A-Za-z]{5,}")
 NUMBERED = re.compile(r"\b(\d{1,3})\s+([A-Z][A-Za-z.-]*(?:\s+[A-Z][A-Za-z.-]*)?)")
 
 
-def _initials(given):
-    """Every initial the printing sets, titles and suffixes dropped."""
-    out = []
-    for tok in na.tokens(given or ""):
-        for ch in tok:
-            if ch.isalpha():
-                out.append(ch.lower())
-                break
-    return out
+# The initial counter now lives in `name_agreement` and is imported (T-0987
+# stretch 9), because the clause below and the crosswalks' own further-initial
+# refusal have to count a name's initials the same way or the two modules can
+# disagree about which man a printing is.
+_initials = na.initials
 
 
 def consistent(notice_given, roll_given):
@@ -220,7 +216,10 @@ CASES = [
     ("James E.", "Jas. E", True, "a contraction the volume prints"),
     ("Silas B.", "Silas Bowman", True, "a middle initial against a middle name"),
     ("James", "J. W.", True, "consistent — clause 4 is what refuses this one"),
-    ("Doctor D. S.", "David Sheppard", False, "a title read as a forename"),
+    ("Doctor D. S.", "David Sheppard", True,
+     "a title is not a forename: since T-0987 stretch 8 put `doctor` in the "
+     "vocabulary these two printings ARE consistent, and this case had gone on "
+     "asserting the defect the stretch removed"),
     ("A.", "Augustus", True, "one initial — clause 3 then asks for more"),
     ("G. S.", "Ahira", False, "the first initials disagree, and name_agreement cannot say so"),
     ("B. S.", "Mrs", False, "his wife's line sets no forename at all"),
@@ -252,8 +251,9 @@ def self_test():
         (in_common({"occupation": "attorney, office Clark Street, opposite City Hotel"},
                    {"occupation": "grocer, res Clark"}) is None,
          "a street name alone is not a thing in common"),
-        (_initials("Doctor D. S.") == ["d", "d", "s"],
-         "a title is counted, which is why clause 2 refuses it"),
+        (_initials("Doctor D. S.") == ["d", "s"],
+         "a title is NOT counted — T-0987 stretch 8 put `doctor` in the vocabulary, "
+         "and this case had asserted the defect rather than the rule ever since"),
     ]
     for ok, what in checks:
         if not ok:

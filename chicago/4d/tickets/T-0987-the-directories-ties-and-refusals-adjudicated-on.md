@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/12/2026, 11:01:14 AM CT
+claimed_by: run 9/12/2026, 2:05:46 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34703799574
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34712943596
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -1016,3 +1016,164 @@ advertising cards are a SEPARATE crosswalk file — a man with a card and a roll
 counted once in each, and whether those two are one printing is the question this volume's
 fold has to answer. No successor ticket is filed: `tickets/README.md` puts the succession on
 the run that CLOSES the programme. This ticket stays open and is its own cursor.
+
+## Stretch 9, 2026-09-12 — Norris 1844's ties, and the middle initial no rule had ever read
+
+**The stretch:** the 31 ties of `norris_1844_crosswalk_1835.json` — 17 ambiguous and 14
+contested — which is the stretch stretch 8 nominated. It is answered by a clause, not by a
+page image: nothing was read off a scan. The clause is in a shared module and it therefore
+re-derives all four volumes and the 1837 poll besides, which is the same shape stretch 8
+took and for the same reason.
+
+### What the ties were, and it was not the question stretch 8 expected
+
+Stretch 8 nominated this pool for the one-man-two-printings question — a man with a roll
+line and an advertising card is counted once in each of two crosswalk files, so whether
+those two are one printing is what this volume's fold has to answer. **It is not what these
+ties are.** Measured before anything was touched: of the 31, every candidate on both sides
+of every tie is a ROLL entry. Two of them (`Taylor, Charles … (Sec card)`, `Murphy, John,
+United States Hotel … (See card.)`) point at a card, and in neither case is the card the
+rival. The advertiser file's ties, all 11, fire nothing under this stretch's clause either —
+measured, and recorded below. The cross-file fold has no case to answer today, so it was not
+built.
+
+What the ties actually are is one defect, and it is upstream of all four volumes.
+
+```
+  the rule, as it stood     SURNAME folds the same, AND the FIRST initial of the given
+                            name matches. Since T-0670, where BOTH readings print a full
+                            FIRST forename and the two disagree, the match is refused.
+  what was never compared   every initial after the first
+```
+
+`name_agreement.agrees` judges the first forename and stops; the crosswalks take the first
+INITIAL from the bucket they look a resident up in. So nothing in the chain had ever weighed
+a middle initial both readings print. `H. B. Clarke` stood against `Clarke, H. W. attorney
+at law` on the H they share. The module that DOES compare them has existed since stretch 7 —
+`printed_twice.consistent`, clause 2 — but it asks its question of two PRINTINGS in one
+volume and never of a printing against a person of 1835.
+
+### What was done
+
+1. **The comparison, written once** (`tools/name_agreement.py`). `initials()` is lifted out
+   of `printed_twice._initials` and `printed_twice` imports it, so the module that folds two
+   printings and the module that refuses a person count a name's initials the same way.
+   `further_initials_disagree()` compares only the initials BOTH readings set, position by
+   position. `narrow_by_further_initials()` is what a crosswalk calls.
+2. **An unread initial refuses nothing**, and this is the half that took the measuring.
+   Fergus 1839's H is set as two strokes and comes back as `II`, `I I`, `IT`, `IL`, `Ik`;
+   its D comes back as `I)`. A first draft of this clause refused `Chapman, Charles II.`,
+   `Beaubien, Charles IT`, `Caton, John I).` and `Taylor, Anson IT` — four men the 1835 layer
+   holds under the very initial the artefact hides. Measured over the four transcribed
+   volumes: 16 further-name tokens carry a character no compositor set and 22 more are two
+   capitals with no name behind them. A further initial is READ when it is a single letter
+   with nothing but a printer's point after it, or a middle name of three letters or more
+   spelled out; `I` is excluded even so, because it is the shape every one of those artefacts
+   collapses to and a middle initial I occurs nowhere else in this corpus. This is T-0695's
+   principle one field along — a disagreement against a garbled reading is a transcription
+   defect and not two people — and it errs in the safe direction.
+3. **Silence is not agreement.** Where the refusal would leave exactly ONE candidate and that
+   candidate sets fewer initials than the 1835 reading does, nothing is refused and the tie
+   stands. `J. B. Cook`, baker, meets `Cook, Josiah P. baker` and `Cook, John, tailor`: the P
+   refuses Josiah and what is left is John, silent. Refusing the rival for speaking and then
+   promoting the survivor for its silence would deal the baker's listing to a tailor — and it
+   would do it on the weaker of the two readings. Four rows decline on this clause across the
+   five files (`J. B. Cook` and `William V Smith` in 1844, `D E Jones` in 1843, `William V
+   Smith` in 1839, plus two in the poll), and each carries the declined narrowing in a
+   `further_initials_declined` field, because a decision not to act is a reading.
+4. **The four generators call it**, each filing into a `middle_initial_refusals` list of its
+   own with the count beside it — never into `forename_refusals`, so the pool table below
+   still means what it meant. Scope is exactly T-0670's: the pool whose rulings reach a CARD,
+   and no other. `crosswalk_fergus_1839_election.py` is added to that scope for the first
+   time (its residents pool reaches cards and had no forename rule at all).
+
+### What landed
+
+**Thirty-five printings refused** — 6 in Fergus 1839, 12 in Fergus 1843, 13 in Norris 1844,
+4 in the 1837 poll — and **twenty matches withdrawn** with them. Every one names the letter
+it turned on: `Edward A. Rogers` against `Rogers, Edward Kendall`, `John N Foster` against
+`Foster, Dr. John Herbert`, `S W Reed` against `Reed, Stilman O.`, `John A Mills` against
+`Mills, John Rodney`, `W B Clarke` against `Clarke, William Hull`.
+
+**Five readings land, and two are people this town should always have had.**
+
+- **Augustine Deodat Taylor**, the carpenter of the first balloon-frame building, reaches
+  `Augustin D. Taylor` in the 1837 poll and `Taylor, A. D. builder, house Michigan ave.` in
+  Norris 1844. Both had been CONTESTED by `Anson H. Taylor`, whose H the rule could not see.
+- **H. B. Clarke** reaches `Clarke, Henry B., farmer, Michigan ave, n.e. cor 16th Street` in
+  1843 and `Clarke, H. B. farmer, lake shore, below Michigan avenue` in 1844 — two volumes
+  agreeing — instead of the attorney Henry Wilcox Clarke.
+- **Eli B Williams** stops sharing his listing with `Williams, E. S. law student`.
+
+**This stretch moved the ground, once, and it is a withdrawal** (clause 5). H. B. Clarke's
+business stood on **Clark Street** on the authority of the attorney's `36 Clark`. That match
+is gone and the face with it; the Michigan Avenue reading that replaces it is off the 1835
+grid, so it places nothing. **L218 is restated 18 → 17** in `docs/LIBERTIES.md`, with the
+prose that reasons from the number. **L223 unmoved at 12.** The address back-projection
+adjudicates 161 → 156 and the residence pass 61 → 58, the difference being the withdrawn
+matches that no longer carry an address to read.
+
+**Clause 3, the write ceiling.** `measure_research_spend.py` reads directories **883 reached,
+883 judgeable, 883 on a card, 0 unwritten**, and the town total 0. It did not get there for
+free: the first re-derivation left ONE unwritten, and following it is what put the 1837 poll
+in scope. `hh_clarke_w_b`'s card had carried the poll's `W. H. Clarke` only because the 1839
+directory pass had put a citation there; withdraw the directory match and the poll line stood
+naked on a card that never named it. The poll crosswalk had the same defect and no forename
+rule at all, so it was given this clause. Three more poll matches fell out with it, including
+`Timothy J Clark` against `Thomas A. Clark`.
+
+### The pools after this stretch
+
+The formula is stretch 8's, so the columns compare: ties = `ambiguous` + `contested`;
+initial-absent = `refusals`; forename-disagreed = `forename_refusals`. The new column is this
+stretch's clause. The advertiser file is unwired and measures **0** — every one of its 11 ties
+and 18 matches was tested against the clause and none fires — so it is not carrying an unpaid
+debt; `check.sh` does not invoke that generator at all and the rederive manifest's own rule
+forbids running an ungated derivation, which is why the file is left alone rather than rebuilt
+to add a zero.
+
+```
+                       1839         1843        1844      1844 ad      total
+  ties              37 -> 37     45 -> 41    31 -> 24    11 -> 11   124 -> 113
+  initial-absent   260 -> 260   323 -> 323  316 -> 316  124 -> 124  1023 -> 1023
+  forename-disagr.  68 -> 68     80 -> 80    46 -> 46     0 ->  0    194 -> 194
+  further initial    0 ->  6      0 -> 12     0 -> 13     0 ->  0      0 ->  35
+  matches          152 -> 146   121 -> 115  102 -> 100   18 -> 18   393 -> 379
+  could-carry            closed in all four volumes (stretches 2, 4, 5, 6)
+```
+
+The 1837 poll is not in that table because it is not a directory: its residents pool goes
+matches 90 → 89, ambiguous 31 → 31, contested 21 → 18, further-initial refusals 4.
+
+### The gates
+
+`check.sh` green. `name_agreement --self-test` 18 cases, six of them new and four of those the
+stroke artefacts. `printed_twice --self-test` 17 cases — **and it was RED on `dev` before this
+stretch touched it**, which is its own finding: stretch 8 put `doctor` in the title vocabulary
+and two of that module's cases had been asserting the DEFECT rather than the rule ever since
+(`_initials("Doctor D. S.") == ["d","d","s"]`, and `Doctor D. S.` reading as inconsistent with
+`David Sheppard`). Nothing was gating it. Both cases are corrected to the post-stretch-8
+answer and **`check.sh` now runs `printed_twice --self-test`** beside `name_agreement`'s, so it
+cannot go red unwatched again. `rederive.mjs --run` to convergence, both back-projections
+re-written, and the five steps the manifest does not cover re-run by hand.
+
+### Two findings this stretch declined to take, recorded here rather than filed
+
+1. **The 1837 poll's residents pool still has no forename rule.** It got this stretch's clause
+   because a ruling of its own went unwritten; T-0670's first-forename rule is still not applied
+   there, and `Timothy J Clark` against `Thomas A. Clark` was caught on the J and not on the
+   Timothy. Two full forenames that disagree should be refused in that file too. It is a
+   different rule in a different pool and it belongs to whoever takes the poll, not to this
+   programme.
+2. **`could_carry` moved and nothing re-read it.** Norris 1844's `could_carry_occupation` goes
+   61 → 57 and `could_carry_address` 79 → 78 with the withdrawn matches, and the same in 1843.
+   Those pools were closed by stretches 4-6 and the spend passes re-ran clean, so nothing is
+   owed — but a stretch that withdraws matches shrinks a pool that a later stretch's arithmetic
+   may quote, and this is the note that says so.
+
+**Stretch 10 is the initial-absent refusals of Norris 1844**, 316 of them and the largest
+single pool left after the ties: a surname the volume prints and an initial it does not, which
+is what a page image can overturn, and Norris's scan is the cleanest of the three. The ties now
+stand at 113 across the three volumes and are no longer the biggest thing on the table. No
+successor ticket is filed: `tickets/README.md` puts the succession on the run that CLOSES the
+programme. This ticket stays open and is its own cursor.

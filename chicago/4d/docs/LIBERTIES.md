@@ -163,8 +163,8 @@ itself out of the mud. Exaggeration aids legibility and falsifies the experience
 and clearly labeled.
 **Recorded:** 2026-08-09.
 
-### L218 — Eighteen businesses stand on a street a directory printed after 1835
-**Scope:** `address_back_projection.positions[placed]` — 18 businesses
+### L218 — Seventeen businesses stand on a street a directory printed after 1835
+**Scope:** `address_back_projection.positions[placed]` — 17 businesses
 **Decision:** where the 1835 record attests a trade and no source of the scene year says
 where it stood, a **street** printed against that person in Fergus's Chicago directory of
 1839 or 1843, or Norris's of 1844, may be read backwards and carried as the business's
@@ -177,17 +177,17 @@ doors are all later than the scene, so the choice was a stated back-projection o
 position at all — the same choice L60 records for the estray pen, decided the same way:
 an absent placement is invisible while a graded one is legible and correctable.
 **Consequence:** Chicago roughly quadrupled between 1835 and 1844, re-platted its river
-frontage and numbered its streets for the first time. Eighteen businesses therefore stand
+frontage and numbered its streets for the first time. Seventeen businesses therefore stand
 on a face on the authority of a volume printed four to nine years after the scene, and
 nine of those years are the widest gap in the set. Two are anchored on a crossing the
-directory names, one stands on a corner the volume prints, and the other fifteen have no
+directory names, one stands on a corner the volume prints, and the other fourteen have no
 point at all. A reader who thinks that is too far to carry a shop is reading the
 `reconstructed` chip exactly as intended.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
 count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says
 dealing a business to one roof on a face is an allocation and not a reading; stacking
 that allocation on an address already read back would be two inventions under one chip.
-The refusals and stand-offs are on the record beside the eighteen, so the arithmetic
+The refusals and stand-offs are on the record beside the seventeen, so the arithmetic
 is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer, and made in the same words
@@ -233,6 +233,18 @@ been sitting in the tie pool because the rule that would have cleared them was n
 Nothing was regraded and no placement was invented. The same pass withdrew two residence faces
 under **L223**, which is the other half of the measurement: the rule gives where the printed
 name is the man's and takes where it is not.
+**Restated:** 2026-09-12 (T-0987 stretch 9), from eighteen to seventeen, and the loss is the
+whole point of the stretch. Until this date the surname-plus-initial rule compared the FIRST
+initial of a name and stopped, so a middle initial both readings print had never been weighed
+at all. **H. B. Clarke**, hardware merchant, stood on Clark Street on the authority of
+`Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post` — a lawyer, whose middle
+initial the volume prints and prints differently. The stretch refuses that match, the face
+goes with it, and the one 1844 line that does name H. B. Clarke puts him on the lake shore
+below Michigan Avenue, ground the 1835 grid does not reach. Seventeen is therefore a truer
+eighteen: no placement was invented to hold the count, and the prose above that reasons from
+the number — two anchored on a crossing, one on a corner — now reads two, one and fourteen.
+Thirty-two matches across four volumes were withdrawn on the same clause and this is the only
+one that had reached the ground.
 
 ---
 
@@ -11502,3 +11514,65 @@ with relief on it. Any of the three replaces the ramp with something argued.
 entry refuses to press into service), T-0940 (the parent ask this bound is the second half of),
 T-1055 (the ground-colour half of the same defect).
 **Recorded:** 2026-09-12 (T-1056).
+
+### L234 — The fort's well is placed by two witnesses and every inch of its curb is ours
+
+**Decision:** the fort's well stands in the scene — `data/wells/fort_dearborn_well.json`,
+drawn by `renderers/web/js/wells.js` at local east 1152.50, north 139.53, which is UTM
+448225.20 E, 4637535.33 N: due south of Fort Dearborn's enclosure centre, outside the pickets
+and inside the outer fence. What is drawn there is **a curb and nothing else** — a round
+timber rim 1.10 m across the outside, 0.60 m high and 0.10 m thick, over a 0.90 m opening
+closed 0.25 m down by a dark disc so the ring reads as a shaft rather than as timber laid on
+sward. **Plan, diameter, height, thickness and material are all five invented**, and every
+vertex of the curb is graded `reconstructed`, so hiding that tier removes the whole well and
+the fort's outer ground goes honestly blank again.
+**Why:** the place is as well attested as anything at this fort and the project had no way to
+draw it. The 1830 Harrison plan letters a small ring `Well`; Gurdon Hubbard, from memory and
+not from the plate, puts it *"in the outer inclosure and near the south gate"*. T-0881 measured
+the ring and then could do nothing with the measurement, because
+`data/structures.schema.json` offers twelve archetypes and none of them is a well — the
+nearest, `outbuilding`, builds a walled and roofed shed — and **a structure record with no
+buildable form does not validate**, so the well could not be carried even as an evidence
+record. The reading sat in `docs/RESEARCH/wells.md` § 5 with nothing to attach it to. The
+choice was therefore between a curb whose every dimension is invented and a measured place
+that stays invisible, and this project's standing ruling on that choice is to draw it and
+label it (AGENTS.md § RECONSTRUCTED IS A TIER), which is the same trade **L60** made for the
+pound's fence and **L229** for the grave's pickets.
+**What bounds the invention:** the USE, and nothing else — no source reached gives this well
+a dimension, a plan or a material. A shaft has to take a man down it to dig and to clean, so
+it is about three feet across (0.91 m, recorded converted); a curb exists to stop a child or
+a beast walking into it in the dark and to turn the surface wash, so it is past stepping over
+unawares and low enough to draw a full bucket over, which is 2 ft; the rim is then the
+difference between the two diameters rather than a third guess. The material is timber
+because this fort is built of timber throughout and stone had to be fetched to Chicago.
+**What is REFUSED, and each refusal is the larger half of this entry.** (1) **No dimension
+comes off the plate.** The ring's outer diameter is about 14 px, which at this sheet's
+0.33528 m/px is 4.7 m; no well at Fort Dearborn was four and a half metres across. It is the
+engraver's POINT MARKER, it fixes a place and says nothing about a size, and the record says
+so in its own `plate_symbol` block. (2) **No lifting gear.** A sweep, a windlass and a bucket
+on a rope look completely different from one another, a sweep in particular dominating the
+ground around it, and nothing says which stood here — so the most visible thing in the scene
+would have been its largest invention. A visitor sees a well head with no way to draw from it,
+which is the honest shape of what is known. (3) **No ground treatment.** A working well has a
+trodden, slopped apron and this lays none: the fenced-ground layer treats the inside of a
+closed perimeter and a well has no perimeter, so the apron's extent would be the one dimension
+here that nothing whatever bounds. (4) **No second well, anywhere.** **T-0592** refused a well
+CLASS for the town — wells attach to houses everywhere, so one unplaced well is a claim about
+all the others — and that refusal stands in full. This layer draws a PLACE, and `wells.js`
+enforces it mechanically rather than by good intentions: a well whose position is not graded
+`documented` or `attested` is not drawn, and the refusal is recorded as a problem.
+**And the two witnesses disagree, which is recorded rather than smoothed.** The ring is 52.6 m
+south of the southern extent of the stockade's ink, with the plate's `Gate` lettered further
+south again — so it is nearer the stockade than Hubbard's *"near the south gate"* would put
+it. The plate is preferred because it is a measurement and the sentence is a memory, exactly
+as the wash house record prefers the plate over Hubbard's beach.
+**How to resolve:** a post return, quartermaster's estimate or engineer's report specifying
+the well — such a document carries a depth, a curb specification and often the lifting gear,
+and would settle four of this entry's five inventions at once; the 1835 pre-emption case
+papers over the reservation; or any second plan of this ground drawn to a scale.
+Related: **L60** (the pound, the same trade between an invented fabric and an invisible
+place) · **L229** (the grave's fence, a hand-authored record of one small thing) · **L146**
+(the boats, the layer this one's card and refusals are modelled on) · **L1** (no figure is
+drawn, which is why nobody stands at the curb) · tickets **T-0887** (this), **T-0881** (the
+measurement), **T-0592** (the class this refuses to mint).
+**Recorded:** 2026-09-12 (T-0887).

@@ -56,7 +56,7 @@ record agree; two newspaper notices of the same name are
 | census | 47 |
 | church | 46 |
 | book | 255 |
-| directory | 226 |
+| directory | 225 |
 | secondary | 80 |
 
 The category of a source id is the audit's one judgement, and it is a written
