@@ -226,6 +226,18 @@ step "Kinzie's Addition's block numerals re-derive from the reading and the run"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_kinzie_addition_numerals.py --self-test
 
+# WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
+# The cheap half re-derives every metre of the seven corridors from the pixels committed
+# beside them, through the same NA affine, and re-derives the module and the Kinzie
+# cross-check from those metres — so a hand-typed corridor width, a street moved out of
+# Wright's north-to-south order, or a corridor centre that has wandered outside the crop
+# its name was read in fails here. The raster half is `--check-sheet` and the PR runs it.
+step "Wabansia's street reading re-derives from its own pixels" \
+  python3 tools/read_wabansia_streets.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_streets.py --self-test
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled

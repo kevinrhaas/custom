@@ -153,8 +153,9 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
-T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
 T-1072 — The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
+T-1069 — Wabansia's blocks numbered and its river-front water lots recorded as a lot strip, off Wright's sheet
+T-1070 — Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835
 T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
@@ -329,3 +330,4 @@ T-1052 — In the frontage layer a confidence grade is the only thing keeping st
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
 T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph moved sauganash_range_m 1066.3 to 1001.2 and the Chappel baseline was never re-banked
+
