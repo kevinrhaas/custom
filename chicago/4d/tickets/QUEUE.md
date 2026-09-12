@@ -326,3 +326,4 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week
+T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against
