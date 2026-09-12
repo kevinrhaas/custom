@@ -138,3 +138,85 @@ No roof, no lot, no land-sale row placed on the ground — that is **T-0798**, p
 it is the visible parcel this one exists to unblock. Blocks 70, 71, 73, 74, 78 and 83–88
 are emitted as their grid CELLS with `open_side` and `bank_pending: T-0794`: the South
 Branch crosses them and their river side is a drawn bank rather than a ruled line.
+
+---
+
+## Do these lines run level, and what is a tier the fourth of?
+
+**T-0959, 2026-09-12.** Two reconstructions of this grid, `#977` (committed above) and
+`#978` (closed under T-0930), found the same 142 blocks and the same eight unnamed tiers
+and disagreed about two things: what to call them, and whether they run level. `#977`'s
+first ruled line south of Jackson is `school_section_tier_4`, level, `inferred`; `#978`'s
+is `school_section_tier_05`, skewed by 25.7 m over 1,588 m, `attested`. At the west end the
+two put the same line **48 metres apart**. This section settles both.
+
+### The ordinal was never a reading — it is a count, and it now says what from
+
+South of Jackson the sheet rules the tiers and **letters none of them**, so no ordinal here
+is read off the paper. Both files were counting, from different places: `#977` from the
+first line south of Madison, `#978` from Madison itself. Both are true and they differ by
+one. The ids now carry the datum —
+`school_section_tier_4_south_of_madison` — and Madison is the datum because it is the
+section's own north line, the town's south boundary, and one of the four lines Wright does
+name. An unlettered line's ordinal is a claim about a named line; the id states it, and the
+`name_note` on each record states both counts so neither reading has to be guessed at again.
+
+### The lines are NOT level on the sheet, and the tilt is not Wright's
+
+`tools/measure_school_section_tier_skew.py` re-takes the measurement off the same
+registered raster and **keeps the bands** the generator above throws away. The generator
+picks each line as the median of six to eight bands along its length, and a median cannot
+say whether the bands trended. They do. Every one of the thirteen east-west lines tilts the
+same way — median **0.573°**, 16.0 m of rise across the mile.
+
+On its own that would have settled it for `#978`. It does not, because **all fourteen
+north-south lines tilt the same way too**, median **0.669°**. That is the test:
+
+> A rotation of the drawing under its registration tilts the two families equally and
+> **oppositely**. A same-signed tilt in both is not a rotation. It is a grid that has
+> stopped being square.
+
+And the evidence that it is the *frame* that un-squared it needs no assumption about what
+Wright ruled. **Section 16's four boundaries are PLSS lines**: they run true north and true
+east on the ground by definition of the survey that laid them, and one of their corners is
+GCP G1 of this very fit. Measured exactly as the interior lines are, they tilt **+0.692°**
+in this frame, against **+0.556°** for the interior. A frame that tilts its own cardinal
+control is describing itself.
+
+The mechanism is in the fit and was already on the record. It is a general affine with two
+axis scales **6.2 per cent apart** at 1.894° of rotation — the same anisotropy the residuals
+block blames for the 3 per cent north-south overrun — and such a map does not preserve
+angles: a right angle ruled on the paper leaves it at **91.62°**.
+
+### What follows
+
+- **Level is right**, and right for a stated reason rather than because a median was
+  carried. The committed lines are rescaled onto the section's own statute-mile square, and
+  that anchoring takes the frame's shear out with the rest of its distortion. Nothing moves:
+  no tier, no block, no reservation.
+- **`inferred` is right** and is now earned. The northing of a tier is a measurement carried
+  onto a PLSS square, not a figure any record states.
+- **`#978`'s `attested` was not earned.** Its 0.93° sits inside the spread measured here and
+  is the same artefact read as evidence. A tilt the registration puts on lines the PLSS
+  guarantees are cardinal is not attested by the survey.
+
+The measurement is committed at `data/traces/vectors/school_section_tier_skew_1834.json` —
+every band, both families, the cardinal control and the conformality arithmetic — so the
+ruling can be re-run rather than taken on trust.
+
+### One bug two tickets found the same morning
+
+`generate_school_section_grid.py`'s `splice()` promised to leave "every byte of the rest of
+the file exactly as it was" and did not: it cut each target file at the first record it owned
+and rewrote to the end. That was only ever correct while its records were the last in the
+file. Twenty-two streets have been appended after them since — the North Division, the
+Michigan St tract, Kinzie west of the town — so re-running the generator **deleted every one
+of them, silently**, which is what this ticket's first regeneration did before the fault was
+spotted. **T-0877 hit it the same morning and its fix is the one in force**: the replaced span
+now ends at the first record the tool does not own, and an id of the tool's own shape that it
+no longer mints is a hard error rather than a tail — which is the case a RENAME makes, and
+this ticket renames eight ids.
+
+What this ticket adds is the reason neither of us found it earlier: **the grid had no gate at
+all**. Nothing re-derived the file, so nothing could notice. `check.sh` now runs
+`generate_school_section_grid.py --check`.

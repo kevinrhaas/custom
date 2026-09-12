@@ -471,6 +471,14 @@ step "the School Section's block numerals re-derive from the reading and the sch
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_school_section_numerals.py --self-test
 
+# The grid those numerals sit on had no gate at all, which is how its writer came to be
+# silently destructive for weeks: `splice()` rewrote each target file from its own first
+# record to the end, so re-running it deleted the twenty-two streets appended after its own.
+# T-0877 and T-0959 found that independently the same morning and T-0877's fix is the one in
+# force. Nothing NOTICED it because nothing re-ran the generator. This does (T-0959).
+step "the School Section's block grid, streets and reservations re-derive" \
+  python3 tools/generate_school_section_grid.py --check
+
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
 # and no source puts a garden on any lot in this town. So the answer to "why this lot" is
