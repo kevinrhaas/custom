@@ -106,8 +106,8 @@
       "block_number": 87,
       "spans": [87, 88],
       "bounded_by": {
-        "north": "school_section_tier_7",
-        "south": "school_section_tier_8",
+        "north": "school_section_tier_7_south_of_madison",
+        "south": "school_section_tier_8_south_of_madison",
         "west": "school_section_line_8",
         "east": "wells_school_section"
       },
@@ -132,8 +132,8 @@
       "block_number": 88,
       "spans": [87, 88],
       "bounded_by": {
-        "north": "school_section_tier_6",
-        "south": "school_section_tier_7",
+        "north": "school_section_tier_6_south_of_madison",
+        "south": "school_section_tier_7_south_of_madison",
         "west": "school_section_line_8",
         "east": "wells_school_section"
       },

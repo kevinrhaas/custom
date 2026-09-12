@@ -232,6 +232,29 @@ MARKET_SOUTH_ROWS = (10, 11)        # the tenth tier line to the section's south
 MARKET_SOUTH_ID = "market_school_section_south"
 
 
+# Why every east-west line here is drawn LEVEL — one northing end to end — when the sheet
+# does not draw it level. T-0959; the measurement is
+# data/traces/vectors/school_section_tier_skew_1834.json, taken by
+# tools/measure_school_section_tier_skew.py.
+EW_RUN_NOTE = (
+    "DRAWN LEVEL, AND THAT IS A STATEMENT ABOUT THE GROUND RATHER THAN THE PAPER (T-0959). "
+    "Re-measured off the same registered raster in ten bands along its length, this line does "
+    "NOT run level: all thirteen east-west lines of the section tilt the same way, median 0.57 "
+    "degrees, 16.0 m of rise across the mile. That settles nothing on its own, because all "
+    "fourteen NORTH-SOUTH lines tilt the same way too, median 0.67 degrees, and a rotation of "
+    "the drawing under its registration tilts the two families equally and OPPOSITELY. What "
+    "settles it is the section's own boundary. Section 16's four sides are PLSS lines and run "
+    "true north and true east on the ground by definition; measured exactly as the interior "
+    "lines are, they tilt +0.69 degrees in this frame against +0.56 for the interior. A frame "
+    "that tilts its own cardinal control is describing itself, and the mechanism is in the fit: "
+    "a general affine with two axis scales 6.2 per cent apart does not preserve angles, so a "
+    "right angle ruled on the paper leaves it at 91.62 degrees. The tilt therefore comes out "
+    "with the rest of the registration's distortion when the measured lines are rescaled onto "
+    "the section's statute-mile square — the same anchoring that removes the 3 per cent "
+    "north-south overrun. `geometry_confidence` stays `inferred` for that reason: the northing "
+    "is a measurement carried onto a PLSS square, not a figure any record states.")
+
+
 def load(p):
     return json.loads((ROOT / p).read_text())
 
@@ -349,7 +372,12 @@ def street_id(j):
         return EW_STREET_IDS[j][0]
     if j == len(EW_LINES) - 1:
         return None  # the section's south line; Twelfth Street is later than this scene
-    return "school_section_tier_%d" % j
+    # THE ORDINAL SAYS WHAT IT COUNTS FROM (T-0959). `j` counts Madison Street as 0, so
+    # tier 4 is the fourth ruled line SOUTH OF MADISON and the fifth east-west line of the
+    # section counting Madison itself. Two readings of this sheet numbered the same eight
+    # lines a whole tier apart for want of that datum; south of Jackson the sheet letters
+    # none of them, so an ordinal here is a claim about a named line and the id states it.
+    return "school_section_tier_%d_south_of_madison" % j
 
 
 def ns_street_id(i, rj):
@@ -412,16 +440,25 @@ def street_records(anchor):
                 "should see is a survey line over prairie, not a road."
                 % (("Madison Street, the section's own north line and the boundary of the Town of "
                     "Chicago" if j == 0 else "The %s tier of the School Section's grid" % (
-                        name_1835 or "%d%s" % (j, {1: 'st', 2: 'nd', 3: 'rd'}.get(j % 10 if j % 100 not in (11, 12, 13) else 0, 'th')))),
+                        name_1835 or "%d%s south of Madison Street" % (j, {1: 'st', 2: 'nd', 3: 'rd'}.get(j % 10 if j % 100 not in (11, 12, 13) else 0, 'th')))),
                    L["measured"], L["anchor_shift_m"])
             ),
         )
+        rec["note"] += " " + EW_RUN_NOTE
         if not named:
             rec["name_note"] = (
                 "UNNAMED ON THE SHEET. Wright rules the tier and writes no name on it; the four "
                 "streets he does name — Madison, Monroe, Adams and Jackson — are the four "
                 "northernmost. `name_1835` is null rather than a modern name carried back, "
-                "because the later names of these lines are not evidence about 1835.")
+                "because the later names of these lines are not evidence about 1835. THE ORDINAL "
+                "IN THE ID COUNTS FROM MADISON, the northernmost line and one the sheet does name: "
+                "this is the %d%s ruled line south of it, and the %d%s east-west line of the "
+                "section counting Madison itself. Both are true and they differ by one, which is "
+                "exactly how two readings of this sheet came to number the same eight lines a tier "
+                "apart (T-0959); an ordinal on an unlettered line is a claim about what it is "
+                "counted from, so the id states it."
+                % (j, {1: 'st', 2: 'nd', 3: 'rd'}.get(j % 10 if j % 100 not in (11, 12, 13) else 0, 'th'),
+                   j + 1, {1: 'st', 2: 'nd', 3: 'rd'}.get((j + 1) % 10 if (j + 1) % 100 not in (11, 12, 13) else 0, 'th')))
         out.append(rec)
     return out
 
@@ -804,6 +841,46 @@ def main():
                         "cells. Ten of them are the South Branch and carry no block; four more are "
                         "the east halves of blocks 73, 74, 83 and 84, each of which spans two cells "
                         "because Market Street stops at Adams. 156 - 10 - 4 = 142."),
+                  how_the_lines_run=dict(
+                      committed="level and plumb — every east-west line carries one northing end "
+                                "to end and every north-south line one easting",
+                      measurement="data/traces/vectors/school_section_tier_skew_1834.json",
+                      measured_by="tools/measure_school_section_tier_skew.py",
+                      east_west_median_tilt_deg=0.573,
+                      north_south_median_tilt_deg=0.669,
+                      lines_tilting_the_same_way="13 of 13 east-west and 14 of 14 north-south",
+                      cardinal_control_mean_tilt_deg=0.692,
+                      interior_mean_tilt_deg=0.556,
+                      finding=(
+                          "THE RULED LINES ARE NOT LEVEL ON THIS SHEET AND THE TILT IS NOT "
+                          "WRIGHT'S (T-0959). The line tables below carry only the MEDIAN of the "
+                          "bands each line was measured in, and a median cannot say whether the "
+                          "bands trended; re-measuring with the bands kept shows every line of "
+                          "both families tilting the same way. Two steps rule on it, and neither "
+                          "assumes anything about what Wright drew. FIRST, a rotation of the "
+                          "drawing under its registration tilts the two families equally and "
+                          "OPPOSITELY — a same-signed tilt in both is not a rotation but a grid "
+                          "that has stopped being square. SECOND, the section's four PLSS "
+                          "boundaries run true north and true east ON THE GROUND by definition, "
+                          "and one of their corners is GCP G1 of this very fit; measured exactly "
+                          "as the interior lines are, they tilt +0.692 degrees in this frame "
+                          "against +0.556 for the interior. A frame that tilts its own cardinal "
+                          "control is telling you about itself. The mechanism is the fit's "
+                          "non-conformality: two axis scales 6.2 per cent apart at 1.894 degrees "
+                          "of rotation, under which a right angle ruled on the paper comes out at "
+                          "91.62. So the tilt leaves with the rest of the registration's "
+                          "distortion when the measured lines are rescaled onto the section's "
+                          "statute-mile square, and the committed lines are level and plumb "
+                          "because the section is, not because a median was carried."),
+                      what_this_refuses=(
+                          "PR #978 (closed under T-0930) drew the eight unnamed tiers with 25.7 m "
+                          "of rise over 1,588 m — 0.93 degrees, inside the spread measured here — "
+                          "and graded them `attested`. It is this artefact read as evidence. A "
+                          "tilt that the registration puts on lines the PLSS guarantees are "
+                          "cardinal is not attested by the survey, and `attested` is not earned "
+                          "by it. `inferred` is what the committed lines carry and what they have "
+                          "now been shown to deserve."),
+                  ),
                   ns_lines=NS_LINES, ew_lines=EW_LINES,
                   corridor_widths=dict(
                       east_west_m=EW_CORRIDOR_M, north_south_m=NS_CORRIDOR_M,
