@@ -1,7 +1,7 @@
 ---
 id: T-1061
 title: Kinzie's Addition blocks 1-54, numbered off Wright's sheet with every numeral's crop cited
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0789
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1185
 claimed_by: run 9/12/2026, 4:37:44 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T10:06:06.821Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34686076739
 ---
 
