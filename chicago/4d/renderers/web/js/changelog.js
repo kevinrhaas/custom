@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Half the town\u2019s blocks were sized on an unwritten condition', kind: 'change', ts: '',
+  { v: 765, title: 'Half the town\u2019s blocks were sized on an unwritten condition', kind: 'change', ts: '2026-09-12T07:14:16.945Z', date: 'Sep 12, 2026, 2:14 AM CT',
     items: [
       'Most of the houses here are anonymous. The town held about 660 roofs in July 1835 and the record names only a fraction of them, so the rest are dealt out block by block against a written schedule and a second tool puts them on the ground. Those two have been counting room in different units, with nothing making them meet.',
       'The schedule counts in ROW HOUSES. The meanest lot in town carries 23.56 m of street frontage, the eighteen party-line houses already standing average 6.07 m wide, and the plat keeps 1.5 m clear at each end of a run \u2014 so three fit on the worst lot and a fourth does not. A block with three free lots is sized for six houses, not two.',
