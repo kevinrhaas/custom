@@ -1,7 +1,7 @@
 ---
 id: T-0940
 title: The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
-state: claimed
+state: split
 epic: GROUND
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: run 9/12/2026, 2:42:25 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T07:46:39.446Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34681283724
 ---
 
