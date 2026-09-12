@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1169,
       "persons": 2666,
-      "businesses": 206
+      "businesses": 205
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,8 +16,8 @@
   },
   "counts": {
     "businesses": {
-      "total": 206,
-      "present_at_scene_date": 189,
+      "total": 205,
+      "present_at_scene_date": 188,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
@@ -26,11 +26,11 @@
         "enrich_existing": 31,
         "new_building": 28,
         "street_only": 59,
-        "unplaceable": 88
+        "unplaceable": 87
       },
       "by_placement_class": {
         "corner": 18,
-        "none": 63,
+        "none": 62,
         "relative": 107,
         "street_only": 18
       },
@@ -38,7 +38,7 @@
         "enrich_existing": 31,
         "new_building": 28,
         "street_only": 59,
-        "unplaceable": 71
+        "unplaceable": 70
       },
       "outside_the_plat": 5,
       "survival_liberty_required": 101,
@@ -1836,52 +1836,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the post office' names nothing the committed town holds."
-    },
-    {
-      "id": "business_e_k_hubbard_agent_for_the_howard_fire_insurance_company",
-      "name": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
-      "trade": "fire insurance agency",
-      "occupation": "insurance_agent",
-      "proprietors": [
-        "E. K. Hubbard"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1835-06-20",
-        "last_issue": "1835-07-29"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [
-        {
-          "claim": "chicago_democrat_1835_07_01#c017",
-          "issue": "1835-07-01",
-          "dating": "effected",
-          "iso": "1835-07-01",
-          "verbatim": "having b[een appointed] Fire Insuran[ce] Agent for the Howard [Fire Insurance] Company",
-          "note": "The agency is announced as already conferred, over the dateline of 1 July 1835 — the scene date itself."
-        }
-      ],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
       "id": "business_e_l_thrall",
@@ -4349,14 +4303,6 @@
           "iso": null,
           "verbatim": "[The] undersigned have formed a connection [in] the mercantile business",
           "note": "The second printing of the Jones, King & Co. formation notice, again with no dateline."
-        },
-        {
-          "claim": "chicago_democrat_1835_08_05#c008",
-          "issue": "1835-08-05",
-          "dating": "effected",
-          "iso": "1835-07-01",
-          "verbatim": "having been appointed Agent for the Howard Fire Insurance Company",
-          "note": "The agency is already held, over a dateline of 1 July 1835 — on the scene date, not after it."
         }
       ],
       "survival_liberty_required": false,

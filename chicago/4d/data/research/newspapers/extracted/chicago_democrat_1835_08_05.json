@@ -276,7 +276,7 @@
           ]
         }
       ],
-      "notes": "TWO NOTICES ON ONE FRAGMENT, AND THEY ARE CLAIMED TOGETHER BECAUSE THE SEGMENTER RAN THEM TOGETHER: the fire-insurance agency's body follows its heading across a line break and the hardware notice begins on the same line. THE HARDWARE FIRM IS NEW — 'have formed a connection in the mercantile business, under the firm of Jones, King & Co' — and its stock arrives by the Brig Illinois, so the goods on its shelves in August 1835 came off a lake vessel this season. Three partners are named where the imprint on page 4 of this issue calls the firm 'Jones & King'. No address is given in the notice itself; the paper's own imprint places the firm's hardware store on South Water Street (claim c020).",
+      "notes": "TWO NOTICES ON ONE FRAGMENT, AND THEY ARE CLAIMED TOGETHER BECAUSE THE SEGMENTER RAN THEM TOGETHER: the fire-insurance agency's body follows its heading across a line break and the hardware notice begins on the same line. THE HARDWARE FIRM IS NEW — 'have formed a connection in the mercantile business, under the firm of Jones, King & Co' — and its stock arrives by the Brig Illinois, so the goods on its shelves in August 1835 came off a lake vessel this season. Three partners are named where the imprint on page 4 of this issue calls the firm 'Jones & King'. No address is given in the notice itself; the paper's own imprint places the firm's hardware store on South Water Street (claim c020). AND THE AGENCY ON THIS FRAGMENT IS NOT THIS FIRM'S (T-0410). Until that ticket the fire-insurance card's own sentence — 'having been appointed Agent for the Howard Fire Insurance Company' — stood here as this claim's `announces_opening`, and so the register read Jones, King & Co. as having been appointed the Howard's agent over a dateline of 1 July 1835. The fragment says otherwise: the card is signed '[E]. K. [H]UBBARD.' and the hardware notice below it is signed WILLIAM JONES, BYRAM KING, W. B. CLARKE, and this claim's own entity list already reads 'UCBRARB,' as 'Hubbard, E. K.' with the role 'insurance agent'. The appointment was the agency's and it now lives in identity.json's `agencies` as the fifth printing of E. K. Hubbard's holding, with Jones, King & Co. recorded there as a refused holding. The firm's own opening is announced by its formation notice at 1835-07-08 c009 and 1835-07-22 c009, which this change does not touch. Nothing of the quote, the normalized reading or the entities moves — only the sentence that was read onto the wrong one of the two notices.",
       "business": {
         "name": "Jones, King & Co.",
         "proprietors": [
@@ -306,12 +306,6 @@
       "ad_copy_date": {
         "verbatim": "Puly 1 FB.",
         "iso": "1835-07-01"
-      },
-      "announces_opening": {
-        "verbatim": "having been appointed Agent for the Howard Fire Insurance Company",
-        "dating": "effected",
-        "iso": "1835-07-01",
-        "note": "The agency is already held, over a dateline of 1 July 1835 — on the scene date, not after it."
       }
     },
     {
