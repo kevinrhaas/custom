@@ -1478,6 +1478,51 @@ def compile_register(gazetteer, town, quiet=True):
                                ", ".join(sorted(str(list(x)) for x in stray))))
         businesses.append(entry)
 
+    # ONE GROUND, ONE ROOF (T-0411). The gazetteer can now say that one business is
+    # another's PREMISES — the shop a paper is printed at, the store an agency is kept
+    # at — which is neither a merge nor a refusal, and until this the register could not
+    # hear it. It showed on the pair the relation was built for: `business_the_chicago_
+    # democrat` and `business_chicago_democrat_printing_office` are one man's paper and
+    # one man's shop at one corner, and the register took `enrich_existing` on the
+    # committed `chicago_democrat_office` for the shop and `new_building` at
+    # `clark+south_water` for the paper — a SECOND roof at the same corner for a
+    # business that has no ground of its own. (The two fall on different sides of
+    # `match_occupant` for a reason worth writing down: the shop's proprietors are
+    # ['John Calhoun'] and the paper's are ['John Calhoun', 'Calhoun, J.'], so the
+    # required surname set for the paper is {calhoun, j} and no occupant line carries a
+    # partner named J.)
+    #
+    # So the WHOLE follows its PART, because the part IS the ground: it takes the part's
+    # action and target verbatim rather than computing its own. This is deliberately
+    # narrow. It fires only where the part is actually placed — `enrich_existing` or
+    # `new_building` — and only where the whole was about to raise or name ground of its
+    # own; a part the register cannot place says nothing about the whole, and a whole
+    # already enriched onto a structure is left alone rather than moved.
+    by_id = {e["id"]: e for e in businesses}
+    for b in sorted(gazetteer["businesses"], key=lambda x: x["id"]):
+        for edge in b.get("parts") or []:
+            if edge.get("kind") != "premises":
+                continue
+            whole, part = by_id.get(b["id"]), by_id.get(edge.get("business_id"))
+            if not whole or not part:
+                continue
+            if part["action"] not in ("enrich_existing", "new_building"):
+                continue
+            if whole["action"] not in ("new_building", "street_only"):
+                continue
+            was, was_target = whole["action"], whole["action_target"]
+            whole["action"] = part["action"]
+            whole["action_target"] = part["action_target"]
+            whole["match_tier"] = part["match_tier"]
+            whole["match_evidence"] = part["match_evidence"]
+            whole["action_note"] = (
+                "%s is declared the premises %s is carried on (identity.json "
+                "premises_relations), so it stands where its premises stands and raises "
+                "no ground of its own: %s at %s, taken from %s. Without the relation this "
+                "record took %s at %s — a second roof for a business that has none. %s"
+                % (part["name"], whole["name"], whole["action"], whole["action_target"],
+                   part["id"], was, was_target, part["action_note"] or ""))
+
     # ---- persons -----------------------------------------------------------
     # The identity key is the gazetteer's own: surname plus forename initials, so
     # 'Cohen, P.' never becomes 'Cohen, J.' here either. A resident whose forename is
@@ -1982,6 +2027,42 @@ def self_test():
          lambda d: True if (d["businesses"][0]["action"] == "new_building"
                             and d["businesses"][0]["anchor"]["streets"] == ["clark", "south_water"])
          else "action=%r anchor=%r" % (d["businesses"][0]["action"], d["businesses"][0]["anchor"]))
+    # …and the fifth thing that can decide one: a declared premises relation (T-0411).
+    def premises_edge(b, part_id, part_name, kind="premises"):
+        b["parts"] = [{"kind": kind, "business": part_name, "business_id": part_id,
+                       "witnesses": ["the fixture"],
+                       "relation_rule": "the fixture's own declaration"}]
+        return b
+
+    case("a business standing on another's premises takes its premises' roof",
+         gaz([premises_edge(biz("b1", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"}),
+              "b2", "b2"),
+              biz("b2", proprietors=["George W. Dole"], street="South Water Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a premises the register cannot place leaves the whole where it was",
+         gaz([premises_edge(biz("b1", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"}),
+              "b2", "b2"),
+              biz("b2", street="Flag Creek", placement={"class": "none", "anchor": None})]),
+         lambda d: True if d["businesses"][0]["action"] == "new_building"
+         else "action=%r" % d["businesses"][0]["action"])
+    case("a whole already enriched onto a structure is not moved by the relation",
+         gaz([premises_edge(biz("b1", proprietors=["George W. Dole"],
+                                street="South Water Street"), "b2", "b2"),
+              biz("b2", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+
     case("a street with no anchor takes street_only",
          gaz([biz("b1", street="Lake Street", placement={"class": "street_only", "anchor": None})]),
          lambda d: True if (d["businesses"][0]["action"] == "street_only"
