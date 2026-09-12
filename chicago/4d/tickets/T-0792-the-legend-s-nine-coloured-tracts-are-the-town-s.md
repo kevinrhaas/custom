@@ -90,3 +90,21 @@ Three things the town needs come from the tracts and nowhere else:
 **Done when** nine dated, owned tract polygons exist with the legend cited, the two ambiguous
 swatches are resolved to ground, the land-sale rows are sorted onto them, and at least one generator
 reads the layer.
+
+## Added by T-1065, 2026-09-12 — a control inside the reservation swatch
+
+Wright's *L. House* glyph is now read and committed — resource pixel (2941, 1604), local
+E +1055.59, N +172.54, at `data/traces/wright_1834_lighthouse_glyph.json`. It sits **inside the
+reservation swatch**, 40.9 m in from the derived tract's edge (the derivation reports that margin
+itself: `tools/resolve_land_tracts.py --check`). Two uses when this layer is built:
+
+1. **A control, not just an occupant.** When the reservation's blue edge is traced off the legend's
+   swatch, this glyph is a point of known pixel and known metres inside it — so the traced polygon
+   can be checked against something on the same sheet rather than only against the affine.
+2. **A margin that should not shrink.** 40.9 m is the current distance from the tower to the
+   *derived* tract, which L108 says is a floor and short of the documented 75.69 acres. A traced
+   blue edge should put the tower further inside, not nearer the boundary; if it does the opposite,
+   one of the two readings is wrong and that is worth knowing early.
+
+T-1065 deliberately did not author this swatch — a tract authored outside the tract layer is the
+thing this ticket exists to prevent.
