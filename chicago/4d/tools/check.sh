@@ -1286,6 +1286,20 @@ step "both lines out of the Sauganash's drawn apex are still ridges, not rakes" 
 step "datum re-derivation" \
   python3 tools/rederive_datum.py
 
+# T-0878. The verdict on the NA Wright sheet's registration is a MEASUREMENT — four
+# models scored on eleven control points, a leave-one-out for each, and a table of how
+# far every committed reading off that sheet would move under each. A verdict of that
+# shape rots the moment its inputs move, and three of its inputs are files other
+# tickets edit: the eight control points, the three section corners, and T-0797's
+# measured line table. So it is re-derived here rather than quoted. Pure Python by
+# design — numpy is not installed in the agent sandbox and a step that needs it SKIPS
+# (T-1083), which is not a gate.
+step "the NA Wright registration's adjudication still matches its own measurement" \
+  python3 tools/adjudicate_wright_na_fit.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/adjudicate_wright_na_fit.py --self-test
+
 # The liberties the walkthrough shows must still be the ones the markdown
 # states. LIBERTIES.md is append-only and is the source of truth; data/
 # liberties.json is derived and committed so the site needs no build step, which

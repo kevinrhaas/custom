@@ -1,0 +1,390 @@
+{
+  "_doc": "T-0878's answer. The registration in wright_1834_nara_hup_gcps.json measures the School Section's mile at 1658.65 m north-south and 1603.04 m east-west on the same fit; this file adjudicates whether that fit stands. Written by tools/adjudicate_wright_na_fit.py --write and held by its --check, which re-runs the whole measurement from committed data on every commit.",
+  "id": "wright_1834_nara_hup_fit_adjudication",
+  "ticket": "T-0878",
+  "written_by": "tools/adjudicate_wright_na_fit.py",
+  "reads": [
+    "data/traces/gcp/wright_1834_nara_hup_gcps.json",
+    "data/traces/gcp/wright_1834_nara_hup_section_corners.json",
+    "data/traces/vectors/school_section_blocks_1834.json",
+    "data/datum.json"
+  ],
+  "verdict": {
+    "headline": "THE EIGHT-POINT GLOBAL AFFINE STANDS WHERE IT WAS FITTED AND NOWHERE ELSE. What replaces it south of Madison Street is CONTROL AT THE SHEET'S FOOT in the same affine form \u2014 not a y-scale correction, and not a second-order term. Both of those were tested here and both are worse.",
+    "why_the_three_per_cent_is_not_a_scale_error": "It is an EXTRAPOLATION error, and the geometry says so before any model is fitted. All eight control points lie between y=1631 and y=3225 px of a 6628 px sheet \u2014 a 1594 px band in the top half. The School Section occupies y=3169-5495 px, entirely below every one of them. So the fit's y scale is measured over a quarter of the sheet and carried over the rest, and the section is the first place it can be checked against a length known independently of any control point. Measured on the section's own square: the sheet is 0.70055 m/px in x and 0.71397 m/px in y, a 1.92 per cent anisotropy. The fit says 0.6985 and 0.7358 \u2014 5.2 per cent. The paper IS anisotropic and the fit trebles it. A correction that is uniform over the sheet cannot mend an error that is not.",
+    "the_four_candidates_and_what_decided_between_them": [
+      {
+        "model": "M0_committed_affine_8pt",
+        "reading": "The incumbent, and this tool reproduces its committed 16.19 m RMS from the control alone, which is what licenses the rest of the table. Honest out-of-sample number: 23.29 m leave-one-out. Against the section's three other corners, where it has never been scored, 42.71 m \u2014 and 3.06 per cent long on the mile."
+      },
+      {
+        "model": "M2_committed_affine_y_rescaled",
+        "reading": "The y-scale correction the ticket names, pixel y pre-scaled by 0.970273 about G1. It buys the mile exactly (0.00 per cent) and pays 11.7 m of RMS on the control it already had: 16.19 -> 27.89 m on the eight, with G2, G6 and G7 moving 29-35 m each. It is still 16.88 m out at the section's corners. REJECTED: it does not remove the error, it moves it onto the only part of the sheet that was measured properly."
+      },
+      {
+        "model": "M3_poly2_11pt",
+        "reading": "A second-order polynomial, twelve coefficients on eleven points. Best in-sample of any model \u2014 13.94 m on all eleven, 0.74 m at the section's corners \u2014 and WORST out of sample by a factor of two: 51.28 m leave-one-out, against 23.29 m for the incumbent. It also throws readings as far as 120.5 m. REJECTED as an overfit, and the leave-one-out is the measurement that says so rather than a prior about polynomials."
+      },
+      {
+        "model": "M1_affine_11pt_foot_control",
+        "reading": "The same affine form, refitted on the eight plus the section's north-west, south-west and south-east corners. THE ONLY CANDIDATE THAT IMPROVES THE OUT-OF-SAMPLE NUMBER: 23.29 -> 20.17 m leave-one-out. RMS at the section's corners falls 42.71 -> 6.22 m, on all eleven 26.23 -> 16.02 m, worst point 59.12 -> 37.00 m, and the mile error falls from 3.06 to 1.03 per cent north-south. It costs 2.2 m of RMS on the original eight (16.19 -> 18.39). ADOPT \u2014 subject to the cost below."
+      }
+    ],
+    "why_M1_stops_at_one_per_cent_and_that_is_right": "Because the control it is given is itself 0.79 per cent long. The square the three OSM crossings make with G1's modern position measures 1620.09-1624.23 m on its four edges against the statute mile \u2014 a mean +12.73 m, in BOTH axes and in the same direction, which is what widened streets do to a centreline crossing and not what stretched paper does. M1's residual mile error, +1.03 per cent north-south and +0.66 per cent east-west, straddles that 0.79 per cent. The model has reproduced its control and the remaining error is the control's, not the model's. Driving the mile to zero is exactly what M2 does and exactly why M2 is rejected.",
+    "the_datum_is_not_at_risk": "tools/rederive_datum.py fits from data/traces/gcp/wright_1834_gcps.json \u2014 the BPL master \u2014 and never reads this sheet. Adopting M1 moves traces read off the NA scan and does not move the datum, the scene origin, or anything keyed to the BPL registration. That is the one thing this ticket feared and it is not there.",
+    "what_adoption_would_cost_and_why_it_is_not_done_here": "The displacement table below is the measurement the ticket asked for before adopting. M1 moves the committed NA-keyed readings by a median 7.8-27.1 m and up to 84.4 m \u2014 more than a block in the School Section's numbering, whose median alone is 27.1 m. Four traces are seated through G1, which moves 16.21 m. So adoption is not an edit to a coefficient block: it is a regeneration of nine committed traces, a re-seating of the School Section grid and the Kinzie and Michigan St readings, and a re-bake of every structure standing on that ground \u2014 more than one run's work, and a separate unit from the adjudication. T-1090 carries it, split on filing into T-1091 (adopt the fit and regenerate the five pure readings) and T-1092 (re-seat the four grids and re-bake the ground that moves) because one run cannot do both. Nothing in this commit changes the committed fit.",
+    "confidence": "documented",
+    "confidence_note": "Every number in this file is computed by the tool that writes it, from committed data, and re-derived by its --check on every commit. The three new control points are OSM crossings with node ids; their uncertainty is stated and measured in wright_1834_nara_hup_section_corners.json rather than assumed."
+  },
+  "measurement": {
+    "control_window_px": {
+      "the_eight": {
+        "y_min": 1631.0,
+        "y_max": 3225.0,
+        "sheet_height": 6628
+      },
+      "the_section": {
+        "y_min": 3169.2,
+        "y_max": 5495.3
+      },
+      "reading": "Every one of the eight control points lies in the top 49 per cent of the sheet, inside a 1594 px band. The section occupies 3169-5495 px, entirely below all of them. A global affine's y scale is therefore FITTED over a quarter of the sheet and EXTRAPOLATED over the rest, and the section is where the extrapolation can be checked against a known length."
+    },
+    "section_own_scales": {
+      "east_west_span_px": 2297.27,
+      "north_south_span_px": 2254.08,
+      "implied_m_per_px": {
+        "x": 0.70055,
+        "y": 0.71397
+      },
+      "committed_fit_m_per_px": {
+        "x": 0.6985,
+        "y": 0.7358
+      },
+      "fit_departure_pct": {
+        "x": -0.292,
+        "y": 3.058
+      },
+      "anisotropy_pct": {
+        "the_section_says": 1.92,
+        "the_committed_fit_says": 5.2
+      },
+      "reading": "The paper IS anisotropic and the fit overstates it. The section's own square makes the sheet 1.9 per cent longer per pixel in y than in x; the eight-point fit makes it 5.2 per cent. On the x axis the fit and the section agree to three tenths of one per cent over a mile. On the y axis the fit is three per cent long \u2014 and the section lies entirely BELOW every one of the eight control points, so that three per cent is an extrapolation error, not a fitting error."
+    },
+    "section_corner_pixels": {
+      "NE": [
+        2950.0,
+        3241.3
+      ],
+      "NW": [
+        653.9,
+        3169.2
+      ],
+      "SW": [
+        648.0,
+        5423.3
+      ],
+      "SE": [
+        2944.1,
+        5495.3
+      ]
+    },
+    "section_corner_pixel_note": "Recovered by inverting the committed fit on T-0797's measured line table; NE is the same point of the drawing as GCP G1, whose committed pixel is [2951.0, 3225.0], so the difference between them is the span of the plat's own corner against the crossing the registration picked.",
+    "measured_spans_through_the_committed_fit": {
+      "east_west_m": 1603.04,
+      "north_south_m": 1658.65,
+      "statute_mile_m": 1609.344
+    },
+    "models": {
+      "M0_committed_affine_8pt": {
+        "form": "affine",
+        "control_points": 8,
+        "refitted_here": true,
+        "rms_m_on_the_eight": 16.19,
+        "rms_m_on_the_three_corners": 42.71,
+        "rms_m_on_all_eleven": 26.23,
+        "worst_m_on_all_eleven": 59.12,
+        "mile_test": {
+          "east_west_m": 1603.04,
+          "north_south_m": 1658.65,
+          "east_west_departure_pct": -0.392,
+          "north_south_departure_pct": 3.064
+        },
+        "leave_one_out_rms_m": 23.29,
+        "coefficients": {
+          "E": [
+            0.698087835,
+            0.001810867,
+            445842.37571132
+          ],
+          "N": [
+            0.023085701,
+            -0.735785006,
+            4639166.585475362
+          ]
+        }
+      },
+      "M1_affine_11pt_foot_control": {
+        "form": "affine",
+        "control_points": 11,
+        "refitted_here": true,
+        "rms_m_on_the_eight": 18.39,
+        "rms_m_on_the_three_corners": 6.22,
+        "rms_m_on_all_eleven": 16.02,
+        "worst_m_on_all_eleven": 37.0,
+        "mile_test": {
+          "east_west_m": 1619.99,
+          "north_south_m": 1625.88,
+          "east_west_departure_pct": 0.662,
+          "north_south_departure_pct": 1.027
+        },
+        "leave_one_out_rms_m": 20.17,
+        "coefficients": {
+          "E": [
+            0.705276376,
+            0.007456488,
+            445809.240189955
+          ],
+          "N": [
+            0.027580496,
+            -0.721211185,
+            4639121.261546429
+          ]
+        }
+      },
+      "M2_committed_affine_y_rescaled": {
+        "form": "affine",
+        "control_points": 8,
+        "refitted_here": false,
+        "rms_m_on_the_eight": 27.89,
+        "rms_m_on_the_three_corners": 16.88,
+        "rms_m_on_all_eleven": 25.36,
+        "worst_m_on_all_eleven": 41.11,
+        "mile_test": {
+          "east_west_m": 1603.04,
+          "north_south_m": 1609.35,
+          "east_west_departure_pct": -0.392,
+          "north_south_departure_pct": 0.0
+        },
+        "leave_one_out_rms_m": null,
+        "leave_one_out_note": "Not applicable: this model is not a least-squares fit of the points it is scored against, so leaving one out would refit a different model. M0's own leave-one-out is reported on M0.",
+        "y_scale_factor": 0.970273,
+        "coefficients": {
+          "E": [
+            0.698087835,
+            0.001757036,
+            445842.54931597
+          ],
+          "N": [
+            0.023085701,
+            -0.713912631,
+            4639096.047064601
+          ]
+        }
+      },
+      "M3_poly2_11pt": {
+        "form": "second-order polynomial",
+        "control_points": 11,
+        "refitted_here": true,
+        "rms_m_on_the_eight": 16.33,
+        "rms_m_on_the_three_corners": 0.74,
+        "rms_m_on_all_eleven": 13.94,
+        "worst_m_on_all_eleven": 27.8,
+        "mile_test": {
+          "east_west_m": 1619.44,
+          "north_south_m": 1613.02,
+          "east_west_departure_pct": 0.627,
+          "north_south_departure_pct": 0.228
+        },
+        "leave_one_out_rms_m": 51.28,
+        "coefficients": {
+          "E": [
+            729.105890401,
+            -13.230227321,
+            445828.770892365,
+            -6.802992545,
+            0.06900702,
+            2.770747051
+          ],
+          "N": [
+            15.078140762,
+            -774.912087724,
+            4639230.02069307,
+            -0.528957608,
+            2.827771812,
+            6.272353099
+          ]
+        }
+      }
+    },
+    "displacement_from_the_committed_fit": [
+      {
+        "trace": "data/traces/vectors/school_section_blocks_1834.json",
+        "readings": 0,
+        "note": "Carries no raw pixel coordinate of its own: it is a DERIVED grid, rescaled onto the section's exact mile square and anchored on GCP G1, so a change of fit moves it by however far G1 moves and not by more. See control_movement below."
+      },
+      {
+        "trace": "data/traces/school_section_block_numbering.json",
+        "readings": 143,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 27.11,
+          "max_m": 84.37
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 24.17,
+          "max_m": 74.43
+        },
+        "M3_poly2_11pt": {
+          "median_m": 19.86,
+          "max_m": 120.52
+        }
+      },
+      {
+        "trace": "data/traces/kinzie_addition_street_grid.json",
+        "readings": 5,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 7.84,
+          "max_m": 13.58
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 36.2,
+          "max_m": 44.57
+        },
+        "M3_poly2_11pt": {
+          "median_m": 2.4,
+          "max_m": 5.24
+        }
+      },
+      {
+        "trace": "data/traces/kinzie_addition_block_numbering.json",
+        "readings": 53,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 8.19,
+          "max_m": 84.37
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 36.28,
+          "max_m": 74.43
+        },
+        "M3_poly2_11pt": {
+          "median_m": 4.54,
+          "max_m": 120.52
+        }
+      },
+      {
+        "trace": "data/traces/kinzie_block_name.json",
+        "readings": 4,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 21.29,
+          "max_m": 21.29
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 27.32,
+          "max_m": 28.37
+        },
+        "M3_poly2_11pt": {
+          "median_m": 6.6,
+          "max_m": 6.6
+        }
+      },
+      {
+        "trace": "data/traces/michigan_st_tract_grid.json",
+        "readings": 15,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 9.98,
+          "max_m": 13.65
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 24.73,
+          "max_m": 29.2
+        },
+        "M3_poly2_11pt": {
+          "median_m": 3.42,
+          "max_m": 5.44
+        }
+      },
+      {
+        "trace": "data/traces/wabansia_streets.json",
+        "readings": 12,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 22.8,
+          "max_m": 32.63
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 32.48,
+          "max_m": 46.86
+        },
+        "M3_poly2_11pt": {
+          "median_m": 13.59,
+          "max_m": 23.78
+        }
+      },
+      {
+        "trace": "data/traces/wabansia_block_numbering.json",
+        "readings": 28,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 25.22,
+          "max_m": 34.81
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 37.9,
+          "max_m": 48.42
+        },
+        "M3_poly2_11pt": {
+          "median_m": 16.09,
+          "max_m": 26.64
+        }
+      },
+      {
+        "trace": "data/traces/wabansia_water_lots.json",
+        "readings": 60,
+        "M1_affine_11pt_foot_control": {
+          "median_m": 17.98,
+          "max_m": 23.73
+        },
+        "M2_committed_affine_y_rescaled": {
+          "median_m": 30.69,
+          "max_m": 42.56
+        },
+        "M3_poly2_11pt": {
+          "median_m": 8.43,
+          "max_m": 15.58
+        }
+      }
+    ],
+    "control_movement": {
+      "metres_each_control_point_moves": {
+        "M1_affine_11pt_foot_control": {
+          "G1": 16.21,
+          "G2": 8.51,
+          "G3": 6.74,
+          "G4": 10.3,
+          "G5": 7.49,
+          "G6": 4.21,
+          "G7": 6.87,
+          "G8": 0.88
+        },
+        "M2_committed_affine_y_rescaled": {
+          "G1": 0.0,
+          "G2": 34.51,
+          "G3": 8.51,
+          "G4": 5.07,
+          "G5": 13.67,
+          "G6": 29.48,
+          "G7": 34.86,
+          "G8": 23.71
+        },
+        "M3_poly2_11pt": {
+          "G1": 1.21,
+          "G2": 2.38,
+          "G3": 1.77,
+          "G4": 1.38,
+          "G5": 2.87,
+          "G6": 1.28,
+          "G7": 1.76,
+          "G8": 1.98
+        }
+      },
+      "g1_note": "G1 is State and Madison, the section's north-east corner and the anchor the School Section grid, the Kinzie readings and the Michigan St tract are all seated through. Its movement is the rigid part of every displacement above."
+    }
+  }
+}
