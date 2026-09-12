@@ -60,7 +60,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1377
+      "n": 1295
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -72,7 +72,7 @@
       "what": "letter-list and newspaper persons",
       "path": "data/research/newspapers/gazetteer.json",
       "available": true,
-      "n": 2666
+      "n": 2665
     },
     {
       "what": "recovered v1 workbook bridge rows",
@@ -84,7 +84,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 153
+      "n": 142
     },
     {
       "what": "the 1839 Chicago directory",
@@ -102,18 +102,18 @@
   "counts": {
     "named_heads": 965,
     "matched": 14,
-    "candidate": 16,
-    "refused": 935
+    "candidate": 15,
+    "refused": 936
   },
   "counts_by_rule": {
     "L1 unreadable_name": 249,
-    "L2 no_surname_in_the_1835_pools": 410,
-    "L3 given_name_conflict": 194,
-    "L4 initial_only": 74,
-    "L5 name_is_not_unique": 8,
+    "L2 no_surname_in_the_1835_pools": 416,
+    "L3 given_name_conflict": 191,
+    "L4 initial_only": 73,
+    "L5 name_is_not_unique": 7,
     "L6 matched": 14,
     "L6a low_confidence_caps_at_candidate": 5,
-    "L7 candidate": 11
+    "L7 candidate": 10
   },
   "printed_pages_read_here": [
     207,
@@ -200,7 +200,7 @@
         "found_in_this_repos_reading": true,
         "outcome": "refused",
         "rule": "L3 given_name_conflict",
-        "reason": "The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
+        "reason": "The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
         "read_at": {
           "familysearch_id": "33S7-9YYJ-99F",
           "printed_page": 234,
@@ -263,7 +263,7 @@
         "found_in_this_repos_reading": true,
         "outcome": "refused",
         "rule": "L3 given_name_conflict",
-        "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+        "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
         "read_at": {
           "familysearch_id": "33SQ-GYYJ-RJ",
           "printed_page": 233,
@@ -564,30 +564,6 @@
       ],
       "says": "The enumerator wrote Samuel C. Jackson and Joseph M. Chandler on consecutive lines on printed page 207. An 1840 enumerator walked a route, so lines that are adjacent were dwellings that were near each other IN 1840.",
       "what_it_does_not_say": "nothing about where either household stood in 1835, and nothing that may place a structure. Five years separate this order from the scene, and neither head is placed on the 1840 ground either."
-    },
-    {
-      "kind": "enumeration_adjacency",
-      "town_finding": true,
-      "familysearch_id": "33SQ-GYYJ-93G",
-      "printed_page": 207,
-      "lines": [
-        21,
-        23
-      ],
-      "pair": [
-        "John Knight",
-        "James A. Smith"
-      ],
-      "person_ids": [
-        "knight_john",
-        "smith_james"
-      ],
-      "outcomes": [
-        "candidate",
-        "candidate"
-      ],
-      "says": "The enumerator wrote John Knight and James A. Smith two lines apart on printed page 207. An 1840 enumerator walked a route, so lines that are adjacent were dwellings that were near each other IN 1840.",
-      "what_it_does_not_say": "nothing about where either household stood in 1835, and nothing that may place a structure. Five years separate this order from the scene, and neither head is placed on the 1840 ground either."
     }
   ],
   "town_findings_note": "the only spatial signal an 1840 sheet carries is the order the enumerator walked it in. Adjacency is reported for matched and candidate heads only, and it is an 1840 fact: nothing here places a structure on the 1835 ground.",
@@ -806,16 +782,16 @@
       ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -1023,11 +999,10 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'james'.",
+      "reason": "The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'james'.",
       "surname_bearers_1835": [
         "robinson_catherine",
-        "robinson_d_o",
-        "robinson_hugh"
+        "robinson_d_o"
       ]
     },
     {
@@ -1314,10 +1289,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'grant' is carried by 2 person(s) of 1835 (James Grant, Thomas D Grant) and none of their given names is 'barry'.",
+      "reason": "The surname 'grant' is carried by 1 person(s) of 1835 (James Grant) and none of their given names is 'barry'.",
       "surname_bearers_1835": [
-        "grant_james",
-        "grant_thomas_d"
+        "grant_james"
       ]
     },
     {
@@ -2642,9 +2616,8 @@
       ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
+      "reason": "The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
       "surname_bearers_1835": [
-        "miller_fred",
         "miller_george",
         "miller_john",
         "miller_samuel"
@@ -2831,11 +2804,8 @@
       "forename": "david",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L3 given_name_conflict",
-      "reason": "The surname 'mead' is carried by 1 person(s) of 1835 (A J Mead) and none of their given names is 'david'.",
-      "surname_bearers_1835": [
-        "mead_a_j"
-      ]
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'mead'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-9HY",
@@ -2926,16 +2896,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -3385,9 +3355,8 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
+      "reason": "The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
       "surname_bearers_1835": [
-        "miller_fred",
         "miller_george",
         "miller_john",
         "miller_samuel"
@@ -3760,10 +3729,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'murray' is carried by 3 person(s) of 1835 (Alonzo Murray, James H Murray, Patrick Murray) and none of their given names is 'george'.",
+      "reason": "The surname 'murray' is carried by 2 person(s) of 1835 (Alonzo Murray, Patrick Murray) and none of their given names is 'george'.",
       "surname_bearers_1835": [
         "murray_alonzo",
-        "murray_james_h",
         "murray_patrick"
       ]
     },
@@ -4157,11 +4125,8 @@
       "forename": "john",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L3 given_name_conflict",
-      "reason": "The surname 'mccloud' is carried by 1 person(s) of 1835 (H Mccloud) and none of their given names is 'john'.",
-      "surname_bearers_1835": [
-        "mccloud_h"
-      ]
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'mccloud'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-9M5",
@@ -5090,16 +5055,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -6297,10 +6262,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'reed' is carried by 5 person(s) of 1835 (J. W. Reed, George Reed, S W Reed, Thomas Reed) and none of their given names is 'mary'.",
+      "reason": "The surname 'reed' is carried by 4 person(s) of 1835 (J. W. Reed, S W Reed, Thomas Reed, William Reed) and none of their given names is 'mary'.",
       "surname_bearers_1835": [
         "inf_joiner_north_02",
-        "reed_george",
         "reed_s_w",
         "reed_thomas",
         "reed_william"
@@ -6365,10 +6329,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'R. E. Heacock' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'heacock'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'R. E. Heacock' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'heacock'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "heacock_russel_e",
-        "heacock_russell_e"
+        "heacock_russel_e"
       ]
     },
     {
@@ -8304,11 +8267,8 @@
       "forename": null,
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L4 initial_only",
-      "reason": "The head is written 'R. C. Sheldon' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'sheldon'. A surname and a letter is not an identity.",
-      "surname_bearers_1835": [
-        "sheldon_james"
-      ]
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'sheldon'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-PC",
@@ -8414,13 +8374,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'H. Townsend' — a surname and initials only — and 5 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'H. Townsend' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "townsend_a",
-        "townsend_c_e",
-        "townsend_isaiah",
-        "townsend_robert",
-        "townsend_samuel"
+        "townsend_c_e"
       ]
     },
     {
@@ -8435,13 +8391,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'townsend' is carried by 5 person(s) of 1835 (A Townsend, C. E. Townsend, Isaiah Townsend, Robert Townsend) and none of their given names is 'henry'.",
+      "reason": "The surname 'townsend' is carried by 1 person(s) of 1835 (C. E. Townsend) and none of their given names is 'henry'.",
       "surname_bearers_1835": [
-        "townsend_a",
-        "townsend_c_e",
-        "townsend_isaiah",
-        "townsend_robert",
-        "townsend_samuel"
+        "townsend_c_e"
       ]
     },
     {
@@ -8489,14 +8441,14 @@
           ]
         }
       ],
-      "outcome": "refused",
-      "rule": "L5 name_is_not_unique",
-      "reason": "The name 'Elijah Wentworth' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
-      "candidates_1835": [
-        "sen_elijah_wentworth",
-        "wentworth_elijah"
-      ],
-      "other_1840_lines_with_this_name": []
+      "person_id": "sen_elijah_wentworth",
+      "household_id": "hh_sen_elijah_wentworth",
+      "resident_name": "Elijah Wentworth sen.",
+      "resident_grade_1835": "attested",
+      "discriminators": [],
+      "outcome": "candidate",
+      "rule": "L7 candidate",
+      "reason": "Full forename and surname agree (Elijah Wentworth = Elijah Wentworth sen.) and the name is unique on both sides, but nothing independent of the name was found: sen_elijah_wentworth carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 1 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33S7-9YYJ-Q1",
@@ -8527,10 +8479,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'Sanford' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'Sanford' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "sanford_a_r",
-        "sanford_n_g",
         "sanford_ruth"
       ]
     },
@@ -8597,11 +8548,10 @@
       ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'robert'.",
+      "reason": "The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'robert'.",
       "surname_bearers_1835": [
         "robinson_catherine",
-        "robinson_d_o",
-        "robinson_hugh"
+        "robinson_d_o"
       ]
     },
     {
@@ -8787,16 +8737,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -9435,9 +9385,8 @@
       ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
+      "reason": "The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
       "surname_bearers_1835": [
-        "miller_fred",
         "miller_george",
         "miller_john",
         "miller_samuel"
@@ -10529,14 +10478,14 @@
       "surname": "miller",
       "forename": "fred",
       "same_name_support": [],
-      "person_id": "miller_fred",
-      "household_id": "hh_miller_fred",
-      "resident_name": "Fred Miller",
-      "resident_grade_1835": "attested",
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Fred Miller = Fred Miller) and the name is unique on both sides, but nothing independent of the name was found: miller_fred carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The name appears on no 1835 list beyond the residents layer."
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'fred'.",
+      "surname_bearers_1835": [
+        "miller_george",
+        "miller_john",
+        "miller_samuel"
+      ]
     },
     {
       "familysearch_id": "33S7-9YYN-3CDH",
@@ -10730,11 +10679,8 @@
       "forename": "william",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L3 given_name_conflict",
-      "reason": "The surname 'mann' is carried by 1 person(s) of 1835 (John Mann) and none of their given names is 'william'.",
-      "surname_bearers_1835": [
-        "mann_john"
-      ]
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'mann'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-6V",
@@ -11410,11 +11356,8 @@
       "forename": "charles",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L3 given_name_conflict",
-      "reason": "The surname 'bower' is carried by 1 person(s) of 1835 (H Bower) and none of their given names is 'charles'.",
-      "surname_bearers_1835": [
-        "bower_h"
-      ]
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'bower'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -11488,16 +11431,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -11608,11 +11551,10 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'john'.",
+      "reason": "The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'john'.",
       "surname_bearers_1835": [
         "robinson_catherine",
-        "robinson_d_o",
-        "robinson_hugh"
+        "robinson_d_o"
       ]
     },
     {
@@ -11666,16 +11608,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -11697,14 +11639,19 @@
           ]
         }
       ],
-      "person_id": "smith_james",
-      "household_id": "hh_smith_james",
-      "resident_name": "James Smith",
-      "resident_grade_1835": "attested",
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (James A. Smith = James Smith) and the name is unique on both sides, but nothing independent of the name was found: smith_james carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 1 1835 list(s), which is the same name again and does not discriminate."
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "surname_bearers_1835": [
+        "smith_e_kirby",
+        "smith_elded",
+        "smith_george",
+        "smith_jeremiah",
+        "smith_l_w",
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -12652,11 +12599,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'wentworth' is carried by 3 person(s) of 1835 (Elijah Wentworth sen., Elijah Wentworth, H E Wentworth) and none of their given names is 'john'.",
+      "reason": "The surname 'wentworth' is carried by 1 person(s) of 1835 (Elijah Wentworth sen.) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "sen_elijah_wentworth",
-        "wentworth_elijah",
-        "wentworth_h_e"
+        "sen_elijah_wentworth"
       ]
     },
     {
@@ -12699,16 +12644,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -13707,16 +13652,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "reason": "The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -14298,10 +14243,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'dow' is carried by 2 person(s) of 1835 (Albert F. Dow, Stephen E Dow) and none of their given names is 'charles'.",
+      "reason": "The surname 'dow' is carried by 1 person(s) of 1835 (Albert F. Dow) and none of their given names is 'charles'.",
       "surname_bearers_1835": [
-        "dow_albert_f",
-        "dow_stephen_e"
+        "dow_albert_f"
       ]
     },
     {
@@ -15106,11 +15050,8 @@
       "forename": "ohn",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L3 given_name_conflict",
-      "reason": "The surname 'ellis' is carried by 1 person(s) of 1835 (J Ellis) and none of their given names is 'ohn'.",
-      "surname_bearers_1835": [
-        "ellis_j"
-      ]
+      "rule": "L2 no_surname_in_the_1835_pools",
+      "reason": "No person in the residents layer carries the surname 'ellis'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-RJ",
@@ -15233,16 +15174,16 @@
       ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {
@@ -17135,9 +17076,8 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
+      "reason": "The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
       "surname_bearers_1835": [
-        "miller_fred",
         "miller_george",
         "miller_john",
         "miller_samuel"
@@ -17237,16 +17177,16 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "reason": "The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "surname_bearers_1835": [
-        "smith_d_a",
         "smith_e_kirby",
         "smith_elded",
         "smith_george",
-        "smith_james",
         "smith_jeremiah",
         "smith_l_w",
-        "smith_lawrence"
+        "smith_lawrence",
+        "smith_matthias",
+        "smith_william"
       ]
     },
     {

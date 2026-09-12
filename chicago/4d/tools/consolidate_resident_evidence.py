@@ -59,6 +59,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import resolve_place_vocabulary  # noqa: E402  (T-1049 — the corpus that says where a place is)
+
 RESEARCH = ROOT / "data" / "research"
 RESIDENTS = ROOT / "data" / "residents"
 OUT_DIR = RESEARCH / "residents"
@@ -160,6 +163,27 @@ GRADE_ORDER = {None: 1, "not_1835_resident": 0, "inferred": 1, "attested": 2}
 # `later` is anything the ladder forbids from standing alone.
 CONTEMPORARY_CLASSES = {"newspaper_1833_1835"}
 LETTER_LIST_CLASS = "newspaper_letter_list"
+# THE PLACE REFUSAL (T-1049). The gazetteer is a reading of two Chicago papers, and a
+# Chicago paper prints men who are not at Chicago: its agents at Michigan City, its
+# correspondents at Green Bay, the Albany house whose advertisement it carries. Before
+# T-1048 every one of them was handed to the pool as `newspaper_1833_1835`, and merge
+# rule M1 — identical normalised name — put them on whatever Chicago card shared the
+# name. `hh_miller_samuel` carried David Carver's Michigan City agent that way.
+#
+# The refusal is a CLASS and not a deletion. A dropped reading is invisible: nobody can
+# count it, argue with it, or find the man again when a later source places him in the
+# town after all. So the appearance is kept, in the master, under a name — exactly the
+# shape LETTER_LIST_CLASS already uses for the other reading this project will not spend.
+# What the class does NOT do is appear in any set below: no rung reads it, no family
+# counts it, and `independent_records` does not let it corroborate.
+#
+# WHERE `outside` COMES FROM: `resolve_place_vocabulary.person_resolution()`, the corpus
+# T-1048 committed, which resolves each printed place against the bare town, the
+# committed 1835 streets and the committed structure names before anything refuses. It
+# answers `outside` only when at least one of a person's places resolves outside the town
+# and NONE resolves inside it or is undecided. A man with one Chicago address is a
+# Chicago appearance whatever else his record carries.
+OUT_OF_TOWN_CLASS = "newspaper_out_of_town"
 POLL_1835 = "poll_1835"
 EARLY_LIST_CLASSES = {"poll_1833", "tax_1833", "poll_1834", "muster_1832"}
 CHURCH_SCENE_CLASS = "church_1833_1835"
@@ -555,6 +579,12 @@ def read_newspapers():
         year = year_of(person.get("first_seen"))
         if not year or year > SCENE_YEAR:
             klass = "newspaper_after_1835"
+        elif resolve_place_vocabulary.person_resolution(person) == "outside":
+            # THE PLACE REFUSAL (T-1049), and it sits BELOW the date test on purpose:
+            # `newspaper_after_1835` is a refusal about WHEN and this one is about WHERE,
+            # and a reading that fails the date never reaches the town at all, so the
+            # older class keeps its rows and its count unchanged.
+            klass = OUT_OF_TOWN_CLASS
         elif person.get("letter_list_only"):
             # THE ONE PLACE THE LADDER NEEDED READING. A post-office list of letters
             # remaining uncalled-for names a person whose MAIL is at Chicago. Whether
@@ -1142,7 +1172,8 @@ def independent_records(identity):
     two. Same evidence, opposite verdicts, decided by who digitised it.
     """
     return {(m["evidence_class"], m.get("describes_date"))
-            for m in identity["members"] if m["domain"] != "residents"}
+            for m in identity["members"] if m["domain"] != "residents"
+            and m["evidence_class"] != OUT_OF_TOWN_CLASS}
 
 
 def in_window_families(identity):
@@ -1157,12 +1188,14 @@ def grade(identity):
     sources = {m["source_id"] for m in identity["members"] if m.get("source_id")}
     on_a_card = "residents" in domains
     evidence_domains = domains - {"residents"}
-    n = len([m for m in identity["members"] if m["domain"] != "residents"])
+    n = len([m for m in identity["members"] if m["domain"] != "residents"
+             and m["evidence_class"] != OUT_OF_TOWN_CLASS])
 
     scene_window = (CONTEMPORARY_CLASSES | EARLY_LIST_CLASSES
                     | {POLL_1835, CHURCH_SCENE_CLASS, LETTER_LIST_CLASS})
     if not (classes & scene_window) and classes <= (LATER_CLASSES
-                                                    | {"newspaper_after_1835", "town_layer"}):
+                                                    | {"newspaper_after_1835", "town_layer",
+                                                       OUT_OF_TOWN_CLASS}):
         if on_a_card:
             return "G5", None, None
         if evidence_domains:
@@ -1202,6 +1235,46 @@ def grade(identity):
 
 # ---------------------------------------------------------------------------
 # BUILD
+
+
+def place_refusals(rows: list) -> dict:
+    """Every reading the place vocabulary refused, by name, so it can be argued with.
+
+    A refusal nobody can see is indistinguishable from a bug. This block names each one:
+    the identity it was offered to, the printed place that decided it, and — the part
+    that matters — whether the identity STANDS ON A CARD, because those are the readings
+    that were being spent on the town before T-1049 and the ones an owner would want to
+    check first. The corpus that ruled each place is
+    data/research/newspapers/place_vocabulary.json; this block cites the string, not a
+    copy of the reasoning, so the two cannot drift.
+    """
+    gazetteer = {p["id"]: p for p in (load(RESEARCH / "newspapers" / "gazetteer.json")
+                                      or {}).get("persons", [])}
+    refused = []
+    for row in rows:
+        for entry in row["appearances"]:
+            if entry["evidence_class"] != OUT_OF_TOWN_CLASS:
+                continue
+            person = gazetteer.get(entry["record_id"], {})
+            refused.append({
+                "identity": row["id"],
+                "gazetteer_person": entry["record_id"],
+                "as_read": entry.get("as_read"),
+                "places_as_printed": resolve_place_vocabulary.places_of(person),
+                "on_a_card": row.get("canonical_person_id"),
+            })
+    return {
+        "_doc": "GENERATED. Newspaper readings the resolved place vocabulary "
+                "(data/research/newspapers/place_vocabulary.json, T-1048) places outside "
+                "the town, and nowhere inside it. They are carried as evidence class "
+                f"`{OUT_OF_TOWN_CLASS}`: no rung spends one, no class family counts one, "
+                "and `independent_records` does not let one corroborate. Kept rather than "
+                "dropped so the refusal can be counted and argued with.",
+        "readings": len(refused),
+        "readings_on_an_identity_the_town_carries":
+            sum(1 for r in refused if r["on_a_card"]),
+        "refused": sorted(refused, key=lambda r: (r["identity"], r["gazetteer_person"])),
+    }
 
 
 def build():
@@ -1277,7 +1350,14 @@ def build():
             "declared_merges": len(declared_merges),
             "appearances_moved_by_a_landed_adjudication": len(anchored),
             "declared_refusals": len(declared_refusals),
+            "appearances_refused_as_out_of_town": sum(
+                1 for r in rows for a in r["appearances"]
+                if a["evidence_class"] == OUT_OF_TOWN_CLASS),
+            "identities_carrying_an_out_of_town_reading": sum(
+                1 for r in rows if any(a["evidence_class"] == OUT_OF_TOWN_CLASS
+                                       for a in r["appearances"])),
         },
+        "place_refusals": place_refusals(rows),
         "identities": rows,
         "refusals": refusals,
         "declared_merges": declared_merges,
