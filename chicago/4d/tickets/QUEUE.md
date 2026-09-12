@@ -151,7 +151,6 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 # --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
-T-1065 — The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
