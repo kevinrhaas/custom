@@ -160,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner — and the only place a name is declared a PLACE rather than a person |
+| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner — the only place a name is declared a PLACE rather than a person, and the only place an AGENCY is declared a relation rather than a house |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -616,6 +616,59 @@ the two Eagle readings deliberately do not, because nothing in the corpus prints
 a shared word is the resemblance argument this file exists to refuse (T-0397). The table
 lands in `gazetteer.json` as `places`, beside `persons` and `businesses`, and the register
 compiled from it no longer carries signboards as inhabitants of the town.
+
+**And some things the papers name are neither a person nor a house** (T-0410). The Howard
+Fire Insurance Company of the city of New-York sold fire insurance in Chicago through a
+LOCAL AGENT, and an agency is not a trade, a shop or a signboard: it is a RELATION between
+a principal that never stood in this town and the house or the man who held it for a
+season. With only `persons` and `businesses` to mint into, the corpus expressed it the one
+way it could — as its own business — which then collided under `firm_surnames()` with the
+house holding it and had to be refused by hand. T-0402 wrote that refusal and it said the
+wrong thing: *these are two houses*, when the finding is that they are JOINED, by an agency
+that passed from one to the other.
+
+`identity.json`'s fourth section, `agencies`, is that relation. A declaration names the
+principal with a `why` that names it verbatim, lists the `holdings` — who held it, whether
+a `business` or a `person`, and the printings each holding rests on — and may name a
+minted record it `retires`. Two things it does NOT do are the point. **The window is
+computed from the witnesses' own issue dates and may not be asserted**, the same discipline
+as ruling 3. And **a holding says that a house held the agency and nothing else**: no
+proprietor, no trade, no street, no roof, because a man who signs for a principal is not
+thereby a partner in the house he signs for — which is precisely why E. K. Hubbard could
+never be merged into Hubbard & Co. `refused_holdings` is the same record kept the other way
+up, for a candidate the printings refute. A retirement is guarded four ways, because it is
+the only declaration in this file that takes a business OUT of the register: the record
+must be one the register carries, it must be unplaced (a placed record would take an
+address out of the town with it), every printing it was compiled from must be a witness of
+some holding, and no refusal may still name it.
+
+The Howard is the first and the whole of the section so far. **Two holdings, one refusal,
+and the businesses table goes from 206 to 205.** Hubbard & Co. held it first and advertised
+in the PLURAL over the firm's signature — 'The subscribers having been appointed Agents for
+the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', 1834-07-02 c048
+through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in
+the SINGULAR over one man, 'THE subscriber having been appointed agent … E. K. HUBBARD.',
+reprinted by the Democrat at 1835-07-01 c017, 1835-07-08 c005 and 1835-07-29 c011. So on
+the scene date the agency sits with the man, the forwarding house goes on trading under its
+own name to 1835-08-29, and nothing here makes E. K. a partner in it.
+
+**The third holder the ticket was filed for does not exist, and the printing that seemed to
+show it is what refutes it.** T-0410 read Jones, King & Co. as a third holder off
+1835-08-05 c008, and the register agreed: that business record announced itself 'appointed
+Agent for the Howard Fire Insurance Company' over a dateline of 1 July 1835. The fragment
+carries TWO notices, as its own claim note had said since T-0335 — its reading runs 'July
+1, [1835]. [E]. K. [H]UBBARD. — Hardware, Stoves, &c. Th[e] u[n]dersigned have [formed a]
+connect[ion] … under the [f]irm o[f] Jones, [King] & [C]o.', and the hardware notice is
+signed WILLIAM JONES, BYRAM KING, W. B. CLARKE while the insurance card above it is signed
+by the man. The claim's own entity list already read `UCBRARB,` as 'Hubbard, E. K.' with
+the role *insurance agent*. So c008 is the FIFTH printing of E. K. Hubbard's holding, Jones,
+King & Co. is recorded as a `refused_holding` on the printing that refutes it, and the
+claim's `announces_opening` — the agency's sentence read onto the hardware firm's record —
+is dropped. Nothing of the quote, the normalized reading or the entities moves. The firm's
+own opening is still announced by its formation notice at 1835-07-08 c009 and 1835-07-22
+c009. With the minted record gone the T-0402 refusal has no pair, so it comes out in the
+same pass; the OTHER refusal that ticket wrote, 'Jones & King' against 'Jones, King & Co.',
+is a copartnership succession and not an agency, so this relation leaves it standing.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,
