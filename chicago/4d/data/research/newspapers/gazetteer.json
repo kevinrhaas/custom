@@ -351,7 +351,7 @@
   "counts": {
     "claims": 1169,
     "persons": 2665,
-    "places": 4,
+    "places": 3,
     "businesses": 198,
     "agencies": 1
   },
@@ -58368,20 +58368,31 @@
       "name": "Eagle Hotel",
       "variants": [
         {
+          "as_printed": "the Eayle Hotel, (Steele’s)",
+          "claim": "chicago_democrat_1834_02_04#c003"
+        },
+        {
           "as_printed": "EAGLE HOTEL",
           "claim": "chicago_democrat_1834_05_14#c008"
         }
       ],
       "mentions": [
+        "chicago_democrat_1834_02_04#c003",
         "chicago_democrat_1834_05_14#c008"
       ],
-      "first_seen": "1834-05-14",
+      "first_seen": "1834-02-04",
       "last_seen": "1834-05-14",
       "associated_places": [
         "Chicago"
       ],
       "kind": "hotel",
-      "why": "\"Eagle Hotel\" is a house of entertainment, and the claim that mints it (chicago_democrat_1834_05_14 c008) sets it as a display heading over its own advertisement — the building advertising itself. No forename or initial is printed with it in any issue of this corpus, because there is none: it is a sign."
+      "why": "\"Eagle Hotel\" is a house of entertainment, and the claim that mints it (chicago_democrat_1834_05_14 c008) sets it as a display heading over its own advertisement — the building advertising itself. It is a sign and not a person: no forename or initial is ever printed as PART of it. A keeper's name is a different thing, and the house carries those — Steele's in February 1834, the taker of 15 April 1834, J. Shrigley from 1 September 1834 — which is why \"the Eagle Hotel (Steele's)\" merges into this record under T-0391 rather than standing beside it.",
+      "merged": [
+        {
+          "from": "the Eagle Hotel (Steele's)",
+          "merge_rule": "\"Eagle Hotel\" and \"the Eagle Hotel (Steele's)\" are one house, and the issue of 1834-02-04 is the witness that decides it — the condition this pair was held open for. Page 3, column 3 of that issue sets the name THREE TIMES in one compositor's column, twice without a keeper: at lines 2251-2260 the citizens of Chicago are called to meet \"at the Ea[g]le Hotel, (Steele's)\" (claim c003); ten lines below, at 2270-2281, the citizens of Cook county are called \"to m[e]et [a]t the Eagle Hotel in Chicago\" (c004); and at 2310-2320 an auction is cried \"at the [Eag]le Hotel in this town\" (c006). The setting WITH the parenthesis and the setting WITHOUT it stand ten lines apart in one column, and the two bare ones are qualified by the TOWN — \"in Chicago\", \"in this town\" — which is a paper distinguishing its Eagle from Eagles elsewhere and not from a second Eagle at home. A compositor holding two houses of one name apart for his own readers does not set the second and third without a word to tell them from the first.\n\nAND THE SUCCESSION SAYS IT INDEPENDENTLY. The corpus follows one house it calls \"the Eagle Hotel\", with the definite article, through named keepers and no break: Steele's in February 1834; \"he has taken the EAGLE HOTEL\" over a copy date of 15 April 1834 (1834-04-16 c002, reprinted 1834-05-14 c008, 1834-06-18 c014, 1834-07-02 c004), which is a succession notice and not a building notice — the taker is a new keeper of a house that already stood; and \"P. J. CARL[I], having relinquished the tav[e]rn known as the Ea[g]l[e] Hotel, on the [first of] [S]eptember last, to J. Shrigley\" (1834-10-08 c006). \"Known as\" is the paper's own statement that the house is a single known one. The keeper who took it in April is read \"P. B. F. CABLE\" in some impressions and \"P. J. [CARLI]\" in others; WHICH the type carries is a separate question and this merge neither touches nor needs it.\n\nSO THE PARENTHESIS IS A KEEPER, NOT A SIGN, and it is an idiom this paper uses: it writes \"the Eagle Coffee House, Trowbridge's\" (1835-06-24 c001) and the town carries \"Graves' Tavern\" the same way. The direction is into the sign, because \"Eagle Hotel\" is what the house sets over its own advertisement (1834-05-14 c008) while a keeper's name lasted seven months.\n\nWHAT THIS MERGE DOES NOT REACH, stated so the next reader does not extend it. The EAGLE COFFEE HOUSE — \"Trowbridge's\", also \"the Eagle House\" — is a DIFFERENT house and is not joined here: it appears only from 1835-06-24, in or about Dearborn Street (1835-06-24 c006, 1835-08-05 c020), with its own keeper, while the Eagle Hotel is placed nowhere in the whole of 1834 and no notice gives it a street. Two houses of entertainment may share a bird. \"Eagle Precinct, Lasalle county\" (1834-07-30 c008) is not in Chicago at all. T-0391."
+        }
+      ]
     },
     {
       "id": "place_haddock_s_tavern",
@@ -58431,24 +58442,6 @@
       ],
       "kind": "meeting_house",
       "why": "\"the Baptist meeting house\" is a building and reads as one in plain words — the 1834-05-21 claim (c003) puts it in South Water Street, which is already recorded on the entry as an associated place. It is a congregation's house, not a person, and no printing gives it a forename because none exists."
-    },
-    {
-      "id": "place_the_eagle_hotel_steele_s",
-      "name": "the Eagle Hotel (Steele's)",
-      "variants": [
-        {
-          "as_printed": "the Eayle Hotel, (Steele’s)",
-          "claim": "chicago_democrat_1834_02_04#c003"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_02_04#c003"
-      ],
-      "first_seen": "1834-02-04",
-      "last_seen": "1834-02-04",
-      "associated_places": [],
-      "kind": "hotel",
-      "why": "\"the Eagle Hotel (Steele's)\" is a building named with its keeper in a parenthesis — the 1834-02-04 notice (c003) locates something at \"the Eagle Hotel, (Steele's)\", which is an address and not a person's name. It is declared a place on that reading alone. Whether it and \"Eagle Hotel\" are one house is a separate question and is NOT answered here: no issue in this corpus prints both settings in a way that decides it, and a merge on the strength of the shared word Eagle is the resemblance argument this file exists to refuse. T-0397 holds it."
     }
   ],
   "businesses": [
