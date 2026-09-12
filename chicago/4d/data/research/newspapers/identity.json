@@ -2620,19 +2620,6 @@
       "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
     },
     {
-      "into": "Hubbard & Co.",
-      "from": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
-      "kind": "two_houses",
-      "witnesses": [
-        "chicago_democrat_1834_07_02#c048",
-        "chicago_democrat_1834_10_15#c005",
-        "chicago_democrat_1835_05_20#c023",
-        "chicago_american_1835_06_20#c015",
-        "chicago_american_1835_08_29#c004"
-      ],
-      "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
-    },
-    {
       "into": "Jones & King",
       "from": "Jones, King & Co.",
       "kind": "two_houses",
@@ -2903,19 +2890,19 @@
       "cannot_say": "WHEN THE OFFICE ACTUALLY MOVED, AND WHETHER IT MOVED AT ALL. A card copy-dated 3 December 1834 that first appears in this deposit on 20 May 1835 leaves five and a half months in which nothing printed here says where Spring sat; the deposit is not the paper's whole run, so the new address may have been printed weeks or months before the issue that carries it, and the old one may have gone on running beside it in issues this project does not hold. Nor does anything printed say that ONE office moved rather than that a lawyer who had rooms on South Water Street took rooms on Dearborn Street: both would read exactly like this. What the rule decides is only which anchor the card is printed under at the scene date of 1835-07-01 — the Tremont House, first printed 20 May 1835 and printed again 5 August 1835 — and that is a statement about the ADVERTISEMENT. The earlier anchor is kept with its own dates and its own eleven printings so a later pass can still tell a removal from a second office. The Dearborn address is itself a count of doors, 'first door north from the Tremont House': it fixes a side of Dearborn Street and an order along it, not a lot width, and no lot is claimed for it here."
     }
   ],
-    "refused_anchor_note": "THE REFUSAL OF A DATED ANCHOR CHANGE (T-0773, landed by T-0949), and it is `anchor_changes`' own argument kept the other way up. `tools/measure_placement_silence.py` counts the houses whose live placement one of their own later printings OUTRANKS, and reordering two printed addresses is a judgement only a rule above may make. Some of that population must never get one — and the only record of that was the ABSENCE of a rule, which reads exactly like a house nobody has looked at yet, so the next sweep finds the same houses and reads them again. A refusal is therefore declared as explicitly as a change, and the compiler checks its KIND against the readings rather than taking the author's word: `printed_in_the_same_weeks` has to overlap, `silence_is_not_an_anchor` has to have a live placement that names no anchor, and `after_the_scene_date` has to have every outranking printing first set after 1835-07-01. Each refusal names verbatim an anchor it refuses to be reordered by, and a refusal whose pair has gone — a house no printing outranks any more — is an error here rather than a line nobody notices has stopped being true. THAT LAST GUARD IS WHY THERE ARE TWO ENTRIES HERE AND NOT T-0773's FIVE. Between T-0773's reading and T-0949's landing, T-0440, T-0859 and T-0948 each repaired part of the population: `business_j_s_c_hogan` and `business_newberry_dole` were held by printings that named no ground at all and T-0440 now places both, and `business_rockwell_cabinet_furniture_warehouse` is narrowed by T-0948 on its own street under its own dateline. Nothing outranks any of the three any more, so a refusal for them would be a judgement about nothing and the compiler says so. The two below are the ones whose pair still stands. `silence_is_not_an_anchor` is therefore declared by no house today and is kept because it is the kind the next silent-then-anchored house will need; its guards are asserted in `compile_gazetteer.py`'s self-test.",
-    "refused_anchor_changes": [
-      {
-        "business": "business_j_k_botsford",
-        "kind": "printed_in_the_same_weeks",
-        "refused_because": "T-0324 read every printing of both of this house's addresses and settled them: \"next door to Graves' Tavern\" and \"the corner of Dearborn and Lake streets\" are ONE frontage — not two premises, and not a move. Both run in a single issue, 1834-04-01 c009 and c010, six weeks after the move a reordering would have to record; and through that whole stretch the corner card is being re-set with fresh date lines, Feb 4 then Feb 24 then Apr 22, while the tavern card keeps running, which is not what a man does with an advertisement he has forgotten to pull. Graves' Tavern is itself that corner: it is the Mansion House, held in this reconstruction since 2026-08-11 on the north side of Lake Street just east of Dearborn. So these anchors have no before and no after to be put in, and a rule may only be written where one anchor stops before the next starts — any dates such a rule stated here would be false whatever it said about the ground. docs/RESEARCH/botsford_graves_1834.md is the reading and its table is the evidence."
-      },
-      {
-        "business": "business_samuel_lewis",
-        "kind": "after_the_scene_date",
-        "refused_because": "Every printing this house has runs after the scene date, the earliest on 1835-07-22, and the one that outranks the rest is the last of them: 1835-08-12 reads 'call at [h]i[s] room [in] South [Wa]ter street, (A. Garrett's Auction Room)'. So the narrower address is six weeks outside the scene, and AGENTS.md rule 3 refuses it there for the same reason it refuses the address that would have placed Jones, King & Co. The South Water Street of the 1835-07-22 card is what the house keeps. T-0948 reached this house and declined it too, on two grounds of its own — two datelines are two advertisements, and the 08-12 reading names no street to be narrowing one — so what is missing here is not a judgement between two printed addresses. It is a printing inside the scene."
-      }
-    ],
+  "refused_anchor_note": "THE REFUSAL OF A DATED ANCHOR CHANGE (T-0773, landed by T-0949), and it is `anchor_changes`' own argument kept the other way up. `tools/measure_placement_silence.py` counts the houses whose live placement one of their own later printings OUTRANKS, and reordering two printed addresses is a judgement only a rule above may make. Some of that population must never get one — and the only record of that was the ABSENCE of a rule, which reads exactly like a house nobody has looked at yet, so the next sweep finds the same houses and reads them again. A refusal is therefore declared as explicitly as a change, and the compiler checks its KIND against the readings rather than taking the author's word: `printed_in_the_same_weeks` has to overlap, `silence_is_not_an_anchor` has to have a live placement that names no anchor, and `after_the_scene_date` has to have every outranking printing first set after 1835-07-01. Each refusal names verbatim an anchor it refuses to be reordered by, and a refusal whose pair has gone — a house no printing outranks any more — is an error here rather than a line nobody notices has stopped being true. THAT LAST GUARD IS WHY THERE ARE TWO ENTRIES HERE AND NOT T-0773's FIVE. Between T-0773's reading and T-0949's landing, T-0440, T-0859 and T-0948 each repaired part of the population: `business_j_s_c_hogan` and `business_newberry_dole` were held by printings that named no ground at all and T-0440 now places both, and `business_rockwell_cabinet_furniture_warehouse` is narrowed by T-0948 on its own street under its own dateline. Nothing outranks any of the three any more, so a refusal for them would be a judgement about nothing and the compiler says so. The two below are the ones whose pair still stands. `silence_is_not_an_anchor` is therefore declared by no house today and is kept because it is the kind the next silent-then-anchored house will need; its guards are asserted in `compile_gazetteer.py`'s self-test.",
+  "refused_anchor_changes": [
+    {
+      "business": "business_j_k_botsford",
+      "kind": "printed_in_the_same_weeks",
+      "refused_because": "T-0324 read every printing of both of this house's addresses and settled them: \"next door to Graves' Tavern\" and \"the corner of Dearborn and Lake streets\" are ONE frontage — not two premises, and not a move. Both run in a single issue, 1834-04-01 c009 and c010, six weeks after the move a reordering would have to record; and through that whole stretch the corner card is being re-set with fresh date lines, Feb 4 then Feb 24 then Apr 22, while the tavern card keeps running, which is not what a man does with an advertisement he has forgotten to pull. Graves' Tavern is itself that corner: it is the Mansion House, held in this reconstruction since 2026-08-11 on the north side of Lake Street just east of Dearborn. So these anchors have no before and no after to be put in, and a rule may only be written where one anchor stops before the next starts — any dates such a rule stated here would be false whatever it said about the ground. docs/RESEARCH/botsford_graves_1834.md is the reading and its table is the evidence."
+    },
+    {
+      "business": "business_samuel_lewis",
+      "kind": "after_the_scene_date",
+      "refused_because": "Every printing this house has runs after the scene date, the earliest on 1835-07-22, and the one that outranks the rest is the last of them: 1835-08-12 reads 'call at [h]i[s] room [in] South [Wa]ter street, (A. Garrett's Auction Room)'. So the narrower address is six weeks outside the scene, and AGENTS.md rule 3 refuses it there for the same reason it refuses the address that would have placed Jones, King & Co. The South Water Street of the 1835-07-22 card is what the house keeps. T-0948 reached this house and declined it too, on two grounds of its own — two datelines are two advertisements, and the 08-12 reading names no street to be narrowing one — so what is missing here is not a judgement between two printed addresses. It is a printing inside the scene."
+    }
+  ],
   "proprietor_note": "The PROPRIETORS' half of the same policy (T-0337), and the last of the three places a name lives here. `merges` governs gazetteer PERSONS and `firm_merges` governs business STYLES; a proprietor is neither — it is a string on a business record, put there by whichever claim read that printing, so one man read two ways became two proprietors of his own house and nothing in either policy could reach across to say so. `business_russell_clift` carried 'Benj. Clift' from the 1834-09-03 impression of the copartnership notice and '[H. H.] Clift' from the 1834-11-12 impression of the SAME notice. The rule is the firm-side sibling of the person one and it points the other way on purpose: for a person, same surname with different initials never merges, silently and by default, because the letter lists are full of families; for two proprietors of ONE house the default cannot be silence either way, because brothers really do trade together — William and Franklin Brewster sign one dissolution notice — and so does one man read twice. So the compiler REFUSES any pair of person-styled proprietors of one house that share a surname and carry different, read forename initials, until it is declared: `proprietor_merges` joins two readings of one name, `proprietor_distinctions` holds two men apart, and each carries its reasoning. A bare surname beside a full name is not a pair — that is the papers printing less, not a second man — and a declaration whose pair has gone is refused too, so these cannot rot.",
   "proprietor_merges": [
     {
@@ -3046,6 +3033,64 @@
       "name": "Rodney House",
       "ticket": "T-0359",
       "refused_because": "\"Rodney House\" is a person for the same reason \"Chester House\" is. Its one mention is the 1834-04-01 letter list (c001), it stands in a column of people the post office was holding letters for, and House is the surname. No claim in this corpus puts a Rodney House on a street or over a door. The compiler refuses the declaration independently of this note."
+    }
+  ],
+  "agency_note": "AN AGENCY IS A RELATION AND NOT A HOUSE (T-0410). A business record holds a trade, goods, proprietors, a street and placement readings; an agency is none of those. It is a relation between a principal that is not in this town at all and a local house or man who holds it for a season, and until this section existed the corpus could express it only by minting the agency as its own business — which then collided with the house holding it under `firm_surnames()` and had to be refused by hand. A declaration here names the principal, records who held the agency over what window, and may RETIRE the business record the corpus minted for the agency itself. The window is COMPUTED from the witnesses' own issue dates and may not be asserted. What a holding may never do is the reason this section exists: it says that a house held the agency and NOTHING else — no proprietor, no trade, no street, no roof — because a man who signs for a principal is not thereby a partner in the house he signs for. `refused_holdings` is the same record kept the other way up, for a candidate the printings refute, because the absence of a holding reads exactly like a candidate nobody has judged.",
+  "agencies": [
+    {
+      "principal": "Howard Fire Insurance Company",
+      "principal_seat": "the city of New-York",
+      "trade": "fire insurance",
+      "why": "The Howard Fire Insurance Company is a New York company that never stood in this town. It sold fire insurance in Chicago through a LOCAL AGENT, and one standing advertisement — the same setting word for word, only the signature and the number of the verb changing — runs across thirteen months of the corpus: 'THE subscribers having been appointed Agents for the Howard Fire Insurance Company of the city of New-York, for Chicago and the vicinity, will insure property against loss by Fire, on reasonable terms. HUBBARD & CO.' from 1834-07-02, and the identical copy in the SINGULAR over one man, 'THE subscriber having been appointed Agent … E. K. HUBBARD.', from 1835-06-20. Neither the company nor the agency is a house in this town: no printing gives either a street, and nothing here decides whether E. K. Hubbard was a partner in Hubbard & Co., because no printing says so.",
+      "holdings": [
+        {
+          "holder": "Hubbard & Co.",
+          "holder_kind": "business",
+          "number": "plural",
+          "signature": "HUBBARD & CO.",
+          "copy_dates": [
+            "1834-07-01"
+          ],
+          "witnesses": [
+            "chicago_democrat_1834_07_02#c048",
+            "chicago_democrat_1834_10_15#c005",
+            "chicago_democrat_1835_05_20#c023"
+          ],
+          "note": "Hubbard & Co. held the agency first and advertised it in the PLURAL over the firm's own signature: '[The su]bscribers having been appointed [Ag]ents for the Howard Fire Insurance [Company of] the city of New-York … HUBBARD & CO.' (1834-07-02 c048). The 1834-10-15 c005 and 1835-05-20 c023 printings are the same setting over the copy date 'July 1'. The plural verb and the firm signature are the whole of what makes this the FIRM's holding rather than a partner's, and it is all they make it: the commission and forwarding house gains a line on its card and nothing else — no trade, no street, no roof. 'fire insurance' stands in this record's goods because the notice ran over its signature, which is a fact about the printing and not a second trade."
+        },
+        {
+          "holder": "E. K. Hubbard",
+          "holder_kind": "person",
+          "number": "singular",
+          "signature": "E. K. HUBBARD.",
+          "copy_dates": [
+            "1835-06-20",
+            "1835-07-01"
+          ],
+          "witnesses": [
+            "chicago_american_1835_06_20#c015",
+            "chicago_democrat_1835_07_01#c017",
+            "chicago_democrat_1835_07_08#c005",
+            "chicago_democrat_1835_07_29#c011",
+            "chicago_democrat_1835_08_05#c008"
+          ],
+          "note": "From 1835-06-20 the identical copy runs in the SINGULAR over one man — 'THE su[bs]criber ha[v]ing been [a]p[poin]t[e]d [agent] for the Howard Fire Insurance [Company] … E. K. [H]UBBARD.', American 1835-06-20 c015, copy-dated June 20, 1835 — and the Democrat reprints it at 1835-07-01 c017, 1835-07-08 c005, 1835-07-29 c011 and 1835-08-05 c008 over the copy date 'July 1'. So on the scene date the agency sits with E. K. Hubbard, and the forwarding house goes on trading under its own name to 1835-08-29. This project never reads a shared surname with different initials as one man, so the holder here is the MAN the signature names and nothing joins him to Hubbard & Co.'s partners, Gurdon S. Hubbard and Henry G. Hubbard. That refusal is exactly what the old `refused_firm_merges` entry was for, and it is what this relation replaces: the two records are not confused, they are joined — by an agency that passed from the firm to one man."
+        }
+      ],
+      "refused_holdings": [
+        {
+          "holder": "Jones, King & Co.",
+          "holder_kind": "business",
+          "witnesses": [
+            "chicago_democrat_1835_08_05#c008"
+          ],
+          "refused_because": "T-0410 was filed reading a THIRD holder off 1835-08-05 c008, where the agency notice is claimed on the Jones, King & Co. business record and that record therefore announced itself 'appointed Agent for the Howard Fire Insurance Company'. The fragment refutes it. Its own reading runs 'July 1, [1835]. [E]. K. [H]UBBARD. — Hardware, Stoves, &c. Th[e] u[n]dersigned have [formed a] connect[ion] in the mercantile business, under the [f]irm o[f] Jones, [King] & [C]o.': two notices on one fragment, as that claim's own notes say, and the fire-insurance card is signed by the man while the hardware notice below it is signed WILLIAM JONES, BYRAM KING, W. B. CLARKE. The claim's own entity list reads 'UCBRARB,' as 'Hubbard, E. K.' with the role 'insurance agent'. Nothing in the setting puts the agency in Jones, King & Co.'s hands; the segmenter put the two advertisements on one line. So there is no handover in the week of 5 August, and this is the fifth printing of the E. K. Hubbard holding above. The claim's `announces_opening` is dropped in the same pass, because it was the agency's sentence read onto the hardware firm's record."
+        }
+      ],
+      "retires": {
+        "name": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
+        "because": "'E. K. Hubbard, agent for the Howard Fire Insurance Company' is the agency itself minted as a house, which is the defect T-0410 was filed for. It has no street, no goods and no placement in any of its four printings, because an agency is not a house and none of them gave it one; what it has is a principal and a man holding it, and both of those are now the relation above. Every printing it was compiled from is a witness of the E. K. Hubbard holding, so the register loses one business record and not one reading. The transcriber's em-dashed style 'Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago' that an earlier firm merge collapsed into it is carried onto the retired record, so that judgement outlives the record it was made about."
+      }
     }
   ]
 }
