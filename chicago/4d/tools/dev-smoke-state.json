@@ -2791,6 +2791,37 @@
         ]
       },
       "source": "/tmp/smoke_m.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 269,
+      "takenAt": "2026-09-12T06:44:08.269Z",
+      "ref": "steward/t-0230-named-frontage-trades",
+      "commit": "bfbbecec8369",
+      "devCommit": "9d8e68945c85",
+      "treeHash": "sha256:125f8af5452c016e",
+      "treeDirty": false,
+      "changelogHash": "sha256:059542ef94c7c54b",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          2.8,
+          1.4
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
     }
   ]
 }
