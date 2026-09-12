@@ -9888,8 +9888,8 @@ or notice in the *Chicago Democrat* or the *Chicago American* — and its surviv
 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
 the flag, this entry carries the liberty, and no business record is graded `documented` for
 a survival nothing witnessed.
-**Why:** the corpus is thinnest in the year it most needs to be thick. 188 documented
-businesses are present at the scene date and only **88** of them are documented *in* 1835;
+**Why:** the corpus is thinnest in the year it most needs to be thick. 187 documented
+businesses are present at the scene date and only **87** of them are documented *in* 1835;
 the other **100** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
 before the day the town is drawn. Refusing the assumption is the only alternative to making
 it, and refusing it empties more than half the documented trade out of Chicago on the

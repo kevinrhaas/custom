@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1169,
       "persons": 2666,
-      "businesses": 205
+      "businesses": 204
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,8 +16,8 @@
   },
   "counts": {
     "businesses": {
-      "total": 205,
-      "present_at_scene_date": 188,
+      "total": 204,
+      "present_at_scene_date": 187,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
@@ -25,23 +25,23 @@
       "by_action": {
         "enrich_existing": 31,
         "new_building": 28,
-        "street_only": 59,
+        "street_only": 58,
         "unplaceable": 87
       },
       "by_placement_class": {
         "corner": 18,
         "none": 62,
-        "relative": 107,
+        "relative": 106,
         "street_only": 18
       },
       "present_by_action": {
         "enrich_existing": 31,
         "new_building": 28,
-        "street_only": 59,
+        "street_only": 58,
         "unplaceable": 70
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 101,
+      "survival_liberty_required": 100,
       "backdating_liberty_required": 27,
       "dissolved_after_scene_date": 1
     },
@@ -2331,7 +2331,7 @@
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-11-12",
+        "first_issue": "1834-10-08",
         "last_issue": "1834-11-12"
       },
       "present_at_scene_date": true,
@@ -2466,45 +2466,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
-      "id": "business_g_blanshard",
-      "name": "G. Blanshard",
-      "trade": "houses and lots for sale or to let",
-      "occupation": "land_agent",
-      "proprietors": [
-        "G. Blanshard"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-10-08",
-        "last_issue": "1834-10-08"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "street",
-        "target": null,
-        "streets": [
-          "lake"
-        ],
-        "via": null,
-        "note": "The anchor is a reach of lake and names nothing narrower."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor is a reach of lake and names nothing narrower."
     },
     {
       "id": "business_g_spring",
@@ -16425,7 +16386,7 @@
     {
       "id": "person_g_blanshard",
       "name": "G. Blanshard",
-      "occupation": "land_agent",
+      "occupation": null,
       "letter_list_only": false,
       "first_seen": "1834-10-08",
       "last_seen": "1834-10-08",

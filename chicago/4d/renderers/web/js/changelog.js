@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two Blanshards on Lake Street were one advertisement, run twice', kind: 'fix', ts: '', date: '',
+  { v: 752, title: 'Two Blanshards on Lake Street were one advertisement, run twice', kind: 'fix', ts: '2026-09-12T01:50:46.834Z', date: 'Sep 11, 2026, 8:50 PM CT',
     items: [
       'A land agent\u2019s card on Lake Street had been standing twice in this town\u2019s register, under two names, because the Chicago Democrat\u2019s compositor set his signature badly one week and well another. Today it stands once.',
       'The two entries read \u2018G. Blanshard\u2019 and \u2018F. G. Blanshard\u2019, and nothing had ever ruled on whether they were one man. The decision was made from the advertisement and not from the likeness of the names \u2014 deciding what a printer set is a reading of the page, and the pass that seats a business on a street will not attempt it.',

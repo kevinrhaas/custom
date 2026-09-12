@@ -414,8 +414,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 83,
-      "town_records_at_scene_date": 77,
+      "town_records_in_town": 82,
+      "town_records_at_scene_date": 76,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -527,11 +527,11 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 205,
-    "in_town": 202,
+    "businesses_in_register": 204,
+    "in_town": 201,
     "outside_town": 3,
-    "at_scene_date": 189,
-    "carrying_no_enumerated_class": 78,
+    "at_scene_date": 188,
+    "carrying_no_enumerated_class": 77,
     "not_stated": 5,
     "census_enumerated_total": 118,
     "town_enumerated_total_at_scene_date": 122
