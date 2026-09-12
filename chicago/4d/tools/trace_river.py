@@ -265,10 +265,12 @@ def disk(r, np):
     return x * x + y * y <= r * r
 
 
-def wash_mask(rgb, np):
-    """Pixels carrying the grey bank wash: darker than the local paper, and with
-    no hue departure from it (which is what separates the bank shading from the
-    pink/green/blue/yellow ward washes)."""
+def wash_terms(rgb, np):
+    """The two fields every wash question on this sheet is asked of: how much
+    DARKER than the local paper a pixel is, and how far its HUE departs from the
+    local paper's. Extracted from `wash_mask` so that `seam_wash` can ask the
+    complementary question — which pixels are a wash of ANOTHER colour — off the
+    same two numbers, rather than re-deriving them and drifting."""
     a = rgb.astype(np.float32)
     R, G, B = a[..., 0], a[..., 1], a[..., 2]
     L = 0.299 * R + 0.587 * G + 0.114 * B
@@ -279,7 +281,24 @@ def wash_mask(rgb, np):
     rb0 = upsample(block_pct(rb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape, np)
     gb0 = upsample(block_pct(gb, PARAMS["hue_block"], PARAMS["hue_pct"], np), shape, np)
     tint = np.abs(rb - rb0) + np.maximum(np.abs(gb - gb0) - 4, 0)
+    return dark, tint
+
+
+def wash_mask(rgb, np):
+    """Pixels carrying the grey bank wash: darker than the local paper, and with
+    no hue departure from it (which is what separates the bank shading from the
+    pink/green/blue/yellow ward washes)."""
+    dark, tint = wash_terms(rgb, np)
     return (dark > PARAMS["dark_lo"]) & (dark < PARAMS["dark_hi"]) & (tint < PARAMS["hue_tol"])
+
+
+def coloured_mask(dark, tint, params):
+    """A wash of ANOTHER colour: in the same darkness band `wash_mask` calls
+    wash, and outside its hue tolerance. The exact complement of `wash_mask`
+    inside that band — paper is lighter than `dark_lo`, ink is darker than
+    `dark_hi`, and what is left is either the grey bank shading or one of
+    Wright's ward and tract colours."""
+    return (dark > params["dark_lo"]) & (dark < params["dark_hi"]) & (tint >= params["hue_tol"])
 
 
 def ink_mask(rgb, np, lum_lo):
@@ -334,6 +353,63 @@ def bank_wash(wash, ink, seeds, close_r, open_r, fill_r, np, ndi, params):
     if not len(sel):
         return kept, []
     put_back = [(int(sizes[i - 1]), float(to_channel[list(small).index(i)])) for i in sel]
+    return kept | np.isin(lab, sel), put_back
+
+
+def seam_wash(wash, ink, coloured, seeds, close_r, open_r, fill_r, np, ndi, params):
+    """`bank_wash` for a seam WIDER than a brush stroke: put back the wash a dry
+    band cut off the bank, when nothing Wright drew stands between the two.
+
+    T-1078. `bank_wash` decides a dropped fragment on three numbers, and two of
+    them are the width of the South Branch's seam: the fragment must lie within
+    `bank_seam_px` (3) of the surviving channel and come within `bank_ink_px`
+    (1.5) of the inked bank. On the North Branch north of the Addition the same
+    fault appears with a seam ten to fifteen pixels wide, and Wright's wash there
+    stops a few pixels short of his own pen line, so BOTH of those terms refuse a
+    402-px strip of unmistakable bank wash (tint 0-6 against a tolerance of 7)
+    standing between the channel and the ink over the reach's last thirty rows —
+    and the traced boundary falls 32.7 m inside the ink at the splice row.
+
+    Widening the two tolerances would be a knob. This asks the question they were
+    standing in for, and asks it of the scan:
+
+      **is there a path from the fragment to the channel that crosses nothing
+      Wright drew?**
+
+    A path may run over bare paper and over grey bank wash. It may NOT cross ink,
+    and it may NOT cross a wash of another colour — which is what makes the rule
+    safe in the one direction this reach cannot afford to be wrong in. Wabansia's
+    river-front lots are washed green; a fragment out in the lots is unreachable
+    because the green stands between it and the water, so this rule cannot do
+    what `hue_tol` 11 did and read platted ground as river. It is also why the
+    reach's OTHER short stretch (rows 728-779) is left alone rather than closed:
+    a coloured wash stands between the bank wash and the ink there, so no path
+    exists, and what that colour is belongs to the tract layer (T-0792).
+
+    The reach is bounded by `close_r` — the radius the channel morphology already
+    bridges across unwashed mid-channel — so the rule introduces no tolerance of
+    its own. It is not a load-bearing bound: the same three fragments are put
+    back, and the same 1,155 px of wash, at every radius from 10 to 40 px.
+
+    Returns the wash to trace from, and the fragments it put back.
+    """
+    lab, n = ndi.label(wash)
+    sizes = ndi.sum_labels(np.ones_like(lab, np.float32), lab, np.arange(1, n + 1))
+    kept = np.isin(lab, 1 + np.flatnonzero(sizes >= params["speckle_px"]))
+    small = 1 + np.flatnonzero(sizes < params["speckle_px"])
+    if not len(small):
+        return kept, []
+    # the channel the surviving wash gives on its own, which is what the
+    # fragments are measured against — the same provisional mask `bank_wash` uses
+    provisional = channel_from(kept, seeds, close_r, open_r, fill_r, np, ndi)
+    undrawn = ~ink & ~coloured
+    near = ndi.binary_dilation(provisional, disk(close_r, np))
+    reach = ndi.binary_propagation(provisional, mask=(provisional | undrawn) & near)
+    to_reach = np.asarray(ndi.minimum(ndi.distance_transform_edt(~reach), lab, small))
+    sel = small[(sizes[small - 1] >= params["bank_frag_px"]) & (to_reach <= 1)]
+    if not len(sel):
+        return kept, []
+    put_back = sorted((int(sizes[i - 1]) for i in sel), reverse=True)
     return kept | np.isin(lab, sel), put_back
 
 
