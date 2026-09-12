@@ -93,6 +93,17 @@ step "the traced South Branch still carries what its generator writes" \
 step "the traced North Branch still carries what its generator writes" \
   python3 tools/trace_north_branch.py --check-properties
 
+# T-1078. The North Branch's east bank was short of Wright's inked bank by up to
+# 32.7 m at the splice row, because a dry seam cut 402 px of bank wash off the
+# channel and the speckle floor threw it away. `tr.seam_wash` puts it back, and
+# the repair is only safe in one direction: it must not have bought back the 93 m
+# leak into Wabansia's platted lots that `hue_tol` 7 exists to prevent. This holds
+# the committed measurement to that — 0 rows west of the inked west bank — and to
+# the two trace windows agreeing on the channel's drafted width across the line
+# they are spliced on, which is what independently says the repair is right.
+step "the North Branch's repaired east bank has not leaked the west one" \
+  python3 tools/measure_north_branch_banks.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
