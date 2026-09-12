@@ -453,8 +453,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred",
       "reserved": true
@@ -505,8 +505,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -556,8 +556,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -607,8 +607,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -658,8 +658,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -709,8 +709,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -760,8 +760,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -811,8 +811,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -862,8 +862,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -913,8 +913,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -964,8 +964,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -1015,8 +1015,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "geometry_confidence": "inferred"
     },
@@ -1066,8 +1066,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1117,8 +1117,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1168,8 +1168,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1219,8 +1219,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1270,8 +1270,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1321,8 +1321,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1372,8 +1372,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1423,8 +1423,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1474,8 +1474,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1525,8 +1525,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1576,8 +1576,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1627,8 +1627,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": "Des Plaines"
+        "west": "school_section_line_1",
+        "east": "des_plaines_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1678,8 +1678,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1729,8 +1729,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1780,8 +1780,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1831,8 +1831,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1882,8 +1882,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1933,8 +1933,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -1984,8 +1984,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2035,8 +2035,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2086,8 +2086,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2137,8 +2137,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2188,8 +2188,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2239,8 +2239,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Des Plaines",
-        "east_sheet_name": "Jefferson"
+        "west": "des_plaines_school_section",
+        "east": "jefferson_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2290,8 +2290,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2341,8 +2341,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2392,8 +2392,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2443,8 +2443,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2494,8 +2494,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2545,8 +2545,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2596,8 +2596,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2647,8 +2647,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2698,8 +2698,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2749,8 +2749,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2800,8 +2800,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2851,8 +2851,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Jefferson",
-        "east_sheet_name": "Clinton"
+        "west": "jefferson_school_section",
+        "east": "clinton_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2902,8 +2902,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -2953,8 +2953,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3004,8 +3004,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3055,8 +3055,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3106,8 +3106,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3157,8 +3157,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3208,8 +3208,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3259,8 +3259,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3310,8 +3310,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3361,8 +3361,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3412,8 +3412,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3463,8 +3463,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Clinton",
-        "east_sheet_name": "Canal"
+        "west": "clinton_school_section",
+        "east": "canal_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -3514,8 +3514,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3565,8 +3565,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3616,8 +3616,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3667,8 +3667,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3718,8 +3718,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3769,8 +3769,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3820,8 +3820,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3871,8 +3871,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3922,8 +3922,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -3973,8 +3973,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "east",
@@ -4026,8 +4026,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "east",
@@ -4079,8 +4079,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Canal",
-        "east_sheet_name": null
+        "west": "canal_school_section",
+        "east": "school_section_line_6"
       },
       "geometry_confidence": "inferred"
     },
@@ -4134,8 +4134,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_6",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "east",
@@ -4191,8 +4191,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_6",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "east",
@@ -4244,8 +4244,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": null,
-        "east_sheet_name": "Market"
+        "west": "school_section_line_6",
+        "east": "market_school_section_south"
       },
       "geometry_confidence": "inferred"
     },
@@ -4295,8 +4295,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": null,
-        "east_sheet_name": "Market"
+        "west": "school_section_line_6",
+        "east": "market_school_section_south"
       },
       "geometry_confidence": "inferred"
     },
@@ -4346,8 +4346,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Market",
-        "east_sheet_name": null
+        "west": "market_school_section_south",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "inferred"
     },
@@ -4397,8 +4397,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Market",
-        "east_sheet_name": null
+        "west": "market_school_section_south",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4450,8 +4450,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": null,
-        "east_sheet_name": "Market"
+        "west": "school_section_line_6",
+        "east": "market_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -4501,8 +4501,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": "Market"
+        "west": "school_section_line_6",
+        "east": "market_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -4552,8 +4552,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Market",
-        "east_sheet_name": null
+        "west": "market_school_section",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "inferred"
     },
@@ -4603,8 +4603,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Market",
-        "east_sheet_name": null
+        "west": "market_school_section",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "inferred"
     },
@@ -4658,8 +4658,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_6",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4715,8 +4715,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_6",
+        "east": "school_section_line_8"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4768,8 +4768,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4821,8 +4821,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4874,8 +4874,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4928,8 +4928,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "reconstructed",
       "open_side": "west",
@@ -4982,8 +4982,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5033,8 +5033,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5084,8 +5084,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5135,8 +5135,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5186,8 +5186,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5237,8 +5237,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5288,8 +5288,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5339,8 +5339,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5390,8 +5390,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5441,8 +5441,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5492,8 +5492,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5543,8 +5543,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5594,8 +5594,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5645,8 +5645,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5696,8 +5696,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5747,8 +5747,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5798,8 +5798,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5849,8 +5849,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Wells",
-        "east_sheet_name": null
+        "west": "wells_school_section",
+        "east": "school_section_line_10"
       },
       "geometry_confidence": "inferred"
     },
@@ -5900,8 +5900,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -5951,8 +5951,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6002,8 +6002,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6053,8 +6053,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6104,8 +6104,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6155,8 +6155,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6206,8 +6206,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6257,8 +6257,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6308,8 +6308,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6359,8 +6359,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6410,8 +6410,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6461,8 +6461,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": "Clark"
+        "west": "school_section_line_10",
+        "east": "clark_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -6512,8 +6512,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6563,8 +6563,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6614,8 +6614,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6665,8 +6665,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6716,8 +6716,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6767,8 +6767,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6818,8 +6818,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6869,8 +6869,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6920,8 +6920,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -6971,8 +6971,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -7022,8 +7022,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -7073,8 +7073,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": "Clark",
-        "east_sheet_name": null
+        "west": "clark_school_section",
+        "east": "school_section_line_12"
       },
       "geometry_confidence": "inferred"
     },
@@ -7124,8 +7124,8 @@
       "bounded_by": {
         "north": "school_section_tier_11",
         "south": null,
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7175,8 +7175,8 @@
       "bounded_by": {
         "north": "school_section_tier_10",
         "south": "school_section_tier_11",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7226,8 +7226,8 @@
       "bounded_by": {
         "north": "school_section_tier_9",
         "south": "school_section_tier_10",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7277,8 +7277,8 @@
       "bounded_by": {
         "north": "school_section_tier_8",
         "south": "school_section_tier_9",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7328,8 +7328,8 @@
       "bounded_by": {
         "north": "school_section_tier_7",
         "south": "school_section_tier_8",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7379,8 +7379,8 @@
       "bounded_by": {
         "north": "school_section_tier_6",
         "south": "school_section_tier_7",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7430,8 +7430,8 @@
       "bounded_by": {
         "north": "school_section_tier_5",
         "south": "school_section_tier_6",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7481,8 +7481,8 @@
       "bounded_by": {
         "north": "school_section_tier_4",
         "south": "school_section_tier_5",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7532,8 +7532,8 @@
       "bounded_by": {
         "north": "jackson",
         "south": "school_section_tier_4",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7583,8 +7583,8 @@
       "bounded_by": {
         "north": "adams",
         "south": "jackson",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7634,8 +7634,8 @@
       "bounded_by": {
         "north": "monroe",
         "south": "adams",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred"
     },
@@ -7685,8 +7685,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "geometry_confidence": "inferred",
       "reserved": true
