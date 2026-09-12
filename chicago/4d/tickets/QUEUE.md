@@ -108,7 +108,6 @@
 
 
 T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else: 'Col. Samuel Miller, Michigan City' is Carver's Indiana agent and sits on a Chicago resident card, and person_w_montgomery carries Loton W.'s shoemaking beside the auctioneer's own trade
-T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
