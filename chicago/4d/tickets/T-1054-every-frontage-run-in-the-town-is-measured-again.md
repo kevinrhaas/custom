@@ -1,5 +1,5 @@
 ---
-id: T-1052
+id: T-1054
 title: Every frontage run in the town is measured against the lots its recipe declares, and the reading is a gate rather than a one-off
 state: done
 epic: META

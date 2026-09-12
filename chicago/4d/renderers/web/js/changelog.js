@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Three shop rows that claimed more street than they stand on', kind: 'fix', ts: '',
+  { v: 765, title: 'Three shop rows that claimed more street than they stand on', kind: 'fix', ts: '2026-09-12T07:05:24.634Z', date: 'Sep 12, 2026, 2:05 AM CT',
     items: [
       'The South Water Street rows are built from a recipe rather than placed one by one: a block is dealt a handful of roofs, the recipe names the lots along the river front they are to stand across, and the buildings are packed back from the east end of that stretch until the roofs run out. Twice now a block has been dealt fewer roofs than the stretch it named, so the row stopped short — and the recipe went on saying it reached ground no wall of it ever touched.',
       'Every row in the town has now been measured against its own claim. Fourteen blocks carry one; eleven stand across exactly the ground they name. Three do not, and all three are on this one street: the Franklin block claims two lots and its three buildings sit inside the eastern one, the Wells block claims three and stands on two, and the Dearborn block claims three and stands on the last of them alone — its row begins 59.67 m along the face and the two lots it also claims end at 26.94 m and 52.86 m.',

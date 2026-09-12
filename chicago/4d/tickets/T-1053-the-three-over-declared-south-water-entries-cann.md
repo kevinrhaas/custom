@@ -24,7 +24,7 @@ Piece 2 of 2 of **T-0449 — Four South Water frontage entries declare lots thei
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-MEASURED ON THIS BRANCH, 2026-09-12, by T-1052. The measurement is not in doubt on any
+MEASURED ON THIS BRANCH, 2026-09-12, by T-1054. The measurement is not in doubt on any
 of the three; what this ticket owns is the decision the measurement runs into.
 
 `frontage.lots` looked like one fact — the lots a party-line run stands across — and it
@@ -83,6 +83,6 @@ Re-lotting one moves geometry and re-bakes.
   `bash tools/check.sh` all green; `validate.py --stale` is what catches a record that
   stopped matching its mesh, so a moved roof that skipped its bake cannot merge.
 
-**Links:** T-0449 (the parent) · T-1052 (the measurement) · T-0429 · T-0432 ·
+**Links:** T-0449 (the parent) · T-1054 (the measurement) · T-0429 · T-0432 ·
 T-0199 / T-0213 (the owner's business-front clause) · `tools/plat_occupancy.py`.
 
