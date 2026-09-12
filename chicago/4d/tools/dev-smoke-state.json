@@ -2,6 +2,70 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 211,
+      "takenAt": "2026-09-12T18:49:36.290Z",
+      "ref": "steward/t-0770-raft-bridge-gloss",
+      "commit": "358c50964be1",
+      "devCommit": "b44dffacbc0d",
+      "treeHash": "sha256:37f82465c20a8de3",
+      "treeDirty": false,
+      "changelogHash": "sha256:301572a5a6eca818",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.9,
+          2.4
+        ]
+      },
+      "source": "/tmp/smoke-mobile.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 384,
+      "takenAt": "2026-09-12T18:49:36.204Z",
+      "ref": "steward/t-0770-raft-bridge-gloss",
+      "commit": "358c50964be1",
+      "devCommit": "b44dffacbc0d",
+      "treeHash": "sha256:37f82465c20a8de3",
+      "treeDirty": false,
+      "changelogHash": "sha256:301572a5a6eca818",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.9,
+          2.4
+        ]
+      },
+      "source": "/tmp/smoke-desktop.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1614,68 +1678,6 @@
         ]
       },
       "source": "/tmp/smoke_d12.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 221,
-      "takenAt": "2026-09-12T07:13:13.489Z",
-      "ref": "steward/t-0834-party-line-lot-width",
-      "commit": "dc1d1a81818d",
-      "devCommit": "9d8e68945c85",
-      "treeHash": "sha256:1554c84d6684b210",
-      "treeDirty": false,
-      "changelogHash": "sha256:c2e9b300ef3668da",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.4,
-          3.6,
-          2.2
-        ]
-      },
-      "source": "/tmp/smoke_d1.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 269,
-      "takenAt": "2026-09-12T06:44:08.269Z",
-      "ref": "steward/t-0230-named-frontage-trades",
-      "commit": "bfbbecec8369",
-      "devCommit": "9d8e68945c85",
-      "treeHash": "sha256:125f8af5452c016e",
-      "treeDirty": false,
-      "changelogHash": "sha256:059542ef94c7c54b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          2.8,
-          1.4
-        ]
-      },
-      "source": "/tmp/smoke_d1.log"
     },
     {
       "viewport": "desktop",

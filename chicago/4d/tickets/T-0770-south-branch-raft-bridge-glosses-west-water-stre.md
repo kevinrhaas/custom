@@ -1,7 +1,7 @@
 ---
 id: T-0770
 title: south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1205
 claimed_by: run 9/12/2026, 1:30:57 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T18:50:22.443Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34711227535
 ---
 
