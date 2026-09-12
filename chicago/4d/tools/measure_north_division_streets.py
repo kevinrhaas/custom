@@ -276,8 +276,9 @@ def self_test(quiet=False):
     check("five of the six stand within 2.4 m of the committed line extended, at the "
           "tier's own northing",
           all(abs(r["resid"]) <= 2.4 for r in agree))
-    check("market is the one that does not, and it is out by more than 9 m",
-          rows["market"]["resid"] < -9.0)
+    check("market is the one that does not, and after T-0827 re-fitted its parent off "
+          "the plat's module it is out by 5.2 m rather than the 9.08 m this reading found",
+          -5.5 < rows["market"]["resid"] < -4.9)
 
     pn = [p for _, _, p in d["pitch_north"]]
     ps = [p for _, _, p in d["pitch_south"]]
@@ -307,11 +308,11 @@ def self_test(quiet=False):
         check(f"{sid} says in its note that the plat letters no name in the North Division",
               "letters no name" in rec["note"].lower())
 
-    check("market_north is the one line graded no better than inferred",
-          st["market_north"]["geometry_confidence"] == "inferred")
-    check("the other five carry the plat's attestation, as T-0713 ruled",
-          all(st[s + "_north"]["geometry_confidence"] == "attested"
-              for s in LINES if s != "market"))
+    check("all six carry the plat's attestation, as T-0713 ruled — market_north since "
+          "T-0827 settled the parent line it stands on",
+          all(st[s + "_north"]["geometry_confidence"] == "attested" for s in LINES))
+    check("market_north's note says which ticket moved its parent under it",
+          "T-0827" in st["market_north"]["note"])
     check("wolcott is not disturbed: it is still the line on the town's east boundary",
           "wolcott" in st and st["wolcott"]["geometry_confidence"] == "attested")
 

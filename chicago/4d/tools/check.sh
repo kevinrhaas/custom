@@ -863,11 +863,25 @@ selftest "West Water still stands one half-corridor off the bank, and the two re
 # goes stale silently: move a South Division centreline and its northern half no longer lies
 # on it, re-grade one and the North Division line keeps an attestation the parent lost. This
 # holds the collinearity to 2 cm, holds each line's ends on North Water and Kinzie, holds the
-# one line graded lower than the rest at `inferred`, and holds the sheet reading that says the
-# plat letters no name in any North Division corridor. It needs no image library; the reading
+# residual T-0827 left on the one line that still reads worst, and holds the sheet reading
+# that says the plat letters no name in any North Division corridor. It needs no image library; the reading
 # is committed data and `--reread` is what goes back to the 7 MB sheet.
 selftest "the North Division lines still lie on the streets they continue, and say what names them" \
   python3 tools/measure_north_division_streets.py --self-test
+
+# T-0827, the ticket the reading above could only name. `market` is the one street on this
+# grid no sheet fixes directly — its west side is the river bank its whole length — and until
+# this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a
+# bearing. It is now Franklin stepped one module west, and the whole case is a pitch that
+# two independently measured sheets bracket and the superseded line missed. That makes it
+# exactly the kind of derivation that rots: the committed vertices are arithmetic on
+# `franklin`, so moving Franklin, or the module, or re-fitting either sheet, silently leaves
+# Market standing on a sum nobody made. This holds the re-fit to the centimetre against
+# `franklin`, holds the line this replaced against the junction it was fitted to, holds the
+# Wright ladder at five lines with no alley-width gap among them, and holds the bracket the
+# argument rests on.
+selftest "Market still stands one module west of Franklin, and the sheets still bracket it" \
+  python3 tools/measure_market_line.py --self-test
 
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the

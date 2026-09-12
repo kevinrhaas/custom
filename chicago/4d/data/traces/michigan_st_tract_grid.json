@@ -832,9 +832,9 @@
   },
   "north_south_street_is_market_street": {
    "our_centre_local_e_m": 108.0,
-   "market_north_local_e_m": 91.3,
-   "departure_m": 16.7,
-   "reading": "The tract's north-south street stands 16.7 m east of the easting `market_north` already holds in data/streets/1835.json, on the far side of Kinzie Street from it. That is inside the 16.19 m RMS this sheet's own fit carries and well inside a street's width, and there is no other north-south street within a hundred metres for it to be. Market Street runs on north into this tract."
+   "market_north_local_e_m": 87.5,
+   "departure_m": 20.5,
+   "reading": "The tract's north-south street stands 20.5 m east of the easting `market_north` already holds in data/streets/1835.json, on the far side of Kinzie Street from it. THE FIGURE WAS 16.7 m WHEN THIS IDENTIFICATION WAS MADE, and T-0827 moved the other line: `market` was re-fitted off the plat's 400 ft module instead of off the modern junction on N Wacker Drive it had been hung from, which carried `market_north` 3.8 m west with it. So the departure is now OUTSIDE the 16.19 m RMS this sheet's own fit carries, by 4.3 m, and inside it is no longer the thing to say. What the identification rests on instead is unchanged and was always the stronger half: 20.5 m is still less than a platted street's 24.38 m width, and there is no other north-south street within a hundred metres for this one to be. Market Street runs on north into this tract."
   },
   "consequence": "Wright's second `Michigan St` is not a second street of the same name — the premise T-0796 was filed on. The tract is platted on the town's own grid lines and only its PARCEL module is its own."
  },
