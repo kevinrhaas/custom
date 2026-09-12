@@ -146,8 +146,16 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # letters `U.S. Factor's House`, built as a `log_dwelling` where T-0894 read all three and
 # built none. One new structure asset, so one more mesh a change to the shared generator
 # modules or to build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
-# Blocks B and C are drawn, unlettered and refused, and add nothing here for the same reason
-# the Well adds nothing: measured and deliberately not built.
+# Blocks B and C are drawn, unlettered and refused, and add nothing here: measured and
+# deliberately not built.
+#
+# 9 -> 10 drawn-at-load layers on 2026-09-11 (T-0887): `data/wells/`, read by
+# renderers/web/js/wells.js. The fort's well was the Well this block used to name as measured
+# and not built — the plate letters it, Hubbard corroborates it and T-0881 measured it to a
+# coordinate, and it stayed invisible because data/structures.schema.json has no well among its
+# twelve archetypes and a structure record with no buildable form does not validate. The curb is
+# derived at load from committed numbers, so THE ASSET COUNT DOES NOT MOVE and nothing re-stales:
+# this layer, like the other nine, owes a generator half and has none.
 #
 STATED = {
     "assets": 384,
@@ -159,7 +167,7 @@ STATED = {
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
-    "layers_drawn_at_load": 9,
+    "layers_drawn_at_load": 10,
     "layers_with_a_generator": 0,
     "renderers": 1,
 }
@@ -176,6 +184,7 @@ DRAWN_AT_LOAD = {
     "frontage": "frontage.js",
     "residents": "residents.js",
     "signage": "signage.js",
+    "wells": "wells.js",
     "wharves": "wharves.js",
     "yard": "yard.js",
 }
@@ -284,7 +293,7 @@ def layer_debt() -> tuple[list, list]:
             # The manifests do not agree on a key — `wharves`, `zones`,
             # `households`, and `flora` carries three lists at once — so the count
             # is not "the first list": it is every entry in the document that names
-            # a record FILE, which is the one thing all nine manifests do agree on
+            # a record FILE, which is the one thing every one of these manifests agrees on
             # and the only thing this column is claiming.
             records = sum(1 for v in doc.values() if isinstance(v, list)
                           for e in v if isinstance(e, dict) and e.get("file"))

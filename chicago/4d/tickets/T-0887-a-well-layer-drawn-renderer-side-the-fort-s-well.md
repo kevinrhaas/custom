@@ -1,7 +1,7 @@
 ---
 id: T-0887
 title: A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1155
+claimed_by: run 9/11/2026, 5:46:37 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-11T23:33:50.972Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34655233735
 ---
 
 A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one.

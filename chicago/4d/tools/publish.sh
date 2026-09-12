@@ -250,6 +250,16 @@ if [ -d data/boats ]; then
   cp -a data/boats "$SITE/data/boats"
 fi
 
+# The well layer — the well heads placed to a coordinate (T-0887), drawn by
+# renderers/web/js/wells.js straight from these numbers. Same argument as the
+# boats above and the same failure if it is left out: no GLB carries any of it,
+# so an unmirrored directory is a 404 on the deployed site while the dev tree
+# stands the fort's well perfectly.
+if [ -d data/wells ]; then
+  rm -rf "$SITE/data/wells"
+  cp -a data/wells "$SITE/data/wells"
+fi
+
 # The frontage layer — the plank walks, the board crossing and the named board
 # on its post that stand between a building and the street it fronts on, drawn by
 # renderers/web/js/frontage.js straight from these numbers. Same argument as the
