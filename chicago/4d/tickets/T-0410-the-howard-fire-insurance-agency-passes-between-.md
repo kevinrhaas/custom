@@ -1,7 +1,7 @@
 ---
 id: T-0410
 title: The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 7:38:37 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34662068638
 ---
 
 **Found by T-0402**, which judged the Hubbard group and could go no further than a refusal.
