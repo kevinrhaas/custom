@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The beach and the sand bar stop being prairie', kind: 'fix', ts: '', date: '',
+  { v: 769, title: 'The beach and the sand bar stop being prairie', kind: 'fix', ts: '2026-09-12T08:47:28.546Z', date: 'Sep 12, 2026, 3:47 AM CT',
     items: [
       'Fly east of the town, past the old beach ridges to the sand bar off the river mouth, and all of it was the same tallgrass green as the prairie behind it. It should have been sand. The reconstruction has said so in writing for a month: the lakeshore community records a surface 55 per cent bare soil, the sand prairie 18 per cent, and both name a colour \u2014 a pale grey-buff and a warmer fawn \u2014 against the plain\u2019s deep green.',
       'The records were right and nothing was reading them. The ground is drawn as one surface with one painted texture, and that texture knew only how high a point stands above the water \u2014 which is how the marshy shore strip gets its mud \u2014 and a gentle patchiness in the sward. It was never told which plant community it was crossing. The note in the code said so and predicted this repair: when those records land, the zone a point falls in belongs here, and the ground stops being one green.',
