@@ -120,9 +120,94 @@
   },
   "rule": "docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones that earn relief, hold local gradients under 0.5 ft per 300 ft"
  },
+ "skirt": {
+  "_doc": "The apron outside the modelled box. It carries each boundary vertex outward at its own height, EXCEPT over a landform whose traced outline ends inside the apron: there the ground falls from the boundary height to base_y, reaching it at extent_m and holding it beyond. Indices run along the named edge \u2014 columns from the west on south/north, rows from the south on west/east. See generators/terrain_gen.skirt_terminations and T-0939.",
+  "margin_m": 1549.921875,
+  "position_rung_m": 0.078125,
+  "terminations": {
+   "south": [
+    {
+     "landform": "sand_bar_1834",
+     "index0": 654,
+     "extent_m": [
+      1.40625,
+      9.21875,
+      14.609375,
+      19.921875,
+      22.578125,
+      25.3125,
+      27.96875,
+      30.703125,
+      31.875,
+      32.734375,
+      33.59375,
+      34.453125,
+      35.3125,
+      35.859375,
+      35.234375,
+      34.6875,
+      34.140625,
+      33.515625,
+      32.96875,
+      32.421875,
+      31.40625,
+      29.0625,
+      26.71875,
+      24.453125,
+      22.109375,
+      19.765625,
+      17.5,
+      15.15625,
+      12.8125,
+      10.546875,
+      8.203125,
+      6.09375,
+      4.0625,
+      1.953125
+     ],
+     "base_y": [
+      -0.072962,
+      -0.070858,
+      -0.068754,
+      -0.06665,
+      -0.064546,
+      -0.062442,
+      -0.060338,
+      -0.058234,
+      -0.05613,
+      -0.054026,
+      -0.051922,
+      -0.049819,
+      -0.047715,
+      -0.045611,
+      -0.043507,
+      -0.041403,
+      -0.039299,
+      -0.037195,
+      -0.035091,
+      -0.032987,
+      -0.030883,
+      -0.028779,
+      -0.026675,
+      -0.024572,
+      -0.022468,
+      -0.020364,
+      -0.01826,
+      -0.016156,
+      -0.014052,
+      -0.011948,
+      -0.009844,
+      -0.00774,
+      -0.005636,
+      -0.003532
+     ]
+    }
+   ]
+  }
+ },
  "glb": {
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "6a29812b9f953ae9d280609f58a83d6b973e1d2fc89c517b27e5ec1666cd2a53"
+ "inputs_sha256": "0f716445c9d2758c3c3d72d3220eae2e4d0d5cb2a7882cd20fa6b196063e3078"
 }

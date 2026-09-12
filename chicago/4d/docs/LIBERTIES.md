@@ -1095,6 +1095,30 @@ with it — 18.35 km² against 17.46** — and the same admission as 2026-08-11 
 prairie and lake nobody looks at. And it still costs 2 256 vertices, because the ring is the same
 ring; only its outer rectangle moved.
 
+**Revised 2026-09-12 — the apron is no longer carried everywhere, and the exception is evidence
+rather than taste (T-0939).** Carrying a boundary vertex outward at its own height assumes the
+boundary is a cross-section of ground that CONTINUES, and for the mainland it is: its traced shore
+runs stop at the edge of the tracing window, which is where the reading stopped and not where the
+land did. It is false for a landform the box has CUT. The 1834 sand bar is an island about 660 m
+long whose southern hook reaches 36 m past N −400; 85 m of it stood on the boundary row at a
+dead-constant +1.21 m, and the apron extruded that section 1.55 km south as a straight ribbon three
+and a half times longer than the island, running to the haze without a taper or an end. The owner
+photographed it from the water and called it the forever sandy stretch.
+
+So the apron now asks the one kind of evidence that can say a landform ends — a CLOSED traced
+outline the box truncates, which is exactly what the terrain spec's `islands` are — and over such a
+run it falls from the boundary height to the height of the water beside it, reaching it at the
+distance that vertex's own line through the traced ring gives: 1.4 m at the bar's western edge,
+35.9 m at its tip, 2.0 m at its eastern, which is the hook Wright drew.
+
+What is INVENTED here, and is the reason this paragraph is in this file rather than only in the
+ticket, is the SHAPE of that fall: the trace gives a length and no profile, and the ground is taken
+down linearly. It is the same standing of claim as the rest of the apron — geometry for the
+horizon, nothing outside the box modelled, sampled or claimed, and the walker's own sampler still
+answering its fallback out there. What has not changed: the heightfield is byte-identical, every
+surviving apron vertex outside the bar's 85 m carries its old height exactly, and the ring is still
+the same ring — it gains one more, at 2 256 vertices, which is what the taper is drawn with.
+
 ### L18 — Sauganash Hotel: the 1829 cabin's height and its roof are placeholders
 **Decision:** the `log_1829` phase is built 2.4 m to the plate under a gable roof, both tagged
 `conjectural`, both carrying the word PLACEHOLDER in their own notes.
