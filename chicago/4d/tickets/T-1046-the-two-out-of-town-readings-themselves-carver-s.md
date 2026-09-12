@@ -1,7 +1,7 @@
 ---
 id: T-1046
 title: The two out-of-town readings themselves: Carver's Michigan City agent gets the place his own notice gives him, and the shoemaking notice's four impressions read L. W. Montgomery instead of the auctioneer
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1040
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1166
 claimed_by: run 9/11/2026, 8:59:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T03:23:39.840Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34665784850
 ---
 

@@ -107,7 +107,6 @@
 
 
 
-T-1046 — The two out-of-town readings themselves: Carver's Michigan City agent gets the place his own notice gives him, and the shoemaking notice's four impressions read L. W. Montgomery instead of the auctioneer
 T-1048 — Resolve the newspapers' place vocabulary against the committed town before anything refuses on it: 193 persons carry a place that fails in_town_places(), and Fort Dearborn, the Mansion House and 'the corner of Water and Franklin streets, Chicago' are among them
 T-1049 — With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance in read_newspapers(), record the refusal in its own class, and re-derive every card that loses a press reading
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
@@ -334,3 +333,4 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+
