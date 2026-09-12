@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The South Branch is drawn to the end of the survey', kind: 'change', ts: '',
+  { v: 778, title: 'The South Branch is drawn to the end of the survey', kind: 'change', ts: '2026-09-12T12:36:20.712Z', date: 'Sep 12, 2026, 7:36 AM CT',
     items: [
       'The Chicago River\u2019s South Branch used to stop a little below Washington Street \u2014 not because the river did, but because the window this project traced it in ended there. J. S. Wright draws it on for another 1,744 m: out of the Original Town between Canal and Market, across Madison, and down through the School Section past blocks 70, 71, 78 and 83 to 88 to the south line of the survey. All of it is now traced, from the sheet, in one piece.',
       'It is a third window rather than a wider one, and the join is a line rather than a tolerance. The forks window\u2019s bottom row IS this window\u2019s top row, so the older trace is not read, not rewritten and not moved by a pixel \u2014 and the two polygons meet with their eastings agreeing to a centimetre and their northings one map pixel apart.',
