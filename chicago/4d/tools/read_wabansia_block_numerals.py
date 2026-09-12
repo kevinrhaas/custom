@@ -53,7 +53,7 @@ here. It records the arithmetic and names the only two pieces of ground on this 
 that could hold four more blocks, both of them open tickets: the Addition's river-front
 water lots (T-1063) and the unidentified tract north of Kinzie Street lettered Michigan
 St (T-0796). Wabansia's own water-lot triangle is not a candidate: its parcels are
-numbered from 1 in a run of their own, which is T-1075's to read.
+numbered from 1 in a run of their own, which is T-1077's to read.
 
 THREE THINGS THE SHEET DOES THAT A REGULAR GRID WOULD NOT, all measured, none explained:
 
@@ -77,7 +77,7 @@ THREE THINGS THE SHEET DOES THAT A REGULAR GRID WOULD NOT, all measured, none ex
 
 WHAT IS NOT READ, and is somebody else's, not a gap to fill by guessing: the lot figures
 inside each block (1-8 in the two-lot-wide blocks, 1-4 in the one-lot-wide ones, read
-here only far enough to say which they are); the water-lot triangle (T-1075); the names
+here only far enough to say which they are); the water-lot triangle (T-1077); the names
 of the north-south streets, which Wright letters nowhere in this tract; and the seating
 (T-1070).
 """
@@ -183,7 +183,7 @@ ADDITION_RUN = (1, 54)
 NOT_READ = [
     "the lot figures inside each block, read only far enough to say that the two-lot-wide "
     "blocks carry 1-8 and the one-lot-wide blocks 1-4",
-    "the water-lot triangle between the east column and the North Branch (T-1075)",
+    "the water-lot triangle between the east column and the North Branch (T-1077)",
     "the names of the north-south streets, which Wright letters nowhere in Wabansia",
     "the seating of any of this on modern ground (T-1070)",
 ]
@@ -374,7 +374,7 @@ def _arithmetic(blocks) -> dict:
         "refused": "that Wright numbered this sheet continuously across two surveys. The "
                    "arithmetic is recorded; the intent is not evidenced here, and "
                    "Wabansia's own water-lot triangle is not a candidate because its "
-                   "parcels are numbered from 1 in a run of their own (T-1075).",
+                   "parcels are numbered from 1 in a run of their own (T-1077).",
     }
 
 
