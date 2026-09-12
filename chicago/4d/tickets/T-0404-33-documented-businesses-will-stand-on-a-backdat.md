@@ -1,7 +1,7 @@
 ---
 id: T-0404
 title: 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1174
 claimed_by: run 9/12/2026, 12:33:35 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T06:00:46.517Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34675646811
 ---
 
