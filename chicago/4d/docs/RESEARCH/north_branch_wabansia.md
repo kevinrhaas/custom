@@ -129,8 +129,8 @@ At `hue_tol` 11 the east bank is better (median 0.7 m, 34 rows over 10 m) and th
 93 m wrong. The trade was taken deliberately and in one direction: a bank that is short is a
 bank drawn inside water that is really water, and a bank that has leaked is lots drawn as
 river. Nothing here is graded up to cover it — the water polygon carries `uncertainty_m: 20`
-like its neighbours, and the two short stretches exceed it. **Filed as its own ticket** rather
-than left in a note, because the fix is a reading of the east bank wash and not a parameter.
+like its neighbours, and the two short stretches exceed it. **Filed as T-1078** rather than left in a note,
+because the fix is a reading of the east bank wash and not a parameter.
 
 ## 6. What the northern end is
 

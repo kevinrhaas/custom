@@ -48,7 +48,7 @@ argued from the pixels above rather than tuned. It is paid for on the east bank,
 which sits a median 1.4 m inside Wright's ink but is short of it by more than
 10 m on 81 of the reach's 932 rows — rows 728-779, and the last 30 rows at the
 splice. docs/RESEARCH/north_branch_wabansia.md § 5 states the trade and the
-measurement; it is filed rather than hidden.
+measurement, and T-1078 carries the repair; it is filed rather than hidden.
 
 North of the survey there is no river
 -------------------------------------
