@@ -11,21 +11,23 @@
  },
  "counts": {
   "residents_considered": 1293,
-  "matched_one_1843_entry": 121,
-  "matched_more_than_one_ambiguous": 28,
-  "one_1843_entry_contested_by_two_residents": 17,
+  "matched_one_1843_entry": 115,
+  "matched_more_than_one_ambiguous": 26,
+  "one_1843_entry_contested_by_two_residents": 15,
   "surname_present_initial_absent_refused": 323,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
+  "further_initial_disagreed_refused": 12,
+  "residents_that_further_initial_refusal_reaches": 11,
   "initial_agreed_forenames_disagreed_refused": 80,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1843_entry_by_that_refusal": 40,
+  "residents_left_with_no_1843_entry_by_that_refusal": 42,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 70,
-  "could_carry_address": 86,
-  "could_carry_death_note": 84,
+  "could_carry_occupation": 64,
+  "could_carry_address": 81,
+  "could_carry_death_note": 80,
   "business_directory_notices_with_a_surname": 106,
   "notices_folded_onto_their_own_roll_entry": 82,
   "notices_standing_as_their_own_candidate": 24,
@@ -1935,36 +1937,6 @@
    "resident_given_is_initial_only": true
   },
   {
-   "resident": "Edward A. Rogers",
-   "person_id": "rogers_edward_a",
-   "household_id": "hh_rogers_edward_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Rogers' folds to the same string as the 1843 entry's, and the given name of both begins E.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2121",
-     "as_printed": "Rogers, Edward Kendall (Horace Norton & Co.), res Indiana, bet Cass and Rush [died, Eastman, Ga., May 2, 1883, aged 70]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(Horace Norton & Co.)",
-     "address_1843": "res Indiana, bet Cass and Rush",
-     "death_note_1843": "died, Eastman, Ga., May 2, 1883, aged 70"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "Edward Burton",
    "person_id": "burton_edward",
    "household_id": "hh_burton_edward",
@@ -2451,6 +2423,35 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "H. B. Clarke",
+   "person_id": "clarke_h_b",
+   "household_id": "hh_clarke_h_b",
+   "grade_1835": "attested",
+   "occupation_1835": "hardware_merchant",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Clarke' folds to the same string as the 1843 entry's, and the given name of both begins H.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0636",
+     "as_printed": "Clarke, Henry B., farmer, Michigan ave, n.e. cor 16th Street [died July 23, 1849, aged 48]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "farmer, Michigan ave, n.e",
+     "address_1843": "cor 16th Street",
+     "death_note_1843": "died July 23, 1849, aged 48"
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true
+  },
+  {
    "resident": "H. C. Bennett",
    "person_id": "bennett_h_c",
    "household_id": "hh_bennett_h_c",
@@ -2654,34 +2655,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "Isaac Dewey Harmon",
-   "person_id": "harmon_isaac_d",
-   "household_id": "hh_harmon_brothers",
-   "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "harmon_loomis_store",
-   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins I.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1209",
-     "as_printed": "Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "with C. L. Harmon",
-     "address_1843": null,
-     "death_note_1843": "died Nov. 8, 1891"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "Issac Stevens",
    "person_id": "stevens_issac",
    "household_id": "hh_stevens_issac",
@@ -2859,36 +2832,6 @@
     }
    ],
    "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "J. K. Boyer",
-   "person_id": "boyer_j_k",
-   "household_id": "hh_boyer_j_k",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Boyer' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0401",
-     "as_printed": "Boyer, James A., ship-caulker, bds Mrs. Boyer [d. Oct. 9, 1866. a. 41.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "ship-caulker",
-     "address_1843": "bds Mrs. Boyer",
-     "death_note_1843": "d. Oct. 9, 1866. a. 41."
-    }
-   ],
-   "could_carry": [
-    "occupation",
     "address",
     "death_note"
    ],
@@ -3149,35 +3092,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "John A Mills",
-   "person_id": "mills_john_a",
-   "household_id": "hh_mills_john_a",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Mills' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1802",
-     "as_printed": "Mills, John Rodney, produce dealer, bds American TemperanceHouse",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "produce dealer",
-     "address_1843": "bds American TemperanceHouse",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "John Burton",
    "person_id": "burton_john",
    "household_id": "hh_burton_john",
@@ -3375,36 +3289,6 @@
    ],
    "could_carry": [
     "occupation",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "John N Foster",
-   "person_id": "foster_john_n",
-   "household_id": "hh_foster_john_n",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Foster' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0997",
-     "as_printed": "Foster, Dr. John Herbert, capitalist, 207 Lake, res same [died May 18. 1874, aged 78.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "capitalist, 207 Lake",
-     "address_1843": "res same",
-     "death_note_1843": "died May 18. 1874, aged 78."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
     "death_note"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
@@ -4028,35 +3912,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "S W Reed",
-   "person_id": "reed_s_w",
-   "household_id": "hh_reed_s_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Reed' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2072",
-     "as_printed": "Reed, Stilman O., laborer, bds John Davlin",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "laborer",
-     "address_1843": "bds John Davlin",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
-  },
-  {
    "resident": "S. Foot",
    "person_id": "foot_s",
    "household_id": "hh_foot_s",
@@ -4383,36 +4238,6 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "W B Clarke",
-   "person_id": "clarke_w_b",
-   "household_id": "hh_clarke_w_b",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Clarke' folds to the same string as the 1843 entry's, and the given name of both begins W.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0639",
-     "as_printed": "Clarke, William Hull (C. & Co.), bds Washington Coffee House [died August 5, 1878. aged 65-10-10]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(C. & Co.)",
-     "address_1843": "bds Washington Coffee House",
-     "death_note_1843": "died August 5, 1878. aged 65-10-10"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true
   },
   {
    "resident": "W B Ogden",
@@ -5037,54 +4862,6 @@
    }
   },
   {
-   "resident": "John A Clark",
-   "person_id": "clark_john_a",
-   "household_id": "hh_clark_john_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Clark' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0628",
-     "as_printed": "Clark, John D., clerk, A. G. Hobbie [printer, went to Washington, D.C.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, A. G. Hobbie",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "John K Clark"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "clark_john_a",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "clark_john_k",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "John Cook",
    "person_id": "cook_john",
    "household_id": "hh_cook_john",
@@ -5186,54 +4963,6 @@
       "agrees": true,
       "why": "the 1835 trade stands inside the printed line",
       "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John K Clark",
-   "person_id": "clark_john_k",
-   "household_id": "hh_clark_john_k",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Clark' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0628",
-     "as_printed": "Clark, John D., clerk, A. G. Hobbie [printer, went to Washington, D.C.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, A. G. Hobbie",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "John A Clark"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "clark_john_a",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "clark_john_k",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }
@@ -5931,6 +5660,7 @@
      "death_note_1843": null
     }
    ],
+   "further_initials_declined": "A further initial refuses 2 of the 3 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
    "could_carry": [
     "occupation",
     "address",
@@ -6147,82 +5877,6 @@
    }
   },
   {
-   "resident": "H. B. Clarke",
-   "person_id": "clarke_h_b",
-   "household_id": "hh_clarke_h_b",
-   "grade_1835": "attested",
-   "occupation_1835": "hardware_merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Clarke' folds to the same string as the 1843 entry's, and the given name of both begins H.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0636",
-     "as_printed": "Clarke, Henry B., farmer, Michigan ave, n.e. cor 16th Street [died July 23, 1849, aged 48]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "farmer, Michigan ave, n.e",
-     "address_1843": "cor 16th Street",
-     "death_note_1843": "died July 23, 1849, aged 48"
-    },
-    {
-     "claim": "f1843_e0637",
-     "as_printed": "Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post [died January 25, 1892, aged 77]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "attorney at law, 36 Clark",
-     "address_1843": "bds Mrs. Post",
-     "death_note_1843": "died January 25, 1892, aged 77",
-     "also_printed": [
-      {
-       "claim": "f1843_e0004",
-       "as_printed": "HENRY W. CLARKE, attorney, counsellor at law, solicitor in chancery, conveyancer and general land-agent, office, 38 Clark St., opp. City Saloon.",
-       "page": "fergus_1843_page_001",
-       "section": "business directory",
-       "trade_heading": "ATTORNEYS",
-       "occupation_1843": "attorney, counsellor at law, solicitor in chancery, conveyancer and general land-agent, office, 38 Clark St",
-       "address_1843": "opp. City Saloon"
-      },
-      {
-       "claim": "f1843_e0117",
-       "as_printed": "HENRY W. CLARKE, general land-agent, office on Clark Street, opposite City Saloon, Chicago, Ill. Will promptly attend to the payment of taxes in Illinois and Wisconsin; redemption of land sold for taxes, etc., etc.",
-       "page": "fergus_1843_page_001",
-       "section": "business directory",
-       "trade_heading": "LAND AGENTS",
-       "occupation_1843": "general land-agent, office on Clark Street, opposite City Saloon, Chicago, Ill. Will promptly attend to the payment of taxes in Illinois and Wisconsin; redemption of land sold for taxes, etc., etc",
-       "address_1843": null
-      }
-     ]
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0636",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "f1843_e0637",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
    "resident": "Ira Couch",
    "person_id": "couch_ira",
    "household_id": "hh_couch_ira",
@@ -6346,63 +6000,6 @@
       "why": "two trades that do not agree",
       "outcome": "refused_by_discriminator",
       "refusal": "The trade printed against this name agrees with 'f1843_e0751' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     }
-    ]
-   }
-  },
-  {
-   "resident": "J. E. Field",
-   "person_id": "field_j_e",
-   "household_id": "hh_field_j_e",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Field' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0944",
-     "as_printed": "Field, John Anderson, carpenter, res cor W. Madison and Halsted",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "carpenter",
-     "address_1843": "res cor W. Madison and Halsted",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0945",
-     "as_printed": "Field, Joseph Benj., carpenter, res s.-w. cor W. Madison and Halsted [died June 1, 1848, aged 26.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "carpenter",
-     "address_1843": "res s.-w. cor W. Madison and Halsted",
-     "death_note_1843": "died June 1, 1848, aged 26."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0944",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0945",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }
@@ -9768,6 +9365,328 @@
       "address_1843": null
      }
     ]
+   }
+  }
+ ],
+ "middle_initial_refusals": [
+  {
+   "resident": "Edward A. Rogers",
+   "person_id": "rogers_edward_a",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e2121",
+    "as_printed": "Rogers, Edward Kendall (Horace Norton & Co.), res Indiana, bet Cass and Rush [died, Eastman, Ga., May 2, 1883, aged 70]",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "(Horace Norton & Co.)",
+    "address_1843": "res Indiana, bet Cass and Rush",
+    "death_note_1843": "died, Eastman, Ga., May 2, 1883, aged 70",
+    "initials_1835": [
+     "E",
+     "A"
+    ],
+    "initials_printed": [
+     "E",
+     "K"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: A against K. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "H. B. Clarke",
+   "person_id": "clarke_h_b",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0637",
+    "as_printed": "Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post [died January 25, 1892, aged 77]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "attorney at law, 36 Clark",
+    "address_1843": "bds Mrs. Post",
+    "death_note_1843": "died January 25, 1892, aged 77",
+    "also_printed": [
+     {
+      "claim": "f1843_e0004",
+      "as_printed": "HENRY W. CLARKE, attorney, counsellor at law, solicitor in chancery, conveyancer and general land-agent, office, 38 Clark St., opp. City Saloon.",
+      "page": "fergus_1843_page_001",
+      "section": "business directory",
+      "trade_heading": "ATTORNEYS",
+      "occupation_1843": "attorney, counsellor at law, solicitor in chancery, conveyancer and general land-agent, office, 38 Clark St",
+      "address_1843": "opp. City Saloon"
+     },
+     {
+      "claim": "f1843_e0117",
+      "as_printed": "HENRY W. CLARKE, general land-agent, office on Clark Street, opposite City Saloon, Chicago, Ill. Will promptly attend to the payment of taxes in Illinois and Wisconsin; redemption of land sold for taxes, etc., etc.",
+      "page": "fergus_1843_page_001",
+      "section": "business directory",
+      "trade_heading": "LAND AGENTS",
+      "occupation_1843": "general land-agent, office on Clark Street, opposite City Saloon, Chicago, Ill. Will promptly attend to the payment of taxes in Illinois and Wisconsin; redemption of land sold for taxes, etc., etc",
+      "address_1843": null
+     }
+    ],
+    "initials_1835": [
+     "H",
+     "B"
+    ],
+    "initials_printed": [
+     "H",
+     "W"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: B against W. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "Isaac Dewey Harmon",
+   "person_id": "harmon_isaac_d",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e1209",
+    "as_printed": "Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "with C. L. Harmon",
+    "address_1843": null,
+    "death_note_1843": "died Nov. 8, 1891",
+    "initials_1835": [
+     "I",
+     "D"
+    ],
+    "initials_printed": [
+     "I",
+     "N"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: D against N. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "J. E. Field",
+   "person_id": "field_j_e",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e0944",
+    "as_printed": "Field, John Anderson, carpenter, res cor W. Madison and Halsted",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "carpenter",
+    "address_1843": "res cor W. Madison and Halsted",
+    "death_note_1843": null,
+    "initials_1835": [
+     "J",
+     "E"
+    ],
+    "initials_printed": [
+     "J",
+     "A"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: E against A. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "J. E. Field",
+   "person_id": "field_j_e",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e0945",
+    "as_printed": "Field, Joseph Benj., carpenter, res s.-w. cor W. Madison and Halsted [died June 1, 1848, aged 26.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "carpenter",
+    "address_1843": "res s.-w. cor W. Madison and Halsted",
+    "death_note_1843": "died June 1, 1848, aged 26.",
+    "initials_1835": [
+     "J",
+     "E"
+    ],
+    "initials_printed": [
+     "J",
+     "B"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: E against B. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "J. K. Boyer",
+   "person_id": "boyer_j_k",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0401",
+    "as_printed": "Boyer, James A., ship-caulker, bds Mrs. Boyer [d. Oct. 9, 1866. a. 41.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "ship-caulker",
+    "address_1843": "bds Mrs. Boyer",
+    "death_note_1843": "d. Oct. 9, 1866. a. 41.",
+    "initials_1835": [
+     "J",
+     "K"
+    ],
+    "initials_printed": [
+     "J",
+     "A"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: K against A. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "John A Clark",
+   "person_id": "clark_john_a",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0628",
+    "as_printed": "Clark, John D., clerk, A. G. Hobbie [printer, went to Washington, D.C.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "clerk, A. G. Hobbie",
+    "address_1843": null,
+    "death_note_1843": null,
+    "initials_1835": [
+     "J",
+     "A"
+    ],
+    "initials_printed": [
+     "J",
+     "D"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: A against D. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "John A Mills",
+   "person_id": "mills_john_a",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e1802",
+    "as_printed": "Mills, John Rodney, produce dealer, bds American TemperanceHouse",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "produce dealer",
+    "address_1843": "bds American TemperanceHouse",
+    "death_note_1843": null,
+    "initials_1835": [
+     "J",
+     "A"
+    ],
+    "initials_printed": [
+     "J",
+     "R"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: A against R. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "John K Clark",
+   "person_id": "clark_john_k",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0628",
+    "as_printed": "Clark, John D., clerk, A. G. Hobbie [printer, went to Washington, D.C.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "clerk, A. G. Hobbie",
+    "address_1843": null,
+    "death_note_1843": null,
+    "initials_1835": [
+     "J",
+     "K"
+    ],
+    "initials_printed": [
+     "J",
+     "D"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: K against D. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "John N Foster",
+   "person_id": "foster_john_n",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e0997",
+    "as_printed": "Foster, Dr. John Herbert, capitalist, 207 Lake, res same [died May 18. 1874, aged 78.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "capitalist, 207 Lake",
+    "address_1843": "res same",
+    "death_note_1843": "died May 18. 1874, aged 78.",
+    "initials_1835": [
+     "J",
+     "N"
+    ],
+    "initials_printed": [
+     "J",
+     "H"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: N against H. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "S W Reed",
+   "person_id": "reed_s_w",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e2072",
+    "as_printed": "Reed, Stilman O., laborer, bds John Davlin",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "laborer",
+    "address_1843": "bds John Davlin",
+    "death_note_1843": null,
+    "initials_1835": [
+     "S",
+     "W"
+    ],
+    "initials_printed": [
+     "S",
+     "O"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: W against O. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
+   }
+  },
+  {
+   "resident": "W B Clarke",
+   "person_id": "clarke_w_b",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0639",
+    "as_printed": "Clarke, William Hull (C. & Co.), bds Washington Coffee House [died August 5, 1878. aged 65-10-10]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "(C. & Co.)",
+    "address_1843": "bds Washington Coffee House",
+    "death_note_1843": "died August 5, 1878. aged 65-10-10",
+    "initials_1835": [
+     "W",
+     "B"
+    ],
+    "initials_printed": [
+     "W",
+     "H"
+    ],
+    "clause": "further initial",
+    "rule": "The first initial and the first forename agree, and a further initial does not: initial 2 disagrees: B against H. The surname-plus-initial rule reads the FIRST letter only, so a middle initial both readings print has never been compared, and two men who share a surname and a first initial were being merged on the strength of the letter they share. Only initials both readings set are compared: a reading that stops early is a silence and is not refused here."
    }
   }
  ],

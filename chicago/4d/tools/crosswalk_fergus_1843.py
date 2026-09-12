@@ -171,6 +171,7 @@ def main():
             by_key[(f, i)].append(c)
 
     matches, ambiguous, refusals, forename_refusals = [], [], [], []
+    middle_initial_refusals = []
     bucket_refusals = []
     ll_index = llb.buckets(llb.pool())
     people = residents()
@@ -215,6 +216,22 @@ def main():
                 "resident": r["name"], "person_id": r["person_id"],
                 "grade_1835": r["grade"], "entry_1843": row,
             })
+        # T-0987 stretch 9. THE FURTHER INITIALS. The bucket above matched the
+        # FIRST initial and `na.refusal` weighed the first forename; nothing had
+        # ever compared a middle initial both readings print, so `H. B. Clarke`
+        # stood against `Clarke, H. W.` on the H they share. Only initials both
+        # sides set are compared, and the helper declines to fire where firing
+        # would promote a SILENT survivor over a refused rival that spoke.
+        survivors, mi_refused, mi_declined = na.narrow_by_further_initials(
+            r["given"], [h for h, _ in kept], lambda h: h["normalized"]["given"])
+        for h, note in mi_refused:
+            row = row_of(h, also)
+            row.update(note)
+            middle_initial_refusals.append({
+                "resident": r["name"], "person_id": r["person_id"],
+                "grade_1835": r["grade"], "entry_1843": row,
+            })
+        kept = [(h, None) for h in survivors]
         if not kept:
             continue
         rows = [row_of(h, also) for h, _ in kept]
@@ -228,6 +245,8 @@ def main():
                     "given name of both begins %s." % (r["surname"], i.upper()),
             "entries_1843": rows,
         }
+        if mi_declined:
+            rec["further_initials_declined"] = mi_declined
         carries = []
         # `none_recorded` IS NO OCCUPATION (T-0867). The residents layer writes
         # that sentinel where a person's trade was never attested, and the
@@ -341,6 +360,9 @@ def main():
             "surname_present_initial_absent_refused": len(refusals),
             "letter_list_bucket_refused": len(bucket_refusals),
             "residents_that_refusal_reaches": len({b["person_id"] for b in bucket_refusals}),
+            "further_initial_disagreed_refused": len(middle_initial_refusals),
+            "residents_that_further_initial_refusal_reaches": len(
+                {f["person_id"] for f in middle_initial_refusals}),
             "initial_agreed_forenames_disagreed_refused": len(forename_refusals),
             "of_those_a_garbled_printed_forename": sum(
                 1 for f in forename_refusals if f["entry_1843"]["garbled_reading"]),
@@ -371,6 +393,8 @@ def main():
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
         "letter_list_bucket_refusals": sorted(
             bucket_refusals, key=lambda m: (m["resident"], m["entry_1843"]["claim"])),
+        "middle_initial_refusals": sorted(middle_initial_refusals,
+                                          key=lambda x: x["resident"]),
         "forename_refusals": sorted(forename_refusals,
                                     key=lambda m: (m["resident"], m["entry_1843"]["claim"])),
     }
