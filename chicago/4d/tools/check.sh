@@ -276,6 +276,16 @@ step "Wabansia's water-lot strip re-derives from its rules and the run" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_wabansia_water_lots.py --self-test
 
+# AND THE SEATING OF ALL THREE (T-1070). The three readings above are pixel statements
+# and each says in its own words that it authors no ground; this is the step that does.
+# It re-derives every committed Wabansia street line, and the block grid's outline, from
+# those pixels and the committed `kinzie` line — so a hand-nudged endpoint, a corridor
+# moved off its rule, a changed corridor width or a street quietly carried east into the
+# committed water all fail here. The seating is a translation north and not a fit: no
+# control point stands within 900 m of this tract and none is invented.
+step "Wabansia's streets re-derive from the readings and the committed Kinzie line" \
+  python3 tools/seat_wabansia_streets.py --check
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled

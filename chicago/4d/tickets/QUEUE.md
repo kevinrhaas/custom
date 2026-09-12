@@ -154,6 +154,8 @@ T-1063 — The Addition's river-front water lots recorded as a lot strip rather 
 T-1075 — The Michigan St tract named and seated: who platted it and what the sources call it, and its street, alley, parcels and the curved road north into the town's data
 T-1078 — The North Branch's east bank is short of Wright's ink on two stretches, one of them the splice row: 81 rows of 932 by more than 10 m, up to 33.8 m
 T-1070 — Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835
+T-1083 — Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
+T-1082 — Kinzie Street stops 418 m short of the tract it bounds: Wright draws it the length of Wabansia and the committed line is extrapolated to meet it
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it

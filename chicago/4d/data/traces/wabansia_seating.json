@@ -1,0 +1,302 @@
+{
+  "_doc": "Seat Wabansia's street grid on the committed town grid.\n\n    tools/seat_wabansia_streets.py            print what it would write\n    tools/seat_wabansia_streets.py --write    write data/streets/1835.json and the trace\n    tools/seat_wabansia_streets.py --check    re-derive the committed lines from the reading\n\nThe readings are `data/traces/wabansia_streets.json` (T-0790, the seven east-west\ncorridors and their names) and `data/traces/wabansia_block_numbering.json` (T-1074,\nthe tiers, the columns and the tract's west margin). Neither authors ground — both say\nso in their own words — and this tool is the one that does.\n\nWHY NOT JUST COMMIT THE PIXELS, which is `seat_kinzie_addition_streets.py`'s argument\nand is the same one here. Wabansia's south line IS Kinzie Street: Wright letters\n`Kinzie` in that corridor, and the committed `kinzie` is the same street off the\nThompson plat. Carried through the NA sheet's own affine, Wright's Kinzie lands south\nof the committed line and leaning the wrong way — 9.1 m out at the tract's west end,\n1.4 m at its east, because the sheet's drawn bearing in this corner is about 1.2 deg\noff the one the committed grid takes from modern control over a baseline four times\nlonger. That is the fit's error, not the plat's: the registration admits 16.19 m RMS on\neight control points and none of them is within 900 m of this tract.\n\nSo the sheet is asked for what it measures well — the perpendicular distance from one\nruled corridor to the next, inside one corner of one raster — and the committed grid is\nasked for where that ladder hangs and which way it lies. Every line here is PARALLEL to\ncommitted `kinzie` and offset north of it by the sheet's own measured tier pitches,\naccumulated. Nothing is fitted to modern pavement and nothing is chosen to look right.\n\nWHAT IS NOT SEATED, and why each is somebody else's:\n\n  * The two north-south corridors. Wright letters no name on either (T-1074), and this\n    project does not commit an unnamed street.\n  * The east reach into the water-lot tract — Kain's and Hight's subdivision, the wedge\n    between the east column and the river. T-1077 read it as a lot strip; its corridors\n    `Kain` and `Water` cross the lots and are not these streets continued.\n  * `kinzie` itself, which stops at local east -320 and is extrapolated 418 m west to\n    meet this tract. Wright draws it the whole way and the committed line should be\n    carried, but carrying an attested street moves platted lot lines and re-scores the\n    corridor-intrusion count, so it is its own unit of work.\n",
+  "ticket": "T-1070",
+  "datum": {
+    "street": "kinzie",
+    "committed_in": "data/streets/1835.json",
+    "why": "Wabansia's south line is Kinzie Street on Wright's sheet and Kinzie Street is committed off the Thompson plat. It is the one line the two surveys share, so it is the one thing the ladder can hang from."
+  },
+  "method": {
+    "rung": "each street's perpendicular distance north of Kinzie Street, the sum of the sheet's measured tier pitches between them",
+    "bearing": "the committed kinzie line's, not the sheet's",
+    "easting": "the sheet's own, through the registration's affine. No control constrains the along-street position of this tract and none is invented: the seating is a translation north, not a fit.",
+    "tier_pitch_source": "data/traces/wabansia_streets.json § module.tier_pitch_m.each"
+  },
+  "sheet_vs_committed_kinzie": {
+    "street": "kinzie",
+    "sheet_centre_local_enu_m": [
+      -737.9,
+      257.6
+    ],
+    "committed_line": "data/streets/1835.json § kinzie (Thompson plat, T-0713)",
+    "committed_n_at_same_e_m": 266.4,
+    "extrapolated_west_of_committed_end_m": 417.9,
+    "gap_m": 8.8,
+    "sheet_registration_rms_m": 16.19,
+    "reading": "The sheet puts Kinzie Street 8.8 m south of where the committed line runs at the same easting, against a registration that admits 16.19 m RMS. The two readings agree: Wabansia's south line and the town's Kinzie Street are the same street. Note the committed line is extrapolated 417.9 m west of its own west end to meet this tract, so the gap is a consistency check and not a control point."
+  },
+  "shear_between_columns": {
+    "what": "T-0790 read the seven corridors in three different columns of the sheet — `col_west` at x 700, `col_trade` at 880, `col_east` at 990 — because Wright letters the names inside the corridors and a name is ink in exactly the gap the reading is trying to find. A rule row is reported at its window's own left edge, and the rules lean: dy/dx 0.019. So two corridors read in different columns are not directly subtractable, and `module.tier_pitch_px` in that file subtracts them anyway.",
+    "effect_px": {
+      "free_to_trade": 2.09,
+      "trade_to_sailors": 3.42
+    },
+    "handled": "This seating never subtracts two rows. Every distance is measured between a street's own row and Wright's Kinzie corridor carried to that same column by the shear, so the lean cancels. It is why `north_of_kinzie_m` for Free and Trade stands 4.1 m and 2.5 m north of the running sum of that table.",
+    "not_a_correction_of": "data/traces/wabansia_streets.json, which is a reading and is left as read. The module figure it reports is a mean over six spacings and the lean is inside its own 3.01 m sd."
+  },
+  "streets": [
+    {
+      "id": "hubbard",
+      "name_on_sheet": "Hubbard",
+      "tiers": [
+        "t6",
+        "t7"
+      ],
+      "west_px": 684.65,
+      "east_px": 1212.4,
+      "east_px_refused": null,
+      "centre_px_y": 1906.65,
+      "ref_px_x": 700,
+      "north_of_kinzie_m": 126.48,
+      "path_local_enu_m": [
+        [
+          -747.92,
+          392.99
+        ],
+        [
+          -379.49,
+          390.06
+        ]
+      ],
+      "east_end_past_committed_bank_m": null,
+      "refused_end_past_committed_bank_m": null
+    },
+    {
+      "id": "owen",
+      "name_on_sheet": "Owen",
+      "tiers": [
+        "t5",
+        "t6"
+      ],
+      "west_px": 685.15,
+      "east_px": 1213.1,
+      "east_px_refused": null,
+      "centre_px_y": 1743.2,
+      "ref_px_x": 700,
+      "north_of_kinzie_m": 246.75,
+      "path_local_enu_m": [
+        [
+          -746.91,
+          513.25
+        ],
+        [
+          -378.34,
+          510.32
+        ]
+      ],
+      "east_end_past_committed_bank_m": -128.2,
+      "refused_end_past_committed_bank_m": null
+    },
+    {
+      "id": "hight",
+      "name_on_sheet": "Hight",
+      "tiers": [
+        "t4",
+        "t5"
+      ],
+      "west_px": 681.95,
+      "east_px": 1213.1,
+      "east_px_refused": null,
+      "centre_px_y": 1576.2,
+      "ref_px_x": 700,
+      "north_of_kinzie_m": 369.62,
+      "path_local_enu_m": [
+        [
+          -748.47,
+          636.14
+        ],
+        [
+          -377.66,
+          633.19
+        ]
+      ],
+      "east_end_past_committed_bank_m": -59.9,
+      "refused_end_past_committed_bank_m": null
+    },
+    {
+      "id": "sailors",
+      "name_on_sheet": "Sailors",
+      "tiers": [
+        "t3",
+        "t4"
+      ],
+      "west_px": 679.9,
+      "east_px": 1046.5,
+      "east_px_refused": 1212.4,
+      "centre_px_y": 1410.35,
+      "ref_px_x": 700,
+      "north_of_kinzie_m": 491.65,
+      "path_local_enu_m": [
+        [
+          -749.23,
+          758.18
+        ],
+        [
+          -493.3,
+          756.15
+        ]
+      ],
+      "east_end_past_committed_bank_m": -49.5,
+      "refused_end_past_committed_bank_m": 69.1
+    },
+    {
+      "id": "trade",
+      "name_on_sheet": "Trade",
+      "tiers": [
+        "t2",
+        "t3"
+      ],
+      "west_px": 678.7,
+      "east_px": 1042.3,
+      "east_px_refused": 1046.5,
+      "centre_px_y": 1249.85,
+      "ref_px_x": 880,
+      "north_of_kinzie_m": 612.26,
+      "path_local_enu_m": [
+        [
+          -749.4,
+          878.8
+        ],
+        [
+          -495.57,
+          876.78
+        ]
+      ],
+      "east_end_past_committed_bank_m": 1.8,
+      "refused_end_past_committed_bank_m": 4.9
+    },
+    {
+      "id": "free",
+      "name_on_sheet": "Free",
+      "tiers": [
+        "t1",
+        "t2"
+      ],
+      "west_px": 680.3,
+      "east_px": 1042.3,
+      "east_px_refused": null,
+      "centre_px_y": 1080.45,
+      "ref_px_x": 990,
+      "north_of_kinzie_m": 738.44,
+      "path_local_enu_m": [
+        [
+          -747.59,
+          1004.97
+        ],
+        [
+          -494.87,
+          1002.96
+        ]
+      ],
+      "east_end_past_committed_bank_m": -4.8,
+      "refused_end_past_committed_bank_m": null
+    }
+  ],
+  "block_grid_polygon_local_enu_m": [
+    [
+      -750.33,
+      278.97
+    ],
+    [
+      -750.05,
+      329.44
+    ],
+    [
+      -745.81,
+      452.87
+    ],
+    [
+      -748.01,
+      573.73
+    ],
+    [
+      -748.93,
+      697.83
+    ],
+    [
+      -749.53,
+      817.9
+    ],
+    [
+      -749.29,
+      937.75
+    ],
+    [
+      -746.01,
+      1051.61
+    ],
+    [
+      -745.8,
+      1090.75
+    ],
+    [
+      -494.65,
+      1093.78
+    ],
+    [
+      -494.87,
+      1054.64
+    ],
+    [
+      -495.21,
+      940.82
+    ],
+    [
+      -492.94,
+      820.99
+    ],
+    [
+      -377.77,
+      702.31
+    ],
+    [
+      -377.96,
+      578.19
+    ],
+    [
+      -379.12,
+      457.3
+    ],
+    [
+      -381.05,
+      333.89
+    ],
+    [
+      -381.33,
+      283.42
+    ],
+    [
+      -750.33,
+      278.97
+    ]
+  ],
+  "tract_polygon_local_enu_m": {
+    "seated": false,
+    "why": "Wabansia runs east of the block grid to the North Branch, over the water-lot wedge — Kain's and Hight's subdivision — which T-1077 read as a lot strip and deliberately did not seat. Until that wedge is on modern ground the tract has no east boundary and this project will not draw one; `block_grid_polygon_local_enu_m` is the part of Wabansia this reading can outline and is not called the tract."
+  },
+  "occupancy_before_1835_07_01": {
+    "question": "whoever the sources put on this ground before 1 July 1835",
+    "found": [
+      {
+        "as_printed": "Doctor Kimberl",
+        "normalized": "[uncertain: Doctor Kimberly]",
+        "role": "occupant",
+        "occupations": [
+          "physician"
+        ],
+        "claim": "chicago_democrat_1834_07_16#c017",
+        "gazetteer_id": "person_uncertain_doctor_kimberly",
+        "what": "a dwelling of four rooms, a kitchen, a barn and a garden, in Wabansia, occupied by a doctor and advertised through Col. Hamilton — the only house in this run of the Democrat described room by room",
+        "confidence": "documented",
+        "note": "The name is CUT AT THE RIGHT EDGE of the column and the gazetteer brackets it; E. S. Kimberly stands in the same issue's candidate list and is NOT identified with the doctor. The advertisement places a household in Wabansia on 16 July 1834, eleven months before this scene's date, and places it NOWHERE INSIDE IT: no block, no lot, no street. Seating the streets does not seat this house, and no structure is minted from it here."
+      }
+    ],
+    "searched": [
+      "data/research/newspapers/extracted/*.json — every claim naming Wabansia",
+      "data/research/newspapers/gazetteer.json — every person with Wabansia in associated_places",
+      "data/residents/households/*.json"
+    ],
+    "reading": "ONE household, unplaced. Wabansia is named in the Democrat three other times and each is the same lithographic town map advertised for sale by Kinzie & Forsyth (1834-07-02, 1834-11-05, 1834-11-19) — a claim about what the town's inhabitants thought its extent was, not about who lived there. So the tract this reading draws is, on the evidence this project holds, a survey over prairie with one doctor's house somewhere in it.",
+    "leaves_open": "data/research/newspapers/place_vocabulary.json still resolves `Wabansia` as UNDECIDED on basis B4 — 'a survey adjacent to the town that this project commits none of' — and names T-0790 as the ticket that would settle it. That sentence is now false of the ground and the ruling is the owner's B-rule to change, not this tool's."
+  }
+}
