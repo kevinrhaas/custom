@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Seventy-eight men who were never in Chicago have left it', kind: 'fix', ts: '', date: '',
+  { v: 762, title: 'Seventy-eight men who were never in Chicago have left it', kind: 'fix', ts: '2026-09-12T06:20:23.134Z', date: 'Sep 12, 2026, 1:20 AM CT',
     items: [
       'The town is 78 households smaller tonight, and not one of them moved away. Each was a man this reconstruction had put here on the strength of a Chicago newspaper printing his name \u2014 in a notice that said, in the same breath, where he actually was. William H. Ashley of St. Louis. A. A. Barber of Green Bay. Fourteen men the papers place at Hennepin and twelve at Juliet.',
       'The mistake was old and simple. When this project read its two Chicago papers it wrote down every person named in them, and then handed the whole list to the town as people printed HERE. Nobody ever looked at the place beside the name. A Chicago paper of 1834 is full of men who are not at Chicago: the agents it lists in other towns, the correspondents it quotes, the eastern houses whose advertisements it carries, the notices it reprints from Detroit. All of them walked in.',
