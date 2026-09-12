@@ -1246,14 +1246,55 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
         raise SystemExit(f"{block['block_id']}: {len(records)} roofs exceed the block's "
                          f"{claimed['headroom']} of headroom")
 
+    dealt_p = claimed.get("dealt_principal", claimed["principal"])
+    dealt_a = claimed.get("dealt_ancillary", claimed["ancillary"])
+    # T-0834. THE SCHEDULE'S SIZING IS CONDITIONAL, AND THE CONDITION IS GATED HERE.
+    # `reconcile_665.block_rooms` sizes a block's principal room in party-line units —
+    # ROW_UNITS_PER_LOT of them per free lot — and this generator places by whole LOTS:
+    # an ordinary principal roof stands ON a free lot and one lot never carries two, so
+    # the party-line density is reachable only along a frontage run the recipe NAMES.
+    # A parcel that gives its run k of its free lots can stand
+    #
+    #     (free_lots - k - 1) + ROW_UNITS_PER_LOT * k
+    #
+    # principal roofs, and `principal_room` is that at k = free_lots - 1. Between those
+    # two numbers sat a gap nothing measured: the programme said roofs were dealt, the
+    # ground said they were not placed, and the difference went into the district
+    # balance unremarked — `blk_south_water_clark`'s second deal (T-0431) is where it
+    # was found, and `blk_south_water_franklin`'s (T-0430) is where the same two shapes
+    # agreed by accident. The schedule now states the condition per unit as
+    # `row_lots_required`; this refuses a parcel that does not meet it, so a deal too
+    # big for its ground fails at the parcel that would have quietly shed it.
+    #
+    # The four phase-3 recipes written before ROADMAP T-A6 carry no `free_lots` — the
+    # schedule did not size in lots yet — so there is nothing to hold them to and they
+    # are passed. That is a gap in the OLD recipes, not a relaxation of the rule.
+    free_lots = claimed.get("free_lots")
+    if free_lots is not None:
+        ceiling = max(0, free_lots - 1)
+        row_lots = len((block.get("frontage") or {}).get("lots") or ())
+        if row_lots > ceiling:
+            raise SystemExit(f"{block['block_id']}: the frontage run is dealt {row_lots} "
+                             f"of the block's {free_lots} free lot(s), which leaves it no "
+                             f"open lot. A run's lots are free lots like any other and "
+                             f"the block keeps one open (T-0834)")
+        can_stand = ceiling + row_lots * (ROW_UNITS_PER_LOT - 1)
+        if dealt_p > can_stand:
+            raise SystemExit(f"{block['block_id']}: the schedule dealt {dealt_p} "
+                             f"principal roof(s) and this parcel has ground for "
+                             f"{can_stand} — {ceiling} on its free lots, less the one it "
+                             f"keeps open, plus {row_lots * (ROW_UNITS_PER_LOT - 1)} the "
+                             f"frontage run's {row_lots} lot(s) add at "
+                             f"{ROW_UNITS_PER_LOT} units to the lot. Name the run more "
+                             f"lots or take a smaller deal; a roof with nowhere to stand "
+                             f"is not deferrable, because no family is refused (T-0834)")
+
     # A parcel may build FEWER roofs than the schedule dealt it, but only by naming
     # each missing slot and the refusal it rests on. Without this, "the block carries
     # nine roofs" and "the schedule dealt it ten" are two numbers in two files and
     # nothing makes them meet — which is how a slot gets dropped for being awkward
     # rather than for being wrong, and the ledger reads as though it were never dealt.
     deferred = block.get("deferred") or []
-    dealt_p = claimed.get("dealt_principal", claimed["principal"])
-    dealt_a = claimed.get("dealt_ancillary", claimed["ancillary"])
     shortfall = (dealt_p - claimed["principal"]) + (dealt_a - claimed["ancillary"])
     if shortfall < 0:
         raise SystemExit(f"{block['block_id']}: the parcel claims to build more roofs "
@@ -1782,9 +1823,31 @@ def main() -> int:
         for item in drift:
             print(f"  - {item}")
         return 1
-    blocks = len(load(RECIPE_PATH)["blocks"])
+    parcels = load(RECIPE_PATH)["blocks"]
     mode = "verified" if args.check else "generated"
-    print(f"{mode} {len(records)} anonymous roofs across {blocks} platted block(s)")
+    print(f"{mode} {len(records)} anonymous roofs across {len(parcels)} platted block(s)")
+    # T-0834, and it is the line the ticket was opened for. A parcel's deal either fits
+    # on its free lots one roof to a lot, or it does not and the frontage run is the
+    # only ground the rest of it has. Those two cases read identically in the ledger —
+    # same block, same shape of recipe, same `frontage` key — and the difference is
+    # whether the run was headroom or necessity. It is printed rather than left to be
+    # worked out from the schedule, because working it out is what nobody did.
+    conditional, unsized = [], 0
+    for block in parcels:
+        claimed = block["drawn_from_schedule"]
+        free = claimed.get("free_lots")
+        if free is None:
+            unsized += 1
+            continue
+        short = claimed.get("dealt_principal", claimed["principal"]) - max(0, free - 1)
+        if short > 0:
+            need = -(-short // (ROW_UNITS_PER_LOT - 1))
+            got = len((block.get("frontage") or {}).get("lots") or ())
+            conditional.append(f"{block['block_id']} needs {need} of its {got}")
+    print(f"  lot ceiling (T-0834): {len(conditional)} of {len(parcels) - unsized} sized "
+          f"parcel(s) are dealt past their free lots and stand the rest in a frontage "
+          f"run — {', '.join(conditional) if conditional else 'none'}"
+          + (f"; {unsized} pre-T-A6 parcel(s) carry no free-lot count" if unsized else ""))
     return 0
 
 
