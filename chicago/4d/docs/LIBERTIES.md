@@ -10865,7 +10865,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 13 households
+**Scope:** `residence_back_projection.positions[placed]` — 12 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -10911,6 +10911,24 @@ had nothing left to carry. The same pass took `hh_murray_james_h` — `James H. 
 against `New York` — out of the 47 refusals, which is why the adjudicated total falls by two
 and the placed count by one. This is the shape the paragraph above asks to be read for: the
 count moves when the TOWN shrinks as well as when it grows, and neither move is a new liberty.
+
+**Restated to twelve on 2026-09-12 (T-0987 stretch 7), and again the town moved as well as
+the reading.** Two changes land together and they pull the same way. The town lost a card:
+`hh_smith_d_a` was minted on a press notice printed against `Courtland, Alabama`, T-1049's
+resolved place vocabulary refuses it as a Chicago appearance, and the container went with
+the identity — so Fergus 1843's `Doctor D. S. Smith … residence La Salle street, opposite
+the First Baptist Church`, a residence clause this stretch's `split_home()` reads for the
+first time, has no 1835 person left to reach. La Salle Street is therefore NOT a face this
+entry claims, and the stretch that found the clause records the finding rather than the
+placement. The reading also refused one it had been carrying: `harmon_charles_l` came off
+Dearborn Street, because Fergus spells out `bet Washington and Madison` where Norris's
+`b Wash and Mad sts` hid Madison — a street the 1835 layer does not carry — so clause R4's
+qualifier now fires four years nearer the scene and declines the face. A nearer reading
+that says less replaced a further one that said more, which is the same shape as
+`morrison_james_m` above. The twelve stand six on Fergus's directory of 1843 and six on
+Norris's of 1844; eight of them are people the 1835 papers give no trade, which is still
+where most of the yield is; and the pass adjudicates 60 with 48 refusals on the record
+beside them.
 
 Twenty of 825 households carried a real `lives_at` before this pass and twenty carry one
 after — the faces are text on a card and not a placement of anybody in the town.

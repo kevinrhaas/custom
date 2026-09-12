@@ -1276,11 +1276,11 @@
    "household_id": "hh_funk_absolom",
    "person_id": "funk_absolom",
    "person": "Absolom Funk",
-   "address_as_printed": "res Wells st. b Wash, and Rand, st",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "res Wells, bet Washington and Randolph",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -1447,17 +1447,17 @@
    "household_id": "hh_harmon_brothers",
    "person_id": "harmon_charles_l",
    "person": "Charles Loomis Harmon",
-   "address_as_printed": "res Dearborn st. b Wash and Mad sts (.See card)",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "cor Clark, res Dearborn, bet Washington and Madison",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "dry_goods_merchant",
    "works_at_1835": "harmon_loomis_store",
    "outcome": "already_better_placed",
    "clause": "2",
-   "reason": "An 1835 placement already stands: this household works at `harmon_loomis_store`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later.",
+   "reason": "An 1835 placement already stands: this household works at `harmon_loomis_store`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1594,17 +1594,17 @@
    "household_id": "hh_hubbard_gurdon",
    "person_id": "hubbard_gurdon",
    "person": "Gurdon Saltonstall Hubbard",
-   "address_as_printed": "h Indiana, b Cass and Rush (See card)",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "near Clark, res 300 Indiana, near Rush",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "packer",
    "works_at_1835": "old_bank_building",
    "outcome": "already_better_placed",
    "clause": "2",
-   "reason": "An 1835 placement already stands: this household works at `old_bank_building`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later.",
+   "reason": "An 1835 placement already stands: this household works at `old_bank_building`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -2374,11 +2374,11 @@
    "household_id": "hh_morris_b_s",
    "person_id": "morris_b_s",
    "person": "B. S. Morris",
-   "address_as_printed": "h In diana st. b Cuss and Rush sts (See card)",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "res Indiana, bet Cass and Rush",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
