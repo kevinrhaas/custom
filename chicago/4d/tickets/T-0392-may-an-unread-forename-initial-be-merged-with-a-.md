@@ -75,3 +75,32 @@ Merges were written for both and the compiler refused both, correctly and by its
 rule. So the readings stand in `normalized` and the gazetteer keeps two people with no
 forename that it could name. **No = two more accepted duplicates on top of the eighteen
 below; Yes = two more closed by the same bounded exception.** Nothing was changed here.
+
+## And once in the BUSINESS register, not a list at all (T-0408, 2026-09-12)
+
+The third shape, and the first one outside a printed return. `F. G. Blanshard` advertised
+houses and lots for sale or to let from an office opposite Dr. Temple's in Lake street,
+and the Democrat carried the notice twice: 1834-10-08 page 3 column 2 (c004) and
+1834-11-12 page 3 column 4 (c012), clause for clause the same card, the October printing
+copy-dated Sept. The October setting cuts the signature to `fG. BL NSHARD` and the
+register reads it `G. Blanshard`; November sets it `F.G. BLANSHARD`. One man, one card,
+one insertion — and the forename initial is present in the second printing and absent from
+the first, which is `Samuel E. Toby` against `Samuel. Toby` above, in an advertisement
+instead of a letter list.
+
+T-0408 ruled the pair one house, and the layers that could say so did: a `firm_merges`
+entry joins the two styles (the partner surname agrees, and the firm policy does not apply
+the initials rule), and a `proprietor_merges` entry joins the two readings inside the
+merged record. The gazetteer's PERSONS are untouched and still carry `G. Blanshard` and
+`F. G. Blanshard` as two people, because `initials` parses (G) against (F, G) and the
+person rule is absolute. So the town holds one shop and two men who kept it.
+
+**What this case adds to the question.** The eighteen below are all one entry of one
+printed list, which is why the bounded exception is stated as *same list, same entry, no
+competing letter*. This one is not a list — the bound that fits it is *one advertisement,
+one insertion, no competing letter* — and a `firm_merges`/`proprietor_merges` pair already
+demonstrates the whole of the argument at the business layer, where a differing initial is
+deliberately not fatal. So a No here is narrower than it looks: it accepts a duplicate the
+file next door has already declared away. **No = nineteen accepted duplicates and one of
+them contradicted by a merge two sections above it; Yes = a bound the business half of
+this file is already using.** Nothing was changed here.

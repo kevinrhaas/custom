@@ -859,14 +859,6 @@
       "businesses_carrying_this_trade": 1
     },
     {
-      "trade": "houses and lots for sale or to let",
-      "classes": [
-        "other"
-      ],
-      "basis": "a land agency (B2)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
       "trade": "iron and hardware",
       "classes": [
         "store"
