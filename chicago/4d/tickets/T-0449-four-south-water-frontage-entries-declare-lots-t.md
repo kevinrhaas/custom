@@ -1,7 +1,7 @@
 ---
 id: T-0449
 title: Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-30
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: run 9/12/2026, 1:33:19 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T06:40:29.388Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34678274590
 ---
 
