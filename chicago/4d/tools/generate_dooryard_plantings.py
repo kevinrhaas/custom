@@ -108,6 +108,49 @@ DRY_FLOOR_M = 0.9         # trees.js asks +0.20 over water; this tool asks more
 STEM_SPACING_M = 3.0      # stems keep clear of each other
 EDGE_INSET_M = 6.0        # and off the heightfield's own edge
 
+# THE STREET A HOUSE'S YARD IS MEASURED FROM (T-0255). `candidates()` seats a
+# house's stems AWAY FROM THE NEAREST STREET, because the yard is behind the
+# house — and until this ticket "the nearest street" meant the nearest record in
+# data/streets/1835.json, every one of them, at any distance, on either bank.
+# Nobody chose that. T-0099 laid `fort_bank_track`, a 23.91 m track on the SOUTH
+# bank below the fort's north gate, and it became the nearest street to a
+# dwelling on the NORTH bank with no crossing between the two for hundreds of
+# metres, turning that house's cottonwoods about 6 m. Worse than the 6 m: any
+# street laid anywhere could re-seat stems at a house it has nothing to do with,
+# and the only signal was a --check drift with no rule to decide it against.
+#
+# TWO BOUNDS NOW SAY WHAT THE PHRASE IS ALLOWED TO MEAN, and both are measured
+# off committed data rather than picked.
+#
+#   THE BANK. A street is a house's street only where it stands on the same dry
+#   ground. The committed heightfield's land cells fall into FOUR four-connected
+#   pieces — the West, South and North Divisions the river separates, and the
+#   9.5 ha of lake shore east of the 1834 harbour cut — and that partition IS
+#   the river, drawn by the same field the renderer walks the visitor over. Each
+#   street's path is cut into the runs that lie in each piece, and a house
+#   measures only the runs in its own. Kinzie Street runs out of the West
+#   Division, across the North Branch at Wolf Point and into the North: a North
+#   Division house now measures it along its North Division reach, and not across
+#   the water. Nothing here is a tolerance — a bank is a connected component, and
+#   the fix is exactly as sharp as the committed waterline is.
+#
+#   THE REACH. 68.72 m, and the figure is the plat's own rather than a round
+#   number: the deepest committed lot in data/traces/vectors/thompson_lots.json
+#   is 56.53 m deep (144 lots, 43.83-56.53 m), and the centreline of the street it
+#   fronts stands half of the plat's 80 ft module — 12.192 m — beyond its
+#   frontage. So no ground inside the platted town lies further than 68.72 m from
+#   the centreline of the street it fronts, and ground past that reach is no
+#   further "away from the street" than ground at it. THE BOUND IS A CLAMP ON THE
+#   SCORE, NOT A CLIFF, and that is load-bearing: a cliff would score a house's
+#   far candidates above its near ones wherever the bound fell inside its own ring
+#   of candidate ground, and seat its trees outside its lot to escape a street.
+#
+# WHAT IS DELIBERATELY NOT BOUNDED is the REFUSAL in `clear()`: no stem may stand
+# in any street's travelled track, whichever bank that street is on and whoever
+# fronts it. That refusal is about the two metres around the point, not about
+# whose yard it is, and bounding it would let a stem grow up through a road.
+YARD_STREET_REACH_M = 68.72
+
 SEED = "t74-dooryard-plantings-v1"
 
 # The deal. Numbers of stems per house, and the species weights among the kept
@@ -183,6 +226,71 @@ def path_dist(p, path) -> float:
     return min(seg_dist(p, path[i], path[i + 1]) for i in range(len(path) - 1))
 
 
+def dry_banks(hf):
+    """Every heightfield cell labelled with the piece of dry ground it belongs to.
+
+    A four-connected flood fill over the cells at or above the committed water
+    surface; water and everything off the field label -1. This is the whole notion
+    of "which bank" this tool has, and it is the renderer's own ground rather than
+    a second opinion about it: the same samples terrain.js draws, cut at the same
+    water surface. On the committed field it finds FOUR pieces, which is the town:
+    the West Division (20.4 ha), the South (55.2 ha), the North (35.9 ha), and the
+    9.5 ha of lake shore east of the 1834 harbour cut.
+    """
+    water = float(hf.meta.get("water_surface_m", 0.0))
+    cols, rows = hf.cols, hf.rows
+    dry = [raw * hf.scale + hf.offset >= water for raw in hf.samples]
+    labels = [-1] * (cols * rows)
+    count = 0
+    for seed in range(cols * rows):
+        if not dry[seed] or labels[seed] >= 0:
+            continue
+        labels[seed] = count
+        stack = [seed]
+        while stack:
+            k = stack.pop()
+            j, i = divmod(k, cols)
+            for kk in ((k - cols if j else -1), (k + cols if j + 1 < rows else -1),
+                       (k - 1 if i else -1), (k + 1 if i + 1 < cols else -1)):
+                if kk >= 0 and dry[kk] and labels[kk] < 0:
+                    labels[kk] = count
+                    stack.append(kk)
+        count += 1
+    return labels, count
+
+
+def bank_at(hf, labels, e, n) -> int:
+    """The piece of dry ground a point stands on, or -1 for water and off-field."""
+    i = int(round((e - hf.origin_e) / hf.cell_m))
+    j = int(round((n - hf.origin_n) / hf.cell_m))
+    if 0 <= i < hf.cols and 0 <= j < hf.rows:
+        return labels[j * hf.cols + i]
+    return -1
+
+
+def split_by_bank(path, hf, labels):
+    """One street's path cut into short segments, filed under the bank each stands
+    on. Sampled at the heightfield's own cell so every segment endpoint lies ON the
+    original line: a distance measured to these segments is a distance to the
+    street, not to an approximation of it. A street that crosses water files
+    segments under both banks and none for the crossing itself."""
+    banks = {}
+    for i in range(len(path) - 1):
+        a, b = path[i], path[i + 1]
+        span = math.hypot(b[0] - a[0], b[1] - a[1])
+        steps = max(1, int(math.ceil(span / hf.cell_m)))
+        prev = None
+        for s in range(steps + 1):
+            t = s / steps
+            p = (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
+            if prev is not None:
+                k = bank_at(hf, labels, (prev[0] + p[0]) / 2, (prev[1] + p[1]) / 2)
+                if k >= 0:
+                    banks.setdefault(k, []).append((prev, p))
+            prev = p
+    return banks
+
+
 def is_dwelling_function(value: str) -> bool:
     """T-0052's clause, verbatim — the same houses get trees that get gardens."""
     v = (value or "").strip().lower()
@@ -193,6 +301,22 @@ def is_dwelling_function(value: str) -> bool:
         not any(word in v for word in ("boarding", "school", "meeting", "warehouse",
                                        "tavern", "hotel", "store", "shop", "wash",
                                        "court", "guard", "packing", "slaughter"))
+
+
+class World:
+    """Everything a stem must stand clear of, and the ground it stands on."""
+
+    def __init__(self, sidecars, obstructions, streets, fences, walks, hf,
+                 labels, bank_count, taken):
+        self.sidecars = sidecars
+        self.obstructions = obstructions
+        self.streets = streets
+        self.fences = fences
+        self.walks = walks
+        self.hf = hf
+        self.labels = labels
+        self.bank_count = bank_count
+        self.taken = taken
 
 
 def world():
@@ -217,11 +341,17 @@ def world():
         fp = footprint_world(sc)
         if len(fp) >= 3:
             obstructions.append(fp)
+    hf = Heightfield.load(EPOCH)
+    if hf is None:
+        raise SystemExit("no heightfield at " + str(EPOCH))
+    # The banks, before the streets, because a street is now read bank by bank.
+    labels, bank_count = dry_banks(hf)
     streets = []
     for st in load(STREETS)["streets"]:
         pts = st.get("path_local_enu_m") or []
         if len(pts) >= 2:
-            streets.append((pts, float(st.get("track_width_m") or 0.0)))
+            streets.append((pts, float(st.get("track_width_m") or 0.0),
+                            split_by_bank(pts, hf, labels)))
     fences = []
     for path in sorted(ENCLOSURES.glob("*.json")):
         if path.name == "index.json":
@@ -245,15 +375,15 @@ def world():
             half = float(walk.get("width_m") or 1.83) / 2.0
             for i in range(len(line) - 1):
                 walks.append((tuple(line[i]), tuple(line[i + 1]), half))
-    hf = Heightfield.load(EPOCH)
-    if hf is None:
-        raise SystemExit("no heightfield at " + str(EPOCH))
     taken = [tuple(stem["at_local_enu_m"]) for stem in load(EXISTING)["stems"]]
-    return sidecars, obstructions, streets, fences, walks, hf, taken
+    return World(sidecars, obstructions, streets, fences, walks, hf, labels,
+                 bank_count, taken)
 
 
-def clear(p, obstructions, streets, fences, walks, hf, taken) -> bool:
+def clear(p, w) -> bool:
     e, n = p
+    obstructions, streets, fences, walks, hf, taken = (
+        w.obstructions, w.streets, w.fences, w.walks, w.hf, w.taken)
     if not (hf.origin_e + EDGE_INSET_M <= e
             <= hf.origin_e + (hf.cols - 1) * hf.cell_m - EDGE_INSET_M
             and hf.origin_n + EDGE_INSET_M <= n
@@ -268,7 +398,8 @@ def clear(p, obstructions, streets, fences, walks, hf, taken) -> bool:
             continue
         if poly_contains(p, fp) or poly_edge_dist(p, fp) < FOOTPRINT_MARGIN_M:
             return False
-    for pts, track_w in streets:
+    # THE REFUSAL IS UNBOUNDED ON PURPOSE (T-0255): every street, either bank.
+    for pts, track_w, _banks in streets:
         if path_dist(p, pts) < track_w / 2 + TRACK_SHOULDER_M + TRACK_MARGIN_M:
             return False
     for pts in fences:
@@ -280,7 +411,30 @@ def clear(p, obstructions, streets, fences, walks, hf, taken) -> bool:
     return all(math.hypot(e - te, n - tn) >= STEM_SPACING_M for te, tn in taken)
 
 
-def candidates(sc, obstructions, streets, fences, walks, hf, taken):
+def facing_street_segments(cx, cy, ring, w):
+    """The street ground this house's yard is measured from: the segments of every
+    street that stand on THIS HOUSE'S BANK and near enough to matter.
+
+    "Near enough" is the reach bound plus the radius of the candidate ring, so a
+    segment is kept whenever any candidate point could fall inside the bound of
+    it; the bound itself is applied per point in `candidates()`. Segments are one
+    heightfield cell long, so testing their endpoints against a box is exact to
+    within that cell and the slack below covers it.
+    """
+    bank = bank_at(w.hf, w.labels, cx, cy)
+    if bank < 0:
+        return []
+    box = YARD_STREET_REACH_M + ring + w.hf.cell_m
+    out = []
+    for _pts, _track_w, banks in w.streets:
+        for a, b in banks.get(bank, ()):
+            if (abs(a[0] - cx) <= box and abs(a[1] - cy) <= box) or \
+               (abs(b[0] - cx) <= box and abs(b[1] - cy) <= box):
+                out.append((a, b))
+    return out
+
+
+def candidates(sc, w):
     """Allowed points around one house, each scored for yard-ness.
 
     A ring scan around the footprint centroid: 24 compass bearings by radii from
@@ -288,20 +442,33 @@ def candidates(sc, obstructions, streets, fences, walks, hf, taken):
     away from the nearest street (the yard is behind the house) and close to the
     walls; `door` prefers the closest allowed ground whatever its quarter, which
     is where a bush by the house reads from the road.
+
+    THE NEAREST STREET IS THE NEAREST STREET ON THIS HOUSE'S OWN BANK, MEASURED NO
+    FURTHER THAN THE PLAT'S OWN DEEPEST REACH — the two bounds stated at
+    YARD_STREET_REACH_M above. A house with no street inside that reach on its own
+    bank scores every candidate at the bound, which leaves `yard` deciding on
+    closeness to the walls alone: that is the honest answer for a house whose
+    street this project does not hold, and it is stable under any street laid
+    anywhere else in the town.
     """
     fp = footprint_world(sc)
     cx = sum(q[0] for q in fp) / len(fp)
     cy = sum(q[1] for q in fp) / len(fp)
     reach = max(math.hypot(q[0] - cx, q[1] - cy) for q in fp)
+    facing = facing_street_segments(cx, cy, reach + 12.0, w)
     out = []
     r = reach + 2.0
     while r <= reach + 12.0:
         for k in range(24):
             b = math.radians(k * 15.0)
             p = (round(cx + math.sin(b) * r, 2), round(cy + math.cos(b) * r, 2))
-            if not clear(p, obstructions, streets, fences, walks, hf, taken):
+            if not clear(p, w):
                 continue
-            street = min((path_dist(p, pts) for pts, _ in streets), default=99.0)
+            street = YARD_STREET_REACH_M
+            for a, c in facing:
+                d = seg_dist(p, a, c)
+                if d < street:
+                    street = d
             near = poly_edge_dist(p, fp)
             out.append({"p": p, "yard": street - 0.6 * near, "door": -near})
         r += 1.0
@@ -309,7 +476,8 @@ def candidates(sc, obstructions, streets, fences, walks, hf, taken):
 
 
 def build():
-    sidecars, obstructions, streets, fences, walks, hf, taken = world()
+    w = world()
+    sidecars, taken = w.sidecars, w.taken
     z10 = {sp["id"]: sp for sp in load(ZONE)["species"]}
     stems, refused = [], []
     houses = kept = 0
@@ -331,7 +499,7 @@ def build():
         n_bushes = deal(rnd(sid, "bushes"), BUSH_DEAL)
         if not n_trees and not n_bushes:
             continue
-        pool = candidates(sc, obstructions, streets, fences, walks, hf, taken)
+        pool = candidates(sc, w)
         placed_here = 0
         for i in range(n_trees):
             pool = [c for c in pool
@@ -383,10 +551,10 @@ def build():
             placed_here += 1
         if placed_here:
             kept += 1
-    return stems, refused, houses, kept
+    return stems, refused, houses, kept, w.bank_count
 
 
-def record(stems, refused, houses, kept):
+def record(stems, refused, houses, kept, bank_count):
     trees = [s for s in stems if s["species"] != BUSH_SPECIES]
     bushes = [s for s in stems if s["species"] == BUSH_SPECIES]
     zone_poly = load(ZONE)["extent"]["polygon"]
@@ -417,6 +585,57 @@ def record(stems, refused, houses, kept):
         "belongs_to": [],
         "in_enclosure": None,
         "zone": "z10_settled_town",
+        "the_street_a_yard_is_measured_from": {
+            "why_this_is_stated": (
+                "A stem is seated AWAY FROM THE NEAREST STREET, because the yard "
+                "is behind the house — so what 'the nearest street' is allowed to "
+                "mean decides where every tree in this record stands, and until "
+                "T-0255 it meant the nearest of all "
+                + str(len(json.load(STREETS.open(encoding='utf-8'))["streets"]))
+                + " records in data/streets/1835.json at any distance on either "
+                "bank. Nobody chose that: a 23.91 m track laid on the SOUTH bank "
+                "below the fort's north gate (T-0099) became the nearest street to "
+                "a dwelling on the NORTH bank, with no crossing between the two "
+                "for hundreds of metres, and turned that house's cottonwoods. The "
+                "rule now has two bounds and both are measured rather than picked."
+            ),
+            "the_bank": (
+                "A street is a house's street only where it stands on the same dry "
+                "ground. The committed heightfield's land cells fall into "
+                + str(bank_count) + " four-connected pieces — the West, South and "
+                "North Divisions the river separates, and the lake shore east of "
+                "the 1834 harbour cut — and that "
+                "partition IS the river, read off the same field the renderer "
+                "walks the visitor over. Each street's path is cut into the "
+                "segments that lie in each piece and a house measures only the "
+                "segments in its own, so Kinzie Street — which runs out of the "
+                "West Division, across the North Branch at Wolf Point and into the "
+                "North — is measured from a North Division house along its North "
+                "Division reach and not across the water. This is a connected "
+                "component and not a tolerance: there is no threshold to tune."
+            ),
+            "the_reach_m": YARD_STREET_REACH_M,
+            "the_reach": (
+                "68.72 m, and the figure is the plat's own. The deepest committed "
+                "lot in data/traces/vectors/thompson_lots.json is 56.53 m deep "
+                "(144 lots, 43.83-56.53 m), and the centreline of the street it "
+                "fronts stands half of the plat's 80 ft module — 12.192 m — beyond "
+                "its frontage, so no ground inside the platted town lies further "
+                "than 68.72 m from the centreline of the street it fronts. Ground "
+                "past that reach is no further 'away from the street' than ground "
+                "at it. THE BOUND IS A CLAMP AND NOT A CLIFF: a cliff would score "
+                "a house's far candidates above its near ones wherever the bound "
+                "fell inside its own ring of candidate ground, and seat its trees "
+                "outside its lot to escape a street."
+            ),
+            "what_is_not_bounded": (
+                "The REFUSAL. No stem may stand in any street's travelled track, "
+                "whichever bank that street is on and whoever fronts it — that "
+                "refusal is about the two metres around the point, not about whose "
+                "yard it is, and bounding it would let a stem grow up through a "
+                "road."
+            ),
+        },
         "existence": {
             "value": True,
             "confidence": "inferred",
@@ -482,8 +701,8 @@ def main() -> int:
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
     args = ap.parse_args()
-    stems, refused, houses, kept = build()
-    text = json.dumps(record(stems, refused, houses, kept),
+    stems, refused, houses, kept, bank_count = build()
+    text = json.dumps(record(stems, refused, houses, kept, bank_count),
                       indent=2, ensure_ascii=False) + "\n"
     if args.check:
         if not OUT.exists():
