@@ -244,6 +244,16 @@ step "Kinzie's Addition's block numerals re-derive from the reading and the run"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_kinzie_addition_numerals.py --self-test
 
+# THE NORTH DIVISION'S SEVEN BLOCK NUMERALS (T-1088). The reading lives in
+# data/traces/thompson_block_numbering.json; what is gated here is the CITATION — every
+# crop region it cites is re-cut from the committed street lines by the same rule, so a
+# street that moves invalidates the crop rather than silently outliving it.
+step "the North Division numeral crops re-cut from the committed street lines" \
+  python3 tools/read_north_division_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_north_division_numerals.py --self-test
+
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
 # beside them, through the same NA affine, and re-derives the module and the Kinzie

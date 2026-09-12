@@ -12,6 +12,57 @@
 
 ---
 
+## 0a. The North Division's tier, read once its streets were committed (T-1088)
+
+**2026-09-12.** § 0's reading stopped at twenty-two because the crop has to be *cut from
+committed street lines*, and in September 2026 the grid held nothing north of the river. It
+does now: Kinzie Street, the six north–south lines of the North Division — Market, Franklin,
+Wells, La Salle, Clark, Dearborn — and Wolcott closing the tier on the east are all in
+`data/streets/1835.json`, all graded `attested`. So the tier between Kinzie Street and the river
+was cut and read by exactly the § 0 method, and it carries seven numerals:
+
+| west → east | direction |
+|---|---|
+| **7** 6 5 4 3 2 1 | falls eastward |
+
+Block 7 is the one the river bounds. It has no committed street on its west, so its box is cut
+one module (123.36 m, the mean spacing of the six flanking lines) west of Market Street and is
+wider than the block; the entry cites both that derived box and the tighter region the numeral
+was actually read on, and the tighter one lies wholly inside it.
+
+**Block 6 is the only hard read of the seven.** The curved road that leaves the Kinzie / North
+Water corner and runs north crosses the numeral, and its west kerb passes through the glyph's
+upper stroke. What survives is a stroke descending from the upper right into a closed bottom
+loop — Wright's 6, not his 5, whose top carries a flag (block 5, one block east, prints one for
+comparison in the same hand and the same size). The tier's own run agrees on both sides.
+
+**These seven are NOT on the grid, and that is deliberate.** `tools/generate_plat_lots.py` emits
+the three South Division tiers and nothing else, so there is no cell in
+`data/traces/vectors/thompson_lots.json` for a North Division number to be stamped onto. Forcing
+one would be the mistake this file exists to avoid, so the readings sit in
+`blocks_not_in_the_grid` beside 44 and 43, waiting for a cell. Widening the generator north is
+its own unit of work.
+
+**What IS gated is the citation.** `tools/read_north_division_numerals.py --check` re-cuts all
+seven crop regions from the committed street lines and fails if they have drifted, and
+`tools/check.sh` runs it. A street that moves now invalidates its own crop instead of quietly
+outliving it — which is the property § 0's twenty-two do not yet have.
+
+**The lot rows run the other way up here.** Four of the seven blocks print both rows legibly —
+7, 4, 2 and 1 — and every one prints **5 6 7 8 across its north row** west to east and **4 3 2 1
+across its south row**, the mirror of the South Division scheme in § 5. So lot 1 sits at the
+block's south-east corner here and at its north-east corner there. In both divisions that is the
+row facing the river, which is a tidy rule and is *not* claimed: it rests on one reading per
+division, and a tier away from the water in either would test it. What is claimed is the four
+blocks, which agree with one another. The grade is unchanged and for the unchanged reason — the
+lot lines are a module divided, not a line drawn from any sheet, so a number on one is
+conjectural whatever the number's own provenance.
+
+**Still refused: 52–58, 8–13, 22–27, 46–51, and 14–15 on the North Branch's west bank** — the
+Washington–Madison tier, the West Division past Clinton, and the far bank. No committed street
+line reaches any of them, so no crop can be cut, and reading them by eye is the method this file
+was rebuilt to replace. That refusal is T-1089.
+
 ## 0. Superseded in the best way: the numerals were there all along
 
 **2026-09-06, T-0788.** Everything below §§ 1–3 stands as the record of how six blocks got
