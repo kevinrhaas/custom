@@ -9881,16 +9881,16 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
 
-### L211 — 97 documented businesses stand on 1 July 1835 because nothing says they closed
+### L211 — 96 documented businesses stand on 1 July 1835 because nothing says they closed
 **Decision:** every business the newspaper register flags `survival_liberty_required` is
 treated as standing at the scene date. Its existence is documented — a dated advertisement
 or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to
 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
 the flag, this entry carries the liberty, and no business record is graded `documented` for
 a survival nothing witnessed.
-**Why:** the corpus is thinnest in the year it most needs to be thick. 181 documented
+**Why:** the corpus is thinnest in the year it most needs to be thick. 180 documented
 businesses are present at the scene date and only **84** of them are documented *in* 1835;
-the other **97** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
+the other **96** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
 before the day the town is drawn. Refusing the assumption is the only alternative to making
 it, and refusing it empties more than half the documented trade out of Chicago on the
 strength of a newspaper run nobody has finished reading — the 1835 issues that would
@@ -9899,17 +9899,17 @@ ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The reg
 already refuses everything that CAN be refused — 13 businesses are excluded by a claim that
 contradicts them before the scene date and 4 by an opening announced after it — so this
 covers what is left after the evidence has spoken, not instead of it.
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 97 businesses, enumerated
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 96 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number above cannot drift from the
 register without `check.sh` saying so, which is the point of writing it down: a scope that
 has silently stopped matching its population reads as a measurement and is not one.
 **Consequence:** as the register is seeded into the town, half of these reach something a
-visitor can see. Measured on the register as it stands on 2026-09-12, **55** of the 97 do —
-15 enrich a house already standing, 17 ask for a new building, 23 take a street face — and
+visitor can see. Measured on the register as it stands on 2026-09-12, **54** of the 96 do —
+15 enrich a house already standing, 16 ask for a new building, 23 take a street face — and
 **42** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
-judged one house, and it is a dated reading rather than a standing claim; the 97 is the
-number this entry is held to and the number the gate re-derives. It has now moved four
+judged one house, and it is a dated reading rather than a standing claim; the 96 is the
+number this entry is held to and the number the gate re-derives. It has now moved five
 times for exactly the second reason. This entry was written at 111 the same day T-0345 found
 that four of the register's businesses were four readings of Matthias Mason & Co.'s one
 blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in
@@ -9923,7 +9923,10 @@ Peck with P. F. W. Peck on one La Salle corner, G. Blanshard with F. G. Blanshar
 Temple's, W. Keeney with G. W. Keeney below Newberry & Dole's — taking 101 to 98; and T-1046 read the four impressions of the bootmaking notice next door
 to P. Cohen's store, two of which set the signature with the L lost in the setting, and
 joined the 'W. Montgomery, boot and shoe maker' the register had made of them to Loton W.
-Montgomery's own house, taking 98 to 97. No movement
+Montgomery's own house, taking 98 to 97; and T-0407 withdrew a bracketed `[N]` that had
+made one of the nineteen impressions of Matthias Mason & Co.'s blacksmithing notice into a
+second forge, `Matthias Nason & Co.`, on a line its own transcription sets `MATTHIAS MASON &
+CO.` whole — taking 97 to 96. No movement
 is a business leaving Chicago; all are shops the register was holding twice. Every one
 of them puts a trade sign, a
 card or an occupant into July 1835 on an inference, and a visitor reading such a card is

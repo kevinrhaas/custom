@@ -471,7 +471,7 @@
       "kind": "business",
       "reading": "transcription_mediated",
       "quote": "Blacksmithing Business.\nMATTHIAS MASON & CO.\nARRIES on the above business\nte    ves’ ‘Tavern, where they in!     c\nep, ready ade, all kinds of Shurz, Chains,\nc. de.     ‘ork done on the phortest notice,\nid most liberal terms,\nChicago, Now. 8, U",
-      "normalized": "Blacksmithing Business. MATTHIAS [N]ASON & CO. [C]ARRIES on the above business [in all its varieties … at Gra]ves' Tavern, where they in[tend to] [ke]ep ready [m]ade, all kinds of Sh[oe]s, Chains, [&]c. &c. [W]ork done on the [s]hortest notice, [an]d most liberal terms. Chicago, Nov. [2]6, [1833].",
+      "normalized": "Blacksmithing Business. MATTHIAS MASON & CO. [C]ARRIES on the above business [in all its varieties … at Gra]ves' Tavern, where they in[tend to] [ke]ep ready [m]ade, all kinds of Sh[oe]s, Chains, [&]c. &c. [W]ork done on the [s]hortest notice, [an]d most liberal terms. Chicago, Nov. [2]6, [1833].",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 3,
@@ -493,7 +493,7 @@
         "interleaved": true
       },
       "business": {
-        "name": "Matthias Nason & Co.",
+        "name": "Matthias Mason & Co.",
         "trade": "blacksmiths",
         "goods": [
           "horse shoes",
@@ -507,7 +507,7 @@
         }
       },
       "entities": [],
-      "notes": "THE SECOND BLACKSMITH IN THE TOWN AND THE SECOND STOREFRONT HUNG ON GRAVES' TAVERN. This impression loses the preposition — the line reads 've[s]' Tavern' with the offset cut away — and the issue of 1834-02-25 supplies it as 'back on Main-street, nearly [op]posite Graves' Ta[vern]' (c006 there), which is a fuller placement than 'at' and is where the anchor should be taken from. The firm's name is printed 'NASON' here and 'MASON' at 1834-02-25; neither is preferred and both stand in their own quotes, because a smith's surname is exactly the sort of thing a later record has to match on. Together with Pierce & Abbott opposite the Chicago Hotel (1834-02-04 c012), the town supports two forges in February 1834. The Main-street placement the fuller witness gives is not new to the corpus either: T-0310 read this same advertisement at 1834-01-07 (c008 there) as 'on Main-[s]treet, n[early] [o]pposite Grave[s]' Tavern', so February corroborates January rather than adding a street."
+      "notes": "THE SECOND BLACKSMITH IN THE TOWN AND THE SECOND STOREFRONT HUNG ON GRAVES' TAVERN. This impression loses the preposition — the line reads 've[s]' Tavern' with the offset cut away — and the issue of 1834-02-25 supplies it as 'back on Main-street, nearly [op]posite Graves' Ta[vern]' (c006 there), which is a fuller placement than 'at' and is where the anchor should be taken from. THE SURNAME IS MASON, AND THE '[N]' THIS READING ONCE SUPPLIED IS WITHDRAWN (T-0407). This claim stood with `normalized` reading 'MATTHIAS [N]ASON & CO.' and a business name of 'Matthias Nason & Co.', on a note that said the firm 'is printed NASON here'. It is not: line 2823 of this transcription sets the heading MATTHIAS MASON & CO. whole, on its own line, with no uncertainty marker on it \u2014 the interleaved lines of this claim begin two lines below it, at 2825. So there was no unread letter for a bracket to stand in, and the supply contradicted the impression it claimed to read. THE TALLY, by the README's own three greps: nineteen impressions of this standing notice carry the surname's first letter and every one of them is an M \u2014 fifteen set MASON whole (1833-12-03, 1833-12-17, 1833-12-24, 1834-02-11, this issue, 1834-03-04, 1834-03-18, 1834-03-25, 1834-06-04, 1834-07-16, 1834-09-24, 1834-10-15, 1834-11-19, 1834-12-03, 1834-12-17), two wreck the S and keep the M (MAJON at 1834-04-08, MADON at 1834-11-26), and two break off at 'MATTHIAS MA' (1834-12-10, 1834-12-24). Not one reads an N. The post office prints the man independently of his own advertisement: 'Mason, Matthias' in the letter lists of 1835-05-20 and 1835-05-27. NOTHING IS AMENDED TO AGREE HERE \u2014 the quote is untouched and always read MASON, and what is withdrawn is a reader's supply, not a printing. Together with Pierce & Abbott opposite the Chicago Hotel (1834-02-04 c012), the town supports two forges in February 1834. The Main-street placement the fuller witness gives is not new to the corpus either: T-0310 read this same advertisement at 1834-01-07 (c008 there) as 'on Main-[s]treet, n[early] [o]pposite Grave[s]' Tavern', so February corroborates January rather than adding a street."
     }
   ]
 }

@@ -105,11 +105,11 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_18.json",
-      "sha256": "e34b8275db9436ada6e4d48e8a24a3b33680fb2555a6e292dffc2a3c132b2e0b"
+      "sha256": "5843e81201587da66da5eb100827e6d6fdefce235e01e774145cfb7ae83388aa"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_25.json",
-      "sha256": "2c343aea181064f3e60c09c83a26edf8b2d387c6d692413718126ca59cc54534"
+      "sha256": "665bdf0caf55617c9a606e99dc1b213664dee8e7a959bca27b2376aae7e5470f"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_03_04.json",
@@ -352,7 +352,7 @@
     "claims": 1169,
     "persons": 2665,
     "places": 3,
-    "businesses": 198,
+    "businesses": 197,
     "agencies": 1
   },
   "persons": [
@@ -68077,6 +68077,7 @@
         "chicago_democrat_1833_11_26#c020",
         "chicago_democrat_1833_12_24#c003",
         "chicago_democrat_1834_01_07#c008",
+        "chicago_democrat_1834_02_18#c010",
         "chicago_democrat_1834_02_25#c006",
         "chicago_democrat_1834_03_04#c015",
         "chicago_democrat_1834_04_01#c012",
@@ -68112,6 +68113,7 @@
           "claims": [
             "chicago_democrat_1833_12_24#c003",
             "chicago_democrat_1834_01_07#c008",
+            "chicago_democrat_1834_02_18#c010",
             "chicago_democrat_1834_03_04#c015",
             "chicago_democrat_1834_04_01#c012"
           ],
@@ -68204,7 +68206,7 @@
         "history": [
           {
             "anchor": "Graves' Tavern",
-            "why": "Four readings of one landmark, 'Graves' Tavern', differing only in how much of the street clause the reading pass carried into the anchor field and, once, in a lost apostrophe: 1833-11-26 keeps 'on Main-street' inside it, 1834-02-25 keeps 'Main-street', 1833-12-24 / 1834-01-07 / 1834-03-04 / 1834-04-01 keep neither, and 1834-06-11 sets 'Gra]ves Tavern' across an interleaved line and loses the apostrophe with the preceding column. Every one of the six is the same sentence of the same advertisement and every one names the same tavern; the street they differ over is carried in `street` and in each reading's own offset text, so no word is lost by grouping them.",
+            "why": "Four readings of one landmark, 'Graves' Tavern', differing only in how much of the street clause the reading pass carried into the anchor field and, once, in a lost apostrophe: 1833-11-26 keeps 'on Main-street' inside it, 1834-02-25 keeps 'Main-street', 1833-12-24 / 1834-01-07 / 1834-02-18 / 1834-03-04 / 1834-04-01 keep neither, and 1834-06-11 sets 'Gra]ves Tavern' across an interleaved line and loses the apostrophe with the preceding column. Every one of the seven is the same sentence of the same advertisement and every one names the same tavern; the street they differ over is carried in `street` and in each reading's own offset text, so no word is lost by grouping them. 1834-02-18 JOINED THIS GROUP AT T-0407 AND DID NOT MOVE ITS BOUNDARY. That impression had stood outside this house altogether, as a separate business called 'Matthias Nason & Co.', on a bracketed '[N]' its own transcription does not support — line 2823 of the 18 February setting reads MATTHIAS MASON & CO. whole and unmarked, and no impression of this notice reads an N. The supply is withdrawn in the claim. Its anchor was already the bare \"Graves' Tavern\" this group is about, so the printing lands inside the EARLIER anchor and the window this rule brackets — the change from the tavern to the Tremont House, between 1834-06-11 and 1834-09-10 — is untouched: 18 February 1834 adds a printing to the old anchor, not a date to the boundary.",
             "first_issue": "1833-11-26",
             "last_issue": "1834-06-11",
             "readings": [
@@ -68233,6 +68235,7 @@
                 "claims": [
                   "chicago_democrat_1833_12_24#c003",
                   "chicago_democrat_1834_01_07#c008",
+                  "chicago_democrat_1834_02_18#c010",
                   "chicago_democrat_1834_03_04#c015",
                   "chicago_democrat_1834_04_01#c012"
                 ],
@@ -68280,6 +68283,7 @@
               "chicago_democrat_1833_11_26#c020",
               "chicago_democrat_1833_12_24#c003",
               "chicago_democrat_1834_01_07#c008",
+              "chicago_democrat_1834_02_18#c010",
               "chicago_democrat_1834_02_25#c006",
               "chicago_democrat_1834_03_04#c015",
               "chicago_democrat_1834_04_01#c012",
@@ -68343,56 +68347,6 @@
           "into": "Matthias Mason & Co.",
           "from": "Mathias Mason & Co.",
           "merge_rule": "'Mathias Mason & Co.' is 'Matthias Mason & Co.' with one T dropped, and the pair exists in this house's proprietors only because the firm merge above unioned the 1834-09-10 impression's list into it. Ten of the eleven printings of this advertisement set MATTHIAS; the eleventh brackets the letter it could not read."
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "other"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_matthias_nason_co",
-      "name": "Matthias Nason & Co.",
-      "proprietors": [],
-      "partners": [],
-      "firm_styles": [],
-      "trade": "blacksmiths",
-      "goods": [
-        "chains",
-        "horse shoes"
-      ],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "Graves' Tavern",
-        "offset_text": "ves’ ‘Tavern, where they in!     c"
-      },
-      "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-02-18",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_02_18#c010"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "Graves' Tavern",
-          "class": "relative",
-          "first_issue": "1834-02-18",
-          "last_issue": "1834-02-18",
-          "claims": [
-            "chicago_democrat_1834_02_18#c010"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Graves' Tavern",
-            "offset_text": "ves’ ‘Tavern, where they in!     c"
-          }
         }
       ],
       "built_at_scene_date": true,
