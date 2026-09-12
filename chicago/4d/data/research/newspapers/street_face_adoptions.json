@@ -48,11 +48,11 @@
      "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
      "business_unnamed_new_store_la_salle_street"
     ],
-    "would_still_refuse": 30,
+    "would_still_refuse": 28,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 23,
-     "this face already holds this proprietor": 7,
+     "this face already holds this proprietor": 5,
      "every roof on the face is spoken for": 0
     }
    },
@@ -67,11 +67,11 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 20,
+    "would_still_refuse": 18,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 3,
-     "this face already holds this proprietor": 10,
+     "this face already holds this proprietor": 8,
      "every roof on the face is spoken for": 7
     }
    },
@@ -87,27 +87,27 @@
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 20,
+    "would_still_refuse": 18,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 1,
-     "this face already holds this proprietor": 10,
+     "this face already holds this proprietor": 8,
      "every roof on the face is spoken for": 9
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 59,
+  "street_only_in_register": 57,
   "adopted": 39,
-  "refused": 20,
+  "refused": 18,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 3,
-   "this face already holds this proprietor": 10,
+   "this face already holds this proprietor": 8,
    "every roof on the face is spoken for": 7
   },
-  "unplaceable_present_at_scene_date": 71,
+  "unplaceable_present_at_scene_date": 70,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -139,7 +139,7 @@
    },
    "lake": {
     "street_name": "Lake Street",
-    "businesses_naming_it": 11,
+    "businesses_naming_it": 9,
     "adopted": 9,
     "roofs_lot_front": 51,
     "roofs_corner_side": 0,
@@ -462,7 +462,7 @@
    "first_issue": "1835-08-08",
    "last_issue": "1835-08-12",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_lake_clark_d3_02",
+   "structure_id": "recon_1835_blk_lake_clark_d5_03",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -533,12 +533,13 @@
    "street_text": "Lake Street",
    "placement_class": "relative",
    "cites": [
-    "chicago_democrat_1834_10_08#c004"
+    "chicago_democrat_1834_10_08#c004",
+    "chicago_democrat_1834_11_12#c012"
    ],
    "first_issue": "1834-10-08",
-   "last_issue": "1834-10-08",
-   "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_clark_d4_02",
+   "last_issue": "1834-11-12",
+   "mentions": 2,
+   "structure_id": "recon_1835_blk_lake_clark_d3_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1035,7 +1036,7 @@
    "first_issue": "1835-08-19",
    "last_issue": "1835-08-22",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_lake_clark_d5_03",
+   "structure_id": "recon_1835_blk_lake_franklin_d1_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1131,7 +1132,7 @@
    "first_issue": "1834-07-09",
    "last_issue": "1834-07-09",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_lake_market_d4_02",
+   "structure_id": "recon_1835_blk_lake_market_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1204,7 +1205,7 @@
    "first_issue": "1834-07-09",
    "last_issue": "1834-07-09",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_lake_market_d5_01",
+   "structure_id": "recon_1835_blk_south_water_clark_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1229,7 +1230,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1834-06-04",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_lake_franklin_d1_02",
+   "structure_id": "recon_1835_blk_lake_franklin_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1254,7 +1255,7 @@
    "first_issue": "1834-06-11",
    "last_issue": "1834-06-11",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_lake_franklin_d5_01",
+   "structure_id": "recon_1835_blk_lake_market_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1274,12 +1275,13 @@
    "street_text": "Lake Street",
    "placement_class": "relative",
    "cites": [
+    "chicago_democrat_1835_06_24#c007",
     "chicago_democrat_1835_08_05#c021",
     "chicago_democrat_1835_08_19#c014"
    ],
-   "first_issue": "1835-08-05",
+   "first_issue": "1835-06-24",
    "last_issue": "1835-08-19",
-   "mentions": 2,
+   "mentions": 3,
    "structure_id": "recon_1835_blk_lake_clark_d1_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
@@ -1377,22 +1379,6 @@
    "street_name": "South Water Street",
    "refusal": "this face already holds this proprietor",
    "detail": "'D. Graves' already stands on this face under the same proprietor surname(s) graves, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
-  },
-  {
-   "business_id": "business_f_g_blanshard",
-   "business_name": "F. G. Blanshard",
-   "street_id": "lake",
-   "street_name": "Lake Street",
-   "refusal": "this face already holds this proprietor",
-   "detail": "'G. Blanshard' already stands on this face under the same proprietor surname(s) blanshard, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
-  },
-  {
-   "business_id": "business_m_h_kennicott",
-   "business_name": "M. H. Kennicott",
-   "street_id": "lake",
-   "street_name": "Lake Street",
-   "refusal": "this face already holds this proprietor",
-   "detail": "'Wm. H. Kennicott, Surgeon Dentist' already stands on this face under the same proprietor surname(s) kennicott, on better evidence. One house, one roof per face; whether these are two headings of one business is the gazetteer's to judge (T-0338, T-0340), not this pass's."
   },
   {
    "business_id": "business_montgomery_auction_and_commission_house",

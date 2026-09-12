@@ -352,7 +352,7 @@
     "claims": 1169,
     "persons": 2666,
     "places": 4,
-    "businesses": 206
+    "businesses": 200
   },
   "persons": [
     {
@@ -61431,57 +61431,6 @@
       "survival_liberty_required": false
     },
     {
-      "id": "business_dr_j_b_barnard",
-      "name": "Dr. J. B. Barnard",
-      "proprietors": [
-        "J. B. Barnard"
-      ],
-      "trade": "physician",
-      "goods": [],
-      "street": "Lake Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "the New York House",
-        "offset_text": "ar tie New Yous Horse, Lane atneet,",
-        "offset_normalized": "a[t] t[h]e New Yor[k] Ho[u]se, La[k]e [s]t[r]eet",
-        "street": "Lake Street"
-      },
-      "evidence": {
-        "first_issue": "1835-06-13",
-        "last_issue": "1835-06-13",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_american_1835_06_13#c009"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "the New York House",
-          "class": "relative",
-          "first_issue": "1835-06-13",
-          "last_issue": "1835-06-13",
-          "claims": [
-            "chicago_american_1835_06_13#c009"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "the New York House",
-            "offset_text": "ar tie New Yous Horse, Lane atneet,",
-            "offset_normalized": "a[t] t[h]e New Yor[k] Ho[u]se, La[k]e [s]t[r]eet",
-            "street": "Lake Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "physician"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": false
-    },
-    {
       "id": "business_dr_j_h_barnard",
       "name": "Dr. J. H. Barnard",
       "proprietors": [
@@ -61499,7 +61448,7 @@
       },
       "evidence": {
         "first_issue": "1835-06-04",
-        "last_issue": "1835-06-04",
+        "last_issue": "1835-06-13",
         "copy_dates": [
           "1835-06-03"
         ]
@@ -61507,6 +61456,7 @@
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
+        "chicago_american_1835_06_13#c009",
         "chicago_democrat_1835_06_04#c006"
       ],
       "placement_readings": [
@@ -61525,6 +61475,35 @@
             "offset_normalized": "AT THE NEW-YORK HOUSE, LAKE-STREET",
             "street": "Lake Street"
           }
+        },
+        {
+          "anchor": "the New York House",
+          "class": "relative",
+          "first_issue": "1835-06-13",
+          "last_issue": "1835-06-13",
+          "claims": [
+            "chicago_american_1835_06_13#c009"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "the New York House",
+            "offset_text": "ar tie New Yous Horse, Lane atneet,",
+            "offset_normalized": "a[t] t[h]e New Yor[k] Ho[u]se, La[k]e [s]t[r]eet",
+            "street": "Lake Street"
+          }
+        }
+      ],
+      "merged": [
+        {
+          "from": "Dr. J. B. Barnard",
+          "merge_rule": "'Dr. J. B. Barnard' is 'Dr. J. H. Barnard' with the second initial read out of a different setting, and the B and the H are the same letter of one physician's name. One lodging, printed twice nine days apart in two papers: the Democrat of 1835-06-04 c006 sets “AT THE MKW-YORK HOUSE, LaKE-sTRRET,” — read as “AT THE NEW-YORK HOUSE, LAKE-STREET” — over a copy date of 1835-06-03, and the American of 1835-06-13 c009 sets the same direction as “ar tie New Yous Horse, Lane atneet,”. One trade, and it is the same word: physician. Two physicians of one surname taking rooms in one hotel on one street inside nine days is not what the corpus shows; it shows one card carried by both papers. Merged INTO 'Dr. J. H. Barnard' because that record reads the address line whole and carries the copy date that dates the card, while the American's setting has to be read letter by letter; the direction is which record can be placed, not which spelling is truer."
+        }
+      ],
+      "proprietors_merged": [
+        {
+          "into": "J. H. Barnard",
+          "from": "J. B. Barnard",
+          "merge_rule": "'J. B. Barnard' is 'J. H. Barnard' with the second initial read out of a second setting, and the pair exists in this house's proprietors only because T-0413's firm merge joined the two styles. The Democrat of 1835-06-04 c006 and the American of 1835-06-13 c009 carry one physician's card nine days apart, both lodging him at the New-York House in Lake Street; the B and the H are one letter printed twice, and the register holds no other Barnard practising in the town."
         }
       ],
       "built_at_scene_date": true,
@@ -62505,53 +62484,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_f_g_blanshard",
-      "name": "F. G. Blanshard",
-      "proprietors": [
-        "F. G. Blanshard"
-      ],
-      "trade": "houses and lots for sale or rent",
-      "goods": [],
-      "street": "Lake Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "Dr. Temple's",
-        "offset_text": "_eppasite Dr, Temple's, Hake,"
-      },
-      "evidence": {
-        "first_issue": "1834-11-12",
-        "last_issue": "1834-11-12",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_11_12#c012"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "Dr. Temple's",
-          "class": "relative",
-          "first_issue": "1834-11-12",
-          "last_issue": "1834-11-12",
-          "claims": [
-            "chicago_democrat_1834_11_12#c012"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Dr. Temple's",
-            "offset_text": "_eppasite Dr, Temple's, Hake,"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "other"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": true
-    },
-    {
       "id": "business_frederick_thomas_drugs_and_paints",
       "name": "Frederick Thomas, drugs and paints",
       "proprietors": [
@@ -62817,13 +62749,14 @@
       },
       "evidence": {
         "first_issue": "1834-10-08",
-        "last_issue": "1834-10-08",
+        "last_issue": "1834-11-12",
         "copy_dates": []
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
-        "chicago_democrat_1834_10_08#c004"
+        "chicago_democrat_1834_10_08#c004",
+        "chicago_democrat_1834_11_12#c012"
       ],
       "placement_readings": [
         {
@@ -62841,6 +62774,37 @@
             "offset_normalized": "opposite Dr. Temple's, Lake-st.",
             "street": "Lake Street"
           }
+        },
+        {
+          "anchor": "Dr. Temple's",
+          "class": "relative",
+          "first_issue": "1834-11-12",
+          "last_issue": "1834-11-12",
+          "claims": [
+            "chicago_democrat_1834_11_12#c012"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "Dr. Temple's",
+            "offset_text": "_eppasite Dr, Temple's, Hake,"
+          }
+        }
+      ],
+      "trade_variants": [
+        "houses and lots for sale or rent",
+        "houses and lots for sale or to let"
+      ],
+      "merged": [
+        {
+          "from": "F. G. Blanshard",
+          "merge_rule": "'F. G. Blanshard' is 'G. Blanshard' with the first initial printed, and the two styles are one standing advertisement read twice five weeks apart in one paper. The anchor is the same sentence both times: 'G. Blanshard' stands “opposite Dr. Temple's, Lake-st.” at 1834-10-08 c004, and 'F. G. Blanshard' stands “_eppasite Dr, Temple's, Hake,” at 1834-11-12 c012 — the same words through a damaged column. One trade, and it is not a trade two men would be printed in five weeks apart on one street: houses and lots for sale or to let. Merged INTO 'G. Blanshard' because that impression gives the anchor whole, with the street on it, while the November setting has to be read through the damage; the direction is which record can be placed, not which spelling is truer."
+        }
+      ],
+      "proprietors_merged": [
+        {
+          "into": "G. Blanshard",
+          "from": "F. G. Blanshard",
+          "merge_rule": "'F. G. Blanshard' is 'G. Blanshard' with the first initial printed, and the pair exists in this house's proprietors only because T-0413's firm merge joined the two styles. It is one advertisement set twice in one paper five weeks apart — “opposite Dr. Temple's, Lake-st.” at 1834-10-08 c004 and the same words damaged at 1834-11-12 c012 — offering houses and lots for sale or to let both times. One man read with and without his first initial, not two Blanshards on one Lake Street frontage."
         }
       ],
       "built_at_scene_date": true,
@@ -63186,51 +63150,6 @@
       ],
       "trade_class_scope": "in_town",
       "survival_liberty_required": false
-    },
-    {
-      "id": "business_g_w_keeney",
-      "name": "G. W. Keeney",
-      "proprietors": [],
-      "trade": "tin, sheet iron and copper ware; cooking stoves; plough and mill castings",
-      "goods": [],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "Newberry & Dole's store",
-        "offset_text": "A fe[w] doors bel[ow] Messrs. N[ew]berry & Dole's"
-      },
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-07",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_05_07#c003"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "Newberry & Dole's store",
-          "class": "relative",
-          "first_issue": "1834-05-07",
-          "last_issue": "1834-05-07",
-          "claims": [
-            "chicago_democrat_1834_05_07#c003"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Newberry & Dole's store",
-            "offset_text": "A fe[w] doors bel[ow] Messrs. N[ew]berry & Dole's"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "tin_and_copper_manufactory"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": true
     },
     {
       "id": "business_g_w_w_laird",
@@ -64534,7 +64453,7 @@
       },
       "evidence": {
         "first_issue": "1835-05-20",
-        "last_issue": "1835-05-20",
+        "last_issue": "1835-07-01",
         "copy_dates": [
           "1835-05-18"
         ]
@@ -64542,16 +64461,18 @@
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
-        "chicago_democrat_1835_05_20#c009"
+        "chicago_democrat_1835_05_20#c009",
+        "chicago_democrat_1835_07_01#c013"
       ],
       "placement_readings": [
         {
           "anchor": "Messrs. Jones, King & Co.",
           "class": "relative",
           "first_issue": "1835-05-20",
-          "last_issue": "1835-05-20",
+          "last_issue": "1835-07-01",
           "claims": [
-            "chicago_democrat_1835_05_20#c009"
+            "chicago_democrat_1835_05_20#c009",
+            "chicago_democrat_1835_07_01#c013"
           ],
           "placement": {
             "class": "relative",
@@ -64562,16 +64483,34 @@
           }
         }
       ],
+      "trade_variants": [
+        "attorney and counsellor at law, and solicitor in chancery",
+        "attorney and counsellor at law, solicitor in chancery"
+      ],
+      "merged": [
+        {
+          "from": "L. Curtiss, attorney and counsellor at law",
+          "merge_rule": "'L. Curtiss, attorney and counsellor at law' is 'J. Curtiss' with the forename initial read as an L, and the two are one attorney's standing advertisement read twice — which the corpus settles on the copy date and the door rather than on the letter. Both are copy-dated 1835-05-18, and both stand first door west of Messrs. Jones, King & Co. in South Water street: the Democrat of 1835-05-20 c009 reads “O[FFICE] in South Water-street, first [door] west of Messrs. Jones, King & Co.”, and 1835-07-01 c013 reads “[first door] west of Messrs. Jones, [King & Co, (up] stairs.)”. One trade, to the word: attorney and counsellor at law, solicitor in chancery. One copy date, one door, one trade, six weeks apart — that is one card set twice, and no printing in this corpus puts two lawyers of this surname in that doorway. Merged INTO 'J. Curtiss' because that impression reads the whole direction, street and ordinal together, while the July setting survives only in supplies; the direction is which record can be placed, not which spelling is truer. THE REFUSAL AGAINST THE SURVEYOR IS RETARGETED IN THE SAME COMMIT (T-0413): 'L. Curtiss, attorney and counsellor at law' was the `into` side of a refusal against 'L. G. Curtiss', the deputy surveyor of Cook County, and that refusal is folded into the surviving one below rather than left to outlive its pair — the attorney is held apart from the surveyor exactly as before, on one record instead of two."
+        }
+      ],
       "refused_merges": [
         {
           "with": "L. G. Curtiss",
           "kind": "two_houses",
           "witnesses": [
             "chicago_democrat_1835_05_20#c009",
+            "chicago_democrat_1835_07_01#c013",
             "chicago_democrat_1835_07_22#c012",
             "chicago_democrat_1835_07_29#c015"
           ],
-          "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and the surname is dangerous here because a third style, 'L. Curtiss, attorney and counsellor at law', sits between them and shares an initial with each. J. Curtiss is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co., Democrat 1835-05-20 c009, copy-dated 1835-05-18. L. G. Curtiss is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them."
+          "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and this one refusal now carries BOTH of the attorney's readings against the surveyor. 'J. Curtiss' is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co.: the Democrat of 1835-05-20 c009, copy-dated 1835-05-18, and again at 1835-07-01 c013 over the same copy date and the same door, that second impression printing the forename initial as an L. 'L. G. Curtiss' is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them; the G is printed, and the surname is dangerous here only because the attorney's own two settings disagree about his initial. WHY THIS REFUSAL IS ONE AND NOT TWO (T-0413): until this commit the July setting stood as its own style, 'L. Curtiss, attorney and counsellor at law', and was refused against the surveyor separately — the pair this group existed to trap, one initial apart and both read L. T-0413 merged that style into 'J. Curtiss' on the shared copy date and the shared doorway, so a refusal naming it would have outlived its pair, which this section calls a compile error. The judgement is unchanged and nothing is weakened: the attorney, under either initial, is still held apart from the surveyor, and the merge that joined his two readings did not touch the ground the surveyor stands on."
+        }
+      ],
+      "proprietors_merged": [
+        {
+          "into": "J. Curtiss",
+          "from": "L. Curtiss",
+          "merge_rule": "'L. Curtiss' is 'J. Curtiss' with the forename initial read as an L, and the pair exists in this house's proprietors only because T-0413's firm merge joined the attorney's two styles. Both printings are copy-dated 1835-05-18 and both put the office first door west of Messrs. Jones, King & Co. in South Water street (1835-05-20 c009, 1835-07-01 c013) in one trade, attorney and counsellor at law and solicitor in chancery. The third Curtiss the corpus carries, 'L. G. Curtiss' the deputy surveyor, is a different man and stays a different record: he is held apart in `refused_firm_merges`, his G is printed, and his orders are left at the Mansion House."
         }
       ],
       "built_at_scene_date": true,
@@ -67093,72 +67032,6 @@
       "survival_liberty_required": true
     },
     {
-      "id": "business_l_curtiss_attorney_and_counsellor_at_law",
-      "name": "L. Curtiss, attorney and counsellor at law",
-      "proprietors": [
-        "L. Curtiss"
-      ],
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "goods": [],
-      "street": "South Water Street",
-      "placement": {
-        "class": "relative",
-        "anchor": "Messrs. Jones, King & Co.",
-        "offset_text": "west of Mesars, Jones,",
-        "offset_normalized": "[first door] west of Messrs. Jones, [King & Co, (up] stairs.)",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1835-07-01",
-        "last_issue": "1835-07-01",
-        "copy_dates": [
-          "1835-05-18"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1835_07_01#c013"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "Messrs. Jones, King & Co.",
-          "class": "relative",
-          "first_issue": "1835-07-01",
-          "last_issue": "1835-07-01",
-          "claims": [
-            "chicago_democrat_1835_07_01#c013"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "Messrs. Jones, King & Co.",
-            "offset_text": "west of Mesars, Jones,",
-            "offset_normalized": "[first door] west of Messrs. Jones, [King & Co, (up] stairs.)",
-            "street": "South Water Street"
-          }
-        }
-      ],
-      "refused_merges": [
-        {
-          "with": "L. G. Curtiss",
-          "kind": "two_houses",
-          "witnesses": [
-            "chicago_democrat_1835_07_01#c013",
-            "chicago_democrat_1835_05_20#c009",
-            "chicago_democrat_1835_07_22#c012",
-            "chicago_democrat_1835_07_29#c015"
-          ],
-          "refused_because": "'L. Curtiss, attorney and counsellor at law' and 'L. G. Curtiss' are the pair this group exists to trap: one initial apart, both read L, and they are two houses. The attorney's notice at 1835-07-01 c013 is copy-dated 1835-05-18 and stands first door west of Messrs. Jones, King & Co. in South Water street — the same copy date and the same anchor as 'J. Curtiss' at 1835-05-20 c009, which is what makes the L and the J one man's standing advertisement read twice rather than two lawyers. L. G. Curtiss is the deputy surveyor of Cook County, orders left at the Mansion House, 1835-07-22 c012 and 1835-07-29 c015: a different trade in a different place, and the G is printed. Joining the attorney's own two styles is a merge, and this section does not assert it."
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "lawyer"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": false
-    },
-    {
       "id": "business_l_g_curtiss",
       "name": "L. G. Curtiss",
       "proprietors": [
@@ -67210,21 +67083,11 @@
           "kind": "two_houses",
           "witnesses": [
             "chicago_democrat_1835_05_20#c009",
-            "chicago_democrat_1835_07_22#c012",
-            "chicago_democrat_1835_07_29#c015"
-          ],
-          "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and the surname is dangerous here because a third style, 'L. Curtiss, attorney and counsellor at law', sits between them and shares an initial with each. J. Curtiss is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co., Democrat 1835-05-20 c009, copy-dated 1835-05-18. L. G. Curtiss is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them."
-        },
-        {
-          "with": "L. Curtiss, attorney and counsellor at law",
-          "kind": "two_houses",
-          "witnesses": [
             "chicago_democrat_1835_07_01#c013",
-            "chicago_democrat_1835_05_20#c009",
             "chicago_democrat_1835_07_22#c012",
             "chicago_democrat_1835_07_29#c015"
           ],
-          "refused_because": "'L. Curtiss, attorney and counsellor at law' and 'L. G. Curtiss' are the pair this group exists to trap: one initial apart, both read L, and they are two houses. The attorney's notice at 1835-07-01 c013 is copy-dated 1835-05-18 and stands first door west of Messrs. Jones, King & Co. in South Water street — the same copy date and the same anchor as 'J. Curtiss' at 1835-05-20 c009, which is what makes the L and the J one man's standing advertisement read twice rather than two lawyers. L. G. Curtiss is the deputy surveyor of Cook County, orders left at the Mansion House, 1835-07-22 c012 and 1835-07-29 c015: a different trade in a different place, and the G is printed. Joining the attorney's own two styles is a merge, and this section does not assert it."
+          "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and this one refusal now carries BOTH of the attorney's readings against the surveyor. 'J. Curtiss' is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co.: the Democrat of 1835-05-20 c009, copy-dated 1835-05-18, and again at 1835-07-01 c013 over the same copy date and the same door, that second impression printing the forename initial as an L. 'L. G. Curtiss' is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them; the G is printed, and the surname is dangerous here only because the attorney's own two settings disagree about his initial. WHY THIS REFUSAL IS ONE AND NOT TWO (T-0413): until this commit the July setting stood as its own style, 'L. Curtiss, attorney and counsellor at law', and was refused against the surveyor separately — the pair this group existed to trap, one initial apart and both read L. T-0413 merged that style into 'J. Curtiss' on the shared copy date and the shared doorway, so a refusal naming it would have outlived its pair, which this section calls a compile error. The judgement is unchanged and nothing is weakened: the attorney, under either initial, is still held apart from the surveyor, and the merge that joined his two readings did not touch the ground the surveyor stands on."
         }
       ],
       "built_at_scene_date": true,
@@ -67517,53 +67380,6 @@
       ],
       "trade_class_scope": "outside_town",
       "survival_liberty_required": true
-    },
-    {
-      "id": "business_m_h_kennicott",
-      "name": "M. H. Kennicott",
-      "proprietors": [
-        "M. H. Kennicott"
-      ],
-      "trade": "dentist",
-      "goods": [
-        "dentistry"
-      ],
-      "street": "Lake Street",
-      "placement": {
-        "class": "street_only",
-        "street": "Lake Street"
-      },
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24",
-        "copy_dates": []
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1835_06_24#c007"
-      ],
-      "placement_readings": [
-        {
-          "anchor": null,
-          "class": "street_only",
-          "first_issue": "1835-06-24",
-          "last_issue": "1835-06-24",
-          "claims": [
-            "chicago_democrat_1835_06_24#c007"
-          ],
-          "placement": {
-            "class": "street_only",
-            "street": "Lake Street"
-          }
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "other"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": false
     },
     {
       "id": "business_magie_wilkinson",
@@ -68707,24 +68523,41 @@
       ],
       "trade": "general store — dry goods, hardware, groceries and crockery",
       "goods": [
+        "Boots",
         "Boots and Shoes",
+        "Clothing",
+        "Crockery",
         "Drugs",
         "Dry Goods",
+        "English Flannels",
+        "English blister Steel",
         "Groceries",
         "Hardware",
+        "Hats",
         "Hats and Caps",
+        "Iron",
         "Iron and Steel",
+        "Nail Rods",
         "Nails",
         "Ohio whiskey",
         "Ready Made Clothing",
         "Saddlery",
+        "Sattinetts",
+        "Shoes",
+        "Window Sash",
+        "bar Iron",
         "boots and shoes",
+        "calicos",
+        "cast Steel",
         "crockery",
         "dry goods",
+        "ginghams",
         "groceries",
         "hard bread",
         "hardware",
         "hats",
+        "merino cloths",
+        "muslins",
         "superfine flour"
       ],
       "street": "South Water Street",
@@ -68737,9 +68570,10 @@
       },
       "evidence": {
         "first_issue": "1833-12-03",
-        "last_issue": "1834-06-18",
+        "last_issue": "1834-12-10",
         "copy_dates": [
-          "1833-12-03"
+          "1833-12-03",
+          "1834-06-18"
         ]
       },
       "contradicted_by": [],
@@ -68748,7 +68582,10 @@
         "chicago_democrat_1833_12_03#c010",
         "chicago_democrat_1834_02_18#c008",
         "chicago_democrat_1834_03_04#c012",
-        "chicago_democrat_1834_06_18#c007"
+        "chicago_democrat_1834_06_18#c007",
+        "chicago_democrat_1834_07_02#c023",
+        "chicago_democrat_1834_09_10#c005",
+        "chicago_democrat_1834_12_10#c011"
       ],
       "placement_readings": [
         {
@@ -68808,70 +68645,7 @@
             "offset_normalized": "CORNER OF LASALLE AND SOUTH-WATER STREET",
             "street": "South Water Street"
           }
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "store"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": true
-    },
-    {
-      "id": "business_p_f_w_peck",
-      "name": "P. F. W. Peck",
-      "proprietors": [
-        "P. F. W. Peck"
-      ],
-      "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
-      "goods": [
-        "Boots",
-        "Clothing",
-        "Crockery",
-        "Drugs",
-        "Dry Goods",
-        "English Flannels",
-        "English blister Steel",
-        "Groceries",
-        "Hardware",
-        "Hats",
-        "Iron",
-        "Nail Rods",
-        "Nails",
-        "Saddlery",
-        "Sattinetts",
-        "Shoes",
-        "Window Sash",
-        "bar Iron",
-        "calicos",
-        "cast Steel",
-        "ginghams",
-        "merino cloths",
-        "muslins"
-      ],
-      "street": "South Water Street",
-      "placement": {
-        "class": "corner",
-        "anchor": "corner of LaSalle and South Water streets",
-        "offset_text": "COURER OF LASALLE AND F9UTH-WATER STB.",
-        "offset_normalized": "CORNER OF LASALLE AND SOUTH-WATER STS.",
-        "street": "South Water Street"
-      },
-      "evidence": {
-        "first_issue": "1834-07-02",
-        "last_issue": "1834-12-10",
-        "copy_dates": [
-          "1834-06-18"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_07_02#c023",
-        "chicago_democrat_1834_09_10#c005",
-        "chicago_democrat_1834_12_10#c011"
-      ],
-      "placement_readings": [
+        },
         {
           "anchor": "corner of LaSalle and South Water streets",
           "class": "corner",
@@ -68900,6 +68674,23 @@
           "placement": {
             "class": "none"
           }
+        }
+      ],
+      "trade_variants": [
+        "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
+        "general store — dry goods, hardware, groceries and crockery"
+      ],
+      "merged": [
+        {
+          "from": "P. F. W. Peck",
+          "merge_rule": "'P. F. W. Peck' is 'P. F. Peck' signed with the third initial of a fuller signature, and the two styles stand on ONE CORNER in windows that abut. The shorter style takes the corner of La Salle and South Water streets from 1833-12-03 c010 and keeps it through 1834-02-18 c008, 1834-03-04 c012 and 1834-06-18 c007; the longer style is copy-dated “1834-06-18” — the very issue in which the shorter one last appears — and runs from 1834-07-02 c023 through 1834-09-10 c005 to 1834-12-10 c011, reading “CORNER OF LASALLE AND F9UTH-WATER STB.” for the same corner. One general store either side of one week: dry goods, hardware, groceries and crockery on one side, dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing on the other, and the second list is the first restocked. Merged INTO 'P. F. Peck' because that record carries the longer run, the copy date that dates the standing card, and the corner with both street names set out in full rather than abbreviated; the direction is which record can be placed, not which spelling is truer, and the fuller signature is kept verbatim in `merged`."
+        }
+      ],
+      "proprietors_merged": [
+        {
+          "into": "P. F. Peck",
+          "from": "P. F. W. Peck",
+          "merge_rule": "'P. F. W. Peck' is 'P. F. Peck' with the third initial of the merchant's fuller signature printed, and the pair exists in this house's proprietors only because T-0413's firm merge unioned the two styles' lists into one. Both are the same signature on one general store at the corner of La Salle and South Water streets, in windows that abut on the issue of 1834-06-18 — the last the shorter style is printed in and the copy date the longer one carries. The corpus names no second Peck merchant on that corner, and no printing sets the two initials against each other as two men."
         }
       ],
       "built_at_scene_date": true,
@@ -72979,16 +72770,31 @@
         "street": null
       },
       "evidence": {
-        "first_issue": "1834-06-04",
+        "first_issue": "1834-05-07",
         "last_issue": "1834-06-04",
         "copy_dates": []
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
+        "chicago_democrat_1834_05_07#c003",
         "chicago_democrat_1834_06_04#c022"
       ],
       "placement_readings": [
+        {
+          "anchor": "Newberry & Dole's store",
+          "class": "relative",
+          "first_issue": "1834-05-07",
+          "last_issue": "1834-05-07",
+          "claims": [
+            "chicago_democrat_1834_05_07#c003"
+          ],
+          "placement": {
+            "class": "relative",
+            "anchor": "Newberry & Dole's store",
+            "offset_text": "A fe[w] doors bel[ow] Messrs. N[ew]berry & Dole's"
+          }
+        },
         {
           "anchor": "Messrs. Newberry & Dole's",
           "class": "relative",
@@ -73004,6 +72810,16 @@
             "offset_normalized": "A few doors below Messrs. Newberry & Dole's",
             "street": null
           }
+        }
+      ],
+      "trade_variants": [
+        "tin, sheet iron and copper ware, stoves and castings",
+        "tin, sheet iron and copper ware; cooking stoves; plough and mill castings"
+      ],
+      "merged": [
+        {
+          "from": "G. W. Keeney",
+          "merge_rule": "'G. W. Keeney' is 'W. Keeney' with the first initial printed, and the two styles are one standing advertisement read twice four weeks apart in the Democrat. The anchor is the same sentence both times: 'G. W. Keeney' reads “A fe[w] doors bel[ow] Messrs. N[ew]berry & Dole's” at 1834-05-07 c003, and 'W. Keeney' reads “A few doors below Messrs. Newberry & Dole's” at 1834-06-04 c022. One trade, word for word the same shop: tin, sheet iron and copper ware, cooking stoves, ploughs and mill castings. Merged INTO 'W. Keeney' because that impression carries the anchor with no bracketed supply in it, names the proprietor, and lists the whole stock — bells, cooking stoves, copper ware, hollow ware, mill castings, ploughs, sheet iron ware, tin ware — while the May setting names nobody; the direction is which record can be placed, not which spelling is truer, and the May trade string is kept in `trade_variants`."
         }
       ],
       "built_at_scene_date": true,
@@ -73825,7 +73641,9 @@
         "Kennicott, Wm. H."
       ],
       "trade": "dentistry",
-      "goods": [],
+      "goods": [
+        "dentistry"
+      ],
       "street": "Lake Street",
       "placement": {
         "class": "relative",
@@ -73833,7 +73651,7 @@
         "offset_text": "OFFICE OPPOSITE THE EXCHENGE, LAKF-STRYE"
       },
       "evidence": {
-        "first_issue": "1835-08-05",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-19",
         "copy_dates": [
           "1835-06-24",
@@ -73843,10 +73661,24 @@
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
+        "chicago_democrat_1835_06_24#c007",
         "chicago_democrat_1835_08_05#c021",
         "chicago_democrat_1835_08_19#c014"
       ],
       "placement_readings": [
+        {
+          "anchor": null,
+          "class": "street_only",
+          "first_issue": "1835-06-24",
+          "last_issue": "1835-06-24",
+          "claims": [
+            "chicago_democrat_1835_06_24#c007"
+          ],
+          "placement": {
+            "class": "street_only",
+            "street": "Lake Street"
+          }
+        },
         {
           "anchor": "the Exchange",
           "class": "relative",
@@ -73861,6 +73693,23 @@
             "anchor": "the Exchange",
             "offset_text": "OFFICE OPPOSITE THE EXCHENGE, LAKF-STRYE"
           }
+        }
+      ],
+      "trade_variants": [
+        "dentist",
+        "dentistry"
+      ],
+      "merged": [
+        {
+          "from": "M. H. Kennicott",
+          "merge_rule": "'M. H. Kennicott' is 'Wm. H. Kennicott, Surgeon Dentist' with the Wm run together into an M, and the proof is not the name at all — it is that the two records are ONE STANDING ADVERTISEMENT and the later printing is copy-dated to the earlier one. The Democrat of 1835-08-05 c021 sets “DENTISTRY. OFFICE OPPOSITE THE EXCH[A]NGE, LAK[E]-STR[EET]. Doct. WM. H. [K]ENNICOTT, [S]URGEON DENTIST, who has practic[ed] in the above profession in this town for the past year, tenders his thanks to the citizen[s of] Chi[c]ago and vicinity for their liberal [p]a[tron]a[ge]” and copy-dates it “Jone 24.” — 1835-06-24. The Democrat of 1835-06-24 c007 is that issue, and it carries “[D]ENTISTRY. [AT] THE [ ], LAKE-STREET. M. H. KENNICOTT, [a] DENTIST, who has practiced [his] profession in this town for the [past …, returns] his thanks to the citizens of [Chicago and vici]nity, for their liberal patronage” — the same sentences in the same order, down to the free repairs for a year and the ladies attended at the office or at their residences, and the same street. The merge also repairs what the interleave ate: the June setting's address line lost the building's name between “AT THE” and “LAKE-STREET”, and the standing copy names it — the Exchange. Merged INTO 'Wm. H. Kennicott, Surgeon Dentist' because that record places the office against a landmark while 'M. H. Kennicott' can only be put in the street, and because the forename is printed there rather than run together; the direction is which record can be placed, not which spelling is truer. 'Surgeon Dentist' is declared a sign-name in `firm_sign_names` below, without which the capitalised designation reads as a second partner named Dentist."
+        }
+      ],
+      "proprietors_merged": [
+        {
+          "into": "Kennicott, Wm. H.",
+          "from": "M. H. Kennicott",
+          "merge_rule": "'M. H. Kennicott' is 'Kennicott, Wm. H.' with the Wm of the printed forename run together into an M, and the pair exists in this house's proprietors only because T-0413's firm merge joined the two styles. The 1835-08-05 printing that signs itself “Doct. WM. H. [K]ENNICOTT, [S]URGEON DENTIST” is copy-dated “Jone 24.” — the Democrat of 1835-06-24, which is the issue that prints 'M. H. KENNICOTT'; one standing advertisement, sentence for sentence, and one dentist on Lake Street in it."
         }
       ],
       "built_at_scene_date": true,
