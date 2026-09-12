@@ -410,8 +410,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 80,
-      "town_records_at_scene_date": 74,
+      "town_records_in_town": 79,
+      "town_records_at_scene_date": 73,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -453,7 +453,6 @@
         "business_lathrop_johnson_co_livery",
         "business_marsh_simons",
         "business_matthias_mason_co",
-        "business_matthias_nason_co",
         "business_montgomery_auction_and_commission_house",
         "business_mrs_h_sherman",
         "business_mrs_herman",
@@ -521,11 +520,11 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 198,
-    "in_town": 195,
+    "businesses_in_register": 197,
+    "in_town": 194,
     "outside_town": 3,
-    "at_scene_date": 182,
-    "carrying_no_enumerated_class": 75,
+    "at_scene_date": 181,
+    "carrying_no_enumerated_class": 74,
     "not_stated": 5,
     "census_enumerated_total": 118,
     "town_enumerated_total_at_scene_date": 118
@@ -1930,18 +1929,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "a smith's shop; the enumeration counts none (B2)",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_matthias_nason_co",
-      "name": "Matthias Nason & Co.",
-      "trade": "blacksmiths",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a smith's shop (B2)",
       "built_at_scene_date": true
     },
     {

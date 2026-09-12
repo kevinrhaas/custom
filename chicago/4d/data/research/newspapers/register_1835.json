@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1169,
       "persons": 2665,
-      "businesses": 198
+      "businesses": 197
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,32 +16,32 @@
   },
   "counts": {
     "businesses": {
-      "total": 198,
-      "present_at_scene_date": 181,
+      "total": 197,
+      "present_at_scene_date": 180,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
+        "new_building": 25,
         "street_only": 61,
         "unplaceable": 81
       },
       "by_placement_class": {
         "corner": 17,
         "none": 62,
-        "relative": 102,
+        "relative": 101,
         "street_only": 17
       },
       "present_by_action": {
         "enrich_existing": 30,
-        "new_building": 26,
+        "new_building": 25,
         "street_only": 61,
         "unplaceable": 64
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 97,
+      "survival_liberty_required": 96,
       "backdating_liberty_required": 26,
       "dissolved_after_scene_date": 1
     },
@@ -5143,6 +5143,7 @@
               "chicago_democrat_1833_11_26#c020",
               "chicago_democrat_1833_12_24#c003",
               "chicago_democrat_1834_01_07#c008",
+              "chicago_democrat_1834_02_18#c010",
               "chicago_democrat_1834_02_25#c006",
               "chicago_democrat_1834_03_04#c015",
               "chicago_democrat_1834_04_01#c012",
@@ -5180,6 +5181,7 @@
                 "claims": [
                   "chicago_democrat_1833_12_24#c003",
                   "chicago_democrat_1834_01_07#c008",
+                  "chicago_democrat_1834_02_18#c010",
                   "chicago_democrat_1834_03_04#c015",
                   "chicago_democrat_1834_04_01#c012"
                 ],
@@ -5271,43 +5273,6 @@
       "match_tier": "occupants",
       "match_evidence": "Matthias Mason & Co.; blacksmiths",
       "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_matthias_nason_co",
-      "name": "Matthias Nason & Co.",
-      "trade": "blacksmiths",
-      "occupation": "blacksmith",
-      "proprietors": [],
-      "partners": [],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-02-18"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "structure",
-        "target": "mansion_house",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure mansion_house."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "mansion_house",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure mansion_house."
     },
     {
       "id": "business_miss_bayne_s_boarding_and_day_school",
