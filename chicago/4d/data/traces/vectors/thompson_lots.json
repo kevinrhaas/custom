@@ -61,12 +61,12 @@
   "lots": 144,
   "numbered_lots": 144,
   "block_frontage_ft": {
-   "min": 309.6,
+   "min": 315.2,
    "median": 323.4,
    "max": 340.2
   },
   "lot_frontage_ft": {
-   "min": 77.3,
+   "min": 77.7,
    "max": 85.1
   }
  },
@@ -1663,8 +1663,8 @@
    },
    "boundary_local_enu_m": [
     [
-     101.29,
-     -122.69
+     98.02,
+     -122.66
     ],
     [
      195.55,
@@ -1675,19 +1675,19 @@
      -241.85
     ],
     [
-     100.35,
-     -241.08
+     97.32,
+     -241.06
     ]
    ],
-   "area_m2": 11173.6,
-   "frontage_m": 94.37,
-   "frontage_ft": 309.6,
+   "area_m2": 11547.4,
+   "frontage_m": 97.53,
+   "frontage_ft": 320.0,
    "depth_m": 118.4,
    "lots_per_face": 4,
    "alley_local_enu_m": [
     [
-     100.85,
-     -179.14
+     97.68,
+     -179.12
     ],
     [
      195.21,
@@ -1698,31 +1698,31 @@
      -185.4
     ],
     [
-     100.8,
-     -184.63
+     97.65,
+     -184.6
     ]
    ],
    "lots": [
     {
      "tier": "north",
-     "frontage_m": 23.56,
+     "frontage_m": 24.38,
      "depth_m": 56.45,
      "polygon": [
       [
-       101.29,
-       -122.69
+       98.02,
+       -122.66
       ],
       [
-       124.86,
-       -122.88
+       122.4,
+       -122.86
       ],
       [
-       124.44,
-       -179.34
+       122.07,
+       -179.32
       ],
       [
-       100.85,
-       -179.14
+       97.68,
+       -179.12
       ]
      ],
      "plat_lot_number": 4,
@@ -1730,24 +1730,24 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.62,
+     "frontage_m": 24.38,
      "depth_m": 56.45,
      "polygon": [
       [
-       100.8,
-       -184.63
+       97.65,
+       -184.6
       ],
       [
-       124.4,
-       -184.82
+       122.03,
+       -184.8
       ],
       [
-       123.98,
-       -241.28
+       121.7,
+       -241.26
       ],
       [
-       100.35,
-       -241.08
+       97.32,
+       -241.06
       ]
      ],
      "plat_lot_number": 5,
@@ -1755,24 +1755,24 @@
     },
     {
      "tier": "north",
-     "frontage_m": 23.56,
+     "frontage_m": 24.38,
      "depth_m": 56.46,
      "polygon": [
       [
-       124.86,
-       -122.88
+       122.4,
+       -122.86
       ],
       [
-       148.42,
-       -123.07
+       146.78,
+       -123.06
       ],
       [
-       148.03,
-       -179.53
+       146.45,
+       -179.52
       ],
       [
-       124.44,
-       -179.34
+       122.07,
+       -179.32
       ]
      ],
      "plat_lot_number": 3,
@@ -1780,24 +1780,24 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.62,
+     "frontage_m": 24.38,
      "depth_m": 56.46,
      "polygon": [
       [
-       124.4,
-       -184.82
+       122.03,
+       -184.8
       ],
       [
-       147.99,
-       -185.01
+       146.42,
+       -185.0
       ],
       [
-       147.6,
-       -241.47
+       146.08,
+       -241.46
       ],
       [
-       123.98,
-       -241.28
+       121.7,
+       -241.26
       ]
      ],
      "plat_lot_number": 6,
@@ -1805,24 +1805,24 @@
     },
     {
      "tier": "north",
-     "frontage_m": 23.56,
+     "frontage_m": 24.38,
      "depth_m": 56.46,
      "polygon": [
       [
-       148.42,
-       -123.07
+       146.78,
+       -123.06
       ],
       [
-       171.98,
-       -123.27
+       171.16,
+       -123.26
       ],
       [
-       171.62,
-       -179.72
+       170.83,
+       -179.71
       ],
       [
-       148.03,
-       -179.53
+       146.45,
+       -179.52
       ]
      ],
      "plat_lot_number": 2,
@@ -1830,24 +1830,24 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.62,
+     "frontage_m": 24.38,
      "depth_m": 56.46,
      "polygon": [
       [
-       147.99,
-       -185.01
+       146.42,
+       -185.0
       ],
       [
-       171.59,
-       -185.21
+       170.8,
+       -185.2
       ],
       [
-       171.22,
+       170.46,
        -241.66
       ],
       [
-       147.6,
-       -241.47
+       146.08,
+       -241.46
       ]
      ],
      "plat_lot_number": 7,
@@ -1855,12 +1855,12 @@
     },
     {
      "tier": "north",
-     "frontage_m": 23.56,
+     "frontage_m": 24.38,
      "depth_m": 56.46,
      "polygon": [
       [
-       171.98,
-       -123.27
+       171.16,
+       -123.26
       ],
       [
        195.55,
@@ -1871,8 +1871,8 @@
        -179.91
       ],
       [
-       171.62,
-       -179.72
+       170.83,
+       -179.71
       ]
      ],
      "plat_lot_number": 1,
@@ -1880,12 +1880,12 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.62,
+     "frontage_m": 24.38,
      "depth_m": 56.46,
      "polygon": [
       [
-       171.59,
-       -185.21
+       170.8,
+       -185.2
       ],
       [
        195.18,
@@ -1896,7 +1896,7 @@
        -241.85
       ],
       [
-       171.22,
+       170.46,
        -241.66
       ]
      ],
@@ -3497,8 +3497,8 @@
    },
    "boundary_local_enu_m": [
     [
-     100.16,
-     -265.47
+     97.17,
+     -265.44
     ],
     [
      194.7,
@@ -3509,19 +3509,19 @@
      -377.18
     ],
     [
-     99.28,
-     -376.41
+     96.51,
+     -376.39
     ]
    ],
-   "area_m2": 10501.5,
-   "frontage_m": 94.65,
-   "frontage_ft": 310.5,
+   "area_m2": 10820.8,
+   "frontage_m": 97.53,
+   "frontage_ft": 320.0,
    "depth_m": 110.95,
    "lots_per_face": 4,
    "alley_local_enu_m": [
     [
-     99.74,
-     -318.2
+     96.86,
+     -318.17
     ],
     [
      194.39,
@@ -3532,31 +3532,31 @@
      -324.45
     ],
     [
-     99.7,
-     -323.68
+     96.83,
+     -323.66
     ]
    ],
    "lots": [
     {
      "tier": "north",
-     "frontage_m": 23.64,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       100.16,
-       -265.47
+       97.17,
+       -265.44
       ],
       [
-       123.8,
-       -265.66
+       121.55,
+       -265.64
       ],
       [
-       123.4,
-       -318.39
+       121.24,
+       -318.37
       ],
       [
-       99.74,
-       -318.2
+       96.86,
+       -318.17
       ]
      ],
      "plat_lot_number": 4,
@@ -3564,24 +3564,24 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.69,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       99.7,
-       -323.68
+       96.83,
+       -323.66
       ],
       [
-       123.36,
-       -323.87
+       121.21,
+       -323.86
       ],
       [
-       122.97,
-       -376.6
+       120.9,
+       -376.59
       ],
       [
-       99.28,
-       -376.41
+       96.51,
+       -376.39
       ]
      ],
      "plat_lot_number": 5,
@@ -3589,24 +3589,24 @@
     },
     {
      "tier": "north",
-     "frontage_m": 23.64,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       123.8,
-       -265.66
+       121.55,
+       -265.64
       ],
       [
-       147.43,
-       -265.85
+       145.94,
+       -265.84
       ],
       [
-       147.07,
-       -318.58
+       145.62,
+       -318.57
       ],
       [
-       123.4,
-       -318.39
+       121.24,
+       -318.37
       ]
      ],
      "plat_lot_number": 3,
@@ -3614,24 +3614,24 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.69,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       123.36,
-       -323.87
+       121.21,
+       -323.86
       ],
       [
-       147.03,
-       -324.07
+       145.59,
+       -324.05
       ],
       [
-       146.66,
-       -376.79
+       145.28,
+       -376.78
       ],
       [
-       122.97,
-       -376.6
+       120.9,
+       -376.59
       ]
      ],
      "plat_lot_number": 6,
@@ -3639,24 +3639,24 @@
     },
     {
      "tier": "north",
-     "frontage_m": 23.64,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       147.43,
-       -265.85
+       145.94,
+       -265.84
       ],
       [
-       171.07,
+       170.32,
        -266.04
       ],
       [
-       170.73,
+       170.01,
        -318.77
       ],
       [
-       147.07,
-       -318.58
+       145.62,
+       -318.57
       ]
      ],
      "plat_lot_number": 2,
@@ -3664,24 +3664,24 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.69,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       147.03,
-       -324.07
+       145.59,
+       -324.05
       ],
       [
-       170.69,
-       -324.26
+       169.97,
+       -324.25
       ],
       [
-       170.35,
-       -376.99
+       169.66,
+       -376.98
       ],
       [
-       146.66,
-       -376.79
+       145.28,
+       -376.78
       ]
      ],
      "plat_lot_number": 7,
@@ -3689,11 +3689,11 @@
     },
     {
      "tier": "north",
-     "frontage_m": 23.64,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       171.07,
+       170.32,
        -266.04
       ],
       [
@@ -3705,7 +3705,7 @@
        -318.97
       ],
       [
-       170.73,
+       170.01,
        -318.77
       ]
      ],
@@ -3714,12 +3714,12 @@
     },
     {
      "tier": "south",
-     "frontage_m": 23.69,
+     "frontage_m": 24.38,
      "depth_m": 52.73,
      "polygon": [
       [
-       170.69,
-       -324.26
+       169.97,
+       -324.25
       ],
       [
        194.36,
@@ -3730,8 +3730,8 @@
        -377.18
       ],
       [
-       170.35,
-       -376.99
+       169.66,
+       -376.98
       ]
      ],
      "plat_lot_number": 8,
@@ -4873,7 +4873,7 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+   "reason": "the streets are 255 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
   },
   {
    "id": "blk_south_water_market",
@@ -4883,7 +4883,7 @@
     "west": "market",
     "east": "franklin"
    },
-   "reason": "South Water Street's committed centreline stops 24 m short of this block",
+   "reason": "South Water Street's committed centreline stops 32 m short of this block",
    "plat_block_number": {
     "number": 21,
     "confidence": "inferred",
@@ -4903,7 +4903,7 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block",
+   "reason": "the streets are 255 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block",
    "plat_block_number": {
     "number": 29,
     "confidence": "inferred",
@@ -4923,7 +4923,7 @@
     "west": "canal",
     "east": "market"
    },
-   "reason": "the streets are 258 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
+   "reason": "the streets are 255 m apart, past the 200 m the plat's module allows a block — what lies between them is the river, not a block"
   }
  ]
 }

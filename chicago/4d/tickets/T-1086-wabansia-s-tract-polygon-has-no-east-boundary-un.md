@@ -1,7 +1,7 @@
 ---
 id: T-1086
 title: Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1207
+claimed_by: run 9/12/2026, 1:37:48 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T19:39:34.887Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34711573150
 ---
 
 Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits.
@@ -57,3 +57,37 @@ not in it — but "likely" is not how this file is written, and the B-rules are 
 
 **Links:** T-1070 · T-1077 · T-1074 · T-0790 · T-0789 · T-1060 ·
 `data/research/newspapers/place_vocabulary.json` § B4
+
+---
+
+**WHAT LANDED** (2026-09-12). Seated by `tools/seat_wabansia_streets.py`, the tool that already
+held T-1070's seating, because one edge cannot be derived by two tools:
+
+1. **The wedge is on the ground.** `data/traces/wabansia_seating.json` §
+   `water_lot_wedge_local_enu_m` — the outline (10.84 acres), the four ranks tiled rather than
+   overlapped, all 26 of Wright's figures, and the north closure the bank was never measured on,
+   graded for it. Every number rebuilt from `wabansia_water_lots.json`, never re-typed, so a
+   changed reading fails `--check`.
+2. **The tract has an outline.** § `tract_polygon_local_enu_m` — 24 vertices, 78.63 acres,
+   `seated: true`. West and north from T-1074's boundary rules, south from the committed `kinzie`
+   line, east from the grid's own east rule down four tiers and then the wedge's river edge.
+3. **The bank cross-check, answered rather than refused.** T-1070 refused a block corner 66 m
+   inside the committed water. The wedge's independent reading of that bank agrees with the
+   committed trace within 1.8 m at four stations of five and 8.4 m at the fifth, and the grid's
+   east rule runs 2.1-5.7 m inside it on tiers 1-3. So the disagreement is the one jog corner,
+   which is carried as Wright inked it with its 18.6 m recorded beside it.
+4. **A correction underneath.** The block grid polygon's south edge held Kinzie's rule flat
+   across 530 px and drifted 12.4 m to 19.8 m north of the committed centreline. Carried by the
+   reading's own 0.019 shear it stands 12.69 m at every column, against the 12.19 m that is half
+   the platted 80 ft corridor. Two vertices move (+0.25 m N, 7.14 m S); seventeen do not.
+5. **Clause 3 is blocked on the owner, with the counts.** `place_vocabulary.json`'s two notes now
+   state the truth — both surveys are committed, so the stated reason for B4 has expired — and the
+   RULING is left where it is, because `resolution` and `basis` are his. **T-1087** carries the
+   question, `blocked-owner`, with the measurement that removes the fear T-1086 named: the
+   re-ruling moves ONE person (`person_uncertain_doctor_kimberly`; Kinzie's Addition's two are
+   already `inside` on `Chicago`).
+
+Three geometric invariants are checked rather than asserted in prose: the blocks and the wedge must
+lie inside the tract, the four ranks must tile the wedge, and no figure may seat outside its own
+outline by more than the registration's own 16.19 m RMS. Two figures do seat outside — 13 by 6.00 m
+and 14 by 0.91 m, both cells T-1077 graded thin — and both are recorded rather than moved.
