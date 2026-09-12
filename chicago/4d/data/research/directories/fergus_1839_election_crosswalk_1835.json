@@ -28,7 +28,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2597
+   "n": 2596
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -47,7 +47,7 @@
   "voters_surname_only_refused": 85,
   "letter_list_matched_one_entry": 191,
   "letter_list_ambiguous": 62,
-  "letter_list_surname_only_refused": 535,
+  "letter_list_surname_only_refused": 534,
   "heads_1840_matched_one_entry": 86,
   "heads_1840_ambiguous": 21,
   "heads_1840_surname_only_refused": 202
@@ -15414,11 +15414,6 @@
     "name": "Samuel Lewis",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Lewis' stands in the 1837 poll and no man under it carries the initial 'S' of 'Samuel Lewis'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Samuel Miller",
-    "candidates_under_that_surname": 4,
-    "rule": "The surname 'Miller' stands in the 1837 poll and no man under it carries the initial 'S' of 'Samuel Miller'. A surname-only agreement is a refusal."
    },
    {
     "name": "Samuel Rice",

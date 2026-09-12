@@ -107,7 +107,8 @@
 
 
 
-T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else: 'Col. Samuel Miller, Michigan City' is Carver's Indiana agent and sits on a Chicago resident card, and person_w_montgomery carries Loton W.'s shoemaking beside the auctioneer's own trade
+T-1048 — Resolve the newspapers' place vocabulary against the committed town before anything refuses on it: 193 persons carry a place that fails in_town_places(), and Fort Dearborn, the Mansion House and 'the corner of Water and Franklin streets, Chicago' are among them
+T-1049 — With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance in read_newspapers(), record the refusal in its own class, and re-derive every card that loses a press reading
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
@@ -332,3 +333,4 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+

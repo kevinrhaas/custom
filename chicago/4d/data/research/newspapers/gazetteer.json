@@ -93,7 +93,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_01_28.json",
-      "sha256": "7449967de91ffec52cc276374250d71c2bc95e21d00a68a1a88805f8f8c065a1"
+      "sha256": "6c043a209f9219308dfa46b52753e8dd6dd9d5c483d0c294e1328e0cb960b28a"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_04.json",
@@ -109,11 +109,11 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_02_25.json",
-      "sha256": "882ea849f7a68dc93c206d4a38d5b5f2e2244504850931494b3c9dd0a82c961e"
+      "sha256": "2c343aea181064f3e60c09c83a26edf8b2d387c6d692413718126ca59cc54534"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_03_04.json",
-      "sha256": "5b6ca7e68c7f641987cfac5f0659761b38c13d6c44e1c6c47227b43b0d3741d2"
+      "sha256": "b7e8db0562299d1f2a310091f2f405370b669f23f3fddbf475d66bf2522f032e"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_03_18.json",
@@ -121,7 +121,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_03_25.json",
-      "sha256": "8c909b09c1323cf76bc3f05bb9fbef4c953869c326738d9e0f26c18db21cc8fc"
+      "sha256": "5c880681a624191d381e48cddb85ce7de9f73fd2884faffd2fa5110f2b01a65a"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_04_01.json",
@@ -350,9 +350,9 @@
   ],
   "counts": {
     "claims": 1169,
-    "persons": 2666,
+    "persons": 2665,
     "places": 4,
-    "businesses": 199,
+    "businesses": 198,
     "agencies": 1
   },
   "persons": [
@@ -9720,16 +9720,25 @@
         {
           "as_printed": "Col Sumsel Miller",
           "claim": "chicago_democrat_1834_02_25#c003"
+        },
+        {
+          "as_printed": "Col. Samuel Miller",
+          "claim": "chicago_democrat_1834_03_04#c006"
         }
       ],
       "mentions": [
-        "chicago_democrat_1834_02_25#c003"
+        "chicago_democrat_1834_02_25#c003",
+        "chicago_democrat_1834_03_04#c006"
       ],
       "first_seen": "1834-02-25",
-      "last_seen": "1834-02-25",
+      "last_seen": "1834-03-04",
       "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
+      "occupations": [
+        "agent"
+      ],
+      "associated_places": [
+        "Michigan City"
+      ]
     },
     {
       "id": "person_col_t_j_v_owen",
@@ -32652,6 +32661,14 @@
           "claim": "chicago_democrat_1833_12_17#c003"
         },
         {
+          "as_printed": "W. MONTGOMERY.",
+          "claim": "chicago_democrat_1834_01_28#c008"
+        },
+        {
+          "as_printed": "MON TOOMERY.",
+          "claim": "chicago_democrat_1834_03_25#c009"
+        },
+        {
           "as_printed": "L. W. MONTGOMERY.",
           "claim": "chicago_democrat_1834_04_08#c007"
         },
@@ -32670,6 +32687,8 @@
       ],
       "mentions": [
         "chicago_democrat_1833_12_17#c003",
+        "chicago_democrat_1834_01_28#c008",
+        "chicago_democrat_1834_03_25#c009",
         "chicago_democrat_1834_04_08#c007",
         "chicago_democrat_1834_05_21#c004",
         "chicago_democrat_1834_07_02#c013",
@@ -32684,6 +32703,7 @@
       ],
       "associated_places": [
         "Chicago",
+        "P. Cohen's store",
         "South Water Street"
       ]
     },
@@ -45670,28 +45690,6 @@
       "associated_places": []
     },
     {
-      "id": "person_samuel_miller",
-      "name": "Samuel Miller",
-      "variants": [
-        {
-          "as_printed": "Col. Samuel Miller",
-          "claim": "chicago_democrat_1834_03_04#c006"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_03_04#c006"
-      ],
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "letter_list_only": false,
-      "occupations": [
-        "agent"
-      ],
-      "associated_places": [
-        "Michigan City"
-      ]
-    },
-    {
       "id": "person_samuel_olingar",
       "name": "Samuel Olingar",
       "variants": [
@@ -54959,14 +54957,6 @@
           "claim": "chicago_american_1835_07_04#c012"
         },
         {
-          "as_printed": "W. MONTGOMERY.",
-          "claim": "chicago_democrat_1834_01_28#c008"
-        },
-        {
-          "as_printed": "MON TOOMERY.",
-          "claim": "chicago_democrat_1834_03_25#c009"
-        },
-        {
           "as_printed": "W. MONTGOMERY",
           "claim": "chicago_democrat_1835_07_08#c001"
         },
@@ -54985,25 +54975,21 @@
       ],
       "mentions": [
         "chicago_american_1835_07_04#c012",
-        "chicago_democrat_1834_01_28#c008",
-        "chicago_democrat_1834_03_25#c009",
         "chicago_democrat_1835_07_08#c001",
         "chicago_democrat_1835_07_15#c005",
         "chicago_democrat_1835_07_22#c011",
         "chicago_democrat_1835_07_29#c013"
       ],
-      "first_seen": "1834-01-28",
+      "first_seen": "1835-07-04",
       "last_seen": "1835-07-29",
       "letter_list_only": false,
       "occupations": [
         "auctioneer",
-        "boot and shoe maker",
         "commission merchant",
         "land agent",
         "newspaper agent"
       ],
       "associated_places": [
-        "P. Cohen's store",
         "South Water Street"
       ]
     },
@@ -59514,7 +59500,7 @@
         "groceries",
         "hardware"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "none",
         "anchor": null,
@@ -59739,8 +59725,7 @@
         ],
         "superseded": {
           "class": "none"
-        },
-        "street_from_reading": "Randolph Street"
+        }
       },
       "refused_merges": [
         {
@@ -60546,8 +60531,7 @@
         ],
         "superseded": {
           "class": "none"
-        },
-        "street_from_reading": "South Water Street"
+        }
       },
       "built_at_scene_date": true,
       "trade_classes": [
@@ -61475,7 +61459,7 @@
         "red cedar posts",
         "shingles"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "none",
         "anchor": null,
@@ -62685,7 +62669,7 @@
         "Tooth Powders",
         "Turlington's Balsam"
       ],
-      "street": null,
+      "street": "Water Street",
       "placement": {
         "class": "relative",
         "anchor": "the drawbridge",
@@ -63664,8 +63648,7 @@
         ],
         "superseded": {
           "class": "none"
-        },
-        "street_from_reading": "Lake Street"
+        }
       },
       "built_at_scene_date": false,
       "trade_classes": [
@@ -64195,7 +64178,7 @@
       "firm_styles": [],
       "trade": "storage and commission merchant",
       "goods": [],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "street_only",
         "street": "South Water Street"
@@ -64292,7 +64275,7 @@
         "sperm oil",
         "vinegar"
       ],
-      "street": null,
+      "street": "La Salle Street",
       "placement": {
         "class": "corner",
         "anchor": "a corner with Clark street, unread on this line",
@@ -65207,7 +65190,7 @@
         "tin ware",
         "wash basins"
       ],
-      "street": null,
+      "street": "Dearborn Street",
       "placement": {
         "class": "relative",
         "anchor": "Graves' Tavern",
@@ -67055,8 +67038,7 @@
         ],
         "superseded": {
           "class": "none"
-        },
-        "street_from_reading": "Water Street"
+        }
       },
       "refused_merges": [
         {
@@ -67584,28 +67566,33 @@
         "boots",
         "fine water-proof boots",
         "shoes",
-        "water proof Boots"
+        "water proof Boots",
+        "water proof fine boots"
       ],
       "street": "South Water Street",
       "placement": {
         "class": "relative",
         "anchor": "P. Cohen's Store",
-        "offset_text": "above busi , next door to P. Co-\nhon’s Store, will be kept on hand",
-        "offset_normalized": "next door to P. Co[h]en's Store",
-        "street": "South Water Street"
+        "offset_text": "shove business, next door to’ P. 'Coa en's Btore, will be kept on hand @ good assortment of",
+        "offset_normalized": "next door to P. Coh[e]n's Store",
+        "street": null
       },
       "evidence": {
         "first_issue": "1833-12-17",
         "last_issue": "1835-05-20",
         "copy_dates": [
           "1833-12-15",
-          "1833-12-16"
+          "1833-12-16",
+          "1833-12-18"
         ]
       },
       "contradicted_by": [],
       "opening_announced": [],
       "mentions": [
         "chicago_democrat_1833_12_17#c003",
+        "chicago_democrat_1834_01_28#c008",
+        "chicago_democrat_1834_03_04#c028",
+        "chicago_democrat_1834_03_25#c009",
         "chicago_democrat_1834_04_08#c007",
         "chicago_democrat_1834_05_21#c004",
         "chicago_democrat_1834_07_02#c013",
@@ -67632,18 +67619,21 @@
         {
           "anchor": "P. Cohen's Store",
           "class": "relative",
-          "first_issue": "1834-04-08",
+          "first_issue": "1834-01-28",
           "last_issue": "1835-05-20",
           "claims": [
+            "chicago_democrat_1834_01_28#c008",
+            "chicago_democrat_1834_03_04#c028",
+            "chicago_democrat_1834_03_25#c009",
             "chicago_democrat_1834_04_08#c007",
             "chicago_democrat_1835_05_20#c017"
           ],
           "placement": {
             "class": "relative",
             "anchor": "P. Cohen's Store",
-            "offset_text": "above busi , next door to P. Co-\nhon’s Store, will be kept on hand",
-            "offset_normalized": "next door to P. Co[h]en's Store",
-            "street": "South Water Street"
+            "offset_text": "shove business, next door to’ P. 'Coa en's Btore, will be kept on hand @ good assortment of",
+            "offset_normalized": "next door to P. Coh[e]n's Store",
+            "street": null
           }
         },
         {
@@ -67678,6 +67668,20 @@
         {
           "from": "L. W. Montgomery",
           "merge_rule": "'L. W. Montgomery, boot and shoe maker' and 'L. W. Montgomery' are one shop under one standing advertisement, copy-dated Dec. 15, 1833 and running for eighteen months: 1833-12-17 c003, 1834-04-08 c007, 1834-05-21 c004, 1834-07-02 c013, 1834-12-10 c009 and 1835-05-20 c017. Merged INTO the styled record on purpose, because the two disagree about the anchor and that record holds the reading three printings support: 'next door to P. Cohen's Store' (1834-04-08 c007, 1834-12-10 c009, 1835-05-20 c017) against the single damaged December line read 'next door to P. Ca[rpenter's]' (1833-12-17 c003), whose own claim says the anchor is unreadable and is kept as a mention."
+        }
+      ],
+      "refused_merges": [
+        {
+          "with": "W. Montgomery",
+          "kind": "two_houses",
+          "witnesses": [
+            "chicago_democrat_1834_01_28#c008",
+            "chicago_democrat_1834_03_04#c028",
+            "chicago_democrat_1834_03_25#c009",
+            "chicago_democrat_1835_07_08#c001",
+            "chicago_democrat_1835_07_22#c011"
+          ],
+          "refused_because": "'W. Montgomery' and 'L. W. Montgomery, boot and shoe maker' are two houses and two men, and this is the trap the surname grouping was always going to set. The bootmaker is Loton W. Montgomery. His advertisement is copy-dated Dec. 15/18/19, 1833, places him next door to P. Cohen's store, and runs from 1833-12-17 c003 to 1834-04-08 c007 and beyond; it signs 'L. W. MONTGOMERY' wherever the type survives whole, and the damaged 1834-03-04 c028 column preserves the initial itself. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. UNTIL T-1046 this row read `from: 'W. Montgomery, boot and shoe maker'` and gave as its ground that the bootmaker's L was lost in the setting; that was right, and the readings have now been repaired to say so, so the heading this row refuses has moved with them. The refusal itself stands unchanged in substance and is load-bearing: tools/adopt_street_faces.py reads a `two_houses` ruling to key refusal 3 on the trade rather than the surname alone, which is what stops these two Montgomerys taking each other's street face."
         }
       ],
       "built_at_scene_date": true,
@@ -68791,7 +68795,7 @@
         "provisions",
         "shot guns"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "relative",
         "anchor": "Fort Dearborn",
@@ -69753,7 +69757,7 @@
         "temperance almanacs",
         "window glass"
       ],
-      "street": null,
+      "street": "South Water Street",
       "placement": {
         "class": "street_only",
         "street": "unstated"
@@ -73861,7 +73865,7 @@
       ],
       "refused_merges": [
         {
-          "with": "W. Montgomery, boot and shoe maker",
+          "with": "L. W. Montgomery, boot and shoe maker",
           "kind": "two_houses",
           "witnesses": [
             "chicago_democrat_1834_01_28#c008",
@@ -73870,7 +73874,7 @@
             "chicago_democrat_1835_07_08#c001",
             "chicago_democrat_1835_07_22#c011"
           ],
-          "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
+          "refused_because": "'W. Montgomery' and 'L. W. Montgomery, boot and shoe maker' are two houses and two men, and this is the trap the surname grouping was always going to set. The bootmaker is Loton W. Montgomery. His advertisement is copy-dated Dec. 15/18/19, 1833, places him next door to P. Cohen's store, and runs from 1833-12-17 c003 to 1834-04-08 c007 and beyond; it signs 'L. W. MONTGOMERY' wherever the type survives whole, and the damaged 1834-03-04 c028 column preserves the initial itself. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. UNTIL T-1046 this row read `from: 'W. Montgomery, boot and shoe maker'` and gave as its ground that the bootmaker's L was lost in the setting; that was right, and the readings have now been repaired to say so, so the heading this row refuses has moved with them. The refusal itself stands unchanged in substance and is load-bearing: tools/adopt_street_faces.py reads a `two_houses` ruling to key refusal 3 on the trade rather than the surname alone, which is what stops these two Montgomerys taking each other's street face."
         }
       ],
       "built_at_scene_date": true,
@@ -73958,86 +73962,6 @@
       ],
       "trade_class_scope": "in_town",
       "survival_liberty_required": false
-    },
-    {
-      "id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "proprietors": [
-        "W. Montgomery"
-      ],
-      "partners": [
-        "W. Montgomery"
-      ],
-      "firm_styles": [],
-      "trade": "boot and shoe making",
-      "goods": [
-        "boots",
-        "shoes",
-        "water proof fine boots"
-      ],
-      "street": null,
-      "placement": {
-        "class": "relative",
-        "anchor": "P. Cohen's Store",
-        "offset_text": "shove business, next door to’ P. 'Coa en's Btore, will be kept on hand @ good assortment of",
-        "offset_normalized": "next door to P. Coh[e]n's Store",
-        "street": null
-      },
-      "evidence": {
-        "first_issue": "1834-01-28",
-        "last_issue": "1834-03-25",
-        "copy_dates": [
-          "1833-12-15",
-          "1833-12-18"
-        ]
-      },
-      "contradicted_by": [],
-      "opening_announced": [],
-      "mentions": [
-        "chicago_democrat_1834_01_28#c008",
-        "chicago_democrat_1834_03_04#c028",
-        "chicago_democrat_1834_03_25#c009"
-      ],
-      "placement_readings": [
-        {
-          "anchor": "P. Cohen's Store",
-          "class": "relative",
-          "first_issue": "1834-01-28",
-          "last_issue": "1834-03-25",
-          "claims": [
-            "chicago_democrat_1834_01_28#c008",
-            "chicago_democrat_1834_03_04#c028",
-            "chicago_democrat_1834_03_25#c009"
-          ],
-          "placement": {
-            "class": "relative",
-            "anchor": "P. Cohen's Store",
-            "offset_text": "shove business, next door to’ P. 'Coa en's Btore, will be kept on hand @ good assortment of",
-            "offset_normalized": "next door to P. Coh[e]n's Store",
-            "street": null
-          }
-        }
-      ],
-      "refused_merges": [
-        {
-          "with": "W. Montgomery",
-          "kind": "two_houses",
-          "witnesses": [
-            "chicago_democrat_1834_01_28#c008",
-            "chicago_democrat_1834_03_04#c028",
-            "chicago_democrat_1834_03_25#c009",
-            "chicago_democrat_1835_07_08#c001",
-            "chicago_democrat_1835_07_22#c011"
-          ],
-          "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
-        }
-      ],
-      "built_at_scene_date": true,
-      "trade_classes": [
-        "other"
-      ],
-      "trade_class_scope": "in_town",
-      "survival_liberty_required": true
     },
     {
       "id": "business_w_reed",
