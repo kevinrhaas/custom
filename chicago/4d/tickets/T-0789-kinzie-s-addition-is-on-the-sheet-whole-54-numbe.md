@@ -1,7 +1,7 @@
 ---
 id: T-0789
 title: Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T08:21:08.631Z
 claimed_run: null
 ---
 
