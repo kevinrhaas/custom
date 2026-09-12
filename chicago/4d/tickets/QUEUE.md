@@ -142,6 +142,7 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
 T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
 T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
 T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
