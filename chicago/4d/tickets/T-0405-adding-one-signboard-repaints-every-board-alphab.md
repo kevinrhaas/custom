@@ -1,7 +1,7 @@
 ---
 id: T-0405
 title: Adding one signboard repaints every board alphabetically after it, and some lose a line
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 1:25:03 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34677897940
 ---
 
 **Measured on T-0263's own diff, 2026-08-29.** One board was added to the town —
