@@ -1,7 +1,7 @@
 ---
 id: T-0396
 title: Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,14 +11,39 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 10:16:12 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34669733060
 ---
 
 Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm.
 
-**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+**Acceptance:** (stated before working, 2026-09-12)
+
+1. The question is DECIDED for the scene date, on the corpus's own evidence and not on the
+   literature's: which Newberry stood in Newberry & Dole on 1 July 1835. The argument is
+   written where a reader meets the claim, not only in a research file.
+2. No record in the dataset asserts at `attested` a partner the firm's own advertisement
+   contradicts. Both structure records of the firm — `newberry_dole_warehouse` and
+   `newberry_dole_slaughterhouse_south_branch` — carry the ruled partnership at the
+   confidence the evidence actually supports, with both limbs of the argument (who is
+   EXCLUDED, and who is identified) graded separately in the note.
+3. `data/research/newspapers/identity.json`'s `business_newberry_dole` proprietor
+   distinction stops saying the question is open and carries the answer, since that
+   declaration is the place the corpus itself nominated for it.
+4. Oliver Newberry remains a non-resident, and `data/residents/index.json` carries the
+   stronger reason the firm's own card gives: he is its DETROIT REFERENCE, not half of it.
+5. Nothing on `hh_newberry_walter_loomis` is regraded, and no trade and no premises is
+   minted onto Walter L. Newberry from this ruling. Grading against every source at once
+   is T-0515's pass; this one hands it a decided identity and not a verdict.
+6. The WALTER S / W S finding added below is ANSWERED, with the two things that decide
+   how much the reading weighs: what the deposit actually is, and how many independent
+   witnesses it holds.
+7. `tools/check.sh` green, the smoke parts `smoke_budget.mjs --for-diff` names green,
+   `publish.sh` run in the same commit, a changelog entry shipped.
+
 
 ---
 
