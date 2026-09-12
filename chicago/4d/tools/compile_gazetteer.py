@@ -1838,6 +1838,102 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 {"with": frm if key == a else into, "kind": kind,
                  "witnesses": list(witnesses), "refused_because": why})
 
+    # …AND THE THIRD ANSWER, WHICH UNTIL NOW DID NOT EXIST (T-0411). A merge says the two
+    # styles are one house; a refusal says they are not one house. The corpus keeps
+    # producing pairs that are NEITHER — a paper and the shop that prints it, an agency
+    # and the house that keeps it — where the honest sentence is "two businesses, and one
+    # of them is the other's premises". T-0402 was asked to judge the Chicago Democrat
+    # against the Chicago Democrat printing office and could write down no true thing:
+    # `firm_surnames()` compares {democrat} against {office} and the partner guard has no
+    # escape by design, while all three refusal kinds are false — these are not two
+    # houses, a printing DOES join them (the colophon is the paper naming its own shop),
+    # and in 1834 they stand on the same corner. It declined to file a false refusal,
+    # which is what this relation is for.
+    #
+    # It is NOT a merge and it does not touch the partner guard: both records stay whole,
+    # both keep their own printings, their own placement readings and their own trade.
+    # What it adds is a stated, cited edge between them, in one direction — the `part` is
+    # the `whole`'s premises or department — so that a later sweep meets a judgement
+    # rather than an unexamined group, which is the entire argument T-0399 made for
+    # declaring refusals.
+    RELATION_KINDS = {
+        # the part IS the ground the whole is carried on: the shop a paper is printed
+        # at, the store an agency is kept at. One roof, and the model must not mint a
+        # second one for the whole.
+        "premises",
+        # the part is a branch of the whole's own business, conducted by the same house
+        # under a style of its own — a job-printing department, a warehouse arm
+        "department",
+    }
+    relation_pairs = set()
+    for rule in identity.get("premises_relations", []):
+        part, whole = rule.get("part"), rule.get("whole")
+        why = (rule.get("relation_rule") or "").strip()
+        kind = rule.get("kind")
+        witnesses = rule.get("witnesses") or []
+        label = "identity.json premises_relation %r of %r" % (part, whole)
+        if not part or not whole:
+            problems.append("%s: a relation needs both `part` and `whole` — which of the "
+                            "two is the premises is the whole content of the edge" % label)
+            continue
+        if not why:
+            problems.append("%s: no relation_rule — an unexplained relation is worth no "
+                            "more than the silence it replaces, because the next sweep "
+                            "cannot tell it from a group nobody has judged" % label)
+            continue
+        if part not in why or whole not in why:
+            problems.append("%s: relation_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        if kind not in RELATION_KINDS:
+            problems.append("%s: `kind` must be one of %s — a paper printed at a shop and "
+                            "a house's own department are different claims about the town"
+                            % (label, ", ".join(sorted(RELATION_KINDS))))
+            continue
+        if not witnesses:
+            problems.append("%s: no `witnesses` — a relation rests on printings exactly as "
+                            "a merge does, and one that names none cannot be checked"
+                            % label)
+            continue
+        a, b = slug(part), slug(whole)
+        if a == b:
+            problems.append("%s: a firm cannot be its own premises" % label)
+            continue
+        missing = [n for n, k in ((part, a), (whole, b)) if k not in businesses]
+        if missing:
+            problems.append("%s: %s is not a firm the compiled register carries — a "
+                            "relation that has outlived one of its ends is a judgement "
+                            "nobody can check, and it will not be left to rot here"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        if frozenset((a, b)) in merged_pairs:
+            problems.append("%s: this pair is also declared in `firm_merges` — one house "
+                            "cannot be its own premises, and a merge says they are one "
+                            "house" % label)
+            continue
+        if any(r.get("with") == whole for r in businesses[a].get("refused_merges") or []):
+            problems.append("%s: this pair is also declared in `refused_firm_merges` — a "
+                            "refusal and a relation are two answers to one question, and "
+                            "the file may give only one of them" % label)
+            continue
+        if "part_of" in businesses[a]:
+            problems.append("%s: %r is already declared the premises of %r — a business "
+                            "stands on one ground, and a second whole would silently "
+                            "replace the first"
+                            % (label, part, businesses[a]["part_of"]["business"]))
+            continue
+        if (b, a) in relation_pairs:
+            problems.append("%s: the reverse relation is already declared — premises runs "
+                            "one way, and two businesses cannot each be the other's "
+                            "ground" % label)
+            continue
+        relation_pairs.add((a, b))
+        edge = {"kind": kind, "witnesses": list(witnesses), "relation_rule": why}
+        businesses[a]["part_of"] = dict(
+            edge, business=whole, business_id=businesses[b]["id"])
+        businesses[b].setdefault("parts", []).append(dict(
+            edge, business=part, business_id=businesses[a]["id"]))
+
     # THE PROPRIETORS' HALF (T-0337). Applied after the firm merges, because a firm
     # merge is what unions two houses' proprietor lists in the first place, and a pair
     # that needs adjudicating can be created by one.
@@ -2971,6 +3067,9 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         print("  ok    %d firm group(s) refused rather than merged, each naming the "
               "printings the refusal rests on"
               % len(identity_doc.get("refused_firm_merges", [])))
+        print("  ok    %d business(es) declared another's premises or department rather "
+              "than merged into it, each naming the printings the relation rests on"
+              % len(identity_doc.get("premises_relations", [])))
         print("  ok    %d agency relation(s): %d holding(s) and %d refused, %d minted "
               "record(s) retired — a house that holds an agency gains a line and not a "
               "roof"
@@ -3229,11 +3328,11 @@ def self_test():
     # THE FIRM'S HALF OF THE SAME POLICY (T-0304). Every case below is built by giving
     # the fixture's own Wilson advertisement a SECOND printing under another spelling,
     # which is the shape every firm merge in identity.json actually has.
-    def variant(d, name, **biz):
+    def variant(d, name, cid="zz1", **biz):
         src = next(c for c in d["claims"]
                    if (c.get("business") or {}).get("name") == "L. Wilson & Co.")
         c = copy.deepcopy(src)
-        c["id"] = "zz1"
+        c["id"] = cid
         c["business"]["name"] = name
         c["business"].update(biz)
         d["claims"].append(c)
@@ -3302,6 +3401,59 @@ def self_test():
                       firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
         "cannot both join and hold apart", "a pair both merged and refused")
 
+    # …AND THE RELATION (T-0411), the third answer. Same fixture again: the second
+    # printing is a house that is NEITHER the first nor unrelated to it — the shop the
+    # first is printed at — which is the pair `firm_surnames()` cannot join and no
+    # refusal kind can honestly hold apart.
+    def premises(i, part, whole, why=None, kind="premises", witnesses=("the fixture",)):
+        i.setdefault("premises_relations", []).append({
+            "part": part, "whole": whole, "kind": kind, "witnesses": list(witnesses),
+            "relation_rule": why if why is not None
+            else "%s is the premises %s is printed at: the second printing is the first's "
+                 "own colophon naming its shop" % (part, whole)})
+
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.")),
+        None, "a shop declared the premises of the house printed there")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.", "")),
+        "no relation_rule", "a premises relation that does not say why it holds")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.",
+                               "they go together")),
+        "name BOTH spellings", "a premises relation that does not name what it joins")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.",
+                               kind="affiliated")),
+        "`kind` must be one of", "a premises relation whose kind is neither of the two")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.",
+                               witnesses=())),
+        "no `witnesses`", "a premises relation that rests on no printing")
+    run(lambda d, i: premises(i, "Nobody & Co.", "L. Wilson & Co."),
+        "outlived one of its ends", "a premises relation for a house nobody claimed")
+    run(lambda d, i: premises(i, "L. Wilson & Co.", "L. Wilson & Co."),
+        "its own premises", "a firm declared the premises of itself")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      firm_rule(i, "L. Wilson & Co.", "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.")),
+        "cannot be its own premises",
+        "a pair both merged and declared one the other's premises")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      firm_refusal(i, "Wilson printing office", "L. Wilson & Co."),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.")),
+        "two answers to one question",
+        "a pair both refused and declared one the other's premises")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co."),
+                      premises(i, "L. Wilson & Co.", "Wilson printing office")),
+        "premises runs one way", "two businesses each declared the other's ground")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      variant(d, "Wilson job room", cid="zz2"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co."),
+                      premises(i, "Wilson printing office", "Wilson job room")),
+        "already declared the premises of",
+        "one business declared to stand on two different grounds")
     # THE AGENCY RELATION AND EVERY WAY IT COULD INVENT OR DELETE SOMETHING (T-0410).
     # A holding is the one declaration here that joins two houses rather than holding
     # them apart, so it is the one most able to assert a partnership nobody printed —

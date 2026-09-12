@@ -108,6 +108,7 @@
 
 
 T-1034 — The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869
+T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else: 'Col. Samuel Miller, Michigan City' is Carver's Indiana agent and sits on a Chicago resident card, and person_w_montgomery carries Loton W.'s shoemaking beside the auctioneer's own trade
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
@@ -142,7 +143,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
-T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
 T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
 T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
 T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
@@ -331,3 +331,4 @@ T-1023 — Five Norris 1844 entries begin at the trade with no name at all — t
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+

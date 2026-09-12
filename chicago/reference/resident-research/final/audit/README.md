@@ -30,7 +30,7 @@ Each line is *how many of the 1373 people carry at least one record of that kind
 | household membership | **44** | 3.2% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.5% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **303** | 22.1% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **301** | 21.9% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **49** | 3.6% | an 1840 census row bridged to this person |
 
 ## What each person rests on
@@ -38,8 +38,8 @@ Each line is *how many of the 1373 people carry at least one record of that kind
 | audit result | people | % |
 | --- | ---: | ---: |
 | `corroborated_across_categories` | 464 | 33.8% |
-| `two_or_more_sources_one_category` | 16 | 1.2% |
-| `one_source` | 319 | 23.2% |
+| `two_or_more_sources_one_category` | 14 | 1.0% |
+| `one_source` | 321 | 23.4% |
 | `the_letter_lists_alone` | 571 | 41.6% |
 | `no_source` | 3 | 0.2% |
 
@@ -52,7 +52,7 @@ record agree; two newspaper notices of the same name are
 | category | people citing at least one |
 | --- | ---: |
 | newspaper | 1149 |
-| civic | 303 |
+| civic | 301 |
 | census | 49 |
 | church | 46 |
 | book | 259 |
@@ -323,7 +323,7 @@ defect in this export.
 | no census linkage | 1324 | no 1840 census row is bridged to this person |
 | no address | 1297 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1277 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 890 | one source id on the card and no second category to check it against |
+| rests on one source | 892 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 571 | known only from the post office's uncalled-for lists |
 | no research row | 533 | no cohort ticket has reviewed this person; the programme reached 840 of 1373 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |

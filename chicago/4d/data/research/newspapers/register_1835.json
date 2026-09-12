@@ -23,8 +23,8 @@
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 30,
-        "new_building": 29,
+        "enrich_existing": 31,
+        "new_building": 28,
         "street_only": 59,
         "unplaceable": 87
       },
@@ -35,8 +35,8 @@
         "street_only": 18
       },
       "present_by_action": {
-        "enrich_existing": 30,
-        "new_building": 29,
+        "enrich_existing": 31,
+        "new_building": 28,
         "street_only": 59,
         "unplaceable": 70
       },
@@ -6552,11 +6552,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "new_building",
-      "action_target": "clark+south_water",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. A crossing of two platted streets: clark and south_water."
+      "action": "enrich_existing",
+      "action_target": "chicago_democrat_office",
+      "match_tier": "occupants",
+      "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
+      "action_note": "Chicago Democrat printing office is declared the premises The Chicago Democrat is carried on (identity.json premises_relations), so it stands where its premises stands and raises no ground of its own: enrich_existing at chicago_democrat_office, taken from business_chicago_democrat_printing_office. Without the relation this record took new_building at clark+south_water — a second roof for a business that has none. chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_the_dearborn_street_auction_and_commission_rooms",
