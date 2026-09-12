@@ -153,7 +153,8 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
 T-1053 — The three over-declared South Water entries cannot be narrowed without re-lotting a yard building, because frontage.lots is also the block's declared business front
-T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+T-1064 — The epoch re-baked on T-0799's trace, and shoreline.geojson into the terrain staleness hash so a re-trace can never leave the ground behind again
+T-1065 — The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
 T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
@@ -328,4 +329,3 @@ T-1041 — A house's agency reaches no card: the walkthrough shows trades and pr
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
 T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
-

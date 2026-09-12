@@ -1,7 +1,7 @@
 ---
 id: T-0800
 title: The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0793
 opened: 2026-09-05
-closed: null
+closed: 2026-09-12
 pr: null
 claimed_by: run 9/12/2026, 3:44:10 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-12T08:54:41.486Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34683906824
 ---
 
