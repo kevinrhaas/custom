@@ -2072,6 +2072,14 @@ step "the research domains hold one shape" \
 selftest "the directory forename rule's own assertions still fire when broken" \
   python3 tools/name_agreement.py --self-test
 
+# T-0987 stretch 9. And the OTHER rule module the same paragraph describes, which was
+# left ungated and went red: stretch 8 put `doctor` into the title vocabulary and two of
+# printed_twice's cases had been asserting the defect that vocabulary removed. Nothing
+# noticed for a day. A rule that decides which printings are one man belongs in the gate
+# beside the rule that decides which printing is which person.
+selftest "the printed-twice fold's own assertions still fire when broken" \
+  python3 tools/printed_twice.py --self-test
+
 selftest "…and the tie discriminator's do too" \
   python3 tools/tiebreak.py --self-test
 
