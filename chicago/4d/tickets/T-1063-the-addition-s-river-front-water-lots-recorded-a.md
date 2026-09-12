@@ -1,7 +1,7 @@
 ---
 id: T-1063
 title: The Addition's river-front water lots recorded as a lot strip rather than a block grid
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0789
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1186
 claimed_by: run 9/12/2026, 4:51:22 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T10:21:28.221Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34686733770
 ---
 
