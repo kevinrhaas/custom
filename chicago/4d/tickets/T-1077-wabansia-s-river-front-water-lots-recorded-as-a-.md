@@ -1,7 +1,7 @@
 ---
 id: T-1077
 title: Wabansia's river-front water lots recorded as a lot strip, off Wright's sheet
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1069
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1197
 claimed_by: run 9/12/2026, 9:19:14 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T15:07:25.399Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34698748892
 ---
 
