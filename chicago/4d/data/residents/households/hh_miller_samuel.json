@@ -112,15 +112,6 @@
      "describes_date": "1834-02-25",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
-    },
-    {
-     "list": "newspaper_1833_1835",
-     "as_read": "Samuel Miller",
-     "locator": "chicago_democrat_1834_03_04#c006",
-     "record_id": "person_samuel_miller",
-     "describes_date": "1834-03-04",
-     "source": "chicago_democrat_1833_1835",
-     "rule": "G1b"
     }
    ]
   }

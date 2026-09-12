@@ -410,8 +410,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 81,
-      "town_records_at_scene_date": 75,
+      "town_records_in_town": 80,
+      "town_records_at_scene_date": 74,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -487,7 +487,6 @@
         "business_w_g_blanchard",
         "business_w_montgomery",
         "business_w_montgomery_auction_and_commission_house",
-        "business_w_montgomery_boot_and_shoe_maker",
         "business_w_reed",
         "business_whitehead_co",
         "business_william_clay",
@@ -522,11 +521,11 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 199,
-    "in_town": 196,
+    "businesses_in_register": 198,
+    "in_town": 195,
     "outside_town": 3,
-    "at_scene_date": 183,
-    "carrying_no_enumerated_class": 76,
+    "at_scene_date": 182,
+    "carrying_no_enumerated_class": 75,
     "not_stated": 5,
     "census_enumerated_total": 118,
     "town_enumerated_total_at_scene_date": 118
@@ -2814,18 +2813,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "auction and commission business is a service the enumeration counts nowhere (B2)",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "trade": "boot and shoe making",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a making trade the enumeration counts nowhere (B2)",
       "built_at_scene_date": true
     },
     {
