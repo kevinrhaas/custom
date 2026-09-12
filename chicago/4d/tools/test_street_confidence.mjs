@@ -206,7 +206,7 @@ ok(missing.length === 0,
 // record was pinned at `reconstructed` by its wear grade, so no street could
 // draw at any other level whatever its line said.
 // A STREET THAT WAS NEVER OPENED IS NOT IN THIS MEASUREMENT. T-0713's finding is about
-// the gap between a street's LINE and the invented wear on its TRACK, and the twelve
+// the gap between a street's LINE and the invented wear on its TRACK, and the twenty-six
 // lines Wright ruled across the School Section have no track: they compile with
 // `opened: false` and a zero track width, and the renderer draws no ribbon for them.
 // Grading their wear `reconstructed` to keep the count below would be asserting an
@@ -220,9 +220,11 @@ ok(moved.length === stands.length + trodden.filter((r) => shipped(r) === LEVEL.i
   `every street whose line outgrades its track moved — ${moved.length} of ${trodden.length}`);
 ok(trodden.every((r) => before(r) === INVENTED),
   'every trodden street still carries an invented WEAR — which is why the split was needed');
-ok(streets.length - trodden.length === 34,
+ok(streets.length - trodden.length === 49,
   `and the platted-but-unopened lines ship with no track at all — the School Section's`
-  + ` tiers, Kinzie's Addition's eleven since T-1060, the Michigan St tract's two streets`
+  + ` twelve east-west tiers and, since T-0877, the fifteen records carrying its fourteen`
+  + ` north-south lines (Market is two, because Wright rules it in two stretches),`
+  + ` Kinzie's Addition's eleven since T-1060, the Michigan St tract's two streets`
   + ` and two alleys since T-1075, Wabansia's six since T-1070, and Kinzie Street's own`
   + ` reach west of the town since T-1085 — that last one is the only line here whose`
   + ` street is trodden somewhere else, and it is in this population because the wear is`
