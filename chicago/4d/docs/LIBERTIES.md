@@ -11263,3 +11263,94 @@ house and the shop, the same plate and the same grade) · **L1** (no figure is d
 (the sheet's other buildings).
 **Covers:** `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_type`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_pitch_deg`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.wall_height_m`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.chimneys`.
 **Recorded:** 2026-09-11 (T-1036).
+
+### L232 — 26 documented businesses stand on 1 July 1835 because the only paper that names them was printed afterwards
+**Decision:** every business the newspaper register flags `backdating_liberty_required` is
+treated as standing at the scene date. Its existence is documented — a dated advertisement or
+notice in the *Chicago Democrat* or the *Chicago American* — but the earliest surviving
+printing of it is LATER than 1835-07-01, and its presence on that day is assumed. This is the
+forward twin of **L211**, and it is attached the same way: the register carries the flag, this
+entry carries the liberty, and no business record is graded `documented` for a presence
+nothing witnessed. The owner ruled the class permitted on 2026-09-10, while reading the
+December 1835 State census — *"I think we are ok to populate some of those and create them
+even though the scene date is not perfect. or at least head in that direction based on your
+reasonable inferences. We are making a reconstruction and it won't be perfect but we have
+good inferences like this."*
+**Why:** the alternative is the proxy T-0356 retired, which excluded a business whose first
+SURVIVING issue postdated the scene date — and the absence of an earlier printing is not
+evidence of absence. The Chicago run is broken: the papers that would have carried these
+houses in June are not all extant, and an advertisement is a STANDING one, repeated week on
+week, so the issue a reader happens to have is almost never the issue an advertisement began
+in. Wm. H. Taylor's boot, shoe and leather store is the case that proves it: the register
+first meets him on 5 August 1835, and the advertisement's own dateline is **8 July 1834**, a
+year and a day before the scene date. The proxy had excluded from the July town a man who
+demonstrably stood in it. What is left after that reading is made everywhere it can be made
+is this class: documented houses whose standing on 1 July 1835 rests on ruling 3 — a
+documented business is built at the scene date unless contradicted — and on nothing else.
+**Scope:** `register_1835.businesses[backdating_liberty_required]` — 26 businesses, enumerated
+by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
+`tools/compile_liberties.py` on every compile. The number cannot drift from the register
+without `check.sh` saying so, which is the point of writing it down. **It is a measurement and
+not the figure this entry's ticket quoted:** T-0404 was filed at *33* on 2026-08-29, before the
+flag it names was computed; the register's own summary has read 30 (T-0356, which minted it),
+then 28 (T-0402), 27 (T-0340) and 26 (T-0413). Every one of those movements is an identity
+pass judging two printed styles to be one house — not one business leaving Chicago.
+**How the class is bounded, and how it is cleared.** 27 businesses stand in the July town whose
+first surviving issue postdates the scene date. **One** of them owes no liberty, and the
+mechanism is the one that makes the other 26 honest: an opening notice dated on or before
+1835-07-01 is positive evidence the house stood, so `compile_register.py` clears the flag —
+Taylor's `effected` dateline of 8 July 1834 is that notice. (John Holbrook's *"is now
+opening"* of 10 June 1835 is the same kind of reading, and he never needed it: his own first
+printing is June, before the scene date.) The register also refuses in the other direction
+before this liberty is reached at all: **4** businesses are excluded outright by an opening
+the paper STATES for a date after the scene date — Cromelien, Brothers & Co.'s wine branch,
+Hiram Everts's high school for young gentlemen, Charles Hunt's for young ladies, and William
+F. Lyon's wholesale grocery — and **13** more by a claim that contradicts them earlier. So
+this covers what is left after the evidence has spoken, not instead of it.
+**What this liberty does NOT license, and the worked refusal.** **It covers a DATE and never an
+ABSENCE.** It carries a documented house across a gap in the surviving record; it does not
+license a business the sources do not name, and it does not overturn a positive refusal. The
+bank is the worked example. The December 1835 State census counts one in Chicago, and this
+reconstruction builds none: `chicago_american_1835_06_27` c001 — **five days before the scene
+date** — prints the State Bank of Illinois's officers with the directors having *determined*
+to establish a Chicago branch and "the officers of those institutions have not been made
+known", and Hubbard's branch took a corner of his warehouse in **1836**. On 26 June 1835 the
+branch is a decision, not a counter. A liberty about dates may never outrank a notice that
+says the thing did not yet exist. The Chicago Lyceum and the Chicago Reading Room are the
+second shape of refusal — institutions without premises, both meeting in the town and neither
+owning a room. The Reading Room's directors met at the **Tremont House on 6 July 1835** to
+raise $2,500–3,000 for a building by joint stock (`chicago_american_1835_07_11` c001), and
+seven weeks later its books were still "for the present deposited at [?] House"
+(`..._08_22` c005). That sequence is documented and negative: anything this project put on
+the Public Square for a reading room at the scene date would be wrong. Neither adds a roof;
+both add links.
+**Consequence:** **20 of the 26 reach something a visitor can see** — 14 take a street face, 3
+enrich a house already standing, and 3 resolve against the committed town well enough to ask
+for a building; the remaining **6** are recorded and unplaceable. Two of the three placeable
+ones are L. G. Curtiss, deputy surveyor of Cook County, at the Mansion House, and Henry
+Moore, attorney, by Kinzie's forwarding store — and Moore is also the man who signed the
+Reading Room's notices as secretary, which is how close the licence and the refusal sit in
+this corpus. The three enrichments are John Wright's building and, twice, John Dean Caton's
+law office in Temple's Lake Street building. Every one of the 20 puts a trade sign, a card or
+an occupant into July 1835 on an inference, and **a business restored on this liberty still
+reads as restored on an assumption**: the Evidence panel carries this entry so that sentence
+is available to a visitor, because the per-attribute chips cannot say it — the thing assumed
+is not an attribute but a presence on a particular day.
+**What is NOT invented:** the business, its trade, its proprietors, its street and its
+advertisement are all documented and cited. Only the backdating of the concern from its first
+surviving printing to 1835-07-01 is assumed. None of the 26 also owes **L211** — the two
+classes cannot overlap, because one is a house last printed before 1835 and the other a house
+first printed after the scene date — so a reader meets exactly one of these two admissions per
+business, never both.
+**How to resolve:** find the earlier printing, or the opening. A business re-printed in a
+surviving issue dated on or before the scene date, or carrying an `effected` opening notice
+dated then, loses the flag when `tools/compile_register.py` re-derives — with no edit to this
+file and none to its record. So this liberty shrinks by itself as the corpus grows, and the
+count above is restated each time it does. It reaches zero only if the first half of the 1835
+run turns out to hold every one of these houses, and it stops at whatever number the surviving
+issues cannot reach.
+**Ticket:** T-0404. **Related:** **L211** (the survival class, the same admission running
+backwards, and the rule this entry's attachment had to agree with), **L212** (the street faces
+14 of these businesses are seated on), T-0356 (the proxy this replaced), T-0988 (the census
+reading the owner ruled from).
+**Recorded:** 2026-09-12 (T-0404).
