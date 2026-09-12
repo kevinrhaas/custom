@@ -2244,6 +2244,40 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
 
     trade_classes, trade_scopes = load_trade_classes()
     for b in businesses.values():
+        # T-0398. THE PROPRIETOR LIST IS NOT A LIST OF PEOPLE, AND NOW IT SAYS SO.
+        #
+        # `proprietors` is whatever each claim read where a proprietor was wanted, and a
+        # notice signed only by the house gives the house: the Democrat of 1835-08-19
+        # (c012) prints "for sale only by Russell & Cl[if]t (Agents for the State of
+        # I[ll]inois) at the Chicago Book Store" and nothing else, so the reading pass
+        # recorded `Russell & Clift` as a proprietor of `business_russell_clift`. That is
+        # exactly what the paper printed and it is not a misreading — 28 of the 199 houses
+        # carry their own trading style this way — but the LIST then reads 'Aaron Russell,
+        # Benj. H. Clift, Russell & Clift', which states that the partnership is its own
+        # third partner.
+        #
+        # So the record carries the distinction instead of the reader having to make it.
+        # `partners` is the person-styled entries, `firm_styles` the house's own, both in
+        # the order `proprietors` prints them, and NEITHER EDITS A CLAIM: `proprietors`
+        # is untouched and stays the union of what was read. It is DERIVED, by the same
+        # `firm_styled()` the proprietor policy already steps over styles with (T-0337),
+        # so there is nothing to declare and nothing to keep in step — a house whose style
+        # `firm_styled()` cannot see would need `identity.json` to say so, and the corpus
+        # has none today.
+        #
+        # `partners` is EMPTY where the papers only ever signed the house ('H. Doty & Co.'
+        # is the whole of that record's proprietor list), and empty is the honest answer:
+        # no man is named. The surnames inside a style are not lost by this — the register
+        # reads them out with `firm_surnames()` for its occupant matching, which is a
+        # different question from who the papers named.
+        ordered = {}
+        for key, value in list(b.items()):
+            ordered[key] = value
+            if key == "proprietors":
+                ordered["partners"] = [n for n in value if not firm_styled(n)]
+                ordered["firm_styles"] = [n for n in value if firm_styled(n)]
+        b.clear()
+        b.update(ordered)
         # Ruling 3, computed and never asserted: a documented business stands in the
         # 1835 town unless a claim contradicts it, and one whose last issue predates
         # 1835 stands on a survival liberty that has to be written down.
@@ -4820,6 +4854,42 @@ def self_test():
     if out_of_town("steam saw mill and lumber, Detroit", "assignee", []):
         failures.append("an assignee inherited the house's city — only a proprietor or "
                         "a partner IS the firm")
+
+    # T-0398. A house that signed its own notice is not its own third partner.
+    cases.append("a house whose proprietor list carries its own trading style")
+
+    def styled_house(proprietors):
+        d = copy.deepcopy(base)
+        c = copy.deepcopy(d["claims"][0])
+        c["business"] = {"name": "Russell & Clift", "proprietors": list(proprietors),
+                         "trade": "bookseller and stationer", "goods": [], "street": None,
+                         "placement": {"class": "none", "street": None}}
+        d["claims"] = [c]
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                       corpus_doc)
+        return next(b for b in doc["businesses"] if b["id"] == "business_russell_clift")
+
+    got = styled_house(["Aaron Russell", "Benj. H. Clift", "Russell & Clift"])
+    if got["proprietors"] != ["Aaron Russell", "Benj. H. Clift", "Russell & Clift"]:
+        failures.append("the derivation EDITED a claim's reading: proprietors is %r"
+                        % (got["proprietors"],))
+    if got["partners"] != ["Aaron Russell", "Benj. H. Clift"]:
+        failures.append("the partnership stands among its own partners: %r"
+                        % (got["partners"],))
+    if got["firm_styles"] != ["Russell & Clift"]:
+        failures.append("the house's own style is not named as one: %r"
+                        % (got["firm_styles"],))
+
+    cases.append("a house the papers only ever signed with its style")
+    got = styled_house(["H. Doty & Co."])
+    if got["partners"] or got["firm_styles"] != ["H. Doty & Co."]:
+        failures.append("a house nobody is named for should carry no partners, got %r"
+                        % (got["partners"],))
 
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:

@@ -206,6 +206,7 @@ BAND = "centreline band"
 # limit 1 is enforced against a future field rather than only against today's.
 ADOPTION_KEYS = {
     "business_id", "business_name", "trade", "proprietors",
+    "partners", "firm_styles",          # T-0398: which of those strings are people
     "street_id", "street_name", "street_text", "placement_class",
     "cites", "first_issue", "last_issue", "mentions",
     "structure_id", "face", "roof_confidence",
@@ -593,6 +594,15 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
             "business_name": entry["name"],
             "trade": entry.get("trade"),
             "proprietors": entry.get("proprietors") or [],
+            # T-0398. The register derives which of those strings are people and which
+            # are the house's own trading style, and the row carries both: a table that
+            # prints 'Aaron Russell, Benj. H. Clift, Russell & Clift' otherwise states
+            # that the partnership is its own third partner. `surnames()` below still
+            # reads `proprietors`, deliberately — a style carries real surnames ('Clark,
+            # Filer & Co.') and dropping it would lose them. Reading them ALL out, as
+            # compile_register's `firm_surnames()` does, is T-1042's question.
+            "partners": entry.get("partners") or [],
+            "firm_styles": entry.get("firm_styles") or [],
             "street_id": street_id,
             "street_name": fronting_street.street_name(street_id),
             "street_text": printed.get("street"),

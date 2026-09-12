@@ -58470,6 +58470,8 @@
       "id": "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
       "name": "a Chicago stove and hollow ware dealer, August 1835",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "stoves, hollow ware and castings",
       "goods": [
         "Castings",
@@ -58526,6 +58528,10 @@
       "proprietors": [
         "A. Clybourn"
       ],
+      "partners": [
+        "A. Clybourn"
+      ],
+      "firm_styles": [],
       "trade": "butcher — slaughtering, and a retail market stall",
       "goods": [
         "beef cattle",
@@ -58587,6 +58593,10 @@
       "proprietors": [
         "A. Filer"
       ],
+      "partners": [
+        "A. Filer"
+      ],
+      "firm_styles": [],
       "trade": "cabinet and chair manufactory",
       "goods": [
         "cabinet ware",
@@ -58641,6 +58651,10 @@
       "proprietors": [
         "A. Garrett"
       ],
+      "partners": [
+        "A. Garrett"
+      ],
+      "firm_styles": [],
       "trade": "auction and commission",
       "goods": [
         "boots and shoes",
@@ -58712,6 +58726,10 @@
       "proprietors": [
         "A. Garrett"
       ],
+      "partners": [
+        "A. Garrett"
+      ],
+      "firm_styles": [],
       "trade": "auction of town lots and land",
       "goods": [],
       "street": "Dearborn Street",
@@ -58774,6 +58792,8 @@
       "id": "business_a_leather_stock_chicago_june_1835",
       "name": "a leather stock, Chicago, June 1835",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "leather",
       "goods": [
         "Harness Leather",
@@ -58832,6 +58852,10 @@
       "proprietors": [
         "W. Montgomery"
       ],
+      "partners": [
+        "W. Montgomery"
+      ],
+      "firm_styles": [],
       "trade": "auction and commission",
       "goods": [
         "Crockery",
@@ -58931,6 +58955,10 @@
       "proprietors": [
         "Edward Burton"
       ],
+      "partners": [
+        "Edward Burton"
+      ],
+      "firm_styles": [],
       "trade": "tailoring",
       "goods": [],
       "street": null,
@@ -58988,6 +59016,8 @@
       "id": "business_a_o_t_breed",
       "name": "A. O. T. Breed",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "storekeeper (winding up)",
       "goods": [],
       "street": null,
@@ -59033,6 +59063,10 @@
       "proprietors": [
         "J. C. Bradley"
       ],
+      "partners": [
+        "J. C. Bradley"
+      ],
+      "firm_styles": [],
       "trade": "dentistry",
       "goods": [],
       "street": null,
@@ -59086,6 +59120,8 @@
       "id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
       "name": "a wholesale wine and liquor store, Dearborn Street",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "wholesale wine and liquors",
       "goods": [
         "Liquors",
@@ -59140,6 +59176,8 @@
       "id": "business_an_iron_and_hardware_stock_chicago_june_1835",
       "name": "an iron and hardware stock, Chicago, June 1835",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "iron and hardware",
       "goods": [
         "Anvils",
@@ -59201,6 +59239,10 @@
       "proprietors": [
         "Andrews & Eells"
       ],
+      "partners": [],
+      "firm_styles": [
+        "Andrews & Eells"
+      ],
       "trade": "fashionable tailoring",
       "goods": [
         "ready made clothing"
@@ -59258,6 +59300,10 @@
       "proprietors": [
         "B. Jones"
       ],
+      "partners": [
+        "B. Jones"
+      ],
+      "firm_styles": [],
       "trade": "grocery and provision store",
       "goods": [
         "Provisions",
@@ -59324,6 +59370,10 @@
       "proprietors": [
         "B. Jones"
       ],
+      "partners": [
+        "B. Jones"
+      ],
+      "firm_styles": [],
       "trade": "storage, forwarding and commission",
       "goods": [],
       "street": null,
@@ -59381,6 +59431,8 @@
       "id": "business_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered",
       "name": "[boot, shoe and leather store, Lake street, proprietor not recovered]",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "boot and shoe manufacturing and leather dealing",
       "goods": [
         "Baltimore tanned leather",
@@ -59444,6 +59496,14 @@
         "Franklin Brewster",
         "John S. C. Hogan"
       ],
+      "partners": [
+        "Brewster",
+        "Hogan",
+        "William Brewster",
+        "Franklin Brewster",
+        "John S. C. Hogan"
+      ],
+      "firm_styles": [],
       "trade": "forwarding and commission merchants, dry goods and groceries",
       "goods": [
         "bacon",
@@ -59535,6 +59595,13 @@
         "Briggs",
         "Humphrey"
       ],
+      "partners": [
+        "Briggs",
+        "Humphrey"
+      ],
+      "firm_styles": [
+        "Briggs & Humphrey"
+      ],
       "trade": "carriage and sleigh making",
       "goods": [
         "Carriages",
@@ -59602,6 +59669,10 @@
       "proprietors": [
         "Brown"
       ],
+      "partners": [
+        "Brown"
+      ],
+      "firm_styles": [],
       "trade": "carriage, sign, ornamental and figure painting, and gilding",
       "goods": [],
       "street": "Randolph Street",
@@ -59697,6 +59768,10 @@
       "proprietors": [
         "C. H. Chapman"
       ],
+      "partners": [
+        "C. H. Chapman"
+      ],
+      "firm_styles": [],
       "trade": null,
       "goods": [
         "Oxen"
@@ -59744,6 +59819,10 @@
       "id": "business_c_i_harmon",
       "name": "C. & I. Harmon",
       "proprietors": [
+        "C. & I. Harmon"
+      ],
+      "partners": [],
+      "firm_styles": [
         "C. & I. Harmon"
       ],
       "trade": "dry goods, crockery, hardware and groceries",
@@ -59797,6 +59876,8 @@
       "id": "business_carpenter_chicago_merchant",
       "name": "Carpenter, Chicago merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "general merchandise on consignment",
       "goods": [
         "Crown Glass",
@@ -59853,6 +59934,10 @@
       "proprietors": [
         "Hunt, C[harle]s"
       ],
+      "partners": [
+        "Hunt, C[harle]s"
+      ],
+      "firm_styles": [],
       "trade": "school",
       "goods": [],
       "street": null,
@@ -59909,6 +59994,10 @@
       "proprietors": [
         "Charles Taylor"
       ],
+      "partners": [
+        "Charles Taylor"
+      ],
+      "firm_styles": [],
       "trade": "clothing and tailoring",
       "goods": [],
       "street": "South Water Street",
@@ -59976,6 +60065,8 @@
       "id": "business_chase_ballard",
       "name": "Chase & Ballard",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "hardware, stoves and iron",
       "goods": [
         "Hardware",
@@ -60026,6 +60117,10 @@
       "proprietors": [
         "D. Graves"
       ],
+      "partners": [
+        "D. Graves"
+      ],
+      "firm_styles": [],
       "trade": "baker",
       "goods": [
         "Bread",
@@ -60104,6 +60199,10 @@
       "proprietors": [
         "John Calhoun"
       ],
+      "partners": [
+        "John Calhoun"
+      ],
+      "firm_styles": [],
       "trade": "newspaper and job printing",
       "goods": [
         "blanks",
@@ -60205,6 +60304,10 @@
       "proprietors": [
         "Daniel Elston"
       ],
+      "partners": [
+        "Daniel Elston"
+      ],
+      "firm_styles": [],
       "trade": "soap and candle manufactory",
       "goods": [
         "candles",
@@ -60272,6 +60375,10 @@
       "proprietors": [
         "Clark, master"
       ],
+      "partners": [
+        "Clark, master"
+      ],
+      "firm_styles": [],
       "trade": "packet service for freight and passengers between Chicago and the mouth of the St. Joseph",
       "goods": [
         "freight",
@@ -60329,6 +60436,10 @@
       "id": "business_clark_filer_co",
       "name": "Clark, Filer & Co.",
       "proprietors": [
+        "Clark, Filer & Co."
+      ],
+      "partners": [],
+      "firm_styles": [
         "Clark, Filer & Co."
       ],
       "trade": "cabinet shop; chairs",
@@ -60453,6 +60564,15 @@
         "J. D. Caton",
         "James H. Collins",
         "J. Dean Caton",
+        "J. H. Collins & J. D. C[aton]"
+      ],
+      "partners": [
+        "J. H. Collins",
+        "J. D. Caton",
+        "James H. Collins",
+        "J. Dean Caton"
+      ],
+      "firm_styles": [
         "J. H. Collins & J. D. C[aton]"
       ],
       "trade": "attorneys and counsellors at law, and solicitors in chancery",
@@ -60609,6 +60729,11 @@
         "J. B. Cook",
         "C. George"
       ],
+      "partners": [
+        "J. B. Cook",
+        "C. George"
+      ],
+      "firm_styles": [],
       "trade": "bakery",
       "goods": [
         "bread"
@@ -60662,6 +60787,10 @@
       "id": "business_cooley_and_halsman",
       "name": "Cooley and Halsman",
       "proprietors": [
+        "Cooley and Halsman"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Cooley and Halsman"
       ],
       "trade": "tailors",
@@ -60752,6 +60881,11 @@
         "Cooley",
         "Hol[b]man"
       ],
+      "partners": [
+        "Cooley",
+        "Hol[b]man"
+      ],
+      "firm_styles": [],
       "trade": "tailoring",
       "goods": [],
       "street": "Dearborn Street",
@@ -60808,6 +60942,8 @@
       "id": "business_cromelien_brothers_co",
       "name": "Cromelien, Brothers & Co.",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "foreign wine and liquor establishment",
       "goods": [
         "liquors",
@@ -60865,6 +61001,10 @@
       "proprietors": [
         "David Carver"
       ],
+      "partners": [
+        "David Carver"
+      ],
+      "firm_styles": [],
       "trade": "lumber merchant",
       "goods": [
         "Lumber"
@@ -60912,6 +61052,10 @@
       "proprietors": [
         "D. Graves"
       ],
+      "partners": [
+        "D. Graves"
+      ],
+      "firm_styles": [],
       "trade": "bakery",
       "goods": [
         "Bread",
@@ -61007,6 +61151,11 @@
         "D. O. Robinson",
         "R. A. Neff"
       ],
+      "partners": [
+        "D. O. Robinson",
+        "R. A. Neff"
+      ],
+      "firm_styles": [],
       "trade": "[not stated in the notice]",
       "goods": [],
       "street": null,
@@ -61050,6 +61199,10 @@
       "id": "business_dally_youngs",
       "name": "Dally & Youngs",
       "proprietors": [
+        "Dally & Youngs"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Dally & Youngs"
       ],
       "trade": "blacksmithing and edge tool making",
@@ -61135,6 +61288,13 @@
       "name": "Daniel Elston & [Co.]",
       "proprietors": [
         "Daniel Elston",
+        "Daniel Elston & Co.",
+        "D. Elston & Co."
+      ],
+      "partners": [
+        "Daniel Elston"
+      ],
+      "firm_styles": [
         "Daniel Elston & Co.",
         "D. Elston & Co."
       ],
@@ -61228,6 +61388,8 @@
       "id": "business_dart_co_castings",
       "name": "Dart & Co., castings",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "iron castings",
       "goods": [
         "Cast Iron Ploughs",
@@ -61284,6 +61446,10 @@
       "proprietors": [
         "David Carver"
       ],
+      "partners": [
+        "David Carver"
+      ],
+      "firm_styles": [],
       "trade": "lumber yard",
       "goods": [
         "Bacon",
@@ -61410,6 +61576,11 @@
         "E. P. Deacon",
         "[uncertain: Wm. McKaleb]"
       ],
+      "partners": [
+        "E. P. Deacon",
+        "[uncertain: Wm. McKaleb]"
+      ],
+      "firm_styles": [],
       "trade": "steam saw mill and lumber, St. Joseph",
       "goods": [
         "Lumber"
@@ -61466,6 +61637,10 @@
       "proprietors": [
         "J. H. Barnard"
       ],
+      "partners": [
+        "J. H. Barnard"
+      ],
+      "firm_styles": [],
       "trade": "physician",
       "goods": [],
       "street": "Lake Street",
@@ -61550,6 +61725,11 @@
         "Austin, W. G.",
         "W. G. Austin"
       ],
+      "partners": [
+        "Austin, W. G.",
+        "W. G. Austin"
+      ],
+      "firm_styles": [],
       "trade": "practice of medicine, botanic system",
       "goods": [
         "medicines"
@@ -61645,6 +61825,10 @@
       "proprietors": [
         "E. L. Thrall"
       ],
+      "partners": [
+        "E. L. Thrall"
+      ],
+      "firm_styles": [],
       "trade": "tailoring and ready made clothing",
       "goods": [
         "Cassimeres",
@@ -61703,6 +61887,10 @@
       "proprietors": [
         "E. P. Deacon"
       ],
+      "partners": [
+        "E. P. Deacon"
+      ],
+      "firm_styles": [],
       "trade": "steam saw mill and lumber, St. Joseph",
       "goods": [
         "Lumber"
@@ -61751,6 +61939,10 @@
       "proprietors": [
         "E. W. Haddock"
       ],
+      "partners": [
+        "E. W. Haddock"
+      ],
+      "firm_styles": [],
       "trade": "merchant",
       "goods": [
         "superfine flour"
@@ -61800,6 +61992,10 @@
       "proprietors": [
         "E. Wentworth"
       ],
+      "partners": [
+        "E. Wentworth"
+      ],
+      "firm_styles": [],
       "trade": "tavern",
       "goods": [
         "corn",
@@ -61851,6 +62047,10 @@
       "proprietors": [
         "E. Wentworth"
       ],
+      "partners": [
+        "E. Wentworth"
+      ],
+      "firm_styles": [],
       "trade": "tavern",
       "goods": [
         "Corn",
@@ -61905,6 +62105,10 @@
       "proprietors": [
         "E. Wentworth"
       ],
+      "partners": [
+        "E. Wentworth"
+      ],
+      "firm_styles": [],
       "trade": "public house",
       "goods": [
         "Corn",
@@ -61955,6 +62159,10 @@
       "proprietors": [
         "H. E. Wentworth"
       ],
+      "partners": [
+        "H. E. Wentworth"
+      ],
+      "firm_styles": [],
       "trade": "tavern",
       "goods": [
         "corn",
@@ -62037,6 +62245,11 @@
         "P. B. F. Cable",
         "J. Shrigley"
       ],
+      "partners": [
+        "P. B. F. Cable",
+        "J. Shrigley"
+      ],
+      "firm_styles": [],
       "trade": "hotel",
       "goods": [],
       "street": null,
@@ -62110,6 +62323,10 @@
       "proprietors": [
         "P. J. Carli"
       ],
+      "partners": [
+        "P. J. Carli"
+      ],
+      "firm_styles": [],
       "trade": "tavern and hotel",
       "goods": [
         "Chairs",
@@ -62176,6 +62393,10 @@
       "proprietors": [
         "Ebenezer S. More"
       ],
+      "partners": [
+        "Ebenezer S. More"
+      ],
+      "firm_styles": [],
       "trade": "attorney at law",
       "goods": [],
       "street": "Monroe Street",
@@ -62229,6 +62450,10 @@
       "proprietors": [
         "Edward W. Casey"
       ],
+      "partners": [
+        "Edward W. Casey"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law",
       "goods": [],
       "street": null,
@@ -62321,6 +62546,10 @@
       "proprietors": [
         "Elmira Fowler"
       ],
+      "partners": [
+        "Elmira Fowler"
+      ],
+      "firm_styles": [],
       "trade": "millinery and dress making",
       "goods": [
         "band-boxes",
@@ -62380,6 +62609,10 @@
       "proprietors": [
         "Everson"
       ],
+      "partners": [
+        "Everson"
+      ],
+      "firm_styles": [],
       "trade": "livery stable",
       "goods": [
         "saddle horses",
@@ -62430,6 +62663,10 @@
       "proprietors": [
         "Frederick Thomas"
       ],
+      "partners": [
+        "Frederick Thomas"
+      ],
+      "firm_styles": [],
       "trade": "drugs, paints, chemicals, perfumery and dye stuffs",
       "goods": [
         "Carminative Balm",
@@ -62565,6 +62802,10 @@
       "proprietors": [
         "Fullerton & Botsford"
       ],
+      "partners": [],
+      "firm_styles": [
+        "Fullerton & Botsford"
+      ],
       "trade": "pork and provisions",
       "goods": [
         "Bacon",
@@ -62625,6 +62866,10 @@
       "proprietors": [
         "A. N. Fullerton"
       ],
+      "partners": [
+        "A. N. Fullerton"
+      ],
+      "firm_styles": [],
       "trade": "attorneys and counsellors at law",
       "goods": [],
       "street": null,
@@ -62678,6 +62923,10 @@
       "proprietors": [
         "G. Blanshard"
       ],
+      "partners": [
+        "G. Blanshard"
+      ],
+      "firm_styles": [],
       "trade": "houses and lots for sale or to let",
       "goods": [],
       "street": "Lake Street",
@@ -62763,6 +63012,12 @@
         "Spring, G.",
         "Giles Spring"
       ],
+      "partners": [
+        "G. Spring",
+        "Spring, G.",
+        "Giles Spring"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
       "street": "Dearborn Street",
@@ -63099,6 +63354,11 @@
         "G. W. Laird",
         "William Laird"
       ],
+      "partners": [
+        "G. W. Laird",
+        "William Laird"
+      ],
+      "firm_styles": [],
       "trade": "merchants",
       "goods": [
         "New Goods"
@@ -63154,6 +63414,10 @@
       "proprietors": [
         "Geo. W. Laird"
       ],
+      "partners": [
+        "Geo. W. Laird"
+      ],
+      "firm_styles": [],
       "trade": "general store",
       "goods": [
         "New Goods"
@@ -63201,6 +63465,10 @@
       "proprietors": [
         "Holsman, George"
       ],
+      "partners": [
+        "Holsman, George"
+      ],
+      "firm_styles": [],
       "trade": "tailoring",
       "goods": [],
       "street": "Dearborn Street",
@@ -63261,6 +63529,14 @@
         "Goss & Cobb",
         "Goss",
         "Cobb"
+      ],
+      "partners": [
+        "Oliver Goss",
+        "Goss",
+        "Cobb"
+      ],
+      "firm_styles": [
+        "Goss & Cobb"
       ],
       "trade": null,
       "goods": [
@@ -63404,6 +63680,10 @@
       "proprietors": [
         "H. C. Bennett"
       ],
+      "partners": [
+        "H. C. Bennett"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
       "street": "Dearborn street",
@@ -63449,6 +63729,10 @@
       "id": "business_h_doty_co",
       "name": "H. Doty & Co.",
       "proprietors": [
+        "H. Doty & Co."
+      ],
+      "partners": [],
+      "firm_styles": [
         "H. Doty & Co."
       ],
       "trade": "dry goods and groceries",
@@ -63565,6 +63849,14 @@
         "Harmon, Loomis & Co",
         "Harmon",
         "Loomis"
+      ],
+      "partners": [
+        "Harmon",
+        "Loomis"
+      ],
+      "firm_styles": [
+        "Harmon, Loomis & Co.",
+        "Harmon, Loomis & Co"
       ],
       "trade": "wholesale and retail dry goods, groceries, hardware and crockery",
       "goods": [
@@ -63685,6 +63977,10 @@
       "proprietors": [
         "Henry Moore"
       ],
+      "partners": [
+        "Henry Moore"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
       "street": null,
@@ -63782,6 +64078,10 @@
       "proprietors": [
         "Moore, Henry"
       ],
+      "partners": [
+        "Moore, Henry"
+      ],
+      "firm_styles": [],
       "trade": "law",
       "goods": [],
       "street": null,
@@ -63829,6 +64129,10 @@
       "proprietors": [
         "Everts, Hiram"
       ],
+      "partners": [
+        "Everts, Hiram"
+      ],
+      "firm_styles": [],
       "trade": "school",
       "goods": [],
       "street": null,
@@ -63885,6 +64189,10 @@
       "proprietors": [
         "Hiram Pearsons"
       ],
+      "partners": [
+        "Hiram Pearsons"
+      ],
+      "firm_styles": [],
       "trade": "storage and commission merchant",
       "goods": [],
       "street": null,
@@ -63939,6 +64247,14 @@
         "Hubbard & Co.",
         "Hubbard",
         "Gurdon S. Hubbard"
+      ],
+      "partners": [
+        "Henry G. Hubbard",
+        "Hubbard",
+        "Gurdon S. Hubbard"
+      ],
+      "firm_styles": [
+        "Hubbard & Co."
       ],
       "trade": "commission and forwarding merchants",
       "goods": [
@@ -64104,6 +64420,10 @@
       "proprietors": [
         "Chester Ingersoll"
       ],
+      "partners": [
+        "Chester Ingersoll"
+      ],
+      "firm_styles": [],
       "trade": "tavern",
       "goods": [],
       "street": null,
@@ -64151,6 +64471,10 @@
       "proprietors": [
         "J. A. Marshall"
       ],
+      "partners": [
+        "J. A. Marshall"
+      ],
+      "firm_styles": [],
       "trade": "dancing school",
       "goods": [],
       "street": null,
@@ -64199,6 +64523,11 @@
         "J. B. Brown",
         "J. B. Tuttle"
       ],
+      "partners": [
+        "J. B. Brown",
+        "J. B. Tuttle"
+      ],
+      "firm_styles": [],
       "trade": "groceries",
       "goods": [
         "Cigars",
@@ -64262,6 +64591,11 @@
         "J. Bates jr.",
         "J. Bates, jr."
       ],
+      "partners": [
+        "J. Bates jr.",
+        "J. Bates, jr."
+      ],
+      "firm_styles": [],
       "trade": "auction store",
       "goods": [],
       "street": null,
@@ -64334,6 +64668,10 @@
       "proprietors": [
         "Goodhue, J. C."
       ],
+      "partners": [
+        "Goodhue, J. C."
+      ],
+      "firm_styles": [],
       "trade": "leasing town lots",
       "goods": [],
       "street": null,
@@ -64381,6 +64719,10 @@
       "proprietors": [
         "J. Curtiss"
       ],
+      "partners": [
+        "J. Curtiss"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
       "street": "South Water Street",
@@ -64466,6 +64808,10 @@
       "proprietors": [
         "Curtiss, J."
       ],
+      "partners": [
+        "Curtiss, J."
+      ],
+      "firm_styles": [],
       "trade": "law",
       "goods": [],
       "street": "South Water Street",
@@ -64524,6 +64870,10 @@
       "proprietors": [
         "J. D. Caton"
       ],
+      "partners": [
+        "J. D. Caton"
+      ],
+      "firm_styles": [],
       "trade": "attorney and solicitor in chancery",
       "goods": [],
       "street": "South Water Street",
@@ -64591,6 +64941,10 @@
       "proprietors": [
         "J. H. Kinzie"
       ],
+      "partners": [
+        "J. H. Kinzie"
+      ],
+      "firm_styles": [],
       "trade": "lumber, nails and salt",
       "goods": [
         "Lumber",
@@ -64671,6 +65025,11 @@
         "J. H. Mulford",
         "Mulford, J. H."
       ],
+      "partners": [
+        "J. H. Mulford",
+        "Mulford, J. H."
+      ],
+      "firm_styles": [],
       "trade": "watches, jewelry, engravings and fancy goods",
       "goods": [
         "Clocks",
@@ -64792,6 +65151,10 @@
       "proprietors": [
         "J. K. Botsford"
       ],
+      "partners": [
+        "J. K. Botsford"
+      ],
+      "firm_styles": [],
       "trade": "grocer and tinner",
       "goods": [
         "Brandy",
@@ -65119,6 +65482,10 @@
       "proprietors": [
         "J. K. Botsford"
       ],
+      "partners": [
+        "J. K. Botsford"
+      ],
+      "firm_styles": [],
       "trade": "tin, sheet iron and copper factory",
       "goods": [
         "cigars",
@@ -65178,6 +65545,16 @@
         "J. L. Wilson & Co.",
         "J. L. Wilson & Co",
         "J. L. Wilson",
+        "Jno. L. Wilson & Co.",
+        "Jno. S. Wilson & Co",
+        "Jno. S. Wilson & Co."
+      ],
+      "partners": [
+        "J. L. Wilson"
+      ],
+      "firm_styles": [
+        "J. L. Wilson & Co.",
+        "J. L. Wilson & Co",
         "Jno. L. Wilson & Co.",
         "Jno. S. Wilson & Co",
         "Jno. S. Wilson & Co."
@@ -65360,6 +65737,11 @@
         "John S. C. Hogan",
         "J. S. C. Hogan"
       ],
+      "partners": [
+        "John S. C. Hogan",
+        "J. S. C. Hogan"
+      ],
+      "firm_styles": [],
       "trade": "general store and post office",
       "goods": [
         "Calf Skins",
@@ -65534,6 +65916,11 @@
         "John Wellmaker",
         "William Adams"
       ],
+      "partners": [
+        "John Wellmaker",
+        "William Adams"
+      ],
+      "firm_styles": [],
       "trade": "unstated — the notice announces only its closing",
       "goods": [],
       "street": null,
@@ -65612,6 +65999,10 @@
       "proprietors": [
         "J. Wright"
       ],
+      "partners": [
+        "J. Wright"
+      ],
+      "firm_styles": [],
       "trade": "leather, salt and lumber",
       "goods": [
         "Oak Scantling",
@@ -65680,6 +66071,10 @@
       "proprietors": [
         "James Grant"
       ],
+      "partners": [
+        "James Grant"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law",
       "goods": [],
       "street": "La Salle Street",
@@ -65732,6 +66127,11 @@
         "John Bates, Jr.",
         "J. Bates, Jr."
       ],
+      "partners": [
+        "John Bates, Jr.",
+        "J. Bates, Jr."
+      ],
+      "firm_styles": [],
       "trade": "auctioneer",
       "goods": [
         "Bell",
@@ -65817,6 +66217,10 @@
       "proprietors": [
         "John Dave"
       ],
+      "partners": [
+        "John Dave"
+      ],
+      "firm_styles": [],
       "trade": null,
       "goods": [],
       "street": "North Water Street",
@@ -65868,6 +66272,10 @@
       "proprietors": [
         "John Dean Caton"
       ],
+      "partners": [
+        "John Dean Caton"
+      ],
+      "firm_styles": [],
       "trade": "attorney and counsellor at law, and solicitor in chancery",
       "goods": [],
       "street": "Dearborn Street",
@@ -65929,6 +66337,10 @@
       "proprietors": [
         "Caton, John Dean"
       ],
+      "partners": [
+        "Caton, John Dean"
+      ],
+      "firm_styles": [],
       "trade": "law",
       "goods": [],
       "street": "Lake Street",
@@ -65976,6 +66388,10 @@
       "proprietors": [
         "John H. Kinzie"
       ],
+      "partners": [
+        "John H. Kinzie"
+      ],
+      "firm_styles": [],
       "trade": "forwarding and commission merchant",
       "goods": [
         "Butter",
@@ -66142,6 +66558,11 @@
         "John Holbrook",
         "Holbrook, John"
       ],
+      "partners": [
+        "John Holbrook",
+        "Holbrook, John"
+      ],
+      "firm_styles": [],
       "trade": "clothing, boots and shoes, wholesale and retail, as agent for the manufacturers",
       "goods": [
         "Boots and Shoes",
@@ -66240,6 +66661,10 @@
       "proprietors": [
         "John S. Kinzie"
       ],
+      "partners": [
+        "John S. Kinzie"
+      ],
+      "firm_styles": [],
       "trade": "forwarding and commission merchant",
       "goods": [],
       "street": null,
@@ -66322,6 +66747,10 @@
       "proprietors": [
         "John Watkins"
       ],
+      "partners": [
+        "John Watkins"
+      ],
+      "firm_styles": [],
       "trade": "school books, and a school room",
       "goods": [
         "School Books"
@@ -66376,6 +66805,10 @@
       "proprietors": [
         "John Wright"
       ],
+      "partners": [
+        "John Wright"
+      ],
+      "firm_styles": [],
       "trade": "general merchandise",
       "goods": [
         "Boots",
@@ -66501,6 +66934,13 @@
       "proprietors": [
         "Byram King",
         "Wm. Jones",
+        "Jones & King"
+      ],
+      "partners": [
+        "Byram King",
+        "Wm. Jones"
+      ],
+      "firm_styles": [
         "Jones & King"
       ],
       "trade": "stove and hollow ware",
@@ -66656,6 +67096,14 @@
         "Jones, William",
         "King, Byram"
       ],
+      "partners": [
+        "William Jones",
+        "Byram King",
+        "H. B. Clarke",
+        "Jones, William",
+        "King, Byram"
+      ],
+      "firm_styles": [],
       "trade": "hardware, cutlery, nails, iron, steel, stoves, stove furniture, iron ware and saw mill gearing, wholesale and retail",
       "goods": [
         "Cutlery",
@@ -66802,6 +67250,11 @@
         "[uncertain: G. H. Kercheval]",
         "Rich'd J. Hamilton"
       ],
+      "partners": [
+        "[uncertain: G. H. Kercheval]",
+        "Rich'd J. Hamilton"
+      ],
+      "firm_styles": [],
       "trade": "agents for lots in the School Section",
       "goods": [],
       "street": null,
@@ -66847,6 +67300,10 @@
       "id": "business_kinzie_forsyth",
       "name": "Kinzie & Forsyth",
       "proprietors": [
+        "Kinzie & Forsyth"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Kinzie & Forsyth"
       ],
       "trade": "merchants, and sellers of the lithographic town map",
@@ -66923,6 +67380,10 @@
       "proprietors": [
         "Kinzie & Hall"
       ],
+      "partners": [],
+      "firm_styles": [
+        "Kinzie & Hall"
+      ],
       "trade": "dry goods, hardware and groceries",
       "goods": [
         "Dry Goods",
@@ -66980,6 +67441,10 @@
       "proprietors": [
         "L. G. Curtiss"
       ],
+      "partners": [
+        "L. G. Curtiss"
+      ],
+      "firm_styles": [],
       "trade": "deputy surveyor of Cook County",
       "goods": [],
       "street": null,
@@ -67046,6 +67511,10 @@
       "proprietors": [
         "Curtiss, L. G."
       ],
+      "partners": [
+        "Curtiss, L. G."
+      ],
+      "firm_styles": [],
       "trade": "land surveying",
       "goods": [],
       "street": null,
@@ -67104,6 +67573,10 @@
       "proprietors": [
         "L. W. Montgomery"
       ],
+      "partners": [
+        "L. W. Montgomery"
+      ],
+      "firm_styles": [],
       "trade": "boot and shoe making",
       "goods": [
         "Boots",
@@ -67220,6 +67693,10 @@
       "proprietors": [
         "Lathrop Johnson"
       ],
+      "partners": [
+        "Lathrop Johnson"
+      ],
+      "firm_styles": [],
       "trade": "livery",
       "goods": [],
       "street": null,
@@ -67279,6 +67756,10 @@
       "proprietors": [
         "M'Cormick & Moon"
       ],
+      "partners": [],
+      "firm_styles": [
+        "M'Cormick & Moon"
+      ],
       "trade": "hat manufacturers and wholesale dealers, Detroit",
       "goods": [
         "Caps",
@@ -67330,6 +67811,13 @@
       "proprietors": [
         "Magie",
         "Wilkinson",
+        "Magie & Wilkinson"
+      ],
+      "partners": [
+        "Magie",
+        "Wilkinson"
+      ],
+      "firm_styles": [
         "Magie & Wilkinson"
       ],
       "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
@@ -67489,6 +67977,11 @@
         "Silvester Marsh",
         "Edward Simons"
       ],
+      "partners": [
+        "Silvester Marsh",
+        "Edward Simons"
+      ],
+      "firm_styles": [],
       "trade": "provision dealers at the Boston Market",
       "goods": [],
       "street": null,
@@ -67546,6 +68039,13 @@
       "proprietors": [
         "Matthias Mason & Co.",
         "Matthias Mason",
+        "Matthias Mason & Co"
+      ],
+      "partners": [
+        "Matthias Mason"
+      ],
+      "firm_styles": [
+        "Matthias Mason & Co.",
         "Matthias Mason & Co"
       ],
       "trade": "blacksmith",
@@ -67859,6 +68359,8 @@
       "id": "business_matthias_nason_co",
       "name": "Matthias Nason & Co.",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "blacksmiths",
       "goods": [
         "chains",
@@ -67909,6 +68411,10 @@
       "proprietors": [
         "[uncertain: Miss Bayne]"
       ],
+      "partners": [
+        "[uncertain: Miss Bayne]"
+      ],
+      "firm_styles": [],
       "trade": "boarding and day school for young ladies",
       "goods": [],
       "street": "Randolph Street",
@@ -67960,6 +68466,10 @@
       "proprietors": [
         "Montgomery"
       ],
+      "partners": [
+        "Montgomery"
+      ],
+      "firm_styles": [],
       "trade": "auction and commission house, selling merchandize and real estate",
       "goods": [
         "goods on commission",
@@ -68015,6 +68525,10 @@
       "proprietors": [
         "Mrs. H. Sherman"
       ],
+      "partners": [
+        "Mrs. H. Sherman"
+      ],
+      "firm_styles": [],
       "trade": "millinery and dress making",
       "goods": [],
       "street": null,
@@ -68064,6 +68578,10 @@
       "proprietors": [
         "[Mrs.] Herman"
       ],
+      "partners": [
+        "[Mrs.] Herman"
+      ],
+      "firm_styles": [],
       "trade": "millinery and dress making",
       "goods": [],
       "street": null,
@@ -68111,6 +68629,10 @@
       "proprietors": [
         "Tuthill King"
       ],
+      "partners": [
+        "Tuthill King"
+      ],
+      "firm_styles": [],
       "trade": "clothing, wholesale and retail",
       "goods": [
         "Brogans",
@@ -68246,6 +68768,14 @@
         "George W. Dole",
         "Newberry, [Walter L.]"
       ],
+      "partners": [
+        "Oliver Newberry",
+        "George W. Dole",
+        "Newberry, [Walter L.]"
+      ],
+      "firm_styles": [
+        "Newberry & Dole"
+      ],
       "trade": null,
       "goods": [
         "Crockery",
@@ -68363,6 +68893,8 @@
       "id": "business_noble_wesencraft",
       "name": "Noble & Wesencraft",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "steam saw mill",
       "goods": [
         "sawn lumber"
@@ -68416,6 +68948,10 @@
       "proprietors": [
         "Capt. Hiram Hugunin"
       ],
+      "partners": [
+        "Capt. Hiram Hugunin"
+      ],
+      "firm_styles": [],
       "trade": "fire insurance, and marine risks on lake and canal vessels and cargoes",
       "goods": [
         "fire insurance",
@@ -68464,6 +69000,10 @@
       "proprietors": [
         "P. F. Peck"
       ],
+      "partners": [
+        "P. F. Peck"
+      ],
+      "firm_styles": [],
       "trade": "general store — dry goods, hardware, groceries and crockery",
       "goods": [
         "Boots",
@@ -68650,6 +69190,13 @@
         "P. Pruyne",
         "P. Pruyne & Co.",
         "Peter Pruyne"
+      ],
+      "partners": [
+        "P. Pruyne",
+        "Peter Pruyne"
+      ],
+      "firm_styles": [
+        "P. Pruyne & Co."
       ],
       "trade": "wholesale and retail store — groceries, hardware, crockery and drugs",
       "goods": [
@@ -68874,6 +69421,10 @@
       "proprietors": [
         "P. S. Carli"
       ],
+      "partners": [
+        "P. S. Carli"
+      ],
+      "firm_styles": [],
       "trade": "tavern keeper, and dealer in chairs, harnesses and saddles",
       "goods": [
         "Chairs",
@@ -68930,6 +69481,10 @@
       "proprietors": [
         "Peter Cohen"
       ],
+      "partners": [
+        "Peter Cohen"
+      ],
+      "firm_styles": [],
       "trade": "clothier, grocer and liquor dealer",
       "goods": [
         "Clothing",
@@ -69079,6 +69634,10 @@
       "proprietors": [
         "Peter Cohen"
       ],
+      "partners": [
+        "Peter Cohen"
+      ],
+      "firm_styles": [],
       "trade": "merchant",
       "goods": [],
       "street": "South Water Street",
@@ -69152,6 +69711,10 @@
       "proprietors": [
         "Philo Carpenter"
       ],
+      "partners": [
+        "Philo Carpenter"
+      ],
+      "firm_styles": [],
       "trade": "drugs and medicines",
       "goods": [
         "Bedford crown glass",
@@ -69294,6 +69857,13 @@
         "Titus H. Abbott",
         "Pierce & Abb[ott]"
       ],
+      "partners": [
+        "Asahel Pierce",
+        "Titus H. Abbott"
+      ],
+      "firm_styles": [
+        "Pierce & Abb[ott]"
+      ],
       "trade": "blacksmiths",
       "goods": [
         "Prairie Ploughs",
@@ -69386,6 +69956,13 @@
       "proprietors": [
         "Asahel Pierce",
         "French",
+        "Pierce & French"
+      ],
+      "partners": [
+        "Asahel Pierce",
+        "French"
+      ],
+      "firm_styles": [
         "Pierce & French"
       ],
       "trade": "blacksmithing and edge tool making",
@@ -69498,6 +70075,10 @@
       "proprietors": [
         "R. A. Kinzie"
       ],
+      "partners": [
+        "R. A. Kinzie"
+      ],
+      "firm_styles": [],
       "trade": "merchant",
       "goods": [
         "Ohio flour",
@@ -69587,6 +70168,10 @@
       "proprietors": [
         "R. Stewart"
       ],
+      "partners": [
+        "R. Stewart"
+      ],
+      "firm_styles": [],
       "trade": "attorney at law",
       "goods": [],
       "street": null,
@@ -69638,6 +70223,10 @@
       "proprietors": [
         "Richard M. Sweet"
       ],
+      "partners": [
+        "Richard M. Sweet"
+      ],
+      "firm_styles": [],
       "trade": "corn, sold from a barn",
       "goods": [
         "corn"
@@ -69691,6 +70280,10 @@
       "proprietors": [
         "Riggs & Humphrey"
       ],
+      "partners": [],
+      "firm_styles": [
+        "Riggs & Humphrey"
+      ],
       "trade": "carriage and sleigh making",
       "goods": [],
       "street": null,
@@ -69736,6 +70329,10 @@
       "proprietors": [
         "Rockwell"
       ],
+      "partners": [
+        "Rockwell"
+      ],
+      "firm_styles": [],
       "trade": "cabinet furniture",
       "goods": [
         "Bedsteads",
@@ -69852,6 +70449,11 @@
         "P. T. Russell",
         "Wm. H. Brown"
       ],
+      "partners": [
+        "P. T. Russell",
+        "Wm. H. Brown"
+      ],
+      "firm_styles": [],
       "trade": "[not stated in the notice]",
       "goods": [],
       "street": null,
@@ -69897,6 +70499,13 @@
       "proprietors": [
         "Aaron Russell",
         "Benj. H. Clift",
+        "Russell & Clift"
+      ],
+      "partners": [
+        "Aaron Russell",
+        "Benj. H. Clift"
+      ],
+      "firm_styles": [
         "Russell & Clift"
       ],
       "trade": "bookseller and stationer",
@@ -70031,6 +70640,10 @@
       "proprietors": [
         "Russell E. Heacock"
       ],
+      "partners": [
+        "Russell E. Heacock"
+      ],
+      "firm_styles": [],
       "trade": "counsellor and attorney at law, land conveyancing, justice of the peace business, and a land agency office",
       "goods": [],
       "street": "Lake Street",
@@ -70116,6 +70729,11 @@
         "S. Abell",
         "Abell"
       ],
+      "partners": [
+        "S. Abell",
+        "Abell"
+      ],
+      "firm_styles": [],
       "trade": "attorney, counsellor and land conveyancer",
       "goods": [],
       "street": "Dearborn Street",
@@ -70194,6 +70812,10 @@
       "proprietors": [
         "Abell, S."
       ],
+      "partners": [
+        "Abell, S."
+      ],
+      "firm_styles": [],
       "trade": "law",
       "goods": [],
       "street": "Dearborn Street",
@@ -70243,6 +70865,10 @@
       "proprietors": [
         "S. B. Cobb"
       ],
+      "partners": [
+        "S. B. Cobb"
+      ],
+      "firm_styles": [],
       "trade": "saddle, harness and trunk manufactory",
       "goods": [],
       "street": "Lake Street",
@@ -70302,6 +70928,10 @@
       "proprietors": [
         "Dewey, S."
       ],
+      "partners": [
+        "Dewey, S."
+      ],
+      "firm_styles": [],
       "trade": "cabinet making",
       "goods": [],
       "street": null,
@@ -70349,6 +70979,10 @@
       "proprietors": [
         "S. Foot"
       ],
+      "partners": [
+        "S. Foot"
+      ],
+      "firm_styles": [],
       "trade": "grocer",
       "goods": [
         "Brandy",
@@ -70422,6 +71056,10 @@
       "proprietors": [
         "S. Lincoln"
       ],
+      "partners": [
+        "S. Lincoln"
+      ],
+      "firm_styles": [],
       "trade": "tailoring",
       "goods": [],
       "street": null,
@@ -70472,6 +71110,11 @@
         "Samuel Lewis",
         "Lewis, Samuel"
       ],
+      "partners": [
+        "Samuel Lewis",
+        "Lewis, Samuel"
+      ],
+      "firm_styles": [],
       "trade": "vocal and instrumental music school, and the repair and tuning of piano fortes",
       "goods": [],
       "street": "South Water Street",
@@ -70567,6 +71210,11 @@
         "Howe, Sarah D.",
         "Sarah D. Howe"
       ],
+      "partners": [
+        "Howe, Sarah D.",
+        "Sarah D. Howe"
+      ],
+      "firm_styles": [],
       "trade": "dress, cloak and habit making",
       "goods": [],
       "street": "Lake Street",
@@ -70656,6 +71304,10 @@
       "proprietors": [
         "Stuart"
       ],
+      "partners": [
+        "Stuart"
+      ],
+      "firm_styles": [],
       "trade": "confectionary and perfumery",
       "goods": [],
       "street": null,
@@ -70710,6 +71362,11 @@
         "Charles Taylor",
         "H. S. Handy"
       ],
+      "partners": [
+        "Charles Taylor",
+        "H. S. Handy"
+      ],
+      "firm_styles": [],
       "trade": "unstated — the notice announces only its dissolution",
       "goods": [],
       "street": null,
@@ -70763,6 +71420,10 @@
       "proprietors": [
         "Edward Simons"
       ],
+      "partners": [
+        "Edward Simons"
+      ],
+      "firm_styles": [],
       "trade": "market, provisions",
       "goods": [],
       "street": null,
@@ -70812,6 +71473,10 @@
       "proprietors": [
         "G. T. Sproat"
       ],
+      "partners": [
+        "G. T. Sproat"
+      ],
+      "firm_styles": [],
       "trade": "English and classical academy",
       "goods": [],
       "street": "Water Street",
@@ -70878,6 +71543,8 @@
       "id": "business_the_chicago_american_newspaper_and_job_printing_office",
       "name": "the Chicago American, newspaper and job printing office",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "newspaper publishing and job printing",
       "goods": [
         "Blank Cards",
@@ -70930,6 +71597,8 @@
       "id": "business_the_chicago_and_st_joseph_packet_schooner_phillips",
       "name": "The Chicago and St. Joseph packet, schooner Phillips",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "lake packet",
       "goods": [],
       "street": null,
@@ -70992,6 +71661,10 @@
       "proprietors": [
         "Crawford"
       ],
+      "partners": [
+        "Crawford"
+      ],
+      "firm_styles": [],
       "trade": "brewing",
       "goods": [],
       "street": null,
@@ -71046,6 +71719,11 @@
         "John Calhoun",
         "Calhoun, J."
       ],
+      "partners": [
+        "John Calhoun",
+        "Calhoun, J."
+      ],
+      "firm_styles": [],
       "trade": "newspaper printing and job printing",
       "goods": [
         "Advertisements",
@@ -71175,6 +71853,8 @@
       "id": "business_the_dearborn_street_auction_and_commission_rooms",
       "name": "the Dearborn Street auction and commission rooms",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "auction and commission rooms",
       "goods": [],
       "street": "Dearborn Street",
@@ -71229,6 +71909,8 @@
       "id": "business_the_livery_stable_at_the_point",
       "name": "the Livery Stable at the Point",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "livery stable",
       "goods": [
         "saddle horses",
@@ -71283,6 +71965,10 @@
       "proprietors": [
         "David Carver"
       ],
+      "partners": [
+        "David Carver"
+      ],
+      "firm_styles": [],
       "trade": "lumber yard and store house, on sale and commission",
       "goods": [
         "groceries",
@@ -71342,6 +72028,10 @@
       "proprietors": [
         "John Wellmaker"
       ],
+      "partners": [
+        "John Wellmaker"
+      ],
+      "firm_styles": [],
       "trade": "bakery and liquor shop",
       "goods": [
         "cakes",
@@ -71417,6 +72107,11 @@
         "Pierce",
         "Abbott"
       ],
+      "partners": [
+        "Pierce",
+        "Abbott"
+      ],
+      "firm_styles": [],
       "trade": "blacksmith",
       "goods": [
         "blacksmith work",
@@ -71486,6 +72181,8 @@
       "id": "business_the_new_store_at_the_corner_of_water_and_clark_streets",
       "name": "the New Store at the corner of Water and Clark streets",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "dry goods, crockery, hardware and cutlery",
       "goods": [
         "Blankets",
@@ -71548,6 +72245,8 @@
       "id": "business_the_stove_and_tin_ware_store_in_water_street_near_the_bridge",
       "name": "the stove and tin ware store in Water Street near the bridge",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "stoves, tin ware and hollow ware",
       "goods": [
         "grind stones",
@@ -71603,6 +72302,8 @@
       "id": "business_the_traveller_s_home",
       "name": "the Traveller's Home",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "tavern",
       "goods": [],
       "street": null,
@@ -71668,6 +72369,10 @@
       "proprietors": [
         "Thomas S. Eels"
       ],
+      "partners": [
+        "Thomas S. Eels"
+      ],
+      "firm_styles": [],
       "trade": "tailoring",
       "goods": [],
       "street": null,
@@ -71738,6 +72443,8 @@
       "id": "business_thos_emerson_co",
       "name": "Thos. Emerson & Co.",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "livery stable",
       "goods": [
         "horses kept by the day or week",
@@ -71787,6 +72494,8 @@
       "id": "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
       "name": "[tin, sheet iron and stove manufactory, proprietor not recovered]",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "tin, sheet iron and stove work",
       "goods": [
         "sheet iron work",
@@ -71843,6 +72552,11 @@
         "J. B. Tuttle",
         "Wm. H. Brown"
       ],
+      "partners": [
+        "J. B. Tuttle",
+        "Wm. H. Brown"
+      ],
+      "firm_styles": [],
       "trade": "groceries",
       "goods": [
         "Cigars",
@@ -71914,6 +72628,10 @@
       "proprietors": [
         "[uncertain: DATID GAD]"
       ],
+      "partners": [
+        "[uncertain: DATID GAD]"
+      ],
+      "firm_styles": [],
       "trade": "auction and commission merchant",
       "goods": [
         "Produce",
@@ -71962,6 +72680,10 @@
       "proprietors": [
         "[uncertain: J. I. Mulford]"
       ],
+      "partners": [
+        "[uncertain: J. I. Mulford]"
+      ],
+      "firm_styles": [],
       "trade": "carriage and sleigh making, and repairing",
       "goods": [
         "Carriages",
@@ -72025,6 +72747,10 @@
       "proprietors": [
         "[uncertain: Noble & Wesencaft]"
       ],
+      "partners": [],
+      "firm_styles": [
+        "[uncertain: Noble & Wesencaft]"
+      ],
       "trade": "steam saw mill",
       "goods": [],
       "street": null,
@@ -72072,6 +72798,10 @@
       "proprietors": [
         "[uncertain: …] Taylor"
       ],
+      "partners": [
+        "[uncertain: …] Taylor"
+      ],
+      "firm_styles": [],
       "trade": "boot, shoe and leather store",
       "goods": [
         "Boots",
@@ -72125,6 +72855,8 @@
       "id": "business_uncertain_the_dentist_lodging_near_lake_street_july_1834",
       "name": "[uncertain: the dentist lodging near Lake Street, July 1834]",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "dentistry",
       "goods": [],
       "street": "Lake Street",
@@ -72174,6 +72906,8 @@
       "id": "business_uncertain_the_physician_lodging_at_the_mansion_house_july_1834",
       "name": "[uncertain: the physician lodging at the Mansion House, July 1834]",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "medicine and surgery",
       "goods": [],
       "street": null,
@@ -72227,6 +72961,10 @@
       "proprietors": [
         "[uncertain: W. H. Taylor]"
       ],
+      "partners": [
+        "[uncertain: W. H. Taylor]"
+      ],
+      "firm_styles": [],
       "trade": "boot, shoe and leather store, and boot and shoe making",
       "goods": [
         "Boots",
@@ -72277,6 +73015,8 @@
       "id": "business_unidentified_dentist",
       "name": "[unidentified dentist]",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "dentistry",
       "goods": [],
       "street": null,
@@ -72324,6 +73064,8 @@
       "id": "business_unnamed_hat_manufacturer_dealer",
       "name": "[unnamed] hat manufacturer & dealer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "hat manufacturer and dealer; also harness",
       "goods": [],
       "street": null,
@@ -72372,6 +73114,8 @@
       "id": "business_unnamed_house_and_land_agent",
       "name": "[unnamed] house and land agent",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "houses and lands purchased and sold; building lots; houses to let",
       "goods": [],
       "street": null,
@@ -72419,6 +73163,8 @@
       "id": "business_unnamed_new_store_la_salle_street",
       "name": "[unnamed] New Store, La Salle street",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
       "goods": [
         "boots",
@@ -72481,6 +73227,8 @@
       "id": "business_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
       "name": "[unsigned] Boot, Shoe & Leather Store, two doors north of Lake street",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "boot, shoe and leather store",
       "goods": [
         "band leather",
@@ -72546,6 +73294,10 @@
       "proprietors": [
         "W. G. Blanchard"
       ],
+      "partners": [
+        "W. G. Blanchard"
+      ],
+      "firm_styles": [],
       "trade": "house and land agent",
       "goods": [],
       "street": "Lake Street",
@@ -72595,6 +73347,8 @@
       "id": "business_w_h_brown",
       "name": "W. H. Brown",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "store; groceries and general goods",
       "goods": [],
       "street": null,
@@ -72657,6 +73411,10 @@
       "proprietors": [
         "[W. H.] Taylor"
       ],
+      "partners": [
+        "[W. H.] Taylor"
+      ],
+      "firm_styles": [],
       "trade": "boot, shoe and leather store",
       "goods": [
         "boots",
@@ -72709,6 +73467,10 @@
       "proprietors": [
         "W. Keeney"
       ],
+      "partners": [
+        "W. Keeney"
+      ],
+      "firm_styles": [],
       "trade": "tin, sheet iron and copper ware, stoves and castings",
       "goods": [
         "Bells",
@@ -72794,6 +73556,10 @@
       "proprietors": [
         "W. Kimball"
       ],
+      "partners": [
+        "W. Kimball"
+      ],
+      "firm_styles": [],
       "trade": "dry goods, crockery, hardware and cutlery",
       "goods": [
         "Blankets",
@@ -72926,6 +73692,10 @@
       "proprietors": [
         "W. Kimball"
       ],
+      "partners": [
+        "W. Kimball"
+      ],
+      "firm_styles": [],
       "trade": "dry goods, crockery, hardware and cutlery",
       "goods": [
         "blankets",
@@ -73018,6 +73788,10 @@
       "proprietors": [
         "W. Montgomery"
       ],
+      "partners": [
+        "W. Montgomery"
+      ],
+      "firm_styles": [],
       "trade": "auction and commission house",
       "goods": [],
       "street": "South Water Street",
@@ -73112,6 +73886,10 @@
       "proprietors": [
         "Montgomery, W."
       ],
+      "partners": [
+        "Montgomery, W."
+      ],
+      "firm_styles": [],
       "trade": "auction and commission",
       "goods": [],
       "street": "South Water Street",
@@ -73187,6 +73965,10 @@
       "proprietors": [
         "W. Montgomery"
       ],
+      "partners": [
+        "W. Montgomery"
+      ],
+      "firm_styles": [],
       "trade": "boot and shoe making",
       "goods": [
         "boots",
@@ -73263,6 +74045,10 @@
       "proprietors": [
         "W. Reed"
       ],
+      "partners": [
+        "W. Reed"
+      ],
+      "firm_styles": [],
       "trade": "cabinet making",
       "goods": [],
       "street": null,
@@ -73308,6 +74094,8 @@
       "id": "business_whitehead_co",
       "name": "Whitehead & Co.",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "trade": "letting agents",
       "goods": [],
       "street": null,
@@ -73359,6 +74147,10 @@
       "proprietors": [
         "William Clay"
       ],
+      "partners": [
+        "William Clay"
+      ],
+      "firm_styles": [],
       "trade": "hat manufacturing and dealing",
       "goods": [
         "Hats"
@@ -73415,6 +74207,10 @@
       "proprietors": [
         "Lyon, William F."
       ],
+      "partners": [
+        "Lyon, William F."
+      ],
+      "firm_styles": [],
       "trade": "wholesale grocery",
       "goods": [
         "coffee",
@@ -73478,6 +74274,10 @@
       "proprietors": [
         "Wm. G. Branchaud"
       ],
+      "partners": [
+        "Wm. G. Branchaud"
+      ],
+      "firm_styles": [],
       "trade": "house and land agent",
       "goods": [],
       "street": "Lake Street",
@@ -73529,6 +74329,10 @@
       "proprietors": [
         "Wm. H. Kennicott"
       ],
+      "partners": [
+        "Wm. H. Kennicott"
+      ],
+      "firm_styles": [],
       "trade": "surgeon dentistry",
       "goods": [],
       "street": null,
@@ -73599,6 +74403,10 @@
       "proprietors": [
         "Kennicott, Wm. H."
       ],
+      "partners": [
+        "Kennicott, Wm. H."
+      ],
+      "firm_styles": [],
       "trade": "dentistry",
       "goods": [
         "dentistry"
@@ -73684,6 +74492,10 @@
       "proprietors": [
         "Wm. H. Taylor"
       ],
+      "partners": [
+        "Wm. H. Taylor"
+      ],
+      "firm_styles": [],
       "trade": "boot, shoe and leather store, wholesale and retail, and boots and shoes made to order",
       "goods": [
         "calf boots",
@@ -73761,6 +74573,10 @@
       "proprietors": [
         "Taylor, Wm. H."
       ],
+      "partners": [
+        "Taylor, Wm. H."
+      ],
+      "firm_styles": [],
       "trade": "boot, shoe and leather store",
       "goods": [
         "boots",
@@ -73830,6 +74646,15 @@
         "Chas. L. Bristol",
         "John Hale",
         "Wm. Hogue"
+      ],
+      "partners": [
+        "Chas. L. Bristol",
+        "John Hale",
+        "Wm. Hogue"
+      ],
+      "firm_styles": [
+        "Wm. Hogue & Co.",
+        "Wm. Hogue & Co"
       ],
       "trade": "merchant",
       "goods": [
@@ -73927,6 +74752,10 @@
       "proprietors": [
         "Wm. Sabine"
       ],
+      "partners": [
+        "Wm. Sabine"
+      ],
+      "firm_styles": [],
       "trade": "storage, forwarding and commission merchant",
       "goods": [
         "Lumber Waggons",
