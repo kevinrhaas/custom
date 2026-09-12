@@ -19,8 +19,8 @@
       "census_line": "forty-four stores (dry goods, hardware and groceries)",
       "census_count": 44,
       "compared": true,
-      "town_records_in_town": 65,
-      "town_records_at_scene_date": 60,
+      "town_records_in_town": 64,
+      "town_records_at_scene_date": 59,
       "town_records_outside_town": 3,
       "business_ids": [
         "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
@@ -61,7 +61,6 @@
         "business_new_york_clothing_store",
         "business_newberry_dole",
         "business_p_f_peck",
-        "business_p_f_w_peck",
         "business_p_pruyne_co",
         "business_p_s_carli_eagle_tavern",
         "business_peter_cohen",
@@ -89,7 +88,7 @@
         "business_wm_h_taylor_boot_shoe_leather_store",
         "business_wm_hogue_co"
       ],
-      "delta": 16,
+      "delta": 15,
       "outcome": "town_holds_more_than_the_census_counted",
       "note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)"
     },
@@ -149,17 +148,16 @@
       "census_line": "two tin and copper manufactories",
       "census_count": 2,
       "compared": true,
-      "town_records_in_town": 5,
-      "town_records_at_scene_date": 5,
+      "town_records_in_town": 4,
+      "town_records_at_scene_date": 4,
       "town_records_outside_town": 0,
       "business_ids": [
-        "business_g_w_keeney",
         "business_j_k_botsford",
         "business_j_k_botsford_tin_sheet_iron_and_copper_factory",
         "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
         "business_w_keeney"
       ],
-      "delta": 3,
+      "delta": 2,
       "outcome": "town_holds_more_than_the_census_counted",
       "note": null
     },
@@ -347,8 +345,8 @@
       "census_line": "twenty-two lawyers",
       "census_count": 22,
       "compared": true,
-      "town_records_in_town": 19,
-      "town_records_at_scene_date": 19,
+      "town_records_in_town": 18,
+      "town_records_at_scene_date": 18,
       "town_records_outside_town": 0,
       "business_ids": [
         "business_collins_caton",
@@ -365,13 +363,12 @@
         "business_james_grant",
         "business_john_dean_caton",
         "business_john_dean_caton_attorney_and_counsellor_at_law",
-        "business_l_curtiss_attorney_and_counsellor_at_law",
         "business_r_stewart_attorney",
         "business_russell_e_heacock",
         "business_s_abell_attorney_and_counsellor",
         "business_s_abell_attorney_counsellor_at_law"
       ],
-      "delta": -3,
+      "delta": -4,
       "outcome": "town_holds_fewer_than_the_census_counted",
       "note": null
     },
@@ -381,16 +378,15 @@
       "census_line": "fourteen physicians",
       "census_count": 14,
       "compared": true,
-      "town_records_in_town": 4,
-      "town_records_at_scene_date": 4,
+      "town_records_in_town": 3,
+      "town_records_at_scene_date": 3,
       "town_records_outside_town": 0,
       "business_ids": [
-        "business_dr_j_b_barnard",
         "business_dr_j_h_barnard",
         "business_dr_w_g_austin",
         "business_uncertain_the_physician_lodging_at_the_mansion_house_july_1834"
       ],
-      "delta": -10,
+      "delta": -11,
       "outcome": "town_holds_fewer_than_the_census_counted",
       "note": null
     },
@@ -414,8 +410,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 83,
-      "town_records_at_scene_date": 77,
+      "town_records_in_town": 81,
+      "town_records_at_scene_date": 75,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -444,7 +440,6 @@
         "business_e_l_thrall",
         "business_elmira_fowler",
         "business_everson_co",
-        "business_f_g_blanshard",
         "business_g_blanshard",
         "business_george_holsman",
         "business_goss_cobb",
@@ -456,7 +451,6 @@
         "business_l_g_curtiss_deputy_surveyor_of_cook_county",
         "business_l_w_montgomery_boot_and_shoe_maker",
         "business_lathrop_johnson_co_livery",
-        "business_m_h_kennicott",
         "business_marsh_simons",
         "business_matthias_mason_co",
         "business_matthias_nason_co",
@@ -528,14 +522,14 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 205,
-    "in_town": 202,
+    "businesses_in_register": 199,
+    "in_town": 196,
     "outside_town": 3,
-    "at_scene_date": 189,
-    "carrying_no_enumerated_class": 78,
+    "at_scene_date": 183,
+    "carrying_no_enumerated_class": 76,
     "not_stated": 5,
     "census_enumerated_total": 118,
-    "town_enumerated_total_at_scene_date": 122
+    "town_enumerated_total_at_scene_date": 118
   },
   "classes_the_town_holds_nothing_for": [
     "bank",
@@ -1083,18 +1077,6 @@
       "built_at_scene_date": false
     },
     {
-      "business_id": "business_dr_j_b_barnard",
-      "name": "Dr. J. B. Barnard",
-      "trade": "physician",
-      "classes": [
-        "physician"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the printed trade is the practice of medicine",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_dr_j_h_barnard",
       "name": "Dr. J. H. Barnard",
       "trade": "physician",
@@ -1277,18 +1259,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_f_g_blanshard",
-      "name": "F. G. Blanshard",
-      "trade": "houses and lots for sale or rent",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a land agency (B2)",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_frederick_thomas_drugs_and_paints",
       "name": "Frederick Thomas, drugs and paints",
       "trade": "drugs, paints, chemicals, perfumery and dye stuffs",
@@ -1346,18 +1316,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "an attorney's practice; chancery practice is the same man's",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_g_w_keeney",
-      "name": "G. W. Keeney",
-      "trade": "tin, sheet iron and copper ware; cooking stoves; plough and mill castings",
-      "classes": [
-        "tin_and_copper_manufactory"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a tin and copper manufactory: the ware is made on the premises (B4)",
       "built_at_scene_date": true
     },
     {
@@ -1879,18 +1837,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_l_curtiss_attorney_and_counsellor_at_law",
-      "name": "L. Curtiss, attorney and counsellor at law",
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "classes": [
-        "lawyer"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "an attorney's practice; chancery practice is the same man's",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_l_g_curtiss",
       "name": "L. G. Curtiss",
       "trade": "deputy surveyor of Cook County",
@@ -1949,18 +1895,6 @@
       "scope": "outside_town",
       "ruled_by": "trade",
       "basis": "hats made and dealt, printed as standing at Detroit and not in this town",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_m_h_kennicott",
-      "name": "M. H. Kennicott",
-      "trade": "dentist",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "the enumeration counts physicians and names no dentist (B2)",
       "built_at_scene_date": true
     },
     {
@@ -2117,18 +2051,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "the printed word is store (B1)",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_p_f_w_peck",
-      "name": "P. F. W. Peck",
-      "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
-      "classes": [
-        "store"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a store of many lines; none of them singly takes a separate class (B4)",
       "built_at_scene_date": true
     },
     {

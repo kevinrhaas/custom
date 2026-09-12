@@ -7,7 +7,7 @@
     "gazetteer": {
       "claims": 1169,
       "persons": 2666,
-      "businesses": 205
+      "businesses": 199
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,33 +16,33 @@
   },
   "counts": {
     "businesses": {
-      "total": 205,
-      "present_at_scene_date": 188,
+      "total": 199,
+      "present_at_scene_date": 182,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 31,
-        "new_building": 28,
-        "street_only": 59,
-        "unplaceable": 87
+        "enrich_existing": 30,
+        "new_building": 26,
+        "street_only": 57,
+        "unplaceable": 86
       },
       "by_placement_class": {
-        "corner": 18,
+        "corner": 17,
         "none": 62,
-        "relative": 107,
-        "street_only": 18
+        "relative": 103,
+        "street_only": 17
       },
       "present_by_action": {
-        "enrich_existing": 31,
-        "new_building": 28,
-        "street_only": 59,
-        "unplaceable": 70
+        "enrich_existing": 30,
+        "new_building": 26,
+        "street_only": 57,
+        "unplaceable": 69
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 101,
-      "backdating_liberty_required": 27,
+      "survival_liberty_required": 98,
+      "backdating_liberty_required": 26,
       "dissolved_after_scene_date": 1
     },
     "persons": {
@@ -1709,43 +1709,6 @@
       "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_07_23#c005 (notice, 1834-07-23). No action; the record is kept so the exclusion can be argued with."
     },
     {
-      "id": "business_dr_j_b_barnard",
-      "name": "Dr. J. B. Barnard",
-      "trade": "physician",
-      "occupation": "physician",
-      "proprietors": [
-        "J. B. Barnard"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-06-13",
-        "last_issue": "1835-06-13"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "structure",
-        "target": "new_york_house",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure new_york_house."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "new_york_house",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure new_york_house."
-    },
-    {
       "id": "business_dr_j_h_barnard",
       "name": "Dr. J. H. Barnard",
       "trade": "physician",
@@ -1758,7 +1721,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-04",
-        "last_issue": "1835-06-04"
+        "last_issue": "1835-06-13"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -2320,43 +2283,6 @@
       "action_note": "No street the model holds. The anchor 'the Point' names nothing the committed town holds."
     },
     {
-      "id": "business_f_g_blanshard",
-      "name": "F. G. Blanshard",
-      "trade": "houses and lots for sale or rent",
-      "occupation": "land_agent",
-      "proprietors": [
-        "F. G. Blanshard"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-11-12",
-        "last_issue": "1834-11-12"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Dr. Temple's\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor \"Dr. Temple's\" names nothing the committed town holds."
-    },
-    {
       "id": "business_frederick_thomas_drugs_and_paints",
       "name": "Frederick Thomas, drugs and paints",
       "trade": "drugs, paints, chemicals, perfumery and dye stuffs",
@@ -2480,7 +2406,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-10-08",
-        "last_issue": "1834-10-08"
+        "last_issue": "1834-11-12"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -2719,41 +2645,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
-    },
-    {
-      "id": "business_g_w_keeney",
-      "name": "G. W. Keeney",
-      "trade": "tin, sheet iron and copper ware; cooking stoves; plough and mill castings",
-      "occupation": "miller",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-07"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
     },
     {
       "id": "business_g_w_w_laird",
@@ -3429,7 +3320,7 @@
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-05-20",
-        "last_issue": "1835-05-20"
+        "last_issue": "1835-07-01"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -4438,43 +4329,6 @@
       "action_note": "Placeable against the committed town. A crossing of two platted streets: canal and lake."
     },
     {
-      "id": "business_l_curtiss_attorney_and_counsellor_at_law",
-      "name": "L. Curtiss, attorney and counsellor at law",
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "occupation": "attorney",
-      "proprietors": [
-        "L. Curtiss"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-07-01",
-        "last_issue": "1835-07-01"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "business",
-        "target": null,
-        "streets": null,
-        "via": "business_jones_king_co",
-        "note": "The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "business_jones_king_co",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
-    },
-    {
       "id": "business_l_g_curtiss",
       "name": "L. G. Curtiss",
       "trade": "deputy surveyor of Cook County",
@@ -4658,43 +4512,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
-      "id": "business_m_h_kennicott",
-      "name": "M. H. Kennicott",
-      "trade": "dentist",
-      "occupation": "dentist",
-      "proprietors": [
-        "M. H. Kennicott"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "street_only",
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_magie_wilkinson",
@@ -5304,43 +5121,6 @@
       "placement_class": "corner",
       "evidence": {
         "first_issue": "1833-12-03",
-        "last_issue": "1834-06-18"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "A corner of 'La Salle' and 'South Water streets corner of La Salle a', and the plat resolves both sides to ['lasalle', 'south_water']."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "peck_store",
-      "match_tier": "occupants",
-      "match_evidence": "Philip F. W. Peck; merchant; and his household",
-      "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_p_f_w_peck",
-      "name": "P. F. W. Peck",
-      "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
-      "occupation": "dry_goods_merchant",
-      "proprietors": [
-        "P. F. W. Peck"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "corner",
-      "evidence": {
-        "first_issue": "1834-07-02",
         "last_issue": "1834-12-10"
       },
       "present_at_scene_date": true,
@@ -5355,7 +5135,7 @@
         "target": null,
         "streets": null,
         "via": null,
-        "note": "A corner of 'LaSalle' and 'South Water streets CORNER OF LASALLE AN', and the plat resolves both sides to ['lasalle', 'south_water']."
+        "note": "A corner of 'La Salle' and 'South Water streets corner of La Salle a', and the plat resolves both sides to ['lasalle', 'south_water']."
       },
       "anchor_change": null,
       "outside_plat": null,
@@ -7572,7 +7352,7 @@
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-06-04",
+        "first_issue": "1834-05-07",
         "last_issue": "1834-06-04"
       },
       "present_at_scene_date": true,
@@ -8047,7 +7827,7 @@
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1835-08-05",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-19"
       },
       "present_at_scene_date": true,
@@ -8056,7 +7836,7 @@
       "dissolved_after_scene_date": [],
       "opening_announced": [],
       "survival_liberty_required": false,
-      "backdating_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,

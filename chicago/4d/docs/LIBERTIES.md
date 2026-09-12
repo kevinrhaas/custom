@@ -9881,16 +9881,16 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
 
-### L211 — 101 documented businesses stand on 1 July 1835 because nothing says they closed
+### L211 — 98 documented businesses stand on 1 July 1835 because nothing says they closed
 **Decision:** every business the newspaper register flags `survival_liberty_required` is
 treated as standing at the scene date. Its existence is documented — a dated advertisement
 or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to
 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
 the flag, this entry carries the liberty, and no business record is graded `documented` for
 a survival nothing witnessed.
-**Why:** the corpus is thinnest in the year it most needs to be thick. 189 documented
-businesses are present at the scene date and only **88** of them are documented *in* 1835;
-the other **101** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
+**Why:** the corpus is thinnest in the year it most needs to be thick. 183 documented
+businesses are present at the scene date and only **85** of them are documented *in* 1835;
+the other **98** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
 before the day the town is drawn. Refusing the assumption is the only alternative to making
 it, and refusing it empties more than half the documented trade out of Chicago on the
 strength of a newspaper run nobody has finished reading — the 1835 issues that would
@@ -9899,17 +9899,17 @@ ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The reg
 already refuses everything that CAN be refused — 13 businesses are excluded by a claim that
 contradicts them before the scene date and 4 by an opening announced after it — so this
 covers what is left after the evidence has spoken, not instead of it.
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 101 businesses, enumerated
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 98 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number above cannot drift from the
 register without `check.sh` saying so, which is the point of writing it down: a scope that
 has silently stopped matching its population reads as a measurement and is not one.
 **Consequence:** as the register is seeded into the town, half of these reach something a
-visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 101 do —
-16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and
-**48** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
-judged one house, and it is a dated reading rather than a standing claim; the 101 is the
-number this entry is held to and the number the gate re-derives. It has now moved three
+visitor can see. Measured on the register as it stands on 2026-09-12, **54** of the 98 do —
+15 enrich a house already standing, 17 ask for a new building, 22 take a street face — and
+**44** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
+judged one house, and it is a dated reading rather than a standing claim; the 98 is the
+number this entry is held to and the number the gate re-derives. It has now moved four
 times for exactly the second reason. This entry was written at 111 the same day T-0345 found
 that four of the register's businesses were four readings of Matthias Mason & Co.'s one
 blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in
@@ -9917,8 +9917,11 @@ the FORM of a forename — whole against abbreviated against bare initial — me
 them and taking the count from 109 to 103; and T-0340 joined the town's only bookshop, whose
 sign-name, its partners' firm-name and the shop's own premises stood as separate houses, and
 the joined record advertises in August 1835 and needs no survival assumed at all, taking 103
-to 101. No movement is a business leaving Chicago; all are shops the register was holding
-twice. Every one
+to 101; and T-0413 read the printings behind the six surname groups T-0401 had left unjudged
+and merged all six, three of them pairs whose styles were last printed before 1835 — P. F.
+Peck with P. F. W. Peck on one La Salle corner, G. Blanshard with F. G. Blanshard opposite Dr.
+Temple's, W. Keeney with G. W. Keeney below Newberry & Dole's — taking 101 to 98. No movement
+is a business leaving Chicago; all are shops the register was holding twice. Every one
 of them puts a trade sign, a
 card or an occupant into July 1835 on an inference, and a visitor reading such a card is
 being told the shop was there when what is known is that it was there the winter before. The

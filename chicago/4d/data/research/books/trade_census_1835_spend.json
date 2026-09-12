@@ -91,12 +91,12 @@
       "census_count": 22,
       "unit": "person",
       "unit_basis": "'Lawyers' and 'physicians' are the two lines of the enumeration that count PEOPLE and not premises, which is why the register's record count cannot be set against them directly: nineteen lawyer records are fourteen men, five of them second printings of one office.",
-      "register_records": 19,
-      "named_practitioners": 14,
-      "named_establishments": 14,
-      "held_in_the_counted_unit": 14,
+      "register_records": 18,
+      "named_practitioners": 13,
+      "named_establishments": 13,
+      "held_in_the_counted_unit": 13,
       "unnamed_records_held": 0,
-      "not_reached": 8,
+      "not_reached": 9,
       "spent_from_resident_cards": [],
       "practitioner_keys": [
         "collins_j_h",
@@ -108,7 +108,6 @@
         "bennett_h_c",
         "moore_henry",
         "curtiss_j",
-        "curtiss_l",
         "grant_james",
         "heacock_russel_e",
         "stewart_r",
@@ -122,12 +121,12 @@
       "census_count": 14,
       "unit": "person",
       "unit_basis": "As for the lawyers: the line counts men.",
-      "register_records": 4,
-      "named_practitioners": 8,
-      "named_establishments": 8,
-      "held_in_the_counted_unit": 9,
+      "register_records": 3,
+      "named_practitioners": 7,
+      "named_establishments": 7,
+      "held_in_the_counted_unit": 8,
       "unnamed_records_held": 1,
-      "not_reached": 5,
+      "not_reached": 6,
       "spent_from_resident_cards": [
         {
           "key": "egan_william_b",
@@ -166,7 +165,6 @@
         }
       ],
       "practitioner_keys": [
-        "barnard_j_b",
         "barnard_j_h",
         "austin_w_g",
         "egan_william_b",
@@ -303,18 +301,6 @@
       "not_decided_here": "Merging them would close a census gap by arithmetic, which is the one thing this file may not do. It is the same shape as the one-letter pairs T-1002 holds."
     },
     {
-      "id": "barnard_one_letter",
-      "question": "Are Dr. J. B. Barnard and Dr. J. H. Barnard one physician printed twice?",
-      "why_it_matters": "The physician line is the largest shortfall in the enumeration — fourteen counted, eight named here — and collapsing the Barnards would widen it to nine.",
-      "not_decided_here": "Held apart on the printed initials, which is the reading that keeps the count honest rather than the one that flatters it."
-    },
-    {
-      "id": "curtiss_two_initials",
-      "question": "Are J. Curtiss and L. Curtiss two lawyers or one?",
-      "why_it_matters": "Fourteen named lawyers against twenty-two counted; collapsing them makes it thirteen.",
-      "not_decided_here": "The papers print two initials across several issues and nothing in the corpus collapses them."
-    },
-    {
       "id": "fullerton_partner",
       "question": "Who is the 'G.' of Fullerton & G., attorneys and counsellors?",
       "why_it_matters": "An unexpanded initial is a fifteenth named lawyer this project cannot name, standing inside an office it already holds.",
@@ -324,9 +310,9 @@
   "totals": {
     "classes_spent": 5,
     "census_counted_across_them": 44,
-    "held_after_the_spend": 28,
-    "not_reached": 16,
-    "practitioners_ruled": 27,
+    "held_after_the_spend": 26,
+    "not_reached": 18,
+    "practitioners_ruled": 25,
     "class_rows_spent_from_resident_cards": 7,
     "people_spent_from_resident_cards": 6,
     "institutions_recorded": 2,
