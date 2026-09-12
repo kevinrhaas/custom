@@ -64,7 +64,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "John, merchant",
+     "value": "merchant",
      "describes_date": 1839,
      "confidence": "attested",
      "sources": [
@@ -176,7 +176,7 @@
    {
     "person_id": "king_john_lyle",
     "occupation_later": {
-     "value": "John, merchant",
+     "value": "merchant",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [

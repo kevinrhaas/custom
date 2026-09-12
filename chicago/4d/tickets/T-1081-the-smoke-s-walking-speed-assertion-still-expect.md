@@ -33,3 +33,17 @@ is not a defect in the product.
 word itself is asserted rather than dropped (the readout naming the gait is the whole of
 T-0823), and the same staleness is checked for on the wagon and horse readouts before this
 closes — three sliders landed together and only one of them is asserted on.
+
+REPRODUCED BY T-1070, 2026-09-12, on both viewports, running the smoke legs that cover a
+street diff:
+
+    mobile 390x780:   FAIL  walking speed is presented in miles per hour — speed label walk · 3.2 mph
+    desktop 1280x800: FAIL  walking speed is presented in miles per hour — speed label walk · 3.2 mph
+
+So it is not mobile-only. Every other check in every leg that run passed, which is worth
+saying because it makes this one assertion and not a broken part.
+
+And one consequence beyond the count of red parts: this assertion sits on the group that
+covers `data/streets/1835.json`, so EVERY run that touches a street line draws a red leg
+it must read, attribute and argue past before it can merge. T-1070 spent a leg doing that.
+A gate that is red for a reason unrelated to the diff in front of it stops being a gate.

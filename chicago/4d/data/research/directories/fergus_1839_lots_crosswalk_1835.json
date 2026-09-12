@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1292
+   "n": 1293
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -29,12 +29,12 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2596
+   "n": 2620
   },
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 949
+   "n": 954
   }
  ],
  "counts": {
@@ -49,10 +49,10 @@
   "voters_surname_only_refused": 43,
   "letter_list_matched_one_bidder": 54,
   "letter_list_ambiguous": 0,
-  "letter_list_surname_only_refused": 187,
+  "letter_list_surname_only_refused": 190,
   "heads_1840_matched_one_bidder": 27,
   "heads_1840_ambiguous": 1,
-  "heads_1840_surname_only_refused": 67
+  "heads_1840_surname_only_refused": 68
  },
  "residents": {
   "matches": [
@@ -1900,7 +1900,7 @@
    {
     "name": "Lieut J L Thompson",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Thompson' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Thompson' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'J' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Madore Benjamin Beaubien",
@@ -6710,7 +6710,7 @@
    {
     "name": "Lieut. J. L. Thompson",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Thompson' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'Lieut. J. L. Thompson'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Thompson' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'J' of 'Lieut. J. L. Thompson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lyman Smith",
@@ -6756,6 +6756,21 @@
     "name": "Morrison, Ezekiel",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Morrison' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'E' of 'Morrison, Ezekiel'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Peck",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Peck' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of 'Mr. Peck'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Russell",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Russell' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of 'Mr. Russell'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Smith",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of 'Mr. Smith'. A surname-only agreement is a refusal."
    },
    {
     "name": "Mrs. H. Sherman",
@@ -8613,6 +8628,11 @@
     "name": "Christopher Smith",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'C' of 'Christopher Smith'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Col. Taylor",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Taylor' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of 'Col. Taylor'. A surname-only agreement is a refusal."
    },
    {
     "name": "Cornelius Norton",

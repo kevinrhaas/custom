@@ -1,7 +1,7 @@
 ---
 id: T-1070
 title: Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0790
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1200
+claimed_by: run 9/12/2026, 10:25:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T16:43:53.042Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34701993760
 ---
 
 Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835.

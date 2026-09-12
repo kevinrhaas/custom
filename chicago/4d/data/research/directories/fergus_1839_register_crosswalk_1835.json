@@ -131,7 +131,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1292
+   "n": 1293
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -141,12 +141,12 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2596
+   "n": 2620
   },
   {
    "what": "1840 heads of household read in this repo",
    "path": "data/research/census_1840/resident_crosswalk.json",
-   "n": 949
+   "n": 954
   }
  ],
  "counts": {
@@ -158,17 +158,17 @@
   "residents_ambiguous": 11,
   "residents_ambiguous_same_man_reprinted": 7,
   "residents_contested": 0,
-  "residents_surname_only_refused": 51,
+  "residents_surname_only_refused": 52,
   "residents_letter_list_bucket_refused": 0,
   "voters_matched_one_entry": 14,
   "voters_ambiguous": 9,
   "voters_surname_only_refused": 21,
   "letter_list_matched_one_entry": 34,
   "letter_list_ambiguous": 18,
-  "letter_list_surname_only_refused": 151,
+  "letter_list_surname_only_refused": 154,
   "heads_1840_matched_one_entry": 21,
   "heads_1840_ambiguous": 9,
-  "heads_1840_surname_only_refused": 67
+  "heads_1840_surname_only_refused": 68
  },
  "residents": {
   "matches": [
@@ -1204,6 +1204,11 @@
     "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial 'E' of 'Elded Smith'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Elijah Wentworth sen.",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Wentworth' stands on printed pages 38-39 and no man under it carries the initial 'E' of 'Elijah Wentworth sen.'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "George Dyer",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Dyer' stands on printed pages 38-39 and no man under it carries the initial 'G' of 'George Dyer'. A surname-only agreement is a refusal."
@@ -1296,12 +1301,12 @@
    {
     "name": "Lieut J L Thompson",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Thompson' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Thompson' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'Lieut J L Thompson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lieut. James Allen",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
    },
    {
     "name": "Matthias Mason",
@@ -4073,6 +4078,11 @@
     "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial 'E' of 'Elijah Smith'. A surname-only agreement is a refusal."
    },
    {
+    "name": "Elijah Wentworth sen.",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Wentworth' stands on printed pages 38-39 and no man under it carries the initial 'E' of 'Elijah Wentworth sen.'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "F. W. Miller",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Miller' stands on printed pages 38-39 and no man under it carries the initial 'F' of 'F. W. Miller'. A surname-only agreement is a refusal."
@@ -4230,22 +4240,22 @@
    {
     "name": "Lieut. Allen",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut. Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial '-' of 'Lieut. Allen'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lieut. J. Allen",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut. J. Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'Lieut. J. Allen'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lieut. J. L. Thompson",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Thompson' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut. J. L. Thompson'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Thompson' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'Lieut. J. L. Thompson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lieut. James Allen",
     "candidates_under_that_surname": 1,
-    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
+    "rule": "The surname 'Allen' stands on printed pages 38-39 and no man under it carries the initial 'J' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
    },
    {
     "name": "Lorin Miller",
@@ -4301,6 +4311,16 @@
     "name": "Moore, Henry",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Moore' stands on printed pages 38-39 and no man under it carries the initial 'H' of 'Moore, Henry'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Moore",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Moore' stands on printed pages 38-39 and no man under it carries the initial '-' of 'Mr. Moore'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Mr. Smith",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial '-' of 'Mr. Smith'. A surname-only agreement is a refusal."
    },
    {
     "name": "Mrs. H. Sherman",
@@ -5784,6 +5804,11 @@
     "name": "Samuel Cha[p]in",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Cha[p]in' stands on printed pages 38-39 and no man under it carries the initial 'S' of 'Samuel Cha[p]in'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "Stephen Brown Jr.",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'S' of 'Stephen Brown Jr.'. A surname-only agreement is a refusal."
    },
    {
     "name": "Thomas Brown",

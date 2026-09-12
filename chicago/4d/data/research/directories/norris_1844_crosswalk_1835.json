@@ -11,20 +11,20 @@
  },
  "counts": {
   "residents_considered": 1293,
-  "matched_one_1844_entry": 101,
-  "matched_more_than_one_ambiguous": 16,
+  "matched_one_1844_entry": 102,
+  "matched_more_than_one_ambiguous": 17,
   "one_1844_entry_contested_by_two_residents": 14,
-  "surname_present_initial_absent_refused": 317,
+  "surname_present_initial_absent_refused": 316,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
-  "initial_agreed_forenames_disagreed_refused": 47,
+  "initial_agreed_forenames_disagreed_refused": 46,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1844_entry_by_that_refusal": 26,
+  "residents_left_with_no_1844_entry_by_that_refusal": 25,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 0,
   "of_those_ambiguous": 3,
-  "could_carry_occupation": 60,
-  "could_carry_address": 78
+  "could_carry_occupation": 61,
+  "could_carry_address": 79
  },
  "matches": [
   {
@@ -1914,6 +1914,32 @@
    ],
    "could_carry": [
     "occupation"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Lieut J L Thompson",
+   "person_id": "thompson_lieut_j_l",
+   "household_id": "hh_thompson_lieut_j_l",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Thompson' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1767",
+     "as_printed": "Thompson, Joseph, caulker, house Adams st. b Clark and Lasalle",
+     "printed_page": 58,
+     "occupation_1844": "caulker",
+     "address_1844": "house Adams st. b Clark and Lasalle"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false
@@ -3852,6 +3878,55 @@
    }
   },
   {
+   "resident": "Lieut. James Allen",
+   "person_id": "allen_lieut_james",
+   "household_id": "hh_allen_lieut_james",
+   "grade_1835": "attested",
+   "occupation_1835": "army_officer",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Allen' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0016",
+     "as_printed": "Allen, James F. carpenter, house Illinois street, b. Pine and Sand",
+     "printed_page": 21,
+     "occupation_1844": "carpenter",
+     "address_1844": "house Illinois street, b. Pine and Sand"
+    },
+    {
+     "claim": "n1844_e0018",
+     "as_printed": "Allen, J. P. of J. P. A. & Co., house River street, 1st Ward",
+     "printed_page": 21,
+     "occupation_1844": "of J. P. A. & Co",
+     "address_1844": "house River street, 1st Ward"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false,
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "n1844_e0016",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "n1844_e0018",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     }
+    ]
+   }
+  },
+  {
    "resident": "Mrs. C. Taylor",
    "person_id": "taylor_c",
    "household_id": "hh_taylor_c",
@@ -4881,7 +4956,7 @@
    "person_id": "noble_mark",
    "surname_in_1844": "Noble",
    "candidates": 2,
-   "rule": "The surname 'Noble' is in Norris 1844 and no entry under it carries the initial 'E' of 'Esq. Mark Noble'. A surname-only agreement is a refusal."
+   "rule": "The surname 'Noble' is in Norris 1844 and no entry under it carries the initial 'M' of 'Esq. Mark Noble'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Esth R M Bailey",
@@ -5652,13 +5727,6 @@
    "surname_in_1844": "Sperry",
    "candidates": 1,
    "rule": "The surname 'Sperry' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lewis Sperry'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Lieut. James Allen",
-   "person_id": "allen_lieut_james",
-   "surname_in_1844": "Allen",
-   "candidates": 4,
-   "rule": "The surname 'Allen' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Liman Curtis",
@@ -6890,22 +6958,6 @@
     "forename_printed": "John",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Juliette' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "Lieut J L Thompson",
-   "person_id": "thompson_lieut_j_l",
-   "grade_1835": "attested",
-   "entry_1844": {
-    "claim": "n1844_e1766",
-    "as_printed": "Thompson. Leonard W. carpenter, house 3d ward, S. of Jackson",
-    "printed_page": 58,
-    "occupation_1844": "carpenter",
-    "address_1844": "house 3d ward, S. of Jackson",
-    "forename_1835": "Lieut",
-    "forename_printed": "Leonard",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Lieut' against 'Leonard'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {
