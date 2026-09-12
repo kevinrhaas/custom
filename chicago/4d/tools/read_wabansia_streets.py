@@ -139,8 +139,12 @@ TRACT_STREETS = [
      "note": "The owner's crop read this as `Kain` or `Kane`; see § adjudications."},
     {"id": "water", "name_on_sheet": "Water", "label_crop_px": [1290, 1880, 1520, 1990],
      "name_confidence": "documented",
-     "note": "Wright letters a Water Street inside the triangle, fronting the North "
-             "Branch, as he does on both banks downstream."},
+     "note": "Wright letters a Water Street inside the triangle. This reading first "
+             "glossed it as fronting the North Branch, as he does on both banks "
+             "downstream; T-1077 measured the strip and refused that. Both names sit in "
+             "corridors that CROSS the lots, square to the ranks, from the block grid to "
+             "the water — see data/traces/wabansia_water_lots.json § corridors. The name "
+             "is this reading's and stands; what it is a name of is that one's."},
 ]
 
 ADJUDICATIONS = [
