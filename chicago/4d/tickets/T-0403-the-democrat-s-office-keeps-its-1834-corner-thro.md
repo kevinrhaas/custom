@@ -1,7 +1,7 @@
 ---
 id: T-0403
 title: The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1158
 claimed_by: run 9/11/2026, 6:37:00 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T00:28:41.309Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34658581918
 ---
 

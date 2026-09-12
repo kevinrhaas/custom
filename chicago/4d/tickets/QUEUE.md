@@ -142,7 +142,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
 T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
-T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-1040 — The corner building keeps the Chicago Democrat's name, board and function after the press has left it
 T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
 T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
