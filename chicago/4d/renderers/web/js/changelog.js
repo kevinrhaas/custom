@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Six pairs of shopkeepers who were one shopkeeper all along', kind: 'fix', ts: '',
+  { v: 751, title: 'Six pairs of shopkeepers who were one shopkeeper all along', kind: 'fix', ts: '2026-09-12T01:43:52.985Z', date: 'Sep 11, 2026, 8:43 PM CT',
     items: [
       'Six houses left the town today and none of them closed: each was standing in this register twice, under two spellings of one name.',
       'To find a shop entered twice, this project groups the register on the SURNAME alone \u2014 the only part of a firm\u2019s name the papers set reliably. That cannot tell a misprinted initial from a brother: \u2018P. F. Peck\u2019 beside \u2018P. F. W. Peck\u2019 looks like two Pecks. So each group is read at the printings, and what settles these six is never the name \u2014 it is the ADDRESS and the WEEKS. Peck holds the corner of La Salle and South Water streets to 18 June 1834, and P. F. W. Peck\u2019s notice is copy-dated 18 June 1834. The two Blanshards stand \u2018opposite Dr. Temple\u2019s, Lake-st.\u2019 five weeks apart, both letting houses and lots. The two Keeneys stand \u2018a few doors below Messrs. Newberry & Dole\u2019s\u2019 four weeks apart, both in tin and sheet iron. The two Dr. Barnards lodge at the New-York House on Lake Street nine days apart, both physicians.',
