@@ -410,8 +410,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 82,
-      "town_records_at_scene_date": 76,
+      "town_records_in_town": 81,
+      "town_records_at_scene_date": 75,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -437,7 +437,6 @@
         "business_d_graves",
         "business_dally_youngs",
         "business_daniel_elston_co",
-        "business_e_k_hubbard_agent_for_the_howard_fire_insurance_company",
         "business_e_l_thrall",
         "business_elmira_fowler",
         "business_everson_co",
@@ -523,11 +522,11 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 200,
-    "in_town": 197,
+    "businesses_in_register": 199,
+    "in_town": 196,
     "outside_town": 3,
-    "at_scene_date": 184,
-    "carrying_no_enumerated_class": 77,
+    "at_scene_date": 183,
+    "carrying_no_enumerated_class": 76,
     "not_stated": 5,
     "census_enumerated_total": 118,
     "town_enumerated_total_at_scene_date": 118
@@ -1099,18 +1098,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "a physician of the botanic school is still a physician; the enumeration grades none of them",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_e_k_hubbard_agent_for_the_howard_fire_insurance_company",
-      "name": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
-      "trade": "fire insurance agency",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a service the enumeration counts nowhere (B2)",
       "built_at_scene_date": true
     },
     {
