@@ -1,7 +1,7 @@
 ---
 id: T-0230
 title: Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 1:29:22 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34678124958
 ---
 
 Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them.
