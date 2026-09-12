@@ -1,7 +1,7 @@
 ---
 id: T-0404
 title: 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 12:33:35 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34675646811
 ---
 
 T-0356 retired the `first_evidence_after_scene_date` proxy: a business whose first
