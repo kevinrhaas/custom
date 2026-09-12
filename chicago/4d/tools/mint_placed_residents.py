@@ -76,7 +76,10 @@ Three more are new, and each was found by reading this pass's own output:
     business records are the derived test: a name that is a business and is NOT listed
     among that business's own proprietors is the business, not a man. A tradesman
     whose shop the papers advertise under his own name IS among the proprietors, so
-    this refuses the hotel without refusing the hatter.
+    this refuses the hotel without refusing the hatter. It reads the record's
+    `partners` and not its `proprietors` (T-0398): a notice signed only by the firm
+    puts the FIRM in the proprietor list, and 28 houses would otherwise vouch for
+    themselves against a test written to catch precisely that.
   · `an article and a common noun, not a person` — 'the Baptist meeting house'. A
     grammatical fact about the printed name, not a list.
   · `the name is not printed clear of the transcription's uncertainty marks` — 180
@@ -243,14 +246,24 @@ def claim_text(extracted=EXTRACTED) -> dict:
 # ---------------------------------------------------------------------------
 
 def business_proprietors(gazetteer: dict) -> dict:
-    """Every business name the corpus prints → the proprietors it prints under it."""
+    """Every business name the corpus prints → the PEOPLE it prints under it.
+
+    `partners` and not `proprietors` (T-0398). The test below asks whether a printed
+    name is a house or a man, and answers it by looking for the name among the house's
+    own proprietors — a hatter who advertises under his own name is there, a hotel is
+    not. But a notice signed only by the firm puts the FIRM in that list, so 28 of the
+    199 houses vouch for themselves: `business_russell_clift` carries 'Russell & Clift'
+    among its proprietors because the Democrat of 1835-08-19 printed nothing else, and
+    the house would then pass a test written to catch exactly that. The gazetteer already
+    derives which entries are people, so this reads that instead.
+    """
     out: dict = {}
     for biz in gazetteer["businesses"]:
         key = (biz.get("name") or "").strip().lower()
         if not key:
             continue
         out.setdefault(key, set()).update(
-            (p or "").strip().lower() for p in (biz.get("proprietors") or []))
+            (p or "").strip().lower() for p in (biz.get("partners") or []))
     return out
 
 
@@ -770,12 +783,17 @@ def self_test() -> int:
 
     # the business/person confusion, from the two records that caused it.
     props = business_proprietors({"businesses": [
-        {"name": "Eagle Hotel", "proprietors": ["John Murphy"]},
-        {"name": "W. G. Blanchard", "proprietors": ["W. G. Blanchard"]}]})
+        {"name": "Eagle Hotel", "partners": ["John Murphy"]},
+        {"name": "W. G. Blanchard", "partners": ["W. G. Blanchard"]},
+        # T-0398: a house that signed its own notice does not vouch for itself.
+        {"name": "Russell & Clift", "proprietors": ["Aaron Russell", "Russell & Clift"],
+         "partners": ["Aaron Russell"], "firm_styles": ["Russell & Clift"]}]})
     want("a hotel is not among its own proprietors",
          "eagle hotel" in props and "eagle hotel" not in props["eagle hotel"], True)
     want("a shop advertised under its keeper's name is",
          "w. g. blanchard" in props["w. g. blanchard"], True)
+    want("a partnership does not stand among its own partners",
+         "russell & clift" in props["russell & clift"], False)
 
     # the article rule, and the two duplicate guards' shape.
     want("a common noun behind an article is refused",
