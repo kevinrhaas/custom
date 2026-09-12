@@ -32,28 +32,28 @@
      "lot front"
     ],
     "in_force": false,
-    "would_seat": 29,
+    "would_seat": 31,
     "against_the_reading_in_force": -10,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [
      "business_cooley_and_halsman",
      "business_fullerton_botsford",
+     "business_hubbard_co",
      "business_j_b_brown_dearborn_street_grocery",
      "business_j_l_wilson_co",
      "business_james_grant",
      "business_magie_wilkinson",
      "business_pierce_french",
      "business_s_abell_attorney_and_counsellor",
-     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
-     "business_unnamed_new_store_la_salle_street"
+     "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store"
     ],
-    "would_still_refuse": 28,
+    "would_still_refuse": 30,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
-     "the face holds no roof standing on it": 23,
+     "the face holds no roof standing on it": 24,
      "this face already holds this proprietor": 5,
-     "every roof on the face is spoken for": 0
+     "every roof on the face is spoken for": 1
     }
    },
    "a corner side is a face": {
@@ -62,17 +62,17 @@
      "corner side"
     ],
     "in_force": true,
-    "would_seat": 39,
+    "would_seat": 41,
     "against_the_reading_in_force": 0,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 18,
+    "would_still_refuse": 20,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 3,
      "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 7
+     "every roof on the face is spoken for": 9
     }
    },
    "a corner side or the band is a face": {
@@ -82,32 +82,32 @@
      "centreline band"
     ],
     "in_force": false,
-    "would_seat": 39,
+    "would_seat": 41,
     "against_the_reading_in_force": 0,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
     "loses_against_the_reading_in_force": [],
-    "would_still_refuse": 18,
+    "would_still_refuse": 20,
     "would_still_refuse_by_reason": {
      "not present at the scene date": 0,
      "the face holds no roof standing on it": 1,
      "this face already holds this proprietor": 8,
-     "every roof on the face is spoken for": 9
+     "every roof on the face is spoken for": 11
     }
    }
   }
  },
  "counts": {
-  "street_only_in_register": 57,
-  "adopted": 39,
-  "refused": 18,
+  "street_only_in_register": 61,
+  "adopted": 41,
+  "refused": 20,
   "refused_by_reason": {
    "not present at the scene date": 0,
    "the face holds no roof standing on it": 3,
    "this face already holds this proprietor": 8,
-   "every roof on the face is spoken for": 7
+   "every roof on the face is spoken for": 9
   },
-  "unplaceable_present_at_scene_date": 69,
+  "unplaceable_present_at_scene_date": 64,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -153,7 +153,7 @@
    },
    "lasalle": {
     "street_name": "La Salle Street",
-    "businesses_naming_it": 3,
+    "businesses_naming_it": 4,
     "adopted": 3,
     "roofs_lot_front": 0,
     "roofs_corner_side": 12,
@@ -209,8 +209,8 @@
    },
    "south_water": {
     "street_name": "South Water Street",
-    "businesses_naming_it": 24,
-    "adopted": 19,
+    "businesses_naming_it": 27,
+    "adopted": 21,
     "roofs_lot_front": 36,
     "roofs_corner_side": 0,
     "roofs_on_the_adopted_face": 36,
@@ -246,7 +246,7 @@
    "first_issue": "1834-03-04",
    "last_issue": "1834-05-21",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d1_08",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -276,7 +276,7 @@
    "first_issue": "1834-12-17",
    "last_issue": "1834-12-24",
    "mentions": 2,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d2_09",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -309,7 +309,7 @@
    "first_issue": "1835-06-27",
    "last_issue": "1835-07-25",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d4_08",
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_09",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -372,7 +372,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-05-20",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_dearborn_d5_07",
+   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -405,7 +405,7 @@
    "first_issue": "1834-05-28",
    "last_issue": "1834-12-10",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_dearborn_d3_08",
+   "structure_id": "recon_1835_blk_south_water_franklin_c2_10",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -468,7 +468,48 @@
    "first_issue": "1834-03-25",
    "last_issue": "1834-12-10",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
+   "structure_id": "recon_1835_blk_south_water_dearborn_d5_07",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_david_carver",
+   "business_name": "David Carver",
+   "trade": "lumber yard",
+   "proprietors": [
+    "David Carver"
+   ],
+   "partners": [
+    "David Carver"
+   ],
+   "firm_styles": [],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "none",
+   "cites": [
+    "chicago_democrat_1833_12_03#c009",
+    "chicago_democrat_1834_02_25#c003",
+    "chicago_democrat_1834_03_04#c006",
+    "chicago_democrat_1834_04_01#c006",
+    "chicago_democrat_1834_04_16#c008",
+    "chicago_democrat_1834_04_30#c013",
+    "chicago_democrat_1834_06_04#c010",
+    "chicago_democrat_1834_06_11#c009",
+    "chicago_democrat_1834_06_18#c010",
+    "chicago_democrat_1834_07_02#c006",
+    "chicago_democrat_1835_06_04#c004",
+    "chicago_democrat_1835_07_22#c013",
+    "chicago_democrat_1835_07_29#c016"
+   ],
+   "first_issue": "1833-12-03",
+   "last_issue": "1835-07-29",
+   "mentions": 13,
+   "structure_id": "recon_1835_blk_south_water_clark_c2_06",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -529,7 +570,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1834-06-04",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d4_02",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d7_12",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -621,7 +662,7 @@
    "first_issue": "1834-05-28",
    "last_issue": "1834-07-02",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
+   "structure_id": "recon_1835_blk_south_water_lasalle_c3_13",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -663,13 +704,93 @@
    "first_issue": "1834-07-02",
    "last_issue": "1835-07-25",
    "mentions": 7,
-   "structure_id": "recon_1835_blk_south_water_clark_d5_01",
+   "structure_id": "recon_1835_blk_south_water_dearborn_d3_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
    "claims_lot": false,
    "order_is_a_claim": false,
    "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_hiram_pearsons",
+   "business_name": "Hiram Pearsons",
+   "trade": "storage and commission merchant",
+   "proprietors": [
+    "Hiram Pearsons"
+   ],
+   "partners": [
+    "Hiram Pearsons"
+   ],
+   "firm_styles": [],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "street_only",
+   "cites": [
+    "chicago_democrat_1834_02_25#c005",
+    "chicago_democrat_1834_03_04#c004",
+    "chicago_democrat_1834_05_14#c006"
+   ],
+   "first_issue": "1834-02-25",
+   "last_issue": "1834-05-14",
+   "mentions": 3,
+   "structure_id": "recon_1835_blk_south_water_lasalle_d3_10",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
+   "business_id": "business_hubbard_co",
+   "business_name": "Hubbard & Co.",
+   "trade": "commission and forwarding merchants",
+   "proprietors": [
+    "Henry G. Hubbard",
+    "Hubbard & Co.",
+    "Hubbard",
+    "Gurdon S. Hubbard"
+   ],
+   "partners": [
+    "Henry G. Hubbard",
+    "Hubbard",
+    "Gurdon S. Hubbard"
+   ],
+   "firm_styles": [
+    "Hubbard & Co."
+   ],
+   "street_id": "lasalle",
+   "street_name": "La Salle Street",
+   "street_text": "La Salle Street",
+   "placement_class": "corner",
+   "cites": [
+    "chicago_american_1835_06_20#c013",
+    "chicago_american_1835_06_27#c012",
+    "chicago_american_1835_07_11#c006",
+    "chicago_american_1835_08_29#c004",
+    "chicago_democrat_1834_07_02#c045",
+    "chicago_democrat_1834_07_02#c048",
+    "chicago_democrat_1834_08_06#c008",
+    "chicago_democrat_1834_08_27#c008",
+    "chicago_democrat_1834_09_03#c018",
+    "chicago_democrat_1834_09_03#c024",
+    "chicago_democrat_1834_10_15#c005",
+    "chicago_democrat_1835_05_20#c023",
+    "chicago_democrat_1835_06_17#c009",
+    "chicago_democrat_1835_07_01#c016"
+   ],
+   "first_issue": "1834-07-02",
+   "last_issue": "1835-08-29",
+   "mentions": 14,
+   "structure_id": "recon_1835_blk_randolph_wells_d2_07",
+   "face": "corner side",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names La Salle Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets La Salle Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_j_b_brown_dearborn_street_grocery",
@@ -703,35 +824,6 @@
    "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
-   "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
-   "business_name": "J. Curtiss, Attorney and Counsellor at Law",
-   "trade": "law",
-   "proprietors": [
-    "Curtiss, J."
-   ],
-   "partners": [
-    "Curtiss, J."
-   ],
-   "firm_styles": [],
-   "street_id": "south_water",
-   "street_name": "South Water Street",
-   "street_text": "South Water Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_democrat_1835_08_05#c017"
-   ],
-   "first_issue": "1835-08-05",
-   "last_issue": "1835-08-05",
-   "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d7_12",
-   "face": "lot front",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
    "business_id": "business_j_h_mulford",
    "business_name": "J. H. Mulford",
    "trade": "watches, jewelry, engravings and fancy goods",
@@ -758,7 +850,7 @@
    "first_issue": "1834-06-04",
    "last_issue": "1835-08-12",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_c2_10",
+   "structure_id": "recon_1835_blk_south_water_franklin_d4_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -835,7 +927,7 @@
    "first_issue": "1835-06-10",
    "last_issue": "1835-06-10",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_randolph_wells_d4_04",
+   "structure_id": "recon_1835_south_f1_038",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -876,7 +968,7 @@
    "first_issue": "1835-05-27",
    "last_issue": "1835-08-05",
    "mentions": 5,
-   "structure_id": "recon_1835_blk_south_water_franklin_d4_02",
+   "structure_id": "recon_1835_blk_south_water_franklin_d5_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -901,6 +993,9 @@
    "placement_class": "relative",
    "cites": [
     "chicago_democrat_1833_12_17#c003",
+    "chicago_democrat_1834_01_28#c008",
+    "chicago_democrat_1834_03_04#c028",
+    "chicago_democrat_1834_03_25#c009",
     "chicago_democrat_1834_04_08#c007",
     "chicago_democrat_1834_05_21#c004",
     "chicago_democrat_1834_07_02#c013",
@@ -909,7 +1004,7 @@
    ],
    "first_issue": "1833-12-17",
    "last_issue": "1835-05-20",
-   "mentions": 6,
+   "mentions": 9,
    "structure_id": "recon_1835_blk_south_water_dearborn_c3_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
@@ -946,7 +1041,7 @@
    "first_issue": "1835-06-10",
    "last_issue": "1835-07-01",
    "mentions": 3,
-   "structure_id": "recon_1835_blk_randolph_wells_d2_07",
+   "structure_id": "recon_1835_blk_randolph_wells_d4_04",
    "face": "corner side",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -984,6 +1079,52 @@
    "note": "The advertisement names Randolph Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces Randolph Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
+   "business_id": "business_newberry_dole",
+   "business_name": "Newberry & Dole",
+   "trade": null,
+   "proprietors": [
+    "Newberry & Dole",
+    "Oliver Newberry",
+    "George W. Dole",
+    "Newberry, [Walter L.]"
+   ],
+   "partners": [
+    "Oliver Newberry",
+    "George W. Dole",
+    "Newberry, [Walter L.]"
+   ],
+   "firm_styles": [
+    "Newberry & Dole"
+   ],
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "street_text": "South Water Street",
+   "placement_class": "relative",
+   "cites": [
+    "chicago_american_1835_06_08#c011",
+    "chicago_american_1835_06_20#c014",
+    "chicago_american_1835_07_04#c002",
+    "chicago_democrat_1833_11_26#c013",
+    "chicago_democrat_1834_03_04#c021",
+    "chicago_democrat_1834_04_01#c013",
+    "chicago_democrat_1834_04_16#c015",
+    "chicago_democrat_1834_05_07#c009",
+    "chicago_democrat_1834_05_14#c007",
+    "chicago_democrat_1835_07_01#c015",
+    "chicago_democrat_1835_08_05#c022"
+   ],
+   "first_issue": "1833-11-26",
+   "last_issue": "1835-08-05",
+   "mentions": 11,
+   "structure_id": "recon_1835_blk_south_water_clark_d5_01",
+   "face": "lot front",
+   "roof_confidence": "reconstructed",
+   "lot": null,
+   "claims_lot": false,
+   "order_is_a_claim": false,
+   "note": "The advertisement names South Water Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit whose platted lot faces South Water Street; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
+  },
+  {
    "business_id": "business_peter_cohen",
    "business_name": "Peter Cohen",
    "trade": "clothier, grocer and liquor dealer",
@@ -1011,7 +1152,7 @@
    "first_issue": "1833-11-26",
    "last_issue": "1835-07-08",
    "mentions": 8,
-   "structure_id": "recon_1835_blk_south_water_clark_c2_06",
+   "structure_id": "recon_1835_blk_south_water_dearborn_c3_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1081,7 +1222,7 @@
    "first_issue": "1835-06-13",
    "last_issue": "1835-07-04",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_franklin_d5_09",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d1_08",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1147,7 +1288,7 @@
    "first_issue": "1835-07-22",
    "last_issue": "1835-08-12",
    "mentions": 4,
-   "structure_id": "recon_1835_blk_south_water_lasalle_c3_13",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d2_09",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1204,7 +1345,7 @@
    "first_issue": "1834-04-01",
    "last_issue": "1834-04-01",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d3_10",
+   "structure_id": "recon_1835_blk_south_water_lasalle_d6_11",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1233,7 +1374,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1834-07-02",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d5_01",
+   "structure_id": "recon_1835_blk_south_water_wells_d5_02",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1262,7 +1403,7 @@
    "first_issue": "1834-07-02",
    "last_issue": "1834-07-02",
    "mentions": 1,
-   "structure_id": "recon_1835_blk_south_water_lasalle_d6_11",
+   "structure_id": "recon_1835_blk_south_water_wells_d6_01",
    "face": "lot front",
    "roof_confidence": "reconstructed",
    "lot": null,
@@ -1323,31 +1464,6 @@
    "claims_lot": false,
    "order_is_a_claim": false,
    "note": "The advertisement names Dearborn Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets Dearborn Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
-  },
-  {
-   "business_id": "business_unnamed_new_store_la_salle_street",
-   "business_name": "[unnamed] New Store, La Salle street",
-   "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
-   "proprietors": [],
-   "partners": [],
-   "firm_styles": [],
-   "street_id": "lasalle",
-   "street_name": "La Salle Street",
-   "street_text": "La Salle Street",
-   "placement_class": "relative",
-   "cites": [
-    "chicago_democrat_1835_08_12#c011"
-   ],
-   "first_issue": "1835-08-12",
-   "last_issue": "1835-08-12",
-   "mentions": 1,
-   "structure_id": "recon_1835_south_f1_038",
-   "face": "corner side",
-   "roof_confidence": "reconstructed",
-   "lot": null,
-   "claims_lot": false,
-   "order_is_a_claim": false,
-   "note": "The advertisement names La Salle Street and nothing narrower, so this business takes the street face and not a lot. The roof it is attached to is an anonymous reconstructed count-unit standing at the end of its platted tier, where the tier meets La Salle Street: a corner building, which the owner ruled on 2026-08-30 stands on both its faces; it stays reconstructed, and WHICH roof on the face is an allocation by tools/adopt_street_faces.py rather than a reading of any source. Nothing here says this business stood nearer the corner than any other on the same face."
   },
   {
    "business_id": "business_w_g_blanchard",
@@ -1510,6 +1626,14 @@
    "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
+   "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
+   "business_name": "J. Curtiss, Attorney and Counsellor at Law",
+   "street_id": "south_water",
+   "street_name": "South Water Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "36 roof(s) stand on this street: 5 are a household's dwelling under one layer or the other, 10 are yard buildings the parcels dealt behind a lot, and 21 are already adopted by a better-evidenced business."
+  },
+  {
    "business_id": "business_the_dearborn_street_auction_and_commission_rooms",
    "business_name": "the Dearborn Street auction and commission rooms",
    "street_id": "dearborn",
@@ -1524,6 +1648,14 @@
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
    "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+  },
+  {
+   "business_id": "business_unnamed_new_store_la_salle_street",
+   "business_name": "[unnamed] New Store, La Salle street",
+   "street_id": "lasalle",
+   "street_name": "La Salle Street",
+   "refusal": "every roof on the face is spoken for",
+   "detail": "12 roof(s) stand on this street: 4 are a household's dwelling under one layer or the other, 2 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_ebenezer_s_more_attorney_at_law",

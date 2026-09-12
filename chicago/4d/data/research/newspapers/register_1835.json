@@ -6,8 +6,8 @@
   "compiled_from": {
     "gazetteer": {
       "claims": 1169,
-      "persons": 2666,
-      "businesses": 199
+      "persons": 2665,
+      "businesses": 198
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,8 +16,8 @@
   },
   "counts": {
     "businesses": {
-      "total": 199,
-      "present_at_scene_date": 182,
+      "total": 198,
+      "present_at_scene_date": 181,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
@@ -25,30 +25,30 @@
       "by_action": {
         "enrich_existing": 30,
         "new_building": 26,
-        "street_only": 57,
-        "unplaceable": 86
+        "street_only": 61,
+        "unplaceable": 81
       },
       "by_placement_class": {
         "corner": 17,
         "none": 62,
-        "relative": 103,
+        "relative": 102,
         "street_only": 17
       },
       "present_by_action": {
         "enrich_existing": 30,
         "new_building": 26,
-        "street_only": 57,
-        "unplaceable": 69
+        "street_only": 61,
+        "unplaceable": 64
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 98,
+      "survival_liberty_required": 97,
       "backdating_liberty_required": 26,
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2666,
+      "total": 2665,
       "by_action": {
-        "enrich": 1417,
+        "enrich": 1416,
         "new_resident": 1225,
         "replace_invented": 24
       },
@@ -724,8 +724,8 @@
         "John S. C. Hogan"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
@@ -1807,8 +1807,8 @@
         "David Carver"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
@@ -1830,11 +1830,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_deacon_mccaleb",
@@ -2527,7 +2527,7 @@
         "Frederick Thomas"
       ],
       "firm_styles": [],
-      "street": null,
+      "street": "Water Street",
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
@@ -3359,8 +3359,8 @@
         "Hiram Pearsons"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1834-02-25",
@@ -3382,11 +3382,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_hubbard_co",
@@ -3407,8 +3407,8 @@
       "firm_styles": [
         "Hubbard & Co."
       ],
-      "street": null,
-      "street_id": null,
+      "street": "La Salle Street",
+      "street_id": "lasalle",
       "placement_class": "corner",
       "evidence": {
         "first_issue": "1834-07-02",
@@ -3430,11 +3430,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lasalle",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
+      "action_note": "The paper names La Salle Street and nothing narrower; a corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
     },
     {
       "id": "business_ingersoll_s_tavern_stand",
@@ -3864,8 +3864,8 @@
         "J. K. Botsford"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-02-18",
@@ -5537,8 +5537,8 @@
       "firm_styles": [
         "Newberry & Dole"
       ],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-11-26",
@@ -5560,11 +5560,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'Fort Dearborn' names nothing the committed town holds."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor 'Fort Dearborn' names nothing the committed town holds."
     },
     {
       "id": "business_noble_wesencraft",
@@ -5870,8 +5870,8 @@
         "Philo Carpenter"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
@@ -8326,47 +8326,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's old stand\" names nothing the committed town holds."
-    },
-    {
-      "id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "trade": "boot and shoe making",
-      "occupation": "shoemaker",
-      "proprietors": [
-        "W. Montgomery"
-      ],
-      "partners": [
-        "W. Montgomery"
-      ],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-01-28",
-        "last_issue": "1834-03-25"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"P. Cohen's Store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"P. Cohen's Store\" names nothing the committed town holds."
     },
     {
       "id": "business_w_reed",
@@ -13649,7 +13608,7 @@
       "occupation": null,
       "letter_list_only": false,
       "first_seen": "1834-02-25",
-      "last_seen": "1834-02-25",
+      "last_seen": "1834-03-04",
       "action": "enrich",
       "action_target": "miller_samuel",
       "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
@@ -31431,17 +31390,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_samuel_miller",
-      "name": "Samuel Miller",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "enrich",
-      "action_target": "miller_samuel",
-      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
-    },
-    {
       "id": "person_samuel_olingar",
       "name": "Samuel Olingar",
       "occupation": null,
@@ -36385,7 +36333,7 @@
       "name": "W. Montgomery",
       "occupation": "auctioneer",
       "letter_list_only": false,
-      "first_seen": "1834-01-28",
+      "first_seen": "1835-07-04",
       "last_seen": "1835-07-29",
       "action": "enrich",
       "action_target": "montgomery_w",

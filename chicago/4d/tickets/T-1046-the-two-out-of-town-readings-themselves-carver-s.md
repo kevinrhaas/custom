@@ -1,5 +1,5 @@
 ---
-id: T-1042
+id: T-1046
 title: The two out-of-town readings themselves: Carver's Michigan City agent gets the place his own notice gives him, and the shoemaking notice's four impressions read L. W. Montgomery instead of the auctioneer
 state: claimed
 epic: META
@@ -20,7 +20,7 @@ claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/3466578
 
 The two out-of-town readings themselves: Carver's Michigan City agent gets the place his own notice gives him, and the shoemaking notice's four impressions read L. W. Montgomery instead of the auctioneer.
 
-Piece 1 of 2 of **T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns the READINGS. Piece 2 is T-1043 and owns the card.
+Piece 1 of 2 of **T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns the READINGS. Piece 2 is T-1047 and owns the card.
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
@@ -30,4 +30,4 @@ Piece 1 of 2 of **T-1040 — Two readings the newspapers gazetteer gives a Chica
 
 ## WHAT THIS PIECE DOES NOT DO
 
-It does not make `hh_miller_samuel` stop citing the Michigan City reading. That needs a place test in `tools/consolidate_resident_evidence.py`, which has none, and it reaches 132 households — T-1043.
+It does not make `hh_miller_samuel` stop citing the Michigan City reading. That needs a place test in `tools/consolidate_resident_evidence.py`, which has none, and it reaches 132 households — T-1047.

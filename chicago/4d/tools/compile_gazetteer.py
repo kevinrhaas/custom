@@ -774,7 +774,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 })
                 b["mentions"].append(key)
                 # A STREET THE FIRST IMPRESSION WITHHELD IS NOT A STREET THE HOUSE LACKS
-                # (T-1042). The dict above is a `setdefault`, so `street` was taken from
+                # (T-1046). The dict above is a `setdefault`, so `street` was taken from
                 # whichever claim happened to mint the key — sorted filename order, which
                 # is issue order and nothing more. Where one impression of a standing
                 # advertisement names the street and another leaves it null on purpose

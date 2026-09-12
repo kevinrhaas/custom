@@ -1,5 +1,5 @@
 ---
-id: T-1045
+id: T-1049
 title: With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance in read_newspapers(), record the refusal in its own class, and re-derive every card that loses a press reading
 state: open
 epic: META
@@ -7,7 +7,7 @@ requested_by: loop
 seen: false
 effort: S
 legacy_id: null
-parent: T-1043
+parent: T-1047
 opened: 2026-09-11
 closed: null
 pr: null
@@ -20,13 +20,13 @@ claimed_run: null
 
 With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance.
 
-Piece 2 of 2 of **T-1043**, itself piece 2 of **T-1040**. BLOCKED ON T-1044 — do not start this one first; a guard built on the unresolved vocabulary refuses Fort Dearborn.
+Piece 2 of 2 of **T-1047**, itself piece 2 of **T-1040**. BLOCKED ON T-1048 — do not start this one first; a guard built on the unresolved vocabulary refuses Fort Dearborn.
 
 ## THE FINDING
 
 `tools/consolidate_resident_evidence.py`'s `read_newspapers()` hands EVERY gazetteer person to the resident identity pool with evidence class `newspaper_1833_1835`, reading only the name and the first mention. It never looks at `associated_places`. So a man the papers place at Michigan City is offered to the clustering as a Chicago appearance, and merge rule M1 — identical normalised name — puts him on whatever Chicago card shares his name.
 
-`hh_miller_samuel` is the worked example T-1040 was filed on. After T-1042 that card cites one press reading, `person_col_samuel_miller`, whose gazetteer record correctly reads `occupations: [agent]`, `associated_places: [Michigan City]` — David Carver's agent at Michigan City, Indiana. The card's note still says "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN" and its rung G1b is spent partly on that reading. The sentence is false of it. Strip it and the card is the 1832 muster and the 1833 tax list, which is what it should have rested on.
+`hh_miller_samuel` is the worked example T-1040 was filed on. After T-1046 that card cites one press reading, `person_col_samuel_miller`, whose gazetteer record correctly reads `occupations: [agent]`, `associated_places: [Michigan City]` — David Carver's agent at Michigan City, Indiana. The card's note still says "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN" and its rung G1b is spent partly on that reading. The sentence is false of it. Strip it and the card is the 1832 muster and the 1833 tax list, which is what it should have rested on.
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 

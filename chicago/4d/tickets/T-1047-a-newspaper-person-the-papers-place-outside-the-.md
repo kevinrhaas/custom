@@ -1,5 +1,5 @@
 ---
-id: T-1043
+id: T-1047
 title: A newspaper person the papers place OUTSIDE the town still enters the resident pool as a Chicago appearance: 132 households carry one today, and the consolidation has no place test at all
 state: split
 epic: META
@@ -20,13 +20,13 @@ claimed_run: null
 
 A newspaper person the papers place OUTSIDE the town still enters the resident pool as a Chicago appearance: 132 households carry one today, and the consolidation has no place test at all.
 
-Piece 2 of 2 of **T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else**. Piece 1 (T-1042) repaired the READINGS; this one owns the CARD.
+Piece 2 of 2 of **T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else**. Piece 1 (T-1046) repaired the READINGS; this one owns the CARD.
 
 ## THE FINDING, MEASURED
 
 `tools/consolidate_resident_evidence.py`'s `read_newspapers()` hands EVERY gazetteer person to the resident identity pool with evidence class `newspaper_1833_1835`, and reads nothing but the name and the first mention. It never looks at `associated_places`. So a man the papers place at Michigan City, Green Bay, Detroit, Hennepin or Juliet is offered to the clustering as a Chicago appearance, and merge rule M1 — identical normalised name — puts him on whatever Chicago card shares his name.
 
-`hh_miller_samuel` is the worked example T-1040 was filed on. After T-1042 the card cites ONE press reading, `person_col_samuel_miller`, whose gazetteer record now correctly reads `occupations: [agent]`, `associated_places: [Michigan City]` — and the card's own note still says "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN", and the rung G1b is spent partly on it. The sentence is false of that reading. Strip it and the card is the 1832 muster and the 1833 tax list, which is what it should have rested on all along.
+`hh_miller_samuel` is the worked example T-1040 was filed on. After T-1046 the card cites ONE press reading, `person_col_samuel_miller`, whose gazetteer record now correctly reads `occupations: [agent]`, `associated_places: [Michigan City]` — and the card's own note still says "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN", and the rung G1b is spent partly on it. The sentence is false of that reading. Strip it and the card is the 1832 muster and the 1833 tax list, which is what it should have rested on all along.
 
 **The scale, measured on dev at the time of filing:** 193 of 2,665 gazetteer persons carry `associated_places` of which NONE resolves inside `in_town_places()`, and 132 of those reach a household card. So this is not a one-line guard — it moves evidence, and therefore rungs, across a ninth of the town.
 
