@@ -1,7 +1,7 @@
 ---
 id: T-0939
 title: The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1193
 claimed_by: run 9/12/2026, 7:22:26 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T13:14:25.506Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34693070189
 ---
 
