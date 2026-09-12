@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 236,
+      "takenAt": "2026-09-12T22:50:43.364Z",
+      "ref": "steward/t-0878-wright-na-y-scale",
+      "commit": "c4b7a99dda03",
+      "devCommit": "dbe2a4a63fb5",
+      "treeHash": "sha256:f54f3e5582fe969b",
+      "treeDirty": false,
+      "changelogHash": "sha256:0092d8359a2d225f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3.2,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke_d12c.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "1",
       "parts": [
         1
@@ -1613,38 +1644,6 @@
         ]
       },
       "source": "/tmp/smoke_d_11_12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,10",
-      "parts": [
-        3,
-        10
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 103,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 472,
-      "takenAt": "2026-09-12T11:45:19.970Z",
-      "ref": "steward/t-1056-woody-stratum-sand",
-      "commit": "9c12ac760715",
-      "devCommit": "cbcb1439628d",
-      "treeHash": "sha256:19163d78276c4b73",
-      "treeDirty": false,
-      "changelogHash": "sha256:50bb3920b06ddd8e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.5,
-          3.9
-        ]
-      },
-      "source": "/tmp/smoke_d_3_10.log"
     },
     {
       "viewport": "mobile",
