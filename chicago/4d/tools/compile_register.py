@@ -1326,6 +1326,13 @@ def compile_register(gazetteer, town, quiet=True):
             "trade": b.get("trade"),
             "occupation": occupation_of(b.get("trade")),
             "proprietors": b.get("proprietors") or [],
+            # T-0398. The gazetteer derives which of those strings are people and which
+            # are the house's own trading style, and the register carries both rather
+            # than making every reader re-derive it. A consumer that means PEOPLE reads
+            # `partners`; `proprietors` is still the union of what the claims read and is
+            # what a surname pass wants, because a style carries surnames too.
+            "partners": b.get("partners") or [],
+            "firm_styles": b.get("firm_styles") or [],
             "street": b.get("street"),
             "street_id": town["streets"].get(street_key(b.get("street"))),
             "placement_class": (b.get("placement") or {}).get("class"),

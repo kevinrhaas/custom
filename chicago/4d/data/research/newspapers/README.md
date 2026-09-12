@@ -639,6 +639,27 @@ notice) and really does hold one man read twice. A bare surname beside a full na
 pair — that is the papers printing less — and a declaration whose pair has gone is refused
 too, so the file cannot rot.
 
+**And a proprietor is not always a person either** (T-0398). The other half of that list is
+the house's OWN trading style, put there by a notice that signed nothing else: the Democrat
+of 1835-08-19 prints "for sale only by Russell & Cl[if]t (Agents for the State of
+I[ll]inois) at the Chicago Book Store", so `Russell & Clift` stands among
+`business_russell_clift`'s proprietors beside Aaron Russell and Benj. H. Clift. That is what
+the paper printed and it is not a misreading — 28 of the 199 houses carry their style this
+way — but read as a list of people it says the partnership is its own third partner. Each
+business record therefore carries `partners` and `firm_styles` beside `proprietors`, both
+DERIVED by the same `firm_styled()` the proprietor policy above steps over styles with, both
+in the order the proprietors print, and neither editing a claim: `proprietors` is still the
+union of what was read. `partners` is EMPTY for the twelve houses the papers only ever
+signed with the firm — `H. Doty & Co.` is the whole of that record's list — because no man
+is named, and an empty list is the honest answer rather than a surname guessed out of the
+style. Nothing is declared: `firm_styled()` sees every style the corpus prints, and
+`identity.json` would only be needed for one it cannot. The register carries both fields
+through, and `mint_placed_residents.py` reads `partners` where it asks whether a printed
+name is a house or a man — a house that signs its own notice can no longer vouch for itself
+against a test written to catch exactly that. What still reads `proprietors` whole is the
+surname passes, deliberately: a style carries real surnames (`Clark, Filer & Co.`) and
+reading them all out of it is T-1042.
+
 **And a name is not always a person** (T-0359). A claim's entities are keyed on a name and
 carry no notion of what KIND of thing a name is, so a building the papers name by its
 signboard arrives in the persons table and is then held to a policy written for people.
