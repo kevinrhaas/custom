@@ -179,14 +179,25 @@ bikeways, four alley-scale places, and the Riverwalk. **No through street runs o
 the west bank of the South Branch.** So `name_2026` on this record does not name
 one.
 
-That is also why one committed sentence has to be corrected rather than repeated.
-`south_branch_raft_bridge`'s `symbolic_location` glosses the street as *"West
+That is also why one committed sentence had to be corrected rather than repeated.
+`south_branch_raft_bridge`'s `symbolic_location` glossed the street as *"West
 Water Street (now Canal Street)"*. **That gloss cannot be right for this line.**
 The committed `canal` is fitted to modern Canal Street's own surviving
 intersections (T-0446 records the OSM nodes), and it stands 131–159 m west of the
-seated West Water over the reach the two share — about one plat module, which is
-exactly how the plat draws them: as two separate streets. The gloss is a
-secondary-source shorthand and it is filed as a ticket, not fixed in passing.
+seated West Water over the reach the two share — 152.09 m at the bridge's own
+northing — about one plat module, which is exactly how the plat draws them: as two
+separate streets. It was filed as a ticket rather than fixed in passing.
+
+**WITHDRAWN 2026-09-12, T-0770.** The gloss is gone from the record's prose, and
+tracing it before withdrawing it is what made the withdrawal easy: it is not a
+secondary-source *shorthand* in the vague sense, it is one identifiable sentence
+in `chicagology_lastwardance` — *"south along West Water street (now Canal
+street)"* — whose own source record had already ruled that the 1910 Tribune's
+parentheses are "the newspaper locating the crossing for its readers, not the
+witness, and no placement here uses it." One had been used. The measurement above
+and that ruling agree, so the gloss is withdrawn rather than restated: there is
+nothing for it to be restated as. `docs/RESEARCH/south_branch_raft_bridge.md`
+§ 3a carries the trace and the per-station table.
 
 ## 2. Jefferson and Des Plaines are refused, and the refusal is a measurement
 

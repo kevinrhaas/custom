@@ -98,6 +98,61 @@ bridges in place, and `docs/PROVENANCE.md` licenses a tier-5 map to carry a posi
 `inferred`. It has **not** been read at this crossing's pixel by this parcel, and it is
 the first thing to try.
 
+## 3a. The west landing's street, and the gloss withdrawn from it
+
+**T-0770, 2026-09-12.** Until this date the record's `symbolic_location` read *"… its west
+landing on West Water Street (now Canal Street) below Wolf Point"*. The parenthesis is
+withdrawn. It is kept here because the next reader will meet it in the source and should
+know it was looked at rather than missed.
+
+**Where it came from.** It is not this project's identification, and it was not read off a
+map. It is carried verbatim out of `chicagology_lastwardance`, whose account of 18 August
+1835 moves the procession *"south along West Water street (now Canal street), in front of
+the 'Green Tree Tavern' and 'Wolf's Point Tavern' to the log raft bridge across the south
+branch"* — the same sentence this record cites for the crossing standing and carrying a
+crowd. The parenthetical came along with the citation.
+
+**Why that makes it an error and not a disagreement.** The page is one attribution line,
+*"Chicago Tribune, August 14, 1910"*, over John Dean Caton's own written account printed
+after his death. `data/sources/chicagology_lastwardance.json` had already ruled on the
+newspaper's additions: it *"glosses him in 1910's voice"*, and names the parallel gloss
+*"the 'North Branch bridge' (which stood where the railroad bridge stands now)"* as **"the
+newspaper locating the crossing for its readers, not the witness, and no placement here
+uses it."** A 1910 editor's street-name equation is the newspaper's voice on exactly those
+terms. The rule was already written; this record had let one through it, into the one
+sentence that tells a reader *why* the bridge stands where it does.
+
+**And the committed geometry refuses the equation on its own.** T-0445 seated `west_water`
+off the committed 1834 west bank; `canal` is fitted to modern Canal Street's surviving
+intersections (T-0446 records the OSM nodes). Recomputed by
+`tools/measure_west_division_streets.py` § 4, which `tools/check.sh` runs:
+
+| local north | west_water → canal |
+|---|---|
+| −400 | 131.00 m (429.8 ft) |
+| −300 | 140.96 m (462.5 ft) |
+| −250 | 146.05 m (479.2 ft) |
+| **−178 — this bridge** | **152.09 m (499.0 ft)** |
+| −120 | 159.44 m (523.1 ft) |
+
+The plat's module is 458 ft = 139.60 m (T-0444), so the separation is a module, not a
+rounding — and the Thompson plat draws West Water and Canal as two of the West Division's
+five north-south streets. Two streets a module apart are not one street under two names.
+So the gloss is **withdrawn** rather than restated: there is nothing for it to be restated
+as that this project can commit.
+
+**What does not change.** The bridge's position. What is withdrawn is a modern name for
+the street, not the street; the coordinate is still the midpoint of the band argued in § 3,
+and `west_water`'s east kerb runs under the west landing (at local north −178 the kerb is
+at east +6.87 and the committed position is +6.9). See
+`docs/RESEARCH/west_division_streets.md` § 1.
+
+**One thing this does not settle.** The same 1910-style shorthand sits on the Green Tree
+Tavern and Goss & Cobb at Lake and Canal, where DRLOIH glosses West Water as "now Canal
+Street" and the records adopt the Canal reading with a stated ~145 m residual. That is a
+placement question about two buildings, not a sentence about a bridge, and it is theirs to
+answer — `docs/RESEARCH/green_tree_tavern.md` states it.
+
 ## 4. What is documented, and it is more than for any other structure here
 
 Nearly the whole form block: construction, width (10 ft), clearance (6 ft), abutments,
