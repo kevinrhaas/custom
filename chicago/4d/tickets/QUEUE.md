@@ -156,7 +156,6 @@ T-1080 — The Michigan St tract's name and the curved road north through it: wh
 T-1086 — Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
 T-1085 — Kinzie Street stops 418 m short of the tract it bounds: Wright draws it the length of Wabansia and the committed line is extrapolated to meet it
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
-T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard

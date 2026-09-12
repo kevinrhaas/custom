@@ -1,7 +1,7 @@
 ---
 id: T-0827
 title: The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1206
 claimed_by: run 9/12/2026, 1:21:48 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T18:54:46.705Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34709324295
 ---
 
