@@ -10,12 +10,6 @@
     "flora/manifest:zones[].bare_soil_fraction": {
       "records": 10
     },
-    "flora/manifest:zones[].ground_rgb": {
-      "records": 10
-    },
-    "flora/manifest:zones[].ground_wet_rgb": {
-      "records": 10
-    },
     "flora/palette:budget.instances_mid": {
       "records": 9
     },
