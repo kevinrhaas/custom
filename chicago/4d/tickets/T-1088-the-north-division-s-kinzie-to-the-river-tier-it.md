@@ -1,7 +1,7 @@
 ---
 id: T-1088
 title: The North Division's Kinzie-to-the-river tier: its seven block numerals read by the block-cut method, now that its street control is committed
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0858
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1211
 claimed_by: run 9/12/2026, 3:55:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T21:48:11.653Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34718095604
 ---
 
