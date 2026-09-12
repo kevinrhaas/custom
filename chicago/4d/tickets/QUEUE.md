@@ -333,3 +333,4 @@ T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition st
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph moved sauganash_range_m 1066.3 to 1001.2 and the Chappel baseline was never re-banked
+T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week

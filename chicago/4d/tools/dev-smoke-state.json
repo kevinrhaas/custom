@@ -3,6 +3,141 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "10-11",
+      "parts": [
+        10,
+        11
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 45,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 529,
+      "takenAt": "2026-09-12T15:19:44.046Z",
+      "ref": "steward/t-1075-michigan-st-seated",
+      "commit": "d64a3b151b25",
+      "devCommit": "33638aa690ca",
+      "treeHash": "sha256:7b5f7f2ce0ac429b",
+      "treeDirty": false,
+      "changelogHash": "sha256:b8d0838e8ca2c7da",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.5,
+          3.9
+        ]
+      },
+      "source": "/tmp/smoke_d_2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "7-8",
+      "parts": [
+        7,
+        8
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 30,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+      ],
+      "wallSeconds": 422,
+      "takenAt": "2026-09-12T15:10:45.132Z",
+      "ref": "steward/t-1075-michigan-st-seated",
+      "commit": "d64a3b151b25",
+      "devCommit": "33638aa690ca",
+      "treeHash": "sha256:7b5f7f2ce0ac429b",
+      "treeDirty": false,
+      "changelogHash": "sha256:b8d0838e8ca2c7da",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          4.3,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke_d_1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "10-12",
+      "parts": [
+        10,
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 103,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 353,
+      "takenAt": "2026-09-12T15:03:37.532Z",
+      "ref": "steward/t-1075-michigan-st-seated",
+      "commit": "d64a3b151b25",
+      "devCommit": "33638aa690ca",
+      "treeHash": "sha256:7b5f7f2ce0ac429b",
+      "treeDirty": false,
+      "changelogHash": "sha256:b8d0838e8ca2c7da",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3.8,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_m_2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "2-3,7-8",
+      "parts": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 178,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+      ],
+      "wallSeconds": 419,
+      "takenAt": "2026-09-12T14:57:14.281Z",
+      "ref": "steward/t-1075-michigan-st-seated",
+      "commit": "d64a3b151b25",
+      "devCommit": "33638aa690ca",
+      "treeHash": "sha256:7b5f7f2ce0ac429b",
+      "treeDirty": false,
+      "changelogHash": "sha256:b8d0838e8ca2c7da",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke_m_1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "11-12",
       "parts": [
         11,
@@ -1539,131 +1674,6 @@
         ]
       },
       "source": "/tmp/smoke-desktop-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 257,
-      "takenAt": "2026-09-12T04:38:35.472Z",
-      "ref": "steward/t-0391-eagle-hotel",
-      "commit": "020da706230d",
-      "devCommit": "c3103f6c25ee",
-      "treeHash": "sha256:a8eb9f07782a2a8e",
-      "treeDirty": true,
-      "changelogHash": "sha256:ebcef33a2b4be125",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.4,
-          1.2,
-          1.9
-        ]
-      },
-      "source": "/tmp/smoke-desktop-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 168,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 301,
-      "takenAt": "2026-09-12T04:38:35.378Z",
-      "ref": "steward/t-0391-eagle-hotel",
-      "commit": "020da706230d",
-      "devCommit": "c3103f6c25ee",
-      "treeHash": "sha256:a8eb9f07782a2a8e",
-      "treeDirty": true,
-      "changelogHash": "sha256:ebcef33a2b4be125",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.4,
-          1.2,
-          1.9
-        ]
-      },
-      "source": "/tmp/smoke-mobile-1213.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 110,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 313,
-      "takenAt": "2026-09-12T03:53:32.126Z",
-      "ref": "steward/t-0396-newberry-firm-partner",
-      "commit": "56ab75db9a80",
-      "devCommit": "d2f4653f31c5",
-      "treeHash": "sha256:d6cc80dfb81cadf6",
-      "treeDirty": false,
-      "changelogHash": "sha256:6214f472aac8ef80",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 237,
-      "takenAt": "2026-09-12T03:53:32.029Z",
-      "ref": "steward/t-0396-newberry-firm-partner",
-      "commit": "56ab75db9a80",
-      "devCommit": "d2f4653f31c5",
-      "treeHash": "sha256:d6cc80dfb81cadf6",
-      "treeDirty": false,
-      "changelogHash": "sha256:6214f472aac8ef80",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
     },
     {
       "viewport": "desktop",
