@@ -187,6 +187,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 import fronting_street  # noqa: E402  (needs the path above)
+from compile_gazetteer import (  # noqa: E402  — the identity policy has one home
+    sign_name_index, surname_words,
+)
 
 DATA = ROOT / "data"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
@@ -207,6 +210,7 @@ BAND = "centreline band"
 ADOPTION_KEYS = {
     "business_id", "business_name", "trade", "proprietors",
     "partners", "firm_styles",          # T-0398: which of those strings are people
+    "surnames",                         # T-1042: every surname those strings name
     "street_id", "street_name", "street_text", "placement_class",
     "cites", "first_issue", "last_issue", "mentions",
     "structure_id", "face", "roof_confidence",
@@ -420,24 +424,48 @@ def supply(roofs: dict[str, str], homes: dict[str, list[str]],
 # the pool: the register's street_only businesses, ranked by evidence
 # ---------------------------------------------------------------------------
 
-def surnames(entry: dict) -> tuple[str, ...]:
+_SIGNS: dict | None = None
+
+
+def declared_sign_names() -> dict:
+    """`identity.json` § `firm_sign_names`, read once: {style: its partner half}.
+
+    A sign-name is the shop's own name over its door and no partner is named in it, so
+    the split cannot be derived — it is DECLARED beside the merges it governs, and
+    `compile_gazetteer.sign_name_index()` is the reader.
+    """
+    global _SIGNS
+    if _SIGNS is None:
+        _SIGNS = sign_name_index(load(IDENTITY)) if IDENTITY.exists() else {}
+    return _SIGNS
+
+
+def surnames(entry: dict, signs: dict | None = None) -> tuple[str, ...]:
     """The normalised proprietor surname SET a register entry prints, sorted.
 
     Empty where the advertisement names no proprietor at all — an anonymous 'wholesale
     wine and liquor store' cannot collide with anything, and is never refused by refusal 5.
+
+    THE READING IS NOT THIS PASS'S (T-1042). Until this ticket the last word of each
+    proprietor string was taken for its surname, which on a firm's own trading style is a
+    guess — and it invented a man ('H. Doty & Co.' stood on Lake Street as somebody called
+    Co, and refusal 5 could fire on him) and it lost one ('Clark, Filer & Co.' dropped
+    Filer). `compile_gazetteer.surname_words()` is now the one derivation for all three
+    passes that asked this; what stays here is only the normalisation these keys are
+    built on, because `two_house_surnames()` and the collapse compare against them.
+
+    A DECLARED sign-name is taken off the style first where `signs` is passed — the
+    shop's own name over its door is a capitalised trade, not a partner, and only
+    `identity.json` can say which is which.
     """
+    signs = declared_sign_names() if signs is None else signs
     found: set[str] = set()
     for name in entry.get("proprietors") or []:
-        text = re.sub(r"^\[uncertain:\s*", "", str(name)).rstrip("]").strip()
-        # 'Mulford, J. H.' is the same man as 'J. H. Mulford'; the comma form puts the
-        # surname first, and the corpus prints both.
-        head = text.split(",")[0].strip() if "," in text else text
-        parts = [word for word in re.split(r"\s+", head) if word]
-        if not parts:
-            continue
-        surname = re.sub(r"[^a-z]", "", parts[-1].lower())
-        if surname:
-            found.add(surname)
+        style = signs.get(str(name), str(name))
+        for word in surname_words(style):
+            key = re.sub(r"[^a-z]", "", word.lower())
+            if key:
+                found.add(key)
     return tuple(sorted(found))
 
 
@@ -597,12 +625,14 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
             # T-0398. The register derives which of those strings are people and which
             # are the house's own trading style, and the row carries both: a table that
             # prints 'Aaron Russell, Benj. H. Clift, Russell & Clift' otherwise states
-            # that the partnership is its own third partner. `surnames()` below still
-            # reads `proprietors`, deliberately — a style carries real surnames ('Clark,
-            # Filer & Co.') and dropping it would lose them. Reading them ALL out, as
-            # compile_register's `firm_surnames()` does, is T-1042's question.
+            # that the partnership is its own third partner.
             "partners": entry.get("partners") or [],
             "firm_styles": entry.get("firm_styles") or [],
+            # T-1042 ANSWERED. `surnames()` reads every surname the strings above name,
+            # styles included, through `compile_gazetteer.surname_words()`; the row now
+            # CARRIES that reading so the household pass reads it instead of guessing at
+            # `proprietors` a third time and taking each string's last word.
+            "surnames": list(surnames(entry)),
             "street_id": street_id,
             "street_name": fronting_street.street_name(street_id),
             "street_text": printed.get("street"),

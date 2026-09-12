@@ -2340,8 +2340,26 @@ distinct ways. Each is now a guard with a self-test on the case that forced it.
    invention gets laundered into the documented layer. `Kinzie Hall` had matched
    `recon_1835_north_i2_015` on the word "hall".
 
+5. **A word in the record is not a surname in the record** (T-1042). The pools these guards back
+   are word SETS, so any capitalised word in a building's prose could satisfy a required surname:
+   `S. Dewey`, a joiner, matched Dr Elijah **Dewey** Harmon's log cabin on a middle name. Where the
+   paper prints a forename for the surname, the record must now print that surname AS a surname.
+   The same reading had been losing a match the other way — a generational tag reads as a
+   capitalised word, so `John Bates Jr.` left `bates` in no surname position at all and `J. Bates,
+   jr.` read as a man whose forename was Jr. Both of the auction-store notices now reach
+   `bates_auction_room`.
+
 Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
 against, so T-0263 can argue with a proposal without re-running anything.
+
+**The reading itself has ONE home** (T-1042). `compile_gazetteer.surname_words()` answers "which
+words of this proprietor string are surnames", and `firm_surnames()`, `adopt_street_faces.surnames()`
+and `replace_invented_residents.street_face_stands()` all read it instead of each taking a string's
+last word. The two outside this file used to invent a man — `H. Doty & Co.` and the five printings
+of `J. L. Wilson & Co.` each yielded `co`, and the street-face table stood somebody called Co on
+three streets — and to lose one, since `Clark, Filer & Co.` yielded `clark` alone. Eighteen of the
+198 register businesses read differently for it; no adoption moved, and the table now carries its
+own `surnames` rather than leaving the household pass to guess at them a third time.
 
 ### A name is not always one building, and the anchor path used to pretend it was
 

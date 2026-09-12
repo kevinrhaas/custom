@@ -107,7 +107,7 @@
    "this face already holds this proprietor": 8,
    "every roof on the face is spoken for": 9
   },
-  "unplaceable_present_at_scene_date": 64,
+  "unplaceable_present_at_scene_date": 62,
   "by_street": {
    "canal": {
     "street_name": "Canal Street",
@@ -235,6 +235,9 @@
     "A. Filer"
    ],
    "firm_styles": [],
+   "surnames": [
+    "filer"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -265,6 +268,9 @@
     "A. Garrett"
    ],
    "firm_styles": [],
+   "surnames": [
+    "garrett"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water street",
@@ -295,6 +301,9 @@
     "W. Montgomery"
    ],
    "firm_styles": [],
+   "surnames": [
+    "montgomery"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -324,6 +333,7 @@
    "proprietors": [],
    "partners": [],
    "firm_styles": [],
+   "surnames": [],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -358,6 +368,10 @@
    "firm_styles": [
     "Briggs & Humphrey"
    ],
+   "surnames": [
+    "briggs",
+    "humphrey"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -390,6 +404,10 @@
    "partners": [],
    "firm_styles": [
     "Clark, Filer & Co."
+   ],
+   "surnames": [
+    "clark",
+    "filer"
    ],
    "street_id": "south_water",
    "street_name": "South Water Street",
@@ -424,6 +442,10 @@
    "firm_styles": [
     "Cooley and Halsman"
    ],
+   "surnames": [
+    "cooley",
+    "halsman"
+   ],
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "street_text": "Dearborn Street",
@@ -454,6 +476,9 @@
     "D. Graves"
    ],
    "firm_styles": [],
+   "surnames": [
+    "graves"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -487,6 +512,9 @@
     "David Carver"
    ],
    "firm_styles": [],
+   "surnames": [
+    "carver"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -530,6 +558,9 @@
     "W. G. Austin"
    ],
    "firm_styles": [],
+   "surnames": [
+    "austin"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -560,6 +591,9 @@
     "E. L. Thrall"
    ],
    "firm_styles": [],
+   "surnames": [
+    "thrall"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -588,6 +622,10 @@
    "partners": [],
    "firm_styles": [
     "Fullerton & Botsford"
+   ],
+   "surnames": [
+    "botsford",
+    "fullerton"
    ],
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
@@ -619,6 +657,9 @@
     "G. Blanshard"
    ],
    "firm_styles": [],
+   "surnames": [
+    "blanshard"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -648,6 +689,9 @@
    "partners": [],
    "firm_styles": [
     "H. Doty & Co."
+   ],
+   "surnames": [
+    "doty"
    ],
    "street_id": "south_water",
    "street_name": "South Water Street",
@@ -688,6 +732,10 @@
     "Harmon, Loomis & Co.",
     "Harmon, Loomis & Co"
    ],
+   "surnames": [
+    "harmon",
+    "loomis"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -723,6 +771,9 @@
     "Hiram Pearsons"
    ],
    "firm_styles": [],
+   "surnames": [
+    "pearsons"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -760,6 +811,9 @@
    ],
    "firm_styles": [
     "Hubbard & Co."
+   ],
+   "surnames": [
+    "hubbard"
    ],
    "street_id": "lasalle",
    "street_name": "La Salle Street",
@@ -805,6 +859,10 @@
     "J. B. Tuttle"
    ],
    "firm_styles": [],
+   "surnames": [
+    "brown",
+    "tuttle"
+   ],
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "street_text": "Dearborn Street",
@@ -836,6 +894,9 @@
     "Mulford, J. H."
    ],
    "firm_styles": [],
+   "surnames": [
+    "mulford"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -880,6 +941,9 @@
     "Jno. S. Wilson & Co",
     "Jno. S. Wilson & Co."
    ],
+   "surnames": [
+    "wilson"
+   ],
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "street_text": "Dearborn Street",
@@ -917,6 +981,9 @@
     "James Grant"
    ],
    "firm_styles": [],
+   "surnames": [
+    "grant"
+   ],
    "street_id": "lasalle",
    "street_name": "La Salle Street",
    "street_text": "La Salle Street",
@@ -954,6 +1021,11 @@
     "King, Byram"
    ],
    "firm_styles": [],
+   "surnames": [
+    "clarke",
+    "jones",
+    "king"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -987,6 +1059,9 @@
     "L. W. Montgomery"
    ],
    "firm_styles": [],
+   "surnames": [
+    "montgomery"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1029,6 +1104,10 @@
    "firm_styles": [
     "Magie & Wilkinson"
    ],
+   "surnames": [
+    "magie",
+    "wilkinson"
+   ],
    "street_id": "lasalle",
    "street_name": "La Salle Street",
    "street_text": "La Salle Street",
@@ -1060,6 +1139,9 @@
     "[uncertain: Miss Bayne]"
    ],
    "firm_styles": [],
+   "surnames": [
+    "bayne"
+   ],
    "street_id": "randolph",
    "street_name": "Randolph Street",
    "street_text": "Randolph Street",
@@ -1095,6 +1177,10 @@
    ],
    "firm_styles": [
     "Newberry & Dole"
+   ],
+   "surnames": [
+    "dole",
+    "newberry"
    ],
    "street_id": "south_water",
    "street_name": "South Water Street",
@@ -1135,6 +1221,9 @@
     "Peter Cohen"
    ],
    "firm_styles": [],
+   "surnames": [
+    "cohen"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1176,6 +1265,10 @@
    "firm_styles": [
     "Pierce & French"
    ],
+   "surnames": [
+    "french",
+    "pierce"
+   ],
    "street_id": "canal",
    "street_name": "Canal Street",
    "street_text": "Canal Street",
@@ -1209,6 +1302,9 @@
     "Rockwell"
    ],
    "firm_styles": [],
+   "surnames": [
+    "rockwell"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1243,6 +1339,9 @@
     "Abell"
    ],
    "firm_styles": [],
+   "surnames": [
+    "abell"
+   ],
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "street_text": "Dearborn Street",
@@ -1275,6 +1374,9 @@
     "Lewis, Samuel"
    ],
    "firm_styles": [],
+   "surnames": [
+    "lewis"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1309,6 +1411,9 @@
     "Sarah D. Howe"
    ],
    "firm_styles": [],
+   "surnames": [
+    "howe"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -1335,6 +1440,7 @@
    "proprietors": [],
    "partners": [],
    "firm_styles": [],
+   "surnames": [],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1364,6 +1470,9 @@
     "[uncertain: DATID GAD]"
    ],
    "firm_styles": [],
+   "surnames": [
+    "gad"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1393,6 +1502,9 @@
     "[uncertain: J. I. Mulford]"
    ],
    "firm_styles": [],
+   "surnames": [
+    "mulford"
+   ],
    "street_id": "south_water",
    "street_name": "South Water Street",
    "street_text": "South Water Street",
@@ -1418,6 +1530,7 @@
    "proprietors": [],
    "partners": [],
    "firm_styles": [],
+   "surnames": [],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -1447,6 +1560,9 @@
     "[uncertain: W. H. Taylor]"
    ],
    "firm_styles": [],
+   "surnames": [
+    "taylor"
+   ],
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "street_text": "Dearborn Street",
@@ -1476,6 +1592,9 @@
     "W. G. Blanchard"
    ],
    "firm_styles": [],
+   "surnames": [
+    "blanchard"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -1505,6 +1624,9 @@
     "William Clay"
    ],
    "firm_styles": [],
+   "surnames": [
+    "clay"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -1534,6 +1656,9 @@
     "Wm. G. Branchaud"
    ],
    "firm_styles": [],
+   "surnames": [
+    "branchaud"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
@@ -1563,6 +1688,9 @@
     "Kennicott, Wm. H."
    ],
    "firm_styles": [],
+   "surnames": [
+    "kennicott"
+   ],
    "street_id": "lake",
    "street_name": "Lake Street",
    "street_text": "Lake Street",
