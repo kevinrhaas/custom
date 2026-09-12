@@ -1,7 +1,7 @@
 ---
 id: T-0834
 title: The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 1:49:47 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34678971065
 ---
 
 The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree.
