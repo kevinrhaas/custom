@@ -1,7 +1,7 @@
 ---
 id: T-1055
 title: The bar reads as mesic-prairie green because the terrain mesh is one material that never opens data/flora: carry each zone's declared ground colour onto the ground it covers
-state: claimed
+state: done
 epic: GROUND
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0940
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1183
 claimed_by: run 9/12/2026, 2:47:23 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T09:01:55.067Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34681283724
 ---
 

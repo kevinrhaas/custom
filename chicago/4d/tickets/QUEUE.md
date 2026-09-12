@@ -154,7 +154,6 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
-T-1055 — The bar reads as mesic-prairie green because the terrain mesh is one material that never opens data/flora: carry each zone's declared ground colour onto the ground it covers
 T-1056 — The woody stratum scatters evenly over the sand bar, because nothing keys it to the sandy HILLS Andreas excepts
 T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
 T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
