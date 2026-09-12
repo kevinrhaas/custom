@@ -254,6 +254,17 @@ step "the North Division numeral crops re-cut from the committed street lines" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_north_division_numerals.py --self-test
 
+# THE WASHINGTON-MADISON TIER'S SEVEN BLOCK NUMERALS (T-1094), gated for the same reason.
+# Three of each box's four sides are a committed line; the fourth pair is the flanking
+# north-south lines continued south along their own bearing, because they stop at y = -400.
+# The gate re-cuts every box and also checks that each read window still lies inside the box
+# it is cited under — block 52's declared overhang included.
+step "the Washington-Madison numeral crops re-cut from the committed street lines" \
+  python3 tools/read_washington_madison_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_washington_madison_numerals.py --self-test
+
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
 # beside them, through the same NA affine, and re-derives the module and the Kinzie

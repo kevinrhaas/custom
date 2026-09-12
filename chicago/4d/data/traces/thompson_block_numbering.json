@@ -362,8 +362,9 @@
  "refused": [
   {
    "scope": "the Washington-Madison tier (52-58), the West Division outside the two tiers read here (8-13, 22-27, 46-51), and 14-15 on the North Branch's west bank",
-   "reason": "Wright numbers all fifty-eight blocks. This file now holds thirty-one of them: twenty-four on the generated grid, and seven more in `blocks_not_in_the_grid` — the North Division's whole Kinzie-to-the-river tier, read by T-1088 once that tier's street control was committed. The rest are refused for the same reason the method works where it does: a crop is CUT from committed street lines, and the grid still does not reach Madison Street, the West Division beyond Clinton, or the North Branch's west bank. A numeral found by eye instead, on a sheet whose paper stretches 3.7% anisotropically, is a numeral placed by the reader rather than by the georeference — which is the mistake this file was rebuilt to stop making.",
-   "ticket": "T-1089"
+   "reason": "Wright numbers all fifty-eight blocks. This file now holds thirty-eight of them: the twenty-four of the T-0788 reading, the North Division's whole Kinzie-to-the-river tier read by T-1088 once that tier's street control was committed, and the Original Town's Washington-Madison tier read by T-1094 once Madison Street landed. The rest are refused for the same reason the method works where it does: a crop is CUT from committed street lines, and the grid still does not reach the West Division beyond Clinton or the North Branch's west bank. A numeral found by eye instead, on a sheet whose paper stretches 3.7% anisotropically, is a numeral placed by the reader rather than by the georeference — which is the mistake this file was rebuilt to stop making.",
+   "ticket": "T-1095",
+   "scope_note_2026_09_12": "NARROWED. The Washington-Madison tier is no longer refused: Madison Street landed with T-0877 and the tier's seven numerals — 52 53 54 55 56 57 58, rising eastward — are read in blocks_not_in_the_grid by tools/read_washington_madison_numerals.py. What is still refused, and still for the same reason, is the West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: no committed street line reaches either, so no crop can be cut there. That remainder is T-1095."
   },
   {
    "scope": "block 30",
@@ -383,7 +384,7 @@
   }
  ],
  "blocks_not_in_the_grid": {
-  "_doc": "Numerals read on ground the generated grid has no id for, so they cannot be stamped onto a block without inventing one. They are kept here so the reading is not lost and so the next person to widen the grid finds the number already waiting. Nothing reads this section. T-1088 adds the North Division's whole Kinzie-to-the-river tier — seven numerals, 7 6 5 4 3 2 1 west to east — for this reason and no other: the tier's street control is committed and attested, so every crop below is cut from it by tools/read_north_division_numerals.py and re-cut by the gate, but tools/generate_plat_lots.py emits only the three South Division tiers, so there is no cell for the numbers to be stamped onto. Widen the generator and these seven are waiting.",
+  "_doc": "Numerals read on ground the generated grid has no id for, so they cannot be stamped onto a block without inventing one. They are kept here so the reading is not lost and so the next person to widen the grid finds the number already waiting. Nothing reads this section. T-1088 adds the North Division's whole Kinzie-to-the-river tier — seven numerals, 7 6 5 4 3 2 1 west to east — for this reason and no other: the tier's street control is committed and attested, so every crop below is cut from it by tools/read_north_division_numerals.py and re-cut by the gate, but tools/generate_plat_lots.py emits only the three South Division tiers, so there is no cell for the numbers to be stamped onto. Widen the generator and these seven are waiting. T-1094 adds the Original Town's southernmost tier — Washington Street to Madison Street, seven numerals, 52 53 54 55 56 57 58 rising eastward — on the same terms and with one stated weakness: Washington and Madison are committed across the whole tier, but the seven flanking north-south lines stop at y = -400 m and are CONTINUED SOUTH along their own bearing to cut the boxes. That continuation is a computation from committed endpoints and is not written into data/streets/1835.json, because a line this project has no control for should not be published as one. generate_plat_lots.py emits nothing south of Washington either, so these seven wait for a cell beside the North Division's.",
   "readings": [
    {
     "where": "Canal Street to West Water Street, Randolph to Washington — the West Division block on the west bank of the South Branch",
@@ -566,6 +567,184 @@
      "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2430,1481,184,204/full/0/default.jpg"
     },
     "note": "READ, and the tier's eastern end: the pink wash of Wolcott Street closes the crop on the east and Kinzie's Addition's green begins beyond it. The numeral is the same flagged diagonal as the lot numeral 1 printed at the block's south-east corner, at about twice the size."
+   },
+   {
+    "where": "the South Branch to Market Street, Washington to Madison — the tier's westernmost block, pinched by the river",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": null,
+     "east": "market",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 52,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1366,2346,178,205",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1366,2346,178,205/full/0/default.jpg",
+     "read_at": "1472,2431,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1472,2431,72,73/full/0/default.jpg",
+     "read_at_overhang_px": 10,
+     "read_at_overhanging": "1482,2431,72,73",
+     "read_at_overhanging_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1482,2431,72,73/full/0/default.jpg"
+    },
+    "note": "The tier's westernmost block, between the South Branch and Market Street. Its west edge is the river bank and not a committed street, so the box is cut one module (123.36 m) west of Market Street and is wider than the block; the numeral sits in the box's eastern sixth. It is also the ONE numeral of the seven that is not wholly inside its own box: the 2's terminal flourish runs 10 px (about 7 m on the ground) past the east edge, because the georeference seats Market Street about 25 m west of the block line Wright inks here, and the crop's edge is the georeferenced line. `read_at` is the window the numeral was actually read on and `read_at_overhang_px` records that overhang so the gate checks it rather than tolerating it. The 5 carries the flagged top and deep bowl Wright gives every 5 in this tier; the 2 is his open-tailed form, distinct from the closed lower loop of the 3 in block 53 immediately east."
+   },
+   {
+    "where": "Market Street to Franklin Street, Washington to Madison",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": "market",
+     "east": "franklin",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 53,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1542,2351,176,203",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1542,2351,176,203/full/0/default.jpg",
+     "read_at": "1621,2434,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1621,2434,72,73/full/0/default.jpg"
+    },
+    "note": "The 5 is the tier's standard flagged form. The second glyph is a 3 and not a second 5: its lower bowl CLOSES into a loop and its top carries no flag, where block 55 one tier-step east prints two flagged 5s side by side in the same hand and the same size for comparison."
+   },
+   {
+    "where": "Franklin Street to Wells Street, Washington to Madison",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": "franklin",
+     "east": "wells",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 54,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1717,2356,176,202",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1717,2356,176,202/full/0/default.jpg",
+     "read_at": "1801,2437,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1801,2437,72,73/full/0/default.jpg"
+    },
+    "note": "The plainest read of the seven. The 4 is the crossed diagonal, its upright carried well below the block's mid-line, and nothing else in this tier is shaped like it."
+   },
+   {
+    "where": "Wells Street to La Salle Street, Washington to Madison",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": "wells",
+     "east": "lasalle",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 55,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1892,2361,176,200",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1892,2361,176,200/full/0/default.jpg",
+     "read_at": "1976,2441,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1976,2441,72,73/full/0/default.jpg"
+    },
+    "note": "Two identical glyphs, both flagged at the top over a deep bowl. This block is what fixes Wright's 5 for the tier, and every other entry here reads its leading glyph against it."
+   },
+   {
+    "where": "La Salle Street to Clark Street, Washington to Madison",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": "lasalle",
+     "east": "clark",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 56,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "2066,2366,178,199",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2066,2366,178,199/full/0/default.jpg",
+     "read_at": "2141,2444,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2141,2444,72,73/full/0/default.jpg"
+    },
+    "note": "The 6 is a long approach stroke rising from the left, arching over and closing into a loop below — no flag on the top, which is what separates it from the 5 beside it. Its eastern edge runs close to the box's, and `read_at` sits wholly inside."
+   },
+   {
+    "where": "Clark Street to Dearborn Street, Washington to Madison",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": "clark",
+     "east": "dearborn",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 57,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "2243,2371,177,197",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2243,2371,177,197/full/0/default.jpg",
+     "read_at": "2321,2448,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2321,2448,72,73/full/0/default.jpg"
+    },
+    "note": "The 7 is the long flagged diagonal, the same form T-1088 read as the North Division's block 7 numeral, at about the same size."
+   },
+   {
+    "where": "Dearborn Street to State Street, Washington to Madison — the tier's eastern end",
+    "tier": "washington_madison_original_town",
+    "bounded_by": {
+     "west": "dearborn",
+     "east": "state",
+     "north": "washington",
+     "south": "madison",
+     "note": "The flanking north-south centrelines are committed but stop at y = -400 m; each is continued south along the bearing of its own committed path to Madison Street. tools/read_washington_madison_numerals.py states that rule and the gate re-cuts every box from it."
+    },
+    "number": 58,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "2419,2376,184,196",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2419,2376,184,196/full/0/default.jpg",
+     "read_at": "2490,2451,72,73",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2490,2451,72,73/full/0/default.jpg"
+    },
+    "note": "The 8 is the double loop, drawn closed both above and below. The block is the tier's eastern end: State Street closes the crop and the box is the widest of the seven because the Dearborn-State module is."
    }
   ]
  }
