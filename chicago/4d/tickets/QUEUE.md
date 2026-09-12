@@ -152,7 +152,6 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
-T-1076 — The Michigan St tract read off Wright's 600 dpi sheet, its two streets identified as Market and Michigan, and the sheet's PLSS section numbering settled against the owner's fractional-16 reading
 T-1075 — The Michigan St tract named and seated: who platted it and what the sources call it, and its street, alley, parcels and the curved road north into the town's data
 T-1072 — The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
 T-1069 — Wabansia's blocks numbered and its river-front water lots recorded as a lot strip, off Wright's sheet
