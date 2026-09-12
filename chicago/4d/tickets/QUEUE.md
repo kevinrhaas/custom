@@ -153,7 +153,6 @@ T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a c
 
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-T-1086 — Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-0255 — The dooryard planting rule reads every street in the town with no bound on reach, so a track across the river can turn a house's yard
 T-0858 — The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton

@@ -1,7 +1,7 @@
 ---
 id: T-1086
 title: Wabansia's tract polygon has no east boundary until the water-lot wedge is seated, and place_vocabulary still calls the tract undecided on ground the project now commits
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1207
 claimed_by: run 9/12/2026, 1:37:48 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T19:39:34.887Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34711573150
 ---
 
