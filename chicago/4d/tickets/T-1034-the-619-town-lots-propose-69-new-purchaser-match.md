@@ -215,14 +215,62 @@ Colonel on `miller_samuel`, and `person_w_montgomery` holding Loton W.'s `boot a
 maker` beside the auctioneer's own trades. A ruling refuses a purchase and does not rewrite
 a person, so neither was repaired here.
 
-### NEXT
+**Cohort C3 — the last ten, surnames S–Z.** Ruled 2026-09-12. **Eight upheld, two
+refused** — `ruled` 127/1/72/10 → **135/1/74/0**, and that zero is what this ticket was
+opened to reach. Matched 138 → 136, two cards retracted with four register rows and $7,175
+of stated purchase money. No acres move: all four are town lots.
 
-**Cohort C3 — the last ten, surnames S–Z**: SMITH JAMES A, STEWART ROYAL, TAYLOR A D,
-TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H,
-WRIGHT A. WALKER G H and WALKER GEORGE H are one person under two readings and are to be
-ruled together, as cohort A ruled its pairs. Two carry a rival the layer has already flagged
-on the MIDDLE initial — TAYLOR A D against Anson H. Taylor, WALKER G H against George E.
-Walker — so rule 2 is live in this block rather than academic. And ask the register first:
-C2's four decisions came from the book's own other spellings. **10 unruled.** This is the
-LAST block; the run that finishes it closes this ticket WITH the count, never on 'there was
-nothing left'.
+| upheld | refused |
+|---|---|
+| STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H | SMITH JAMES A, WRIGHT A |
+
+**What the cohort taught, in one line each** (the argument is in the domain README):
+
+*A crosswalk's recorded REFUSAL is evidence, not a gap.* WRIGHT A is refused because three
+separate files already say, each in its own words, that the surname is in their volume and
+no entry under it carries an A — Fergus 1843 weighing six Wrights, Norris 1844 two, the
+Second Presbyterian roll eleven. Somebody looked, and wrote down that they looked.
+
+*An initial-only reading cannot corroborate an initial-only purchase.* The one 'A. Wright'
+in the corpus is a bidder in Fergus 1839's lot sale, folded on by the same letter A. That
+is the proposal a second time, not a check on it.
+
+*The printed man who carries the register's middle initial can be one the layer does not
+hold apart.* SMITH JAMES A is refused with 'Smith, James Ayer, clerk' / 'Smith, J. A.'
+sitting inside the very fold the card's 1843 and 1844 matches are recorded AMBIGUOUS on —
+while the card's one unambiguous entry, Fergus 1839's constable, carries M.
+
+*Say the fact that cuts the other way.* The 1840 census does print a head 'James A. Smith',
+and the census crosswalk has already ruled it a CANDIDATE and no more. It is written into
+the refusal so the next reader can overturn it if a token ever turns up.
+
+*Two spellings of one man can be proved by the page rather than argued.* WALKER G H takes
+lot 6 and WALKER GEORGE H lot 1 of block 37 on one day, and the town prints both forms —
+'G. H. Walker' in a letter list, 'WALKER, GEORGE H' on Kercheval's Black Hawk muster roll.
+
+*An office is a token.* WALKER JAMES, the oldest purchase in the domain (4 October 1830, the
+canal commissioners' first sale), is upheld on the Democrat swearing an estray appraisal
+'before James Walker, J. P.' — and the same notice prints Jeremiah Walker beside him, so
+the page separates the layer's two Walkers itself. The ruling asserts no residence: Walker's
+Grove is not the town.
+
+*A `letter_list_only` card survives only when the list is not what carries it.* WOODWORTH
+J H is upheld on Fergus 1839's firm line 'Woodworth, Robert P. & James H., wholesale dry
+goods merchants, 103 Lake st', Fergus 1843's 'James Hutchinson, merchant', and the US House
+biography — three documents past the list.
+
+*The ceiling did not move, fifth cohort running.* `--tighten land_sales` answers *nothing to
+reclaim* and 867 stands. Across all seventy-two judgements of this ticket the meter moved
+twice, by one each time: T-0962's blind spot is now measured rather than suspected.
+
+Filed on the way past: nothing. The one finding — Fergus 1839's compound firm entry
+'Robert P. & James H. Woodworth' missing from the card's directory appearances, because a
+man shares his printed line with his partner — is recorded in the ruling and the domain
+README rather than opened, per the queue's FILING RULE.
+
+### CLOSED, WITH THE COUNT
+
+**Seventy-two proposals arrived when T-1033 joined the town lots to the reading, and
+seventy-two are ruled: 46 upheld, 26 refused, across five cohorts.** The crosswalk's `ruled`
+block reads **135 upheld, 1 named, 74 refused, 0 unruled**. This ticket closes on that
+count, and not on 'there was nothing left'.

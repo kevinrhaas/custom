@@ -30,7 +30,7 @@ Each line is *how many of the 1373 people carry at least one record of that kind
 | household membership | **44** | 3.2% | recorded inside a household of two or more people |
 | kinship | **14** | 1.0% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.5% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **301** | 21.9% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **300** | 21.8% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **49** | 3.6% | an 1840 census row bridged to this person |
 
 ## What each person rests on
@@ -52,7 +52,7 @@ record agree; two newspaper notices of the same name are
 | category | people citing at least one |
 | --- | ---: |
 | newspaper | 1149 |
-| civic | 301 |
+| civic | 300 |
 | census | 49 |
 | church | 46 |
 | book | 259 |
