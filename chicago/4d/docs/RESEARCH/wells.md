@@ -141,7 +141,7 @@ not Chicago and it is not evidence of anything in Chicago.
 changes is that the question is answered on the record, with citations, where the next run
 will find it.
 
-## 5 · The fort's well, measured — and still not drawn (T-0881)
+## 5 · The fort's well, measured (T-0881) — and drawn (T-0887)
 
 Clause 4 above left the fort's well open, and T-0881 is where it was answered. **It is measured
 and it is refused a mesh, and those are two separate decisions.**
@@ -188,10 +188,25 @@ honestly build, and say so. Here there is no evidence record to keep either, bec
 record with no buildable form does not validate — so the evidence is banked HERE, at the
 coordinate, where the next run will find it.
 
-**What would change it:** a well or well-head layer, drawn renderer-side from its own record the
-way `renderers/web/js/enclosures.js` draws the estray pen's fence — no bake, no archetype, and
-one documented instance to draw. That is filed as its own ticket, and it inherits the coordinate
-above rather than re-reading the plate.
+**What changed it, and it is exactly what this clause asked for (T-0887, 2026-09-11).** There is
+a well layer now — `data/wells/`, drawn by `renderers/web/js/wells.js` — built on the same
+argument `renderers/web/js/enclosures.js` makes for the pound's fence: no bake, no archetype, no
+`assets/`, and the geometry derived at load from committed numbers. The fort's well stands at the
+coordinate above, **inherited from this section rather than re-read from the plate**, and the four
+inventions the paragraph above lists are what the layer draws and what `docs/LIBERTIES.md` **L234**
+claims: a round timber curb 1.10 m across the outside, 0.60 m high and 0.10 m thick, over a 0.90 m
+opening. Three of the refusals in this section are carried into the record and one into the code.
+**No dimension is taken from the ring** — the record's own `plate_symbol` block restates the 4.7 m
+arithmetic so nobody is tempted twice. **No lifting gear is drawn at all**: sweep, windlass and
+rope look nothing like one another, nothing says which stood here, and the residual is stated on
+the record rather than resolved by taste. **No ground treatment**, for the same reason the apron
+has no bound. And **clause 1's refusal of a well CLASS is now enforced by the renderer**: a well
+whose `position_confidence` is not `documented` or `attested` is refused and the refusal recorded
+as a problem, so the layer draws places and cannot mint a distribution.
+
+**What is still open here:** the depth, the water level, the lifting gear and whether the shaft was
+cribbed or stoned. A post return, quartermaster's estimate or engineer's report would settle most
+of them together.
 
 **Links:** T-0592 · T-0423 · `docs/LOT-ADDRESS.md` · **L216** ·
 `data/research/newspapers/lot_addresses.json` ·

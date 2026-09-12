@@ -205,6 +205,8 @@ const COVERAGE = [
   ['renderers/web/js/signage.js', [1], 'the business signs (T-0039, T-0066)'],
   ['data/enclosures/', [1], 'fences, the pound, the dooryard pickets'],
   ['data/signage/', [1], 'what the signs say'],
+  ['renderers/web/js/wells.js', [1], "the fort's well head (T-0887)"],
+  ['data/wells/', [1], 'the well records'],
 
   // --- PART 2: the trading frontages, the river's edge and what floats on it
   ['renderers/web/js/frontage.js', [2], 'the frontage layer (T-0082, T-0090)'],
