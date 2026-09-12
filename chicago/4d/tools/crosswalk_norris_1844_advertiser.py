@@ -38,6 +38,7 @@ import json, os, re, sys
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import name_agreement as na  # the title and suffix vocabulary, imported not restated
 import tiebreak            # the tie discriminator (T-0696), imported not restated
 import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
@@ -51,8 +52,14 @@ OUT = os.path.join(ROOT, "data/research/directories/norris_1844_advertiser_cross
 # what "the same surname" means and can be read side by side.
 FOLD = [(r"[^a-z]", ""), (r"^mc", "mac"), (r"^m$", ""), (r"ii", "n"), (r"rn", "m"),
         (r"vv", "w"), (r"1", "l"), (r"0", "o")]
-TITLES = ("mrs", "miss", "mr", "dr", "doctor", "capt", "col", "rev", "gen", "maj")
-SUFFIXES = ("jr", "sr", "jun", "junr", "esq", "md", "2d")
+# The titles are name_agreement's vocabulary, imported rather than restated
+# (T-0987 stretch 8): four crosswalks each carried their own copy, the copies
+# drifted, and not one of them held a rank spelled out in full.
+TITLES = na.TITLES
+# `junr` and `md` are this volume's own, and are kept: its tokeniser splits on
+# whitespace alone, so "M.D." reaches the test as one word here and as two
+# everywhere else.
+SUFFIXES = na.SUFFIXES + ("junr", "md")
 
 
 def fold(name: str) -> str:

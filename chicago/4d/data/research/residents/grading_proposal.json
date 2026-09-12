@@ -59,20 +59,20 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6845,
+  "identities": 6844,
   "by_grade": {
    "None": 45,
-   "not_1835_resident": 4490,
+   "not_1835_resident": 4489,
    "inferred": 1943,
    "attested": 367
   },
   "by_subtype": {
-   "None": 5133,
+   "None": 5132,
    "projected_resident": 1712
   },
   "by_rule": {
    "G5": 45,
-   "G0": 4490,
+   "G0": 4489,
    "G3": 1711,
    "G1b": 294,
    "G2b": 39,
@@ -6234,9 +6234,8 @@
   {"identity":"id_thompson_george_c","name":"George C Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2436","directories:n1844_e1765"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_thompson_j_c","name":"J C Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-DD:31"],"evidence_classes":["census_1840"]},
   {"identity":"id_thompson_john_leverett","name":"John Leverett Thompson","canonical_person_id":"thompson_john","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["old_settlers:fdn0666","newspapers:person_john_thompson"],"evidence_classes":["death_notice","newspaper_letter_list","town_layer"]},
-  {"identity":"id_thompson_joseph","name":"Joseph Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2437","directories:n1844_e1767"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_thompson_leonard_w","name":"Leonard W Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2438","directories:n1844_e1766"],"evidence_classes":["directory_1843","directory_1844"]},
-  {"identity":"id_thompson_lieut_j_l","name":"Lieut J L Thompson","canonical_person_id":"thompson_lieut_j_l","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_lieut_j_l_thompson"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
+  {"identity":"id_thompson_lieut_j_l","name":"Lieut J L Thompson","canonical_person_id":"thompson_lieut_j_l","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_lieut_j_l_thompson","directories:f1843_e2437","directories:n1844_e1767"],"evidence_classes":["directory_1843","directory_1844","newspaper_1833_1835","town_layer"]},
   {"identity":"id_thompson_lieut_seth","name":"Lieut Seth Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0665"],"evidence_classes":["death_notice"]},
   {"identity":"id_thompson_o_i","name":"O I Thompson","canonical_person_id":"thompson_o_i","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_o_i_thompson"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_thompson_robert","name":"Robert Thompson","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:blackhawk_1832_112"],"evidence_classes":["muster_1832"]},

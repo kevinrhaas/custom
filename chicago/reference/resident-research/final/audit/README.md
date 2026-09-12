@@ -30,16 +30,16 @@ Each line is *how many of the 1295 people carry at least one record of that kind
 | household membership | **44** | 3.4% | recorded inside a household of two or more people |
 | kinship | **14** | 1.1% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.9% | the household resolves a `lives_at` or a `works_at` |
-| voter / civic evidence | **300** | 23.2% | a poll book, tax list, muster roll, treaty payment or other public record |
+| voter / civic evidence | **301** | 23.2% | a poll book, tax list, muster roll, treaty payment or other public record |
 | census linkage | **47** | 3.6% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
 | audit result | people | % |
 | --- | ---: | ---: |
-| `corroborated_across_categories` | 453 | 35.0% |
+| `corroborated_across_categories` | 454 | 35.1% |
 | `two_or_more_sources_one_category` | 12 | 0.9% |
-| `one_source` | 256 | 19.8% |
+| `one_source` | 255 | 19.7% |
 | `the_letter_lists_alone` | 571 | 44.1% |
 | `no_source` | 3 | 0.2% |
 
@@ -52,10 +52,10 @@ record agree; two newspaper notices of the same name are
 | category | people citing at least one |
 | --- | ---: |
 | newspaper | 1070 |
-| civic | 300 |
+| civic | 301 |
 | census | 47 |
 | church | 46 |
-| book | 256 |
+| book | 255 |
 | directory | 226 |
 | secondary | 80 |
 
@@ -323,7 +323,7 @@ defect in this export.
 | no census linkage | 1248 | no 1840 census row is bridged to this person |
 | no address | 1219 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1199 | the household carries division `unplaced`: in the town, on no lot |
-| rests on one source | 827 | one source id on the card and no second category to check it against |
+| rests on one source | 826 | one source id on the card and no second category to check it against |
 | rests on the letter lists alone | 571 | known only from the post office's uncalled-for lists |
 | no research row | 455 | no cohort ticket has reviewed this person; the programme reached 840 of 1295 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
