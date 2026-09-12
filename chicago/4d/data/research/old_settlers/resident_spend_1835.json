@@ -19,8 +19,8 @@
   "grades_changed": 0,
   "carrying_a_date_of_death": 57,
   "carrying_a_birth_interval": 42,
-  "matched_on_initial_only": 9,
-  "the_1835_card_gives_no_forename": 8,
+  "matched_on_initial_only": 8,
+  "the_1835_card_gives_no_forename": 7,
   "the_list_prints_no_forename": 2,
   "died_outside_chicago": 34
  },
@@ -36,27 +36,27 @@
  "not_written": [
   {
    "group": "contested",
-   "rulings": 19,
+   "rulings": 17,
    "why": "two 1835 people meet one entry and the crosswalk chose neither; a card citing the entry anyway would print an undecided identity as a decided one"
   },
   {
    "group": "ambiguous",
-   "rulings": 18,
+   "rulings": 17,
    "why": "one 1835 person meets more than one entry, so the list names a death and cannot say which one is this person's"
   },
   {
    "group": "refusals",
-   "rulings": 257,
+   "rulings": 243,
    "why": "the surname agrees and the given initial does not, or is absent — a surname-only agreement is a refusal however good it looks"
   },
   {
    "group": "probable (roster)",
-   "rulings": 2,
+   "rulings": 1,
    "why": "rule OS2: one bearer of the surname and an initial that agrees, with nothing spelling the forename out. Probable is not merged and goes to the identity master as a proposal"
   },
   {
    "group": "refusals (roster)",
-   "rulings": 279,
+   "rulings": 280,
    "why": "no bearer of the surname, or the forename initials differ (OS3/OS4/OS5)"
   }
  ],
@@ -222,15 +222,6 @@
    "birth_year_earliest": null,
    "birth_year_latest": null,
    "matched_on_initial_only": false
-  },
-  {
-   "household_id": "hh_ellis_j",
-   "person_id": "ellis_j",
-   "record_id": "fdn0194",
-   "death_date": "1890-12-20",
-   "birth_year_earliest": 1827,
-   "birth_year_latest": 1828,
-   "matched_on_initial_only": true
   },
   {
    "household_id": "hh_flint_a_w",
@@ -518,6 +509,15 @@
    "death_date": "1888-09",
    "birth_year_earliest": 1831,
    "birth_year_latest": 1831,
+   "matched_on_initial_only": false
+  },
+  {
+   "household_id": "hh_smith_jeremiah",
+   "person_id": "smith_jeremiah",
+   "record_id": "fdn0610",
+   "death_date": "1893-03-06",
+   "birth_year_earliest": 1817,
+   "birth_year_latest": 1818,
    "matched_on_initial_only": false
   },
   {

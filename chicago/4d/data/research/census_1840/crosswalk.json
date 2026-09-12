@@ -12,10 +12,10 @@
       "outcomes": {
         "named_heads": 965,
         "matched": 14,
-        "candidate": 16,
-        "refused": 935
+        "candidate": 15,
+        "refused": 936
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 15 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -343,18 +343,8 @@
     },
     {
       "a": "Thomas E. Smith",
-      "b": "D A Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
-      "evidence": [
-        "33S7-9YYJ-2T",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Thomas E. Smith",
       "b": "E Kirby Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -364,7 +354,7 @@
     {
       "a": "Thomas E. Smith",
       "b": "Elded Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -374,17 +364,7 @@
     {
       "a": "Thomas E. Smith",
       "b": "George Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
-      "evidence": [
-        "33S7-9YYJ-2T",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Thomas E. Smith",
-      "b": "James Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -394,7 +374,7 @@
     {
       "a": "Thomas E. Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -404,7 +384,7 @@
     {
       "a": "Thomas E. Smith",
       "b": "L W Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -414,7 +394,27 @@
     {
       "a": "Thomas E. Smith",
       "b": "Lawrence Smith",
-      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'thomas'.",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
+      "evidence": [
+        "33S7-9YYJ-2T",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Thomas E. Smith",
+      "b": "Matthias Smith",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
+      "evidence": [
+        "33S7-9YYJ-2T",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Thomas E. Smith",
+      "b": "William Smith",
+      "rule": "'Thomas E. Smith' at printed page 221 line 13 (33S7-9YYJ-2T) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -474,7 +474,7 @@
     {
       "a": "James Robinson",
       "b": "Catherine Chevalier Robinson",
-      "rule": "'James Robinson' at printed page 221 line 27 (33S7-9YYJ-2T) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'james'.",
+      "rule": "'James Robinson' at printed page 221 line 27 (33S7-9YYJ-2T) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'james'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -484,17 +484,7 @@
     {
       "a": "James Robinson",
       "b": "D O Robinson",
-      "rule": "'James Robinson' at printed page 221 line 27 (33S7-9YYJ-2T) is NOT 'D O Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'james'.",
-      "evidence": [
-        "33S7-9YYJ-2T",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "James Robinson",
-      "b": "Hugh Robinson",
-      "rule": "'James Robinson' at printed page 221 line 27 (33S7-9YYJ-2T) is NOT 'Hugh Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'james'.",
+      "rule": "'James Robinson' at printed page 221 line 27 (33S7-9YYJ-2T) is NOT 'D O Robinson': The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'james'.",
       "evidence": [
         "33S7-9YYJ-2T",
         "T-0505",
@@ -624,17 +614,7 @@
     {
       "a": "Barry Grant",
       "b": "James Grant",
-      "rule": "'Barry Grant' at printed page 231 line 15 (33S7-9YYJ-38) is NOT 'James Grant': The surname 'grant' is carried by 2 person(s) of 1835 (James Grant, Thomas D Grant) and none of their given names is 'barry'.",
-      "evidence": [
-        "33S7-9YYJ-38",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Barry Grant",
-      "b": "Thomas D Grant",
-      "rule": "'Barry Grant' at printed page 231 line 15 (33S7-9YYJ-38) is NOT 'Thomas D Grant': The surname 'grant' is carried by 2 person(s) of 1835 (James Grant, Thomas D Grant) and none of their given names is 'barry'.",
+      "rule": "'Barry Grant' at printed page 231 line 15 (33S7-9YYJ-38) is NOT 'James Grant': The surname 'grant' is carried by 1 person(s) of 1835 (James Grant) and none of their given names is 'barry'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -1013,18 +993,8 @@
     },
     {
       "a": "Daniel Miller",
-      "b": "Fred Miller",
-      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'Fred Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
-      "evidence": [
-        "33S7-9YYJ-99F",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Daniel Miller",
       "b": "George Miller",
-      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'George Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
+      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'George Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
       "evidence": [
         "33S7-9YYJ-99F",
         "T-0505",
@@ -1034,7 +1004,7 @@
     {
       "a": "Daniel Miller",
       "b": "John Miller",
-      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'John Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
+      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'John Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
       "evidence": [
         "33S7-9YYJ-99F",
         "T-0505",
@@ -1044,7 +1014,7 @@
     {
       "a": "Daniel Miller",
       "b": "Samuel Miller",
-      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'Samuel Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
+      "rule": "'Daniel Miller' at printed page 234 line 20 (33S7-9YYJ-99F) is NOT 'Samuel Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'daniel'.",
       "evidence": [
         "33S7-9YYJ-99F",
         "T-0505",
@@ -1057,16 +1027,6 @@
       "rule": "'John Shaw' at printed page 234 line 30 (33S7-9YYJ-99F) is NOT 'Samuel Shaw': The surname 'shaw' is carried by 1 person(s) of 1835 (Samuel Shaw) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYJ-99F",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "David Mead",
-      "b": "A J Mead",
-      "rule": "'David Mead' at printed page 225 line 1 (33S7-9YYJ-9HY) is NOT 'A J Mead': The surname 'mead' is carried by 1 person(s) of 1835 (A J Mead) and none of their given names is 'david'.",
-      "evidence": [
-        "33S7-9YYJ-9HY",
         "T-0505",
         "L3 given_name_conflict"
       ]
@@ -1123,18 +1083,8 @@
     },
     {
       "a": "Joseph H. Smith",
-      "b": "D A Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
-      "evidence": [
-        "33S7-9YYJ-9HY",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Joseph H. Smith",
       "b": "E Kirby Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1144,7 +1094,7 @@
     {
       "a": "Joseph H. Smith",
       "b": "Elded Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1154,17 +1104,7 @@
     {
       "a": "Joseph H. Smith",
       "b": "George Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
-      "evidence": [
-        "33S7-9YYJ-9HY",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Joseph H. Smith",
-      "b": "James Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1174,7 +1114,7 @@
     {
       "a": "Joseph H. Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1184,7 +1124,7 @@
     {
       "a": "Joseph H. Smith",
       "b": "L W Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1194,7 +1134,27 @@
     {
       "a": "Joseph H. Smith",
       "b": "Lawrence Smith",
-      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'joseph'.",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
+      "evidence": [
+        "33S7-9YYJ-9HY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Joseph H. Smith",
+      "b": "Matthias Smith",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
+      "evidence": [
+        "33S7-9YYJ-9HY",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Joseph H. Smith",
+      "b": "William Smith",
+      "rule": "'Joseph H. Smith' at printed page 225 line 7 (33S7-9YYJ-9HY) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'joseph'.",
       "evidence": [
         "33S7-9YYJ-9HY",
         "T-0505",
@@ -1373,18 +1333,8 @@
     },
     {
       "a": "William R. Miller",
-      "b": "Fred Miller",
-      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'Fred Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
-      "evidence": [
-        "33S7-9YYJ-9K3",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "William R. Miller",
       "b": "George Miller",
-      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'George Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
+      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'George Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1394,7 +1344,7 @@
     {
       "a": "William R. Miller",
       "b": "John Miller",
-      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'John Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
+      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'John Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1404,7 +1354,7 @@
     {
       "a": "William R. Miller",
       "b": "Samuel Miller",
-      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'Samuel Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
+      "rule": "'William R. Miller' at printed page 219 line 10 (33S7-9YYJ-9K3) is NOT 'Samuel Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'william'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1534,17 +1484,7 @@
     {
       "a": "George Murray",
       "b": "Alonzo Murray",
-      "rule": "'George Murray' at printed page 219 line 31 (33S7-9YYJ-9K3) is NOT 'Alonzo Murray': The surname 'murray' is carried by 3 person(s) of 1835 (Alonzo Murray, James H Murray, Patrick Murray) and none of their given names is 'george'.",
-      "evidence": [
-        "33S7-9YYJ-9K3",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "George Murray",
-      "b": "James H Murray",
-      "rule": "'George Murray' at printed page 219 line 31 (33S7-9YYJ-9K3) is NOT 'James H Murray': The surname 'murray' is carried by 3 person(s) of 1835 (Alonzo Murray, James H Murray, Patrick Murray) and none of their given names is 'george'.",
+      "rule": "'George Murray' at printed page 219 line 31 (33S7-9YYJ-9K3) is NOT 'Alonzo Murray': The surname 'murray' is carried by 2 person(s) of 1835 (Alonzo Murray, Patrick Murray) and none of their given names is 'george'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1554,7 +1494,7 @@
     {
       "a": "George Murray",
       "b": "Patrick Murray",
-      "rule": "'George Murray' at printed page 219 line 31 (33S7-9YYJ-9K3) is NOT 'Patrick Murray': The surname 'murray' is carried by 3 person(s) of 1835 (Alonzo Murray, James H Murray, Patrick Murray) and none of their given names is 'george'.",
+      "rule": "'George Murray' at printed page 219 line 31 (33S7-9YYJ-9K3) is NOT 'Patrick Murray': The surname 'murray' is carried by 2 person(s) of 1835 (Alonzo Murray, Patrick Murray) and none of their given names is 'george'.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1695,16 +1635,6 @@
       "a": "Nathaniel Gould",
       "b": "A. B. Gould",
       "rule": "'Nathaniel Gould' at printed page 229 line 22 (33S7-9YYJ-9M5) is NOT 'A. B. Gould': The surname 'gould' is carried by 1 person(s) of 1835 (A. B. Gould) and none of their given names is 'nathaniel'.",
-      "evidence": [
-        "33S7-9YYJ-9M5",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "John McCloud",
-      "b": "H Mccloud",
-      "rule": "'John McCloud' at printed page 229 line 23 (33S7-9YYJ-9M5) is NOT 'H Mccloud': The surname 'mccloud' is carried by 1 person(s) of 1835 (H Mccloud) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYJ-9M5",
         "T-0505",
@@ -1973,18 +1903,8 @@
     },
     {
       "a": "Orson Smith",
-      "b": "D A Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
-      "evidence": [
-        "33S7-9YYJ-9RG",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Orson Smith",
       "b": "E Kirby Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -1994,7 +1914,7 @@
     {
       "a": "Orson Smith",
       "b": "Elded Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -2004,17 +1924,7 @@
     {
       "a": "Orson Smith",
       "b": "George Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
-      "evidence": [
-        "33S7-9YYJ-9RG",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Orson Smith",
-      "b": "James Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -2024,7 +1934,7 @@
     {
       "a": "Orson Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -2034,7 +1944,7 @@
     {
       "a": "Orson Smith",
       "b": "L W Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -2044,7 +1954,27 @@
     {
       "a": "Orson Smith",
       "b": "Lawrence Smith",
-      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'orson'.",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
+      "evidence": [
+        "33S7-9YYJ-9RG",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Orson Smith",
+      "b": "Matthias Smith",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
+      "evidence": [
+        "33S7-9YYJ-9RG",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Orson Smith",
+      "b": "William Smith",
+      "rule": "'Orson Smith' at printed page 210 line 24 (33S7-9YYJ-9RG) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'orson'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -2564,17 +2494,7 @@
     {
       "a": "Mary Reed",
       "b": "J. W. Reed",
-      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'J. W. Reed': The surname 'reed' is carried by 5 person(s) of 1835 (J. W. Reed, George Reed, S W Reed, Thomas Reed) and none of their given names is 'mary'.",
-      "evidence": [
-        "33S7-9YYJ-DD",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Mary Reed",
-      "b": "George Reed",
-      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'George Reed': The surname 'reed' is carried by 5 person(s) of 1835 (J. W. Reed, George Reed, S W Reed, Thomas Reed) and none of their given names is 'mary'.",
+      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'J. W. Reed': The surname 'reed' is carried by 4 person(s) of 1835 (J. W. Reed, S W Reed, Thomas Reed, William Reed) and none of their given names is 'mary'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2584,7 +2504,7 @@
     {
       "a": "Mary Reed",
       "b": "S W Reed",
-      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'S W Reed': The surname 'reed' is carried by 5 person(s) of 1835 (J. W. Reed, George Reed, S W Reed, Thomas Reed) and none of their given names is 'mary'.",
+      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'S W Reed': The surname 'reed' is carried by 4 person(s) of 1835 (J. W. Reed, S W Reed, Thomas Reed, William Reed) and none of their given names is 'mary'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2594,7 +2514,7 @@
     {
       "a": "Mary Reed",
       "b": "Thomas Reed",
-      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'Thomas Reed': The surname 'reed' is carried by 5 person(s) of 1835 (J. W. Reed, George Reed, S W Reed, Thomas Reed) and none of their given names is 'mary'.",
+      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'Thomas Reed': The surname 'reed' is carried by 4 person(s) of 1835 (J. W. Reed, S W Reed, Thomas Reed, William Reed) and none of their given names is 'mary'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2604,7 +2524,7 @@
     {
       "a": "Mary Reed",
       "b": "William Reed",
-      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'William Reed': The surname 'reed' is carried by 5 person(s) of 1835 (J. W. Reed, George Reed, S W Reed, Thomas Reed) and none of their given names is 'mary'.",
+      "rule": "'Mary Reed' at printed page 216 line 9 (33S7-9YYJ-DD) is NOT 'William Reed': The surname 'reed' is carried by 4 person(s) of 1835 (J. W. Reed, S W Reed, Thomas Reed, William Reed) and none of their given names is 'mary'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2644,17 +2564,7 @@
     {
       "a": "R. E. Heacock",
       "b": "Russel E. Heacock",
-      "rule": "'R. E. Heacock' at printed page 216 line 13 (33S7-9YYJ-DD) is NOT 'Russel E. Heacock': The head is written 'R. E. Heacock' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'heacock'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-DD",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "R. E. Heacock",
-      "b": "Russell E Heacock",
-      "rule": "'R. E. Heacock' at printed page 216 line 13 (33S7-9YYJ-DD) is NOT 'Russell E Heacock': The head is written 'R. E. Heacock' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'heacock'. A surname and a letter is not an identity.",
+      "rule": "'R. E. Heacock' at printed page 216 line 13 (33S7-9YYJ-DD) is NOT 'Russel E. Heacock': The head is written 'R. E. Heacock' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'heacock'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -3352,16 +3262,6 @@
       ]
     },
     {
-      "a": "R. C. Sheldon",
-      "b": "James Sheldon",
-      "rule": "'R. C. Sheldon' at printed page 218 line 26 (33S7-9YYJ-PC) is NOT 'James Sheldon': The head is written 'R. C. Sheldon' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'sheldon'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-PC",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
       "a": "S. M. Clarke",
       "b": "H. B. Clarke",
       "rule": "'S. M. Clarke' at printed page 218 line 29 (33S7-9YYJ-PC) is NOT 'H. B. Clarke': The head is written 'S. M. Clarke' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
@@ -3403,98 +3303,18 @@
     },
     {
       "a": "H. Townsend",
-      "b": "A Townsend",
-      "rule": "'H. Townsend' at printed page 241 line 3 (33S7-9YYJ-Q1) is NOT 'A Townsend': The head is written 'H. Townsend' — a surname and initials only — and 5 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "H. Townsend",
       "b": "C. E. Townsend",
-      "rule": "'H. Townsend' at printed page 241 line 3 (33S7-9YYJ-Q1) is NOT 'C. E. Townsend': The head is written 'H. Townsend' — a surname and initials only — and 5 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
+      "rule": "'H. Townsend' at printed page 241 line 3 (33S7-9YYJ-Q1) is NOT 'C. E. Townsend': The head is written 'H. Townsend' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-Q1",
         "T-0505",
         "L4 initial_only"
-      ]
-    },
-    {
-      "a": "H. Townsend",
-      "b": "Isaiah Townsend",
-      "rule": "'H. Townsend' at printed page 241 line 3 (33S7-9YYJ-Q1) is NOT 'Isaiah Townsend': The head is written 'H. Townsend' — a surname and initials only — and 5 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "H. Townsend",
-      "b": "Robert Townsend",
-      "rule": "'H. Townsend' at printed page 241 line 3 (33S7-9YYJ-Q1) is NOT 'Robert Townsend': The head is written 'H. Townsend' — a surname and initials only — and 5 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "H. Townsend",
-      "b": "Samuel Townsend",
-      "rule": "'H. Townsend' at printed page 241 line 3 (33S7-9YYJ-Q1) is NOT 'Samuel Townsend': The head is written 'H. Townsend' — a surname and initials only — and 5 person(s) of 1835 carry the surname 'townsend'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "Henry Townsend",
-      "b": "A Townsend",
-      "rule": "'Henry Townsend' at printed page 241 line 4 (33S7-9YYJ-Q1) is NOT 'A Townsend': The surname 'townsend' is carried by 5 person(s) of 1835 (A Townsend, C. E. Townsend, Isaiah Townsend, Robert Townsend) and none of their given names is 'henry'.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L3 given_name_conflict"
       ]
     },
     {
       "a": "Henry Townsend",
       "b": "C. E. Townsend",
-      "rule": "'Henry Townsend' at printed page 241 line 4 (33S7-9YYJ-Q1) is NOT 'C. E. Townsend': The surname 'townsend' is carried by 5 person(s) of 1835 (A Townsend, C. E. Townsend, Isaiah Townsend, Robert Townsend) and none of their given names is 'henry'.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Henry Townsend",
-      "b": "Isaiah Townsend",
-      "rule": "'Henry Townsend' at printed page 241 line 4 (33S7-9YYJ-Q1) is NOT 'Isaiah Townsend': The surname 'townsend' is carried by 5 person(s) of 1835 (A Townsend, C. E. Townsend, Isaiah Townsend, Robert Townsend) and none of their given names is 'henry'.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Henry Townsend",
-      "b": "Robert Townsend",
-      "rule": "'Henry Townsend' at printed page 241 line 4 (33S7-9YYJ-Q1) is NOT 'Robert Townsend': The surname 'townsend' is carried by 5 person(s) of 1835 (A Townsend, C. E. Townsend, Isaiah Townsend, Robert Townsend) and none of their given names is 'henry'.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Henry Townsend",
-      "b": "Samuel Townsend",
-      "rule": "'Henry Townsend' at printed page 241 line 4 (33S7-9YYJ-Q1) is NOT 'Samuel Townsend': The surname 'townsend' is carried by 5 person(s) of 1835 (A Townsend, C. E. Townsend, Isaiah Townsend, Robert Townsend) and none of their given names is 'henry'.",
+      "rule": "'Henry Townsend' at printed page 241 line 4 (33S7-9YYJ-Q1) is NOT 'C. E. Townsend': The surname 'townsend' is carried by 1 person(s) of 1835 (C. E. Townsend) and none of their given names is 'henry'.",
       "evidence": [
         "33S7-9YYJ-Q1",
         "T-0505",
@@ -3512,16 +3332,6 @@
       ]
     },
     {
-      "a": "Elijah Wentworth",
-      "b": "Elijah Wentworth sen.",
-      "rule": "'Elijah Wentworth' at printed page 241 line 6 (33S7-9YYJ-Q1) is NOT 'Elijah Wentworth sen.': The name 'Elijah Wentworth' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L5 name_is_not_unique"
-      ]
-    },
-    {
       "a": "Isaac B. Phelps",
       "b": "James H. Phelps",
       "rule": "'Isaac B. Phelps' at printed page 241 line 7 (33S7-9YYJ-Q1) is NOT 'James H. Phelps': The surname 'phelps' is carried by 1 person(s) of 1835 (James H. Phelps) and none of their given names is 'isaac'.",
@@ -3534,17 +3344,7 @@
     {
       "a": "Sanford",
       "b": "A R Sanford",
-      "rule": "'Sanford' at printed page 241 line 8 (33S7-9YYJ-Q1) is NOT 'A R Sanford': The head is written 'Sanford' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "Sanford",
-      "b": "N G Sanford",
-      "rule": "'Sanford' at printed page 241 line 8 (33S7-9YYJ-Q1) is NOT 'N G Sanford': The head is written 'Sanford' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
+      "rule": "'Sanford' at printed page 241 line 8 (33S7-9YYJ-Q1) is NOT 'A R Sanford': The head is written 'Sanford' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-Q1",
         "T-0505",
@@ -3554,7 +3354,7 @@
     {
       "a": "Sanford",
       "b": "Ruth Sanford",
-      "rule": "'Sanford' at printed page 241 line 8 (33S7-9YYJ-Q1) is NOT 'Ruth Sanford': The head is written 'Sanford' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
+      "rule": "'Sanford' at printed page 241 line 8 (33S7-9YYJ-Q1) is NOT 'Ruth Sanford': The head is written 'Sanford' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'sanford'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-Q1",
         "T-0505",
@@ -3564,7 +3364,7 @@
     {
       "a": "Robert Robinson",
       "b": "Catherine Chevalier Robinson",
-      "rule": "'Robert Robinson' at printed page 241 line 12 (33S7-9YYJ-Q1) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'robert'.",
+      "rule": "'Robert Robinson' at printed page 241 line 12 (33S7-9YYJ-Q1) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'robert'.",
       "evidence": [
         "33S7-9YYJ-Q1",
         "T-0505",
@@ -3574,17 +3374,7 @@
     {
       "a": "Robert Robinson",
       "b": "D O Robinson",
-      "rule": "'Robert Robinson' at printed page 241 line 12 (33S7-9YYJ-Q1) is NOT 'D O Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'robert'.",
-      "evidence": [
-        "33S7-9YYJ-Q1",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Robert Robinson",
-      "b": "Hugh Robinson",
-      "rule": "'Robert Robinson' at printed page 241 line 12 (33S7-9YYJ-Q1) is NOT 'Hugh Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'robert'.",
+      "rule": "'Robert Robinson' at printed page 241 line 12 (33S7-9YYJ-Q1) is NOT 'D O Robinson': The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'robert'.",
       "evidence": [
         "33S7-9YYJ-Q1",
         "T-0505",
@@ -3683,18 +3473,8 @@
     },
     {
       "a": "Samuel Smith",
-      "b": "D A Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
-      "evidence": [
-        "33S7-9YYJ-RC",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Samuel Smith",
       "b": "E Kirby Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
@@ -3704,7 +3484,7 @@
     {
       "a": "Samuel Smith",
       "b": "Elded Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
@@ -3714,17 +3494,7 @@
     {
       "a": "Samuel Smith",
       "b": "George Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
-      "evidence": [
-        "33S7-9YYJ-RC",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Samuel Smith",
-      "b": "James Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
@@ -3734,7 +3504,7 @@
     {
       "a": "Samuel Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
@@ -3744,7 +3514,7 @@
     {
       "a": "Samuel Smith",
       "b": "L W Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
@@ -3754,7 +3524,27 @@
     {
       "a": "Samuel Smith",
       "b": "Lawrence Smith",
-      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'samuel'.",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
+      "evidence": [
+        "33S7-9YYJ-RC",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Samuel Smith",
+      "b": "Matthias Smith",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
+      "evidence": [
+        "33S7-9YYJ-RC",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Samuel Smith",
+      "b": "William Smith",
+      "rule": "'Samuel Smith' at printed page 217 line 3 (33S7-9YYJ-RC) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-RC",
         "T-0505",
@@ -3943,18 +3733,8 @@
     },
     {
       "a": "Jacob Miller",
-      "b": "Fred Miller",
-      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'Fred Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
-      "evidence": [
-        "33S7-9YYJ-W6",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Jacob Miller",
       "b": "George Miller",
-      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'George Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
+      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'George Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",
@@ -3964,7 +3744,7 @@
     {
       "a": "Jacob Miller",
       "b": "John Miller",
-      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'John Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
+      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'John Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",
@@ -3974,7 +3754,7 @@
     {
       "a": "Jacob Miller",
       "b": "Samuel Miller",
-      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'Samuel Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
+      "rule": "'Jacob Miller' at printed page 232 line 3 (33S7-9YYJ-W6) is NOT 'Samuel Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'jacob'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",
@@ -4332,6 +4112,36 @@
       ]
     },
     {
+      "a": "Fred Miller",
+      "b": "George Miller",
+      "rule": "'Fred Miller' at printed page 239 line 23 (33S7-9YYN-3CDH) is NOT 'George Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'fred'.",
+      "evidence": [
+        "33S7-9YYN-3CDH",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Fred Miller",
+      "b": "John Miller",
+      "rule": "'Fred Miller' at printed page 239 line 23 (33S7-9YYN-3CDH) is NOT 'John Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'fred'.",
+      "evidence": [
+        "33S7-9YYN-3CDH",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Fred Miller",
+      "b": "Samuel Miller",
+      "rule": "'Fred Miller' at printed page 239 line 23 (33S7-9YYN-3CDH) is NOT 'Samuel Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'fred'.",
+      "evidence": [
+        "33S7-9YYN-3CDH",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
       "a": "Harris",
       "b": "David Harris",
       "rule": "'Harris' at printed page 239 line 24 (33S7-9YYN-3CDH) is NOT 'David Harris': The head is written 'Harris' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'harris'. A surname and a letter is not an identity.",
@@ -4409,16 +4219,6 @@
         "33S7-9YYN-3CDH",
         "T-0505",
         "L4 initial_only"
-      ]
-    },
-    {
-      "a": "William Mann",
-      "b": "John Mann",
-      "rule": "'William Mann' at printed page 227 line 4 (33SQ-GYYJ-6V) is NOT 'John Mann': The surname 'mann' is carried by 1 person(s) of 1835 (John Mann) and none of their given names is 'william'.",
-      "evidence": [
-        "33SQ-GYYJ-6V",
-        "T-0505",
-        "L3 given_name_conflict"
       ]
     },
     {
@@ -4612,16 +4412,6 @@
       ]
     },
     {
-      "a": "Charles Bower",
-      "b": "H Bower",
-      "rule": "'Charles Bower' at printed page 207 line 10 (33SQ-GYYJ-93G) is NOT 'H Bower': The surname 'bower' is carried by 1 person(s) of 1835 (H Bower) and none of their given names is 'charles'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
       "a": "E. H. Haddock",
       "b": "Edward H. Haddock",
       "rule": "'E. H. Haddock' at printed page 207 line 13 (33SQ-GYYJ-93G) is NOT 'Edward H. Haddock': The head is written 'E. H. Haddock' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'haddock'. A surname and a letter is not an identity.",
@@ -4643,18 +4433,8 @@
     },
     {
       "a": "Barney Smith",
-      "b": "D A Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Barney Smith",
       "b": "E Kirby Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4664,7 +4444,7 @@
     {
       "a": "Barney Smith",
       "b": "Elded Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4674,17 +4454,7 @@
     {
       "a": "Barney Smith",
       "b": "George Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Barney Smith",
-      "b": "James Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4694,7 +4464,7 @@
     {
       "a": "Barney Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4704,7 +4474,7 @@
     {
       "a": "Barney Smith",
       "b": "L W Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4714,7 +4484,27 @@
     {
       "a": "Barney Smith",
       "b": "Lawrence Smith",
-      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'barney'.",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Barney Smith",
+      "b": "Matthias Smith",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Barney Smith",
+      "b": "William Smith",
+      "rule": "'Barney Smith' at printed page 207 line 15 (33SQ-GYYJ-93G) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'barney'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4734,7 +4524,7 @@
     {
       "a": "John Robinson",
       "b": "Catherine Chevalier Robinson",
-      "rule": "'John Robinson' at printed page 207 line 20 (33SQ-GYYJ-93G) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'john'.",
+      "rule": "'John Robinson' at printed page 207 line 20 (33SQ-GYYJ-93G) is NOT 'Catherine Chevalier Robinson': The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'john'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4744,27 +4534,7 @@
     {
       "a": "John Robinson",
       "b": "D O Robinson",
-      "rule": "'John Robinson' at printed page 207 line 20 (33SQ-GYYJ-93G) is NOT 'D O Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'john'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "John Robinson",
-      "b": "Hugh Robinson",
-      "rule": "'John Robinson' at printed page 207 line 20 (33SQ-GYYJ-93G) is NOT 'Hugh Robinson': The surname 'robinson' is carried by 3 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson, Hugh Robinson) and none of their given names is 'john'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Christopher Smith",
-      "b": "D A Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'John Robinson' at printed page 207 line 20 (33SQ-GYYJ-93G) is NOT 'D O Robinson': The surname 'robinson' is carried by 2 person(s) of 1835 (Catherine Chevalier Robinson, D O Robinson) and none of their given names is 'john'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4774,7 +4544,7 @@
     {
       "a": "Christopher Smith",
       "b": "E Kirby Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4784,7 +4554,7 @@
     {
       "a": "Christopher Smith",
       "b": "Elded Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4794,17 +4564,7 @@
     {
       "a": "Christopher Smith",
       "b": "George Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Christopher Smith",
-      "b": "James Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4814,7 +4574,7 @@
     {
       "a": "Christopher Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4824,7 +4584,7 @@
     {
       "a": "Christopher Smith",
       "b": "L W Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -4834,7 +4594,107 @@
     {
       "a": "Christopher Smith",
       "b": "Lawrence Smith",
-      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'christopher'.",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Christopher Smith",
+      "b": "Matthias Smith",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Christopher Smith",
+      "b": "William Smith",
+      "rule": "'Christopher Smith' at printed page 207 line 22 (33SQ-GYYJ-93G) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'christopher'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "E Kirby Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "Elded Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "George Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "Jeremiah Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "L W Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "Lawrence Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "Matthias Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "James A. Smith",
+      "b": "William Smith",
+      "rule": "'James A. Smith' at printed page 207 line 23 (33SQ-GYYJ-93G) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'james'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -5124,47 +4984,17 @@
     {
       "a": "John Wentworth",
       "b": "Elijah Wentworth sen.",
-      "rule": "'John Wentworth' at printed page 211 line 19 (33SQ-GYYJ-97P) is NOT 'Elijah Wentworth sen.': The surname 'wentworth' is carried by 3 person(s) of 1835 (Elijah Wentworth sen., Elijah Wentworth, H E Wentworth) and none of their given names is 'john'.",
+      "rule": "'John Wentworth' at printed page 211 line 19 (33SQ-GYYJ-97P) is NOT 'Elijah Wentworth sen.': The surname 'wentworth' is carried by 1 person(s) of 1835 (Elijah Wentworth sen.) and none of their given names is 'john'.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
         "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "John Wentworth",
-      "b": "Elijah Wentworth",
-      "rule": "'John Wentworth' at printed page 211 line 19 (33SQ-GYYJ-97P) is NOT 'Elijah Wentworth': The surname 'wentworth' is carried by 3 person(s) of 1835 (Elijah Wentworth sen., Elijah Wentworth, H E Wentworth) and none of their given names is 'john'.",
-      "evidence": [
-        "33SQ-GYYJ-97P",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "John Wentworth",
-      "b": "H E Wentworth",
-      "rule": "'John Wentworth' at printed page 211 line 19 (33SQ-GYYJ-97P) is NOT 'H E Wentworth': The surname 'wentworth' is carried by 3 person(s) of 1835 (Elijah Wentworth sen., Elijah Wentworth, H E Wentworth) and none of their given names is 'john'.",
-      "evidence": [
-        "33SQ-GYYJ-97P",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "P. P. Smith",
-      "b": "D A Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'D A Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33SQ-GYYJ-97P",
-        "T-0505",
-        "L4 initial_only"
       ]
     },
     {
       "a": "P. P. Smith",
       "b": "E Kirby Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'E Kirby Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'E Kirby Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5174,7 +5004,7 @@
     {
       "a": "P. P. Smith",
       "b": "Elded Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Elded Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Elded Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5184,17 +5014,7 @@
     {
       "a": "P. P. Smith",
       "b": "George Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'George Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33SQ-GYYJ-97P",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "P. P. Smith",
-      "b": "James Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'James Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'George Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5204,7 +5024,7 @@
     {
       "a": "P. P. Smith",
       "b": "Jeremiah Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Jeremiah Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Jeremiah Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5214,7 +5034,7 @@
     {
       "a": "P. P. Smith",
       "b": "L W Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'L W Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'L W Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5224,7 +5044,27 @@
     {
       "a": "P. P. Smith",
       "b": "Lawrence Smith",
-      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Lawrence Smith': The head is written 'P. P. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Lawrence Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-97P",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "P. P. Smith",
+      "b": "Matthias Smith",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'Matthias Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-97P",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "P. P. Smith",
+      "b": "William Smith",
+      "rule": "'P. P. Smith' at printed page 211 line 22 (33SQ-GYYJ-97P) is NOT 'William Smith': The head is written 'P. P. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
@@ -5513,18 +5353,8 @@
     },
     {
       "a": "[W]m. Smith",
-      "b": "D A Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'D A Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33SQ-GYYJ-BP",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "[W]m. Smith",
       "b": "E Kirby Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'E Kirby Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'E Kirby Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-BP",
         "T-0505",
@@ -5534,7 +5364,7 @@
     {
       "a": "[W]m. Smith",
       "b": "Elded Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Elded Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Elded Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-BP",
         "T-0505",
@@ -5544,17 +5374,7 @@
     {
       "a": "[W]m. Smith",
       "b": "George Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'George Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33SQ-GYYJ-BP",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "[W]m. Smith",
-      "b": "James Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'James Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'George Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-BP",
         "T-0505",
@@ -5564,7 +5384,7 @@
     {
       "a": "[W]m. Smith",
       "b": "Jeremiah Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Jeremiah Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Jeremiah Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-BP",
         "T-0505",
@@ -5574,7 +5394,7 @@
     {
       "a": "[W]m. Smith",
       "b": "L W Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'L W Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'L W Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-BP",
         "T-0505",
@@ -5584,7 +5404,27 @@
     {
       "a": "[W]m. Smith",
       "b": "Lawrence Smith",
-      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Lawrence Smith': The head is written '[W]m. Smith' — a surname and initials only — and 11 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Lawrence Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "Matthias Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'Matthias Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-BP",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "[W]m. Smith",
+      "b": "William Smith",
+      "rule": "'[W]m. Smith' at printed page 214 line 27 (33SQ-GYYJ-BP) is NOT 'William Smith': The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-BP",
         "T-0505",
@@ -5634,17 +5474,7 @@
     {
       "a": "Charles C. Dow",
       "b": "Albert F. Dow",
-      "rule": "'Charles C. Dow' at printed page 223 line 10 (33SQ-GYYJ-LV) is NOT 'Albert F. Dow': The surname 'dow' is carried by 2 person(s) of 1835 (Albert F. Dow, Stephen E Dow) and none of their given names is 'charles'.",
-      "evidence": [
-        "33SQ-GYYJ-LV",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Charles C. Dow",
-      "b": "Stephen E Dow",
-      "rule": "'Charles C. Dow' at printed page 223 line 10 (33SQ-GYYJ-LV) is NOT 'Stephen E Dow': The surname 'dow' is carried by 2 person(s) of 1835 (Albert F. Dow, Stephen E Dow) and none of their given names is 'charles'.",
+      "rule": "'Charles C. Dow' at printed page 223 line 10 (33SQ-GYYJ-LV) is NOT 'Albert F. Dow': The surname 'dow' is carried by 1 person(s) of 1835 (Albert F. Dow) and none of their given names is 'charles'.",
       "evidence": [
         "33SQ-GYYJ-LV",
         "T-0505",
@@ -5892,16 +5722,6 @@
       ]
     },
     {
-      "a": "[J]ohn Ellis",
-      "b": "J Ellis",
-      "rule": "'[J]ohn Ellis' at printed page 220 line 31 (33SQ-GYYJ-P5) is NOT 'J Ellis': The surname 'ellis' is carried by 1 person(s) of 1835 (J Ellis) and none of their given names is 'ohn'.",
-      "evidence": [
-        "33SQ-GYYJ-P5",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
       "a": "William Pearson",
       "b": "Hiram Pearson",
       "rule": "'William Pearson' at printed page 233 line 4 (33SQ-GYYJ-RJ) is NOT 'Hiram Pearson': The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearson) and none of their given names is 'william'.",
@@ -5923,18 +5743,8 @@
     },
     {
       "a": "Henry Smith",
-      "b": "D A Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
-      "evidence": [
-        "33SQ-GYYJ-RJ",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Henry Smith",
       "b": "E Kirby Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -5944,7 +5754,7 @@
     {
       "a": "Henry Smith",
       "b": "Elded Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -5954,17 +5764,7 @@
     {
       "a": "Henry Smith",
       "b": "George Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
-      "evidence": [
-        "33SQ-GYYJ-RJ",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Henry Smith",
-      "b": "James Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -5974,7 +5774,7 @@
     {
       "a": "Henry Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -5984,7 +5784,7 @@
     {
       "a": "Henry Smith",
       "b": "L W Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -5994,7 +5794,27 @@
     {
       "a": "Henry Smith",
       "b": "Lawrence Smith",
-      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'henry'.",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
+      "evidence": [
+        "33SQ-GYYJ-RJ",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Henry Smith",
+      "b": "Matthias Smith",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
+      "evidence": [
+        "33SQ-GYYJ-RJ",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Henry Smith",
+      "b": "William Smith",
+      "rule": "'Henry Smith' at printed page 233 line 6 (33SQ-GYYJ-RJ) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -6343,18 +6163,8 @@
     },
     {
       "a": "Mathias Miller",
-      "b": "Fred Miller",
-      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'Fred Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
-      "evidence": [
-        "33SQ-GYYJ-ZQ",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Mathias Miller",
       "b": "George Miller",
-      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'George Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
+      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'George Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6364,7 +6174,7 @@
     {
       "a": "Mathias Miller",
       "b": "John Miller",
-      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'John Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
+      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'John Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6374,17 +6184,7 @@
     {
       "a": "Mathias Miller",
       "b": "Samuel Miller",
-      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'Samuel Miller': The surname 'miller' is carried by 4 person(s) of 1835 (Fred Miller, George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
-      "evidence": [
-        "33SQ-GYYJ-ZQ",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Robert Smith",
-      "b": "D A Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'D A Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Mathias Miller' at printed page 235 line 17 (33SQ-GYYJ-ZQ) is NOT 'Samuel Miller': The surname 'miller' is carried by 3 person(s) of 1835 (George Miller, John Miller, Samuel Miller) and none of their given names is 'mathias'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6394,7 +6194,7 @@
     {
       "a": "Robert Smith",
       "b": "E Kirby Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'E Kirby Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'E Kirby Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6404,7 +6204,7 @@
     {
       "a": "Robert Smith",
       "b": "Elded Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Elded Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Elded Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6414,17 +6214,7 @@
     {
       "a": "Robert Smith",
       "b": "George Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'George Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
-      "evidence": [
-        "33SQ-GYYJ-ZQ",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Robert Smith",
-      "b": "James Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'James Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'George Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6434,7 +6224,7 @@
     {
       "a": "Robert Smith",
       "b": "Jeremiah Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Jeremiah Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6444,7 +6234,7 @@
     {
       "a": "Robert Smith",
       "b": "L W Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'L W Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'L W Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",
@@ -6454,7 +6244,27 @@
     {
       "a": "Robert Smith",
       "b": "Lawrence Smith",
-      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Lawrence Smith': The surname 'smith' is carried by 11 person(s) of 1835 (D A Smith, E Kirby Smith, Elded Smith, George Smith) and none of their given names is 'robert'.",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Lawrence Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
+      "evidence": [
+        "33SQ-GYYJ-ZQ",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Robert Smith",
+      "b": "Matthias Smith",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'Matthias Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
+      "evidence": [
+        "33SQ-GYYJ-ZQ",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Robert Smith",
+      "b": "William Smith",
+      "rule": "'Robert Smith' at printed page 235 line 22 (33SQ-GYYJ-ZQ) is NOT 'William Smith': The surname 'smith' is carried by 9 person(s) of 1835 (E Kirby Smith, Elded Smith, George Smith, Jeremiah Smith) and none of their given names is 'robert'.",
       "evidence": [
         "33SQ-GYYJ-ZQ",
         "T-0505",

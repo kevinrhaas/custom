@@ -206,6 +206,19 @@ step "West Division approaches parcel matches its recipe" \
 step "platted block parcels match their recipe and the committed lots" \
   python3 tools/generate_block_infill.py --check
 
+# A frontage entry declares the lots its party-line run stands across, and until T-0429
+# nothing measured whether it did. That entry's run was anchored on the east end of its
+# own strip and packed back west until the roofs ran out, which happened two lots short
+# of the west end it had declared — and the declaration is read by three different files
+# for three different purposes, so an untrue one is not inert. This re-derives the reach
+# of every run in the town off the committed footprints and the committed plat, and the
+# three South Water entries it cannot correct without moving a roof are conceded BY NAME
+# in the tool with the measurement that found them (T-0449).
+step "every frontage run stands across the lots its recipe declares" \
+  python3 tools/measure_frontage_declaration.py --check
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_frontage_declaration.py --self-test
+
 # The residents manifest is DERIVED, and now it is gated like one (T-0715). Four
 # minting passes and four rewriting passes each rebuilt the SLICE of
 # data/residents/index.json they owned and left the rest verbatim, so a household no
@@ -569,6 +582,21 @@ step "every deferred in-town water feature is dated against the scene" \
 # other check still green. This joins the bridge's placement to the ground beneath it.
 step "the slough crossing spans open water, and nothing else stands in the cut" \
   python3 tools/measure_slough_crossing.py --gate
+
+# And the water the town DRANK, which is a different argument about the same surfaces.
+# `data/yard/town_water_cart.json` stands one cart where Andreas says the watermen drove
+# into the lake, and the committed field says that water is the old southward channel with
+# the sand bar and a quarter of a kilometre of open lake beyond it. T-0886 ruled the
+# contradiction — the phrase names a stretch of bank, and 167 m south along that bank the
+# traced bar ends and the water IS the lake — and the ruling is a set of distances read off
+# a derived surface, written out in two documents. Nothing but this joins the prose to the
+# field; a re-carve that drowns the bar or moves the waterline would leave both standing
+# over a shore that is no longer there.
+step "the watering place's ruling still matches the committed surfaces" \
+  python3 tools/measure_watering_place.py --gate --quiet
+
+selftest "…and the run classifier that reading rests on still fires" \
+  python3 tools/measure_watering_place.py --self-test
 
 # And the feature that crossing's own drain runs OUT of. "How much of the public
 # square was wet" (T-0027) presumes a fraction can be read off the block, and it
@@ -1962,9 +1990,10 @@ selftest "…and no back-projected face has grown a grade, a roof or an 1835 lin
   python3 tools/back_project_addresses.py --self-test
 
 # T-0669, the residence half of the same grammar: docs/RESIDENCE-BACK-PROJECTION.md, which
-# reads a street the volume prints as a HOME — its own `res` or `bds` — and carries it as
-# the household's street FACE and never as a point. All 48 residence addresses are
-# adjudicated and the 41 refusals are committed beside the 7 placements, for the same
+# reads a street the volume prints as a HOME — its own `res` or `bds`, or Norris's `house`,
+# `h` and `r` — and carries it as the household's street FACE and never as a point. All 61
+# residence addresses are adjudicated and the 47 refusals are committed beside the 14
+# placements, for the same
 # reason the business pass's are: a refusal that disappears from the record reads to the
 # next run as an address nobody looked at. The self-test additionally holds the invariant
 # the two policies share — no printed address is PLACED by both of them.
@@ -2420,6 +2449,23 @@ step "every business carries a census class, and the December 1835 count re-deri
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/trade_census_1835.py --self-test
+
+# T-1048 (of T-1047, of T-1040). `in_town_places()` resolves a place string against the bare
+# town, the committed 1835 streets and the committed structure names — and 193 of the
+# gazetteer's 2,665 persons carry nothing that resolves. The list is NOT 193 out-of-town men:
+# `Fort Dearborn`, `Water Street`, `the Mansion House` and `the corner of Water and Franklin
+# streets, Chicago` are all in the town and all fail it. So the vocabulary is resolved once
+# per printed string in data/research/newspapers/place_vocabulary.json — derived against the
+# committed dataset where it can be, ruled with its reasoning where it cannot — and this holds
+# that resolution to both ends: A STRING THE PAPERS PRINT AND NOBODY HAS RESOLVED, which is
+# what a newly extracted notice brings next week, and A DERIVATION THE DATASET NO LONGER
+# MAKES, which is what renaming a street or a building does to it. It also restates every
+# count in the file, so the measurement T-1049 argues from cannot go stale unnoticed.
+step "every place the newspapers print is resolved inside the town, outside it, or undecided" \
+  python3 tools/resolve_place_vocabulary.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/resolve_place_vocabulary.py --self-test
 
 # T-1007 (of T-0988). The other half: SPENDING the gap T-1006 measured. The business
 # register is compiled from printed NOTICES, so its four physician records were four

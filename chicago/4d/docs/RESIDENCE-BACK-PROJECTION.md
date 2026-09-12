@@ -34,9 +34,9 @@ refusal by a distance.
 **A residence is not that claim.** Everybody the town holds lived somewhere in it. An
 absent occupation says nothing about whether a man had a house; it says the papers of
 1835 did not print his trade. So this pass's population is *every* residence-printed
-address, and the difference is not marginal: **35 of these 43** are people the 1835 record
+address, and the difference is not marginal: **47 of these 61** are people the 1835 record
 gives no trade, whom the business pass had already refused at its clause 1 before its
-clause 2 ever looked at them. **Four of the seven placements below are people with no
+clause 2 ever looked at them. **Nine of the fourteen placements below are people with no
 1835 trade at all** — which is to say R2 is not a technicality, it is most of the yield.
 
 The ticket was filed against the six the business pass's clause 2 actually reached, and
@@ -66,7 +66,12 @@ record says so in the note and takes nothing from it.
 
 Evaluated in the order written, and the record says which one decided it.
 
-**R1 — the address is printed as a residence.** `res`, `bds`, `boards`. That is this
+**R1 — the address is printed as a residence.** `res`, `bds`, `boards`, and — since
+T-0987 stretch 6 let Norris's directory of 1844 be read one line at a time — `house`,
+`h` and `r`, which are his own shorthand for the same word and are declared in his
+preface. The pattern is shared with the business pass, so the two can never disagree
+about which of them a line belongs to; when it knew only Fergus's two words, Silvester
+Marsh's `house N Water st` was placed as a shop. That is this
 pass's whole population, and the business pass reads the rest. Between them every later
 address on the layer is ruled on.
 
@@ -75,7 +80,7 @@ here because it is the departure, and a clause that only ever permits still has 
 stated to be disagreed with.
 
 **R3 — an 1835 placement always wins.** A household carrying a real `lives_at` is left
-exactly where it is and the later address moves nothing. None of the 43 is in that
+exactly where it is and the later address moves nothing. None of the 61 is in that
 position today, which is itself the measurement: **20 of 825 households carry a real
 `lives_at`** and not one of them is a person a directory prints a home address against.
 
@@ -124,15 +129,19 @@ asserts all four rather than the prose promising them.
 
 | outcome | count |
 |---|---|
-| residence addresses adjudicated | **43** — 29 printed `res`, 14 printed `bds` |
-| **placed on a face** | **7**, of which 4 are people with no 1835 trade |
+| residence addresses adjudicated | **61** — 47 printed as a residence, 14 printed `bds` |
+| **placed on a face** | **14**, of which 9 are people with no 1835 trade |
 | already better placed (R3) | 0 |
-| refused | 36 |
+| refused | 47 |
 
-Five faces are reached — **Clark, Lake, Market, Randolph and Washington** — and the seven
-are J. H. Collins on Lake, Dr William Bradshaw Egan, Samuel Mills and James M. Morrison on
-Clark, L. W. Montgomery on Market, J. B. Jordan on Washington and High Es Jones, who
-boarded on Randolph in 1839 at a corner this policy declines to take.
+Eight faces are reached — **Clark, Dearborn, Lake, Market, North Water, Randolph,
+Washington and Wells** — and the fourteen are J. H. Collins and Nehemiah King on Lake,
+Dr William Bradshaw Egan, Samuel Mills and Rebecca Sherman on Clark, L. W. Montgomery on
+Market, J. B. Jordan and Seth Johnson on Washington, John W. Eldredge on Randolph,
+Absolom Funk and Alexander Lloyd on Wells, Charles Loomis Harmon on Dearborn, and J. S.
+Lacey and Silvester Marsh on North Water. Eight of the fourteen are Norris's, carried
+nine years, and they are the reason three of those streets are reached at all: he prints
+a man's house far oftener than his shop.
 
 **`lives_at` real values before 7 placements: 20. After: 20.** It did not move and was not
 meant to, for the reason `docs/STREET-FACE-ADOPTION.md` limit 3 gives and L218 repeats:
@@ -148,18 +157,19 @@ A residence-printed address against a person with no 1835 trade is refused by th
 business pass at *its* clause 1 — there is no business to position — and adjudicated here
 on its own merits. That is two rulings on two questions, and the card shows both, because
 hiding the first would leave a reader wondering why one address has two verdicts and
-seeing only one. Three of the 43 stand off in the business pass instead (Daniel Elston,
-Gholson Kercheval and Augustine Taylor carry a real `works_at`), and a stand-off is not a
-placement. The invariant the gate holds is the narrow one: **no printed address is
+seeing only one. Six of the 61 stand off in the business pass instead (Daniel Elston,
+Gholson Kercheval, Gurdon Hubbard, John H. Kinzie, Edmund S. Kimberly and Charles Loomis
+Harmon carry a real `works_at`), and a stand-off is not a placement. The invariant the gate holds is the narrow one: **no printed address is
 *placed* by both policies.**
 
 ## Where it reaches a reader
 
 The Evidence panel's *The town's people* section, on the household's own card, under the
 directory entry the address was read out of — the outcome, the face, the grade, whether
-the volume printed `res` or `bds`, and the note saying how many years it was carried.
-**All 43 are shown, refusals included**, for the reason `residents.js` already gives about
-the crosswalks' three match statuses: a card showing only the seven would be reporting this
+the volume printed `res`, `bds` or a `house`, and the note saying how many years it was
+carried.
+**All 61 are shown, refusals included**, for the reason `residents.js` already gives about
+the crosswalks' three match statuses: a card showing only the fourteen would be reporting this
 pass's successes and hiding its arithmetic.
 
 Nothing is drawn, and L2 is the precedent for saying so in those words.

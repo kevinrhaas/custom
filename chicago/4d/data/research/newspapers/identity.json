@@ -2565,6 +2565,41 @@
       "into": "Russell & Clift",
       "from": "Russell & Clift, the Chicago Book Store",
       "merge_rule": "'Russell & Clift, the Chicago Book Store' is 'Russell & Clift' under the premises the Democrat names for them on 1835-08-19 (c012): Morison's Hygeian medicine “for sale only by Russell & Cl[if]t (Agents for the State of I[ll]inois) at the Chicago Book Store”, signed RUSSELL & CLIFT and copy-dated Chicago, August 12, 1835 — the same agency the American's 1835-08-29 notice defends for the same firm ten days later. The partners agree without any declaration needed, because 'the Chicago Book Store' follows a comma in lower case and `firm_style` cuts it as a trade. NOTE what this merge carries across: that claim reads “Russell & Chin,” as a PROPRIETOR, so the firm's own name stands in the merged record's proprietor list beside Aaron Russell and Benj. H. Clift (T-0337 having joined the two readings of him). That is the gazetteer reading a partnership STYLE where a person was wanted — the case T-0359's `places` does not cover, filed as T-0398; nothing here edits a claim to hide it."
+    },
+    {
+      "into": "P. F. Peck",
+      "from": "P. F. W. Peck",
+      "merge_rule": "'P. F. W. Peck' is 'P. F. Peck' signed with the third initial of a fuller signature, and the two styles stand on ONE CORNER in windows that abut. The shorter style takes the corner of La Salle and South Water streets from 1833-12-03 c010 and keeps it through 1834-02-18 c008, 1834-03-04 c012 and 1834-06-18 c007; the longer style is copy-dated “1834-06-18” — the very issue in which the shorter one last appears — and runs from 1834-07-02 c023 through 1834-09-10 c005 to 1834-12-10 c011, reading “CORNER OF LASALLE AND F9UTH-WATER STB.” for the same corner. One general store either side of one week: dry goods, hardware, groceries and crockery on one side, dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing on the other, and the second list is the first restocked. Merged INTO 'P. F. Peck' because that record carries the longer run, the copy date that dates the standing card, and the corner with both street names set out in full rather than abbreviated; the direction is which record can be placed, not which spelling is truer, and the fuller signature is kept verbatim in `merged`."
+    },
+    {
+      "into": "G. Blanshard",
+      "from": "F. G. Blanshard",
+      "merge_rule": "'F. G. Blanshard' is 'G. Blanshard' with the first initial printed, and the two styles are one standing advertisement read twice five weeks apart in one paper. The anchor is the same sentence both times: 'G. Blanshard' stands “opposite Dr. Temple's, Lake-st.” at 1834-10-08 c004, and 'F. G. Blanshard' stands “_eppasite Dr, Temple's, Hake,” at 1834-11-12 c012 — the same words through a damaged column. One trade, and it is not a trade two men would be printed in five weeks apart on one street: houses and lots for sale or to let. Merged INTO 'G. Blanshard' because that impression gives the anchor whole, with the street on it, while the November setting has to be read through the damage; the direction is which record can be placed, not which spelling is truer."
+    },
+    {
+      "into": "W. Keeney",
+      "from": "G. W. Keeney",
+      "merge_rule": "'G. W. Keeney' is 'W. Keeney' with the first initial printed, and the two styles are one standing advertisement read twice four weeks apart in the Democrat. The anchor is the same sentence both times: 'G. W. Keeney' reads “A fe[w] doors bel[ow] Messrs. N[ew]berry & Dole's” at 1834-05-07 c003, and 'W. Keeney' reads “A few doors below Messrs. Newberry & Dole's” at 1834-06-04 c022. One trade, word for word the same shop: tin, sheet iron and copper ware, cooking stoves, ploughs and mill castings. Merged INTO 'W. Keeney' because that impression carries the anchor with no bracketed supply in it, names the proprietor, and lists the whole stock — bells, cooking stoves, copper ware, hollow ware, mill castings, ploughs, sheet iron ware, tin ware — while the May setting names nobody; the direction is which record can be placed, not which spelling is truer, and the May trade string is kept in `trade_variants`."
+    },
+    {
+      "into": "Dr. J. H. Barnard",
+      "from": "Dr. J. B. Barnard",
+      "merge_rule": "'Dr. J. B. Barnard' is 'Dr. J. H. Barnard' with the second initial read out of a different setting, and the B and the H are the same letter of one physician's name. One lodging, printed twice nine days apart in two papers: the Democrat of 1835-06-04 c006 sets “AT THE MKW-YORK HOUSE, LaKE-sTRRET,” — read as “AT THE NEW-YORK HOUSE, LAKE-STREET” — over a copy date of 1835-06-03, and the American of 1835-06-13 c009 sets the same direction as “ar tie New Yous Horse, Lane atneet,”. One trade, and it is the same word: physician. Two physicians of one surname taking rooms in one hotel on one street inside nine days is not what the corpus shows; it shows one card carried by both papers. Merged INTO 'Dr. J. H. Barnard' because that record reads the address line whole and carries the copy date that dates the card, while the American's setting has to be read letter by letter; the direction is which record can be placed, not which spelling is truer."
+    },
+    {
+      "into": "Wm. H. Kennicott, Surgeon Dentist",
+      "from": "M. H. Kennicott",
+      "merge_rule": "'M. H. Kennicott' is 'Wm. H. Kennicott, Surgeon Dentist' with the Wm run together into an M, and the proof is not the name at all — it is that the two records are ONE STANDING ADVERTISEMENT and the later printing is copy-dated to the earlier one. The Democrat of 1835-08-05 c021 sets “DENTISTRY. OFFICE OPPOSITE THE EXCH[A]NGE, LAK[E]-STR[EET]. Doct. WM. H. [K]ENNICOTT, [S]URGEON DENTIST, who has practic[ed] in the above profession in this town for the past year, tenders his thanks to the citizen[s of] Chi[c]ago and vicinity for their liberal [p]a[tron]a[ge]” and copy-dates it “Jone 24.” — 1835-06-24. The Democrat of 1835-06-24 c007 is that issue, and it carries “[D]ENTISTRY. [AT] THE [ ], LAKE-STREET. M. H. KENNICOTT, [a] DENTIST, who has practiced [his] profession in this town for the [past …, returns] his thanks to the citizens of [Chicago and vici]nity, for their liberal patronage” — the same sentences in the same order, down to the free repairs for a year and the ladies attended at the office or at their residences, and the same street. The merge also repairs what the interleave ate: the June setting's address line lost the building's name between “AT THE” and “LAKE-STREET”, and the standing copy names it — the Exchange. Merged INTO 'Wm. H. Kennicott, Surgeon Dentist' because that record places the office against a landmark while 'M. H. Kennicott' can only be put in the street, and because the forename is printed there rather than run together; the direction is which record can be placed, not which spelling is truer. 'Surgeon Dentist' is declared a sign-name in `firm_sign_names` below, without which the capitalised designation reads as a second partner named Dentist."
+    },
+    {
+      "into": "J. Curtiss",
+      "from": "L. Curtiss, attorney and counsellor at law",
+      "merge_rule": "'L. Curtiss, attorney and counsellor at law' is 'J. Curtiss' with the forename initial read as an L, and the two are one attorney's standing advertisement read twice — which the corpus settles on the copy date and the door rather than on the letter. Both are copy-dated 1835-05-18, and both stand first door west of Messrs. Jones, King & Co. in South Water street: the Democrat of 1835-05-20 c009 reads “O[FFICE] in South Water-street, first [door] west of Messrs. Jones, King & Co.”, and 1835-07-01 c013 reads “[first door] west of Messrs. Jones, [King & Co, (up] stairs.)”. One trade, to the word: attorney and counsellor at law, solicitor in chancery. One copy date, one door, one trade, six weeks apart — that is one card set twice, and no printing in this corpus puts two lawyers of this surname in that doorway. Merged INTO 'J. Curtiss' because that impression reads the whole direction, street and ordinal together, while the July setting survives only in supplies; the direction is which record can be placed, not which spelling is truer. THE REFUSAL AGAINST THE SURVEYOR IS RETARGETED IN THE SAME COMMIT (T-0413): 'L. Curtiss, attorney and counsellor at law' was the `into` side of a refusal against 'L. G. Curtiss', the deputy surveyor of Cook County, and that refusal is folded into the surviving one below rather than left to outlive its pair — the attorney is held apart from the surveyor exactly as before, on one record instead of two."
+    },
+    {
+      "into": "W. G. Blanchard",
+      "from": "Wm. G. Blanchard",
+      "merge_rule": "'Wm. G. Blanchard' is 'W. G. Blanchard' with the forename supplied whole out of a column that could not carry it, and the two are ONE standing advertisement read twice. The card is the same word for word in both impressions — “House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. […] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's” at 1834-06-11 c008, and the same sentences with the same anchor at 1834-07-09 c025 — one trade, house and land agent, one street, one door. The surname was the thing that kept them apart and the corpus has now settled it against the reading: 1834-06-11 stood as 'Wm. G. Branchaud' on a supply made from two Tesseract-fallback columns, and T-0408 repaired that reading on the two impressions of this card whose columns are NOT fallbacks — 1834-07-16 line 5527 '1* G. BLANCHARD,' and 1834-09-17 line 3292 '[uncertain: BLALYCHARD,]'. What is LEFT is the forename form, 'Wm. G.' against 'W. G.', and that is the class this policy has always joined by declaration rather than by string: the firm rule holds a house to its PARTNER SURNAMES, which are the same one here, and T-0400 merged eight groups of exactly this shape. Merged INTO 'W. G. Blanchard' because that impression reads the anchor with its entity — Dr. Temple named and normalized — while the June setting survives through a fallback column that lost the proprietor line altogether; the direction is which record can be placed, not which spelling is truer."
     }
   ],
   "firm_sign_names": [
@@ -2579,9 +2614,15 @@
       "partners": "Russell & Clift",
       "sign": "Chicago Book and Stationary Store",
       "note": "The firm's own 1835 card in the American sets the partners over the sign: “Chicago Book and Stationary STORE. [R]USSELL & CLIFT have just rec[e]i[ved an a]dditional supply of [B]ook[s], Stationary, &c.” (1835-06-08 c015). The partner half is 'Russell & Clift'; the rest is the sign over the door. Undeclared, the comma-then-capital rule in `firm_style` cannot see the tail as a trade and the guard reports four partners — Book, Clift, Russell, Store — for a house with two."
+    },
+    {
+      "style": "Wm. H. Kennicott, Surgeon Dentist",
+      "partners": "Wm. H. Kennicott",
+      "sign": "Surgeon Dentist",
+      "note": "The tail is the dentist's designation set in capitals under his own name, which is the shape `firm_style`'s comma-then-lower-case rule cannot see: the Democrat of 1835-08-05 c021 sets “Doct. WM. H. [K]ENNICOTT, [S]URGEON DENTIST, who has practic[ed] in the above profession in this town for the past year”, so the capitalised words after the comma are the trade the notice advertises and not a second partner. The partner half is 'Wm. H. Kennicott' and the claims sign the house with him — 'Kennicott, Wm. H.' — so this declaration takes nothing off the record that the printings put on it. Undeclared, `firm_surnames` reads two partners, Dentist and Kennicott, and the partner guard then refuses T-0413's merge of 'M. H. Kennicott' for a partnership no printing ever carried."
     }
   ],
-  "refused_firm_note": "The REFUSALS the firm policy had no place for (T-0399). `firm_surnames()` groups the register on the partner surname alone, so it puts together houses that are not one house — a namesake, a trade word mistaken for a partner, one man's two unconnected trades — and until this section existed the only record of having judged such a group was the ABSENCE of a merge rule, which reads exactly like a group nobody has looked at yet. The next sweep then finds the group again and does the work again. A refusal is therefore declared as explicitly as a merge and held to the same disciplines: it names both spellings verbatim, it names the printings it rests on, and it cannot outlive its pair — a refusal whose two styles a later merge has collapsed is a judgement nobody can check and is a compile error. `kind` is one of three and the distinction is the point: `two_houses` (the papers show two), `not_joined` (one name, and no printing puts the two styles under one roof — which is not the same finding as two), `different_ground` (one house, and the papers put the styles in different streets, which is a removal and a removal is a claim).",
+  "refused_firm_note": "The REFUSALS the firm policy had no place for (T-0399). `firm_surnames()` groups the register on the partner surname alone, so it puts together houses that are not one house — a namesake, a trade word mistaken for a partner, one man's two unconnected trades — and until this section existed the only record of having judged such a group was the ABSENCE of a merge rule, which reads exactly like a group nobody has looked at yet. The next sweep then finds the group again and does the work again. A refusal is therefore declared as explicitly as a merge and held to the same disciplines: it names both spellings verbatim, it names the printings it rests on, and it cannot outlive its pair — a refusal whose two styles a later merge has collapsed is a judgement nobody can check and is a compile error. `kind` is one of three and the distinction is the point: `two_houses` (the papers show two), `not_joined` (one name, and no printing puts the two styles under one roof — which is not the same finding as two), `different_ground` (one house, and the papers put the styles in different streets, which is a removal and a removal is a claim). ONE REFUSAL RESTATED RATHER THAN RETIRED (T-1046). 'W. Montgomery' <- 'W. Montgomery, boot and shoe maker' held the auctioneer's house apart from the bootmaker's, and its stated ground was 'the bootmaker is L. W. Montgomery with the L lost in the setting'. That ground was true and this file was the only place the corpus said it: the READINGS still normalized the signature to 'W. Montgomery', so the gazetteer PERSON `person_w_montgomery` went on carrying 'boot and shoe maker' beside 'auctioneer', which no firm-level refusal can reach. T-1046 moved the judgement to where it belongs — the four impressions of the shoemaking notice now read L. W. Montgomery, on the L the 1834-03-04 c028 column preserves and the two whole signatures either side of it — and the refusal's `from` heading moved with them. IT WAS NOT DROPPED, and the reason is worth stating: `tools/adopt_street_faces.py` READS this section (T-0414). Its refusal 3 collapses one proprietor to one roof per face on the surname set alone, and a `two_houses` ruling is what makes it key on the TRADE instead — so without this row the auctioneer's own auction room is refused a street face because a Montgomery already stands on it. Repairing a conflation at the reading layer must not re-create it at the roof layer.",
   "refused_firm_merges": [
     {
       "into": "A. Garrett",
@@ -2605,32 +2646,6 @@
         "chicago_democrat_1834_03_04#c022"
       ],
       "refused_because": "'B. Jones, grocery and provision store' and 'B. Jones, storage and forwarding' are one man's two trades and no printing puts them under one roof — which is not the same finding as two men. The Democrat of 1833-11-26 sets them as two advertisements in two columns (c018 the grocery, c014 the forwarding notice soliciting for the opening of navigation in the spring), and neither gives an address; the grocery runs again at 1834-03-04 c022 with 'CHICAGO—ILLINOIS' for its whole direction. A merge here would assert a shared door the papers never state. Refused until a printing joins them."
-    },
-    {
-      "into": "W. Montgomery",
-      "from": "W. Montgomery, boot and shoe maker",
-      "kind": "two_houses",
-      "witnesses": [
-        "chicago_democrat_1834_01_28#c008",
-        "chicago_democrat_1834_03_04#c028",
-        "chicago_democrat_1834_03_25#c009",
-        "chicago_democrat_1835_07_08#c001",
-        "chicago_democrat_1835_07_22#c011"
-      ],
-      "refused_because": "'W. Montgomery' and 'W. Montgomery, boot and shoe maker' are two houses and this is the trap the surname grouping was always going to set. The bootmaker is L. W. Montgomery with the L lost in the setting: his advertisement is copy-dated Dec. 15/18, 1833, places him next door to P. Cohen's store (1834-01-28 c008, 1834-03-04 c028, 1834-03-25 c009) and is the same standing notice the L. W. Montgomery records carry. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. Whether the bootmaker's two spellings are one man is a forename question and belongs to T-0400."
-    },
-    {
-      "into": "Hubbard & Co.",
-      "from": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
-      "kind": "two_houses",
-      "witnesses": [
-        "chicago_democrat_1834_07_02#c048",
-        "chicago_democrat_1834_10_15#c005",
-        "chicago_democrat_1835_05_20#c023",
-        "chicago_american_1835_06_20#c015",
-        "chicago_american_1835_08_29#c004"
-      ],
-      "refused_because": "'Hubbard & Co.' and 'E. K. Hubbard, agent for the Howard Fire Insurance Company' are two houses, and what puts them together is not a spelling — it is an AGENCY that passed from one to the other, which this gazetteer has no relation for. Hubbard & Co. held the Howard agency first and advertised it in the plural over the firm's signature: 'THE subscribers having been appointed AGENTS for the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', copy-dated July 1 and standing from 1834-07-02 c048 through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in the SINGULAR over one man — 'THE subscriber having been appointed agent … E. K. HUBBARD.' — and the forwarding house goes on trading under its own name to 1835-08-29 c004. So the two records are live at once, in two trades, over two signatures: a commission and forwarding house whose named partners are Gurdon S. Hubbard and Henry G. Hubbard, and a one-man fire-insurance agency signed E. K. Hubbard, initials neither partner carries. This project never reads a shared surname with different initials as one man, so nothing here makes E. K. a partner in the firm and no merge may assert it. The succession of the agency is real and is the part that cannot be written down at all: T-0410 is filed for the relation."
     },
     {
       "into": "Jones & King",
@@ -2826,22 +2841,11 @@
       "kind": "two_houses",
       "witnesses": [
         "chicago_democrat_1835_05_20#c009",
-        "chicago_democrat_1835_07_22#c012",
-        "chicago_democrat_1835_07_29#c015"
-      ],
-      "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and the surname is dangerous here because a third style, 'L. Curtiss, attorney and counsellor at law', sits between them and shares an initial with each. J. Curtiss is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co., Democrat 1835-05-20 c009, copy-dated 1835-05-18. L. G. Curtiss is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them."
-    },
-    {
-      "into": "L. Curtiss, attorney and counsellor at law",
-      "from": "L. G. Curtiss",
-      "kind": "two_houses",
-      "witnesses": [
         "chicago_democrat_1835_07_01#c013",
-        "chicago_democrat_1835_05_20#c009",
         "chicago_democrat_1835_07_22#c012",
         "chicago_democrat_1835_07_29#c015"
       ],
-      "refused_because": "'L. Curtiss, attorney and counsellor at law' and 'L. G. Curtiss' are the pair this group exists to trap: one initial apart, both read L, and they are two houses. The attorney's notice at 1835-07-01 c013 is copy-dated 1835-05-18 and stands first door west of Messrs. Jones, King & Co. in South Water street — the same copy date and the same anchor as 'J. Curtiss' at 1835-05-20 c009, which is what makes the L and the J one man's standing advertisement read twice rather than two lawyers. L. G. Curtiss is the deputy surveyor of Cook County, orders left at the Mansion House, 1835-07-22 c012 and 1835-07-29 c015: a different trade in a different place, and the G is printed. Joining the attorney's own two styles is a merge, and this section does not assert it."
+      "refused_because": "'J. Curtiss' and 'L. G. Curtiss' are two men, and this one refusal now carries BOTH of the attorney's readings against the surveyor. 'J. Curtiss' is an attorney and counsellor at law and solicitor in chancery whose office is in South Water street, first door west of Messrs. Jones, King & Co.: the Democrat of 1835-05-20 c009, copy-dated 1835-05-18, and again at 1835-07-01 c013 over the same copy date and the same door, that second impression printing the forename initial as an L. 'L. G. Curtiss' is deputy surveyor of Cook County and takes his orders at the Mansion House, Democrat 1835-07-22 c012 and 1835-07-29 c015. A law office and a county surveyor's practice are two houses and no printing joins them; the G is printed, and the surname is dangerous here only because the attorney's own two settings disagree about his initial. WHY THIS REFUSAL IS ONE AND NOT TWO (T-0413): until this commit the July setting stood as its own style, 'L. Curtiss, attorney and counsellor at law', and was refused against the surveyor separately — the pair this group existed to trap, one initial apart and both read L. T-0413 merged that style into 'J. Curtiss' on the shared copy date and the shared doorway, so a refusal naming it would have outlived its pair, which this section calls a compile error. The judgement is unchanged and nothing is weakened: the attorney, under either initial, is still held apart from the surveyor, and the merge that joined his two readings did not touch the ground the surveyor stands on."
     },
     {
       "into": "J. Curtiss, Attorney and Counsellor at Law",
@@ -2852,6 +2856,48 @@
         "chicago_democrat_1835_08_05#c011"
       ],
       "refused_because": "'J. Curtiss, Attorney and Counsellor at Law' and 'L. G. Curtiss, Deputy Surveyor of Cook County' are the signboard styles of the two houses held apart above, and the refusal is repeated on them because a refusal cannot reach a style it does not name. The Democrat of 1835-08-05 prints both in one issue: the attorney at c017, in South Water street at Jones, King & Co.'s store, and the surveyor at c011, with orders left at the Mansion House. One issue, one surname, two trades, two places."
+    },
+    {
+      "into": "W. Montgomery",
+      "from": "L. W. Montgomery, boot and shoe maker",
+      "kind": "two_houses",
+      "witnesses": [
+        "chicago_democrat_1834_01_28#c008",
+        "chicago_democrat_1834_03_04#c028",
+        "chicago_democrat_1834_03_25#c009",
+        "chicago_democrat_1835_07_08#c001",
+        "chicago_democrat_1835_07_22#c011"
+      ],
+      "refused_because": "'W. Montgomery' and 'L. W. Montgomery, boot and shoe maker' are two houses and two men, and this is the trap the surname grouping was always going to set. The bootmaker is Loton W. Montgomery. His advertisement is copy-dated Dec. 15/18/19, 1833, places him next door to P. Cohen's store, and runs from 1833-12-17 c003 to 1834-04-08 c007 and beyond; it signs 'L. W. MONTGOMERY' wherever the type survives whole, and the damaged 1834-03-04 c028 column preserves the initial itself. 'W. Montgomery' is the auctioneer who takes David Carver's old stand in South Water street in July 1835 (1835-07-08 c001) and signs 'W. MONTGOMERY, Auc'r' (1835-07-22 c011) — a different trade, a different stand and eighteen months later. UNTIL T-1046 this row read `from: 'W. Montgomery, boot and shoe maker'` and gave as its ground that the bootmaker's L was lost in the setting; that was right, and the readings have now been repaired to say so, so the heading this row refuses has moved with them. The refusal itself stands unchanged in substance and is load-bearing: tools/adopt_street_faces.py reads a `two_houses` ruling to key refusal 3 on the trade rather than the surname alone, which is what stops these two Montgomerys taking each other's street face."
+    },
+    {
+      "into": "W. G. Blanchard",
+      "from": "G. Blanshard",
+      "kind": "not_joined",
+      "witnesses": [
+        "chicago_democrat_1834_06_11#c008",
+        "chicago_democrat_1834_07_09#c025",
+        "chicago_democrat_1834_10_08#c004",
+        "chicago_democrat_1834_11_12#c012"
+      ],
+      "refused_because": "'W. G. Blanchard' and 'G. Blanshard' are one trade at one door and NO PRINTING IN THIS CORPUS SETS BOTH SPELLINGS, so the corpus cannot join them and this file will not join them on a resemblance. WHAT THE PAPER ACTUALLY SHOWS, and it is a great deal. Two land-agency cards run in the Chicago Democrat in 1834, one after the other and never in the same weeks: 'W. G. Blanchard' advertises “House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. […] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's” (1834-06-11 c008, 1834-07-09 c025), and 'G. Blanshard' advertises “[HO]USES for [s]ale or to let. Also, a lot on the [cor]ner of Randolph and Wells streets, and [lots on the school section, which] will be sold [for cash. For particulars en]quire of [G. BLANSHARD], opposite Dr. Temple's, Lake-st.” (1834-10-08 c004, 1834-11-12 c012). The same landmark, the same street, the same business of selling town and school-section lots, and a gap between the two runs rather than an overlap. On the face of it that is one agent who changed his copy in the autumn, and this refusal says so rather than pretending the question is open. WHY IT IS STILL A REFUSAL. Both spellings are READ off the type and neither is a supply: 'BLANCHARD' is set in two columns the transcription does NOT flag as Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and 'BLANSHARD' is set whole in four impressions of its own card and again in the stray-horse reward notice of 1 October 1834 that runs beside it. So there is no misreading to repair, the way T-0408 repaired 'Branchaud' out of two fallback columns; there are two spellings the paper holds to, five weeks apart, and a forename initial that reads W in one card and F in the other. A shared anchor is two printings agreeing about a door, not one printing joining two styles — the distinction this section's `not_joined` kind exists to record, and the one C11 states for the town cards when it says a trade two men can share and a street two men can live on cannot carry an identification. The residents layer has already ruled the same way on the same initial: T-0993 holds `blanchard_w_g` distinct from `blanchard_f_gantry` under D1, noting that the Illinois land tract register carries no W. G. Blanchard at all. AND THE MACHINERY COULD NOT CARRY THE MERGE IN ANY CASE: `firm_surnames()` reads {blanchard} against {blanshard} and the partner guard refuses that with or without a rule, which is T-0407's question and not this one's. WHAT WOULD SETTLE IT: one printing that sets both spellings — the Democrat is caught doing exactly that for Blanshard, setting 'G. BLANSHARD' on 1834-10-01 and 'F. G. BLANSHARD' on 1834-10-22 in one standing notice — or a directory, poll or land-register entry that puts a W. G. Blanchard at the Lake Street office opposite Dr. Temple's."
+    }
+  ],
+  "premises_note": "The THIRD ANSWER, for the pairs that are neither one house nor two unrelated ones (T-0411). `firm_merges` says two styles are one house; `refused_firm_merges` says they are not. The corpus keeps producing pairs for which both sentences are false — a paper and the shop that prints it, an agency and the house that keeps it — and T-0402 found it could write down no true thing about the first of them: `firm_surnames()` compares {democrat} against {office} and the partner-surname guard has no escape by design, while all three refusal kinds are untrue (these are not two houses; a printing DOES join them, the colophon being the paper naming its own shop; and in 1834 they stand on the same corner). So a relation is declared here instead, and it is NOT a merge: both records stay whole, keep their own printings, their own placement readings and their own trade, and the partner guard is untouched. It states one thing only, in one direction — the `part` is the `whole`'s premises or department — and it is held to the merge's disciplines: it names both spellings verbatim, it names the printings it rests on, it cannot outlive either end, it may not be declared alongside a merge or a refusal of the same pair, it may not run both ways, and a business may stand on one ground only. `kind` is one of two: `premises` (the part is the ground the whole is carried on — ONE roof, and the model must not mint a second for the whole) and `department` (the part is a branch of the whole's own business under a style of its own).",
+  "premises_relations": [
+    {
+      "part": "Chicago Democrat printing office",
+      "whole": "The Chicago Democrat",
+      "kind": "premises",
+      "witnesses": [
+        "chicago_democrat_1833_11_26#c033",
+        "chicago_democrat_1834_01_07#c006",
+        "chicago_democrat_1834_08_27#c009",
+        "chicago_democrat_1834_09_17#c010",
+        "chicago_democrat_1834_12_03#c023",
+        "chicago_democrat_1835_05_20#c007"
+      ],
+      "relation_rule": "'Chicago Democrat printing office' is the premises 'The Chicago Democrat' is printed at, and the two records are neither one business nor two unconnected ones. THE PAPER is read off its own imprint over John Calhoun's name, four printings between 1833-11-26 and 1834-12-03 placing it 'in the building on the corner of South Water and Clark-streets' (1833-11-26 c033, 1834-08-27 c009, 1834-09-17 c010, 1834-12-03 c023). THE SHOP is read off the paper's own colophon: 1834-01-07 c006 sets it in that same building on the corner of South Water and Clark streets, and 1835-05-20 c007 reads the colophon of that issue over Messrs. Jones & King's hardware store in the same street. WHY THIS IS NOT A MERGE: `firm_surnames()` reads the last word of each style as the partner surname and so compares {democrat} against {office}, and the partner-surname guard is right to refuse that — but neither style names a partner at all, so there is nothing here for the guard to be about, and loosening it for this pair would loosen it for every pair. WHY IT IS NOT A REFUSAL: none of the three kinds is true of it. They are not `two_houses` — one man, John Calhoun, stands over both records, and the paper and the shop that prints it are not two businesses of the town in any sense a walker would recognise. They are not `not_joined` — a printing joins them explicitly, because the colophon IS the paper naming the office it is printed at. They are not on `different_ground` — in 1834 both stand on the corner of South Water and Clark. Writing any of the three down would be a false judgement filed to make a group look closed, which is why T-0402 declined to file one. WHAT THE TOWN SHOWS, AND IT IS DECIDED HERE RATHER THAN LEFT TO FALL OUT: ONE ROOF. The roof already stands — `chicago_democrat_office`, 'The Chicago Democrat Office', which carries \"John Calhoun's printing office\" among its aka and is placed at that corner — and the shop enriches it. The paper did NOT: compile_register took `new_building` at `clark+south_water` for it, a second roof at the same corner for a business that has no ground of its own, because `match_occupant` requires ALL the partners' surnames and the paper's proprietors read ['John Calhoun', 'Calhoun, J.'] — a required set of {calhoun, j} that no occupant line can carry. The relation settles it: the whole follows its premises, the paper takes `enrich_existing` on `chicago_democrat_office`, and the register's actions move from 30 enrich_existing / 29 new_building to 31 / 28. WHAT IT DOES NOT SETTLE: T-0403, which records that the office keeps its 1834 corner through T-0399's internal merge because `placement_rank` prefers a corner to a relative offset regardless of date — so on the scene date of 1835-07-01 the shop may stand at the wrong end of South Water Street, and the paper now stands with it. That is a question about placement RANKING, not about identity, and it is left open here on purpose: joining the pair moves neither reading, and answering it would mean changing how every house in the register chooses its live address. T-0403 stays open."
     }
   ],
   "anchor_note": "The DATED ANCHOR CHANGE (T-0345), and it is the third thing two printings of one advertisement can differ about. `firm_merges` above joins two STYLES of one house and `proprietor_merges` joins two readings of one partner's name; neither can say that a house's printed ANCHOR changed on a date. Matthias Mason & Co.'s blacksmithing notice runs under a single copy date of 26 November 1833: to 1834-06-11 it reads 'on Main-street, nearly opposite Graves' Tavern', and from 1834-09-10 the same copy, word for word otherwise, reads 'opposite the Tremont House'. Held as two standing placements — which is what the register did — a placement sweep finds one shop in two places at once. What a declaration here may state is ONLY that two of a house's readings name two different landmarks rather than two spellings of one, and it must account for every reading the house carries. Everything else the compiler computes from the claims: the weeks each anchor was printed between, the order, the gap the change is bracketed by, and which anchor is live at the scene date. `cannot_say` is required and is the point of the whole thing — a change of anchor is not evidence of which side of it moved. AND IT IS ALSO WHAT A FIRM MERGE DEFERS TO (T-0403). `firm_merges` above hands the surviving record the higher-RANKED of two placements — a corner over a relative offset — and `placement_rank` is blind to the date on purpose, so a merge can leave a house at an address it had already left. The Chicago Democrat's printing office is that case and the two declarations below are its answer: the office's own colophon moves it off the corner of South Water and Clark streets and over Messrs. Jones & King's hardware store between 1834-01-07 and 1835-05-20, which is inside the scene, and the paper's imprint prints the same move on 1835-08-05, which is five weeks outside it and is therefore stated and not acted on. What makes the deferral safe is that a merge NARROWS NOTHING: every reading of both sides survives on the record, which is the only reason a rule here can be written afterwards at all.",
@@ -2867,7 +2913,7 @@
             "Graves' Tavern",
             "Graves Tavern"
           ],
-          "why": "Four readings of one landmark, 'Graves' Tavern', differing only in how much of the street clause the reading pass carried into the anchor field and, once, in a lost apostrophe: 1833-11-26 keeps 'on Main-street' inside it, 1834-02-25 keeps 'Main-street', 1833-12-24 / 1834-01-07 / 1834-03-04 / 1834-04-01 keep neither, and 1834-06-11 sets 'Gra]ves Tavern' across an interleaved line and loses the apostrophe with the preceding column. Every one of the six is the same sentence of the same advertisement and every one names the same tavern; the street they differ over is carried in `street` and in each reading's own offset text, so no word is lost by grouping them."
+          "why": "Four readings of one landmark, 'Graves' Tavern', differing only in how much of the street clause the reading pass carried into the anchor field and, once, in a lost apostrophe: 1833-11-26 keeps 'on Main-street' inside it, 1834-02-25 keeps 'Main-street', 1833-12-24 / 1834-01-07 / 1834-02-18 / 1834-03-04 / 1834-04-01 keep neither, and 1834-06-11 sets 'Gra]ves Tavern' across an interleaved line and loses the apostrophe with the preceding column. Every one of the seven is the same sentence of the same advertisement and every one names the same tavern; the street they differ over is carried in `street` and in each reading's own offset text, so no word is lost by grouping them. 1834-02-18 JOINED THIS GROUP AT T-0407 AND DID NOT MOVE ITS BOUNDARY. That impression had stood outside this house altogether, as a separate business called 'Matthias Nason & Co.', on a bracketed '[N]' its own transcription does not support \u2014 line 2823 of the 18 February setting reads MATTHIAS MASON & CO. whole and unmarked, and no impression of this notice reads an N. The supply is withdrawn in the claim. Its anchor was already the bare \"Graves' Tavern\" this group is about, so the printing lands inside the EARLIER anchor and the window this rule brackets \u2014 the change from the tavern to the Tremont House, between 1834-06-11 and 1834-09-10 \u2014 is untouched: 18 February 1834 adds a printing to the old anchor, not a date to the boundary."
         },
         {
           "name": "the Tremont House",
@@ -2999,6 +3045,36 @@
       "into": "Matthias Mason & Co.",
       "from": "Mathias Mason & Co.",
       "merge_rule": "'Mathias Mason & Co.' is 'Matthias Mason & Co.' with one T dropped, and the pair exists in this house's proprietors only because the firm merge above unioned the 1834-09-10 impression's list into it. Ten of the eleven printings of this advertisement set MATTHIAS; the eleventh brackets the letter it could not read."
+    },
+    {
+      "business": "business_p_f_peck",
+      "into": "P. F. Peck",
+      "from": "P. F. W. Peck",
+      "merge_rule": "'P. F. W. Peck' is 'P. F. Peck' with the third initial of the merchant's fuller signature printed, and the pair exists in this house's proprietors only because T-0413's firm merge unioned the two styles' lists into one. Both are the same signature on one general store at the corner of La Salle and South Water streets, in windows that abut on the issue of 1834-06-18 — the last the shorter style is printed in and the copy date the longer one carries. The corpus names no second Peck merchant on that corner, and no printing sets the two initials against each other as two men."
+    },
+    {
+      "business": "business_g_blanshard",
+      "into": "G. Blanshard",
+      "from": "F. G. Blanshard",
+      "merge_rule": "'F. G. Blanshard' is 'G. Blanshard' with the first initial printed, and the pair exists in this house's proprietors only because T-0413's firm merge joined the two styles. It is one advertisement set twice in one paper five weeks apart — “opposite Dr. Temple's, Lake-st.” at 1834-10-08 c004 and the same words damaged at 1834-11-12 c012 — offering houses and lots for sale or to let both times. One man read with and without his first initial, not two Blanshards on one Lake Street frontage."
+    },
+    {
+      "business": "business_dr_j_h_barnard",
+      "into": "J. H. Barnard",
+      "from": "J. B. Barnard",
+      "merge_rule": "'J. B. Barnard' is 'J. H. Barnard' with the second initial read out of a second setting, and the pair exists in this house's proprietors only because T-0413's firm merge joined the two styles. The Democrat of 1835-06-04 c006 and the American of 1835-06-13 c009 carry one physician's card nine days apart, both lodging him at the New-York House in Lake Street; the B and the H are one letter printed twice, and the register holds no other Barnard practising in the town."
+    },
+    {
+      "business": "business_wm_h_kennicott_surgeon_dentist",
+      "into": "Kennicott, Wm. H.",
+      "from": "M. H. Kennicott",
+      "merge_rule": "'M. H. Kennicott' is 'Kennicott, Wm. H.' with the Wm of the printed forename run together into an M, and the pair exists in this house's proprietors only because T-0413's firm merge joined the two styles. The 1835-08-05 printing that signs itself “Doct. WM. H. [K]ENNICOTT, [S]URGEON DENTIST” is copy-dated “Jone 24.” — the Democrat of 1835-06-24, which is the issue that prints 'M. H. KENNICOTT'; one standing advertisement, sentence for sentence, and one dentist on Lake Street in it."
+    },
+    {
+      "business": "business_j_curtiss",
+      "into": "J. Curtiss",
+      "from": "L. Curtiss",
+      "merge_rule": "'L. Curtiss' is 'J. Curtiss' with the forename initial read as an L, and the pair exists in this house's proprietors only because T-0413's firm merge joined the attorney's two styles. Both printings are copy-dated 1835-05-18 and both put the office first door west of Messrs. Jones, King & Co. in South Water street (1835-05-20 c009, 1835-07-01 c013) in one trade, attorney and counsellor at law and solicitor in chancery. The third Curtiss the corpus carries, 'L. G. Curtiss' the deputy surveyor, is a different man and stays a different record: he is held apart in `refused_firm_merges`, his G is printed, and his orders are left at the Mansion House."
     }
   ],
   "proprietor_distinctions": [
@@ -3032,7 +3108,7 @@
         "Oliver Newberry",
         "Newberry, [Walter L.]"
       ],
-      "rule": "Two men — and WHICH of them was the partner is not settled here. Oliver Newberry of Detroit and Walter L. Newberry are two people the corpus keeps apart on its own evidence: the firm's card of 1835-08-05 (c022) signs a partner read as 'Newberry, [Walter L.]' and, in the SAME card, gives 'Oliver Newb[err]y, Detro[it]' as a commercial REFERENCE, which is not something a house prints about its own partner. Against that, the 1834-03-04 reading (c021) enters 'Oliver Newberry' on the business record as the received identification of the partner, and says in its notes that it is received rather than read. So they are held apart, which is what the evidence supports; the open question of which Newberry stood in the partnership is T-0396 and is not answered by this declaration."
+      "rule": "Two men — and T-0396 SETTLES WHICH OF THEM STOOD IN THE FIRM (2026-09-12): not Oliver Newberry. 'Oliver Newberry' and 'Newberry, [Walter L.]' are held apart on the corpus's own evidence, and the evidence that holds them apart also decides the partner. THE FIRM'S OWN PAID CARD PRINTS OLIVER NEWBERRY IN ITS REFERENCE LIST, UNDER DETROIT, in every setting that names him: 'Oliver Newberry, [Det]roit' (1834-04-01 c013) and 'OLIVER NKWBERRY, Detroit.' (1835-07-01 c015), each standing in a list of one correspondent per port — Coenties Slip in New York, Barker & Holt of Buffalo, Calvin Britain at the mouth of the St Joseph, James B. Campbell at Ottawa. Both claims give his role as a reference named in the advertisement, and neither gives him a trade. A house does not print its own resident partner as the man to write to in another city. THE 1835-08-05 SETTING (c022) HOLDS BOTH AT ONCE, which is what makes this a decision rather than a preference: the partner entity reads 'NEWRERRY', normalized 'Newberry, [Walter L.]', role `partner`, occupation forwarding and commission merchant, while 'Oliver Newb[err]y, Detro[it]' still stands in the same card's reference list four names below it. One notice, two Newberrys, one of them the house and the other its correspondent. AGAINST THAT stands only the received identification on the 1834-03-04 reading (c021) — which prints NO FORENAMES at all, and whose own note says the identification is received rather than read — and Andreas's 'Oliver Newberry and George W. Dole' at scan p. 1151, set in 1884. A compiler writing half a century later, and a reading that says in terms it is not reading, do not outweigh the firm's own paid advertisement: the advertiser paid for it and his customers had to be able to find him. WHICH Newberry, then, is the weaker limb and is INFERRED, not documented: Walter L. Fergus 1839 prints 'Newberry, Walter L., att'y and real est., office Newberry & Dole' — the firm's office as his office; the American of 1835-06-08 (c004) prints 'W. L. NEWBERRY' over the great sale of town lots and sets 'NEWBERRY & bOUJ' — Newberry & Dole — over the same date in the adjacent column of the same issue, and that claim's note already reads the one off the other; and no other Newberry forename is printed for Chicago anywhere in this corpus. THE ONE RIVAL LEFT UNRESOLVED IS NOT A PRINTING: the land register's WALTER S / W S, which no volume of this corpus prints — data/research/land_sales/README.md § The two Newberrys the register writes. THE DECLARATION STAYS because both readings are still proprietors of this house on the record and the gate is right to ask; what has changed is that it now says which is which. Nothing here regrades hh_newberry_walter_loomis, mints a trade or places a premises: the two structure records newberry_dole_warehouse and newberry_dole_slaughterhouse_south_branch carry the ruling on their `occupants` at `inferred`, and grading against every source at once is T-0515's pass."
     }
   ],
   "place_note": "The third case, and it is not a third kind of merge (T-0359). A claim's entities are keyed on a name and carry no notion of WHAT a name is, so a building the papers name by its signboard — \"Haddock's Tavern\", \"the Eagle Hotel\", \"the Baptist meeting house\" — is minted into the persons table and then held to a policy written for people. The compiler reads \"Tavern\" as the surname and \"Haddock's\" against \"Maddock's\" as forename initials, and the families rule refuses a reconciliation the evidence closes. The families rule is right; the subject is wrong. `places` is therefore where a name is declared NOT to be a person, one entry per name and each with the argument written out, and `place_merges` joins two spellings of one building afterwards. Nothing here loosens the families rule: a place merge may only join two names `places` has already argued are not people, and a name whose every mention is a post-office letter list may not be declared a place at all — a letter list is a list of people somebody wrote to, and \"Chester House\" and \"Rodney House\" in `refused_places` are exactly that shape. A name carrying an occupation is refused too, because a claim is reading it as a person. Both refusals are compile errors, not conventions.",
@@ -3053,13 +3129,13 @@
       "name": "Eagle Hotel",
       "kind": "hotel",
       "ticket": "T-0359",
-      "why": "\"Eagle Hotel\" is a house of entertainment, and the claim that mints it (chicago_democrat_1834_05_14 c008) sets it as a display heading over its own advertisement — the building advertising itself. No forename or initial is printed with it in any issue of this corpus, because there is none: it is a sign."
+      "why": "\"Eagle Hotel\" is a house of entertainment, and the claim that mints it (chicago_democrat_1834_05_14 c008) sets it as a display heading over its own advertisement — the building advertising itself. It is a sign and not a person: no forename or initial is ever printed as PART of it. A keeper's name is a different thing, and the house carries those — Steele's in February 1834, the taker of 15 April 1834, J. Shrigley from 1 September 1834 — which is why \"the Eagle Hotel (Steele's)\" merges into this record under T-0391 rather than standing beside it."
     },
     {
       "name": "the Eagle Hotel (Steele's)",
       "kind": "hotel",
       "ticket": "T-0359",
-      "why": "\"the Eagle Hotel (Steele's)\" is a building named with its keeper in a parenthesis — the 1834-02-04 notice (c003) locates something at \"the Eagle Hotel, (Steele's)\", which is an address and not a person's name. It is declared a place on that reading alone. Whether it and \"Eagle Hotel\" are one house is a separate question and is NOT answered here: no issue in this corpus prints both settings in a way that decides it, and a merge on the strength of the shared word Eagle is the resemblance argument this file exists to refuse. T-0397 holds it."
+      "why": "\"the Eagle Hotel (Steele's)\" is a building named with its keeper in a parenthesis — the 1834-02-04 notice (c003) locates something at \"the Eagle Hotel, (Steele's)\", which is an address and not a person's name. It is declared a place on that reading alone, and THAT DECLARATION IS WHAT MAKES THE MERGE POSSIBLE: `place_merges` may only join two names this table has already argued are not people. Whether it and \"Eagle Hotel\" are one house was left open here until T-0391, and it is now answered in `place_merges` and not here — on the 1834-02-04 issue setting the name three times in one column, twice without a keeper, and on the succession of keepers the corpus follows through that one house. It was not answered on the shared word Eagle, which this file exists to refuse."
     },
     {
       "name": "the Baptist meeting house",
@@ -3074,6 +3150,12 @@
       "from": "Maddock's Tavern",
       "ticket": "T-0359",
       "merge_rule": "\"Haddock's Tavern\" and \"Maddock's Tavern\" are one building, and G. Spring's own advertisement is the witness that says so. One notice, dated June 18 1834 and standing over five settings, sells Lot No. 7 in block No. 16, one lot east of the tavern, on Lake street, with a large dwelling-house and fine well on it. Four of the five settings read Haddock's (1834-06-18 c006, 1834-09-03 c005, 1834-10-15 c006, 1834-11-19 c010) and exactly one reads Maddock's (1834-07-09 c024). That is the condition the 1834-07-30 reading pass set for closing this: an issue printing both spellings in a way that decides it. Four settings of one advertisement against one is that. The direction is into the reading four settings carry, and the corpus corroborates it outside the notice — E. Haddock kept the Mansion House and the Board of Trustees met there (1834-06-18 c002), while no Maddock appears anywhere in these papers. This merge is possible only because both names are declared places: as persons the families rule refused it, reading Tavern as a surname and H against M as forename initials, which is a rule for a family of people applied to a signboard. T-0324 found it, T-0359 could record it."
+    },
+    {
+      "into": "Eagle Hotel",
+      "from": "the Eagle Hotel (Steele's)",
+      "ticket": "T-0391",
+      "merge_rule": "\"Eagle Hotel\" and \"the Eagle Hotel (Steele's)\" are one house, and the issue of 1834-02-04 is the witness that decides it — the condition this pair was held open for. Page 3, column 3 of that issue sets the name THREE TIMES in one compositor's column, twice without a keeper: at lines 2251-2260 the citizens of Chicago are called to meet \"at the Ea[g]le Hotel, (Steele's)\" (claim c003); ten lines below, at 2270-2281, the citizens of Cook county are called \"to m[e]et [a]t the Eagle Hotel in Chicago\" (c004); and at 2310-2320 an auction is cried \"at the [Eag]le Hotel in this town\" (c006). The setting WITH the parenthesis and the setting WITHOUT it stand ten lines apart in one column, and the two bare ones are qualified by the TOWN — \"in Chicago\", \"in this town\" — which is a paper distinguishing its Eagle from Eagles elsewhere and not from a second Eagle at home. A compositor holding two houses of one name apart for his own readers does not set the second and third without a word to tell them from the first.\n\nAND THE SUCCESSION SAYS IT INDEPENDENTLY. The corpus follows one house it calls \"the Eagle Hotel\", with the definite article, through named keepers and no break: Steele's in February 1834; \"he has taken the EAGLE HOTEL\" over a copy date of 15 April 1834 (1834-04-16 c002, reprinted 1834-05-14 c008, 1834-06-18 c014, 1834-07-02 c004), which is a succession notice and not a building notice — the taker is a new keeper of a house that already stood; and \"P. J. CARL[I], having relinquished the tav[e]rn known as the Ea[g]l[e] Hotel, on the [first of] [S]eptember last, to J. Shrigley\" (1834-10-08 c006). \"Known as\" is the paper's own statement that the house is a single known one. The keeper who took it in April is read \"P. B. F. CABLE\" in some impressions and \"P. J. [CARLI]\" in others; WHICH the type carries is a separate question and this merge neither touches nor needs it.\n\nSO THE PARENTHESIS IS A KEEPER, NOT A SIGN, and it is an idiom this paper uses: it writes \"the Eagle Coffee House, Trowbridge's\" (1835-06-24 c001) and the town carries \"Graves' Tavern\" the same way. The direction is into the sign, because \"Eagle Hotel\" is what the house sets over its own advertisement (1834-05-14 c008) while a keeper's name lasted seven months.\n\nWHAT THIS MERGE DOES NOT REACH, stated so the next reader does not extend it. The EAGLE COFFEE HOUSE — \"Trowbridge's\", also \"the Eagle House\" — is a DIFFERENT house and is not joined here: it appears only from 1835-06-24, in or about Dearborn Street (1835-06-24 c006, 1835-08-05 c020), with its own keeper, while the Eagle Hotel is placed nowhere in the whole of 1834 and no notice gives it a street. Two houses of entertainment may share a bird. \"Eagle Precinct, Lasalle county\" (1834-07-30 c008) is not in Chicago at all. T-0391."
     }
   ],
   "refused_places": [
@@ -3086,6 +3168,64 @@
       "name": "Rodney House",
       "ticket": "T-0359",
       "refused_because": "\"Rodney House\" is a person for the same reason \"Chester House\" is. Its one mention is the 1834-04-01 letter list (c001), it stands in a column of people the post office was holding letters for, and House is the surname. No claim in this corpus puts a Rodney House on a street or over a door. The compiler refuses the declaration independently of this note."
+    }
+  ],
+  "agency_note": "AN AGENCY IS A RELATION AND NOT A HOUSE (T-0410). A business record holds a trade, goods, proprietors, a street and placement readings; an agency is none of those. It is a relation between a principal that is not in this town at all and a local house or man who holds it for a season, and until this section existed the corpus could express it only by minting the agency as its own business — which then collided with the house holding it under `firm_surnames()` and had to be refused by hand. A declaration here names the principal, records who held the agency over what window, and may RETIRE the business record the corpus minted for the agency itself. The window is COMPUTED from the witnesses' own issue dates and may not be asserted. What a holding may never do is the reason this section exists: it says that a house held the agency and NOTHING else — no proprietor, no trade, no street, no roof — because a man who signs for a principal is not thereby a partner in the house he signs for. `refused_holdings` is the same record kept the other way up, for a candidate the printings refute, because the absence of a holding reads exactly like a candidate nobody has judged.",
+  "agencies": [
+    {
+      "principal": "Howard Fire Insurance Company",
+      "principal_seat": "the city of New-York",
+      "trade": "fire insurance",
+      "why": "The Howard Fire Insurance Company is a New York company that never stood in this town. It sold fire insurance in Chicago through a LOCAL AGENT, and one standing advertisement — the same setting word for word, only the signature and the number of the verb changing — runs across thirteen months of the corpus: 'THE subscribers having been appointed Agents for the Howard Fire Insurance Company of the city of New-York, for Chicago and the vicinity, will insure property against loss by Fire, on reasonable terms. HUBBARD & CO.' from 1834-07-02, and the identical copy in the SINGULAR over one man, 'THE subscriber having been appointed Agent … E. K. HUBBARD.', from 1835-06-20. Neither the company nor the agency is a house in this town: no printing gives either a street, and nothing here decides whether E. K. Hubbard was a partner in Hubbard & Co., because no printing says so.",
+      "holdings": [
+        {
+          "holder": "Hubbard & Co.",
+          "holder_kind": "business",
+          "number": "plural",
+          "signature": "HUBBARD & CO.",
+          "copy_dates": [
+            "1834-07-01"
+          ],
+          "witnesses": [
+            "chicago_democrat_1834_07_02#c048",
+            "chicago_democrat_1834_10_15#c005",
+            "chicago_democrat_1835_05_20#c023"
+          ],
+          "note": "Hubbard & Co. held the agency first and advertised it in the PLURAL over the firm's own signature: '[The su]bscribers having been appointed [Ag]ents for the Howard Fire Insurance [Company of] the city of New-York … HUBBARD & CO.' (1834-07-02 c048). The 1834-10-15 c005 and 1835-05-20 c023 printings are the same setting over the copy date 'July 1'. The plural verb and the firm signature are the whole of what makes this the FIRM's holding rather than a partner's, and it is all they make it: the commission and forwarding house gains a line on its card and nothing else — no trade, no street, no roof. 'fire insurance' stands in this record's goods because the notice ran over its signature, which is a fact about the printing and not a second trade."
+        },
+        {
+          "holder": "E. K. Hubbard",
+          "holder_kind": "person",
+          "number": "singular",
+          "signature": "E. K. HUBBARD.",
+          "copy_dates": [
+            "1835-06-20",
+            "1835-07-01"
+          ],
+          "witnesses": [
+            "chicago_american_1835_06_20#c015",
+            "chicago_democrat_1835_07_01#c017",
+            "chicago_democrat_1835_07_08#c005",
+            "chicago_democrat_1835_07_29#c011",
+            "chicago_democrat_1835_08_05#c008"
+          ],
+          "note": "From 1835-06-20 the identical copy runs in the SINGULAR over one man — 'THE su[bs]criber ha[v]ing been [a]p[poin]t[e]d [agent] for the Howard Fire Insurance [Company] … E. K. [H]UBBARD.', American 1835-06-20 c015, copy-dated June 20, 1835 — and the Democrat reprints it at 1835-07-01 c017, 1835-07-08 c005, 1835-07-29 c011 and 1835-08-05 c008 over the copy date 'July 1'. So on the scene date the agency sits with E. K. Hubbard, and the forwarding house goes on trading under its own name to 1835-08-29. This project never reads a shared surname with different initials as one man, so the holder here is the MAN the signature names and nothing joins him to Hubbard & Co.'s partners, Gurdon S. Hubbard and Henry G. Hubbard. That refusal is exactly what the old `refused_firm_merges` entry was for, and it is what this relation replaces: the two records are not confused, they are joined — by an agency that passed from the firm to one man."
+        }
+      ],
+      "refused_holdings": [
+        {
+          "holder": "Jones, King & Co.",
+          "holder_kind": "business",
+          "witnesses": [
+            "chicago_democrat_1835_08_05#c008"
+          ],
+          "refused_because": "T-0410 was filed reading a THIRD holder off 1835-08-05 c008, where the agency notice is claimed on the Jones, King & Co. business record and that record therefore announced itself 'appointed Agent for the Howard Fire Insurance Company'. The fragment refutes it. Its own reading runs 'July 1, [1835]. [E]. K. [H]UBBARD. — Hardware, Stoves, &c. Th[e] u[n]dersigned have [formed a] connect[ion] in the mercantile business, under the [f]irm o[f] Jones, [King] & [C]o.': two notices on one fragment, as that claim's own notes say, and the fire-insurance card is signed by the man while the hardware notice below it is signed WILLIAM JONES, BYRAM KING, W. B. CLARKE. The claim's own entity list reads 'UCBRARB,' as 'Hubbard, E. K.' with the role 'insurance agent'. Nothing in the setting puts the agency in Jones, King & Co.'s hands; the segmenter put the two advertisements on one line. So there is no handover in the week of 5 August, and this is the fifth printing of the E. K. Hubbard holding above. The claim's `announces_opening` is dropped in the same pass, because it was the agency's sentence read onto the hardware firm's record."
+        }
+      ],
+      "retires": {
+        "name": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
+        "because": "'E. K. Hubbard, agent for the Howard Fire Insurance Company' is the agency itself minted as a house, which is the defect T-0410 was filed for. It has no street, no goods and no placement in any of its four printings, because an agency is not a house and none of them gave it one; what it has is a principal and a man holding it, and both of those are now the relation above. Every printing it was compiled from is a witness of the E. K. Hubbard holding, so the register loses one business record and not one reading. The transcriber's em-dashed style 'Howard Fire Insurance Company — E. K. Hubbard, agent at Chicago' that an earlier firm merge collapsed into it is carried onto the retired record, so that judgement outlives the record it was made about."
+      }
     }
   ]
 }

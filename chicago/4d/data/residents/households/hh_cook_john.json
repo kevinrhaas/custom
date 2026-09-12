@@ -63,6 +63,15 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "later_occupation": {
+     "value": "tailor",
+     "describes_date": 1844,
+     "confidence": "attested",
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1844. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1844 is evidence about 1844. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1844\" are not the same fact (T-0693)."
+    },
     "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
    "sources": [
@@ -72,7 +81,7 @@
     "norris_directory_1844",
     "second_presbyterian_chicago_1892"
    ],
-   "note": "THE LADDER'S OWN READING OF THIS EVIDENCE. Read from directory_1843, directory_1844, newspaper_letter_list, poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_letter_list names this person at Chicago by 1 April 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Cook, Mrs. J. L. | Dismissed.” (second_presb_0525, printed page 183), the roll printing neither when nor how the member was admitted. Under the rule that decided it: Surname 'Cook' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once.",
+   "note": "THE LADDER'S OWN READING OF THIS EVIDENCE. Read from directory_1843, directory_1844, newspaper_letter_list, poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_letter_list names this person at Chicago by 1 April 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Cook, Mrs. J. L. | Dismissed.” (second_presb_0522, printed page 183), the roll printing neither when nor how the member was admitted. Under the rule that decided it: Surname 'Cook' folds to the same string as the roll line's, and the given name of both begins J. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once.",
    "civic_evidence": [
     {
      "list": "poll_1834",
@@ -144,7 +153,51 @@
   ],
   "people": [
    {
-    "person_id": "cook_john"
+    "person_id": "cook_john",
+    "occupation_later": {
+     "value": "tailor",
+     "confidence": "attested",
+     "describes_date": 1844,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: 'Cook, John, tailor, res Jefferson st. b Randolph and \\\\Vashington sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "address_later": {
+     "value": "res Jefferson st. b Randolph and \\Vashington sts",
+     "confidence": "attested",
+     "describes_date": 1844,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Cook, John, tailor, res Jefferson st. b Randolph and \\\\Vashington sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "refused",
+     "clause": "1",
+     "value": null,
+     "describes_date": 1844,
+     "read_back_years": 9,
+     "placement": null,
+     "position_local_enu_m": null,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints an address against this name in 1844 and this pass will not carry it back to 1835. The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 1)."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1844,
+     "read_back_years": 9,
+     "placement": null,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints where this man lived in 1844 and this pass will not carry it back to 1835. Jefferson Street is a west-division name the 1835 street layer does not carry. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
+    }
    }
   ]
  }

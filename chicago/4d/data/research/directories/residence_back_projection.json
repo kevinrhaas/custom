@@ -8,20 +8,23 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 44,
-  "printed_as_a_residence": 30,
-  "printed_as_a_lodging": 14,
-  "placed": 6,
-  "placed_as_a_face": 6,
-  "placed_with_no_1835_trade": 3,
+  "addresses_adjudicated": 59,
+  "printed_as_a_residence": 46,
+  "printed_as_a_lodging": 13,
+  "placed": 13,
+  "placed_as_a_face": 13,
+  "placed_with_no_1835_trade": 8,
   "already_better_placed": 0,
-  "refused": 38,
+  "refused": 46,
   "faces_reached": [
    "Clark Street",
+   "Dearborn Street",
    "Lake Street",
    "Market Street",
    "North Water Street",
-   "Washington Street"
+   "Randolph Street",
+   "Washington Street",
+   "Wells Street"
   ],
   "lives_at_real_values": 20,
   "works_at_real_values": 50
@@ -154,27 +157,6 @@
    "placement": null
   },
   {
-   "household_id": "hh_burton_edward",
-   "person_id": "burton_edward",
-   "person": "Edward Burton",
-   "address_as_printed": "res same",
-   "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "refused",
-   "clause": "R4",
-   "reason": "The directory prints `same` — a back-reference to the address on the line above it — and the crosswalk that fed this layer carried the two words without their antecedent. There is no address here to read backwards, and inventing the neighbouring entry's street would be reading the volume's typography as evidence about the ground.",
-   "street_id": null,
-   "face": null,
-   "placement": null
-  },
-  {
    "household_id": "hh_chandler_joseph",
    "person_id": "chandler_joseph",
    "person": "Joseph Chandler",
@@ -191,6 +173,27 @@
    "outcome": "refused",
    "clause": "R4",
    "reason": "The entry names Fort Dearborn — the fort at the river mouth — and not Dearborn Street, which runs south from the river three blocks west of it. The fort IS 1835 ground and the town holds it, but this policy's unit is a street face and a reservation is not one, so the address is refused here rather than resolved onto the wrong grammar.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_clark_erastus",
+   "person_id": "clark_erastus",
+   "person": "Erastus Clark",
+   "address_as_printed": "residence Hum phrey Clark's",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -238,6 +241,48 @@
    "placement": "face"
   },
   {
+   "household_id": "hh_cook_john",
+   "person_id": "cook_john",
+   "person": "John Cook",
+   "address_as_printed": "res Jefferson st. b Randolph and \\Vashington sts",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "Jefferson Street is a west-division name the 1835 street layer does not carry.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_cook_josiah_p",
+   "person_id": "cook_josiah_p",
+   "person": "Josiah P Cook",
+   "address_as_printed": "res Michigan avenue",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
    "household_id": "hh_curtis_jacob_s",
    "person_id": "curtis_jacob_s",
    "person": "Jacob S Curtis",
@@ -277,6 +322,27 @@
    "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "clark",
    "face": "Clark Street",
+   "placement": "face"
+  },
+  {
+   "household_id": "hh_eldredge_john_w",
+   "person_id": "eldredge_john_w",
+   "person": "John W Eldredge",
+   "address_as_printed": "res Randolph st. east of Clark st",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Randolph Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Clark Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "randolph",
+   "face": "Randolph Street",
    "placement": "face"
   },
   {
@@ -364,6 +430,69 @@
    "placement": null
   },
   {
+   "household_id": "hh_funk_absolom",
+   "person_id": "funk_absolom",
+   "person": "Absolom Funk",
+   "address_as_printed": "res Wells st. b Wash, and Rand, st",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Wells Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "wells",
+   "face": "Wells Street",
+   "placement": "face"
+  },
+  {
+   "household_id": "hh_garrett_a",
+   "person_id": "garrett_a",
+   "person": "A. Garrett",
+   "address_as_printed": "res Sauganash Hotel",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "auctioneer",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_goodrich_john",
+   "person_id": "goodrich_john",
+   "person": "John Goodrich",
+   "address_as_printed": "res S. Johnson's",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
    "household_id": "hh_gould_a_b",
    "person_id": "gould_a_b",
    "person": "A. B. Gould",
@@ -385,6 +514,27 @@
    "placement": null
   },
   {
+   "household_id": "hh_harmon_brothers",
+   "person_id": "harmon_charles_l",
+   "person": "Charles Loomis Harmon",
+   "address_as_printed": "res Dearborn st. b Wash and Mad sts (.See card)",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "dry_goods_merchant",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Dearborn Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "dearborn",
+   "face": "Dearborn Street",
+   "placement": "face"
+  },
+  {
    "household_id": "hh_hubbard_ahira",
    "person_id": "hubbard_ahira",
    "person": "Ahira Hubbard",
@@ -396,6 +546,27 @@
     "fergus_chicago_directory_1843"
    ],
    "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "Indiana Street is a north-side name the 1835 street layer does not carry.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_hubbard_gurdon",
+   "person_id": "hubbard_gurdon",
+   "person": "Gurdon Saltonstall Hubbard",
+   "address_as_printed": "h Indiana, b Cass and Rush (See card)",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "packer",
    "trade_not_required": true,
    "lives_at_1835": null,
    "outcome": "refused",
@@ -469,6 +640,27 @@
    "placement": null
   },
   {
+   "household_id": "hh_johnson_seth",
+   "person_id": "johnson_seth",
+   "person": "Seth Johnson",
+   "address_as_printed": "house cor Washington and Lasalle sts",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Washington Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names La Salle Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "washington",
+   "face": "Washington Street",
+   "placement": "face"
+  },
+  {
    "household_id": "hh_jordan_j_b",
    "person_id": "jordan_j_b",
    "person": "J. B. Jordan",
@@ -511,6 +703,69 @@
    "placement": null
   },
   {
+   "household_id": "hh_king_john_lyle",
+   "person_id": "king_john_lyle",
+   "person": "John Lyle King",
+   "address_as_printed": "res S. Jackson's",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_king_nehemiah",
+   "person_id": "king_nehemiah",
+   "person": "Nehemiah King",
+   "address_as_printed": "house 12 Lake st",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Lake Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "lake",
+   "face": "Lake Street",
+   "placement": "face"
+  },
+  {
+   "household_id": "hh_kinzie_john_h",
+   "person_id": "kinzie_john_h",
+   "person": "John Harris Kinzie",
+   "address_as_printed": "h c Mich dc Cass",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "forwarding_and_commission",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "Cass Street is a north-side name the 1835 street layer does not carry.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
    "household_id": "hh_lacey_j_s",
    "person_id": "lacey_j_s",
    "person": "J. S. Lacey",
@@ -527,6 +782,48 @@
    "outcome": "placed",
    "clause": "R4 and R5",
    "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Dearborn Street and Wolcott Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "north_water",
+   "face": "North Water Street",
+   "placement": "face"
+  },
+  {
+   "household_id": "hh_lloyd_alexander",
+   "person_id": "lloyd_alexander",
+   "person": "Alexander Lloyd",
+   "address_as_printed": "res Wells b Lake and Randolph sts",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Wells Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Lake Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "wells",
+   "face": "Wells Street",
+   "placement": "face"
+  },
+  {
+   "household_id": "hh_marsh_silvester",
+   "person_id": "marsh_silvester",
+   "person": "Silvester Marsh",
+   "address_as_printed": "house N Water st (See card",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "provision_dealer",
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "north_water",
    "face": "North Water Street",
    "placement": "face"
@@ -553,27 +850,6 @@
    "placement": null
   },
   {
-   "household_id": "hh_mills_samuel",
-   "person_id": "mills_samuel",
-   "person": "Samuel Mills",
-   "address_as_printed": "res Clark",
-   "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "placed",
-   "clause": "R4 and R5",
-   "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
-   "street_id": "clark",
-   "face": "Clark Street",
-   "placement": "face"
-  },
-  {
    "household_id": "hh_montgomery_l_w",
    "person_id": "montgomery_l_w",
    "person": "L. W. Montgomery",
@@ -595,22 +871,22 @@
    "placement": "face"
   },
   {
-   "household_id": "hh_murray_james_h",
-   "person_id": "murray_james_h",
-   "person": "James H Murray",
-   "address_as_printed": "bds City Hotel",
-   "kind": "boards",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "household_id": "hh_morris_b_s",
+   "person_id": "morris_b_s",
+   "person": "B. S. Morris",
+   "address_as_printed": "h In diana st. b Cuss and Rush sts (See card)",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "norris_directory_1844"
    ],
    "occupation_1835": null,
    "trade_not_required": true,
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "Rush Street is a north-side name the 1835 street layer does not carry.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -787,21 +1063,21 @@
    "household_id": "hh_rue_john_c",
    "person_id": "rue_john_c",
    "person": "John C Rue",
-   "address_as_printed": "res same",
+   "address_as_printed": "h Clark, b Madison and Monroe",
    "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "norris_directory_1844"
    ],
    "occupation_1835": null,
    "trade_not_required": true,
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The directory prints `same` — a back-reference to the address on the line above it — and the crosswalk that fed this layer carried the two words without their antecedent. There is no address here to read backwards, and inventing the neighbouring entry's street would be reading the volume's typography as evidence about the ground.",
-   "street_id": null,
-   "face": null,
+   "reason": "The face resolves — Clark Street is 1835's — but the entry sets the house against a second street the town does not have: Madison Street bounds the 1830 plat on the south and the modelled town stops at it; the 1835 street layer carries no Madison. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
+   "street_id": "clark",
+   "face": "Clark Street",
    "placement": null
   },
   {
@@ -824,6 +1100,27 @@
    "street_id": null,
    "face": null,
    "placement": null
+  },
+  {
+   "household_id": "hh_sherman_rebecca",
+   "person_id": "sherman_rebecca",
+   "person": "Rebecca Sherman",
+   "address_as_printed": "h Clark st. b Mad. & Mon",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "placed",
+   "clause": "R4 and R5",
+   "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "street_id": "clark",
+   "face": "Clark Street",
+   "placement": "face"
   },
   {
    "household_id": "hh_simons_e",
@@ -926,6 +1223,27 @@
    "outcome": "refused",
    "clause": "R4",
    "reason": "Adams Street is south of Madison, outside the platted town of 1835.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
+   "household_id": "hh_wight_j_ambrose",
+   "person_id": "wight_j_ambrose",
+   "person": "J Ambrose Wight",
+   "address_as_printed": "res Mrs. Wright's",
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names the household this man boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null

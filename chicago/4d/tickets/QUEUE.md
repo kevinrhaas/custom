@@ -107,7 +107,6 @@
 
 
 
-T-1034 — The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
@@ -141,21 +140,8 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-T-0886 — The water at the foot of Randolph Street is the old channel behind the bar, not the lake: date the channel's 1835 state or find the carts' way across
-T-1040 — The corner building keeps the Chicago Democrat's name, board and function after the press has left it
-T-0411 — A newspaper and its own printing office are two businesses, and the partner-surname guard can never join them
-T-0410 — The Howard fire-insurance agency passes between three houses, and the gazetteer has no relation that can hold it
-T-0413 — Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
-T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
-T-0398 — A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
-T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
-T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
-T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
-T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
+T-1064 — The corner building keeps the Chicago Democrat's name, board and function after the press has left it
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
-T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
-T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 
 # --- ==========================================================================
 # --- 4. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -165,7 +151,7 @@ T-0834 — The 665 schedule sizes a block's principal room in party-line units a
 # --- height, T-0939 stops it running to the horizon, T-0940 makes its surface sand; T-0799 runs
 # --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
-T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
+
 T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
@@ -332,3 +318,12 @@ T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house',
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
+T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies

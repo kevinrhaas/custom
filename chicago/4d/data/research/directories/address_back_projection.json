@@ -7,15 +7,15 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 149,
+  "addresses_adjudicated": 158,
   "placed": 18,
   "placed_as_a_face": 15,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
-  "already_better_placed": 23,
-  "refused": 108,
-  "refused_clause_1_no_1835_business": 98,
-  "refused_clause_2_a_residence_not_a_shop": 6,
+  "already_better_placed": 26,
+  "refused": 114,
+  "refused_clause_1_no_1835_business": 102,
+  "refused_clause_2_a_residence_not_a_shop": 8,
   "refused_clause_3_not_on_the_1835_grid": 4,
   "faces_reached": [
    "Canal Street",
@@ -338,7 +338,7 @@
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
-   "reason": "The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -462,27 +462,6 @@
    "read_back_years": 4,
    "sources": [
     "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_burton_edward",
-   "person_id": "burton_edward",
-   "person": "Edward Burton",
-   "address_as_printed": "res same",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -706,6 +685,27 @@
    "position_local_enu_m": null
   },
   {
+   "household_id": "hh_clark_erastus",
+   "person_id": "clark_erastus",
+   "person": "Erastus Clark",
+   "address_as_printed": "residence Hum phrey Clark's",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_clarke_h_b",
    "person_id": "clarke_h_b",
    "person": "H. B. Clarke",
@@ -803,7 +803,49 @@
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
-   "reason": "The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_cook_john",
+   "person_id": "cook_john",
+   "person": "John Cook",
+   "address_as_printed": "res Jefferson st. b Randolph and \\Vashington sts",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_cook_josiah_p",
+   "person_id": "cook_josiah_p",
+   "person": "Josiah P Cook",
+   "address_as_printed": "res Michigan avenue",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -992,7 +1034,7 @@
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
-   "reason": "The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1000,14 +1042,14 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_eldridge_john_w",
-   "person_id": "eldridge_john_w",
-   "person": "John W Eldridge",
-   "address_as_printed": "Clark st cor. S. Water, Loomis’ Building",
-   "describes_date": 1839,
-   "read_back_years": 4,
+   "household_id": "hh_eldredge_john_w",
+   "person_id": "eldredge_john_w",
+   "person": "John W Eldredge",
+   "address_as_printed": "res Randolph st. east of Clark st",
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1839"
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -1021,10 +1063,10 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_ellis_j",
-   "person_id": "ellis_j",
-   "person": "J Ellis",
-   "address_as_printed": "95 Lake street",
+   "household_id": "hh_eldridge_john_w",
+   "person_id": "eldridge_john_w",
+   "person": "John W Eldridge",
+   "address_as_printed": "Clark st cor. S. Water, Loomis’ Building",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -1234,7 +1276,7 @@
    "household_id": "hh_funk_absolom",
    "person_id": "funk_absolom",
    "person": "Absolom Funk",
-   "address_as_printed": "Fulton and Boston markets, on Dearborn and Randolph streets",
+   "address_as_printed": "res Wells st. b Wash, and Rand, st",
    "describes_date": 1844,
    "read_back_years": 9,
    "sources": [
@@ -1269,6 +1311,48 @@
    "street_id": "lake",
    "face": "Lake Street",
    "placement": "face",
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_garrett_a",
+   "person_id": "garrett_a",
+   "person": "A. Garrett",
+   "address_as_printed": "res Sauganash Hotel",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "auctioneer",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "2",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_goodrich_john",
+   "person_id": "goodrich_john",
+   "person": "John Goodrich",
+   "address_as_printed": "res S. Johnson's",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
    "qualifier_as_printed": null,
    "position_local_enu_m": null
   },
@@ -1361,6 +1445,27 @@
   },
   {
    "household_id": "hh_harmon_brothers",
+   "person_id": "harmon_charles_l",
+   "person": "Charles Loomis Harmon",
+   "address_as_printed": "res Dearborn st. b Wash and Mad sts (.See card)",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "dry_goods_merchant",
+   "works_at_1835": "harmon_loomis_store",
+   "outcome": "already_better_placed",
+   "clause": "2",
+   "reason": "An 1835 placement already stands: this household works at `harmon_loomis_store`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_harmon_brothers",
    "person_id": "harmon_isaac_d",
    "person": "Isaac Dewey Harmon",
    "address_as_printed": "Clark street",
@@ -1374,27 +1479,6 @@
    "outcome": "already_better_placed",
    "clause": "2",
    "reason": "An 1835 placement already stands: this household works at `harmon_loomis_store`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_hayward_alvin",
-   "person_id": "hayward_alvin",
-   "person": "Alvin Hayward",
-   "address_as_printed": "near Sauganash Hotel",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1500,6 +1584,27 @@
    "outcome": "refused",
    "clause": "1",
    "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_hubbard_gurdon",
+   "person_id": "hubbard_gurdon",
+   "person": "Gurdon Saltonstall Hubbard",
+   "address_as_printed": "h Indiana, b Cass and Rush (See card)",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "packer",
+   "works_at_1835": "old_bank_building",
+   "outcome": "already_better_placed",
+   "clause": "2",
+   "reason": "An 1835 placement already stands: this household works at `old_bank_building`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1644,6 +1749,27 @@
    "read_back_years": 8,
    "sources": [
     "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_johnson_seth",
+   "person_id": "johnson_seth",
+   "person": "Seth Johnson",
+   "address_as_printed": "house cor Washington and Lasalle sts",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -1804,6 +1930,48 @@
    "position_local_enu_m": null
   },
   {
+   "household_id": "hh_king_john_lyle",
+   "person_id": "king_john_lyle",
+   "person": "John Lyle King",
+   "address_as_printed": "res S. Jackson's",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_king_nehemiah",
+   "person_id": "king_nehemiah",
+   "person": "Nehemiah King",
+   "address_as_printed": "house 12 Lake st",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_king_tuthill",
    "person_id": "king_tuthill",
    "person": "Tuthill King",
@@ -1846,6 +2014,27 @@
    "position_local_enu_m": null
   },
   {
+   "household_id": "hh_kinzie_john_h",
+   "person_id": "kinzie_john_h",
+   "person": "John Harris Kinzie",
+   "address_as_printed": "h c Mich dc Cass",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "forwarding_and_commission",
+   "works_at_1835": "jh_kinzie_forwarding_store",
+   "outcome": "already_better_placed",
+   "clause": "2",
+   "reason": "An 1835 placement already stands: this household works at `jh_kinzie_forwarding_store`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_kinzie_robert_a",
    "person_id": "kinzie_robert_a",
    "person": "Robert Allen Kinzie",
@@ -1875,6 +2064,27 @@
    "read_back_years": 4,
    "sources": [
     "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_knickerbacker_a_v",
+   "person_id": "knickerbacker_a_v",
+   "person": "A V Knickerbacker",
+   "address_as_printed": "b Dearborn and State sts",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -1951,14 +2161,14 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_long_john",
-   "person_id": "long_john",
-   "person": "John Long",
-   "address_as_printed": "North Wells st",
-   "describes_date": 1839,
-   "read_back_years": 4,
+   "household_id": "hh_lloyd_alexander",
+   "person_id": "lloyd_alexander",
+   "person": "Alexander Lloyd",
+   "address_as_printed": "res Wells b Lake and Randolph sts",
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1839"
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -1972,14 +2182,14 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_loomis_henry",
-   "person_id": "loomis_henry",
-   "person": "Henry Loomis",
-   "address_as_printed": "cor West Water and Randolph",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "household_id": "hh_long_john",
+   "person_id": "long_john",
+   "person": "John Long",
+   "address_as_printed": "North Wells st",
+   "describes_date": 1839,
+   "read_back_years": 4,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2007,6 +2217,27 @@
    "outcome": "refused",
    "clause": "1",
    "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_marsh_silvester",
+   "person_id": "marsh_silvester",
+   "person": "Silvester Marsh",
+   "address_as_printed": "house N Water st (See card",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "provision_dealer",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "2",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -2098,27 +2329,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_mills_samuel",
-   "person_id": "mills_samuel",
-   "person": "Samuel Mills",
-   "address_as_printed": "res Clark",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_montgomery_l_w",
    "person_id": "montgomery_l_w",
    "person": "L. W. Montgomery",
@@ -2132,7 +2342,7 @@
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
-   "reason": "The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -2164,7 +2374,7 @@
    "household_id": "hh_morris_b_s",
    "person_id": "morris_b_s",
    "person": "B. S. Morris",
-   "address_as_printed": "office Clark street, opposite City Hotel",
+   "address_as_printed": "h In diana st. b Cuss and Rush sts (See card)",
    "describes_date": 1844,
    "read_back_years": 9,
    "sources": [
@@ -2211,27 +2421,6 @@
    "read_back_years": 4,
    "sources": [
     "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_murray_james_h",
-   "person_id": "murray_james_h",
-   "person": "James H Murray",
-   "address_as_printed": "bds City Hotel",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2689,11 +2878,11 @@
    "household_id": "hh_rue_john_c",
    "person_id": "rue_john_c",
    "person": "John C Rue",
-   "address_as_printed": "res same",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "address_as_printed": "h Clark, b Madison and Monroe",
+   "describes_date": 1844,
+   "read_back_years": 9,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2736,6 +2925,27 @@
    "read_back_years": 8,
    "sources": [
     "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_sherman_rebecca",
+   "person_id": "sherman_rebecca",
+   "person": "Rebecca Sherman",
+   "address_as_printed": "h Clark st. b Mad. & Mon",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2812,27 +3022,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_smith_d_a",
-   "person_id": "smith_d_a",
-   "person": "D A Smith",
-   "address_as_printed": "office on Clark street, 2 doors south of Lake, over J. B. F. Russell's Land Agency Office; residence La Salle street, opposite the First Baptist Church",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_smith_e_kirby",
    "person_id": "smith_e_kirby",
    "person": "E Kirby Smith",
@@ -2875,27 +3064,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_smith_james",
-   "person_id": "smith_james",
-   "person": "James Smith",
-   "address_as_printed": "Lake street",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_snow_george_w",
    "person_id": "snow_george_w",
    "person": "George W. Snow",
@@ -2909,7 +3077,7 @@
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
-   "reason": "The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -2930,7 +3098,7 @@
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
-   "reason": "The directory prints this as a RESIDENCE — its own `res` or `bds` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
+   "reason": "The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -3093,6 +3261,27 @@
    "read_back_years": 8,
    "sources": [
     "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_wight_j_ambrose",
+   "person_id": "wight_j_ambrose",
+   "person": "J Ambrose Wight",
+   "address_as_printed": "res Mrs. Wright's",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,

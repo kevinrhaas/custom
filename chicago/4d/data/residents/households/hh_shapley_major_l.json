@@ -75,17 +75,6 @@
      "source": "chicago_voter_lists_1833_1835_irad",
      "rule": "G2a"
     }
-   ],
-   "book_evidence": [
-    {
-     "list": "directory_1843",
-     "as_read": "Shapley, Morgan L., ship-carpenter, res Government Reservation",
-     "locator": "res Government Reservation",
-     "record_id": "f1843_e2227",
-     "describes_date": "1843",
-     "source": "fergus_chicago_directory_1843",
-     "rule": "G1a"
-    }
    ]
   }
  ],

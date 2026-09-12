@@ -1,7 +1,7 @@
 ---
 id: T-1034
 title: The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1164
+claimed_by: run 9/11/2026, 8:59:44 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T02:34:06.311Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34666288560
 ---
 
 The 619 town lots propose 69 new purchaser matches and nobody has ruled on one: adjudicate them in cohorts as T-0990 did, and bring the land_sales ceiling back down from 869.
@@ -174,15 +174,103 @@ Filed on the way past: nothing new. The A. H. Foster fold was ADDED to **T-1035*
 the one-shared-initial question. The 'J. GRANT, Jr.' caution is recorded in the GRANT JAMES
 ruling rather than filed — it is a card-merge question, not a purchaser one.
 
-### NEXT
+**Cohort C2 — the nine with a namesake, surnames L–M.** Ruled 2026-09-11. **Three upheld,
+six refused** — the first cohort here to refuse most of what it read. `ruled` 124/1/66/19 →
+**127/1/72/10**; matched 144 → 138, six cards retracted with twenty-four register rows and
+$30,708 of stated purchase money. No acres move: all twenty-four are town lots.
 
-**Cohort C2 — the nine whose surname falls in L–M**: LEE GEORGE W, LEE WILLIAM, LOOMIS H G,
-MILLER GEORGE, MILLER J, MILLER SAMUEL, MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M. The
-block where the BROWN WM rule should bite hardest — three Millers on a surname the directories
-print many of — and where C1's first lesson has the most to prove: read Fergus 1839, Fergus
-1843, Norris 1844 and the newspaper run for the surname BEFORE weighing `rivals[]`. **C3 is
-then the last ten, surnames S–Z**: SMITH JAMES A, STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G,
-WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H, WRIGHT A — and its
-two WALKER spellings are one person under two readings, to be ruled together as cohort A ruled
-its pairs. **19 unruled.** The run that closes a block names the next one here. This ticket
-closes when the crosswalk's `ruled` block reads zero unruled, and says so WITH the count.
+| upheld | refused |
+|---|---|
+| MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M | LEE GEORGE W, LEE WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL |
+
+**What the cohort taught, in one line each** (the argument is in the domain README):
+
+*Ask the REGISTER for a rival before you ask the town, and it answers four of the nine.*
+LOOMIS H G is refused because the same book enters LOOMIS HORATIO G — one man, two
+spellings — and MONTGOMERY WILLIAM and MORRISON J M are upheld because the book enters
+LOTON WM, LOTON W, EZEKIEL, ORSEMUS, EPHRAIM and THOS M under their own names, so neither
+proposal is a clipped reading of a purchaser it already holds.
+
+*The printed record decides which man an initial pair names.* Chicago has exactly two
+Loomises: Henry the lumber merchant, who carries no middle initial in any printing, and
+Horatio Gates Loomis of Harmon & Loomis, printed 'Horatio G.' in Fergus 1839 and 'H. G.'
+in Norris 1844 — the register's two initials exactly.
+
+*A domain count is not evidence; the sentence the name stands in is.* MILLER SAMUEL's two
+non-letter-list newspaper readings are one advertisement printed twice, and it closes 'Col.
+Samuel Miller, Michigan City, are his Agents'. The Colonel is Carver's Indiana agent.
+
+*A middle initial can DISAGREE rather than be absent.* LEE GEORGE W meets a card whose only
+middle initial is the S of a St. Cyr 'G. S. Lee', against the register's W.
+
+*C1's first lesson held under the hardest surname in the queue.* The printed record carries
+twenty-five readings of MILLER and not one George; four distinct printed forenames begin
+with J.
+
+*The ceiling did not move, fourth cohort running* — `--tighten land_sales` answers *nothing
+to reclaim* and 867 stands. T-0962's blind spot; read the crosswalk's own `ruled` block.
+
+Filed on the way past: **T-1040**, carrying both card-level findings — the Michigan City
+Colonel on `miller_samuel`, and `person_w_montgomery` holding Loton W.'s `boot and shoe
+maker` beside the auctioneer's own trades. A ruling refuses a purchase and does not rewrite
+a person, so neither was repaired here.
+
+**Cohort C3 — the last ten, surnames S–Z.** Ruled 2026-09-12. **Eight upheld, two
+refused** — `ruled` 127/1/72/10 → **135/1/74/0**, and that zero is what this ticket was
+opened to reach. Matched 138 → 136, two cards retracted with four register rows and $7,175
+of stated purchase money. No acres move: all four are town lots.
+
+| upheld | refused |
+|---|---|
+| STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H | SMITH JAMES A, WRIGHT A |
+
+**What the cohort taught, in one line each** (the argument is in the domain README):
+
+*A crosswalk's recorded REFUSAL is evidence, not a gap.* WRIGHT A is refused because three
+separate files already say, each in its own words, that the surname is in their volume and
+no entry under it carries an A — Fergus 1843 weighing six Wrights, Norris 1844 two, the
+Second Presbyterian roll eleven. Somebody looked, and wrote down that they looked.
+
+*An initial-only reading cannot corroborate an initial-only purchase.* The one 'A. Wright'
+in the corpus is a bidder in Fergus 1839's lot sale, folded on by the same letter A. That
+is the proposal a second time, not a check on it.
+
+*The printed man who carries the register's middle initial can be one the layer does not
+hold apart.* SMITH JAMES A is refused with 'Smith, James Ayer, clerk' / 'Smith, J. A.'
+sitting inside the very fold the card's 1843 and 1844 matches are recorded AMBIGUOUS on —
+while the card's one unambiguous entry, Fergus 1839's constable, carries M.
+
+*Say the fact that cuts the other way.* The 1840 census does print a head 'James A. Smith',
+and the census crosswalk has already ruled it a CANDIDATE and no more. It is written into
+the refusal so the next reader can overturn it if a token ever turns up.
+
+*Two spellings of one man can be proved by the page rather than argued.* WALKER G H takes
+lot 6 and WALKER GEORGE H lot 1 of block 37 on one day, and the town prints both forms —
+'G. H. Walker' in a letter list, 'WALKER, GEORGE H' on Kercheval's Black Hawk muster roll.
+
+*An office is a token.* WALKER JAMES, the oldest purchase in the domain (4 October 1830, the
+canal commissioners' first sale), is upheld on the Democrat swearing an estray appraisal
+'before James Walker, J. P.' — and the same notice prints Jeremiah Walker beside him, so
+the page separates the layer's two Walkers itself. The ruling asserts no residence: Walker's
+Grove is not the town.
+
+*A `letter_list_only` card survives only when the list is not what carries it.* WOODWORTH
+J H is upheld on Fergus 1839's firm line 'Woodworth, Robert P. & James H., wholesale dry
+goods merchants, 103 Lake st', Fergus 1843's 'James Hutchinson, merchant', and the US House
+biography — three documents past the list.
+
+*The ceiling did not move, fifth cohort running.* `--tighten land_sales` answers *nothing to
+reclaim* and 867 stands. Across all seventy-two judgements of this ticket the meter moved
+twice, by one each time: T-0962's blind spot is now measured rather than suspected.
+
+Filed on the way past: nothing. The one finding — Fergus 1839's compound firm entry
+'Robert P. & James H. Woodworth' missing from the card's directory appearances, because a
+man shares his printed line with his partner — is recorded in the ruling and the domain
+README rather than opened, per the queue's FILING RULE.
+
+### CLOSED, WITH THE COUNT
+
+**Seventy-two proposals arrived when T-1033 joined the town lots to the reading, and
+seventy-two are ruled: 46 upheld, 26 refused, across five cohorts.** The crosswalk's `ruled`
+block reads **135 upheld, 1 named, 74 refused, 0 unruled**. This ticket closes on that
+count, and not on 'there was nothing left'.

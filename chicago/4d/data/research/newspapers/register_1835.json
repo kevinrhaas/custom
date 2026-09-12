@@ -6,51 +6,51 @@
   "compiled_from": {
     "gazetteer": {
       "claims": 1169,
-      "persons": 2666,
-      "businesses": 206
+      "persons": 2665,
+      "businesses": 196
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
     "streets": 40,
-    "resident_persons": 1373
+    "resident_persons": 1295
   },
   "counts": {
     "businesses": {
-      "total": 206,
-      "present_at_scene_date": 189,
+      "total": 196,
+      "present_at_scene_date": 179,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 29,
-        "new_building": 29,
-        "street_only": 60,
-        "unplaceable": 88
+        "enrich_existing": 30,
+        "new_building": 26,
+        "street_only": 61,
+        "unplaceable": 79
       },
       "by_placement_class": {
-        "corner": 17,
-        "none": 63,
-        "relative": 108,
-        "street_only": 18
+        "corner": 16,
+        "none": 62,
+        "relative": 101,
+        "street_only": 17
       },
       "present_by_action": {
-        "enrich_existing": 29,
-        "new_building": 29,
-        "street_only": 60,
-        "unplaceable": 71
+        "enrich_existing": 30,
+        "new_building": 26,
+        "street_only": 61,
+        "unplaceable": 62
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 101,
-      "backdating_liberty_required": 27,
+      "survival_liberty_required": 95,
+      "backdating_liberty_required": 26,
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2666,
+      "total": 2665,
       "by_action": {
-        "enrich": 1417,
-        "new_resident": 1225,
-        "replace_invented": 24
+        "enrich": 1343,
+        "new_resident": 1295,
+        "replace_invented": 27
       },
       "letter_list_only": 1972
     },
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 876,
+        "none_recorded": 877,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 882,
+      "households_total": 883,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -78,6 +78,8 @@
       "trade": "stoves, hollow ware and castings",
       "occupation": "stove_dealer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -115,6 +117,10 @@
       "proprietors": [
         "A. Clybourn"
       ],
+      "partners": [
+        "A. Clybourn"
+      ],
+      "firm_styles": [],
       "street": "the market square",
       "street_id": null,
       "placement_class": "relative",
@@ -152,6 +158,10 @@
       "proprietors": [
         "A. Filer"
       ],
+      "partners": [
+        "A. Filer"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -189,6 +199,10 @@
       "proprietors": [
         "A. Garrett"
       ],
+      "partners": [
+        "A. Garrett"
+      ],
+      "firm_styles": [],
       "street": "South Water street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -226,6 +240,10 @@
       "proprietors": [
         "A. Garrett"
       ],
+      "partners": [
+        "A. Garrett"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "none",
@@ -261,6 +279,8 @@
       "trade": "leather",
       "occupation": "merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -298,6 +318,10 @@
       "proprietors": [
         "W. Montgomery"
       ],
+      "partners": [
+        "W. Montgomery"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -335,6 +359,10 @@
       "proprietors": [
         "Edward Burton"
       ],
+      "partners": [
+        "Edward Burton"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -370,6 +398,8 @@
       "trade": "storekeeper (winding up)",
       "occupation": "merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -407,6 +437,10 @@
       "proprietors": [
         "J. C. Bradley"
       ],
+      "partners": [
+        "J. C. Bradley"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -442,6 +476,8 @@
       "trade": "wholesale wine and liquors",
       "occupation": "liquor_dealer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "street_only",
@@ -477,6 +513,8 @@
       "trade": "iron and hardware",
       "occupation": "hardware_merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -512,6 +550,10 @@
       "trade": "fashionable tailoring",
       "occupation": "tailor",
       "proprietors": [
+        "Andrews & Eells"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Andrews & Eells"
       ],
       "street": null,
@@ -551,6 +593,10 @@
       "proprietors": [
         "B. Jones"
       ],
+      "partners": [
+        "B. Jones"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -588,6 +634,10 @@
       "proprietors": [
         "B. Jones"
       ],
+      "partners": [
+        "B. Jones"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -623,6 +673,8 @@
       "trade": "boot and shoe manufacturing and leather dealing",
       "occupation": "shoemaker",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "street_only",
@@ -664,8 +716,16 @@
         "Franklin Brewster",
         "John S. C. Hogan"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "Brewster",
+        "Hogan",
+        "William Brewster",
+        "Franklin Brewster",
+        "John S. C. Hogan"
+      ],
+      "firm_styles": [],
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
@@ -702,6 +762,13 @@
         "Briggs & Humphrey",
         "Briggs",
         "Humphrey"
+      ],
+      "partners": [
+        "Briggs",
+        "Humphrey"
+      ],
+      "firm_styles": [
+        "Briggs & Humphrey"
       ],
       "street": "South Water Street",
       "street_id": "south_water",
@@ -740,6 +807,10 @@
       "proprietors": [
         "Brown"
       ],
+      "partners": [
+        "Brown"
+      ],
+      "firm_styles": [],
       "street": "Randolph Street",
       "street_id": "randolph",
       "placement_class": "relative",
@@ -777,6 +848,10 @@
       "proprietors": [
         "C. H. Chapman"
       ],
+      "partners": [
+        "C. H. Chapman"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -814,6 +889,10 @@
       "proprietors": [
         "C. & I. Harmon"
       ],
+      "partners": [],
+      "firm_styles": [
+        "C. & I. Harmon"
+      ],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -849,6 +928,8 @@
       "trade": "general merchandise on consignment",
       "occupation": "merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -886,6 +967,10 @@
       "proprietors": [
         "Hunt, C[harle]s"
       ],
+      "partners": [
+        "Hunt, C[harle]s"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -932,6 +1017,10 @@
       "proprietors": [
         "Charles Taylor"
       ],
+      "partners": [
+        "Charles Taylor"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -967,6 +1056,8 @@
       "trade": "hardware, stoves and iron",
       "occupation": "hardware_merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1004,6 +1095,10 @@
       "proprietors": [
         "D. Graves"
       ],
+      "partners": [
+        "D. Graves"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -1041,6 +1136,10 @@
       "proprietors": [
         "John Calhoun"
       ],
+      "partners": [
+        "John Calhoun"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -1167,6 +1266,10 @@
       "proprietors": [
         "Daniel Elston"
       ],
+      "partners": [
+        "Daniel Elston"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1204,6 +1307,10 @@
       "proprietors": [
         "Clark, master"
       ],
+      "partners": [
+        "Clark, master"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1239,6 +1346,10 @@
       "trade": "cabinet shop; chairs",
       "occupation": "joiner",
       "proprietors": [
+        "Clark, Filer & Co."
+      ],
+      "partners": [],
+      "firm_styles": [
         "Clark, Filer & Co."
       ],
       "street": "South Water Street",
@@ -1284,6 +1395,15 @@
         "J. Dean Caton",
         "J. H. Collins & J. D. C[aton]"
       ],
+      "partners": [
+        "J. H. Collins",
+        "J. D. Caton",
+        "James H. Collins",
+        "J. Dean Caton"
+      ],
+      "firm_styles": [
+        "J. H. Collins & J. D. C[aton]"
+      ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -1322,6 +1442,11 @@
         "J. B. Cook",
         "C. George"
       ],
+      "partners": [
+        "J. B. Cook",
+        "C. George"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -1357,6 +1482,10 @@
       "trade": "tailors",
       "occupation": "tailor",
       "proprietors": [
+        "Cooley and Halsman"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Cooley and Halsman"
       ],
       "street": "Dearborn Street",
@@ -1414,6 +1543,11 @@
         "Cooley",
         "Hol[b]man"
       ],
+      "partners": [
+        "Cooley",
+        "Hol[b]man"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -1458,6 +1592,8 @@
       "trade": "foreign wine and liquor establishment",
       "occupation": "liquor_dealer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1504,6 +1640,10 @@
       "proprietors": [
         "David Carver"
       ],
+      "partners": [
+        "David Carver"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1541,6 +1681,10 @@
       "proprietors": [
         "D. Graves"
       ],
+      "partners": [
+        "D. Graves"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -1579,6 +1723,11 @@
         "D. O. Robinson",
         "R. A. Neff"
       ],
+      "partners": [
+        "D. O. Robinson",
+        "R. A. Neff"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1614,6 +1763,10 @@
       "trade": "blacksmithing and edge tool making",
       "occupation": "blacksmith",
       "proprietors": [
+        "Dally & Youngs"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Dally & Youngs"
       ],
       "street": null,
@@ -1655,6 +1808,13 @@
         "Daniel Elston & Co.",
         "D. Elston & Co."
       ],
+      "partners": [
+        "Daniel Elston"
+      ],
+      "firm_styles": [
+        "Daniel Elston & Co.",
+        "D. Elston & Co."
+      ],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1690,6 +1850,8 @@
       "trade": "iron castings",
       "occupation": "founder",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -1727,8 +1889,12 @@
       "proprietors": [
         "David Carver"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "David Carver"
+      ],
+      "firm_styles": [],
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
@@ -1750,11 +1916,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_deacon_mccaleb",
@@ -1765,6 +1931,11 @@
         "E. P. Deacon",
         "[uncertain: Wm. McKaleb]"
       ],
+      "partners": [
+        "E. P. Deacon",
+        "[uncertain: Wm. McKaleb]"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -1795,43 +1966,6 @@
       "action_note": "Excluded from the scene-date town: Contradicted on or before the scene date by chicago_democrat_1834_07_23#c005 (notice, 1834-07-23). No action; the record is kept so the exclusion can be argued with."
     },
     {
-      "id": "business_dr_j_b_barnard",
-      "name": "Dr. J. B. Barnard",
-      "trade": "physician",
-      "occupation": "physician",
-      "proprietors": [
-        "J. B. Barnard"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-06-13",
-        "last_issue": "1835-06-13"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "structure",
-        "target": "new_york_house",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure new_york_house."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "new_york_house",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure new_york_house."
-    },
-    {
       "id": "business_dr_j_h_barnard",
       "name": "Dr. J. H. Barnard",
       "trade": "physician",
@@ -1839,12 +1973,16 @@
       "proprietors": [
         "J. H. Barnard"
       ],
+      "partners": [
+        "J. H. Barnard"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-06-04",
-        "last_issue": "1835-06-04"
+        "last_issue": "1835-06-13"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -1877,6 +2015,11 @@
         "Austin, W. G.",
         "W. G. Austin"
       ],
+      "partners": [
+        "Austin, W. G.",
+        "W. G. Austin"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
@@ -1924,52 +2067,6 @@
       "action_note": "The paper names Lake Street and nothing narrower; the anchor 'the post office' names nothing the committed town holds."
     },
     {
-      "id": "business_e_k_hubbard_agent_for_the_howard_fire_insurance_company",
-      "name": "E. K. Hubbard, agent for the Howard Fire Insurance Company",
-      "trade": "fire insurance agency",
-      "occupation": "insurance_agent",
-      "proprietors": [
-        "E. K. Hubbard"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "none",
-      "evidence": {
-        "first_issue": "1835-06-20",
-        "last_issue": "1835-07-29"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [
-        {
-          "claim": "chicago_democrat_1835_07_01#c017",
-          "issue": "1835-07-01",
-          "dating": "effected",
-          "iso": "1835-07-01",
-          "verbatim": "having b[een appointed] Fire Insuran[ce] Agent for the Howard [Fire Insurance] Company",
-          "note": "The agency is announced as already conferred, over the dateline of 1 July 1835 — the scene date itself."
-        }
-      ],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
-    },
-    {
       "id": "business_e_l_thrall",
       "name": "E. L. Thrall",
       "trade": "tailoring and ready made clothing",
@@ -1977,6 +2074,10 @@
       "proprietors": [
         "E. L. Thrall"
       ],
+      "partners": [
+        "E. L. Thrall"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -2014,6 +2115,10 @@
       "proprietors": [
         "E. P. Deacon"
       ],
+      "partners": [
+        "E. P. Deacon"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2051,6 +2156,10 @@
       "proprietors": [
         "E. W. Haddock"
       ],
+      "partners": [
+        "E. W. Haddock"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2088,6 +2197,10 @@
       "proprietors": [
         "E. Wentworth"
       ],
+      "partners": [
+        "E. Wentworth"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -2125,6 +2238,10 @@
       "proprietors": [
         "E. Wentworth"
       ],
+      "partners": [
+        "E. Wentworth"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -2162,6 +2279,10 @@
       "proprietors": [
         "E. Wentworth"
       ],
+      "partners": [
+        "E. Wentworth"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2199,6 +2320,10 @@
       "proprietors": [
         "H. E. Wentworth"
       ],
+      "partners": [
+        "H. E. Wentworth"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -2237,6 +2362,11 @@
         "P. B. F. Cable",
         "J. Shrigley"
       ],
+      "partners": [
+        "P. B. F. Cable",
+        "J. Shrigley"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2274,6 +2404,10 @@
       "proprietors": [
         "P. J. Carli"
       ],
+      "partners": [
+        "P. J. Carli"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2311,6 +2445,10 @@
       "proprietors": [
         "Ebenezer S. More"
       ],
+      "partners": [
+        "Ebenezer S. More"
+      ],
+      "firm_styles": [],
       "street": "Monroe Street",
       "street_id": "monroe",
       "placement_class": "relative",
@@ -2348,6 +2486,10 @@
       "proprietors": [
         "Edward W. Casey"
       ],
+      "partners": [
+        "Edward W. Casey"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -2385,6 +2527,10 @@
       "proprietors": [
         "Elmira Fowler"
       ],
+      "partners": [
+        "Elmira Fowler"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -2422,6 +2568,10 @@
       "proprietors": [
         "Everson"
       ],
+      "partners": [
+        "Everson"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -2452,43 +2602,6 @@
       "action_note": "No street the model holds. The anchor 'the Point' names nothing the committed town holds."
     },
     {
-      "id": "business_f_g_blanshard",
-      "name": "F. G. Blanshard",
-      "trade": "houses and lots for sale or rent",
-      "occupation": "land_agent",
-      "proprietors": [
-        "F. G. Blanshard"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-11-12",
-        "last_issue": "1834-11-12"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Dr. Temple's\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor \"Dr. Temple's\" names nothing the committed town holds."
-    },
-    {
       "id": "business_frederick_thomas_drugs_and_paints",
       "name": "Frederick Thomas, drugs and paints",
       "trade": "drugs, paints, chemicals, perfumery and dye stuffs",
@@ -2496,7 +2609,11 @@
       "proprietors": [
         "Frederick Thomas"
       ],
-      "street": null,
+      "partners": [
+        "Frederick Thomas"
+      ],
+      "firm_styles": [],
+      "street": "Water Street",
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
@@ -2531,6 +2648,10 @@
       "trade": "pork and provisions",
       "occupation": "provision_dealer",
       "proprietors": [
+        "Fullerton & Botsford"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Fullerton & Botsford"
       ],
       "street": "Dearborn Street",
@@ -2570,6 +2691,10 @@
       "proprietors": [
         "A. N. Fullerton"
       ],
+      "partners": [
+        "A. N. Fullerton"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2607,12 +2732,16 @@
       "proprietors": [
         "G. Blanshard"
       ],
+      "partners": [
+        "G. Blanshard"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-10-08",
-        "last_issue": "1834-10-08"
+        "last_issue": "1834-11-12"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -2648,6 +2777,12 @@
         "Spring, G.",
         "Giles Spring"
       ],
+      "partners": [
+        "G. Spring",
+        "Spring, G.",
+        "Giles Spring"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -2853,41 +2988,6 @@
       "action_note": "Placeable against the committed town. The landmark is the committed structure tremont_house_1."
     },
     {
-      "id": "business_g_w_keeney",
-      "name": "G. W. Keeney",
-      "trade": "tin, sheet iron and copper ware; cooking stoves; plough and mill castings",
-      "occupation": "miller",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-05-07",
-        "last_issue": "1834-05-07"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"Newberry & Dole's store\" names nothing the committed town holds."
-    },
-    {
       "id": "business_g_w_w_laird",
       "name": "G. W. & W. Laird",
       "trade": "merchants",
@@ -2896,6 +2996,11 @@
         "G. W. Laird",
         "William Laird"
       ],
+      "partners": [
+        "G. W. Laird",
+        "William Laird"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2933,6 +3038,10 @@
       "proprietors": [
         "Geo. W. Laird"
       ],
+      "partners": [
+        "Geo. W. Laird"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -2970,6 +3079,10 @@
       "proprietors": [
         "Holsman, George"
       ],
+      "partners": [
+        "Holsman, George"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -3019,6 +3132,14 @@
         "Goss",
         "Cobb"
       ],
+      "partners": [
+        "Oliver Goss",
+        "Goss",
+        "Cobb"
+      ],
+      "firm_styles": [
+        "Goss & Cobb"
+      ],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "corner",
@@ -3056,6 +3177,10 @@
       "proprietors": [
         "H. C. Bennett"
       ],
+      "partners": [
+        "H. C. Bennett"
+      ],
+      "firm_styles": [],
       "street": "Dearborn street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -3091,6 +3216,10 @@
       "trade": "dry goods and groceries",
       "occupation": "dry_goods_merchant",
       "proprietors": [
+        "H. Doty & Co."
+      ],
+      "partners": [],
+      "firm_styles": [
         "H. Doty & Co."
       ],
       "street": "South Water Street",
@@ -3135,6 +3264,14 @@
         "Harmon",
         "Loomis"
       ],
+      "partners": [
+        "Harmon",
+        "Loomis"
+      ],
+      "firm_styles": [
+        "Harmon, Loomis & Co.",
+        "Harmon, Loomis & Co"
+      ],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -3172,6 +3309,10 @@
       "proprietors": [
         "Henry Moore"
       ],
+      "partners": [
+        "Henry Moore"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -3209,6 +3350,10 @@
       "proprietors": [
         "Moore, Henry"
       ],
+      "partners": [
+        "Moore, Henry"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -3246,6 +3391,10 @@
       "proprietors": [
         "Everts, Hiram"
       ],
+      "partners": [
+        "Everts, Hiram"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -3292,8 +3441,12 @@
       "proprietors": [
         "Hiram Pearsons"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "Hiram Pearsons"
+      ],
+      "firm_styles": [],
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1834-02-25",
@@ -3315,11 +3468,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_hubbard_co",
@@ -3332,8 +3485,16 @@
         "Hubbard",
         "Gurdon S. Hubbard"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "Henry G. Hubbard",
+        "Hubbard",
+        "Gurdon S. Hubbard"
+      ],
+      "firm_styles": [
+        "Hubbard & Co."
+      ],
+      "street": "La Salle Street",
+      "street_id": "lasalle",
       "placement_class": "corner",
       "evidence": {
         "first_issue": "1834-07-02",
@@ -3355,11 +3516,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lasalle",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
+      "action_note": "The paper names La Salle Street and nothing narrower; a corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
     },
     {
       "id": "business_ingersoll_s_tavern_stand",
@@ -3369,6 +3530,10 @@
       "proprietors": [
         "Chester Ingersoll"
       ],
+      "partners": [
+        "Chester Ingersoll"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -3406,6 +3571,10 @@
       "proprietors": [
         "J. A. Marshall"
       ],
+      "partners": [
+        "J. A. Marshall"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -3444,6 +3613,11 @@
         "J. B. Brown",
         "J. B. Tuttle"
       ],
+      "partners": [
+        "J. B. Brown",
+        "J. B. Tuttle"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -3482,6 +3656,11 @@
         "J. Bates jr.",
         "J. Bates, jr."
       ],
+      "partners": [
+        "J. Bates jr.",
+        "J. Bates, jr."
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -3505,11 +3684,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Street leading from the draw-bridge to the oak woods and Blue Island' names nothing the committed town holds."
+      "action": "enrich_existing",
+      "action_target": "bates_auction_room",
+      "match_tier": "occupants",
+      "match_evidence": "John Bates Jr.; auctioneer and deputy postmaster",
+      "action_note": "bates_auction_room already stands and its occupants carries bates — 'John Bates Jr.; auctioneer and deputy postmaster'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_j_c_goodhue_land_agent",
@@ -3519,6 +3698,10 @@
       "proprietors": [
         "Goodhue, J. C."
       ],
+      "partners": [
+        "Goodhue, J. C."
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -3556,12 +3739,16 @@
       "proprietors": [
         "J. Curtiss"
       ],
+      "partners": [
+        "J. Curtiss"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1835-05-20",
-        "last_issue": "1835-05-20"
+        "last_issue": "1835-07-01"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -3593,6 +3780,10 @@
       "proprietors": [
         "Curtiss, J."
       ],
+      "partners": [
+        "Curtiss, J."
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -3630,6 +3821,10 @@
       "proprietors": [
         "J. D. Caton"
       ],
+      "partners": [
+        "J. D. Caton"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -3667,6 +3862,10 @@
       "proprietors": [
         "J. H. Kinzie"
       ],
+      "partners": [
+        "J. H. Kinzie"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -3705,6 +3904,11 @@
         "J. H. Mulford",
         "Mulford, J. H."
       ],
+      "partners": [
+        "J. H. Mulford",
+        "Mulford, J. H."
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -3742,8 +3946,12 @@
       "proprietors": [
         "J. K. Botsford"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "J. K. Botsford"
+      ],
+      "firm_styles": [],
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-02-18",
@@ -3779,6 +3987,10 @@
       "proprietors": [
         "J. K. Botsford"
       ],
+      "partners": [
+        "J. K. Botsford"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "corner",
@@ -3824,6 +4036,16 @@
         "Jno. S. Wilson & Co",
         "Jno. S. Wilson & Co."
       ],
+      "partners": [
+        "J. L. Wilson"
+      ],
+      "firm_styles": [
+        "J. L. Wilson & Co.",
+        "J. L. Wilson & Co",
+        "Jno. L. Wilson & Co.",
+        "Jno. S. Wilson & Co",
+        "Jno. S. Wilson & Co."
+      ],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -3862,6 +4084,11 @@
         "John S. C. Hogan",
         "J. S. C. Hogan"
       ],
+      "partners": [
+        "John S. C. Hogan",
+        "J. S. C. Hogan"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -3900,6 +4127,11 @@
         "John Wellmaker",
         "William Adams"
       ],
+      "partners": [
+        "John Wellmaker",
+        "William Adams"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -3937,6 +4169,10 @@
       "proprietors": [
         "J. Wright"
       ],
+      "partners": [
+        "J. Wright"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "none",
@@ -3974,6 +4210,10 @@
       "proprietors": [
         "James Grant"
       ],
+      "partners": [
+        "James Grant"
+      ],
+      "firm_styles": [],
       "street": "La Salle Street",
       "street_id": "lasalle",
       "placement_class": "relative",
@@ -4012,6 +4252,11 @@
         "John Bates, Jr.",
         "J. Bates, Jr."
       ],
+      "partners": [
+        "John Bates, Jr.",
+        "J. Bates, Jr."
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -4035,11 +4280,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Post Office' names nothing the committed town holds."
+      "action": "enrich_existing",
+      "action_target": "bates_auction_room",
+      "match_tier": "occupants",
+      "match_evidence": "John Bates Jr.; auctioneer and deputy postmaster",
+      "action_note": "bates_auction_room already stands and its occupants carries bates — 'John Bates Jr.; auctioneer and deputy postmaster'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_dave_north_water_street",
@@ -4049,6 +4294,10 @@
       "proprietors": [
         "John Dave"
       ],
+      "partners": [
+        "John Dave"
+      ],
+      "firm_styles": [],
       "street": "North Water Street",
       "street_id": "north_water",
       "placement_class": "street_only",
@@ -4086,6 +4335,10 @@
       "proprietors": [
         "John Dean Caton"
       ],
+      "partners": [
+        "John Dean Caton"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "street_only",
@@ -4123,6 +4376,10 @@
       "proprietors": [
         "Caton, John Dean"
       ],
+      "partners": [
+        "Caton, John Dean"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
@@ -4150,7 +4407,7 @@
       "action_target": "temple_lake_st_building",
       "match_tier": "occupants",
       "match_evidence": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
-      "action_note": "temple_lake_st_building already stands and its occupants carries caton, dean — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
+      "action_note": "temple_lake_st_building already stands and its occupants carries caton — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_h_kinzie",
@@ -4160,6 +4417,10 @@
       "proprietors": [
         "John H. Kinzie"
       ],
+      "partners": [
+        "John H. Kinzie"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -4198,6 +4459,11 @@
         "John Holbrook",
         "Holbrook, John"
       ],
+      "partners": [
+        "John Holbrook",
+        "Holbrook, John"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -4244,7 +4510,7 @@
       "action_target": "john_holbrook_store",
       "match_tier": "occupants",
       "match_evidence": "John Holbrook",
-      "action_note": "john_holbrook_store already stands and its occupants carries holbrook, john — 'John Holbrook'. The papers add trade, goods and dates to a record that exists."
+      "action_note": "john_holbrook_store already stands and its occupants carries holbrook — 'John Holbrook'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_s_kinzie_forwarding_and_commission_merchant",
@@ -4254,6 +4520,10 @@
       "proprietors": [
         "John S. Kinzie"
       ],
+      "partners": [
+        "John S. Kinzie"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -4291,6 +4561,10 @@
       "proprietors": [
         "John Watkins"
       ],
+      "partners": [
+        "John Watkins"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -4328,6 +4602,10 @@
       "proprietors": [
         "John Wright"
       ],
+      "partners": [
+        "John Wright"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -4365,6 +4643,13 @@
       "proprietors": [
         "Byram King",
         "Wm. Jones",
+        "Jones & King"
+      ],
+      "partners": [
+        "Byram King",
+        "Wm. Jones"
+      ],
+      "firm_styles": [
         "Jones & King"
       ],
       "street": "Water Street",
@@ -4408,6 +4693,14 @@
         "Jones, William",
         "King, Byram"
       ],
+      "partners": [
+        "William Jones",
+        "Byram King",
+        "H. B. Clarke",
+        "Jones, William",
+        "King, Byram"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "none",
@@ -4435,14 +4728,6 @@
           "iso": null,
           "verbatim": "[The] undersigned have formed a connection [in] the mercantile business",
           "note": "The second printing of the Jones, King & Co. formation notice, again with no dateline."
-        },
-        {
-          "claim": "chicago_democrat_1835_08_05#c008",
-          "issue": "1835-08-05",
-          "dating": "effected",
-          "iso": "1835-07-01",
-          "verbatim": "having been appointed Agent for the Howard Fire Insurance Company",
-          "note": "The agency is already held, over a dateline of 1 July 1835 — on the scene date, not after it."
         }
       ],
       "survival_liberty_required": false,
@@ -4471,6 +4756,11 @@
         "[uncertain: G. H. Kercheval]",
         "Rich'd J. Hamilton"
       ],
+      "partners": [
+        "[uncertain: G. H. Kercheval]",
+        "Rich'd J. Hamilton"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -4506,6 +4796,10 @@
       "trade": "merchants, and sellers of the lithographic town map",
       "occupation": "merchant",
       "proprietors": [
+        "Kinzie & Forsyth"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Kinzie & Forsyth"
       ],
       "street": null,
@@ -4545,6 +4839,10 @@
       "proprietors": [
         "Kinzie & Hall"
       ],
+      "partners": [],
+      "firm_styles": [
+        "Kinzie & Hall"
+      ],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
@@ -4578,43 +4876,6 @@
       "action_note": "Placeable against the committed town. A crossing of two platted streets: canal and lake."
     },
     {
-      "id": "business_l_curtiss_attorney_and_counsellor_at_law",
-      "name": "L. Curtiss, attorney and counsellor at law",
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "occupation": "attorney",
-      "proprietors": [
-        "L. Curtiss"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1835-07-01",
-        "last_issue": "1835-07-01"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "business",
-        "target": null,
-        "streets": null,
-        "via": "business_jones_king_co",
-        "note": "The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "business_jones_king_co",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is another documented business (business_jones_king_co), which places this one exactly as well as that one is placed."
-    },
-    {
       "id": "business_l_g_curtiss",
       "name": "L. G. Curtiss",
       "trade": "deputy surveyor of Cook County",
@@ -4622,6 +4883,10 @@
       "proprietors": [
         "L. G. Curtiss"
       ],
+      "partners": [
+        "L. G. Curtiss"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -4659,6 +4924,10 @@
       "proprietors": [
         "Curtiss, L. G."
       ],
+      "partners": [
+        "Curtiss, L. G."
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -4696,6 +4965,10 @@
       "proprietors": [
         "L. W. Montgomery"
       ],
+      "partners": [
+        "L. W. Montgomery"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -4733,6 +5006,10 @@
       "proprietors": [
         "Lathrop Johnson"
       ],
+      "partners": [
+        "Lathrop Johnson"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -4770,6 +5047,10 @@
       "proprietors": [
         "M'Cormick & Moon"
       ],
+      "partners": [],
+      "firm_styles": [
+        "M'Cormick & Moon"
+      ],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -4800,43 +5081,6 @@
       "action_note": "No street the model holds. The paper gives no anchor."
     },
     {
-      "id": "business_m_h_kennicott",
-      "name": "M. H. Kennicott",
-      "trade": "dentist",
-      "occupation": "dentist",
-      "proprietors": [
-        "M. H. Kennicott"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "street_only",
-      "evidence": {
-        "first_issue": "1835-06-24",
-        "last_issue": "1835-06-24"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": false,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The paper gives no anchor."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the paper gives no anchor."
-    },
-    {
       "id": "business_magie_wilkinson",
       "name": "Magie & Wilkinson",
       "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
@@ -4844,6 +5088,13 @@
       "proprietors": [
         "Magie",
         "Wilkinson",
+        "Magie & Wilkinson"
+      ],
+      "partners": [
+        "Magie",
+        "Wilkinson"
+      ],
+      "firm_styles": [
         "Magie & Wilkinson"
       ],
       "street": "La Salle Street",
@@ -4884,6 +5135,11 @@
         "Silvester Marsh",
         "Edward Simons"
       ],
+      "partners": [
+        "Silvester Marsh",
+        "Edward Simons"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -4921,6 +5177,13 @@
       "proprietors": [
         "Matthias Mason & Co.",
         "Matthias Mason",
+        "Matthias Mason & Co"
+      ],
+      "partners": [
+        "Matthias Mason"
+      ],
+      "firm_styles": [
+        "Matthias Mason & Co.",
         "Matthias Mason & Co"
       ],
       "street": "Main Street",
@@ -4966,6 +5229,7 @@
               "chicago_democrat_1833_11_26#c020",
               "chicago_democrat_1833_12_24#c003",
               "chicago_democrat_1834_01_07#c008",
+              "chicago_democrat_1834_02_18#c010",
               "chicago_democrat_1834_02_25#c006",
               "chicago_democrat_1834_03_04#c015",
               "chicago_democrat_1834_04_01#c012",
@@ -5003,6 +5267,7 @@
                 "claims": [
                   "chicago_democrat_1833_12_24#c003",
                   "chicago_democrat_1834_01_07#c008",
+                  "chicago_democrat_1834_02_18#c010",
                   "chicago_democrat_1834_03_04#c015",
                   "chicago_democrat_1834_04_01#c012"
                 ],
@@ -5096,41 +5361,6 @@
       "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists."
     },
     {
-      "id": "business_matthias_nason_co",
-      "name": "Matthias Nason & Co.",
-      "trade": "blacksmiths",
-      "occupation": "blacksmith",
-      "proprietors": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-02-18"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "structure",
-        "target": "mansion_house",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure mansion_house."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "mansion_house",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure mansion_house."
-    },
-    {
       "id": "business_miss_bayne_s_boarding_and_day_school",
       "name": "Miss Bayne's Boarding and Day School",
       "trade": "boarding and day school for young ladies",
@@ -5138,6 +5368,10 @@
       "proprietors": [
         "[uncertain: Miss Bayne]"
       ],
+      "partners": [
+        "[uncertain: Miss Bayne]"
+      ],
+      "firm_styles": [],
       "street": "Randolph Street",
       "street_id": "randolph",
       "placement_class": "relative",
@@ -5177,6 +5411,10 @@
       "proprietors": [
         "Montgomery"
       ],
+      "partners": [
+        "Montgomery"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -5216,6 +5454,10 @@
       "proprietors": [
         "Mrs. H. Sherman"
       ],
+      "partners": [
+        "Mrs. H. Sherman"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -5253,6 +5495,10 @@
       "proprietors": [
         "[Mrs.] Herman"
       ],
+      "partners": [
+        "[Mrs.] Herman"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -5290,6 +5536,10 @@
       "proprietors": [
         "Tuthill King"
       ],
+      "partners": [
+        "Tuthill King"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -5330,8 +5580,16 @@
         "George W. Dole",
         "Newberry, [Walter L.]"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "Oliver Newberry",
+        "George W. Dole",
+        "Newberry, [Walter L.]"
+      ],
+      "firm_styles": [
+        "Newberry & Dole"
+      ],
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-11-26",
@@ -5353,11 +5611,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'Fort Dearborn' names nothing the committed town holds."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor 'Fort Dearborn' names nothing the committed town holds."
     },
     {
       "id": "business_noble_wesencraft",
@@ -5365,6 +5623,8 @@
       "trade": "steam saw mill",
       "occupation": "miller",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -5402,6 +5662,10 @@
       "proprietors": [
         "Capt. Hiram Hugunin"
       ],
+      "partners": [
+        "Capt. Hiram Hugunin"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -5439,12 +5703,16 @@
       "proprietors": [
         "P. F. Peck"
       ],
+      "partners": [
+        "P. F. Peck"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "corner",
       "evidence": {
         "first_issue": "1833-12-03",
-        "last_issue": "1834-06-18"
+        "last_issue": "1834-12-10"
       },
       "present_at_scene_date": true,
       "exclusion": null,
@@ -5469,43 +5737,6 @@
       "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
     },
     {
-      "id": "business_p_f_w_peck",
-      "name": "P. F. W. Peck",
-      "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
-      "occupation": "dry_goods_merchant",
-      "proprietors": [
-        "P. F. W. Peck"
-      ],
-      "street": "South Water Street",
-      "street_id": "south_water",
-      "placement_class": "corner",
-      "evidence": {
-        "first_issue": "1834-07-02",
-        "last_issue": "1834-12-10"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "A corner of 'LaSalle' and 'South Water streets CORNER OF LASALLE AN', and the plat resolves both sides to ['lasalle', 'south_water']."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "enrich_existing",
-      "action_target": "peck_store",
-      "match_tier": "occupants",
-      "match_evidence": "Philip F. W. Peck; merchant; and his household",
-      "action_note": "peck_store already stands and its occupants carries peck — 'Philip F. W. Peck; merchant; and his household'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
       "id": "business_p_pruyne_co",
       "name": "P. Pruyne & Co.",
       "trade": "wholesale and retail store — groceries, hardware, crockery and drugs",
@@ -5514,6 +5745,13 @@
         "P. Pruyne",
         "P. Pruyne & Co.",
         "Peter Pruyne"
+      ],
+      "partners": [
+        "P. Pruyne",
+        "Peter Pruyne"
+      ],
+      "firm_styles": [
+        "P. Pruyne & Co."
       ],
       "street": null,
       "street_id": null,
@@ -5554,6 +5792,10 @@
       "proprietors": [
         "P. S. Carli"
       ],
+      "partners": [
+        "P. S. Carli"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -5591,6 +5833,10 @@
       "proprietors": [
         "Peter Cohen"
       ],
+      "partners": [
+        "Peter Cohen"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -5630,6 +5876,10 @@
       "proprietors": [
         "Peter Cohen"
       ],
+      "partners": [
+        "Peter Cohen"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -5667,8 +5917,12 @@
       "proprietors": [
         "Philo Carpenter"
       ],
-      "street": null,
-      "street_id": null,
+      "partners": [
+        "Philo Carpenter"
+      ],
+      "firm_styles": [],
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
@@ -5704,6 +5958,13 @@
       "proprietors": [
         "Asahel Pierce",
         "Titus H. Abbott",
+        "Pierce & Abb[ott]"
+      ],
+      "partners": [
+        "Asahel Pierce",
+        "Titus H. Abbott"
+      ],
+      "firm_styles": [
         "Pierce & Abb[ott]"
       ],
       "street": null,
@@ -5745,6 +6006,13 @@
         "French",
         "Pierce & French"
       ],
+      "partners": [
+        "Asahel Pierce",
+        "French"
+      ],
+      "firm_styles": [
+        "Pierce & French"
+      ],
       "street": "Canal Street",
       "street_id": "canal",
       "placement_class": "corner",
@@ -5782,6 +6050,10 @@
       "proprietors": [
         "R. A. Kinzie"
       ],
+      "partners": [
+        "R. A. Kinzie"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -5819,6 +6091,10 @@
       "proprietors": [
         "R. Stewart"
       ],
+      "partners": [
+        "R. Stewart"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -5856,6 +6132,10 @@
       "proprietors": [
         "Richard M. Sweet"
       ],
+      "partners": [
+        "Richard M. Sweet"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -5891,6 +6171,10 @@
       "trade": "carriage and sleigh making",
       "occupation": "carriage_maker",
       "proprietors": [
+        "Riggs & Humphrey"
+      ],
+      "partners": [],
+      "firm_styles": [
         "Riggs & Humphrey"
       ],
       "street": null,
@@ -5930,6 +6214,10 @@
       "proprietors": [
         "Rockwell"
       ],
+      "partners": [
+        "Rockwell"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -5968,6 +6256,11 @@
         "P. T. Russell",
         "Wm. H. Brown"
       ],
+      "partners": [
+        "P. T. Russell",
+        "Wm. H. Brown"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6007,6 +6300,13 @@
         "Benj. H. Clift",
         "Russell & Clift"
       ],
+      "partners": [
+        "Aaron Russell",
+        "Benj. H. Clift"
+      ],
+      "firm_styles": [
+        "Russell & Clift"
+      ],
       "street": "Water Street",
       "street_id": null,
       "placement_class": "relative",
@@ -6044,6 +6344,10 @@
       "proprietors": [
         "Russell E. Heacock"
       ],
+      "partners": [
+        "Russell E. Heacock"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "corner",
@@ -6085,6 +6389,11 @@
         "S. Abell",
         "Abell"
       ],
+      "partners": [
+        "S. Abell",
+        "Abell"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -6122,6 +6431,10 @@
       "proprietors": [
         "Abell, S."
       ],
+      "partners": [
+        "Abell, S."
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -6159,6 +6472,10 @@
       "proprietors": [
         "S. B. Cobb"
       ],
+      "partners": [
+        "S. B. Cobb"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "corner",
@@ -6196,6 +6513,10 @@
       "proprietors": [
         "Dewey, S."
       ],
+      "partners": [
+        "Dewey, S."
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6233,6 +6554,10 @@
       "proprietors": [
         "S. Foot"
       ],
+      "partners": [
+        "S. Foot"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6270,6 +6595,10 @@
       "proprietors": [
         "S. Lincoln"
       ],
+      "partners": [
+        "S. Lincoln"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6308,6 +6637,11 @@
         "Samuel Lewis",
         "Lewis, Samuel"
       ],
+      "partners": [
+        "Samuel Lewis",
+        "Lewis, Samuel"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -6355,6 +6689,11 @@
         "Howe, Sarah D.",
         "Sarah D. Howe"
       ],
+      "partners": [
+        "Howe, Sarah D.",
+        "Sarah D. Howe"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
@@ -6409,6 +6748,10 @@
       "proprietors": [
         "Stuart"
       ],
+      "partners": [
+        "Stuart"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6447,6 +6790,11 @@
         "Charles Taylor",
         "H. S. Handy"
       ],
+      "partners": [
+        "Charles Taylor",
+        "H. S. Handy"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6484,6 +6832,10 @@
       "proprietors": [
         "Edward Simons"
       ],
+      "partners": [
+        "Edward Simons"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6521,6 +6873,10 @@
       "proprietors": [
         "G. T. Sproat"
       ],
+      "partners": [
+        "G. T. Sproat"
+      ],
+      "firm_styles": [],
       "street": "Water Street",
       "street_id": null,
       "placement_class": "corner",
@@ -6556,6 +6912,8 @@
       "trade": "newspaper publishing and job printing",
       "occupation": "printer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Water Street",
       "street_id": null,
       "placement_class": "none",
@@ -6591,6 +6949,8 @@
       "trade": "lake packet",
       "occupation": null,
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -6628,6 +6988,10 @@
       "proprietors": [
         "Crawford"
       ],
+      "partners": [
+        "Crawford"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6666,6 +7030,11 @@
         "John Calhoun",
         "Calhoun, J."
       ],
+      "partners": [
+        "John Calhoun",
+        "Calhoun, J."
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "corner",
@@ -6818,6 +7187,8 @@
       "trade": "auction and commission rooms",
       "occupation": "auctioneer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "street_only",
@@ -6862,6 +7233,8 @@
       "trade": "livery stable",
       "occupation": "livery_stable_keeper",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -6899,6 +7272,10 @@
       "proprietors": [
         "David Carver"
       ],
+      "partners": [
+        "David Carver"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -6936,6 +7313,10 @@
       "proprietors": [
         "John Wellmaker"
       ],
+      "partners": [
+        "John Wellmaker"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -6974,6 +7355,11 @@
         "Pierce",
         "Abbott"
       ],
+      "partners": [
+        "Pierce",
+        "Abbott"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7009,6 +7395,8 @@
       "trade": "dry goods, crockery, hardware and cutlery",
       "occupation": "dry_goods_merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "corner",
@@ -7044,6 +7432,8 @@
       "trade": "stoves, tin ware and hollow ware",
       "occupation": "stove_dealer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Water Street",
       "street_id": null,
       "placement_class": "relative",
@@ -7079,6 +7469,8 @@
       "trade": "tavern",
       "occupation": "tavern_keeper",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -7116,6 +7508,10 @@
       "proprietors": [
         "Thomas S. Eels"
       ],
+      "partners": [
+        "Thomas S. Eels"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7151,6 +7547,8 @@
       "trade": "livery stable",
       "occupation": "livery_stable_keeper",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7186,6 +7584,8 @@
       "trade": "tin, sheet iron and stove work",
       "occupation": "tinsmith",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "corner",
@@ -7224,6 +7624,11 @@
         "J. B. Tuttle",
         "Wm. H. Brown"
       ],
+      "partners": [
+        "J. B. Tuttle",
+        "Wm. H. Brown"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -7261,6 +7666,10 @@
       "proprietors": [
         "[uncertain: DATID GAD]"
       ],
+      "partners": [
+        "[uncertain: DATID GAD]"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -7298,6 +7707,10 @@
       "proprietors": [
         "[uncertain: J. I. Mulford]"
       ],
+      "partners": [
+        "[uncertain: J. I. Mulford]"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "street_only",
@@ -7333,6 +7746,10 @@
       "trade": "steam saw mill",
       "occupation": "miller",
       "proprietors": [
+        "[uncertain: Noble & Wesencaft]"
+      ],
+      "partners": [],
+      "firm_styles": [
         "[uncertain: Noble & Wesencaft]"
       ],
       "street": null,
@@ -7372,6 +7789,10 @@
       "proprietors": [
         "[uncertain: …] Taylor"
       ],
+      "partners": [
+        "[uncertain: …] Taylor"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -7407,6 +7828,8 @@
       "trade": "dentistry",
       "occupation": "dentist",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
@@ -7442,6 +7865,8 @@
       "trade": "medicine and surgery",
       "occupation": "physician",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7479,6 +7904,10 @@
       "proprietors": [
         "[uncertain: W. H. Taylor]"
       ],
+      "partners": [
+        "[uncertain: W. H. Taylor]"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "street_only",
@@ -7514,6 +7943,8 @@
       "trade": "dentistry",
       "occupation": "dentist",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7549,6 +7980,8 @@
       "trade": "hat manufacturer and dealer; also harness",
       "occupation": "harness_maker",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "corner",
@@ -7586,6 +8019,8 @@
       "trade": "houses and lands purchased and sold; building lots; houses to let",
       "occupation": "land_agent",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7621,6 +8056,8 @@
       "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
       "occupation": "dry_goods_merchant",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": "La Salle Street",
       "street_id": "lasalle",
       "placement_class": "relative",
@@ -7665,6 +8102,8 @@
       "trade": "boot, shoe and leather store",
       "occupation": "shoemaker",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7711,13 +8150,19 @@
       "trade": "house and land agent",
       "occupation": "land_agent",
       "proprietors": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
+      "partners": [
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-07-09",
+        "first_issue": "1834-06-11",
         "last_issue": "1834-07-09"
       },
       "present_at_scene_date": true,
@@ -7748,6 +8193,8 @@
       "trade": "store; groceries and general goods",
       "occupation": "grocer",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -7785,6 +8232,10 @@
       "proprietors": [
         "[W. H.] Taylor"
       ],
+      "partners": [
+        "[W. H.] Taylor"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -7822,11 +8273,15 @@
       "proprietors": [
         "W. Keeney"
       ],
+      "partners": [
+        "W. Keeney"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-06-04",
+        "first_issue": "1834-05-07",
         "last_issue": "1834-06-04"
       },
       "present_at_scene_date": true,
@@ -7859,6 +8314,10 @@
       "proprietors": [
         "W. Kimball"
       ],
+      "partners": [
+        "W. Kimball"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "corner",
@@ -7899,6 +8358,10 @@
       "proprietors": [
         "W. Kimball"
       ],
+      "partners": [
+        "W. Kimball"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "corner",
@@ -7939,6 +8402,10 @@
       "proprietors": [
         "W. Montgomery"
       ],
+      "partners": [
+        "W. Montgomery"
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -7985,6 +8452,10 @@
       "proprietors": [
         "Montgomery, W."
       ],
+      "partners": [
+        "Montgomery, W."
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -8024,43 +8495,6 @@
       "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's old stand\" names nothing the committed town holds."
     },
     {
-      "id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "trade": "boot and shoe making",
-      "occupation": "shoemaker",
-      "proprietors": [
-        "W. Montgomery"
-      ],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-01-28",
-        "last_issue": "1834-03-25"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"P. Cohen's Store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"P. Cohen's Store\" names nothing the committed town holds."
-    },
-    {
       "id": "business_w_reed",
       "name": "W. Reed",
       "trade": "cabinet making",
@@ -8068,6 +8502,10 @@
       "proprietors": [
         "W. Reed"
       ],
+      "partners": [
+        "W. Reed"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -8103,6 +8541,8 @@
       "trade": "letting agents",
       "occupation": "land_agent",
       "proprietors": [],
+      "partners": [],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "none",
@@ -8140,6 +8580,10 @@
       "proprietors": [
         "William Clay"
       ],
+      "partners": [
+        "William Clay"
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "corner",
@@ -8177,6 +8621,10 @@
       "proprietors": [
         "Lyon, William F."
       ],
+      "partners": [
+        "Lyon, William F."
+      ],
+      "firm_styles": [],
       "street": "South Water Street",
       "street_id": "south_water",
       "placement_class": "relative",
@@ -8216,43 +8664,6 @@
       "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_19#c015 announces this house opening on 1835-09-01, after the scene date — “will receive and offer for sale on the first of September”. Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet. No action; the record is kept so the exclusion can be argued with."
     },
     {
-      "id": "business_wm_g_branchaud",
-      "name": "Wm. G. Branchaud",
-      "trade": "house and land agent",
-      "occupation": "land_agent",
-      "proprietors": [
-        "Wm. G. Branchaud"
-      ],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
-    },
-    {
       "id": "business_wm_h_kennicott",
       "name": "Wm. H. Kennicott",
       "trade": "surgeon dentistry",
@@ -8260,6 +8671,10 @@
       "proprietors": [
         "Wm. H. Kennicott"
       ],
+      "partners": [
+        "Wm. H. Kennicott"
+      ],
+      "firm_styles": [],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -8297,11 +8712,15 @@
       "proprietors": [
         "Kennicott, Wm. H."
       ],
+      "partners": [
+        "Kennicott, Wm. H."
+      ],
+      "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1835-08-05",
+        "first_issue": "1835-06-24",
         "last_issue": "1835-08-19"
       },
       "present_at_scene_date": true,
@@ -8310,7 +8729,7 @@
       "dissolved_after_scene_date": [],
       "opening_announced": [],
       "survival_liberty_required": false,
-      "backdating_liberty_required": true,
+      "backdating_liberty_required": false,
       "anchor": {
         "kind": "unresolved",
         "target": null,
@@ -8334,6 +8753,10 @@
       "proprietors": [
         "Wm. H. Taylor"
       ],
+      "partners": [
+        "Wm. H. Taylor"
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -8371,6 +8794,10 @@
       "proprietors": [
         "Taylor, Wm. H."
       ],
+      "partners": [
+        "Taylor, Wm. H."
+      ],
+      "firm_styles": [],
       "street": "Dearborn Street",
       "street_id": "dearborn",
       "placement_class": "relative",
@@ -8421,6 +8848,15 @@
         "John Hale",
         "Wm. Hogue"
       ],
+      "partners": [
+        "Chas. L. Bristol",
+        "John Hale",
+        "Wm. Hogue"
+      ],
+      "firm_styles": [
+        "Wm. Hogue & Co.",
+        "Wm. Hogue & Co"
+      ],
       "street": null,
       "street_id": null,
       "placement_class": "relative",
@@ -8461,6 +8897,10 @@
       "proprietors": [
         "Wm. Sabine"
       ],
+      "partners": [
+        "Wm. Sabine"
+      ],
+      "firm_styles": [],
       "street": "North Water Street",
       "street_id": "north_water",
       "placement_class": "street_only",
@@ -8499,9 +8939,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "barber_al",
-      "action_note": "data/residents/ already holds this person as barber_al (hh_barber_al, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_b_field",
@@ -8510,9 +8950,9 @@
       "letter_list_only": false,
       "first_seen": "1835-07-22",
       "last_seen": "1835-07-22",
-      "action": "enrich",
-      "action_target": "field_a_b",
-      "action_note": "data/residents/ already holds this person as field_a_b (hh_field_a_b, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_beegle",
@@ -8532,9 +8972,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "paterson_a_c",
-      "action_note": "data/residents/ already holds this person as paterson_a_c (hh_paterson_a_c, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_clybourn",
@@ -8576,9 +9016,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "starrett_a_g",
-      "action_note": "data/residents/ already holds this person as starrett_a_g (hh_starrett_a_g, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_garrett",
@@ -8598,9 +9038,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "friel_a_h",
-      "action_note": "data/residents/ already holds this person as friel_a_h (hh_friel_a_h, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_h_howard",
@@ -8631,9 +9071,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "hayward_alvin",
-      "action_note": "data/residents/ already holds this person as hayward_alvin (hh_hayward_alvin, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_j_mead",
@@ -8642,9 +9082,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "mead_a_j",
-      "action_note": "data/residents/ already holds this person as mead_a_j (hh_mead_a_j, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_l_p_waters",
@@ -8796,9 +9236,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "townsend_a",
-      "action_note": "data/residents/ already holds this person as townsend_a (hh_townsend_a, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_a_w_flint",
@@ -9159,9 +9599,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-30",
       "last_seen": "1834-07-30",
-      "action": "enrich",
-      "action_target": "noon_albert",
-      "action_note": "data/residents/ already holds this person as noon_albert (hh_noon_albert, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_alburn_foster",
@@ -9654,9 +10094,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-24",
       "last_seen": "1834-03-25",
-      "action": "enrich",
-      "action_target": "phelan_andrew_j_f",
-      "action_note": "data/residents/ already holds this person as phelan_andrew_j_f (hh_phelan_andrew_j_f, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_andrew_miles",
@@ -10072,9 +10512,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-24",
       "last_seen": "1835-06-24",
-      "action": "enrich",
-      "action_target": "hubbard_b",
-      "action_note": "data/residents/ already holds this person as hubbard_b (hh_hubbard_b, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_b_jones",
@@ -10413,9 +10853,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "enrich",
-      "action_target": "barber_al",
-      "action_note": "data/residents/ already holds this person as barber_al (hh_barber_al, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_barber_beta_l",
@@ -10479,9 +10919,9 @@
       "letter_list_only": false,
       "first_seen": "1834-05-07",
       "last_seen": "1834-06-11",
-      "action": "enrich",
-      "action_target": "laughton_barnardus_h",
-      "action_note": "data/residents/ already holds this person as laughton_barnardus_h (hh_laughton_barnardus_h, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "replace_invented",
+      "action_target": "tavern_keeper",
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_barnes_wheeler",
@@ -12008,9 +12448,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "harrington_c",
-      "action_note": "data/residents/ already holds this person as harrington_c (hh_harrington_c, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_c_pettit",
@@ -12107,9 +12547,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-24",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "britain_calvin",
-      "action_note": "data/residents/ already holds this person as britain_calvin (hh_britain_calvin, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_calvin_c_l_ifford",
@@ -12536,9 +12976,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
-      "action": "enrich",
-      "action_target": "dann_charles",
-      "action_note": "data/residents/ already holds this person as dann_charles (hh_dann_charles, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_charles_felch",
@@ -12547,9 +12987,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "felch_charles",
-      "action_note": "data/residents/ already holds this person as felch_charles (hh_felch_charles, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_charles_friend",
@@ -13294,10 +13734,10 @@
       "occupation": null,
       "letter_list_only": false,
       "first_seen": "1834-02-25",
-      "last_seen": "1834-02-25",
+      "last_seen": "1834-03-04",
       "action": "enrich",
       "action_target": "miller_samuel",
-      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, inferred) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_col_t_j_v_owen",
@@ -13812,9 +14252,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-01",
       "last_seen": "1835-08-01",
-      "action": "enrich",
-      "action_target": "smith_d_a",
-      "action_note": "data/residents/ already holds this person as smith_d_a (hh_smith_d_a, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_d_doty",
@@ -15121,9 +15561,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "quick_e_g",
-      "action_note": "data/residents/ already holds this person as quick_e_g (hh_quick_e_g, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_e_h_haddock",
@@ -15198,9 +15638,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-23",
       "last_seen": "1834-07-23",
-      "action": "enrich",
-      "action_target": "deacon_e_p",
-      "action_note": "data/residents/ already holds this person as deacon_e_p (hh_deacon_e_p, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_e_p_skinner",
@@ -15264,9 +15704,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "sproat_e",
-      "action_note": "data/residents/ already holds this person as sproat_e (hh_sproat_e, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_e_w_casey",
@@ -15308,9 +15748,9 @@
       "letter_list_only": false,
       "first_seen": "1834-01-07",
       "last_seen": "1834-12-10",
-      "action": "enrich",
-      "action_target": "wentworth_elijah",
-      "action_note": "data/residents/ already holds this person as wentworth_elijah (hh_wentworth_elijah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "replace_invented",
+      "action_target": "tavern_keeper",
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_e_wentworth_jr",
@@ -15517,9 +15957,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "henthuy_edward_e",
-      "action_note": "data/residents/ already holds this person as henthuy_edward_e (hh_henthuy_edward_e, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_edward_e_hunter",
@@ -15561,9 +16001,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "shelton_edward_n",
-      "action_note": "data/residents/ already holds this person as shelton_edward_n (hh_shelton_edward_n, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_edward_poor",
@@ -16188,9 +16628,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "miller_fred",
-      "action_note": "data/residents/ already holds this person as miller_fred (hh_miller_fred, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_f_wella",
@@ -16694,9 +17134,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "bowe_g_c",
-      "action_note": "data/residents/ already holds this person as bowe_g_c (hh_bowe_g_c, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_g_e_rtrude_watkins",
@@ -16782,9 +17222,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "camp_g_t",
-      "action_note": "data/residents/ already holds this person as camp_g_t (hh_camp_g_t, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_g_t_sproat",
@@ -16870,9 +17310,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "woodward_g_w",
-      "action_note": "data/residents/ already holds this person as woodward_g_w (hh_woodward_g_w, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_gabbs_james_i1",
@@ -17079,9 +17519,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "hands_george_e",
-      "action_note": "data/residents/ already holds this person as hands_george_e (hh_hands_george_e, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_george_e_walker",
@@ -17134,9 +17574,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "mcwilliams_george",
-      "action_note": "data/residents/ already holds this person as mcwilliams_george (hh_mcwilliams_george, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_george_r_makepiece",
@@ -17156,9 +17596,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "reed_george",
-      "action_note": "data/residents/ already holds this person as reed_george (hh_reed_george, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_george_smith",
@@ -17838,9 +18278,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "bower_h",
-      "action_note": "data/residents/ already holds this person as bower_h (hh_bower_h, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_c_bennett",
@@ -17882,9 +18322,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "swift_h_c",
-      "action_note": "data/residents/ already holds this person as swift_h_c (hh_swift_h_c, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_courtney",
@@ -17937,9 +18377,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-17",
       "last_seen": "1833-12-17",
-      "action": "enrich",
-      "action_target": "wentworth_h_e",
-      "action_note": "data/residents/ already holds this person as wentworth_h_e (hh_wentworth_h_e, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "replace_invented",
+      "action_target": "tavern_keeper",
+      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
     },
     {
       "id": "person_h_enry_swartwout_jr",
@@ -17992,9 +18432,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "loomis_henry",
-      "action_note": "data/residents/ already holds this person as loomis_henry (hh_loomis_henry, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_mccloud",
@@ -18003,9 +18443,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "mccloud_h",
-      "action_note": "data/residents/ already holds this person as mccloud_h (hh_mccloud_h, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_h_p_van_cleve",
@@ -18839,9 +19279,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1833-12-10",
-      "action": "enrich",
-      "action_target": "clyburn_henry",
-      "action_note": "data/residents/ already holds this person as clyburn_henry (hh_clyburn_henry, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_henry_f_miller",
@@ -19675,9 +20115,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "robinson_hugh",
-      "action_note": "data/residents/ already holds this person as robinson_hugh (hh_robinson_hugh, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_hugh_todd",
@@ -19873,9 +20313,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "louis_i_w",
-      "action_note": "data/residents/ already holds this person as louis_i_w (hh_louis_i_w, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_indebrand_jacob",
@@ -20159,9 +20599,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "townsend_isaiah",
-      "action_note": "data/residents/ already holds this person as townsend_isaiah (hh_townsend_isaiah, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_ismith_joba_a",
@@ -20434,9 +20874,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "ellis_j",
-      "action_note": "data/residents/ already holds this person as ellis_j (hh_ellis_j, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_f_schermerhorn",
@@ -20467,9 +20907,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "farson_j",
-      "action_note": "data/residents/ already holds this person as farson_j (hh_farson_j, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_garland",
@@ -20731,9 +21171,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "westcott_j_r",
-      "action_note": "data/residents/ already holds this person as westcott_j_r (hh_westcott_j_r, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_s_c_hogan",
@@ -20897,8 +21337,8 @@
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
       "action": "enrich",
-      "action_target": "smith_james",
-      "action_note": "data/residents/ already holds this person as smith_james (hh_smith_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_jeremiah",
+      "action_note": "data/residents/ already holds this person as smith_jeremiah (hh_smith_jeremiah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_j_wright",
@@ -20918,9 +21358,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "jackson_j_y",
-      "action_note": "data/residents/ already holds this person as jackson_j_y (hh_jackson_j_y, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_ja_s_per_a_gooding",
@@ -21314,9 +21754,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "murray_james_h",
-      "action_note": "data/residents/ already holds this person as murray_james_h (hh_murray_james_h, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_james_h_phelps",
@@ -21545,9 +21985,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "sheldon_james",
-      "action_note": "data/residents/ already holds this person as sheldon_james (hh_sheldon_james, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_james_smith",
@@ -21557,8 +21997,8 @@
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
       "action": "enrich",
-      "action_target": "smith_james",
-      "action_note": "data/residents/ already holds this person as smith_james (hh_smith_james, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "smith_jeremiah",
+      "action_note": "data/residents/ already holds this person as smith_jeremiah (hh_smith_jeremiah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_james_steward",
@@ -22227,9 +22667,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-02",
       "last_seen": "1834-07-02",
-      "action": "enrich",
-      "action_target": "colman_john",
-      "action_note": "data/residents/ already holds this person as colman_john (hh_colman_john, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_john_cook",
@@ -22436,9 +22876,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "cory_john_l",
-      "action_note": "data/residents/ already holds this person as cory_john_l (hh_cory_john_l, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_john_lovell",
@@ -22491,9 +22931,9 @@
       "letter_list_only": false,
       "first_seen": "1833-12-10",
       "last_seen": "1833-12-10",
-      "action": "enrich",
-      "action_target": "mann_john",
-      "action_note": "data/residents/ already holds this person as mann_john (hh_mann_john, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_john_miller",
@@ -23371,9 +23811,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-24",
       "last_seen": "1835-07-22",
-      "action": "enrich",
-      "action_target": "duncan_joseph",
-      "action_note": "data/residents/ already holds this person as duncan_joseph (hh_duncan_joseph, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_joseph_gleason",
@@ -23756,9 +24196,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-24",
       "last_seen": "1835-06-24",
-      "action": "enrich",
-      "action_target": "willis_k",
-      "action_note": "data/residents/ already holds this person as willis_k (hh_willis_k, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_kemall_france_g",
@@ -24207,9 +24647,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "mizner_l_b",
-      "action_note": "data/residents/ already holds this person as mizner_l_b (hh_mizner_l_b, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_l_baldwin",
@@ -24218,9 +24658,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "baldwin_l",
-      "action_note": "data/residents/ already holds this person as baldwin_l (hh_baldwin_l, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_l_c_chamber_l_ain",
@@ -26486,7 +26926,7 @@
       "last_seen": "1834-10-22",
       "action": "enrich",
       "action_target": "miller_samuel",
-      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_millington_abell_doct",
@@ -27144,9 +27584,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "bird_n",
-      "action_note": "data/residents/ already holds this person as bird_n (hh_bird_n, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_n_f_hurd",
@@ -27166,9 +27606,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "sanford_n_g",
-      "action_note": "data/residents/ already holds this person as sanford_n_g (hh_sanford_n_g, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_n_h_palmer",
@@ -28673,9 +29113,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "wendell_peter",
-      "action_note": "data/residents/ already holds this person as wendell_peter (hh_wendell_peter, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_peter_white",
@@ -29355,9 +29795,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "cochrane_r",
-      "action_note": "data/residents/ already holds this person as cochrane_r (hh_cochrane_r, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_r_e_bec_c_a_ostrander",
@@ -29520,9 +29960,9 @@
       "letter_list_only": false,
       "first_seen": "1834-04-16",
       "last_seen": "1834-04-16",
-      "action": "enrich",
-      "action_target": "wadhams_ralph",
-      "action_note": "data/residents/ already holds this person as wadhams_ralph (hh_wadhams_ralph, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_randle_james",
@@ -30158,9 +30598,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "townsend_robert",
-      "action_note": "data/residents/ already holds this person as townsend_robert (hh_townsend_robert, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_roberts_sidney",
@@ -30730,9 +31170,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "mills_samuel",
-      "action_note": "data/residents/ already holds this person as mills_samuel (hh_mills_samuel, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_s_prout_granville_t",
@@ -30774,9 +31214,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "sibley_s",
-      "action_note": "data/residents/ already holds this person as sibley_s (hh_sibley_s, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_s_w_reed",
@@ -31076,17 +31516,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_samuel_miller",
-      "name": "Samuel Miller",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "enrich",
-      "action_target": "miller_samuel",
-      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
-    },
-    {
       "id": "person_samuel_olingar",
       "name": "Samuel Olingar",
       "occupation": null,
@@ -31181,9 +31610,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "townsend_samuel",
-      "action_note": "data/residents/ already holds this person as townsend_samuel (hh_townsend_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_samuel_wright",
@@ -31919,8 +32348,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "smith_james",
-      "action_note": "data/residents/ already holds this person as smith_james (hh_smith_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_jeremiah",
+      "action_note": "data/residents/ already holds this person as smith_jeremiah (hh_smith_jeremiah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_smith_james_a",
@@ -31941,8 +32370,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "smith_james",
-      "action_note": "data/residents/ already holds this person as smith_james (hh_smith_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_jeremiah",
+      "action_note": "data/residents/ already holds this person as smith_jeremiah (hh_smith_jeremiah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_smith_john",
@@ -31952,8 +32381,8 @@
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
       "action": "enrich",
-      "action_target": "smith_james",
-      "action_note": "data/residents/ already holds this person as smith_james (hh_smith_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_jeremiah",
+      "action_note": "data/residents/ already holds this person as smith_jeremiah (hh_smith_jeremiah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_smith_jonathan",
@@ -31963,8 +32392,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "smith_james",
-      "action_note": "data/residents/ already holds this person as smith_james (hh_smith_james, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "smith_jeremiah",
+      "action_note": "data/residents/ already holds this person as smith_jeremiah (hh_smith_jeremiah, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_smith_mr",
@@ -32358,9 +32787,9 @@
       "letter_list_only": false,
       "first_seen": "1835-07-22",
       "last_seen": "1835-07-22",
-      "action": "enrich",
-      "action_target": "dow_stephen_e",
-      "action_note": "data/residents/ already holds this person as dow_stephen_e (hh_dow_stephen_e, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_stephen_forbes",
@@ -33271,9 +33700,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "mumer_theodore",
-      "action_note": "data/residents/ already holds this person as mumer_theodore (hh_mumer_theodore, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_theodore_rameyn",
@@ -33282,9 +33711,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "rameyn_theodore",
-      "action_note": "data/residents/ already holds this person as rameyn_theodore (hh_rameyn_theodore, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_theophilus_renwick",
@@ -33381,9 +33810,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "bunnet_thomas",
-      "action_note": "data/residents/ already holds this person as bunnet_thomas (hh_bunnet_thomas, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_thomas_c_g",
@@ -33414,9 +33843,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "grant_thomas_d",
-      "action_note": "data/residents/ already holds this person as grant_thomas_d (hh_grant_thomas_d, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_thomas_david",
@@ -33546,9 +33975,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "kip_thomas",
-      "action_note": "data/residents/ already holds this person as kip_thomas (hh_kip_thomas, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_thomas_mather",
@@ -35240,9 +35669,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "wendell_v_a",
-      "action_note": "data/residents/ already holds this person as wendell_v_a (hh_wendell_v_a, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_v_anwe_r_t_addy",
@@ -36030,7 +36459,7 @@
       "name": "W. Montgomery",
       "occupation": "auctioneer",
       "letter_list_only": false,
-      "first_seen": "1834-01-28",
+      "first_seen": "1835-07-04",
       "last_seen": "1835-07-29",
       "action": "enrich",
       "action_target": "montgomery_w",
@@ -37154,9 +37583,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "burpet_william",
-      "action_note": "data/residents/ already holds this person as burpet_william (hh_burpet_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_g_austin",
@@ -37187,9 +37616,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-27",
       "last_seen": "1834-08-27",
-      "action": "enrich",
-      "action_target": "ashley_william_h",
-      "action_note": "data/residents/ already holds this person as ashley_william_h (hh_ashley_william_h, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_h_brown",
@@ -37396,9 +37825,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "maskell_william_r",
-      "action_note": "data/residents/ already holds this person as maskell_william_r (hh_maskell_william_r, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_reuse",
@@ -37407,9 +37836,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-20",
       "last_seen": "1835-06-20",
-      "action": "enrich",
-      "action_target": "reuse_william",
-      "action_note": "data/residents/ already holds this person as reuse_william (hh_reuse_william, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_wm_sabine",

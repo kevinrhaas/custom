@@ -160,7 +160,7 @@ Deterministic: the same deposit produces byte-identical `corpus.json` and `text/
 | | |
 |---|---|
 | `extracted/<issue_id>.json` | one file per issue, holding `claims[]` — hand-authored |
-| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner — and the only place a name is declared a PLACE rather than a person |
+| `identity.json` | the only place two differently-spelled names may become one person, two firm styles one house, or two of a house's proprietors one partner — the only place a name is declared a PLACE rather than a person, and the only place an AGENCY is declared a relation rather than a house |
 | `coverage.json` | the ranges a reading pass has DECLARED it read, and the gate holds it to them |
 | `gazetteer.json` | **generated** by `tools/compile_gazetteer.py --build` — never hand-edited |
 
@@ -207,6 +207,41 @@ exactly that. And **a run of concordant settings does not make a scan trustworth
 general**: the same printings that agree on the lot number set the advertisement's copy date
 four different ways, so the digit that was decidable and the digit that was not stood two
 lines apart in one column.
+
+**A BRACKETED SUPPLY MAY NOT OUTRANK A LETTER THE IMPRESSION SETS WHOLE (T-0407).** A
+supply in `normalized` is a reading of a letter the page does not deliver; it is not a
+licence to replace one the page delivers plainly. The blacksmith is the case. One printing
+of Matthias Mason & Co.'s standing notice, 1834-02-18 c010, was read as `MATTHIAS [N]ASON &
+CO.` and minted a business called `Matthias Nason & Co.` — and line 2823 of that
+transcription sets `MATTHIAS MASON & CO.` whole, on its own line, with no uncertainty
+marker on it and with the claim's interleaving beginning two lines below. So there was no
+unread letter for the bracket to stand in. The tally is one-sided: nineteen impressions of
+the notice carry the surname's first letter and every one is an M — fifteen set `MASON`
+whole, two wreck the S and keep the M (`MAJON`, `MADON`), two break off at `MATTHIAS MA` —
+and the post office prints the man `Mason, Matthias` in two letter lists, independently of
+his own advertisement. Withdrawing the supply is not amending a printing to agree with
+another printing; the quote was never touched and always read `MASON`.
+
+**The route matters as much as the answer.** The defect was a CLAIM's, so it was repaired
+in the claim, and `firm_merges`' partner-surname guard — *the two styles must carry the same
+set of partner surnames* — was left exactly as it stood. `Nason` against `Mason` is an
+ordinary surname difference and the guard is right to refuse it; the escape would have had
+to be "unless the surname resembles the other one", which is the one thing a partnership
+rule may never say. `compile_gazetteer.py --self-test` already asserts the refusal on a
+clean fixture (*a merge that would change who the partners are*, and five more under the
+sign-name cases), and none of those assertions moved.
+
+**AND THERE IS NO MECHANICAL GATE FOR THIS, WHICH IS WORTH KNOWING BEFORE SOMEBODY WRITES
+ONE.** Two candidate checks were measured against all 86 extractions before this was
+repaired by hand. *A supply that contradicts a letter the quote carries* fires on several
+hundred claims and every one is legitimate — correcting `ITREET` to `[S]TREET` is precisely
+what `normalized` is for, so the shape of the fault is not local to the claim. *A
+single-letter supply inside a business name that no other printing corroborates* is
+narrower: it flags twelve names in the corpus, and the twelve include `MA[T]HIAS` — the
+supply `firm_merges` cites as the GOOD one, because there the transcription brackets the
+very letter at issue. Nine of the twelve are the only printing their notice ever got, so
+there is no tally to run against them at all. The instrument is the tally above and a
+reader willing to run it; the twelve are the candidate list if anyone wants to.
 
 **AND COUNT THE PRINTINGS BY THE NOTICE'S BODY TEXT, NOT BY ITS ADVERTISER (T-0350).** The
 sentence above used to say "the same FIVE printings", and five was wrong: D. Weaver's notice
@@ -506,6 +541,51 @@ nobody can check, and the compile fails rather than leaving it to rot. Each refu
 written onto both of the businesses it holds apart, so a reader meeting one of them meets
 the reason the other is not it.
 
+`premises_relations` is the **third answer**, and T-0411 is the ticket that found the
+first two are not enough. A merge says two styles are one house; a refusal says they are
+not one house; the corpus keeps producing pairs for which BOTH sentences are false. The
+Chicago Democrat against the Chicago Democrat printing office is the case: T-0402 was
+asked to judge it and could write down no true thing. `firm_surnames()` reads the last
+word of each style as the partner surname and so compares `{democrat}` against `{office}`,
+and the partner-surname guard has no escape by design — but neither style names a partner
+at all, so there is nothing here for the guard to be about. And all three refusal kinds
+are untrue of it: they are not `two_houses` (one man, John Calhoun, stands over both), not
+`not_joined` (the colophon IS the paper naming the shop it is printed at), and not on
+`different_ground` (in 1834 both stand on the corner of South Water and Clark). A refusal
+here would have been a false judgement filed to make a group look closed, which is why
+T-0402 declined to file one.
+
+So the relation states the one thing that IS true — **two businesses, and one of them is
+the other's premises** — in one direction, and it is not a merge: both records stay whole,
+keep their own printings, their own placement readings and their own trade, and the
+partner guard is untouched. It is held to the merge's disciplines: `relation_rule` names
+both spellings verbatim, `witnesses` names the printings it rests on, it cannot outlive
+either end, it may not be declared alongside a merge or a refusal of the same pair, it may
+not run both ways, and a business may stand on **one ground only**. `kind` is one of two:
+`premises` (the part is the ground the whole is carried on — one roof, and the model must
+not mint a second for the whole) and `department` (the part is a branch of the whole's own
+business under a style of its own). The edge is written onto both records — `part_of` on
+the premises, `parts` on the house carried there.
+
+**The roof is DECIDED and not left to fall out of the data**, which is the half of T-0411
+that is visible in the town. One roof: `chicago_democrat_office`, which already stands at
+that corner and carries "John Calhoun's printing office" among its aka. The shop enriched
+it; the paper did not, because `match_occupant` requires ALL the partners' surnames and
+the paper's proprietors read `['John Calhoun', 'Calhoun, J.']`, a required set of
+`{calhoun, j}` no occupant line can carry — so `compile_register` took `new_building` at
+`clark+south_water` for it, a second roof at the same corner for a business with no ground
+of its own. `compile_register` now makes the whole follow its premises where the premises
+is placed and the whole was about to raise or name ground of its own, and the register's
+actions move from 30 `enrich_existing` / 29 `new_building` to **31 / 28**. The businesses
+table does not move: 206 before and after, because a relation is not a merge.
+
+**T-0403 stays open**, and on purpose. It records that the printing office keeps its 1834
+corner through T-0399's internal merge, because `placement_rank` prefers a corner to a
+relative offset regardless of date — so on the scene date the shop may stand at the wrong
+end of South Water Street, and the paper now stands with it. That is a question about
+placement RANKING rather than about identity: joining the pair moves neither reading, and
+answering it would mean changing how every house in the register chooses its live address.
+
 **The first firm pass is T-0399**, the restyled duplicates of T-0338's surname groups —
 where one style is the other with a trade description, a signboard or an extractor's
 parenthesis after it. **25 merge rules over 20 houses, and 3 refusals**; the businesses
@@ -594,6 +674,27 @@ notice) and really does hold one man read twice. A bare surname beside a full na
 pair — that is the papers printing less — and a declaration whose pair has gone is refused
 too, so the file cannot rot.
 
+**And a proprietor is not always a person either** (T-0398). The other half of that list is
+the house's OWN trading style, put there by a notice that signed nothing else: the Democrat
+of 1835-08-19 prints "for sale only by Russell & Cl[if]t (Agents for the State of
+I[ll]inois) at the Chicago Book Store", so `Russell & Clift` stands among
+`business_russell_clift`'s proprietors beside Aaron Russell and Benj. H. Clift. That is what
+the paper printed and it is not a misreading — 28 of the 199 houses carry their style this
+way — but read as a list of people it says the partnership is its own third partner. Each
+business record therefore carries `partners` and `firm_styles` beside `proprietors`, both
+DERIVED by the same `firm_styled()` the proprietor policy above steps over styles with, both
+in the order the proprietors print, and neither editing a claim: `proprietors` is still the
+union of what was read. `partners` is EMPTY for the twelve houses the papers only ever
+signed with the firm — `H. Doty & Co.` is the whole of that record's list — because no man
+is named, and an empty list is the honest answer rather than a surname guessed out of the
+style. Nothing is declared: `firm_styled()` sees every style the corpus prints, and
+`identity.json` would only be needed for one it cannot. The register carries both fields
+through, and `mint_placed_residents.py` reads `partners` where it asks whether a printed
+name is a house or a man — a house that signs its own notice can no longer vouch for itself
+against a test written to catch exactly that. What still reads `proprietors` whole is the
+surname passes, deliberately: a style carries real surnames (`Clark, Filer & Co.`) and
+reading them all out of it is T-1042.
+
 **And a name is not always a person** (T-0359). A claim's entities are keyed on a name and
 carry no notion of what KIND of thing a name is, so a building the papers name by its
 signboard arrives in the persons table and is then held to a policy written for people.
@@ -616,6 +717,59 @@ the two Eagle readings deliberately do not, because nothing in the corpus prints
 a shared word is the resemblance argument this file exists to refuse (T-0397). The table
 lands in `gazetteer.json` as `places`, beside `persons` and `businesses`, and the register
 compiled from it no longer carries signboards as inhabitants of the town.
+
+**And some things the papers name are neither a person nor a house** (T-0410). The Howard
+Fire Insurance Company of the city of New-York sold fire insurance in Chicago through a
+LOCAL AGENT, and an agency is not a trade, a shop or a signboard: it is a RELATION between
+a principal that never stood in this town and the house or the man who held it for a
+season. With only `persons` and `businesses` to mint into, the corpus expressed it the one
+way it could — as its own business — which then collided under `firm_surnames()` with the
+house holding it and had to be refused by hand. T-0402 wrote that refusal and it said the
+wrong thing: *these are two houses*, when the finding is that they are JOINED, by an agency
+that passed from one to the other.
+
+`identity.json`'s fourth section, `agencies`, is that relation. A declaration names the
+principal with a `why` that names it verbatim, lists the `holdings` — who held it, whether
+a `business` or a `person`, and the printings each holding rests on — and may name a
+minted record it `retires`. Two things it does NOT do are the point. **The window is
+computed from the witnesses' own issue dates and may not be asserted**, the same discipline
+as ruling 3. And **a holding says that a house held the agency and nothing else**: no
+proprietor, no trade, no street, no roof, because a man who signs for a principal is not
+thereby a partner in the house he signs for — which is precisely why E. K. Hubbard could
+never be merged into Hubbard & Co. `refused_holdings` is the same record kept the other way
+up, for a candidate the printings refute. A retirement is guarded four ways, because it is
+the only declaration in this file that takes a business OUT of the register: the record
+must be one the register carries, it must be unplaced (a placed record would take an
+address out of the town with it), every printing it was compiled from must be a witness of
+some holding, and no refusal may still name it.
+
+The Howard is the first and the whole of the section so far. **Two holdings, one refusal,
+and the businesses table goes from 206 to 205.** Hubbard & Co. held it first and advertised
+in the PLURAL over the firm's signature — 'The subscribers having been appointed Agents for
+the Howard Fire Insurance Company of the city of New-York … HUBBARD & CO.', 1834-07-02 c048
+through 1834-10-15 c005 to 1835-05-20 c023. From 1835-06-20 c015 the identical copy runs in
+the SINGULAR over one man, 'THE subscriber having been appointed agent … E. K. HUBBARD.',
+reprinted by the Democrat at 1835-07-01 c017, 1835-07-08 c005 and 1835-07-29 c011. So on
+the scene date the agency sits with the man, the forwarding house goes on trading under its
+own name to 1835-08-29, and nothing here makes E. K. a partner in it.
+
+**The third holder the ticket was filed for does not exist, and the printing that seemed to
+show it is what refutes it.** T-0410 read Jones, King & Co. as a third holder off
+1835-08-05 c008, and the register agreed: that business record announced itself 'appointed
+Agent for the Howard Fire Insurance Company' over a dateline of 1 July 1835. The fragment
+carries TWO notices, as its own claim note had said since T-0335 — its reading runs 'July
+1, [1835]. [E]. K. [H]UBBARD. — Hardware, Stoves, &c. Th[e] u[n]dersigned have [formed a]
+connect[ion] … under the [f]irm o[f] Jones, [King] & [C]o.', and the hardware notice is
+signed WILLIAM JONES, BYRAM KING, W. B. CLARKE while the insurance card above it is signed
+by the man. The claim's own entity list already read `UCBRARB,` as 'Hubbard, E. K.' with
+the role *insurance agent*. So c008 is the FIFTH printing of E. K. Hubbard's holding, Jones,
+King & Co. is recorded as a `refused_holding` on the printing that refutes it, and the
+claim's `announces_opening` — the agency's sentence read onto the hardware firm's record —
+is dropped. Nothing of the quote, the normalized reading or the entities moves. The firm's
+own opening is still announced by its formation notice at 1835-07-08 c009 and 1835-07-22
+c009. With the minted record gone the T-0402 refusal has no pair, so it comes out in the
+same pass; the OTHER refusal that ticket wrote, 'Jones & King' against 'Jones, King & Co.',
+is a copartnership succession and not an agency, so this relation leaves it standing.
 
 The scene-date Democrat, `extracted/chicago_democrat_1835_07_01.json`, is both the worked
 fixture (claims c001-c003, T-0257 — Peter Cohen and J. S. C. Hogan on South Water Street,

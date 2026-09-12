@@ -9881,16 +9881,16 @@ Related: **L93** (the block parcel's A3 privy, the same clamp) · **L92** (the p
 **Covers:** `recon_1835_west_008.inferred_1835.form.wall_height_m`, `recon_1835_west_009.inferred_1835.form.wall_height_m`, `recon_1835_west_010.inferred_1835.form.wall_height_m`, `recon_1835_west_011.inferred_1835.form.wall_height_m`, `recon_1835_west_012.inferred_1835.form.wall_height_m`, `recon_1835_west_021.inferred_1835.form.wall_height_m`
 **Recorded:** 2026-08-29.
 
-### L211 — 101 documented businesses stand on 1 July 1835 because nothing says they closed
+### L211 — 95 documented businesses stand on 1 July 1835 because nothing says they closed
 **Decision:** every business the newspaper register flags `survival_liberty_required` is
 treated as standing at the scene date. Its existence is documented — a dated advertisement
 or notice in the *Chicago Democrat* or the *Chicago American* — and its survival to
 1835-07-01 is assumed. The assumption is stated HERE and nowhere else: the register carries
 the flag, this entry carries the liberty, and no business record is graded `documented` for
 a survival nothing witnessed.
-**Why:** the corpus is thinnest in the year it most needs to be thick. 189 documented
-businesses are present at the scene date and only **88** of them are documented *in* 1835;
-the other **101** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
+**Why:** the corpus is thinnest in the year it most needs to be thick. 179 documented
+businesses are present at the scene date and only **84** of them are documented *in* 1835;
+the other **95** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days
 before the day the town is drawn. Refusing the assumption is the only alternative to making
 it, and refusing it empties more than half the documented trade out of Chicago on the
 strength of a newspaper run nobody has finished reading — the 1835 issues that would
@@ -9899,17 +9899,17 @@ ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The reg
 already refuses everything that CAN be refused — 13 businesses are excluded by a claim that
 contradicts them before the scene date and 4 by an opening announced after it — so this
 covers what is left after the evidence has spoken, not instead of it.
-**Scope:** `register_1835.businesses[survival_liberty_required]` — 101 businesses, enumerated
+**Scope:** `register_1835.businesses[survival_liberty_required]` — 95 businesses, enumerated
 by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
 `tools/compile_liberties.py` on every compile. The number above cannot drift from the
 register without `check.sh` saying so, which is the point of writing it down: a scope that
 has silently stopped matching its population reads as a measurement and is not one.
 **Consequence:** as the register is seeded into the town, half of these reach something a
-visitor can see. Measured on the register as it stands on 2026-08-29, **53** of the 101 do —
-16 enrich a house already standing, 14 ask for a new building, 23 take a street face — and
-**48** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
-judged one house, and it is a dated reading rather than a standing claim; the 101 is the
-number this entry is held to and the number the gate re-derives. It has now moved three
+visitor can see. Measured on the register as it stands on 2026-09-12, **55** of the 95 do —
+17 enrich a house already standing, 16 ask for a new building, 22 take a street face — and
+**40** reach nothing yet. That split moves whenever an anchor is re-read or two firms are
+judged one house, and it is a dated reading rather than a standing claim; the 95 is the
+number this entry is held to and the number the gate re-derives. It has now moved six
 times for exactly the second reason. This entry was written at 111 the same day T-0345 found
 that four of the register's businesses were four readings of Matthias Mason & Co.'s one
 blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in
@@ -9917,8 +9917,21 @@ the FORM of a forename — whole against abbreviated against bare initial — me
 them and taking the count from 109 to 103; and T-0340 joined the town's only bookshop, whose
 sign-name, its partners' firm-name and the shop's own premises stood as separate houses, and
 the joined record advertises in August 1835 and needs no survival assumed at all, taking 103
-to 101. No movement is a business leaving Chicago; all are shops the register was holding
-twice. Every one
+to 101; and T-0413 read the printings behind the six surname groups T-0401 had left unjudged
+and merged all six, three of them pairs whose styles were last printed before 1835 — P. F.
+Peck with P. F. W. Peck on one La Salle corner, G. Blanshard with F. G. Blanshard opposite Dr.
+Temple's, W. Keeney with G. W. Keeney below Newberry & Dole's — taking 101 to 98; and T-1046 read the four impressions of the bootmaking notice next door
+to P. Cohen's store, two of which set the signature with the L lost in the setting, and
+joined the 'W. Montgomery, boot and shoe maker' the register had made of them to Loton W.
+Montgomery's own house, taking 98 to 97; and T-0407 withdrew a bracketed `[N]` that had
+made one of the nineteen impressions of Matthias Mason & Co.'s blacksmithing notice into a
+second forge, `Matthias Nason & Co.`, on a line its own transcription sets `MATTHIAS MASON &
+CO.` whole — taking 97 to 96; and T-0408 read the whole run of the Lake Street land-agency
+card that 'Wm. G. Branchaud' was a supply from, and found the surname set as BLANCHARD in
+the two impressions whose columns are NOT the transcription's Tesseract fallback —
+1834-07-16 and 1834-09-17 — so the repaired reading joins 'W. G. Blanchard' at the same
+door opposite Dr. Temple's, taking 96 to 95. No movement
+is a business leaving Chicago; all are shops the register was holding twice. Every one
 of them puts a trade sign, a
 card or an occupant into July 1835 on an inference, and a visitor reading such a card is
 being told the shop was there when what is known is that it was there the winter before. The
@@ -10415,9 +10428,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 479 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 479 people
+**Scope:** `residents.persons[civic_mint]` — 401 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10503,7 +10516,23 @@ middle initial B the poll does not print — in a book that holds no Madore. AND
 IS RECORDED RATHER THAN DROPPED: the ticket asked for the St Cyr and St Mary's registers to be read
 for a Médard baptism, because that is where a baptismal forename would be printed if it is one, and
 they hold none — no Médard, no Madore, no Medore, as principal, parent, sponsor or decedent — so
-the philological argument has no page here and the ruling does not rest on it. The number
+the philological argument has no page here and the ruling does not rest on it. T-1049 took it to 401 on 2026-09-12, and that is the largest fall this entry
+records by a factor of twenty-five — 78 containers at once, and not one of them a fold. The
+earlier falls were two cards for one man; this one is a card for a man who was never at this
+town. The press evidence these 78 stood on was a reading of two CHICAGO papers, and a Chicago
+paper prints men who are not at Chicago: its agents, its correspondents, the eastern houses
+whose advertisements it carries. `read_newspapers()` handed every gazetteer person to the
+identity pool as a Chicago appearance without ever looking at `associated_places`, so
+`Wm. H. Ashley, St. Louis` and `A. A. Barber, Green Bay` were minted into the town on rung
+G1b — attested, the ladder's highest — each on a notice that says in the same breath where
+the man was. T-1048 resolved the vocabulary those places are printed in against the committed
+town first, so that a guard could tell `Michigan City` from `Fort Dearborn` and from `the
+corner of Water and Franklin streets, Chicago`; this ticket spends it. The 78 are the
+identities whose ONLY evidence inside the scene window was such a reading: with it refused
+the ladder reaches nothing, and a container the ladder cannot reach is not minted. The
+refusals are not dropped — each is carried in `identity_master.json` under evidence class
+`newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
+record and a later page that puts one of these men at Chicago after all can overturn it. The number
 this liberty declares is the number of containers standing, and it will fall again as the
 remaining rulings are made.
 
@@ -10785,24 +10814,26 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Covers:** `recon_1835_blk_south_water_dearborn_h1_03.inferred_1835.footprint`.
 **Recorded:** 2026-09-04.
 
-### L223 — Six houses stand on a street a directory printed eight years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 6 households
+### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
+**Scope:** `residence_back_projection.positions[placed]` — 13 households
 **Decision:** where no source of the scene year says where a person's house stood, a
-**street** printed as that person's residence — the volume's own `res` or `bds` — in
-Fergus's Chicago directory of 1839 or 1843 may be read backwards and carried as the
-household's street **face**. The placement is graded `reconstructed`, the note says how
+**street** printed as that person's residence — the volume's own `res` or `bds`, or
+`house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
+his preface — in Fergus's Chicago directory of 1839 or 1843, or Norris's of 1844, may be
+read backwards and carried as the household's street **face**. The placement is graded `reconstructed`, the note says how
 many years it was carried, and the policy is `docs/RESIDENCE-BACK-PROJECTION.md`.
 **Why:** this is L218's mechanism aimed at the other question, and `docs/ADDRESS-BACK-
 PROJECTION.md` clause 2 refused it by name so that it would be argued rather than
 absorbed. The argument is that a home is not a shop in two places. A residence needs **no
 attested trade**, where a business does — everybody the town holds lived somewhere in it,
 so an absent occupation says nothing about whether a man had a house — and that departure
-is most of the yield: 35 of the 44 residence addresses on the layer belong to people the
-1835 papers give no trade, and three of these six placements are such people. Against
+is most of the yield: 47 of the 61 residence addresses on the layer belong to people the
+1835 papers give no trade, and nine of these fourteen placements are such people. Against
 that, a home is carried on a **weaker** argument than a shop: a shopfront is capital sunk
 into one street's trade and a lodging is a month's rent.
-**Consequence:** six households stand on a face on the authority of Fergus's directory of
-1843, printed eight years after the scene. The count has moved twice in both directions and
+**Consequence:** fourteen households stand on a face on the authority of a volume printed
+eight or nine years after the scene — six on Fergus's directory of 1843, eight on Norris's
+of 1844. The count has moved three times in both directions and
 neither move was a new liberty, which is the shape this entry should be read for. It reached
 eight without a directory page being read: T-1011 lifted 54 lines of the 1 January 1834
 letter list that no transcription carried, the mint took J. S. Lacey into the town off one
@@ -10822,6 +10853,15 @@ and two of the eight were standing on a reading that rule refuses:
   street was his HOME, and this pass may not say it for him. A nearer reading that says less
   replaced a further one that said more, and the face goes with the claim.
 
+**Restated to thirteen on 2026-09-12 (T-1049), and the reading did not move — the town did.**
+`hh_mills_samuel` was minted on one press notice, `S. Mills`, printed against `Jefferson,
+Ohio`; the resolved place vocabulary refuses it as a Chicago appearance, the ladder then
+reaches nothing for that identity, and the container goes with it. His Norris 1844 residence
+had nothing left to carry. The same pass took `hh_murray_james_h` — `James H. Murray`, printed
+against `New York` — out of the 47 refusals, which is why the adjudicated total falls by two
+and the placed count by one. This is the shape the paragraph above asks to be read for: the
+count moves when the TOWN shrinks as well as when it grows, and neither move is a new liberty.
+
 Twenty of 825 households carried a real `lives_at` before this pass and twenty carry one
 after — the faces are text on a card and not a placement of anybody in the town.
 **What is NOT claimed, and this is the load-bearing half:** no lot, no roof, no door
@@ -10829,20 +10869,48 @@ count, **no `lives_at`**, and — unlike L218 — **no point, ever**, not even w
 volume prints a corner. Every residence entry that prints one prints it against a street
 NUMBER from a grid Chicago did not have in 1835, so the corner is how an 1843 volume tells
 its reader which of two hundred Clark Street doors it means, and reading it back would be
-reading a finding aid as a survey. The 38 refusals are on the record beside the six, so
-the arithmetic is visible and not just the successes.
+reading a finding aid as a survey. The 47 refusals are on the record beside the fourteen,
+so the arithmetic is visible and not just the successes.
 **Where it reaches a reader:** the Evidence panel's household card, as text. Nothing is
 drawn — the same admission **L2** makes for the fauna layer.
 **How to resolve:** a source inside the scene year that says where somebody slept. The
 1835 poll and tax lists are closer to 1835 than a directory is, and any one of them that
-houses one of these six supersedes this entry under the policy's clause R3 without an
+houses one of these fourteen supersedes this entry under the policy's clause R3 without an
 argument.
 
 Related: **L218** (the business half, and the clause that refused this one) · **L212**
 (a street name constrains a face) · **L2** (nothing is drawn) · tickets **T-0669** (this),
-**T-0633**, **T-0632**, **T-0987** (the restatement to six), **T-0670** (the rule that
-took one of the two).
+**T-0633**, **T-0632**, **T-0987** (the restatements to six and to fourteen), **T-0670**
+(the rule that took one of the two), **T-0569** (the refusal whose scope the fourteen
+came out of).
 **Recorded:** 2026-09-04 (T-0669). **Restated:** 2026-09-11 (T-0987).
+**Restated:** 2026-09-11 (T-0987 stretch 6), from six to fourteen, and the reason is that
+a volume this pass had never been allowed to read became readable one line at a time.
+Norris's directory of 1844 carried a single flag — `parse_trusted: False` — that refused
+all 144 of its could-carry units under one sentence about three of them, so not one of its
+addresses had ever reached these clauses. Stretch 6 replaced the flag with a per-entry,
+per-field predicate and sixteen of its addresses arrived here; **eight place**, carried
+nine years, which is the widest gap in the set. They bring three streets no residence had
+reached — Dearborn, Randolph and Wells — and they are what makes this pass, not the
+business half, the one that reads Norris: he prints a man's house far more often than his
+shop. The other eight were refused, and two of those refusals are the entry's own words
+being read properly rather than a clause being relaxed:
+
+- **`marsh_silvester`** was PLACED BY THE BUSINESS PASS, on North Water Street, on
+  `house N Water st (See card` — his home. `docs/ADDRESS-BACK-PROJECTION.md` clause 2
+  refuses a residence by name, but the shared `RESIDENCE_PREFIX` knew only Fergus's `res`
+  and `bds`; Norris's `house` had never been tested against it because his parse never
+  reached the clause. He now refuses there and places here, which is the same face under
+  the right policy — and the only street in the town no other rule can seat a building on.
+- **`clark_erastus`** was placed HERE, on Clark Street, off `residence Hum phrey Clark's`
+  — the house of Humphrey Clark, not the street of that name. Two tests already stood in
+  front of the street table for exactly this collision and a mis-set space defeated both:
+  `Hum phrey` is neither an initial nor a capitalised forename. The possessive is not
+  defeated by it, and none of these four volumes ever prints a street possessively, so a
+  body ending `'s` is now refused as a householder before the street table is consulted.
+
+Nothing was regraded and no placement was invented. Twenty of 825 households carried a real
+`lives_at` before this restatement and twenty carry one after.
 
 ### L224 — A house the paper measured, on a corner the paper did not
 **Decision:** `lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat*
@@ -10985,26 +11053,34 @@ would misdescribe a paid trade as a public utility · no waterman, no team, no p
 leathern hose (**L1**) · and no worn cart track, because a track is terrain and the committed
 heightfield is derived and gated, and cutting ruts into it to illustrate a sentence would put
 an invention inside a surface whose whole value is that it is not invented.
-**And the model contradicts the source about the water itself, which is recorded here rather
-than resolved:** Andreas says *the lake*, and on this project's committed 1834 surfaces the
-water at the foot of Randolph is not the lake — land runs to east 1224, water from there to
-about 1305, the **sand bar** stands dry at about +1.23 m from 1320 to 1470, and the open lake
-begins only beyond east 1478, 254 m further out. So the cart stands at the old southward
-channel behind the bar: the river-fed water the same sentence has the settlers turning away
-from. Three readings are open — that *"the lake"* is loose for the water at the end of
-Randolph, that the old channel was closed or fordable by July 1835 (Wright draws it
-narrowing and nothing in this repository dates it), or that the carts crossed the bar and the
-street name marks where they left the town. The record picks none.
-**How to resolve:** a dated account of the old southward channel's state in 1835 settles the
-water. A city or county record of licensed watermen, or a newspaper advertisement for one,
-would give the trade a count, a name and possibly a stand — and would turn the cart from
-`reconstructed` into something argued.
+**And the model contradicts the source about the water itself, which T-0886 ruled on without
+moving the cart:** Andreas says *the lake*, and on this project's committed 1834 surfaces the
+water at the foot of Randolph is not the lake — land runs to east 1223.8, water from there to
+1305.5, the **sand bar** stands dry to +1.24 m from 1305.8 to 1469.5, and the open lake begins
+only beyond east 1469.8, 246 m further out. So the cart stands at the old southward channel
+behind the bar: the river-fed water the same sentence has the settlers turning away from.
+**The reading adopted is that his phrase names a stretch of bank and the stretch reaches the
+lake** — *"generally at the foot of Randolph Street"* — because the traced bar has a drawn
+south tip at north -436.0, and along the committed shore that tip is a **167.0 m** walk from
+the cart, against 245.5 m of channel and bar to cross on the transect. The other two readings
+are refused for want of anything behind them: nothing in this repository dates the channel
+(the hydrology dossier grades its 1835 state `conjectural`), and a ford of 81.5 m at 1.18 m is
+not a crossing a trade makes daily. **The cart does not move to the tip**, which is ground no
+source names and ground this epoch does not model — the box stops at north -400 — so standing
+it there would trade the one place Andreas names for one the model chose. The weighing is
+`docs/RESEARCH/wells.md` § 5 and `tools/measure_watering_place.py --gate` holds every number
+in it against the committed surfaces.
+**How to resolve:** a dated account of the old southward channel's state in 1835 would still
+be worth having — it would replace an argued reading with a documented one. A city or county
+record of licensed watermen, or a newspaper advertisement for one, would give the trade a
+count, a name and possibly a stand — and would turn the cart from `reconstructed` into
+something argued.
 Related: **L146** (the boats: the same grade for the same shape of claim, an attested class
 with unknowable individuals) · **L162** (the town's sixty-eight unhitched vehicles, whose
 cart this one reuses) · **L131** (the yard layer's barrels and the no-mark rule) · **L1** (no
 figure and no animal is drawn) · tickets **T-0759** (this), **T-0592** (the reading that
-found the trade and left it undrawn).
-**Recorded:** 2026-09-06 (T-0759).
+found the trade and left it undrawn), **T-0886** (the water ruled on).
+**Recorded:** 2026-09-06 (T-0759) · **amended:** 2026-09-11 (T-0886, the water).
 
 ### L228 — A plural label, two drawn blocks, and everything above the ground invented
 **Decision:** `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b` stand about
@@ -11212,3 +11288,94 @@ house and the shop, the same plate and the same grade) · **L1** (no figure is d
 (the sheet's other buildings).
 **Covers:** `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_type`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.roof_pitch_deg`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.wall_height_m`, `fort_dearborn_us_factors_house.us_factors_house_1818.form.chimneys`.
 **Recorded:** 2026-09-11 (T-1036).
+
+### L232 — 26 documented businesses stand on 1 July 1835 because the only paper that names them was printed afterwards
+**Decision:** every business the newspaper register flags `backdating_liberty_required` is
+treated as standing at the scene date. Its existence is documented — a dated advertisement or
+notice in the *Chicago Democrat* or the *Chicago American* — but the earliest surviving
+printing of it is LATER than 1835-07-01, and its presence on that day is assumed. This is the
+forward twin of **L211**, and it is attached the same way: the register carries the flag, this
+entry carries the liberty, and no business record is graded `documented` for a presence
+nothing witnessed. The owner ruled the class permitted on 2026-09-10, while reading the
+December 1835 State census — *"I think we are ok to populate some of those and create them
+even though the scene date is not perfect. or at least head in that direction based on your
+reasonable inferences. We are making a reconstruction and it won't be perfect but we have
+good inferences like this."*
+**Why:** the alternative is the proxy T-0356 retired, which excluded a business whose first
+SURVIVING issue postdated the scene date — and the absence of an earlier printing is not
+evidence of absence. The Chicago run is broken: the papers that would have carried these
+houses in June are not all extant, and an advertisement is a STANDING one, repeated week on
+week, so the issue a reader happens to have is almost never the issue an advertisement began
+in. Wm. H. Taylor's boot, shoe and leather store is the case that proves it: the register
+first meets him on 5 August 1835, and the advertisement's own dateline is **8 July 1834**, a
+year and a day before the scene date. The proxy had excluded from the July town a man who
+demonstrably stood in it. What is left after that reading is made everywhere it can be made
+is this class: documented houses whose standing on 1 July 1835 rests on ruling 3 — a
+documented business is built at the scene date unless contradicted — and on nothing else.
+**Scope:** `register_1835.businesses[backdating_liberty_required]` — 26 businesses, enumerated
+by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by
+`tools/compile_liberties.py` on every compile. The number cannot drift from the register
+without `check.sh` saying so, which is the point of writing it down. **It is a measurement and
+not the figure this entry's ticket quoted:** T-0404 was filed at *33* on 2026-08-29, before the
+flag it names was computed; the register's own summary has read 30 (T-0356, which minted it),
+then 28 (T-0402), 27 (T-0340) and 26 (T-0413). Every one of those movements is an identity
+pass judging two printed styles to be one house — not one business leaving Chicago.
+**How the class is bounded, and how it is cleared.** 27 businesses stand in the July town whose
+first surviving issue postdates the scene date. **One** of them owes no liberty, and the
+mechanism is the one that makes the other 26 honest: an opening notice dated on or before
+1835-07-01 is positive evidence the house stood, so `compile_register.py` clears the flag —
+Taylor's `effected` dateline of 8 July 1834 is that notice. (John Holbrook's *"is now
+opening"* of 10 June 1835 is the same kind of reading, and he never needed it: his own first
+printing is June, before the scene date.) The register also refuses in the other direction
+before this liberty is reached at all: **4** businesses are excluded outright by an opening
+the paper STATES for a date after the scene date — Cromelien, Brothers & Co.'s wine branch,
+Hiram Everts's high school for young gentlemen, Charles Hunt's for young ladies, and William
+F. Lyon's wholesale grocery — and **13** more by a claim that contradicts them earlier. So
+this covers what is left after the evidence has spoken, not instead of it.
+**What this liberty does NOT license, and the worked refusal.** **It covers a DATE and never an
+ABSENCE.** It carries a documented house across a gap in the surviving record; it does not
+license a business the sources do not name, and it does not overturn a positive refusal. The
+bank is the worked example. The December 1835 State census counts one in Chicago, and this
+reconstruction builds none: `chicago_american_1835_06_27` c001 — **five days before the scene
+date** — prints the State Bank of Illinois's officers with the directors having *determined*
+to establish a Chicago branch and "the officers of those institutions have not been made
+known", and Hubbard's branch took a corner of his warehouse in **1836**. On 26 June 1835 the
+branch is a decision, not a counter. A liberty about dates may never outrank a notice that
+says the thing did not yet exist. The Chicago Lyceum and the Chicago Reading Room are the
+second shape of refusal — institutions without premises, both meeting in the town and neither
+owning a room. The Reading Room's directors met at the **Tremont House on 6 July 1835** to
+raise $2,500–3,000 for a building by joint stock (`chicago_american_1835_07_11` c001), and
+seven weeks later its books were still "for the present deposited at [?] House"
+(`..._08_22` c005). That sequence is documented and negative: anything this project put on
+the Public Square for a reading room at the scene date would be wrong. Neither adds a roof;
+both add links.
+**Consequence:** **20 of the 26 reach something a visitor can see** — 14 take a street face, 3
+enrich a house already standing, and 3 resolve against the committed town well enough to ask
+for a building; the remaining **6** are recorded and unplaceable. Two of the three placeable
+ones are L. G. Curtiss, deputy surveyor of Cook County, at the Mansion House, and Henry
+Moore, attorney, by Kinzie's forwarding store — and Moore is also the man who signed the
+Reading Room's notices as secretary, which is how close the licence and the refusal sit in
+this corpus. The three enrichments are John Wright's building and, twice, John Dean Caton's
+law office in Temple's Lake Street building. Every one of the 20 puts a trade sign, a card or
+an occupant into July 1835 on an inference, and **a business restored on this liberty still
+reads as restored on an assumption**: the Evidence panel carries this entry so that sentence
+is available to a visitor, because the per-attribute chips cannot say it — the thing assumed
+is not an attribute but a presence on a particular day.
+**What is NOT invented:** the business, its trade, its proprietors, its street and its
+advertisement are all documented and cited. Only the backdating of the concern from its first
+surviving printing to 1835-07-01 is assumed. None of the 26 also owes **L211** — the two
+classes cannot overlap, because one is a house last printed before 1835 and the other a house
+first printed after the scene date — so a reader meets exactly one of these two admissions per
+business, never both.
+**How to resolve:** find the earlier printing, or the opening. A business re-printed in a
+surviving issue dated on or before the scene date, or carrying an `effected` opening notice
+dated then, loses the flag when `tools/compile_register.py` re-derives — with no edit to this
+file and none to its record. So this liberty shrinks by itself as the corpus grows, and the
+count above is restated each time it does. It reaches zero only if the first half of the 1835
+run turns out to hold every one of these houses, and it stops at whatever number the surviving
+issues cannot reach.
+**Ticket:** T-0404. **Related:** **L211** (the survival class, the same admission running
+backwards, and the rule this entry's attachment had to agree with), **L212** (the street faces
+14 of these businesses are seated on), T-0356 (the proxy this replaced), T-0988 (the census
+reading the owner ruled from).
+**Recorded:** 2026-09-12 (T-0404).

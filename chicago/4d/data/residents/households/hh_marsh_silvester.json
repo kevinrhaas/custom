@@ -79,7 +79,43 @@
   ],
   "people": [
    {
-    "person_id": "marsh_silvester"
+    "person_id": "marsh_silvester",
+    "address_later": {
+     "value": "house N Water st (See card",
+     "confidence": "attested",
+     "describes_date": 1844,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Marsh, Sylvester, 98 Lake st. packing house N Water st (See card'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "refused",
+     "clause": "2",
+     "value": null,
+     "describes_date": 1844,
+     "read_back_years": 9,
+     "placement": null,
+     "position_local_enu_m": null,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints an address against this name in 1844 and this pass will not carry it back to 1835. The directory prints this as a RESIDENCE — its own `res`, `bds`, `house` or Norris's `h` — and this pass positions businesses. Reading a home address as a shop door would be the pass answering a question nobody asked it. The residence half is T-0669. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/ADDRESS-BACK-PROJECTION.md, clause 2)."
+    },
+    "residence_back_projection": {
+     "outcome": "placed",
+     "clause": "R4 and R5",
+     "kind": "resides",
+     "value": "North Water Street",
+     "confidence": "reconstructed",
+     "describes_date": 1844,
+     "read_back_years": 9,
+     "placement": "face",
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "A LATER HOME ADDRESS, READ BACKWARDS 9 YEARS. The street is not an 1835 reading: Norris's Chicago directory of 1844 printed where this man lived in 1844, and this pass carries it back to the scene date because nothing in the 1835 corpus says where his house stood. What is claimed is the street FACE and nothing narrower — no lot, no roof, no door count, and no corner even where the volume prints one — and the grade is `reconstructed`, this dataset's word for a figure the reconstruction supplies rather than a source. North Water Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt. A home is carried back on a weaker argument than a shop is: a shopfront is capital sunk into one street's trade and a lodging is a month's rent, which is why this policy claims less than docs/ADDRESS-BACK-PROJECTION.md does from the same volume. The rule is docs/RESIDENCE-BACK-PROJECTION.md and the liberty is L223; a reader who thinks 9 years is too far to carry a house should read the grade as the disagreement being invited."
+    }
    }
   ]
  }

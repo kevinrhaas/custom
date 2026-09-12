@@ -199,14 +199,6 @@
       "businesses_carrying_this_trade": 5
     },
     {
-      "trade": "attorney and counsellor at law, solicitor in chancery",
-      "classes": [
-        "lawyer"
-      ],
-      "basis": "an attorney's practice; chancery practice is the same man's",
-      "businesses_carrying_this_trade": 1
-    },
-    {
       "trade": "attorney and solicitor in chancery",
       "classes": [
         "lawyer"
@@ -565,14 +557,6 @@
       "businesses_carrying_this_trade": 1
     },
     {
-      "trade": "dentist",
-      "classes": [
-        "other"
-      ],
-      "basis": "the enumeration counts physicians and names no dentist (B2)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
       "trade": "dentistry",
       "classes": [
         "other"
@@ -661,27 +645,11 @@
       "businesses_carrying_this_trade": 1
     },
     {
-      "trade": "dry goods, hardware, hollow ware, groceries, boots and shoes, saddlery, drugs, hats and ready made clothing",
-      "classes": [
-        "store"
-      ],
-      "basis": "a store of many lines; none of them singly takes a separate class (B4)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
       "trade": "fashionable tailoring",
       "classes": [
         "other"
       ],
       "basis": "a tailor makes what he sells (B2)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
-      "trade": "fire insurance agency",
-      "classes": [
-        "other"
-      ],
-      "basis": "a service the enumeration counts nowhere (B2)",
       "businesses_carrying_this_trade": 1
     },
     {
@@ -852,14 +820,6 @@
     },
     {
       "trade": "houses and lands purchased and sold; building lots; houses to let",
-      "classes": [
-        "other"
-      ],
-      "basis": "a land agency (B2)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
-      "trade": "houses and lots for sale or rent",
       "classes": [
         "other"
       ],
@@ -1302,14 +1262,6 @@
         "tin_and_copper_manufactory"
       ],
       "basis": "a tin and copper manufactory (B4)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
-      "trade": "tin, sheet iron and copper ware; cooking stoves; plough and mill castings",
-      "classes": [
-        "tin_and_copper_manufactory"
-      ],
-      "basis": "a tin and copper manufactory: the ware is made on the premises (B4)",
       "businesses_carrying_this_trade": 1
     },
     {

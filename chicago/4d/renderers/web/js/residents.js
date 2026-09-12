@@ -343,12 +343,18 @@ function laterDirectoryHtml(found, citationsById) {
       <br><span class="res-why">Printed page ${escapeHtml(String(e.printed_page))}, entry ${
         escapeHtml(e.claim_id)}.</span></li>`).join('');
     const holds = (a.holds || []).map((c) => (c === 'occupation' ? 'a trade' : 'a street'));
+    // T-0987 stretch 6: a split is refused per FIELD, so the chip names which of the two
+    // does not cross rather than saying it of the whole line. `split_refused` maps a
+    // field to a clause key; the clause itself is on the ruling, in the ledger.
+    const noCross = Object.keys(a.split_refused || {}).sort()
+      .map((c) => (c === 'occupation' ? "the trade's split" : "the street's split"));
     return `<dt>Found again in ${escapeHtml(a.title)}</dt>
       <dd>${swatch(null)}<span class="res-chip res-research">${
         escapeHtml(words(a.match_status))}</span>${
         holds.length
           ? `<span class="res-chip res-research">${escapeHtml(String(a.year))} holds ${
-              escapeHtml(holds.join(' and '))}${a.parse_carries ? '' : ', and its parse does not cross'}</span>`
+              escapeHtml(holds.join(' and '))}${noCross.length
+                ? `, and ${escapeHtml(noCross.join(' and '))} does not cross` : ''}</span>`
           : ''}
         ${lines ? `<ul class="res-candidates">${lines}</ul>` : ''}
         <span class="res-why">${escapeHtml(a.match_rule)}</span></dd>`;
@@ -1001,8 +1007,10 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `than one. ${directoryCounts.carrying_an_occupation || 0} carry a trade the `
           + `1835 record never had and ${directoryCounts.carrying_an_address || 0} an `
           + `address, each written as its own year's and read back onto nobody; `
-          + `${directoryCounts.line_held_but_parse_refused || 0} hold only a line whose `
-          + `parse this project will not cross. ` : '')
+          + `${directoryCounts.split_refused_trades || 0} printed line(s) name a firm or `
+          + `a door where the trade would go and ${
+              directoryCounts.split_refused_addresses || 0} give an address that is only a `
+          + `ditto, so those fields do not cross and the line is quoted instead. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }

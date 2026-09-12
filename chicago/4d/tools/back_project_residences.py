@@ -121,6 +121,18 @@ BARE_PERSON = re.compile(r"^[A-Z][a-z]+\.?\s+([A-Z]\.?\s+)?[A-Z][a-zA-Z']+\b")
 INITIALLED_PERSON = re.compile(
     r"^(?!(?:N|S|E|W|No|So)\b)[A-Z]\.\s*(?:[A-Z]\.\s*)?[A-Z][a-zA-Z']+\.?$")
 
+# `residence Hum phrey Clark's`: THE POSSESSIVE, which is the surest of the three and
+# the only one that survives the archive.org reading. The two tests above key on the
+# SHAPE of a name — an initial and a period, or two capitalised words — and a mis-set
+# space inside a forename defeats both: `Hum phrey` is neither `H.` nor `[A-Z][a-z]+`
+# followed by a capital. What it cannot defeat is the apostrophe the compositor set to
+# say whose house this is. None of these four volumes ever prints a STREET
+# possessively, so a body ending `'s` names a householder, and it is tested in front of
+# the street table for exactly the reason `INITIALLED_PERSON` is: Erastus Clark boarded
+# at Humphrey Clark's, and `street_words` reads `Clark` as Clark Street. T-0987 stretch
+# 6 found this by placing him there.
+POSSESSIVE_HOST = re.compile(r"['\u2019]s\.?$")
+
 
 def kind_of(printed: str) -> str:
     return "boards" if BOARDS.match(printed) else "resides"
@@ -185,6 +197,18 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
         if pattern.search(sign_body):
             row.update(outcome="refused", clause="R4", reason=why)
             return row
+
+    if POSSESSIVE_HOST.search(body):
+        row.update(outcome="refused", clause="R4",
+                   reason="The entry names the person this man boarded with in the "
+                          "possessive — whose house it is — and not a street; these "
+                          "volumes never print a street that way. It is tested before "
+                          "the street table because the householder's surname can be a "
+                          "street this town carries. Where that person is himself in "
+                          "this town the two records could be joined, but that is a "
+                          "crosswalk between two people and not an address read "
+                          "backwards.")
+        return row
 
     if INITIALLED_PERSON.match(body):
         row.update(outcome="refused", clause="R4",
@@ -470,9 +494,22 @@ def self_test() -> int:
     # R3 — an 1835 placement wins.
     want("an 1835 lives_at wins", one("res Clark", lives="some_roof"),
          "already_better_placed", "R3")
-    # R4 — `same` is a back-reference and not an address.
+    # Norris's own shorthand for the same word, from his preface, and the population
+    # this pass gained when T-0987 stretch 6 let that volume's parse cross: `h` is
+    # house, `r` is residence, and the mis-set `hou.«e` is in the corpus as printed.
+    want("Norris's h is a home", one("h Clark st. b Mad. & Mon", year=1844),
+         "placed", "R4 and R5", "face")
+    want("Norris's r is a home", one("r Clark", year=1844),
+         "placed", "R4 and R5", "face")
+    want("house spelled out is a home", one("house Clark st", year=1844),
+         "placed", "R4 and R5", "face")
+    want("a mis-set house is still a house", one("hou.\u00abe Clark st", year=1844),
+         "placed", "R4 and R5", "face")
+    # R4 — `same` is a back-reference and not an address, in every volume's word for it.
     want("res same", one("res same"), "refused", "R4")
     want("bds same", one("bds same"), "refused", "R4")
+    want("house same", one("house same", year=1844), "refused", "R4")
+    want("h same", one("h same", year=1844), "refused", "R4")
     # R4 — a named place is tested BEFORE any street name, which is what keeps the
     # Lake House off Lake Street and Fort Dearborn off Dearborn Street.
     want("bds Lake House", one("bds Lake House"), "refused", "R4")
@@ -490,6 +527,15 @@ def self_test() -> int:
     # initial that must NOT read as one.
     want("bds H. Wolcott is a host, not Wolcott Street",
          one("bds H. Wolcott"), "refused", "R4")
+    # The possessive, and the mis-set forename that defeats both shape tests above.
+    want("residence Humphrey Clark's is a host, not Clark Street",
+         one("residence Humphrey Clark's", year=1844), "refused", "R4")
+    want("a mis-set forename does not save the host",
+         one("residence Hum phrey Clark's", year=1844), "refused", "R4")
+    want("res J. Gray's", one("res J. Gray's", year=1844), "refused", "R4")
+    # ...and a street is still a street: no volume prints one possessively.
+    want("res Clark st is not a host", one("res Clark st", year=1844),
+         "placed", "R4 and R5", "face")
     want("res N. Water is a street and not a man called Water",
          one("res N. Water"), "placed", "R4 and R5", "face")
     want("a ward is not a street", one("res 3d Ward, south of Jackson"), "refused", "R4")

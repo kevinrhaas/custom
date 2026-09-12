@@ -10,12 +10,12 @@
  ],
  "rule": "Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
  "counts": {
-  "rulings": 533,
-  "carried": 202,
-  "matched": 401,
-  "refused": 132,
-  "distinct_people": 251,
-  "distinct_claims": 582
+  "rulings": 511,
+  "carried": 209,
+  "matched": 386,
+  "refused": 125,
+  "distinct_people": 241,
+  "distinct_claims": 554
  },
  "rulings": [
   {
@@ -107,8 +107,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -254,8 +254,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -439,8 +439,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -706,8 +706,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -781,8 +781,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -855,8 +855,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -955,7 +955,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -1108,7 +1108,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -1201,8 +1201,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -1297,7 +1297,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -1345,8 +1345,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -1662,11 +1662,14 @@
    "match_status": "single_entry",
    "rule": "Surname 'Burton' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "carried": [
-    "occupation",
+    "occupation"
+   ],
+   "refused_to_carry": [
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "why_refused": {
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted."
+   }
   },
   {
    "outcome": "matched",
@@ -1690,8 +1693,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -1813,7 +1816,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -1994,7 +1997,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -2014,28 +2017,6 @@
    "match_status": "single_entry",
    "rule": "Surname 'Carver' folds to the same string as the 1839 entry's, and the given name of both begins D.",
    "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "cary_john_marshall",
-   "household_id": "hh_cary_john_marshall",
-   "resident": "John Marshall Cary",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e0560",
-   "claim_ids": [
-    "f1843_e0560"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Cary' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation"
-   ],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -2144,7 +2125,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -2212,7 +2193,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -2283,7 +2264,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -2379,8 +2360,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -2450,7 +2431,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -2469,15 +2450,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Clark' folds to the same string as the 1844 entry's, and the given name of both begins E.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "refused",
@@ -2799,8 +2777,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -2867,7 +2845,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3002,8 +2980,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -3070,7 +3048,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3192,15 +3170,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Cook' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -3218,15 +3193,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Cook' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -3296,7 +3268,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3508,8 +3480,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3695,8 +3667,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3804,7 +3776,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3919,7 +3891,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -3985,7 +3957,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4004,15 +3976,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Eldredge' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -4089,74 +4058,6 @@
    }
   },
   {
-   "outcome": "matched",
-   "person_id": "ellis_j",
-   "household_id": "hh_ellis_j",
-   "resident": "J Ellis",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0449",
-   "claim_ids": [
-    "f1839_e0449"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Ellis' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "ellis_j",
-   "household_id": "hh_ellis_j",
-   "resident": "J Ellis",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1843_e0902",
-    "f1843_e0903"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Ellis' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "ellis_j",
-   "household_id": "hh_ellis_j",
-   "resident": "J Ellis",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e0568",
-   "claim_ids": [
-    "n1844_e0568"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Ellis' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
-  },
-  {
    "outcome": "refused",
    "person_id": "elston_daniel",
    "household_id": "hh_elston_daniel",
@@ -4220,7 +4121,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4289,8 +4190,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4473,8 +4374,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -4522,7 +4423,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted."
    }
   },
   {
@@ -4547,8 +4448,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4618,7 +4519,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4680,14 +4581,14 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Funk' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [
-    "address",
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4706,13 +4607,13 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Funk' folds to the same string as the card's, and the given name of both begins A.",
-   "carried": [
-    "address"
-   ],
+   "carried": [],
    "refused_to_carry": [
+    "address",
     "occupation"
    ],
    "why_refused": {
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints an address against this person, and Norris's Chicago directory of 1844 — 1844, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
     "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
@@ -4759,7 +4660,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4826,7 +4727,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4887,13 +4788,11 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Garrett' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "carried": [],
-   "refused_to_carry": [
+   "carried": [
     "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "refused",
@@ -4933,15 +4832,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Goodrich' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -4988,8 +4884,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -5175,13 +5071,11 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
-   "carried": [],
-   "refused_to_carry": [
+   "carried": [
     "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -5304,53 +5198,6 @@
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "hayward_alvin",
-   "household_id": "hh_hayward_alvin",
-   "resident": "Alvin Hayward",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1239",
-   "claim_ids": [
-    "f1843_e1239"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Hayward' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "hayward_alvin",
-   "household_id": "hh_hayward_alvin",
-   "resident": "Alvin Hayward",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e0826",
-   "claim_ids": [
-    "n1844_e0826"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Hayward' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "carried": [],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
   },
   {
    "outcome": "matched",
@@ -5672,8 +5519,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -5737,13 +5584,11 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Hubbard' folds to the same string as the 1844 entry's, and the given name of both begins G.",
-   "carried": [],
-   "refused_to_carry": [
+   "carried": [
     "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "refused",
@@ -5782,11 +5627,13 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Hubbard' folds to the same string as the 1839 entry's, and the given name of both begins H.",
-   "carried": [
+   "carried": [],
+   "refused_to_carry": [
     "occupation"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "why_refused": {
+    "occupation": "THE LINE NAMES A PREMISES WHERE THE TRADE WOULD GO, so the split yields no trade at all. \"at United States Hotel\", \"at clerk's office\", \"at G. S. Hubbard & Co.'s warehouse\": the book is saying where this man was to be found, which is evidence and is not an occupation. It is the same ground T-0569 refused a partnership on — a value containing no trade rather than a trade with something extra on it — and a trade that merely ENDS at a premises (\"clerk, at T. King's\", \"book-keeper at G. S. Hubbard's\") is not refused by it. The line is carried whole and quoted."
+   }
   },
   {
    "outcome": "matched",
@@ -5805,14 +5652,11 @@
    "match_status": "single_entry",
    "rule": "Surname 'Hubbard' folds to the same string as the 1843 entry's, and the given name of both begins H.",
    "carried": [
+    "occupation",
     "address"
    ],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -5836,8 +5680,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A PREMISES WHERE THE TRADE WOULD GO, so the split yields no trade at all. \"at United States Hotel\", \"at clerk's office\", \"at G. S. Hubbard & Co.'s warehouse\": the book is saying where this man was to be found, which is evidence and is not an occupation. It is the same ground T-0569 refused a partnership on — a value containing no trade rather than a trade with something extra on it — and a trade that merely ENDS at a premises (\"clerk, at T. King's\", \"book-keeper at G. S. Hubbard's\") is not refused by it. The line is carried whole and quoted."
    }
   },
   {
@@ -5905,7 +5749,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "THE LINE NAMES A PREMISES WHERE THE TRADE WOULD GO, so the split yields no trade at all. \"at United States Hotel\", \"at clerk's office\", \"at G. S. Hubbard & Co.'s warehouse\": the book is saying where this man was to be found, which is evidence and is not an occupation. It is the same ground T-0569 refused a partnership on — a value containing no trade rather than a trade with something extra on it — and a trade that merely ENDS at a premises (\"clerk, at T. King's\", \"book-keeper at G. S. Hubbard's\") is not refused by it. The line is carried whole and quoted."
    }
   },
   {
@@ -6039,70 +5883,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "jackson_j_y",
-   "household_id": "hh_jackson_j_y",
-   "resident": "J Y Jackson",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e0774",
-   "claim_ids": [
-    "f1839_e0774"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Jackson' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "jackson_j_y",
-   "household_id": "hh_jackson_j_y",
-   "resident": "J Y Jackson",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1843_e1373",
-    "f1843_e1374"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Jackson' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "jackson_j_y",
-   "household_id": "hh_jackson_j_y",
-   "resident": "J Y Jackson",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "n1844_e0931",
-    "n1844_e0932"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Jackson' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "jackson_samuel",
    "household_id": "hh_jackson_samuel",
    "resident": "Samuel Jackson",
@@ -6208,7 +5988,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -6256,8 +6036,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -6297,15 +6077,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Johnson' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -6350,7 +6127,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -6552,8 +6329,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -6644,7 +6421,7 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted.",
     "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
@@ -6670,8 +6447,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -6805,7 +6582,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -6907,14 +6684,14 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'King' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [
-    "address",
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -6933,15 +6710,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'King' folds to the same string as the 1844 entry's, and the given name of both begins N.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7051,13 +6825,11 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Kinzie' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
+   "carried": [
     "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7140,15 +6912,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Knickerbacker' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7218,8 +6987,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -7283,15 +7052,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Lloyd' folds to the same string as the 1844 entry's, and the given name of both begins A.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7312,50 +7078,6 @@
    "carried": [
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "loomis_henry",
-   "household_id": "hh_loomis_henry",
-   "resident": "Henry Loomis",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1610",
-   "claim_ids": [
-    "f1843_e1610"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Loomis' folds to the same string as the 1843 entry's, and the given name of both begins H.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "loomis_henry",
-   "household_id": "hh_loomis_henry",
-   "resident": "Henry Loomis",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "n1844_e1113",
-    "n1844_e1115"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Loomis' folds to the same string as the 1844 entry's, and the given name of both begins H.",
-   "carried": [],
    "refused_to_carry": [],
    "why_refused": null
   },
@@ -7458,30 +7180,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "mann_john",
-   "household_id": "hh_mann_john",
-   "resident": "John Mann",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1225",
-   "claim_ids": [
-    "n1844_e1225"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Mann' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
-  },
-  {
-   "outcome": "matched",
    "person_id": "marsh_silvester",
    "household_id": "hh_marsh_silvester",
    "resident": "Silvester Marsh",
@@ -7516,13 +7214,11 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Marsh' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-   "carried": [],
-   "refused_to_carry": [
+   "carried": [
     "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -7733,7 +7429,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -7801,7 +7497,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -7894,55 +7590,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "mills_samuel",
-   "household_id": "hh_mills_samuel",
-   "resident": "Samuel Mills",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1804",
-   "claim_ids": [
-    "f1843_e1804"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Mills' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "mills_samuel",
-   "household_id": "hh_mills_samuel",
-   "resident": "Samuel Mills",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1278",
-   "claim_ids": [
-    "n1844_e1278"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Mills' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
-   ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
-  },
-  {
-   "outcome": "matched",
    "person_id": "montgomery_l_w",
    "household_id": "hh_montgomery_l_w",
    "resident": "L. W. Montgomery",
@@ -8004,7 +7651,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -8088,14 +7735,14 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Morris' folds to the same string as the 1844 entry's, and the given name of both begins B.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [
-    "address",
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -8114,13 +7761,13 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Morris' folds to the same string as the card's, and the given name of both begins B.",
-   "carried": [
-    "address"
-   ],
+   "carried": [],
    "refused_to_carry": [
+    "address",
     "occupation"
    ],
    "why_refused": {
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints an address against this person, and Norris's Chicago directory of 1844 — 1844, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
     "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
@@ -8195,8 +7842,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -8427,29 +8074,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "murray_james_h",
-   "household_id": "hh_murray_james_h",
-   "resident": "James H Murray",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": "f1843_e1867",
-   "claim_ids": [
-    "f1843_e1867"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Murray' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
    "person_id": "myers_frederick",
    "household_id": "hh_myers_frederick",
    "resident": "Frederick Myers",
@@ -8515,7 +8139,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -8703,8 +8327,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -8874,8 +8498,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -8969,8 +8593,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9040,7 +8664,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9175,8 +8799,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9294,7 +8918,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -9388,7 +9012,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9457,7 +9081,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9528,8 +9152,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9576,7 +9200,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9791,8 +9415,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -9859,11 +9483,14 @@
    "match_status": "single_entry",
    "rule": "Surname 'Rue' folds to the same string as the 1843 entry's, and the given name of both begins J.",
    "carried": [
-    "occupation",
+    "occupation"
+   ],
+   "refused_to_carry": [
     "address"
    ],
-   "refused_to_carry": [],
-   "why_refused": null
+   "why_refused": {
+    "address": "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE it in the alphabetical list. This pass reads one entry at a time and never the entry above, by rule 1 — it carries what a crosswalk declares and re-parses nothing — so the word resolves to nothing here and would put on a card a value that names no ground. Reading it would mean the back-reference, not the adjacency the compositor relied on, and that is a reading and belongs in the volume's own reader. The line is carried whole and quoted."
+   }
   },
   {
    "outcome": "matched",
@@ -9881,14 +9508,14 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Rue' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
+   "carried": [
+    "address"
+   ],
    "refused_to_carry": [
-    "address",
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -9983,8 +9610,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -10003,15 +9630,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Sherman' folds to the same string as the 1844 entry's, and the given name of both begins R.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "matched",
@@ -10129,99 +9753,6 @@
   },
   {
    "outcome": "matched",
-   "person_id": "smith_d_a",
-   "household_id": "hh_smith_d_a",
-   "resident": "D A Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1359",
-   "claim_ids": [
-    "f1839_e1359"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins D.",
-   "carried": [
-    "occupation"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_d_a",
-   "household_id": "hh_smith_d_a",
-   "resident": "D A Smith",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1843_e0140",
-    "f1843_e2289"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins D.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "smith_d_a",
-   "household_id": "hh_smith_d_a",
-   "resident": "D A Smith",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_e1644",
-   "claim_ids": [
-    "n1844_e1644"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins D.",
-   "carried": [],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
-  },
-  {
-   "outcome": "matched",
-   "person_id": "smith_d_a",
-   "household_id": "hh_smith_d_a",
-   "resident": "D A Smith",
-   "volume": "norris_1844_advertiser",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": "n1844_ad0138",
-   "claim_ids": [
-    "n1844_ad0138"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins D.",
-   "carried": [
-    "address"
-   ],
-   "refused_to_carry": [
-    "occupation"
-   ],
-   "why_refused": {
-    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
-   }
-  },
-  {
-   "outcome": "matched",
    "person_id": "smith_e_kirby",
    "household_id": "hh_smith_e_kirby",
    "resident": "E Kirby Smith",
@@ -10290,8 +9821,8 @@
     "occupation"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -10401,7 +9932,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -10421,73 +9952,6 @@
    ],
    "match_status": "ambiguous",
    "rule": "Surname 'Smith' folds to the same string as the card's, and the given name of both begins G.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "matched",
-   "person_id": "smith_james",
-   "household_id": "hh_smith_james",
-   "resident": "James Smith",
-   "volume": "fergus_1839",
-   "source_id": "fergus_chicago_directory_1839",
-   "source_ids": [
-    "fergus_chicago_directory_1839"
-   ],
-   "claim_id": "f1839_e1366",
-   "claim_ids": [
-    "f1839_e1366"
-   ],
-   "match_status": "single_entry",
-   "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-   "carried": [
-    "occupation",
-    "address"
-   ],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_james",
-   "household_id": "hh_smith_james",
-   "resident": "James Smith",
-   "volume": "fergus_1843",
-   "source_id": "fergus_chicago_directory_1843",
-   "source_ids": [
-    "fergus_chicago_directory_1843"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "f1843_e2295",
-    "f1843_e2296"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
-  },
-  {
-   "outcome": "refused",
-   "person_id": "smith_james",
-   "household_id": "hh_smith_james",
-   "resident": "James Smith",
-   "volume": "norris_1844",
-   "source_id": "norris_directory_1844",
-   "source_ids": [
-    "norris_directory_1844"
-   ],
-   "claim_id": null,
-   "claim_ids": [
-    "n1844_e1651",
-    "n1844_e1652",
-    "n1844_e1654",
-    "n1844_e1658"
-   ],
-   "match_status": "ambiguous",
-   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins J.",
    "carried": [],
    "refused_to_carry": [],
    "why_refused": null
@@ -10703,7 +10167,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -10771,7 +10235,7 @@
     "address"
    ],
    "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -11198,7 +10662,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -11586,7 +11050,7 @@
     "occupation"
    ],
    "why_refused": {
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -11605,15 +11069,12 @@
    ],
    "match_status": "single_entry",
    "rule": "Surname 'Wight' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "carried": [],
-   "refused_to_carry": [
-    "address",
-    "occupation"
+   "carried": [
+    "occupation",
+    "address"
    ],
-   "why_refused": {
-    "address": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote.",
-    "occupation": "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a partnership as \"of Horace Norton & Co\" where the trade would go, so the split yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value containing no trade at all rather than a trade with something extra on it. T-0569 refused it on that ground and this pass inherits the refusal: the line goes to the card as Norris set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
-   }
+   "refused_to_carry": [],
+   "why_refused": null
   },
   {
    "outcome": "refused",

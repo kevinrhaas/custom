@@ -1162,18 +1162,283 @@ regimental adjutant, from the Democrat of 3 September 1834, and a *Jr.* is the o
 says a town held two men of a name. It is a card-merge question and it does not touch the
 purchaser, who is printed JAMES in full.
 
-### NEXT
+### Cohort C2: the nine with a namesake, surnames L–M, of the town lots (T-1034)
 
-**Cohort C2 — the nine remaining proposals whose surname falls in L–M**: LEE GEORGE W, LEE
-WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL, MONTGOMERY WILLIAM, MORRIS B S,
-MORRISON J M. It is the block where the BROWN WM rule should bite hardest — three Millers on
-a surname the directories print many of — and where C1's first lesson has the most to prove:
-read Fergus 1839, Fergus 1843, Norris 1844 and the newspaper run for the surname BEFORE
-weighing the layer's `rivals[]`. **C3 is then the last ten, surnames S–Z**: SMITH JAMES A,
-STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES,
-WILLIAMS ELI B, WOODWORTH J H, WRIGHT A — and its two WALKER spellings are one person under
-two readings, to be ruled together as cohort A ruled its pairs. **19 unruled.** This ticket
-closes when `ruled` reads zero unruled, and says so with the count.
+C1 left the middle block. **L to M, nine spellings. Three upheld, six refused** — the first
+cohort of this ticket to refuse most of what it read. `ruled` 124/1/66/19 → **127/1/72/10**;
+matched 144 → 138, **six cards retracted** carrying twenty-four register rows and $30,708 of
+stated purchase money. No acres move: all twenty-four are town lots, and the register prints
+`0000.00` in the acres column for every one of the 619.
+
+| upheld | refused |
+|---|---|
+| MONTGOMERY WILLIAM, MORRIS B S, MORRISON J M | LEE GEORGE W, LEE WILLIAM, LOOMIS H G, MILLER GEORGE, MILLER J, MILLER SAMUEL |
+
+**THE REGISTER SORTS ITS OWN NAMES BEFORE THE TOWN IS ASKED, AND IT DECIDES FOUR OF THE
+NINE.** Cohort B found this once, in PEARSON HIRAM against the PEARSONS HIRAM the same
+volume enters forty-four times, and named it as the thing to look for next. It is here
+twice over, and both times it is the FIRST question to ask rather than the last:
+
+- **LOOMIS H G is refused because the register also enters LOOMIS HORATIO G** — ls0595, a
+  federal 80-acre half-quarter section on 27 June 1835, a year before the five town lots.
+  One man, two spellings, one book. The printed record then says which man: Chicago has
+  exactly two Loomises, and the directories separate them cleanly — 'Loomis, Henry, lumber
+  merchant, cor West Water and Randolph', who carries no middle initial in any printing,
+  and Horatio Gates Loomis of Harmon & Loomis, printed 'Horatio G.' by Fergus 1839 and
+  'H. G.' by Norris 1844, the register's two initials exactly. The residents layer holds no
+  card for Horatio Gates, which is why the mechanical rule could only offer Henry.
+- **MONTGOMERY WILLIAM is UPHELD for the same reason inverted.** The book holds four
+  Montgomerys: LOTON WM and LOTON W, both upheld to the shoemaker under T-0990; JOHN, whose
+  Residence column reads MCLEAN; and WILLIAM. The man who signs 'L. W. MONTGOMERY' in the
+  Democrat is therefore in the register under his own forename and is not this purchaser.
+- **MORRISON J M likewise**: the register enters EZEKIEL, ORSEMUS three times, EPHRAIM and
+  THOS M under their own names, so J M is not a clipped reading of a Morrison the book
+  already holds otherwise.
+
+**C1'S LESSON HELD, AND ITS SHARPEST TEST WAS THE SURNAME MILLER.** The layer holds four
+Millers; the printed record holds twenty-five readings of the surname and not one George.
+Fergus 1839, Fergus 1843 and Norris 1844 print Bernhart, Capt. Harry, Charles/Chas., Daniel,
+David, H., Henry, Jacob, John, John Newhouse, Peter, Porter, Robert, S. T. and William; the
+Democrat and the American of 1833–35 add Col. Samuel, F. W., Henry F., Jacob V., Jesse,
+Jesse F., Lorin, Marshall, Matthias B. and an uncertain L. P.; the first city election of
+2 May 1837 polls a Daniel and a John B. MILLER GEORGE rests on one line of the 1833 tax
+list against all of that, and is refused. MILLER J is the BROWN WM shape at its plainest —
+four distinct printed forenames begin with J, and the card the initial was made to choose
+is itself name-only in all five of its readings.
+
+**READ THE ADVERTISEMENT, NOT THE OCCUPATION FIELD.** MILLER SAMUEL looked like the
+cohort's best-attested refusal candidate and nearly survived on it: five readings, three
+domains, and two of them newspaper readings that are *not* letter lists, one carrying the
+occupation `agent`. At the page they are one advertisement printed twice — David Carver's
+storage, commission and lumber notice of 25 February and 4 March 1834 — and its closing
+sentence reads *'Calvin Britain esq. at St. Joseph, and Col. Samuel Miller, Michigan City,
+are his Agents, who will immediately forward any article directed to him.'* The Colonel is
+Carver's agent in INDIANA, named in a Chicago paper because Chicago readers shipped through
+him. Strip the fold and the Chicago Samuel Miller is two bare names, a tax line and an 1832
+Black Hawk enrollment. **A domain count is not evidence; the sentence the name stands in
+is.**
+
+**AND A MIDDLE INITIAL CAN DISAGREE RATHER THAN AGREE.** LEE GEORGE W is refused not for
+silence but for contradiction: the only middle initial the town holds for a George Lee is
+the S of 'G. S. Lee', a St. Cyr marriage of 1 October 1835 folded onto the card by the
+forename initial alone, against the register's W. The rest of the card is one uncalled-for
+letter of 20 May 1835, flagged `letter_list_only` by the newspapers layer itself, and the
+three directories print seven Lees with no George among them. LEE WILLIAM is the STANLEY
+JOSEPH shape unaltered — one line of the 1833 tax list, against three lots of the ORIGINAL
+sale of 28 September 1830, three years earlier.
+
+**THE UPHOLDS ARE WHAT A TOKEN LOOKS LIKE WHEN IT IS REALLY THERE.** MORRIS B S is the
+least doubtful ruling of the ticket so far: both initials, the Democrat's 'B. S. Morris' of
+17 June 1835 and the firm 'Casey & Morris, attorneys at law' in the same run, Fergus 1843's
+'Morris, Buckner Smith, attorney, 59 Clark' and his own advertising card, and no rival Morris
+in the layer who could take a B. MONTGOMERY WILLIAM has a trade that IS the purchase — ten
+printings of 'W. MONTGOMERY' between 28 January 1834 and 12 August 1835 signing as
+auctioneer, agent and commission merchant on South Water Street — and Fergus 1839 prints
+'Wm. Montgomery' voting in the First Ward at the first city election, the only Montgomery
+polled in the book. MORRISON J M agrees letter for letter with the poll of 1834's
+'Morrison, J. M.', and exactly one of the ten printed Morrisons carries M as a middle
+initial. **The price is never the argument**: $9,820 of town lots on a carpenter says
+nothing about which man the letters name, and the ruling says so in terms.
+
+**The ceiling did not move, fourth cohort running.** `--tighten land_sales` answers *every
+ceiling already sits at what its domain reads* and 867 stands, because
+`measure_research_spend.py` anchors rulings through `crosswalk.json` and
+`resident_crosswalk.json` is invisible to it. **The crosswalk's own `ruled` block is the
+number to read** — T-0962's blind spot, and this cohort does not pretend otherwise.
+
+Filed on the way past: **T-1040**, carrying both card-level findings this cohort turned up
+and repaired neither, because a ruling refuses a purchase and does not rewrite a person —
+the Michigan City Colonel on `miller_samuel`, and `person_w_montgomery` carrying Loton W.'s
+`boot and shoe maker` beside the auctioneer's own trades. The 'G. S. Lee' fold is recorded
+in the LEE GEORGE W ruling rather than filed: the refusal does not turn on it — an initial
+that disagrees and an initial that is absent refuse the same proposal — and a card-merge
+question filed off a purchase ruling is the kind of ticket the queue's FILING RULE asks the
+loop to stop opening.
+
+### Cohort C3: the last ten, surnames S–Z, of the town lots (T-1034) — and the last of them
+
+**Ten spellings. Eight upheld, two refused**, the most one-sided cohort of the ticket and
+the one that ends it. `ruled` 127/1/72/10 → **135/1/74/0** — the crosswalk's own `ruled`
+block reads **ZERO unruled**, which is what this ticket was opened to reach. Matched 138 →
+136; two cards retracted, carrying four register rows and $7,175 of stated purchase money.
+No acres move: all four are town lots, and the register prints `0000.00` in the acres
+column for every one of the 619.
+
+| upheld | refused |
+|---|---|
+| STEWART ROYAL, TAYLOR A D, TROWBRIDGE S G, WALKER G H, WALKER GEORGE H, WALKER JAMES, WILLIAMS ELI B, WOODWORTH J H | SMITH JAMES A, WRIGHT A |
+
+**WHY SO MANY SURVIVED, AND IT IS NOT THE STANDARD SLIPPING.** The S–Z block is where the
+town's best-printed men happen to fall: the town's Recorder, its second-best-attested
+attorney, the carpenter who framed St. Mary's, the mail contractor, the future tenth mayor.
+Six of the eight uphold on **both** of the register's letters being printed by the town
+itself — E. B. and Eli B. Williams on two poll lists and in the chair of the Democratic
+meeting of 29 June 1835; S. G. Trowbridge on the committee of that same meeting and
+'Samuel G., mail contractor' in Fergus 1839; A. D. Taylor in Norris 1844 at the address
+Fergus 1843 gives Augustine Deodat; George H Walker on Gholson Kercheval's Black Hawk
+muster roll of 1832. C1's and C2's rule did the work in both directions: **ask the printed
+record how many men the forename could be**, and in this block it keeps answering *one*.
+
+**THE PRINTED RECORD REFUSES BY SILENCE, AND THAT IS A FINDING AND NOT AN ABSENCE.** WRIGHT
+A is the cleanest refusal this ticket has made. The card is one line of the 1833 tax list
+and nothing else in the identity master — no trade, no address, no second document — and
+three separate crosswalks have already written down, each in its own file, that the surname
+is in their volume and no entry under it carries an A: Fergus 1843 weighing six Wrights,
+Norris 1844 weighing two, the Second Presbyterian roll weighing eleven. The printed Wrights
+are Edward, John, John S., Timothy, Truman G., Walter, Winthrop, P. R. and Mrs. Hulda.
+**A refusal recorded by a crosswalk is evidence, not a gap** — somebody looked.
+
+**AN INITIAL-ONLY READING CANNOT CORROBORATE AN INITIAL-ONLY PURCHASE.** The one 'A.
+Wright' anywhere in the corpus is a bidder at Fergus 1839's Fort Dearborn Addition sale,
+two lots of block 13 at $1,040, and it reaches the card by *the given name of both begins
+A* — the proposal over again in another domain, not a check on it. The old-settler match is
+worse: 'Wright, Abner Mills', died 1890 aged 62-8-26, folds on by the same letter and was
+seven years old in 1835. Counting domains would have upheld this one. **Count the readings,
+and then count what is IN them.**
+
+**A MIDDLE INITIAL CAN NAME A MAN THE LAYER DOES NOT HOLD APART.** SMITH JAMES A is refused
+under the commonest surname in the corpus, and the register's A is what refuses it. The
+card's only scene-window reading is the passengers' CARD of the steamboat Thomas Jefferson
+in the American of 20 June 1835 — sixty-three signatures, *each with the place its signer
+gives as his own*, the line transcribed 'Janes Stmth'. Its 1843 and 1844 directory matches
+are recorded AMBIGUOUS: four printed entries meet the card on *the given name of both begins
+J*. The one unambiguous entry it carries is Fergus 1839's 'Smith, James M., constable' — M
+against the register's A, C2's LEE GEORGE W shape. And the printed James A. Smith is one of
+the four in that ambiguous fold: 'Smith, James Ayer, clerk, L. P. Sanger & Co.' in Fergus
+1843, 'Smith, J. A.' in Norris 1844, a man the layer holds no card for. The register is no
+steadier — the same book enters SMITH J twice beside SMITH JAMES A's three rows.
+
+**AND THE FACT THAT CUTS THE OTHER WAY IS WRITTEN INTO THE RULING RATHER THAN LEFT OUT.**
+The 1840 census of Chicago does carry a head printed 'James A. Smith' (page 207, line 23),
+and this card holds it — as a CANDIDATE under rule L7, the census crosswalk having declined
+to make an identity of a name that agrees and nothing more. A candidate on one side and a
+register row on the other are two name-only readings, five years apart. If that head is
+ever tied to a person by something other than his name, SMITH JAMES A is the first ruling
+in this file to revisit.
+
+**TWO SPELLINGS OF ONE MAN, RULED TOGETHER — AND THE PAGE PROVES THEM.** WALKER G H and
+WALKER GEORGE H are the two forms the town itself prints: 'G. H. Walker' in the Democrat's
+letter list of 1 April 1834, 'WALKER, GEORGE H' on Kercheval's muster roll. The register
+lays them side by side — lot 6 and lot 1 of **block 37**, both on 22 June 1836, one page —
+which is cohort A's sequence argument arriving without being sought. George E. Walker is
+refused under rule 2 on the middle initial, and his card is `letter_list_only` besides.
+Eleven Walkers are printed across the three directories and not one George of any initial,
+so neither register spelling is clipped from a Walker the town holds under a fuller name.
+
+**AN OFFICE IS A TOKEN.** WALKER JAMES is the oldest purchase ruled anywhere in this
+domain — lot 4 of block 19 at $36 and lot 4 of block 10 at $20, both 4 October 1830, in the
+canal commissioners' first sale of the town, on the pages that carry Wolcott, both
+Beaubiens, the Kinzies, Hubbard and Lafromboise. The town's record of him is the Democrat's
+'Taken Up' notice of 26 November 1833: a brown horse taken up at Walker's Grove, appraised
+by Jeremiah Walker and Timothy J. Clark, sworn **'before James Walker, J. P.'** and attested
+by the clerk of the Commissioners' Court. That is the WELLMAKER JOHN shape — a civic reading
+with something IN it — and the same notice prints Jeremiah beside him, so the page keeps the
+layer's two Walkers apart on its own. **What the ruling does not say is that he lived in the
+town**: Walker's Grove is thirty-odd miles down the Du Page, the card is `unplaced`, and a
+ruling names a person and never asserts a residence.
+
+**THE `letter_list_only` CARD THAT SURVIVED, AND WHY IT IS NOT THE RULE BENDING.** WOODWORTH
+J H is the one card in this cohort the layer flags `letter_list_only`, and cohort B refused
+four of those. It is upheld because the letter list is not what carries it. Fergus 1839
+prints the FIRM — 'Woodworth, Robert P. & James H., wholesale dry goods merchants, 103 Lake
+st' — a trade, a partner and a street number at the register's exact initials; Fergus 1843
+carries 'Woodworth, James Hutchinson, merchant' as a single uncontested entry, expanding the
+H; and the US House biography behind the card's birth year of 1804 is a third document. Four
+Woodworths are printed and one begins J. **A FINDING ABOUT ANOTHER LAYER, NOT ABOUT THIS
+PURCHASE:** that 1839 firm line is NOT on the card's directory appearances — the 1839
+crosswalk does not carry the compound 'Robert P. & James H.' entry at all, so a man is
+missing an 1839 reading because his name shares a line with his partner's.
+
+**THE LOT THAT SOLD TWICE, SIX YEARS APART.** Lot 4 of block 19 is WALKER JAMES's $36 of
+October 1830 and WOODWORTH J H's $14,000 of June 1836 — the same lot, the same book, the
+town's six years in two rows. C2's hand-off named this pair in advance and sent it to
+**T-1039**, which owns the row-is-not-a-parcel question for this volume; it is a resale
+rather than a duplicate entry, and it is recorded here and not re-filed.
+
+**The ceiling did not move, FIFTH cohort running.** `--tighten land_sales` answers *every
+ceiling already sits at what its domain reads* and 867 stands, because
+`measure_research_spend.py` anchors rulings through `crosswalk.json` and cannot see
+`resident_crosswalk.json`. Across all five cohorts of this ticket — seventy-two judgements
+— the meter moved twice, by one each time. **T-0962's blind spot is now measured rather than
+suspected, and the crosswalk's own `ruled` block is the number to read.**
+
+Filed on the way past: nothing. The one card-level finding this cohort turned up — the
+Fergus 1839 compound firm entry missing from `woodworth_james_h` — is recorded in its
+ruling and in the paragraph above rather than opened as a ticket, per the queue's FILING
+RULE: it is a directories-layer question, and T-1035 and T-1040 already carry the fold
+questions this ticket has been shedding.
+
+### THE TICKET CLOSES HERE, WITH THE COUNT
+
+**Seventy-two proposals arrived when T-1033 joined the town lots to the reading, and
+seventy-two have been ruled: 46 upheld, 26 refused, across five cohorts.** The crosswalk's
+`ruled` block reads **135 upheld, 1 named, 74 refused, 0 unruled** for the domain entire.
+T-1034 closes on that count and not on 'there was nothing left'.
+
+## The two Newberrys the register writes (T-0396)
+
+**The question.** T-1034 upheld `NEWBERRY W L` and `NEWBERRY WALTER L` onto
+`newberry_walter_loomis` on the middle initial, and deliberately did not rule on the S
+side of the same surname — the register also writes **WALTER S** and **W S**, and no
+volume of this corpus prints a Walter S. Newberry. Fergus 1839, Fergus 1843 and Norris
+1844 print `Newberry, Walter L.` and `Newberry, Walter Loomis` and no other forename of
+that surname at all. So either the register holds a purchaser the town never printed, or
+the S is a misreading of the L. **$11,950 of the town's own ground turns on it** — lot 1
+of block 3 of the original town, the second largest of the 619.
+
+**What the S rows actually are, counted as entry events and not as rows.** The twelve
+rows are not twelve witnesses:
+
+| the reading | rows | where | when | money |
+|---|---|---|---|---|
+| `NEWBERRY WALTER S` | ls0288–ls0293, purchase nos **0371964–0371969, consecutive** | one page — vol 818 p 010, sec 16 T39N R14E | the school-section auction, 22–24 Oct 1833 | $809.00 |
+| `NEWBERRY W S` | ls1392, purchase no 0365409 | vol L5A p 001, lot 1 of block 3, code `CHIOT` | 20 June 1836, canal sale | $11,950.00 |
+| `NEWBERRY WALTER L` | ls0596, ls0823, ls0850, ls0851, ls0871, ls0872 | vol 687 pp 188–189, 260, the ring townships | 26–27 June 1835, federal cash entries | $644.00 |
+| `NEWBERRY W L` | ls1391, purchase no 0365410 | vol L5A p 002, lot 8 of block 3, code `CHIOTVO` | 20 June 1836, canal sale | $8,290.00 |
+
+The six 1833 rows are **six consecutive purchase numbers on one page of one volume**, and
+`ls0287` — purchase no 0371963, the bare surname `NEWBERRY`, $163.50 for block 106 — sits
+immediately above them in the same run, on the same page, in the same auction. That is
+**one act of entry**, whoever made it, and seven consecutive rows of it give the forename
+six times and omit it once. The 1836 row is a second act, on another volume and another
+kind of sale. So the register's S is attested **twice independently**, not twelve times —
+and twice is enough to refuse a transcription accident and nowhere near enough to mint a
+man.
+
+**What the deposit can and cannot settle.** `NEWBERRY WALTER S` appears in
+`isa_land_tract_sales_t39n_t40n_r14e_through_1836.tsv` and again in
+`isa_land_tract_sales_cook_county_list_through_1836.tsv`; `NEWBERRY W S` in the town-lot
+deposit and the county list. Those are two separately-run queries, so **the S is the
+Illinois State Archives' own field value and not this project's misreading of a page** —
+this domain reads a database, not a manuscript, and there is no page image here for a
+run to go back to. What two queries of one database cannot do is corroborate the
+ARCHIVES' reading of the ledger. The letters this register's own transcribers confuse are
+recorded nowhere in the deposit, so a preference for L over S would be a palaeographic
+claim made without the palaeography.
+
+**The 1836 pair is the sharpest form of the question and it does not answer it.** Lots 1
+and 8 of block 3 were entered on one morning at **adjacent purchase numbers** (0365409,
+0365410) on consecutive pages of vol L5A. Either the register wrote one man's middle
+initial two ways in two consecutive entries, or two Newberrys bought lots in one block on
+one day. Both are ordinary. The town codes differ too — `CHIOT` against `CHIOTVO`, whose
+trailing letters T-1033 could not tell from a void marker — which is a second respect in
+which two adjacent rows disagree, and it argues the same way: this is a page that would
+repay being looked at.
+
+**The ruling: the mechanical refusal stands, and it is a refusal and not a finding of
+absence.** `resident_crosswalk.json` already refuses `NEWBERRY WALTER S` and `NEWBERRY
+W S` against Walter Loomis Newberry `refused_on_the_middle_initial`, and nothing found
+here overturns it: the S is the source's own, the project does not correct a clerk, and
+upholding it would take the middle initial — the very token that carried the L rows in
+T-0700 and T-1034 — and discard it the moment it became inconvenient. That is the
+WENTWORTH test, and it has to fail as readily as it passes. **So the school section's
+$809 and lot 1 of block 3's $11,950 attach to nobody this town holds**, and they are
+carried that way rather than quietly folded onto the one Newberry the layer has.
+
+**What would resolve it, and it is not in this corpus.** The register volumes themselves
+— vol 818 p 010 and vol L5A p 001 — at the Illinois State Archives. No printed Chicago
+directory or newspaper of 1835–1844 can, because the whole difficulty is that none of
+them prints the name.
 
 ## A row is not a parcel, asked of the town lots — and answered the other way (T-1039)
 

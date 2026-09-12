@@ -51,13 +51,14 @@ WHAT IS AND IS NOT CARRIED — the whole provenance argument, in four rules.
      rendered — hiding them would report the crosswalks' successes and their arithmetic
      separately — and neither writes a value onto a card.
 
-  3. NORRIS'S ALPHABETICAL SPLIT DOES NOT CROSS, and that refusal is inherited rather
-     than invented. `spend_norris_1844.py` established it: splitting that volume's lines
-     on nineteenth-century punctuation yields trades like "of W" and "sailor, Indiana
-     st", and printing one on a card would launder a heuristic into a finding. The
-     volume's LINES are carried whole and quoted; its parse is not. Norris's advertising
-     cards are a different artefact — the trade is set as its own line of the card — and
-     they do cross.
+  3. A SPLIT IS REFUSED PER ENTRY AND PER FIELD, never per volume. What T-0569 refused
+     in Norris's alphabetical volume is a SHAPE: the volume sets a partnership where the
+     trade would go — "of Horace Norton & Co", "of Loyd", twice simply "of" — so the
+     split yields a value containing no trade at all, and printing one on a card would
+     launder a heuristic into a finding. That ground is a fact about one printed line,
+     so it is asked of one printed line: `split_refusal` below names the clause a field
+     is refused under and says nothing about the field beside it or the volume around
+     it. A refused field's LINE is still carried whole and quoted; only its parse stops.
 
   4. NO 1835 GRADE MOVES, EVER. Under the ratified ladder a directory of 1839, 1843 or
      1844 never makes an 1835 resident, never dates one and never gives one a trade in
@@ -73,6 +74,7 @@ is the rule the 1839 crosswalk wrote for itself.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -89,10 +91,12 @@ GENERATOR = "tools/spend_directories.py"
 # volume closest to 1835 is the one whose reading is worth most and the one whose
 # value is carried when two disagree.
 #
-# `parse_trusted` is rule 3 above. `carry_keys` maps this file's two carryable
-# things onto whatever the volume's own crosswalk called them: Fergus 1839 wrote
-# `street_1839` where Fergus 1843 wrote `address`, and Norris's advertisers wrote
-# `place_of_business`. The vocabulary is theirs; the meaning is one.
+# NO VOLUME CARRIES A TRUST FLAG. Rule 3 above used to be `parse_trusted`, a boolean on
+# the volume, and Norris's alphabetical directory carried it False; T-0987 stretch 6
+# replaced it with `split_refusal`, which is asked per entry and per field. `carry_keys`
+# maps this file's two carryable things onto whatever the volume's own crosswalk called
+# them: Fergus 1839 wrote `street_1839` where Fergus 1843 wrote `address`, and Norris's
+# advertisers wrote `place_of_business`. The vocabulary is theirs; the meaning is one.
 VOLUMES = [
     {
         "key": "fergus_1839",
@@ -105,7 +109,6 @@ VOLUMES = [
         "occupation_key": "occupation_1839",
         "address_key": "address_1839",
         "page_key": "printed_page",
-        "parse_trusted": True,
         "carry_keys": {"occupation": "occupation", "address": "street_1839"},
     },
     {
@@ -119,7 +122,6 @@ VOLUMES = [
         "occupation_key": "occupation_1843",
         "address_key": "address_1843",
         "page_key": "page",
-        "parse_trusted": True,
         "carry_keys": {"occupation": "occupation", "address": "address"},
     },
     {
@@ -133,7 +135,6 @@ VOLUMES = [
         "occupation_key": "occupation_1844",
         "address_key": "address_1844",
         "page_key": "printed_page",
-        "parse_trusted": False,
         "carry_keys": {"occupation": "occupation", "address": "address"},
     },
     {
@@ -148,7 +149,6 @@ VOLUMES = [
         "address_key": "address_1844",
         "page_key": "printed_page",
         "printed_key": "proprietor_as_printed",
-        "parse_trusted": True,
         "carry_keys": {"occupation": "trade", "address": "place_of_business"},
     },
 ]
@@ -164,15 +164,67 @@ LADDER = (
     "never had; on its own it makes nobody a resident of 1835. Nothing on this person's "
     "1835 record was regraded, moved, dated or given an occupation by this entry."
 )
-UNTRUSTED_SPLIT = (
-    "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a "
-    "partnership as \"of Horace Norton & Co\" where the trade would go, so the split "
-    "yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value "
-    "containing no trade at all rather than a trade with something extra on it. "
-    "T-0569 refused it on that ground and this pass inherits the refusal: the line goes "
-    "to the card as Norris set it and archive.org read it, damage and all, and what it "
-    "HOLDS is stated separately for a reader to check against the quote."
+# THE SPLIT REFUSAL, PER ENTRY AND PER FIELD — T-0987 stretch 6, replacing the volume
+# flag T-0569 wrote. The refusal's GROUND is unchanged and is quoted in each clause: a
+# split that yields a value containing no trade at all, rather than a trade with
+# something extra on it, may not become a value. What changed is its SCOPE. Under the
+# flag all 144 of Norris's alphabetical could-carry units were refused by one sentence
+# about three of them, which is not a ruling about a line; measured against the reading
+# T-0987 stretch 5 corrected, 13 of that volume's 65 matched trades are the partnership
+# shape the sentence describes and 52 are plain legible trades — carpenter, baker,
+# tailor, physician, watchmaker.
+#
+# The shapes below are a COMPOSITOR'S CONSTRUCTION and not one volume's habit, so the
+# predicate is asked of every volume. Two of the three volumes the flag trusted print
+# them too, and had been carrying them: Fergus 1839 one premises where a trade goes,
+# Fergus 1843 four ditto addresses.
+FIRM_WHERE_A_TRADE_IS = (
+    "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at "
+    "all. The volume's construction is \"Surname, initials, of <firm>\" — it says this "
+    "man stood in that partnership, and the trade, if the book prints one anywhere, is "
+    "on the firm's own entry or its advertising card. T-0569 refused exactly this shape, "
+    "citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the "
+    "refusal stands; it is now made against the line that has the shape rather than "
+    "against every line in the volume. The entry goes to the card as the book set it "
+    "and archive.org read it, damage and all, and what it HOLDS is stated separately "
+    "for a reader to check against the quote."
 )
+PREMISES_WHERE_A_TRADE_IS = (
+    "THE LINE NAMES A PREMISES WHERE THE TRADE WOULD GO, so the split yields no trade "
+    "at all. \"at United States Hotel\", \"at clerk's office\", \"at G. S. Hubbard & "
+    "Co.'s warehouse\": the book is saying where this man was to be found, which is "
+    "evidence and is not an occupation. It is the same ground T-0569 refused a "
+    "partnership on — a value containing no trade rather than a trade with something "
+    "extra on it — and a trade that merely ENDS at a premises (\"clerk, at T. King's\", "
+    "\"book-keeper at G. S. Hubbard's\") is not refused by it. The line is carried "
+    "whole and quoted."
+)
+ADDRESS_IS_A_BACKREFERENCE = (
+    "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res "
+    "same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE "
+    "it in the alphabetical list. This pass reads one entry at a time and never the "
+    "entry above, by rule 1 — it carries what a crosswalk declares and re-parses "
+    "nothing — so the word resolves to nothing here and would put on a card a value "
+    "that names no ground. Reading it would mean the back-reference, not the adjacency "
+    "the compositor relied on, and that is a reading and belongs in the volume's own "
+    "reader. The line is carried whole and quoted."
+)
+SPLIT_CLAUSES = {
+    "firm_where_a_trade_is": FIRM_WHERE_A_TRADE_IS,
+    "premises_where_a_trade_is": PREMISES_WHERE_A_TRADE_IS,
+    "address_is_a_backreference": ADDRESS_IS_A_BACKREFERENCE,
+}
+SPLIT_RULE = (
+    "A SPLIT IS REFUSED PER ENTRY AND PER FIELD. T-0569 refused a parse on the ground "
+    "that it yielded a value containing no trade at all rather than a trade with "
+    "something extra on it, and until T-0987 stretch 6 that ground was carried as a "
+    "boolean on a VOLUME: Norris's alphabetical directory of 1844 was refused entire, "
+    "144 units of it, by a sentence about three of them. The ground is a fact about a "
+    "printed line, so it is now asked of the printed line, for one field at a time — "
+    "the clauses below — and a field's refusal says nothing about the field beside it. "
+    "Every clause names the shape it saw; nothing is refused without one."
+)
+
 EARLIER_VOLUME = (
     "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest "
     "first because the one closest to 1835 is the reading worth most and the one whose "
@@ -189,11 +241,11 @@ NOT_A_SINGLE_ENTRY = (
     "entries is ambiguous and an entry met by two people is contested, and neither "
     "writes a value onto a card. The line holds this field and it does not cross."
 )
-# And the caution that rides on every value that DOES cross. The Fergus volumes set the
+# And the caution that rides on every value that DOES cross. All four volumes set the
 # trade first and whatever qualifies it after — a market, an employer, a corner — on the
-# same comma-separated line, so the split carries more than the trade rather than
-# something other than it. That is a statable difference from Norris and it is why one
-# crosses and the other does not; it is not a claim that the Fergus split is clean.
+# same comma-separated line, so a split that survives the clauses above carries more than
+# the trade rather than something other than it. That difference is the whole of what
+# those clauses test; it is not a claim that any of these splits is clean.
 SPLIT_CAUTION = (
     "The value is the volume's own line, split by its crosswalk on the entry's "
     "punctuation. These volumes set the trade first and its qualifiers after it on the "
@@ -297,6 +349,63 @@ def value_for(field: str, entry: dict, volume: dict) -> str | None:
     return value or None
 
 
+# The three shapes, as the compositors set them. Written against the printed values and
+# nothing else — these patterns read a SPLIT, never a line, and the thing they are asked
+# is only ever "is this value of its field's kind".
+#
+# `_FIRM` and `_PREMISES` anchor at the start on purpose: a value that BEGINS "of" or
+# "at" names a partnership or a door where the occupation belongs, while one that merely
+# ends at an employer ("clerk, at T. King's") is a trade with something extra on it and
+# T-0569's ground does not reach it. No trade in the English of 1844 begins with either
+# word, which is what makes the anchor safe rather than lucky.
+#
+# `_BACKREFERENCE` matches the locative word the volume prints — Norris's `h` and `r`,
+# Fergus's `res`, `house` and `bds`, and the OCR's `hou.«e` — followed by nothing but a
+# ditto. The alternation is ordered longest-first so `r` cannot eat the front of `res`,
+# and the separator is required so neither can eat the front of a street name.
+_FIRM = re.compile(r"^of\b", re.I)
+_PREMISES = re.compile(r"^at\b", re.I)
+_BACKREFERENCE = re.compile(
+    r"^(?:(?:residence|res|house|hou\S{0,2}e|bds?|h|r)\W+)?"
+    r"(?:same|ditto|do|\"|\u201d)\W*$", re.I)
+
+
+def split_refusal(field: str, value: str) -> str | None:
+    """The clause THIS entry's split is refused under for THIS field, or None.
+
+    Rule 3, asked one line at a time. The key returned indexes `SPLIT_CLAUSES`, which
+    is written into the layer so the clause a reader meets on the record and the clause
+    the ledger states are the same sentence."""
+    if field == "occupation":
+        if _FIRM.match(value):
+            return "firm_where_a_trade_is"
+        if _PREMISES.match(value):
+            return "premises_where_a_trade_is"
+        return None
+    if _BACKREFERENCE.match(value):
+        return "address_is_a_backreference"
+    return None
+
+
+def split_refused_of(match: dict, volume: dict, status: str, holds: dict) -> dict:
+    """Per held field, the clause this match's own entry is refused under.
+
+    ONLY A SINGLE-ENTRY MATCH IS ASKED. Rule 2 already refuses an ambiguous or contested
+    match whatever its lines hold, and naming a second clause beside that one would
+    report one refusal twice — and would state a judgement about a split that was never
+    going to be read."""
+    entries = match[volume["entries_key"]]
+    if status != "single_entry" or len(entries) != 1:
+        return {}
+    out = {}
+    for field in sorted(holds):
+        value = value_for(field, entries[0], volume)
+        clause = split_refusal(field, value) if value else None
+        if clause:
+            out[field] = clause
+    return out
+
+
 def appearance(match: dict, volume: dict, status: str) -> dict:
     entries = [entry_row(e, volume) for e in match[volume["entries_key"]]]
     holds = carried_from(match, volume) if status == "single_entry" else {}
@@ -310,7 +419,9 @@ def appearance(match: dict, volume: dict, status: str) -> dict:
         "reading": "transcription_mediated",
         "entries": entries,
         "holds": sorted(holds),
-        "parse_carries": volume["parse_trusted"],
+        # field -> a key of SPLIT_CLAUSES. Empty is the ordinary case and means every
+        # field this line holds is of its own kind.
+        "split_refused": split_refused_of(match, volume, status, holds),
         "sources": [volume["source_id"]],
     }
 
@@ -337,8 +448,8 @@ def graded(field: str, rows: list) -> dict | None:
     this value, of the year it was printed in. The year is in the block, in the note
     and in the field's own name, and the 1835 slot beside it is untouched."""
     for volume, match, entry, value in rows:
-        if not volume["parse_trusted"]:
-            continue
+        # Every row that reaches here has already passed `split_refusal` in `collect`,
+        # so precedence is the only question left: earliest volume wins.
         return {
             "value": value,
             "confidence": "attested",
@@ -384,7 +495,8 @@ def collect() -> tuple[dict, list]:
                     }
                     order.append(pid)
                     carries[pid] = {"occupation": [], "address": []}
-                row["appearances"].append(appearance(match, volume, status))
+                app = appearance(match, volume, status)
+                row["appearances"].append(app)
                 if status != "single_entry":
                     continue
                 entries = match[volume["entries_key"]]
@@ -392,6 +504,8 @@ def collect() -> tuple[dict, list]:
                     continue
                 entry = entries[0]
                 for field in carried_from(match, volume):
+                    if field in app["split_refused"]:
+                        continue
                     value = value_for(field, entry, volume)
                     if value:
                         carries[pid][field].append((volume, match, entry, value))
@@ -419,6 +533,7 @@ def counts_of(rows: list) -> dict:
             "single_entry": sum(1 for a in seen if a["match_status"] == "single_entry"),
             "ambiguous": sum(1 for a in seen if a["match_status"] == "ambiguous"),
             "contested": sum(1 for a in seen if a["match_status"] == "contested"),
+            "split_refused_fields": sum(len(a["split_refused"]) for a in seen),
         }
     return {
         "people_shown": len(rows),
@@ -427,6 +542,10 @@ def counts_of(rows: list) -> dict:
         "carrying_an_address": sum(1 for r in rows if r["address_later"]),
         "line_held_but_parse_refused": sum(
             1 for r in rows if r["holds_a_line_whose_parse_does_not_cross"]),
+        "split_refused_trades": sum(
+            1 for r in rows for a in r["appearances"] if "occupation" in a["split_refused"]),
+        "split_refused_addresses": sum(
+            1 for r in rows for a in r["appearances"] if "address" in a["split_refused"]),
         "grades_1835_changed": 0,
         "by_volume": per_volume,
     }
@@ -443,10 +562,10 @@ def layer(rows: list) -> dict:
         "ticket": TICKET,
         "sources": sorted({v["source_id"] for v in VOLUMES}),
         "standard": LADDER,
-        "parse_refusal": UNTRUSTED_SPLIT,
+        "split_refusal": {"rule": SPLIT_RULE, "clauses": SPLIT_CLAUSES},
         "volumes": [{"key": v["key"], "title": v["title"], "year": v["year"],
-                     "source_id": v["source_id"], "crosswalk": v["file"],
-                     "parse_carries": v["parse_trusted"]} for v in VOLUMES],
+                     "source_id": v["source_id"], "crosswalk": v["file"]}
+                    for v in VOLUMES],
         "counts": counts_of(rows),
         "people": rows,
     }
@@ -459,8 +578,9 @@ def why_refused(row: dict, a: dict, carried: list) -> dict | None:
         return None
     out = {}
     for field in refused:
-        if not a["parse_carries"]:
-            out[field] = UNTRUSTED_SPLIT
+        clause = (a.get("split_refused") or {}).get(field)
+        if clause:
+            out[field] = SPLIT_CLAUSES[clause]
             continue
         if a["match_status"] != "single_entry":
             out[field] = NOT_A_SINGLE_ENTRY
@@ -733,10 +853,29 @@ def self_test() -> int:
             check("%s/%s carried off a match that is not single-entry"
                   % (r["person_id"], field), ok)
 
-    # Rule 3: Norris's alphabetical parse never becomes a value.
-    check("Norris's alphabetical split reached a card", not any(
-        (r[f] or {}).get("claim_id", "").startswith("n1844_e")
-        for r in rows for f in ("occupation_later", "address_later")))
+    # Rule 3, both directions, over every volume rather than over one.
+    # (a) nothing a clause refused reached a card, and (b) nothing that DID reach one
+    # has a shape a clause names — which is the assertion the volume flag could never
+    # make, because under it the shapes in the trusted volumes went unlooked-at.
+    for r in rows:
+        for field in ("occupation", "address"):
+            block = r["%s_later" % field]
+            if not block:
+                continue
+            check("%s/%s carries a value a split clause refuses (%s)"
+                  % (r["person_id"], field, block["value"]),
+                  split_refusal(field, block["value"]) is None)
+            refusing = [a["volume"] for a in r["appearances"]
+                        if field in a["split_refused"]
+                        and any(e["claim_id"] == block["claim_id"] for e in a["entries"])]
+            check("%s/%s carries the field its own entry was refused on" % (r["person_id"], field),
+                  not refusing)
+    # And every clause a refusal names is one this file declares.
+    for r in rows:
+        for a in r["appearances"]:
+            check("%s/%s names a clause SPLIT_CLAUSES does not hold"
+                  % (r["person_id"], a["volume"]),
+                  set(a["split_refused"].values()) <= set(SPLIT_CLAUSES))
 
     # Rule 1: every carried value is the string the crosswalk itself printed.
     for r in rows:

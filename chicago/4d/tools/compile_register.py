@@ -741,15 +741,26 @@ def scene_date_occupants(text, scene_year=SCENE_DATE.year):
 FORENAME_RUN = r"((?:[A-Z][A-Za-z]*\.?\s+){0,3})"
 
 
+#: A generational tag standing AFTER the family name — 'John Bates Jr.'. It reads as a
+#: capitalised word, so the scan below took it for the surname and left Bates inside the
+#: forename run, and 'bates' was then printed by this record in no surname position at
+#: all. The tag is not a name and is taken off before the scan (T-1042).
+GENERATIONAL = re.compile(r",?\s+\b(?:Jr|Jun|Junr|Sr|Senr|Esq|Esqr|2d|3d)\b\.?", re.I)
+
+
 def forenames_before(text, sn):
     """Every forename run this text prints before the surname `sn`, as word tuples.
 
     'John H. Kinzie, forwarding merchant' → [('john', 'h')]. An empty run — the surname
     printed bare, as 'Jones, grocer' — yields the empty tuple, which is compatible with
     anything: a record that does not print a forename cannot contradict one.
+
+    NO RUN AT ALL is a different answer and the guard below acts on it: it means this
+    record prints the word somewhere OTHER than in surname position, as 'Dr Elijah Dewey
+    Harmon' prints Dewey for a middle name.
     """
     out = []
-    for m in re.finditer(FORENAME_RUN + r"\b([A-Z][a-z]+)\b", text or ""):
+    for m in re.finditer(FORENAME_RUN + r"\b([A-Z][a-z]+)\b", GENERATIONAL.sub("", text or "")):
         if slug(m.group(2)) != sn:
             continue
         out.append(tuple(w.strip(".").lower() for w in m.group(1).split()))
@@ -757,8 +768,13 @@ def forenames_before(text, sn):
 
 
 def forenames_of(name):
-    """The forename words of a printed name, in order. 'R. A. Kinzie' → ('r', 'a')."""
-    name = unmarked(name or "").strip()
+    """The forename words of a printed name, in order. 'R. A. Kinzie' → ('r', 'a').
+
+    The generational tag comes off first, comma and all. It is not a forename, and while
+    it stayed on, 'J. Bates, jr.' read as a man whose forename was Jr — which disagreed
+    with the John the record prints and refused a match this reading should make (T-1042).
+    """
+    name = GENERATIONAL.sub("", unmarked(name or "")).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
     return tuple(w.lower() for w in re.findall(r"[^\W\d_]+", fore, re.UNICODE))
 
@@ -800,6 +816,14 @@ def initials_compatible(text, require, proprietors):
             mine = forenames_of(who)
             if not mine:
                 continue
+            # THE WORD IS IN THE RECORD; IS IT THERE AS A FAMILY NAME? (T-1042). The
+            # pools this guard backs are word sets, so any capitalised word in the
+            # record's prose can satisfy a required surname — and 'S. Dewey', a joiner,
+            # matched Dr Elijah DEWEY Harmon's log cabin on a middle name. Where the
+            # paper prints a forename for the surname, the record must print that surname
+            # as a surname; printing the word in some other position is not the same man.
+            if not forenames_before(text, sn):
+                return False
             runs = [r for r in forenames_before(text, sn) if r]
             if not runs:
                 continue
@@ -1362,6 +1386,13 @@ def compile_register(gazetteer, town, quiet=True):
             "trade": b.get("trade"),
             "occupation": occupation_of(b.get("trade")),
             "proprietors": b.get("proprietors") or [],
+            # T-0398. The gazetteer derives which of those strings are people and which
+            # are the house's own trading style, and the register carries both rather
+            # than making every reader re-derive it. A consumer that means PEOPLE reads
+            # `partners`; `proprietors` is still the union of what the claims read and is
+            # what a surname pass wants, because a style carries surnames too.
+            "partners": b.get("partners") or [],
+            "firm_styles": b.get("firm_styles") or [],
             "street": b.get("street"),
             "street_id": town["streets"].get(street_key(b.get("street"))),
             "placement_class": (b.get("placement") or {}).get("class"),
@@ -1513,6 +1544,51 @@ def compile_register(gazetteer, town, quiet=True):
                             % (b["id"], w["anchor"], sorted(named) or "no street",
                                ", ".join(sorted(str(list(x)) for x in stray))))
         businesses.append(entry)
+
+    # ONE GROUND, ONE ROOF (T-0411). The gazetteer can now say that one business is
+    # another's PREMISES — the shop a paper is printed at, the store an agency is kept
+    # at — which is neither a merge nor a refusal, and until this the register could not
+    # hear it. It showed on the pair the relation was built for: `business_the_chicago_
+    # democrat` and `business_chicago_democrat_printing_office` are one man's paper and
+    # one man's shop at one corner, and the register took `enrich_existing` on the
+    # committed `chicago_democrat_office` for the shop and `new_building` at
+    # `clark+south_water` for the paper — a SECOND roof at the same corner for a
+    # business that has no ground of its own. (The two fall on different sides of
+    # `match_occupant` for a reason worth writing down: the shop's proprietors are
+    # ['John Calhoun'] and the paper's are ['John Calhoun', 'Calhoun, J.'], so the
+    # required surname set for the paper is {calhoun, j} and no occupant line carries a
+    # partner named J.)
+    #
+    # So the WHOLE follows its PART, because the part IS the ground: it takes the part's
+    # action and target verbatim rather than computing its own. This is deliberately
+    # narrow. It fires only where the part is actually placed — `enrich_existing` or
+    # `new_building` — and only where the whole was about to raise or name ground of its
+    # own; a part the register cannot place says nothing about the whole, and a whole
+    # already enriched onto a structure is left alone rather than moved.
+    by_id = {e["id"]: e for e in businesses}
+    for b in sorted(gazetteer["businesses"], key=lambda x: x["id"]):
+        for edge in b.get("parts") or []:
+            if edge.get("kind") != "premises":
+                continue
+            whole, part = by_id.get(b["id"]), by_id.get(edge.get("business_id"))
+            if not whole or not part:
+                continue
+            if part["action"] not in ("enrich_existing", "new_building"):
+                continue
+            if whole["action"] not in ("new_building", "street_only"):
+                continue
+            was, was_target = whole["action"], whole["action_target"]
+            whole["action"] = part["action"]
+            whole["action_target"] = part["action_target"]
+            whole["match_tier"] = part["match_tier"]
+            whole["match_evidence"] = part["match_evidence"]
+            whole["action_note"] = (
+                "%s is declared the premises %s is carried on (identity.json "
+                "premises_relations), so it stands where its premises stands and raises "
+                "no ground of its own: %s at %s, taken from %s. Without the relation this "
+                "record took %s at %s — a second roof for a business that has none. %s"
+                % (part["name"], whole["name"], whole["action"], whole["action_target"],
+                   part["id"], was, was_target, part["action_note"] or ""))
 
     # ---- persons -----------------------------------------------------------
     # The identity key is the gazetteer's own: surname plus forename initials, so
@@ -1860,6 +1936,24 @@ def self_test():
                               "Democrat printing office 1833-1834 ; John Calhoun's "
                               "printing office",
              "occupation": "printer", "anonymous": False},
+            # T-1042's two records, and the whole of the difference between them: one
+            # prints the required surname as a MIDDLE name and the other prints it as a
+            # family name with a generational tag after it. A word-set pool cannot tell
+            # them apart, so `initials_compatible` has to.
+            {"id": "harmon_log_cabin", "name": "Harmon's Log Cabin",
+             "name_words": [{"harmon", "log", "cabin"}],
+             "aka_head_words": [], "aka_texts": [],
+             "occupant_words": {"dr", "elijah", "dewey", "harmon"}, "occupant_words_all": {"dr", "elijah", "dewey", "harmon"},
+             "occupant_text": "Dr Elijah Dewey Harmon", "function": "dwelling",
+             "identity_text": "Harmon's Log Cabin ; Dr Elijah Dewey Harmon",
+             "occupation": None, "anonymous": False},
+            {"id": "bates_auction_room", "name": "Bates's Auction Room",
+             "name_words": [{"bates", "auction", "room"}],
+             "aka_head_words": [], "aka_texts": [],
+             "occupant_words": {"john", "bates", "auctioneer"}, "occupant_words_all": {"john", "bates", "auctioneer"},
+             "occupant_text": "John Bates Jr.; auctioneer", "function": "store",
+             "identity_text": "Bates's Auction Room ; John Bates Jr.; auctioneer",
+             "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
@@ -2033,12 +2127,64 @@ def self_test():
                             and d["businesses"][0]["action_target"] == "dole_warehouse_south")
          else "action=%r target=%r" % (d["businesses"][0]["action"],
                                        d["businesses"][0]["action_target"]))
+    # T-1042, both halves. The reading of the proprietor string is what put these two
+    # businesses in front of the guard at all — before it, 'Dewey, S.' carried an invented
+    # surname 's' that missed the cabin by accident, and 'J. Bates, jr.' carried 'jr'
+    # instead of 'bates' and missed the auction room for good.
+    case("a record printing the surname as a MIDDLE name is not this man",
+         gaz([biz("b1", proprietors=["Dewey, S."], trade="cabinet making")]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and d["businesses"][0]["action_target"] is None)
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a generational tag after the family name does not hide the family name",
+         gaz([biz("b1", proprietors=["J. Bates, jr."], trade="auctioneer")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "bates_auction_room")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
     case("a corner of two platted streets takes new_building",
          gaz([biz("b1", street="South Water Street", placement={
              "class": "corner", "anchor": "the corner of South Water and Clark streets"})]),
          lambda d: True if (d["businesses"][0]["action"] == "new_building"
                             and d["businesses"][0]["anchor"]["streets"] == ["clark", "south_water"])
          else "action=%r anchor=%r" % (d["businesses"][0]["action"], d["businesses"][0]["anchor"]))
+    # …and the fifth thing that can decide one: a declared premises relation (T-0411).
+    def premises_edge(b, part_id, part_name, kind="premises"):
+        b["parts"] = [{"kind": kind, "business": part_name, "business_id": part_id,
+                       "witnesses": ["the fixture"],
+                       "relation_rule": "the fixture's own declaration"}]
+        return b
+
+    case("a business standing on another's premises takes its premises' roof",
+         gaz([premises_edge(biz("b1", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"}),
+              "b2", "b2"),
+              biz("b2", proprietors=["George W. Dole"], street="South Water Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a premises the register cannot place leaves the whole where it was",
+         gaz([premises_edge(biz("b1", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"}),
+              "b2", "b2"),
+              biz("b2", street="Flag Creek", placement={"class": "none", "anchor": None})]),
+         lambda d: True if d["businesses"][0]["action"] == "new_building"
+         else "action=%r" % d["businesses"][0]["action"])
+    case("a whole already enriched onto a structure is not moved by the relation",
+         gaz([premises_edge(biz("b1", proprietors=["George W. Dole"],
+                                street="South Water Street"), "b2", "b2"),
+              biz("b2", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+
     case("a street with no anchor takes street_only",
          gaz([biz("b1", street="Lake Street", placement={"class": "street_only", "anchor": None})]),
          lambda d: True if (d["businesses"][0]["action"] == "street_only"
