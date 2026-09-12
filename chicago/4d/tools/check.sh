@@ -245,6 +245,21 @@ step "Wabansia's street reading re-derives from its own pixels" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_wabansia_streets.py --self-test
 
+# AND THE FIGURES IN THE CELLS THOSE CORRIDORS LEAVE (T-1074). Wabansia's tiers come
+# from the street trace above and its COLUMNS are measured by the numeral reading itself,
+# because Wright letters no north-south street here. So this re-derives the reading twice
+# over, as T-1061 does for the Addition: every cell box is built from the committed
+# corridors and column rules rather than typed, and the run 59-79 is re-derived from the
+# boustrophedon rule written independently of the table it checks. A hand-typed figure, a
+# crop that has left its own cell, a lot divider that has drifted far enough off a block's
+# midpoint to be a street, or a closed gap where blocks 55-58 are unaccounted for all fail
+# here. The raster half is `--check-sheet` and the PR runs it.
+step "Wabansia's block numerals re-derive from the reading and the run" \
+  python3 tools/read_wabansia_block_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_block_numerals.py --self-test
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled
@@ -253,6 +268,14 @@ selftest "…and its own assertions still fire when broken" \
 # saying "Kinzie Block" fails here. The raster half is `--check-sheet`.
 step "the Kinzie Block's reading re-derives from its own pixels and the corpus" \
   python3 tools/read_kinzie_block_name.py --check
+
+# THE MICHIGAN ST TRACT north of Kinzie Street, split the same way for the same reason
+# (T-0796). The cheap half re-derives every metre, every corridor, both identifications
+# and the section arithmetic from the pixels and RGB triples committed beside them,
+# through the committed affine — so a hand-edited number, a moved border or a retouched
+# swatch fails here. The raster half is `--check-sheet` and the PR runs it.
+step "the Michigan St tract's reading re-derives from its own pixels" \
+  python3 tools/read_michigan_st_tract.py --check
 
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
