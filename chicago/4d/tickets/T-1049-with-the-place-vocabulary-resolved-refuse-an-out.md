@@ -1,7 +1,7 @@
 ---
 id: T-1049
 title: With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance in read_newspapers(), record the refusal in its own class, and re-derive every card that loses a press reading
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1047
 opened: 2026-09-11
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/11/2026, 11:47:52 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34673822849
 ---
 
 With the place vocabulary resolved, refuse an out-of-town newspaper person as a Chicago appearance.
