@@ -3076,6 +3076,42 @@
         ]
       },
       "source": "/tmp/smoke_d310_rebased.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "2-3,7-8",
+      "parts": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 178,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+      ],
+      "wallSeconds": 410,
+      "takenAt": "2026-09-12T08:51:52.866Z",
+      "ref": "steward/t-0789-kinzie-addition-streets",
+      "commit": "08d56fe45bd7",
+      "devCommit": "6f4afc925850",
+      "treeHash": "sha256:2c84b2f8bb9aded3",
+      "treeDirty": false,
+      "changelogHash": "sha256:c0eace9697cf0067",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          3.2,
+          1.9
+        ]
+      },
+      "source": "/tmp/k/smoke-mobile.log"
     }
   ]
 }
