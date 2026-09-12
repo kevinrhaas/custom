@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The last ten buyers of town lots, and the ledger is finished', kind: 'fix', ts: '',
+  { v: 755, title: 'The last ten buyers of town lots, and the ledger is finished', kind: 'fix', ts: '2026-09-12T03:29:24.885Z', date: 'Sep 11, 2026, 10:29 PM CT',
     items: [
       'The town sold its lots in 1830 and again in the boom of June 1836, and a clerk wrote each buyer\u2019s name in a ledger. Joining one of those names to a person this reconstruction holds is a guess until somebody argues it. Seventy-two names arrived that way. With today\u2019s ten, every one of them has been argued: forty-six kept, twenty-six sent back, and nothing is left unjudged.',
       'This last batch is the most one-sided \u2014 eight kept, two returned \u2014 and that is where the surnames fell, not the standard slipping. S to Z is where the town\u2019s best-printed men happen to live: the Recorder, Eli B. Williams, in the chair of a public meeting four days before the day this town is set; Royal Stewart, attorney on Lake Street; Samuel G. Trowbridge, the mail contractor; Augustine Deodat Taylor, who framed St. Mary\u2019s, printed \u201cA. D.\u201d at his own address in 1844. Six of the eight keep their lots because both of the ledger\u2019s letters are letters the town itself printed.',
