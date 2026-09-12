@@ -3,7 +3,7 @@
   "source": "docs/LIBERTIES.md",
   "standard": "A visitor should be able to tell you which parts we made up.",
   "note": "The confidence model covers attributes. These are the decisions that live above any single attribute: scope, omission, simplification, and the choices a visitor would otherwise have to reverse-engineer.",
-  "count": 231,
+  "count": 232,
   "liberties": [
     {
       "id": "L1",
@@ -13406,13 +13406,13 @@
     },
     {
       "id": "L211",
-      "title": "98 documented businesses stand on 1 July 1835 because nothing says they closed",
+      "title": "95 documented businesses stand on 1 July 1835 because nothing says they closed",
       "section": "per_subject",
       "subjects": [],
       "covers": [],
       "scope": {
         "enumeration": "register_1835.businesses[survival_liberty_required]",
-        "count": 98
+        "count": 95
       },
       "recorded": "2026-08-29",
       "revised": null,
@@ -13423,15 +13423,15 @@
         },
         {
           "label": "Why",
-          "text": "the corpus is thinnest in the year it most needs to be thick. 183 documented businesses are present at the scene date and only **85** of them are documented *in* 1835; the other **98** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days before the day the town is drawn. Refusing the assumption is the only alternative to making it, and refusing it empties more than half the documented trade out of Chicago on the strength of a newspaper run nobody has finished reading — the 1835 issues that would re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register already refuses everything that CAN be refused — 13 businesses are excluded by a claim that contradicts them before the scene date and 4 by an opening announced after it — so this covers what is left after the evidence has spoken, not instead of it."
+          "text": "the corpus is thinnest in the year it most needs to be thick. 179 documented businesses are present at the scene date and only **84** of them are documented *in* 1835; the other **95** were last printed between 1833-11-26 and 1834-12-24, a median of 364 days before the day the town is drawn. Refusing the assumption is the only alternative to making it, and refusing it empties more than half the documented trade out of Chicago on the strength of a newspaper run nobody has finished reading — the 1835 issues that would re-attest most of these houses are still unopened (the `PAPERS` reading tickets). Owner ruling 3, 2026-08-28: such a business is BUILT, with the liberty stated. The register already refuses everything that CAN be refused — 13 businesses are excluded by a claim that contradicts them before the scene date and 4 by an opening announced after it — so this covers what is left after the evidence has spoken, not instead of it."
         },
         {
           "label": "Scope",
-          "text": "`register_1835.businesses[survival_liberty_required]` — 98 businesses, enumerated by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by `tools/compile_liberties.py` on every compile. The number above cannot drift from the register without `check.sh` saying so, which is the point of writing it down: a scope that has silently stopped matching its population reads as a measurement and is not one."
+          "text": "`register_1835.businesses[survival_liberty_required]` — 95 businesses, enumerated by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by `tools/compile_liberties.py` on every compile. The number above cannot drift from the register without `check.sh` saying so, which is the point of writing it down: a scope that has silently stopped matching its population reads as a measurement and is not one."
         },
         {
           "label": "Consequence",
-          "text": "as the register is seeded into the town, half of these reach something a visitor can see. Measured on the register as it stands on 2026-09-12, **54** of the 98 do — 15 enrich a house already standing, 17 ask for a new building, 22 take a street face — and **44** reach nothing yet. That split moves whenever an anchor is re-read or two firms are judged one house, and it is a dated reading rather than a standing claim; the 98 is the number this entry is held to and the number the gate re-derives. It has now moved four times for exactly the second reason. This entry was written at 111 the same day T-0345 found that four of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in the FORM of a forename — whole against abbreviated against bare initial — merging eight of them and taking the count from 109 to 103; and T-0340 joined the town's only bookshop, whose sign-name, its partners' firm-name and the shop's own premises stood as separate houses, and the joined record advertises in August 1835 and needs no survival assumed at all, taking 103 to 101; and T-0413 read the printings behind the six surname groups T-0401 had left unjudged and merged all six, three of them pairs whose styles were last printed before 1835 — P. F. Peck with P. F. W. Peck on one La Salle corner, G. Blanshard with F. G. Blanshard opposite Dr. Temple's, W. Keeney with G. W. Keeney below Newberry & Dole's — taking 101 to 98. No movement is a business leaving Chicago; all are shops the register was holding twice. Every one of them puts a trade sign, a card or an occupant into July 1835 on an inference, and a visitor reading such a card is being told the shop was there when what is known is that it was there the winter before. The Evidence panel carries this entry so that sentence is available to them; the per-attribute chips cannot say it, because the thing assumed is not an attribute but a continued existence."
+          "text": "as the register is seeded into the town, half of these reach something a visitor can see. Measured on the register as it stands on 2026-09-12, **55** of the 95 do — 17 enrich a house already standing, 16 ask for a new building, 22 take a street face — and **40** reach nothing yet. That split moves whenever an anchor is re-read or two firms are judged one house, and it is a dated reading rather than a standing claim; the 95 is the number this entry is held to and the number the gate re-derives. It has now moved six times for exactly the second reason. This entry was written at 111 the same day T-0345 found that four of the register's businesses were four readings of Matthias Mason & Co.'s one blacksmithing notice; T-0400 judged the ten surname groups whose two styles differ only in the FORM of a forename — whole against abbreviated against bare initial — merging eight of them and taking the count from 109 to 103; and T-0340 joined the town's only bookshop, whose sign-name, its partners' firm-name and the shop's own premises stood as separate houses, and the joined record advertises in August 1835 and needs no survival assumed at all, taking 103 to 101; and T-0413 read the printings behind the six surname groups T-0401 had left unjudged and merged all six, three of them pairs whose styles were last printed before 1835 — P. F. Peck with P. F. W. Peck on one La Salle corner, G. Blanshard with F. G. Blanshard opposite Dr. Temple's, W. Keeney with G. W. Keeney below Newberry & Dole's — taking 101 to 98; and T-1046 read the four impressions of the bootmaking notice next door to P. Cohen's store, two of which set the signature with the L lost in the setting, and joined the 'W. Montgomery, boot and shoe maker' the register had made of them to Loton W. Montgomery's own house, taking 98 to 97; and T-0407 withdrew a bracketed `[N]` that had made one of the nineteen impressions of Matthias Mason & Co.'s blacksmithing notice into a second forge, `Matthias Nason & Co.`, on a line its own transcription sets `MATTHIAS MASON & CO.` whole — taking 97 to 96; and T-0408 read the whole run of the Lake Street land-agency card that 'Wm. G. Branchaud' was a supply from, and found the surname set as BLANCHARD in the two impressions whose columns are NOT the transcription's Tesseract fallback — 1834-07-16 and 1834-09-17 — so the repaired reading joins 'W. G. Blanchard' at the same door opposite Dr. Temple's, taking 96 to 95. No movement is a business leaving Chicago; all are shops the register was holding twice. Every one of them puts a trade sign, a card or an occupant into July 1835 on an inference, and a visitor reading such a card is being told the shop was there when what is known is that it was there the winter before. The Evidence panel carries this entry so that sentence is available to them; the per-attribute chips cannot say it, because the thing assumed is not an attribute but a continued existence."
         },
         {
           "label": "What is NOT invented",
@@ -14444,6 +14444,59 @@
         {
           "label": "Recorded",
           "text": "2026-09-11 (T-1036)."
+        }
+      ]
+    },
+    {
+      "id": "L232",
+      "title": "26 documented businesses stand on 1 July 1835 because the only paper that names them was printed afterwards",
+      "section": "per_subject",
+      "subjects": [
+        "mansion_house"
+      ],
+      "covers": [],
+      "scope": {
+        "enumeration": "register_1835.businesses[backdating_liberty_required]",
+        "count": 26
+      },
+      "recorded": "2026-09-12",
+      "revised": null,
+      "fields": [
+        {
+          "label": "Decision",
+          "text": "every business the newspaper register flags `backdating_liberty_required` is treated as standing at the scene date. Its existence is documented — a dated advertisement or notice in the *Chicago Democrat* or the *Chicago American* — but the earliest surviving printing of it is LATER than 1835-07-01, and its presence on that day is assumed. This is the forward twin of **L211**, and it is attached the same way: the register carries the flag, this entry carries the liberty, and no business record is graded `documented` for a presence nothing witnessed. The owner ruled the class permitted on 2026-09-10, while reading the December 1835 State census — *\"I think we are ok to populate some of those and create them even though the scene date is not perfect. or at least head in that direction based on your reasonable inferences. We are making a reconstruction and it won't be perfect but we have good inferences like this.\"*"
+        },
+        {
+          "label": "Why",
+          "text": "the alternative is the proxy T-0356 retired, which excluded a business whose first SURVIVING issue postdated the scene date — and the absence of an earlier printing is not evidence of absence. The Chicago run is broken: the papers that would have carried these houses in June are not all extant, and an advertisement is a STANDING one, repeated week on week, so the issue a reader happens to have is almost never the issue an advertisement began in. Wm. H. Taylor's boot, shoe and leather store is the case that proves it: the register first meets him on 5 August 1835, and the advertisement's own dateline is **8 July 1834**, a year and a day before the scene date. The proxy had excluded from the July town a man who demonstrably stood in it. What is left after that reading is made everywhere it can be made is this class: documented houses whose standing on 1 July 1835 rests on ruling 3 — a documented business is built at the scene date unless contradicted — and on nothing else."
+        },
+        {
+          "label": "Scope",
+          "text": "`register_1835.businesses[backdating_liberty_required]` — 26 businesses, enumerated by `tools/compile_register.py` from the gazetteer and the committed town, and re-counted by `tools/compile_liberties.py` on every compile. The number cannot drift from the register without `check.sh` saying so, which is the point of writing it down. **It is a measurement and not the figure this entry's ticket quoted:** T-0404 was filed at *33* on 2026-08-29, before the flag it names was computed; the register's own summary has read 30 (T-0356, which minted it), then 28 (T-0402), 27 (T-0340) and 26 (T-0413). Every one of those movements is an identity pass judging two printed styles to be one house — not one business leaving Chicago. **How the class is bounded, and how it is cleared.** 27 businesses stand in the July town whose first surviving issue postdates the scene date. **One** of them owes no liberty, and the mechanism is the one that makes the other 26 honest: an opening notice dated on or before 1835-07-01 is positive evidence the house stood, so `compile_register.py` clears the flag — Taylor's `effected` dateline of 8 July 1834 is that notice. (John Holbrook's *\"is now opening\"* of 10 June 1835 is the same kind of reading, and he never needed it: his own first printing is June, before the scene date.) The register also refuses in the other direction before this liberty is reached at all: **4** businesses are excluded outright by an opening the paper STATES for a date after the scene date — Cromelien, Brothers & Co.'s wine branch, Hiram Everts's high school for young gentlemen, Charles Hunt's for young ladies, and William F. Lyon's wholesale grocery — and **13** more by a claim that contradicts them earlier. So this covers what is left after the evidence has spoken, not instead of it. **What this liberty does NOT license, and the worked refusal.** **It covers a DATE and never an ABSENCE.** It carries a documented house across a gap in the surviving record; it does not license a business the sources do not name, and it does not overturn a positive refusal. The bank is the worked example. The December 1835 State census counts one in Chicago, and this reconstruction builds none: `chicago_american_1835_06_27` c001 — **five days before the scene date** — prints the State Bank of Illinois's officers with the directors having *determined* to establish a Chicago branch and \"the officers of those institutions have not been made known\", and Hubbard's branch took a corner of his warehouse in **1836**. On 26 June 1835 the branch is a decision, not a counter. A liberty about dates may never outrank a notice that says the thing did not yet exist. The Chicago Lyceum and the Chicago Reading Room are the second shape of refusal — institutions without premises, both meeting in the town and neither owning a room. The Reading Room's directors met at the **Tremont House on 6 July 1835** to raise $2,500–3,000 for a building by joint stock (`chicago_american_1835_07_11` c001), and seven weeks later its books were still \"for the present deposited at [?] House\" (`..._08_22` c005). That sequence is documented and negative: anything this project put on the Public Square for a reading room at the scene date would be wrong. Neither adds a roof; both add links."
+        },
+        {
+          "label": "Consequence",
+          "text": "**20 of the 26 reach something a visitor can see** — 14 take a street face, 3 enrich a house already standing, and 3 resolve against the committed town well enough to ask for a building; the remaining **6** are recorded and unplaceable. Two of the three placeable ones are L. G. Curtiss, deputy surveyor of Cook County, at the Mansion House, and Henry Moore, attorney, by Kinzie's forwarding store — and Moore is also the man who signed the Reading Room's notices as secretary, which is how close the licence and the refusal sit in this corpus. The three enrichments are John Wright's building and, twice, John Dean Caton's law office in Temple's Lake Street building. Every one of the 20 puts a trade sign, a card or an occupant into July 1835 on an inference, and **a business restored on this liberty still reads as restored on an assumption**: the Evidence panel carries this entry so that sentence is available to a visitor, because the per-attribute chips cannot say it — the thing assumed is not an attribute but a presence on a particular day."
+        },
+        {
+          "label": "What is NOT invented",
+          "text": "the business, its trade, its proprietors, its street and its advertisement are all documented and cited. Only the backdating of the concern from its first surviving printing to 1835-07-01 is assumed. None of the 26 also owes **L211** — the two classes cannot overlap, because one is a house last printed before 1835 and the other a house first printed after the scene date — so a reader meets exactly one of these two admissions per business, never both."
+        },
+        {
+          "label": "How to resolve",
+          "text": "find the earlier printing, or the opening. A business re-printed in a surviving issue dated on or before the scene date, or carrying an `effected` opening notice dated then, loses the flag when `tools/compile_register.py` re-derives — with no edit to this file and none to its record. So this liberty shrinks by itself as the corpus grows, and the count above is restated each time it does. It reaches zero only if the first half of the 1835 run turns out to hold every one of these houses, and it stops at whatever number the surviving issues cannot reach."
+        },
+        {
+          "label": "Ticket",
+          "text": "T-0404."
+        },
+        {
+          "label": "Related",
+          "text": "**L211** (the survival class, the same admission running backwards, and the rule this entry's attachment had to agree with), **L212** (the street faces 14 of these businesses are seated on), T-0356 (the proxy this replaced), T-0988 (the census reading the owner ruled from)."
+        },
+        {
+          "label": "Recorded",
+          "text": "2026-09-12 (T-0404)."
         }
       ]
     },

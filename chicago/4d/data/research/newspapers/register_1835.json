@@ -6,8 +6,8 @@
   "compiled_from": {
     "gazetteer": {
       "claims": 1169,
-      "persons": 2666,
-      "businesses": 199
+      "persons": 2665,
+      "businesses": 196
     },
     "structures": 384,
     "structures_sharing_a_name": 37,
@@ -16,39 +16,39 @@
   },
   "counts": {
     "businesses": {
-      "total": 199,
-      "present_at_scene_date": 182,
+      "total": 196,
+      "present_at_scene_date": 179,
       "excluded": {
         "contradicted_before_scene_date": 13,
         "opening_announced_after_scene_date": 4
       },
       "by_action": {
-        "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 57,
-        "unplaceable": 86
+        "enrich_existing": 32,
+        "new_building": 25,
+        "street_only": 60,
+        "unplaceable": 79
       },
       "by_placement_class": {
         "corner": 17,
         "none": 62,
-        "relative": 103,
+        "relative": 100,
         "street_only": 17
       },
       "present_by_action": {
-        "enrich_existing": 30,
-        "new_building": 26,
-        "street_only": 57,
-        "unplaceable": 69
+        "enrich_existing": 32,
+        "new_building": 25,
+        "street_only": 60,
+        "unplaceable": 62
       },
       "outside_the_plat": 5,
-      "survival_liberty_required": 98,
+      "survival_liberty_required": 95,
       "backdating_liberty_required": 26,
       "dissolved_after_scene_date": 1
     },
     "persons": {
-      "total": 2666,
+      "total": 2665,
       "by_action": {
-        "enrich": 1417,
+        "enrich": 1416,
         "new_resident": 1225,
         "replace_invented": 24
       },
@@ -724,8 +724,8 @@
         "John S. C. Hogan"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
@@ -1807,8 +1807,8 @@
         "David Carver"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "none",
       "evidence": {
         "first_issue": "1833-12-03",
@@ -1830,11 +1830,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_deacon_mccaleb",
@@ -2527,7 +2527,7 @@
         "Frederick Thomas"
       ],
       "firm_styles": [],
-      "street": null,
+      "street": "Water Street",
       "street_id": null,
       "placement_class": "relative",
       "evidence": {
@@ -3359,8 +3359,8 @@
         "Hiram Pearsons"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1834-02-25",
@@ -3382,11 +3382,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The paper gives no anchor."
+      "action_note": "The paper names South Water Street and nothing narrower; the paper gives no anchor."
     },
     {
       "id": "business_hubbard_co",
@@ -3407,8 +3407,8 @@
       "firm_styles": [
         "Hubbard & Co."
       ],
-      "street": null,
-      "street_id": null,
+      "street": "La Salle Street",
+      "street_id": "lasalle",
       "placement_class": "corner",
       "evidence": {
         "first_issue": "1834-07-02",
@@ -3430,11 +3430,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "lasalle",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. A corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
+      "action_note": "The paper names La Salle Street and nothing narrower; a corner of '[…]' and '[Cl]ar[k] corner of', and the plat resolves neither side."
     },
     {
       "id": "business_ingersoll_s_tavern_stand",
@@ -3598,11 +3598,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Street leading from the draw-bridge to the oak woods and Blue Island' names nothing the committed town holds."
+      "action": "enrich_existing",
+      "action_target": "bates_auction_room",
+      "match_tier": "occupants",
+      "match_evidence": "John Bates Jr.; auctioneer and deputy postmaster",
+      "action_note": "bates_auction_room already stands and its occupants carries bates — 'John Bates Jr.; auctioneer and deputy postmaster'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_j_c_goodhue_land_agent",
@@ -3864,8 +3864,8 @@
         "J. K. Botsford"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "Dearborn Street",
+      "street_id": "dearborn",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1834-02-18",
@@ -4194,11 +4194,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'the Post Office' names nothing the committed town holds."
+      "action": "enrich_existing",
+      "action_target": "bates_auction_room",
+      "match_tier": "occupants",
+      "match_evidence": "John Bates Jr.; auctioneer and deputy postmaster",
+      "action_note": "bates_auction_room already stands and its occupants carries bates — 'John Bates Jr.; auctioneer and deputy postmaster'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_dave_north_water_street",
@@ -4321,7 +4321,7 @@
       "action_target": "temple_lake_st_building",
       "match_tier": "occupants",
       "match_evidence": "John Dean Caton's law office and lodging; the building is Dr John T. Temple's",
-      "action_note": "temple_lake_st_building already stands and its occupants carries caton, dean — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
+      "action_note": "temple_lake_st_building already stands and its occupants carries caton — \"John Dean Caton's law office and lodging; the building is Dr John T. Temple's\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_h_kinzie",
@@ -4424,7 +4424,7 @@
       "action_target": "john_holbrook_store",
       "match_tier": "occupants",
       "match_evidence": "John Holbrook",
-      "action_note": "john_holbrook_store already stands and its occupants carries holbrook, john — 'John Holbrook'. The papers add trade, goods and dates to a record that exists."
+      "action_note": "john_holbrook_store already stands and its occupants carries holbrook — 'John Holbrook'. The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_john_s_kinzie_forwarding_and_commission_merchant",
@@ -5143,6 +5143,7 @@
               "chicago_democrat_1833_11_26#c020",
               "chicago_democrat_1833_12_24#c003",
               "chicago_democrat_1834_01_07#c008",
+              "chicago_democrat_1834_02_18#c010",
               "chicago_democrat_1834_02_25#c006",
               "chicago_democrat_1834_03_04#c015",
               "chicago_democrat_1834_04_01#c012",
@@ -5180,6 +5181,7 @@
                 "claims": [
                   "chicago_democrat_1833_12_24#c003",
                   "chicago_democrat_1834_01_07#c008",
+                  "chicago_democrat_1834_02_18#c010",
                   "chicago_democrat_1834_03_04#c015",
                   "chicago_democrat_1834_04_01#c012"
                 ],
@@ -5271,43 +5273,6 @@
       "match_tier": "occupants",
       "match_evidence": "Matthias Mason & Co.; blacksmiths",
       "action_note": "mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists."
-    },
-    {
-      "id": "business_matthias_nason_co",
-      "name": "Matthias Nason & Co.",
-      "trade": "blacksmiths",
-      "occupation": "blacksmith",
-      "proprietors": [],
-      "partners": [],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-02-18",
-        "last_issue": "1834-02-18"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "structure",
-        "target": "mansion_house",
-        "streets": null,
-        "via": null,
-        "note": "The landmark is the committed structure mansion_house."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "new_building",
-      "action_target": "mansion_house",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "Placeable against the committed town. The landmark is the committed structure mansion_house."
     },
     {
       "id": "business_miss_bayne_s_boarding_and_day_school",
@@ -5537,8 +5502,8 @@
       "firm_styles": [
         "Newberry & Dole"
       ],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "relative",
       "evidence": {
         "first_issue": "1833-11-26",
@@ -5560,11 +5525,11 @@
       },
       "anchor_change": null,
       "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
+      "action": "street_only",
+      "action_target": "south_water",
       "match_tier": null,
       "match_evidence": null,
-      "action_note": "No street the model holds. The anchor 'Fort Dearborn' names nothing the committed town holds."
+      "action_note": "The paper names South Water Street and nothing narrower; the anchor 'Fort Dearborn' names nothing the committed town holds."
     },
     {
       "id": "business_noble_wesencraft",
@@ -5870,8 +5835,8 @@
         "Philo Carpenter"
       ],
       "firm_styles": [],
-      "street": null,
-      "street_id": null,
+      "street": "South Water Street",
+      "street_id": "south_water",
       "placement_class": "street_only",
       "evidence": {
         "first_issue": "1833-11-26",
@@ -7014,7 +6979,7 @@
       "action_target": "chicago_democrat_office",
       "match_tier": "occupants",
       "match_evidence": "John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store",
-      "action_note": "Chicago Democrat printing office is declared the premises The Chicago Democrat is carried on (identity.json premises_relations), so it stands where its premises stands and raises no ground of its own: enrich_existing at chicago_democrat_office, taken from business_chicago_democrat_printing_office. Without the relation this record took new_building at clark+south_water — a second roof for a business that has none. chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
+      "action_note": "chicago_democrat_office already stands and its occupants carries calhoun — \"John Calhoun's Chicago Democrat printing office; and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists."
     },
     {
       "id": "business_the_dearborn_street_auction_and_commission_rooms",
@@ -7985,17 +7950,19 @@
       "trade": "house and land agent",
       "occupation": "land_agent",
       "proprietors": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
       "partners": [
-        "W. G. Blanchard"
+        "W. G. Blanchard",
+        "Wm. G. Blanchard"
       ],
       "firm_styles": [],
       "street": "Lake Street",
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-07-09",
+        "first_issue": "1834-06-11",
         "last_issue": "1834-07-09"
       },
       "present_at_scene_date": true,
@@ -8328,47 +8295,6 @@
       "action_note": "The paper names South Water Street and nothing narrower; the anchor \"David Carver's old stand\" names nothing the committed town holds."
     },
     {
-      "id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "trade": "boot and shoe making",
-      "occupation": "shoemaker",
-      "proprietors": [
-        "W. Montgomery"
-      ],
-      "partners": [
-        "W. Montgomery"
-      ],
-      "firm_styles": [],
-      "street": null,
-      "street_id": null,
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-01-28",
-        "last_issue": "1834-03-25"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"P. Cohen's Store\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "unplaceable",
-      "action_target": null,
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "No street the model holds. The anchor \"P. Cohen's Store\" names nothing the committed town holds."
-    },
-    {
       "id": "business_w_reed",
       "name": "W. Reed",
       "trade": "cabinet making",
@@ -8536,47 +8462,6 @@
       "match_tier": null,
       "match_evidence": null,
       "action_note": "Excluded from the scene-date town: chicago_democrat_1835_08_19#c015 announces this house opening on 1835-09-01, after the scene date — “will receive and offer for sale on the first of September”. Dated August 1835, so 'the first of September' is 1 September 1835 — two months after the scene date, and the stock is not in the store yet. No action; the record is kept so the exclusion can be argued with."
-    },
-    {
-      "id": "business_wm_g_branchaud",
-      "name": "Wm. G. Branchaud",
-      "trade": "house and land agent",
-      "occupation": "land_agent",
-      "proprietors": [
-        "Wm. G. Branchaud"
-      ],
-      "partners": [
-        "Wm. G. Branchaud"
-      ],
-      "firm_styles": [],
-      "street": "Lake Street",
-      "street_id": "lake",
-      "placement_class": "relative",
-      "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-06-11"
-      },
-      "present_at_scene_date": true,
-      "exclusion": null,
-      "exclusion_note": null,
-      "dissolved_after_scene_date": [],
-      "opening_announced": [],
-      "survival_liberty_required": true,
-      "backdating_liberty_required": false,
-      "anchor": {
-        "kind": "unresolved",
-        "target": null,
-        "streets": null,
-        "via": null,
-        "note": "The anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
-      },
-      "anchor_change": null,
-      "outside_plat": null,
-      "action": "street_only",
-      "action_target": "lake",
-      "match_tier": null,
-      "match_evidence": null,
-      "action_note": "The paper names Lake Street and nothing narrower; the anchor \"opposite Dr. Temple's\" names nothing the committed town holds."
     },
     {
       "id": "business_wm_h_kennicott",
@@ -13649,7 +13534,7 @@
       "occupation": null,
       "letter_list_only": false,
       "first_seen": "1834-02-25",
-      "last_seen": "1834-02-25",
+      "last_seen": "1834-03-04",
       "action": "enrich",
       "action_target": "miller_samuel",
       "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
@@ -31431,17 +31316,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_samuel_miller",
-      "name": "Samuel Miller",
-      "occupation": null,
-      "letter_list_only": false,
-      "first_seen": "1834-03-04",
-      "last_seen": "1834-03-04",
-      "action": "enrich",
-      "action_target": "miller_samuel",
-      "action_note": "data/residents/ already holds this person as miller_samuel (hh_miller_samuel, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
-    },
-    {
       "id": "person_samuel_olingar",
       "name": "Samuel Olingar",
       "occupation": null,
@@ -36385,7 +36259,7 @@
       "name": "W. Montgomery",
       "occupation": "auctioneer",
       "letter_list_only": false,
-      "first_seen": "1834-01-28",
+      "first_seen": "1835-07-04",
       "last_seen": "1835-07-29",
       "action": "enrich",
       "action_target": "montgomery_w",

@@ -214,6 +214,16 @@ def surname(name: str) -> str:
     return parts[-1].lower().strip("'")
 
 
+def adoption_key(name: str) -> str:
+    """This man's surname, spelled the way the adoption table spells one.
+
+    The table's `surnames` are normalised down to letters — `M'Cormick` is `mcormick`
+    there — so a lookup into it has to be normalised the same way or it silently misses.
+    One key function, used to read the table and nowhere else (T-1042).
+    """
+    return re.sub(r"[^a-z]", "", surname(name).lower())
+
+
 def display(name: str) -> str:
     """'Foot, S.' → 'S. Foot'. The papers print both orders; a card shows one."""
     if "," not in name:
@@ -323,10 +333,15 @@ def street_face_stands() -> dict[tuple[str, str], tuple[str, str]]:
         roof = row.get("structure_id")
         if not street_id or not roof:
             continue
-        for who in (row.get("proprietors") or []):
-            sur = surname(who)
-            if sur:
-                stands.setdefault((sur, street_id), (row.get("business_name") or who, roof))
+        # T-1042. THE ROW CARRIES ITS OWN SURNAMES and this pass reads them instead of
+        # taking the last word of each proprietor string, which invented a man out of a
+        # firm suffix ('H. Doty & Co.' stood as somebody called Co) and lost one out of a
+        # style ('Clark, Filer & Co.' dropped Filer, so Filer never matched here at all).
+        # The reading is `compile_gazetteer.surname_words()`, through the pass that owns
+        # the table; a copy of the guess here would be a third answer to one question.
+        for sur in (row.get("surnames") or []):
+            stands.setdefault((sur, street_id),
+                              (row.get("business_name") or "", roof))
     return stands
 
 
@@ -486,9 +501,9 @@ def deal(docs: dict):
                 # T-0375: say so when he is already standing on that street as a
                 # storefront. The household seat is still refused; what the man
                 # is short of is a dwelling, not a place in the town.
-                already = next((adopted[(surname(cand["name"]), s)]
-                                for s in want
-                                if (surname(cand["name"]), s) in adopted), None)
+                key = adoption_key(cand["name"])
+                already = next((adopted[(key, s)]
+                                for s in want if (key, s) in adopted), None)
                 if already:
                     reason += (f" — but he stands on that street already as "
                                f"'{already[0]}', a street-face adoption on "
