@@ -76,7 +76,7 @@ would have to be in `78–119` and `139–196 × 200–244`, the cabin's silhoue
 | 7 | Is the log building drawn square-on? | **Yes.** The doorcase head — the one long unambiguous world-horizontal on the face — has slope **−0.0102** over a 33 px run, residual **0.358 px** | `measured` |
 | 8 | What does the cabin's roof do? | Ridge slope **−0.1005** (residual 0.52 px), left rake **−1.1064**, apex at **(561, 158)** | `measured` |
 | 9 | Is Fort Dearborn drawn beside the tower? | **No.** The committed palisade is **53.0 m** square and stands **35.1 m** from the light, so beside a 48 px tower it would be **209 px** wide — **a third of the sheet**. The widest unbroken mass actually flanking the tower is **7 px**, **3.4 %** of a palisade | `absent` |
-| 10 | What focal length would the Sauganash corner require? | The corner is **1066.3 m** from the light, bearing **70.3°**, on the committed coordinates. It needs **f = 4,919 – 7,762 px** on a 640 px sheet — a horizontal field of **4.7° – 7.4°** — and puts the nearest drawn adult **133 – 240 m** from the artist | `refuting, see § 5` |
+| 10 | What focal length would the Sauganash corner require? | The corner is **1001.2 m** from the light, bearing **72.4°**, on the committed coordinates. It needs **f = 4,619 – 7,288 px** on a 640 px sheet — a horizontal field of **5.0° – 7.9°** — and puts the nearest drawn adult **125 – 225 m** from the artist | `refuting, see § 5` |
 | 11 | Which corner of the town is this? | **Unresolved, and not resolvable from this sheet.** See § 4 | `unresolved` |
 
 ## 4. The reading
@@ -133,17 +133,27 @@ valuable if it were a construction. It is not, so the squareness buys nothing me
 
 Take the reading at its most favourable: assume for the sake of argument that the
 picture IS a construction, and ask what the Sauganash corner would then require. The
-corner is 1066.3 m from the light on the committed coordinates of
+corner is 1001.2 m from the light on the committed coordinates of
 `data/structures/sauganash_hotel.json` (the 1831 frame phase — the 1829 log phase still
-carries a null point) and `data/structures/chicago_lighthouse_1832.json`, bearing 70.3°
+carries a null point) and `data/structures/chicago_lighthouse_1832.json`, bearing 72.4°
 — which is, for what it is worth, the right composition: the river running away
 east-north-east, the north bank to the left, the town to the right.
 
-The tower's base sits 18 px below the horizon. A station at 1066 m therefore needs a
-focal length of **4,919 to 7,762 px on a 640 px sheet**, depending on which adult
-supplies the eye height: a horizontal field of view of **4.7° to 7.4°**. At that field
-the nearest drawn adult stands **133 to 240 m** from the artist — an adult drawn with a
+The tower's base sits 18 px below the horizon. A station at 1001 m therefore needs a
+focal length of **4,619 to 7,288 px on a 640 px sheet**, depending on which adult
+supplies the eye height: a horizontal field of view of **5.0° to 7.9°**. At that field
+the nearest drawn adult stands **125 to 225 m** from the artist — an adult drawn with a
 hat brim, a coat and a hand on a canoe.
+
+*Those five numbers moved on 2026-09-12 and the conclusion did not (T-1083).* The
+range was **1066.3 m** when this note was written, and it is 1001.2 m now because
+T-1065 (#1189) seated the lighthouse on Wright's own glyph — 49.6 m west and 56.7 m
+south of where it had stood. The baseline the gate compares against was not re-derived
+with it, and the dev gate could not see the difference because it installs no image
+library and the step therefore stood on its own banked copy of the arithmetic. Both
+are fixed; the reading of the RASTER never moved at all, which is the reason the
+verdict is untouched. **1.5× is still 1.5× at either range**, and that is the whole
+argument of this section.
 
 That is not a refutation of reading (a). It is a demonstration that **the arithmetic
 that would test reading (a) is being asked to work on a sheet whose own perspective is
