@@ -140,7 +140,7 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-1064 — The corner building keeps the Chicago Democrat's name, board and function after the press has left it
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 
 # --- ==========================================================================
@@ -329,4 +329,3 @@ T-1041 — A house's agency reaches no card: the walkthrough shows trades and pr
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
 T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
-
