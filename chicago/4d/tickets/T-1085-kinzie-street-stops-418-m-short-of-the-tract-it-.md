@@ -1,7 +1,7 @@
 ---
 id: T-1085
 title: Kinzie Street stops 418 m short of the tract it bounds: Wright draws it the length of Wabansia and the committed line is extrapolated to meet it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1204
 claimed_by: run 9/12/2026, 12:29:28 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T18:26:15.361Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34708246430
 ---
 
