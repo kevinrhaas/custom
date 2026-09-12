@@ -144,7 +144,6 @@ T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a c
 T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
-T-1052 — Every frontage run in the town is measured against the lots its recipe declares, and the reading is a gate rather than a one-off
 T-1053 — The three over-declared South Water entries cannot be narrowed without re-lotting a yard building, because frontage.lots is also the block's declared business front
 T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 

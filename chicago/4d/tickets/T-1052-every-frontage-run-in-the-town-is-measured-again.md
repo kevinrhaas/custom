@@ -1,7 +1,7 @@
 ---
 id: T-1052
 title: Every frontage run in the town is measured against the lots its recipe declares, and the reading is a gate rather than a one-off
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0449
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1178
 claimed_by: run 9/12/2026, 1:47:25 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T06:55:28.941Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34678274590
 ---
 
