@@ -140,7 +140,7 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
+T-1064 — The corner building keeps the Chicago Democrat's name, board and function after the press has left it
 T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
 
 # --- ==========================================================================
@@ -151,7 +151,8 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 # --- height, T-0939 stops it running to the horizon, T-0940 makes its surface sand; T-0799 runs
 # --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
-T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
+
+T-1065 — The piers at their 1835 length, the bar's height argued where the admission is, and the reservation's blue edge and the lighthouse checked against Wright's sheet
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-1062 — The Kinzie Block named off the sheet, and the phrase searched in the newspaper and directory corpus
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
@@ -326,7 +327,4 @@ T-1041 — A house's agency reaches no card: the walkthrough shows trades and pr
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies

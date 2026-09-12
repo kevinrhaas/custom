@@ -40,7 +40,7 @@
   "marsh_exclusion_m": 48.0,
   "plain_cells_audited": 118768,
   "plain_block_max": 0.468,
-  "plain_block_mean": 0.1287,
+  "plain_block_mean": 0.1288,
   "passes": true,
   "plain_cell_roughness_max": 55.913,
   "shore_and_swale_cell_max": 188.858,
@@ -124,5 +124,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "82b69c098cd7707beacc14f94abf802ca982937aab09d9fde3b48c53ac0c219e"
+ "inputs_sha256": "6a29812b9f953ae9d280609f58a83d6b973e1d2fc89c517b27e5ec1666cd2a53"
 }
