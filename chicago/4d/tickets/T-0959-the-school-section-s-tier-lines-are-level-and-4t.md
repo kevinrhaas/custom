@@ -1,7 +1,7 @@
 ---
 id: T-0959
 title: The School Section's tier lines are level and 4th on dev and skewed and 5th on the rival reading: settle the ordinal and the skew against Wright's sheet
-state: claimed
+state: done
 epic: GROUND
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1213
 claimed_by: run 9/12/2026, 4:42:58 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T22:35:44.594Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34720581758
 ---
 
