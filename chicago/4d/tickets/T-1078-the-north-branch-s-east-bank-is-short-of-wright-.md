@@ -1,5 +1,5 @@
 ---
-id: T-1077
+id: T-1078
 title: The North Branch's east bank is short of Wright's ink on two stretches, one of them the splice row: 81 rows of 932 by more than 10 m, up to 33.8 m
 state: open
 epic: META

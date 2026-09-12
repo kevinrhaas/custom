@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The North Branch is drawn the length of Wabansia', kind: 'change', ts: '',
+  { v: 783, title: 'The North Branch is drawn the length of Wabansia', kind: 'change', ts: '2026-09-12T14:03:55.789Z', date: 'Sep 12, 2026, 9:03 AM CT',
     items: [
       'This morning the South Branch reached the end of the survey. This afternoon the other one does. The Chicago River\u2019s North Branch used to stop a little above Kinzie Street \u2014 not because the river did, but because the window this project traced it in ended there. J. S. Wright draws it on for another 790 m: past the water lots of Kain\u2019s and Hight\u2019s subdivision, up the whole river front of Wabansia, to the line he ruled across the top of his sheet. All of it is now traced, in one connected piece from one seed.',
       'It is a fourth window rather than a wider one, for this morning\u2019s reason: the forks trace finds a seventy-metre channel in a town of coloured ward washes by judging each patch against its own neighbourhood, so widening that window would move every vertex the terrain is already carved from. The forks window\u2019s top row IS this window\u2019s bottom row \u2014 a line both tools name, not a tolerance either of them hopes for.',
