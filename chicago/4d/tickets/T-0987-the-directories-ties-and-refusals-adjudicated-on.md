@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/12/2026, 2:05:46 PM CT
+claimed_by: run 9/12/2026, 6:54:12 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34712943596
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34726316488
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
