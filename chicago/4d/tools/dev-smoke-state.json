@@ -3406,6 +3406,70 @@
         ]
       },
       "source": "/tmp/smoke_m14.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 355,
+      "takenAt": "2026-09-12T10:11:26.024Z",
+      "ref": "steward/t-1061-kinzie-block-numerals",
+      "commit": "0a584878a1eb",
+      "devCommit": "1e1447073fcd",
+      "treeHash": "sha256:3b639bc74ade9e92",
+      "treeDirty": true,
+      "changelogHash": "sha256:50e5e6285e499412",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.5,
+          1.6,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_desktop_11_12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 185,
+      "takenAt": "2026-09-12T10:11:25.944Z",
+      "ref": "steward/t-1061-kinzie-block-numerals",
+      "commit": "0a584878a1eb",
+      "devCommit": "1e1447073fcd",
+      "treeHash": "sha256:3b639bc74ade9e92",
+      "treeDirty": true,
+      "changelogHash": "sha256:50e5e6285e499412",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.5,
+          1.6,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_mobile_11_12.log"
     }
   ]
 }
