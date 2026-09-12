@@ -3728,6 +3728,70 @@
         ]
       },
       "source": "/tmp/smoke_d23.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 298,
+      "takenAt": "2026-09-12T12:48:35.019Z",
+      "ref": "steward/t-0794-branches-to-sheet-edges",
+      "commit": "9cb9907ab204",
+      "devCommit": "39d0f777be78",
+      "treeHash": "sha256:09f32da1f1bcb7b5",
+      "treeDirty": false,
+      "changelogHash": "sha256:55cfc22cea0aea1e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.4,
+          1,
+          1.4
+        ]
+      },
+      "source": "/tmp/smoke_desktop.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 169,
+      "takenAt": "2026-09-12T12:48:34.938Z",
+      "ref": "steward/t-0794-branches-to-sheet-edges",
+      "commit": "9cb9907ab204",
+      "devCommit": "39d0f777be78",
+      "treeHash": "sha256:09f32da1f1bcb7b5",
+      "treeDirty": false,
+      "changelogHash": "sha256:55cfc22cea0aea1e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.4,
+          1,
+          1.4
+        ]
+      },
+      "source": "/tmp/smoke_mobile.log"
     }
   ]
 }
