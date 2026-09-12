@@ -82,6 +82,10 @@ selftest "…and its own assertions still fire when broken" \
 step "the traced forks still carry what their generator writes" \
   python3 tools/trace_river.py --check-properties
 
+# The same half-gate for the South Branch south of the forks window (T-1071).
+step "the traced South Branch still carries what its generator writes" \
+  python3 tools/trace_south_branch.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to

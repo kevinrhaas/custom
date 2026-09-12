@@ -1922,8 +1922,17 @@ def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
     if not isinstance(doc, dict):
         rep.error(where, f"no traced river at {epoch_dir.name} to meet")
         return []
+    # The forks window is not the whole river. `branches.geojson` carries the
+    # reaches traced OUTSIDE it — today the South Branch from the forks window's
+    # south edge to the School Section's south line (T-1071) — and a face that
+    # ends on the water down there meets a bank that lives in that file and
+    # nowhere else. It is optional: an epoch may have no branches traced yet.
+    docs = [doc]
+    more = load_json(epoch_dir / "branches.geojson", rep, required=False)
+    if isinstance(more, dict):
+        docs.append(more)
     out: list[float] = []
-    for ft in doc.get("features", []):
+    for ft in [f for d in docs for f in d.get("features", [])]:
         geom = ft.get("geometry") or {}
         if geom.get("type") != "Polygon":
             continue
