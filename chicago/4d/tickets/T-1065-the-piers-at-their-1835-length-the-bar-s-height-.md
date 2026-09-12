@@ -18,7 +18,7 @@ closed_at: null
 claimed_run: null
 ---
 
-Piece 2 of 2 of **T-0800 — The mouth as built**. T-1064 took its fourth ask (the re-bake, and
+Piece 2 of 2 of **T-0800 — The mouth as built**. T-1066 took its fourth ask (the re-bake, and
 the staleness hash that had been hiding the need for one). These three are what is left, in
 the parent's own words:
 

@@ -1,5 +1,5 @@
 ---
-id: T-1064
+id: T-1066
 title: The epoch re-baked on T-0799's trace, and shoreline.geojson into the terrain staleness hash so a re-trace can never leave the ground behind again
 state: done
 epic: META

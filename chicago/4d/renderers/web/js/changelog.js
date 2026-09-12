@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The ground has caught up with the shore it was carved to meet', kind: 'fix', ts: '',
+  { v: 772, title: 'The ground has caught up with the shore it was carved to meet', kind: 'fix', ts: '2026-09-12T09:48:56.901Z', date: 'Sep 12, 2026, 4:48 AM CT',
     items: [
       'Last night the lake got its real edge back: the shoreline was re-traced off the whole of Wright\u2019s 1834 survey, margin to margin, and the harbour, the cut, the sand bar and the old southward channel all moved to where he actually drew them. That work said, in as many words, that the ground had not moved with them and that raising it was the next job. This is that job.',
       'The terrain here is not a model somebody sculpted. It is carved, every time, out of the traced lines \u2014 the ground is told where the water is and it falls away to meet it. So a new trace should have made the old ground obsolete the instant it landed. It did not, and the reason is the part of this worth telling.',
