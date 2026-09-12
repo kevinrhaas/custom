@@ -506,6 +506,51 @@ nobody can check, and the compile fails rather than leaving it to rot. Each refu
 written onto both of the businesses it holds apart, so a reader meeting one of them meets
 the reason the other is not it.
 
+`premises_relations` is the **third answer**, and T-0411 is the ticket that found the
+first two are not enough. A merge says two styles are one house; a refusal says they are
+not one house; the corpus keeps producing pairs for which BOTH sentences are false. The
+Chicago Democrat against the Chicago Democrat printing office is the case: T-0402 was
+asked to judge it and could write down no true thing. `firm_surnames()` reads the last
+word of each style as the partner surname and so compares `{democrat}` against `{office}`,
+and the partner-surname guard has no escape by design — but neither style names a partner
+at all, so there is nothing here for the guard to be about. And all three refusal kinds
+are untrue of it: they are not `two_houses` (one man, John Calhoun, stands over both), not
+`not_joined` (the colophon IS the paper naming the shop it is printed at), and not on
+`different_ground` (in 1834 both stand on the corner of South Water and Clark). A refusal
+here would have been a false judgement filed to make a group look closed, which is why
+T-0402 declined to file one.
+
+So the relation states the one thing that IS true — **two businesses, and one of them is
+the other's premises** — in one direction, and it is not a merge: both records stay whole,
+keep their own printings, their own placement readings and their own trade, and the
+partner guard is untouched. It is held to the merge's disciplines: `relation_rule` names
+both spellings verbatim, `witnesses` names the printings it rests on, it cannot outlive
+either end, it may not be declared alongside a merge or a refusal of the same pair, it may
+not run both ways, and a business may stand on **one ground only**. `kind` is one of two:
+`premises` (the part is the ground the whole is carried on — one roof, and the model must
+not mint a second for the whole) and `department` (the part is a branch of the whole's own
+business under a style of its own). The edge is written onto both records — `part_of` on
+the premises, `parts` on the house carried there.
+
+**The roof is DECIDED and not left to fall out of the data**, which is the half of T-0411
+that is visible in the town. One roof: `chicago_democrat_office`, which already stands at
+that corner and carries "John Calhoun's printing office" among its aka. The shop enriched
+it; the paper did not, because `match_occupant` requires ALL the partners' surnames and
+the paper's proprietors read `['John Calhoun', 'Calhoun, J.']`, a required set of
+`{calhoun, j}` no occupant line can carry — so `compile_register` took `new_building` at
+`clark+south_water` for it, a second roof at the same corner for a business with no ground
+of its own. `compile_register` now makes the whole follow its premises where the premises
+is placed and the whole was about to raise or name ground of its own, and the register's
+actions move from 30 `enrich_existing` / 29 `new_building` to **31 / 28**. The businesses
+table does not move: 206 before and after, because a relation is not a merge.
+
+**T-0403 stays open**, and on purpose. It records that the printing office keeps its 1834
+corner through T-0399's internal merge, because `placement_rank` prefers a corner to a
+relative offset regardless of date — so on the scene date the shop may stand at the wrong
+end of South Water Street, and the paper now stands with it. That is a question about
+placement RANKING rather than about identity: joining the pair moves neither reading, and
+answering it would mean changing how every house in the register chooses its live address.
+
 **The first firm pass is T-0399**, the restyled duplicates of T-0338's surname groups —
 where one style is the other with a trade description, a signboard or an extractor's
 parenthesis after it. **25 merge rules over 20 houses, and 3 refusals**; the businesses
