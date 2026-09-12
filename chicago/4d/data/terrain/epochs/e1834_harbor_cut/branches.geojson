@@ -57,20 +57,24 @@
        4638335.3
       ],
       [
+       446636.33,
+       4638317.24
+      ],
+      [
+       446635.07,
+       4638294.03
+      ],
+      [
        446639.48000000004,
        4638257.16
       ],
       [
-       446638.15,
-       4638244.819999999
+       446638.89,
+       4638239.03
       ],
       [
-       446643.87,
-       4638223.2
-      ],
-      [
-       446654.49,
-       4638199.5
+       446651.66000000003,
+       4638205.24
       ],
       [
        446679.13,
@@ -129,24 +133,24 @@
        4637855.25
       ],
       [
-       446913.68,
-       4637829.49
+       446915.09,
+       4637827.34
       ],
       [
-       446913.72000000003,
-       4637822.96
+       446918.65,
+       4637816.54
       ],
       [
-       446904.72000000003,
-       4637809.7299999995
+       446927.79000000004,
+       4637805.14
       ],
       [
-       446902.69,
-       4637798.819999999
+       446928.53,
+       4637799.359999999
       ],
       [
-       446883.84,
-       4637798.43
+       446901.99,
+       4637798.81
       ],
       [
        446853.11,
@@ -197,32 +201,16 @@
        4638068.35
       ],
       [
-       446710.41000000003,
-       4638072.39
+       446686.61,
+       4638082.77
       ],
       [
-       446683.10000000003,
-       4638085.6
+       446668.33,
+       4638101.96
       ],
       [
-       446671.83,
-       4638101.31
-      ],
-      [
-       446666.83,
-       4638119.319999999
-      ],
-      [
-       446659.10000000003,
-       4638127.859999999
-      ],
-      [
-       446647.9,
-       4638132.7
-      ],
-      [
-       446628.35000000003,
-       4638131.569999999
+       446647.35000000003,
+       4638108.05
       ],
       [
        446597.42,
@@ -253,20 +241,12 @@
        4638357.97
       ],
       [
-       446576.62,
-       4638375.43
+       446578.5,
+       4638412.43
       ],
       [
-       446576.46,
-       4638402.24
-      ],
-      [
-       446583.27,
-       4638431.37
-      ],
-      [
-       446582.41000000003,
-       4638458.16
+       446576.89,
+       4638447.899999999
       ],
       [
        446585.83,
@@ -289,14 +269,14 @@
     "confidence": "inferred",
     "note": "Planform traced from the Wright 1834 survey, in a window whose south edge is the forks window's north edge, so this polygon abuts river.geojson on map row 1252 of the BPL master and moves no vertex of it. The water surface is flat at the datum for the same reason the forks are: the pre-reversal river had a near-zero surface gradient and stood at lake level through this reach. NO BED DEPTH IS CLAIMED HERE AT ALL. A cadastral plat gives planform and not soundings, and a traced bank must not be allowed to promote a bed \u2014 see docs/RESEARCH/north_branch_wabansia.md. The polygon's northern edge is the NORTH LINE OF THE SURVEY and not a river end: Wright washed the channel up to the line he ruled across the top of the sheet and stopped, while the North Branch itself ran on north for miles, and the two bank lines are cut short of that stretch rather than carried across it. The hue tolerance is tighter here than at the forks because the green wash on Wabansia's river-front lots would otherwise be read as bank wash; the reading is in the tool's docstring.",
     "drafted_width_m": {
-     "north_branch": 62.6
+     "north_branch": 72.6
     },
     "sources": [
      "wright_1834"
     ],
     "provenance": {
      "traced_from": "wright_1834",
-     "method": "grey bank-wash segmentation of the BPL master scan, closed across the unshaded mid-channel; boundary traced and simplified; pixels transformed to EPSG:26916 by the least-squares affine refit from data/traces/gcp/wright_1834_gcps.json. The hue tolerance is tighter than the forks trace's, so that the green wash on Wabansia's river-front lots cannot be read as the grey wash of the bank beside it",
+     "method": "grey bank-wash segmentation of the BPL master scan, closed across the unshaded mid-channel; boundary traced and simplified; pixels transformed to EPSG:26916 by the least-squares affine refit from data/traces/gcp/wright_1834_gcps.json. The hue tolerance is tighter than the forks trace's, so that the green wash on Wabansia's river-front lots cannot be read as the grey wash of the bank beside it. Bank wash that a dry seam cut off the channel is put back where bare paper or grey wash reaches it from the channel without crossing ink or a wash of another colour (tools/trace_river.py seam_wash, T-1078)",
      "tool": "tools/trace_north_branch.py",
      "splices_onto": "data/terrain/epochs/e1834_harbor_cut/river.geojson at BPL master row 1252",
      "iiif_region": {
@@ -370,32 +350,16 @@
       4638068.35
      ],
      [
-      446710.41000000003,
-      4638072.39
+      446686.61,
+      4638082.77
      ],
      [
-      446683.10000000003,
-      4638085.6
+      446668.33,
+      4638101.96
      ],
      [
-      446671.83,
-      4638101.31
-     ],
-     [
-      446666.83,
-      4638119.319999999
-     ],
-     [
-      446659.10000000003,
-      4638127.859999999
-     ],
-     [
-      446647.9,
-      4638132.7
-     ],
-     [
-      446628.35000000003,
-      4638131.569999999
+      446647.35000000003,
+      4638108.05
      ],
      [
       446597.42,
@@ -426,20 +390,12 @@
       4638357.97
      ],
      [
-      446576.62,
-      4638375.43
+      446578.5,
+      4638412.43
      ],
      [
-      446576.46,
-      4638402.24
-     ],
-     [
-      446583.27,
-      4638431.37
-     ],
-     [
-      446582.41000000003,
-      4638458.16
+      446576.89,
+      4638447.899999999
      ],
      [
       446585.83,
@@ -497,20 +453,24 @@
       4638335.3
      ],
      [
+      446636.33,
+      4638317.24
+     ],
+     [
+      446635.07,
+      4638294.03
+     ],
+     [
       446639.48000000004,
       4638257.16
      ],
      [
-      446638.15,
-      4638244.819999999
+      446638.89,
+      4638239.03
      ],
      [
-      446643.87,
-      4638223.2
-     ],
-     [
-      446654.49,
-      4638199.5
+      446651.66000000003,
+      4638205.24
      ],
      [
       446679.13,
@@ -569,20 +529,20 @@
       4637855.25
      ],
      [
-      446913.68,
-      4637829.49
+      446915.09,
+      4637827.34
      ],
      [
-      446913.72000000003,
-      4637822.96
+      446918.65,
+      4637816.54
      ],
      [
-      446904.72000000003,
-      4637809.7299999995
+      446927.79000000004,
+      4637805.14
      ],
      [
-      446902.69,
-      4637798.819999999
+      446928.53,
+      4637799.359999999
      ]
     ]
    },

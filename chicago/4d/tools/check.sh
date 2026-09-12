@@ -93,6 +93,17 @@ step "the traced South Branch still carries what its generator writes" \
 step "the traced North Branch still carries what its generator writes" \
   python3 tools/trace_north_branch.py --check-properties
 
+# T-1078. The North Branch's east bank was short of Wright's inked bank by up to
+# 32.7 m at the splice row, because a dry seam cut 402 px of bank wash off the
+# channel and the speckle floor threw it away. `tr.seam_wash` puts it back, and
+# the repair is only safe in one direction: it must not have bought back the 93 m
+# leak into Wabansia's platted lots that `hue_tol` 7 exists to prevent. This holds
+# the committed measurement to that — 0 rows west of the inked west bank — and to
+# the two trace windows agreeing on the channel's drafted width across the line
+# they are spliced on, which is what independently says the repair is right.
+step "the North Branch's repaired east bank has not leaked the west one" \
+  python3 tools/measure_north_branch_banks.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
@@ -275,6 +286,28 @@ step "Wabansia's water-lot strip re-derives from its rules and the run" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_wabansia_water_lots.py --self-test
+
+# AND THE SEATING OF ALL THREE (T-1070). The three readings above are pixel statements
+# and each says in its own words that it authors no ground; this is the step that does.
+# It re-derives every committed Wabansia street line, and the block grid's outline, from
+# those pixels and the committed `kinzie` line — so a hand-nudged endpoint, a corridor
+# moved off its rule, a changed corridor width or a street quietly carried east into the
+# committed water all fail here. The seating is a translation north and not a fit: no
+# control point stands within 900 m of this tract and none is invented.
+step "Wabansia's streets re-derive from the readings and the committed Kinzie line" \
+  python3 tools/seat_wabansia_streets.py --check
+
+# T-1085, and it is the seam that step above hangs from. `kinzie` is committed off the
+# Thompson plat and stops at the town's west line; Wright rules and letters the same
+# street across the whole of Wabansia, so the reach west of local east -320 is carried as
+# its own record — a different claim about wear, about traffic and about what attests the
+# geometry, on the same line. This holds the reach to its two readings AND to the two
+# things that would quietly invalidate the seating above: that it still meets `kinzie` at
+# the seam, and that it adds no bend to the plat line. A bend there moves platted lot
+# lines the whole length of the street and re-scores the corridor-intrusion count, which
+# is why the carry is a record beside the line and never a vertex inside it.
+step "Kinzie Street's Wabansia reach re-derives, meets the committed line and bends nothing" \
+  python3 tools/carry_kinzie_west.py --check
 
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
@@ -830,11 +863,25 @@ selftest "West Water still stands one half-corridor off the bank, and the two re
 # goes stale silently: move a South Division centreline and its northern half no longer lies
 # on it, re-grade one and the North Division line keeps an attestation the parent lost. This
 # holds the collinearity to 2 cm, holds each line's ends on North Water and Kinzie, holds the
-# one line graded lower than the rest at `inferred`, and holds the sheet reading that says the
-# plat letters no name in any North Division corridor. It needs no image library; the reading
+# residual T-0827 left on the one line that still reads worst, and holds the sheet reading
+# that says the plat letters no name in any North Division corridor. It needs no image library; the reading
 # is committed data and `--reread` is what goes back to the 7 MB sheet.
 selftest "the North Division lines still lie on the streets they continue, and say what names them" \
   python3 tools/measure_north_division_streets.py --self-test
+
+# T-0827, the ticket the reading above could only name. `market` is the one street on this
+# grid no sheet fixes directly — its west side is the river bank its whole length — and until
+# this it was ONE modern junction on N Wacker Drive, which is 1926 made ground, plus a
+# bearing. It is now Franklin stepped one module west, and the whole case is a pitch that
+# two independently measured sheets bracket and the superseded line missed. That makes it
+# exactly the kind of derivation that rots: the committed vertices are arithmetic on
+# `franklin`, so moving Franklin, or the module, or re-fitting either sheet, silently leaves
+# Market standing on a sum nobody made. This holds the re-fit to the centimetre against
+# `franklin`, holds the line this replaced against the junction it was fitted to, holds the
+# Wright ladder at five lines with no alley-width gap among them, and holds the bracket the
+# argument rests on.
+selftest "Market still stands one module west of Franklin, and the sheets still bracket it" \
+  python3 tools/measure_market_line.py --self-test
 
 # One line per face says nothing about what the wall on it is MADE of. L99 and L100 both
 # worried that the schedule "will keep dealing cabins to commercial frontage", and the

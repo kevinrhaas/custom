@@ -7,13 +7,13 @@
   "ruled": {
     "upheld": 135,
     "named": 1,
-    "refused": 70,
-    "unruled": 1
+    "refused": 69,
+    "unruled": 3
   },
   "counts": {
     "purchasers": 647,
-    "matched": 137,
-    "refused": 510,
+    "matched": 139,
+    "refused": 508,
     "firms": 2,
     "bodies": 3
   },
@@ -4227,7 +4227,7 @@
           "key": "handy_major",
           "name": "Major Handy",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
+          "why": "one side prints no forename of its own",
           "middle_initial": null,
           "reading_middle_initial": "S",
           "outcome": "refused_on_the_forename"
@@ -4557,6 +4557,23 @@
         ],
         "reasoning": "UPHELD on the same ground as MONTGOMERY LOTON WM: Fergus 1843's 'Montgomery, Loton W., shoemaker' is the register's forename printed by the town, and the Democrat carries L. W. Montgomery through five issues of 1833–1835 with the trade. This is the earlier of his two entries — the north-west quarter of section 23, T38N R14E, 160 acres at $200 on 27 June 1835 — and it sits five months before and one section east of the other, which is one man buying twice in the rush rather than two readings of one sale."
       },
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "BREESE SIDNEY",
+      "record_ids": [
+        "ls0651"
+      ],
+      "resident_id": "breese_judge_sidney",
+      "resident_name": "Judge Sidney Breese",
+      "household_id": "hh_breese_judge_sidney",
+      "match": "forename_agrees",
+      "rule": "BREESE SIDNEY matches Judge Sidney Breese: the forename names Judge Sidney Breese of the 1 person of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -5054,6 +5071,51 @@
         ],
         "reasoning": "UPHELD, and the register proves it against itself. ls0919 — HUNTER E E, the north-east quarter of section 13, T40N R13E, 80 acres, $100, 15 November 1834 — and ls0920 — HUNTER EDWARD E, the same quarter of the same section on the same day at the same price — are one entry read twice, and the fuller reading states COOK in the Residence column where the abbreviated one leaves it UNKNOWN. So the expansion of E E to EDWARD E is the deposit's, not this ruling's, and it comes with the one column that speaks to residence. The middle initial E is on the town's side as well: the card is attested at G1b off the Democrat, the poll of 1834 and the old-settler death notices, and Fergus 1839 prints him as deputy-sheriff and ex-justice of the peace on Wells street. The layer's four other Hunters are refused on the forename. COOK is a county and not a town, and this ruling reads it as the register's word for the county, exactly as the domain's grading rule does."
       },
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "ALLEN JAMES",
+      "record_ids": [
+        "ls0954"
+      ],
+      "resident_id": "allen_lieut_james",
+      "resident_name": "Lieut. James Allen",
+      "household_id": "hh_allen_lieut_james",
+      "match": "forename_agrees",
+      "rule": "ALLEN JAMES matches Lieut. James Allen: the forename names Lieut. James Allen of the 3 people of this surname, and the forename agrees in full.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "allen_edward_richards",
+          "name": "Edward Richards Allen",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "R",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "allen_lieut_james",
+          "name": "Lieut. James Allen",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "allen_william",
+          "name": "William Allen",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -12076,18 +12138,44 @@
     },
     {
       "a": "THOMPSON JOHN L",
-      "b": "John Thompson",
-      "rule": "THE REGISTER'S OWN MIDDLE INITIAL POINTS AT A RIVAL CARD, NOT AT THIS ONE. The register prints THOMPSON JOHN L; the card it was matched to is “John Thompson”, which carries no middle initial at all, while the layer holds `thompson_lieut_j_l`, “Lieut J L Thompson”, whose initials are exactly the register's. The mechanical rule matched on the forename and could not see that the discriminating token belongs to somebody else. That alone would be enough. The card is also the weakest kind this project keeps: `letter_list_ only` is TRUE and it is true — C1's test applied, read `press_evidence[].list` and not the flag, and the only press row IS a return of uncalled-for letters, printed “Thompaon” and “Thompsond, John” in the Democrat of 4 March 1834 and 20 May 1835. No trade, no street, no civic roll, no directory line, UNKNOWN in the Residence column, and `present_on_scene_date` uncertain. The one book reading on the card, the 1843 volume's death notice for “Thompson, Gen. John Leverett” who died in 1888, is a second thing the initial L appears to have dragged in. Refused; two rows, 161.31 acres and $201.63 come back off the card. Whether the L is the Lieutenant's is filed, not decided.",
+      "b": "3 residents named Thompson",
+      "rule": "THOMPSON JOHN L is refused against John Thompson and Lieut J L Thompson and O I Thompson: the forename names 2 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "thompson_john",
+          "name": "John Thompson",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": "L",
+          "outcome": "survives"
+        },
+        {
+          "key": "thompson_lieut_j_l",
+          "name": "Lieut J L Thompson",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "L",
+          "reading_middle_initial": "L",
+          "outcome": "survives"
+        },
+        {
+          "key": "thompson_o_i",
+          "name": "O I Thompson",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "I",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
       "record_ids": [
         "ls0589",
         "ls0590"
       ],
       "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-11",
-      "ruled_under": "T-0990",
-      "was_proposed_as": "THOMPSON JOHN L matches John Thompson: the forename names John Thompson of the 3 people of this surname, and the forename agrees in full."
+        "data/residents/index.json"
+      ]
     },
     {
       "a": "HUBBARD THOMAS R",
@@ -12518,7 +12606,7 @@
           "name": "Judge Sidney Breese",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "S",
+          "middle_initial": null,
           "reading_middle_initial": "S",
           "outcome": "refused_on_the_forename"
         }
@@ -12540,7 +12628,7 @@
           "name": "Judge Sidney Breese",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "S",
+          "middle_initial": null,
           "reading_middle_initial": "S",
           "outcome": "refused_on_the_forename"
         }
@@ -12674,28 +12762,6 @@
       "ruled_on": "2026-09-10",
       "ruled_under": "T-0990",
       "was_proposed_as": "BLAISDELL BENJAMIN matches B Blaisdell: the forename names B Blaisdell of the 1 person of this surname, and the forename agrees as an initial only."
-    },
-    {
-      "a": "BREESE SIDNEY",
-      "b": "Judge Sidney Breese",
-      "rule": "BREESE SIDNEY is refused against Judge Sidney Breese: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "breese_judge_sidney",
-          "name": "Judge Sidney Breese",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "S",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0651"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
     },
     {
       "a": "RUSSELL JOHN",
@@ -14851,46 +14917,6 @@
       ]
     },
     {
-      "a": "ALLEN JAMES",
-      "b": "3 residents named Allen",
-      "rule": "ALLEN JAMES is refused against Edward Richards Allen and Lieut. James Allen and William Allen: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "allen_edward_richards",
-          "name": "Edward Richards Allen",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "R",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "allen_lieut_james",
-          "name": "Lieut. James Allen",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "J",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "allen_william",
-          "name": "William Allen",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0954"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "ALLEN ROBERT A",
       "b": "3 residents named Allen",
       "rule": "ALLEN ROBERT A is refused against Edward Richards Allen and Lieut. James Allen and William Allen: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
@@ -14909,7 +14935,7 @@
           "name": "Lieut. James Allen",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "J",
+          "middle_initial": null,
           "reading_middle_initial": "A",
           "outcome": "refused_on_the_forename"
         },
@@ -15408,7 +15434,7 @@
           "name": "Judge Sidney Breese",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "S",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
@@ -18541,7 +18567,7 @@
           "name": "Lieut J L Thompson",
           "forename_agrees": false,
           "why": "the initials differ",
-          "middle_initial": "J",
+          "middle_initial": "L",
           "reading_middle_initial": "H",
           "outcome": "refused_on_the_forename"
         },
@@ -18583,8 +18609,8 @@
           "key": "thompson_lieut_j_l",
           "name": "Lieut J L Thompson",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "J",
+          "why": "the initials differ",
+          "middle_initial": "L",
           "reading_middle_initial": "R",
           "outcome": "refused_on_the_forename"
         },

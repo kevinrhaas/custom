@@ -162,6 +162,37 @@ NOT_1835 = {
 RESIDENCE_PREFIX = re.compile(
     r"^\s*(residence|res\.?|boards|bds\.?|house|hou\S{0,2}e|[hr](?=\s))\b", re.I)
 
+# THE FIELD CAN CARRY BOTH CLAIMS (T-0987 stretch 7). The residence word usually
+# opens the field; it does not always. The crosswalks split a printed line on its
+# punctuation, and where the trade's own trailing corner falls into the address the
+# field opens with the SHOP and goes on to the HOME: `cor Clark, res Dearborn, bet
+# Washington and Madison` is Charles Loomis Harmon's shop corner and then his
+# house. Clause 2 asks whether the volume prints an address as a residence, and
+# that word answers it wherever in the field it stands — so the field is CUT at it,
+# and each pass reads its own half. Stretch 6 fixed this fault at the head of the
+# field, where `house N Water st` had been placed as a shop face; this is the same
+# fault one clause in.
+_HOME_CLAUSE = re.compile(
+    r"[,;]\s*((?:residence|res\.?|boards|bds\.?|house|hou\S{0,2}e|[hr](?=\s))\b.*)$",
+    re.I | re.S)
+
+
+def split_home(printed: str):
+    """(the shop half, the home half) of one printed address field.
+
+    Either half may be empty: a field that OPENS with the residence word is all
+    home, and a field with no residence word in it at all is all shop. Nothing is
+    invented and nothing is dropped — the full field stays the quote on the record.
+    """
+    text = str(printed or "")
+    if RESIDENCE_PREFIX.match(text):
+        return "", text.strip()
+    m = _HOME_CLAUSE.search(text)
+    if not m:
+        return text.strip(), ""
+    return text[:m.start()].strip(" .,"), m.group(1).strip()
+
+
 # The qualifiers that set a door against a second street, in two kinds. A
 # CORNER word claims the corner itself; an ANCHOR word ("near Dearborn", "north
 # of Lake street") sets the door somewhere off a crossing and says nothing about
@@ -344,7 +375,7 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
                           "nobody asked it. The residence half is T-0669.")
         return row
 
-    names = street_words(printed)
+    names = street_words(split_home(printed)[0])
     if not names:
         row.update(outcome="refused", clause="3",
                    reason="The address names no street at all — it names a house or a "

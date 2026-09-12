@@ -93,6 +93,15 @@ def control_offsets(lines: dict | None = None, control: dict | None = None) -> d
                     the ruling forbids, so the corridor stays on the drawn line and the
                     spread is recorded rather than averaged away.
     * `off_line`  — the control point lies beyond the drawn centreline's own span.
+    * `refused`   — every control point naming the street carries
+                    `not_corridor_control_for` naming it, which is the control table's own way of
+                    saying that the junction is not evidence of where the PLATTED corridor
+                    ran. T-0827 wrote the first one: `lake_market` is West Lake Street
+                    crossing North Upper Wacker Drive, and Wacker Drive stands on ground
+                    made in 1926 when the river was walled, so re-centring Market's
+                    platted corridor onto it is the very error that ticket measured. The
+                    refusal lives in the DATA and carries its reason there; nothing here
+                    knows a street id, which is the principle below unchanged.
 
     The verdict is computed from the committed control and the committed lines every time.
     There is no list of street ids anywhere in it: a street acquires or loses a re-centring
@@ -104,11 +113,19 @@ def control_offsets(lines: dict | None = None, control: dict | None = None) -> d
     origin_e, origin_n = float(datum["origin_utm_e"]), float(datum["origin_utm_n"])
 
     found: dict = {sid: [] for sid in lines}
+    refused: dict = {sid: [] for sid in lines}
     for point_id, point in sorted(control["control"].items()):
         local_e = float(point["utm_e"]) - origin_e
         local_n = float(point["utm_n"]) - origin_n
         for sid in point["streets"]:
             if sid not in lines:
+                continue
+            # A junction can be good control for one of its two streets and not for the
+            # other, and Lake x Market is the case that proved it: the northing is Lake
+            # Street, which still runs where it ran, and the easting is Wacker Drive,
+            # which does not. So the refusal is per STREET, not per point.
+            if sid in (point.get("not_corridor_control_for") or []):
+                refused[sid].append(point_id)
                 continue
             if sid in EW_STREETS:
                 axis, along, control_cross = "ew", local_e, local_n
@@ -128,7 +145,7 @@ def control_offsets(lines: dict | None = None, control: dict | None = None) -> d
     for sid, points in found.items():
         usable = [p for p in points if p["offset_m"] is not None]
         if not points:
-            verdict, offset = "no_control", 0.0
+            verdict, offset = ("refused" if refused[sid] else "no_control"), 0.0
         elif not usable:
             verdict, offset = "off_line", 0.0
         else:
@@ -148,6 +165,7 @@ def control_offsets(lines: dict | None = None, control: dict | None = None) -> d
                                      if p["offset_m"] is not None), 2)
                          if usable else None),
             "verdict": verdict,
+            "refused_as_corridor_control": refused[sid],
             "offset_m": offset,
         }
     return out

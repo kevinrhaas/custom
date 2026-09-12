@@ -1,7 +1,7 @@
 ---
 id: T-0768
 title: West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1203
+claimed_by: run 9/12/2026, 12:04:03 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T17:54:10.728Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34706910288
 ---
 
 T-0445 seated `west_water` from the scene's south edge (local north -404) to local north **-104**,

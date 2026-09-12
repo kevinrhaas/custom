@@ -1274,11 +1274,11 @@
       "id": "side_blk_lake_market_lot0_w",
       "path_local_enu_m": [
         [
-          100.85,
-          -179.14
+          97.68,
+          -179.12
         ],
         [
-          100.94,
+          97.75,
           -166.96
         ]
       ],
@@ -1299,12 +1299,12 @@
       "id": "rear_blk_lake_market_lot0",
       "path_local_enu_m": [
         [
-          124.44,
-          -179.34
+          122.07,
+          -179.32
         ],
         [
-          100.85,
-          -179.14
+          97.68,
+          -179.12
         ]
       ],
       "belongs_to": [
@@ -1318,18 +1318,18 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_lake_market_lot0, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds philo_carpenter_log_shop, sauganash_hotel — and the yard behind those buildings is 12.19 m deep by 23.59 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_lake_market_lot0, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds philo_carpenter_log_shop, sauganash_hotel — and the yard behind those buildings is 12.19 m deep by 24.39 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_lake_market_lot0_blk_lake_market_lot2_e",
       "path_local_enu_m": [
         [
-          124.44,
-          -179.34
+          122.07,
+          -179.32
         ],
         [
-          124.53,
-          -167.14
+          122.14,
+          -167.1
         ]
       ],
       "belongs_to": [
@@ -2938,8 +2938,8 @@
       "id": "rear_blk_lake_market_lot0_gate",
       "on": "alley",
       "at_local_enu_m": [
-        112.64,
-        -179.24
+        109.88,
+        -179.22
       ],
       "width_m": 3.048,
       "confidence": "reconstructed",
