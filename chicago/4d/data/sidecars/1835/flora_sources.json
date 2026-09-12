@@ -2,6 +2,14 @@
   "scene": "1835",
   "standard": "Every source the plant records cite, joined once so the plants section of the Evidence panel quotes a source exactly the way the building card and the wildlife list do.",
   "citations": {
+    "andreas_1884_v1": {
+      "source_id": "andreas_1884_v1",
+      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
+      "url": "https://archive.org/details/historyofchicago01andr",
+      "archived_url": "",
+      "tier": 3,
+      "tier_label": "compiled secondary (Andreas)"
+    },
     "bowles_mcbride_1994_barrens": {
       "source_id": "bowles_mcbride_1994_barrens",
       "citation": "Bowles, Marlin L. and Jeanette L. McBride. Presettlement Barrens in the Glaciated Prairie Region of Illinois. Proceedings of the North American Conference on Savannas and Barrens (Midwest Oak Savanna Conferences), 1994.",
@@ -27,6 +35,34 @@
           "tier": 2,
           "note": "Carries the Miller House's log construction ('a log structure partly sided') and the Wolf Point Tavern's ('partly log and partly frame'), the fact of a frame element on each, and — through Hubbard — the marshy river-shore strip that grades the south division's marsh surface in terrain_spec.json. Twenty-five years after the fact, from a resident's drawing and a named witness speaking to the writer: rung 2."
         }
+      ]
+    },
+    "chicagology_prefire274": {
+      "source_id": "chicagology_prefire274",
+      "citation": "\"Fort Dearborn I.\" Chicagology, transcribing Chicago Magazine, March 1857, with a Whistler plan of 1808, a Kinzie-supplied view of the first fort, and a 1902 Lawrence C. Earle mural.",
+      "url": "https://chicagology.com/prefire/prefire274/",
+      "archived_url": "https://web.archive.org/web/20260308050246/https://chicagology.com/prefire/prefire274/",
+      "tier": 2,
+      "tier_label": "near-primary recollection",
+      "transcribes": [
+        {
+          "work": "Chicago Magazine, 'Fort Dearborn I' — the account of the first fort and of the site it stood on, printed under its own attribution line and illustrated with a view 'through the kindness of Mrs. J. H. Kinzie, who furnished the sketch'",
+          "date": "1857-03",
+          "tier": 2,
+          "note": "Carries the landform this project's e1830_natural and e1834_harbor_cut epochs cite: the flattened mound half-surrounded by the river, standing 'as high as any other point'; the white sand hills north and south; and the long low sandy barrier ridge that deflected the river south 'for nearly half a mile' before the cut. Recollection of ground within the writer's own and his informants' memory, twenty-odd years after: the same rung as the May installment, on the same serial's method. Its 1803-1812 narrative is compilation, is not recollection, and is cited by nothing here."
+        }
+      ],
+      "what_it_supplies": [
+        "the fort platform as a landform — a flattened mound, curved river on three sides, as high as any other point in the quadrant",
+        "the sandy barrier ridge between the deflected river and the lake, running south nearly half a mile",
+        "the white sand hills north and south of the river mouth",
+        "that the old southward channel's mouth was choked by sand bars, obstructing the smallest sail vessels"
+      ],
+      "what_it_does_not_supply": [
+        "the fort of 1835 — this installment stops at the 1812 massacre and the fort it describes is the FIRST fort, demolished that year",
+        "any dimension, plan or outline of either fort; the Whistler 1808 plan is reproduced as a picture and is not read here",
+        "a usable date for the harbour cut: it says 1838, against Andreas's works of 1833-34, and Andreas is followed",
+        "any elevation in feet — 'as high as any other point' is a comparison, not a measurement, and the modelled box's total relief is 4.30 ft"
       ]
     },
     "chicagology_prefire278": {
@@ -173,6 +209,25 @@
       "archived_url": "",
       "tier": 4,
       "tier_label": "later scholarship"
+    },
+    "wright_1834": {
+      "source_id": "wright_1834",
+      "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+      "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "what_it_supplies": [
+        "street geometry",
+        "block and lot subdivision",
+        "shoreline",
+        "river channel and the 1834 cut",
+        "survey-date colouring"
+      ],
+      "what_it_does_not_supply": [
+        "building footprints",
+        "building locations"
+      ]
     }
   }
 }

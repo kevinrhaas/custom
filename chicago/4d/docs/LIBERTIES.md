@@ -1095,6 +1095,30 @@ with it — 18.35 km² against 17.46** — and the same admission as 2026-08-11 
 prairie and lake nobody looks at. And it still costs 2 256 vertices, because the ring is the same
 ring; only its outer rectangle moved.
 
+**Revised 2026-09-12 — the apron is no longer carried everywhere, and the exception is evidence
+rather than taste (T-0939).** Carrying a boundary vertex outward at its own height assumes the
+boundary is a cross-section of ground that CONTINUES, and for the mainland it is: its traced shore
+runs stop at the edge of the tracing window, which is where the reading stopped and not where the
+land did. It is false for a landform the box has CUT. The 1834 sand bar is an island about 660 m
+long whose southern hook reaches 36 m past N −400; 85 m of it stood on the boundary row at a
+dead-constant +1.21 m, and the apron extruded that section 1.55 km south as a straight ribbon three
+and a half times longer than the island, running to the haze without a taper or an end. The owner
+photographed it from the water and called it the forever sandy stretch.
+
+So the apron now asks the one kind of evidence that can say a landform ends — a CLOSED traced
+outline the box truncates, which is exactly what the terrain spec's `islands` are — and over such a
+run it falls from the boundary height to the height of the water beside it, reaching it at the
+distance that vertex's own line through the traced ring gives: 1.4 m at the bar's western edge,
+35.9 m at its tip, 2.0 m at its eastern, which is the hook Wright drew.
+
+What is INVENTED here, and is the reason this paragraph is in this file rather than only in the
+ticket, is the SHAPE of that fall: the trace gives a length and no profile, and the ground is taken
+down linearly. It is the same standing of claim as the rest of the apron — geometry for the
+horizon, nothing outside the box modelled, sampled or claimed, and the walker's own sampler still
+answering its fallback out there. What has not changed: the heightfield is byte-identical, every
+surviving apron vertex outside the bar's 85 m carries its old height exactly, and the ring is still
+the same ring — it gains one more, at 2 256 vertices, which is what the taper is drawn with.
+
 ### L18 — Sauganash Hotel: the 1829 cabin's height and its roof are placeholders
 **Decision:** the `log_1829` phase is built 2.4 m to the plate under a gable roof, both tagged
 `conjectural`, both carrying the word PLACEHOLDER in their own notes.
@@ -1398,6 +1422,23 @@ communities is the record's and is no longer a liberty**. What remains one is ex
 this entry was always about: the absolute figure, and the choice that full recorded cover
 saturates the lattice at 7.3 tufts per square metre. A community recording full cover is drawn
 exactly as it was before this revision, and no community can ask for more.
+**Revised:** 2026-09-12 (T-1056) — and the revision is a REFUSAL, recorded so the next parcel
+finds it instead of re-deciding. The sentence above is about `cover.matrix_fraction`, and it
+stops there. `cover.bare_soil_fraction`, which sits beside it in every zone record and which
+the paragraph above names twice, gates NOTHING and will not be made to. `matrix_fraction` is
+an areal cover fraction, so reading it as the chance a lattice slot carries a tuft is
+unit-correct; `bare_soil_fraction` is the complement of cover by every stratum and by litter,
+and the herb and woody strata are recorded as COUNTS — stems per square metre, clumps per
+hectare. Thinning a count by an area fraction adds an area to a number of plants, which is
+precisely the unit error ROADMAP K49(a) and K55 spent two parcels removing one level up; and a
+shrub stands OVER the herb layer rather than instead of it (K54), so bare soil under a sand
+cherry is not ground the sand cherry failed to take. So a zone recording 55 % bare soil on the
+lakeshore is drawn with its full recorded shrub density, and that is not the liberty it looks
+like: what was wrong on the sand bar was never a density, it was that a bar had inherited a
+back-dune's species list over every square metre of a `kind: "everywhere"` box. That is fixed
+by an elevation bound in the unit an elevation is in — `woody_stratum`, **L233** — not by
+borrowing a fraction. The refusal is written in three places a reader might start from:
+`data/flora/index.json`'s `_doc`, the read site in `renderers/web/js/flora.js`, and here.
 
 ### L33 — Beyond about ten metres the prairie is a canopy surface, not plants
 **Decision:** vegetation is drawn as individual geometry only within about 27 m of the
@@ -1796,14 +1837,23 @@ October 1831. So the shape everybody repeats about this lighthouse is a descript
 that fell down. The record grades the material `inferred` on a real argument (Samuel Jackson
 built both towers under the same appropriation on the same site, and the first was masonry) and
 the shape `conjectural`, and the taper this archetype builds is admitted here.
-**Consequence:** the most distinctive small object at the river mouth is a shape we chose. Its
-position is worse: adjacency to the fort is documented three ways and the offset is a bearing and
-a distance we picked.
+**Consequence:** the most distinctive small object at the river mouth is a shape we chose.
+**Its position no longer is, and that half of this entry is retired — T-1065, 2026-09-12.**
+Wright's 1834 sheet draws a ring with *L. House* lettered round it, west of the fort at the
+inside of the bend, and the tower now stands where that glyph does: local E +1055.6, N +172.5,
+graded `inferred` on the sheet, 75.3 m south-west of the bearing-and-distance we had picked and
+3.4 times the reading's own uncertainty away from it. The reading is committed at
+`data/traces/wright_1834_lighthouse_glyph.json` and `tools/measure_wright_lighthouse.py` holds
+the coordinate to it on every gate. What the sheet does not supply is the tower itself — a
+twenty-metre ring for a forty-foot tower locates the thing and does not measure it — so the
+shape, the taper, the cap, the finish and the footprint are still ours, and that is what remains
+of this entry.
 **How to resolve:** the Light-House Board's annual reports, a keeper's return, or any of the
 several 1840s and 1850s views of the fort — the tower stands in the 1850 daguerreotype and the
 1855 photograph, and a measured reading of either would settle the shape at once.
-**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.position`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
+**Covers:** `chicago_lighthouse_1832.tower_1832.footprint`, `chicago_lighthouse_1832.tower_1832.form.roof_type`, `chicago_lighthouse_1832.tower_1832.form.paint`.
 **Recorded:** 2026-08-11.
+**Revised:** 2026-09-12 (T-1065) — `chicago_lighthouse_1832.tower_1832.position` removed from the covers list, because it stopped being a liberty. The entry is not moved to Resolved: three of its four values are still invented and the shape, which is what it was written about, is one of them.
 
 ### L45 — The garrison garden: a fence read from a drawing convention, and a planting not drawn
 **Decision:** `fort_dearborn_garrison_garden` is built as a worm rail fence round a square of
@@ -10815,7 +10865,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 13 households
+**Scope:** `residence_back_projection.positions[placed]` — 12 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -10861,6 +10911,24 @@ had nothing left to carry. The same pass took `hh_murray_james_h` — `James H. 
 against `New York` — out of the 47 refusals, which is why the adjudicated total falls by two
 and the placed count by one. This is the shape the paragraph above asks to be read for: the
 count moves when the TOWN shrinks as well as when it grows, and neither move is a new liberty.
+
+**Restated to twelve on 2026-09-12 (T-0987 stretch 7), and again the town moved as well as
+the reading.** Two changes land together and they pull the same way. The town lost a card:
+`hh_smith_d_a` was minted on a press notice printed against `Courtland, Alabama`, T-1049's
+resolved place vocabulary refuses it as a Chicago appearance, and the container went with
+the identity — so Fergus 1843's `Doctor D. S. Smith … residence La Salle street, opposite
+the First Baptist Church`, a residence clause this stretch's `split_home()` reads for the
+first time, has no 1835 person left to reach. La Salle Street is therefore NOT a face this
+entry claims, and the stretch that found the clause records the finding rather than the
+placement. The reading also refused one it had been carrying: `harmon_charles_l` came off
+Dearborn Street, because Fergus spells out `bet Washington and Madison` where Norris's
+`b Wash and Mad sts` hid Madison — a street the 1835 layer does not carry — so clause R4's
+qualifier now fires four years nearer the scene and declines the face. A nearer reading
+that says less replaced a further one that said more, which is the same shape as
+`morrison_james_m` above. The twelve stand six on Fergus's directory of 1843 and six on
+Norris's of 1844; eight of them are people the 1835 papers give no trade, which is still
+where most of the yield is; and the pass adjudicates 60 with 48 refusals on the record
+beside them.
 
 Twenty of 825 households carried a real `lives_at` before this pass and twenty carry one
 after — the faces are text on a card and not a placement of anybody in the town.
@@ -11379,3 +11447,58 @@ backwards, and the rule this entry's attachment had to agree with), **L212** (th
 14 of these businesses are seated on), T-0356 (the proxy this replaced), T-0988 (the census
 reading the owner ruled from).
 **Recorded:** 2026-09-12 (T-0404).
+
+### L233 — The woody stratum's establishment band has two recorded ends and an invented shape
+**Decision:** `data/flora/zones/z08_lakeshore.json` and `z09_sand_prairie.json` carry a
+`woody_stratum.establishes_m` of **[1.22, 2.32]** metres above the summer-1835 water surface,
+and both renderers thin their woody roles across it with a **smooth Hermite ramp** — nothing
+below 1.22 m, the full recorded density at and above 2.32 m, `t²(3−2t)` between. **The two
+ends are recorded. The shape between them is this project's.** No source states either a step
+or a ramp, or any establishment elevation for lake sand at all.
+**Why:** Andreas excepts "the sandy hills near the lake" from the North Division timber, and
+the exception is to the HILLS. `chicagology_prefire274` describes "the white sand hills both to
+the north and south" and, as a separate feature, the long low sandy barrier ridge that
+deflected the river south — two landforms in one paragraph. Until T-1056 the renderers knew
+only the first: `z08_lakeshore` and `z09_sand_prairie` are `kind: "everywhere"` boxes whose own
+notes say "the north-south bounds are the scene's own, not the belt's", the sand bar falls
+inside both, and the shrub pass deals from `shrubShare` on a uniform lattice over the whole
+extent. So the bar across the river mouth was planted with a stabilised back-dune's scrub —
+sand cherry, *Salix cordata*, red-osier, juniper, and z09's fire-set-back black-oak grubs —
+and with the dune's three poplars, at the recorded density, evenly. Measured on the committed
+`e1834_harbor_cut` heightfield at 5 m spacing: **849 woody clumps on 8.5 ha of bar**, on a
+surface Fort Dearborn work parties trenched with hand tools between 1816 and 1828 and a
+February 1834 storm breached outright.
+**The ends:** 2.32 m is +7.6 ft, the floor of the relict-ridge belt as `z09_sand_prairie`'s own
+extent note records it (+7.6 to +9.5 ft above the water) — the elevation of the ground the
+sources call a hill. 1.22 m is +4 ft, the bar crest
+`data/terrain/epochs/e1834_harbor_cut/terrain_spec.json` `islands[0]` argues for at length from
+the trenching and the breach, and flags as the one chosen land surface in the box. Cowles 1901
+reads this shore landform by landform and puts woody growth on the STABILISED dune, with none
+on the active strand. Ground the lake still reworks does not hold a sand cherry.
+**What is invented:** only the interpolation. A step at either end would have been an equally
+unsourced choice and a more confident-looking one; the ramp says "somewhere in here" in the
+shape of the thing it is uncertain about. `tools/validate.py` refuses a
+`woody_stratum.establishes_m` whose two ends are equal, so the band cannot be quietly
+collapsed into the step it is not.
+**Consequence, measured on the committed heightfield at 5 m spacing:** the bar loses its woody
+stratum entirely — 584 clumps from z08 and 265 from z09 at their recorded midpoints, to a mean
+retained factor of 0.00007, because the modelled bar is dead flat within 2 cm of its own argued
+crest and therefore sits at the very bottom of the band. Its beach grass is untouched: marram
+at 30–60 % cover thinned by z08's own `matrix_fraction` of 0.35, sand reed, little bluestem,
+the foredune forbs, and 8a's two prostrate mats. **The sand prairie's ridges keep their grubs**
+— 11,741 land samples at a mean factor of 0.806, 1,419 of 1,761 clumps — and what thins is the
+low ground between the ridges, which is that record's own claim applied rather than a new one.
+**Nothing outside the two sand zones moves at all:** the other eight communities carry no
+`woody_stratum` block, and their factor is exactly 1.000 at every sample.
+**What this does NOT deliver:** "low scrub in pockets" on the bar. The mechanism is there and
+needs no exclusion polygon — wherever the bar's surface rises into the band, scrub returns by
+itself — but the committed bar is a flat plate at its crest, so there is no higher ground for a
+pocket to stand on. If the crest is ever re-argued upward, which `islands[0]`'s note explicitly
+invites, the scrub comes back without an edit to this file or to either renderer.
+**How to resolve:** a source giving an establishment elevation, a modern remnant survey of a
+comparable Lake Michigan foredune adopted as a proxy and recorded as such, or a bar surface
+with relief on it. Any of the three replaces the ramp with something argued.
+**Ticket:** T-1056. **Related:** **L32** (the density reading whose companion field this
+entry refuses to press into service), T-0940 (the parent ask this bound is the second half of),
+T-1055 (the ground-colour half of the same defect).
+**Recorded:** 2026-09-12 (T-1056).

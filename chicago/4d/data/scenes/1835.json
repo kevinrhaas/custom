@@ -85,6 +85,13 @@
       "yaw_deg": 0.0,
       "altitude_m": 175.0,
       "pitch_deg": -30.0
+    },
+    {
+      "id": "kinzie_block",
+      "label": "The Kinzie Block, from Michigan Street",
+      "local_e": 994.86,
+      "local_n": 390.5,
+      "yaw_deg": 0
     }
   ],
   "layers": [

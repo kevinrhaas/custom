@@ -339,9 +339,40 @@ def apply_to_person(person: dict, row: dict) -> bool:
     return changed
 
 
+def retract_from_person(person: dict) -> bool:
+    """A RULING WITHDRAWN MUST BE UNWRITTEN (T-0987 stretch 8).
+
+    The applier above is add-only, and `strays()` below has always REFUSED a card
+    that carries this pass's paragraph with no ruling behind it — but nothing could
+    ever clear one, so the gate could only report the state and never leave it. It
+    was reached the first time when T-0987 stretch 8 stopped the crosswalks reading
+    a RANK as a forename: `Morgan Shapley` of the 1837 poll had been reaching
+    `Major L Shapley` on the M of Major, and when the M went, the ruling went with
+    it and the paragraph on his card stayed.
+
+    This undoes exactly what `apply_to_person` does and nothing else — the
+    paragraph, which runs from the marker to the end of the ladder limit, and the
+    source id, which no longer has a sentence behind it. Every other pass that
+    writes this volume is add-only too and puts its own citation back on the next
+    rebuild, so removing it here cannot lose one that is still earned."""
+    changed = False
+    note = person.get("note") or ""
+    i = note.find(MARKER)
+    if i >= 0:
+        j = note.find(LADDER_LIMIT, i)
+        j = (j + len(LADDER_LIMIT)) if j >= 0 else len(note)
+        person["note"] = (note[:i] + " " + note[j:]).replace("  ", " ").strip()
+        changed = True
+    if changed and SOURCE_ID not in (person.get("note") or "") \
+            and SOURCE_ID in (person.get("sources") or []):
+        person["sources"] = [s for s in person["sources"] if s != SOURCE_ID]
+    return changed
+
+
 def apply(quiet: bool = False) -> int:
     touched = 0
-    for row in matches():
+    rows = matches()
+    for row in rows:
         path = HOUSEHOLDS / ("%s.json" % row["household_id"])
         if not path.exists():
             continue
@@ -352,8 +383,24 @@ def apply(quiet: bool = False) -> int:
             if apply_to_person(person, row):
                 touched += 1
                 dump(path, hh)
+    ruled = {(r["household_id"], r["person_id"]) for r in rows}
+    withdrawn = 0
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        hh = load(path)
+        dirty = False
+        for person in hh.get("persons") or []:
+            if MARKER not in (person.get("note") or ""):
+                continue
+            if (hh.get("id"), person.get("id")) in ruled:
+                continue
+            if retract_from_person(person):
+                withdrawn += 1
+                dirty = True
+        if dirty:
+            dump(path, hh)
     if not quiet:
-        print("fergus 1839 later lists: written onto %d resident record(s)" % touched)
+        print("fergus 1839 later lists: written onto %d resident record(s)%s"
+              % (touched, ", withdrawn from %d" % withdrawn if withdrawn else ""))
     return touched
 
 
@@ -523,6 +570,24 @@ def self_test() -> int:
              "hh_x", rival, MARKER, ("A SUPERSEDED WORDING OF THE SAME PASS.",))))
     want("this pass must declare its superseded wordings as a tuple",
          isinstance(SUPERSEDED_MARKERS, tuple))
+
+    # THE WITHDRAWAL (T-0987 stretch 8). A card whose ruling has gone must be put back to
+    # the state it was in before this pass ever wrote on it — the sentence that stood
+    # before survives, the paragraph goes, the citation goes with it, and running the
+    # retraction twice takes nothing further. Held over the card the applier just wrote.
+    undone = json.loads(json.dumps(after))
+    want("the withdrawal must strip this pass's paragraph",
+         retract_from_person(undone) and MARKER not in (undone.get("note") or ""))
+    want("…and leave the sentence that stood before it",
+         undone["note"] == "Existing sentence.")
+    want("…and drop the citation it put there",
+         SOURCE_ID not in (undone.get("sources") or []))
+    want("…and do nothing at all on a second pass", not retract_from_person(undone))
+    kept = json.loads(json.dumps(after))
+    kept["note"] = kept["note"] + " Another pass cites %s too." % SOURCE_ID
+    retract_from_person(kept)
+    want("…and keep a citation another pass's sentence still earns",
+         SOURCE_ID in (kept.get("sources") or []))
 
     for line in fails:
         print("   %s" % line)

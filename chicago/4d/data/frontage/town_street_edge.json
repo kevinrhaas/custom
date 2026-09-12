@@ -25,10 +25,10 @@
       "washington"
     ],
     "faces_laid": 36,
-    "walk_m": 3170.7,
+    "walk_m": 3182.9,
     "crossing_m": 857.5,
-    "fence_m": 1616.8,
-    "walking_decks": 254,
+    "fence_m": 1623.8,
+    "walking_decks": 250,
     "hitching_posts": 16
   },
   "card": {
@@ -44,13 +44,13 @@
         "note": "Asked for by the owner, 2026-08-18, of the first Cook County jail engraving: 'note the fences lining the street and what appears to be plank sidewalks. all of the streets should be updated like this... at least south of the river or near the river.' No 1835 source names a walk or a fence on any particular stretch of these streets."
       },
       "walk_m": {
-        "value": 3170.7,
+        "value": 3182.9,
         "confidence": "reconstructed",
         "sources": [],
         "note": "41 run(s) of sidewalk on 36 platted block face(s), plus 857.5 m of board crossing at 36 corner(s). Nothing measured: every metre is derived from the committed plat and audited against the committed ground."
       },
       "fence_m": {
-        "value": 1616.8,
+        "value": 1623.8,
         "confidence": "reconstructed",
         "sources": [],
         "note": "31 street-lining fence run(s), on the lots the rule found improved and standing back from their own frontage line."
@@ -1967,8 +1967,8 @@
       "chunk": "blk_lake_market_north_1",
       "centreline_local_enu_m": [
         [
-          111.77,
-          -121.61
+          108.3,
+          -121.58
         ],
         [
           195.56,
@@ -1989,117 +1989,95 @@
           "y": 0.865,
           "pts": [
             [
-              111.69,
-              -122.52
+              108.21,
+              -122.49
             ],
             [
-              127.56,
-              -122.65
+              128.9,
+              -122.66
             ],
             [
-              127.57,
-              -120.82
+              128.92,
+              -120.83
             ],
             [
-              111.7,
-              -120.69
+              108.22,
+              -120.66
             ]
           ],
-          "ground_roll_m": 0.006
+          "ground_roll_m": 0.047
         },
         {
-          "y": 0.871,
+          "y": 0.875,
           "pts": [
             [
-              127.4,
-              -122.65
+              128.74,
+              -122.66
             ],
             [
-              143.27,
-              -122.78
+              149.43,
+              -122.83
             ],
             [
-              143.28,
-              -120.95
+              149.45,
+              -121.0
             ],
             [
-              127.41,
-              -120.82
-            ]
-          ],
-          "ground_roll_m": 0.006
-        },
-        {
-          "y": 0.881,
-          "pts": [
-            [
-              143.11,
-              -122.78
-            ],
-            [
-              158.98,
-              -122.91
-            ],
-            [
-              158.99,
-              -121.08
-            ],
-            [
-              143.12,
-              -120.95
-            ]
-          ],
-          "ground_roll_m": 0.011
-        },
-        {
-          "y": 0.89,
-          "pts": [
-            [
-              158.82,
-              -122.91
-            ],
-            [
-              174.69,
-              -123.04
-            ],
-            [
-              174.7,
-              -121.21
-            ],
-            [
-              158.83,
-              -121.08
+              128.76,
+              -120.83
             ]
           ],
           "ground_roll_m": 0.01
         },
         {
+          "y": 0.89,
+          "pts": [
+            [
+              149.27,
+              -122.83
+            ],
+            [
+              169.97,
+              -123.0
+            ],
+            [
+              169.98,
+              -121.17
+            ],
+            [
+              149.29,
+              -121.0
+            ]
+          ],
+          "ground_roll_m": 0.015
+        },
+        {
           "y": 0.901,
           "pts": [
             [
-              174.53,
-              -123.04
+              169.81,
+              -123.0
             ],
             [
-              190.4,
+              190.5,
               -123.17
             ],
             [
-              190.41,
+              190.51,
               -121.34
             ],
             [
-              174.54,
-              -121.21
+              169.82,
+              -121.17
             ]
           ],
-          "ground_roll_m": 0.011
+          "ground_roll_m": 0.012
         },
         {
           "y": 0.905,
           "pts": [
             [
-              190.24,
+              190.34,
               -123.17
             ],
             [
@@ -2111,14 +2089,14 @@
               -121.38
             ],
             [
-              190.25,
+              190.35,
               -121.34
             ]
           ],
-          "ground_roll_m": 0.005
+          "ground_roll_m": 0.004
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 10.5 m to 94.3 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE LAKE STREET FRONTAGE of blk_lake_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 4.86 m of verge between its outer edge and the Lake Street track. This run is the stretch from 10.3 m to 97.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_market_south_crossing_blk_lake_franklin_south",
@@ -2204,12 +2182,12 @@
       "chunk": "blk_lake_market_south_1",
       "centreline_local_enu_m": [
         [
-          104.34,
-          -242.28
+          101.31,
+          -242.26
         ],
         [
-          104.36,
-          -264.34
+          101.33,
+          -264.31
         ]
       ],
       "width_m": 1.83,
@@ -2219,26 +2197,26 @@
       "plank_thickness_m": 0.055,
       "plank_underside": false,
       "plank_step_m": 1.8,
-      "run_m": 22.06,
+      "run_m": 22.05,
       "footway_decks": [
         {
           "y": 0.815,
           "pts": [
             [
-              103.43,
-              -242.2
+              100.4,
+              -242.18
             ],
             [
-              103.43,
-              -253.39
+              100.4,
+              -253.36
             ],
             [
-              105.26,
-              -253.39
+              102.23,
+              -253.36
             ],
             [
-              105.26,
-              -242.2
+              102.23,
+              -242.18
             ]
           ],
           "ground_roll_m": 0.0
@@ -2247,20 +2225,20 @@
           "y": 0.815,
           "pts": [
             [
-              103.43,
-              -253.23
+              100.4,
+              -253.2
             ],
             [
-              103.44,
-              -264.42
+              100.41,
+              -264.39
             ],
             [
-              105.27,
-              -264.42
+              102.24,
+              -264.39
             ],
             [
-              105.26,
-              -253.23
+              102.23,
+              -253.2
             ]
           ],
           "ground_roll_m": 0.0
@@ -2278,8 +2256,8 @@
       "chunk": "blk_lake_market_south_1",
       "centreline_local_enu_m": [
         [
-          100.34,
-          -242.24
+          97.31,
+          -242.22
         ],
         [
           194.83,
@@ -2294,123 +2272,101 @@
       "plank_underside": false,
       "stringer_pitch_m": 2.08,
       "lot_line_offset_m": 1.17,
-      "verge_to_track_m": 6.62,
+      "verge_to_track_m": 6.61,
       "footway_decks": [
         {
           "y": 0.865,
           "pts": [
             [
-              100.27,
-              -241.33
+              97.24,
+              -241.31
             ],
             [
-              116.18,
-              -241.46
+              117.93,
+              -241.48
             ],
             [
-              116.16,
-              -243.29
+              117.91,
+              -243.31
             ],
             [
-              100.25,
-              -243.16
+              97.22,
+              -243.14
             ]
           ],
           "ground_roll_m": 0.0
         },
         {
-          "y": 0.874,
+          "y": 0.876,
           "pts": [
             [
-              116.02,
-              -241.46
+              117.77,
+              -241.48
             ],
             [
-              131.92,
-              -241.59
+              138.46,
+              -241.64
             ],
             [
-              131.91,
-              -243.42
+              138.44,
+              -243.47
             ],
             [
-              116.0,
-              -243.29
-            ]
-          ],
-          "ground_roll_m": 0.009
-        },
-        {
-          "y": 0.882,
-          "pts": [
-            [
-              131.76,
-              -241.59
-            ],
-            [
-              147.67,
-              -241.72
-            ],
-            [
-              147.66,
-              -243.55
-            ],
-            [
-              131.75,
-              -243.42
-            ]
-          ],
-          "ground_roll_m": 0.01
-        },
-        {
-          "y": 0.891,
-          "pts": [
-            [
-              147.51,
-              -241.71
-            ],
-            [
-              163.42,
-              -241.84
-            ],
-            [
-              163.41,
-              -243.67
-            ],
-            [
-              147.5,
-              -243.54
+              117.75,
+              -243.31
             ]
           ],
           "ground_roll_m": 0.011
         },
         {
+          "y": 0.889,
+          "pts": [
+            [
+              138.3,
+              -241.64
+            ],
+            [
+              158.99,
+              -241.81
+            ],
+            [
+              158.97,
+              -243.64
+            ],
+            [
+              138.28,
+              -243.47
+            ]
+          ],
+          "ground_roll_m": 0.014
+        },
+        {
           "y": 0.9,
           "pts": [
             [
-              163.26,
-              -241.84
+              158.83,
+              -241.81
             ],
             [
-              179.17,
-              -241.97
+              179.52,
+              -241.98
             ],
             [
-              179.15,
-              -243.8
+              179.51,
+              -243.81
             ],
             [
-              163.25,
-              -243.67
+              158.81,
+              -243.64
             ]
           ],
-          "ground_roll_m": 0.01
+          "ground_roll_m": 0.013
         },
         {
           "y": 0.91,
           "pts": [
             [
-              179.01,
+              179.36,
               -241.97
             ],
             [
@@ -2422,14 +2378,14 @@
               -243.93
             ],
             [
-              178.99,
+              179.35,
               -243.8
             ]
           ],
           "ground_roll_m": 0.01
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_lake_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.62 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 94.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_lake_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.61 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 97.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_wells_north_crossing_blk_lake_lasalle_north",
@@ -4970,8 +4926,8 @@
       "chunk": "blk_randolph_market_north_1",
       "centreline_local_enu_m": [
         [
-          100.17,
-          -264.31
+          97.18,
+          -264.28
         ],
         [
           194.71,
@@ -4992,108 +4948,86 @@
           "y": 0.87,
           "pts": [
             [
-              100.08,
-              -265.22
+              97.09,
+              -265.19
             ],
             [
-              116.0,
-              -265.35
+              117.78,
+              -265.36
             ],
             [
-              116.01,
-              -263.52
+              117.8,
+              -263.53
             ],
             [
-              100.1,
-              -263.39
+              97.11,
+              -263.36
             ]
           ],
           "ground_roll_m": 0.005
         },
         {
-          "y": 0.884,
+          "y": 0.89,
           "pts": [
             [
-              115.84,
-              -265.35
+              117.62,
+              -265.36
             ],
             [
-              131.76,
-              -265.48
+              138.32,
+              -265.53
             ],
             [
-              131.77,
-              -263.65
+              138.33,
+              -263.7
             ],
             [
-              115.85,
-              -263.52
+              117.64,
+              -263.53
             ]
           ],
-          "ground_roll_m": 0.014
-        },
-        {
-          "y": 0.9,
-          "pts": [
-            [
-              131.6,
-              -265.48
-            ],
-            [
-              147.51,
-              -265.61
-            ],
-            [
-              147.53,
-              -263.78
-            ],
-            [
-              131.61,
-              -263.65
-            ]
-          ],
-          "ground_roll_m": 0.016
+          "ground_roll_m": 0.02
         },
         {
           "y": 0.905,
           "pts": [
             [
-              147.35,
-              -265.6
+              138.16,
+              -265.53
             ],
             [
-              163.27,
-              -265.73
+              158.85,
+              -265.7
             ],
             [
-              163.28,
-              -263.9
+              158.86,
+              -263.87
             ],
             [
-              147.37,
-              -263.77
+              138.17,
+              -263.7
             ]
           ],
-          "ground_roll_m": 0.007
+          "ground_roll_m": 0.015
         },
         {
           "y": 0.906,
           "pts": [
             [
-              163.11,
-              -265.73
+              158.69,
+              -265.69
             ],
             [
-              179.03,
+              179.38,
               -265.86
             ],
             [
-              179.04,
+              179.4,
               -264.03
             ],
             [
-              163.12,
-              -263.9
+              158.7,
+              -263.86
             ]
           ],
           "ground_roll_m": 0.001
@@ -5102,7 +5036,7 @@
           "y": 0.914,
           "pts": [
             [
-              178.87,
+              179.22,
               -265.86
             ],
             [
@@ -5114,14 +5048,14 @@
               -264.16
             ],
             [
-              178.88,
+              179.24,
               -264.03
             ]
           ],
           "ground_roll_m": 0.009
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_randolph_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.61 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 94.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE RANDOLPH STREET FRONTAGE of blk_randolph_market's north face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 6.61 m of verge between its outer edge and the Randolph Street track. This run is the stretch from 0.0 m to 97.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_market_south_crossing_blk_randolph_franklin_south",
@@ -5207,8 +5141,8 @@
       "chunk": "blk_randolph_market_south_1",
       "centreline_local_enu_m": [
         [
-          99.27,
-          -377.57
+          96.5,
+          -377.55
         ],
         [
           194.03,
@@ -5229,108 +5163,86 @@
           "y": 0.885,
           "pts": [
             [
-              99.2,
-              -376.66
+              96.43,
+              -376.64
             ],
             [
-              115.15,
-              -376.79
+              117.12,
+              -376.81
             ],
             [
-              115.14,
-              -378.62
+              117.11,
+              -378.64
             ],
             [
-              99.18,
-              -378.49
-            ]
-          ],
-          "ground_roll_m": 0.0
-        },
-        {
-          "y": 0.888,
-          "pts": [
-            [
-              114.99,
-              -376.79
-            ],
-            [
-              130.94,
-              -376.92
-            ],
-            [
-              130.93,
-              -378.75
-            ],
-            [
-              114.98,
-              -378.62
+              96.41,
+              -378.47
             ]
           ],
           "ground_roll_m": 0.003
         },
         {
-          "y": 0.895,
+          "y": 0.89,
           "pts": [
             [
-              130.78,
-              -376.92
+              116.96,
+              -376.81
             ],
             [
-              146.74,
-              -377.05
+              137.65,
+              -376.97
             ],
             [
-              146.72,
-              -378.88
+              137.64,
+              -378.8
             ],
             [
-              130.77,
-              -378.75
-            ]
-          ],
-          "ground_roll_m": 0.009
-        },
-        {
-          "y": 0.9,
-          "pts": [
-            [
-              146.58,
-              -377.04
-            ],
-            [
-              162.53,
-              -377.17
-            ],
-            [
-              162.52,
-              -379.0
-            ],
-            [
-              146.56,
-              -378.87
+              116.95,
+              -378.64
             ]
           ],
           "ground_roll_m": 0.005
         },
         {
+          "y": 0.9,
+          "pts": [
+            [
+              137.49,
+              -376.97
+            ],
+            [
+              158.19,
+              -377.14
+            ],
+            [
+              158.17,
+              -378.97
+            ],
+            [
+              137.48,
+              -378.8
+            ]
+          ],
+          "ground_roll_m": 0.01
+        },
+        {
           "y": 0.905,
           "pts": [
             [
-              162.37,
-              -377.17
+              158.03,
+              -377.14
             ],
             [
-              178.32,
-              -377.3
+              178.72,
+              -377.31
             ],
             [
-              178.31,
-              -379.13
+              178.7,
+              -379.14
             ],
             [
-              162.36,
-              -379.0
+              158.01,
+              -378.97
             ]
           ],
           "ground_roll_m": 0.005
@@ -5339,7 +5251,7 @@
           "y": 0.91,
           "pts": [
             [
-              178.16,
+              178.56,
               -377.3
             ],
             [
@@ -5351,14 +5263,14 @@
               -379.26
             ],
             [
-              178.15,
+              178.54,
               -379.13
             ]
           ],
           "ground_roll_m": 0.005
         }
       ],
-      "note": "THE PLANK SIDEWALK ON THE WASHINGTON STREET FRONTAGE of blk_randolph_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 7.21 m of verge between its outer edge and the Washington Street track. This run is the stretch from 0.0 m to 94.8 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
+      "note": "THE PLANK SIDEWALK ON THE WASHINGTON STREET FRONTAGE of blk_randolph_market's south face, at the lot line. WHERE is DERIVED and nothing here is placed: the face is a committed street centreline offset by half the committed 80 ft corridor (data/traces/vectors/thompson_lots.json, re-derived by tools/generate_plat_lots.py), and the walk's centre lies 1.165 m outward of it — 0.25 m of daylight off the fence line and half a walk's width — leaving 7.21 m of verge between its outer edge and the Washington Street track. This run is the stretch from 0.0 m to 97.5 m along the face that passed the march: dry committed ground, flat enough for one walking deck, and nothing already standing on it. What is invented is the width, the rise, the plank pitch and that a walk stood on this ground at noon on 1 July 1835: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_wells_north_crossing_blk_randolph_lasalle_north",
@@ -8242,8 +8154,8 @@
       "chunk": "blk_lake_market_north_1",
       "path_local_enu_m": [
         [
-          124.86,
-          -122.88
+          122.4,
+          -122.86
         ],
         [
           195.55,
@@ -8262,7 +8174,7 @@
         6
       ],
       "least_setback_m": 6.99,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_lake_market's own platted frontage line from 23.6 m to 94.3 m along the north face, covering lot(s) 2, 4, 6 — every one of them improved by a committed building whose nearest wall stands 6.99 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_lake_market's own platted frontage line from 24.4 m to 97.5 m along the north face, covering lot(s) 2, 4, 6 — every one of them improved by a committed building whose nearest wall stands 6.99 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_market_south_fence_9",
@@ -8274,8 +8186,8 @@
       "chunk": "blk_lake_market_south_1",
       "path_local_enu_m": [
         [
-          147.53,
-          -241.46
+          145.96,
+          -241.45
         ],
         [
           194.84,
@@ -8292,8 +8204,8 @@
         5,
         7
       ],
-      "least_setback_m": 5.49,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_lake_market's own platted frontage line from 47.2 m to 94.5 m along the south face, covering lot(s) 5, 7 — every one of them improved by a committed building whose nearest wall stands 5.49 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "least_setback_m": 5.48,
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_lake_market's own platted frontage line from 48.6 m to 97.5 m along the south face, covering lot(s) 5, 7 — every one of them improved by a committed building whose nearest wall stands 5.48 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_lake_wells_south_fence_11",
@@ -8649,12 +8561,12 @@
       "chunk": "blk_randolph_market_north_1",
       "path_local_enu_m": [
         [
-          100.16,
-          -265.47
+          97.17,
+          -265.44
         ],
         [
-          147.5,
-          -265.86
+          146.05,
+          -265.84
         ]
       ],
       "height_m": 1.37,
@@ -8667,8 +8579,8 @@
         0,
         2
       ],
-      "least_setback_m": 4.99,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_market's own platted frontage line from 0.0 m to 47.3 m along the north face, covering lot(s) 0, 2 — every one of them improved by a committed building whose nearest wall stands 4.99 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "least_setback_m": 5.0,
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_market's own platted frontage line from 0.0 m to 48.9 m along the north face, covering lot(s) 0, 2 — every one of them improved by a committed building whose nearest wall stands 5.00 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_market_south_fence_25",
@@ -8680,11 +8592,11 @@
       "chunk": "blk_randolph_market_south_1",
       "path_local_enu_m": [
         [
-          122.93,
-          -376.6
+          120.78,
+          -376.59
         ],
         [
-          146.66,
+          145.28,
           -376.79
         ]
       ],
@@ -8698,7 +8610,7 @@
         3
       ],
       "least_setback_m": 4.5,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_market's own platted frontage line from 23.7 m to 47.4 m along the south face, covering lot(s) 3 — every one of them improved by a committed building whose nearest wall stands 4.50 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_market's own platted frontage line from 24.3 m to 48.8 m along the south face, covering lot(s) 3 — every one of them improved by a committed building whose nearest wall stands 4.50 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_market_south_fence_26",
@@ -8710,8 +8622,8 @@
       "chunk": "blk_randolph_market_south_1",
       "path_local_enu_m": [
         [
-          170.26,
-          -376.99
+          169.54,
+          -376.98
         ],
         [
           194.04,
@@ -8728,7 +8640,7 @@
         7
       ],
       "least_setback_m": 5.99,
-      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_market's own platted frontage line from 71.0 m to 94.8 m along the south face, covering lot(s) 7 — every one of them improved by a committed building whose nearest wall stands 5.99 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
+      "note": "A FENCE LINING THE STREET, on the lot line with the plank walk at its foot — which is the first Cook County jail engraving read literally (data/sources/assets/owner_brief_2026_08_18/README.md, image 1: board fences at the frontage line, a plank walk beside them). WHERE is derived: it stands on blk_randolph_market's own platted frontage line from 73.0 m to 97.5 m along the south face, covering lot(s) 7 — every one of them improved by a committed building whose nearest wall stands 5.99 m back from that line, which is the clause that decides a fence is what lines the street here rather than a wall. The board width, the gap, the bay, the post and the height are the treatment the plate shows and no source gives: docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_randolph_wells_north_fence_20",
@@ -9240,7 +9152,7 @@
       "street_name": "South Water Street",
       "chunk": "blk_south_water_lasalle_north_1",
       "stands_at": "chicago_democrat_office",
-      "trade": "printing_office_and_store",
+      "trade": "store",
       "trade_confidence": "inferred",
       "at_local_enu_m": [
         554.79,
@@ -9254,7 +9166,7 @@
       "along_frontage_frac": 0.28,
       "clear_of_track_m": 3.88,
       "stands_on_m": 0.64,
-      "note": "A POST AT THE ROAD EDGE OUTSIDE The Chicago Democrat Office, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `printing_office_and_store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `inferred` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.64 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
+      "note": "A POST AT THE ROAD EDGE OUTSIDE The Chicago Democrat Office, for a rider to tie to. WHY HERE is a rule and not a placement: this frontage's trade is `store` — one of the trades this project already rules take their custom from a stranger off the street (tools/generate_business_signboards.py, PUBLIC_TRADES, the same clause that decides which frontage hangs a board) — and that trade is held `inferred` rather than dealt by a schedule. WHERE is derived: the footprint is projected onto its own platted face, the post stands at 0.28 of that frontage and 2.98 m out from the lot line — 0.90 m clear of the walk's outer edge, the same verge the Sauganash's own posts stand in — on committed ground at +0.64 m with 3.88 m still between it and the South Water Street track. WHAT IS INVENTED: that a post stood on this ground at noon on 1 July 1835, and its height, its section and its capped head, which are the Sauganash's numbers carried across (docs/LIBERTIES.md L136). docs/LIBERTIES.md L160."
     },
     {
       "id": "blk_south_water_lasalle_south_hitching_thomas_church_store",
@@ -9476,12 +9388,12 @@
     {
       "structure_id": "blk_lake_market_lot1",
       "wall": "blk_lake_market south face, lot 1",
-      "why": "inf_packer_dwelling stands 0.89 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "inf_packer_dwelling stands 0.90 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_market_lot3",
       "wall": "blk_lake_market south face, lot 3",
-      "why": "inf_packer_dwelling stands 0.89 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
+      "why": "inf_packer_dwelling stands 0.90 m from this lot's frontage line, inside the 3.0 m a street fence needs — the building IS the street wall here, and a fence in front of it would be a second one."
     },
     {
       "structure_id": "blk_lake_wells_lot0",
@@ -9526,12 +9438,12 @@
     {
       "structure_id": "blk_randolph_clinton_north_crossing_blk_randolph_market_north",
       "wall": "corner crossing",
-      "why": "the two walks stop 269.7 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
+      "why": "the two walks stop 266.7 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
       "structure_id": "blk_randolph_clinton_south_crossing_blk_randolph_market_south",
       "wall": "corner crossing",
-      "why": "the two walks stop 263.5 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
+      "why": "the two walks stop 260.7 m apart, wider than the platted corridor between them — the walk on one side was refused short of its corner, so no crossing is laid."
     },
     {
       "structure_id": "blk_randolph_dearborn_lot1",

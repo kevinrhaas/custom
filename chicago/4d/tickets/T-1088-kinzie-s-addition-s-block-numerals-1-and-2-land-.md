@@ -1,5 +1,5 @@
 ---
-id: T-1067
+id: T-1088
 title: Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
 state: open
 epic: META

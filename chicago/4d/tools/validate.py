@@ -1922,8 +1922,17 @@ def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
     if not isinstance(doc, dict):
         rep.error(where, f"no traced river at {epoch_dir.name} to meet")
         return []
+    # The forks window is not the whole river. `branches.geojson` carries the
+    # reaches traced OUTSIDE it — today the South Branch from the forks window's
+    # south edge to the School Section's south line (T-1071) — and a face that
+    # ends on the water down there meets a bank that lives in that file and
+    # nowhere else. It is optional: an epoch may have no branches traced yet.
+    docs = [doc]
+    more = load_json(epoch_dir / "branches.geojson", rep, required=False)
+    if isinstance(more, dict):
+        docs.append(more)
     out: list[float] = []
-    for ft in doc.get("features", []):
+    for ft in [f for d in docs for f in d.get("features", [])]:
         geom = ft.get("geometry") or {}
         if geom.get("type") != "Polygon":
             continue
@@ -3948,6 +3957,58 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
         for key in ("rgb", "wet_rgb"):
             if not _rgb_ok((z.get("ground") or {}).get(key)):
                 rep.error(where, f"ground.{key} must be [r,g,b] 0-255")
+
+        # T-1056 — THE WOODY STRATUM'S ELEVATION BAND, GATED WHERE IT IS RECORDED.
+        #
+        # The sand zones carry a bound on where woody growth establishes, because
+        # Andreas's timber exception is to the sandy HILLS and the bar across the
+        # mouth is not one. It is an ecological claim with two recorded ends, so it
+        # is checked exactly as an extent is: a real range, in metres above the
+        # summer water surface, over roles this project actually draws, and graded.
+        # An unrecognised role would be a bound that silently binds nothing, which
+        # is the one failure a reader could not see in the walkthrough.
+        ws = z.get("woody_stratum")
+        if ws is not None:
+            if not isinstance(ws, dict):
+                rep.error(where, "woody_stratum must be an object carrying establishes_m, "
+                                 "applies_to_roles and its own provenance")
+            else:
+                if not _num_range(ws.get("establishes_m"), -5.0, 50.0):
+                    rep.error(where, "woody_stratum.establishes_m must be [low, high] metres "
+                                     "above the summer water surface, low <= high, got "
+                                     f"{ws.get('establishes_m')!r}")
+                elif ws["establishes_m"][0] == ws["establishes_m"][1]:
+                    rep.error(where, "woody_stratum.establishes_m is a single elevation, so it "
+                                     "states a STEP; no source in this project gives one, and "
+                                     "the band exists to keep the invention visible")
+                roles = ws.get("applies_to_roles")
+                if not isinstance(roles, list) or not roles:
+                    rep.error(where, "woody_stratum.applies_to_roles must name the roles the "
+                                     "bound binds; a bound over no role binds nothing")
+                else:
+                    known = set(vocab.get("roles") or [])
+                    for r in roles:
+                        if known and r not in known:
+                            rep.error(where, f"woody_stratum.applies_to_roles names '{r}', "
+                                             f"which is not in the index's role vocabulary")
+                    bound = [sp for sp in z.get("species") or []
+                             if sp.get("role") in set(roles)]
+                    if not bound:
+                        rep.error(where, "woody_stratum binds roles this zone records no "
+                                         "species in, so the band is unreachable")
+                # `measured_from` and not `datum`: the token `datum` occurs in nine
+                # renderer files (data/datum.json is the scene's horizontal origin),
+                # and tools/measure_layer_reads.py matches a figure's name against
+                # the renderer text — so a field called `datum` reads as one the
+                # renderers access, which is the opposite of true here.
+                if not ws.get("measured_from"):
+                    rep.error(where, "woody_stratum.measured_from must say what the metres are "
+                                     "measured from; an elevation with no datum is a number")
+                check_attested(where, "woody_stratum", ws, source_ids, rep)
+                if ws.get("confidence") == "attested":
+                    rep.error(where, "woody_stratum cannot be attested: no source in this "
+                                     "project states an establishment elevation for lake sand. "
+                                     "It is reasoned from two recorded ones and must say so")
 
         ext = z.get("extent") or {}
         kind = ext.get("kind")

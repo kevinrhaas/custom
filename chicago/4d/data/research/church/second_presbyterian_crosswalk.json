@@ -13,11 +13,11 @@
     "A household. The roll names wives as `Mrs. <husband's name>` throughout, so a woman's own forename is frequently not on the page at all."
   ],
   "counts": {
-    "roll_records": 937,
-    "residents_considered": 1292,
-    "residents_matched_one_line": 81,
-    "residents_ambiguous": 35,
-    "residents_surname_only_refused": 316
+    "roll_records": 941,
+    "residents_considered": 1293,
+    "residents_matched_one_line": 80,
+    "residents_ambiguous": 36,
+    "residents_surname_only_refused": 320
   },
   "matched": [
     {
@@ -713,7 +713,7 @@
       "rule": "Surname 'Holbrook' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0601",
+          "record": "second_presb_0603",
           "as_read": "Holbrook, Miss Julia T. | Profession. | May 2, 1858. | Dismissed.",
           "admitted": "1858-05-02",
           "how_admitted": "profession",
@@ -731,7 +731,7 @@
       "rule": "Surname 'Howe' folds to the same string as the roll line's, and the given name of both begins S.",
       "roll_lines": [
         {
-          "record": "second_presb_0615",
+          "record": "second_presb_0617",
           "as_read": "Howe, Mrs. Susan N. | Letter. | May I, 1859. | Dismissed.",
           "admitted": "1859-05-01",
           "how_admitted": "letter",
@@ -749,7 +749,7 @@
       "rule": "Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0637",
+          "record": "second_presb_0639",
           "as_read": "Hunter, Mrs. Electa | Letter. | November 3, 1848. | Dismissed.",
           "admitted": "1848-11-03",
           "how_admitted": "letter",
@@ -767,7 +767,7 @@
       "rule": "Surname 'Hunter' folds to the same string as the roll line's, and the given name of both begins R.",
       "roll_lines": [
         {
-          "record": "second_presb_0639",
+          "record": "second_presb_0641",
           "as_read": "Hunter, Robert | Letter. | December 27, 1843. | Dismissed.",
           "admitted": "1843-12-27",
           "how_admitted": "letter",
@@ -803,7 +803,7 @@
       "rule": "Surname 'Jordan' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0647",
+          "record": "second_presb_0649",
           "as_read": "Jordan, James O. | Letter. | October 30, 1872. | Dismissed.",
           "admitted": "1872-10-30",
           "how_admitted": "letter",
@@ -839,7 +839,7 @@
       "rule": "Surname 'Lawrence' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0668",
+          "record": "second_presb_0670",
           "as_read": "Lawrence, James A. | Profession. | September 2, 1874. | Dismissed.",
           "admitted": "1874-09-02",
           "how_admitted": "profession",
@@ -857,7 +857,7 @@
       "rule": "Surname 'Marshall' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0684",
+          "record": "second_presb_0686",
           "as_read": "Marshall, Mrs. J. A. | Letter. | June 30, 1848. | Dismissed.",
           "admitted": "1848-06-30",
           "how_admitted": "letter",
@@ -875,7 +875,7 @@
       "rule": "Surname 'Merrill' folds to the same string as the roll line's, and the given name of both begins G.",
       "roll_lines": [
         {
-          "record": "second_presb_0702",
+          "record": "second_presb_0704",
           "as_read": "Merrill, George W. | Letter. | June I, 1842. | Deceased,",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -893,7 +893,7 @@
       "rule": "Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S.",
       "roll_lines": [
         {
-          "record": "second_presb_0708",
+          "record": "second_presb_0710",
           "as_read": "Miller, Mrs. Sarah | Profession. | February 25, 1874. | Dismissed.",
           "admitted": "1874-02-25",
           "how_admitted": "profession",
@@ -911,7 +911,7 @@
       "rule": "Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins L.",
       "roll_lines": [
         {
-          "record": "second_presb_0718",
+          "record": "second_presb_0720",
           "as_read": "Montgomery, Mrs. Laura A. | . Letter. | January 3, 1851. | Dismissed.",
           "admitted": "1851-01-03",
           "how_admitted": "letter",
@@ -929,7 +929,7 @@
       "rule": "Surname 'Montgomery' folds to the same string as the roll line's, and the given name of both begins W.",
       "roll_lines": [
         {
-          "record": "second_presb_0721",
+          "record": "second_presb_0723",
           "as_read": "Montgomery, William P. | Letter. | December 29, 1852. | Dismissed.",
           "admitted": "1852-12-29",
           "how_admitted": "letter",
@@ -983,7 +983,7 @@
       "rule": "Surname 'Nelson' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0748",
+          "record": "second_presb_0750",
           "as_read": "Nelson, Miss Jane | Profession. | September 30, 1870. | Dismissed.",
           "admitted": "1870-09-30",
           "how_admitted": "profession",
@@ -1037,7 +1037,7 @@
       "rule": "Surname 'Price' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0783",
+          "record": "second_presb_0785",
           "as_read": "Price, Jeremiah | Letter. | August 7, 1843. | Deceased.",
           "admitted": "1843-08-07",
           "how_admitted": "letter",
@@ -1055,7 +1055,7 @@
       "rule": "Surname 'Reynolds' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0788",
+          "record": "second_presb_0790",
           "as_read": "Reynolds. Mrs. J. E. | Profession. | March 2, 1844. | Dismissed.",
           "admitted": "1844-03-02",
           "how_admitted": "profession",
@@ -1073,7 +1073,7 @@
       "rule": "Surname 'Roberts' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0792",
+          "record": "second_presb_0794",
           "as_read": "Roberts, Mrs. Eveline | Profession. | May 4, 1858. | Dismissed.",
           "admitted": "1858-05-04",
           "how_admitted": "profession",
@@ -1091,7 +1091,7 @@
       "rule": "Surname 'Rogers' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0797",
+          "record": "second_presb_0799",
           "as_read": "Rogers, Edward J. | Profession. | January 12, 1877. | Dismissed.",
           "admitted": "1877-01-12",
           "how_admitted": "profession",
@@ -1145,7 +1145,7 @@
       "rule": "Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins H.",
       "roll_lines": [
         {
-          "record": "second_presb_0810",
+          "record": "second_presb_0812",
           "as_read": "Sherman, Howard | Letter. | December 29, 1852. | Dismissed.",
           "admitted": "1852-12-29",
           "how_admitted": "letter",
@@ -1199,7 +1199,7 @@
       "rule": "Surname 'Skinner' folds to the same string as the roll line's, and the given name of both begins H.",
       "roll_lines": [
         {
-          "record": "second_presb_0823",
+          "record": "second_presb_0825",
           "as_read": "Skinner, HoUis R. | Letter. | October 29, 1856. | Dismissed.",
           "admitted": "1856-10-29",
           "how_admitted": "letter",
@@ -1271,7 +1271,7 @@
       "rule": "Surname 'Starkweather' folds to the same string as the roll line's, and the given name of both begins R.",
       "roll_lines": [
         {
-          "record": "second_presb_0855",
+          "record": "second_presb_0857",
           "as_read": "Starkweather, Ralph E. | Profession. | April 27, 1859. | Dismissed.",
           "admitted": "1859-04-27",
           "how_admitted": "profession",
@@ -1289,7 +1289,7 @@
       "rule": "Surname 'Steel' folds to the same string as the roll line's, and the given name of both begins R.",
       "roll_lines": [
         {
-          "record": "second_presb_0859",
+          "record": "second_presb_0861",
           "as_read": "Steel, Mrs. Rebecca A. | Profession. | April 30, 1847. | Dismissed.",
           "admitted": "1847-04-30",
           "how_admitted": "profession",
@@ -1343,7 +1343,7 @@
       "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C.",
       "roll_lines": [
         {
-          "record": "second_presb_0873",
+          "record": "second_presb_0875",
           "as_read": "Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.",
           "admitted": "1843",
           "how_admitted": "letter",
@@ -1379,7 +1379,7 @@
       "rule": "Surname 'Taylor' folds to the same string as the roll line's, and the given name of both begins C.",
       "roll_lines": [
         {
-          "record": "second_presb_0873",
+          "record": "second_presb_0875",
           "as_read": "Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.",
           "admitted": "1843",
           "how_admitted": "letter",
@@ -1407,24 +1407,6 @@
       ]
     },
     {
-      "name": "Lieut J L Thompson",
-      "person_id": "thompson_lieut_j_l",
-      "household_id": "hh_thompson_lieut_j_l",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Thompson' folds to the same string as the roll line's, and the given name of both begins L.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0335",
-          "as_read": "Thompson, Leveret | Profession. | November 29, 1889.",
-          "admitted": "1889-11-29",
-          "how_admitted": "profession",
-          "printed_page": 173,
-          "a_married_womans_entry": false
-        }
-      ]
-    },
-    {
       "name": "J Ambrose Wight",
       "person_id": "wight_j_ambrose",
       "household_id": "hh_wight_j_ambrose",
@@ -1433,7 +1415,7 @@
       "rule": "Surname 'Wight' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0910",
+          "record": "second_presb_0914",
           "as_read": "Wight, J. Ambrose | Letter. | October 28, 1843. Ordained | to Miniitry",
           "admitted": "1843-10-28",
           "how_admitted": "letter",
@@ -1469,7 +1451,7 @@
       "rule": "Surname 'Williams' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0914",
+          "record": "second_presb_0918",
           "as_read": "Williams, Edward M. | Profession. | April 30, 1852. | Dismissed.",
           "admitted": "1852-04-30",
           "how_admitted": "profession",
@@ -1821,7 +1803,7 @@
       "rule": "Surname 'Hooker' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0605",
+          "record": "second_presb_0607",
           "as_read": "Hooker, Edward | Letter. | March 4, 1853. | Dismissed.",
           "admitted": "1853-03-04",
           "how_admitted": "letter",
@@ -1829,7 +1811,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0606",
+          "record": "second_presb_0608",
           "as_read": "Hooker, Mrs. Eliza | Profession. | April 30, 1852. | Dismissed.",
           "admitted": "1852-04-30",
           "how_admitted": "profession",
@@ -1847,7 +1829,7 @@
       "rule": "Surname 'Hubbard' folds to the same string as the roll line's, and the given name of both begins A.",
       "roll_lines": [
         {
-          "record": "second_presb_0617",
+          "record": "second_presb_0619",
           "as_read": "Hubbard, Miss Alice P. | Profession. | June 21, 1865. | Dismissed.",
           "admitted": "1865-06-21",
           "how_admitted": "profession",
@@ -1855,7 +1837,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0618",
+          "record": "second_presb_0620",
           "as_read": "Hubbard, Mrs. Alvira | Letter. | May 3, 1850. | Deceased.",
           "admitted": "1850-05-03",
           "how_admitted": "letter",
@@ -1889,7 +1871,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0626",
+          "record": "second_presb_0628",
           "as_read": "Hunt, Mrs. Caroline T. | Letter. | May 3, 1876. | Dism ssed.",
           "admitted": "1876-05-03",
           "how_admitted": "letter",
@@ -1897,7 +1879,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0627",
+          "record": "second_presb_0629",
           "as_read": "Hunt, Charles H. | Profession. | May 3, 1865. | Deceased.",
           "admitted": "1865-05-03",
           "how_admitted": "profession",
@@ -1923,7 +1905,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0785",
+          "record": "second_presb_0787",
           "as_read": "Reed, Josiah H. | Letter. | September i, 1845. | Dismissed.",
           "admitted": "1845-09-01",
           "how_admitted": "letter",
@@ -1949,7 +1931,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0643",
+          "record": "second_presb_0645",
           "as_read": "Jones, Mrs. Harriet D. | Letter. | December 27, 1843. | Dismissed.",
           "admitted": "1843-12-27",
           "how_admitted": "letter",
@@ -1967,7 +1949,7 @@
       "rule": "Surname 'King' folds to the same string as the roll line's, and the given name of both begins H.",
       "roll_lines": [
         {
-          "record": "second_presb_0657",
+          "record": "second_presb_0659",
           "as_read": "King, Henry W. | Profession. | September i, 1858. | Dismissed.",
           "admitted": "1858-09-01",
           "how_admitted": "profession",
@@ -1975,7 +1957,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0658",
+          "record": "second_presb_0660",
           "as_read": "King, Henry W., Jr. | Profession. | January 12, 1877. | Dismissed.",
           "admitted": "1877-01-12",
           "how_admitted": "profession",
@@ -1993,7 +1975,7 @@
       "rule": "Surname 'King' folds to the same string as the roll line's, and the given name of both begins T.",
       "roll_lines": [
         {
-          "record": "second_presb_0660",
+          "record": "second_presb_0662",
           "as_read": "King, Tuthill | Letter. | January 2, 1852. | Dismissed.",
           "admitted": "1852-01-02",
           "how_admitted": "letter",
@@ -2001,7 +1983,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0661",
+          "record": "second_presb_0663",
           "as_read": "King, Mrs. Tuthill | Letter. | January 2, 1852. | Dismissed.",
           "admitted": "1852-01-02",
           "how_admitted": "letter",
@@ -2027,7 +2009,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0681",
+          "record": "second_presb_0683",
           "as_read": "Marsh, Sylvester | Letter. | May I, 1861. | Dismissed.",
           "admitted": "1861-05-01",
           "how_admitted": "letter",
@@ -2045,7 +2027,7 @@
       "rule": "Surname 'Meeker' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0698",
+          "record": "second_presb_0700",
           "as_read": "Meeker, Joseph | Letter. | August 31, 1844. | Dismissed.",
           "admitted": "1844-08-31",
           "how_admitted": "letter",
@@ -2053,7 +2035,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0699",
+          "record": "second_presb_0701",
           "as_read": "Meeker, Miss Julia | Letter. | December 23, 1850. | Deceased.",
           "admitted": "1850-12-23",
           "how_admitted": "letter",
@@ -2071,7 +2053,7 @@
       "rule": "Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0705",
+          "record": "second_presb_0707",
           "as_read": "Miller, John W. | Profession. | February 25, 1874. | Dismissed.",
           "admitted": "1874-02-25",
           "how_admitted": "profession",
@@ -2079,7 +2061,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0706",
+          "record": "second_presb_0708",
           "as_read": "Miller, Mrs. Julia P. | Letter. | August 31, 1849. | Dismissed.",
           "admitted": "1849-08-31",
           "how_admitted": "letter",
@@ -2097,7 +2079,7 @@
       "rule": "Surname 'Preston' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0780",
+          "record": "second_presb_0782",
           "as_read": "Preston, Mrs Emma C. | Letter. | May 2, 1879. | Dismissed.",
           "admitted": "1879-05-02",
           "how_admitted": "letter",
@@ -2105,7 +2087,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0781",
+          "record": "second_presb_0783",
           "as_read": "Preston, Miss Emma C. | Letter. | May 2, 1879. | Dismissed.",
           "admitted": "1879-05-02",
           "how_admitted": "letter",
@@ -2123,7 +2105,7 @@
       "rule": "Surname 'Skinner' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
         {
-          "record": "second_presb_0817",
+          "record": "second_presb_0819",
           "as_read": "Skinner, Mrs. Eliza Ann | Letter. | October 25, 1843. | Dismissed.",
           "admitted": "1843-10-25",
           "how_admitted": "letter",
@@ -2131,7 +2113,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0818",
+          "record": "second_presb_0820",
           "as_read": "Skinner, Miss Elizabeth | Profession. | June 24, 1858. | Dismissed.",
           "admitted": "1858-06-24",
           "how_admitted": "profession",
@@ -2139,7 +2121,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0819",
+          "record": "second_presb_0821",
           "as_read": "Skinner, Dr. E. M. | Letter. | February 25, 1868. | Dismissed.",
           "admitted": "1868-02-25",
           "how_admitted": "letter",
@@ -2147,7 +2129,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0820",
+          "record": "second_presb_0822",
           "as_read": "Skinner, Mrs. E. M. | Letter. | February 25, 1868. | Dismissed.",
           "admitted": "1868-02-25",
           "how_admitted": "letter",
@@ -2155,7 +2137,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0821",
+          "record": "second_presb_0823",
           "as_read": "Skinner, Mrs. Elizabeth W. | Letter. | January 4, 1856. | Dismissed.",
           "admitted": "1856-01-04",
           "how_admitted": "letter",
@@ -2189,7 +2171,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0831",
+          "record": "second_presb_0833",
           "as_read": "Smith, E. B. | Letter. | January 10, 1878. | Dismissed.",
           "admitted": "1878-01-10",
           "how_admitted": "letter",
@@ -2197,7 +2179,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0832",
+          "record": "second_presb_0834",
           "as_read": "Smith, Mrs. E. B. | Letter. | January 10, 1878. | Dismissed.",
           "admitted": "1878-01-10",
           "how_admitted": "letter",
@@ -2205,7 +2187,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0833",
+          "record": "second_presb_0835",
           "as_read": "Smith, E. WiUard | Profession. | April 26, 1852. | Dismissed.",
           "admitted": "1852-04-26",
           "how_admitted": "profession",
@@ -2213,7 +2195,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0834",
+          "record": "second_presb_0836",
           "as_read": "Smith, Mrs. Emma | Letter. | June 29, 1874. | Dismissed.",
           "admitted": "1874-06-29",
           "how_admitted": "letter",
@@ -2247,7 +2229,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0831",
+          "record": "second_presb_0833",
           "as_read": "Smith, E. B. | Letter. | January 10, 1878. | Dismissed.",
           "admitted": "1878-01-10",
           "how_admitted": "letter",
@@ -2255,7 +2237,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0832",
+          "record": "second_presb_0834",
           "as_read": "Smith, Mrs. E. B. | Letter. | January 10, 1878. | Dismissed.",
           "admitted": "1878-01-10",
           "how_admitted": "letter",
@@ -2263,7 +2245,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0833",
+          "record": "second_presb_0835",
           "as_read": "Smith, E. WiUard | Profession. | April 26, 1852. | Dismissed.",
           "admitted": "1852-04-26",
           "how_admitted": "profession",
@@ -2271,7 +2253,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0834",
+          "record": "second_presb_0836",
           "as_read": "Smith, Mrs. Emma | Letter. | June 29, 1874. | Dismissed.",
           "admitted": "1874-06-29",
           "how_admitted": "letter",
@@ -2305,7 +2287,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0837",
+          "record": "second_presb_0839",
           "as_read": "Smith, Jacob G. | Profession. | March 2, 1877. | Dismissed.",
           "admitted": "1877-03-02",
           "how_admitted": "profession",
@@ -2313,7 +2295,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0838",
+          "record": "second_presb_0840",
           "as_read": "Smith, James A. | Letter. | January 5, 1849 | Deceased.",
           "admitted": "1849-01-05",
           "how_admitted": "letter",
@@ -2321,7 +2303,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0839",
+          "record": "second_presb_0841",
           "as_read": "Smith, Mrs. J. A. | Letter. | January 5, 1849 | Deceased.",
           "admitted": "1849-01-05",
           "how_admitted": "letter",
@@ -2329,7 +2311,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0840",
+          "record": "second_presb_0842",
           "as_read": "Smith, Joseph Means | Profession. | June 24, 1 89 1. | Dismissed.",
           "admitted": null,
           "how_admitted": "profession",
@@ -2337,7 +2319,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0841",
+          "record": "second_presb_0843",
           "as_read": "Smith, Miss Juliette P. | Profession. | November 3, 1854. | Deceased.",
           "admitted": "1854-11-03",
           "how_admitted": "profession",
@@ -2371,7 +2353,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0842",
+          "record": "second_presb_0844",
           "as_read": "Smith, Mrs. Mary, | Letter. | December 31, 1844. | Dismissed.",
           "admitted": "1844-12-31",
           "how_admitted": "letter",
@@ -2379,7 +2361,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0843",
+          "record": "second_presb_0845",
           "as_read": "Smith, Miss Mary A. | Profession. | June 27, 1853. | Dismissed.",
           "admitted": "1853-06-27",
           "how_admitted": "profession",
@@ -2387,7 +2369,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0844",
+          "record": "second_presb_0846",
           "as_read": "Smith, Mrs. MeUnda W. | Letter. | March 4, 1853. | Dismissed.",
           "admitted": "1853-03-04",
           "how_admitted": "letter",
@@ -2457,7 +2439,7 @@
       "rule": "Surname 'Sprague' folds to the same string as the roll line's, and the given name of both begins W.",
       "roll_lines": [
         {
-          "record": "second_presb_0850",
+          "record": "second_presb_0852",
           "as_read": "Sprague, William | Profession. | June 24, 1858. | Dismissed,",
           "admitted": "1858-06-24",
           "how_admitted": "profession",
@@ -2465,7 +2447,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0851",
+          "record": "second_presb_0853",
           "as_read": "Sprague, Mrs. William | Letter. | October 29, 1862. | Dismissed.",
           "admitted": "1862-10-29",
           "how_admitted": "letter",
@@ -2491,7 +2473,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0882",
+          "record": "second_presb_0884",
           "as_read": "Thomas, Mrs, Frances A. | Profession. | April 26, 1858. | Dismissed.",
           "admitted": "1858-04-26",
           "how_admitted": "profession",
@@ -2509,7 +2491,7 @@
       "rule": "Surname 'Thompson' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0890",
+          "record": "second_presb_0892",
           "as_read": "Thompson, Mrs. Jane L. | Letter. | January 2, 1869. | Dismissed.",
           "admitted": "1869-01-02",
           "how_admitted": "letter",
@@ -2517,7 +2499,33 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0891",
+          "record": "second_presb_0893",
+          "as_read": "Thompson, Joseph | Letter. | January 2, 1869. | Dismissed.",
+          "admitted": "1869-01-02",
+          "how_admitted": "letter",
+          "printed_page": 203,
+          "a_married_womans_entry": false
+        }
+      ]
+    },
+    {
+      "name": "Lieut J L Thompson",
+      "person_id": "thompson_lieut_j_l",
+      "household_id": "hh_thompson_lieut_j_l",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "rule": "Surname 'Thompson' folds to the same string as the roll line's, and the given name of both begins J.",
+      "roll_lines": [
+        {
+          "record": "second_presb_0892",
+          "as_read": "Thompson, Mrs. Jane L. | Letter. | January 2, 1869. | Dismissed.",
+          "admitted": "1869-01-02",
+          "how_admitted": "letter",
+          "printed_page": 203,
+          "a_married_womans_entry": true
+        },
+        {
+          "record": "second_presb_0893",
           "as_read": "Thompson, Joseph | Letter. | January 2, 1869. | Dismissed.",
           "admitted": "1869-01-02",
           "how_admitted": "letter",
@@ -2535,7 +2543,7 @@
       "rule": "Surname 'Williams' folds to the same string as the roll line's, and the given name of both begins J.",
       "roll_lines": [
         {
-          "record": "second_presb_0915",
+          "record": "second_presb_0919",
           "as_read": "Williams, John C. | Letter. | June I, 1842, | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2543,7 +2551,7 @@
           "a_married_womans_entry": false
         },
         {
-          "record": "second_presb_0916",
+          "record": "second_presb_0920",
           "as_read": "Williams, Mrs. John C. | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2569,7 +2577,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0928",
+          "record": "second_presb_0932",
           "as_read": "Wright, Mrs. Jessie Wilkes | Letter. | May 3, 1878. | Dismissed.",
           "admitted": "1878-05-03",
           "how_admitted": "letter",
@@ -2577,7 +2585,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0929",
+          "record": "second_presb_0933",
           "as_read": "Wright, Mrs. Joanna H. | Letter. | June 25, 1852. | Deceased.",
           "admitted": "1852-06-25",
           "how_admitted": "letter",
@@ -2585,7 +2593,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0930",
+          "record": "second_presb_0934",
           "as_read": "Wright, Mrs. John | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2593,7 +2601,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0931",
+          "record": "second_presb_0935",
           "as_read": "Wright, John S. | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2619,7 +2627,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0928",
+          "record": "second_presb_0932",
           "as_read": "Wright, Mrs. Jessie Wilkes | Letter. | May 3, 1878. | Dismissed.",
           "admitted": "1878-05-03",
           "how_admitted": "letter",
@@ -2627,7 +2635,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0929",
+          "record": "second_presb_0933",
           "as_read": "Wright, Mrs. Joanna H. | Letter. | June 25, 1852. | Deceased.",
           "admitted": "1852-06-25",
           "how_admitted": "letter",
@@ -2635,7 +2643,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0930",
+          "record": "second_presb_0934",
           "as_read": "Wright, Mrs. John | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2643,7 +2651,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0931",
+          "record": "second_presb_0935",
           "as_read": "Wright, John S. | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2669,7 +2677,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0928",
+          "record": "second_presb_0932",
           "as_read": "Wright, Mrs. Jessie Wilkes | Letter. | May 3, 1878. | Dismissed.",
           "admitted": "1878-05-03",
           "how_admitted": "letter",
@@ -2677,7 +2685,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0929",
+          "record": "second_presb_0933",
           "as_read": "Wright, Mrs. Joanna H. | Letter. | June 25, 1852. | Deceased.",
           "admitted": "1852-06-25",
           "how_admitted": "letter",
@@ -2685,7 +2693,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0930",
+          "record": "second_presb_0934",
           "as_read": "Wright, Mrs. John | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2693,7 +2701,7 @@
           "a_married_womans_entry": true
         },
         {
-          "record": "second_presb_0931",
+          "record": "second_presb_0935",
           "as_read": "Wright, John S. | Letter. | June I, 1842. | Deceased.",
           "admitted": "1842-06-01",
           "how_admitted": "letter",
@@ -2738,7 +2746,7 @@
       "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 10,
-      "rule": "The surname 'Allen' stands on the Second Presbyterian roll and no line under it carries the initial 'L' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
+      "rule": "The surname 'Allen' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'Lieut. James Allen'. A surname-only agreement is a refusal."
     },
     {
       "name": "Davi Andrews",
@@ -2883,6 +2891,15 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Barry' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John S. Barry'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "John Bates Jr.",
+      "person_id": "bates_john_jr",
+      "household_id": "hh_bates_john_jr",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 1,
+      "rule": "The surname 'Bates' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John Bates Jr.'. A surname-only agreement is a refusal."
     },
     {
       "name": "William A Bell",
@@ -3828,6 +3845,15 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Harmon' stands on the Second Presbyterian roll and no line under it carries the initial 'M' of 'M D Harmon'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "Joshua Hathaway jr.",
+      "person_id": "hathaway_joshua",
+      "household_id": "hh_hathaway_joshua",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 2,
+      "rule": "The surname 'Hathaway' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'Joshua Hathaway jr.'. A surname-only agreement is a refusal."
     },
     {
       "name": "Samuel Haviland",
@@ -5090,6 +5116,15 @@
       "rule": "The surname 'Saunders' stands on the Second Presbyterian roll and no line under it carries the initial 'W' of 'William W Saunders'. A surname-only agreement is a refusal."
     },
     {
+      "name": "Elijah Wentworth sen.",
+      "person_id": "sen_elijah_wentworth",
+      "household_id": "hh_sen_elijah_wentworth",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 2,
+      "rule": "The surname 'Wentworth' stands on the Second Presbyterian roll and no line under it carries the initial 'E' of 'Elijah Wentworth sen.'. A surname-only agreement is a refusal."
+    },
+    {
       "name": "Rebecca Sherman",
       "person_id": "sherman_rebecca",
       "household_id": "hh_sherman_rebecca",
@@ -5259,6 +5294,15 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Temple' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'Dr John Taylor Temple'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "Mrs Temple",
+      "person_id": "temple_mrs_john_t",
+      "household_id": "hh_temple_john_t",
+      "grade": "inferred",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 2,
+      "rule": "The surname 'Temple' stands on the Second Presbyterian roll and no line under it carries the initial '-' of 'Mrs Temple'. A surname-only agreement is a refusal."
     },
     {
       "name": "Dr Peter Temple",

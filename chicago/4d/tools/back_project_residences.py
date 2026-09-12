@@ -50,6 +50,7 @@ from back_project_addresses import (  # noqa: E402
     NOT_1835,
     RESIDENCE_PREFIX,
     SCENE_YEAR,
+    split_home,
     STREET_1835,
     VOLUME_TITLE,
     households,
@@ -140,7 +141,12 @@ def kind_of(printed: str) -> str:
 
 def adjudicate_one(streets, hh, persons, person, claim) -> dict:
     """One residence-printed address, through the five clauses, in order."""
-    printed = str(claim["value"])
+    # The home HALF of the field, and the whole field stays the quote (T-0987
+    # stretch 7). Where the crosswalk's split left the trade's trailing corner in
+    # front of the residence word, reading the whole field would send the five
+    # clauses at the shop's street instead of the house's.
+    field = str(claim["value"])
+    printed = split_home(field)[1] or field
     year = int(claim.get("describes_date") or 0)
     pid = person["person_id"]
     trade = ((persons.get(pid) or {}).get("occupation") or {}).get("value")
@@ -149,7 +155,8 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
         "household_id": hh["id"],
         "person_id": pid,
         "person": (persons.get(pid) or {}).get("name") or pid,
-        "address_as_printed": printed,
+        "address_as_printed": field,
+        "address_read_as_the_home": printed if printed != field else None,
         "kind": kind_of(printed),
         "describes_date": year,
         "read_back_years": year - SCENE_YEAR if year else None,
@@ -301,7 +308,7 @@ def adjudicate(streets, records) -> list[dict]:
             claim = person.get("address_later")
             if not (claim and claim.get("value")):
                 continue
-            if not RESIDENCE_PREFIX.match(str(claim["value"])):
+            if not split_home(claim["value"])[1]:
                 continue
             rows.append(adjudicate_one(streets, hh, persons, person, claim))
     rows.sort(key=lambda r: (r["household_id"], r["person_id"]))
