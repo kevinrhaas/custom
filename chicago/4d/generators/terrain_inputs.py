@@ -82,7 +82,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # terrain entries were stamped under, so a definition change is a visible, dated
 # event and the gate refuses a manifest it cannot compute rather than comparing
 # two hashes that mean different things.
-SCHEME = "resolved-spec-v3"
+SCHEME = "resolved-spec-v4"
 
 # Keys whose values are written for a reader, plus the one that is written for a
 # reader AND a gate: `mesh` declares what the ground does with a figure this
@@ -279,7 +279,7 @@ def terrain_inputs_doc(ep_dir: Path) -> dict:
         "spec": strip_prose(_load(ep_dir / "terrain_spec.json")),
         "vectors": {
             name: strip_prose(_load(ep_dir / name))
-            for name in ("river.geojson", "hydrology.geojson")
+            for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson")
         },
         "datum": strip_prose(_load(ROOT / "data" / "datum.json")),
         "code": _code_shas(),
@@ -295,10 +295,29 @@ def terrain_inputs_sha(ep_dir: Path) -> str:
     still match the data. Two copies of this list would agree until the day one
     of them mattered.
 
-    `shoreline.geojson` is deliberately absent: it is traced evidence that
-    `build_field` does not yet read, so including it would report the ground as
-    stale for a file that cannot change it. It joins the moment the heightfield
-    consumes it (ROADMAP § S2e parcel b).
+    `shoreline.geojson` IS hashed, and the sentence that said it was not is the
+    reason this had to be repaired rather than merely written. It was excluded on
+    a premise — "traced evidence that `build_field` does not yet read, so
+    including it would report the ground as stale for a file that cannot change
+    it" — that stopped being true when the spec started naming its features. The
+    spec's `water`, `divisions` and `surface_materials` blocks resolve
+    `harbor_reach_water`, `north_shore_harbor_reach`, `south_shore_harbor_reach`
+    and `sand_bar_1834` by id, `terrain_gen.main` loads all three GeoJSONs into
+    one id table before it calls `build_field`, and those four features are the
+    planform of the harbour, the lake shore and the sand bar. They move vertices.
+
+    WHAT THE OMISSION COST, because it is the argument for the denylist upstairs:
+    T-0799 re-traced the whole east edge off the full Wright sheet — both pier
+    lines, the cut, the bar to its tip, the old channel — and rewrote every one of
+    those four features. `heightfield.bin` and both GLBs stayed on the old trace
+    and the gate called them fresh, because the one file that had changed was the
+    one file the hash had been told to look away from. The ground a visitor
+    downloaded was a shore the project no longer believed in, for a week, greenly.
+
+    So this list is now the same shape as the spec's: everything `main` loads,
+    with its prose stripped. A file that reaches `build_field` is hashed whether
+    or not today's spec happens to name a feature in it — the alternative is this
+    exact failure, waiting on the next id the spec learns to resolve.
     """
     doc = terrain_inputs_doc(ep_dir)
     return hashlib.sha256(json.dumps(doc, sort_keys=True).encode()).hexdigest()
