@@ -238,6 +238,21 @@ step "Wabansia's street reading re-derives from its own pixels" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_wabansia_streets.py --self-test
 
+# AND THE FIGURES IN THE CELLS THOSE CORRIDORS LEAVE (T-1074). Wabansia's tiers come
+# from the street trace above and its COLUMNS are measured by the numeral reading itself,
+# because Wright letters no north-south street here. So this re-derives the reading twice
+# over, as T-1061 does for the Addition: every cell box is built from the committed
+# corridors and column rules rather than typed, and the run 59-79 is re-derived from the
+# boustrophedon rule written independently of the table it checks. A hand-typed figure, a
+# crop that has left its own cell, a lot divider that has drifted far enough off a block's
+# midpoint to be a street, or a closed gap where blocks 55-58 are unaccounted for all fail
+# here. The raster half is `--check-sheet` and the PR runs it.
+step "Wabansia's block numerals re-derive from the reading and the run" \
+  python3 tools/read_wabansia_block_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_block_numerals.py --self-test
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled

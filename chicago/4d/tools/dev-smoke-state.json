@@ -3885,6 +3885,70 @@
         ]
       },
       "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 470,
+      "takenAt": "2026-09-12T13:52:44.353Z",
+      "ref": "steward/t-1069-wabansia-block-numerals",
+      "commit": "dc784cf2228f",
+      "devCommit": "4e40c43a247a",
+      "treeHash": "sha256:7aa3ea16a85ddc3f",
+      "treeDirty": true,
+      "changelogHash": "sha256:fa5b2bf5f49a33be",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.5,
+          2.8,
+          3.1
+        ]
+      },
+      "source": "/tmp/wab/sm_d1112.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-12",
+      "parts": [
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 80,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 252,
+      "takenAt": "2026-09-12T13:52:44.264Z",
+      "ref": "steward/t-1069-wabansia-block-numerals",
+      "commit": "dc784cf2228f",
+      "devCommit": "4e40c43a247a",
+      "treeHash": "sha256:7aa3ea16a85ddc3f",
+      "treeDirty": true,
+      "changelogHash": "sha256:fa5b2bf5f49a33be",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.5,
+          2.8,
+          3.1
+        ]
+      },
+      "source": "/tmp/wab/sm_m1112.txt"
     }
   ]
 }
