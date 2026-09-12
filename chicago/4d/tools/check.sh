@@ -260,6 +260,22 @@ step "Wabansia's block numerals re-derive from the reading and the run" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_wabansia_block_numerals.py --self-test
 
+# AND THE STRIP BETWEEN THAT GRID AND THE WATER (T-1077). The water-lot tract is a wedge,
+# not a grid: its lot rules run with the river and its west boundary runs north-south, so
+# a rank exists only south of the y where the two have drawn far enough apart for one.
+# This re-derives that — every rank's north tip is solved for from the committed rules
+# rather than typed — along with the run 1-22 the sheet closes, the two-figure gap it does
+# NOT close, the lot module measured independently in three ranks, and the two named
+# corridors that cross the strip rather than front the river. A figure guessed into the
+# obliterated corner, a rank rule taken off a lot line, a refused figure quietly placed or
+# a pinched figure upgraded to `documented` all fail here. The raster half is
+# `--check-sheet` and the PR runs it.
+step "Wabansia's water-lot strip re-derives from its rules and the run" \
+  python3 tools/read_wabansia_water_lots.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_water_lots.py --self-test
+
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
 # counts from the peaks committed beside them, the answer about the modelled
