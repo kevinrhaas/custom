@@ -1936,11 +1936,11 @@
       "id": "side_blk_randolph_market_lot0_w",
       "path_local_enu_m": [
         [
-          99.74,
-          -318.2
+          96.86,
+          -318.17
         ],
         [
-          99.84,
+          96.93,
           -306.01
         ]
       ],
@@ -1961,12 +1961,12 @@
       "id": "rear_blk_randolph_market_lot0",
       "path_local_enu_m": [
         [
-          123.4,
-          -318.39
+          121.24,
+          -318.37
         ],
         [
-          99.74,
-          -318.2
+          96.86,
+          -318.17
         ]
       ],
       "belongs_to": [
@@ -1980,18 +1980,18 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot0, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a3_05, recon_1835_blk_randolph_market_d5_01 — and the yard behind those buildings is 12.19 m deep by 23.66 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot0, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a3_05, recon_1835_blk_randolph_market_d5_01 — and the yard behind those buildings is 12.19 m deep by 24.38 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "rear_blk_randolph_market_lot1",
       "path_local_enu_m": [
         [
-          99.7,
-          -323.68
+          96.83,
+          -323.66
         ],
         [
-          123.36,
-          -323.87
+          121.21,
+          -323.86
         ]
       ],
       "belongs_to": [
@@ -2007,18 +2007,18 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot1, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a1_12, recon_1835_blk_randolph_market_d1_10, recon_1835_blk_randolph_market_d2_09, recon_1835_blk_randolph_market_d5_11 — and the yard behind those buildings is 12.19 m deep by 23.66 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot1, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a1_12, recon_1835_blk_randolph_market_d1_10, recon_1835_blk_randolph_market_d2_09, recon_1835_blk_randolph_market_d5_11 — and the yard behind those buildings is 12.19 m deep by 24.38 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_randolph_market_lot1_w",
       "path_local_enu_m": [
         [
-          99.6,
+          96.76,
           -335.88
         ],
         [
-          99.7,
-          -323.68
+          96.83,
+          -323.66
         ]
       ],
       "belongs_to": [
@@ -2040,12 +2040,12 @@
       "id": "side_blk_randolph_market_lot0_blk_randolph_market_lot2_e",
       "path_local_enu_m": [
         [
-          123.4,
-          -318.39
+          121.24,
+          -318.37
         ],
         [
-          123.49,
-          -306.2
+          121.31,
+          -306.15
         ]
       ],
       "belongs_to": [
@@ -2076,12 +2076,12 @@
       "id": "side_blk_randolph_market_lot2_blk_randolph_market_lot4_e",
       "path_local_enu_m": [
         [
-          147.07,
-          -318.58
+          145.62,
+          -318.57
         ],
         [
-          147.15,
-          -306.38
+          145.69,
+          -306.35
         ]
       ],
       "belongs_to": [
@@ -2111,12 +2111,12 @@
       "id": "rear_blk_randolph_market_lot2",
       "path_local_enu_m": [
         [
-          147.07,
-          -318.58
+          145.62,
+          -318.57
         ],
         [
-          123.4,
-          -318.39
+          121.24,
+          -318.37
         ]
       ],
       "belongs_to": [
@@ -2130,18 +2130,18 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a4_06, recon_1835_blk_randolph_market_d6_02 — and the yard behind those buildings is 12.19 m deep by 23.67 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot2, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a4_06, recon_1835_blk_randolph_market_d6_02 — and the yard behind those buildings is 12.19 m deep by 24.38 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "rear_blk_randolph_market_lot3",
       "path_local_enu_m": [
         [
-          123.36,
-          -323.87
+          121.21,
+          -323.86
         ],
         [
-          147.03,
-          -324.07
+          145.59,
+          -324.05
         ]
       ],
       "belongs_to": [
@@ -2155,18 +2155,18 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot3, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a1_07, recon_1835_blk_randolph_market_d4_03 — and the yard behind those buildings is 12.19 m deep by 23.67 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot3, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a1_07, recon_1835_blk_randolph_market_d4_03 — and the yard behind those buildings is 12.19 m deep by 24.38 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_randolph_market_lot1_blk_randolph_market_lot3_e",
       "path_local_enu_m": [
         [
-          123.27,
+          121.14,
           -336.08
         ],
         [
-          123.36,
-          -323.87
+          121.21,
+          -323.86
         ]
       ],
       "belongs_to": [
@@ -2199,12 +2199,12 @@
       "id": "side_blk_randolph_market_lot4_blk_randolph_market_lot6_e",
       "path_local_enu_m": [
         [
-          170.73,
+          170.01,
           -318.77
         ],
         [
-          170.81,
-          -306.56
+          170.08,
+          -306.55
         ]
       ],
       "belongs_to": [
@@ -2233,12 +2233,12 @@
       "id": "rear_blk_randolph_market_lot4",
       "path_local_enu_m": [
         [
-          170.73,
+          170.01,
           -318.77
         ],
         [
-          147.07,
-          -318.58
+          145.62,
+          -318.57
         ]
       ],
       "belongs_to": [
@@ -2251,7 +2251,7 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot4, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds inf_sawyer_dwelling_a — and the yard behind those buildings is 12.19 m deep by 23.66 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot4, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds inf_sawyer_dwelling_a — and the yard behind those buildings is 12.19 m deep by 24.39 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_randolph_market_lot6_e",
@@ -2285,7 +2285,7 @@
           -318.97
         ],
         [
-          170.73,
+          170.01,
           -318.77
         ]
       ],
@@ -2299,14 +2299,14 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot6, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds inf_sawyer_dwelling_b — and the yard behind those buildings is 12.19 m deep by 23.66 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot6, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds inf_sawyer_dwelling_b — and the yard behind those buildings is 12.19 m deep by 24.38 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "rear_blk_randolph_market_lot7",
       "path_local_enu_m": [
         [
-          170.69,
-          -324.26
+          169.97,
+          -324.25
         ],
         [
           194.36,
@@ -2324,7 +2324,7 @@
           "refused": "no_household_names_this_ground"
         }
       ],
-      "note": "THE REAR LOT LINE of blk_randolph_market_lot7, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a2_08, recon_1835_blk_randolph_market_d3_04 — and the yard behind those buildings is 12.19 m deep by 23.67 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
+      "note": "THE REAR LOT LINE of blk_randolph_market_lot7, which in this grid is the ALLEY line: the plat drives a service alley through the middle of every block and the back of a lot opens onto it. The lot is improved — it holds recon_1835_blk_randolph_market_a2_08, recon_1835_blk_randolph_market_d3_04 — and the yard behind those buildings is 12.19 m deep by 24.39 m wide, which is the room the committed footprints leave inside the committed lot. EVERY COORDINATE IS THE PLAT'S; the invention is that the line carries a fence at all, and which one."
     },
     {
       "id": "side_blk_randolph_franklin_lot0_w",
@@ -3654,12 +3654,12 @@
       "id": "side_blk_randolph_market_lot3_e",
       "path_local_enu_m": [
         [
-          146.94,
-          -336.25
+          145.52,
+          -336.22
         ],
         [
-          147.03,
-          -324.07
+          145.59,
+          -324.05
         ]
       ],
       "belongs_to": [
@@ -3679,12 +3679,12 @@
       "id": "side_blk_randolph_market_lot7_w",
       "path_local_enu_m": [
         [
-          170.61,
+          169.9,
           -336.47
         ],
         [
-          170.69,
-          -324.26
+          169.97,
+          -324.25
         ]
       ],
       "belongs_to": [
@@ -3705,7 +3705,7 @@
       "path_local_enu_m": [
         [
           194.29,
-          -336.62
+          -336.61
         ],
         [
           194.36,
@@ -4677,8 +4677,8 @@
       "id": "rear_blk_randolph_market_lot0_gate",
       "on": "alley",
       "at_local_enu_m": [
-        111.57,
-        -318.29
+        109.05,
+        -318.27
       ],
       "width_m": 3.048,
       "confidence": "reconstructed",
@@ -4688,8 +4688,8 @@
       "id": "rear_blk_randolph_market_lot1_gate",
       "on": "alley",
       "at_local_enu_m": [
-        111.53,
-        -323.77
+        109.02,
+        -323.76
       ],
       "width_m": 3.048,
       "confidence": "reconstructed",
@@ -4699,8 +4699,8 @@
       "id": "rear_blk_randolph_market_lot2_gate",
       "on": "alley",
       "at_local_enu_m": [
-        135.24,
-        -318.49
+        133.43,
+        -318.47
       ],
       "width_m": 3.048,
       "confidence": "reconstructed",
@@ -4710,8 +4710,8 @@
       "id": "rear_blk_randolph_market_lot3_gate",
       "on": "alley",
       "at_local_enu_m": [
-        135.19,
-        -323.97
+        133.4,
+        -323.96
       ],
       "width_m": 3.048,
       "confidence": "reconstructed",
@@ -4721,7 +4721,7 @@
       "id": "rear_blk_randolph_market_lot4_gate",
       "on": "alley",
       "at_local_enu_m": [
-        158.9,
+        157.81,
         -318.67
       ],
       "width_m": 3.048,
@@ -4732,7 +4732,7 @@
       "id": "rear_blk_randolph_market_lot6_gate",
       "on": "alley",
       "at_local_enu_m": [
-        182.56,
+        182.2,
         -318.87
       ],
       "width_m": 3.048,
@@ -4743,8 +4743,8 @@
       "id": "rear_blk_randolph_market_lot7_gate",
       "on": "alley",
       "at_local_enu_m": [
-        182.53,
-        -324.36
+        182.17,
+        -324.35
       ],
       "width_m": 3.048,
       "confidence": "reconstructed",
