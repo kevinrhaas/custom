@@ -212,6 +212,18 @@ step "Kinzie's Addition's street reading re-derives from its own pixels" \
 step "Kinzie's Addition's street lines re-derive from the module they are seated on" \
   python3 tools/seat_kinzie_addition_streets.py --check
 
+# THE WATER LOTS (T-1063) take BOTH halves here, unlike the street reading above, for
+# one measured reason: the re-read costs 2.1 s rather than half a minute. It walks one
+# 930-pixel line and scans a twenty-pixel band beside it, where the street reading
+# profiles five windows of a million pixels each. A gate that can afford the raster
+# should spend it — the cheap half only proves the file is self-consistent, and the
+# expensive half is what proves it is still what the sheet says.
+step "the water-lot strip's metres re-derive from the pixels committed beside them" \
+  python3 tools/read_kinzie_addition_water_lots.py --check
+
+step "…and the strip still reads the same off the sheet" \
+  python3 tools/read_kinzie_addition_water_lots.py --check-sheet
+
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
 # lot polygons, so a hand-nudged building would show up here as drift rather than as a
