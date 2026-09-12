@@ -77,6 +77,20 @@ one, and ruling 3 below is recomputed afterwards, which is the point: three of t
 Wilson house's five spellings were last seen in 1834 and were each claiming a survival
 liberty the fourth and fifth disprove.
 
+AND SOME THINGS THE PAPERS NAME ARE NEITHER A PERSON NOR A HOUSE (T-0410). The Howard
+Fire Insurance Company of the city of New-York sold insurance in this town through a
+LOCAL AGENT, and an agency is not a trade, a shop or a signboard: it is a RELATION
+between a principal that never stood here and the house or man who held it for a season.
+With only persons and businesses to mint into, the corpus expressed it the one way it
+could — as its own business — which then collided with the house holding it under
+`firm_surnames()` and had to be refused by hand, and the refusal said the two were not
+one house when the true finding was that they were JOINED. `identity.json`'s `agencies`
+is where that relation is declared: a principal, who held it over what window, and
+optionally the minted record the relation RETIRES. The window is computed from the
+witnesses and never asserted; a holding adds no proprietor, no trade, no street and no
+roof, because a man who signs for a principal is not thereby a partner in the house he
+signs for. `refused_holdings` is the same record kept the other way up.
+
 THE QUOTE IS MACHINE-CHECKED AGAINST THE TRANSCRIPTION, which is the one gate here that
 is about provenance rather than shape. A claim names the exact line numbers its quote is
 built from, and `--check` reassembles the quote out of the transcription and refuses any
@@ -693,6 +707,9 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
     # trade line ends in something that might be one.
     place_vocabulary = set()
     houses = []
+    # T-0410. Every claim key the corpus carries, so a relation declared in
+    # `identity.json` can be checked against the printings it says it rests on.
+    all_claims = {}
 
     for path in sorted(files, key=lambda p: Path(p).name):
         doc = load_json(path)
@@ -706,6 +723,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         for claim in doc.get("claims", []):
             claim_count += 1
             key = claim_key(issue_id, claim)
+            all_claims[key] = issue_date
             for ent in claim.get("entities", []):
                 name = ent.get("normalized") or ent.get("as_printed")
                 pk = person_key(name)
@@ -1997,6 +2015,233 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 "declaration that has outlived its pair is a judgement nobody can check."
                 % (biz["id"], sorted(pair)))
 
+    # ------------------------------------------------------------------
+    # AN AGENCY IS A RELATION AND NOT A HOUSE (T-0410)
+    #
+    # A business record holds a trade, goods, proprietors, a street and placement
+    # readings. An AGENCY is none of those: it is a relation between a named principal
+    # that is not in this town at all — the Howard Fire Insurance Company of the city of
+    # New-York — and a local house that holds it for a season. Until this section existed
+    # the corpus could express it only one way, by minting the agency as its OWN business,
+    # which then collided under `firm_surnames()` with the house holding it and had to be
+    # refused by hand. T-0402 wrote two such refusals and neither said the true thing,
+    # which is that the houses are JOINED rather than confused.
+    #
+    # So a declaration here does three things and no more: it names the principal, it
+    # records who held the agency over what window, and it may RETIRE the business record
+    # the corpus minted for the agency itself. The window is COMPUTED from the witnesses'
+    # own issue dates and may not be asserted — the same discipline as ruling 3.
+    #
+    # WHAT IT MAY NEVER DO, because this is the shape in which an agency would quietly
+    # invent a partnership: a holding says a house held the agency and NOTHING else. It
+    # adds no proprietor, no trade, no street and no roof. That nobody here becomes a
+    # partner in the house he signs for is the whole reason E. K. Hubbard's agency could
+    # not be merged into Hubbard & Co. in the first place.
+    #
+    # Six guards, each one a way a relation could delete or invent something:
+    #   1. a `why` that names the principal VERBATIM, so the judgement reads back
+    #      without the code — the merges' rule, for the merges' reason;
+    #   2. every witness is a claim key the corpus actually carries;
+    #   3. a holder is a business the register carries or a person the corpus names,
+    #      and which of the two is DECLARED rather than guessed at;
+    #   4. a retired record must be one the register carries, must be unplaced — a
+    #      placed record would take an address out of the town with it — and its every
+    #      mention must be a witness of some holding, so retirement cannot drop a
+    #      printing;
+    #   5. a retired record may not still be named by a refusal, because a refusal that
+    #      has outlived its pair is a judgement nobody can check;
+    #   6. a REFUSED holding says which printing refutes it, in the same shape, because
+    #      the absence of a holding reads exactly like a candidate nobody has judged.
+    AGENCY_HOLDER_KINDS = {"business", "person"}
+    agencies = {}
+
+    def _agency_holding(label, h, seen, refused=False):
+        """Validate one holding. Returns the compiled record, or None with problems."""
+        holder, kind = h.get("holder"), h.get("holder_kind")
+        why_key = "refused_because" if refused else "note"
+        note = (h.get(why_key) or "").strip()
+        what = "refused holding" if refused else "holding"
+        tag = "%s %s %r" % (label, what, holder)
+        if not holder:
+            problems.append("%s: a %s needs a `holder`" % (label, what))
+            return None
+        if kind not in AGENCY_HOLDER_KINDS:
+            problems.append("%s: `holder_kind` must be one of %s — whether the agency sat "
+                            "with a house or with one man is part of what the relation "
+                            "says, and it is declared rather than guessed at"
+                            % (tag, ", ".join(sorted(AGENCY_HOLDER_KINDS))))
+            return None
+        if not note:
+            problems.append("%s: no `%s` — a relation nobody argued is worth no more "
+                            "than no relation at all" % (tag, why_key))
+            return None
+        if holder not in note:
+            problems.append("%s: `%s` must name the holder VERBATIM, so the judgement "
+                            "can be read back without the code" % (tag, why_key))
+            return None
+        witnesses = list(h.get("witnesses") or [])
+        if not witnesses:
+            problems.append("%s: no `witnesses` — an agency rests on printings exactly "
+                            "as a merge does, and one that names none cannot be checked"
+                            % tag)
+            return None
+        missing = [w for w in witnesses if w not in all_claims]
+        if missing:
+            problems.append("%s: %s is not a claim the corpus carries — a relation "
+                            "resting on a printing nobody extracted cannot be checked"
+                            % (tag, ", ".join(repr(m) for m in missing)))
+            return None
+        key = slug(holder)
+        table = businesses if kind == "business" else persons
+        if key not in table:
+            problems.append("%s: not a %s the corpus carries, so a relation hung on it "
+                            "is a rule nobody can check" % (tag, kind))
+            return None
+        if (kind, key) in seen:
+            problems.append("%s: this holder is declared twice for one principal — one "
+                            "relation, one window" % tag)
+            return None
+        seen.add((kind, key))
+        witnesses.sort()
+        dates = sorted(all_claims[w] for w in witnesses)
+        rec = {
+            "holder": holder,
+            "holder_kind": kind,
+            "holder_id": table[key]["id"],
+            "witnesses": witnesses,
+            # computed, never asserted: the window is what the printings say it is
+            "first_issue": dates[0],
+            "last_issue": dates[-1],
+        }
+        if h.get("signature"):
+            rec["signature"] = h["signature"]
+        if h.get("number"):
+            rec["number"] = h["number"]
+        if h.get("copy_dates"):
+            rec["copy_dates"] = sorted(h["copy_dates"])
+        rec[why_key] = note
+        return rec
+
+    for rule in identity.get("agencies", []):
+        principal = rule.get("principal")
+        why = (rule.get("why") or "").strip()
+        label = "identity.json agency %r" % principal
+        if not principal:
+            problems.append("identity.json agency: a declaration needs a `principal`")
+            continue
+        if not why:
+            problems.append("%s: no `why` — an agency declared on nobody's argument is a "
+                            "relation between two houses asserted out of the air" % label)
+            continue
+        if principal not in why:
+            problems.append("%s: `why` must name the principal VERBATIM, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        ak = slug(principal)
+        if ak in agencies:
+            problems.append("%s: this principal is declared twice" % label)
+            continue
+        seen_holders = set()
+        holdings = [_agency_holding(label, h, seen_holders)
+                    for h in rule.get("holdings") or []]
+        refused = [_agency_holding(label, h, seen_holders, refused=True)
+                   for h in rule.get("refused_holdings") or []]
+        if any(h is None for h in holdings + refused):
+            continue
+        if not holdings:
+            problems.append("%s: no `holdings` — a principal with nobody holding it for "
+                            "it in this town is not a fact about this town" % label)
+            continue
+
+        retired = None
+        ret = rule.get("retires")
+        if ret:
+            name = ret.get("name")
+            because = (ret.get("because") or "").strip()
+            rtag = "%s retires %r" % (label, name)
+            rk = slug(name or "")
+            if not name or not because:
+                problems.append("%s: a retirement needs both a `name` and a `because`"
+                                % rtag)
+                continue
+            if name not in because:
+                problems.append("%s: `because` must name the retired record VERBATIM — "
+                                "a business leaving the register on an unreadable "
+                                "argument is a house silently deleted" % rtag)
+                continue
+            if rk not in businesses:
+                problems.append("%s: not a business the register carries, so the "
+                                "retirement answers nothing" % rtag)
+                continue
+            doomed = businesses[rk]
+            if placement_rank(doomed.get("placement") or {}) > 0 or doomed.get("street"):
+                problems.append("%s: this record is PLACED, and retiring it would take "
+                                "an address out of the town with it. An agency that was "
+                                "read at a street is not the relation this section is "
+                                "for" % rtag)
+                continue
+            if ("business", rk) in seen_holders:
+                problems.append("%s: the retired record is also declared a HOLDER of "
+                                "its own agency — a relation cannot hold itself" % rtag)
+                continue
+            covered = {w for h in holdings for w in h["witnesses"]}
+            dropped = [m for m in doomed["mentions"] if m not in covered]
+            if dropped:
+                problems.append("%s: %s would be dropped — every printing the retired "
+                                "record was compiled from has to be a witness of some "
+                                "holding, or retiring it loses a reading"
+                                % (rtag, ", ".join(repr(d) for d in sorted(dropped))))
+                continue
+            still_refused = [r for r in identity.get("refused_firm_merges", [])
+                             if rk in (slug(r.get("into") or ""), slug(r.get("from") or ""))]
+            if still_refused:
+                problems.append("%s: a `refused_firm_merge` still names this record. The "
+                                "relation is what that refusal could not say, so the "
+                                "refusal comes out in the same pass — one left behind is "
+                                "a judgement nobody can check" % rtag)
+                continue
+            doomed = businesses.pop(rk)
+            retired = {
+                "id": doomed["id"], "name": doomed["name"], "trade": doomed.get("trade"),
+                "mentions": sorted(doomed["mentions"]), "because": because,
+            }
+            if doomed.get("merged"):
+                # the styles an earlier firm merge collapsed INTO this record: the
+                # judgement outlives the record it was made about
+                retired["merged"] = doomed["merged"]
+
+        agencies[ak] = {
+            "id": "agency_" + ak,
+            "principal": principal,
+            "principal_seat": rule.get("principal_seat"),
+            "trade": rule.get("trade"),
+            "why": why,
+            "first_issue": min(h["first_issue"] for h in holdings),
+            "last_issue": max(h["last_issue"] for h in holdings),
+            "holdings": sorted(holdings, key=lambda h: (h["first_issue"], h["holder"])),
+            "refused_holdings": sorted(refused,
+                                       key=lambda h: (h["first_issue"], h["holder"])),
+            "retired": retired,
+        }
+        # …and the line on the holder's own card, which is what the ticket asked for:
+        # a house that holds an agency says so, and gains nothing else by it.
+        for h, field in ([(h, "agencies_held") for h in holdings]
+                         + [(h, "agencies_refused") for h in refused]):
+            table = businesses if h["holder_kind"] == "business" else persons
+            rec = table.get(slug(h["holder"]))
+            if rec is None:          # the holder WAS the retired record's own house
+                continue
+            rec.setdefault(field, []).append({
+                "agency": "agency_" + ak, "principal": principal,
+                "first_issue": h["first_issue"], "last_issue": h["last_issue"],
+                "witnesses": list(h["witnesses"]),
+            })
+    for table in (businesses, persons):
+        for rec in table.values():
+            for field in ("agencies_held", "agencies_refused"):
+                if rec.get(field):
+                    rec[field].sort(key=lambda a: (a["first_issue"], a["agency"]))
+
     trade_classes, trade_scopes = load_trade_classes()
     for b in businesses.values():
         # Ruling 3, computed and never asserted: a documented business stands in the
@@ -2043,10 +2288,12 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             for p in sorted(files, key=lambda p: Path(p).name)
         ],
         "counts": {"claims": claim_count, "persons": len(persons),
-                   "places": len(places), "businesses": len(businesses)},
+                   "places": len(places), "businesses": len(businesses),
+                   "agencies": len(agencies)},
         "persons": sorted(persons.values(), key=lambda p: p["id"]),
         "places": sorted(places.values(), key=lambda p: p["id"]),
         "businesses": sorted(businesses.values(), key=lambda b: b["id"]),
+        "agencies": sorted(agencies.values(), key=lambda a: a["id"]),
     }
     if not quiet:
         print("  ok    %d claim(s) → %d person(s), %d place(s), %d business(es)"
@@ -2823,6 +3070,13 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
         print("  ok    %d business(es) declared another's premises or department rather "
               "than merged into it, each naming the printings the relation rests on"
               % len(identity_doc.get("premises_relations", [])))
+        print("  ok    %d agency relation(s): %d holding(s) and %d refused, %d minted "
+              "record(s) retired — a house that holds an agency gains a line and not a "
+              "roof"
+              % (len(doc.get("agencies", [])),
+                 sum(len(a["holdings"]) for a in doc.get("agencies", [])),
+                 sum(len(a["refused_holdings"]) for a in doc.get("agencies", [])),
+                 sum(1 for a in doc.get("agencies", []) if a.get("retired"))))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
@@ -3200,6 +3454,120 @@ def self_test():
                       premises(i, "Wilson printing office", "Wilson job room")),
         "already declared the premises of",
         "one business declared to stand on two different grounds")
+    # THE AGENCY RELATION AND EVERY WAY IT COULD INVENT OR DELETE SOMETHING (T-0410).
+    # A holding is the one declaration here that joins two houses rather than holding
+    # them apart, so it is the one most able to assert a partnership nobody printed —
+    # and the retirement is the only thing in this file that takes a business OUT of the
+    # register. Both are therefore fixed by cases, and the green ones are as load-bearing
+    # as the red: a guard that also refuses the legitimate declaration is a guard that
+    # gets deleted the first time somebody needs one.
+    ISSUE = base.get("issue_id")
+    WK = "%s#c012" % ISSUE            # L. Wilson & Co., unplaced and streetless
+    VK = "%s#zz1" % ISSUE             # whatever `variant` mints
+    PK = "%s#c004" % ISSUE            # W. L. Newberry, a person and not a house
+
+    def holding(holder, kind="business", witnesses=None, note=None, field="note", **kw):
+        h = {"holder": holder, "holder_kind": kind,
+             "witnesses": [WK] if witnesses is None else list(witnesses)}
+        h[field] = (note if note is not None
+                    else "%s held the agency over this window and gains nothing else by "
+                         "it — no proprietor, no trade, no street, no roof" % holder)
+        h.update(kw)
+        return h
+
+    def agency(i, holdings=None, principal="Howard Fire Insurance Company", why=None,
+               refused=None, retires=None):
+        rec = {"principal": principal,
+               "why": why if why is not None
+               else "The %s is a company that never stood in this town and sold here "
+                    "through a local agent" % principal,
+               "holdings": [holding("L. Wilson & Co.")] if holdings is None else holdings}
+        if refused is not None:
+            rec["refused_holdings"] = refused
+        if retires is not None:
+            rec["retires"] = retires
+        i.setdefault("agencies", []).append(rec)
+
+    def retirement(name="A. Gent, agent for the Howard Fire Insurance Company", because=None):
+        return {"name": name,
+                "because": because if because is not None
+                else "'%s' is the agency itself minted as a house, it is unplaced in "
+                     "every printing, and every one of them is a witness above" % name}
+
+    run(lambda d, i: agency(i), None, "an agency held by one house")
+    run(lambda d, i: agency(i, [holding("W. L. Newberry", kind="person", witnesses=[PK])]),
+        None, "an agency held by one man rather than a house")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co."),
+                                holding("W. L. Newberry", kind="person", witnesses=[PK])]),
+        None, "an agency that passes from a house to a man")
+    run(lambda d, i: agency(i, why=""),
+        "no `why`", "an agency declared on nobody's argument")
+    run(lambda d, i: agency(i, why="a New York company sold insurance here"),
+        "name the principal VERBATIM", "an agency whose reason does not name its principal")
+    run(lambda d, i: agency(i, []),
+        "no `holdings`", "a principal nobody in this town holds")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", kind="firm")]),
+        "`holder_kind` must be one of", "a holder whose kind is outside the vocabulary")
+    run(lambda d, i: agency(i, [holding("Nobody & Co.")]),
+        "not a business the corpus carries", "an agency hung on a house nobody claimed")
+    run(lambda d, i: agency(i, [holding("Absent Person", kind="person", witnesses=[PK])]),
+        "not a person the corpus carries", "an agency hung on a man nobody claimed")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", witnesses=[])]),
+        "no `witnesses`", "a holding that rests on no printing")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", witnesses=["%s#c999" % ISSUE])]),
+        "not a claim the corpus carries", "a holding citing a printing nobody extracted")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", note="somebody held it")]),
+        "name the holder VERBATIM", "a holding whose note does not name its holder")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co."), holding("L. Wilson & Co.")]),
+        "declared twice for one principal", "one house declared the holder twice")
+    run(lambda d, i: (agency(i), agency(i)),
+        "declared twice", "one principal declared twice")
+
+    # THE REFUSED HOLDING — the candidate the printings refute, held to the holding's
+    # own shape because the absence of one reads exactly like a candidate nobody judged.
+    run(lambda d, i: agency(i, refused=[
+            holding("Goss & Cobb", field="refused_because",
+                    note="Goss & Cobb signs the notice below the card, not the card")]),
+        None, "a candidate holder refused on the printing that refutes it")
+    run(lambda d, i: agency(i, refused=[
+            holding("Goss & Cobb", field="refused_because", note="")]),
+        "no `refused_because`", "a refused holding that does not say why")
+    run(lambda d, i: agency(i, refused=[holding("Goss & Cobb")]),
+        "no `refused_because`", "a refused holding written as if it were a holding")
+    run(lambda d, i: agency(i, refused=[
+            holding("L. Wilson & Co.", field="refused_because",
+                    note="L. Wilson & Co. is both, which cannot be")]),
+        "declared twice for one principal", "one house both holding and refused")
+
+    # THE RETIREMENT — the only declaration in this file that takes a business OUT of
+    # the register, and the four ways it could do that dishonestly.
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, [holding("L. Wilson & Co.", witnesses=[WK, VK])],
+                             retires=retirement())),
+        None, "the agency's own minted record retired into the relation")
+    run(lambda d, i: agency(i, retires=retirement("Nobody & Co.")),
+        "not a business the register carries", "a retirement of a record nobody claimed")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, retires=retirement(because="it is not a house"))),
+        "name the retired record VERBATIM", "a retirement whose reason does not name it")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, retires=retirement())),
+        "would be dropped", "a retirement that loses one of its record's printings")
+    run(lambda d, i: agency(
+            i, retires=retirement("S. B. Cobb, saddle, harness and trunk manufactory")),
+        "this record is PLACED", "a retirement that would take an address with it")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      firm_refusal(i, "L. Wilson & Co.",
+                                   "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, [holding("L. Wilson & Co.", witnesses=[WK, VK])],
+                             retires=retirement())),
+        "still names this record", "a retirement leaving its own refusal behind")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, [holding("L. Wilson & Co.", witnesses=[WK, VK]),
+                                 holding("A. Gent, agent for the Howard Fire Insurance "
+                                         "Company", witnesses=[VK])],
+                             retires=retirement())),
+        "cannot hold itself", "a retired record declared the holder of its own agency")
 
     # THE SIGN-NAME ESCAPE AND ITS NEGATIVE CASES (T-0340). The guard above lets a style
     # that names NO partner merge into one that does; everything here is the price of

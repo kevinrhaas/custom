@@ -677,14 +677,6 @@
       "businesses_carrying_this_trade": 1
     },
     {
-      "trade": "fire insurance agency",
-      "classes": [
-        "other"
-      ],
-      "basis": "a service the enumeration counts nowhere (B2)",
-      "businesses_carrying_this_trade": 1
-    },
-    {
       "trade": "fire insurance, and marine risks on lake and canal vessels and cargoes",
       "classes": [
         "other"
