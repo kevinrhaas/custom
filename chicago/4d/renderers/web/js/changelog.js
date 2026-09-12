@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The town north of the river gets the eleven streets it was platted with', kind: 'change', ts: '',
+  { v: 770, title: 'The town north of the river gets the eleven streets it was platted with', kind: 'change', ts: '2026-09-12T09:10:35.854Z', date: 'Sep 12, 2026, 4:10 AM CT',
     items: [
       'North of the Chicago River, east of the fort bend, Kinzie\u2019s Addition was surveyed in 1833 and drawn complete on J. S. Wright\u2019s 1834 survey \u2014 fifty-four numbered blocks, thirteen named streets, a block Wright letters by name rather than number. Until today this reconstruction carried four of those streets and placed roofs against a grid it did not have.',
       'Eleven of them stand tonight. East and west: Illinois, Indiana, Ohio, Ontario, Erie, Huron and Superior. North and south: Cass, Rush, Pine and Sand. Michigan Street and Wolcott Street were already here and have been carried out to the Addition\u2019s edge rather than stopping where the old town stopped.',
