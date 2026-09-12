@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The directory that printed the same man twice', kind: 'fix', ts: '',
+  { v: 787, title: 'The directory that printed the same man twice', kind: 'fix', ts: '2026-09-12T15:37:00.008Z', date: 'Sep 12, 2026, 10:37 AM CT',
     items: [
       'Fergus\u2019s Chicago directory of 1843 is two books bound as one. The front sells: 174 notices under trade headings \u2014 SADDLERY AND HARNESS, ATTORNEYS \u2014 each headed by the subscriber\u2019s name in capitals. The back lists: 2,521 lines, one to a person, alphabetically. A tradesman who paid for a notice also stands in the list, so the volume prints him twice.',
       'This project had been reading those two printings as two men. When it asked which 1843 entry belongs to a person of 1835, it counted PRINTINGS, and Silas B. Cobb\u2019s own advertisement came back as a rival candidate for Silas B. Cobb \u2014 so the answer had to be \u201cmore than one, cannot say\u201d. Eighteen of the printings sitting in that undecided pile were a man\u2019s own notice standing against him.',
