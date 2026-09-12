@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 124,
+    "upheld": 127,
     "named": 1,
-    "refused": 66,
-    "unruled": 19
+    "refused": 72,
+    "unruled": 10
   },
   "counts": {
     "purchasers": 647,
-    "matched": 144,
-    "refused": 503,
+    "matched": 138,
+    "refused": 509,
     "firms": 2,
     "bodies": 3
   },
@@ -6102,126 +6102,6 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "LEE GEORGE W",
-      "record_ids": [
-        "ls1320",
-        "ls1321",
-        "ls1322",
-        "ls1323",
-        "ls1324",
-        "ls1325",
-        "ls1326"
-      ],
-      "resident_id": "lee_george",
-      "resident_name": "George Lee",
-      "household_id": "hh_lee_george",
-      "match": "forename_agrees",
-      "rule": "LEE GEORGE W matches George Lee: the forename names George Lee of the 2 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "lee_george",
-          "name": "George Lee",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": "W",
-          "outcome": "survives"
-        },
-        {
-          "key": "lee_william",
-          "name": "William Lee",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "W",
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "LEE WILLIAM",
-      "record_ids": [
-        "ls1327",
-        "ls1328",
-        "ls1329"
-      ],
-      "resident_id": "lee_william",
-      "resident_name": "William Lee",
-      "household_id": "hh_lee_william",
-      "match": "forename_agrees",
-      "rule": "LEE WILLIAM matches William Lee: the forename names William Lee of the 2 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "lee_george",
-          "name": "George Lee",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "lee_william",
-          "name": "William Lee",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "LOOMIS H G",
-      "record_ids": [
-        "ls1330",
-        "ls1331",
-        "ls1332",
-        "ls1333",
-        "ls1334"
-      ],
-      "resident_id": "loomis_henry",
-      "resident_name": "Henry Loomis",
-      "household_id": "hh_loomis_henry",
-      "match": "initial_agrees",
-      "rule": "LOOMIS H G matches Henry Loomis: the forename names Henry Loomis of the 2 people of this surname, and the forename agrees as an initial only.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "loomis_amelizo",
-          "name": "Amelizo Loomis",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "loomis_henry",
-          "name": "Henry Loomis",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": null,
-          "reading_middle_initial": "G",
-          "outcome": "survives"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
       "purchaser_as_read": "LOYD A",
       "record_ids": [
         "ls1335"
@@ -6357,174 +6237,6 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "MILLER GEORGE",
-      "record_ids": [
-        "ls1369",
-        "ls1370",
-        "ls1371"
-      ],
-      "resident_id": "miller_george",
-      "resident_name": "George Miller",
-      "household_id": "hh_miller_george",
-      "match": "forename_agrees",
-      "rule": "MILLER GEORGE matches George Miller: the forename names George Miller of the 4 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "miller_fred",
-          "name": "Fred Miller",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_george",
-          "name": "George Miller",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "miller_john",
-          "name": "John Miller",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_samuel",
-          "name": "Samuel Miller",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "MILLER J",
-      "record_ids": [
-        "ls1372",
-        "ls1373"
-      ],
-      "resident_id": "miller_john",
-      "resident_name": "John Miller",
-      "household_id": "hh_miller_john",
-      "match": "initial_agrees",
-      "rule": "MILLER J matches John Miller: the forename names John Miller of the 4 people of this surname, and the forename agrees as an initial only.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "miller_fred",
-          "name": "Fred Miller",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_george",
-          "name": "George Miller",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_john",
-          "name": "John Miller",
-          "forename_agrees": true,
-          "why": "an initial standing for the forename (M2)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "miller_samuel",
-          "name": "Samuel Miller",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "MILLER SAMUEL",
-      "record_ids": [
-        "ls1374",
-        "ls1375",
-        "ls1376",
-        "ls1377"
-      ],
-      "resident_id": "miller_samuel",
-      "resident_name": "Samuel Miller",
-      "household_id": "hh_miller_samuel",
-      "match": "forename_agrees",
-      "rule": "MILLER SAMUEL matches Samuel Miller: the forename names Samuel Miller of the 4 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "miller_fred",
-          "name": "Fred Miller",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_george",
-          "name": "George Miller",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_john",
-          "name": "John Miller",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "miller_samuel",
-          "name": "Samuel Miller",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": null,
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
       "purchaser_as_read": "MONTGOMERY WILLIAM",
       "record_ids": [
         "ls1378",
@@ -6561,7 +6273,21 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835",
+          "chicago_american_1835",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "UPHELD, and the register sorts its own Montgomerys before the town is asked. The book holds four spellings: MONTGOMERY LOTON WM and MONTGOMERY LOTON W, both already upheld to the shoemaker Loton W. Montgomery under T-0990; MONTGOMERY JOHN, whose Residence column reads MCLEAN; and the five town lots of 1836 entered as WILLIAM. So the man who signs 'L. W. MONTGOMERY' in the Democrat is in the register under his own forename and is not the purchaser here. The printed record then holds exactly one Chicago Montgomery whose forename begins with W, and prints it out: 'Wm. Montgomery' votes in the First Ward at the first city election of 2 May 1837 (Fergus 1839), the only Montgomery polled in the whole book. His trade is what the rows are: the Democrat carries 'W. MONTGOMERY' ten times between 28 January 1834 and 12 August 1835, signing as auctioneer ('W. MONTGOMERY, Auc’r.'), as agent and as a commission merchant on South Water Street, and the American of 4 July 1835 carries him too — a land agent and auctioneer is exactly the man who takes lots 1, 2, 4 and 9 of blocks 12 and 13 in the June 1836 sale and lot 8 of block 30 that September, $13,850 in all. The layer's other Montgomerys, G. B. S. the shoemaker and J. H. the shipcarpenter, are printed distinctly in both directories and take neither the initial nor the trade. FILED ON THE WAY PAST, not folded into this ruling: the newspapers gazetteer's person_w_montgomery carries 'boot and shoe maker' among its occupations, which is Loton W.'s trade and not this man's — the two signatures are separated on the page and should be on the card."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6597,7 +6323,18 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_democrat_1833_1835",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844"
+        ],
+        "reasoning": "UPHELD, and it is the least doubtful ruling of the cohort. The register's two initials, B and S, are the two initials the town itself prints: the Democrat of 17 June 1835 has 'B. S. Morris', the same run carries the firm 'Casey & Morris, attorneys at law' on 26 August 1835, Fergus 1843 prints both the entry 'Morris, Buckner Smith, attorney, 59 Clark, res Indiana, bet Cass and Rush' and his own advertising card 'B. S. MORRIS, attorney and counsellor at law, office Clark Street, opposite City Hotel', and Norris 1844 repeats the card. Buckner Smith Morris is the town's second mayor and the corpus holds him with a trade, an office and a house. The surname has no rival that could take a B: the layer's other Morrises are Ann and Mary, from the church register and the 1840 census, and Potily, a St. Cyr marriage of 1835. The register enters MORRIS B S once — lot 2 of block 2 on 5 September 1836, $1,900 — and no other Morris at all in seven townships. Both initials agreeing, a trade in the scene year, and no rival reading anywhere in the surname."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6661,7 +6398,20 @@
       ],
       "residence_column": "UNKNOWN",
       "evidence_grade": "inferred",
-      "ruling": null,
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-11",
+        "ticket": "T-1034",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "chicago_voter_lists_1833_1835_irad",
+          "fergus_chicago_directory_1839",
+          "fergus_chicago_directory_1843",
+          "norris_directory_1844",
+          "census_1840_chicago_familysearch_images"
+        ],
+        "reasoning": "UPHELD on the two-initial agreement, which the one-initial refusals in this same cohort throw into relief. The register prints J M, and the town prints J. M.: the poll of 1834 enters 'Morrison, J. M.' (poll_1834_075), letter for letter the register's spelling, and Fergus 1843 and Norris 1844 both carry 'Morrison, James M., carpenter' on Clark Street near Madison, with the 1840 census reading 'Jam[e]s [?] Morrison' on the same card. Four domains, a trade and an address. The surname is populous and that is the point: Fergus 1839, Fergus 1843 and Norris 1844 print Alexander, Charles, Daniel, Ephraim (and Eph. and Ephriam), Ezekiel, James M., John C., Michael and Orsemus Morrison, and only ONE of them carries M as a middle initial. The register sorts them too — it enters EZEKIEL, ORSEMUS three times, EPHRAIM and THOS M under their own names, so J M is not a clipped reading of a purchaser the book holds otherwise. Two lots of the June 1836 town sale, lot 1 of block 38 at $7,800 and lot 6 of block 57 at $2,020. The price is large for a carpenter and is not an argument either way: the ruling is about which man the letters name, and $9,820 in the week of the town sale says nothing about a trade."
+      },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -17839,6 +17589,60 @@
       ]
     },
     {
+      "a": "LEE GEORGE W",
+      "b": "George Lee",
+      "rule": "REFUSED, and the middle initial the town does hold for a George Lee is the WRONG ONE. The register enters LEE GEORGE W seven times in the June 1836 town sale, and the card it is proposed onto carries exactly three readings: the Democrat's list of letters remaining in the Post Office at Chicago on 20 May 1835, which prints 'George Lee' and nothing else about him and which the newspapers layer itself flags letter_list_only; the residents card built from it; and one St. Cyr marriage of 1 October 1835 signed 'G. S. Lee', folded on by the forename initial alone. So the only middle initial anywhere on the card reads S, against the register's W. The printed record of the surname does not repair it: Fergus 1839, Fergus 1843 and Norris 1844 between them print Benjamin Tyler, Daniel, Daniel J., David S., David Stewart, John and Thomas Lee, and no George at all, and the first city election of 2 May 1837 polls no Lee in any ward. An uncalled-for letter and a tract entry are two name-only readings and do not make an identity (the_ruling_rule), and here they do not even agree on the man's initials. NOTED FOR A LATER RUN, not acted on: whether 'G. S. Lee' belongs on this card at all is a separate question from this ruling, and refusing the purchase does not answer it.",
+      "record_ids": [
+        "ls1320",
+        "ls1321",
+        "ls1322",
+        "ls1323",
+        "ls1324",
+        "ls1325",
+        "ls1326"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "LEE GEORGE W matches George Lee: the forename names George Lee of the 2 people of this surname, and the forename agrees in full."
+    },
+    {
+      "a": "LEE WILLIAM",
+      "b": "William Lee",
+      "rule": "REFUSED on the STANLEY JOSEPH shape, which cohort B drew and this cohort does not bend. The whole of what the town holds for a William Lee is one line of the 1833 tax list, 'Lee, William' (tax_1833_065), with no trade, no address and no second document; the residents card is that line. The register's three rows are lots 5, 6 and 7 of block 23 entered on 28 September 1830 at $25, $25 and $30 — the original canal-commissioners' sale, three years BEFORE the tax line, and a sale whose purchasers were very largely not living here. The printed record adds nothing: no William Lee appears in Fergus 1839, Fergus 1843 or Norris 1844, and the 1837 city poll has no Lee. One civic line against a bare register name is the layer being thin, not the two records agreeing.",
+      "record_ids": [
+        "ls1327",
+        "ls1328",
+        "ls1329"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "LEE WILLIAM matches William Lee: the forename names William Lee of the 2 people of this surname, and the forename agrees in full."
+    },
+    {
+      "a": "LOOMIS H G",
+      "b": "Henry Loomis",
+      "rule": "REFUSED, and the rival is in the same volume — cohort B's PEARSON HIRAM shape, found a second time. The register itself enters LOOMIS HORATIO G (ls0595, the west half of the south-east quarter, 80 acres at $208, 27 June 1835) a year before the five town lots it enters as LOOMIS H G, so the book holds both spellings of one man, and the H G it is asked about is the man it elsewhere spells out. The printed record of the surname holds exactly two Chicago Loomises and separates them cleanly: 'Loomis, Henry, lumber merchant, cor West Water and Randolph' (Fergus 1843, Norris 1844), who carries NO middle initial in any printing; and Horatio Gates Loomis of Harmon & Loomis, printed 'Loomis, Horatio G., (Harmon & Loomis)' and 'Loomis, Horatio Gates, at C. L. Harmon's' in Fergus 1839 and 1843 and 'Loomis, H. G. at C. L. Harmon's' in Norris 1844 — the register's two initials exactly. The one 1835 reading on the Henry card is weaker still and cannot decide anything: 'H. Loomis' is a signature on the passengers' card of the steamboat Thomas Jefferson printed by the Chicago American of 20 June 1835, an initial that fits either man, and the signer gives BALLSTON SPA as his own place. The residents layer holds no card for Horatio Gates Loomis, so there is no person here to name the rows onto; the ruling refuses the match and records whose rows they are.",
+      "record_ids": [
+        "ls1330",
+        "ls1331",
+        "ls1332",
+        "ls1333",
+        "ls1334"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "LOOMIS H G matches Henry Loomis: the forename names Henry Loomis of the 2 people of this surname, and the forename agrees as an initial only."
+    },
+    {
       "a": "LOYD J",
       "b": "Alexander Loyd",
       "rule": "LOYD J is refused against Alexander Loyd: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
@@ -18008,6 +17812,54 @@
       "evidence": [
         "data/residents/index.json"
       ]
+    },
+    {
+      "a": "MILLER GEORGE",
+      "b": "George Miller",
+      "rule": "REFUSED, on the commonest surname in the cohort and the thinnest card under it. What the town holds for a George Miller is one line of the 1833 tax list (tax_1833_073) and the residents card made from it — no trade, no address, no second reading. Against that, the surname is printed as often as any in the town and never with this forename: Fergus 1839, Fergus 1843 and Norris 1844 print Bernhart, Capt. Harry, Charles/Chas., Daniel, David, H., Henry, Jacob, John, John Newhouse, Peter, Porter, Robert, S. T. and William Miller, and the Democrat and the American between 1833 and 1835 print eighteen more readings of the surname — Chas., Col. Samuel, Daniel, F. W., Henry F., Jacob, Jacob V., Jesse, Jesse F., John, Lorin, Marshall, Matthias B., Samuel and an uncertain L. P. — with no George among them. Nor does the 1837 city poll: its only Millers are Daniel and John B. The three rows are lot 8 of block 18 and lots 5 and 6 of block 36, all entered 27 September 1830 at $25, $36 and $27 — the original sale again, and thirty-three months before the tax line. A bare name in a register and a bare name on a tax roll do not make an identity.",
+      "record_ids": [
+        "ls1369",
+        "ls1370",
+        "ls1371"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "MILLER GEORGE matches George Miller: the forename names George Miller of the 4 people of this surname, and the forename agrees in full."
+    },
+    {
+      "a": "MILLER J",
+      "b": "John Miller",
+      "rule": "REFUSED — the BROWN WM shape at its plainest, and the cohort's clearest case that an initial is not a forename. The register prints a single letter, J, on two lots of the June 1836 town sale (lot 3 of block 41, $1,125, and lot 8 of block 38, $1,166), and the printed record of the surname holds at least four distinct men whose forename begins with it: Jacob Miller the blacksmith of Indiana Street and Jacob V. Miller (Fergus 1843, Norris 1844, the Democrat, the old-settler death notices), Jesse F. Miller (Democrat, 19 August 1835), Jonathan Miller (St. Cyr, 1838) and John Miller, with a John Newhouse Miller and a John B. Miller besides. The mechanical rule reached miller_john only because the residents layer is thinner than the town was. That card is itself name-only in every one of its readings — poll_1833_020, tax_1833_074, poll_1834_072 and two Democrat readings, one of them a letter list — so even if the initial could be made to choose, there would be nothing on the far side to check the register against.",
+      "record_ids": [
+        "ls1372",
+        "ls1373"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "MILLER J matches John Miller: the forename names John Miller of the 4 people of this surname, and the forename agrees as an initial only."
+    },
+    {
+      "a": "MILLER SAMUEL",
+      "b": "Samuel Miller",
+      "rule": "REFUSED, and the reading that made the card look thick belongs to another town. miller_samuel carries five readings, and on the face of it two of them are newspaper readings that are not letter lists — 'Col. Samuel Miller' in the Democrat of 25 February 1834 and 'Samuel Miller' on 4 March 1834, the second carrying the occupation 'agent'. Read at the page they are ONE advertisement printed twice, David Carver's storage, commission and lumber notice, and its closing sentence is 'Calvin Britain esq. at St. Joseph, and Col. Samuel Miller, Michigan City, are his Agents, who will immediately forward any article directed to him.' The Colonel is Carver's agent at MICHIGAN CITY, Indiana — named in a Chicago paper because Chicago readers shipped through him, not because he lived here. Strip that fold and what remains for a Chicago Samuel Miller is two bare names: tax_1833_075 and an 1832 Black Hawk enrollment (blackhawk_1832_070), neither with a trade, an address or a second document. The register's four rows are lots 3, 4, 5 and 6 of block 14 entered 27 September 1830 at $20, $20, $40 and $30 — the original sale, two years before the muster. No Samuel Miller is printed in Fergus 1839, Fergus 1843 or Norris 1844. Two name-only readings do not make an identity, and a third that turns out to name an Indiana man makes it worse rather than better.",
+      "record_ids": [
+        "ls1374",
+        "ls1375",
+        "ls1376",
+        "ls1377"
+      ],
+      "evidence": [
+        "data/research/land_sales/resident_rulings.json"
+      ],
+      "ruled_on": "2026-09-11",
+      "ruled_under": "T-1034",
+      "was_proposed_as": "MILLER SAMUEL matches Samuel Miller: the forename names Samuel Miller of the 4 people of this surname, and the forename agrees in full."
     },
     {
       "a": "MORRISON EPHRAIM",
